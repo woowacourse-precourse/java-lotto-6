@@ -1,5 +1,8 @@
 package View;
 
+import java.util.List;
+import lotto.Lotto;
+
 public class OutputView {
     public static void promptPurchaseAmount() {
         System.out.println("\n구매금액을 입력해 주세요");
@@ -24,6 +27,16 @@ public class OutputView {
 
     public static void printReturnOfRate(double returnRate) {
         System.out.printf("총 수익률은 %.2f입니다\n", returnRate);
+    }
+
+    public static void printPurchaseAmount(int count) {
+        System.out.printf("\n%d개를 구매했습니다.\n", count);
+    }
+
+    public static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
+        }
     }
 
 }

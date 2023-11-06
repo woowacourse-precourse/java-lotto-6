@@ -1,24 +1,43 @@
 package lotto.domain.win;
 
+import java.util.Arrays;
+import lotto.domain.lotto.dto.LottoNumberMatchDTO;
+
 public enum WinState {
 
-    FIRST_PLACE("6개 일치", 6, false, 2000000000),
-    SECOND_PLACE("5개 일치, 보너스 볼 일치", 5, true, 30000000),
-    THIRD_PLACE("5개 일치", 5, false, 1500000),
-    FOURTH_PLACE("4개 일치", 4, null, 50000),
-    FIFTH_PLACE("3개 일치", 3, null, 5000),
-    NONE("꽝", null, null, 0);
+    FIRST_PLACE("6개 일치", 6, TriBoolean.FALSE, 2000000000),
+    SECOND_PLACE("5개 일치, 보너스 볼 일치", 5, TriBoolean.TRUE, 30000000),
+    THIRD_PLACE("5개 일치", 5, TriBoolean.FALSE, 1500000),
+    FOURTH_PLACE("4개 일치", 4, TriBoolean.WHATEVER, 50000),
+    FIFTH_PLACE("3개 일치", 3, TriBoolean.WHATEVER, 5000),
+    NONE("꽝", 0, TriBoolean.WHATEVER, 0);
 
     private final String description;
-    private final Integer includedNumbersCount;
-    private final Boolean isIncludedBonusNumber;
+    private final int includedNumbersCount;
+    private final TriBoolean isRequireBonusNumberState;
     private final int winnings;
 
-    WinState(String description, Integer includedNumbersCount, Boolean isIncludedBonusNumber, int winnings) {
+    WinState(String description, int includedNumbersCount, TriBoolean isRequireBonusNumberState, int winnings) {
         this.description = description;
         this.includedNumbersCount = includedNumbersCount;
-        this.isIncludedBonusNumber = isIncludedBonusNumber;
+        this.isRequireBonusNumberState = isRequireBonusNumberState;
         this.winnings = winnings;
+    }
+
+    public static WinState from(LottoNumberMatchDTO lottoNumberMatchDTO) {
+        int includedNumbersCount = lottoNumberMatchDTO.includedNumberCount();
+        TriBoolean isIncludedBonusNumber = TriBoolean.from(lottoNumberMatchDTO.isIncludedBonusNumber());
+
+        return Arrays.stream(values())
+                .filter(winState -> winState.equals(includedNumbersCount, isIncludedBonusNumber))
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    private boolean equals(int includedNumbersCount, TriBoolean isIncludedBonusNumber) {
+        boolean equalsIncludedNumbersCount = this.includedNumbersCount == includedNumbersCount;
+        boolean equalsRequireBonusNumber = isRequireBonusNumberState.equals(isIncludedBonusNumber);
+        return equalsIncludedNumbersCount && equalsRequireBonusNumber;
     }
 
 }

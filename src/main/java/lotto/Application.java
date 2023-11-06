@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Application {
+
     public static final int LOTTO_PRICE = 1000;
 
     public static int getPurchaceAmount() {
@@ -20,7 +22,7 @@ public class Application {
         return buyLotto / LOTTO_PRICE;
     }
 
-    public static List<Lotto> generateLottos(int count){
+    public static List<Lotto> generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -51,14 +53,22 @@ public class Application {
         return Integer.parseInt(Console.readLine());
     }
 
+    public static void printLottos(List<Lotto> lottos) {
+        System.out.println();
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         int buyLottoAmount = getPurchaceAmount();
         List<Lotto> lottos = generateLottos(buyLottoAmount);
         List<Integer> winNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
 
-
-        // 당첨 통계
+        printLottos(lottos);
 
 
     }

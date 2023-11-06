@@ -25,4 +25,16 @@ public class LottoResult {
         return prizeMap;
     }
 
+    public void updateMatchCount(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
+        int matchCount = purchasedLotto.matchCount(winningLotto);
+        incrementMatchCount(matchCount);
+        if (matchCount == 5 && purchasedLotto.containsNumber(bonusNumber)) {
+            incrementMatchCount(MAX_MATCH_COUNT);
+        }
+    }
+
+    private void incrementMatchCount(int matchCount) {
+        matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0) + 1);
+    }
+
 }

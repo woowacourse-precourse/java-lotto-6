@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Set;
 import lotto.validator.LottoNumberValidator;
 
-public class LotteryResult {
+public class WinNumber {
     private final Set<Integer> numbers;
     private final int bonusNumber;
 
-    LotteryResult(List<Integer> numbers, int bonusNumber){
+    public WinNumber(List<Integer> numbers, int bonusNumber){
         validate(numbers, bonusNumber);
         this.numbers = new HashSet<>(numbers);
         this.bonusNumber = bonusNumber;

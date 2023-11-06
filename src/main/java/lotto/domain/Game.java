@@ -89,6 +89,14 @@ public class Game {
         for (Lotto lotto : lottos.keySet()) {
             compareWinningNumbers(lotto);
             compareBonusNumber(lotto);
+            calculateLottoRankingCount(lotto);
+        }
+    }
+
+    private static void calculateLottoRankingCount(Lotto lotto) {
+        float lottoScore = lottos.get(lotto);
+        if (lottoScore >= 3.0f) {
+            LottoRanking.valueOfScore(lottos.get(lotto)).plusCount();
         }
     }
 
@@ -114,10 +122,8 @@ public class Game {
     private static Integer calculateTotalPrizeMoney() {
         int totalPrizeMoney = 0;
 
-        for (Float score : lottos.values()) {
-            if (score >= 3.0f) {
-                totalPrizeMoney += LottoRanking.valueOfScore(score).getPrizeMoney();
-            }
+        for (LottoRanking lottoRanking : LottoRanking.values()) {
+            totalPrizeMoney += lottoRanking.getPrizeMoney() * lottoRanking.getCount();
         }
 
         return totalPrizeMoney;

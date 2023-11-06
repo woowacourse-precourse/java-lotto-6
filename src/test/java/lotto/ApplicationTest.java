@@ -182,6 +182,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_공백_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_공백_포함_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2, ,4, ,6", "1, ,3, ,5,6", "1,2,3, , ,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {

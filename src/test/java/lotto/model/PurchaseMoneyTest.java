@@ -1,9 +1,9 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class PurchaseMoneyTest {
 
   @Test
   @DisplayName("구매 금액을 1000으로 나눴을 때 나머지가 존재할 수 없다.")
-  void testCreatePurchaseAmount() {
+  void testCreatePurchaseMoney() {
     int purchaseMoney = 1001;
 
     assertThatThrownBy(() -> new PurchaseMoney(purchaseMoney))

@@ -1,7 +1,6 @@
 package lotto.model;
 
 public class PurchaseMoney {
-
   private static final int DIVIDE_MONEY = 1000;
 
   private int purchaseMoney;
@@ -24,4 +23,5 @@ public class PurchaseMoney {
   private boolean isDivisible(int purchaseMoney) {
     return purchaseMoney % DIVIDE_MONEY != 0;
   }
+
 }

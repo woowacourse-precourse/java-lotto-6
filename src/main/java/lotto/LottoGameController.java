@@ -8,34 +8,50 @@ public class LottoGameController {
 
     private LottoGame lottoGame;
 
-    public void gameInit() {
+    public void purchaseLotto() {
+        int numOfPurchase = calcNumOfPurchase();
+        System.out.println(numOfPurchase + "개를 구매했습니다.");
+        this.lottoGame = new LottoGame(numOfPurchase);
+        System.out.println(lottoGame.issueLottos());
+    }
+
+    private static int calcNumOfPurchase() {
+        int amount = processAmount();
+        int numOfPurchase = amount / UNIT;
+        return numOfPurchase;
+    }
+
+    private static int processAmount() {
         String userInput;
         do {
             System.out.println("구매금액을 입력해주세요.");
-            userInput = receiveUserInput();
-        } while(isInvalidUserInput(userInput));
+            userInput = receiveAmount();
+        } while (isInvalidAmount(userInput));
+        return Integer.parseInt(userInput);
+    }
 
-        int numOfPurchase = Integer.parseInt(userInput)/UNIT;
-        System.out.println(numOfPurchase + "개를 구매했습니다.");
-        this.lottoGame = new LottoGame(numOfPurchase);
+
+    public void setWinningNumbers() {
+
     }
 
     public void runGame() {
-        gameInit();
-        Lottos lottos = lottoGame.issueLottos();
-        System.out.println(lottos);
+        purchaseLotto();
+
     }
 
-    public static boolean isInvalidUserInput(String userInput) {
-        return !(isValidInputIsNumber(userInput) && isValidAmountUnit(Integer.parseInt(userInput)));
+    public static boolean isInvalidAmount(String userInput) {
+        return !(isNumber(userInput)
+                && isValidAmountUnit(Integer.parseInt(userInput))
+                && isNaturalNumber(Integer.parseInt(userInput)));
     }
 
-    private static String receiveUserInput() {
+    private static String receiveAmount() {
         String userInput = Console.readLine();
         return userInput;
     }
 
-    private static boolean isValidInputIsNumber(String userInput) {
+    private static boolean isNumber(String userInput) {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
@@ -48,6 +64,14 @@ public class LottoGameController {
     private static boolean isValidAmountUnit(int amount) {
         if ((amount % UNIT) != 0) {
             ExceptionHandler.handleException("구입 금액을 1,000원 단위로 입력해주세요.");
+            return ExceptionHandler.EXCEPTION_OCCURED;
+        }
+        return ExceptionHandler.NO_EXCEPTION;
+    }
+
+    private static boolean isNaturalNumber(int amount) {
+        if (amount <= 0) {
+            ExceptionHandler.handleException("구입 금액을 자연수로 입력해주세요.");
             return ExceptionHandler.EXCEPTION_OCCURED;
         }
         return ExceptionHandler.NO_EXCEPTION;

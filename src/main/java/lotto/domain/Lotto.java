@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -7,14 +8,26 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사이즈 초과");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplication(List<Integer> numbers) {
+        List<Integer> uniqueNumbers = new ArrayList<>();
+
+        for (int i = 0; i < numbers.size(); i++) {
+            int number = numbers.get(i);
+            if (uniqueNumbers.contains(number)) {
+                throw new IllegalArgumentException("중복된 값 발견: " + number);
+            } else {
+                uniqueNumbers.add(number);
+            }
+        }
+    }
 }

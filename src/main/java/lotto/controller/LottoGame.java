@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import static lotto.domain.User.DIVIDE_NUMBER;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -9,7 +11,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
-    private List<Lotto> lotto = new ArrayList<>();
+    private List<Lotto> lottos = new ArrayList<>();
     private long purchaseAmount;
     private InputView inputView;
     private OutputView outputView;
@@ -23,6 +25,15 @@ public class LottoGame {
 
     public void start() {
         purchaseAmount();
+        makeLotto();
+    }
+
+    private void makeLotto() {
+        for (int i = 0; i < purchaseAmount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
     }
 
     private void purchaseAmount() {

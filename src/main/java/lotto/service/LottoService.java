@@ -13,7 +13,6 @@ public class LottoService {
     public static int getAmountOfLottoTickets() {
         int amountOfLottoTickets = money / 1000;
 
-        // [예외처리] 1000원으로 나누어 떨어지지 않는 경우
         return amountOfLottoTickets;
     }
     public static List<Lotto> makeLottoTickets() {

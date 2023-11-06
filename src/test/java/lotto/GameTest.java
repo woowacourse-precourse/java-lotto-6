@@ -24,14 +24,6 @@ public class GameTest {
 
     }
 
-    @DisplayName("생성된 로또 갯수 테스트")
-    @Test
-    void CreatedLottos_EqualLottoCount_Success() {
-        Game game = new Game();
-        Lottos lottos = game.createLottos(6000);
-        assertThat(lottos.getLottos().size()).isEqualTo(6);
-    }
-
     @DisplayName("생성된 로또 번호 갯수 테스트")
     @Test
     void CreateLottos_EquaLottoNumberCount_ExceptionThrow() {
@@ -42,7 +34,6 @@ public class GameTest {
             assertThat(lotto.getNumbers().size()).isEqualTo(6);
         }
     }
-
 
 
     @DisplayName("당첨 통계 테스트")

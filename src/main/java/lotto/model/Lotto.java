@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.view.InputView;
@@ -27,7 +28,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     public long compareLottoNumbers(List<Integer> winningNumbers) {

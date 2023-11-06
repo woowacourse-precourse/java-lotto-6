@@ -2,12 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class UI {
 	LottoService lottoService = new LottoService();
 
 	void on() {
-		long NumberOfLottoTickets = inputMoney();
-		System.out.println(NumberOfLottoTickets + "개를 구매했습니다.");
+		long numberOfLottoTickets = inputMoney();
+		System.out.println(numberOfLottoTickets + "개를 구매했습니다.");
+		showComputerLottos(numberOfLottoTickets);
 	}
 
 	long inputMoney() {
@@ -19,6 +22,14 @@ public class UI {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return inputMoney();
+		}
+	}
+
+	private void showComputerLottos(long numberOfLottoTickets) {
+		try {
+			List<Lotto> lottos = lottoService.issueLottos(numberOfLottoTickets);
+		} catch (IllegalArgumentException e) {
+
 		}
 	}
 }

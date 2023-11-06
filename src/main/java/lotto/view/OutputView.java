@@ -10,11 +10,8 @@ public class OutputView {
         lottos.forEach(lotto -> System.out.println(lotto.toString()));
     }
 
-    public void printPrizeResult(Referee referee) {
+    public void printResult(final Referee referee, final double rateOfReturn) {
         System.out.println(referee);
-    }
-
-    public void printResult(final double rateOfReturn) {
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 }

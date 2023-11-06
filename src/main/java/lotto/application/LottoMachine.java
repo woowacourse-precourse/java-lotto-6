@@ -9,7 +9,7 @@ import lotto.domain.LottoNumber;
 public class LottoMachine {
     private final NumberGenerator numberGenerator;
 
-    public LottoMachine(NumberGenerator numberGenerator) {
+    public LottoMachine(final NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
@@ -18,11 +18,11 @@ public class LottoMachine {
         return createLotto(numbers);
     }
 
-    public Lotto createLottoByManual(List<Integer> numbers) {
+    public Lotto createLottoByManual(final List<Integer> numbers) {
         return createLotto(numbers);
     }
 
-    private Lotto createLotto(List<Integer> numbers) {
+    private Lotto createLotto(final List<Integer> numbers) {
         return new Lotto(numbers.stream()
                 .map(LottoNumber::from)
                 .toList()

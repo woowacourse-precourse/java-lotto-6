@@ -48,4 +48,5 @@ public class LottoGameService {
     public void createLottoBonusNumber(LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest) {
         lottoBonusNumber = new LottoBonusNumber(lottoWinningNumber, lottoBonusNumberCreateRequest.getBonusNumber());
     }
+
 }

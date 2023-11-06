@@ -29,7 +29,7 @@ public class LottoGameController {
     private void printLottoWinningResult() {
         LottoWinningResult lottoWinningResult = lottoGameService.calculateLottoWinningResult();
         lottoGameView.printWinningStatistics(new LottoWinningStatistics(
-                lottoWinningResult.getRewardRatio(),
+                lottoWinningResult.calculateRewardRatio(),
                 lottoWinningResult.getTable()));
     }
 

@@ -4,15 +4,12 @@ import java.util.Map;
 
 public class LottoWinningResult {
 
-    private final double rewardRatio;
+    private final LottoPurchase lottoPurchase;
     private final Map<LottoPrize, Integer> prizeCountMap;
 
     public LottoWinningResult(LottoPurchase lottoPurchase, Map<LottoPrize, Integer> prizeCountMap) {
+        this.lottoPurchase = lottoPurchase;
         this.prizeCountMap = prizeCountMap;
-        long purchaseAmount = lottoPurchase.getPurchaseAmount();
-        long lottoWinningAmount = calculateLottoWinningAmount();
-
-        this.rewardRatio = (double) lottoWinningAmount / purchaseAmount;
     }
 
     private long calculateLottoWinningAmount() {
@@ -25,8 +22,11 @@ public class LottoWinningResult {
         return lottoWinningAmount;
     }
 
-    public double getRewardRatio() {
-        return rewardRatio;
+    public double calculateRewardRatio() {
+        long purchaseAmount = lottoPurchase.getPurchaseAmount();
+        long lottoWinningAmount = calculateLottoWinningAmount();
+
+        return (double) lottoWinningAmount / purchaseAmount;
     }
 
     public Map<LottoPrize, Integer> getTable() {

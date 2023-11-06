@@ -19,5 +19,6 @@ public class LottoController {
         int amount = inputView.inputAmount();
         lottos = lottoService.makeLottoList(amount);
         outputView.printAmount(amount);
+        outputView.printLottos(lottos);
     }
 }

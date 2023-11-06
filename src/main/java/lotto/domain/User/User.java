@@ -2,12 +2,11 @@ package lotto.domain.User;
 
 import lotto.domain.Lotto.Lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Result.Result;
 import lotto.domain.WinningNumber.WinningNumber;
 import lotto.validator.InputValidator;
 
@@ -16,6 +15,7 @@ public class User {
     private List<Lotto> lotties = new ArrayList<>();
     InputValidator inputValidator = new InputValidator();
     WinningNumber winningNumber = new WinningNumber();
+    Result result = new Result();
 
     public User() {
         inputLottoAmount();
@@ -24,6 +24,7 @@ public class User {
         //validate
         winningNumber.setWinningNumbers();
         winningNumber.setBonusNumber();
+        result.printResult(lotties, winningNumber);
     }
 
     private void inputLottoAmount() {
@@ -45,7 +46,9 @@ public class User {
         System.out.println();
         System.out.println(lottoCount + "개를 구매했습니다.");
         for (int i = 0; i < lottoCount; i++) {
-            System.out.println(lotties.get(i).getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotties.get(i).getNumbers());
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
         }
     }
 

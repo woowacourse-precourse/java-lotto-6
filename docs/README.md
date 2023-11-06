@@ -9,15 +9,25 @@
   - [x] 테스트: 입력 후 int로 반환 확인
 
 ### 2. 로또 객체 - `domain\Lotto`
-- [ ] 로또 번호를 가진다. `List<Integer> numbers`
+- [x] 로또 번호를 가진다. `List<Integer> numbers`
 
-### 2-1. 로또 발행하기 - `service\LottoService`
-- [ ] 발행 수량 구하기 - `getPurchaseAmount()`
-- [ ] 발행하기 - `issueLotteryTicket()`
+### 2-1. 당첨 등수 및 당첨 금액 enum 객체 - `domain\Prize`
 
-### 2-2. 당첨 번호와 비교하기 - `service\LottoService`
-- [ ] 일치한 개수 구하기 - `getMatchingNumbers()`
-- [ ] 총 수익률 구하기 - `getRateOfReturn()`
+### 2-2. 로또 발행하기 - `service\LottoService`
+- [x] 발행 수량 구하기 - `getLotteryTicketCount()`
+  - [x] 테스트: 1,000원으로 나눈 수량 확인
+- [x] 발행하기 - `issueLotteryTicket()`
+  - [x] 테스트: 발행 후 나온 6자리 숫자가 오름차순인지 확인
+
+### 2-3. 당첨 번호와 비교하기 - `service\LottoService`
+- [x] 일치한 개수 구하기 - `getMatchingNumbers()`
+  - [x] 테스트: 일치한 개수 확인
+- [x] 보너스 숫자 일치 여부 구하기
+  - [x] 테스트: 보너스 숫자 일치 여부 확인
+- [x] 당첨 등수와 당첨금 구하기
+  - [x] 테스트: 번호와 보너스 번호 일치에 따른 당첨 등수와 당청금 확인
+- [x] 총 수익률 구하기 - `getRateOfReturn()`
+  - [x] 테스트: 구입 금액 대비 당첨 금액 확인
 
 ### 3. 출력하기 - `view\OutputView`
 1. 구입 금액 - `outputPurchaseAmount()`

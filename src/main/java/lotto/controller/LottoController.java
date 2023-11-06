@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.util.LottoGenerator;
+import lotto.util.NumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -72,7 +72,7 @@ public class LottoController {
     private static List<Lotto> addLottoByMoney(LottoMoney lottoMoney) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoMoney.availableLottoCount(); i++) {
-            lottos.add(Lotto.from(LottoGenerator.lottoGenerator()));
+            lottos.add(Lotto.from(NumbersGenerator.lottoNumbersGenerator()));
         }
         return lottos;
     }

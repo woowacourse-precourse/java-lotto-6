@@ -16,7 +16,9 @@ public class Pick {
 
         while (true) {
             try {
+                luckyNumber = new ArrayList<Integer>();
                 groupNumbers = Console.readLine();
+
                 cutNumbers();
                 raiseInvalidNumbersException();
                 break;
@@ -45,7 +47,7 @@ public class Pick {
                 raiseNumberRangeException();
                 break;
             } catch(IllegalArgumentException e) {
-                System.out.println("[ERROR] 올바른 숫자를 입력해야 합니다.");
+                System.out.println("[ERROR] 1~45 범위의 숫자를 입력해야 합니다.");
             }
         }
 

@@ -1,14 +1,20 @@
 package lotto;
 
+import lotto.controller.ControlMain;
 import lotto.controller.ErrorCheck;
+import lotto.model.Player;
 import lotto.view.ErrorMessage;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -104,12 +110,33 @@ class LottoTest {
     @DisplayName("Lotto 클래스의 값의 길이가 6이 아닐경우 예외가 발생한다")
     @Test
     void validateTest() {
-        List<List<Integer>> numbers = new ArrayList<>(List.of(List.of(1,2,3),
-                                                      List.of(1,2,3,4,5,6,7)));
+        List<List<Integer>> numbers = new ArrayList<>(List.of(List.of(1, 2, 3),
+                List.of(1, 2, 3, 4, 5, 6, 7)));
         for (List<Integer> number : numbers) {
             assertThatThrownBy(() -> new Lotto(number))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ErrorMessage.notValue());
         }
+    }
+
+    @DisplayName("Lotto 당첨 개수 테스트 1,1,1,1,1 이 나와야함")
+    @Test
+    void lottoTest() {
+        List<List<Integer>> mainLotto = new ArrayList<>(List.of(
+                List.of(1, 23, 45, 2, 4, 6),
+                List.of(1, 23, 45, 2, 6, 7),
+                List.of(1, 23, 45, 2, 20, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 23, 45, 25, 26, 27),
+                List.of(24, 25, 26, 27, 28, 29)));
+        List<Integer> numbers = List.of(1, 23, 45, 2, 4, 6);
+        Player player = new Player();
+        player.updateBonusNumber(7);
+        Lotto lotto = new Lotto(numbers);
+        ControlMain.equalsNumber(mainLotto, lotto.getNumbers(), player);
+        int[] matchCountArray = player.getMatchCount();
+        List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+        assertThat(matchCountList).isEqualTo(Arrays.asList(1, 1, 1, 1, 1));
+        assertThat(player.getTotal()).isEqualTo(2031555000);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoData;
 import lotto.domain.User;
@@ -25,32 +26,25 @@ public class LottoController {
 
     public void run() {
         beforeStart();
-        setWinningNumbers();
+        setLottoData();
     }
 
     private void beforeStart() {
-        beforeStart(0);
+        beforeStartRecursive();
     }
 
-    private void beforeStart(int attempt) {
+    private void beforeStartRecursive() {
         try {
-            checkAttemptExceeded(attempt, 3);
             int purchaseAmount = inputProcessor.getUserInputPurchaseAmount();
             user = new User(purchaseAmount);
             lottoService.buyLottoAll(user);
             printBuyLotto();
         } catch (NumberFormatException e) {
             System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
-            beforeStart(attempt + 1);
+            beforeStartRecursive();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            beforeStart(attempt + 1);
-        }
-    }
-
-    private void checkAttemptExceeded(int currentAttempt, int maxAttempt) {
-        if (currentAttempt >= maxAttempt) {
-            ExceptionMessages.INPUT_ATTEMPT_EXCEEDED_MESSAGE.throwException();
+            beforeStartRecursive();
         }
     }
 
@@ -61,8 +55,39 @@ public class LottoController {
         }
     }
 
-    private void setWinningNumbers() {
-        lottoData = lottoService.setWinningNumbers(inputProcessor.getUserInputWinningNumbers(),
-                inputProcessor.getUserInputBonusNumber());
+    private void setLottoData() {
+        lottoData = lottoService.setWinningNumbers(setWinningNumbers(), setBonusNumber());
+    }
+
+    private List<Integer> setWinningNumbers() {
+        return setWinningNumbersRecursive();
+    }
+
+    private List<Integer> setWinningNumbersRecursive() {
+        try {
+            return inputProcessor.getUserInputWinningNumbers();
+        } catch (NumberFormatException e) {
+            System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
+            return setWinningNumbersRecursive();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setWinningNumbersRecursive();
+        }
+    }
+
+    private int setBonusNumber() {
+        return setBonusNumberRecursive();
+    }
+
+    private int setBonusNumberRecursive() {
+        try {
+            return inputProcessor.getUserInputBonusNumber();
+        } catch (NumberFormatException e) {
+            System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
+            return setBonusNumberRecursive();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setBonusNumberRecursive();
+        }
     }
 }

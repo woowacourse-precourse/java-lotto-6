@@ -1,36 +1,40 @@
 package lotto.domain;
 
 
+import java.util.ArrayList;
 import java.util.List;
-import lotto.common.Constant;
-import lotto.common.ErrorMessage;
 import lotto.domain.dto.LottoNumberCompareResult;
 
 public class LottoStorage {
 
+    private final AutomaticLottoStorage automaticLottoStorage;
     private final WinningLotto winningLotto;
 
 
-    public LottoStorage(final WinningLotto winningLotto) {
-
-
+    public LottoStorage(AutomaticLottoStorage automaticLottoStorage, WinningLotto winningLotto) {
+        this.automaticLottoStorage = automaticLottoStorage;
         this.winningLotto = winningLotto;
-
     }
 
-    public LottoNumberCompareResult compareToWinningLottoNumber(List<Integer> automaticLottoNumber) {
-        int matchingCount = 0;
+    public List<LottoNumberCompareResult> compareAllAutomaticLottoWithWinningNumbers() {
+        List<LottoNumberCompareResult> results = new ArrayList<>();
+
+        automaticLottoStorage.getAutomaticLottos()
+                .forEach(lautomaticLotto -> results.add(compareWithWinningNumbers(lautomaticLotto.getNumbers())));
+
+        return results;
+    }
+
+    public LottoNumberCompareResult compareWithWinningNumbers(List<Integer> automaticLottoNumbers) {
+
+        int matchingCount = (int) automaticLottoNumbers.stream().filter(winningLotto::isWinningNumber).count();
         boolean bonusIncluded = false;
 
-        matchingCount = (int) automaticLottoNumber.stream().filter(winningLotto::isWinningNumber).count();
-
-        if(automaticLottoNumber.stream().anyMatch(number -> number.equals(winningLotto.getBonusNumber()))) {
+        if(automaticLottoNumbers.stream().anyMatch(number -> number.equals(winningLotto.getBonusNumber()))) {
             matchingCount++;
             bonusIncluded = true;
         }
 
         return LottoNumberCompareResult.of(matchingCount, bonusIncluded);
     }
-
-
 }

@@ -21,6 +21,10 @@ public class AutomaticLottoStorage {
         return new AutomaticLottoStorage(totalPrice);
     }
 
+    public List<AutomaticLotto> getAutomaticLottos() {
+        return automaticLottos;
+    }
+
     private Integer getTicketCount() {
         return this.totalPrice / Constant.LOTTO_TICKET_PRICE;
     }

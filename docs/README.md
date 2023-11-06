@@ -42,3 +42,7 @@
 
 ### WinningLottoConverter(입력 문자열 당첨 로또로 변환)
 - [x] 문자열을 인자로 받아서 WinningLotto 생성
+
+### LottoWinngResult(로또 당첨 통계 저장)
+- [ ] 로또 당첨 등수별 개수 세기
+- [ ] 구입 금액 대비 수익률 계산

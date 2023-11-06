@@ -9,6 +9,13 @@ public class InputValidation {
     // 한번에 묶기
     // private과 public 확인
 
+    public static void validatePrice(String input) {
+        validateNumericString(input);
+        validateEmptySpace(input);
+        int inputNum = Integer.parseInt(input);
+        validateDisiblePrice(inputNum);
+    }
+
     private static void validateNumericString(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 입력값은 숫자여야 합니다.");

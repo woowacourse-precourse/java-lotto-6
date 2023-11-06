@@ -15,7 +15,13 @@ public class LottoFactory {
 
     public Lotto createLotto() {
         List<Integer> randomList = randomNumbersGenerator.createUniqueElementList();
-        List<Integer> sortedRandomList = new ArrayList<>(randomList);
+        List<Integer> sortedRandomList = sortRandomNumber(randomList);
         return new Lotto(sortedRandomList);
+    }
+
+    private List<Integer> sortRandomNumber(List<Integer> randomList) {
+        List<Integer> sortedRandomList = new ArrayList<>(randomList);
+        sortedRandomList.sort(null);
+        return sortedRandomList;
     }
 }

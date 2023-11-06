@@ -1,12 +1,13 @@
 package lotto.domain.model;
 
-import lotto.domain.model.Lotto;
-import org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,7 +41,7 @@ class LottoTest {
     }
 
 
-    @DisplayName("발행된 로또 번호를 보여준다.")
+    @DisplayName("발행된 로또 번호를 정렬하여 보여준다.")
     @Test
     void showLottoNumbers() {
         System.setOut(new PrintStream(outContent));
@@ -51,5 +52,25 @@ class LottoTest {
         assertThat(outContent.toString().trim()).isEqualTo("[1, 2, 3, 4, 5, 6]");
 
         System.setOut(originalOut);
+    }
+
+    @DisplayName("발행된 로또가 당첨 번호와 보너스 번호를 받아서 등수를 반환한다")
+    @ParameterizedTest
+    @CsvSource({
+            "1,2,3,4,5,6, FIRST",
+            "1,2,3,4,5,7, SECOND",
+            "1,2,3,4,5,8, THIRD",
+            "1,2,3,4,8,7, FOURTH",
+            "1,2,3,9,8,7, FIFTH",
+            "1,2,10,9,8,7, NONE"
+    })
+    void calculateRank(int num1, int num2, int num3, int num4, int num5, int num6, String expectedRank) {
+        WinningNumber winningNumber = new WinningNumber(Arrays.asList(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
+
+        Lotto lotto = new Lotto(Arrays.asList(num1, num2, num3, num4, num5, num6));
+
+        assertThat(lotto.calculateRank(winningNumber, bonusNumber))
+                .isEqualTo(expectedRank);
     }
 }

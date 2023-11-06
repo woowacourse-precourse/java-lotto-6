@@ -1,14 +1,11 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int LOTTO_START_RANGE = 1;
-    private static final int LOTTO_END_RANGE = 45;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -33,7 +30,7 @@ public class Lotto {
     }
 
     private boolean isSizeSix(List<Integer> numbers) {
-        return numbers.size() == LOTTO_NUMBER_SIZE;
+        return numbers.size() == LottoConstant.LOTTO_NUMBER_SIZE;
     }
 
     private boolean isDuplicateNumber(List<Integer> numbers) {
@@ -42,7 +39,6 @@ public class Lotto {
 
     private boolean isInRange(List<Integer> numbers) {
         return numbers.stream().allMatch(
-                number -> number >= LOTTO_START_RANGE && number <= LOTTO_END_RANGE
-        );
+                number -> number >= LottoConstant.LOTTO_START_RANGE && number <= LottoConstant.LOTTO_END_RANGE);
     }
 }

@@ -1,18 +1,16 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 public class PurchaseAmount {
-    private static final int AMOUNT_UNIT = 1000;
-    private static final int ZERO = 0;
-
     private final int amount;
     private final int lottoCount;
 
     public PurchaseAmount(String amount) {
         validate(amount);
         this.amount = toInt(amount);
-        this.lottoCount = this.amount / AMOUNT_UNIT;
+        this.lottoCount = this.amount / LottoConstant.AMOUNT_UNIT;
     }
 
     public int getAmount() {
@@ -51,10 +49,10 @@ public class PurchaseAmount {
     }
 
     private boolean canDivideByThousand(String amount) {
-        return toInt(amount) % AMOUNT_UNIT == ZERO;
+        return toInt(amount) % LottoConstant.AMOUNT_UNIT == LottoConstant.ZERO;
     }
 
     private boolean isZero(String amount) {
-        return toInt(amount) == ZERO;
+        return toInt(amount) == LottoConstant.ZERO;
     }
 }

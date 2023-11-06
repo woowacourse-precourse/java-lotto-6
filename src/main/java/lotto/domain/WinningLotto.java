@@ -1,15 +1,13 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class WinningLotto {
-    private static final String REGEX_INPUT_FORMAT = "^[0-9,]+$";
-    private static final String DELIMITER = ",";
-
     private final Lotto lotto;
 
     public WinningLotto(String winningLotto) {
@@ -22,7 +20,7 @@ public class WinningLotto {
 
     private List<Integer> toIntList(String winningLotto) {
         validate(winningLotto);
-        return Arrays.stream(winningLotto.split(DELIMITER))
+        return Arrays.stream(winningLotto.split(LottoConstant.DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
@@ -35,6 +33,6 @@ public class WinningLotto {
     }
 
     private boolean containOnlyNumberAndComma(String winningLotto) {
-        return Pattern.matches(REGEX_INPUT_FORMAT, winningLotto);
+        return Pattern.matches(LottoConstant.REGEX_INPUT_FORMAT, winningLotto);
     }
 }

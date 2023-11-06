@@ -60,7 +60,7 @@ public class InputView {
     }
 
     private int tryToInteger(String string) throws IllegalArgumentException {
-        return Integer.parseInt(string);
+        return Integer.parseInt(string.trim());
     }
 
     private void print(String message) {

@@ -8,28 +8,26 @@ public class LottoTicket {
     private final List<Lotto> lottoTicket;
     private final LottoMachine lottoMachine = new RandomLottoMachine();
 
-    public LottoTicket(PurchasePrice price){
+    public LottoTicket(PurchasePrice price) {
         this.lottoTicket = createLottoTicket(price);
     }
 
-    public int getLottoTicketSize(){
+    public int getLottoTicketSize() {
         return lottoTicket.size();
     }
 
-    private List<Lotto> createLottoTicket(PurchasePrice price){
+    private List<Lotto> createLottoTicket(PurchasePrice price) {
         List<Lotto> tickets = new ArrayList<>();
         int lottoQuantity = price.getLottoQuantity();
-        while (lottoQuantity-- > 0){
+        while (lottoQuantity-- > 0) {
             Lotto newLotto = createLotto();
             tickets.add(newLotto);
         }
         return tickets;
     }
 
-    private Lotto createLotto(){
+    private Lotto createLotto() {
         return lottoMachine.generateLotto();
     }
-
-
 
 }

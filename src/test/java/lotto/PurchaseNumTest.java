@@ -43,6 +43,4 @@ class PurchaseNumTest{
         PurchaseAmount purchaseAmount = new PurchaseAmount("7000");
         assertEquals(expectedResult, purchaseAmount.getTicketNum());
     }
-
-    // 아래에 추가 테스트 작성 가능
 }

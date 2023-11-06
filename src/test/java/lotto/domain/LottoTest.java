@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.LottoFixture;
 import lotto.Rank;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

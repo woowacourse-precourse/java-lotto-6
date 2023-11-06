@@ -7,22 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseLottos {
+    private final List<Lotto> purchaseLottos = new ArrayList<>();
     private final LottoMachine lottoMachine;
     private final int count;
-    private final List<Lotto> purchaseLottos = new ArrayList<>();
 
     public PurchaseLottos(LottoMachine lottoMachine, int purchaseAmount) {
         this.lottoMachine = lottoMachine;
-        this.count = purchaseAmount / Constants.PURCHASE_AMOUNT_UNIT.getValue();
+        this.count = getLottosCount(purchaseAmount);
         setPurchaseLottos();
+    }
+
+    public List<Lotto> getPurchaseLottos() {
+        return purchaseLottos;
     }
 
     public int getCount() {
         return count;
     }
 
-    public List<Lotto> getPurchaseLottos() {
-        return purchaseLottos;
+    private int getLottosCount(int purchaseAmount) {
+        return purchaseAmount / Constants.PURCHASE_AMOUNT_UNIT.getValue();
     }
 
     private void setPurchaseLottos() {

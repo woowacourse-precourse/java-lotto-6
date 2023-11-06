@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 
 class MatchCheckTest {
 
-    private final Map<Long, Integer> resultMap = new LinkedHashMap<>();
-    private final static Long MATCHES_3 = 5000L;
-    private final static Long MATCHES_4 = 50_000L;
-    private final static Long MATCHES_5 = 1_500_000L;
-    private final static Long MATCHES_5_PLUS_BONUS = 30_000_000L;
-    private final static Long MATCHES_6 = 2_000_000_000L;
+    private final Map<Integer, Integer> resultMap = new LinkedHashMap<>();
+    private final static Integer MATCHES_3 = 5000;
+    private final static Integer MATCHES_4 = 50_000;
+    private final static Integer MATCHES_5 = 1_500_000;
+    private final static Integer MATCHES_5_PLUS_BONUS = 30_000_000;
+    private final static Integer MATCHES_6 = 2_000_000_000;
     private final static int INIT_COUNT = 0;
 
     @BeforeEach
@@ -37,7 +37,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Integer, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -56,7 +56,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Integer, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(1);
@@ -74,7 +74,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Integer, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -92,7 +92,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Integer, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -110,7 +110,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Integer, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);
@@ -128,7 +128,7 @@ class MatchCheckTest {
         int bonusNumber = 45;
 
         //when
-        Map<Long, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
+        Map<Integer, Integer> result = WinStatistics.result(customerLottoNumbers, numbers, bonusNumber);
 
         //then
         assertThat(result.get(MATCHES_3)).isEqualTo(0);

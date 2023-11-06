@@ -4,10 +4,11 @@ import static lotto.core.enums.LottoNumberEnum.END_VALUE;
 import static lotto.core.enums.LottoNumberEnum.SIZE;
 import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import lotto.core.enums.AmountEnum;
 import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalOverValueException;
@@ -18,8 +19,10 @@ import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.WinningNumbers;
 
 public class NumberGenerator {
+
     private final static String DELIMITER = ",";
     private final static String NUMBER_REGEX = "\\d+";
+
 
     public List<Integer> createRandomUniqueNumber() {
         return Randoms.pickUniqueNumbersInRange(START_VALUE.getValue(), END_VALUE.getValue(), SIZE.getValue());

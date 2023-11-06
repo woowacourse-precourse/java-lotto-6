@@ -3,20 +3,19 @@ package lotto.core.calculator;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import lotto.core.calculator.MoneyCalculator;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.ScratchedLottoTicketList;
-import lotto.core.lotto.TicketScratcher;
+import lotto.core.lotto.LottoTicketScratcher;
 import lotto.core.lotto.WinningNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class MoneyCalculatorTest {
+class CalculatorTest {
 
-    private static final MoneyCalculator calculator = new MoneyCalculator();
-    private static final TicketScratcher ticketScratcher = new TicketScratcher();
+    private static final Calculator calculator = new Calculator();
+    private static final LottoTicketScratcher LOTTO_TICKET_SCRATCHER = new LottoTicketScratcher();
     private final static List<Integer> LOTTO_NUMBER_FIVE_MATCH = Arrays.asList(1, 2, 3, 4, 5, 15);
     private final static List<Integer> LOTTO_NUMBER_FOUR_MATCH = Arrays.asList(1, 2, 3, 33, 5, 15);
     private final static List<Integer> WINNING_NUMBERS = Arrays.asList(1, 2, 3, 32, 5, 4);
@@ -31,10 +30,10 @@ class MoneyCalculatorTest {
     @DisplayName("총 수익률을 반환한다.")
     @Test
     void calculateTotalMoneyAndRate() {
-        //if
+        //given
         List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch0,
                 lottoTicketWithFourMatch1, lottoTicketWithFourMatch2, lottoTicketWithFourMatch3);
-        ScratchedLottoTicketList scratchedLottoTicketList = ticketScratcher.scratchAllTickets(winningNumbers,
+        ScratchedLottoTicketList scratchedLottoTicketList = LOTTO_TICKET_SCRATCHER.scratchAllTickets(winningNumbers,
                 winBonusNumber, lottoTickets);
 
         //when

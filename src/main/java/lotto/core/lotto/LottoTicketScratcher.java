@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.core.enums.AmountEnum;
 
-public class TicketScratcher {
+public class LottoTicketScratcher {
     private static final Integer FIVE_MATCH = 5;
     public Integer convertAmountToQuantity(Integer amount){
         return amount / AmountEnum.MIN_VALUE.getAmount();

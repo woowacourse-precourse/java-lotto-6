@@ -7,6 +7,7 @@ import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalOverValueException;

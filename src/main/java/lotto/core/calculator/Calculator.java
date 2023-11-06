@@ -9,7 +9,7 @@ import lotto.core.enums.WinningChartEnum;
 import lotto.core.lotto.ScratchedLottoTicket;
 import lotto.core.lotto.ScratchedLottoTicketList;
 
-public class MoneyCalculator{
+public class Calculator {
     private Integer totalMoney;
     private BigDecimal rateOfReturn;
 

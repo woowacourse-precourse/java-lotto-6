@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ScratchedLottoTicketListTest {
-    private static final TicketScratcher TICKET_SCRATCHER = new TicketScratcher();
+    private static final LottoTicketScratcher TICKET_SCRATCHER = new LottoTicketScratcher();
     private final static List<Integer> LOTTO_NUMBER_FIVE_MATCH = Arrays.asList(1,2,3,4,5,15);
     private final static List<Integer> LOTTO_NUMBER_FOUR_MATCH = Arrays.asList(1,2,3,33,5,15);
     private final static List<Integer> WINNING_NUMBERS = Arrays.asList(1,2,3,32,5,4);
@@ -24,7 +24,7 @@ class ScratchedLottoTicketListTest {
     @DisplayName("각 Enum 값 마다의 개수를 상태로 가지는 ScratchedLottoTicketList 를 반환한다.")
     @Test
     void createLottoResult() {
-        //if
+        //given
         List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
         ScratchedLottoTicketList scratchedLottoTicketList = TICKET_SCRATCHER.scratchAllTickets(winningNumbers, winBonusNumber, lottoTickets);
 

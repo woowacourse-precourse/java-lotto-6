@@ -9,17 +9,11 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.core.lotto.BonusNumber;
-import lotto.core.lotto.LottoTicket;
-import lotto.core.lotto.ScratchedLottoTicket;
-import lotto.core.lotto.ScratchedLottoTicketList;
-import lotto.core.lotto.TicketScratcher;
-import lotto.core.lotto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TicketScratcherTest {
-    private static final TicketScratcher TICKET_SCRATCHER = new TicketScratcher();
+class LottoTicketScratcherTest {
+    private static final LottoTicketScratcher TICKET_SCRATCHER = new LottoTicketScratcher();
     private final static Integer NORMAL_AMOUNT = 8000;
     private final static List<Integer> LOTTO_NUMBER_FIVE_MATCH = Arrays.asList(1,2,3,4,5,15);
     private final static List<Integer> LOTTO_NUMBER_FOUR_MATCH = Arrays.asList(1,2,3,33,5,15);
@@ -66,7 +60,7 @@ class TicketScratcherTest {
     @DisplayName("로또 개수만큼 반복하여 ScratchedLottoTicket 리스트를 만들고, lottoTicketResult 로 반환한다")
     @Test
     void calculateResult() {
-        //if
+        //given
         List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
         ScratchedLottoTicketList scratchedLottoTicketList = TICKET_SCRATCHER.scratchAllTickets(winningNumbers, winBonusNumber, lottoTickets);
 
@@ -95,7 +89,7 @@ class TicketScratcherTest {
     @DisplayName("로또 개수만큼 반복하여 ScratchedLottoTicket 리스트를 만들고, lottoTicketResult 로 반환한다")
     @Test
     void calculateResultLose() {
-        //if
+        //given
         List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
         ScratchedLottoTicketList scratchedLottoTicketList = TICKET_SCRATCHER.scratchAllTickets(losingNumbers, loseBonusNumber, lottoTickets);
 

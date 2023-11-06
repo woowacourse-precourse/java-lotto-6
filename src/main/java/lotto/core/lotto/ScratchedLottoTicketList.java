@@ -13,6 +13,10 @@ public class ScratchedLottoTicketList {
     private final Integer fourMatchCount;
     private final Integer threeMatchCount;
 
+    public static ScratchedLottoTicketList createLottoResult(List<ScratchedLottoTicket> scratchedLottoTickets) {
+        return new ScratchedLottoTicketList(scratchedLottoTickets);
+    }
+
     private ScratchedLottoTicketList(List<ScratchedLottoTicket> scratchedLottoTickets) {
         this.scratchedLottoTickets = scratchedLottoTickets;
         this.sixMatchCount = (int) scratchedLottoTickets.stream()
@@ -30,10 +34,6 @@ public class ScratchedLottoTicketList {
         this.threeMatchCount = (int) scratchedLottoTickets.stream()
                 .filter(ticket -> ticket.getWinningChartEnum().equals(THREE_MATCH))
                 .count();
-    }
-
-    public static ScratchedLottoTicketList createLottoResult(List<ScratchedLottoTicket> scratchedLottoTickets) {
-        return new ScratchedLottoTicketList(scratchedLottoTickets);
     }
 
     public Integer getSixMatchCount() {

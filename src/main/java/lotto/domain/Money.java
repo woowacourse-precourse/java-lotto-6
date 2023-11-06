@@ -7,6 +7,7 @@ public class Money {
     private static final String ONLY_NUMBER_ALLOWED_MESSAGE = "숫자만 입력해 주세요.";
     private static final String MINIMUM_AMOUNT_MSG = "최소 금액은 1,000원 입니다.";
     private static final String THOUSAND_UNIT_ONLY_MSG = "금액은 1,000원 단위로 입력해 주세요.";
+    private static final String MAX_AMOUNT_MSG = "최대 2,147,483,000원 까지 구매 가능합니다.";
     private static final int MINIMUM_AMOUNT = 1000;
     private int amount;
 
@@ -17,6 +18,10 @@ public class Money {
     public static Money of(final String amount) {
         validate(amount);
         return new Money(parseNumeric(amount));
+    }
+
+    public int calculateLottoQuantity(final int price) {
+        return this.amount / price;
     }
 
     private static void validate(final String amount) {
@@ -44,14 +49,14 @@ public class Money {
     }
 
     private static int parseNumeric(final String input) {
-        return Integer.parseInt(trim(input));
+        try {
+            return Integer.parseInt(trim(input));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(MAX_AMOUNT_MSG);
+        }
     }
 
     private static String trim(final String input) {
         return input.trim();
-    }
-
-    public int calculateLottoQuantity(int price) {
-        return this.amount / price;
     }
 }

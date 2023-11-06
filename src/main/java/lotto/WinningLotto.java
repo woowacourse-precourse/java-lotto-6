@@ -13,6 +13,7 @@ public class WinningLotto {
 
     public WinningLotto() {
         this.winningNumbers = initializeWinningNumbers();
+        System.out.println(Constant.bonusNumber);
         this.bonusNumber = initializeBonusNumber();
     }
 
@@ -43,8 +44,16 @@ public class WinningLotto {
     }
 
     private int initializeBonusNumber() {
-        System.out.println(Constant.bonusNumber);
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+
+        try {
+            bonusNumberValidate(input, this.winningNumbers);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.err.println(illegalArgumentException.getMessage());
+            return initializeBonusNumber();
+        }
+
+        return Integer.parseInt(input);
     }
 
     public List<Integer> getWinningNumbers() {
@@ -65,5 +74,12 @@ public class WinningLotto {
         InputException.notSixNumberInput(input);
         InputException.wrongNumberRange(input);
         InputException.numberDuplicate(input);
+    }
+
+    private void bonusNumberValidate(String input, List<Integer> winningNumbers) {
+        InputException.blankInput(input);
+        InputException.notNumber(input);
+        InputException.wrongNumberRange(input);
+        InputException.isDuplicatedWithWinningNumbers(input, winningNumbers);
     }
 }

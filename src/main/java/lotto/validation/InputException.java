@@ -68,4 +68,19 @@ public class InputException {
             throw new IllegalArgumentException("[ERROR] Duplicate numbers are not allowed");
         }
     }
+
+    public static void wrongNumberRange(String input) {
+
+        int number = Integer.parseInt(input);
+
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] Numbers should be between 1 and 45");
+        }
+    }
+
+    public static void isDuplicatedWithWinningNumbers(String input, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(Integer.parseInt(input))) {
+            throw new IllegalArgumentException("[ERROR] Duplicated with Winning Numbers are not Allowed");
+        }
+    }
 }

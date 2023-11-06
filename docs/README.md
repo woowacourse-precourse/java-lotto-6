@@ -64,11 +64,11 @@
 
 - [x] 당첨 번호를 **입력**하는 기능 - lotto ~ WinningLotto
 
-  - [ ] 당첨 번호가 올바른지 **판단**하는 기능
+  - [x] 당첨 번호가 올바른지 **판단**하는 기능
 
 - [x] 보너스 번호를 **입력**하는 기능 - WinningLotto#initializeBonusNumber();
 
-  - [ ] 보너스 번호가 올바른지 **판단**하는 기능
+  - [x] 보너스 번호가 올바른지 **판단**하는 기능
 
 - [x] 당첨 등수와 상금을 표현하는 Enum 생성 - constant ~ Rank
 
@@ -122,15 +122,12 @@
 
   - [x] 번호가 중복 되는가 - InputException#numberDuplicat();
 
+- 보너스 번호 입력 시, - WinningLotto#bonusNumberValidate();
 
-- [ ] 보너스 번호 입력 시,
+  - [x] 입력이 없는가 - InputException#blankInput();
 
-  - [ ] 입력이 없는가
+  - [x] 숫자로 변환 가능한 입력인가 - InputException#notNumber();
 
-  - [ ] 숫자로 변환 가능한 입력인가
+  - [x] 1부터 45 사이의 입력인가 - InputException#wrongNumberRange();
 
-  - [ ] 번호의 개수가 1개가 넘는가
-
-  - [ ] 1부터 45 사이의 입력인가
-
-  - [ ] 당첨 번호와 중복 되는가
+  - [x] 당첨 번호와 중복 되는가 - InputException#isDuplicatedWithWinningNumbers();

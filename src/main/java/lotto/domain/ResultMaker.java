@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +37,10 @@ public class ResultMaker {
         calculateTotalPrize();
         double rateOfReturn = totalPrize / investment * 100;
         return String.format("%.1f", rateOfReturn);
+    }
+
+    public Map<Rank, Integer> giveResult() {
+        return Collections.unmodifiableMap(lottoResult);
     }
 
     private void calculateTotalPrize() {

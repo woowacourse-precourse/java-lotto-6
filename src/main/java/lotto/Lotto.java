@@ -8,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
+        validateRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -15,6 +16,14 @@ public class Lotto {
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer num : numbers) {
+            if(!(1 <= num && num <= 45)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

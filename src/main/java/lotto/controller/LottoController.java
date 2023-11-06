@@ -12,9 +12,10 @@ public class LottoController {
         this.lottoPublishService = lottoPublishService;
     }
 
-    public void publishLotto(String inputPurchaseAmount) throws IllegalArgumentException {
+    public LottoCollector publishLotto(String inputPurchaseAmount) throws IllegalArgumentException {
         int purchaseAmount = validatePurchaseAmountType(inputPurchaseAmount);
-        LottoCollector publishedLottos = lottoPublishService.publish(purchaseAmount);
+
+        return lottoPublishService.publish(purchaseAmount);
     }
 
     private int validatePurchaseAmountType(String inputPurchaseAmount) {

@@ -33,4 +33,9 @@ public class Lotto {
     private void sortAscend(List<Integer> numbers) {
         Collections.sort(numbers);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -2,7 +2,9 @@ package lotto.config;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
+import lotto.domain.LottoCollector;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoApp {
 
@@ -20,7 +22,8 @@ public class LottoApp {
         while(true) {
             try {
                 InputView.printInputBuyAmountRequest();
-                lottoController.publishLotto(Console.readLine());
+                LottoCollector lottoCollector = lottoController.publishLotto(Console.readLine());
+                OutputView.printPublishedLottos(lottoCollector);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

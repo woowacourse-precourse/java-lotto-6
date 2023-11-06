@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import static lotto.constant.NumberConstant.MONEY_UNIT;
-import static lotto.constant.NumberConstant.PERCENT;
 import static lotto.constant.NumberConstant.ZERO;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 import lotto.domain.LottoTicket;
 import lotto.service.InputBonusNumberService;
 import lotto.service.InputMoneyService;
-import lotto.service.InputWinnerNumberService;
+import lotto.service.InputWinNumberService;
 import lotto.service.LottoService;
 import lotto.util.LottoGenerator;
 import lotto.util.Validator;
@@ -35,7 +34,7 @@ public class LottoController {
     public void start() {
         Long money = inputMoney(new InputMoneyService());
         List<LottoTicket> lottoTickets = buyLottoTicket(money / MONEY_UNIT.getNumber());
-        List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinnerNumberService());
+        List<Integer> lottoWinNumbers = inputWinNumbers(new InputWinNumberService());
         Integer bonusNumber = inputBonusNumber(lottoWinNumbers);
         Long result = lottoService.calculateMoney(lottoTickets, lottoWinNumbers, bonusNumber);
         outputView.printResult();
@@ -80,16 +79,16 @@ public class LottoController {
         }
     }
 
-    private List<Integer> inputWinNumbers(InputWinnerNumberService inputWinnerNumberService) {
-        inputWinnerNumberService.init();
+    private List<Integer> inputWinNumbers(InputWinNumberService inputWinNumberService) {
+        inputWinNumberService.init();
         try {
             outputView.printBeforeInputWinNumbers();
-            inputWinnerNumberService.checkRightWinnerNumbers(validator,
+            inputWinNumberService.checkRightWinnerNumbers(validator,
                 inputView.inputWinnerNumbers());
-            return inputWinnerNumberService.convertedWinnerNumbers();
+            return inputWinNumberService.convertedWinnerNumbers();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return inputWinNumbers(inputWinnerNumberService);
+            return inputWinNumbers(inputWinNumberService);
         }
     }
 

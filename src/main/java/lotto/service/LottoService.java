@@ -32,9 +32,8 @@ public class LottoService {
     }
 
     private long calculateFinalMoney() {
-        Result[] values = Result.values();
         long totalMoney = NumberConstant.ZERO.getNumber();
-        for (Result value : values) {
+        for (Result value : Result.values()) {
             totalMoney += (long) value.getMoney() * value.getResultCount();
         }
         return totalMoney;

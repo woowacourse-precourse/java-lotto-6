@@ -7,25 +7,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.Validator;
 
-public class InputWinnerNumberService {
+public class InputWinNumberService {
 
-    private List<Integer> winnerNumbers;
+    private List<Integer> winNumbers;
 
     public void checkRightWinnerNumbers(Validator validator, String inputWinnerNumbers) {
-        List<String> splitedInputWinnerNumbers = List.of(
+        List<String> splitedInputWinNumbers = List.of(
             inputWinnerNumbers.split(COMMA.getDelimiter()));
-        validator.validateRightCommaCount(inputWinnerNumbers, splitedInputWinnerNumbers);
-        validator.validateWinnumberOnlyNumber(splitedInputWinnerNumbers);
-        winnerNumbers = splitedInputWinnerNumbers.stream().map(Integer::parseInt)
+        validator.validateRightCommaCount(inputWinnerNumbers, splitedInputWinNumbers);
+        validator.validateWinnumberOnlyNumber(splitedInputWinNumbers);
+        winNumbers = splitedInputWinNumbers.stream().map(Integer::parseInt)
             .collect(Collectors.toList());
-        validator.validateConvertedWinnerNumber(winnerNumbers);
+        validator.validateConvertedWinnerNumber(winNumbers);
     }
 
     public List<Integer> convertedWinnerNumbers() {
-        return winnerNumbers;
+        return winNumbers;
     }
 
     public void init() {
-        winnerNumbers = new ArrayList<>();
+        winNumbers = new ArrayList<>();
     }
 }

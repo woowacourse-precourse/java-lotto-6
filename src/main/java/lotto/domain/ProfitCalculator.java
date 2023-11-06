@@ -2,7 +2,7 @@ package lotto.domain;
 
 
 public class ProfitCalculator {
-    public int calculateProfit(LottoResult lottoResult) {
+    public static int calculateProfit(LottoResult lottoResult) {
         return lottoResult.getLOTTO_RESULT().entrySet().stream()
                 .filter(rank -> rank.getKey() != LottoRank.NO_RANK)
                 .map(rank -> rank.getKey().getPrizeMoney() * rank.getValue())
@@ -10,8 +10,14 @@ public class ProfitCalculator {
                 .sum();
     }
 
-    public double calculateProfitMargin(int profit, int amount) {
+    public static double calculateProfitMargin(int profit, int amount) {
         double result = (double) profit / amount;
         return result * 100;
     }
+
+    public static double totalProfitMargin(LottoResult lottoResult, PurchaseLotto purchaseLottoAmount) {
+        int profit = calculateProfit(lottoResult);
+        return calculateProfitMargin(profit, purchaseLottoAmount.getPurchaseAmount());
+    }
+
 }

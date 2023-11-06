@@ -28,6 +28,11 @@ public class LottoResult {
         }
     }
 
+    public static LottoResult createLottoResult(LottoMachine lottoPapers, WinningNumber winNum, BonusNumber bonusNum) {
+        LotteryChecker lotteryChecker = new LotteryChecker(lottoPapers);
+        return lotteryChecker.calculateRank(winNum, bonusNum);
+    }
+
     public Map<LottoRank, Integer> getLOTTO_RESULT() {
         return LOTTO_RESULT;
     }

@@ -25,5 +25,6 @@ class LottoResultTest {
 
         //then
         Assertions.assertThat(lottoResult.getLOTTO_RESULT().get(LottoRank.FIRST_RANK)).isEqualTo(3);
+        Assertions.assertThat(lottoResult.getLOTTO_RESULT().get(LottoRank.NO_RANK)).isEqualTo(1);
     }
 }

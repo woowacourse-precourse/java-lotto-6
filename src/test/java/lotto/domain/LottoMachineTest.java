@@ -7,6 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 
 class LottoMachineTest {
 
@@ -21,6 +23,21 @@ class LottoMachineTest {
         List<Lotto> lottoPapers = lottoMachine.getLottoPapers();
 
         //then
-        Assertions.assertThat(lottoPapers.size()).isEqualTo(expected);
+        assertThat(lottoPapers.size()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"10000,10", "5000,5", "3000,3"})
+    @DisplayName("구매금액 입력시 로또 생성개수 확인")
+    void buyLottoAmountTest(int money, int expected) {
+        //given
+        PurchaseLotto purchaseLotto = new PurchaseLotto(money);
+
+        //when
+        LottoMachine lottoMachine = LottoMachine.buyLotto(purchaseLotto);
+        List<Lotto> lottoPapers = lottoMachine.getLottoPapers();
+
+        //then
+        assertThat(lottoPapers.size()).isEqualTo(expected);
     }
 }

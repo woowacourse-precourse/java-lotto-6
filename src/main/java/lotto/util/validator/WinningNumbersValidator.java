@@ -20,7 +20,7 @@ public class WinningNumbersValidator extends InputValidator {
 
     private void validateInputFormat() {
         if(!super.input.matches(Constant.PATTERN_NUMBERS)) {
-            throw new IllegalArgumentException(ErrorMessage.CONTAIN_IMPROPER_LETTER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
         }
     }
 

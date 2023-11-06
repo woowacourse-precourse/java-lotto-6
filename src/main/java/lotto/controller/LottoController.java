@@ -1,8 +1,10 @@
 package lotto.controller;
 
-import lotto.model.lotto.Lotto;
+
 import lotto.model.LottoManager;
 import lotto.model.RandomLottoGenerator;
+import lotto.model.lotto.Lotto;
+import lotto.model.LottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,7 +16,7 @@ public class LottoController {
     public void run() {
         purchaseLotto();
         determineWinningLotto();
-        makeStatistics();
+        calculateResult();
     }
 
     private void purchaseLotto() {
@@ -33,7 +35,9 @@ public class LottoController {
     }
 
 
-    private void makeStatistics() {
-
+    private void calculateResult(){
+        output.printWinningHeader();
+        LottoResult lottoResult = manager.calculateLottoResult();
+        output.printWinnerStatus(lottoResult);
     }
 }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
+import lotto.view.InputValidator;
 
 import java.util.List;
 
@@ -24,10 +25,9 @@ public class LottoService {
         return new WinningLotto(randomNumbers, bonusNumber);
     }
 
-    public LottoResult purchaseLotto(int lottoPurchasePrice){
-        if(lottoPurchasePrice < LOTTO_PRICE || lottoPurchasePrice % LOTTO_PRICE != 0){
-
-        }
+    public int countPurchasedLotto(int lottoPurchasePrice){
+        InputValidator.purchasePriceCheck(lottoPurchasePrice);
+        return lottoPurchasePrice % LOTTO_PRICE;
     }
 
 }

@@ -1,11 +1,15 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.domain.Bonus;
+import lotto.model.domain.BonusValidator;
 import lotto.model.domain.LottoMachine;
 import lotto.model.domain.LottoResultChecker;
 import lotto.model.domain.Purchase;
+import lotto.model.domain.PurchaseValidator;
 import lotto.model.domain.Statistics;
 import lotto.model.domain.WinningLotto;
+import lotto.model.domain.WinningLottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,7 +27,7 @@ public class LottoGameController {
     }
 
     public void playing() {
-        purchase = purchaseLottoTickets();
+        purchaseLottoTickets();
         getLottoTickets();
         getWinningNumbers();
         getBonusNumber();
@@ -36,29 +40,68 @@ public class LottoGameController {
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 
-    private Purchase purchaseLottoTickets() {
-        Purchase purchase = new Purchase();
-        purchase.getInput(
-            inputView::requestPrice, // requestPrice() 메서드를 호출하고 결과를 반환하는 람다 표현식
-            (validator, price) -> purchase.setOrderInfo(price)
-        );
-        return purchase;
+    //TODO: 메서드 리팩토링
+    private void purchaseLottoTickets() {
+        boolean isValidInput = false;
+        PurchaseValidator validator = new PurchaseValidator();
+        while (!isValidInput) {
+            try {
+                String price = inputView.requestPrice();
+                int priceInteger = validator.validateIntegerInput(price);
+                int lottoCount = validator.validatePriceInThousandUnit(priceInteger);
+                purchase = new Purchase(priceInteger, lottoCount);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                if(purchase != null) {
+                    isValidInput = true;
+                }
+            }
+        }
     }
 
+    //TODO: 메서드 리팩토링
     private void getWinningNumbers() {
-        winningLotto = new WinningLotto();
-        winningLotto.getInput(
-            inputView::requestWinningNumber, // requestPrice() 메서드를 호출하고 결과를 반환하는 람다 표현식
-            (validator, numbers) -> winningLotto.setWinningNumber(numbers)
-        );
+        boolean isValidInput = false;
+        WinningLottoValidator validator = new WinningLottoValidator();
+        while (!isValidInput) {
+            try {
+                String winningNumbers = inputView.requestWinningNumber();
+                List<String> inputDividedByComma = validator.validateDelimiterComma(winningNumbers);
+                validator.validateSixElements(inputDividedByComma);
+                List<Integer> integerNumbers = validator.validateWinningNumberIsNumeric(inputDividedByComma);
+                validator.validateNumberBetweenInRange(integerNumbers);
+                winningLotto = new WinningLotto(integerNumbers);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                if (winningLotto != null) {
+                    isValidInput = true;
+                }
+            }
+        }
     }
 
+    //TODO: 메서드 리팩토링
     private void getBonusNumber() {
-        bonus = new Bonus();
-        bonus.getInput(
-            inputView::requestBonusNumber, // requestPrice() 메서드를 호출하고 결과를 반환하는 람다 표현식
-            (validator, number) -> bonus.setBonusNumber(winningLotto.getNumbers(), number)
-        );
+        boolean isValidInput = false;
+        BonusValidator validator = new BonusValidator();
+        while (!isValidInput) {
+            try {
+                String bonusNumber = inputView.requestBonusNumber();
+                int bonusInteger = validator.validateBonusIsNumeric(bonusNumber);
+                validator.validateNumberBetweenInRange(bonusInteger);
+                validator.validateWinningNumbersContainBonusNumber(winningLotto.getNumbers(), bonusInteger);
+                bonus = new Bonus(bonusInteger);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                if(bonus != null) {
+                    isValidInput = true;
+                }
+            }
+        }
+
     }
 
     private void getLotteryStatistics() {

@@ -17,10 +17,10 @@ public class LottoManager {
 
     public void run() {
         purchaseTickets(InputView.purchaseAmount());
-        winningTiket(InputView.winningNumbers());
+        winningTicket(InputView.winningNumbers());
     }
 
-    private void winningTiket(String numbers) {
+    private void winningTicket(String numbers) {
         ticketService.announcementNumber(numbers);
     }
 

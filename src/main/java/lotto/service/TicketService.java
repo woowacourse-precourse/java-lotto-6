@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.util.Censor.validatePurchaseUnit;
+import static lotto.util.Censor.validateAnnouncementNumber;
 import static lotto.util.constant.GameRule.TICKET_PRICE;
 
 import java.util.Arrays;
@@ -10,7 +12,6 @@ import lotto.domain.Ticket;
 import lotto.domain.WinningTicket;
 import lotto.repository.MemoryTicketRepository;
 import lotto.util.AutomaticGenerator;
-import lotto.util.Censor;
 
 public class TicketService {
 
@@ -22,7 +23,7 @@ public class TicketService {
 
     public Integer purchaseAmount(String input) {
         Integer money = Integer.parseInt(input);
-        Censor.validatePurchaseUnit(money);
+        validatePurchaseUnit(money);
         return money / TICKET_PRICE.getValue();
     }
 
@@ -33,8 +34,9 @@ public class TicketService {
     }
 
     public WinningTicket announcementNumber(String input) {
-        List<Integer> numbers = getWinningNumbers(Censor.validateWinningNumbers(input));
         WinningTicket ticket = new WinningTicket();
+        List<Integer> numbers = getWinningNumbers(input);
+        validateAnnouncementNumber(numbers);
         ticket.setNumbers(new Lotto(numbers));
         return memoryTicketRepository.announcement(ticket);
     }

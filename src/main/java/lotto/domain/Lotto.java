@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import static lotto.util.Censor.validateLotto;
+
 import java.util.List;
-import lotto.util.Censor;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Censor.validateLotto(numbers);
+        validateLotto(numbers);
     }
 
     @Override

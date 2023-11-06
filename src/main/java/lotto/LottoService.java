@@ -21,18 +21,17 @@ public class LottoService {
     /**
      * 로또 당첨 번호 생성
      */
-    public ArrayList<Integer> generateLottoWinningNumbers(String winningNumbers) {
+    public List<Integer> generateLottoWinningNumbers(String winningNumbers) {
         String[] winningNumber = winningNumbers.split(",");
         return Arrays.stream(winningNumber)
                 .map(Integer::parseInt)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .collect(Collectors.toList());
     }
-
 
     /**
      * 당첨 내역 계산하기
      */
-    public Rank[] calculateWinningDetails(LottoRank[] lottoRanks, ArrayList<Integer> winningNumbers, int bonusNumber) {
+    public Rank[] calculateWinningDetails(LottoRank[] lottoRanks, List<Integer> winningNumbers, int bonusNumber) {
         Rank[] ranks = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST};
         for (int i = 0; i < lottoRanks.length; ++i) {
             lottoRanks[i].setRank(winningNumbers, bonusNumber);
@@ -46,7 +45,7 @@ public class LottoService {
      */
     public void checkRank(Rank[] ranks, LottoRank lottoRanks) {
         for (int i = 0; i < ranks.length; ++i) {
-            if (ranks[i].getRank() == lottoRanks.getRank().getRank()) {
+            if (ranks[i].getRank().equals(lottoRanks.getRank().getRank())) {
                 ranks[i].setAmount();
             }
         }

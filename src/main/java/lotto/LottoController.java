@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
 
@@ -11,7 +11,7 @@ public class LottoController {
      * 로또 진행
      */
     public void processLottoWinning() {
-        ArrayList<Integer> winningNumbers; // 로또 당첨 번호
+        List<Integer> winningNumbers; // 로또 당첨 번호
         int bonusNumber = 0; // 보너스 당첨 번호
 
         // 구입금액을 입력.

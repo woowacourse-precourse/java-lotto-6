@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LottoRank {
 
@@ -11,7 +11,10 @@ public class LottoRank {
         this.lotto = lotto;
     }
 
-    public void setRank(ArrayList<Integer> winningNumbers, int bonusNumber) {
+    /**
+     * 몇번째 Rank 인지를 검사
+     */
+    public void setRank(List<Integer> winningNumbers, int bonusNumber) {
         int count = 0;
         boolean checkBonus = false;
         StringBuilder sb = new StringBuilder();
@@ -24,7 +27,7 @@ public class LottoRank {
             }
         }
         sb.append(count);
-        if (checkBonus) {
+        if (checkBonus && count == 5) {
             sb.append("B");
         }
         this.rank = rank.calcurateRank(sb.toString());

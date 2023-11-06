@@ -1,11 +1,12 @@
 package lotto.model;
 
+import static lotto.model.Input.POSITIVE_NUMBER_PATTERN;
+
 public class Money {
 
-    private final String POSITIVE_NUMBER_PATTERN = "\\d+$";
     public static final int CURRENT_UNIT = 1000;
 
-    private int money;
+    private final int money;
 
     public Money(String input) {
         isPositiveNumber(input);

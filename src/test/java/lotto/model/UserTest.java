@@ -13,12 +13,13 @@ class UserTest {
     private User user;
     private final double EARN_MONEY = 5000;
     private final double SPEND_MONEY = 8000;
+    private WinningLotto winningLotto;
 
     @BeforeEach
     void createUser() {
         Money money = new Money(String.valueOf((int) SPEND_MONEY));
         assertRandomUniqueNumbersInRangeTest(
-                ()->{
+                () -> {
                     user = new User(money);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
@@ -30,12 +31,16 @@ class UserTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
+        Input inputNums = new Input("1,2,3,4,5,6");
+        List<Integer> nums = inputNums.ofNums();
+        Input inputBonus = new Input("7");
+        int bonus = inputBonus.ofBonus(nums);
+        winningLotto = new WinningLotto(new Lotto(nums), bonus);
     }
 
     @Test
     @DisplayName("유저의_로또_결과_계산")
     void getLottoResults() {
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
 
         Assertions.assertThat(user.getLottoResults(winningLotto))
                 .contains(LottoResult.FIFTH);
@@ -44,7 +49,6 @@ class UserTest {
     @Test
     @DisplayName("유저의_로또_수익률_계산")
     void getStatistics() {
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
         user.getLottoResults(winningLotto);
         double expectedStatistics = EARN_MONEY * 100 / SPEND_MONEY;
 

@@ -1,37 +1,36 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Money;
 import lotto.model.User;
 import lotto.model.WinningLotto;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
 
+    private final InputController inputController;
     private User user;
     private WinningLotto winningLotto;
     private List<LottoResult> results;
     private double statistics;
 
+    public GameController(InputController inputController) {
+        this.inputController = inputController;
+    }
+
     public void startGame() {
-        setUserLotto();
+        setUser();
         printUserLottos();
         setWinningLotto();
         calculateLottoStatistics();
         printLottoStatistics();
     }
 
-    private void setUserLotto() {
-        Money money;
-        try {
-            money = new Money(InputView.readMoney());
-            user = new User(money);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setUserLotto();
-        }
+    private void setUser() {
+        Money money = inputController.readMoney();
+        user = new User(money);
     }
 
     private void printUserLottos() {
@@ -39,12 +38,9 @@ public class GameController {
     }
 
     private void setWinningLotto() {
-        try {
-            winningLotto = new WinningLotto(InputView.readLotto(), InputView.readBonus());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setWinningLotto();
-        }
+        Lotto lotto = inputController.readLotto();
+        int bonus = inputController.readBonus(lotto.numbers());
+        winningLotto = new WinningLotto(lotto, bonus);
     }
 
     private void calculateLottoStatistics() {

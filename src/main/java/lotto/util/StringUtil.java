@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringUtil {
+    private StringUtil() {
+    }
+
     public static int convertToInt(final String input) {
         try {
             return Integer.parseInt(input);

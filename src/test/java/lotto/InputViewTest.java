@@ -78,4 +78,18 @@ public class InputViewTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @DisplayName("로또 번호에 대해서 검증한다.")
+    @Nested
+    public class ValidationLottoNumber {
+
+        @ParameterizedTest
+        @ValueSource(strings = {",", ",123,456", ",1,2,3,4,5"})
+        @DisplayName("입력된 번호가 문자로 시작하면 예외가 발생한다.")
+        void validateFirstCharacter_firstCharacter_exceptionThrown(String strings) {
+            Assertions.assertThatThrownBy(() -> getInputView().validateFirstCharacter(strings))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+    }
 }

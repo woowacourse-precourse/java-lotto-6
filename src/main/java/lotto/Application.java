@@ -92,6 +92,6 @@ public class Application {
         winLottoNum(convertNum(inputView.winNum()));
         bonusNum(winNum, Integer.parseInt(inputView.bonusNum()));
         intersectionNum();
-        System.out.println(result);
+        outputView.statistics(result);
     }
 }

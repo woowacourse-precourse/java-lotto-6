@@ -81,6 +81,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,6,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_범위_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,6,99");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

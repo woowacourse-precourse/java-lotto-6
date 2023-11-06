@@ -3,16 +3,19 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> sortableNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortableNumbers);
+        this.numbers = Collections.unmodifiableList(sortableNumbers);
     }
+
+
 
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.size() != 6 || !numbers.stream().allMatch(num -> num >= 1 && num <= 45)) {

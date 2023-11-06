@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.domain.PurchaseAmount.count;
 import static lotto.view.constans.constantMessage.PURCHASED_TICKET_COUNT;
 
 import java.util.Collections;
@@ -18,12 +19,9 @@ public class OutputView {
         printConstantMessage(PURCHASED_TICKET_COUNT);
     }
 
-    public static void  responseLottoNumber(int count){
-        for (int i = 0; i < count; i++) {
-            List<Integer> randomNumbers = Lotto.randomNumber(6);
-            Collections.sort(randomNumbers);
-            System.out.println(randomNumbers);
-        }
+    public static void responseLottoNumber(List<Integer> lotto){
+            System.out.println(lotto);
+
     }
 
 

@@ -33,4 +33,9 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

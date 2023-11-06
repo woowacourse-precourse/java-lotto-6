@@ -1,10 +1,18 @@
 package lotto.util.exception.operation;
 
-import lotto.util.enums.ErrorMessage;
-import lotto.util.exception.parental.MathOperationException;
+import static lotto.util.Constants.ERROR;
 
-public class AmountParseException extends MathOperationException {
+import lotto.util.enums.ErrorMessage;
+
+public class AmountParseException extends NumberFormatException {
+    private final String message;
+
     public AmountParseException() {
-        super(ErrorMessage.AMOUNT_CANNOT_PARSE);
+        this.message = ERROR + ErrorMessage.AMOUNT_CANNOT_PARSE.getMessage();
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
     }
 }

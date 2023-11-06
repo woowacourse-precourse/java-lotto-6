@@ -14,8 +14,8 @@ public class PurchaseValidator {
     public static void validatePurchase(String amount) {
         validateEmpty(amount);
         Integer validatedAmount = validateInteger(amount);
-        divisibilityByThousand(validatedAmount);
         validateGreaterThanZero(validatedAmount);
+        divisibilityByThousand(validatedAmount);
     }
 
     private static void validateEmpty(String amount) {

@@ -8,7 +8,7 @@ import lotto.model.lotto.Lotto;
 public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_PROMPT = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_PROMPT = "\n보너스 번호를 입력해 주세요.";
 
     public int readPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_INPUT_PROMPT);

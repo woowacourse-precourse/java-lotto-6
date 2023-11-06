@@ -1,21 +1,18 @@
-package lotto.controller.parser;
+package lotto.controller.util.parser;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.configurations.ErrorMessage;
+import lotto.controller.util.ErrorMessage;
 
 public class InputParser {
-    private static final String SEPARATOR = ",";
+    private static final String COMMA_SEPARATOR = ",";
 
     public Integer parseMoney(String rawInput) {
         return convertToInteger(rawInput);
     }
 
     public List<Integer> parseLottoNumbers(String rawInput) {
-        List<String> splitNumbers = Arrays.stream(rawInput.split(SEPARATOR))
-                .toList();
-
-        return splitNumbers.stream()
+        return Arrays.stream(rawInput.split(COMMA_SEPARATOR))
                 .map(this::convertToInteger)
                 .toList();
     }
@@ -24,7 +21,7 @@ public class InputParser {
         return convertToInteger(rawInput);
     }
 
-    private int convertToInteger(String rawInput) {
+    private Integer convertToInteger(String rawInput) {
         try {
             return Integer.parseInt(rawInput);
         } catch (NumberFormatException e) {

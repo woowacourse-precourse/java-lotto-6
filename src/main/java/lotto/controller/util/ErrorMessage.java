@@ -1,4 +1,4 @@
-package lotto.configurations;
+package lotto.controller.util;
 
 public class ErrorMessage {
     public static final String INPUT_NOT_NUMBER = "[ERROR] 로또 번호는 숫자만 가능합니다.";

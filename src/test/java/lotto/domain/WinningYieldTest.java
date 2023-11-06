@@ -3,6 +3,9 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinningYieldTest {
@@ -12,7 +15,13 @@ class WinningYieldTest {
         Cash cash = new Cash(131000);
         Profit profit = new Profit();
 
-        profit.add(55000);
+        List<Rank> ranks = new ArrayList<>();
+        ranks.add(Rank.FOURTH);
+        ranks.add(Rank.NONE);
+        ranks.add(Rank.FIFTH);
+
+        profit.calculateAmount(ranks);
+
 
         WinningYield winningYield = new WinningYield(cash, profit);
 

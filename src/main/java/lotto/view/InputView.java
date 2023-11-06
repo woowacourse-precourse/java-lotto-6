@@ -1,6 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public class InputView {
 
@@ -19,6 +24,14 @@ public class InputView {
         String input = Console.readLine();
         validateBlankAndEmptyInteger(input);
         return validateNegativeIntegerAndZero(validateInteger(input));
+    }
+
+    public void askWinningNumber() {
+        printWinningNumber();
+            String input = Console.readLine();
+            validateBlankAndEmptyInteger(input);
+            validateFirstCharacter(input);
+            validateLastCharacter(input);;
     }
 
     public void validateLastCharacter(String input) {

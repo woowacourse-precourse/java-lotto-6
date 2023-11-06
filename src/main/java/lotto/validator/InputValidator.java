@@ -5,6 +5,21 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
     private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final int ZERO = 0;
+
+    public static void isNotDigit(String inputPurchasePrice) {
+        try {
+            Integer.parseInt(inputPurchasePrice);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_MESSAGE + "숫자가 아닌 값을 입력했습니다.");
+        }
+    }
+
+    public static void isNotPositiveNumber(String inputPurchasePrice) {
+        if (Integer.parseInt(inputPurchasePrice) <= ZERO) {
+            throw new NumberFormatException(ERROR_MESSAGE + "양수가 아닌 값을 입력했습니다.");
+        }
+    }
 
     public static void isNullOrIsEmpty(String input) {
         if (input == null || input.isEmpty()) {

@@ -66,4 +66,8 @@ public class LottoGameView {
         System.out.printf("6개 일치 (%d원) - %d개", Prize.First.getMoney(), first);
         System.out.println();
     }
+
+    public void printRateReturn(double rateReturn) {
+        System.out.printf("총 수익률은 %f%입니다.", rateReturn);
+    }
 }

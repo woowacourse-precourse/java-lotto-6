@@ -15,7 +15,7 @@ public class LottoWinningNumber {
 
     private void validateNumberAndCommaFormat(String readWinningNumber) {
         if (!readWinningNumber.matches("([0-9]+,)*[0-9]+")) {
-            throw new IllegalArgumentException("당첨 번호는 숫자와 콤마 형식이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 콤마 형식이어야 합니다.");
         }
     }
 

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class GeneratorTest {
 
     @Test
-    public void noDuplicateNumbersTest() {
+    public void uniqueNumbersInAscendingOrder() {
         Generator generator = new Generator(new PurchaseAmount());
 
         List<Integer> mockLotto =

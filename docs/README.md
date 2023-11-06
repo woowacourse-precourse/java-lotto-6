@@ -20,8 +20,8 @@
 7. ~~로또 중복 번호 확인 기능 - Model - Lotto - duplicateCheck~~
 8. ~~당첨 번호 유효범위 검증 - Model - Lotto - rangeCheck~~
 7. ~~보너스 번호 입력 - View - inputView - bonusNum~~
-8. 보너스 번호 1자리 검증 - Model - Bonus - validate
-9. 보너스 번호 유효범위 검증 - Model - Bonus - rangeCheck
+9. ~~보너스 번호 유효범위 검증 - Model - Bonus - rangeCheck~~
+10. ~~보너스 번호 당첨번호랑 중복 비교 - Model - Bonus - duplicateCheck~~
 9. 당첨번호랑 로또번호 비교하기 Set교집합 - Model - Lotto - winNumIntersection
 10. 당첨번호랑 보너스번호 비교하기 list contain - Model - Lotto - bonusNumIntersection
 11. 당첨 통계 계산 - Model - Result - statistics

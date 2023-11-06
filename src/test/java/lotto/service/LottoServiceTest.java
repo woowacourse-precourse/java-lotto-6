@@ -8,7 +8,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.dto.WinningStatisticsDto;
 import lotto.exception.ExceptionMessage;
-import lotto.exception.NotValidGivenPriceError;
+import lotto.exception.NotValidGivenPriceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ public class LottoServiceTest {
         int price = 1200;
         //when,then
         assertSimpleTest(() -> assertThatThrownBy(() -> lottoService.issueNewLotto(price))
-                .isInstanceOf(NotValidGivenPriceError.class)
+                .isInstanceOf(NotValidGivenPriceException.class)
                 .hasMessageContaining(ExceptionMessage.NOT_VALID_GIVEN_PRICE_ERROR.getMessage()));
     }
 

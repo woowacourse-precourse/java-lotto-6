@@ -8,7 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.WinningNumber;
 import lotto.dto.WinningStatisticsDto;
-import lotto.exception.NotValidGivenPriceError;
+import lotto.exception.NotValidGivenPriceException;
 
 public class LottoServiceImpl implements LottoService {
 
@@ -95,7 +95,7 @@ public class LottoServiceImpl implements LottoService {
 
     private int getNumberOfLottoToBeIssued(int price) throws IllegalArgumentException {
         if (price == 0 || price % 1000 != 0) {
-            throw new NotValidGivenPriceError();
+            throw new NotValidGivenPriceException();
         }
         return price / 1000;
     }

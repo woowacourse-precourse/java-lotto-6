@@ -13,6 +13,7 @@ public class Game {
     private final List<Lotto> lottos;
     private final List<Integer> prizes;
     private final List<Integer> checkCount;
+    private final int BONUS_NUMBER_CORRECT;
     private int AMOUNT;
     private int COUNT_LOTTO;
     private String PRIZE;
@@ -28,6 +29,7 @@ public class Game {
         lottos = new ArrayList<>();
         prizes = new ArrayList<>();
         checkCount = new ArrayList<>();
+        BONUS_NUMBER_CORRECT = 7;
     }
 
     public void run(){
@@ -115,7 +117,28 @@ public class Game {
                 CHECK_PRIZE++;
             }
         }
-        checkCount.add(CHECK_PRIZE);
+        int prize = checkBonus(CHECK_PRIZE, lotto);//보너스 확인
+        checkCount.add(prize);
+    }
+
+    public int checkBonus(int CHECK_PRIZE, Lotto lotto){
+        if(CHECK_PRIZE == 5){
+            if(isBonus(lotto)){
+                return BONUS_NUMBER_CORRECT;
+            }
+        }
+        return CHECK_PRIZE;
+    }
+
+    public Boolean isBonus(Lotto lotto){
+        List<Integer> numbers = lotto.getNumbers();
+        int count = 0;
+        for (int number : numbers) {
+            if(BONUS_NUMBER == number){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

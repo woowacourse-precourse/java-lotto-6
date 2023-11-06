@@ -44,7 +44,7 @@ public enum LottoResult {
                 cntCorrNum += 1;
             }
             if (cntCorrNum == 5) {
-                cntCorrNum += isBonusNumInLotto(bonusNum, numbers);
+                cntCorrNum += isBonusNumInLotto(bonusNum, eachLotto);
             }
             LottoResult lottoResultSaveName = lottoResultValues[cntCorrNum - 3];
             lottoResultSaveName.numOfMatches += 1;
@@ -66,8 +66,8 @@ public enum LottoResult {
         return 0;
     }
 
-    public static int isBonusNumInLotto(int bonusNum, List<Integer> numbers) {
-        if (isInLotto(bonusNum, numbers) == 1) {
+    public static int isBonusNumInLotto(int bonusNum, List<Integer> eachLotto) {
+        if (isInLotto(bonusNum, eachLotto) == 1) {
             return 1;
         };
         return 0;

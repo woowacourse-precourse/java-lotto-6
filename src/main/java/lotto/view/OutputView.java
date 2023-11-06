@@ -11,8 +11,9 @@ import static lotto.view.constant.ViewConstant.OutputViewConstant.THREE_DASH;
 import static lotto.view.constant.ViewConstant.OutputViewConstant.WINNING_NUMBER_MESSAGE;
 public class OutputView {
 
-    public void printMessage(final String message) {
+    public void printErrorMessage(final String message) {
         System.out.println(message);
+        printNewLine();
     }
 
     public void printNewLine() {
@@ -34,7 +35,7 @@ public class OutputView {
     public void printUserLotto(final long lottoCount, final String lotto) {
         System.out.printf(PURCHASE_MESSAGE + NEW_LINE, lottoCount);
         System.out.println(lotto);
-        System.out.println();
+        printNewLine();
     }
 
     public void printStatistics(final String statistics) {

@@ -41,7 +41,6 @@ public class LottoController {
         final long totalLotto = userLotto.getLottoCount();
         final String allLotto = userLotto.displayAllLotto();
 
-        outputView.printNewLine();
         outputView.printUserLotto(totalLotto, allLotto);
     }
 
@@ -56,11 +55,11 @@ public class LottoController {
         try {
             outputView.requestAmount();
             final long purchaseAmount = inputView.receivePurchaseAmount();
+
+            outputView.printNewLine();
             return new Money(purchaseAmount);
         } catch (IllegalArgumentException e) {
-            outputView.printMessage(e.getMessage());
-            outputView.printNewLine();
-
+            outputView.printErrorMessage(e.getMessage());
             return receivePurchaseAmount();
         }
     }
@@ -68,7 +67,6 @@ public class LottoController {
     private WinningLotto receiveWinningLottoNumber() {
         final String winningNumbers = receiveWinningNumber();
         final int bonusNumber = receiveBonusNumber(winningNumbers);
-        outputView.printNewLine();
 
         return lottoGenerator.createWinningLottoFromInput(winningNumbers, bonusNumber);
     }
@@ -76,11 +74,12 @@ public class LottoController {
     private String receiveWinningNumber() {
         try {
             outputView.requestWinningNumber();
-            return inputView.receiveWinningNumber();
-        } catch (IllegalArgumentException e) {
-            outputView.printMessage(e.getMessage());
-            outputView.printNewLine();
+            final String winningNumber = inputView.receiveWinningNumber();
 
+            outputView.printNewLine();
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             return receiveWinningNumber();
         }
     }
@@ -88,11 +87,12 @@ public class LottoController {
     private int receiveBonusNumber(final String winningNumbers) {
         try {
             outputView.requestBonusNumber();
-            return inputView.receiveBonusNumber(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            outputView.printMessage(e.getMessage());
-            outputView.printNewLine();
+            final int bonusNumber = inputView.receiveBonusNumber(winningNumbers);
 
+            outputView.printNewLine();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             return receiveBonusNumber(winningNumbers);
         }
     }

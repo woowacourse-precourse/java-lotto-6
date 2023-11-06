@@ -34,20 +34,6 @@ public class LottoGameController {
         }
     }
 
-    private void calculateLottoResult(LottoOwner lottoOwner, WinningNumber winningNumber) {
-        lottoOwner.calculateResult(winningNumber);
-        printLottoResult();
-    }
-
-    private void printLottoResult() {
-        OutputView.printLottoResultStartText();
-        List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values()));
-        Collections.reverse(ranks);
-        for (Rank rank : ranks) {
-            OutputView.printLottoResult(rank);
-        }
-    }
-
     private WinningNumber generateWinningNumber() {
         Lotto lottoNumber = generateLottoNumber();
         while (true) {
@@ -80,6 +66,20 @@ public class LottoGameController {
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
+        }
+    }
+
+    private void calculateLottoResult(LottoOwner lottoOwner, WinningNumber winningNumber) {
+        lottoOwner.calculateResult(winningNumber);
+        printLottoResult();
+    }
+
+    private void printLottoResult() {
+        OutputView.printLottoResultStartText();
+        List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values()));
+        Collections.reverse(ranks);
+        for (Rank rank : ranks) {
+            OutputView.printLottoResult(rank);
         }
     }
 

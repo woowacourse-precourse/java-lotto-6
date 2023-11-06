@@ -22,7 +22,8 @@ public class LottoTicket {
         }
         return lottos;
     }
-    public int getTicketNumber () {
+
+    public int getTicketNumber() {
         return ticketNumber;
     }
 

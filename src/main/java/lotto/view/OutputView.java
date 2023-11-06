@@ -31,14 +31,16 @@ public class OutputView {
         });
         System.out.println();
     }
+
     public static void printErrorMessage(String errorMessage) {
         System.out.printf(ERROR_MESSAGE_TEXT, errorMessage);
     }
+
     public static void printPurchasePriceInputText() {
         System.out.print(PURCHASE_PRICE_INPUT_TEXT);
     }
 
-    public static void printTicketNumber (LottoTicket lottoTicket) {
+    public static void printTicketNumber(LottoTicket lottoTicket) {
         System.out.println();
         System.out.printf(TICKET_NUMBER_TEXT, lottoTicket.getTicketNumber()
         );
@@ -48,12 +50,12 @@ public class OutputView {
         System.out.print(LOTTO_NUMBERS_INPUT_TEXT);
     }
 
-    public static void printBonusNumberInputText () {
+    public static void printBonusNumberInputText() {
         System.out.println();
         System.out.print(BONUS_NUMBER_INPUT_TEXT);
     }
 
-    public static void printLottoResultStartText () {
+    public static void printLottoResultStartText() {
         System.out.println();
         System.out.print(LOTTO_RESULT_START_TEXT);
         System.out.print(BOUNDARY);

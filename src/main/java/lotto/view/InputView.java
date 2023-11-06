@@ -17,7 +17,7 @@ public class InputView {
                 .map(InputView::convertInputToNumber)
                 .toList();
     }
-    
+
     public static int getPaidMoneyInput() {
         String userInput = getUserInput();
         return convertInputToNumber(userInput);
@@ -27,13 +27,13 @@ public class InputView {
         String userInput = getUserInput();
         return convertInputToNumber(userInput);
     }
-    
+
     private static int convertInputToNumber(String input) {
         validateInputNumber(input);
         validateExceedMaximum(input);
         return Integer.parseInt(input);
     }
-    
+
     private static void validateInputNumber(String input) {
         if (input.matches("\\d*")) return;
         throw new IllegalArgumentException("숫자를 입력해주세요.");

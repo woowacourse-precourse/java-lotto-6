@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrizeBreakdown;
 import lotto.domain.LottoTicketMaker;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
@@ -26,6 +27,8 @@ public class LottoGame {
 
         WinningNumbers winningNumbers = repeatUntilValidWinningNumbersCreated();
         repeatUntilValidBonusNumberAssigned(winningNumbers);
+
+        LottoPrizeBreakdown lottoPrizeBreakdown = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
     }
 
     private List<Lotto> issueLottoTickets(Money money) {

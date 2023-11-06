@@ -35,7 +35,7 @@ class InputViewTest extends MyTest {
         List<Integer> expected = List.of(1, 10, 12, 24, 32, 44);
 
         //when
-        List<Integer> actual = input(arg, InputView::readPrizeNumber);
+        List<Integer> actual = input(arg, InputView::readAnswerNumbers);
 
         //then
         assertThat(output()).isEqualTo("\n당첨 번호를 입력해 주세요.\n");

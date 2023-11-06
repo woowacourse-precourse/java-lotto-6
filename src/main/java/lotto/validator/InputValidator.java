@@ -74,6 +74,7 @@ public class InputValidator {
         checkBonusInteger(number);
         int bonusNumber =  Utils.makeStringToInteger(number);
         checkBonusNumberRange(bonusNumber);
+        checkDuplicateWinningAndBonus(winningNumbers,bonusNumber);
         return bonusNumber;
     }
     public void checkBonusInteger (String number) throws IllegalArgumentException{
@@ -84,6 +85,11 @@ public class InputValidator {
     public void checkBonusNumberRange(int number) throws IllegalArgumentException{
         if(number < Constants.ONE || number > Constants.MAX_LOTTO_NUMBER){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+    public void checkDuplicateWinningAndBonus(List<Integer> winningNumbers, int bonusNumber){
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될 수 없습니다.");
         }
     }
 }

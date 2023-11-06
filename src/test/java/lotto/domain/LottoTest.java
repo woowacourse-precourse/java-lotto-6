@@ -11,7 +11,7 @@ class LottoTest {
 
     @Test
     @DisplayName("기능01,02 테스트 : 입력된 숫자 리스트에 이상이 없으면 로또가 하나 정상적으로 발행된다.")
-    void createLottoByNormalArgument(){
+    void createLottoByNormalArgument() {
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
 
@@ -22,7 +22,7 @@ class LottoTest {
 
     @Test
     @DisplayName("기능03 테스트 : 숫자 리스트에 들어있는 숫자의 개수가 6개가 아니면 IllegalArgumentException이 발생한다.")
-    void createLottoByOversize(){
+    void createLottoByOversize() {
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6, 7);
 
@@ -34,7 +34,7 @@ class LottoTest {
 
     @Test
     @DisplayName("기능04 테스트 : 숫자 리스트에 1~45 범위에 있지 않은 숫자가 있다면 예외가 발생한다.")
-    void createLottoByWrongRangeNumber(){
+    void createLottoByWrongRangeNumber() {
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 46);
 
@@ -46,7 +46,7 @@ class LottoTest {
 
     @Test
     @DisplayName("기능05 테스트 : 숫자 리스트에 중복된 숫자가 있다면 예외가 발생한다.")
-    void createLottoByDuplicatedNumber(){
+    void createLottoByDuplicatedNumber() {
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 5);
 

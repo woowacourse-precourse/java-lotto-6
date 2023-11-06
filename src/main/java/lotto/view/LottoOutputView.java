@@ -7,6 +7,8 @@ import lotto.dto.LottoMatchCountDto;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.domain.LottoMatch.SECOND_PLACE;
+
 public class LottoOutputView {
     private static final String USER_INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String USER_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
@@ -15,6 +17,7 @@ public class LottoOutputView {
     private static final String LOTTO_RESULT = "\n당첨 통계";
     private static final String DASH = "-";
     private static final String RESULT_TEMPLATE = "%d개 일치 (%,d원) - %d개";
+    private static final String SECOND_PLACE_TEMPLATE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private static final String REVENUE_TEMPLATE = "총 수익률은 %.1f%%입니다.";
 
     public void printUserInputPurchaseAmount() {
@@ -56,7 +59,10 @@ public class LottoOutputView {
     }
 
     private String formatLottoResult(final LottoMatch lottoMatch, final int lottoMatchCount) {
-        return String.format(RESULT_TEMPLATE, lottoMatch.getMatchCount(), lottoMatch.getAmount(), lottoMatchCount);
+        String template = RESULT_TEMPLATE;
+        if (lottoMatch == SECOND_PLACE) template = SECOND_PLACE_TEMPLATE;
+
+        return String.format(template, lottoMatch.getMatchCount(), lottoMatch.getAmount(), lottoMatchCount);
     }
 
     public void printLottoRevenue(final double lottoRevenue) {

@@ -1,23 +1,11 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
-
 public class WinningLotto {
-    private List<Integer> randomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
+    private final Lotto lotto;
+    private final Number bonusNumber;
 
-    private List<Integer> sortNumber(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .toList();
-    }
-
-    public Lotto createLotto() {
-        List<Integer> intLottos = randomNumber();
-        List<Integer> sortLottos = sortNumber(intLottos);
-        Lotto lotto = new Lotto(sortLottos);
-        return lotto;
+    public WinningLotto(Lotto lotto, Number bonusNumber) {
+        this.lotto = lotto;
+        this.bonusNumber = bonusNumber;
     }
 }

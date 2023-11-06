@@ -9,7 +9,6 @@ import static lotto.view.constants.OutputMessage.INPUT_WINNING_NUMBER_MESSAGE;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,7 +48,6 @@ public class InputWinningNumberView {
     private static List<Integer> parseWinningNumber(String input) {
         List<String> splitInput = splitBySeparator(input);
         List<Integer> numbers = parseIntList(splitInput);
-        Collections.sort(numbers);
         return numbers;
     }
 

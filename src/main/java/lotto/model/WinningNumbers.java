@@ -12,13 +12,13 @@ import lotto.model.constans.WinningPrize;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.WinningNumbersValidator;
 
-public class LottoResult {
+public class WinningNumbers {
     private final List<Integer> winningNumbers;
     private int bonusNumber;
     private static final WinningNumbersValidator WINNING_NUMBERS_VALIDATOR = new WinningNumbersValidator();
     private static final BonusNumberValidator BONUS_NUMBER_VALIDATOR = new BonusNumberValidator();
 
-    private LottoResult(String winningNumbers) {
+    private WinningNumbers(String winningNumbers) {
         this.winningNumbers = splitWinningNumbers(winningNumbers);
     }
 
@@ -28,9 +28,9 @@ public class LottoResult {
                 .collect(Collectors.toList());
     }
 
-    public static LottoResult from(String winningNumbers) {
+    public static WinningNumbers from(String winningNumbers) {
         WINNING_NUMBERS_VALIDATOR.validate(winningNumbers);
-        return new LottoResult(winningNumbers);
+        return new WinningNumbers(winningNumbers);
     }
 
     public void createBonusNumber(String bonusNumber) {

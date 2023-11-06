@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.constans.LottoConstants.*;
+import static lotto.model.constans.LottoSetting.*;
 import static lotto.validator.constants.ExceptionMessage.*;
 
 import java.util.ArrayList;

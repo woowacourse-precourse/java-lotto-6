@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Client;
 import lotto.model.Lotto;
-import lotto.model.LottoResult;
+import lotto.model.WinningNumbers;
 import lotto.model.LottoStore;
 import lotto.view.View;
 
@@ -14,9 +14,9 @@ public class LottoController {
     public void run() {
         Client client = buyLottos();
         issueLottos(client);
-        LottoResult lottoResult = createWinningNumbers();
-        createBonusNumber(lottoResult);
-        announceLottoResults(client, lottoResult);
+        WinningNumbers winningNumbers = createWinningNumbers();
+        createBonusNumber(winningNumbers);
+        announceLottoResults(client, winningNumbers);
     }
 
     private Client buyLottos() {
@@ -41,24 +41,24 @@ public class LottoController {
         }
     }
 
-    private LottoResult createWinningNumbers() {
+    private WinningNumbers createWinningNumbers() {
         view.printWinningNumbersInputMessage();
         while (true) {
             try {
                 String winningNumbers = view.inputValue();
-                return LottoResult.from(winningNumbers);
+                return WinningNumbers.from(winningNumbers);
             } catch (IllegalArgumentException e) {
                 view.printExceptionMessage(e);
             }
         }
     }
 
-    private void createBonusNumber(LottoResult lottoResult) {
+    private void createBonusNumber(WinningNumbers winningNumbers) {
         view.printBonusNumberInputMessage();
         while (true) {
             try {
                 String bonusNumber = view.inputValue();
-                lottoResult.createBonusNumber(bonusNumber);
+                winningNumbers.createBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 view.printExceptionMessage(e);
@@ -66,8 +66,8 @@ public class LottoController {
         }
     }
 
-    private void announceLottoResults(Client client, LottoResult lottoResult) {
-        List<Integer> lottoResults = lottoResult.calculateLottosResult(client.getLottos());
+    private void announceLottoResults(Client client, WinningNumbers winningNumbers) {
+        List<Integer> lottoResults = winningNumbers.calculateLottosResult(client.getLottos());
         view.printLottoResult(lottoResults);
         double rateOfReturn = client.calculateRateOfReturn(lottoResults);
         view.printRateOfReturn(rateOfReturn);

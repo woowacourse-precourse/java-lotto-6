@@ -2,7 +2,7 @@ package lotto.validator;
 
 import static lotto.validator.constants.ExceptionMessage.*;
 
-import lotto.model.constans.LottoConstants;
+import lotto.model.constans.LottoSetting;
 
 public class BonusNumberValidator {
     public void validate(String bonusNumber) {
@@ -40,6 +40,6 @@ public class BonusNumberValidator {
 
     private boolean isInvalidRangeNumber(String bonusNumber) {
         int number = Integer.parseInt(bonusNumber);
-        return (number < LottoConstants.MIN_LOTTO_NUMBER.value() || LottoConstants.MAX_LOTTO_NUMBER.value() < number);
+        return (number < LottoSetting.MIN_LOTTO_NUMBER.value() || LottoSetting.MAX_LOTTO_NUMBER.value() < number);
     }
 }

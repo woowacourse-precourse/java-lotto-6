@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.view.viewMessage.ViewMessage.*;
+import static lotto.view.constants.ViewMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;

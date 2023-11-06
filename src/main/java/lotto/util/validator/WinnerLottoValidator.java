@@ -9,10 +9,18 @@ import lotto.util.ExceptionMessage;
 
 public class WinnerLottoValidator extends Validator {
 
+    private final String SEPARATOR = ",";
+    private final String REGEX = "^[0-9,]+$";
+    private final String BLANK = " ";
+
     @Override
     public boolean validation(String input) {
+        if (validationIsNumeric(input)) {
+            System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
+            return false;
+        }
         if (validationHasBlank(input)) {
-            System.out.println(ExceptionMessage.INVALID_INPUT_LENGTH.getMessage());
+            System.out.println(ExceptionMessage.INVALID_INPUT_HAS_BLAMK.getMessage());
             return false;
         }
         if (validationInputLength(input)) {
@@ -22,12 +30,16 @@ public class WinnerLottoValidator extends Validator {
         return true;
     }
 
+    private boolean validationIsNumeric(String input) {
+        return !input.matches(REGEX);
+    }
+
     private boolean validationHasBlank(String input) {
-        return input.contains(" ");
+        return input.contains(BLANK);
     }
 
     private boolean validationInputLength(String input) {
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        List<Integer> numbers = Arrays.stream(input.split(SEPARATOR))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 

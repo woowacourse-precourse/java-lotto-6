@@ -33,4 +33,26 @@ public class Judge {
 
         return false;
     }
+
+    public static Enum<Ranking> resultPerLotto(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+        Integer winningCount = winningCount(lotto, winningNumbers);
+        Boolean bonusMatch = isBonusMatch(lotto, bonusNumber);
+
+        if (winningCount == 3) {
+            return Ranking.FIFTH;
+        }
+        if (winningCount == 4) {
+            return Ranking.FOURTH;
+        }
+        if (winningCount == 5) {
+            if (!bonusMatch) {
+                return Ranking.THIRD;
+            }
+            return Ranking.SECOND;
+        }
+        if (winningCount == 6) {
+            return Ranking.FIRST;
+        }
+        return Ranking.NONE;
+    }
 }

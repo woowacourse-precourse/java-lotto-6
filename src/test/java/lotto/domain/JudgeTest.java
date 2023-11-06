@@ -25,4 +25,15 @@ public class JudgeTest {
 
         assertThat(Judge.isBonusMatch(lotto, bonusNumber)).isTrue();
     }
+
+    @Test
+    void 해당_로또의_순위_리턴() {
+        List<Integer> numbers = Arrays.asList(4, 5, 6, 7, 8, 9);
+        Lotto lotto = new Lotto(numbers);
+
+        List<Integer> winningNumbers = Arrays.asList(4,5,6,7,10,11);
+        Integer bonusNumber = 3;
+
+        assertThat(Judge.resultPerLotto(lotto, winningNumbers, bonusNumber)).isEqualTo(Ranking.FOURTH);
+    }
 }

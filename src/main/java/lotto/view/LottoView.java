@@ -6,7 +6,6 @@ import lotto.model.PurchaseAmount;
 import lotto.model.Result;
 import lotto.model.value.Matching;
 
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoView {
@@ -38,16 +37,19 @@ public class LottoView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        Map<Matching, Integer> map = result.getResult();
-        map.forEach((matching, count) -> {
-            System.out.println(String.format(
-                    "%s (%s) - %d개",
-                    matching.getMatchingNumber(),
-                    matching.getPrizeMoney(),
-                    count
-            ));
-        });
+        result.getResult().forEach((matching, count) ->
+            System.out.println(getStatisticsFormat(matching, count))
+        );
         System.out.println("총 수익률은 " + result.getRate(purchaseAmount) + "%입니다.");
+    }
+
+    private String getStatisticsFormat(Matching matching, int count) {
+        return String.format(
+                "%s (%s) - %d개",
+                matching.getMatchingNumber(),
+                matching.getPrizeMoney(),
+                count
+        );
     }
 
 }

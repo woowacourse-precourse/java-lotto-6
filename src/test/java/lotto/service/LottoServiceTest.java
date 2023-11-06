@@ -3,8 +3,10 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 public class LottoServiceTest {
     @DisplayName("랜덤으로 생성된 로또 번호가 6개인지 확인한다.")
@@ -53,4 +55,18 @@ public class LottoServiceTest {
         // then
         assertThat(lottoNumbers).isSorted();
     }
+
+    @DisplayName("로또 구입 금액으로 14000원을 입력하면 14개의 로또를 생성하는지 확인한다.")
+    @Test
+    void purchaseLottoTicketsShouldReturnLottoTickets() {
+        // given
+        final int PURCHASE_AMOUNT = 14000;
+        final int EXPECTED_LOTTO_TICKETS_SIZE = 14;
+        // when
+        LottoService lottoService = new LottoService();
+        List<Lotto> lottos = lottoService.purchaseLottoTickets(PURCHASE_AMOUNT);
+        // then
+        assertThat(lottos.size()).isEqualTo(EXPECTED_LOTTO_TICKETS_SIZE);
+    }
+
 }

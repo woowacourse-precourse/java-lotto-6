@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.User;
 import lotto.util.RandomUtil;
 import lotto.util.Validator;
 
@@ -13,6 +14,11 @@ public class LottoService {
     private List<Integer> winningNumbers;
 
 
+    public User initUser(int count) {
+        List<Lotto> lottoNumbers = new ArrayList<>();
+        makeRandomLotto(lottoNumbers, count);
+        return new User(count, lottoNumbers);
+    }
 
 
     public int initMoneyToCount(String inputMoney) {

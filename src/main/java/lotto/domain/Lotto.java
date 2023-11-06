@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.constants.LottoRule;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,8 +11,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> validNumbers = new ArrayList<>(numbers);
+        Collections.sort(validNumbers);
+        this.numbers = validNumbers;
     }
 
     private void validate(List<Integer> numbers) {

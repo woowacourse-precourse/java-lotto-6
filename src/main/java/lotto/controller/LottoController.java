@@ -10,5 +10,8 @@ public class LottoController {
         inputPayLotto();
     }
 
-
+    public void inputPayLotto(){
+        lottoView.purchaseAmountView();
+        Console.readLine();
+    }
 }

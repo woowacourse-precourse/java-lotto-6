@@ -8,7 +8,7 @@ public class SystemInput {
         return Console.readLine();
     }
 
-    public static String readWinningLotto() {
+    public static String readPickLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }

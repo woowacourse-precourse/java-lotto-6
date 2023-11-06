@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Model.Prize;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +13,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @BeforeEach
+    public void beforeEach(){
+        // enum 카운트 개수 초기화
+        Prize.SIX.setCount(0);
+        Prize.FIVE_BONUS.setCount(0);
+        Prize.FIVE.setCount(0);
+        Prize.FOUR.setCount(0);
+        Prize.THREE.setCount(0);
+    }
+
+
+    @Test
+    void 구입금액_천원단위_테스트() {
+        assertSimpleTest(() -> {
+            runException("500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Test
     void 기능_테스트() {

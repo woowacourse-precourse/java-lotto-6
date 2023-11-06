@@ -30,6 +30,10 @@ public enum LottoRank {
                 .orElse(LAST_PLACE);
     }
 
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
     public String getOutputMessage() {
         return outputMessage;
     }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Enum;
 
 public enum Prize {
     SIX_CORRECT("6개 일치 (2,000,000,000원)",2000000000),

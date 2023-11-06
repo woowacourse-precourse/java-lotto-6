@@ -1,4 +1,7 @@
-package lotto;
+package lotto.View;
+
+import lotto.Enum.Prize;
+import lotto.Lotto;
 
 import java.util.Map;
 

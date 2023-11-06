@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.domain.Lottos;
 
 public class OutputView {
 
@@ -9,7 +9,7 @@ public class OutputView {
     }
 
 
-    public static void showBayLottoNumber(Lotto lotto) {
-        System.out.println(lotto.getNumbers().toString());
+    public static void showBayLottoNumber(Lottos lottos) {
+        lottos.getLottos().forEach(System.out::println);
     }
 }

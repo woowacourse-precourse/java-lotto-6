@@ -30,7 +30,7 @@ public class Validator {
         try {
             int commaCount = userInput.length() - userInput.replace(",", "").length();
             if (commaCount != CORRECT_COMMA_COUNT) {
-                throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
+                throw new IllegalArgumentException(ErrorMessages.IS_VALID_CHARACTER.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

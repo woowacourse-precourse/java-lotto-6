@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import lotto.constant.Error;
+import lotto.exception.LottoException;
+
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private LottoException lottoException = LottoException.getLottoException();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -12,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            lottoException.InvalidCount();
         }
     }
 

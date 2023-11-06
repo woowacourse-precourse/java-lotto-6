@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.winningManager;
 
-import lotto.domain.lottoDraw.LottoDraw;
+import lotto.domain.lottoDrawMachine.lottoDraw.LottoDraw;
 import lotto.domain.vendingMachine.lotto.Lotto;
 
 import java.util.HashMap;
@@ -14,6 +14,7 @@ public class WinningCheck {
             put(3, 0);
             put(2, 0);
             put(1, 0);
+            put(0, 0);
         }};
 
         for (Lotto lotto : lottos) {

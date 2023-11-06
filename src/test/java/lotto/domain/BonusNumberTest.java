@@ -1,18 +1,13 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.controller.BonusNumberValidator;
-import lotto.io.Input;
+import lotto.controller.validator.BonusNumberValidator;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

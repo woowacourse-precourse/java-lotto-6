@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.controller.WinningNumbersValidator;
-import lotto.io.Input;
-import org.junit.jupiter.api.AfterEach;
+import lotto.controller.validator.WinningNumbersValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

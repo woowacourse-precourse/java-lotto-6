@@ -9,23 +9,16 @@ public class Player {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public static Player initialize() {
-        int purchaseAmount = initializePurchaseAmount();
+    public static Player initialize(int purchaseAmount) {
         validateRange(purchaseAmount);
-
+        validateUnit(purchaseAmount);
         return new Player(new PlayerLotto(), purchaseAmount);
     }
 
-    private static int initializePurchaseAmount() {
-        while (true) {
-            try {
-                int purchaseAmount = PromptHandler.inputPurchaseAmount();
-                validateRange(purchaseAmount);
-                validateUnit(purchaseAmount);
-                return purchaseAmount;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+
+    private static void validateRange(int purchaseAmount) {
+        if (purchaseAmount < LottoConfig.PURCHASING_UNIT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_AMOUNT.getMessage());
         }
     }
 
@@ -35,9 +28,7 @@ public class Player {
         }
     }
 
-    private static void validateRange(int purchaseAmount) {
-        if (purchaseAmount < LottoConfig.PURCHASING_UNIT.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INCORRECT_AMOUNT.getMessage());
-        }
+    public int getPurchaseQuantity() {
+        return purchaseAmount / LottoConfig.PURCHASING_UNIT.getValue();
     }
 }

@@ -7,8 +7,8 @@ import lotto.Domain.Validator.UserValidator;
 
 
 public class User {
-    private int money;
-    private List<Lotto> lottos;
+    private final int money;
+    private final List<Lotto> lottos;
 
     public User(int money, List<Lotto> lottos) {
         validate(money, lottos);

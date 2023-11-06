@@ -1,9 +1,9 @@
- package lotto.domain;
+ package lotto.domain.player.lotto;
 
-import java.util.ArrayList;
-import java.util.List;
+ import java.util.ArrayList;
+ import java.util.List;
 
-public class Lotto {
+ public class Lotto {
     private final List<LottoNumber> numbers;
 
     private Lotto(List<LottoNumber> numbers) {

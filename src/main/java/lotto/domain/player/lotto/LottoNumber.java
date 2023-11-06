@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.player.lotto;
 
 public class LottoNumber {
 

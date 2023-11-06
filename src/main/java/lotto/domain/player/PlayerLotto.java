@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.player;
+
+import lotto.domain.player.lotto.Lotto;
 
 public class PlayerLotto {
 

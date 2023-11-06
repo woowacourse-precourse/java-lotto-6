@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.player;
 
 import static java.lang.Integer.parseInt;
 

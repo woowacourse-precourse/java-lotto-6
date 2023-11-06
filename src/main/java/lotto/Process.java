@@ -39,6 +39,29 @@ public class Process {
     }
 
 
+    public List<Object> compareLottos(List<Integer> eachLottoNumber, List<Integer> winningNumbers, int bonusNumber){
+        int mainNumberMatchCount = 0;
+        boolean matchBonusNumber = false;
+        List<Object> result = new ArrayList<>();
+
+
+        for(var element : eachLottoNumber){
+            if(winningNumbers.contains(element)){
+                mainNumberMatchCount++;
+            }
+            if(element == bonusNumber){
+                matchBonusNumber = true;
+            }
+        }
+
+        result.add(mainNumberMatchCount);
+        result.add(matchBonusNumber);
+
+        return result;
+    }
+
+
+
 //    Lotto lotto = new Lotto(lottoNumbers);
 //    eachLottoNumber = lotto.getLottoNumbers();
 

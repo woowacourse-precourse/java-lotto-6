@@ -6,7 +6,7 @@ public enum LottoConstraint {
 
     LOTTO_PICK_COUNT(6),
     NUMBER_LOWER_BOUND(1),
-    NUMBER_UPPER_BOUND(8),
+    NUMBER_UPPER_BOUND(45),
 
     BONUS_COUNT(1);
 

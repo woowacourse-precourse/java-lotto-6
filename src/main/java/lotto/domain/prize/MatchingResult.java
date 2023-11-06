@@ -29,4 +29,8 @@ public class MatchingResult {
     public boolean isSamePrizeMatchingCount(PrizeMatchingCount prizeMatchingCount) {
         return Objects.equals(this.prizeMatchingCount, prizeMatchingCount);
     }
+
+    public boolean isMatchingBonus() {
+        return bonusMatching;
+    }
 }

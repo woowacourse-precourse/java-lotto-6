@@ -4,7 +4,9 @@ public enum LottoConfig {
     MIN_NUMBER(1),
     MAX_NUMBER(45),
     NUMBER_COUNT(6),
-    ZERO(0);
+    ZERO(0),
+    PROFIT_RATE_BASE(100);
+
     private final int value;
 
     LottoConfig(int value) {

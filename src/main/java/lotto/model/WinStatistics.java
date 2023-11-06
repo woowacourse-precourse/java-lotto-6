@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 
 public class WinStatistics {

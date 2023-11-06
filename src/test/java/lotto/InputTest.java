@@ -5,8 +5,6 @@ import java.io.InputStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputTest {
 
@@ -16,14 +14,14 @@ public class InputTest {
 
     @Test
     @DisplayName("사용자가 구입 금액을 정확하게 입력한다")
-    @ParameterizedTest
-    @ValueSource(strings = {"8000"})
-    public void rightAmountInput(String amount){
+    public void rightAmountInput(){
         //given
-        InputStream inputStream = setConsole(amount);
+        String expect = "8000";
+        InputStream inputStream = setConsole(expect);
         System.setIn(inputStream);
 
-        String input = Input.getAmount();
-        Assertions.assertEquals(input, amount);
+        // then
+        String actual = Input.getAmount();
+        Assertions.assertEquals(expect, actual);
     }
 }

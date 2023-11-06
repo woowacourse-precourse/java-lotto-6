@@ -13,12 +13,18 @@ public class LottoController {
 
     public void play() {
         settingBuyMoney();
+        settingLottoNumber();
     }
 
     private void settingBuyMoney() {
         int inputMoney = inputPlayerBuyMoney();
         lottoService.settingBuyMoney(inputMoney);
         outputView.printLottoTicket(inputMoney);
+    }
+
+    private void settingLottoNumber() {
+        lottoService.createLottoByInputBuyMoney();
+        outputView.printLottoNumbers(lottoService.getLottoNumberStore());
     }
 
     private int inputPlayerBuyMoney() {

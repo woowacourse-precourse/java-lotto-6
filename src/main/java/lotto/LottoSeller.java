@@ -15,7 +15,7 @@ public class LottoSeller {
         while (true) {
             try {
                 return new Money(inputView.inputMoney());
-            } catch (IllegalStateException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

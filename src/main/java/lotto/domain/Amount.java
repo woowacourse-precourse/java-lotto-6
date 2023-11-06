@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.LottoConstant.PURCHASE_AMOUNT_UNIT;
+import static lotto.constant.LottoConstant.ZERO;
 import static lotto.constant.LottoErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
 
 public class Amount {
@@ -14,7 +15,7 @@ public class Amount {
     }
 
     private void validate(int amount) {
-        if (amount % PURCHASE_AMOUNT_UNIT != 0) {
+        if (amount % PURCHASE_AMOUNT_UNIT != ZERO) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MESSAGE);
         }
     }

@@ -8,6 +8,7 @@ import lotto.view.LottoOutputView;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_SEPERATER;
 import static lotto.constant.LottoErrorMessage.*;
 
 public class LottoSimulation {
@@ -45,6 +46,8 @@ public class LottoSimulation {
     }
 
     private List<Integer> stringToNumberList(String input) {
-        return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
+        return Arrays.stream(input.split(LOTTO_NUMBER_SEPERATER))
+                .map(Integer::parseInt)
+                .toList();
     }
 }

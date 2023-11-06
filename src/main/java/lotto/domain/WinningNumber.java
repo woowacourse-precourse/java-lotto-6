@@ -4,6 +4,8 @@ import lotto.Lotto;
 
 import java.util.List;
 
+import static lotto.constant.LottoConstant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.MINIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 
 public class WinningNumber extends Lotto {
@@ -17,7 +19,7 @@ public class WinningNumber extends Lotto {
 
     private void validate(List<Integer> winningNumber) {
         for (int number : winningNumber) {
-            if (number < 1 || number > 45) {
+            if (number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE);
             }
         }

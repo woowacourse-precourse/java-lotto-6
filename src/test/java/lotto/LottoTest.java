@@ -24,4 +24,13 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("입력 금액이 1000원 단위가 아니라면 예외가 발생한다.")
+    @Test
+    void countingTheNumberOfLottos(){
+        int price = 15300;
+        inputPriceAndCalculateLottoCount count = new inputPriceAndCalculateLottoCount();
+        assertThatThrownBy(() -> count.validLottoCount(price))
+                .isInstanceOf(Exception.class);
+    }
 }

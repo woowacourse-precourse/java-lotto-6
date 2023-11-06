@@ -34,8 +34,9 @@ public class LottoController {
 
     private Runnable createPurchaseLottoRunnable() {
         return () -> {
-            outputView.printInformationMessage(InformationMessage.GUIDE_INPUT_PURCHASE_AMOUNT);
-            long amount = inputView.readIntLine();
+            outputView.print(InformationMessage.GUIDE_INPUT_PURCHASE_AMOUNT.getMessage());
+            long amount = inputView.readLongLine();
+            outputView.printNewLine();
             LottoReceiptDto lottoReceipt = lottoService.getLottoReceipt(amount);
             outputView.printLottoReceipt(lottoReceipt);
         };

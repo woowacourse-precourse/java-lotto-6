@@ -10,8 +10,14 @@ public class Money {
         this.won = money;
     }
 
-    private int parseInt(String money) {
-        return Integer.parseInt(money);
+    private int parseInt(String input) {
+        int money;
+        try {
+            money = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자 형식이 아닙니다.");
+        }
+        return money;
     }
 
     public int getMoney() {

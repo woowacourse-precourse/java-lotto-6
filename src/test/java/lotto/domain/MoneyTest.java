@@ -45,4 +45,26 @@ public class MoneyTest {
         assertTrue(money.isSameAmount(1000));
     }
 
+    @Test
+    public void 금액_정수가아닌_문자일시_예외발생() {
+        // Given
+        String input = "k";
+
+        // When && Then
+        assertThatThrownBy(() -> Money.create(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
+    }
+
+    @Test
+    public void 금액_정수범위_벗어난_숫자일시_예외발생() {
+        // Given
+        String input = "2200000000";
+
+        // When && Then
+        assertThatThrownBy(() -> Money.create(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
+    }
+
 }

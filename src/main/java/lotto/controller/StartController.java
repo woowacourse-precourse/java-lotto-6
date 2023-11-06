@@ -9,7 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Ticket;
 import lotto.view.View;
 
-public class LottoController {
+public class StartController {
     View view = new View();
     Utils utils = new Utils();
 

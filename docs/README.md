@@ -2,7 +2,7 @@
 
 ## 기능 목록
 
-### 로또 구매 (Controller - buyLotto)
+### 로또 구매 (LottoController - buyLotto)
 - [x] 구입 금액을 입력한다. (View - buyPriceMessage)
   - [x] _예외 처리 : 공백인 경우_
   - [x] _예외 처리 : 문자를 입력한 경우_
@@ -12,7 +12,7 @@
 - [x] 구매량을 출력한다. (View - buyTicketCountMessage)
 - [x] 구매량만큼 로또 번호를 출력한다. (View - lottoTicketInformation)
 
-### 당첨 번호 지정 (Controller - chooseHitLottoNumber)
+### 당첨 번호 지정 (LottoController - chooseHitLottoNumber)
 - [x] 당첨 번호를 6개 입력한다. (View - sixHitLottoNumberMessage)
   - [x] _예외 처리 : 공백인 경우_
   - [x] _예외 처리 : 문자를 입력한 경우_
@@ -25,7 +25,7 @@
   - [x] _예외 처리 : 1~45에서 벗어난 숫자를 입력한 경우_
   - [x] _예외 처리 : 이전에 입력한 당첨 번호에 중복된 번호가 존재하는 경우_
 
-### 당첨 내역 출력
+### 당첨 내역 출력 (ResultController - )
 - [ ] 구매한 로또와 당첨 번호, 보너스 번호를 대조하여 당첨 금액을 계산한다. (통계 기준은 **세부 기능 사항** 참조)
 - [ ] 당첨 내역 통계를 출력한다.
 - [ ] 당첨 금액과 구입 금액을 나누어 수익률을 계산한다.

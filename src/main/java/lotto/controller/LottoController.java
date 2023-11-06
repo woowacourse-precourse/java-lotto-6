@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.BounsNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmountofMoney;
+import lotto.model.RandomLottos;
 import lotto.view.DisplayInput;
 import lotto.view.DisplayOutput;
 
@@ -17,6 +18,7 @@ public class LottoController {
 
     public void play() {
         LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
+        RandomLottos randomLottos = new RandomLottos(lottoAmountofMoney);
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
     }

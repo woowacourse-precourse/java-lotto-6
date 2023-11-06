@@ -3,9 +3,12 @@ package lotto.service;
 import lotto.constant.RankCategory;
 import lotto.model.*;
 import lotto.model.collections.LottoBundle;
+import lotto.model.collections.LottoPurchaseAmount;
 
 import java.util.EnumMap;
 import java.util.List;
+
+import static lotto.constant.RankCategory.*;
 
 public class LottoResultService {
 
@@ -14,10 +17,24 @@ public class LottoResultService {
         for (Lotto lotto : lottoBundle.getLottoBundle()) {
             int matchingNumbers = countMatchingNumbers(winningNumbers, lotto);
             boolean bonusStatus = checkBonusStatus(bonusNumber, lotto);
-            RankCategory rankCategory = RankCategory.of(matchingNumbers, bonusStatus);
+            RankCategory rankCategory = of(matchingNumbers, bonusStatus);
             results.put(rankCategory, results.get(rankCategory) + 1);
         }
         return new LottoResult(results);
+    }
+
+    public ProfitRate calculateProfitRate(LottoResult lottoResult, LottoPurchaseAmount lottoPurchaseAmount){
+        int profitSum = getProfitSum(lottoResult);
+        return new ProfitRate(((double)profitSum/lottoPurchaseAmount.getAmount())*100);
+    }
+
+    private int getProfitSum(LottoResult lottoResult) {
+        int profitSum = 0;
+        for (RankCategory rankCategory : values()) {
+            int rankCount = lottoResult.getResults().get(rankCategory);
+            profitSum+=rankCount*rankCategory.getPrize();
+        }
+        return profitSum;
     }
 
     private boolean checkBonusStatus(BonusNumber bonusNumber, Lotto lotto) {
@@ -33,7 +50,7 @@ public class LottoResultService {
 
     private EnumMap<RankCategory, Integer> getInitializedEnumMap() {
         EnumMap<RankCategory, Integer> results = new EnumMap<>(RankCategory.class);
-        for (RankCategory rankCategory : RankCategory.values()) {
+        for (RankCategory rankCategory : values()) {
             results.put(rankCategory, 0);
         }
         return results;

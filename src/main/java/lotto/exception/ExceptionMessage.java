@@ -12,4 +12,16 @@ public interface ExceptionMessage {
             this.message = message;
         }
     }
+
+    enum lottoTicketInputExceptionMessage {
+        INPUT_MUST_BE_NUMERIC("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+        INPUT_MUST_BE_6s("[ERROR] 로또 번호는 6개여야 합니다."),
+        INPUT_MUST_BE_UNIQUE("[ERROR] 중복된 숫자가 있습니다.");
+
+        public final String message;
+
+        lottoTicketInputExceptionMessage(final String message) {
+            this.message = message;
+        }
+    }
 }

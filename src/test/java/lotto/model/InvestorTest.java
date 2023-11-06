@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import lotto.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -90,6 +91,17 @@ public class InvestorTest {
             // when & then
             assertThatThrownBy(() -> investor.addProfitMoney(-500)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NEGATIVE_NUMBER_EXCEPTION.getMessage());
+        }
+
+        @Test
+        @DisplayName("금액이 나누어 떨어지지 않을 시 예외가 발생한다.")
+        void remainExceptionTest() {
+            // given
+            String investorInput = "2390";
+
+            // when & then
+            assertThatThrownBy(() -> Investor.createDefault(investorInput)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ExceptionMessage.MONEY_REMAIN_EXCEPTION.getMessage());
         }
     }
 }

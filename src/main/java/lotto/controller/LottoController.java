@@ -1,11 +1,12 @@
 package lotto.controller;
 
 import lotto.model.GoalNumbers;
+import lotto.model.Investor;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
+import lotto.model.Shop;
 import lotto.model.dto.LottoResponse;
 import lotto.model.dto.PrizeResult;
-import lotto.service.InvestorService;
 import lotto.service.LottoCompanyService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -23,26 +24,27 @@ public class LottoController {
     }
 
     public void run() {
-        InvestorService investorService = createInvestorService();
-        List<Lotto> lottos = investorService.buyLottos();
+        Investor investor = initInvestor();
+        Shop shop = Shop.withOrderedMoney(investor.getInvestMoney());
+        List<Lotto> lottos = investor.buyLottosFromShop(shop);
 
         outputView.printBoughtLottoSize(lottos.size());
         printLottoValues(lottos);
 
         LottoCompanyService lottoCompanyService = createLottoCompanyService(lottos);
         List<PrizeResult> prizeResults = lottoCompanyService.evaluateLottos();
-        addPrizeMoney(investorService, prizeResults);
+        addPrizeMoney(investor, prizeResults);
 
         outputView.alertResult();
         outputView.printEachPrize(prizeResults);
-        outputView.printProfitRate(investorService.calculateProfitRate());
+        outputView.printProfitRate(investor.calculateProfitRate());
     }
 
-    public InvestorService createInvestorService() {
-        return createInstance(InvestorService.class, () -> {
+    private Investor initInvestor() {
+        return createInstance(Investor.class, () -> {
             outputView.askInvestMoney();
-            String investorInput = inputView.readLine();
-            return InvestorService.createDefault(investorInput);
+            String investMoneyInput = inputView.readLine();
+            return Investor.createDefault(investMoneyInput);
         });
     }
 
@@ -99,9 +101,9 @@ public class LottoController {
         return created;
     }
 
-    private void addPrizeMoney(final InvestorService investorService, final List<PrizeResult> results) {
+    private void addPrizeMoney(final Investor investor, final List<PrizeResult> results) {
         for (PrizeResult result : results) {
-            investorService.addProfit(result.prize() * result.size());
+            investor.addProfitMoney(result.prize() * result.size());
         }
     }
 }

@@ -1,13 +1,12 @@
 package lotto.model;
 
-import static lotto.exception.ExceptionMessage.MONEY_REMAIN_EXCEPTION;
+import static lotto.constants.LottoRule.LOTTO_COST;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
 
-    private static final int LOTTO_COST = 1000;
     private static final int DIVIDE_REMAIN_VALUE = 0;
 
     private final int money;
@@ -17,7 +16,6 @@ public class Shop {
     }
 
     public static Shop withOrderedMoney(final int money) {
-        validateIsRemainValueCorrect(money);
         return new Shop(money);
     }
 
@@ -33,13 +31,7 @@ public class Shop {
         return lottos;
     }
 
-    private static void validateIsRemainValueCorrect(final int money) {
-        if (money % LOTTO_COST != DIVIDE_REMAIN_VALUE) {
-            throw new IllegalArgumentException(MONEY_REMAIN_EXCEPTION.getMessage());
-        }
-    }
-
     private int calculateBuyLottoSize(final int money) {
-        return money / LOTTO_COST;
+        return money / LOTTO_COST.getValue();
     }
 }

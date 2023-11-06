@@ -12,11 +12,12 @@ public class WinningNumber {
     private static final int MAX_RANGE = 45;
 
     public WinningNumber(String userValue) {
+        validateNullValue(userValue);
         this.winningNumber = Arrays
                 .stream(userValue.split(DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
+        validInRangeNumber();
     }
 
     void validInRangeNumber(){
@@ -26,6 +27,11 @@ public class WinningNumber {
             }
         }
     }
+
+    void validateNullValue(String value) {
+        if (value.isBlank()) throw new IllegalArgumentException("[ERROR] 금액을 정확히 입력해 주세요.");
+    }
+
     public List<Integer> getWinningNumber(){
         return winningNumber;
     }

@@ -38,4 +38,37 @@ class LottoServiceTest {
         System.out.println("lotteryTicketNumbers = " + lotteryTicketNumbers.toString());
         assertThat(lotteryTicketNumbers).isSorted();
     }
+
+    @Test
+    @DisplayName("일치한 개수 구하기")
+    void getMatchingNumbers() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        List<Integer> sixMatches = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> fiveMatches = List.of(2, 3, 4, 5, 6, 7);
+        List<Integer> fourMatches = List.of(3, 4, 5, 6, 7, 8);
+        List<Integer> threeMatches = List.of(4, 5, 6, 7, 8, 9);
+        List<Integer> twoMatches = List.of(5, 6, 7, 8, 9, 10);
+        List<Integer> oneMatches = List.of(6, 7, 8, 9, 10, 11);
+        List<Integer> notMatches = List.of(7, 8, 9, 10, 11, 12);
+
+        // when
+        int six = lottoService.getMatchingNumbers(sixMatches, winningNumbers);
+        int five = lottoService.getMatchingNumbers(fiveMatches, winningNumbers);
+        int four = lottoService.getMatchingNumbers(fourMatches, winningNumbers);
+        int three = lottoService.getMatchingNumbers(threeMatches, winningNumbers);
+        int two = lottoService.getMatchingNumbers(twoMatches, winningNumbers);
+        int one = lottoService.getMatchingNumbers(oneMatches, winningNumbers);
+        int zero = lottoService.getMatchingNumbers(notMatches, winningNumbers);
+
+        // then
+        assertThat(six).isEqualTo(6);
+        assertThat(five).isEqualTo(5);
+        assertThat(four).isEqualTo(4);
+        assertThat(three).isEqualTo(3);
+        assertThat(two).isEqualTo(2);
+        assertThat(one).isEqualTo(1);
+        assertThat(zero).isEqualTo(0);
+    }
 }

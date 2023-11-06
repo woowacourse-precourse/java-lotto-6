@@ -32,7 +32,7 @@ public class InputViewTest {
 
     @DisplayName("구입 금액에 숫자가 아닌 값을 입력하면 예외를 반환한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"a", "a1", "-2"})
+    @ValueSource(strings = {"a", "a1"})
     void check_purchase_numeric(String rawPurchase) {
         System.setIn(createUserInput(rawPurchase));
         assertThatThrownBy(InputView::inputPurchase)
@@ -48,6 +48,26 @@ public class InputViewTest {
         assertThatThrownBy(InputView::inputPurchase)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("정상적인 범위 내의 숫자를 입력해야합니다.");
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아닌 값을 입력하면 예외를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "a1"})
+    void check_bonus_number_nmeric(String bonusNumber) {
+        System.setIn(createUserInput(bonusNumber));
+        assertThatThrownBy(InputView::inputBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자로 입력해야합니다.");
+    }
+
+    @DisplayName("보너스 번호에 1~45 사이가 아닌 숫자를 입력하면 예외를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "46"})
+    void check_bonus_number_range(String bonusNumber) {
+        System.setIn(createUserInput(bonusNumber));
+        assertThatThrownBy(InputView::inputBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 숫자는 1~45 사이의 숫자여야합니다.");
     }
 
     InputStream createUserInput(String input) {

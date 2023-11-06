@@ -2,6 +2,7 @@ package lotto.domain.host;
 
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
+import lotto.utill.Input;
 import lotto.utill.Utii;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class LottoHost {
 
     public List<Integer> pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
-        winNumbers = Utii.InputNumbers();
+        winNumbers = Input.InputNumbers();
 
 
         return winNumbers;
@@ -26,7 +27,7 @@ public class LottoHost {
 
     // TODO: 11/6/23 예외 처리 
     private Integer inputBonusNumber() {
-        return Utii.InputNumber();
+        return Input.InputNumber();
     }
 
 

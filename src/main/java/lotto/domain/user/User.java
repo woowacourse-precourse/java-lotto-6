@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.LottoTargetNumResults;
+import lotto.utill.Input;
 import lotto.utill.Utii;
 
 /**
@@ -37,7 +38,7 @@ public class User {
      */
     public Integer payMoney() {
         // TODO: 11/6/23 예외 처리.
-        useMoney = Utii.InputNumber();
+        useMoney = Input.InputNumber();
 
         ValidateException.isMultipleOf1000(useMoney);
         

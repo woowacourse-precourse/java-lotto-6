@@ -1,12 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) throws IllegalArgumentException{
         System.out.println("구입금액을 입력해 주세요.");
         String money = Console.readLine();
         int lottoTotalCount = lottoBuyCount(money);
+        ArrayList<Lotto> list = buyLotto(lottoTotalCount);
     }
     static int lottoBuyCount(String money){
         try{
@@ -18,5 +23,15 @@ public class Application {
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력받은 값이 잘못되었습니다.");
         }
+    }
+
+    static ArrayList<Lotto> buyLotto(int lottoTotalCount){
+        int buyCount = lottoTotalCount/1000;
+        ArrayList<Lotto> buyLottoNumbers = new ArrayList<>();
+        for (int i=0;i<buyCount;i++){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            buyLottoNumbers.add((new Lotto(numbers)));
+        }
+        return buyLottoNumbers;
     }
 }

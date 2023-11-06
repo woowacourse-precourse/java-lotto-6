@@ -23,5 +23,9 @@ public class WinningLottoNumbers {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList()));
     }
+    // 보너스번호 String > int
+    private int convertBonus(String bonus) {
+        return Integer.parseInt(bonus);
+    }
 
 }

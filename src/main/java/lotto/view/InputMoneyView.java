@@ -14,11 +14,12 @@ public class InputMoneyView {
             try {
                 System.out.println(MONEY_MESSAGE);
                 money = Integer.parseInt(readLine());
+                illegalArgument();
                 break;
             } catch (NumberFormatException e) {
                 System.out.println(NOT_INTEGER);
             } catch (IllegalArgumentException e) {
-                illegalArgument();
+                System.out.println(e.getMessage());
             }
         }
         return money;
@@ -26,10 +27,10 @@ public class InputMoneyView {
 
     private void illegalArgument() {
         if (money < THOUSAND) {
-            System.out.println(UNDER_THOUSAND);
+            throw new IllegalArgumentException(UNDER_THOUSAND);
         }
         if (money % THOUSAND != ZERO) {
-            System.out.println(CANNOT_DIVIDE_BY_THOUSAND);
+            throw new IllegalArgumentException(CANNOT_DIVIDE_BY_THOUSAND);
         }
     }
 }

@@ -34,8 +34,8 @@ public class Calculator {
         return sum;
     }
 
-    public static double calculateRateOfReturn(int returnCash, int cash) {
-        double ret = returnCash / cash;
+    public static double calculateRateOfReturn(int returnTotalCash, int cash) {
+        double ret = returnTotalCash / cash;
         return (double) Math.round((ret * 100) / 100);
     }
 }

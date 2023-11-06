@@ -27,4 +27,8 @@ public class Money {
         return new Money(this.amount + money.amount);
     }
 
+    public boolean isSameAmount(int amount) {
+        return this.amount == amount;
+    }
+
 }

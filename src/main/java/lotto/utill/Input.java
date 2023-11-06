@@ -15,7 +15,7 @@ public class Input {
         ValidateException.includeStringExceptionComma(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
-//        ValidateException.commaStartAndEnd(inputStringLine);
+        ValidateException.commaStartAndEnd(inputStringLine);
         ValidateException.hasConsecutiveEmptyValues(inputStringLine);
 
         arr = Utii.makeArrSplitComma(inputStringLine);

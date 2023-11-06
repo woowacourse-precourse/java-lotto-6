@@ -41,7 +41,8 @@ public class ValidateException {
             throw new NumberFormatException("[ERROR] 입력에 숫자 or ',' 을 제외한 문자가 포함되어 있습니다.");
         }
     }
-//
+
+    //
 //    public static void includeSpecialString(String strLine) {
 //        Pattern pattern = Pattern.compile(SPECIAL_CHARACTER_REGEX);
 //        Matcher matcher = pattern.matcher(strLine);
@@ -51,15 +52,13 @@ public class ValidateException {
 //        }
 //    }
 //
-//    public static boolean commaStartAndEnd(String strLine) {
-//        int length = strLine.length();
-//
-//        if (strLine.charAt(length - 1) != COMMA_CHAR || strLine.charAt(0) == ',') {
-//            return true;
-//        }
-//
-//        throw new NumberFormatException("[ERROR] 처음 또는 끝이 ',' 입니다.");
-//    }
+    public static void commaStartAndEnd(String strLine) {
+        int length = strLine.length();
+
+        if (strLine.charAt(length - 1) == COMMA_CHAR || strLine.charAt(0) == ',') {
+            throw new NumberFormatException("[ERROR] 숫자 입력의 처음 또는 끝이 ',' 입니다.");
+        }
+    }
 
     public static void hasConsecutiveEmptyValues(String strLine) {
         if (strLine.contains(",,")) {

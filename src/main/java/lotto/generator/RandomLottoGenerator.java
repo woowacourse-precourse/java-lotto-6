@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
+import lotto.service.LottoGenerator;
 
 public class RandomLottoGenerator implements LottoGenerator {
     @Override

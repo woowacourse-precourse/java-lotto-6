@@ -1,8 +1,9 @@
 package lotto.exception;
 
 import java.util.function.BiConsumer;
+import lotto.controller.ExceptionHandlingStrategy;
+import lotto.controller.LottoGameView;
 import lotto.service.LottoGameService;
-import lotto.view.LottoGameView;
 
 public class InfiniteRetryExceptionHandlingStrategy implements ExceptionHandlingStrategy {
     @Override

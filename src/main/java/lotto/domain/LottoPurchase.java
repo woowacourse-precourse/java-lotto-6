@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.exception.ExceptionMessage;
-import lotto.generator.LottoGenerator;
+import lotto.service.LottoGenerator;
 
 public class LottoPurchase {
 

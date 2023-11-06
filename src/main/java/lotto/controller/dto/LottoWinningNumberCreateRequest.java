@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.controller.dto;
 
 import java.util.ArrayList;
 import java.util.List;

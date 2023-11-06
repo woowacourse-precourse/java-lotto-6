@@ -3,16 +3,15 @@ package lotto.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.controller.dto.LottoBonusNumberCreateRequest;
+import lotto.controller.dto.LottoPurchaseRequest;
+import lotto.controller.dto.LottoWinningNumberCreateRequest;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoPrize;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoWinningNumber;
 import lotto.domain.LottoWinningResult;
-import lotto.dto.LottoBonusNumberCreateRequest;
-import lotto.dto.LottoPurchaseRequest;
-import lotto.dto.LottoWinningNumberCreateRequest;
-import lotto.generator.LottoGenerator;
 
 public class LottoGameService {
 

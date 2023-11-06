@@ -1,16 +1,14 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.controller.dto.LottoBonusNumberCreateRequest;
+import lotto.controller.dto.LottoPurchaseRequest;
+import lotto.controller.dto.LottoResponse;
+import lotto.controller.dto.LottoWinningNumberCreateRequest;
+import lotto.controller.dto.LottoWinningStatistics;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningResult;
-import lotto.dto.LottoBonusNumberCreateRequest;
-import lotto.dto.LottoPurchaseRequest;
-import lotto.dto.LottoResponse;
-import lotto.dto.LottoWinningNumberCreateRequest;
-import lotto.dto.LottoWinningStatistics;
-import lotto.exception.ExceptionHandlingStrategy;
 import lotto.service.LottoGameService;
-import lotto.view.LottoGameView;
 
 public class LottoGameController {
     private final LottoGameService lottoGameService;

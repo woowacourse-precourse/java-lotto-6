@@ -6,12 +6,17 @@ import static lotto.constant.PrintOutMessage.PLZ_INPUT_PURCHASE_PRICE;
 import static lotto.constant.PrintOutMessage.PLZ_INPUT_WINNER_NUMBER;
 import static lotto.constant.PrintOutMessage.PRINT_LOTTO_COUNT;
 import static lotto.constant.PrintOutMessage.PRINT_WINNING_STATISTICS;
+import static lotto.constant.Rank.FIVE_AND_BONUS_MATCH;
+import static lotto.constant.Rank.FIVE_MATCH;
+import static lotto.constant.Rank.FOUR_MATCH;
+import static lotto.constant.Rank.SIX_MATCH;
+import static lotto.constant.Rank.THREE_MATCH;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.constant.PrintOutMessage;
+import lotto.constant.Rank;
+import lotto.model.CompareResult;
 import lotto.model.Lotto;
-import lotto.model.Statistics;
 
 public class OutputView {
     public void printInputPurchasePrice() {
@@ -38,32 +43,33 @@ public class OutputView {
         System.out.println(PRINT_WINNING_STATISTICS.message);
     }
 
-    public void printMatchingCount(Map<Statistics, Integer> matchingCount) {
+    public void printMatchingCount(Map<CompareResult, Integer> matchingCount) {
         printMatchCountExceptFive(matchingCount);
         printMatchCountForFive(matchingCount);
     }
 
-    private void printMatchCountExceptFive(Map<Statistics, Integer> matchingCount) {
-        Map<Integer, PrintOutMessage> matchNumberToMessage = new HashMap<>();
-        matchNumberToMessage.put(3, PrintOutMessage.THREE_MATCH);
-        matchNumberToMessage.put(4, PrintOutMessage.FOUR_MATCH);
-        matchNumberToMessage.put(6, PrintOutMessage.SIX_MATCH);
+    private void printMatchCountExceptFive(Map<CompareResult, Integer> matchingCount) {
+        Map<Integer, Rank> matchNumberToMessage = new HashMap<>();
+        matchNumberToMessage.put(THREE_MATCH.getMatchCount(), THREE_MATCH);
+        matchNumberToMessage.put(FOUR_MATCH.getMatchCount(), FOUR_MATCH);
+        matchNumberToMessage.put(SIX_MATCH.matchCount, SIX_MATCH);
 
         for (int i = 3; i <= 6; i++) {
-            if (i != 5) {
-                int count = matchingCount.getOrDefault(new Statistics(i, false), 0)
-                        + matchingCount.getOrDefault(new Statistics(i, true), 0);
+            if (i != FIVE_MATCH.matchCount) {
+                int count = matchingCount.getOrDefault(new CompareResult(i, false), 0)
+                        + matchingCount.getOrDefault(new CompareResult(i, true), 0);
                 System.out.println(matchNumberToMessage.get(i).message + count + COUNT_SUFFIX.message);
             }
         }
     }
 
-    private void printMatchCountForFive(Map<Statistics, Integer> matchingCount) {
-        System.out.println(PrintOutMessage.FIVE_MATCH.message
-                + matchingCount.getOrDefault(new Statistics(5, false), 0)
+    private void printMatchCountForFive(Map<CompareResult, Integer> matchingCount) {
+        System.out.println(FIVE_MATCH.message
+                + matchingCount.getOrDefault(new CompareResult(FIVE_MATCH.matchCount, FIVE_MATCH.isMatchBonus), 0)
                 + COUNT_SUFFIX.message);
-        System.out.println(PrintOutMessage.FIVE_AND_BONUS_MATCH.message
-                + matchingCount.getOrDefault(new Statistics(5, true), 0)
+        System.out.println(FIVE_AND_BONUS_MATCH.message
+                + matchingCount.getOrDefault(
+                new CompareResult(FIVE_AND_BONUS_MATCH.matchCount, FOUR_MATCH.isMatchBonus), 0)
                 + COUNT_SUFFIX.message);
     }
 

@@ -24,6 +24,24 @@ public class WinningResult {
         }
     }
 
+    private ProfitRate calculateProfitRate(int totalWinningMoney, int totalPurchaseAmount) {
+        double profitRate = ((double) totalWinningMoney / totalPurchaseAmount) * 100;
+
+        return new ProfitRate(profitRate);
+    }
+
+    private int calculateTotalPurchaseAmount() {
+        return winningResult.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
+    private int calculateTotalWinningMoney() {
+        return winningResult.keySet().stream()
+                .mapToInt(lottoRank -> lottoRank.getWinningMoney() * getWinningResultValue(lottoRank))
+                .sum();
+    }
+
     private void initWinningResult() {
         for (LottoRank lottoRank : LottoRank.values()) {
             winningResult.put(lottoRank, GameConfig.ZERO.getValue());

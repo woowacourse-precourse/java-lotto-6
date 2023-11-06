@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.exception.OverLappingNumbersException;
 import lotto.exception.RangeLottoNumberException;
 
 import java.util.List;
@@ -8,18 +7,17 @@ import java.util.List;
 import static lotto.domain.Constant.MAX_RANGE;
 import static lotto.domain.Constant.MIN_RANGE;
 
-public class WonLotto {
-    private final Lotto lotto;
-    private final Integer bonusNumber;
+public class WonLotto extends Lotto{
+    private final int bonusNumber;
 
     public WonLotto(List<Integer> lotto, Integer bonusNumber) {
-        this.lotto = new Lotto(lotto);
+        super(lotto);
         validateNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     public void validateNumber(Integer bonusNumber) {
-        validateDuplicateBonusNumber(bonusNumber);
+        validateRange(bonusNumber);
         validateRange(bonusNumber);
     }
 
@@ -29,18 +27,14 @@ public class WonLotto {
         }
     }
 
-    public void validateDuplicateBonusNumber(Integer bonusNumber) {
-        if (isContain(bonusNumber)) {
-            throw new OverLappingNumbersException();
-        }
+    public Rank calculateRank(Lotto userLotto) {
+        int sameNumberCount = super.countSameNumber(userLotto);
+        boolean isBonus = hasBonusNumber(userLotto);
+        return Rank.getRank(sameNumberCount, isBonus);
     }
 
-    public boolean isContain(int number) {
-        return lotto.isContain(number);
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean hasBonusNumber(Lotto userLotto) {
+        return userLotto.hasNumber(bonusNumber);
     }
 }
 

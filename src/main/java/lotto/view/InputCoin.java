@@ -1,21 +1,18 @@
 package lotto.view;
 
-import lotto.exception.BlankException;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Constant;
 import lotto.exception.NotNumberException;
 import lotto.exception.ThousandCheckException;
-import lotto.exception.ZeroMoreThanException;
-
-import java.util.regex.Pattern;
 
 public class InputCoin {
     private static final String START_MESSAGE = "구입금액을 입력해 주세요.";
-    private final InputThings inputThings = new InputThings();
 
     public Integer insertCoin() {
         printNotice();
-        String insertCoin = inputThings.inputThings().trim();
+        String insertCoin = Console.readLine();
         validate(insertCoin);
-        return Integer.parseInt(insertCoin);
+        return convertNumber(insertCoin);
     }
 
     public void printNotice() {
@@ -23,20 +20,37 @@ public class InputCoin {
     }
 
     public void validate(String insertCoin) {
-        blankCoin(insertCoin);
-        numberValidateCoin(insertCoin);
+        validateMoney(insertCoin);
+        validateMoneyIsDivided(insertCoin);
     }
 
-    private void blankCoin(String insertCoin) {
-        if (insertCoin == null) {
-            throw new BlankException();
-        }
+    public int convertNumber(String insertCoin) {
+        return Integer.parseInt(insertCoin);
     }
 
-    private void numberValidateCoin(String insertCoin) {
-        String num = "^[0-9]*$";
-        if (!Pattern.matches(insertCoin, num)) {
+    public void validateMoney(String insertCoin) {
+        if(!isNumberString(insertCoin)) {
             throw new NotNumberException();
         }
+    }
+
+    public void validateMoneyIsDivided(String insertCoin) {
+        int money = Integer.parseInt(insertCoin);
+        if(money % Constant.MONEY_UNIT != 0) {
+            throw new ThousandCheckException();
+        }
+    }
+
+    public boolean isNumberString(String insertCoin) {
+        if(insertCoin.isBlank()) {
+            return false;
+        }
+        for (int i = 0; i < insertCoin.length(); i++) {
+            char uncheckedCharacter = insertCoin.charAt(i);
+            if(!Character.isDigit(uncheckedCharacter)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

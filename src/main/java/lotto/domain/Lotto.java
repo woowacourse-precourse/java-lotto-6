@@ -4,17 +4,16 @@ import lotto.exception.OverLappingNumbersException;
 import lotto.exception.RangeLottoNumberException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static lotto.domain.Constant.MAX_RANGE;
 import static lotto.domain.Constant.MIN_RANGE;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateVarious(numbers);
-        numbers = sorted(numbers);
+        validate(numbers);
+        numberRange(numbers);
+        overlappingNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -22,12 +21,6 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void validateVarious(List<Integer> numbers) {
-        validate(numbers);
-        numberRange(numbers);
-        overlappingNumbers(numbers);
     }
 
     private void overlappingNumbers(List<Integer> numbers) {
@@ -46,37 +39,31 @@ public class Lotto {
         }
     }
 
-    public void numberRange(List<Integer> numbers) {
+    private void numberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
+            if (number < MIN_RANGE || number > Constant.MAX_RANGE) {
                 throw new RangeLottoNumberException();
             }
         }
     }
 
-    public List<Integer> sorted(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
-    }
-
-    public boolean isContain(int number) {
-        for (int num : numbers) {
-            if (num == number) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int numbersMatchWonLottoNumber(WonLotto wonLotto) {
+    public int countSameNumber(Lotto lotto) {
         int count = 0;
         for (int num : numbers) {
-            if (wonLotto.isContain(num)) {
+            if (lotto.hasNumber(num)) {
                 count++;
             }
         }
         return count;
+    }
+
+    public boolean hasNumber(Integer userLottoNumber) {
+        for(Integer lottoNumber: numbers) {
+            if (lottoNumber.equals(userLottoNumber)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

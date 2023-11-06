@@ -49,7 +49,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int getMatchedLottoCount(WinningLotto winningLotto) {
+    public int getMatchLottoCount(WinningLotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::isContain)
                 .count();

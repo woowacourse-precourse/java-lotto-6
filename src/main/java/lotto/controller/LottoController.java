@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.util.ExceptionHandler;
+import lotto.validation.InputValidator;
 import lotto.view.ConsoleOutput;
 import lotto.view.InputView;
 
@@ -12,6 +14,7 @@ public class LottoController {
 
     public void run() {
         ConsoleOutput.displayUserInputPrompt();
-        inputView.getUserPurchaseAmount();
+        String input = inputView.getUserPurchaseAmount();
+        InputValidator.validateForNonNumericCharacters(input);
     }
 }

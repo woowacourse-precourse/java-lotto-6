@@ -14,12 +14,12 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private final WinningNumber winningNumber;
+    private final WinningLotto winningLotto;
     private final List<Lotto> issuedLotto;
     private Map<LottoCriteria, Long> rankingResult;
 
-    public LottoResult(final WinningNumber winningNumber, final List<Lotto> issuedLotto) {
-        this.winningNumber = winningNumber;
+    public LottoResult(final WinningLotto winningLotto, final List<Lotto> issuedLotto) {
+        this.winningLotto = winningLotto;
         this.issuedLotto = issuedLotto;
         rankingResult = new HashMap<>();
         rankingResult.put(FIRST_PLACE, 0L);
@@ -36,7 +36,7 @@ public class LottoResult {
 
     public void matchingCount(Lotto lotto) {
         Long count = lotto.getNumbers().stream()
-                .filter(winningNumber.lotto().getNumbers()::contains)
+                .filter(winningLotto.lotto().getNumbers()::contains)
                 .count();
         if (count == FIFTH_PLACE.getCount()) {
             rankingResult.merge(FIFTH_PLACE, 1L, Long::sum);
@@ -56,17 +56,18 @@ public class LottoResult {
     }
 
     public boolean isBonusContain(Lotto lotto) {
-        return lotto.getNumbers().contains(winningNumber.bonus());
+        return lotto.getNumbers().contains(winningLotto.bonus());
     }
 
-    public float returnCalculation() {
+    public float getReturnRate() {
         Long totalAmount = rankingResult.get(FIFTH_PLACE) * FIFTH_PLACE.getAmount()
                 + rankingResult.get(FOURTH_PLACE) * FOURTH_PLACE.getAmount()
                 + rankingResult.get(THIRD_PLACE) * THIRD_PLACE.getAmount()
                 + rankingResult.get(SECOND_PLACE) * SECOND_PLACE.getAmount()
                 + rankingResult.get(FIRST_PLACE) * FIRST_PLACE.getAmount();
-
-        return (float) totalAmount / (issuedLotto.size() * PRICE.getValue()) * PERCENT.getValue();
+        float returnRate = (float) totalAmount / (issuedLotto.size() * PRICE.getValue()) * PERCENT.getValue();
+        Math.round(returnRate);
+        return Math.round(returnRate * 100f) / 100f;
     }
 
     public Map<LottoCriteria, Long> getRankingResult() {

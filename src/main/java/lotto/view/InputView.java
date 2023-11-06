@@ -1,7 +1,8 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.utils.Reader;
+import lotto.utils.InputParser;
 
 public class InputView {
     private static final String INPUT_LOTTO_MONEY = "구입금액을 입력해 주세요.";
@@ -10,16 +11,20 @@ public class InputView {
 
     public static int getPlayerLottoMoney() {
         System.out.println(INPUT_LOTTO_MONEY);
-        return Reader.parseNumberInteger();
+        return InputParser.parseStringToInteger(reader());
     }
 
     public static List<Integer> getLottoWinnning() {
         System.out.println(INPUT_LOTTO_WINNING);
-        return Reader.parseNumbersInteger();
+        return InputParser.parseStringToIntegerList(reader());
     }
 
     public static int getLottoBonus() {
         System.out.println(INPUT_LOTTO_BONUS);
-        return Reader.parseNumberInteger();
+        return InputParser.parseStringToInteger(reader());
+    }
+
+    private static String reader() {
+        return Console.readLine().trim();
     }
 }

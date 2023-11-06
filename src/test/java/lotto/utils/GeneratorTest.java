@@ -17,20 +17,20 @@ class GeneratorTest {
         lottoNumbers = Generator.generateSortedLottoNumbers();
     }
 
-    @Test
     @DisplayName("랜덤 로또 숫자 생성을 테스트 합니다.")
+    @Test
     void generateLotto() {
         assertThat(lottoNumbers).isNotNull();
     }
 
-    @Test
     @DisplayName("생성된 로또 숫자가 범위 안에서 생성되는지 테스트 합니다.")
+    @Test
     void generateLottoInRange() {
         lottoNumbers.forEach(number -> assertThat(number).isBetween(MIN_LOTTO.getValue(), MAX_LOTTO.getValue()));
     }
 
-    @Test
     @DisplayName("생성된 로또 숫자가 오름차순으로 정렬되는지 테스트 합니다.")
+    @Test
     void generateLottoSort() {
         assertThat(lottoNumbers).isSorted();
     }

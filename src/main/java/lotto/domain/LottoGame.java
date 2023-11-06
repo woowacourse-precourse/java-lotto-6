@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.domain.InputChecker.readLottoPrice;
 import static lotto.domain.Lottos.generateLottos;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -7,29 +8,24 @@ import java.util.List;
 
 public class LottoGame {
     LottoResult lottoResult;
+    InputChecker inputChecker;
 
     public LottoGame() {
         lottoResult = new LottoResult();
-
         start();
     }
 
     private void start() {
-        long userLottoPrice = readLottoPrice();
+        long userLottoPrice = inputChecker.readLottoPrice();
         long lottoCount = lottoResult.lottoNumbersPurchased(userLottoPrice);
         System.out.println(lottoCount + "개를 구매했습니다.");
 
         Lottos purchasedLottos = generateLottos(lottoCount);
-    }
 
-    private static int readLottoPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
+        List<Integer> winningNumbers = inputChecker.readWinningNumbers();
+        int bonusNumber = inputChecker.readBonusNumber();
 
-        if(price % 1000 !=0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
-        }
-        return price;
+
     }
 
 }

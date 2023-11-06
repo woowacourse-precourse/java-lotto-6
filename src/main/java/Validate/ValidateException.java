@@ -146,15 +146,15 @@ public class ValidateException {
 
         throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
     }
-//
-//    public static boolean checkRangeWinNumbers(List<Integer> numbers) {
-//        for (int num : numbers) {
-//            if (num < MIN_WIN_NUMBERS || num > MAX_WIN_NUMBERS) {
-//                throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.");
-//            }
-//        }
-//        return true;
-//    }
+
+    public static boolean checkRangeWinNumbers(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num < MIN_WIN_NUMBERS || num > MAX_WIN_NUMBERS) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.");
+            }
+        }
+        return true;
+    }
 
     public static boolean hasDuplicateNumAndNumbers(Integer targetNumber, List<Integer> numbers) {
         if (numbers.contains(targetNumber)) {

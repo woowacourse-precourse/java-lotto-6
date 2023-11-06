@@ -2,8 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Seller {
     public static Integer numberOfLotto(Integer price) {
@@ -11,7 +10,7 @@ public class Seller {
     }
 
     public static List<Lotto> makeLottos(Integer numberOfLotto) {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottos = new Vector<>();
 
         for (Integer count = 0; count < numberOfLotto; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
@@ -20,7 +19,10 @@ public class Seller {
                     LottoInfo.NUMBER_COUNT.number()
             );
 
-            lottos.add(new Lotto(numbers));
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            sortedNumbers.sort(Comparator.naturalOrder());
+
+            lottos.add(new Lotto(sortedNumbers));
         }
 
         return lottos;

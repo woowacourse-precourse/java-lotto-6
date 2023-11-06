@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +37,8 @@ public class Lotto {
         String numbersToString = numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
+
+        System.out.println("[" + numbersToString + "]");
     }
 
     public List<Integer> getNumbers() {

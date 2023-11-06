@@ -19,6 +19,9 @@ public class IOOperation {
             try {
                 price = Integer.parseInt(Console.readLine());
                 Checker.priceCorrect(price);
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+                continue;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
@@ -39,8 +42,14 @@ public class IOOperation {
                 Checker.winningSix(winningNumbers);
                 Checker.winningInRange(winningNumbers);
                 Checker.winningNotDuplicated(winningNumbers);
-            } catch (IllegalArgumentException e) {
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+                winningNumbers.clear();
+                continue;
+            }
+            catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                winningNumbers.clear();
                 continue;
             }
             break;
@@ -57,6 +66,9 @@ public class IOOperation {
                 bonusNumber = Integer.parseInt(Console.readLine());
                 Checker.bonusInRange(bonusNumber);
                 Checker.winningAndBonusNotDuplicated(winningNumbers, bonusNumber);
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해 주세요.");
+                continue;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
@@ -90,6 +102,6 @@ public class IOOperation {
 
         Double rateOfReturn = Judge.rateOfReturn(rankings, price);
         String formattedReturn = String.format("%.1f", rateOfReturn);
-        System.out.println("총 수익률은 " + formattedReturn + "입니다.");
+        System.out.println("총 수익률은 " + formattedReturn + "%입니다.");
     }
 }

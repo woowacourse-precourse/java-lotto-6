@@ -27,12 +27,12 @@ public class PrizeResultTest {
     @DisplayName("결과 계산 테스트")
     @Test
     void calculatePrizeTest() {
-        assertThat(prizeResult.getResult().get(Prize.FIRST)).isEqualTo(0);
-        assertThat(prizeResult.getResult().get(Prize.SECOND)).isEqualTo(0);
-        assertThat(prizeResult.getResult().get(Prize.THIRD)).isEqualTo(1);
-        assertThat(prizeResult.getResult().get(Prize.FOURTH)).isEqualTo(0);
-        assertThat(prizeResult.getResult().get(Prize.FIFTH)).isEqualTo(0);
-        assertThat(prizeResult.getResult().get(Prize.MISS)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCount().get(Prize.MISS)).isEqualTo(1);
     }
 
     @DisplayName("총 상금 계산 테스트")

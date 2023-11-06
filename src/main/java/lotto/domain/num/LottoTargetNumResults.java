@@ -5,9 +5,6 @@ import lotto.utill.Utii;
 
 import java.util.List;
 
-/**
- * 당첨 번호와 보너스 번호들의 모임 클래스
- */
 public class LottoTargetNumResults {
     private static final Integer BONUS_INDEX_NUM = 6;
     private static final Integer START_PICK_NUM_INDEX = 0;

@@ -2,6 +2,7 @@ package lotto.view;
 import lotto.Exceptions.ManageExceptions;
 import lotto.Lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,12 +30,18 @@ public class Input extends ManageExceptions {
             rangeCheck(winningNums.get(i));
         }
 
+        duplicationCheck(winningNums);
+
         return winningNums;
     }
 
-    public int getBonusNum() {
-        int given = Integer.parseInt(readLine());
-        rangeCheck(given);
-        return given;
+    public int getBonusNum(List<Integer> winningNums) {
+        int bonusNum = Integer.parseInt(readLine());
+        rangeCheck(bonusNum); // 1~45 사이의 숫자인지 체크
+
+        List<Integer> numbers = new ArrayList<>(winningNums);
+        numbers.add(bonusNum);
+        duplicationCheck(numbers); // 중복 숫자 있는 지 체크
+        return bonusNum;
     }
 }

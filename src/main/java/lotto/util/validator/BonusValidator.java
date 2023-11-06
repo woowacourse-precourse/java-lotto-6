@@ -10,7 +10,16 @@ public class BonusValidator {
             System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
             return false;
         }
+        if (validationIsDuplicate(input,winnerLottoOnlyNumbers)){
+            System.out.println(ExceptionMessage.INVALID_BONUS_IS_CONTAIN_NUMBERS.getMessage());
+            return false;
+        }
         return true;
+    }
+
+    private boolean validationIsDuplicate(String input, Lotto winnerLottoOnlyNumbers) {
+        int bonus = Integer.parseInt(input);
+        return winnerLottoOnlyNumbers.contains(bonus);
     }
 
     private boolean validationIsNumeric(String input) {

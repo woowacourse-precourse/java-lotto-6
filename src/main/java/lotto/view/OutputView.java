@@ -13,6 +13,9 @@ public class OutputView {
     private final static String DASH = "-";
     private final static String STATISTICS = "당첨 통계";
 
+    public static void inputViewPurchaseAmount(){
+        System.out.println(InputMessage.INPUT_PURCHASE_AMOUNT.inputMessage());
+    }
     public static void lottoNumbersResult(List<Integer> lotto) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (Integer number : lotto) {

@@ -29,7 +29,7 @@
       - [x] 중복되지 않는 6개의 숫자를 무작위로 뽑는다. - Lotto$generateNumbers()
           - [x] 6개의 숫자는 오름차순으로 정렬한다. - Lotto$generateNumbers()
       - [x] 발행된 로또 번호 간에도 중복되지 않게 뽑는다. - Lotto$generateNumbers()
-      - [x] 각 로또 번호를 출력해서 보여준다. OutputView$printGeneratedLottoes(lottoesDto)
+      - [x] 각 로또 번호를 출력해서 보여준다. - OutputView$printGeneratedLottoes(lottoesDto)
         ```text
         [8, 21, 23, 41, 42, 43]
         [3, 5, 11, 16, 32, 38]

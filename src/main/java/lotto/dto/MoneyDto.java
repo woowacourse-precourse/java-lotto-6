@@ -4,6 +4,9 @@ import static lotto.util.ErrorMessage.MINUS_MONEY;
 import static lotto.util.ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE;
 
 public record MoneyDto(int amount) {
+
+    private static final int SINGLE_LOTTO_PRICE = 1000;
+
     public MoneyDto {
         validate(amount);
     }
@@ -20,7 +23,7 @@ public record MoneyDto(int amount) {
     }
 
     private void validateDividedByLottoPrice(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % SINGLE_LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage());
         }
     }

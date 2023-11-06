@@ -18,15 +18,15 @@ public class LottoMachine {
         this.numOfLotto = lottoNum;
     }
 
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
     public void setLottos() {
         OutputView.printNumberOfLotto(this.numOfLotto);
         for (int i = 0; i < this.numOfLotto; i++) {
             this.lottos.add(makeLottoNum());
         }
-    }
-
-    public List<Lotto> getLottos() {
-        return this.lottos;
     }
 
     private static Lotto makeLottoNum() {

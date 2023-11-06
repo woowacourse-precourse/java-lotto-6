@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         checkNumOfLotto(numbers);
         checkDuplicatedNumber(numbers);
@@ -48,10 +52,6 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
-    }
-
-    public List<Integer> getNumbers() {
-        return this.numbers;
     }
 
     public LottoValue match(Lotto winningLotto, int bonusNum) {

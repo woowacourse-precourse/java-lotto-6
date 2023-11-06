@@ -55,9 +55,9 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_2() {
+    void 예외_테스트_유저의_돈입력_문자포함_검사() {
         assertSimpleTest(() -> {
-            runException("100 0", "100j0");
+            runException("j1000", "100j0", "!100", "1#00", "300$");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

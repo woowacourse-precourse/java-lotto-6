@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.config.Message;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
@@ -19,8 +20,6 @@ import lotto.util.WinningLottoConverter;
 import lotto.util.WinningLottoValidator;
 
 public class Application {
-
-    private static final int PURCHASE_PRICE_UNIT = 1000;
     private static final int EMPTY = 0;
 
     public static void main(String[] args) {
@@ -95,7 +94,7 @@ public class Application {
 
     private int calculateLottoPurchaseCount() {
         int purchasePrice = getValidPurchasePrice();
-        return purchasePrice / PURCHASE_PRICE_UNIT;
+        return purchasePrice / LottoConfig.PURCHASE_PRICE_UNIT;
     }
 
     private int getValidPurchasePrice() {
@@ -119,10 +118,10 @@ public class Application {
         } catch (NumberFormatException numberFormatException) {
             throw new InvalidPurchasePriceFormatException(input);
         }
-        if (purchasePrice < PURCHASE_PRICE_UNIT) {
+        if (purchasePrice < LottoConfig.PURCHASE_PRICE_UNIT) {
             throw new BelowMinimumPurchasePriceException(purchasePrice);
         }
-        if (purchasePrice % PURCHASE_PRICE_UNIT != EMPTY) {
+        if (purchasePrice % LottoConfig.PURCHASE_PRICE_UNIT != EMPTY) {
             throw new NonMultipleOfPriceUnitException(purchasePrice);
         }
     }

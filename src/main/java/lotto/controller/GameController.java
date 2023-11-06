@@ -9,6 +9,7 @@ import lotto.service.ConsoleInputParser;
 import lotto.service.PrizeChecker;
 import lotto.service.VendingMachine;
 import lotto.domain.PrizeReception;
+import lotto.utils.PrintingMessage;
 import lotto.utils.Prize;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -40,21 +41,21 @@ public class GameController {
                 purchaseAmount = getPurchaseAmount();
                 isCorrectInput = true;
             } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.getMessage());
+                outputView.printMessage(illegalArgumentException.getMessage());
             }
         }
         return purchaseAmount;
     }
 
     private PurchaseAmount getPurchaseAmount() {
-        outputView.printGetPurchaseAmountMessage();
+        outputView.printMessage(PrintingMessage.GET_PURCHASE_AMOUNT_MESSAGE.get());
         String input = inputView.getInputFromConsole();
         return consoleInputParser.toPurchaseAmount(input);
     }
 
     private void printLottos(Lottos playerLottos) {
-        outputView.printBuyingMessage(playerLottos.getLottoCount());
-        outputView.printLottos(playerLottos.toString());
+        outputView.printMessage(PrintingMessage.BUYING_MESSAGE.getWithFormat(playerLottos.getLottoCount()));
+        outputView.printMessage(playerLottos.toString());
     }
 
     private Lotto getValidWinningLotto() {
@@ -65,14 +66,14 @@ public class GameController {
                 winningLotto = getWinningLotto();
                 isCorrectInput = true;
             } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.getMessage());
+                outputView.printMessage(illegalArgumentException.getMessage());
             }
         }
         return winningLotto;
     }
 
     private Lotto getWinningLotto() {
-        outputView.printGetWinningLottoMessage();
+        outputView.printMessage(PrintingMessage.GET_WINNING_NUMBERS_MESSAGE.get());
         String input = inputView.getInputFromConsole();
         return consoleInputParser.toLotto(input);
     }
@@ -85,30 +86,35 @@ public class GameController {
                 bonusNumber = getBonusNumber(winningLotto);
                 isCorrectInput = true;
             } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.getMessage());
+                outputView.printMessage(illegalArgumentException.getMessage());
             }
         }
         return bonusNumber;
     }
 
     private BonusNumber getBonusNumber(Lotto winningLotto) {
-        outputView.printGetBonusNumberMessage();
+        outputView.printMessage(PrintingMessage.GET_BONUS_NUMBER_MESSAGE.get());
         String input = inputView.getInputFromConsole();
         return consoleInputParser.toBounsNumber(input, winningLotto);
     }
 
     private void printPrizeResults(PrizeReception prizeReception) {
-        outputView.printPrizeMessageStartMessage();
+        outputView.printMessage(PrintingMessage.PRIZE_MESSAGE_START_MESSAGE.get());
         for (Prize prize : Prize.values()) {
             if (prize == Prize.NO_PRIZE) {
                 continue;
             }
-            outputView.printPrizeMessages(
-                    prize.getSameCount(), prize.getPrizeProfit(), prizeReception.getPrizeCount(prize));
+            outputView.printMessage(PrintingMessage.PRIZE_MESSAGE.getWithFormat(
+                    prize.getSameCount(),
+                    prize.getPrizeProfit(),
+                    prizeReception.getPrizeCount(prize)
+            ));
         }
     }
 
     private void printPrizeProfit(PrizeReception prizeReception, PurchaseAmount purchaseAmount) {
-        outputView.printProfitRate(prizeReception.getProfitRate(purchaseAmount));
+        outputView.printMessage(PrintingMessage.PROFIT_MESSAGE.getWithFormat(
+                prizeReception.getProfitRate(purchaseAmount)
+        ));
     }
 }

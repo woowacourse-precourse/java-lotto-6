@@ -4,10 +4,10 @@ import java.text.DecimalFormat;
 
 public enum PrintingMessage {
     GET_PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),
-    BUYING_MESSAGE("%d개를 구매했습니다."),
-    GET_WINNING_NUMBERS_MESSAGE("당첨 번호를 입력해 주세요."),
-    GET_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
-    PRIZE_MESSAGE_START_MESSAGE("당첨 통계\n---"),
+    BUYING_MESSAGE("\n%d개를 구매했습니다."),
+    GET_WINNING_NUMBERS_MESSAGE("\n당첨 번호를 입력해 주세요."),
+    GET_BONUS_NUMBER_MESSAGE("\n보너스 번호를 입력해 주세요."),
+    PRIZE_MESSAGE_START_MESSAGE("\n당첨 통계\n---"),
     PRIZE_MESSAGE("%d개 일치%s(%s원) - %d개"),
     DECIMAL_FORMAT("#,###"),
     PROFIT_MESSAGE("총 수익률은 %.1f%%입니다.");

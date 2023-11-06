@@ -11,12 +11,20 @@ public class InputView {
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String COMMA = ",";
+    private static boolean stop;
 
     public int inputBuyingCost(){
         InvalidInput invalidInput = new InvalidInput();
-        System.out.println(INPUT_BUYING_COST_MESSAGE);
+        stop = false;
+        String cost = "";
 
-        return invalidInput.notIntegerValueException(readLine());
+        while(stop == false){
+            System.out.println(INPUT_BUYING_COST_MESSAGE);
+            cost = readLine();
+            stop = invalidInput.notIntegerValueException(cost);
+        }
+
+        return Integer.parseInt(cost);
     }
 
     public List<String> inputWinningNumbers(){
@@ -28,8 +36,15 @@ public class InputView {
 
     public int inputBonusNumber(){
         InvalidInput invalidInput = new InvalidInput();
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        stop = false;
+        String bonus = "";
 
-        return invalidInput.notIntegerValueException(readLine());
+        while(stop == false){
+            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+            bonus = readLine();
+            stop = invalidInput.notIntegerValueException(bonus);
+        }
+
+        return Integer.parseInt(bonus);
     }
 }

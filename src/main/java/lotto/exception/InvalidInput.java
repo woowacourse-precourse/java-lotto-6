@@ -35,13 +35,15 @@ public class InvalidInput {
             isBetweenInRange(number);
         }
     }
-    public int notIntegerValueException(String number) {
+    public boolean notIntegerValueException(String number) {
         message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
 
         try {
-            return Integer.parseInt(number);
+            Integer.parseInt(number);
+            return true;
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(message);
+            System.out.println(message);
+            return false;
         }
     }
 

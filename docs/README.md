@@ -98,3 +98,7 @@ CustomizedException클래스 winningNumberHasSameNumber메소드
 ``````````````````````````
 CustomizedException클래스 winningNumbersQualification메소드
 ```````````````````````````````
+16. 보너스 번호를 입력해달라고 요청하는 메소드 추가
+``````````````````````````
+OutputView클래스 askBonusNumbers메소드
+```````````````````````````````

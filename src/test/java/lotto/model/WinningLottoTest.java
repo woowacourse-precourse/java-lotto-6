@@ -15,7 +15,7 @@ class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = new WinningLotto(List.of(4, 5, 6, 7, 8, 9), 10);
 
-        assertThat(winningLotto.compareLotto(lotto)).isEqualTo(Result.FIFTH);
+        assertThat(winningLotto.compareLotto(lotto)).isEqualTo(Rank.FIFTH);
     }
 
 

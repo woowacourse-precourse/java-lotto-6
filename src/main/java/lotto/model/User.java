@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class User {
     private List<Lotto> lottos;
-    private Map<Result, Integer> result;
+    private Map<Rank, Integer> result;
 
     private User(int numberOfLotto) {
         lottos = new ArrayList<>();
@@ -24,7 +24,7 @@ public class User {
 
     private void setResult() {
         result = new LinkedHashMap<>();
-        for (Result rank : Result.values()) {
+        for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
     }
@@ -51,23 +51,25 @@ public class User {
 
     public void compareLottos(WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
-            Result rank = winningLotto.compareLotto(lotto);
+            Rank rank = winningLotto.compareLotto(lotto);
             updateResult(rank);
         }
     }
 
-    private void updateResult(Result rank) {
+    private void updateResult(Rank rank) {
         int currentValue = result.get(rank);
         result.put(rank, currentValue + 1);
     }
 
     public String getResult() {
         String output = "";
-        for (Result rank : result.keySet()) {
-            output += rank.getMessage();
-            output += " - ";
-            output += result.get(rank);
-            output += "개\n";
+        for (Rank rank : result.keySet()) {
+            if (rank != Rank.MISS) {
+                output += rank.getMessage();
+                output += " - ";
+                output += result.get(rank);
+                output += "개\n";
+            }
         }
 
         return output;
@@ -81,7 +83,7 @@ public class User {
     private long calculatePrize() {
         long prize = 0;
 
-        for (Result rank : result.keySet()) {
+        for (Rank rank : result.keySet()) {
             prize += result.get(rank) * rank.getPrize();
         }
 

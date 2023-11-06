@@ -11,13 +11,13 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Result compareLotto(Lotto lotto) {
+    public Rank compareLotto(Lotto lotto) {
         int correctCount = (int) winningNumbers.stream()
                 .filter(lotto::contains)
                 .count();
 
         boolean containBonusNumber = lotto.contains(bonusNumber);
 
-        return Result.valueOf(correctCount, containBonusNumber);
+        return Rank.valueOf(correctCount, containBonusNumber);
     }
 }

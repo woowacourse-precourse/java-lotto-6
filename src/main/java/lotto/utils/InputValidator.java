@@ -17,6 +17,11 @@ public class InputValidator {
         validateWinningNumberEach(numberList);
     }
 
+    public void validateBonusNumberInputView(String number) {
+        validateInputBlank(number);
+        validateInputInt(number);
+    }
+
     private void validateInputBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 빈 값을 입력할 수 없습니다");

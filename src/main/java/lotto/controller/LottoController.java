@@ -1,11 +1,14 @@
 package lotto.controller;
 
+import lotto.Lotto;
 import lotto.Money;
 import lotto.configuration.InputMessage;
 import lotto.configuration.PrintMessage;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -18,7 +21,6 @@ public class LottoController {
 
     public void startLotto() {
         Long money = inputPurchaseAmount();
-        buyLotto(money);
     }
 
     private Long inputPurchaseAmount() {
@@ -28,10 +30,19 @@ public class LottoController {
         return money.getMoney();
     }
 
-    private void buyLotto(Long money) {
+    private List<List<Integer>> buyLotto(Long money) {
         PrintMessage.BUY_LOTTO_COUNT.printMessage(money/ONE_THOUSAND);
+        List<List<Integer>> myLotto = lottoService.generateRandomLottoNumbers(money/ONE_THOUSAND);
         for (int i = 0; i < money/ONE_THOUSAND; i++) {
-            OutputView.lottoNumbersResult(lottoService.generateRandomLottoNumbers(money/ONE_THOUSAND).get(i));
+            OutputView.lottoNumbersResult(myLotto.get(i));
         }
+
+        return myLotto;
+    }
+
+    private List<Integer> inputWinningLottoNumber(Long money) {
+        OutputView.inputWinningNumber();
+        Lotto lotto = new Lotto(lottoService.convertToLottoIntegerList(InputView.input()));
+        return lotto.getLotto();
     }
 }

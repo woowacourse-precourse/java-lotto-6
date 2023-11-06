@@ -11,23 +11,11 @@ public class SummaryMaker {
 
 	private static final int LOTTO_PRIZE = 1000;
 
-	private Map<String, Integer> summary;
+	private final Map<String, Integer> summary;
 
-	public void summarizeHit(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
-
-		make();
-
-		for (Lotto lotto : lottos) {
-			String hitResult = lotto.match(winningNumber, bonusNumber);
-			summary.computeIfPresent(hitResult, (String k, Integer v) -> ++v);
-		}
-
-	}
-
-	private void make() {
+	public SummaryMaker() {
 
 		int count = 0;
-
 		summary = new HashMap<>();
 
 		for (Prize prize : Prize.values()) {
@@ -35,6 +23,18 @@ public class SummaryMaker {
 		}
 
 	}
+
+
+	public Map<String, Integer> summarizeHit(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
+
+		for (Lotto lotto : lottos) {
+			String hitResult = lotto.match(winningNumber, bonusNumber);
+			summary.computeIfPresent(hitResult, (String k, Integer v) -> ++v);
+		}
+
+		return summary;
+	}
+
 
 	public double calculateYield(int purchaseTime) {
 
@@ -50,7 +50,4 @@ public class SummaryMaker {
 		return winPirze / (double)purchaseAmount;
 	}
 
-	public Map<String, Integer> getSummary() {
-		return this.summary;
-	}
 }

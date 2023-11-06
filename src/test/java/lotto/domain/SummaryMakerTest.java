@@ -41,8 +41,7 @@ public class SummaryMakerTest {
 	void summarizeHitTest() {
 
 		//when
-		summaryMaker.summarizeHit(lottos, winningNumber, bonusNumber);
-		Map<String, Integer> actualResult = summaryMaker.getSummary();
+		Map<String, Integer> actualResult = summaryMaker.summarizeHit(lottos, winningNumber, bonusNumber);
 
 		//then
 		Map<String, Integer> expectedResult = new HashMap<>();
@@ -62,16 +61,18 @@ public class SummaryMakerTest {
 	@Test
 	void calculateYieldTest() {
 		//given
+		int lottoPrice = 1000;
+		int purchaseTime = 6;
 		summaryMaker.summarizeHit(lottos, winningNumber, bonusNumber);
-		int purchaseAmount = 6000;
+
 
 		//when
-		double actualYield = summaryMaker.calculateYield(purchaseAmount);
+		double actualYield = summaryMaker.calculateYield(purchaseTime);
 
 		//then
 		double expectedYield =
 			(Prize.FIFTH.getMoney() * 2 + Prize.THIRD.getMoney() + Prize.SECOND.getMoney() + Prize.FIRST.getMoney())
-				/ (double)purchaseAmount;
+				/ (double) (purchaseTime * lottoPrice);
 
 		assertEquals(expectedYield, actualYield);
 	}

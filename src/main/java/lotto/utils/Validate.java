@@ -12,11 +12,12 @@ public class Validate {
             int amount = Integer.parseInt(userInput);
 
             if (amount % 1000 != 0) {
+                System.out.println("[ERROR] 1000원 단위로 입력 하세요.");
                 throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력 하세요.");
             }
-
             return amount;
         } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 유효한 숫자를 입력 하세요.");
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력 하세요.");
         }
     }
@@ -26,11 +27,12 @@ public class Validate {
             int number = Integer.parseInt(numberString);
 
             if (number < 0 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 로또 번호를 입력 하세요.");
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
-
             return number;
         } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 유효한 숫자를 입력 하세요.");
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력 하세요.");
         }
     }
@@ -39,9 +41,9 @@ public class Validate {
         Set<Integer> numberSet = new HashSet<>();
         for (Integer number : numbers) {
             if (numberSet.contains(number)) {
+                System.out.println("[ERROR] 숫자를 중복 되지 않게 입력 하세요.");
                 throw new IllegalArgumentException("[ERROR] 숫자를 중복 되지 않게 입력 하세요.");
             }
-
             numberSet.add(number);
         }
     }

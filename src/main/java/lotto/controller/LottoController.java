@@ -23,5 +23,10 @@ public class LottoController {
     public Jackpot createWinningNumbers(String winningNumbers, String bonusNumber) {
         return new Jackpot(winningNumbers, bonusNumber);
     }
+
+    // 로또 결과 객체 생성
+    public Result createResult(Jackpot jackpot, List<Lotto> lottos, Purchase purchase) {
+        return new Result(jackpot, lottos, purchase);
+    }
     
 }

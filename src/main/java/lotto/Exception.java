@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Exception {
     public static void notNumber(String inputData) throws IllegalArgumentException {
         try {
@@ -20,6 +22,16 @@ public class Exception {
     public static void overLimitCount(int inputSize, int limitCount) throws IllegalArgumentException {
         if (inputSize > limitCount) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개만 입력 가능합니다.\n");
+        }
+    }
+
+    public static void duplicateWinNumbers(List<Integer> winNumbers) throws IllegalArgumentException {
+        for (int i = 0; i < winNumbers.size(); i++) {
+            int number = winNumbers.remove(0);
+            if (winNumbers.contains(number)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 다른 숫자만 입력 가능합니다.\n");
+            }
+            winNumbers.add(number);
         }
     }
 }

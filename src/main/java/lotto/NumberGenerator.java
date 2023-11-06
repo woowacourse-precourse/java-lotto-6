@@ -1,8 +1,10 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class NumberGenerator {
     final static int LOTTOCOSTUNIT = 1000;
@@ -23,7 +25,14 @@ public class NumberGenerator {
     }
 
     public List<Integer> createRandomNumbers(){
-        return null;
+        List<Integer> lotto = new ArrayList<>();
+        while (lotto.size() < 6) {
+            int randomNumber = Randoms.pickNumberInRange(1, 45);
+            if (!lotto.contains(randomNumber)) {
+                lotto.add(randomNumber);
+            }
+        }
+        return lotto;
     }
 
     public List<Integer> sortAscendingNumbers(List<Integer> sortLottoNumbers){

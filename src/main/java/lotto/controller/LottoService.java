@@ -9,7 +9,7 @@ import lotto.model.Rank;
 import lotto.model.Winning;
 
 public class LottoService {
-    public static List<Integer> makeRandomLottoNumber(){
+    public static List<Integer> makeRandomLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(Constant.LOTTO_START_NUMBER, Constant.LOTTO_END_NUMBER, Constant.LOTTO_SELECT_NUMBER);
     }
 
@@ -20,7 +20,7 @@ public class LottoService {
             if (winning.getResult().getNumbers().contains(number)) {
                 match_count++;
             }
-            if (winning.getBonus() == number){
+            if (winning.getBonus() == number) {
                 bonus_match = true;
             }
         }
@@ -28,7 +28,7 @@ public class LottoService {
         return matchRankWithCount(match_count, bonus_match);
     }
 
-    private static Rank matchRankWithCount(int match_count, boolean bonus_flag){
+    private static Rank matchRankWithCount(int match_count, boolean bonus_flag) {
         if (match_count == 6) return Rank.FIRST;
         else if (match_count == 5 && bonus_flag) return Rank.SECOND;
         else if (match_count == 5) return Rank.THIRD;

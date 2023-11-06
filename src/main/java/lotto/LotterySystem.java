@@ -14,9 +14,11 @@ public class LotterySystem {
     private lotto.ErrorMessages ErrorMessages = new ErrorMessages();
     private static int ticketCnt = 0;
     private InputSystem InputSystem = new InputSystem();
-    private lotto.model.Draw Draw = new Draw();
+    private Perform Perform = new Perform();
 
     private List<Draw> tickets = new ArrayList<>();
+    private List<Integer> lotto = new ArrayList<>();
+    private int bonus = 0;
 
 
     public void input() {
@@ -36,10 +38,16 @@ public class LotterySystem {
         for (Draw d : tickets) System.out.println(d.toString());
     }
     public void getNumbers() {
-        InputSystem.getNumbers();
+        lotto = InputSystem.getNumbers();
     }
     public void bonus() {
-
+        bonus = InputSystem.getBonus(lotto);
+    }
+    public void perform() {
+        Perform.checknumbers(tickets, lotto, bonus);
+    }
+    public void result() {
+        Perform.result(ticketCnt);
     }
 
 }

@@ -4,12 +4,13 @@ public class Application {
     LotterySystem lottery = new LotterySystem();
     public static void main(String[] args) {
         LotterySystem lottery = new LotterySystem();
-
         try {
             lottery.input();
             lottery.draw();
             lottery.getNumbers();
-//            lottery.bonus();
+            lottery.bonus();
+            lottery.perform();
+            lottery.result();
         } catch (Exception e) {
             System.out.println("[ERROR]");
         }

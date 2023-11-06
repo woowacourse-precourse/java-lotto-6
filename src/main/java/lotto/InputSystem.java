@@ -1,11 +1,9 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Draw;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputSystem {
     private final String ENTER_PRICE = "구입금액을 입력해 주세요.";
@@ -25,36 +23,42 @@ public class InputSystem {
     private int isPriceValid(String price) {
         if (isInteger(price) && isKUnit(price))
             return Integer.parseInt(price) / 1000;
-        throw new IllegalStateException();
-    }
-    private boolean isInteger(String number) {
-        return number.matches(IS_ONLY_NUMBER);
+        throw new IllegalArgumentException();
     }
     private boolean isKUnit(String price) {
         if (Integer.parseInt(price) % 1000 == 0)
             return true;
         return false;
     }
-
-    public void getNumbers() {
+    public List<Integer> getNumbers() {
         List<Integer> numbers = new ArrayList<>();
         for (String a : enter(ENTER_LOTTO).split(",")) {
             numbers.add(isNumberValid(a));
         }
         Lotto l = new Lotto(numbers);
+        return l.getLotto();
     }
-
-
-    private int isNumberValid(String number) {
+    public int getBonus(List<Integer> lotto) {
+        return isDuplicate(lotto, isNumberValid(enter(ENTER_BONUS)));
+    }
+    public int isDuplicate(List<Integer> lotto, int bonus) {
+        if (lotto.contains(bonus))
+            throw new IllegalArgumentException();
+        return bonus;
+    }
+    public int isNumberValid(String number) {
         if (isInteger(number) && isRangeValid(number))
             return Integer.parseInt(number);
-        throw new IllegalStateException();
+        throw new IllegalArgumentException();
     }
-
-    private boolean isRangeValid(String number) {
+    public boolean isInteger(String number) {
+        return number.matches(IS_ONLY_NUMBER);
+    }
+    public boolean isRangeValid(String number) {
         int parsed = Integer.parseInt(number);
-        if (parsed >= 1 && parsed < 46)
-            return true;
-        throw new IllegalStateException();
+        if (!(1 <= parsed && parsed < 46)) {
+            throw new IllegalArgumentException("1 ~ 45 여야돼");
+        }
+        return true;
     }
 }

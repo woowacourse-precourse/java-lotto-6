@@ -9,6 +9,7 @@ import lotto.exception.Exception;
 import lotto.util.ConvertInput;
 
 public class Player {
+    private static final int DIVIDED_REMAINDER = 0;
     private final int purchaseAmount;
     private final int gameCount;
 
@@ -28,6 +29,7 @@ public class Player {
     private void validate(int convertedInput) {
         validateNegativeNumber(convertedInput);
         validateLessThanMinimumAmount(convertedInput);
+        validateDividedByUnitAmount(convertedInput);
     }
 
     private void validateNegativeNumber(int convertedInput) {
@@ -42,12 +44,22 @@ public class Player {
         }
     }
 
+    private void validateDividedByUnitAmount(int convertedInput) {
+        if(!isDividedByUnitAmount(convertedInput)) {
+            throw Exception.of(PURCHASE_AMOUNT_IS_NOT_DIVIDED_UNIT_AMOUNT);
+        }
+    }
+
     private boolean isNegativeNumber(int convertedInput) {
         return convertedInput < POSITIVE_THRESHOLD.getValue();
     }
 
     private boolean isLessThanMinimumAmount(int convertedInput) {
         return convertedInput < MINIMUM_PURCHASE_UNIT_AMOUNT.getValue();
+    }
+
+    private boolean isDividedByUnitAmount(int convertedInput) {
+        return convertedInput % MINIMUM_PURCHASE_UNIT_AMOUNT.getValue() == DIVIDED_REMAINDER;
     }
 
     private int makeGameCount(int purchaseAmount) {

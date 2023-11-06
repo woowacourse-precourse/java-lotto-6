@@ -9,11 +9,7 @@ public class ProfitCalculator {
 
     public ProfitCalculator(WinningStatistics winningStatistics, PurchasedLottos purchasedLottos) {
         this.winningStatistics = winningStatistics;
-        this.totalInvestment = calculateTotalInvestment(purchasedLottos);
-    }
-
-    private double calculateTotalInvestment(PurchasedLottos purchasedLottos) {
-        return (double) purchasedLottos.getLottos().size() * Values.LOTTO_PURCHASE_UNIT;
+        this.totalInvestment = purchasedLottos.calculateTotalInvestment();
     }
 
     public String getProfitPercentage() {

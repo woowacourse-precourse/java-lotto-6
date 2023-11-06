@@ -7,8 +7,9 @@ public enum ExceptionMessages {
     WRONG_RANGE_INPUT("1,000원 이상의 구매 금액을 입력해주세요."),
     NOT_DIVISIBLE_INPUT("1,000원 단위의 구매 금액을 입력해주세요."),
     WRONG_AMOUNT_LOTTO_NUMBERS("로또 구매를 위한 6개의 당첨번호를 입력해주세요."),
+    WRONG_AMOUNT_BONUS_NUMBERS("보너스 번호는 1개의 숫자만 입력해주세요."),
     WRONG_RANGE_LOTTO_NUMBERS("번호는 1~45의 숫자를 입력해주세요."),
-    WRONG_SEPARATOR_NUMBERS("구분자는 쉼표(,)를 사용해주세요.");
+    WRONG_SEPARATOR_NUMBERS("구분자는 쉼표(,)를 사용해 6개의 번호를 입력해주세요.");
 
     private static final String ERROR_TAG = "[ERROR] ";
     private final String exceptionMessages;

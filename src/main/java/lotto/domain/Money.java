@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 import java.util.NoSuchElementException;
 
 public class Money {

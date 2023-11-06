@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,4 +19,25 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public int inputMoney(){
+        String moneyStr = Console.readLine();
+        int money;
+
+        try{
+            money = Integer.parseInt(moneyStr);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+
+        if (money % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 1000원을 단위로 입력해주세요");
+        }
+
+        return money;
+    }
+
+
+
+
+
 }

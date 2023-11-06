@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     private void printLottoNumbersList(Lotto lotto) {
-        System.out.println(lotto);
+        System.out.println(lotto.getNumbers());
     }
 
     public void printWinningStatistics(Map<Integer, Integer> winningCnt, int rateOfReturn) {

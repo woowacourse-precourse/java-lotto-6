@@ -1,6 +1,8 @@
 package lotto;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -15,11 +18,43 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
     }
 
-    // TODO: 추가 기능 구현
+    static void checkDuplicate(List<Integer> numbers) {
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int number: numbers){
+            if(number<0){
+                throw new IllegalArgumentException();
+            }
+
+            if(set.isEmpty()){
+                set.add(number);
+                continue;
+            }
+
+            if (set.contains(number)){
+
+                throw new IllegalArgumentException();
+
+            }
+
+            set.add(number);
+
+
+        }
+    }
+
     public List<Integer> getNumbers() {
-        Collections.sort(numbers);
-        return numbers;
+
+        ArrayList<Integer> sortedNumbers = new ArrayList<>();
+
+        for(int number: numbers){
+
+            sortedNumbers.add(number);
+        }
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return sortedNumbers;
     }
 }

@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.domain.AnswerLotto;
-import lotto.domain.Ranking;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
@@ -35,7 +34,6 @@ public class LottoService {
     }
 
     public WinningResultDto getWinningResultDto() {
-        winningResult.getRankingCount();
         return new WinningResultDto(winningResult);
     }
 }

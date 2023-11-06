@@ -22,7 +22,6 @@ public enum Ranking {
     }
 
     public static Ranking getRanking(int matchCount, boolean containBonusNumber) {
-
         return Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking.isMatch.test(matchCount, containBonusNumber))
                 .findAny()

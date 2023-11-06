@@ -38,8 +38,14 @@ public class InputValidator {
         }
     }
 
-    public static void validateDuplicateNumber(List<Integer> input) {
+    public static void validateDuplicateNumber(final List<Integer> input) {
         if (input.stream().distinct().count() != input.size()) {
+            throw LottoException.of(DUPLICATE_LOTTO_NUMBER);
+        }
+    }
+
+    public static void validateDuplicateBonusNumber(final List<Integer> input, final int bonusNumber) {
+        if (input.contains(bonusNumber)) {
             throw LottoException.of(DUPLICATE_LOTTO_NUMBER);
         }
     }

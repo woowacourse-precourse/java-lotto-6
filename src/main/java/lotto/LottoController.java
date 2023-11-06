@@ -1,18 +1,15 @@
 package lotto;
 
+import static lotto.constant.GuideMessage.*;
+
 import java.util.List;
-import lotto.constant.Message;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinnerNumbers;
 
 public class LottoController {
 
-    private static final String INPUT_BUY_AMOUNT = Message.INPUT_BUY_AMOUNT.getValue();
-    private static final String LOTTO_BUY_COUNT = Message.LOTTO_BUY_COUNT.getValue();
-    private static final String CRLF = Message.CRLF.getValue();
-    private static final String INPUT_WINNER_NUMBERS = Message.INPUT_WINNER_NUMBERS.getValue();
-    private static final String INPUT_BONUS_NUMBER = Message.INPUT_BONUS_NUMBER.getValue();
+    private static final String CRLF = "";
 
     private static final Wallet wallet = new Wallet();
     private static final LottoView view = new LottoView();

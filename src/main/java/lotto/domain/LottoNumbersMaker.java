@@ -1,23 +1,20 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.LottoConstant;
 
 public class LottoNumbersMaker {
 
-    private static final int LOTTO_START_NUM = LottoConstant.LOTTO_START_NUMBER.getValue();
-    private static final int LOTTO_END_NUM = LottoConstant.LOTTO_END_NUMBER.getValue();
-    private static final int LOTTO_SIZE = LottoConstant.LOTTO_NUMBER_SIZE.getValue();
-
     public static List<Integer> getLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUM, LOTTO_END_NUM, LOTTO_SIZE);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_SIZE);
 
         while (validateDuplicateNumbers(numbers)) {
-            numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUM, LOTTO_END_NUM, LOTTO_SIZE);
+            numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_SIZE);
         }
 
         Collections.sort(numbers);

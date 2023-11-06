@@ -1,15 +1,13 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.constant.ExceptionMessage.ERROR_NOT_IN_SPLIT_WORD;
+import static lotto.constant.ExceptionMessage.ERROR_NOT_NUMBER;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.Message;
 
 public class LottoView {
-
-    private static final String ERROR_NOT_NUMBER = Message.ERROR_NOT_NUMBER.getValue();
-    private static final String ERROR_NOT_IN_SPLIT_WORD = Message.ERROR_NOT_IN_SPLIT_WORD.getValue();
 
     int inputNumber(String message) {
 

@@ -1,18 +1,13 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.*;
+import static lotto.constant.LottoConstant.*;
 import static lotto.domain.LottoNumbersMaker.getLottoNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.LottoConstant;
-import lotto.constant.Message;
 
 public class Wallet {
-
-    private static final int MIN_AMOUNT_OF_LOTTO = LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue();
-    private static final int MAX_AMOUNT_OF_LOTTO = LottoConstant.MAX_AMOUNT_OF_LOTTO.getValue();
-    private static final String ERROR_NOT_MULTIPLES_NUMBER = Message.ERROR_NOT_MULTIPLES_NUMBER.getValue();
-    private static final String ERROR_NOT_AMOUNT_RANGE = Message.ERROR_NOT_AMOUNT_RANGE.getValue();
 
     private int balance = 0;
     private final List<Lotto> lottos = new ArrayList<>();

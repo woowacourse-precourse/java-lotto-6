@@ -47,9 +47,9 @@ class LottoTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,true", "7,false"})
-    void 보너스_번호가_포함되어_있는지_확인(int bonus, boolean expected) {
+    void 지정한_숫자가_포함되어_있는지_확인(int number, boolean expected) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThat(lotto.isBonus(bonus)).isEqualTo(expected);
+        assertThat(lotto.contains(number)).isEqualTo(expected);
     }
 }

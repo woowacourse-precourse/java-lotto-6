@@ -40,15 +40,14 @@ public class Lotto {
         return numbers;
     }
 
-    public boolean isBonus(int bonus) {
-        return numbers.contains(bonus);
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public int equalsNumberCount(Lotto lotto) {
         int count = 0;
-        List<Integer> numbers = lotto.getNumbers();
         for (Integer number : numbers) {
-            if (this.numbers.contains(number)) {
+            if (lotto.contains(number)) {
                 ++count;
             }
         }

@@ -9,12 +9,13 @@ import lotto.ui.Output;
 
 public class Game {
     private final LottoMachine lottoMachine = new LottoMachine();
+    private int amount;
 
     private List<Lotto> createLotteries() {
         while (true) {
             Output.printMessage(Input.AMOUNT);
             try {
-                int amount = Input.readAmount(Console.readLine());
+                amount = Input.readAmount(Console.readLine());
                 return lottoMachine.issue(amount / LottoNumber.PRICE.getValue());
             } catch (IllegalArgumentException exception) {
                 Output.printMessage(exception.getMessage());
@@ -45,12 +46,16 @@ public class Game {
         }
     }
 
+
     public void start() {
         List<Lotto> lotteries = createLotteries();
         Output.printLotto(lotteries);
         Lotto winningNumber = createWinningNumber();
         int bonus = createBonus(winningNumber.getNumbers());
+
         List<Rank> result = lottoMachine.draw(winningNumber, bonus, lotteries);
         Output.printResult(result);
+        double winnings = lottoMachine.combineWinnings(result);
+        System.out.printf("%.2f%n", winnings / amount * 100);
     }
 }

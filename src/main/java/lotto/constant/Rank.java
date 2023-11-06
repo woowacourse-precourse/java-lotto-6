@@ -9,12 +9,12 @@ public enum Rank {
     SECOND(30000000, 5, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIRST(2000000000, 6, "6개 일치 (2,000,000,000원) - ");
 
-    private final int amount;
+    private final int winnings;
     private final int count;
     private final String message;
 
-    Rank(int amount, int count, String message) {
-        this.amount = amount;
+    Rank(int winnings, int count, String message) {
+        this.winnings = winnings;
         this.count = count;
         this.message = message;
     }
@@ -31,8 +31,8 @@ public enum Rank {
         return Rank.SIXTH;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getWinnings() {
+        return winnings;
     }
 
     public String getMessage() {

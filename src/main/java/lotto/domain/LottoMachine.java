@@ -28,8 +28,16 @@ public class LottoMachine {
         List<Rank> result = new ArrayList<>();
         for (Lotto lotto : lotteries) {
             int count = lotto.equalsNumberCount(winningNumber);
-            result.add(Rank.getRank(count, lotto.isBonus(bonus)));
+            result.add(Rank.getRank(count, lotto.contains(bonus)));
         }
         return result;
+    }
+
+    public double combineWinnings(List<Rank> result) {
+        double winnings = 0;
+        for (Rank rank : result) {
+            winnings += rank.getWinnings();
+        }
+        return winnings;
     }
 }

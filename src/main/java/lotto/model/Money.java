@@ -29,12 +29,12 @@ public class Money {
     }
 
     private void validateDivisible(final long amount) {
-        if (!isDividedByPrize(amount)) {
+        if (!isDivisibleWithPrize(amount)) {
             throw new IllegalArgumentException(CANT_DIVIDED_BY_PRIZE);
         }
     }
 
-    private boolean isDividedByPrize(final long amount) {
+    private boolean isDivisibleWithPrize(final long amount) {
         return amount % LOTTO_PRIZE == 0;
     }
 

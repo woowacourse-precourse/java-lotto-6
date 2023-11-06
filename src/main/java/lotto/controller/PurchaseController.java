@@ -4,6 +4,7 @@ import java.util.List;
 
 import lotto.domain.Lotto;
 import lotto.service.PurchaseService;
+import lotto.view.Input;
 
 public class PurchaseController {
 
@@ -13,7 +14,8 @@ public class PurchaseController {
 		this.purchaseService = purchaseService;
 	}
 
-	public List<Lotto> purchaseLotto(int money) {
+	public List<Lotto> purchaseLotto() {
+		int money = Input.purchaseAmount();
 		return purchaseService.purchaseLotto(money);
 	}
 }

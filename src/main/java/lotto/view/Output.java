@@ -2,8 +2,9 @@ package lotto.view;
 
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.Result;
 
 public class Output {
 
@@ -15,10 +16,25 @@ public class Output {
 			.forEach(lotto -> System.out.println(lotto.toString()));
 	}
 
-	public static void winningResult() {
+	public static void winningResult(Result result) {
 		System.out.println("당첨 통계\n"
 			+ "---");
-		// TODO: 당첨 통계에 대한 출력을 구현한다.
+		System.out.println(
+			Rank.FIFTH.getMatchNormalCount() + "개 일치 (" + Rank.FIFTH.getReward() + "원) - " + result.getCount(Rank.FIFTH)
+				+ "개");
+		System.out.println(
+			Rank.FOURTH.getMatchNormalCount() + "개 일치 (" + Rank.FOURTH.getReward() + "원) - " + result.getCount(
+				Rank.FOURTH) + "개");
+		System.out.println(
+			Rank.THIRD.getMatchNormalCount() + "개 일치 (" + Rank.THIRD.getReward() + "원) - " + result.getCount(Rank.THIRD)
+				+ "개");
+		System.out.println(
+			Rank.SECOND.getMatchNormalCount() + "개 일치 (" + Rank.SECOND.getReward() + "원) - " + result.getCount(
+				Rank.SECOND) + "개");
+		System.out.println(
+			Rank.FIRST.getMatchNormalCount() + "개 일치 (" + Rank.FIRST.getReward() + "원) - " + result.getCount(Rank.FIRST)
+				+ "개");
+		System.out.println("총 수익률은 " + result.getRateOfReturn() + "%입니다.");
 	}
 
 	public static void newLine() {

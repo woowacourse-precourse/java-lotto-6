@@ -6,7 +6,7 @@ import lotto.constant.LottoValue;
 /**
  * 로또 번호 하나 값을 포장한 클래스
  */
-public class LottoNumber implements Comparable<LottoNumber> {
+public class LottoNumber {
     int number;
 
     public LottoNumber() {
@@ -66,10 +66,5 @@ public class LottoNumber implements Comparable<LottoNumber> {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public int compareTo(LottoNumber o) {
-        return this.getNumber() - o.getNumber();
     }
 }

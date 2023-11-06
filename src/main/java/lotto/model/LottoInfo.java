@@ -15,4 +15,8 @@ public class LottoInfo {
     public Integer getMatchCount() {
         return this.matchCount;
     }
+    public boolean isMatchBonus(Integer bonusNumber) {
+        this.matchBonus = this.lotto.getNumbers().contains(bonusNumber);
+        return this.matchBonus;
+    }
 }

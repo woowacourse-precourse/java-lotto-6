@@ -15,8 +15,8 @@ public class LottoController {
     }
 
     // 로또 발급
-    public List<Lotto> generateLottoTicket(int purchaseCount) {
-        return Lotto.purchaseLottos(purchaseCount);
+    public List<Lotto> generateLottoTickets(Purchase purchase) {
+        return Lotto.purchaseLottos(purchase.getPurchaseCount());
     }
 
     // 로또 당첨번호 생성

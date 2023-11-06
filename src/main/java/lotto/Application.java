@@ -18,11 +18,9 @@ public class Application {
 
         // 로또 구매
         Purchase purchase = purchaseLottsProcess(lottoController, inputView, outputView);
-        int purchaseCount = purchase.getPurchaseCount();
 
         // 로또 발급
-        List<Lotto> lottos = lottoController.generateLottoTicket(purchaseCount);
-        outputView.printLottos(lottos);
+        List<Lotto> lottos = generateLottoTicketsProcess(lottoController, outputView, purchase);
 
         // 당첨 및 보너스 번호 생성
         String winningNumbers = inputView.inputWinningNumbers();
@@ -37,6 +35,12 @@ public class Application {
         // 발행된 로또들의 수익률 계산
         Double rate = lottoController.calculateProfitRate(result);
         outputView.printProfitRate(rate);
+    }
+
+    private static List<Lotto> generateLottoTicketsProcess(LottoController lottoController, OutputView outputView, Purchase purchase) {
+        List<Lotto> lottos = lottoController.generateLottoTickets(purchase);
+        outputView.printLottos(lottos);
+        return lottos;
     }
 
     private static Purchase purchaseLottsProcess(LottoController lottoController, InputView inputView, OutputView outputView) {

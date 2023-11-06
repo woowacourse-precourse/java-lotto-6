@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.exception.ExceptionMessage.INVALID_DUPLICATE_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_LENGTH_RANDOM_NUMBER;
+import static lotto.exception.ExceptionMessage.INVALID_NUMBER_RANGE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +10,8 @@ import java.util.List;
 
 public class Lotto {
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -21,6 +24,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -43,5 +47,11 @@ public class Lotto {
 
     public boolean hasNumber(int bonusNumber) {
         return this.getNumbers().contains(bonusNumber);
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getErrorMessage());
+        }
     }
 }

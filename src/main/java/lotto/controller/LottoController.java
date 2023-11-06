@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.LottoGame;
 import lotto.domain.LottoTicket;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,6 +17,7 @@ public class LottoController {
 
     public void play() {
         setUp();
+        LottoGame lottoGame = LottoGame.init(inputView.inputWinnerNumbers(), inputView.inputBonusNumber());
     }
 
     private void setUp() {

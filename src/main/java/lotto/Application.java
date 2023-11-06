@@ -25,16 +25,16 @@ public class Application {
 
     public static void CoinValidate(String playerInput){
         try{
-            inputCoin = Integer.parseInt(playerInput);
-
-            if (inputCoin % coinStandard != 0){
-                System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
-                throw new IllegalArgumentException();
-            }                        
+            inputCoin = Integer.parseInt(playerInput);          
         }catch(Exception e){
             System.out.println("[ERROR] 로또 구입 금액에는 숫자만 존재해야 합니다.");        
             throw new IllegalArgumentException();
         }
+        
+        if (inputCoin % coinStandard != 0){
+            System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
+            throw new IllegalStateException();
+        }              
     }
 
     public static void GetCoin(){
@@ -42,7 +42,7 @@ public class Application {
         String playerInput = Console.readLine();
 
         CoinValidate(playerInput);
-        
+
         inputCoin = inputCoin / coinStandard;
         System.out.println();
     }

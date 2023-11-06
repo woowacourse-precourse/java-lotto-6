@@ -9,7 +9,7 @@ public class LottoResultChecker {
         this.winningLotto = winningLotto;
     }
 
-    public Result getResult() {
+    public Result check() {
 
         int matchingNumbers = (int) lotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)

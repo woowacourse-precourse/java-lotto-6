@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class OutputView {
     private static final String OUTPUT_LOTTO_PERCHASED_COUNT = "%d개를 구매했습니다.";
@@ -16,6 +17,12 @@ public class OutputView {
 
         for (LottoData lottoData : LottoData.getValues()) {
             System.out.println(lottoData.getStaticsMessage(lotteryData.get(lottoData)));
+        }
+    }
+
+    public static void printLottosList(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 

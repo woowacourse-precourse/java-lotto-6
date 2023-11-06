@@ -6,19 +6,21 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
-    public void run() {
+    public LottoResult run() {
         List<Lotto> lottos = buyLotto();
         WinningLotto winningLotto = setUpWinningLotto();
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
-        
+
         for (Lotto lotto : lottos) {
             counted.add(winningLotto.getLotto().countOverlappingNumbers(lotto));
             checked.add(lotto.isContainBonusNumber(winningLotto.getBonusNumber()));
         }
+
+        return new LottoResult(counted,checked);
     }
 
-    public List<Lotto> buyLotto() {
+    private List<Lotto> buyLotto() {
         PurchaseMoney purchaseMoney = setUpPurchaseMoney();
         List<Lotto> lottos = new ArrayList<>();
 
@@ -36,7 +38,7 @@ public class LottoWinningProcess {
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }
 
-    public WinningLotto setUpWinningLotto() {
+    private WinningLotto setUpWinningLotto() {
         return new WinningLotto(setUpWinningNumbers(), setUpBonusNumber());
     }
 

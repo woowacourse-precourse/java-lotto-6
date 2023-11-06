@@ -6,6 +6,7 @@ public class InputValidator {
     private final String commonErrorMessage = ErrorMessage.COMMON_MESSAGE.getMessage();
 
     public int validateAmount(String input) throws IllegalArgumentException {
+        validateNonEmpty(input);
         validateNumericFormat(input);
         int amount = convertToInt(input);
         validateNonZero(amount);
@@ -15,10 +16,13 @@ public class InputValidator {
         return amount;
     }
 
-    private void validateNumericFormat(String input) throws IllegalArgumentException {
+    private void validateNonEmpty(String input) throws IllegalArgumentException {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(createErrorMessage(ErrorMessage.EMPTY_ERROR));
         }
+    }
+
+    private void validateNumericFormat(String input) throws IllegalArgumentException {
         if (!input.matches("^[0-9]\\d*$")) {
             throw new IllegalArgumentException(createErrorMessage(ErrorMessage.NUMERIC_ERROR));
         }

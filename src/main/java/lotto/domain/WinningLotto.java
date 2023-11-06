@@ -40,4 +40,8 @@ public class WinningLotto {
     public boolean isContain(int number) {
         return winningLotto.isContain(number);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

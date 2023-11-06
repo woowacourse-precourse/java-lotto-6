@@ -19,6 +19,6 @@ public class BonusNumber {
     }
 
     public void containsLotto(Lotto lotto) {
-
+        lotto.contains(this.bonusNumber);
     }
 }

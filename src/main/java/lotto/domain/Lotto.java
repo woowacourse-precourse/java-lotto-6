@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.constants.LottoRule;
+import lotto.message.ErrorMessage;
 
 import java.util.List;
 
@@ -36,6 +37,12 @@ public class Lotto {
     private void lottoDuplicateNumberValidate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LottoRule.LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public void contains(int number) {
+        if (this.numbers.contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE.getValue());
         }
     }
 }

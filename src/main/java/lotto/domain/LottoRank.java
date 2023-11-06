@@ -18,6 +18,13 @@ public enum LottoRank {
         this.prize = prize;
     }
 
+    public static LottoRank findRank(int matchCount) {
+        return Arrays.stream(LottoRank.values())
+                .filter(rank -> rank.matchCount == matchCount)
+                .findAny()
+                .orElse(DEFAULT);
+    }
+
     public double multiple(int count) {
         return prize * count;
     }

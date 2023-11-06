@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.service.WinningNumberService;
 
 public class Lotto {
 
@@ -12,6 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        WinningNumberService service = new WinningNumberService();
+        service.verifyDuplication(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

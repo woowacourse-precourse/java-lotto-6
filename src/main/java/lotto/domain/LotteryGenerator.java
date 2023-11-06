@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.service.WinningNumberService;
 
 public class LotteryGenerator {
     private static final int START_NUMBER = 1;
@@ -13,13 +14,12 @@ public class LotteryGenerator {
 
     private void generateLotto() {
         List<Integer> numbers = new ArrayList<>();
+        WinningNumberService winningNumberService = new WinningNumberService();
         do {
-            int pickNumber = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
-            if (!numbers.contains(pickNumber)) {
-                numbers.add(pickNumber);
-            }
-        } while (numbers.size() != NUMBER_SIZE);
-//        System.out.println(numbers.toString());
+            numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER,NUMBER_SIZE);
+
+        } while (!winningNumberService.verifyDuplication(numbers));
+
         this.lotto = new Lotto(numbers);
     }
 

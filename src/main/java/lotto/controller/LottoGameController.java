@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
 import lotto.model.LottoStore;
+import lotto.model.vo.BonusNumber;
 import lotto.model.vo.Money;
 import lotto.model.Player;
 import lotto.model.RandomNumberGenerateStrategy;
@@ -23,6 +24,7 @@ public class LottoGameController {
     public void run() {
         Player player = buyLotto();
         WinNumber winNumber = setWinNumber();
+        BonusNumber bonusNumber = setBonusNumber();
     }
 
     private Player buyLotto() {
@@ -56,6 +58,18 @@ public class LottoGameController {
             setWinNumber();
         }
         return winNumber;
+    }
+
+    private BonusNumber setBonusNumber() {
+        BonusNumber bonusNumber = null;
+        try {
+            outputView.printBonusNumberInput();
+            bonusNumber = BonusNumber.of(input());
+        } catch (IllegalArgumentException e) {
+            errorView.printErrorMessage(e.getMessage());
+            setBonusNumber();
+        }
+        return bonusNumber;
     }
 
     private String input() {

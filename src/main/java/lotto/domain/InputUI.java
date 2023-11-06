@@ -47,22 +47,6 @@ public class InputUI {
         }
     }
 
-
-    public int checkValidPurchase(String tempCost) {
-        try {
-            int cost = Integer.parseInt(tempCost);
-            if (cost <= 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 0원 이상이여야 합니다.");
-            }
-            if (cost % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-            }
-            return cost;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 정수여야 합니다.");
-        }
-    }
-
     public void bonusBall() {
         while (true) {
             try {
@@ -73,18 +57,6 @@ public class InputUI {
             } catch (IllegalArgumentException e) {
                 throw e;
             }
-        }
-    }
-
-    public int checkValidBonusNum(String tempBonus) {
-        try {
-            int bonusNum = Integer.parseInt(tempBonus);
-            if (bonusNum >= 1 && bonusNum <= 45) {
-                return bonusNum;
-            }
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
         }
     }
 
@@ -101,6 +73,34 @@ public class InputUI {
             }
         }
     }
+
+    public int checkValidPurchase(String tempCost) {
+        try {
+            int cost = Integer.parseInt(tempCost);
+            if (cost <= 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 0원 이상이여야 합니다.");
+            }
+            if (cost % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            }
+            return cost;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 정수여야 합니다.");
+        }
+    }
+
+    public int checkValidBonusNum(String tempBonus) {
+        try {
+            int bonusNum = Integer.parseInt(tempBonus);
+            if (bonusNum >= 1 && bonusNum <= 45) {
+                return bonusNum;
+            }
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
+        }
+    }
+
 
     public List<Integer> checkValidWinnings(String[] parsedWinnings) {
         try {

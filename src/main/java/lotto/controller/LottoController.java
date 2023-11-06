@@ -15,27 +15,29 @@ public class LottoController {
 
     private final String DELIMETER = ",";
 
-    public void play(){
+    public void play() {
         LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
     }
-    private Integer getLottoAmountofMoney(){
+
+    private Integer getLottoAmountofMoney() {
         displayOutput.outputLottoAmountofMoney();
         return displayInput.inputLottoAmountofMoney();
     }
 
-    private List<Integer> getAnswerLottoNumber(){
+    private List<Integer> getAnswerLottoNumber() {
         displayOutput.outputAnswerLotto();
         List<Integer> lottoNumbers = new ArrayList<>();
         String inputtedLottoNumbers = displayInput.inputLottoNumbers();
         String[] inputtedlottoNumberList = inputtedLottoNumbers.split(DELIMETER);
-        for(String lottoNumber : inputtedlottoNumberList){
+        for (String lottoNumber : inputtedlottoNumberList) {
             lottoNumbers.add(Integer.parseInt(lottoNumber));
         }
         return lottoNumbers;
     }
-    private Integer getBonusNumber(){
+
+    private Integer getBonusNumber() {
         displayOutput.outputBonusNumber();
         return displayInput.inputBonusNumber();
     }

@@ -24,7 +24,7 @@ public class OutputView {
         for (Lotto purchasedLotto : purchasedLottos) {
             appendPurchasedLotto(purchasedLotto, message);
         }
-        System.out.println(message);
+        System.out.print(message);
     }
 
     private void appendPurchasedLotto(Lotto purchasedLotto, StringBuilder message) {
@@ -41,7 +41,7 @@ public class OutputView {
         message.append(WINNING_RESULT);
         appendStatistics(winningResult, message);
         appendRateOfReturn(winningResult, message);
-        System.out.println(message);
+        System.out.print(message);
     }
 
     private static void appendStatistics(Result winningResult, StringBuilder message) {

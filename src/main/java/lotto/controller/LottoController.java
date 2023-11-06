@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoTickets;
@@ -22,15 +23,29 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(inputView.inputPurchaseAmount());
+        PurchaseAmount purchaseAmount = repeat(() -> new PurchaseAmount(inputView.inputPurchaseAmount()));
+
         LottoTickets lottoTickets = lottoService.purchase(purchaseAmount);
         outputView.printPurchasedLottos(lottoTickets.lottos());
 
-        Lotto winningLotto = new Lotto(inputView.inputWinningNumbers());
-        LottoNumber bonusNumber = new LottoNumber(inputView.inputBonusNumber());
-        WinningTicket winningTicket = new WinningTicket(winningLotto, bonusNumber);
+        WinningTicket winningTicket = repeat(this::getWinningTicket);
 
         Result winningResult = lottoService.getWinningResult(lottoTickets, winningTicket);
         outputView.printWinningResult(winningResult);
+    }
+
+    private WinningTicket getWinningTicket() {
+        Lotto winningLotto = repeat(() -> new Lotto(inputView.inputWinningNumbers()));
+        LottoNumber bonusNumber = repeat(() -> new LottoNumber(inputView.inputBonusNumber()));
+        return new WinningTicket(winningLotto, bonusNumber);
+    }
+
+    private static <T> T repeat(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return repeat(supplier);
+        }
     }
 }

@@ -6,13 +6,13 @@
 
    1-2. removeLottos : 보유중인 로또 제거
 
-   1-3. addMoney : 당첨금 추가
+   1-3. addMoney(int) : 당첨금 추가
 
    
 
 2. lottoAdmin
 
-   2-1. getWinningNumber : 당첨번호 및 보너스 번호 입력받아 저장
+   2-1. lottoAdmin : 당첨번호 및 보너스 번호 입력받아 저장(생성자)
 
    2-2. checkLottos(Player) : player가 보유한 로또 확인 후 등수 return (int[]) 
 

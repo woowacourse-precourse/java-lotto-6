@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.domain.Lottos;
 import lotto.domain.Money;
 
 public class OutputView {

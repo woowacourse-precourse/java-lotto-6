@@ -44,7 +44,7 @@ public class InputData {
 		return winningNumber;
 	}
 	
-	public static int bonusNumber() {
+	public static int bonusNumber(List<Integer> winningNumbers) {
 		int bonusNumber = 0;
 		boolean isValidInput = false;
 		while(!isValidInput){
@@ -53,6 +53,7 @@ public class InputData {
 				Validate.numericInput(inputData);
 				bonusNumber = Integer.parseInt(inputData);
 				Validate.numberInRange(bonusNumber);
+				Validate.bonusNumberUniqueness(winningNumbers, bonusNumber);
 				isValidInput = true;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());

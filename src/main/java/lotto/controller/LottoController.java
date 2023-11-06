@@ -20,7 +20,8 @@ public class LottoController {
 		OutputView.printWinningNumberInstruction();
 		List<Integer> winningNumbers = InputData.winningNumber();
 		OutputView.printBonusNumberInstruction();
-		winningNumbers.add(InputData.bonusNumber());
+		int bonusNumber = InputData.bonusNumber(winningNumbers);
+		winningNumbers.add(bonusNumber);
 	}
 	
 	

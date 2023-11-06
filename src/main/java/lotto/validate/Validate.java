@@ -46,4 +46,9 @@ public class Validate {
 		}
 	}
 	
+	public static void bonusNumberUniqueness(List<Integer> winningNumbers,int bonusNumber) {
+		if(winningNumbers.equals(bonusNumber)) {
+			throw new IllegalArgumentException("[ERROR] 보너스번호가 당첨번호랑 중복됩니다.");
+		}
+	}
 }

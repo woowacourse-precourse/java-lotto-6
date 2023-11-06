@@ -17,7 +17,7 @@ public class PlayerTest {
 
     @BeforeEach
     void init_environment() {
-        // 고정된 번호의 로또 생성기
+        // 고정된 번호의 로또 생성기. 8개까지만 생성 가능.
         lottoGenerator = new LottoNotRandomGenerator();
         lottoMachine = new LottoMachine(lottoGenerator);
         lottoShop = new LottoShop(lottoMachine);
@@ -41,27 +41,18 @@ public class PlayerTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    // 당첨 통계 계산 테스트
-    private WinningStatistics getFixedWinningStatistics() {
-        Player player = new Player();
-        int budget = 8000;
-
-        player.setBudget(budget);
-        // 로또 8000원 어치(8개) 구매
-        player.buyLottoTickets(lottoShop);
-
-        // 고정된 당첨 번호
-        WinningLotto winningLotto = LottoNotRandomGenerator.winningLotto;
-        // 당첨 통계 계산
-        player.calculateWinningLottoWithMine(winningLotto);
-
-        return player.getWinningStatistics();
-    }
-
     @DisplayName("player가 계산한 당첨 통계(수익률 제외)가 예상과 틀리면 테스트에 실패한다.")
     @Test
     void 당첨_통계_계산_테스트() {
         // given
+        Player player = new Player();
+        int budget = 8000;
+        player.setBudget(budget);
+        // 로또 8000원 어치(8개) 구매
+        player.buyLottoTickets(lottoShop);
+        // 고정된 당첨 번호
+        WinningLotto winningLotto = LottoNotRandomGenerator.winningLotto;
+        // 기대되는 당첨 통계
         Map<LottoPrize, Integer> expected = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개
             put(LottoPrize.SECOND, 0);   // 2등 0개
@@ -72,8 +63,8 @@ public class PlayerTest {
         }};
 
         // when
-        WinningStatistics winningStatistics = getFixedWinningStatistics();
-        Map<LottoPrize, Integer> actual = winningStatistics.getPrizeCounter();
+        player.calculateWinningLottoWithMine(winningLotto);
+        Map<LottoPrize, Integer> actual = player.getWinningStatistics().getPrizeCounter();
 
         // then
         assertThat(actual).isEqualTo(expected);
@@ -83,6 +74,13 @@ public class PlayerTest {
     @Test
     void 수익률_계산_테스트() {
         // given
+        Player player = new Player();
+        int budget = 8000;
+        player.setBudget(budget);
+        // 로또 8000원 어치(8개) 구매
+        player.buyLottoTickets(lottoShop);
+        // 고정된 당첨 번호
+        WinningLotto winningLotto = LottoNotRandomGenerator.winningLotto;
         Map<LottoPrize, Integer> expectedPrizeCounter = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개
             put(LottoPrize.SECOND, 0);   // 2등 0개
@@ -97,11 +95,11 @@ public class PlayerTest {
             Long prize = lottoPrize.getPrize();
             expectedSum += prize * count;
         }
-        String expected = String.format("%.1f", (double) expectedSum / 8000 * 100.0);
+        String expected = String.format("%.1f", (double) expectedSum / budget * 100.0);
 
         // when
-        WinningStatistics winningStatistics = getFixedWinningStatistics();
-        String actual = String.format("%.1f", winningStatistics.getRateOfReturn());
+        player.calculateWinningLottoWithMine(winningLotto);
+        String actual = String.format("%.1f", player.getWinningStatistics().getRateOfReturn());
 
         // then
         assertThat(actual).isEqualTo(expected);

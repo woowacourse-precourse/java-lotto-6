@@ -3,6 +3,8 @@ package lotto.util;
 import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_HAS_MORE_THAN_ONE_VALUE;
 import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_IS_NOT_NUMBER;
 import static lotto.exception.ErrorMessage.LOTTO_NUMBER_HAS_NOT_NUMBER_FORMAT;
+import static lotto.exception.ErrorMessage.BONUS_NUMBER_HAS_MORE_THAN_ONE_VALUE;
+import static lotto.exception.ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER;
 import static lotto.constraint.CommonConstraint.DELIMITER;
 
 import lotto.exception.Exception;
@@ -33,13 +35,28 @@ public class ConvertInput {
         }
     }
 
+    public static int makeBonusNumberToInt(String input) {
+        try {
+            validateCountBonusNumber(input);
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw Exception.from(BONUS_NUMBER_IS_NOT_NUMBER);
+        }
+    }
+
     private static void validateCount(String input) {
-        if(!hasOnlyOneValue(input)){
+        if (!hasOnlyOneValue(input)) {
             throw Exception.from(PURCHASE_AMOUNT_HAS_MORE_THAN_ONE_VALUE);
         }
     }
 
-    private static boolean hasOnlyOneValue(String input){
+    private static boolean hasOnlyOneValue(String input) {
         return !input.contains(DELIMITER.getValue());
+    }
+
+    private static void validateCountBonusNumber(String input) {
+        if (!hasOnlyOneValue(input)) {
+            throw Exception.from(BONUS_NUMBER_HAS_MORE_THAN_ONE_VALUE);
+        }
     }
 }

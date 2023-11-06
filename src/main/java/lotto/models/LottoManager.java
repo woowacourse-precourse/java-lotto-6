@@ -25,10 +25,7 @@ public class LottoManager {
 
     public LottoResult calcLottoResult(WinNumber winNumber) {
         LottoResult lottoResult = new LottoResult(lottoAmount);
-        for (Lotto lotto : lottos) {
-            LottoGrade lottoGrade = lotto.calcRank(winNumber);
-            lottoResult.addLottoResult(lottoGrade);
-        }
+        lottoResult.addLottoResult(lottos.stream().map(lotto -> lotto.calcRank(winNumber)).toList());
         return lottoResult;
     }
 

@@ -1,6 +1,7 @@
 package lotto.models;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class LottoResult {
 
@@ -13,6 +14,12 @@ public class LottoResult {
 
     public void addLottoResult(LottoGrade lottoGrade) {
         lottoResult.put(lottoGrade, lottoResult.getOrDefault(lottoGrade, 0) + 1);
+    }
+
+    public void addLottoResult(List<LottoGrade> lottoGrades) {
+        for (LottoGrade lottoGrade : lottoGrades) {
+            addLottoResult(lottoGrade);
+        }
     }
 
     @Override

@@ -21,6 +21,7 @@ public class LottoController {
 
         WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
         winningResult.displayWinningResult();
+        winningResult.displayProfitRate();
     }
 
     private WinningLotto readWinningLotto() {

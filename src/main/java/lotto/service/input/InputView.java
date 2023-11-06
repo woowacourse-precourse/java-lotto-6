@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.input.GetBonusNumberDto;
 import lotto.dto.input.GetLottoCountDto;
 import lotto.dto.input.GetWinningNumberDto;
-import lotto.util.Validator;
+import lotto.util.validate.Validator;
 
 public class InputView implements Input{
     @Override

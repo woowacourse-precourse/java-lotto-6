@@ -67,7 +67,7 @@ public class LottoService {
             if (ranking.getRank() == 6) continue;;
 
             result.append(ranking);
-            result.append(String.format("- %d개", winningStatic.getOrDefault(ranking, 0)));
+            result.append(String.format(" - %d개", winningStatic.getOrDefault(ranking, 0)));
             result.append("\n");
         }
 

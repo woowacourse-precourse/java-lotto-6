@@ -24,7 +24,7 @@ public class Lottos {
 
     public List<LottoDTO> toSortedLottoDTOs(){
         return lottos.stream()
-                .map(Lotto::toSortedLottoDTO)
+                .map(Lotto::toLottoDTO)
                 .toList();
     }
 

@@ -54,7 +54,7 @@ class LottoTest {
         Lotto lotto = new Lotto(validNumbers);
         Collections.sort(validNumbers);
 
-        LottoDTO lottoDTO = lotto.toSortedLottoDTO();
+        LottoDTO lottoDTO = lotto.toLottoDTO();
 
         assertThat(lottoDTO).isNotNull();
         assertThat(lottoDTO.numbers()).containsExactlyElementsOf(validNumbers);

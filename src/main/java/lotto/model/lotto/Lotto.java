@@ -55,16 +55,11 @@ public class Lotto {
         }
     }
 
-    public LottoDTO toSortedLottoDTO() {
+    public LottoDTO toLottoDTO() {
         final List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         return LottoDTO.of(new Lotto(sortedNumbers));
     }
-
-    public LottoDTO toLottoDTO(){
-        return LottoDTO.of(new Lotto(numbers));
-    }
-
 
 
 }

@@ -70,7 +70,7 @@
     - generate: 최소, 최대, 개수를 받아 랜덤한 숫자 리스트를 반환한다.
 
 
-- LottoPerformanceCalculator
+- LottoProfitRateCalculator
     - calculate: 로또 구입 금액과 LottoGrade의 목록을 받아서 수익률을 계산한다.
 
 # 게임 로직

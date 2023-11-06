@@ -29,6 +29,10 @@ public enum LottoGrade {
         return MISS;
     }
 
+    public int getWinningMoney() {
+        return winningMoney;
+    }
+
     private static boolean isMatchCountWorthy(LottoGrade grade, int matchCount) {
         return matchCount >= grade.matchCount;
     }

@@ -18,16 +18,12 @@ public class Lotto extends Validation {
 
     public int countMatchingNumbers(Lotto winningLotto) {
         return (int) numbers.stream()
-                .filter(winningLotto::isContainWinningNumbers)
+                .filter(winningLotto::isContainNumber)
                 .count();
     }
 
-    private boolean isContainWinningNumbers(int lottoNumber) {
-        return numbers.contains(lottoNumber);
-    }
-
-    public boolean isContainBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean isContainNumber(int number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {

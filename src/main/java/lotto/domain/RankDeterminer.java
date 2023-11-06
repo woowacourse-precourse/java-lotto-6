@@ -23,7 +23,7 @@ public class RankDeterminer {
 
     private LottoRank determineEachRank(Lotto lotto) {
         int matchingCount = lotto.countMatchingNumbers(winningLotto);
-        boolean isSameBonus = lotto.isContainBonusNumber(bonusNumber.getBonusNumber());
+        boolean isSameBonus = lotto.isContainNumber(bonusNumber.getBonusNumber());
         LottoRank rank = LottoRank.findRank(matchingCount);
         if (rank.equals(LottoRank.THIRD) && isSameBonus) {
             return LottoRank.SECOND;

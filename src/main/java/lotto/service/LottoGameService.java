@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.LottoException;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
@@ -25,14 +26,14 @@ public class LottoGameService {
             int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
             return purchaseAmount;
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000 ");
+            throw new IllegalArgumentException(LottoException.INPUT_NOT_DiGIT.getMessage());
         }
     }
 
     public int lottoQuantity(int lottoPurchaseAmount){
         int lottoPurchaseAmountRemain = lottoPurchaseAmount % 1000;
         if(lottoPurchaseAmountRemain != 0){
-            throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
+            throw new IllegalArgumentException(LottoException.INPUT_NOT_THOUSAND_UNITS.getMessage());
         }
         int lottoQuantity = lottoPurchaseAmount / 1000;
         return lottoQuantity;
@@ -41,7 +42,7 @@ public class LottoGameService {
     public String[] inputWinningNumberSplit(String inputWinningNumber){
         String[] inputWinningNumberSplit = inputWinningNumber.split(",");
         if(inputWinningNumberSplit.length != 6){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
+            throw new IllegalArgumentException(LottoException.INPUT_NOT_SPLIT.getMessage());
         }
         return inputWinningNumberSplit;
     }
@@ -56,7 +57,7 @@ public class LottoGameService {
             Collections.sort(winningNumber);
             return winningNumber;
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
+            throw new IllegalArgumentException(LottoException.INPUT_NOT_DiGIT.getMessage());
         }
     }
 
@@ -65,13 +66,13 @@ public class LottoGameService {
             int bonusNumber = Integer.parseInt(inputBonusNumber);
             return bonusNumber;
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+            throw new IllegalArgumentException(LottoException.INPUT_NOT_DiGIT.getMessage());
         }
     }
 
     public int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
         if(inputBonusNumberValidation < 1 || inputBonusNumberValidation > 45){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(LottoException.INPUT_NOT_RANGE.getMessage());
         }
         return inputBonusNumberValidation;
     }

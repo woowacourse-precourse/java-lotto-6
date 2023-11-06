@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import lotto.converter.LottoRankingToStringConverter;
+import lotto.converter.StringToIntegerListConverter;
 import lotto.domain.*;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.service.StatisticsService;
-import lotto.utils.Converter;
+import lotto.converter.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,12 +26,10 @@ public class MainController {
 
     public void run() {
         List<Lotto> userLottos = repeatTemplate(this::buyLottos);
-        outputView.printLottos(toDto(userLottos));
+        showUserLottos(userLottos);
 
-        WinningLotto winningLotto = repeatTemplate(this::initializeWinningLotto);
-
-        LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
-        showLottoResult(lottoResult);
+        LottoResult lottoResult = checkLottoResultOf(userLottos);
+        showLottoResult(lottoResult, userLottos);
     }
 
     private List<Lotto> buyLottos() {
@@ -37,10 +37,20 @@ public class MainController {
         return LottoStore.buyLotto(purchaseAmount);
     }
 
+    private void showUserLottos(List<Lotto> userLottos) {
+        outputView.printLottos(toDto(userLottos));
+    }
+
     private List<LottoDto> toDto(List<Lotto> userLottos) {
         return userLottos.stream()
-                .map(userLotto -> new LottoDto(userLotto.getNumbers()))
+                .map(lotto -> new LottoDto(lotto.getNumbers()))
                 .toList();
+    }
+
+    private LottoResult checkLottoResultOf(List<Lotto> userLottos) {
+        WinningLotto winningLotto = repeatTemplate(this::initializeWinningLotto);
+
+        return statisticsService.checkLottoResult(winningLotto, userLottos);
     }
 
     private WinningLotto initializeWinningLotto() {
@@ -51,8 +61,10 @@ public class MainController {
     }
 
     private Lotto generateLotto() {
+        Converter<String, List<Integer>> converter = new StringToIntegerListConverter();
+        
         String winningNumbers = inputView.inputWinningNumbers();
-        List<Integer> numbers = Converter.toIntegerList(winningNumbers);
+        List<Integer> numbers = converter.convert(winningNumbers);
 
         return new Lotto(numbers);
     }
@@ -62,16 +74,28 @@ public class MainController {
         return new BonusNumber(inputBonusNumber);
     }
 
-    private void showLottoResult(LottoResult lottoResult) {
-        LottoResultDto lottoResultDto = toDto(lottoResult);
-        double rateOfReturn = statisticsService.calculateRateOfReturn(lottoResult);
-
-        outputView.printWinningStatistics(lottoResultDto);
-        outputView.printRateOfResult(rateOfReturn);
+    private void showLottoResult(LottoResult lottoResult, List<Lotto> userLottos) {
+        showWinningStatistics(lottoResult);
+        showRateOrReturn(lottoResult, userLottos);
     }
 
-    private LottoResultDto toDto(LottoResult lottoResult) {
-        return new LottoResultDto(lottoResult.getResult());
+    private void showWinningStatistics(LottoResult lottoResult) {
+        LottoResultDto lottoResultDto = new LottoResultDto(lottoResult.getResult());
+        List<String> lottoRankingOutputOrder = fixOutputOrderOfLottoRankings();
+
+        outputView.printWinningStatistics(lottoResultDto, lottoRankingOutputOrder);
+    }
+
+    private List<String> fixOutputOrderOfLottoRankings() {
+        Converter<List<LottoRanking>, List<String>> converter = new LottoRankingToStringConverter();
+
+        List<LottoRanking> lottoRankings = LottoRanking.findOrder();
+        return converter.convert(lottoRankings);
+    }
+
+    private void showRateOrReturn(LottoResult lottoResult, List<Lotto> userLottos) {
+        double rateOfReturn = statisticsService.calculateRateOfReturn(lottoResult, userLottos);
+        outputView.printRateOfResult(rateOfReturn);
     }
 
     private <T> T repeatTemplate(Supplier<T> inputReader) {

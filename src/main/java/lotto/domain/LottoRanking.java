@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum LottoRanking {
     FIRST(6, false),
@@ -36,5 +37,9 @@ public enum LottoRanking {
 
     private boolean isMatch(int numberOfMatches, boolean hasBonusNumber) {
         return this.numberOfMatches == numberOfMatches && this.hasBonusNumber == hasBonusNumber;
+    }
+
+    public static List<LottoRanking> findOrder() {
+        return List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
     }
 }

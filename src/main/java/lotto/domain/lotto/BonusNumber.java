@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,9 +11,13 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
+    private BonusNumber(int bonusNumber) {
         validate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static BonusNumber from(int bonusNumber) {
+        return new BonusNumber(bonusNumber);
     }
 
     public boolean isIn(List<Integer> numbers) {

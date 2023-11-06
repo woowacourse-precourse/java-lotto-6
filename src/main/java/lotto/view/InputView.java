@@ -17,29 +17,29 @@ public class InputView {
 
     public Cash inputCash() {
         System.out.println(INPUT_CASH_MESSAGE.getMessage());
-        String input = getInput();
-        Integer cash = Parser.parseInt(input);
+        final String input = getInput();
+        final Integer cash = Parser.parseInt(input);
         return new Cash(cash);
     }
 
 
     public List<Integer> inputWinnerNumbers() {
         System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
-        String input = getInput();
-        List<String> numberDummy = Parser.parseNumberDummy(input);
+        final String input = getInput();
+        final List<String> numberDummy = Parser.parseNumberDummy(input);
         InputValidator.validateInputNumbersFormat(numberDummy);
         return Parser.parseNumbers(numberDummy);
     }
 
     public Integer inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
-        String input = getInput();
+        final String input = getInput();
         return Parser.parseInt(input);
     }
 
 
     private String getInput() {
-        String input = Console.readLine();
+        final String input = Console.readLine();
         InputValidator.validateBlank(input);
         return input;
     }

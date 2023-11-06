@@ -24,6 +24,7 @@ public class OutputView {
     }
 
     public void printStaticResult(Prizes prizes, Cash cash) {
+        //
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Prize prize : Prize.values()) {

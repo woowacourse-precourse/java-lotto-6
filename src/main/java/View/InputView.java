@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import lotto.Lotto;
 import lotto.WinningNumbers;
 
 public class InputView {
@@ -24,14 +26,16 @@ public class InputView {
 
     public WinningNumbers askWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
-        validateWinningNumbers(winningNumbers);
+        String numbers = Console.readLine();
+        validateWinningNumbers(numbers);
+        List<Integer> winningNumbers = Stream.of(numbers.split(","))
+            .map(Integer::parseInt)
+            .toList();
 
-//        System.out.println("보너스 번호를 입력해 주세요.");
-//        String bonusNumber = Console.readLine();
-//        validateBonusNumber(bonusNumber);
-//        return new WinningNumbers(winningNumbers, Integer.parseInt(bonusNumber));
-        return null;
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+        validateBonusNumber(bonusNumber);
+        return new WinningNumbers(new Lotto(winningNumbers), Integer.parseInt(bonusNumber));
     }
 
     public void validateWinningNumbers(String winningNumbers) {
@@ -41,13 +45,13 @@ public class InputView {
         winningNumber.forEach(this::validateInputIsNumeric);
         winningNumber.forEach(this::validateInputIsPositiveNumber);
         winningNumber.forEach(this::validateInputInRange);
-        validateNotDuplicated(winningNumber);
     }
 
     public void validateBonusNumber(String bonusNumber) {
         validateNotBlank(bonusNumber);
         validateInputIsNumeric(bonusNumber);
         validateInputIsPositiveNumber(bonusNumber);
+        validateInputInRange(bonusNumber);
     }
 
     private void validateNotBlank(String input) {
@@ -94,12 +98,6 @@ public class InputView {
         int number = Integer.parseInt(input);
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
-        }
-    }
-
-    private void validateNotDuplicated(List<String> inputList) {
-        if (inputList.stream().distinct().count() != inputList.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }
     }
 

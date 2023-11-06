@@ -1,6 +1,12 @@
-package lotto.domain;
+package lotto.service;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoIssuer;
+import lotto.domain.ProfitRateCalculator;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningDetails;
+import lotto.domain.WinningNumbers;
 
 public class LottoManager {
 

@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.domain.LottoIssuer;
-import lotto.domain.LottoManager;
+import lotto.service.LottoManager;
 import lotto.domain.ProfitRateCalculator;
 import lotto.domain.WinningDetails;
 

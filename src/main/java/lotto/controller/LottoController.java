@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
-import lotto.domain.LottoManager;
+import lotto.service.LottoManager;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;

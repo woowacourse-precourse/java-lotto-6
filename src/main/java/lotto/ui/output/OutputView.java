@@ -1,5 +1,6 @@
 package lotto.ui.output;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,8 +18,10 @@ public class OutputView {
     }
 
     public static void printLotto(List<Integer> numbers) {
-        Collections.sort(numbers);
-        System.out.println(Arrays.toString(numbers.toArray()));
+        List<Integer> changeable = new ArrayList<>(numbers);
+        Collections.sort(changeable);
+
+        System.out.println(Arrays.toString(changeable.toArray()));
     }
 
     //TODO 상수화?

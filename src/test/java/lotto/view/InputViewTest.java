@@ -18,8 +18,8 @@ public class InputViewTest {
 
     @DisplayName("로또 구입 금액이 숫자가 아니면 숫자를 입력받을 때까지 재입력한다.")
     @Test
-    void inputPurchasePriceNonNumber() {
-        int actual = inputView.inputPurchasePrice();
+    void inputPriceUntilNumber() {
+        int actual = inputView.inputPrice();
         assertThat(actual).isEqualTo(12);
     }
 

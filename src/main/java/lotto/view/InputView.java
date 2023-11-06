@@ -1,24 +1,29 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Objects;
 import lotto.constant.Message;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
-    public int inputPurchasePrice() {
-        while (true) {
-            System.out.println(Message.INPUT_PURCHASE_PRICE.getMessage());
+    public int inputPrice() {
+        Integer validPrice = null;
+
+        while (isNotValidPrice(validPrice)) {
+            System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
-            Integer validPrice = parseValidPrice(inputPrice);
-            if (validPrice != null) {
-                return validPrice;
-            }
+            validPrice = parseValidPrice(inputPrice);
         }
+        return validPrice;
+    }
+
+    private boolean isNotValidPrice(Integer validPrice) {
+        return Objects.isNull(validPrice);
     }
 
     private Integer parseValidPrice(String inputPrice) {
         try {
-            if (validatePurchasePrice(inputPrice)) {
+            if (isNumber(inputPrice)) {
                 return Integer.parseInt(inputPrice);
             }
         } catch (IllegalArgumentException e) {
@@ -27,7 +32,7 @@ public class InputView {
         return null;
     }
 
-    private boolean validatePurchasePrice(String inputPrice) {
+    private boolean isNumber(String inputPrice) {
         try {
             Integer.parseInt(inputPrice);
             return true;

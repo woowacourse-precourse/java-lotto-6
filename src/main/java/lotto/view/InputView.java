@@ -47,7 +47,16 @@ public class InputView {
         return WinningNumbers;
     }
     public static int getBonusNumber(){
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber;
+        while(true){
+            try {
+                bonusNumber= Integer.parseInt(Console.readLine());
+                CustomizedException.bonusNumbersNotRange(bonusNumber);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         return bonusNumber;
     }
 }

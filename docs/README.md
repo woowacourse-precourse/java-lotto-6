@@ -106,3 +106,7 @@ OutputView클래스 askBonusNumbers메소드
 ``````````````````````````
 InputView클래스 getBonusNumber메소드
 ```````````````````````````````
+18. 입력한 보너스 번호가 1에서 45사이의 값이아니면 오류를 일으키고 다시입력하게 하는 기능 추가
+``````````````````````````
+CustomizedException클래스 bonusNumbersNotRange메소드
+```````````````````````````````

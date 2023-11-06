@@ -23,25 +23,31 @@ public class CustomizedException {
         }
     }
 
-    public static void winningNumbersNotRange(List<Integer> winningNumbers){
-        for(int i = 0 ; i<winningNumbers.size();i++){
-            if(winningNumbers.get(i)<1 || winningNumbers.get(i)>45){
-                throw new IllegalArgumentException(ERROR_MESSAGE_INIT+"1부터45까지의 수만 입력 가능합니다.");
+    public static void winningNumbersNotRange(List<Integer> winningNumbers) {
+        for (int i = 0; i < winningNumbers.size(); i++) {
+            if (winningNumbers.get(i) < 1 || winningNumbers.get(i) > 45) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "1부터45까지의 수만 입력 가능합니다.");
             }
 
         }
     }
 
-    public static void winningNumberHasSameNumber(List<Integer> winningNumbers){
+    public static void winningNumberHasSameNumber(List<Integer> winningNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-        if(uniqueNumbers.size()<winningNumbers.size()){
-            throw new IllegalArgumentException(ERROR_MESSAGE_INIT+"중복된 수가 있습니다.");
+        if (uniqueNumbers.size() < winningNumbers.size()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "중복된 수가 있습니다.");
         }
     }
 
-    public static void winningNumbersQualification(List<Integer> winningNumbers){
+    public static void winningNumbersQualification(List<Integer> winningNumbers) {
         CustomizedException.winningNumbersSizeMoreOrLess(winningNumbers);
         CustomizedException.winningNumbersNotRange(winningNumbers);
         CustomizedException.winningNumberHasSameNumber(winningNumbers);
+    }
+
+    public static void bonusNumbersNotRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "1부터45까지의 수만 입력 가능합니다.");
+        }
     }
 }

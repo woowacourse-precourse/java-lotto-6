@@ -8,16 +8,20 @@ import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoResponse;
 import lotto.dto.LottoWinningNumberCreateRequest;
 import lotto.dto.LottoWinningStatistics;
+import lotto.exception.ExceptionHandlingStrategy;
 import lotto.service.LottoGameService;
 import lotto.view.LottoGameView;
 
 public class LottoGameController {
     private final LottoGameService lottoGameService;
     private final LottoGameView lottoGameView;
+    private final ExceptionHandlingStrategy exceptionHandlingStrategy;
 
-    public LottoGameController(LottoGameService lottoGameService, LottoGameView lottoGameView) {
+    public LottoGameController(LottoGameService lottoGameService, LottoGameView lottoGameView,
+                               ExceptionHandlingStrategy exceptionHandlingStrategy) {
         this.lottoGameService = lottoGameService;
         this.lottoGameView = lottoGameView;
+        this.exceptionHandlingStrategy = exceptionHandlingStrategy;
     }
 
     public void run() {
@@ -35,46 +39,34 @@ public class LottoGameController {
     }
 
     private void createLottoBonusNumber() {
-        while (true) {
-            try {
-                LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest =
-                        lottoGameView.inputLottoBonusNumberCreateRequest();
-                lottoGameService.createLottoBonusNumber(lottoBonusNumberCreateRequest);
-                return;
-            } catch (IllegalArgumentException e) {
-                lottoGameView.printException(e);
-            }
-        }
+        exceptionHandlingStrategy.apply(lottoGameView, lottoGameService,
+                (view, service) -> {
+                    LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest =
+                            view.inputLottoBonusNumberCreateRequest();
+                    service.createLottoBonusNumber(lottoBonusNumberCreateRequest);
+                });
     }
 
     private void createLottoWinningNumber() {
-        while (true) {
-            try {
-                LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest = lottoGameView.inputLottoWinningNumberCreateRequest();
-                lottoGameService.createLottoWinningNumber(lottoWinningNumberCreateRequest);
-                return;
-            } catch (IllegalArgumentException e) {
-                lottoGameView.printException(e);
-            }
-        }
+        exceptionHandlingStrategy.apply(lottoGameView, lottoGameService,
+                (view, service) -> {
+                    LottoWinningNumberCreateRequest lottoWinningNumberCreateRequest =
+                            view.inputLottoWinningNumberCreateRequest();
+                    service.createLottoWinningNumber(lottoWinningNumberCreateRequest);
+                });
     }
 
 
     private void purchaseLotto() {
-        while (true) {
-            try {
-                LottoPurchaseRequest lottoPurchaseRequest = lottoGameView.inputPurchaseRequest();
-                List<Lotto> lottoTickets = lottoGameService.createLottoPurchase(lottoPurchaseRequest);
-                List<LottoResponse> lottoResponses = lottoTickets.stream()
-                        .map(lotto -> new LottoResponse(lotto.getNumbers()))
-                        .toList();
-                lottoGameView.printPurchasedTickets(lottoResponses);
-                return;
-            } catch (IllegalArgumentException e) {
-                lottoGameView.printException(e);
-            }
-        }
-
+        exceptionHandlingStrategy.apply(lottoGameView, lottoGameService,
+                (view, service) -> {
+                    LottoPurchaseRequest lottoPurchaseRequest = view.inputPurchaseRequest();
+                    List<Lotto> lottoTickets = service.createLottoPurchase(lottoPurchaseRequest);
+                    List<LottoResponse> lottoResponses = lottoTickets.stream()
+                            .map(lotto -> new LottoResponse(lotto.getNumbers()))
+                            .toList();
+                    view.printPurchasedTickets(lottoResponses);
+                });
     }
 
 }

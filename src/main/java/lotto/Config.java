@@ -20,6 +20,5 @@ public class Config {
     final static String FOURTH_PRIZE_REWARD = "50,000";
     final static String FIFTH_PRIZE_REWARD = "5,000";
     final static String THOUSANDS_SEPARATOR = ",";
-
     final static int PERCENTAGE = 100;
 }

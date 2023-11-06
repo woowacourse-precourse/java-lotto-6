@@ -31,16 +31,14 @@
 - 매서드
 - [x] 생성자
 - [x] List 크기가 6인지 확인
-- [ ] 당첨 번호와 비교하기
-- [ ] 보너스 번호 있는지 확인하기
 
 - Winning ( 당첨 번호 )
 - 변수
 - [x] 당첨번호 (Lotto)
 - [x] 보너스번호
 - 매서드
-- [ ] 생성자 - 로또 생성, 보너스번호 추가
-- [ ] getter , setter
+- [x] 생성자 - 로또 생성, 보너스번호 추가
+- [x] getter , setter
 
 - Prize (enum)
 - [ ] FIRST ~ FIFTH ("",count,hasBonus)
@@ -49,9 +47,9 @@
 
 - Lottery
 - 변수
-- [ ] userInput
-- [ ] List<Lotto>
-- [ ] Winning
+- [x] userInput
+- [x] List<Lotto>
+- [x] Winning
 - [ ] List<Prize>
 - [ ] price, total
 - 매서드
@@ -72,6 +70,8 @@
   - [ ] "---"
   - [ ] 5등 ~ 1등
   - [ ] 총 수익률 출력
+- [ ] 당첨 번호와 비교하기
+- [ ] 보너스 번호 있는지 확인하기 
 
 - 입력 (userInput)
 - [x] 로또 구입 금액 입력

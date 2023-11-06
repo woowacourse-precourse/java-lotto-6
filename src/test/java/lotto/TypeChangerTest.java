@@ -20,6 +20,6 @@ public class TypeChangerTest {
     @Test
     void String리스트를_Integer리스트로() {
         List<String> numbers = typeChanger.stringToListWithComma("1,2,3,4,5,6");
-        typeChanger.genericToInteger(numbers).forEach(number -> assertThat(number).isInstanceOf(Integer.class));
+        typeChanger.from(numbers).forEach(number -> assertThat(number).isInstanceOf(Integer.class));
     }
 }

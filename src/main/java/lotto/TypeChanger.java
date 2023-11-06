@@ -25,7 +25,7 @@ public class TypeChanger {
         return Integer.parseInt(number);
     }
 
-    public List<Integer> genericToInteger(List<String> numbers) {
+    public List<Integer> from(List<String> numbers) {
         return numbers.stream()
                 .mapToInt(Integer::parseInt)
                 .boxed()

@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
 import lotto.domain.constant.LottoConstant;
-import lotto.generator.RandomLottoGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -51,17 +49,16 @@ class LottoPurchaseTest {
     }
 
     @Test
-    public void purchase_메서드_호출_시_구매_금액_나누기_티켓_한장_금액_만큼의_티켓을_구매한다() throws Exception {
+    public void calculateTickets_메서드_호출_시_구매_금액_나누기_티켓_한장_금액_만큼의_티켓_갯수를_반환한다() throws Exception {
         // given
-        long numTicket = 9;
-        long purchaseAmount = LottoConstant.LOTTO_TICKET_PRICE * numTicket;
+        long purchaseAmount = LottoConstant.LOTTO_TICKET_PRICE * 9;
 
         // when
         LottoPurchase lottoPurchase = new LottoPurchase(purchaseAmount);
-        List<Lotto> lottoTickets = lottoPurchase.purchase(new RandomLottoGenerator());
+        long numTickets = lottoPurchase.countTickets();
 
         //then
-        assertThat(lottoTickets.size()).isEqualTo(numTicket);
+        assertThat(numTickets).isEqualTo(9);
     }
 
 

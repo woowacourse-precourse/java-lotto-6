@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,13 +10,14 @@ import lotto.domain.LottoPrize;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoWinningNumber;
 import lotto.domain.LottoWinningResult;
+import lotto.domain.constant.LottoConstant;
 
 public class LottoGameService {
 
-    private final LottoGenerator lottoGenerator;
+    private final NumbersGenerator numbersGenerator;
 
-    public LottoGameService(LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
+    public LottoGameService(NumbersGenerator numbersGenerator) {
+        this.numbersGenerator = numbersGenerator;
     }
 
     public LottoWinningResult calculateLottoWinningResult(
@@ -31,7 +33,16 @@ public class LottoGameService {
     }
 
     public List<Lotto> purchaseLotto(LottoPurchase lottoPurchase) {
-        return lottoPurchase.purchase(lottoGenerator);
+        long numTickets = lottoPurchase.countTickets();
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < numTickets; ++i) {
+            lottoTickets.add(new Lotto(numbersGenerator.generate(
+                    LottoConstant.LOTTO_START_NUMBER,
+                    LottoConstant.LOTTO_END_NUMBER,
+                    LottoConstant.LOTTO_NUMBER_COUNT
+            )));
+        }
+        return lottoTickets;
     }
 
 }

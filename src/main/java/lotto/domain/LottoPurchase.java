@@ -1,10 +1,7 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import lotto.domain.constant.LottoConstant;
 import lotto.domain.exception.ExceptionMessage;
-import lotto.service.LottoGenerator;
 
 public class LottoPurchase {
 
@@ -25,14 +22,8 @@ public class LottoPurchase {
         }
     }
 
-    public List<Lotto> purchase(LottoGenerator lottoGenerator) {
-        long numTickets = purchaseAmount / LottoConstant.LOTTO_TICKET_PRICE;
-        List<Lotto> lottoTickets = new ArrayList<>();
-        for (long i = 0; i < numTickets; ++i) {
-            lottoTickets.add(lottoGenerator.generate());
-        }
-
-        return lottoTickets;
+    public long countTickets() {
+        return purchaseAmount / LottoConstant.LOTTO_TICKET_PRICE;
     }
 
     public long getPurchaseAmount() {

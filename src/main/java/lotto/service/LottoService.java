@@ -13,9 +13,9 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class LottoService {
 
-    private static final int startNumber = 1;
-    private static final int endNumber = 45;
-    private static final int lottoNumberCount = 6;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int THREE_MATCH = 3;
     private static final int FOUR_MATCH = 4;
     private static final int FIVE_MATCH = 5;
@@ -38,7 +38,7 @@ public class LottoService {
 
     private void generateLotto() {
 
-        Lotto lotto = new Lotto(pickUniqueNumbersInRange(startNumber, endNumber, lottoNumberCount));
+        Lotto lotto = new Lotto(pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT));
 
         purchaseLotto.add(lotto);
     }
@@ -78,13 +78,13 @@ public class LottoService {
     }
 
     private void winFirstPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == lottoNumberCount - SIX_MATCH) {
+        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - SIX_MATCH) {
             winners.increase1stPlace();
         }
     }
 
     private void winSecondOrThirdPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == lottoNumberCount - FIVE_MATCH) {
+        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - FIVE_MATCH) {
             checkBonusNumber(notMatchNumbers);
         }
     }
@@ -100,13 +100,13 @@ public class LottoService {
     }
 
     private void winFourthPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == lottoNumberCount - FOUR_MATCH) {
+        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - FOUR_MATCH) {
             winners.increase4thPlace();
         }
     }
 
     private void winFifthPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == lottoNumberCount - THREE_MATCH) {
+        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - THREE_MATCH) {
             winners.increase5thPlace();
         }
     }

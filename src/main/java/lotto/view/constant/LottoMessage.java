@@ -7,8 +7,7 @@ public enum LottoMessage {
     REQUEST_BONUS_NUMBER("보너스 볼을 입력해 주세요."),
     SHOW_STATISTICS("당첨 통계"),
     SHOW_STATISTICS_DELIMITER("---"),
-    SHOW_STATISTICS_COUNT("개 일치 ("),
-    SHOW_STATISTICS_REWARD(")원 - "),
+    COMMENT_SUFFIX("개"),
     SHOW_STATISTICS_YIELD("총 수익률은 "),
     SHOW_STATISTICS_YIELD_SUFFIX("%입니다.");
     private String message;

@@ -1,37 +1,45 @@
 package lotto.parser;
 
 import lotto.model.LottoResult;
+import lotto.view.constant.LottoGrade.*;
+import lotto.view.constant.LottoMessage.*;
+
+import java.util.List;
+
+import static lotto.view.constant.LottoGrade.*;
+import static lotto.view.constant.LottoMessage.SHOW_STATISTICS_YIELD;
+import static lotto.view.constant.LottoMessage.SHOW_STATISTICS_YIELD_SUFFIX;
 
 public class FinalResult {
-    private final Integer THREE_MATCH = 5000;
-    private final Integer FOUR_MATCH = 50000;
-    private final Integer FIVE_MATCH = 1500000;
-    private final Integer FIVE_MATCH_AND_BONUS = 30000000;
-    private final Integer SIX_MATCH = 2000000000;
-    private LottoResult lottoResult;
+    private final Integer PERCENT = 100;
+    private final LottoResult lottoResult;
     public FinalResult(final LottoResult lottoResult) {
         this.lottoResult = lottoResult;
         sumOfResult();
     }
     private void sumOfResult() {
         this.lottoResult.countingMatchCount();
-        this.lottoResult.matchingCount(3,false);
-        this.lottoResult.matchingCount(4,false);
-        this.lottoResult.matchingCount(5,false);
-        this.lottoResult.matchingCount(6,false);
-        this.lottoResult.matchingCount(6,true);
+        this.lottoResult.matchingCount(3);
+        this.lottoResult.matchingCount(4);
+        this.lottoResult.matchingCount(5);
+        this.lottoResult.matchingCount(6);
     }
     // 당첨 금액 출력
     public void printResult() {
-        System.out.println("3개 일치 (5,000원) - " + this.lottoResult.getCountList().get(0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + this.lottoResult.getCountList().get(1) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + this.lottoResult.getCountList().get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.lottoResult.getCountList().get(3) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + this.lottoResult.getCountList().get(4) + "개");
+        List<Integer> countList = this.lottoResult.getCountList();
+        System.out.println(THREE_GRADE.getComment(countList.get(0)));
+        System.out.println(FOUR_GRADE.getComment(countList.get(1)));
+        System.out.println(FIVE_GRADE.getComment(countList.get(2)));
+        System.out.println(FIVE_GRADE_AND_BONUS.getComment(countList.get(3)));
+        System.out.println(SIX_GRADE.getComment(countList.get(4)));
     }
 
     public void printProfitRate(Integer price) {
-        Integer sum = this.lottoResult.getCountList().get(0) * THREE_MATCH + this.lottoResult.getCountList().get(1) * FOUR_MATCH + this.lottoResult.getCountList().get(2) * FIVE_MATCH + this.lottoResult.getCountList().get(3) * FIVE_MATCH_AND_BONUS + this.lottoResult.getCountList().get(4) * SIX_MATCH;
-        System.out.println("총 수익률은 " + (double)sum / price * 100 + "%입니다.");
+        Integer sum = this.lottoResult.getCountList().get(0) * THREE_GRADE.getPrize()
+                + this.lottoResult.getCountList().get(1) * FOUR_GRADE.getPrize()
+                + this.lottoResult.getCountList().get(2) * FIVE_GRADE.getPrize()
+                + this.lottoResult.getCountList().get(3) * FIVE_GRADE_AND_BONUS.getPrize()
+                + this.lottoResult.getCountList().get(4) * SIX_GRADE.getPrize();
+        System.out.println(SHOW_STATISTICS_YIELD.getMessage() + (float)sum / price * PERCENT + SHOW_STATISTICS_YIELD_SUFFIX.getMessage());
     }
 }

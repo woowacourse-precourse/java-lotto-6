@@ -18,7 +18,7 @@ public record Lotto(List<Integer> numbers) {
     }
     @Override
     public String toString() {
-        String DELIMITER = ",";
+        String DELIMITER = ", ";
         return String.join(DELIMITER, numbers.stream().map(String::valueOf).toList());
     }
 }

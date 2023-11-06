@@ -257,3 +257,267 @@ public class Lotto {
   
 
 16. 구매자에게 당첨 내역을 보여준다.
+
+---
+
+## 📮 필요기능 구현
+####  검색의 도움 없이 내가 구현 할 수 있는 방법으로 구현을 해 보았습니다.
+
+### 1. inputPurchaseAmount()
+````
+ public static String inputPurchaseAmount(){
+    System.out.println("구입금액을 입력해 주세요.");
+    String inputPurchaseAmount = Console.readLine();
+    return inputPurchaseAmount;
+}
+````
+1. inputPurchaseAmount() 메서드에서 사용자에게 값을 입력받습니다.
+2. Console.readLine()을 활용하여 콘솔창에서 사용자에 값을 입력받습니다. 
+
+### 2. inputPurchaseAmountValidation()
+````
+public static int inputPurchaseAmountValidation(String inputPurchaseAmount){
+    try {
+        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+        return purchaseAmount;
+    }catch (NumberFormatException e){
+        throw new IllegalArgumentException("[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000 ");
+    }
+}
+````
+1. inputPurchaseAmountValidation() 메서드에서 사용자가 입력한 값이 숫자인지 검증합니다.
+2. 입력받은 값(String)을 Integer.parseInt()로 파싱하여 int로 형변환을 합니다.
+3. 형변환에 실패할 경우 NumberFormatException 예외가 발생하고 발생한 예외를 catch에서 IllegalArgumentException 발생하고, **"[ERROR] 구입금액을 숫자로 입력해 주세요. 예) 10000"** 메세지를 사용자에게 표시합니다.
+
+### 3. inputPurchaseAmountValidation()
+````
+public static int lottoQuantity(int lottoPurchaseAmount){
+    int lottoPurchaseAmountRemain = lottoPurchaseAmount % 1000;
+    if(lottoPurchaseAmountRemain != 0){
+        throw new IllegalArgumentException("[ERROR] 구입금액을 1,000원 단위로 입력하세요.");
+    }
+    int lottoQuantity = lottoPurchaseAmount / 1000;
+    return lottoQuantity;
+}
+````
+1. lottoQuantity() 메서드에서 inputPurchaseAmountValidation()에서 검증된 구입금액이 1,000원 단위인지 검증합니다.
+2. 검증된 입력금액을 나머지연선자(%)를 활용하여 1,000원단위 인지 검증 하였습니다.
+3. 1,000원 단위가 검증 된 후 나누기연산자(/)를 활용하여 로또 구매 수량을 계산하였습니다.
+
+### 4. createLottos()
+````
+public static List<Lotto> createLottos(int lottoQuantity){
+    List<Lotto> lottos= new ArrayList<>();
+
+    for(int quantity = 1; quantity <= lottoQuantity ; quantity++){
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottoNumbers);
+        Lotto lotto = new Lotto(lottoNumbers);
+        lottos.add(lotto);
+    }
+    return lottos;
+}
+````
+1. createLottos() 메서드에서 입력받은 개수 만큼 로또를 생성합니다.
+2. Randoms.pickUniqueNumbersInRange()를 활용하여 1~45 범위의 6개의 숫자를 랜덤으로 List에 저장합니다.
+3. 저장된 6개의 로또 번호를 Collections.sort()를 활용하여 오름차순 정렬을 하였습니다.
+4. 정렬된 로또번호를 Lotto 클래스의 생성자를 활용하여 Lotto 클래스의 인스턴스를 생성후 List<Lotto>에 추가하여 n개의 로또를 생성합니다.
+
+### 4. purchaseLottoNumbersDisplay()
+````
+public static void purchaseLottoNumbersDisplay(List<Lotto> lottos){
+    int lottoQuantity = lottos.size();
+    System.out.println(lottoQuantity+"개를 구매했습니다.");
+    for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
+        lottos.get(quantity-1).lottoNumberDisplay();
+    }
+    System.out.println("");
+}
+````
+1. purchaseLottoNumbersDisplay() 메서드에서 구매한 로또 번호를 사용자에게 보여줍니다.
+2. Lotto.lottoNumberDisplay() 인스턴스 메서드를 구현하여 Lotto 인스턴스의 로또번호를 사용자에게 보여줍니다.
+    ````
+    public void lottoNumberDisplay(){
+        List<Integer> lottoNumbers = getNumbers();
+        StringJoiner displayLottoNumber = new StringJoiner(", ","[","]");
+        for(int i = 0 ; i < lottoNumbers.size() ; i ++){
+            String number = String.valueOf(lottoNumbers.get(i));
+            displayLottoNumber.add(number);
+        }
+        System.out.println(displayLottoNumber);
+    }
+    ````
+   1. StringJoiner를 활용하여 **"[1, 2, 3, 4, 5, 6]"** 의 형식으로 사용자에게 보여줍니다. 
+
+### 5. inputWinningNumber()
+````
+public static String inputWinningNumber(){
+    System.out.println("당첨 번호를 입력해 주세요.");
+    String inputWinningNumber = Console.readLine();
+    return inputWinningNumber;
+}
+````
+1. inputWinningNumber() 메서드에서 당첨번호를 입력 받습니다. 
+
+### 6. inputWinningNumberSplit()
+````
+public static String[] inputWinningNumberSplit(String inputWinningNumber){
+    String[] inputWinningNumberSplit = inputWinningNumber.split(",");
+    if(inputWinningNumberSplit.length != 6){
+        throw new IllegalArgumentException("[ERROR] 당첨 번호를 쉼표(,)를 기준으로 6자리를 입력해주세요.");
+    }
+    return inputWinningNumberSplit;
+}
+````
+1. inputWinningNumberSplit() 메서드에서 입력받은 당첨번호가 쉼표(,) 구분자로 6개의 숫자인지 검증합니다.
+2. String.split()을 활용하여 쉼표(,) 구분자로 나누어 String[]를 만들고 String[]의 length가 6이 아니면 IllegalArgumentException 예외를 발생하여 검증하였습니다. 
+
+### 7. inputWinningNumberValidation()
+````
+public static List<Integer> inputWinningNumberValidation(String[] inputWinningNumberSplit){
+    try {
+        List<Integer> winningNumber = new ArrayList<>();
+        for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
+            int number = Integer.parseInt(inputWinningNumberSplit[i]);
+            winningNumber.add(number);
+        }
+        Collections.sort(winningNumber);
+        return winningNumber;
+    }catch (NumberFormatException e){
+        throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
+    }
+}
+````
+1. inputWinningNumberValidation() 메서드에서 쉼표(,) 구분자로 나뉜 String[]의 각각의 값이 숫자인지 검증합니다.
+2. 검증된 당첨번호를 Collections.sort()를 활용하여 오름차순 정렬하였습니다.
+
+### 8. inputBonusNumber()
+````
+public static String inputBonusNumber(){
+    System.out.println("보너스 번호를 입력해 주세요.");
+    String inputBonusNumber = Console.readLine();
+    return inputBonusNumber;
+}
+````
+1. inputWinningNumberValidation() 메서드에서 보너스 번호를 입력받습니다.
+
+### 9. inputBonusNumberValidation()
+````
+public static int inputBonusNumberValidation(String inputBonusNumber){
+    try {
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        return bonusNumber;
+    }catch (NumberFormatException e){
+        throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+    }
+}
+````
+1. inputBonusNumberValidation() 메서드에서 입력받은 보너스 번호가 숫자인지 검증합니다.
+
+
+### 10. inputBonusNumberRangeValidation()
+````
+public static int inputBonusNumberRangeValidation(int inputBonusNumberValidation){
+    if(inputBonusNumberValidation < 1 || inputBonusNumberValidation > 45){
+        throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해 주세요.");
+    }
+    return inputBonusNumberValidation;
+}
+````
+1. inputBonusNumberRangeValidation() 메서드에서 입력받은 보너스 번호가 1~45사이의 번호인지 검증합니다.
+
+### 11. lottoWinningAmount()
+````
+public static int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
+    int matchCount = 0;
+    for(int i = 0 ; i < winningNumber.size() ; i++){
+        if(lotto.contains(winningNumber.get(i))){
+            matchCount++;
+        }
+    }
+
+    if(matchCount == 3){
+        return 5000;
+    }
+    if(matchCount == 4){
+        return 50000;
+    }
+    if(matchCount == 5){
+        if(lotto.contains(bonusNumber)){
+            return 30000000;
+        }
+        return 1500000;
+    }
+    if(matchCount == 6){
+        return 200000000;
+    }
+    return 0;
+}
+````
+1. lottoWinningAmount() 메서드에서 로또의 당첨금액을 계산합니다.
+2. lotto.contains()을 활용하여 winningNumber가 포함되어있는지 확인하고 포함되어있으면 matchCount를 증가시켜 몇개가 일치 하는 지 계산하였습니다.
+3. 5개가 일치하는 로또에 추가로 lotto.contains(bonusNumber)을 활용하여 보너스번호가 일치하는지 확인하였습니다.
+
+### 12. lottoWinningAmount()
+````
+public static void lottoWinningResult (List<Lotto> lottos ,List<Integer> winningNumber, int bonusNumber){
+    int totalWinningAmount = 0;
+    double totalReturnRate = 0.0;
+    int lottoQuantity = lottos.size();
+    double totalLottoPurchase = 1000 * lottoQuantity;
+
+    int threeMatches = 0;
+    int fourMatches = 0;
+    int fiveMatches = 0;
+    int fiveBonusMatches = 0;
+    int sixMatches = 0;
+
+    for (int quantity = 0 ; quantity < lottoQuantity ; quantity ++){
+
+        int winningAmount = lottoWinningAmount(lottos.get(quantity).getNumbers(), winningNumber, bonusNumber);
+        totalWinningAmount += winningAmount;
+
+        if(winningAmount == 5000){
+            threeMatches++;
+        }
+
+        if(winningAmount == 50000){
+            fourMatches++;
+        }
+
+        if(winningAmount == 1500000){
+            fiveMatches++;
+        }
+
+        if(winningAmount == 30000000){
+            fiveBonusMatches++;
+        }
+
+        if(winningAmount == 200000000){
+            sixMatches++;
+        }
+
+    }
+
+    totalReturnRate = (totalWinningAmount/totalLottoPurchase)*100;
+    String totalRate = String.format("%.1f",totalReturnRate);
+
+    System.out.println("당첨 통계");
+    System.out.println("---");
+    System.out.println("3개 일치 (5,000원) - " + threeMatches+"개");
+    System.out.println("4개 일치 (50,000원) - " + fourMatches+"개");
+    System.out.println("5개 일치 (1,500,000원) - " + fiveMatches+"개");
+    System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveBonusMatches+"개");
+    System.out.println("6개 일치 (2,000,000,000원) - " + sixMatches+"개");
+    System.out.println("총 수익률은 "+ totalRate +"%입니다.");
+}
+````
+1. lottoWinningResult() 메서드에서 당첨 통계 총 수익률을 계산하여 사용자에게 보여줍니다.
+2. lottoWinningAmount() 메서드를 활용하여 로또번호가 일치한 개수를 계산하였습니다.
+3. (totalWinningAmount/totalLottoPurchase)*100 계산식을 사용하여 총 수익률을 계산하였고, String.format()을 활용하여 소수점 첫번째 자리까지 표시하였습니다.
+
+
+---
+## ✏️ 리펙터링
+#### 검색의 도움을 받아 MVC 페턴을 적용하고, 객체지향 코드로 리펙터링하여 학습해 보았습니다.
+

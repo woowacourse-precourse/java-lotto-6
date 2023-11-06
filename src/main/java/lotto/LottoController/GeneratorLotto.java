@@ -10,12 +10,13 @@ public class GeneratorLotto {
 
     private static final int PRICE = 1000;
 
-    public List<Lotto> generatorLotto(int purchaseAmount){
+    public List<Lotto> generatorLotto(int purchaseAmount) {
         int lottoNumbers = purchaseAmount / PRICE;
+
         List<Lotto> generateLottos = new ArrayList<>();
 
-        for(int i = 0; i< lottoNumbers; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        for (int i = 0; i < lottoNumbers; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             generateLottos.add(new Lotto(numbers));
         }
         return generateLottos;

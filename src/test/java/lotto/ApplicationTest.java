@@ -81,8 +81,19 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-    @DisplayName("당첨번호가 잘나오는지 테스트")
+
+    @DisplayName("로또개수 출력")
+    @Test
     void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "77");
+            assertThat(output()).contains("8개를 구매했습니다.");
+        });
+    }
+
+    @DisplayName("당첨번호가 잘나오는지 테스트")
+    @Test
+    void 예외_테스트6() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -110,7 +121,8 @@ class ApplicationTest extends NsTest {
     }
 
     @DisplayName("당첨내역 확인 테스트")
-    void 예외_테스트6() {
+    @Test
+    void 예외_테스트7() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");

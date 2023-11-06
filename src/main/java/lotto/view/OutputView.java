@@ -17,7 +17,8 @@ public class OutputView {
     }
 
     public static void printPurchaseCount(LottoTicket lottoTicket) {
-        System.out.printf("%d개를 구매했습니다.\n", lottoTicket.getLottoCount());
+        System.out.printf("%d개를 구매했습니다.", lottoTicket.getLottoCount());
+        printNewLine();
     }
 
     public static void printPurchaseLottoTickets(LottoTicket lottoTicket) {
@@ -37,6 +38,7 @@ public class OutputView {
         System.out.println("---");
         Arrays.stream(Rank.values())
                 .forEach(rank -> System.out.printf(rank.getMatchInfo(), lottoResult.findMatchCountFor(rank)));
+        printNewLine();
     }
 
     public static void printRateOfReturn(Profit profit) {
@@ -46,5 +48,10 @@ public class OutputView {
 
     public static void printErrorMessageFor(IllegalArgumentException exception) {
         System.out.println(exception.getMessage());
+        printNewLine();
+    }
+
+    public static void printNewLine() {
+        System.out.println();
     }
 }

@@ -23,8 +23,10 @@
 - buyLotto
 - correctNumber
 - revenueRate
-# LottoNumber
+# Lotto
     구매한 번호, 당첨번호 관리하는 클래스
+- Lotto
+- validate
 - checkAllSameNumber
 - pickNumber
 - checkSameNumber

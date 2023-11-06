@@ -12,7 +12,7 @@ public class InputView {
     private static final String USER_DEFAULT_DELIMITER = ",";
 
     public int askPrice() {
-        askHowManyPurchase();
+        printHowManyPurchase();
         String input = Console.readLine();
         validateBlankAndEmptyInteger(input);
         return validateNegativeIntegerAndZero(validateInteger(input));
@@ -44,15 +44,15 @@ public class InputView {
         return lastCharacter;
     }
 
-    public void askWinningNumber() {
+    public void printWinningNumber() {
         System.out.println(ASK_WINNING_NUMBER_MESSAGE);
     }
 
-    public void askBonusWinningNumber() {
+    public void printBonusWinningNumber() {
         System.out.println(ASK_BONUS_WINNING_NUMBER_MESSAGE);
     }
 
-    private void askHowManyPurchase() {
+    private void printHowManyPurchase() {
         System.out.println(ASK_PURCHASE_MESSAGE);
     }
 

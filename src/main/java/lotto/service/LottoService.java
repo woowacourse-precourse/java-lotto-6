@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.LottoTicket;
 
 public class LottoService {
 
@@ -19,6 +20,10 @@ public class LottoService {
         while (lottos.size() < size) {
             lottos.add(new Lotto(createLottoNumbers()));
         }
+    }
+
+    public List<LottoTicket> tickets() {
+        return lottos.stream().map(Lotto::toLottoTicket).toList();
     }
 
     private List<Integer> createLottoNumbers() {

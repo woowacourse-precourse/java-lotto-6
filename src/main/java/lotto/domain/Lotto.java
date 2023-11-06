@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.dto.LottoTicket;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,6 +20,10 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public LottoTicket toLottoTicket(){
+        return new LottoTicket(this.numbers);
     }
 
 }

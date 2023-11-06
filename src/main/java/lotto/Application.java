@@ -14,5 +14,8 @@ public class Application {
         for (List<Integer> lottoNumber : buyer.generateLottoNumbers()) {
             System.out.println(lottoNumber);
         }
+
+        System.out.println(buyer.getWinningNumber());
+
     }
 }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Buyer {
@@ -48,5 +49,17 @@ public class Buyer {
             lottoNumbers.add(lottoNumber);
         }
         return lottoNumbers;
+    }
+
+    public List<Integer> getWinningNumber() {
+        System.out.println("당첨번호를 입력해주세요.");
+        String winningNumberString = Console.readLine();
+        // 입력받은 문자열을 쉼표로 분할하여 스트림 생성
+        List<Integer> winningNumbers = Arrays.stream(winningNumberString.split(","))
+                .map(String::trim) // 공백 제거
+                .map(Integer::parseInt) // 각 문자열을 정수로 변환
+                .toList(); // 변환된 정수들을 리스트로 수집
+
+        return winningNumbers;
     }
 }

@@ -18,10 +18,10 @@ public class InvalidInput {
         for (Integer number : numbers) {
             if (isDuplicate(numbers, number)) {
                 System.out.println(message);
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean duplicateNumberException(List<Integer> numbers, int bonusNumber) {
@@ -40,10 +40,10 @@ public class InvalidInput {
         for (Integer number : numbers) {
             if (!isBetweenInRange(number)) {
                 System.out.println(message);
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
     public boolean notIntegerValueException(String number) {
         message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
@@ -52,10 +52,10 @@ public class InvalidInput {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
             System.out.println(message);
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public boolean sizeExceededException(List<Integer> numbers) {
@@ -63,9 +63,9 @@ public class InvalidInput {
 
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             System.out.println(message);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean notThousandUnitException(int cost) {
@@ -86,7 +86,7 @@ public class InvalidInput {
     }
 
     private boolean isBetweenInRange(int number) {
-        if (number >= MIN_NUMBER.getValue() || number <= MAX_NUMBER.getValue()) {
+        if (number >= MIN_NUMBER.getValue() && number <= MAX_NUMBER.getValue()) {
             return true;
         }
         return false;

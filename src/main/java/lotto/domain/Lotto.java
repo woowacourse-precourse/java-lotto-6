@@ -32,11 +32,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         InvalidInput invalidInput = new InvalidInput();
 
-        if (!invalidInput.sizeExceededException(numbers)) {
+        if (invalidInput.sizeExceededException(numbers)) {
             throw new IllegalArgumentException();
-        } else if (!invalidInput.duplicateNumberException(numbers)) {
+        } else if (invalidInput.duplicateNumberException(numbers)) {
             throw new IllegalArgumentException();
-        } else if (!invalidInput.outOfRangeException(numbers)) {
+        } else if (invalidInput.outOfRangeException(numbers)) {
             throw new IllegalArgumentException();
         }
     }

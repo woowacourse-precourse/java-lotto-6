@@ -43,4 +43,8 @@ public enum LottoResult {
     public int getWinningAmount() {
         return winningAmount;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

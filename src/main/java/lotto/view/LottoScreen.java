@@ -15,6 +15,9 @@ public class LottoScreen {
     public static final String RATE_FORMAT = "%.1f";
     public static final String RESULT_PREFIX = "총 수익률은";
     public static final String RESULT_SUFFIX = "입니다.";
+    public static final String RESULT_FORMAT = RESULT_PREFIX + RATE_FORMAT +RESULT_SUFFIX;
+
+    public static final String LOTTO_RESULT_FORMAT = "%s (%d원) - %d개\n";
     private static StringBuilder stringbuilder = new StringBuilder();
 
     private final Reader reader;
@@ -47,30 +50,27 @@ public class LottoScreen {
                 .map((lotto) -> String.join(", ", convertNumbers(lotto.getLotto())))
                 .toList();
 
-        // FORMAT "[" + %s +"]" 로 진행한다
         convertedLottos.forEach((lotto -> writer.writeFormat("[%s]", lotto)));
     }
 
     public void displayLottoResult(LottoFinalResult lottoFinalResult) {
         writer.writeLine("당첨 통계");
         writer.writeLine("---");
-        // %s 일치 (%s) - %d개
-        // entryset -> set.getValue() + "일치" + "(" + set.getKey().getWinningAmount() + )"
-        // 일치하는 것도 ENUM에서 관리하는 방향으로 진행
-
+        lottoFinalResult.getFinalResultMap()
+                .entrySet()
+                .forEach((set) -> {
+                    writer.writeFormat(LOTTO_RESULT_FORMAT, set.getKey().getDescription(),
+                            set.getKey().getWinningAmount(), set.getValue());
+                });
     }
 
     public void displayRateOfReturn(float rateOfReturn) {
-        stringbuilder.append(RESULT_PREFIX);
-        stringbuilder.append(String.format(RATE_FORMAT, rateOfReturn));
-        stringbuilder.append(RESULT_SUFFIX);
-        writer.writeLine(stringbuilder.toString());
+        writer.writeFormat(RESULT_FORMAT, RESULT_PREFIX, rateOfReturn, RESULT_SUFFIX);
     }
 
-    private String convertNumbers(List<Integer> numbers) {
-        numbers.stream()
+    private List<String> convertNumbers(List<Integer> numbers) {
+        return numbers.stream()
                 .map((number) -> number.toString())
-                .forEach((stringbuilder::append)); // 중간에 공백 넣어줘야 한다
-        return stringbuilder.toString();
+                .toList();
     }
 }

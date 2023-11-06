@@ -1,42 +1,24 @@
 package lotto;
 
+import static lotto.Constants.FIVE_AND_BONUS_CASE_NUMBER;
+import static lotto.Constants.FIVE_CASE_NUMBER;
+import static lotto.Constants.FOUR_CASE_NUMBER;
+import static lotto.Constants.SIX_CASE_NUMBER;
+import static lotto.Constants.THREE_CASE_NUMBER;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class ResultService {
-
-    public static final int WINNING_CASE_NUMBER = 5;
-    public static final int THREE_CASE_NUMBER = 3;
-    public static final int FOUR_CASE_NUMBER = 4;
-    public static final int FIVE_CASE_NUMBER = 5;
-    public static final int FIVE_AND_BONUS_CASE_NUMBER = 7;
-    public static final int SIX_CASE_NUMBER = 6;
 
     public static int calculateNumberOfLottoTickets(int purchaseAmount) {
         return purchaseAmount / InputService.AMOUNT_UNIT;
     }
 
-    public static void printNumberOfLottoTickets(int purchaseNumber) {
-        System.out.printf("%d개를 구매했습니다.", purchaseNumber);
-    }
-
-    public static void printStringForResults() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-    }
-
-    public static void printResults(HashMap<Integer, Integer> results) {
-        for (int caseNumber : results.keySet()) {
-            System.out.printf(WinnigCase.getByCaseNumber(caseNumber).getContents()
-                    + " - %d개", results.get(caseNumber));
-        }
-    }
-
     public static double calculateRateOfReturn(int purchaseAmount, HashMap<Integer, Integer> results) {
         double sum = getSum(results);
-        return (sum / purchaseAmount) * 100;
+        return Math.round((sum / purchaseAmount) * 10000) / 100.0;
     }
 
     private static double getSum(HashMap<Integer, Integer> results) {
@@ -90,14 +72,14 @@ public class ResultService {
             winningResults.put(FIVE_AND_BONUS_CASE_NUMBER, winningResults.get(FIVE_AND_BONUS_CASE_NUMBER) + 1);
             return winningResults;
         }
-        if (isWinnigCase(duplicationNumbers)) {
+        if (isWinningCase(duplicationNumbers)) {
             winningResults.put(duplicationNumbers, winningResults.get(duplicationNumbers) + 1);
             return winningResults;
         }
         return winningResults;
     }
 
-    private static boolean isWinnigCase(int duplicationNumbers) {
+    private static boolean isWinningCase(int duplicationNumbers) {
         return duplicationNumbers >= THREE_CASE_NUMBER;
     }
 
@@ -105,9 +87,8 @@ public class ResultService {
         return bonusCheck && duplicationNumbers == FIVE_CASE_NUMBER;
     }
 
-
     public static HashMap<Integer, Integer> makeInitialSettings(HashMap<Integer, Integer> winningResults) {
-        for (int i = 1; i <= WINNING_CASE_NUMBER; i++) {
+        for (int i = 1; i <= Constants.WINNING_CASE_NUMBER; i++) {
             winningResults.put(THREE_CASE_NUMBER, 0);
             winningResults.put(FOUR_CASE_NUMBER, 0);
             winningResults.put(FIVE_CASE_NUMBER, 0);

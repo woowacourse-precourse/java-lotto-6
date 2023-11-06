@@ -1,5 +1,10 @@
 package lotto;
 
+import static lotto.Constants.FIVE_AND_BONUS_CASE_NUMBER;
+import static lotto.Constants.FIVE_CASE_NUMBER;
+import static lotto.Constants.FOUR_CASE_NUMBER;
+import static lotto.Constants.SIX_CASE_NUMBER;
+import static lotto.Constants.THREE_CASE_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -57,11 +62,11 @@ class ResultServiceTest {
         ResultService.saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
 
         // when
-        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(1);
-        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(THREE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FOUR_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(SIX_CASE_NUMBER)).isEqualTo(0);
     }
 
     @DisplayName("숫자가 3개 일치하는 경우 저장이 잘 되는지 테스트한다.")
@@ -78,11 +83,11 @@ class ResultServiceTest {
         ResultService.saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
 
         // then
-        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(1);
-        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(THREE_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(FOUR_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(SIX_CASE_NUMBER)).isEqualTo(0);
     }
 
     @DisplayName("숫자가 4개 일치하는 경우 저장이 잘 되는지 테스트한다.")
@@ -99,11 +104,11 @@ class ResultServiceTest {
         ResultService.saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
 
         // then
-        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(1);
-        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(THREE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FOUR_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(FIVE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(SIX_CASE_NUMBER)).isEqualTo(0);
     }
 
     @DisplayName("숫자가 5개 일치하는 경우 저장이 잘 되는지 테스트한다.")
@@ -120,11 +125,11 @@ class ResultServiceTest {
         ResultService.saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
 
         // then
-        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(1);
-        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(THREE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FOUR_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(SIX_CASE_NUMBER)).isEqualTo(0);
     }
 
     @DisplayName("숫자가 6개 일치하는 경우 저장이 잘 되는지 테스트한다.")
@@ -141,11 +146,11 @@ class ResultServiceTest {
         ResultService.saveWinningResult(lotto, bonusNumber, resultOfLottoIssuance, winningResults);
 
         // then
-        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(THREE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FOUR_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(SIX_CASE_NUMBER)).isEqualTo(1);
     }
 
     @DisplayName("구매한 로또 2개의 일치 여부 저장이 잘 되는지 테스트한다.")
@@ -165,11 +170,11 @@ class ResultServiceTest {
         winningResults = ResultService.saveWinningResults(resultsOfLottoIssuance, lotto, bonusNumber);
 
         // then
-        assertThat(winningResults.get(ResultService.FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.THREE_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FOUR_CASE_NUMBER)).isEqualTo(0);
-        assertThat(winningResults.get(ResultService.FIVE_CASE_NUMBER)).isEqualTo(1);
-        assertThat(winningResults.get(ResultService.SIX_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(FIVE_AND_BONUS_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(THREE_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FOUR_CASE_NUMBER)).isEqualTo(0);
+        assertThat(winningResults.get(FIVE_CASE_NUMBER)).isEqualTo(1);
+        assertThat(winningResults.get(SIX_CASE_NUMBER)).isEqualTo(1);
     }
 
     @DisplayName("수익률이 제대로 계산되는지 테스트한다.")

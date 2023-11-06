@@ -4,14 +4,15 @@ import java.util.List;
 
 public class LottoResult {
     private int match;
-    private boolean bonusMatch;
+    private boolean hasBonus;
 
-    public LottoResult(List<Integer> winnerNumbers, BonusNumber bonusNumber, List<Integer> buyLotto) {
-        this.match = countSameNumber(winnerNumbers, buyLotto);
-        this.bonusMatch = countBonusNumber(bonusNumber, buyLotto);
+    public LottoResult(LottoGame lottoGame, Lotto buyLotto) {
+        this.match = countSameNumber(lottoGame, buyLotto);
+        this.hasBonus = countBonusNumber(lottoGame, buyLotto);
     }
 
-    private int countSameNumber(List<Integer> winnerNumbers, List<Integer> buyLotto) {
+    private int countSameNumber(LottoGame lottoGame, Lotto buyLotto) {
+        List<Integer> winnerNumbers = lottoGame.getWinningNumbers();
         for (int winnerNumber : winnerNumbers) {
             if (buyLotto.contains(winnerNumber)) {
                 match++;
@@ -20,8 +21,9 @@ public class LottoResult {
         return match;
     }
 
-    private boolean countBonusNumber(BonusNumber bonusNumber, List<Integer> buyLotto) {
-        return buyLotto.contains(bonusNumber.getBonusNumber());
+    private boolean countBonusNumber(LottoGame lottoGame, Lotto buyLotto) {
+        int bonusNumber = lottoGame.getBonusNumber();
+        return buyLotto.contains(bonusNumber);
     }
 
     public int getMatch() {
@@ -29,6 +31,10 @@ public class LottoResult {
     }
 
     public boolean hasBonusMatch() {
-        return this.bonusMatch;
+        return this.hasBonus;
+    }
+
+    public WinningRank calculateRank() {
+        return WinningRank.getRank(match, hasBonus);
     }
 }

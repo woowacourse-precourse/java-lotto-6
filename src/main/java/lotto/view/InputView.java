@@ -1,9 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.regex.Pattern;
 import lotto.constants.ErrorMessage;
 
 public class InputView {
+
+    private static final Pattern WINNING_NUMBERS_REGEX = Pattern.compile("^\\d+(?:,\\d+)*$");
 
     private InputView() {
     }
@@ -28,8 +31,19 @@ public class InputView {
     public static String readWinningNumbers() {
         printInputGuideMessage("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        validateNumbersRegex(input);
         validateContainsBlank(input);
         return input;
+    }
+
+    private static void validateNumbersRegex(String input) {
+        if (invalidNumbersRegex(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_REGEX_INPUT.getMessage());
+        }
+    }
+
+    private static boolean invalidNumbersRegex(String input) {
+        return !WINNING_NUMBERS_REGEX.matcher(input).matches();
     }
 
     public static String readBonusNumber() {

@@ -10,7 +10,7 @@ public class OutputView {
         print("구입금액을 입력해 주세요.");
     }
 
-    public void showTickets(int count) {
+    public void showTickets(final int count) {
         print(count + "개를 구매했습니다.");
     }
 

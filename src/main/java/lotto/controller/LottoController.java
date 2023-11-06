@@ -34,7 +34,7 @@ public class LottoController {
         return MoneyManagement.from(purchaseAmount);
     }
 
-    public Lottos buyLotto(int quantity) {
+    public Lottos buyLotto(final int quantity) {
         return Lottos.from(quantity);
     }
 

@@ -6,7 +6,7 @@ public class Number {
 
     private final int value;
 
-    public Number(int value) {
+    public Number(final int value) {
         this.value = value;
     }
 

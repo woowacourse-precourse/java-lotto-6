@@ -40,7 +40,6 @@ class TicketSeviceTest {
     @Test
     void purchaseAmountMethodUnitExceptionTest() {
         String input = "8500"; // 유효하지 않은 금액
-        Integer money = Integer.parseInt(input);
         assertThrows(IllegalArgumentException.class, () -> ticketService.purchaseAmount(input));
     }
 

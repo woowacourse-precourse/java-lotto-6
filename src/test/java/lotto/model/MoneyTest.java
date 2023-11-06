@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,4 +16,12 @@ public class MoneyTest {
         assertThat(money).isNotNull();
     }
 
+    @Test
+    @DisplayName("구입 금액이 숫자가 아니라면 예외 발생")
+    void inputIsOnlyInteger() {
+        String input = "hoyeon";
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Money(input))
+                .withMessage("[ERROR] 구입 금액은 숫자여야 합니다.");
+    }
 }

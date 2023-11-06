@@ -13,5 +13,6 @@ public class NumberGeneratorOutput {
         for (Lotto lotto : lotteries) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 }

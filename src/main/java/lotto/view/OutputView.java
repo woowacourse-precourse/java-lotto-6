@@ -4,10 +4,16 @@ import java.text.DecimalFormat;
 
 public class OutputView {
     private static final String ENTER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
 
     public void printEnterAmountMessage() {
         System.out.println(ENTER_AMOUNT_MESSAGE);
     }
+
+    public void printNumberOfLottoPurchases(int numberOfPurchases) {
+        System.out.println(numberOfPurchases + PURCHASE_MESSAGE);
+    }
+
     public void printStatsTitle() {
         System.out.println("당첨 통계\n---");
     }

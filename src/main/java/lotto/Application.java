@@ -42,7 +42,6 @@ public class Application {
         Lotto inputWinningLotto;
         while(true){
             try{
-//                winningNumbers = inputWinningNumbers();
                 // 3-1. 당첨 번호를 입력받음
                 // 3-2. 입력받은 당첨 번호를 쉼표(,) 기준으로 구분함
                 String[] inputNumbers = Console.readLine().split(",");
@@ -102,7 +101,6 @@ public class Application {
         }
         // 5-5. 수익률 계산 (소수점 둘째 자리에서 반올림)
         float earningRate = winningPrizeSum/purchase*100;
-//        DecimalFormat formatter2 = new DecimalFormat("###,###,###,###.#");
         System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
 
 
@@ -119,20 +117,6 @@ public class Application {
         return purchase;
     }
 
-    // 2. 당험 번호 입력받기
-    public static List<Integer> inputWinningNumbers(){
-        // 3-1. 당첨 번호를 입력받음
-        // 3-2. 입력받은 당첨 번호를 쉼표(,) 기준으로 구분함
-        String[] inputNumbers = Console.readLine().split(",");
-        List<Integer> winningNumbers = parseInputNumbers(inputNumbers); // 사용자 입력을 List<Integer>로 변환
-
-        // 3-5. 당첨 번호 유효성 검사
-        if(!validateNumberRange(winningNumbers)){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        return winningNumbers;
-    }
-
     // 로또 번호 생성
     public static List<Integer> createRandomLottoNum(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -146,17 +130,6 @@ public class Application {
             numbers.add(Integer.parseInt(inputNumbers[i]));
         }
         return numbers;
-    }
-
-    // 3-5. 번호의 범위가 1~45가 아닐 경우 예외 발생
-    public static boolean validateNumberRange(List<Integer> inputNumbers){
-        boolean validate = true;
-        for(int number : inputNumbers){
-            if(number < 1 || number > 45){
-                validate = false;
-            }
-        }
-        return validate;
     }
 
     // 4-1. 보너스 번호를 입력받음

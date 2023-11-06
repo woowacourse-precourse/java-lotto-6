@@ -3,7 +3,7 @@ package lotto.Model;
 public class CacheValidator {
 
 
-    public static void exceptCache(Integer insertData){
+    public static void validateCache(Integer insertData){
         if(validateZero(insertData)){
             throw new IllegalArgumentException("[ERROR] 입력 금액은 0원을 초과해야 합니다.");
         }

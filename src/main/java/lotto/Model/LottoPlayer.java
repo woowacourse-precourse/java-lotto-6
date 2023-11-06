@@ -7,7 +7,7 @@ public class LottoPlayer {
         private Integer currentAmount, spentAmount, earnedAmount;
         private ArrayList<Lotto> ownedLottos;
         public LottoPlayer(Integer insertData){
-            CacheValidator.exceptCache(insertData);
+            CacheValidator.validateCache(insertData);
             this.currentAmount=insertData;
         }
 

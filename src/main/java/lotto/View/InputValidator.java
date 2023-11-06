@@ -1,7 +1,7 @@
 package lotto.View;
 
 public class InputValidator {
-    public static void exceptInsertInteger(String inputValue){
+    public static void validateInsertInteger(String inputValue){
         if(validateBlank(inputValue)){
             throw new IllegalArgumentException("입력이 없습니다");
         }

@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.controller.UserInputMessage.*;
 import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
+import static lotto.validator.Validator.isBonusNumberValid;
 import static lotto.validator.Validator.isPurchaseAmountValid;
 import static lotto.validator.Validator.isWinningNumberValid;
 
@@ -20,7 +21,8 @@ public class LottoController {
 
     public void start() {
         int purchaseAmount = requestLottoPurchaseAmount();
-        Lotto winningNumbers = requestWinningNumbers();
+        Lotto lottoWinningNumbers = requestWinningNumbers();
+        LottoBonus lottoBonusNumber = requestBonusNumber();
     }
 
     public int requestLottoPurchaseAmount() {
@@ -49,10 +51,15 @@ public class LottoController {
     }
 
     public LottoBonus requestBonusNumber() {
-        try{
+        try {
             System.out.println(REQUEST_BONUS_NUMBER);
             String userInput = Console.readLine();
-
+            isBonusNumberValid(userInput);
+            int bonusNumber = Integer.parseInt(userInput);
+            return new LottoBonus(bonusNumber);
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+            return requestBonusNumber();
         }
     }
 }

@@ -1,12 +1,11 @@
 package lotto.model;
 
-import lotto.validator.AmountValidator;
-
 public class LottoSeller {
-    public static final int LOTTO_PRICE = 1000;
+    private final LottoSellingPolicy lottoSellingPolicy = new LottoSellingPolicy();
+    private final LottosGenerator lottosGenerator = new LottosGenerator();
 
-    public int calculateLottoTickets(int purchasingMoney) {
-        AmountValidator.validateAmount(purchasingMoney);
-        return purchasingMoney / LOTTO_PRICE;
-    };
+    public Lottos sell(int purchasingMoney) {
+        int countLottos = lottoSellingPolicy.calcuateLottoCount(purchasingMoney);
+        return lottosGenerator.generate(countLottos);
+    }
 }

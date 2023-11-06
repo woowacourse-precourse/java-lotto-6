@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.util.Validator;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class LottoController {
 //    public static final int MAX_NUM = 45;
 //    public static final int LOTTO_NUMBER = 6;
     public static void inputPurchaseAmount(){
+        InputView.requestPurchaseAmountMessage();
         String amount = Console.readLine();
         Validator.validateInputAmount(amount);
         OutputView.purchaseLottoNumber();

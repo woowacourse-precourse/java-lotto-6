@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+import lotto.util.Validator;
+
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
@@ -14,7 +17,9 @@ public class OutputView {
     public static void lottoPrinter(){
         // 랜덤값 이용해 로또 출력(배열 형식)
         List<Integer> numbers = pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUMBER);
-        System.out.println(numbers);
+        Lotto lotto = new Lotto(numbers);
+//        Validator.validateSameNumberCheckStart(numbers);
+        System.out.println(lotto);
     }
 
     public static void winningStatistics(){

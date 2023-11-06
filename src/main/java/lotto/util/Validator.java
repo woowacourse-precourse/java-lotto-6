@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.List;
+
 public class Validator {
     public static void validateInputAmount(String amount){
         try{
@@ -14,5 +16,7 @@ public class Validator {
             throw  new IllegalArgumentException("[ERROR] 로또는 1000원 단위로만 구매가 가능합니다.");
         }
     }
+
+
 
 }

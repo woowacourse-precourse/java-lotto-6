@@ -55,5 +55,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 중복_번호_테스트(){
+        List<Integer> 중복된로또번호 = List.of(1,2,4,4,5,6);
+        assertThatThrownBy(() ->
+                Lotto.validateSameNumberCheckStart(중복된로또번호))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
 
 }

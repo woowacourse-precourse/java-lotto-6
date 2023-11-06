@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.vo;
 
 import java.util.Objects;
 

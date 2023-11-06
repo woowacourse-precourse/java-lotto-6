@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.model.vo.Lotto;
+import lotto.model.vo.Money;
 
 public class Player {
 

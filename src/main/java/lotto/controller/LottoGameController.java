@@ -3,7 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.response.PurchaseHistoryDto;
 import lotto.model.LottoStore;
-import lotto.model.Money;
+import lotto.model.vo.Money;
 import lotto.model.Player;
 import lotto.model.RandomNumberGenerateStrategy;
 import lotto.view.ErrorView;

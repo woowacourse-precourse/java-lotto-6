@@ -40,14 +40,14 @@ public class ValidateException {
         }
     }
 
-    //
-//    public static Boolean blankCheck(String strLine) {
-//        if (!strLine.equals(NOTING_STRING)) {
-//            return true;
-//        }
-//        throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
-//    }
-//
+
+    public static Boolean blankCheck(String strLine) {
+        if (!strLine.equals(NOTING_STRING)) {
+            return true;
+        }
+        throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
+    }
+
     public static void includeBlank(String strLine) {
         if (strLine.contains(BLANK)) {
             throw new NumberFormatException("[ERROR] 입력 중간에 공백이 포함되어 있습니다.");

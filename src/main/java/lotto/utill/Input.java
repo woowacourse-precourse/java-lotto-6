@@ -30,6 +30,7 @@ public class Input {
 // TODO: 11/6/23
         ValidateException.containsNonNumericCharacter(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
 //        ValidateException.negative(inputStringLine);
 //        ValidateException.zeroNum(inputStringLine);
 

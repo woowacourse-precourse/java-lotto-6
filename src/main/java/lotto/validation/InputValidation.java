@@ -1,11 +1,13 @@
 package lotto.validation;
 
+import lotto.constant.ErrorMessage;
 import lotto.domain.Lotto;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class InputValidation {
+    ErrorMessage error;
     public int validatePurchaseAmount(String input) {
         validateInputIsNumeric(input);
         validateCheckRangeOfPurchaseAmountInput(input);
@@ -42,7 +44,7 @@ public class InputValidation {
 
     public void validateInputIsNumeric(String input) {
         if (!input.matches("[-+]?\\d*")) {
-            throw new NumberFormatException("[ERROR] 숫자만 입력해야 합니다.");
+            throw new NumberFormatException(error.INPUT_ONLY_NUMBERS_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -50,38 +52,38 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하인 양수로 입력해야 합니다.");
+            throw new IllegalArgumentException(error.MAX_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validatePurchaseAmountOutOfRange(int purchaseAmount) {
         if (purchaseAmount > 2100000000) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 21억(2,100,000,000)이하로 입력해야 합니다.");
+            throw new IllegalArgumentException(error.PURCHASE_AMOUNT_LIMIT_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validatePurchaseAmountIsPositive(int purchaseAmount) {
         if (purchaseAmount < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 양수로 입력해야 합니다.");
+            throw new IllegalArgumentException(error.POSITIVE_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validatePurchaseAmountUnit(int purchaseAmount) {
         if (purchaseAmount == 0 || purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(error.PURCHASE_AMOUNT_UNITS_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateInputIsNull(String input) {
         if (input == null || input.equals("")) {
-            throw new NullPointerException("[ERROR] 입력값을 확인하세요.");
+            throw new NullPointerException(error.NULL_OR_EMPTY_INPUT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateInputUseCorrectSeperator(String input) {
         String deleteAllWords = input.replaceAll("[가-힣a-zA-Z0-9,-]", "");
         if (deleteAllWords.length() != 0) {
-            throw new IllegalArgumentException("[ERROR] 쉼표(,)를 구분하여 입력하세요.");
+            throw new IllegalArgumentException(error.CORRECT_SEPARATOR_INPUT_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -96,7 +98,7 @@ public class InputValidation {
                 Integer.parseInt(number);
             }
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(error.WINNING_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
         }
     }
 
@@ -106,7 +108,7 @@ public class InputValidation {
         validateCheckRangeOfWinnerNumberInput(winnerNumbers);
         for (String number : winnerNumbers) {
             if (Integer.parseInt(number) < 0) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 양수를 입력해야 합니다.");
+                throw new IllegalArgumentException(error.POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());
             }
         }
     }
@@ -114,7 +116,7 @@ public class InputValidation {
     public void validateWinnerNumbersOutOfRange(List<Integer> winnerNumbers) {
         for (Integer number : winnerNumbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(error.WINNING_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
             }
         }
     }
@@ -127,7 +129,7 @@ public class InputValidation {
         }
 
         if (winnerNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(error.DUPLICATE_NUMBER_CONSTRAINT_MESSAGE.getMessage());
         }
     }
 
@@ -135,26 +137,26 @@ public class InputValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(error.BONUS_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
         }
     }
 
     public void validateBonusNumberIsPositive(int bonusNumber) {
         if (bonusNumber < 0) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 양수로 입력해야 합니다.");
+            throw new IllegalArgumentException(error.POSITIVE_BONUS_NUMBER_CONSTRAINT_MESSAGE.getMessage());
         }
     }
 
     public void validateBonusNumberOutOfRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(error.BONUS_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
         }
     }
 
     public void validateDuplicateBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> winnerNumbers = lotto.getLottoNumbers();
         if (winnerNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(error.DUPLICATE_WINNING_NUMBER_CONSTRAINT_MESSAGE.getMessage());
         }
     }
 }

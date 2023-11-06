@@ -38,5 +38,15 @@ public class Application {
             }
         }
         Lotto lotto = new Lotto(numbers);
+
+        //나중에 보너스 번호가 당첨 번호와 중복 될 경우의
+        //예외처리로 변경할 것.
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonus = Integer.parseInt(Console.readLine());
+        while (numbers.contains(bonus)){
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            bonus = Integer.parseInt(Console.readLine());
+        }
+        numbers.add(bonus);
     }
 }

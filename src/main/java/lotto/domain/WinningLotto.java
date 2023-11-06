@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.BonusNumberDuplicationException;
 import lotto.exception.WinningLottoNumbersDuplicationException;
 
 public class WinningLotto {
@@ -12,7 +13,7 @@ public class WinningLotto {
     public WinningLotto(List<String> winningLottoNumbers, String bonusNumber) {
 
         checkDuplication(winningLottoNumbers);
-
+        checkDuplicationFrom(winningLottoNumbers, bonusNumber);
         winningLotto = winningLottoNumbers.stream()
                                           .map(Integer::parseInt)
                                           .map(number -> LottoNumber.of(number))
@@ -48,6 +49,12 @@ public class WinningLotto {
                                              .toList();
         if (distinctList.size() != winningLotto.size()) {
             throw new WinningLottoNumbersDuplicationException();
+        }
+    }
+
+    private void checkDuplicationFrom(List<String> winningLotto, String bonusNumber) {
+        if (winningLotto.contains(bonusNumber)) {
+            throw new BonusNumberDuplicationException();
         }
     }
 

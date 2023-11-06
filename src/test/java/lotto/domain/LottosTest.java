@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 public class LottosTest {
     NumbersGenerator numbersGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
 

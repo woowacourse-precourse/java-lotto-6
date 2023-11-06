@@ -2,63 +2,58 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.util.NumbersGenerator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class WinningResultTest {
-    Lottos lottos;
-    WinningNumbers firstWinningNumbers;
-    WinningNumbers secondWinningNumbers;
     NumbersGenerator numbersGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
 
-    @BeforeEach
-    void init() {
-        lottos = new Lottos(1000, numbersGenerator);
-
-        firstWinningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
-        firstWinningNumbers.setBonusNumber(7);
-
-        secondWinningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 45));
-        secondWinningNumbers.setBonusNumber(6);
-    }
-
-    @DisplayName("전체 로또와 , 당첨 번호를 통해 1등이 몇개 당첨됐는지를 계산함")
-    @Test
-    void calculateWinningFirstTest() {
+    @DisplayName("전체 로또와 , 당첨 번호를 통해 몇등이 몇개 당첨됐는지를 계산함")
+    @ParameterizedTest
+    @MethodSource("generate")
+    void calculateWinningTest(List<Integer> numbers, int bonusNumber, Rank rank) {
         //given
+        Lottos lottos1 = new Lottos(1000, numbersGenerator);
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+        winningNumbers.setBonusNumber(bonusNumber);
+
         WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos, firstWinningNumbers);
+        winningResult.calculateWinning(lottos1, winningNumbers);
 
         //when
-        int firstCount = winningResult.getWinningCount(Rank.FIRST);
+        int firstCount = winningResult.getWinningCount(rank);
 
         //then
         assertEquals(1, firstCount);
     }
 
-    @DisplayName("전체 로또와 , 당첨 번호를 통해 2등이 몇개 당첨됐는지를 계산함")
-    @Test
-    void calculateWinningSecondTest() {
-        //given
-        WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos, secondWinningNumbers);
-
-        //when
-        int secondCount = winningResult.getWinningCount(Rank.SECOND);
-
-        //then
-        assertEquals(1, secondCount);
+    static Stream<Arguments> generate() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, Rank.FIRST),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 45), 6, Rank.SECOND),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 45), 43, Rank.THIRD),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 42, 45), 43, Rank.FOURTH),
+                Arguments.of(Arrays.asList(1, 2, 3, 41, 42, 45), 43, Rank.FIFTH),
+                Arguments.of(Arrays.asList(1, 2, 40, 41, 42, 45), 43, Rank.BLANK)
+        );
     }
 
-    @DisplayName("당첨에 따른 수익률을 계산함")
+    @DisplayName("당첨에 따른 수익률을 계산며")
     @Test
     void calculateEarningRateTest() {
         //given
+        Lottos lottos = new Lottos(1000, numbersGenerator);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        winningNumbers.setBonusNumber(7);
         WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos, firstWinningNumbers);
+        winningResult.calculateWinning(lottos, winningNumbers);
 
         //when
         float earningRate = winningResult.calculateEarningRate(lottos);

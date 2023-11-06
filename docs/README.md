@@ -119,7 +119,8 @@ com.lotto
 │  ├─ LottoPlayer.java
 │  ├─ LottoResult.java
 │  ├─ PurchaseAmount.java
-│  └─ WinningLotto.java
+│  ├─ WinningLotto.java
+│  └─ WinningNumbers.java
 ├─ util
 │  ├─ InputUtil.java
 │  └─ NumberUtil.java

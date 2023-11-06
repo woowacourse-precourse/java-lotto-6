@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.domain.MoneyManagement;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,12 +16,15 @@ public class LottoController {
     }
 
     public void start() {
-        amount();
+        int quantity = amount();
+        Lottos buyLottos = buyLotto(quantity);
     }
 
-    public void amount() {
+    public int amount() {
         MoneyManagement amount = getAmount();
-        outputView.showTickets(amount.getQuantity());
+        int quantity = amount.getQuantity();
+        outputView.showTickets(quantity);
+        return quantity;
     }
 
     public MoneyManagement getAmount() {
@@ -29,6 +33,8 @@ public class LottoController {
         return MoneyManagement.from(purchaseAmount);
     }
 
-
+    public Lottos buyLotto(int quantity) {
+        return Lottos.from(quantity);
+    }
 
 }

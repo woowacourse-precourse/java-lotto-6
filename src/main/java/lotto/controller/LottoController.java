@@ -4,6 +4,7 @@ import lotto.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.view.SystemInput;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -31,5 +32,11 @@ public class LottoController {
         int gameAmount = money / 1000;
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Lotto> winlottos = lottoGenerator.lottoGenerateWinningLotto(gameAmount);
+        String userPickLotto = SystemInput.readPickLotto();
+        List<Integer> userPickNumber = new ArrayList<>();
+        String[] userPickLottoSplit = userPickLotto.split(",");
+        for (String userpick : userPickLottoSplit) {
+            userPickNumber.add(Integer.parseInt(userpick));
+        }
     }
 }

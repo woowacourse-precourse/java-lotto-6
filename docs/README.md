@@ -13,7 +13,7 @@
 ### Enum
 - [x] WinningLotto class 구현
   - 로또 등수
-  - 
+
 ### Service
 - [x] UserInputDataService class 구현
   - [x] `View`를 통해 유저가 로또를 사는 것을 진행, 유저의 정보를 반환
@@ -22,7 +22,7 @@
 - [x] LottoCalculateService class 구현
   - [x] 로또 당첨 확인 및 수익률 계산
   - [x] 계산한 값을 출력(로또 당첨 및 계산)
-  - 
+
 ### Controller
 - [x] LottoController class 구현
   - [x] Service를 통해 로또의 구입 및 입력, 출력을 명령

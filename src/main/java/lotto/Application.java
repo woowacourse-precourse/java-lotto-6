@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class Application {
     private static final String MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
@@ -12,8 +13,10 @@ public class Application {
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구앱금액은 1000원 단위로 숫자를 입력해 주세요.";
+    private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_TYPE = "로또 번호는 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT = "로또 번호는 6개 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_DUPLICATE = "로또 번호는 중복되지 않은 숫자여야 합니다.";
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmountWithInput();
@@ -66,7 +69,7 @@ public class Application {
                 int number = Integer.parseInt(numberString);
                 winningNumbers.add(number);
             } catch (NumberFormatException e) {
-                printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE);
+                printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_TYPE);
                 throw new IllegalArgumentException();
             }
         }
@@ -81,6 +84,12 @@ public class Application {
                 printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE);
                 throw new IllegalArgumentException();
             }
+        }
+
+        Set<Integer> winningNumberSet = Set.copyOf(winningNumbers);
+        if (winningNumberSet.size() != 6) {
+            printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_DUPLICATE);
+            throw new IllegalArgumentException();
         }
     }
 

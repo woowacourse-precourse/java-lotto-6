@@ -5,7 +5,7 @@ public class MoneyManagement {
 
     public MoneyManagement(final String userInput) {
         validate(userInput);
-        this.quantity = toInt(userInput);
+        quantity = toInt(userInput) / 1000 ;
     }
 
     private void validate(final String userInput) {
@@ -44,4 +44,5 @@ public class MoneyManagement {
     public int getQuantity() {
         return quantity;
     }
+
 }

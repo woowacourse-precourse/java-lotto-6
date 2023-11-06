@@ -26,12 +26,4 @@ public class Lotto {
     public boolean contains(int number) {
         return numbers.contains(number);
     }
-
-    public int countMatchingNumbers(Lotto winningNumber) {
-        return (int) winningNumber.getNumbers().stream().filter(numbers::contains).count();
-    }
-
-    public boolean isBonusNumberMatch(int matchCount, int bonusNumber) {
-        return matchCount == 5 && numbers.contains(bonusNumber);
-    }
 }

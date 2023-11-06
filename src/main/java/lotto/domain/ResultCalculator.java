@@ -19,11 +19,19 @@ public class ResultCalculator {
 
     public void calculateWinningCounts(List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
-            int matchCount = lotto.countMatchingNumbers(winningLotto.getWinningNumber());
-            boolean matchBonus = lotto.isBonusNumberMatch(matchCount, winningLotto.getBonusNumber());
+            int matchCount = countMatchingNumbers(winningLotto.getWinningNumber(), lotto);
+            boolean matchBonus = isBonusNumberMatch(matchCount, winningLotto.getBonusNumber(), lotto);
             Rank rank = findRank(matchCount, matchBonus);
             updateResult(rank);
         }
+    }
+
+    private int countMatchingNumbers(Lotto winningNumber, Lotto lotto) {
+        return (int) winningNumber.getNumbers().stream().filter(lotto.getNumbers()::contains).count();
+    }
+
+    private boolean isBonusNumberMatch(int matchCount, int bonusNumber, Lotto lotto) {
+        return matchCount == 5 && lotto.getNumbers().contains(bonusNumber);
     }
 
     private Rank findRank(int matchCount, boolean matchBonus) {
@@ -35,6 +43,10 @@ public class ResultCalculator {
 
     private void updateResult(Rank rank) {
         result.put(rank, result.get(rank) + 1);
+    }
+
+    public Map<Rank, Integer> getResult() {
+        return result;
     }
 
     public void calculateProfitRate(int amount) {

@@ -10,20 +10,7 @@ public class Application {
     public static void main(String[] args) {
         // String howMuch = readLine();
         int payment = 0;
-        System.out.println("구입금액을 입력해 주세요.");
-        while (true) {
-            try {
-
-                payment = Integer.parseInt(readLine());
-                if (payment % 1000 != 0 || payment <= 0) throw new IllegalArgumentException();
-                break;
-//            } catch (NumberFormatException e) {
-//                System.out.println("[ERROR] 유효하지 않은 숫자 문자열입니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1000으로 나누어떨어져야하고 양수여야 합니다.");
-            }
-        }
-
+        payment = paymentException(payment);
 
         payment /= 1000;
         Lotto[] lotto = new Lotto[payment];
@@ -31,42 +18,25 @@ public class Application {
         for (int i = 0; i < payment; i++) {
             lotto[i] = new Lotto(creatRandomnumber());
         }
+
         System.out.println(payment + "개를 구매했습니다.");
+
         for (int i = 0; i < payment; i++) {
             lotto[i].numberPrint();
         }
-        System.out.println();
-        List<Integer> emptynum = null;
 
+        List<Integer> emptynum = null;
         System.out.println("당첨 번호를 입력해 주세요.");
         while (emptynum == null) {
             String winningNumber = readLine();
             emptynum = tokenSeparation((winningNumber));
         }
-        System.out.println();
-
         Lotto winNumber = new Lotto(emptynum);
+
         int bonusNum = 0;
-        System.out.println("보너스 번호를 입력해 주세요.");
-        while(bonusNum == 0) {
-            try {
-
-                bonusNum = changeToInteger(readLine());
-                if (winNumber.returnNumbers().contains(bonusNum)) throw new IllegalArgumentException();
-                //break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨번호 중복");
-                bonusNum = 0;
-            }
-        }
-//            System.out.println("보너스 번호를 입력해 주세요.");
-//           bonusNum = changeToInteger(readLine());
-
-
-
+        bonusNum = bonusnumException(bonusNum, winNumber);
 
         int[] matching = new int[8];
-
         for (int i = 0; i < payment; i++) {
             int willReturnIndex = howManySame(lotto[i].returnNumbers(), winNumber.returnNumbers());
             if (willReturnIndex == 5 && lotto[i].returnNumbers().contains(bonusNum))
@@ -78,6 +48,20 @@ public class Application {
 
     }
 
+    static public int paymentException(int payment){
+        System.out.println("구입금액을 입력해 주세요.");
+        while (true) {
+            try {
+                payment = Integer.parseInt(readLine());
+                if (payment % 1000 != 0 || payment <= 0) throw new IllegalArgumentException();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 1000으로 나누어떨어져야하고 양수여야 합니다.");
+            }
+        }
+        return payment;
+    }
+
     static public List<Integer> creatRandomnumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         sortNumber(numbers);
@@ -86,7 +70,7 @@ public class Application {
     }
 
     static public List<Integer> sortNumber(List<Integer> num){
-        int empty;
+
         for(int i = 0;i<6;i++) {
             for (int j = i + 1; j < 6; j++) {
                 if (num.get(i) > num.get(j)) {
@@ -110,13 +94,19 @@ public class Application {
             winnum.add(emptynum);
             count++;
         }
+        if(countNumException(count) == false)
+            return null;
+        return winnum;
+    }
+
+    static public boolean countNumException(int count){
         try {
             if (count > 6) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 당첨번호는 6개여야 합니다.");
-            return null;
+            return false;
         }
-        return winnum;
+        return true;
     }
 
     static public int changeToInteger(String string) {
@@ -142,7 +132,21 @@ public class Application {
         return returnCount;
     }
 
-    public static void finishPrint(int[] match, int pay) {
+    static public int bonusnumException(int bonusNum, Lotto winNumber){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while(bonusNum == 0) {
+            try {
+                bonusNum = changeToInteger(readLine());
+                if (winNumber.returnNumbers().contains(bonusNum)) throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 당첨번호 중복");
+                bonusNum = 0;
+            }
+        }
+        return bonusNum;
+    }
+
+    public static void finishPrint(int[] match, int payment) {
         int sum = 0;
         System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + match[3] + "개");
@@ -156,6 +160,6 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - " + match[7] + "개");
         sum += (2000000000 * match[7]);
         sum /= 1000;
-        System.out.printf("총 수익률은 %.1f%%입니다.", (float) sum / pay * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.", (float) sum / payment * 100);
     }
 }

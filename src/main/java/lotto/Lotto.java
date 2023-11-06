@@ -15,6 +15,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         validateRange(numbers);
+        validateDuplicate(numbers);
     }
 
     private void validateRange(final List<Integer> numbers) {
@@ -24,5 +25,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicate(final List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+        if (isNotEqual(distinctCount, numbers.size())) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isNotEqual(final long distinctCount, final int lottoNumbersCount) {
+        return distinctCount != lottoNumbersCount;
+    }
 }

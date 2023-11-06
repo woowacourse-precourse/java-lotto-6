@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Lottos;
+import lotto.Lotto;
 import repository.LottoRepository;
 import repository.MoneyRepository;
 import service.LottoService;
@@ -81,6 +82,7 @@ public class Controller {
 
 
     private void saveLottoNumbers(List<Integer> lottoNumbers) {
+
         for (Integer lottoNumber : lottoNumbers) {
             lottoService.save(new Lottos(lottoNumber));
         }
@@ -119,7 +121,7 @@ public class Controller {
 
     private String checkLottoValidation(String input) {
         try {
-            validator.checkLottoInput(input);
+            new Lotto(parser.parseLottoNumberToInt(input)); //parser
             return input;
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());

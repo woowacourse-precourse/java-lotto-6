@@ -1,17 +1,27 @@
 package util;
 
+import repository.LottoRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Validator {
     Parser parser = new Parser();
-    private int[] having_lotto = new int[46];
+    LottoRepository lottoRepository = new LottoRepository();
+    private static int[] having_lotto = new int[7];
 
     public void checkMoneyInput(String input) {
         checkAllMoneyInput(input);
     }
 
-    public void checkLottoInput(String input) {
+    public void checkLottoInput(List<Integer> input) {
         checkAllLottoInput(input);
+    }
+
+    public void checkLottoStringInput(String input) {
+        checkChar(parser.parseLottoNumber(input));
+        checkEachSpace(parser.parseLottoNumber(input));
+        checkDuplicate(input);
     }
 
     public void checkBonusLottoInput(String input) {
@@ -25,17 +35,15 @@ public class Validator {
         checkThousand(input); //checkInteger에서 exception이 끝나지만 버그 대비
     }
 
-    private void checkAllLottoInput(String input) {
-        checkEmpty(input);
-        checkLength(parser.parseLottoNumber(input));
-        checkEachSpace(parser.parseLottoNumber(input));
-        checkDuplicate(input);
-        checkChar(parser.parseLottoNumber(input));
+    private void checkAllLottoInput(List<Integer> numbers) {
+        checkLength(numbers);
+        checkEmpty(numbers.toString());
     }
 
-    private void checkLength(List<String> strings) {
-        if(strings.size() != 6)
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리를 입력해야합니다.");
+    private void checkLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리여야 합니다.");
+        }
     }
 
     private void checkChar(List<String> userlottoList) {
@@ -111,19 +119,19 @@ public class Validator {
     }
 
     private void compareDuplicateOfBonus(int having, int bonus) {
-        if (having == bonus)
+        if (having == bonus) {
             throwDuplicateException();
+        }
     }
 
     private void compareDuplicate(int i, List<String> userlottoList) {
-        for (int j = i + 1; j < userlottoList.size(); j++)
+        for (int j = i + 1; j < userlottoList.size(); j++) {
             checkEqual(userlottoList.get(i), userlottoList.get(j));
+        }
     }
 
     private void checkEqual(String lotto1, String lotto2) {
         if(lotto1.equals(lotto2)) {
-            System.out.println(lotto1 + lotto2);
-            having_lotto = null;
             throwDuplicateException();
         }
     }
@@ -133,6 +141,7 @@ public class Validator {
     }
 
     private void throwDuplicateException() {
+        having_lotto = null;
         throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
     }
 

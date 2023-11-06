@@ -3,6 +3,7 @@ package lotto;
 import util.Validator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,10 +15,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        validator.checkLottoInput(numbers.toString());
+        validator.checkLottoInput(numbers);
+        changeIntegerToString(numbers);
+    }
+
+    private void changeIntegerToString(List<Integer> numbers) {
+        String numberString = numbers.stream().map(String::valueOf)
+                .collect(Collectors.joining(","));
+        System.out.println(numberString);
+        validator.checkLottoStringInput(numberString);
     }
 
     // TODO: 추가 기능 구현

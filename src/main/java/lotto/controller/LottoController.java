@@ -77,12 +77,12 @@ public class LottoController {
         return validBonusNum;
     }
 
-    public List<List<Integer>> purchaseLotto(int totalPrice) {
+    private List<List<Integer>> purchaseLotto(int totalPrice) {
         List<List<Integer>> purchased = Lotto.getManyLotto(totalPrice/SINGLE_LOTTO_PRICE);
         outputView.printQuantityAndAllLottoNumbers(purchased.size(), purchased);
         return purchased;
     }
-    public Map<LottoRanks, Integer> compareLotto(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
+    private Map<LottoRanks, Integer> compareLotto(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
         Comparing nextPhase = new Comparing(winningNum, bonusNum);
         return nextPhase.getResult(purchased);
     }

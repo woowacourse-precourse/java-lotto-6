@@ -1,7 +1,5 @@
 package lotto.exception;
 
-import lotto.util.Converter;
-
 public class LottoPurchaseAmountException {
     private static final String CAN_DIVIDE_THOUSAND_MESSAGE = "구매 금액은 1,000으로 나누어 떨어져야 합니다.";
     private static final String IS_NUMBER_MESSAGE = "구매 금액은 숫자를 입력해주셔야 합니다.";

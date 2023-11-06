@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ConverterTest {
-    private Converter converter;
+class StringToIntegerConverterTest {
+    private StringToIntegerConverter stringToIntegerConverter;
 
     @BeforeEach
     void setUp(){
-        converter = new Converter();
+        stringToIntegerConverter = new StringToIntegerConverter();
     }
 
     @Test
@@ -21,7 +21,7 @@ class ConverterTest {
         String input = "123";
         int answer = 123;
         //when
-        int result = converter.stringToInteger(input);
+        int result = stringToIntegerConverter.stringToInteger(input);
         //then
         assertEquals(result, answer);
 

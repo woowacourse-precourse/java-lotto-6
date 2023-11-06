@@ -1,5 +1,7 @@
 package lotto.model.number;
 
+import lotto.util.Validator;
+
 public enum LottoNumber {
     ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5),
     SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10),
@@ -18,12 +20,8 @@ public enum LottoNumber {
     }
 
     public static LottoNumber of(int number) {
-        for (LottoNumber lottoNumber : LottoNumber.values()) {
-            if (lottoNumber.number == number) {
-                return lottoNumber;
-            }
-        }
-        throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자만 가능합니다.");
+        Validator.validateLottoNumber(number);
+        return LottoNumber.values()[number - 1];
     }
 
     public int getNumber() {

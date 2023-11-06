@@ -8,6 +8,7 @@ public class OutputView {
 
     public static void error(String message) {
         System.out.println(message);
+        System.out.println();
     }
 
     public static void lottoInfo(List<Lotto> lottos, int count) {

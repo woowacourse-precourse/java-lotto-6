@@ -8,11 +8,11 @@ public enum Rank {
     FIFTH(3, false, 0, 5000, "3개 일치 (5,000원) - %d개\n"),
     FAIL(0, false, 0, 0, "");
 
-    private int lottoMatchCount;
-    private boolean bonusRequired;
+    private final int lottoMatchCount;
+    private final boolean bonusRequired;
     private int winningCount;
-    private int prize;
-    private String prizeText;
+    private final int prize;
+    private final String prizeText;
 
     Rank(int lottoMatchCount, boolean bonusRequired, int winningCount, int prize, String prizeText) {
         this.lottoMatchCount = lottoMatchCount;
@@ -36,10 +36,6 @@ public enum Rank {
     }
 
     public int getCount() {
-        return this.winningCount;
-    }
-
-    public int getWinningCount() {
         return this.winningCount;
     }
 

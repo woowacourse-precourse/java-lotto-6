@@ -64,8 +64,8 @@ class WinningLottoTest {
     @DisplayName("당첨 등수를 계산한다. - 5개 일치, 보너스 번호 일치")
     @Test
     void calculateRankWhenFiveAndBonusMatched() {
-        init(List.of(1, 2, 3, 4, 5, 45));
-        winningLotto.setBonusNumber(45);
+        init(List.of(1, 2, 3, 4, 5, 44));
+        winningLotto.setBonusNumber(6);
 
         LottoRank lottoRank = winningLotto.calculateRank(lotto);
 
@@ -86,7 +86,7 @@ class WinningLottoTest {
     @DisplayName("당첨 등수를 계산한다. - 4개 일치")
     @Test
     void calculateRankWhenFourMatched() {
-        init(List.of(1, 2, 3, 4, 44, 45));
+        init(List.of(1, 2, 3, 4, 43, 44));
         winningLotto.setBonusNumber(45);
 
         LottoRank lottoRank = winningLotto.calculateRank(lotto);
@@ -97,7 +97,7 @@ class WinningLottoTest {
     @DisplayName("당첨 등수를 계산한다. - 3개 일치")
     @Test
     void calculateRankWhenThreeMatched() {
-        init(List.of(1, 2, 3, 43, 44, 45));
+        init(List.of(1, 2, 3, 42, 43, 44));
         winningLotto.setBonusNumber(45);
 
         LottoRank lottoRank = winningLotto.calculateRank(lotto);

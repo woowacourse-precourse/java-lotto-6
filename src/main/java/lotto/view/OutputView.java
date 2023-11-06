@@ -16,16 +16,16 @@ public class OutputView {
         System.out.println(lottoNumberList.get(lottoNumberList.size()-1) + "]");
     }
 
-    private static void responseWinningResult() {
+    public static void responseWinningResult() {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
 
-    private static void responseWinningResultDetails(String message, int numberOfMatch) {
+    public static void responseWinningResultDetails(String message, int numberOfMatch) {
         System.out.println(message + numberOfMatch + "개");
     }
 
-    public static void responseRateOfReturn(double earingRate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", earingRate) + "입니다.");
+    public static void responseRateOfReturn(double earningRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
     }
 }

@@ -12,6 +12,6 @@ public class Money {
         revenue = Math.round(revenue * 100.0) / 100.0;
         DecimalFormat formatter = new DecimalFormat("#,###.###");
         String totalRevenue = formatter.format(revenue);
-        System.out.println("총 수익률은 "+totalRevenue+"%입니다.");
+        System.out.println("총 수익률은 " + totalRevenue + "%입니다.");
     }
 }

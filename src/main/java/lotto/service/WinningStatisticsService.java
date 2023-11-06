@@ -3,13 +3,12 @@ package lotto.service;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.dto.WinningStatisticsDto;
 
 public class WinningStatisticsService {
     private final LottoService lottoService;
-    private Map<WinningPolicy, Integer> winningStatistics = new EnumMap<>(WinningPolicy.class);
+    private final Map<WinningPolicy, Integer> winningStatistics = new EnumMap<>(WinningPolicy.class);
 
     public WinningStatisticsService(LottoService lottoService) {
         this.lottoService = lottoService;
@@ -41,9 +40,9 @@ public class WinningStatisticsService {
     }
 
     public double getEarningRate(int purchasePrice) {
-        return winningStatistics.entrySet().stream()
+        return ((Integer) winningStatistics.entrySet().stream()
                 .map(entry -> entry.getKey().getAmount() * entry.getValue())
-                .collect(Collectors.summingInt(Integer::intValue))
+                .mapToInt(Integer::intValue).sum())
                 .doubleValue() / purchasePrice * 100;
     }
 }

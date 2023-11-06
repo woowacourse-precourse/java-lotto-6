@@ -22,6 +22,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        int uniqueNumberSize = numbers.stream()
+                .distinct()
+                .toList()
+                .size();
+        if (uniqueNumberSize != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public boolean contains(int number) {

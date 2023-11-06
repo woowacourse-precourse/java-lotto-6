@@ -29,12 +29,12 @@ public class Wallet {
     }
 
     public boolean canPurchaseLotto() {
-        return money < LottoOption.LOTTO_PRICE;
+        return money >= LottoOption.LOTTO_PRICE;
     }
 
     public void payLotto() {
         if (canPurchaseLotto()) {
-            this.money -= money;
+            this.money -= LottoOption.LOTTO_PRICE;
             return;
         }
         throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_MONEY);

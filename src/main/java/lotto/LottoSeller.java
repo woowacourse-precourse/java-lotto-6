@@ -20,4 +20,8 @@ public class LottoSeller {
             }
         }
     }
+
+    private void printLottoCount(Money money) {
+        outputView.printLottoCount(money);
+    }
 }

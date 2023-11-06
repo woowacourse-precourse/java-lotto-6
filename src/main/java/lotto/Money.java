@@ -11,6 +11,10 @@ public class Money {
         this.money = money;
     }
 
+    public int getLottoCount() {
+        return money / 1000;
+    }
+
     private void validate(int money) {
         if (money % THOUSAND != 0) {
             throw new MoneyFormatException();

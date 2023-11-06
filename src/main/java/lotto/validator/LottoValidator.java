@@ -25,11 +25,21 @@ public class LottoValidator {
         }
     }
 
+    public static void validateRange(List<Integer> numbers) {
+        if (outOfRange(numbers)) {
+            throw new LottoOutOfRangeException();
+        }
+    }
 
     private static boolean hasDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         return numbers.stream()
                 .anyMatch(num -> !uniqueNumbers.add(num));
+    }
+
+    private static boolean outOfRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
     }
 
 

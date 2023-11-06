@@ -8,6 +8,7 @@ import static lotto.Util.Util.convertStringToInteger;
 
 import java.util.LinkedList;
 import java.util.List;
+import lotto.DiContainer.DiContainer;
 import lotto.Domain.Lotto;
 import lotto.Exception.LottoException;
 

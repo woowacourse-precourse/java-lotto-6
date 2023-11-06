@@ -1,33 +1,35 @@
 package lotto.Controller;
 
+import lotto.DiContainer.DiContainer;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.Money;
 import lotto.Domain.WinningLotto.WinningLotto;
 import lotto.Model.LottoResultHandlerModel;
 import lotto.VIew.InputView;
-import lotto.VIew.InputViewImpl;
 import lotto.VIew.OutputView;
-import lotto.VIew.OutputViewImpl;
 
 public class LottoController {
 
+    private final DiContainer diContainer;
     private final InputView inputView;
     private final OutputView outputView;
 
     private LottoController() {
-        inputView = InputViewImpl.of();
-        outputView = OutputViewImpl.of();
+        diContainer = DiContainer.of();
+        inputView = diContainer.getInputView();
+        outputView = diContainer.getOutputView();
     }
 
-    public static LottoController of(){
+    public static LottoController of() {
         return new LottoController();
     }
 
-    public void startProcess(){
+    public void startProcess() {
         Money money = getMoney();
         LottoGroup lottoGroup = getLottoGroup(money);
         WinningLotto winningLotto = getWinningLotto();
-        LottoResultHandlerModel lottoResultHandlerModel = LottoResultHandlerModel.of(winningLotto, lottoGroup);
+        LottoResultHandlerModel lottoResultHandlerModel =
+                diContainer.getLottoResultHandlerModel(winningLotto, lottoGroup);
 
         outputView.printLottoResult(lottoResultHandlerModel.getLottoResult());
         outputView.printProfitRate(lottoResultHandlerModel.findProfitRate());

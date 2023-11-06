@@ -9,9 +9,22 @@ import java.util.List;
 import static lotto.ErrorCode.*;
 
 public class Application {
+    private static boolean[] isExistNumber;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입 금액을 입력해 주세요.");
+        int times = purchaseLotto();
+        System.out.println(times + "개를 구매했습니다.");
+        List<Lotto> lottoList = issueLotto(times);
+
+        System.out.println("당첨 번호를 입력해주세요.");
+        Lotto winningLotto = drawLotto();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = drawBonus();
+    }
+
+    private static int purchaseLotto() {
         int number = 0;
         while (number == 0) {
             try {
@@ -20,22 +33,21 @@ public class Application {
                 handleException(e);
             }
         }
-
-        System.out.println(number + "개를 구매했습니다.");
-        List<Lotto> lottoList = issueLotto(number);
-
-        boolean[] isExistNumber = new boolean[47];
-        Lotto winningLotto = drawLotto(isExistNumber);
-        int bonusNumber = drawBonus(isExistNumber);
+        return number;
     }
 
-    private static Lotto drawLotto(boolean[] isExistNumber){
-        System.out.println("당첨 번호를 입력해주세요.");
+    private static int purchase() throws IllegalArgumentException {
+        int input = Integer.parseInt(Console.readLine());
+        if (input % 1000 != 0)
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR.getMessage());
+        return input / 1000;
+    }
+
+    private static Lotto drawLotto() {
         Lotto winningLotto = null;
         while (winningLotto == null) {
-            isExistNumber = new boolean[47];
             try {
-                winningLotto = getWinningLotto(isExistNumber);
+                winningLotto = getWinningLotto();
             } catch (RuntimeException e) {
                 handleException(e);
             }
@@ -43,12 +55,11 @@ public class Application {
         return winningLotto;
     }
 
-    private static int drawBonus(boolean[] isExistNumber){
-        System.out.println("보너스 번호를 입력해 주세요.");
+    private static int drawBonus() {
         int bonusNumber = 0;
         while (bonusNumber == 0) {
             try {
-                bonusNumber = getBonusNumber(isExistNumber);
+                bonusNumber = getBonusNumber();
             } catch (RuntimeException e) {
                 handleException(e);
             }
@@ -56,30 +67,31 @@ public class Application {
         return bonusNumber;
     }
 
-    private static Lotto getWinningLotto(boolean[] isExistNumber) {
+    private static Lotto getWinningLotto() {
+        isExistNumber = new boolean[47];
         List<Integer> winningNumbers = new ArrayList<>();
         String[] input = Console.readLine().split(",");
         if (input.length != 6)
             throw new IllegalArgumentException(LOTTERY_SIZE_ERROR.getMessage());
         for (String s : input) {
             int number = Integer.parseInt(s);
-            validateNumber(isExistNumber, number);
+            validateNumber(number);
             winningNumbers.add(number);
             isExistNumber[number] = true;
         }
         return new Lotto(winningNumbers);
     }
 
-    private static void validateNumber(boolean[] isExistNumber, int number) {
+    private static void validateNumber(int number) {
         if (number < 1 || number > 45)
             throw new IllegalArgumentException(LOTTERY_NUMBER_RANGE_ERROR.getMessage());
         if (isExistNumber[number])
             throw new IllegalArgumentException(LOTTERY_NUMBER_DUPLICATED_ERROR.getMessage());
     }
 
-    private static int getBonusNumber(boolean[] isExistNumber) {
+    private static int getBonusNumber() {
         int number = Integer.parseInt(Console.readLine());
-        validateNumber(isExistNumber, number);
+        validateNumber(number);
         isExistNumber[number] = true;
         return number;
     }
@@ -96,12 +108,5 @@ public class Application {
 
     private static void handleException(RuntimeException e) {
         System.out.println("[ERROR] " + e.getMessage());
-    }
-
-    private static int purchase() throws IllegalArgumentException {
-        int input = Integer.parseInt(Console.readLine());
-        if (input % 1000 != 0)
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR.getMessage());
-        return input / 1000;
     }
 }

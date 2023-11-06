@@ -11,6 +11,11 @@ public class AnswerLotto {
         validateAnswerLotto(numbers);
         this.numbers = numbers;
     }
+    public int countMatchNumber(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::hasNumber)
+                .count();
+    }
 
     public boolean hasNumber(int number) {
         return numbers.stream()

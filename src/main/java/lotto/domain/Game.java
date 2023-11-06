@@ -4,7 +4,6 @@ import lotto.enums.Ranking;
 import lotto.utils.Messages;
 import lotto.utils.Reader;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,7 @@ public class Game {
             checkMachineLoad();
 
             Messages.inputMoney();
-            player = new Player(inputMoney());
+            player = new Player(Reader.readInteger());
             Messages.newLine();
         } catch (IllegalArgumentException e) {
             Messages.inputMoneyError();
@@ -46,7 +45,7 @@ public class Game {
             checkPlayerJoin();
 
             Messages.inputWinningNumbers();
-            List<Integer> winningNumbers = inputWinningNumbers();
+            List<Integer> winningNumbers = Reader.readIntegerList(",", -1);
             Lotto lotto = new Lotto(winningNumbers);
             Messages.newLine();
             drawBonusNumber(lotto);
@@ -60,7 +59,7 @@ public class Game {
     private void drawBonusNumber(Lotto lotto) {
         try {
             Messages.inputBonusNumber();
-            int bonusNumber = inputBonusNumber();
+            int bonusNumber = Reader.readInteger();
             winningLotto = new WinningLotto(lotto, bonusNumber);
             Messages.newLine();
         } catch (IllegalArgumentException e) {
@@ -78,27 +77,6 @@ public class Game {
         Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player.getLottos(), winningLotto);
         LottoResult lottoResult = new LottoResult(rankingCounts, player.getMoney());
         Messages.print(lottoResult);
-    }
-
-    private int inputMoney() {
-        String input = Reader.readLine().strip();
-        return Integer.parseInt(input);
-    }
-
-    private List<Integer> inputWinningNumbers() {
-        String input = Reader.readLine();
-
-        List<Integer> winningNumbers = Arrays.stream(input.split(",", -1))
-                .map(String::strip)
-                .map(Integer::parseInt)
-                .toList();
-
-        return winningNumbers;
-    }
-
-    private int inputBonusNumber() {
-        String input = Reader.readLine().strip();
-        return Integer.parseInt(input);
     }
 
     private void checkMachineLoad() {

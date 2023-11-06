@@ -37,7 +37,8 @@
 - *answerNumberAsk
 - *bonusNumberAsk
 - *correctStatisPrint
-- lottoBuyPaperPrint
+- *lottoBuyPaperPrint
+- *lottoAllPaperPrint
 - correctPaperTotalPrint
 - correctPaperPrint
 - revenueRatePrint

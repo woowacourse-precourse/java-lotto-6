@@ -40,4 +40,8 @@ public class Lotto {
         return numbers.stream().distinct().count() != 6;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

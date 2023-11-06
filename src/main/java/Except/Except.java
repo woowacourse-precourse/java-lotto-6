@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Except {
     private static Message numberIncorrect = Message.numberIncorrectFormat;
+    private static Message numberOutOfRange = Message.numberOutOfRange;
     private static Message outOfRange = Message.moneyOutOfRange;
     private static Message invalidFormat = Message.moneyInvalidFormat;
     private static final String INTEGER_REGEX = "^-?\\d+$";
@@ -49,6 +50,18 @@ public class Except {
         } catch (IllegalArgumentException iae) {
             result = "";
             System.out.println(numberIncorrect.getMessage());
+        }
+        return result;
+    }
+    public int numberCheckNumber(String number){
+        int result = outOfRange.getCode();
+        try {
+            if (!number.matches(INTEGER_REGEX)) {
+                throw new IllegalArgumentException();
+            }
+            result = Integer.parseInt(number);
+        } catch (IllegalArgumentException iae) {
+            System.out.println(outOfRange.getMessage());
         }
         return result;
     }

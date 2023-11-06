@@ -76,11 +76,6 @@ public class Application {
 
         userNumbers.retainAll(winningNumbersSet);
 
-        for (int number : userNumbers) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
         int matchCount = userNumbers.size();
         if (matchCount == 5 && userNumbers.contains(winningNumbers.getBonusNumber())) {
             matchCount = 6;

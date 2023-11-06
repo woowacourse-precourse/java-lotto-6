@@ -15,13 +15,13 @@ public class InputValidator {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(CAN_NOT_CONVERT_INTEGER_MESSAGE.getMessage());
+            throw new IllegalArgumentException(CAN_NOT_CONVERT_INTEGER_MESSAGE.getErrorMessage());
         }
     }
 
     private static void validateAmountFormat(int amount) {
         if (amount % DIVISION_UNIT != 0) {
-            throw new IllegalArgumentException(CAN_NOT_SATISFY_INTEGER_CONDITION.getMessage());
+            throw new IllegalArgumentException(CAN_NOT_SATISFY_INTEGER_CONDITION.getErrorMessage());
         }
     }
 }

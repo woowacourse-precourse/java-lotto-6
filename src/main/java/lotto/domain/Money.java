@@ -16,6 +16,10 @@ public class Money {
         return money / UNIT;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private void validateMoney(int money) {
         validateNotZero(money);
         validateDivisibleByUnit(money);

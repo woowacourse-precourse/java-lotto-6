@@ -23,21 +23,21 @@ public class LottoController {
     }
 
     public void startLotto() {
-        buyLottos();
+        buyUserLottos();
         announceUserLotto();
         drawAnswerLotto();
         calculateWinningResult();
         announceWinningResult();
     }
 
-    private void buyLottos() {
-        String inputPurchasePrice = inputView.askPurchasePrice();
+    private void buyUserLottos() {
         try {
+            String inputPurchasePrice = inputView.askPurchasePrice();
             int purchasePrice = inputValidator.validateNumber(inputPurchasePrice);
             lottoService.buyLottos(purchasePrice);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            buyLottos();
+            buyUserLottos();
         }
     }
 

@@ -29,11 +29,11 @@ public class PrizeResultTest {
 
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
 
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIFTH)).isEqualTo(1);
 
         assertThat(prizeResult.getPrizeMoney()).isEqualTo(5000);
     }
@@ -45,11 +45,11 @@ public class PrizeResultTest {
 
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
 
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(1);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FOURTH)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIFTH)).isEqualTo(0);
 
         assertThat(prizeResult.getPrizeMoney()).isEqualTo(50000);
     }
@@ -61,11 +61,11 @@ public class PrizeResultTest {
 
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
 
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(1);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.THIRD)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIFTH)).isEqualTo(0);
 
         assertThat(prizeResult.getPrizeMoney()).isEqualTo(1500000);
     }
@@ -77,11 +77,11 @@ public class PrizeResultTest {
 
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
 
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(1);
-        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIFTH)).isEqualTo(0);
 
         assertThat(prizeResult.getPrizeMoney()).isEqualTo(30000000);
     }
@@ -93,11 +93,11 @@ public class PrizeResultTest {
 
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
 
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(1);
-        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(1);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIFTH)).isEqualTo(0);
 
         assertThat(prizeResult.getPrizeMoney()).isEqualTo(2000000000);
     }
@@ -109,11 +109,11 @@ public class PrizeResultTest {
 
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
 
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIRST)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.SECOND)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.THIRD)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FOURTH)).isEqualTo(0);
-        assertThat(prizeResult.getPrizeCount().get(Prize.FIFTH)).isEqualTo(2);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIRST)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.SECOND)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.THIRD)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FOURTH)).isEqualTo(0);
+        assertThat(prizeResult.getPrizeCounts().get(Prize.FIFTH)).isEqualTo(2);
 
         assertThat(prizeResult.getPrizeMoney()).isEqualTo(10000);
     }

@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
-import lotto.domain.lotto.dto.LottoNumberMatchDTO;
+import lotto.dto.LottoNumberMatchDTO;
 
 public class WinningLottoNumbers {
 

@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
-import lotto.domain.lotto.dto.LottoNumbersDTO;
+import lotto.dto.LottoNumbersDTO;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
 import org.assertj.core.api.Assertions;

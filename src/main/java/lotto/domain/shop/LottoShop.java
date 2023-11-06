@@ -2,7 +2,7 @@ package lotto.domain.shop;
 
 import java.util.List;
 import lotto.domain.lotto.LottoNumbersGenerator;
-import lotto.domain.lotto.dto.LottoNumbersDTO;
+import lotto.dto.LottoNumbersDTO;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
 

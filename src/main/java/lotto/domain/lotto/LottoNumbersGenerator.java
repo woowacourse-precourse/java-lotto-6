@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.lotto.dto.LottoNumbersDTO;
+import lotto.dto.LottoNumbersDTO;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 
 public class LottoNumbersGenerator {

@@ -17,15 +17,26 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         for (Integer number : numbers) {
-            if(numbers.indexOf(number)!=numbers.lastIndexOf(number)){
+            if (numbers.indexOf(number) != numbers.lastIndexOf(number)) {
                 throw new IllegalArgumentException();
             }
         }
     }
 
-    public static WinningRank matchUserNumberWithWinningNumbers(List<Integer> winningNumbers, int BonusNumbers) {
-        return WinningRank.FIRST_WINNING;
+    public Map<String, Integer> matchUserNumberWithWinningNumbers(List<Integer> winningNumbers, int bonusNumbers) {
+        Map<String, Integer> matchingResult = new HashMap<>();
+        matchingResult.put("matchingWinningNumbers", 0);
+        matchingResult.put("matchingBonusNumbers", 0);
+        for (Integer winningNumber : winningNumbers) {
+            if (this.numbers.contains(winningNumber)) {
+                Integer i = matchingResult.get("matchingWinningNumbers");
+                matchingResult.put("matchingWinningNumbers", i + 1);
+            }
+        }
+        if (this.numbers.contains(bonusNumbers)) {
+            matchingResult.put("matchingBonusNumbers", 1);
+        }
+        return matchingResult;
     }
 
-    // TODO: 추가 기능 구현
 }

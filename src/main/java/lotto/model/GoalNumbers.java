@@ -21,7 +21,7 @@ public class GoalNumbers {
         List<LottoNumber> numbers = Stream.of(splitNumbers)
                 .map(LottoNumber::from)
                 .toList();
-        LottoRule.validateNumbersLength(numbers);
+        LottoRule.validateNumbersSize(numbers.size());
         validateIsNumbersNotDuplicate(numbers);
 
         return new GoalNumbers(numbers);

@@ -4,9 +4,6 @@ import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.MONEY_REMAIN_EXCEPTION;
 import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
 
-import lotto.model.LottoNumber;
-import java.util.List;
-
 public enum LottoRule {
 
     MINIMUM_NUMBER(1),
@@ -22,8 +19,8 @@ public enum LottoRule {
         this.value = value;
     }
 
-    public static void validateNumbersLength(final List<LottoNumber> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_LENGTH.value) {
+    public static void validateNumbersSize(final int numbersSize) {
+        if (numbersSize != LOTTO_NUMBER_LENGTH.value) {
             throw new IllegalArgumentException(GOAL_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }

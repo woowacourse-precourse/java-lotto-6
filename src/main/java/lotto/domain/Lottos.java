@@ -31,12 +31,21 @@ public class Lottos {
     }
 
     public EnumMap<Rank, Integer> getRankResult(final WinningLotto winningLotto) {
-        EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
+        EnumMap<Rank, Integer> rankResult = initializeRankResultWithDefaultValue();
         for (Lotto lotto : lottos) {
             int matchingCount = winningLotto.countMatchingNumber(lotto);
             boolean bonusNumberExistence = winningLotto.hasBonusNumber(lotto);
             Rank result = Rank.find(matchingCount, bonusNumberExistence);
             rankResult.put(result, rankResult.getOrDefault(result, 0) + 1);
+        }
+        return rankResult;
+    }
+
+    private EnumMap<Rank, Integer> initializeRankResultWithDefaultValue() {
+        EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
+        int defaultValue = 0;
+        for (Rank rank : Rank.values()) {
+            rankResult.put(rank, defaultValue);
         }
         return rankResult;
     }

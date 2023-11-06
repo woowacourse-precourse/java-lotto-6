@@ -32,10 +32,10 @@ public class Lotteries {
                 RankConstant.FIFTH, 0
         );
 
-        for (Lotto lotto:lotteries) {
+        for (Lotto lotto : lotteries) {
             String result = lotto.calculateRank(winningNumber, bonusNumber);
 
-            if(!result.equals(RankConstant.NONE)) statics.put(result, statics.get(result) + 1);
+            if (!result.equals(RankConstant.NONE)) statics.put(result, statics.get(result) + 1);
         }
 
         return statics;

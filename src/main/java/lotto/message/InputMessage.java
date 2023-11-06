@@ -11,7 +11,7 @@ public enum InputMessage {
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 }

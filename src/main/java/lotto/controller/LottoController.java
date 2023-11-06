@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import lotto.generator.BonusNumberGenerator;
-import lotto.generator.LottoGenerator;
-import lotto.generator.WinningNumberGenerator;
 import lotto.domain.model.BonusNumber;
 import lotto.domain.model.Lotteries;
 import lotto.domain.model.WinningNumber;
 import lotto.domain.validator.Validator;
+import lotto.generator.BonusNumberGenerator;
+import lotto.generator.LottoGenerator;
+import lotto.generator.WinningNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

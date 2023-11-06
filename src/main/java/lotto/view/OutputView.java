@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -39,25 +40,30 @@ public class OutputView {
     }
 
     private static void printWinningResult(WinningResult winningResult) {
-        for (WinningStandard standard : winningResult.getWinningResult().keySet()
-                .stream()
-                .sorted(Comparator.comparingInt(standard1 -> standard1.getWinningAmount()))
-                .collect(Collectors.toList())) {
+        List<WinningStandard> sortedStandard = getSortedWinningStandard(winningResult);
+        for (WinningStandard standard : sortedStandard) {
             if (standard == WinningStandard.ETC) {
                 continue;
             }
-
             if (standard == WinningStandard.SECOND) {
-                System.out.printf(OUTPUT_WINNING_SECOND_RESULT, standard.getMatchCount(),
-                        String.format("%,d", standard.getWinningAmount()),
-                        winningResult.getWinningResult().get(standard));
-                System.out.println();
+                printSingleWinningResult(OUTPUT_WINNING_SECOND_RESULT, standard, winningResult);
                 continue;
             }
-            System.out.printf(OUTPUT_WINNING_RESULT, standard.getMatchCount(),
-                    String.format("%,d", standard.getWinningAmount()),
-                    winningResult.getWinningResult().get(standard));
-            System.out.println();
+            printSingleWinningResult(OUTPUT_WINNING_RESULT, standard, winningResult);
         }
+    }
+
+    private static void printSingleWinningResult(String format, WinningStandard standard, WinningResult winningResult) {
+        System.out.printf(format, standard.getMatchCount(),
+                String.format("%,d", standard.getWinningAmount()),
+                winningResult.getWinningResult().get(standard));
+        System.out.println();
+    }
+
+    private static List<WinningStandard> getSortedWinningStandard(WinningResult winningResult) {
+        return winningResult.getWinningResult().keySet()
+                .stream()
+                .sorted(Comparator.comparingInt(WinningStandard::getWinningAmount))
+                .collect(Collectors.toList());
     }
 }

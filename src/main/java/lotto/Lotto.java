@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,14 +18,29 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public int matchCount(List<Integer> winnings) {
-        int ret = 0;
+    public LottoMatchResult match(List<Integer> winnings, int bonus) {
+        int matchCount = 0;
         for (Integer w : winnings) {
             if (numbers.contains(w)) {
-                ret += 1;
+                matchCount += 1;
             }
         }
-        return ret;
+        if (matchCount < 3) {
+            return LottoMatchResult.MATCH_NONE;
+        }
+        if (matchCount == 3) {
+            return LottoMatchResult.MATCH_THREE;
+        }
+        if (matchCount == 4) {
+            return LottoMatchResult.MATCH_FOUR;
+        }
+        if (matchCount == 5 && !numbers.contains(bonus)) {
+            return LottoMatchResult.MATCH_FIVE;
+        }
+        if (matchCount == 5 && numbers.contains(bonus)) {
+            return LottoMatchResult.MATCH_FIVE_BONUS;
+        }
+        return LottoMatchResult.MATCH_SIX;
     }
 
     public boolean matchBonus(Integer bonus) {

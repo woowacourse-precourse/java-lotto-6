@@ -10,19 +10,19 @@ import lotto.domain.WinningLotto;
 
 public class InputConvertor {
 
-    private static int convertStringtoInt(String input) {
+    private static int convertStringtoInt(final String input) {
         return Integer.parseInt(input);
     }
 
-    public static Money convertMoney(String input) {
+    public static Money convertMoney(final String input) {
         return Money.from(convertStringtoInt(input));
     }
 
-    public static Bonus convertBonus(String input) {
+    public static Bonus convertBonus(final String input) {
         return Bonus.from(convertStringtoInt(input));
     }
 
-    public static WinningLotto convertWinnings(String input) {
+    public static WinningLotto convertWinnings(final String input) {
         List<String> numbers = splitWinnings(input);
         List<Integer> winningNumbers = numbers.stream().
                 map(InputConvertor::convertStringtoInt)
@@ -30,7 +30,7 @@ public class InputConvertor {
         return WinningLotto.createWinningLottos(winningNumbers);
     }
 
-    public static List<String> splitWinnings(String input) {
+    public static List<String> splitWinnings(final String input) {
         return Arrays.asList(input.split(InputConstants.WINNING_DELIMITER.getConstants()));
     }
 

@@ -17,7 +17,7 @@ public class InputValidator {
     private static final Pattern NUMBER = compile(NUMBER_MATCH_REGEX);
 
 
-    public static String validate(String input) {
+    public static String validate(final String input) {
         if (IsNull(input)) {
             throw new NullPointerException("[ERROR] 사용자의 입력이 null 입니다.");
         }
@@ -30,24 +30,24 @@ public class InputValidator {
         return input;
     }
 
-    private static boolean IsEmptyString(String input) {
+    private static boolean IsEmptyString(final String input) {
         return input.isEmpty();
     }
 
-    private static boolean IsNull(String input) {
+    private static boolean IsNull(final String input) {
         return input == null;
     }
 
-    private static boolean isBlankString(String input) {
+    private static boolean isBlankString(final String input) {
         return input.isBlank();
     }
 
-    public static String validateMoney(String input) {
+    public static String validateMoney(final String input) {
         String money = input.replace(",", "");
         return validateInt(money);
     }
 
-    public static String validateWinnings(String winnings) {
+    public static String validateWinnings(final String winnings) {
         List<String> input = Arrays.asList(winnings.split(InputConstants.WINNING_DELIMITER.getConstants()));
         List<String> duplicated = input.stream().map(InputValidator::validateLottoNumber).distinct().toList();
         if (input.size() != duplicated.size()) {
@@ -60,7 +60,7 @@ public class InputValidator {
         return winnings;
     }
 
-    public static String validateLottoNumber(String input) {
+    public static String validateLottoNumber(final String input) {
         String number = validateInt(input);
         if (!IsRange(number)) {
             throw new IllegalArgumentException(
@@ -70,13 +70,13 @@ public class InputValidator {
         return number;
     }
 
-    private static boolean IsRange(String input) {
+    private static boolean IsRange(final String input) {
         int number = Integer.parseInt(input);
         return LottoConstants.MIN_NUMBER.getConstants() <= number
                 && number <= LottoConstants.MAX_NUMBER.getConstants();
     }
 
-    public static String validateInt(String input) {
+    public static String validateInt(final String input) {
         if (!IsInPattern(input, NUMBER)) {
             throw new NumberFormatException("[ERROR] 양의 정수만 입력해주세요");
         }
@@ -86,12 +86,12 @@ public class InputValidator {
         return input;
     }
 
-    private static boolean IsInPattern(String input, Pattern pattern) {
+    private static boolean IsInPattern(final String input, final Pattern pattern) {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
     }
 
-    private static boolean IsBoundary(String input) {
+    private static boolean IsBoundary(final String input) {
         try {
             int isInt = Integer.parseInt(input);
         } catch (NumberFormatException e) {

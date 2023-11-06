@@ -12,7 +12,7 @@ public class InputView {
     private static final String WINNING_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    private static String getInput(String message) {
+    private static String getInput(final String message) {
         System.out.println(message);
         try {
             return InputValidator.validate(Console.readLine());

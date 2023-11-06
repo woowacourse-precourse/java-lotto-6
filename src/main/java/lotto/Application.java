@@ -30,6 +30,11 @@ public class Application {
     	}
     }
     
+    public static void countSize(List<Integer> calculateSize) {
+    	if (calculateSize.size() > 6)
+    		throw new IllegalArgumentException();
+    }
+    
     public static void printResult(List<Integer> lottoNum) {
     	System.out.println("당첨 통계");
     	System.out.println("---");

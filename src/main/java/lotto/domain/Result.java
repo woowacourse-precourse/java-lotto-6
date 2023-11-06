@@ -17,4 +17,8 @@ public class Result {
                 .mapToDouble(result -> result.getKey().getWinningAmount() * result.getValue())
                 .sum();
     }
+
+    public double totalBuyLottoAmount() {
+        return 0;
+    }
 }

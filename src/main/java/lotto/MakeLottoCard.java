@@ -12,13 +12,7 @@ public class MakeLottoCard {
     }
 
     public List<Integer> pickNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < 7) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 7);
         return numbers;
     }
 

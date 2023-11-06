@@ -26,18 +26,12 @@
   - Profit Percentage
     - round to the second place
     -  profit = total_jackpot / boughtAmount * 100
-  - jackpot stats
+  - Jackpot Stats
     - (ex)
       -  3개 일치 (5,000원) - 1개
       -  4개 일치 (50,000원) - 0개
       -  5개 일치 (1,500,000원) - 0개
-      -  5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+      -  5개 일치, 보너스 넘버 일치 (30,000,000원) - 0개
       -  6개 일치 (2,000,000,000원) - 0개
       -  총 수익률은 62.5%입니다.
 
--  ## common methods to be built
-  - exceptions
-    - 1~45 integers
-      - throw if non-integer or negative
-  - uniqueSix()
-    - check if lotto numbers are unique

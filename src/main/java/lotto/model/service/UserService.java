@@ -17,4 +17,8 @@ public class UserService {
         user.increaseMoneyOfReturn(rank.getPrize());
         user.increaseUserRank(identifyNum);
     }
+
+    public float calcutateProfitRate(User user) {
+        return  100 * ((float) user.getMoneyOfReturn() /user.getPurchaseMoney());
+    }
 }

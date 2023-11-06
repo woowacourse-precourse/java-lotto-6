@@ -1,9 +1,9 @@
 package lotto.service.exception;
 
-public class HandleNumberFormattingException extends NumberFormatException{
+public class NumberFormattingExceptionHandler extends NumberFormatException{
     private final InputErrorMessage exception;
 
-    public HandleNumberFormattingException(InputErrorMessage exception) {
+    public NumberFormattingExceptionHandler(InputErrorMessage exception) {
         super(exception.getMessage());
         this.exception = exception;
     }

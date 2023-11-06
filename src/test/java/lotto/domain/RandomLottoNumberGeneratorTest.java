@@ -45,6 +45,17 @@ class RandomLottoNumberGeneratorTest {
         }
 
         //then
-        Assertions.assertThat(flag).isEqualTo(true);
+        assertThat(flag).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("생성한 6자리 숫자는 1 ~ 45 범위 내 숫자이다.")
+    void NumberRangeTest() {
+        //given
+
+        //when
+
+        //then
+        assertThat(randomNumbers.stream().filter(num -> num < 1 || num > 45).count()).isEqualTo(0);
     }
 }

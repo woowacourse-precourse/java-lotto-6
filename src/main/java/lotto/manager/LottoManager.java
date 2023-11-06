@@ -16,19 +16,30 @@ import lotto.io.LottoOutputView;
 public class LottoManager {
     private final LottoInputView inputView = new LottoInputView();
     private final LottoOutputView outputView = new LottoOutputView();
-    private List<Lotto> lottoPurchaseNumbers = new ArrayList<>();;
+    private List<Lotto> lottoPurchaseNumbers = new ArrayList<>();
 
     public void excute() {
-        LottoPurchase lottoPurchase = new LottoPurchase();
-        lottoPurchase.setLottoPurchase(inputView.readPurchaseAmount());
-        printLottoManager();
-
-        winningCalculatorManager();
-
+        int purchase = purchaseManager();
+        printLottoManager(purchase);
+        winningCalculatorManager(purchase);
     }
 
-    public void printLottoManager() {
-        int lottoPurchaseCount = LottoPurchase.getLottoPurchase() / 1000;
+    public Integer purchaseManager() {
+        LottoPurchase lottoPurchase = null;
+        boolean ispurchased = false;
+        while(!ispurchased) {
+            try {
+                lottoPurchase = new LottoPurchase(inputView.readPurchaseAmount());
+                ispurchased = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoPurchase.getLottoPurchase();
+    }
+
+    public void printLottoManager(int purchase) {
+        int lottoPurchaseCount = purchase / 1000;
         outputView.printLottoPurchaseCount(lottoPurchaseCount);
         for(int i = 0; i<lottoPurchaseCount; i++) {
             lottoPurchaseNumbers.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
@@ -37,18 +48,34 @@ public class LottoManager {
     }
 
     public List<Integer> winningNumberManager() {
-        WinningNumber winningNumber = new WinningNumber();
-        winningNumber.setWinningNumber(inputView.readWinningNumber());
+        WinningNumber winningNumber = null;
+        boolean ispurchased = false;
+        while(!ispurchased) {
+            try {
+                winningNumber = new WinningNumber(inputView.readWinningNumber());
+                ispurchased = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return winningNumber.getWinningNumber();
     }
 
     public Integer bonusNumberManager(List<Integer> winningNumber) {
-        BonusNumber bonusNumber = new BonusNumber(winningNumber);
-        bonusNumber.setBonusNumber(inputView.readBonusNumber());
+        BonusNumber bonusNumber = null;
+        boolean ispurchased = false;
+        while(!ispurchased) {
+            try {
+                bonusNumber = new BonusNumber(winningNumber, inputView.readBonusNumber());
+                ispurchased = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return bonusNumber.getBonusNumber();
     }
 
-    public void winningCalculatorManager() {
+    public void winningCalculatorManager(int purchase) {
         List<Integer> winningNumber = winningNumberManager();
         WinningCalculator winningCalculator
                 = new WinningCalculator(winningNumber, bonusNumberManager(winningNumber));
@@ -59,7 +86,7 @@ public class LottoManager {
         }
         outputView.printWinningStatistics(winningRecord.getAllPrizeCount());
 
-        RateOfReturn rateOfReturn = new RateOfReturn(LottoPurchase.getLottoPurchase(), winningRecord.getAllPrizeCount());
+        RateOfReturn rateOfReturn = new RateOfReturn(purchase, winningRecord.getAllPrizeCount());
         outputView.printRateOfReturn(rateOfReturn.getRateOfReturn());
     }
 }

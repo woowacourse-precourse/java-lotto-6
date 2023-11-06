@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -18,7 +17,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.within;
 
 class LottoTest {
     @Disabled
@@ -42,20 +40,15 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"500a", "천 원", "1장"})
     void createPurchaseAmountByNaN(String amount) {
-        LottoPurchase lottoPurchase = new LottoPurchase();
-
-        assertThatThrownBy(() -> lottoPurchase.setLottoPurchase(amount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 숫자여야 합니다.");
+        assertThatThrownBy(() -> new LottoPurchase(amount))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"500", "1900", "1000.4", "-1000.4"})
     void createPurchaseAmountIndivisibleBy1000(String amount) {
-        LottoPurchase lottoPurchase = new LottoPurchase();
-
-        assertThatThrownBy(() -> lottoPurchase.setLottoPurchase(amount))
+        assertThatThrownBy(() -> new LottoPurchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
     }
@@ -64,9 +57,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1000", "-4000"})
     void createPurchaseAmountByNonPositiveInteger(String amount) {
-        LottoPurchase lottoPurchase = new LottoPurchase();
-
-        assertThatThrownBy(() -> lottoPurchase.setLottoPurchase(amount))
+        assertThatThrownBy(() -> new LottoPurchase(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 최소 구입 금액은 1,000원입니다.");
     }

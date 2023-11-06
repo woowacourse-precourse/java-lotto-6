@@ -6,11 +6,8 @@ public class BonusNumber {
     private static Integer bonusNumber;
     private static List<Integer> winningNumber;
 
-    public BonusNumber(List<Integer> number) {
-        this.winningNumber = number;
-    }
-
-    public void setBonusNumber(String number) {
+    public BonusNumber(List<Integer> winningNumber, String number) {
+        this.winningNumber = winningNumber;
         validate(number);
         bonusNumber = Integer.parseInt(number);
     }

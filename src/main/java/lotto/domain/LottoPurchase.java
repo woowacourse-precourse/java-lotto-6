@@ -1,18 +1,14 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.io.LottoInputView;
-
 public class LottoPurchase {
-    private static Integer purchaseAmount;
+    private static int purchaseAmount;
 
-    public void setLottoPurchase(String amount) {
+    public LottoPurchase(String amount) {
         validate(amount);
         purchaseAmount = Integer.parseInt(amount);
     }
 
-    private static void validate(String amount) {
+    public static void validate(String amount) {
         validateIsNumber(amount);
         validateIsDivisibleBy1000(amount);
         validateIsPositiveInteger(amount);
@@ -38,7 +34,7 @@ public class LottoPurchase {
         }
     }
 
-    public static Integer getLottoPurchase() {
+    public Integer getLottoPurchase() {
         return purchaseAmount;
     }
 }

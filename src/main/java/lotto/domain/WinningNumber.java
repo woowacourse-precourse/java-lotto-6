@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class WinningNumber {
     private static List<Integer> winningNumber;
 
-    public void setWinningNumber(String numbers) {
+    public WinningNumber(String numbers) {
         List<String> splitNumber = splitNumber(numbers);
         validate(splitNumber);
         winningNumber = splitNumber.stream()
@@ -15,7 +15,7 @@ public class WinningNumber {
                 .collect(Collectors.toList());
     }
 
-    public List<String> splitNumber(String numbers) {
+    private static List<String> splitNumber(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .collect(Collectors.toList());
     }

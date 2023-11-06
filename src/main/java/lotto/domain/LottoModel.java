@@ -10,7 +10,7 @@ import lotto.data.Rewards;
 
 public class LottoModel {
 
-    private boolean bonus;
+    private boolean hasBonus;
     private final int CHECK_BONUS = 999;
     private final InputUI inputUI;
     private final OutputUI outputUI;
@@ -44,10 +44,10 @@ public class LottoModel {
     public void computeLotto(List<Lotto> published, List<Integer> winnings, int bonusNum) {
 
         for (Lotto lotto : published) {
-            bonus = false;
+            hasBonus = false;
             winningNumsTable = compareLotto(winnings, lotto, bonusNum);
             int result = sumOfWinningNumsTable();
-            winningTable = makeWinningTable(result, bonus);
+            winningTable = makeWinningTable(result, hasBonus);
         }
 
     }

@@ -1,5 +1,7 @@
 package lotto.util;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +23,7 @@ public class Parser {
 
         List<Integer> numbers = Arrays.stream(splitted)
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .collect(toList());
 
         InputValidator.validateLottoNumbers(numbers);
         return numbers;

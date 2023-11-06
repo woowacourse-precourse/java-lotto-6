@@ -5,24 +5,24 @@ import lotto.util.ErrorMessage;
 
 
 public class MoneyConverter {
-    private final int chance;
+    private final int LottoBuyNum;
 
-    public MoneyConverter(String input) {
-        patternCheck(input);
-        this.chance = convertMoneyToChances(input);
+    public MoneyConverter(String userInput) {
+        patternCheck(userInput);
+        this.LottoBuyNum = convertMoneyToTickets(userInput);
     }
 
-    private void patternCheck(String input) {
-        if (!Constants.MONEY_PATTERN.matcher(input).matches()) {
+    private void patternCheck(String userInput) {
+        if (!Constants.MONEY_PATTERN.matcher(userInput).matches()) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_CONVERT_ERROR);
         }
     }
 
-    private int convertMoneyToChances(String input) {
-        return Integer.parseInt(input) / Constants.MONEY_UNIT;
+    private int convertMoneyToTickets(String userInput) {
+        return Integer.parseInt(userInput) / Constants.MONEY_UNIT;
     }
 
-    public int getChance() {
-        return chance;
+    public int getTickets() {
+        return LottoBuyNum;
     }
 }

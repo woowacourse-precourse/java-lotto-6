@@ -23,7 +23,7 @@ public class GameController {
 
     public void GameInit() {
         moneyConvertLotto();
-        showChances();
+        showTickets();
         setLottoGenerator();
         showGeneratedLotto();
         setWinLottoNumbers();
@@ -47,11 +47,11 @@ public class GameController {
     }
 
     public void setLottoGenerator() {
-        lottoGenerator = new LottoGenerator(moneyConverter.getChance());
+        lottoGenerator = new LottoGenerator(moneyConverter.getTickets());
     }
 
-    public void showChances() {
-        outputView.printChances(moneyConverter.getChance());
+    public void showTickets() {
+        outputView.printTickets(moneyConverter.getTickets());
     }
 
     public void showGeneratedLotto() {
@@ -94,11 +94,11 @@ public class GameController {
 
     public void setLottoProfitCalculator() {
         lottoProfitCalculator = new LottoProfitCalculator(
-                lottoCountCalculator.getLottoResult(),
-                moneyConverter.getChance());
+                lottoCountCalculator.getCountResult(),
+                moneyConverter.getTickets());
     }
 
     public void winResultPrint() {
-        outputView.printResult(lottoCountCalculator.getLottoResult(), lottoProfitCalculator.getTotalProfitPercentile());
+        outputView.printResult(lottoCountCalculator.getCountResult(), lottoProfitCalculator.getTotalProfitPercentile());
     }
 }

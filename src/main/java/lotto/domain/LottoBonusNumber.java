@@ -10,10 +10,18 @@ import java.util.Set;
 public class LottoBonusNumber {
     private final int lottoBonusNumber;
 
-    public LottoBonusNumber(String input, List<Integer> LottoWinNumbers) {
-        this.lottoBonusNumber = StringToInt(input);
+    public LottoBonusNumber(String userInput, List<Integer> LottoWinNumbers) {
+        this.lottoBonusNumber = StringToInt(userInput);
         uniqueCheck(LottoWinNumbers);
         rangeCheck();
+    }
+
+    private int StringToInt(String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_STRING_ERROR);
+        }
     }
 
     private void uniqueCheck(List<Integer> LottoWinNumbers) {
@@ -26,14 +34,6 @@ public class LottoBonusNumber {
     private void rangeCheck() {
         if (lottoBonusNumber < Constants.LOTTO_MIN_NUM || lottoBonusNumber > Constants.LOTTO_MAX_NUM) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_RANGE_ERROR);
-        }
-    }
-
-    private int StringToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_STRING_ERROR);
         }
     }
 

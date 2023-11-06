@@ -9,20 +9,20 @@ import java.util.Map;
 public class LottoProfitCalculator {
     private double totalProfitPercentile;
 
-    public LottoProfitCalculator(Map<Integer, Integer> lottoResult, int chance) {
-        setTotalProfitPercentile(totalProfit(lottoResult), chance);
+    public LottoProfitCalculator(Map<Integer, Integer> CountResult, int LottoBuyNum) {
+        setTotalProfitPercentile(totalProfit(CountResult), LottoBuyNum);
     }
 
-    private void setTotalProfitPercentile(int totalProfit, int chance) {
-        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT) * Constants.PERCENTAGE_MULTIPLIER;
+    private void setTotalProfitPercentile(int totalProfit, int LottoBuyNum) {
+        totalProfitPercentile = (double) totalProfit / (LottoBuyNum * Constants.MONEY_UNIT) * Constants.PERCENTAGE_MULTIPLIER;
     }
 
-    private int totalProfit(Map<Integer, Integer> lottoResult) {
+    private int totalProfit(Map<Integer, Integer> CountResult) {
         int totalProfit = Constants.INIT_VALUE_ZERO;
 
         for (Prize prize : Prize.values()) {
             totalProfit += prize.getPrizeAmount() *
-                    lottoResult.getOrDefault(prize.getMatchCount(), Constants.INIT_VALUE_ZERO);
+                    CountResult.getOrDefault(prize.getMatchCount(), Constants.INIT_VALUE_ZERO);
         }
         return totalProfit;
     }

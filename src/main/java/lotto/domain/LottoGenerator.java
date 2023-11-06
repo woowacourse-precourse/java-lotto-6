@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoGenerator {
-    private final List<Lotto> myLotto = new ArrayList<>();
+    private final List<Lotto> myLottoTickets = new ArrayList<>();
 
-    public LottoGenerator(int chance) {
-        setMyLotto(chance);
+    public LottoGenerator(int LottoBuyNum) {
+        setMyLottoTickets(LottoBuyNum);
     }
 
-    private void setMyLotto(int chance) {
-        IntStream.range(Constants.INIT_VALUE_ZERO, chance)
+    private void setMyLottoTickets(int LottoBuyNum) {
+        IntStream.range(Constants.INIT_VALUE_ZERO, LottoBuyNum)
                 .mapToObj(i -> new Lotto(sortedRandomLottoNumbers()))
-                .forEach(myLotto::add);
+                .forEach(myLottoTickets::add);
     }
 
     private List<Integer> generateRandomLottoNumbers() {
@@ -36,6 +36,6 @@ public class LottoGenerator {
     }
 
     public List<Lotto> getMyLotto() {
-        return myLotto;
+        return myLottoTickets;
     }
 }

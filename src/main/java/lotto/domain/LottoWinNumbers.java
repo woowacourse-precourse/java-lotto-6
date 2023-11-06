@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 public class LottoWinNumbers {
     List<Integer> lottoWinNumbers = new ArrayList<>();
 
-    public LottoWinNumbers(String input) {
-        this.lottoWinNumbers = sliceLottoNumbers(input);
+    public LottoWinNumbers(String userInput) {
+        this.lottoWinNumbers = sliceLottoWinNumbers(userInput);
         sizeCheck();
         rangeCheck();
         uniqueCheck();
@@ -24,9 +24,9 @@ public class LottoWinNumbers {
         }
     }
 
-    private List<Integer> sliceLottoNumbers(String input) {
+    private List<Integer> sliceLottoWinNumbers(String userInput) {
         try {
-            return Arrays.stream(input.split(Constants.COMMA))
+            return Arrays.stream(userInput.split(Constants.COMMA))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {

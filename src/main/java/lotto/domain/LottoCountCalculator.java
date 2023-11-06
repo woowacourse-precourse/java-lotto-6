@@ -9,43 +9,52 @@ import java.util.stream.IntStream;
 
 public class LottoCountCalculator {
 
-    private final Map<Integer, Integer> lottoResult = new HashMap<>();
+    private final Map<Integer, Integer> CountResult = new HashMap<>();
 
-    public LottoCountCalculator(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
-        initializeLottoResult();
-        setLottoResult(lotto, winLotto, bonus);
+    public LottoCountCalculator(List<Lotto> myLottoTickets, List<Integer> winLottoNumbers, int bonusNumber) {
+        initializeCountResult();
+        setCountResult(
+                myLottoTickets,
+                winLottoNumbers,
+                bonusNumber
+        );
     }
 
-    private void initializeLottoResult() {
-        IntStream.range(Constants.LOTTO_RESULT_INDEX_FIRST, Constants.LOTTO_RESULT_INDEX_LAST).
-                forEach(key -> lottoResult.put(key, Constants.INIT_VALUE_ZERO));
+    private void initializeCountResult() {
+        IntStream.range(Constants.LOTTO_RESULT_INDEX_FIRST, Constants.LOTTO_RESULT_INDEX_LAST)
+                .forEach(key -> CountResult.put(key, Constants.INIT_VALUE_ZERO));
     }
 
-    private void setLottoResult(List<Lotto> lotto, List<Integer> winLotto, int bonus) {
-        lotto.forEach(ticket -> lottoResultCalculate(countMatches(ticket, winLotto), isBonus(winLotto, bonus)));
+    private void setCountResult(List<Lotto> myLottoTickets, List<Integer> winLottoNumbers, int bonusNumber) {
+        myLottoTickets.forEach(
+                myTicket -> saveCountResult(
+                        compareNumbers(myTicket, winLottoNumbers),
+                        isContainBonus(winLottoNumbers, bonusNumber)
+                )
+        );
     }
 
-    private void lottoResultCalculate(int matches, boolean bonus) {
-        if (matches >= Constants.LOTTO_MIN_COUNT) {
-            int key = matches;
-            if (matches == Constants.LOTTO_BONUS_WINNER_COUNT && bonus) {
+    private void saveCountResult(int numberMatches, boolean isBonusNumber) {
+        if (numberMatches >= Constants.LOTTO_MIN_COUNT) {
+            int key = numberMatches;
+            if (numberMatches == Constants.LOTTO_BONUS_WINNER_COUNT && isBonusNumber) {
                 key = Constants.LOTTO_BONUS_WINNER_INDEX;
             }
-            lottoResult.put(key, lottoResult.getOrDefault(key, Constants.INIT_VALUE_ZERO) + Constants.COUNT_VALUE_1);
+            CountResult.put(key, CountResult.getOrDefault(key, Constants.INIT_VALUE_ZERO) + Constants.COUNT_VALUE_1);
         }
     }
 
-    private int countMatches(Lotto ticket, List<Integer> winLotto) {
-        return (int) ticket.getNumbers().stream()
-                .filter(winLotto::contains)
+    private int compareNumbers(Lotto myTicket, List<Integer> winLottoNumbers) {
+        return (int) myTicket.getNumbers().stream()
+                .filter(winLottoNumbers::contains)
                 .count();
     }
 
-    private boolean isBonus(List<Integer> winLotto, int bonus) {
-        return winLotto.contains(bonus);
+    private boolean isContainBonus(List<Integer> winLottoNumbers, int bonusNumber) {
+        return winLottoNumbers.contains(bonusNumber);
     }
 
-    public Map<Integer, Integer> getLottoResult() {
-        return lottoResult;
+    public Map<Integer, Integer> getCountResult() {
+        return CountResult;
     }
 }

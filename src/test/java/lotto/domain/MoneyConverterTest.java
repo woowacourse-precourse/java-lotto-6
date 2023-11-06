@@ -10,36 +10,28 @@ class MoneyConverterTest {
 
     @Test
     void invalidPatternCheck1() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            moneyConverter = new MoneyConverter("1001");
-        });
+        assertThrows(IllegalArgumentException.class, () -> moneyConverter = new MoneyConverter("1001"));
     }
 
     @Test
     void invalidPatternCheck2() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            moneyConverter = new MoneyConverter("100");
-        });
+        assertThrows(IllegalArgumentException.class, () -> moneyConverter = new MoneyConverter("100"));
     }
 
     @Test
     void invalidPatternCheck3() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            moneyConverter = new MoneyConverter("0000");
-        });
+        assertThrows(IllegalArgumentException.class, () -> moneyConverter = new MoneyConverter("0000"));
     }
 
     @Test
     void invalidPatternCheck4() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            moneyConverter = new MoneyConverter("a00b");
-        });
+        assertThrows(IllegalArgumentException.class, () -> moneyConverter = new MoneyConverter("a00b"));
     }
 
     @Test
     void validPatternCheck() {
         moneyConverter = new MoneyConverter("1000");
-        assertEquals(1, moneyConverter.getChance());
+        assertEquals(1, moneyConverter.getTickets());
     }
 
     @Test

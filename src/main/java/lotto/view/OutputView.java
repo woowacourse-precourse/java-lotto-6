@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public void printChances(int chance) {
-        System.out.println("\n" + chance + OutputMessage.OUTPUT_MONEY_MESSAGE);
+    public void printTickets(int tickets) {
+        System.out.println("\n" + tickets + OutputMessage.OUTPUT_MONEY_MESSAGE);
     }
 
     public void printLotto(List<Lotto> generatedLotto) {

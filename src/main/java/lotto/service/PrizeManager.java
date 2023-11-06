@@ -5,14 +5,14 @@ import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.Prize;
 
 public class PrizeManager {
-    private final Map<Prize, Integer> prizesCount;
+    private final Map<Prize, Integer> prizeCounts;
 
-    public PrizeManager(Map<Prize, Integer> prizesCount) {
-        this.prizesCount = prizesCount;
+    public PrizeManager(Map<Prize, Integer> prizeCounts) {
+        this.prizeCounts = prizeCounts;
     }
 
     public int getPrizeCount(Prize prize) {
-        return prizesCount.get(prize);
+        return prizeCounts.get(prize);
     }
 
     public double getProfitRate(PurchaseAmount purchaseAmount) {
@@ -21,8 +21,8 @@ public class PrizeManager {
 
     private long getAllPrizeProfit() {
         long allPrizeProfit = 0;
-        for (Prize prize : prizesCount.keySet()) {
-            long prizeProfit = (long) prize.getPrizeProfit() * prizesCount.get(prize);
+        for (Prize prize : prizeCounts.keySet()) {
+            long prizeProfit = (long) prize.getPrizeProfit() * prizeCounts.get(prize);
             allPrizeProfit += prizeProfit;
         }
         return allPrizeProfit;

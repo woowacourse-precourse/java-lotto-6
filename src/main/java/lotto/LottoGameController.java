@@ -42,4 +42,8 @@ public class LottoGameController {
 
         return result;
     }
+
+    public void printWinningResult(Result result, BuyCash buyCash) {
+        view.printWinningResult(result.getAllRankStatistics(), buyCash.getTotalProfitRate(result.getTotalProfit()));
+    }
 }

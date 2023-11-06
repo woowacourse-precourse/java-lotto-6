@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.enums.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -32,11 +34,15 @@ public class Validations {
 
     public List<Integer> validateEnteredLottoNumbers(String lottoWinningNumbers) throws IllegalArgumentException {
         List<Integer> numbers = new ArrayList<>();
+        Set<String> numberChecker = new HashSet<>();
+
         Stream.of(lottoWinningNumbers.split(","))
                 .iterator()
                 .forEachRemaining(number -> {
-                    if (!Pattern.matches(REGEX_FOR_LOTTO_NUMBER_RANGE.getRegex(), number.trim()))
+                    if (!Pattern.matches(REGEX_FOR_LOTTO_NUMBER_RANGE.getRegex(), number.trim()) ||
+                    numberChecker.contains(number.trim()))
                         throw new IllegalArgumentException();
+                    numberChecker.add(number.trim());
                     numbers.add(Integer.parseInt(number.trim()));
                 });
         return numbers;

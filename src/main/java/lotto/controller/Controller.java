@@ -1,8 +1,9 @@
 package lotto.controller;
 
-import java.util.List;
+import java.util.Map;
 import lotto.controller.dto.PurchasedLottoResponse;
 import lotto.model.LottoNumber;
+import lotto.model.LottoPrizeCalculator;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
@@ -27,8 +28,9 @@ public class Controller {
         Lottos lottos = getLottos(money.getMoney());
         showPurchasedLottos(lottos);
         WinningNumbers winningNumbers = getWinningNumbers();
-        showWinningStatistics(lottos, winningNumbers);
-        showTotalProfit(lottos, winningNumbers, money.getMoney());
+        LottoPrizeCalculator lottoPrizeCalculator = getLottoPrizeCalculator(lottos, winningNumbers);
+        showWinningStatistics(lottoPrizeCalculator);
+        showTotalProfit(lottoPrizeCalculator, money.getMoney());
     }
 
     private void showPurchasedLottos(final Lottos lottos) {
@@ -83,20 +85,17 @@ public class Controller {
         }
     }
 
-
-    private void showWinningStatistics(final Lottos lottos, final WinningNumbers winningNumbers) {
-        List<Integer> winningNumber = winningNumbers.getWinningNumber();
-        int bonusNumber = winningNumbers.getBonusNumber();
-        outputView.printWinningStatistics(lottos.countFirstPrizeWinners(winningNumber),
-                lottos.countSecondPrizeWinners(winningNumber, bonusNumber),
-                lottos.countThirdPrizeWinners(winningNumber),
-                lottos.countFourthPrizeWinners(winningNumber),
-                lottos.countFifthPrizeWinners(winningNumber));
+    private LottoPrizeCalculator getLottoPrizeCalculator(final Lottos lottos, final WinningNumbers winningNumbers) {
+        return new LottoPrizeCalculator(lottos, winningNumbers);
     }
 
-    private void showTotalProfit(final Lottos lottos, final WinningNumbers winningNumbers, final long money) {
-        long totalPrize = lottos.calculateWinningTotalPrize(winningNumbers.getWinningNumber(),
-                winningNumbers.getBonusNumber());
+    private void showWinningStatistics(final LottoPrizeCalculator lottoPrizeCalculator) {
+        Map<String, Long> winningStatistics = lottoPrizeCalculator.getWinningStatistics();
+        outputView.printWinningStatistics(winningStatistics);
+    }
+
+    private void showTotalProfit(final LottoPrizeCalculator lottoPrizeCalculator, final long money) {
+        long totalPrize = lottoPrizeCalculator.calculateTotalPrize();
         outputView.printTotalProfit(totalPrize, money);
     }
 }

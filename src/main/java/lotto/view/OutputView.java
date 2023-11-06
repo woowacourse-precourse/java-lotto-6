@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OutputView {
 
@@ -12,8 +13,7 @@ public interface OutputView {
 
     void printBonusNumberRequestMessage();
 
-    void printWinningStatistics(int firstPrizeWinners, int secondPrizeWinners, int thirdPrizeWinners,
-                                int fourthPrizeWinners, int fifthPrizeWinners);
+    void printWinningStatistics(Map<String, Long> winningCount);
 
     void printTotalProfit(long totalPrize, long money);
 

@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class ConsoleOutputView implements OutputView {
 
@@ -37,16 +38,11 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printWinningStatistics(final int firstPrizeCount, final int secondPrizeCount, final int thirdPrizeCount,
-                                       final int fourthPrizeCount, final int fifthPrizeCount) {
+    public void printWinningStatistics(final Map<String, Long> winningCount) {
         printNewLine();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + fifthPrizeCount + "개");
-        System.out.println("4개 일치 (50,000원) - "+ fourthPrizeCount + "개");
-        System.out.println("5개 일치 (1,500,000원) - "+ thirdPrizeCount + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ secondPrizeCount + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+ firstPrizeCount + "개");
+        for (Map.Entry<String, Long> entry : winningCount.entrySet()) {
+            System.out.println(entry.getKey() + entry.getValue() + "개");
+        }
     }
 
     @Override

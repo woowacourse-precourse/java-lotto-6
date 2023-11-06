@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 
-public class MemoryUserInputLottoRepository implements LottoRepository{
+public class MemoryUserInputLottoRepository implements LottoRepository {
     private static List<Lotto> store = new ArrayList<>();
+
     @Override
     public void save(Lotto lotto) {
         store.add(lotto);

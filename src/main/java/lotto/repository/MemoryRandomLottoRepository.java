@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 
 public class MemoryRandomLottoRepository implements LottoRepository {
     private static List<Lotto> store = new ArrayList<>();
+
     @Override
     public void save(Lotto lotto) {
         store.add(lotto);

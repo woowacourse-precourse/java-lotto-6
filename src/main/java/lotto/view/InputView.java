@@ -44,7 +44,7 @@ public class InputView {
         return InputValidator.validateNumber(input);
     }
 
-    public static void printErrorMessage(IllegalArgumentException e) {
+    public static void printInputErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 }

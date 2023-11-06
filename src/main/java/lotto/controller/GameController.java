@@ -48,7 +48,7 @@ public class GameController {
                 int purchaseMoney = getPurchaseMoney();
                 return new Purchase(purchaseMoney);
             } catch (IllegalArgumentException e) {
-                InputView.printErrorMessage(e);
+                InputView.printInputErrorMessage(e);
             }
         }
     }
@@ -63,7 +63,7 @@ public class GameController {
                 List<Integer> numbers = getWinningLottoNumbers();
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
-                InputView.printErrorMessage(e);
+                InputView.printInputErrorMessage(e);
             }
         }
     }
@@ -78,7 +78,7 @@ public class GameController {
                 int bonusNumber = getBonusNumber();
                 return new Bonus(bonusNumber, lotto);
             } catch (IllegalArgumentException e) {
-                InputView.printErrorMessage(e);
+                InputView.printInputErrorMessage(e);
             }
         }
     }

@@ -20,12 +20,10 @@ public class LottoUtil {
     private static final double DEFAULT_SUM = 0d;
     private static final int PERCENT = 100;
 
-    // 금액 계산기
     public static int countLotto(int pay) {
         return pay / PRICE_MIN_UNIT.getNumber();
     }
 
-    // 로또 생성기
     public static List<Lotto> makeLottoList(int count) {
         List<Lotto> lottoList = new ArrayList<>();
         while (count-- > 0) {
@@ -36,7 +34,6 @@ public class LottoUtil {
         return lottoList;
     }
 
-    // 당첨금 정산
     public static int[] countWinLotto(WinningLotto winningLotto, UserLottoVO userLottoVO) {
         int[] rankCount = new int[COUNT_ARR_SIZE];
         for (Lotto lotto : userLottoVO.getLottoList()) {

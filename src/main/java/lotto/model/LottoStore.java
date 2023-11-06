@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoStore {
@@ -37,7 +38,9 @@ public class LottoStore {
     }
 
     private Lotto createLotto() {
-        return Lotto.of(createLottoNumber());
+        List<Integer> lottoNumber = createLottoNumber();
+        lottoNumber.sort(Comparator.naturalOrder());
+        return Lotto.of(lottoNumber);
     }
 
     private List<Integer> createLottoNumber() {

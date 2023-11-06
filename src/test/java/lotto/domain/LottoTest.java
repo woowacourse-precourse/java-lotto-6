@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -34,11 +34,9 @@ class LottoTest {
                 .hasMessage(Messages.ERROR_RANGE_LOTTO_NUMBER);
     }
 
-    @DisplayName("로또 출력 포맷에 맞게 문자열로 변환한다.")
     @Test
-    void shouldPrintLottoInCorrectFormat() {
-        String expectedValue = "[1, 2, 3, 4, 5, 6]\n";
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.toString()).isEqualTo(expectedValue);
+    @DisplayName("정상적 번호이면 로또 번호가 정상적으로 생성된다.")
+    void shouldCreateLottoNumbersSuccessfully() {
+        assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
 }

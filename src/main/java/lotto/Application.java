@@ -6,6 +6,8 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+	public static final int WINNING_NUMBER_LENGTH = 6;
+
 	private static Integer money;
 	private static List<Integer> winningNumberList;
 	private static Integer bonusNumber;
@@ -34,7 +36,7 @@ public class Application {
 	public static void setWinningNumberList() {
 		try {
 			System.out.println("당첨 번호를 입력해 주세요.");
-			winningNumberList = readNumberList();
+			winningNumberList = readNumberList(WINNING_NUMBER_LENGTH);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setWinningNumberList();
@@ -61,13 +63,13 @@ public class Application {
 		return number;
 	}
 
-	private static List<Integer> readNumberList() {
+	private static List<Integer> readNumberList(int size) {
 		List<Integer> numberList = new ArrayList<>();
 		try {
 			String[] inputList = Console.readLine().split(",");
 
-			if (inputList.length != 6) {
-				throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다!");
+			if (inputList.length != size) {
+				throw new IllegalArgumentException("[ERROR] " + size + "개를 입력해야 합니다!");
 			}
 
 			for (String input : inputList) {
@@ -75,7 +77,7 @@ public class Application {
 				numberList.add(number);
 			}
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다!");
+			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
 		}
 		return numberList;
 	}

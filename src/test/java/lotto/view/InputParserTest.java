@@ -43,6 +43,6 @@ public class InputParserTest {
         InputParser inputParser = new InputParser();
         assertThatCode(() -> inputParser.parsePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("[ERROR] 구입금액은 숫자만 입력 가능합니다. 입력값 : %s", purchaseAmount));
+                .hasMessage(String.format("구입금액은 숫자만 입력 가능합니다. 입력값 : %s", purchaseAmount));
     }
 }

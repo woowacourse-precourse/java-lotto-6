@@ -1,27 +1,24 @@
 package lotto.domain;
 
+import static lotto.domain.NumberConstant.FOR_PERCENT;
+
 import java.util.Arrays;
 import java.util.Map;
 
 public class RankResult {
-    public static final double ZERO = 0d;
     private final Map<RankPrize, Integer> rankResult;
 
     public RankResult(Map<RankPrize, Integer> rankResult) {
         this.rankResult = rankResult;
     }
 
-    public int getWinCounts(RankPrize rankPrize) {
-        return this.rankResult.get(rankPrize);
+    public Map<RankPrize, Integer> getRankResult() {
+        return this.rankResult;
     }
 
-    public double calculateReturn() {
+    public double calculateReturn(int parsedPurchaseAmount) {
         double totalAmount = getTotalAmount();
-        double totalCounts = getTotalCounts();
-        if (totalCounts == ZERO) {
-            return ZERO;
-        }
-        return totalAmount / totalCounts;
+        return totalAmount / parsedPurchaseAmount * FOR_PERCENT.getValue();
     }
 
     private double getTotalAmount() {
@@ -30,9 +27,7 @@ public class RankResult {
                 .sum();
     }
 
-    private double getTotalCounts() {
-        return Arrays.stream(RankPrize.values())
-                .mapToDouble(this::getWinCounts)
-                .sum();
+    private int getWinCounts(RankPrize rankPrize) {
+        return this.rankResult.get(rankPrize);
     }
 }

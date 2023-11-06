@@ -5,7 +5,6 @@ import static lotto.domain.LottoNumberRules.MIN_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 
 import java.util.Objects;
-import lotto.exception.LottoGameException;
 
 public class LottoNumber {
     private final int number;
@@ -17,7 +16,7 @@ public class LottoNumber {
 
     private void validate(int number) {
         if (isNumberOutOfRange(number)) {
-            throw new LottoGameException(String.format(LOTTO_NUMBER_OUT_OF_RANGE.getMessage(), number));
+            throw new IllegalArgumentException(String.format(LOTTO_NUMBER_OUT_OF_RANGE.getMessage(), number));
         }
     }
 
@@ -25,7 +24,7 @@ public class LottoNumber {
         return number < MIN_LOTTO_NUMBER.getValue() || MAX_LOTTO_NUMBER.getValue() < number;
     }
 
-    int getNumber() {
+    public int getNumber() {
         return this.number;
     }
 

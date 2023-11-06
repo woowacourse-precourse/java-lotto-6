@@ -5,8 +5,6 @@ import static lotto.domain.NumberConstant.NO_REMAINDER;
 import static lotto.domain.NumberConstant.ZERO_AMOUNT;
 import static lotto.exception.ExceptionMessage.PURCHASE_AMOUNT_HAS_REMAINDER;
 
-import lotto.exception.LottoGameException;
-
 public class PurchaseAmount {
 
     private final int purchaseAmount;
@@ -18,7 +16,8 @@ public class PurchaseAmount {
 
     private void validate(int purchaseAmount) {
         if (isZeroAmount(purchaseAmount) || hasRemainder(purchaseAmount)) {
-            throw new LottoGameException(String.format(PURCHASE_AMOUNT_HAS_REMAINDER.getMessage(), purchaseAmount));
+            throw new IllegalArgumentException(
+                    String.format(PURCHASE_AMOUNT_HAS_REMAINDER.getMessage(), purchaseAmount));
         }
     }
 
@@ -32,5 +31,9 @@ public class PurchaseAmount {
 
     public int getAvailablePurchaseCounts() {
         return this.purchaseAmount / MINIMUM_LOTTO_PRICE.getValue();
+    }
+
+    public int getPurchaseAmount() {
+        return this.purchaseAmount;
     }
 }

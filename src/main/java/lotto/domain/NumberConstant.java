@@ -6,6 +6,7 @@ public enum NumberConstant {
     NO_REMAINDER(0),
     INITIAL_VALUE(0),
     ONE_COUNT(1),
+    FOR_PERCENT(100),
     ;
 
     private final int value;

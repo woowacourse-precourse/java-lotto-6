@@ -7,7 +7,6 @@ import static lotto.exception.ExceptionMessage.LOTTO_NUMBERS_DUPLICATED;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.exception.LottoGameException;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -19,10 +18,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isInvalidSize(numbers)) {
-            throw new LottoGameException(String.format(LOTTO_COUNTS_INVALID.getMessage(), numbers.size()));
+            throw new IllegalArgumentException(String.format(LOTTO_COUNTS_INVALID.getMessage(), numbers.size()));
         }
         if (isDuplicated(numbers)) {
-            throw new LottoGameException(String.format(LOTTO_NUMBERS_DUPLICATED.getMessage(), numbers));
+            throw new IllegalArgumentException(String.format(LOTTO_NUMBERS_DUPLICATED.getMessage(), numbers));
         }
     }
 
@@ -51,16 +50,17 @@ public class Lotto {
                 .anyMatch(bonusNumber::equals);
     }
 
-    public void hasSameNumber(int inputBonusNumber) {
+    public LottoNumber hasSameNumber(int inputBonusNumber) {
         LottoNumber bonusNumber = new LottoNumber(inputBonusNumber);
         if (this.numbers.contains(bonusNumber)) {
-            throw new LottoGameException(
+            throw new IllegalArgumentException(
                     String.format(BONUS_NUMBER_ALREADY_CONTAINS_IN_WINNING_NUMBERS.getMessage(),
                             this.numbers.stream()
                                     .map(LottoNumber::getNumber)
                                     .toList(),
                             inputBonusNumber));
         }
+        return bonusNumber;
     }
 
     public RankPrize determineRank(Lotto winningNumbers, LottoNumber bonusNumber) {

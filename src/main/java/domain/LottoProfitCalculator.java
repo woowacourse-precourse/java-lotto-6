@@ -4,6 +4,7 @@ import lotto.Lotto;
 import lotto.LottoRank;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class LottoProfitCalculator {
@@ -57,7 +58,7 @@ public class LottoProfitCalculator {
         setProfitRate(prizeAmounts
                 .divide(BigDecimal.valueOf(purchaseAmount))
                 .multiply(BigDecimal.valueOf(100))
-                .stripTrailingZeros());
+                .setScale(1, RoundingMode.HALF_UP));
     }
 
     public String getProfitRate() {

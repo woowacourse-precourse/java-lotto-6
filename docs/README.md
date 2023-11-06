@@ -4,9 +4,9 @@
 
 - [x] 로또 1개당 중복되지 않는 6개의 숫자(1~45)를 발급한다. - LottoNumberGenerator
 - [x] 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다. - 입력 사항
-- [x] 당첨 번호와 발급 받은 숫자를 비교하고 당첨 내역을 확인한다. - NumberChecker#
+- [x] 당첨 번호와 발급 받은 숫자를 비교하고 당첨 내역을 확인한다. - LottoWinChecker
 - [x] 수익률을 계산하고 출력한다. - LottoProfitCalculator
-- [x] 등수를 enum을 이용해서 나열한다. - Lotto#LottoRank
+- [x] 등수를 enum을 이용해서 나열한다. - LottoRank
 
 ## 예외 처리 항목
 

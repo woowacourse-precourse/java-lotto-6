@@ -26,6 +26,7 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 순위를 get,set 메서드가 잘 작동하는지 확인한다.")
     @Test
     void setAndGetLottoRankTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -36,6 +37,7 @@ class LottoTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @DisplayName("로또를 생성하고 로또 랭크의 초기 값을 확인한다.")
     @Test
     void initialLottoRankTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -45,6 +47,7 @@ class LottoTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @DisplayName("로또 랭크의 value값이 ")
     @Test
     void lottoRankGetPrizeTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));

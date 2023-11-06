@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.constant.LottoMessage;
 import lotto.model.LottoRank;
+import lotto.model.ProfitRate;
 
 public class OutputView {
 
@@ -19,6 +20,11 @@ public class OutputView {
                 lottoRank.getWinningMoney(),
                 count)
         );
+    }
+
+    public static void printProfitRate(ProfitRate profitRate) {
+        LottoMessage message = LottoMessage.TOTAL_PROFIT_RATE_MESSAGE;
+        System.out.println(message.getMessage(profitRate.getProfitRate()));
     }
 
     private static LottoMessage getLottoRankMessage(boolean matchBonus) {

@@ -24,6 +24,14 @@ public class WinningResult {
         }
     }
 
+    public void displayProfitRate() {
+        ProfitRate profitRate = calculateProfitRate(
+                calculateTotalWinningMoney(),
+                calculateTotalPurchaseAmount());
+
+        OutputView.printProfitRate(profitRate);
+    }
+
     private ProfitRate calculateProfitRate(int totalWinningMoney, int totalPurchaseAmount) {
         double profitRate = ((double) totalWinningMoney / totalPurchaseAmount) * 100;
 

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum LottoRanking {
     FIRST(6, 2000000000, "6개 일치 (2,000,000,000원)"),
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
@@ -31,19 +34,17 @@ public enum LottoRanking {
         return winningMessage;
     }
 
-    public Integer getCountAboutLotto(Lotto winningLotto, Lotto playerLotto){
-        return winningLotto.countMatchedOtherLotto(playerLotto);
-    }
-
-    public Boolean getIsMatchBonus(Lotto winningLotto, )
-    public LottoRanking getRanking(Integer countAboutLotto, Boolean isMatchBonus){
-        if(countAboutLotto < MINIMUM_WINNING_COUNT){
-            return OTHER;
+    public static LottoRanking getRanking(Integer countAboutLotto, Boolean isMatchBonus){
+        if(countAboutLotto.equals(SECOND.getCountLottoMatched()) && isMatchBonus){
+            return SECOND;
         }
         for(LottoRanking ranking : values()){
-            if(countAboutLotto.equals(ranking.getCountLottoMatched())){
+            if(ranking.equals(SECOND)){
+                continue;
+            }else if(countAboutLotto.equals(ranking.getCountLottoMatched())){
                 return ranking;
             }
         }
+        return OTHER;
     }
 }

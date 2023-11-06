@@ -50,4 +50,26 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Error.INVALID_FORMAT_WINNING_NUMBERS.message());
     }
+
+    @DisplayName("구매 금액 검증")
+    @Test
+    void validatePayment() {
+        assertDoesNotThrow(() -> Validator.validatePayment(3000));
+    }
+
+    @DisplayName("구매 금액 검증_0원인 경우")
+    @Test
+    void validatePayment_notPositive_fail() {
+        Assertions.assertThatThrownBy(() -> Validator.validatePayment(0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.INVALID_PAYMENT.message());
+    }
+
+    @DisplayName("구매 금액 검증_1000원으로 나누어 떨어지지 않는 경우")
+    @Test
+    void validatePayment_wrongUnit_fail() {
+        Assertions.assertThatThrownBy(() -> Validator.validatePayment(1320))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.INVALID_PAYMENT.message());
+    }
 }

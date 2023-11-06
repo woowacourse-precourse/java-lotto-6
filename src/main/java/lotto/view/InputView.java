@@ -13,6 +13,7 @@ import static lotto.message.InputErrorMessage.INVALID_INPUT_UNIT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
@@ -21,7 +22,7 @@ import java.util.stream.Stream;
 
 public class InputView {
     private static final String PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private static final String INPUT_LOTTO_NUMBER_SPLITTER = ",";
@@ -35,11 +36,11 @@ public class InputView {
         return lottoPurchaseAmount;
     }
 
-    public TreeSet<Integer> requestLottoNumber() {
-        System.out.println(LOTTO_NUMBERS_MESSAGE);
-        String inputLottoNumbers = Console.readLine().trim();
-        validateLottoNumbers(inputLottoNumbers);
-        return convertLottoNumbersToTreeSet(inputLottoNumbers);
+    public List<Integer> requestWinningNumbers() {
+        System.out.println(WINNING_NUMBERS_MESSAGE);
+        String inputWinningNumbers = Console.readLine().trim();
+        validateLottoNumbers(inputWinningNumbers);
+        return convertWinningNumbersToList(inputWinningNumbers);
     }
 
     public int requestBonusNumber() {
@@ -96,10 +97,11 @@ public class InputView {
         }
     }
 
-    private TreeSet<Integer> convertLottoNumbersToTreeSet(String inputLottoNumbers) {
+    private List<Integer> convertWinningNumbersToList(String inputLottoNumbers) {
         String[] lottoNumbers = inputLottoNumbers.split(INPUT_LOTTO_NUMBER_SPLITTER);
         return Stream.of(lottoNumbers)
                 .map(Integer::parseInt)
-                .collect(Collectors.toCollection(TreeSet::new));
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

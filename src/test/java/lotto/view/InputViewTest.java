@@ -13,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.TreeSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -71,7 +72,7 @@ class InputViewTest{
             InputView inputView = new InputView();
             String inputValue = "1,2,3,4,5";
             systemIn(inputValue);
-            inputView.requestLottoNumber();
+            inputView.requestWinningNumbers();
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
@@ -84,7 +85,7 @@ class InputViewTest{
             InputView inputView = new InputView();
             String inputValue = "1,ad,dfd,4,5,6";
             systemIn(inputValue);
-            inputView.requestLottoNumber();
+            inputView.requestWinningNumbers();
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage(String.format(INVALID_INPUT_FORMAT, LOTTO_NUMBER_FORMAT));
@@ -97,7 +98,7 @@ class InputViewTest{
             InputView inputView = new InputView();
             String inputValue = "1,2,3,4,5,46";
             systemIn(inputValue);
-            inputView.requestLottoNumber();
+            inputView.requestWinningNumbers();
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage(INVALID_INPUT_LOTTO_RANGE);
@@ -110,7 +111,7 @@ class InputViewTest{
             InputView inputView = new InputView();
             String inputValue = "0,2,3,4,5,45";
             systemIn(inputValue);
-            inputView.requestLottoNumber();
+            inputView.requestWinningNumbers();
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage(INVALID_INPUT_LOTTO_RANGE);
@@ -122,9 +123,9 @@ class InputViewTest{
         InputView inputView = new InputView();
         String inputValue = "1,4,12,20,38,41";
         systemIn(inputValue);
-        TreeSet<Integer> lottoNumbers = inputView.requestLottoNumber();
-        assertThat(lottoNumbers).contains(1,4,12,20,38,41);
-        assertThat(lottoNumbers.size()).isEqualTo(6);
+        List<Integer> winningNumbers = inputView.requestWinningNumbers();
+        assertThat(winningNumbers).contains(1,4,12,20,38,41);
+        assertThat(winningNumbers.size()).isEqualTo(6);
     }
 
     @DisplayName("보너스 숫자는 1이상 숫자를 입려해야 한다.")

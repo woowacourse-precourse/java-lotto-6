@@ -1,7 +1,7 @@
 package lotto.exception;
 
 public class EmptySpaceIncludeException extends IllegalArgumentException {
-    public EmptySpaceIncludeException(String s) {
-        super(s);
+    public EmptySpaceIncludeException() {
+        super(ExceptionMessage.EMPTY_SPACE_INCLUDE_ERROR.getMessage());
     }
 }

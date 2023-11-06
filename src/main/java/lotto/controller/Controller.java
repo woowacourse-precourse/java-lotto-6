@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.service.LottoService;
 import lotto.view.View;
 import util.string.StringUtils;
@@ -17,10 +18,11 @@ public class Controller {
     }
 
     public void play() {
-        int userPrice = getUserPrice();
+        int userPrice = getUserInputPrice();
+        List<Integer> winningLottonumbers = getWinningLottonumbers();
     }
 
-    private int getUserPrice() {
+    private int getUserInputPrice() {
         String inputPrice;
         while (true) {
             view.printRequestPriceMessage();
@@ -33,6 +35,22 @@ public class Controller {
             }
         }
         return StringUtils.parseNumberOfCount(inputPrice);
+    }
+
+    private List<Integer> getWinningLottonumbers() {
+        String inputWinningLotto;
+        while (true) {
+            view.printRequestWinningNumbers();
+            inputWinningLotto = readInput();
+            try {
+                InputValidator.checkWinningLottoInput(inputWinningLotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return StringUtils.parseLottoNumber(inputWinningLotto);
+
     }
 
     private String readInput() {

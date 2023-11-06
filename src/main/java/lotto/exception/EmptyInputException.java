@@ -1,7 +1,7 @@
 package lotto.exception;
 
 public class EmptyInputException extends IllegalArgumentException {
-    public EmptyInputException(String s) {
-        super(s);
+    public EmptyInputException() {
+        super(ExceptionMessage.EMPTY_INPUT_ERROR.getMessage());
     }
 }

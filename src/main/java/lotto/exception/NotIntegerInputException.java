@@ -1,7 +1,7 @@
 package lotto.exception;
 
 public class NotIntegerInputException extends IllegalArgumentException {
-    public NotIntegerInputException(String s) {
-        super(s);
+    public NotIntegerInputException() {
+        super(ExceptionMessage.NOT_INTEGER_ERROR.getMessage());
     }
 }

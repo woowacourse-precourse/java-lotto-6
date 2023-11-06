@@ -2,14 +2,17 @@ package lotto.LottoController;
 
 import lotto.Lotto;
 import lotto.LottoView.LottoView;
-import lotto.LottoController.LottoController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputCheck {
 
-    private final LottoView view = new LottoView();
-    private final LottoController lottocontroller = new LottoController();
+    private final LottoView view;
+
+    public InputCheck(LottoView view){
+        this.view = view;
+    }
 
     public int inputAmount(){
         int amount;
@@ -26,25 +29,24 @@ public class InputCheck {
         return amount;
     }
 
-    public void inputNumbers(Lotto winNumber){
+    public Lotto inputNumbers(){
         while(true) {
             try {
-                List<Integer> winNumbers = lottocontroller.convertNumber(view.winNumber());
-                winNumber = new Lotto(winNumbers);
-                break;
+                List<Integer> winNumbers = convertNumber(view.winNumber());
+                return new Lotto(winNumbers);
             }catch (IllegalArgumentException e){
                 view.errorMeg(e.getMessage());
             }
         }
     }
 
-    public void inputBonus(Lotto winNumber){
+    public int inputBonus(Lotto winNumber){
         int bonusNumber;
         while(true){
             try{
                 bonusNumber = view.bonusNumber();
                 bonusCheck(bonusNumber, winNumber);
-                break;
+                return bonusNumber;
             }catch (IllegalArgumentException e){
                 view.errorMeg(e.getMessage());
             }
@@ -64,6 +66,15 @@ public class InputCheck {
         if( winNumbers.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException("중복된 보너스 숫자가 있습니다");
         }
+    }
+
+    public List<Integer> convertNumber(String input){
+        String[] parts = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for(String part : parts){
+            numbers.add(Integer.parseInt(part));
+        }
+        return numbers;
     }
 
 }

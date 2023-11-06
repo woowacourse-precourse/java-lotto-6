@@ -9,22 +9,19 @@ import java.util.List;
 
 public class LottoController {
 
-    private final LottoView view = new LottoView();
-    private final List<Lotto> lotto = new ArrayList<>();
+    private final LottoView view;
+    private final InputCheck inpubCheck;
 
-    private Lotto winNumbers;
-    private int bonusNumber;
+    public LottoController(){
+        this.view = new LottoView();
+        this.inpubCheck = new InputCheck(view);
+    }
 
     public void run(){
-
+        int purchaseAmount = inpubCheck.inputAmount();
+        Lotto winNumbers = inpubCheck.inputNumbers();
+        int bonusNumber = inpubCheck.inputBonus(winNumbers);
     }
 
-    public List<Integer> convertNumber(String input){
-        String[] parts = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for(String part : parts){
-            numbers.add(Integer.parseInt(part));
-        }
-        return numbers;
-    }
+
 }

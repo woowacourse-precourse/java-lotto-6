@@ -9,7 +9,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-
     public void outputLottos() {
         lottos.forEach(Lotto::outputLotto);
     }

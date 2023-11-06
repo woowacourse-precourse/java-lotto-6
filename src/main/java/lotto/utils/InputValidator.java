@@ -9,7 +9,7 @@ public class InputValidator {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 정수입니다.");
+            throw new IllegalArgumentException("[ERROR] : 문자가 아닌 숫자를 입력해주세요.");
         }
     }
 

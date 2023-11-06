@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import lotto.domain.enums.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,24 +32,10 @@ class WinningLottoTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨 번호와 일치하는 수의 개수를 반환한다.")
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 당첨 여부를 판단한다.")
     @Test
-    void getMatchCount() {
-        List<Integer> testNumbers = List.of(1, 2, 3, 7, 8, 9);
-        assertThat(winningLotto.getMatchCount(testNumbers)).isEqualTo(3);
-    }
-
-    @DisplayName("보너스 번호가 일치하면 참을 반환한다.")
-    @Test
-    void trueIfBonusNumberIsMatched() {
-        List<Integer> testNumbers = List.of(1, 2, 3, 7, 8, 9);
-        assertTrue(winningLotto.isBonusMatched(testNumbers));
-    }
-
-    @DisplayName("보너스 번호가 일치하지 않으면 거짓을 반환한다.")
-    @Test
-    void falseIfBonusNumberIsMatched() {
-        List<Integer> testNumbers = List.of(1, 2, 3, 6, 8, 9);
-        assertFalse(winningLotto.isBonusMatched(testNumbers));
+    void compareLottoNumbersToWinningNumbers() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(winningLotto.matches(lotto)).isEqualTo(LottoPrize.FIRST);
     }
 }

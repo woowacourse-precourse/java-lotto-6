@@ -5,7 +5,6 @@ import static lotto.util.ConstantUtils.LOTTO_SIZE_CRITERION;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.domain.enums.LottoPrize;
 import lotto.util.ValidationUtils;
 
 public class Lotto {
@@ -17,10 +16,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public LottoPrize matches(WinningLotto winningLotto) {
-        int matchCount = winningLotto.getMatchCount(this.numbers);
-        boolean isBonusMatched = winningLotto.isBonusMatched(this.numbers);
-        return LottoPrize.findLottoPrize(matchCount, isBonusMatched);
+    public int getMatchCount(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+            .filter(numbers::contains)
+            .count();
+    }
+
+    public boolean isBonusMatched(BonusNumber bonusNumber) {
+        return bonusNumber.isIn(numbers);
     }
 
     private void validate(List<Integer> numbers) {

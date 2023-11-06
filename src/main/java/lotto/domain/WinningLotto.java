@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.domain.enums.LottoPrize;
 
 public class WinningLotto {
 
@@ -13,14 +14,10 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int getMatchCount(List<Integer> numbers) {
-        return (int) numbers.stream()
-            .filter(winningNumbers::contains)
-            .count();
-    }
-
-    public boolean isBonusMatched(List<Integer> numbers) {
-        return bonusNumber.isIn(numbers);
+    public LottoPrize matches(Lotto lotto) {
+        int matchCount = lotto.getMatchCount(winningNumbers);
+        boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
+        return LottoPrize.findLottoPrize(matchCount, isBonusMatched);
     }
 
     private void validateNoDuplicatedWinningNumbers(List<Integer> winningNumbers,

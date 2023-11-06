@@ -41,6 +41,10 @@ public class OutputView {
                 System.out.println(rank.getMessage() + " - " + result.getResult().get(rank) + "개");
             }
         }
+    }
 
+    public static void printProfitRate(double profitRate){
+        String formatProfitRate = String.format("%.1f", profitRate);
+        System.out.println("총 수익률은 " + formatProfitRate + "% 입니다.");
     }
 }

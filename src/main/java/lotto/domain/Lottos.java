@@ -13,7 +13,7 @@ public class Lottos {
     public static Lottos from(final int quantity) {
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
-            Lotto createLotto = Lotto.createLotto();
+            Lotto createLotto = Lotto.createRandomLotto();
             generatedLottos.add(createLotto);
         }
         return new Lottos(generatedLottos);

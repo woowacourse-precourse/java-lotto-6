@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
 import static lotto.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
 import static lotto.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,6 +65,24 @@ class InputViewTest {
             InputView inputView = new InputView();
             List<Integer> winningNumbers = inputView.inputWinningNumbers();
             System.out.println(winningNumbers);
+        }
+    }
+
+    @Nested
+    class 보너스번호_입력_테스트 extends NsTest {
+        @Test
+        void 보너스_번호가_숫자가_아닌_경우_예외() {
+            assertSimpleTest(() -> {
+                assertThatThrownBy(() -> runException("a"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(INVALID_BONUS_NUMBER_INPUT_TYPE.getMessage());
+            });
+        }
+
+        @Override
+        protected void runMain() {
+            InputView inputView = new InputView();
+            inputView.inputBonusNumber();
         }
     }
 }

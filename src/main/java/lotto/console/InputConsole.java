@@ -36,13 +36,12 @@ public class InputConsole {
 
         String input = Console.readLine();
 
-        int result = StringUtil.stringToInt(input);
+        int result = 0;
 
-        if (result < LottoNumberRange.MIN.getValue() || result > LottoNumberRange.MAX.getValue()) {
-            throw new IllegalArgumentException();
+        try {
+            return result = StringUtil.stringToInt(input);
+        } catch (IllegalArgumentException exception) {
+            return getBonusNumber();
         }
-        
-        return result;
     }
-
 }

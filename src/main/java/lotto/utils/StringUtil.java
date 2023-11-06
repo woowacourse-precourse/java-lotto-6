@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.constant.LottoNumberRange;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
@@ -61,7 +62,13 @@ public class StringUtil {
     }
 
     public static int stringToInt(String input) {
-        return Integer.parseInt(input.strip());
+        int result = Integer.parseInt(input.strip());
+
+        if (result < LottoNumberRange.MIN.getValue() || result > LottoNumberRange.MAX.getValue()) {
+            throw new IllegalArgumentException();
+        }
+
+        return result;
     }
 
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.DTO.PurchasedLottosDTO;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.ProfitCalculator;
@@ -16,7 +17,7 @@ public class LottoController {
 
     public void run() {
         PurchasedLottos purchasedLottos = createPurchasedLottos();
-        OutputView.printPurchaseLottoResult(purchasedLottos.toString());
+        OutputView.printPurchaseLottoResult(new PurchasedLottosDTO(purchasedLottos).getPurchasedLottos());
 
         Lotto winningNumbers = createWinningNumbers();
         BonusNumber bonusNumber = createBonusNumber(winningNumbers);

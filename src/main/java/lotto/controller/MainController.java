@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.LottoStore;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.service.StatisticsService;
@@ -35,6 +32,36 @@ public class MainController {
         showLottoResult(lottoResult);
     }
 
+    private List<Lotto> buyLottos() {
+        int purchaseAmount = inputView.inputPurchaseAmount();
+        return LottoStore.buyLotto(purchaseAmount);
+    }
+
+    private List<LottoDto> toDto(List<Lotto> userLottos) {
+        return userLottos.stream()
+                .map(userLotto -> new LottoDto(userLotto.getNumbers()))
+                .toList();
+    }
+
+    private WinningLotto initializeWinningLotto() {
+        Lotto lotto = repeatTemplate(this::generateLotto);
+        BonusNumber bonusNumber = repeatTemplate(this::generateBonusNumber);
+
+        return new WinningLotto(lotto, bonusNumber);
+    }
+
+    private Lotto generateLotto() {
+        String winningNumbers = inputView.inputWinningNumbers();
+        List<Integer> numbers = Converter.toIntegerList(winningNumbers);
+
+        return new Lotto(numbers);
+    }
+
+    private BonusNumber generateBonusNumber() {
+        int inputBonusNumber = inputView.inputBonusNumber();
+        return new BonusNumber(inputBonusNumber);
+    }
+
     private void showLottoResult(LottoResult lottoResult) {
         LottoResultDto lottoResultDto = toDto(lottoResult);
         double rateOfReturn = statisticsService.calculateRateOfReturn(lottoResult);
@@ -43,27 +70,8 @@ public class MainController {
         outputView.printRateOfResult(rateOfReturn);
     }
 
-    private WinningLotto initializeWinningLotto() {
-        String winningNumbers = repeatTemplate(inputView::inputWinningNumbers);
-        List<Integer> numbers = Converter.toIntegerList(winningNumbers);
-        int bonusNumber = repeatTemplate(inputView::inputBonusNumber);
-
-        return new WinningLotto(numbers, bonusNumber);
-    }
-
-    private List<Lotto> buyLottos() {
-        int purchaseAmount = inputView.inputPurchaseAmount();
-        return LottoStore.buyLotto(purchaseAmount);
-    }
-
     private LottoResultDto toDto(LottoResult lottoResult) {
         return new LottoResultDto(lottoResult.getResult());
-    }
-
-    private List<LottoDto> toDto(List<Lotto> userLottos) {
-        return userLottos.stream()
-                .map(userLotto -> new LottoDto(userLotto.getNumbers()))
-                .toList();
     }
 
     private <T> T repeatTemplate(Supplier<T> inputReader) {

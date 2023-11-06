@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class WinningLotto {
@@ -9,15 +8,15 @@ public class WinningLotto {
     private final Lotto lotto;
     private final BonusNumber bonusNumbers;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        validateWinningLotto(numbers, bonusNumber);
+    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+        validateWinningLotto(lotto, bonusNumber);
 
-        this.lotto = new Lotto(numbers);
-        this.bonusNumbers = new BonusNumber(bonusNumber);
+        this.lotto = lotto;
+        this.bonusNumbers = bonusNumber;
     }
 
-    private void validateWinningLotto(List<Integer> numbers, int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
+    private void validateWinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+        if (lotto.hasBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException(MATCH_NUMBER_EXCEPTION_MESSAGE);
         }
     }

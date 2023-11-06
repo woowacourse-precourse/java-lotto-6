@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoRanking;
-import lotto.domain.LottoResult;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.repository.PrizeMoneyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +18,7 @@ class StatisticsServiceTest {
     @BeforeEach
     void setUp() {
         statisticsService = new StatisticsService(new PrizeMoneyRepository());
-        winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
         userLottos = getLottos();
     }
 

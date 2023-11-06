@@ -95,7 +95,7 @@ public class Application {
         printMatchResult(matchCounts, 3, "3개 일치 (5,000원)");
 
         double totalPrize = calculateTotalPrize(matchCounts);
-        double totalInvestment = result.getMatchCounts().values().stream().mapToLong(Long::longValue).sum() * 1000;
+        double totalInvestment = matchCounts.values().stream().mapToLong(Long::longValue).sum() * 1000;
         double profitRate = (totalPrize / totalInvestment) * 100;
 
         System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");

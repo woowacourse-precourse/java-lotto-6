@@ -10,7 +10,7 @@ public class LottoResult {
         this.result = result;
     }
 
-    public static HashMap duplicateResult(int count, int choice) {
+    public static HashMap statistics(int count, int choice) {
         if (count == 3) {
             int num = result.get(4);
             num++;

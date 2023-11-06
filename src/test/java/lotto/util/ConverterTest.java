@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ConverterTest {
     @Test
@@ -57,5 +59,15 @@ class ConverterTest {
         assertThatThrownBy(() -> Converter.convertToIntListByDelimiter(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_SEPARATE_BY_DELIMITER.getMassage());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1000:1,000", "10000:10,000", "100000:100,000", "1000000:1,000,000"}, delimiter = ':')
+    void 숫자를_천_단위마다_콤마로_구분한_문자열로_변환한다(int number, String expected) {
+        // when
+        String result = Converter.convertNumberWithComma(number);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }

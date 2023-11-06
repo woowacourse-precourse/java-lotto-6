@@ -12,11 +12,10 @@ public enum Unit {
     }
 
     public static int calculateLottoTicketCanPurchase(int purchasePrice) {
-        validatePurchasePrice(purchasePrice);
         return purchasePrice / PURCHASE_UNIT.unit;
     }
 
-    private static void validatePurchasePrice(int purchasePrice) {
+    public static void validatePurchasePrice(int purchasePrice) {
         if (purchasePrice % PURCHASE_UNIT.unit != ZERO.unit) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해야 합니다.");
         }

@@ -35,7 +35,9 @@ public class InputController {
 
     private int convertInputData(String purchasePrice) {
         numberValidator.validatePurchasePriceIsNumber(purchasePrice);
-        return Integer.parseInt(purchasePrice);
+        int price = Integer.parseInt(purchasePrice);
+        Unit.validatePurchasePrice(price);
+        return price;
     }
 
     public List<Integer> inputLottoNumbers() {

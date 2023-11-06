@@ -64,4 +64,9 @@ public sealed class LottoNumber permits BonusNumber {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public LottoNumber clone() {
+        return new LottoNumber(value);
+    }
+
 }

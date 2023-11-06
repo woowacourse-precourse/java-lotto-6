@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.validator.InputLottoWinningNumbersValidator;
 
 public class InputProcessor {
     private static final int LOTTO_PRICE = 1000;
@@ -16,7 +17,9 @@ public class InputProcessor {
 
   public static List<String> splitWinningNumbers(String input) {
     String[] numberStrings = input.split(",");
-    return Arrays.asList(numberStrings);
+    List<String> WinningNumbers = Arrays.asList(numberStrings);
+    InputLottoWinningNumbersValidator.isEmptyString(WinningNumbers);
+    return WinningNumbers;
   }
 
   public static List<Integer> convertToIntegerList(List<String> numberStrings) {

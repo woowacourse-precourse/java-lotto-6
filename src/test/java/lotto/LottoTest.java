@@ -11,6 +11,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,20 +75,26 @@ class LottoTest {
     	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
     }
     
-//    @DisplayName("각 등수가 정확히 카운트 되는지 확인한다.")
-//    @Test
-//    void testGetTotalWinningCountSuccess() {
-//    	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
-//    	int bonusNumber = 7;
-//    	List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
-//    	List<Integer> numbersFirst = List.of(1,2,3,4,5,6);
-//    	Lotto firstLotto = new Lotto(numbersFirst);
-//    	List<Integer> numbersSecond = List.of(1,2,3,4,5,7);
-//    	Lotto secondLotto = new Lotto(numbersSecond);
-//    	List<Integer> numbersthird = List.of(1,2,3,4,5,10);
-//    	Lotto thirdLotto = new Lotto(numbersthird);
-//    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto);
-//    	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
-//    }
+    @Disabled
+    @DisplayName("각 등수가 정확히 카운트 되는지 확인한다.")
+    @Test
+    void testGetTotalWinningCountSuccess() {
+    	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
+    	int bonusNumber = 7;
+    	List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+    	List<Integer> numbersFirst = List.of(1,2,3,4,5,6);
+    	Lotto firstLotto = new Lotto(numbersFirst);
+    	List<Integer> numbersSecond = List.of(1,2,3,4,5,7);
+    	Lotto secondLotto = new Lotto(numbersSecond);
+    	List<Integer> numbersthird = List.of(1,2,3,4,5,10);
+    	Lotto thirdLotto = new Lotto(numbersthird);
+    	List<Integer> numbersthird2 = List.of(1,2,3,4,5,10);
+    	Lotto thirdLotto2 = new Lotto(numbersthird2);
+    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto,thirdLotto2);
+    	assertEquals(1, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("FIRST"));
+    	assertEquals(1, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("SECOND"));
+    	assertEquals(2, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("THIRD"));
+    }
+    
     
 }

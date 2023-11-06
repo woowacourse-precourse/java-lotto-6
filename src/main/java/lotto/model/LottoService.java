@@ -46,7 +46,7 @@ public class LottoService {
 			int winningCount = getWinningCount(playerLotto.getNumbers(), winningNumbers);
 			boolean bonusMatch = isBonusNumberIncluded(playerLotto.getNumbers(), bonusNumber);
 			String rank = LottoPrize.valueOf(winningCount,bonusMatch).name();
-			rankCount.put(rank, rankCount.getOrDefault(rank, 1) + 1);
+			rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
 		}
 		return rankCount;
 	}

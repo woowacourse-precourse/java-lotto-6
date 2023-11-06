@@ -37,6 +37,10 @@ public class NumberValidatorTest {
     @DisplayName("구매 금액이 1000원 단위인지 확인한다. 1000원단위가 아니면 예외를 발생시킨다.")
     @Test
     void validatePurchasePrice() {
-
+        Assertions.assertAll(
+                () -> Assertions.assertThrows(IllegalArgumentException.class,
+                        () -> numberValidator.validatePurchasePrice(1042)),
+                () -> Assertions.assertDoesNotThrow(() -> numberValidator.validatePurchasePrice(2000))
+        );
     }
 }

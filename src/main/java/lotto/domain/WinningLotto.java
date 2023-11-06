@@ -30,7 +30,7 @@ public class WinningLotto {
 
     public List<Integer> setWinningLotto(String number) {
         Validator validator = new Validator();
-        List<String> tempLotto = Arrays.asList(number.split(","));
+        List<String> tempLotto = validator.validNumbers(Arrays.asList(number.split(",")));
         tempLotto.stream().forEach(tempNumber -> winningLotto.add(validator.validWinning(tempNumber)));
 
         return winningLotto;

@@ -30,6 +30,10 @@ public class Lotto {
         return this.numbers.contains(bonusNumber);
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE_LOTTO_NUMBER.getDesc());

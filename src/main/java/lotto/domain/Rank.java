@@ -27,7 +27,7 @@ public enum Rank {
                 .orElse(NONE);
     }
 
-    public Long getWinningPrice(){
+    public Long getWinningPrice() {
         return this.winningPrice;
     }
 

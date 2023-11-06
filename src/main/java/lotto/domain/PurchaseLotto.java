@@ -30,6 +30,12 @@ public class PurchaseLotto {
                 .sum();
     }
 
+    public List<List<Integer>> getAllNumbers() {
+        return this.lottos.stream()
+                .map(Lotto::getNumbers)
+                .collect(Collectors.toList());
+    }
+
     private List<Rank> getWinningRanks(WinningLotto winningLotto) {
         return this.lottos.stream()
                 .map(winningLotto::calcuateWinningRank)

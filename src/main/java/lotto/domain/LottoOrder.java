@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.exception.ExceptionMessage;
 
 public class LottoOrder {
@@ -26,6 +27,10 @@ public class LottoOrder {
         long totalWinningPrice = this.purchaseLotto.calculateTotalWinningPrice(winningLotto);
 
         return ((double) totalWinningPrice / this.purchasePrice) * PERCENT;
+    }
+
+    public List<List<Integer>> getLottoNumbers() {
+        return purchaseLotto.getAllNumbers();
     }
 
     private void validatePrice(Long purchasePrice) {

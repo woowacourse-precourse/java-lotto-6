@@ -4,6 +4,7 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.util.RandomUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoSystem {
@@ -20,11 +21,19 @@ public class LottoSystem {
         return new LottoSystem(winningLottos, player);
     }
 
-    public Lotto generateWinningLotto() {
+    public List<Lotto> generateWinningLottos() {
+        List<Lotto> winningLottos = new ArrayList<>();
+        for (int i = 0; i < player.getPurchasedLottoCount(); i++) {
+            winningLottos.add(generateWinningLotto());
+        }
+        return winningLottos;
+    }
+
+    private Lotto generateWinningLotto() {
         return Lotto.create(RandomUtil.generateRandomLottoNumber());
     }
 
-    public int getPurchasedLottoCount() {
+    private int getPurchasedLottoCount() {
         return player.getPurchasedLottoCount();
     }
 }

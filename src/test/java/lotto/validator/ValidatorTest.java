@@ -104,4 +104,27 @@ class ValidatorTest {
                 .hasMessage(Error.DUPLICATED_WINNING_NUMBER.message());
     }
 
+    //validateBonusNumber
+    @DisplayName("보너스 번호 검증")
+    @Test
+    void bonusNumber() {
+        assertDoesNotThrow(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 45));
+    }
+
+    @DisplayName("보너스 번호 검증_범위를 벗어난 경우")
+    @Test
+    void bonusNumber_invalidRange() {
+        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 50))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.INVALID_RANGE_WINNING_NUMBER.message());
+    }
+
+    @DisplayName("보너스 번호 검증_중복 번호")
+    @Test
+    void bonusNumber_Duplicated() {
+        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.DUPLICATED_BONUS_NUMBER.message());
+    }
+
 }

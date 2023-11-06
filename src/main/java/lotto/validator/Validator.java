@@ -78,4 +78,22 @@ public class Validator {
         throw new IllegalArgumentException(Error.INVALID_NUM_WINNING_NUMBER.message());
     }
 
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonus) {
+        validateBonusInRange(bonus);
+        validateBonusNotDuplicated(winningNumbers, bonus);
+    }
+
+    private static void validateBonusNotDuplicated(List<Integer> winningNumbers, int bonus) {
+        if (winningNumbers.contains(bonus)) {
+            throw new IllegalArgumentException(Error.DUPLICATED_BONUS_NUMBER.message());
+        }
+    }
+
+    private static void validateBonusInRange(int bonus) {
+        if (inRange(bonus)) {
+            return;
+        }
+        throw new IllegalArgumentException(Error.INVALID_RANGE_WINNING_NUMBER.message());
+    }
+
 }

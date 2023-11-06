@@ -1,5 +1,6 @@
 package lotto.domain.generator;
 
+import java.util.List;
 import lotto.domain.lotto.Lotto;
 
 public class AutoLottoGenerator implements LottoGenerator{
@@ -12,6 +13,7 @@ public class AutoLottoGenerator implements LottoGenerator{
 
     @Override
     public Lotto create() {
-        return new Lotto(numbersGenerator.create());
+        List<Integer> integers = numbersGenerator.create();
+        return new Lotto(integers);
     }
 }

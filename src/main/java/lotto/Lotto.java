@@ -49,6 +49,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumberList() {
+        return numbers;
+    }
+
     public String getNumberString() {
         return numbers.stream()
                 .map(number -> Integer.toString(number))

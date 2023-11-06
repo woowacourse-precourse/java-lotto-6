@@ -12,6 +12,10 @@ public class Statistic {
     private static final Integer MONEY_THIRD_PLACE = 1500000;
     private static final Integer MONEY_FOURTH_PLACE = 50000;
     private static final Integer MONEY_FIFTH_PLACE = 5000;
+    private static final Integer TARGET_COUNT_SIX = 6;
+    private static final Integer TARGET_COUNT_FIVE = 5;
+    private static final Integer TARGET_COUNT_FOUR = 4;
+    private static final Integer TARGET_COUNT_THREE = 3;
     private LottoEnvelop lottoEnvelop;
     private Judgment judgment;
     private Integer countOfFirstPlace;
@@ -50,6 +54,7 @@ public class Statistic {
     public StringBuilder show() {
         StringBuilder resultString = new StringBuilder();
 
+        // TODO: 11/6/23 상수 정리
         execution();
         resultString.append("3개 일치 (5,000원) - " + countOfFifthPlace + "개\n");
         resultString.append("4개 일치 (50,000원) - " + countOfFourthPlace + "개\n");
@@ -60,7 +65,7 @@ public class Statistic {
         return resultString;
     }
 
-    // TODO: 11/6/23 상수 정리 
+    // TODO: 11/6/23 상수 정리
     private void calculateTotalWinMoney() {
         totalWinMoney = totalWinMoney + (countOfFifthPlace * MONEY_FIFTH_PLACE);
         totalWinMoney = totalWinMoney + (countOfFourthPlace * MONEY_FOURTH_PLACE);
@@ -76,31 +81,31 @@ public class Statistic {
     }
 
     private void isFirstPlace(Integer countSame) {
-        if (isSameCount(countSame, 6)) {
+        if (isSameCount(countSame, TARGET_COUNT_SIX)) {
             countOfFirstPlace = countOfFirstPlace + 1;
         }
     }
 
     private void isSecondPlace(Integer countSame, Boolean isSameBonus) {
-        if (isSameCount(countSame, 5) && isSameBonus) {
+        if (isSameCount(countSame, TARGET_COUNT_FIVE) && isSameBonus) {
             countOfSecondPlace = countOfSecondPlace + 1;
         }
     }
 
     private void isThirdPlace(Integer countSame, Boolean isSameBonus) {
-        if (isSameCount(countSame, 5) && !isSameBonus) {
+        if (isSameCount(countSame, TARGET_COUNT_FIVE) && !isSameBonus) {
             countOfThirdPlace = countOfThirdPlace + 1;
         }
     }
 
     private void isFourthPlace(Integer countSame) {
-        if (isSameCount(countSame, 4)) {
+        if (isSameCount(countSame, TARGET_COUNT_FOUR)) {
             countOfFourthPlace = countOfFourthPlace + 1;
         }
     }
 
     private void isFifthPlace(Integer countSame) {
-        if (isSameCount(countSame, 3)) {
+        if (isSameCount(countSame, TARGET_COUNT_THREE)) {
             countOfFifthPlace = countOfFifthPlace + 1;
         }
     }

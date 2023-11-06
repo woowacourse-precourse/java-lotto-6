@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.stream.IntStream;
 
 public class LottoResults {
     private int firstPlaceCount = 0;
@@ -25,5 +24,13 @@ public class LottoResults {
                 && thirdPlaceCount == expectedResult.thirdPlaceCount
                 && fourthPlaceCount == expectedResult.fourthPlaceCount
                 && fifthPlaceCount == expectedResult.fifthPlaceCount;
+    }
+
+    public float earning() {
+        return firstPlaceCount * 2_000_000_000
+                + secondPlaceCount * 30_000_000
+                + thirdPlaceCount * 1_500_000
+                + fourthPlaceCount * 50_000
+                + fifthPlaceCount * 5_000;
     }
 }

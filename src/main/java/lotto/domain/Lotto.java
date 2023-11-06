@@ -1,10 +1,11 @@
 package lotto.domain;
 
-import static lotto.util.Constants.NUMBER_COUNT;
+import static lotto.util.Constants.LOTTO_NUMBERS_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.util.LottoUtil;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,14 +16,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateSizeSix(numbers);
+        validateSize(numbers);
+        validateRange(numbers);
         validateDuplication(numbers);
     }
 
-    private static void validateSizeSix(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_COUNT) {
+    private static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach(LottoUtil::verifyRangeOfLottoNumber);
     }
 
     private static void validateDuplication(List<Integer> numbers) {

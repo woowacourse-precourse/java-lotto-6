@@ -18,7 +18,7 @@ public class WinningLottoTest {
     @BeforeEach
     void setTest() {
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
+        bonusNumber = 7;
         winningLotto = new WinningLotto(lotto, bonusNumber);
     }
 

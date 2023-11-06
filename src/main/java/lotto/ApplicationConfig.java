@@ -1,8 +1,10 @@
 package lotto;
 
 import lotto.model.AutoLottoGenerator;
+import lotto.model.LottoBuyer;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoRankResult;
+import lotto.model.LottoSeller;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,5 +30,13 @@ public class ApplicationConfig {
 
     public LottoGenerator lottoGenerator() {
         return AutoLottoGenerator.getInstance();
+    }
+
+    public LottoSeller lottoSeller() {
+        return new LottoSeller(lottoGenerator());
+    }
+
+    public LottoBuyer lottoBuyer() {
+        return new LottoBuyer();
     }
 }

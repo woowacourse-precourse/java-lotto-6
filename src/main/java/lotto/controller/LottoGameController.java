@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.ApplicationConfig;
-import lotto.model.AutoLottoGenerator;
 import lotto.model.LottoBuyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
@@ -18,8 +17,8 @@ public class LottoGameController {
     }
 
     public void run() {
-        final LottoSeller seller = generateSeller();
-        final LottoBuyer buyer = generateBuyer();
+        final LottoSeller seller = appConfig.lottoSeller();
+        final LottoBuyer buyer = appConfig.lottoBuyer();
         final int countOfLotto = lottoGameService.calculateLottoCountOnBuy(buyer);
 
         final Lottos lottos = lottoGameService.generateLottosOnSell(seller, countOfLotto);
@@ -28,13 +27,5 @@ public class LottoGameController {
         final WinningLotto winningLotto = lottoGameService.generateWinningLotto();
         lottoGameService.printWinningResult(winningLotto, lottos);
         lottoGameService.printTotalReturn(countOfLotto);
-    }
-
-    private LottoSeller generateSeller() {
-        return new LottoSeller(appConfig.lottoGenerator());
-    }
-
-    private LottoBuyer generateBuyer() {
-        return new LottoBuyer();
     }
 }

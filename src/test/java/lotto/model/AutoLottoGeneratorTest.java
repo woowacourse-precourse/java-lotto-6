@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.ApplicationConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -10,11 +11,13 @@ import org.junit.jupiter.api.Test;
 
 public class AutoLottoGeneratorTest {
     final static int TEST_NUMBER = 5;
-    AutoLottoGenerator autoLottoGenerator;
+    ApplicationConfig applicationConfig;
+    LottoGenerator autoLottoGenerator;
 
     @BeforeEach
     void setGenerator() {
-        autoLottoGenerator = AutoLottoGenerator.getInstance();
+        applicationConfig = new ApplicationConfig();
+        autoLottoGenerator = applicationConfig.lottoGenerator();
     }
 
     @DisplayName("자동 로또 발행기는 하나의 로또를 발행해야 한다.")

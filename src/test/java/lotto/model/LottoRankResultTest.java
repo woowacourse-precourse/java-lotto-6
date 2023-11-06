@@ -4,11 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.ApplicationConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoRankResultTest {
+    ApplicationConfig applicationConfig;
     LottoRankResult result;
     Lotto winningLottoNumbers;
     int bonusNumber;
@@ -16,7 +18,8 @@ public class LottoRankResultTest {
 
     @BeforeEach
     void setTest() {
-        result = new LottoRankResult();
+        applicationConfig = new ApplicationConfig();
+        result = applicationConfig.lottoRankResult();
         winningLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = 7;
         winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);

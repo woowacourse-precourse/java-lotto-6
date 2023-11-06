@@ -6,6 +6,7 @@ import static lotto.exception.LottoException.NOT_VALID_PURCHASE_AMOUNT_UNIT;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.ApplicationConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,11 +14,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoBuyerTest {
+    ApplicationConfig applicationConfig;
     LottoBuyer buyer;
 
     @BeforeEach
     void setBuyer() {
-        buyer = new LottoBuyer();
+        applicationConfig = new ApplicationConfig();
+        buyer = applicationConfig.lottoBuyer();
     }
 
     @DisplayName("로또 구입 금액이 1,000원 단위가 아닐 경우 예외가 발생한다.")

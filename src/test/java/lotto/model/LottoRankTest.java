@@ -30,7 +30,7 @@ public class LottoRankTest {
 
     /*
      * 1등이 두 번 당첨되는 등 상금이 int 최대 범위인 21억보다 커지면 예외가 발생하는 것을 발견.
-     * BigInteger 를 통해 따로 처리를 해주어야 할지 고민하게 됨
+     * BigInteger 를 통해 따로 처리를 해주어야 할지 고민하게 됨.
      */
     @DisplayName("당첨된 등수의 개수만큼 상금을 반환해야 한다.")
     @ParameterizedTest

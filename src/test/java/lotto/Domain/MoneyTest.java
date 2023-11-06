@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.Exception.CommonValidationException;
 import lotto.Exception.MoneyException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,22 @@ class MoneyTest {
 
         assertThrows(MoneyException.class, () -> Money.from(inputMoney1));
         assertThrows(MoneyException.class, () -> Money.from(inputMoney2));
+    }
+
+    @DisplayName("범위 안에 구매 금액을 입력했을때 정상수행되는지 확인")
+    @Test
+    void createMoneyByInRange() {
+        //given
+        String inputMoney1 = "1000";
+        String inputMoney2 = "100000";
+
+        //when
+        Money money1 = Money.from(inputMoney1);
+        Money money2 = Money.from(inputMoney2);
+
+        //then
+        assertThat(money1.getMoney()).isEqualTo(1000);
+        assertThat(money2.getMoney()).isEqualTo(100000);
     }
 
     @DisplayName("1000원 단위가 아닌 금액을 입력했을때 예외발생하는지 확인")

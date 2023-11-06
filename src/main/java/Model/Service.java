@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Service {
-    private final Domain domain = Domain.getInstance();
+    private final Domain DOMAIN = Domain.getInstance();
 
     private Service() {
     }
@@ -28,12 +28,8 @@ public class Service {
         return Randoms.pickNumberInRange(1, 45);
     }
 
-    public void setPrice() {
-        domain.price = 1;
-    }
-
     public int numberFrequencyCount(List<Integer> list) {
-        Set<Integer> set = new HashSet<>(domain.NUMBERS);
+        Set<Integer> set = new HashSet<>(DOMAIN.NUMBERS);
         return (int) list.stream()
                 .filter(set::contains)
                 .count();
@@ -41,8 +37,12 @@ public class Service {
 
     public void compareNumbers() {
         for (var e : Domain.getInstance().getMyLotto()) {
-            domain.getCorrectNumberCount()
+            DOMAIN.getCorrectNumberCount()
                     .add(numberFrequencyCount(e.getNumbers()));
         }
+    }
+
+    public void setPrice(int price) {
+        DOMAIN.price = price;
     }
 }

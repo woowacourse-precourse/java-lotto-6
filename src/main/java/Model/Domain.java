@@ -1,18 +1,19 @@
 package Model;
 
+import Controller.ModelHandler;
 import java.util.List;
 
 public class Domain {
-    private final Service service = Service.getInstance();
-    public final List<Integer> NUMBERS = service.lottoGenerator();
-    public final int BONUS_NUMBER = service.numberGenerator();
+    private final Service SERVICE = Service.getInstance();
+    public final List<Integer> NUMBERS = SERVICE.lottoGenerator();
     public static final int LOTTO_PRICE = 1000;
+    public int BONUS_NUMBER = SERVICE.numberGenerator();
+    public int price;
+    public int lottoNumber;
+    public double revenueRate;
 
     private List<Lotto> myLotto;
     private List<Integer> correctNumberCount;
-    public int price;
-    public int lottoNum;
-    public double revenueRate;
 
     private Domain() {
     }

@@ -6,8 +6,11 @@ import Model.Service;
 import java.util.List;
 
 public class ModelHandler {
-    private Domain domain = Domain.getInstance();
-    private Service service = Service.getInstance();
+    private Domain DOMAIN = Domain.getInstance();
+    private Service SERVICE = Service.getInstance();
+
+    public List<Lotto> MY_LOTTO = DOMAIN.getMyLotto();
+    public List<Integer> CORRECT_NUMBER_COUNT = DOMAIN.getCorrectNumberCount();
 
     private ModelHandler() {}
 
@@ -17,9 +20,5 @@ public class ModelHandler {
 
     public static ModelHandler getInstance() {
         return Singleton.INSTANCE;
-    }
-
-    public List<Lotto> getMyLotto() {
-        return domain.getMyLotto();
     }
 }

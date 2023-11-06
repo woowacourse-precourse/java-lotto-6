@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.Constants;
 import lotto.domain.Customer;
@@ -16,11 +17,14 @@ public class Controller {
     InputValidator inputValidator = new InputValidator();
     OutputView outputView = new OutputView();
     WinningLotto winningLotto;
+    List<Integer> winningNumbers = new ArrayList<>();
+    int bonusNumber = 0;
 
 
     public void playLotto() {
         purchaseLotto();
         setWinningLotto();
+        setBonusLotto();
     }
 
     private void purchaseLotto() {
@@ -46,7 +50,18 @@ public class Controller {
     private void setWinningLotto(){
         while (true){
             try {
-                List<Integer> winningNumbers = inputValidator.checkWinningNumber(inputView.generalWinningNumber());
+                winningNumbers = inputValidator.checkWinningNumber(inputView.generalWinningNumber());
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void setBonusLotto(){
+        while (true){
+            try {
+                bonusNumber = inputValidator.checkBonusNumber(inputView.bonusWinningNumber());
                 break;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());

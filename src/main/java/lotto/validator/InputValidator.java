@@ -36,9 +36,9 @@ public class InputValidator {
         List<String> stringwinningnumbers = Utils.makeStringtoArray(winningNumber);
         checkLetterAndBlank(stringwinningnumbers);
         winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
-        checkLetterLong(winningNumbers);
+        checkWinningNumberLong(winningNumbers);
         checkDuplicateWinningNumber(winningNumbers);
-        checkNumberRange(winningNumbers);
+        checkWinningNumberRange(winningNumbers);
         return winningNumbers;
     }
     public void checkLastCommas(String stringNumber) throws IllegalArgumentException{
@@ -53,9 +53,9 @@ public class InputValidator {
         }
 
     }
-    public void checkNumberRange(List<Integer> numbers) throws IllegalArgumentException{
+    public void checkWinningNumberRange(List<Integer> numbers) throws IllegalArgumentException{
         if(Collections.max(numbers) > Constants.MAX_LOTTO_NUMBER || Collections.min(numbers )< Constants.ONE){
-             throw new IllegalArgumentException("[ERROR] 입력이 가능한 숫자의 범위는 1 ~ 45 입니다.");
+             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
     public void checkLetterAndBlank(List<String> strings){
@@ -65,14 +65,19 @@ public class InputValidator {
             }
         }
     }
-    public void checkLetterLong(List<Integer> strings){
+    public void checkWinningNumberLong(List<Integer> strings){
         if (strings.size() != Constants.MAX_LOTTO_PICK_NUMBER ){
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
         }
     }
-
-
-
-
-
+    public int checkBonusNumber(String number) throws IllegalArgumentException{
+        checkBonusInteger(number);
+        int bonusNumber =  Utils.makeStringToInteger(number);
+        return bonusNumber;
+    }
+    public void checkBonusInteger (String number) throws IllegalArgumentException{
+        if(!Constants.INTEGER.matcher(number).matches()){
+            throw new IllegalArgumentException("[ERROR] 숫자를 한개만 입력해 주세요");
+        }
+    }
 }

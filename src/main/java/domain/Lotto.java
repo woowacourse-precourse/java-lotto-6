@@ -1,10 +1,11 @@
 package domain;
 
 import java.util.List;
-import util.RegexPattern;
+import java.util.regex.Pattern;
 import util.ErrorMessage;
 
 public class Lotto {
+    public static final Pattern lotto = Pattern.compile("[1-9]|[1-3][0-9]|4[0-5]");
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -32,7 +33,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!RegexPattern.lotto.matcher(Integer.toString(number)).matches()) {
+            if (!lotto.matcher(Integer.toString(number)).matches()) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getErrorMessage());
             }
         }

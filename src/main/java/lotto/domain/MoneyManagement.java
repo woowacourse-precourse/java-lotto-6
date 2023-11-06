@@ -21,8 +21,12 @@ public class MoneyManagement {
         }
     }
 
-    private int toInt(String userInput) {
-        return Integer.parseInt(userInput);
+    private int toInt(final String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력한 금액이 유효한 숫자 범위를 벗어났습니다.");
+        }
     }
 
     private void validRange(final int userAmount) {

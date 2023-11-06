@@ -30,8 +30,12 @@ public final class Money {
         return new Money(money * multiplier);
     }
 
-    public Money add(Money otherMoney) {
-        return new Money(money + otherMoney.money);
+    public Money add(Money addendMoney) {
+        return new Money(money + addendMoney.money);
+    }
+
+    public double getRatio(Money divisorMoney) {
+        return (double) money / divisorMoney.money;
     }
 
     @Override
@@ -42,7 +46,6 @@ public final class Money {
         if (!(object instanceof Money otherMoney)) {
             return false;
         }
-
         return this.money == otherMoney.money;
     }
 

@@ -1,12 +1,10 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class MoneyTest {
     @ParameterizedTest
@@ -35,5 +33,19 @@ public class MoneyTest {
 
         // then
         assertThat(actualQuantity).isEqualTo(expectedQuantity);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1000,150,0.15", "2000,500000,250.0", "7000,100000,14.286"})
+    void 수익률을_구할_수_있다(int purchaseMoney, int winningMoney, double expectedRatio) {
+        // given
+        Money money = new Money(winningMoney);
+
+        // when
+        double actualRatio = money.getRatio(new Money(purchaseMoney));
+
+        // then
+        assertThat(actualRatio)
+                .isEqualTo(expectedRatio, offset(0.4d));
     }
 }

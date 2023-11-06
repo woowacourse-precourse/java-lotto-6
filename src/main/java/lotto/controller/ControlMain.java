@@ -44,7 +44,7 @@ public class ControlMain {
     }
 
     public List<Integer> randomLottoNum() {
-        return Randoms.pickUniqueNumbersInRange(1, 10, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
 
@@ -101,7 +101,6 @@ public class ControlMain {
         ErrorCheck.isDigitErrorCheck(choice);
         ErrorCheck.isvalidateMaxAndMinNum(choice);
         ErrorCheck.isDuplicationErrorcheck(choice, numbers);
-
     }
 
     public void priceLottoAllError(String price) {

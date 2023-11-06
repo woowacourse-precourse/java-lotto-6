@@ -24,6 +24,7 @@ public class LotteryGame {
         init();
         outputHandler.print(Messasge.RESULT);
         result = getResult();
+        inputHandler.close();
     }
 
     private void init() {
@@ -78,8 +79,9 @@ public class LotteryGame {
             try {
                 String[] inputNumbers = inputHandler.readLine().split(",");
                 Integer[] numbers = new Integer[inputNumbers.length];
-                for (String number : inputNumbers) {
-                    LottoNumberValidator.isInteger(number);
+                for (int i = 0 ; i<inputNumbers.length; i++) {
+                    LottoNumberValidator.isInteger(inputNumbers[i].trim());
+                    numbers[i] = Integer.parseInt(inputNumbers[i].trim());
                 }
                 // 출력 위치 변경 필요
                 outputHandler.print(Messasge.REQUEST_BONUS_NUMBER);

@@ -36,7 +36,7 @@ public class LottoService {
     private List<Lotto> generateLottos(int lottoCount) {
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> generateLotto())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private Lotto generateLotto() {

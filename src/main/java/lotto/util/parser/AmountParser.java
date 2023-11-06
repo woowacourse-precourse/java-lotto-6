@@ -1,6 +1,6 @@
 package lotto.util.parser;
 
-import lotto.constant.InputMessage;
+import lotto.constant.ErrorMessage;
 
 public class AmountParser implements InputParser<Integer> {
 
@@ -12,7 +12,7 @@ public class AmountParser implements InputParser<Integer> {
 
     private void validateIsNotBlank(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException(InputMessage.ERROR_AMOUNT_IS_BLANK);
+            throw new IllegalArgumentException(ErrorMessage.IS_BLANK);
         }
     }
 
@@ -20,7 +20,7 @@ public class AmountParser implements InputParser<Integer> {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputMessage.ERROR_AMOUNT_NOT_A_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER);
         }
     }
 }

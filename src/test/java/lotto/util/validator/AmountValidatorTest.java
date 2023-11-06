@@ -1,6 +1,6 @@
 package lotto.util.validator;
 
-import lotto.constant.InputMessage;
+import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +16,7 @@ public class AmountValidatorTest {
     @DisplayName("금액이 로또 가격 미만일 때 IllegalArgumentException을 던져야 한다.")
     void testValidateAmountLessThanLottoPrice(int amount) {
         assertThrows(IllegalArgumentException.class, () -> validator.validate(amount),
-                InputMessage.ERROR_AMOUNT_SMALL_THAN_THOUSAND);
+                ErrorMessage.AMOUNT_SMALL_THAN_THOUSAND);
     }
 
     @ParameterizedTest
@@ -24,6 +24,6 @@ public class AmountValidatorTest {
     @DisplayName("금액이 1000원 단위가 아닐 때 IllegalArgumentException을 던져야 한다.")
     void testValidateAmountNotMultipleOfThousand(int amount) {
         assertThrows(IllegalArgumentException.class, () -> validator.validate(amount),
-                InputMessage.ERROR_AMOUNT_NOT_MULTIPLE_OF_THOUSAND);
+                ErrorMessage.NOT_MULTIPLE_OF_THOUSAND);
     }
 }

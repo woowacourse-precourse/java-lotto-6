@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import model.Lotto;
 
@@ -12,6 +12,7 @@ public class OutputView {
         for (Lotto ticket : generatedLottos) {
             System.out.println(ticket.getNumbers());
         }
+        System.out.println();
     }
 
 }

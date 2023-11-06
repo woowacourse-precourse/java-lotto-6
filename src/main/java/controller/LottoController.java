@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import model.Lotto;
+import view.WinningPrize;
 
 public class LottoController {
     private static final int LOTTO_PRICE = 1000;
@@ -93,6 +94,34 @@ public class LottoController {
         results.put("6", 0);
         results.put("bonus", 0);
 
+    }
+
+    public double calculateWinningRate(int lottoAmount, HashMap<String, Integer> winningResults) {
+        int totalSpent = lottoAmount * LOTTO_PRICE;
+        int winningPrizeSum = 0;
+        for (String grade : winningResults.keySet()) {
+            int eachLottoPrizeAmount = winningResults.get(grade);
+            if (eachLottoPrizeAmount != 0) {
+                winningPrizeSum += calculatePrizeSum(grade, eachLottoPrizeAmount);
+            }
+        }
+        return (double) winningPrizeSum / totalSpent * 100;
+    }
+
+    private int calculatePrizeSum(String grade, int eachLottoPrizeAmount) {
+        int prizeSum = 0;
+        if (grade.equals(WinningPrize.FIFTH.getMatchCount())) {
+            prizeSum = eachLottoPrizeAmount * WinningPrize.FIFTH.getPrizeAmount();
+        } else if (grade.equals(WinningPrize.FOURTH.getMatchCount())) {
+            prizeSum = eachLottoPrizeAmount * WinningPrize.FOURTH.getPrizeAmount();
+        }else if (grade.equals(WinningPrize.THIRD.getMatchCount())) {
+            prizeSum = eachLottoPrizeAmount * WinningPrize.THIRD.getPrizeAmount();
+        }else if (grade.equals(WinningPrize.SECOND.getMatchCount())) {
+            prizeSum = eachLottoPrizeAmount * WinningPrize.SECOND.getPrizeAmount();
+        }else if (grade.equals(WinningPrize.FIRST.getMatchCount())) {
+            prizeSum = eachLottoPrizeAmount * WinningPrize.FIRST.getPrizeAmount();
+        }
+        return prizeSum;
     }
 
 

@@ -16,18 +16,19 @@ public class Application {
         // TODO: 프로그램 구현
         int purchasePrice = userController.inputPriceHowManyLottos();
 
-        int lottoMount = lottoController.calculatelottoMount(purchasePrice);
-        List<Lotto> generatedLottos = lottoController.generateLottos(lottoMount);
-        OutputView.showGeneratedLotto(lottoMount, generatedLottos);
+        int lottoAmount = lottoController.calculatelottoMount(purchasePrice);
+        List<Lotto> generatedLottos = lottoController.generateLottos(lottoAmount);
+        OutputView.showGeneratedLotto(lottoAmount, generatedLottos);
 
         List<Integer> whatIsUserLottoNumbers = userController.generateUserLottoNumber();
         int bonusNumber = userController.inputBonusNumber();
 
         HashMap<String, Integer> winningResults = lottoController.calculateHowManyCorrectNumber(
                 whatIsUserLottoNumbers, bonusNumber);
-        for (String key : winningResults.keySet()) {
-            String value = winningResults.get(key).toString();
-            System.out.println(key + " " + value);
-        }
+
+        double winningRate = lottoController.calculateWinningRate(lottoAmount, winningResults);
+        String formattedRate = String.format("%.1f", winningRate);
+
+
     }
 }

@@ -58,6 +58,7 @@ public class UserController {
                 }
                 lottoValidation.lottoNumberOverlap(winningLottoNumbers);
                 isValidInput = true;
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -84,6 +85,7 @@ public class UserController {
                 }
                 lottoValidation.isOverlapWithWinningNumbers(winningLottoNumbers, bonusNumber);
                 isValidInput = true;
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

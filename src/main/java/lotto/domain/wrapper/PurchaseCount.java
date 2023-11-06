@@ -10,4 +10,8 @@ public class PurchaseCount {
     public static PurchaseCount create(int count) {
         return new PurchaseCount(count);
     }
+
+    public int getCount() {
+        return count;
+    }
 }

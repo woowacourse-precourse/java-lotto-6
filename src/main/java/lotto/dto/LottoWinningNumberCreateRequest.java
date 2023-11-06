@@ -5,10 +5,12 @@ import java.util.List;
 
 public class LottoWinningNumberCreateRequest {
 
+    private static final String NUMBER_SEPARATOR = ",";
+
     private List<Integer> numbers;
 
     public LottoWinningNumberCreateRequest(String winningNumbers) {
-        String[] numbers = winningNumbers.split(",");
+        String[] numbers = winningNumbers.split(NUMBER_SEPARATOR);
 
         this.numbers = new ArrayList<>();
         for (String stringNumber : numbers) {

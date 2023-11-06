@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lotto.domain.Lotteries;
+import lotto.domain.Number;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningRank;
 import lotto.dto.LotteriesDto;
@@ -19,7 +21,7 @@ public class LottoController {
         Lotteries lotteries = runRepeat(this::makeLotteries);
         printLotteries(lotteries);
 
-        WinningNumber winningNumber = runRepeat(this::makeWinningNumber);
+        WinningNumber winningNumber = makeWinningNumber();
 
         WinningStatisticsDto statistics = makeWinningStatistics(lotteries, winningNumber);
         printWinningStatistics(statistics);
@@ -36,7 +38,24 @@ public class LottoController {
     }
 
     private WinningNumber makeWinningNumber() {
-        return inputView.readWinningNumber().toValueObject();
+        List<Number> winningNumbers = runRepeat(this::readValidatedWinningNumber);
+        Number bonusNumber = runRepeat(() -> readValidatedBonusNumber(winningNumbers));
+
+        return new WinningNumber(winningNumbers, bonusNumber);
+    }
+
+    private List<Number> readValidatedWinningNumber() {
+        List<Integer> values = inputView.readWinningNumbers();
+        List<Number> winningNumbers = Number.getList(values);
+        WinningNumber.validate(winningNumbers);
+        return winningNumbers;
+    }
+
+    private Number readValidatedBonusNumber(List<Number> winningNumbers) {
+        int value = inputView.readBonusNumber();
+        Number bonusNumber = Number.from(value);
+        WinningNumber.validate(winningNumbers, bonusNumber);
+        return bonusNumber;
     }
 
     private WinningStatisticsDto makeWinningStatistics(Lotteries lotteries, WinningNumber winningNumber) {

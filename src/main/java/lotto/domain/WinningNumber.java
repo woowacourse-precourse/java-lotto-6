@@ -11,14 +11,14 @@ public class WinningNumber {
     private final List<Number> winningNumbers;
     private final Number bonusNumber;
 
-    WinningNumber(List<Number> winningNumbers, Number bonusNumber) {
+    public WinningNumber(List<Number> winningNumbers, Number bonusNumber) {
         validate(winningNumbers, bonusNumber);
 
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    private static void validate(List<Number> winningNumbers, Number bonusNumber) {
+    public static void validate(List<Number> winningNumbers, Number bonusNumber) {
         validateNotNull(winningNumbers);
         validateNotNull(bonusNumber);
         validateSize(winningNumbers);
@@ -71,10 +71,6 @@ public class WinningNumber {
         int countOfDistinctNumber = (int) numbers.stream().distinct().count();
 
         return numbers.size() > countOfDistinctNumber;
-    }
-
-    public static WinningNumber of(List<Integer> winningNumbers, int bonusNumber) {
-        return new WinningNumber(Number.getList(winningNumbers), Number.from(bonusNumber));
     }
 
     public int countMatchingWinningNumber(List<Number> numbers) {

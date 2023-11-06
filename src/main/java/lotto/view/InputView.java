@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.dto.WinningNumberDto;
 
 public class InputView {
 
@@ -18,19 +17,12 @@ public class InputView {
         return readInt();
     }
 
-    public WinningNumberDto readWinningNumber() {
-        List<Integer> winningNumber = readWinningNumbers();
-        int bonusNumber = readBonusNumber();
-
-        return new WinningNumberDto(winningNumber, bonusNumber);
-    }
-
-    private List<Integer> readWinningNumbers() {
+    public List<Integer> readWinningNumbers() {
         print(REQUEST_WINNING_NUMBER_MESSAGE);
         return readIntegerList();
     }
 
-    private int readBonusNumber() {
+    public int readBonusNumber() {
         print(REQUEST_BONUS_NUMBER_MESSAGE);
         return readInt();
     }

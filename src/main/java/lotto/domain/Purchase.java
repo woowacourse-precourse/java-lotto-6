@@ -13,7 +13,7 @@ public class Purchase {
         this.lottoCount = buyLotto();
     }
 
-    void validate(String money, MoneyValidator moneyValidator) {
+    private void validate(String money, MoneyValidator moneyValidator) {
         moneyValidator.validate(money);
     }
 

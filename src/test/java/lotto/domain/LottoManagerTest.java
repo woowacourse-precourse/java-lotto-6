@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoManagerTest {
 
@@ -27,6 +29,20 @@ class LottoManagerTest {
                     .isEqualTo(List.of(1, 2, 3, 4, 5, 6))
                     .isNotEqualTo(List.of(6, 5, 4, 3, 2, 1));
         }
+    }
+
+    @DisplayName("당첨로또와 일치하는 횟수 계산")
+    @Test
+    void countMatching() {
+        // given
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+
+        // when
+        Integer countMatching = LottoManager.countMatching(userLotto, winningLotto);
+
+        // then
+        assertThat(countMatching).isEqualTo(6);
     }
 
 }

@@ -11,6 +11,7 @@ public class LottoView {
 
         System.out.println("구입금액을 입력해 주세요.");
         numberOfLotto = inputPrice(Console.readLine());
+        System.out.println();
         return numberOfLotto;
     }
 

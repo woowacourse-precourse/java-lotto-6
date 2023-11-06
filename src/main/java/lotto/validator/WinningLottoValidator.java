@@ -2,7 +2,9 @@ package lotto.validator;
 
 import static lotto.config.InputPattern.WINNING_LOTTO_COMMA_REGEX;
 import static lotto.config.InputPattern.WINNING_LOTTO_NUMERIC_REGEX;
-import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_COMMA_ERROR_MESSAEGE;
+import static lotto.config.LottoConfig.LOTTO_NUMBER_AMOUNT_MAX;
+import static lotto.config.LottoErrorMessage.LOTTO_AMOUNT_MAX_ERROR_MESSAGE;
+import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_COMMA_ERROR_MESSAGE;
 import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_NUMERIC_ERROR_MESSAGE;
 import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_UNIQUE_ERROR_MESSAGE;
 
@@ -19,9 +21,13 @@ public class WinningLottoValidator implements Validator <String> {
 
     @Override
     public String validate(String input) {
+        List<String> splitNumbers = NumberSplitter.splitNumbers(input);
+
         comma(input);
         numericWithComma(input);
-        unique(NumberSplitter.splitNumbers(input));
+        maxAmount(splitNumbers);
+        unique(splitNumbers);
+
         return input;
     }
 
@@ -33,7 +39,13 @@ public class WinningLottoValidator implements Validator <String> {
 
     private void comma(String input) {
         if (!COMMA_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException(WINNING_LOTTO_COMMA_ERROR_MESSAEGE.getMessage());
+            throw new IllegalArgumentException(WINNING_LOTTO_COMMA_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private void maxAmount(List<String> splitNumbers) {
+        if (splitNumbers.size() != LOTTO_NUMBER_AMOUNT_MAX.getValue()) {
+            throw new IllegalArgumentException(LOTTO_AMOUNT_MAX_ERROR_MESSAGE.getMessage());
         }
     }
 

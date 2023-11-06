@@ -43,6 +43,5 @@ public class LottoController {
         double profitRate = profitRateCalculator.calculateProfitRate();
 
         view.printWinningResults(winningResults);
-        view.printTotalProfitRate(profitRate);
     }
 }

@@ -4,7 +4,7 @@ public class RateOfReturn {
     private final double rateOfReturn;
 
     public RateOfReturn(Money money, WinningResult winningResult) {
-        this.rateOfReturn = calculateWinningMoney(winningResult) / money.getLottoCount() * 0.1;
+        this.rateOfReturn = (double) calculateWinningMoney(winningResult) / money.getLottoCount() * 0.1;
     }
 
     private int calculateWinningMoney(WinningResult winningResult) {

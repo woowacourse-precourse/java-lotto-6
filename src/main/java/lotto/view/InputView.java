@@ -12,4 +12,8 @@ public class InputView {
         System.out.println(inputLottoNumberPhrase);
     }
 
+    public static void printInputLottoBonusNumberPhrase() {
+        System.out.println(inputLottoBonusNumberPhrase);
+    }
+
 }

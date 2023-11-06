@@ -6,4 +6,6 @@ public class InputViewPhrase {
 
     public static final String inputLottoNumberPhrase = "당첨 번호를 입력해 주세요.";
 
+    public static final String inputLottoBonusNumberPhrase = "보너스 번호를 입력해 주세요.";
+
 }

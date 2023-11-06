@@ -59,7 +59,7 @@ public class InputViewService {
 
     private static void duplicateValidation(List<Integer> numberList) {
         if (Validator.isDuplicateValue(numberList)) {
-            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER.getLottoMessage());
+            throw new IllegalArgumentException(ERROR_DUPLICATE_LOTTO_NUMBER.getLottoMessage());
         }
     }
 

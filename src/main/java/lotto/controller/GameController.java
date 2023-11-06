@@ -1,14 +1,16 @@
 package lotto.controller;
 
+import lotto.view.InputView;
+
 public class GameController {
 
     private static GameController gameController;
 
-    private GameController() {}
+    private GameController(InputView inputView) {}
 
-    public static GameController getInstance() {
+    public static GameController getInstance(InputView inputView) {
         if (gameController == null) {
-            gameController = new GameController();
+            gameController = new GameController(inputView);
         }
         return gameController;
     }

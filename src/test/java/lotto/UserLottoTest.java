@@ -16,4 +16,11 @@ public class UserLottoTest {
         assertThatThrownBy(() -> new UserLotto(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 1000 단위가 아닐 때 예외")
+    @Test
+    void checkMoneyUnit() {
+        assertThatThrownBy(() -> new UserLotto(900))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

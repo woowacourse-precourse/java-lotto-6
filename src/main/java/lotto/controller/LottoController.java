@@ -20,12 +20,10 @@ public class LottoController {
 
         LottoPack lottoPack = buyLottoPack();
         outputView.newline();
-        WinningNumbers winningNumbers = loop(this::getWinningNumbers);
-        outputView.newline();
-        WinningNumber bonusNumber = loop(() -> getBonusNumber(winningNumbers));
+
+        Result result = getResult();
         outputView.newline();
 
-        Result result = new Result(winningNumbers, bonusNumber);
         LottoStatistics lottoStatistics = lottoPack.calculate(result);
         outputView.printResult(lottoStatistics);
 
@@ -57,16 +55,29 @@ public class LottoController {
         return new Money(inputView.getNumber());
     }
 
-    private WinningNumbers getWinningNumbers() {
-        outputView.printGetWinningNumbers();
-        return WinningNumbers.createWinningNumbers(inputView.getNumbers());
+    private Result getResult() {
+
+        ResultBuilder resultBuilder = new ResultBuilder();
+
+        loop(() -> getWinningNumbers(resultBuilder));
+        outputView.newline();
+        loop(() -> getBonusNumber(resultBuilder));
+
+        return resultBuilder.build();
+
     }
 
-    private WinningNumber getBonusNumber(WinningNumbers winningNumbers) {
+    private ResultBuilder getWinningNumbers(ResultBuilder resultBuilder) {
+        outputView.printGetWinningNumbers();
+        resultBuilder.setWinningNumbers(WinningNumbers.createWinningNumbers(inputView.getNumbers()));
+        return resultBuilder;
+    }
+
+    private ResultBuilder getBonusNumber(ResultBuilder resultBuilder) {
         outputView.printGetBonusNumber();
-        int number = inputView.getNumber();
-        if(winningNumbers.contains(number)) throw new IllegalArgumentException();
-        return new WinningNumber(number);
+        BonusNumber bonusNumber = new BonusNumber(inputView.getNumber());
+        resultBuilder.setBonusNumber(bonusNumber);
+        return resultBuilder;
     }
 
 }

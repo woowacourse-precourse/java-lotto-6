@@ -13,8 +13,11 @@ public class OutputView {
         System.out.printf("%d개를 구매했습니다.", lottoAmount);
     }
 
-    public void printUserLottos(List<Integer> userLotto) {
-
+    public void printUserLottos(int lottoAmount, List<Integer> userLotto) {
+        while (lottoAmount > 0) {
+            System.out.println(userLotto.toString());
+            lottoAmount--;
+        }
     }
 
     public void printWinLottoNumbersInputGuide() {

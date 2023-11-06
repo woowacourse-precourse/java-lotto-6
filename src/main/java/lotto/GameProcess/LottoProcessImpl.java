@@ -9,11 +9,11 @@ import lotto.dataObjects.Lotto;
 import lotto.utils.LottoValidator;
 import lotto.utils.LottoValidatorImpl;
 
-public class LottoProcessImpl implements LottoProcess {
+public class ProcessImpl implements Process {
 
 	private final InputNumber inputNumber;
 
-	public LottoProcessImpl() {
+	public ProcessImpl() {
 		LottoValidator validator = new LottoValidatorImpl();
 		this.inputNumber = new InputNumberImpl(validator);
 	}

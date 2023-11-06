@@ -22,5 +22,11 @@ public class LottoView {
         }
     }
 
+    public void printInputWinningNumber(){
+        System.out.println(Views.INPUT_WINNING_NUMBER_MESSAGE);
+    }
 
+    public void printInputBonusNumber(){
+        System.out.println(Views.INPUT_BONUS_NUMBER_MESSAGE);
+    }
 }

@@ -1,16 +1,22 @@
 package model;
 
-public class Constants {
+public enum Constants {
 	
-	private Constants() {}
+	UNIT_PRICE(1000),
+	
+	INIT_CNT(0),
+	
+	MIN_NUM(1),
+	MAX_NUM(45),
+	CORRECT_CNT(6);
+	
+	private final int val;
 
-	public static final int UNIT_AMOUNT=1000;
+	Constants(int val) {
+		this.val=val;
+	}
 	
-	public static final int MATCHING_THREE=5000;
-	public static final int MATCHING_FOUR=50000;
-	public static final int MATCHING_FIVE=1500000;
-	public static final int WITH_BONUS=30000000;
-	public static final int MATCHING_ALL=2000000000;
-	
-	public static final int INIT_CNT=0;
+	public int getConstants() {
+		return val;
+	}
 }

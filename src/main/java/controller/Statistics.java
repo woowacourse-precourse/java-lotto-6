@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-import static model.Constants.*;
+import static model.Data.*;
 
 public class Statistics {
 
@@ -36,7 +36,7 @@ public class Statistics {
 	}
 	
 	private void getRateOfReturn(int winnings) {
-		double rate=winnings*100.0/(lottery_list.size()*UNIT_AMOUNT);
+		double rate=winnings*100.0/(lottery_list.size()*UNIT_PRICE);
 		System.out.println("총 수익률은 "+String.format("%,.1f", rate)+"%입니다.");
 	}
 	

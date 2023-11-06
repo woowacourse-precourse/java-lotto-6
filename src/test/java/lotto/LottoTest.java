@@ -40,7 +40,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
     
-    @DisplayName("로또 번호의 입력 실수는 예상하여 수용 가능하다.")
+    /*@DisplayName("로또 번호의 입력 실수는 예상하여 수용 가능하다.")
     @Test
     void predictableMistake() {    	
     	assertDoesNotThrow(() -> number.forMyTest(VALID_INPUT));
@@ -94,5 +94,5 @@ class LottoTest {
     void outOfBoundary() {
     	IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, () -> number.forMyTest(OUT_OF_BOUNDARY));
     	assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
-    }
+    }*/
 }

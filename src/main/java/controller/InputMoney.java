@@ -2,7 +2,7 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static model.Constants.*;
+import static model.Data.*;
 
 public class InputMoney {
 
@@ -95,7 +95,7 @@ public class InputMoney {
 	}*/
 	
 	private void noChanges() {
-		if(purchase_amount_refined%UNIT_AMOUNT!=0) {
+		if(purchase_amount_refined%UNIT_PRICE!=0) {
 			//treatChanges();
 			System.out.println("[ERROR] 거스름돈은 받을 수 없습니다");
 			throw new IllegalArgumentException("[ERROR] 거스름돈은 받을 수 없습니다");

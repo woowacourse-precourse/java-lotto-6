@@ -1,6 +1,5 @@
 package domain;
 
-import domain.dto.GameResultDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

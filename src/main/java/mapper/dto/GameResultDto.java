@@ -1,4 +1,4 @@
-package domain.dto;
+package mapper.dto;
 
 import constant.WinningPrize;
 

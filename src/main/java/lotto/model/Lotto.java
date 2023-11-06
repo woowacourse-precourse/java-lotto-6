@@ -23,7 +23,8 @@ public class Lotto {
     }
 
     public int countMatchOtherLotto(Lotto otherLotto) {
-        otherLotto.numbers.retainAll(numbers);
-        return otherLotto.numbers.size();
+        return (int) numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
     }
 }

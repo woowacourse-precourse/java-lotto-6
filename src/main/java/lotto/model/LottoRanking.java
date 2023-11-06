@@ -2,18 +2,20 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.common.config.LottoGameRule;
 import lotto.common.config.LottoWinningRule;
 
 public class LottoRanking {
     private final LottoBucket lottoBucket;
     private final Lotto winningLotto;
     private final int bonusNumber;
+
     private final Map<LottoWinningRule, Integer> winningDetails = new HashMap<>() {{
-        put(LottoWinningRule.RANK_FIVE, LottoWinningRule.UNRANKED.getMatchNumber());
-        put(LottoWinningRule.RANK_FOUR, LottoWinningRule.UNRANKED.getMatchNumber());
-        put(LottoWinningRule.RANK_THREE, LottoWinningRule.UNRANKED.getMatchNumber());
-        put(LottoWinningRule.RANK_TWO, LottoWinningRule.UNRANKED.getMatchNumber());
-        put(LottoWinningRule.RANK_ONE, LottoWinningRule.UNRANKED.getMatchNumber());
+        put(LottoWinningRule.RANK_FIVE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
+        put(LottoWinningRule.RANK_FOUR, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
+        put(LottoWinningRule.RANK_THREE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
+        put(LottoWinningRule.RANK_TWO, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
+        put(LottoWinningRule.RANK_ONE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
     }};
 
     public LottoRanking(LottoBucket lottoBucket, Lotto winningLotto, int bonusNumber) {
@@ -36,6 +38,8 @@ public class LottoRanking {
     private void addWinningCount(Lotto randomLotto) {
         LottoWinningRule lottoWinningRule = LottoWinningRule.getRank(winningLotto.countMatchOtherLotto(randomLotto),
                 randomLotto.contains(bonusNumber));
-        winningDetails.put(lottoWinningRule, winningDetails.get(lottoWinningRule) + 1);
+        if (winningDetails.containsKey(lottoWinningRule)) {
+            winningDetails.put(lottoWinningRule, winningDetails.get(lottoWinningRule) + 1);
+        }
     }
 }

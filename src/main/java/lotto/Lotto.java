@@ -28,7 +28,7 @@ public class Lotto {
         return lotteryNumbers;
     }
 
-    public static void sortLotteryNumbers(List<Integer> numbers) {
+    public static void sortNumbers(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
     }
 

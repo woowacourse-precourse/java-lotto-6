@@ -22,5 +22,15 @@ public class Lotto {
         return numbers;
     }
 
+    public int lottoNumbersContains(List<Integer> winningNumbers){
+        int equalNumbers = 0;
+        for (Integer winningNumber : winningNumbers){
+            if (numbers.contains(winningNumber)){
+                equalNumbers++;
+            }
+        }
+        return equalNumbers;
+    }
+
     // TODO: 추가 기능 구현
 }

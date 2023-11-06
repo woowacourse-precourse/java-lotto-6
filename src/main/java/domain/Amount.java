@@ -62,5 +62,9 @@ public class Amount{
         }
         return new Lottos(lottos);
     }
+
+    public double calculateProfitRate(int reward){
+        return reward/(double)amount*100;
+    }
 }
 

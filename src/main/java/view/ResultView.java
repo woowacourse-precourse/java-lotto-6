@@ -10,6 +10,7 @@ public class ResultView {
     private static final String DELIMITER = "---";
     private static final String RESULT_RANK_MESSAGE = "%d개 일치%s(%s원) - %d개\n";
     private static final String BONUS_NUMBER = ", 보너스 볼 일치 ";
+    private static final String PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 
     public static void printResult(Result result) {
         DecimalFormat decFormat = new DecimalFormat("###,###");
@@ -30,5 +31,9 @@ public class ResultView {
             return BONUS_NUMBER;
         }
         return " ";
+    }
+
+    public static void printReward(double profitRate) {
+        System.out.printf(PROFIT_RATE, profitRate);
     }
 }

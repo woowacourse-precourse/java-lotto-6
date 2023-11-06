@@ -1,10 +1,7 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static domain.WinningLotto.getMatchCounts;
 
@@ -20,6 +17,14 @@ public class Result {
 
     public int getRankCount(Rank rank) {
         return rankCount.getOrDefault(rank, 0);
+    }
+
+    public int getReward() {
+        int reward = 0;
+        for (Rank rank : rankCount.keySet()) {
+            reward += rank.getReward() * rankCount.get(rank);
+        }
+        return reward;
     }
 
 }

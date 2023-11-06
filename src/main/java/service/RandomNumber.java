@@ -1,7 +1,10 @@
 package service;
 
+import static java.util.Collections.sort;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lotto;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumber {
@@ -10,7 +13,8 @@ public class RandomNumber {
     private static int COUNT_NUMBER = 6;
 
     public static Lotto getRandomNumber(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT_NUMBER);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT_NUMBER));
+        sort(numbers);
         return new Lotto(numbers);
     }
 

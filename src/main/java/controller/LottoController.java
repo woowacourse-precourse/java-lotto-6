@@ -1,5 +1,6 @@
 package controller;
 
+import static service.ProfitRate.profitRate;
 import static view.InputView.inputBonusNumber;
 import static view.InputView.inputLottoPurchaseAmount;
 import static view.InputView.inputWinningLottoNumber;
@@ -21,6 +22,7 @@ public class LottoController {
         WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumber(), inputBonusNumber());
         Result result = new Result(lottos, winningLotto);
         ResultView.printResult(result);
+        ResultView.printReward(profitRate(amount, result));
     }
 
 }

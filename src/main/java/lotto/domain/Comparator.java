@@ -6,7 +6,7 @@ import java.util.List;
 public class Comparator {
     private int countSameNumber(List<Integer> numbers, List<Integer> winningNumbers) {
         return (int) numbers.stream()
-                .filter(number -> winningNumbers.contains(number))
+                .filter(winningNumbers::contains)
                 .count();
     }
 

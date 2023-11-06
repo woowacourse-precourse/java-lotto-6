@@ -22,10 +22,18 @@ public class LottoService {
 
     public int getMatchingNumbers(List<Integer> lotteryNumbers, List<Integer> winningNumbers) {
         int count = 0;
+        boolean isMatchedBonus;
         for (Integer lotteryNumber : lotteryNumbers) {
             count += findNumbers(winningNumbers, lotteryNumber);
         }
         return count;
+    }
+
+    public boolean isMatchingBonusNumber(List<Integer> lotteryNumbers, int bonusNumber) {
+        if(lotteryNumbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
     }
 
     public void getRateOfReturn() {

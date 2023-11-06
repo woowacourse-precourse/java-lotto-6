@@ -17,6 +17,9 @@ public class LotterySystem {
     private lotto.model.Draw Draw = new Draw();
 
     private List<Draw> tickets = new ArrayList<>();
+    private List<Integer> lotto = new ArrayList<>();
+
+    private int bonus = 0;
 
 
     public void input() {
@@ -36,10 +39,10 @@ public class LotterySystem {
         for (Draw d : tickets) System.out.println(d.toString());
     }
     public void getNumbers() {
-        InputSystem.getNumbers();
+        lotto = InputSystem.getNumbers();
     }
     public void bonus() {
-
+        bonus = InputSystem.getBonus();
     }
 
 }

@@ -6,10 +6,11 @@ public class Application {
         LotterySystem lottery = new LotterySystem();
 
         try {
+//            InputSystem.isRangeValid("56");
             lottery.input();
             lottery.draw();
             lottery.getNumbers();
-//            lottery.bonus();
+            lottery.bonus();
         } catch (Exception e) {
             System.out.println("[ERROR]");
         }

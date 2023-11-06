@@ -9,6 +9,7 @@ public enum Message {
     ERROR_NOT_NUMBERS_SIZE("[ERROR] 로또 번호는 "+ LottoConstant.LOTTO_NUMBER_SIZE.getValue() +"개 이어야 합니다."),
     ERROR_DUPLICATE_NUMBERS("[ERROR] 로또 번호에 중복이 있습니다."),
     ERROR_BONUS_IN_WINNER_NUMBERS("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다."),
+    ERROR_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호는 " + LottoConstant.LOTTO_START_NUMBER.getValue() + " ~ " + LottoConstant.LOTTO_END_NUMBER.getValue() + "이어야 합니다."),
 
     INPUT_BUY_AMOUNT("구입금액을 입력해 주세요."),
     INPUT_WINNER_NUMBERS("당첨 번호를 입력해 주세요."),

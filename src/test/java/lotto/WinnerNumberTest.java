@@ -30,4 +30,21 @@ public class WinnerNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호 중 하나가 범위를 초과하면 예외가 발생한다.")
+    @Test
+    void createWinnerNumbersByLottoNumberOverRange() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 45, 39, 46, 0, 7), 6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 범위를 초과하면 예외가 발생한다.")
+    @Test
+    void createWinnerNumbersByBonusNumberOverRange() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 6, 7), 0))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 6, 7), 46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

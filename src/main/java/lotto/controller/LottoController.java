@@ -44,6 +44,19 @@ public class LottoController {
         return purchaseAmount;
     }
 
+    private List<Lotto> purchaseLottos(int purchaseAmount) {
+        int lottoCount = purchaseAmount / 1000;
+        System.out.println(lottoCount + "개를 구매했습니다.");
+
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; ++i) {
+            Lotto lotto = lottoMachine.generateLotto();
+            purchasedLottos.add(lotto);
+            System.out.println(lotto.getNumbers());
+        }
+        return purchasedLottos;
+    }
+
     public void runMachine(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");

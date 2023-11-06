@@ -16,7 +16,7 @@ public class Application {
     private static final OutputView outputView = new OutputView();
     private static final RandomLotto random = new RandomLotto();
     private static final Intersection intersection = new Intersection();
-    private static HashMap<Integer, Integer> result = new HashMap<>();
+    private static HashMap result = new HashMap<>();
 
 
     public static void purchaseCount(String purchasingAmount) {
@@ -69,15 +69,19 @@ public class Application {
         }
     }
 
-    public static void intersectionNum() {
-        List<Integer> intersectionCheck  = intersection.bonusNum(bonusNum, lottoNum);
-        List<Integer> intersectionCount = intersection.winNum(winNum, lottoNum);
+    public static void initialize() {
         for (int i = 0; i < 6; i++) {
             result.put(i,0);
         }
+    }
+
+    public static void intersectionNum() {
+        List<Integer> intersectionCheck  = intersection.bonusNum(bonusNum, lottoNum);
+        List<Integer> intersectionCount = intersection.winNum(winNum, lottoNum);
+        initialize();
         LottoResult lottoResult = new LottoResult(result);
         for (int i = 0; i<intersectionCount.size(); i++) {
-           result = LottoResult.duplicateResult(intersectionCount.get(i), intersectionCheck.get(i));
+           result = LottoResult.statistics(intersectionCount.get(i), intersectionCheck.get(i));
         }
     }
 

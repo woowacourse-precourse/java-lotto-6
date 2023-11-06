@@ -3,13 +3,18 @@ package lotto;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoGameService {
 
-    private static final int lottoPrice = 1000;
-    private static final int initialCount = 0;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int INITIAL_COUNT = 0;
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+    private static final String CONTAIN_NON_DIGIT_EXCEPTION = "숫자만 입력할 수 있습니다.";
+    private static final String NOT_DIVIDING_BY_LOTTO_PRICE_EXCEPTION = "금액은 1,000원 단위로 입력할 수 있습니다.";
+    private static final String NON_DIGIT_REGEX = "\\D+";
     private final List<List<Integer>> purchasedLottoNumbers = new ArrayList<>();
     private final EnumMap<LottoRank, Integer> lottoRakingMap = new EnumMap<>(LottoRank.class);
 
@@ -19,7 +24,7 @@ public class LottoGameService {
 
     private void initLottoRakingMap() {
         for (LottoRank rank : LottoRank.values()) {
-            lottoRakingMap.put(rank, initialCount);
+            lottoRakingMap.put(rank, INITIAL_COUNT);
         }
     }
 
@@ -28,8 +33,26 @@ public class LottoGameService {
         purchasedLottoNumbers.add(lotto.getNumbers());
     }
 
-    public int getLottoTicketCount(int lottoPurchaseAmount) {
-        return lottoPurchaseAmount / lottoPrice;
+    public void validatePurchaseAmount(String lottoPurchaseAmount) {
+        if (isStringContainNonDigit(lottoPurchaseAmount)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + CONTAIN_NON_DIGIT_EXCEPTION);
+        }
+        if (isMultipleOfLottoPrice(lottoPurchaseAmount)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + NOT_DIVIDING_BY_LOTTO_PRICE_EXCEPTION);
+        }
+    }
+
+    private static boolean isStringContainNonDigit(String lottoPurchaseAmount) {
+        return Pattern.compile(NON_DIGIT_REGEX).matcher(lottoPurchaseAmount).find();
+    }
+
+    private static boolean isMultipleOfLottoPrice(String lottoPurchaseAmount) {
+        return Integer.parseInt(lottoPurchaseAmount) % LOTTO_PRICE != 0;
+    }
+
+    public int getLottoTicketCount(String lottoPurchaseAmount) {
+        validatePurchaseAmount(lottoPurchaseAmount);
+        return Integer.parseInt(lottoPurchaseAmount) / LOTTO_PRICE;
     }
 
     public List<List<Integer>> getPurchasedLottoNumbers() {
@@ -64,12 +87,12 @@ public class LottoGameService {
         lottoRakingMap.put(lottoRank, currentCount + 1);
     }
 
-    public double calculateProfitRate(int purchaseAmount, EnumMap<LottoRank, Integer> lottoRakingMap) {
+    public double calculateProfitRate(String purchaseAmount, EnumMap<LottoRank, Integer> lottoRakingMap) {
         return (double) lottoRakingMap.keySet().stream()
                 .filter(rank -> rank != LottoRank.LAST_PLACE)
                 .mapToInt(rank ->
                         rank.getPrizeMoney() * lottoRakingMap.get(rank))
-                .sum() / purchaseAmount * 100;
+                .sum() / Integer.parseInt(purchaseAmount) * 100;
     }
 
     public EnumMap<LottoRank, Integer> getLottoRakingMap() {

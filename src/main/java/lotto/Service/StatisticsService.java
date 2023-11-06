@@ -4,8 +4,8 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.model.PrizeMoney;
-import lotto.model.Statistics;
+import lotto.model.CompareResult;
+import lotto.model.RankMoney;
 import lotto.view.output.OutputView;
 
 public class StatisticsService {
@@ -15,15 +15,15 @@ public class StatisticsService {
         this.outputView = outputView;
     }
 
-    public String calculateStatistics(List<Statistics> result, int purchasePrice) {
+    public String calculateStatistics(List<CompareResult> result, int purchasePrice) {
         //로또 통계
-        Map<Statistics, Integer> matchingCount = new HashMap<>();
-        PrizeMoney prizeMoney = new PrizeMoney();
+        Map<CompareResult, Integer> matchingCount = new HashMap<>();
+        RankMoney rankMoney = new RankMoney();
 
         // 일치률 계산
         updateMatchingCount(result, matchingCount);
         // 상금 계산
-        int earningMoney = calculateStatistics(result, matchingCount, prizeMoney);
+        int earningMoney = calculatePrize(matchingCount, rankMoney);
 
         outputView.printWinningStatistics();
         outputView.printMatchingCount(matchingCount);
@@ -34,22 +34,21 @@ public class StatisticsService {
         return formattedPercent;
     }
 
-    private void updateMatchingCount(List<Statistics> result, Map<Statistics, Integer> matchingCount) {
-        for (Statistics statistics : result) {
-            Statistics matchCount = new Statistics(statistics.getMatchCount(), statistics.isMatchBonus());
+    private void updateMatchingCount(List<CompareResult> result, Map<CompareResult, Integer> matchingCount) {
+        for (CompareResult compareResult : result) {
+            CompareResult matchCount = new CompareResult(compareResult.getMatchCount(), compareResult.isMatchBonus());
             int currentCount = matchingCount.getOrDefault(matchCount, 0);
             matchingCount.put(matchCount, currentCount + 1);
         }
     }
 
-    private int calculateStatistics(List<Statistics> result, Map<Statistics, Integer> matchingCount,
-                                    PrizeMoney prizeMoney) {
+    private int calculatePrize(Map<CompareResult, Integer> matchingCount, RankMoney rankMoney) {
         int earningMoney = 0;
 
-        for (Statistics statistics : result) {
-            Statistics matchCount = new Statistics(statistics.getMatchCount(), statistics.isMatchBonus());
-            earningMoney += prizeMoney.getPrizeMoney(matchCount.getMatchCount());
-            earningMoney += prizeMoney.getBonusPrizeMoney(matchCount.getMatchCount(), statistics.isMatchBonus());
+        for (CompareResult compareResult : matchingCount.keySet()) {
+            CompareResult matchCount = new CompareResult(compareResult.getMatchCount(), compareResult.isMatchBonus());
+            earningMoney += rankMoney.getPrizeMoney(matchCount.getMatchCount());
+            earningMoney += rankMoney.getBonusPrizeMoney(matchCount.getMatchCount(), compareResult.isMatchBonus());
         }
         return earningMoney;
     }

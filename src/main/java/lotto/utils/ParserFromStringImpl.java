@@ -1,6 +1,6 @@
 package lotto.utils;
 
-public class ParserFromStringImpl implements ParserFromString {
+public class ParserFromStringImpl implements ParserFrom {
 
 	@Override
 	public int toIntPaser(String lottoString) {

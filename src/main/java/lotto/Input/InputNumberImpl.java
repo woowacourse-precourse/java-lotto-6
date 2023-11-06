@@ -22,9 +22,9 @@ public class InputNumberImpl implements InputNumber {
 	}
 
 	@Override
-	public List<Integer> inputWinningNumbers(List<Integer> lottoNumbers) {
+	public void inputWinningNumbers(List<Integer> lottoNumbers) {
 		numberSplitter = new StringTokenizer(Console.readLine(), ",");
-		return validator.validateWinningNumber(numberSplitter, lottoNumbers);
+		validator.validateWinningNumber(numberSplitter, lottoNumbers);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import lotto.enumContainer.LottoRange;
 
 public class LottoValidatorImpl implements LottoValidator {
 
-	private final ParserFromString parser;
+	private final ParserFrom parser;
 	public LottoValidatorImpl() {
 		parser = new ParserFromStringImpl();
 	}
@@ -27,14 +27,13 @@ public class LottoValidatorImpl implements LottoValidator {
 	}
 
 	@Override
-	public List<Integer> validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lottoNumbers) {
+	public void validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lottoNumbers) {
 		while(numberSplitter.hasMoreTokens()) {
 			String lottoNumber = numberSplitter.nextToken();
 			validateIsDigit(lottoNumber);
 			int parseNumber = validateLottoRange(lottoNumber);
 			lottoNumbers.add(parseNumber);
 		}
-		return lottoNumbers;
 	}
 
 	@Override

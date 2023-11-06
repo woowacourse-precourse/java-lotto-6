@@ -7,7 +7,7 @@ public interface LottoValidator {
 
 	int validatePrice(String price);
 
-	List<Integer> validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lotto);
+	void validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lotto);
 
 	void validateBonusNumber(String bonusNumber);
 }

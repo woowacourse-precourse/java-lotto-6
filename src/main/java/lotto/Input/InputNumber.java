@@ -8,7 +8,7 @@ public interface InputNumber {
 
 	int inputPurchasePrice();
 
-	List<Integer> inputWinningNumbers(List<Integer> lottoNumbers);
+	void inputWinningNumbers(List<Integer> lottoNumbers);
 
 	void inputBonusNumber();
 

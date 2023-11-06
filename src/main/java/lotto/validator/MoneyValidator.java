@@ -1,11 +1,10 @@
 package lotto.validator;
 
-public class MoneyValidator implements Validator<String>{
+public class MoneyValidator implements Validator<Integer>{
 
     private static final int UNIT = 1000;
     @Override
-    public void validate(String input) {
-        int amount = Integer.parseInt(input);
+    public void validate(Integer amount) {
         validateNotDivisibleWithUnit(amount);
         validateLessThanUnit(amount);
     }

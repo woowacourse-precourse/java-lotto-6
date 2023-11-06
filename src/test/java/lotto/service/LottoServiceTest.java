@@ -16,63 +16,75 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoServiceTest {
 
+    static class LottoTicket{
+    private final List<Integer> numbers;
+
+    private int sameCount;
+
+    private boolean bonus;
+
+    public LottoTicket(List<Integer> numbers, int sameCount, boolean bonus) {
+        this.numbers = numbers;
+        this.sameCount = ZERO.getNumber();
+        this.bonus = bonus;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public void addSameCount() {
+        this.sameCount++;
+    }
+
+    public int getSameCount() {
+        return sameCount;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public void hasBonus() {
+        this.bonus = true;
+    }
+
+    }
 
 
 
-
-
-    @ParameterizedTest
-    @MethodSource("generate")
+    @Test
     @DisplayName("현재 로또 티켓이 당첨 번호를 가지고 있나?")
-    void nowLottoTicketContainWinNumberTest(List<LottoTicket> lottoTickets,
-        Integer lottoWinNumber, int ticketNumber){
+    void nowLottoTicketContainWinNumberTest(){
+        //given
+        LottoTicket lottoTicket = new LottoTicket(List.of(1,2,3,4,5,6),0,false);
+        int lottoWinNumber = 3;
 
         //when
-        nowLottoTicketContainWinNumber(lottoTickets, lottoWinNumber, ticketNumber);
+        nowLottoTicketContainWinNumber(lottoTicket, lottoWinNumber);
 
         //then
-        Assertions.assertThat(lottoTickets.get(0).getSameCount()).isEqualTo(1);
-
-    }
-
-
-    static Stream<Arguments> generateLottoArgument(){
-        return Stream.of(
-            Arguments.of(List.of(new LottoTicket(List.of(1,2,3,4,5,6)), 3,0))
-            );
+        Assertions.assertThat(lottoTicket.getSameCount()).isEqualTo(1);
     }
 
 
 
-    private void nowLottoTicketHasWinNumber(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
-        int ticektNumber) {
-        for (Integer lottoWinNumber : lottoWinNumbers) {
-            nowLottoTicketContainWinNumber(lottoTickets, lottoWinNumber, ticektNumber);
-        }
-    }
 
-    private void nowLottoTicketContainWinNumber(List<LottoTicket> lottoTickets,
-        Integer lottoWinNumber, int ticketNumber) {
-        if (lottoTickets.get(ticketNumber).getNumbers().contains(lottoWinNumber)) {
-            lottoTickets.get(ticketNumber).addSameCount();
+
+    private void nowLottoTicketContainWinNumber(LottoTicket lottoTicket,
+        Integer lottoWinNumber) {
+        if (lottoTicket.getNumbers().contains(lottoWinNumber)) {
+            lottoTicket.addSameCount();
         }
     }
 
 
-    private void nowLottoTicketHasBonusNumber(List<LottoTicket> lottoTickets, Integer bonusNumber,
-        int ticketNumber) {
-        if (lottoTickets.get(ticketNumber).getSameCount() == SAME_COUNT_FIVE.getNumber() && lottoTickets.get(ticketNumber).getNumbers()
+    private void nowLottoTicketHasBonusNumber(LottoTicket lottoTicket, Integer bonusNumber
+        ) {
+        if (lottoTicket.getSameCount() == SAME_COUNT_FIVE.getNumber() && lottoTicket.getNumbers()
             .contains(bonusNumber)) {
-            lottoTickets.get(ticketNumber).hasBonus();
+            lottoTicket.hasBonus();
         }
     }
 
-
-    @Test
-    void calculateMoney() {
-    }
-
-    @Test
-    void calculateYield() {
-    }
 }

@@ -7,8 +7,8 @@ import lotto.generator.NumberGenerator;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
+    static final int LOTTO_MIN_NUMBER = 1;
+    static final int LOTTO_MAX_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -44,6 +44,10 @@ public class Lotto {
         if (nonDuplicateNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
         }
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {

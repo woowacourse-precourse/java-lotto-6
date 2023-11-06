@@ -7,25 +7,18 @@ import static constants.ConstantNumbersManager.*;
 
 
 public class Validation {
-    private final List<Integer> WINNING_NUMBERS;
-    private final int BONUS_NUMBER;
+    private List<Integer> WINNING_NUMBERS;
+    private int BONUS_NUMBER;
 
-    public Validation(List<Integer> winningNumbers, int bonusNumber) {
-        this.WINNING_NUMBERS = new ArrayList<>(winningNumbers);
-        this.BONUS_NUMBER = bonusNumber;
-    }
-
-    public List<Integer> getWinningNumbers() {//타 클래스에 WINNING_NUMBERS 제공 위한 메서드
-        return WINNING_NUMBERS;
-    }
-
-    public int getBonusNumber() {//타 클래스에 BONUS_NUMBER 제공 위한 메서드
-        return BONUS_NUMBER;
+    public void inputFinalValue(List<Integer> WINNING_NUMBERS, int BONUS_NUMBER) {
+        this.WINNING_NUMBERS = WINNING_NUMBERS;
+        this.BONUS_NUMBER = BONUS_NUMBER;
     }
 
     public int lottoPurchaseNumber(int payment) {
         return payment / LOTTO_PRICE;
     }
+
 
     public List<Integer> winningStatics(List<List<Integer>> fullLottoValue) {
         List<Integer> winningStaticsResult = new ArrayList<>(Collections.nCopies(WINNING_LIST_SIZE, INDEX_RESET)); //list 0으로 초기화

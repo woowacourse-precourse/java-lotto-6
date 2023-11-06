@@ -29,6 +29,7 @@
 - transform class
   + [0] 랜덤한 6자리 숫자를 생성하는 기능 (중복 제어)
   + [0] 랜덤 6자리 숫자를 인수로 하는 list 생성 및 값 저장 기능
+  + [0] 입력된 string 형식의 값을 list로 반환하는 기능
 
 ### controller package
   + [ ] model, view를 통해 로또 진행

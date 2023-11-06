@@ -17,12 +17,12 @@ public class OutputView {
     }
 
     public void printRandomNumber(List<Integer> randomNumber) {
-        System.out.print(ConstantStringManager.LIST_START_MARK);
+        System.out.print(ConstantStringManager.LIST_START_MARK.getMessage());
         String result = randomNumber.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(ConstantStringManager.LIST_SPLIT_MARK.getMessage()));
         System.out.print(result);
-        System.out.print(ConstantStringManager.LIST_END_MARK);
+        System.out.print(ConstantStringManager.LIST_END_MARK.getMessage());
     }
 
     public void printWinningNumberInputNotify() {
@@ -44,7 +44,7 @@ public class OutputView {
         System.out.printf(ConstantStringManager.LOTTO_SAME_SIX.getMessage(), staticsValue.get(FIFTH_INDEX));
     }
 
-    public void printTotalReturn(int totalReturn) {
+    public void printTotalReturn(double totalReturn) {
         String message = ConstantStringManager.TOTAL_RETURN.getMessage();
         System.out.printf(message, totalReturn);
     }

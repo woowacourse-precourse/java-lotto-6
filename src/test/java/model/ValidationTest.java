@@ -14,7 +14,8 @@ class ValidationTest {
         int bonusNumber = 8;
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         //when
-        Validation validation = new Validation(winningNumbers, bonusNumber);
+        Validation validation = new Validation();
+        validation.inputFinalValue(winningNumbers, bonusNumber);
         int result = validation.lottoPurchaseNumber(payment);
         //then
         assertThat(result).isEqualTo(58);
@@ -35,7 +36,8 @@ class ValidationTest {
         fullLottoValue.add(innerList3);
         fullLottoValue.add(innerList4);
         //when
-        Validation validation = new Validation(winningNumbers, bonusNumber);
+        Validation validation = new Validation();
+        validation.inputFinalValue(winningNumbers, bonusNumber);
         List<Integer> result = validation.winningStatics(fullLottoValue);
         //then
         assertThat(result).isEqualTo(List.of(1, 0, 1, 1, 1));
@@ -45,11 +47,9 @@ class ValidationTest {
     void 수익률_정상출력_테스트() {
         //given
         int payment = 8000;
-        int bonusNumber = 8;
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningStaticsResult = List.of(1, 0, 0, 0, 0);
         //when
-        Validation validation = new Validation(winningNumbers, bonusNumber);
+        Validation validation = new Validation();
         double result = validation.totalReturnCalculate(winningStaticsResult, payment);
         //then
         assertThat(result).isEqualTo(62.5);

@@ -6,10 +6,15 @@ import java.util.List;
 import utility.Lotto;
 
 public class Transform {
-    private final List<List<Integer>> fullLottoValue = new ArrayList<>();
 
-    public List<List<Integer>> getFullLottoValue() {
-        return fullLottoValue;
+    public List<Integer> winningNumberToList(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] parts = input.split(",");
+        for (String part : parts) {
+            int number = Integer.parseInt(part);
+            numbers.add(number);
+        }
+        return numbers;
     }
 
     public List<Integer> generateRandomList() {
@@ -25,8 +30,9 @@ public class Transform {
         return randomList;
     }
 
-    public List<List<Integer>> fullLottoValue(List<Integer> randomList) {
+    public List<List<Integer>> fullLottoValue(List<List<Integer>> fullLottoValue, List<Integer> randomList) {
         fullLottoValue.add(randomList);
         return fullLottoValue;
     }
 }
+

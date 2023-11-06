@@ -9,13 +9,9 @@ public class LottoOutputPrint {
     public void printLottoPrice(int num){
         System.out.println(num + "개를 구매했습니다.");
     }
-    public int printLottoNumbers(int num){
-        return 0;
+    public void printLottoYield(double yield){
+        System.out.println("총 수익률은 " + String.format("%.2f",yield) + "%입니다.");
     }
-    public int printChoiceLottoBonusNumber(int num){
-        return 0;
-    }
-
     public void autoLottoTickMaker
       (int pick, List<SeasonLottoResultVO> Tickets)
     {

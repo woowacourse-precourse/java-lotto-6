@@ -1,9 +1,13 @@
 package lotto.service.domain.lotto;
 
+import lotto.io.LottoPrizeResult;
 import lotto.model.dao.LottoDAO;
+import lotto.model.dto.BuyInfo;
 import lotto.model.dto.Lotto;
 import lotto.model.dto.LottoBonus;
+import lotto.model.dto.Yield;
 import lotto.model.vo.SeasonLottoResultVO;
+import lotto.view.LottoResultPrint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +27,31 @@ public class LottoService {
         }
         return list;
     }
+    public Double yieldCalculation(Yield yieldAttribute){
+        return
+          ((double)
+            yieldAttribute.getTotalPrize() - yieldAttribute.getInvestmen()
+          ) / yieldAttribute.getInvestmen() * 100;
+    }
 
-
+    public LottoResultPrint ticketMatchUserPickNumber
+      (List<SeasonLottoResultVO> autoLottoTicket,
+       Lotto userLottoNumbers,
+       LottoBonus lottoBonus)
+    {
+        LottoResultPrint lottoResultPrint = new LottoResultPrint();
+        for (SeasonLottoResultVO ticket : autoLottoTicket){
+            int matchPoint = 0;
+            for(int number : ticket.getAutoLottoNumber()){
+                if(userLottoNumbers.getNumbers().contains(number)){
+                    matchPoint++;
+                }
+            }
+            boolean bonusMatch = false;
+            bonusMatch = ticket.getAutoLottoNumber().contains(lottoBonus.getNumber().get(0));
+            lottoResultPrint.addResult(matchPoint,bonusMatch);
+        }
+        return lottoResultPrint;
+    }
 
 }

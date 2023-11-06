@@ -3,10 +3,12 @@ package lotto.controller;
 import lotto.model.dto.BuyInfo;
 import lotto.model.dto.Lotto;
 import lotto.model.dto.LottoBonus;
+import lotto.model.dto.Yield;
 import lotto.model.vo.SeasonLottoResultVO;
 import lotto.service.domain.lotto.LottoIoService;
 import lotto.service.domain.lotto.LottoService;
 import lotto.view.LottoOutputPrint;
+import lotto.view.LottoResultPrint;
 
 import java.util.List;
 
@@ -30,12 +32,19 @@ public class LottoController {
     public Lotto userInputMasterLottoNumbers(){
         return lottoIoService.userPickMasterLottoNumbers();
     }
-
     public LottoBonus userInputMasterLottoBonusNumber(Lotto lotto){
         return lottoIoService.userPickMasterBonusNumberOne(lotto);
     }
+    public Yield LottoYield(Yield yieldAttribute){
+        return lottoIoService.userYieldResult(yieldAttribute);
+    }
 
-
+    public LottoResultPrint LottoPrizeResult(List<SeasonLottoResultVO> autoLottoTicket,
+                                             Lotto userLottoNumbers,
+                                             LottoBonus lottoBonus)
+    {
+        return lottoService.ticketMatchUserPickNumber(autoLottoTicket,userLottoNumbers,lottoBonus);
+    }
 
 
 }

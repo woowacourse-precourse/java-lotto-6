@@ -4,17 +4,20 @@ import lotto.io.LottoInputReader;
 import lotto.model.dto.BuyInfo;
 import lotto.model.dto.Lotto;
 import lotto.model.dto.LottoBonus;
+import lotto.model.dto.Yield;
 import lotto.service.convert.ConvertService;
 import lotto.service.exceptionhandler.LottoErrorMessage;
 import lotto.view.LottoOutputPrint;
+import lotto.view.LottoResultPrint;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoIoService {
     private final LottoInputReader input = new LottoInputReader();
-    private final LottoOutputPrint result = new LottoOutputPrint();
+    private final LottoOutputPrint print = new LottoOutputPrint();
     private final ConvertService convert = new ConvertService();
+    private final LottoService LottoLogicService = new LottoService();
 
     public BuyInfo inputPriceGetBuyInfo(BuyInfo info) {
         String priceString;
@@ -39,7 +42,7 @@ public class LottoIoService {
             info.setBuyWon(buyWon);
             info.setBuyNumber(convert.priceChangeBuyNumber(info.getBuyWon()));
         } while (info.getBuyNumber() == 0);
-        result.printLottoPrice(info.getBuyNumber());
+        print.printLottoPrice(info.getBuyNumber());
         return info;
     }
 
@@ -110,4 +113,11 @@ public class LottoIoService {
             }
         }
     }
+    public Yield userYieldResult(Yield yieldAttribute){
+        yieldAttribute.setYieldValue(LottoLogicService.yieldCalculation(yieldAttribute));
+        print.printLottoYield(yieldAttribute.getYieldValue());
+        return yieldAttribute;
+    }
+
+
 }

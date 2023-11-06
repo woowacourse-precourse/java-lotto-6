@@ -1,9 +1,13 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.domain.Lottos;
 import lotto.util.RandomNumbers;
+import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -53,5 +57,20 @@ public class TddTest {
             assertThat(numbers.size()).isEqualTo(5);
         });
     }
+
+    @Test
+    public void 당첨번호는_반점_기준으로_6자리_입력(){
+        int[] expectedWinningNumbers = {1, 2, 3, 4, 5, 6};
+        int[] WinningNumbers = parseNumbers("1,2,3,4,5,6");
+        assertThat(WinningNumbers).isEqualTo(expectedWinningNumbers);
+    }
+
+    private int[] parseNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+    }
+
+
 
 }

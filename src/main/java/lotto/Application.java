@@ -41,7 +41,7 @@ public class Application {
     }
 
     public static int vaildMoney(int m) {
-        if (m == -1 || m % 1000 != 0) {
+        if (m % 1000 != 0) {
             return -1;
         }
         return m;

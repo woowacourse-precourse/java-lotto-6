@@ -1,9 +1,11 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +17,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void sortNumbers() {
+        Collections.sort(numbers);
+    }
+
+    private List<Integer> getNumbers() {
+        return numbers;
     }
 
 }

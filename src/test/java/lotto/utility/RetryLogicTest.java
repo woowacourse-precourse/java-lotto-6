@@ -22,13 +22,20 @@ class RetryLogicTest {
             @Override
             public void run() {
                 plusCount();
-                throw new IllegalArgumentException("예외 발생!");
             }
         });
         Assertions.assertThat(count).isEqualTo(5);
     }
 
+    @DisplayName("재시도 기능이 지정한 5회만큼 정상적으로 작동한다. -람다")
+    @Test
+    void retryLamdaTest() {
+        RetryLogic.retryCount(() -> plusCount());
+        Assertions.assertThat(count).isEqualTo(5);
+    }
+
     private void plusCount() {
         count++;
+        throw new IllegalArgumentException("예외 발생!");
     }
 }

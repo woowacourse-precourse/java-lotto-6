@@ -1,6 +1,6 @@
 package lotto.global.constant;
 
-public enum Winning {
+public enum WinningType {
 
     OTHER(0),
     FIFTH(5000),
@@ -11,7 +11,7 @@ public enum Winning {
 
     private final long revenue;
 
-    Winning(long revenue) {
+    WinningType(long revenue) {
         this.revenue = revenue;
     }
 

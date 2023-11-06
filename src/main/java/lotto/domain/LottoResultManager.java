@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Map;
-import lotto.global.constant.Winning;
+import lotto.global.constant.WinningType;
 
 public class LottoResultManager {
 
@@ -18,7 +18,7 @@ public class LottoResultManager {
     public void calculateResult(WinningLotto winningLotto) {
         for (LottoResult lottoResult : lottoResults.getLottoResults()) {
             lottoResult.calculateResult(winningLotto);
-            Winning key = lottoResult.getWinning();
+            WinningType key = lottoResult.getWinning();
             lottoStatistics.getStatistics().put(key, lottoStatistics.getStatistics().getOrDefault(key, 0) + 1);
             totalRevenue += lottoResult.getWinning().getRevenue();
         }
@@ -28,7 +28,7 @@ public class LottoResultManager {
         return lottoResults.getLottoResults();
     }
 
-    public Map<Winning, Integer> getStatistics() {
+    public Map<WinningType, Integer> getStatistics() {
         return lottoStatistics.getStatistics();
     }
 

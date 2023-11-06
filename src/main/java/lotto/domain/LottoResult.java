@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import lotto.global.constant.Winning;
+import lotto.global.constant.WinningType;
 
 public class LottoResult {
 
     private final Lotto lottoNumbers;
-    private Winning winning;
+    private WinningType winningType;
 
     public LottoResult(Lotto lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
@@ -27,7 +27,7 @@ public class LottoResult {
 
     private void calculateWinningByMatchCountAndBonus(int matchCount, boolean isBonusMatch) {
         if (matchCount == 6) {
-            winning = Winning.FIRST;
+            winningType = WinningType.FIRST;
             return;
         }
         if (matchCount == 5) {
@@ -35,30 +35,30 @@ public class LottoResult {
             return;
         }
         if (matchCount == 4) {
-            winning = Winning.FOURTH;
+            winningType = WinningType.FOURTH;
             return;
         }
         if (matchCount == 3) {
-            winning = Winning.FIFTH;
+            winningType = WinningType.FIFTH;
             return;
         }
-        winning = Winning.OTHER;
+        winningType = WinningType.OTHER;
     }
 
     private void checkBonusMatch(boolean isBonusMatch) {
         if (isBonusMatch) {
-            winning = Winning.SECOND;
+            winningType = WinningType.SECOND;
             return;
         }
-        winning = Winning.THIRD;
+        winningType = WinningType.THIRD;
     }
 
     private boolean isContainsNumber(WinningLotto winningLotto, Integer number) {
         return winningLotto.getLotto().getNumbers().contains(number);
     }
 
-    public Winning getWinning() {
-        return winning;
+    public WinningType getWinning() {
+        return winningType;
     }
 
     @Override

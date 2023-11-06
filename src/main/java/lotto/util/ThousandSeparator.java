@@ -1,7 +1,6 @@
 package lotto.util;
 
 public class ThousandSeparator {
-    private static final char SEPARATOR = ',';
 
     private ThousandSeparator() {
     }
@@ -14,7 +13,7 @@ public class ThousandSeparator {
             formattedNumbers.insert(0, numbers.charAt(i));
             count++;
             if (count % 3 == 0 && i > 0) {
-                formattedNumbers.insert(0, SEPARATOR);
+                formattedNumbers.insert(0, ",");
             }
         }
         return formattedNumbers.toString();

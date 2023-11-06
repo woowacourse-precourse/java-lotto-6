@@ -41,6 +41,6 @@ class LottosManagerTest {
         // when
         PrizeReception prizeReception = lottosManager.getPrizeReception(prizeChecker);
         // then
-        assertThat(prizeReception.toString()).isEqualTo(expectedPrizeReception.toString());
+        assertThat(prizeReception.toString()).isEqualTo("1,1,1,1,2");
     }
 }

@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.Map;
+import java.util.StringJoiner;
 import lotto.domain.wrapper.PurchaseAmount;
+import lotto.utils.LottoConstant;
 import lotto.utils.Prize;
 
 public class PrizeReception {
@@ -28,10 +30,15 @@ public class PrizeReception {
         return allPrizeProfit;
     }
 
+    // LottoManager 테스트 코드를 위한 메서드
     @Override
     public String toString() {
-        return "PrizeReception{" +
-                "prizeCounts=" + prizeCounts +
-                '}';
+        StringJoiner stringJoiner = new StringJoiner(LottoConstant.DELIMITER.get());
+        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.FIRST)));
+        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.SECOND)));
+        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.THIRD)));
+        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.FOURTH)));
+        stringJoiner.add(String.valueOf(prizeCounts.get(Prize.FIFTH)));
+        return stringJoiner.toString();
     }
 }

@@ -4,14 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
-import lotto.view.OutputView;
 
 import java.util.List;
 
+import static lotto.domain.Lotto.*;
+import static lotto.domain.PurchaseAmount.*;
 import static lotto.domain.WinningNumbers.*;
 import static lotto.util.Constant.*;
-import static lotto.validator.PurchaseAmountValidator.validateMoney;
 import static lotto.view.InputView.*;
+import static lotto.view.OutputView.*;
 
 public class LottoService {
 
@@ -22,10 +23,9 @@ public class LottoService {
         //천 원 단위로 입력받았는지 검증
         try {
             String inputMoney = Console.readLine();
-            validateMoney(inputMoney, DIVIDER_MONEY_TO_EXCHANGE_AMOUNT);
-            int money = Integer.parseInt(inputMoney);
-            OutputView.printPurchaseAmount(money);
-            return money / DIVIDER_MONEY_TO_EXCHANGE_AMOUNT;
+            int purchaseAmount = validateMoney(inputMoney, DIVIDER_MONEY_TO_EXCHANGE_AMOUNT);
+            printPurchaseAmount(purchaseAmount);
+            return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return enterPurchaseAmount();
@@ -37,7 +37,7 @@ public class LottoService {
         String[] numbers = Console.readLine().split(DELIMITER);
         //중복 값 입력받았는지 여부 확인
         try{
-            List<Integer> inputNumbers = validateLottoNumbers(numbers);
+            List<Integer> inputNumbers = validateNumberSeparate(numbers);
             return new Lotto(inputNumbers);
         } catch(IllegalArgumentException e){
             System.out.println(e.getMessage());

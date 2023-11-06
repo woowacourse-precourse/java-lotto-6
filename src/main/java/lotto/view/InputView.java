@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Bonus;
 import lotto.model.Error;
 import lotto.model.Lotto;
 
@@ -31,7 +32,7 @@ public class InputView {
         System.out.println(NOTICE_INPUT_WINNING_NUMBER);
         String input = Console.readLine();
         List<String> inputNumbers = List.of(input.split(DELIMITER));
-        validateInputNumbersType(inputNumbers);
+        validateNumbersType(inputNumbers);
         List<Integer> winningNumbers = stringListToIntList(inputNumbers);
         Lotto winningLotto = new Lotto(winningNumbers);
     }
@@ -39,6 +40,7 @@ public class InputView {
     public void inputBonusNumber() {
         System.out.println(NOTICE_INPUT_BONUS_NUMBER);
         String input = Console.readLine();
+        validateNumberType(input);
         int bonusNumber = stringToInt(input);
     }
 
@@ -48,11 +50,17 @@ public class InputView {
                 .toList();
     }
 
-    private void validateInputNumbersType(List<String> numbers) {
+    private void validateNumbersType(List<String> numbers) {
         for (String number : numbers) {
             if (isNotNumeric(number)) {
                 Error.NOT_NUMERIC_WINNING_NUMBER.throwError();
             }
+        }
+    }
+
+    private void validateNumberType(String number) {
+        if (isNotNumeric(number)) {
+            Error.NOT_NUMERIC_BONUS_NUMBER.throwError();
         }
     }
 

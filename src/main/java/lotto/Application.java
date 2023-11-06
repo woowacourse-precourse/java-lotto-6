@@ -32,7 +32,7 @@ public class Application {
 
         // 출력 메시지 열거형
         enum Message {
-            GetPurchasePrice("구입금액을 입력해 주세요."), GetWinningNumber("당첨 번호를 입력해 주세요."), GetBonusNumber("보너스 번호를 입력해 주세요."), WinningStatus("당첨 통계"), Bar("---");
+            GetPurchasePrice("구입금액을 입력해 주세요."), PrintPurchaseCount("개를 구매했습니다."), GetWinningNumber("당첨 번호를 입력해 주세요."), GetBonusNumber("보너스 번호를 입력해 주세요."), WinningStatus("당첨 통계"), Bar("---");
             private final String value;
 
             Message(String value) {
@@ -80,15 +80,14 @@ public class Application {
             lottos.add(lotto);
         }
 
-        /* 게임기능2 확인
-        for(Lotto l:lottos){
-            List<Integer> intlotto = new ArrayList<Integer>(l.getter());
-            for(Integer i:intlotto){
-                System.out.println(i);
-            }
-            System.out.println("---");
+
+        // 출력 2. 발행한 로또 수량 및 번호 출력
+        System.out.println(lottoCount  + Message.PrintPurchaseCount.getValue());
+        for(Lotto l:lottos) {
+            List<Integer> lottoElement = new ArrayList<Integer>(l.getter());
+            System.out.println(lottoElement);
         }
-        */
+        System.out.println();
 
 
         // 입력 2. 쉼표 기준으로 구분해서 당첨 번호 입력 받기
@@ -153,12 +152,19 @@ public class Application {
         }
 
 
-        // 출력 1. 발행한 로또 수량 및 번호 출력
-        System.out.println(Message.WinningStatus.getValue() + "\n" + Message.Bar.getValue());
+        System.out.println(correctEnums);
+
+
+        // 출력 1. 당첨 내역 출력
+        //System.out.println(Message.WinningStatus.getValue() + "\n" + Message.Bar.getValue());
+
+        //System.out.println();
 
 
 
-
+        /* 게임 4.
+        double earningRate = ? / purchasePrice ;
+        */
 
     }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constants.ErrorCode.DUPLICATED_LOTTO_NUMBER;
 import static lotto.constants.ErrorCode.INVALID_LOTTO_SIZE;
 import static lotto.constants.LottoRule.LOTTO_MAX_SIZE;
+import static lotto.constants.Message.SEPARATOR_REGEX;
 import static lotto.constants.Message.TICKET_PREFIX;
 import static lotto.constants.Message.TICKET_SEPARATOR;
 import static lotto.constants.Message.TICKET_SUFFIX;
@@ -22,7 +23,7 @@ public class Lotto {
     }
 
     public Lotto(String number) {
-        List<Integer> numbers = Arrays.stream(number.split(","))
+        List<Integer> numbers = Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
                 .map(Integer::parseInt)
                 .toList();
         validate(numbers);
@@ -54,10 +55,10 @@ public class Lotto {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         sortedNumbers.sort(Comparator.naturalOrder());
 
-        return convertToDTO(sortedNumbers);
+        return convertToLotto(sortedNumbers);
     }
 
-    private List<LottoNumber> convertToDTO(List<Integer> numbers) {
+    private List<LottoNumber> convertToLotto(List<Integer> numbers) {
         return numbers.stream()
                 .map(number -> LottoNumber.from(String.valueOf(number)))
                 .toList();

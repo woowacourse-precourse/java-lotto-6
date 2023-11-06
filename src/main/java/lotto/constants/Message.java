@@ -11,7 +11,8 @@ public enum Message {
     PROFIT_RATE("총 수익률은 %.1f%%입니다."),
     TICKET_PREFIX("["),
     TICKET_SEPARATOR(", "),
-    TICKET_SUFFIX("]");
+    TICKET_SUFFIX("]"),
+    SEPARATOR_REGEX(",");
 
     private final String message;
 

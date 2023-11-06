@@ -55,12 +55,12 @@ public class Lotto {
         return new Lotto(generator.generate());
     }
 
-    public static int matchCount(Lotto given, Lotto winnings) {
+    public static int matchCount(Lotto given, List<Integer> winnings) {
         return (int) given.getLotto().stream().filter(n -> isInWinning(n, winnings)).count();
     }
 
-    private static boolean isInWinning(int number, Lotto winnings) {
-        return winnings.getLotto().stream().anyMatch(n -> n == number);
+    private static boolean isInWinning(int number, List<Integer> winnings) {
+        return winnings.stream().anyMatch(n -> n == number);
     }
 
     public List<Integer> getLotto() {

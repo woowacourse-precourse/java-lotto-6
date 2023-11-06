@@ -64,7 +64,7 @@ class LottoTest {
         Lotto given = Lotto.from(input1);
         Lotto winning = Lotto.from(input2);
         // when
-        int result = Lotto.matchCount(given, winning);
+        int result = Lotto.matchCount(given, winning.getLotto());
         // then
         assertThat(result).isEqualTo(input3);
     }

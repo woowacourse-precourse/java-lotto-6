@@ -19,6 +19,7 @@ public class LottoController {
         settingWinningNumber();
         settingBonusNumber();
         settingLottoResult();
+        settingTotalRewardResult();
     }
 
     private void settingBuyMoney() {
@@ -45,6 +46,10 @@ public class LottoController {
         lottoService.resetLottoResultStore();
         lottoService.playerNumberCompareLottoNumber();
         outputView.printLottoMatchResult(lottoService.getLottoResultStore());
+    }
+
+    private void settingTotalRewardResult() {
+        outputView.printTotalReturn(lottoService.getTotalRewardResult());
     }
 
     private int inputPlayerBuyMoney() {

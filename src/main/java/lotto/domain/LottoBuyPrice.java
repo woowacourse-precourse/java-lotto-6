@@ -24,4 +24,8 @@ public class LottoBuyPrice {
     private boolean isAllowedAmountUnit(int price) {
         return price % ALLOWED_AMOUNT_UNIT == 0;
     }
+
+    public int getAvailableLottoBuyCount() {
+        return price / ALLOWED_AMOUNT_UNIT;
+    }
 }

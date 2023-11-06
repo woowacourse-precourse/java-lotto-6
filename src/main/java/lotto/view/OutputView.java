@@ -10,7 +10,7 @@ public class OutputView {
     private static final String BUYING_AMOUNT_MESSAGE = "%n%d개를 구매했습니다.%n";
     private static final String READ_WINNING_LOTTO_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String READ_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String PREFIX_MESSAGE = "\n당첨 통계\n---\n";
+    private static final String PREFIX_MESSAGE = "\n당첨 통계\n---";
     private static final String RATE_OF_RETURN_EXPRESSION = "총 수익률은 %.1f%%입니다.";
 
     public void printReadCostAmountMessage() {

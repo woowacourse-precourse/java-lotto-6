@@ -37,6 +37,17 @@ public class LottoControllerDecorator extends LottoController {
     }
 
     @Override
+    public void createWinningLotto(WinningLotto winningLotto) {
+        do {
+            try {
+                super.createWinningLotto(winningLotto);
+            } catch (CommonValidationException | LottoException e) {
+                System.err.println(e.getMessage());
+            }
+        } while (winningLotto.getLotto() == null);
+    }
+
+    @Override
     public void createWinningBonusNumber(WinningLotto winningLotto) {
         do {
             try {

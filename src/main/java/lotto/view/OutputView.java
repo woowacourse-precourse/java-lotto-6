@@ -5,7 +5,7 @@ import lotto.model.LottoResult;
 import lotto.model.LottoStorage;
 import lotto.model.LottoRank;
 
-import static lotto.view.constant.viewMessage.*;
+import static lotto.view.constant.ViewMessage.*;
 
 public class OutputView {
 

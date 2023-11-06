@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import static lotto.view.constant.ErrorMessage.INPUT_INVALID_FORMAT;
 import static lotto.view.constant.ErrorMessage.INPUT_IS_NOT_BLANK;
-import static lotto.view.constant.viewMessage.*;
+import static lotto.view.constant.ViewMessage.*;
 
 public class InputView {
 

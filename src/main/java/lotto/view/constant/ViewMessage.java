@@ -1,6 +1,6 @@
 package lotto.view.constant;
 
-public class viewMessage {
+public class ViewMessage {
 
     public static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.\n";
     public static final String INPUT_WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.\n";

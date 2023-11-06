@@ -25,9 +25,11 @@ public class LottoController {
     }
 
     public void inputPurchaseMoney() {
+        String input;
         do {
-            money = Integer.parseInt(Console.readLine());
-        } while (validateMoneyInput());
+            input = Console.readLine();
+        } while (validateMoneyInput(input));
+        money = Integer.parseInt(input);
     }
 
     public void createLottos() {
@@ -76,8 +78,12 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private boolean validateMoneyInput() {
+    private boolean validateMoneyInput(final String input) {
         try {
+            if (!input.matches("\\d+")) {
+                throw new IllegalArgumentException("[ERROR] 구입금액은 숫자이어야 합니다. 다시 입력하세요.");
+            }
+            final int money = Integer.parseInt(input);
             if (money == 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 0원일 수 없습니다. 다시 입력하세요.");
             }
@@ -86,7 +92,7 @@ public class LottoController {
             }
             return false;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return true;
         }
     }
@@ -102,7 +108,7 @@ public class LottoController {
             validateNumbersBoundary(numbers);
             return false;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return true;
         }
     }
@@ -136,7 +142,7 @@ public class LottoController {
             validateBonusNumberBoundary(input);
             return false;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return true;
         }
     }

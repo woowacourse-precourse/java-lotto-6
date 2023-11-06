@@ -12,7 +12,7 @@ public class Lotto {
         validateNumbersSize(numbers);
         validateDuplicateNumber(numbers);
         validateNumbersBoundary(numbers);
-        numbers.sort(Comparator.comparingInt(s -> s));
+        //numbers.sort(Comparator.comparingInt(s -> s));
         this.numbers = numbers;
     }
 

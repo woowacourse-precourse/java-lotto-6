@@ -11,7 +11,7 @@ import lotto.model.Prize;
 import lotto.model.WinningLotto;
 
 public class Referee {
-    private Map<Prize, Integer> result;
+    private final Map<Prize, Integer> result;
 
     public Referee() {
         this.result = init();
@@ -32,7 +32,7 @@ public class Referee {
 
     public double getRateOfReturn(final int purchaseCount) {
         final long totalPrize = getTotalPrize();
-        return (double) totalPrize /purchaseCount;
+        return (double) totalPrize / purchaseCount * 100;
     }
 
     @Override

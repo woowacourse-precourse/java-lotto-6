@@ -6,8 +6,7 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
-    public LottoResult run() {
-        List<Lotto> lottos = buyLotto();
+    public LottoResult run(List<Lotto> lottos) {
         WinningLotto winningLotto = setUpWinningLotto();
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
@@ -20,8 +19,7 @@ public class LottoWinningProcess {
         return new LottoResult(counted, checked);
     }
 
-    private List<Lotto> buyLotto() {
-        PurchaseMoney purchaseMoney = setUpPurchaseMoney();
+    public List<Lotto> buyLotto(PurchaseMoney purchaseMoney) {
         int lottoQuantity = purchaseMoney.getLottoQuantity();
         List<Lotto> lottos = new ArrayList<>();
 
@@ -37,7 +35,7 @@ public class LottoWinningProcess {
         return lottos;
     }
 
-    private PurchaseMoney setUpPurchaseMoney() {
+    public PurchaseMoney setUpPurchaseMoney() {
         String purchaseMoney = InputView.inputPurchaseMoney();
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }

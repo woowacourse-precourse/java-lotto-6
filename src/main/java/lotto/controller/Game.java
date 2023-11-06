@@ -6,25 +6,27 @@ import lotto.domain.Comparator;
 import lotto.domain.Convertor;
 import lotto.domain.Lotto;
 import lotto.domain.Number;
-import lotto.domain.SameNumberCount;
+import lotto.domain.WinningNumbersCount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Game {
     private static final int THOUSAND_UNIT = 1000;
     private int purchaseAmount;
-    private Lotto winnerLotto;
     private int bonusNumber;
+    private List<Lotto> lottos;
+    private List<Integer> winningNumbers;
+    private List<WinningNumbersCount> winningNumbersCounts;
 
     public void start() {
         createPurchaseAmount();
         int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
-        List<Lotto> lottos = issueLottos(purchaseQuantity);
+        lottos = issueLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
-        createWinnerLotto();
+        createWinningLotto();
         createBonusNumber();
-        List<SameNumberCount> sameNumberCounts = createSameNumbers(lottos, winnerLotto, bonusNumber);
-        OutputView.printWinnerResult(sameNumberCounts);
+        createWinningNumbersCounts();
+        OutputView.printWinningResult(winningNumbersCounts);
         OutputView.printProfitRate(purchaseAmount);
     }
 
@@ -48,10 +50,10 @@ public class Game {
         return lottos;
     }
 
-    private void createWinnerLotto() {
+    private void createWinningLotto() {
         while (true) {
             try {
-                winnerLotto = new Lotto(createWinnerNumbers());
+                winningNumbers = new Lotto(createWinningNumbers()).getNumbers();
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e);
@@ -59,9 +61,9 @@ public class Game {
         }
     }
 
-    private List<Integer> createWinnerNumbers() {
+    private List<Integer> createWinningNumbers() {
         Convertor convertor = new Convertor();
-        return convertor.convertToNumbers(InputView.askWinnerNumbers());
+        return convertor.convertToNumbers(InputView.askWinningNumbers());
     }
 
 
@@ -78,20 +80,14 @@ public class Game {
     }
 
     private void validateDuplicated() {
-        if (winnerLotto.getNumbers().contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
         }
     }
 
-    private List<SameNumberCount> createSameNumbers(List<Lotto> lottos, Lotto winnerLotto, int bonusNumber) {
+    private void createWinningNumbersCounts() {
         Comparator comparator = new Comparator();
-        List<SameNumberCount> sameNumberCounts = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            int sameNumber = comparator.countSameNumber(lotto, winnerLotto);
-            boolean hasBonusNumber = comparator.checkBonusNumber(lotto, bonusNumber);
-            sameNumberCounts.add(new SameNumberCount(sameNumber, hasBonusNumber));
-        }
-        return sameNumberCounts;
+        winningNumbersCounts = comparator.compare(lottos, winningNumbers,
+                bonusNumber);
     }
-
 }

@@ -2,7 +2,7 @@ package lotto.view;
 
 import static lotto.constants.Notice.PROFIT_RATE;
 import static lotto.constants.Notice.PURCHASE_RESULT;
-import static lotto.constants.Notice.WINNER_RESULT;
+import static lotto.constants.Notice.WINNING_RESULT;
 import static lotto.constants.Rank.FIFTH;
 import static lotto.constants.Rank.FIRST;
 import static lotto.constants.Rank.FOURTH;
@@ -11,11 +11,11 @@ import static lotto.constants.Rank.THIRD;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.SameNumberCount;
+import lotto.domain.WinningNumbersCount;
 
 public class OutputView {
     private static final String UNIT = "개";
-    private static List<SameNumberCount> sameNumberCounts;
+    private static List<WinningNumbersCount> winningNumbersCounts;
 
     public static void printPurchaseResult(List<Lotto> lottos) {
         int quantity = lottos.size();
@@ -26,10 +26,10 @@ public class OutputView {
         }
     }
 
-    public static void printWinnerResult(List<SameNumberCount> sameNumberCounts) {
-        OutputView.sameNumberCounts = sameNumberCounts;
+    public static void printWinningResult(List<WinningNumbersCount> winningNumbersCounts) {
+        OutputView.winningNumbersCounts = winningNumbersCounts;
         System.out.println();
-        System.out.println(WINNER_RESULT.getMessage());
+        System.out.println(WINNING_RESULT.getMessage());
         System.out.println(FIFTH.getMessage() + countFifth() + UNIT);
         System.out.println(FOURTH.getMessage() + countFourth() + UNIT);
         System.out.println(THIRD.getMessage() + countThird() + UNIT);
@@ -58,32 +58,34 @@ public class OutputView {
     }
 
     private static int countFirst() {
-        return (int) sameNumberCounts.stream()
-                .filter(sameNumberCount -> sameNumberCount.getCount() == 6)
+        return (int) winningNumbersCounts.stream()
+                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 6)
                 .count();
     }
 
     private static int countSecond() {
-        return (int) sameNumberCounts.stream()
-                .filter(sameNumberCount -> sameNumberCount.getCount() == 5 && sameNumberCount.hasBonusNumber())
+        return (int) winningNumbersCounts.stream()
+                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 5
+                        && winningNumbersCount.hasBonusNumber())
                 .count();
     }
 
     private static int countThird() {
-        return (int) sameNumberCounts.stream()
-                .filter(sameNumberCount -> sameNumberCount.getCount() == 5 && !sameNumberCount.hasBonusNumber())
+        return (int) winningNumbersCounts.stream()
+                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 5
+                        && !winningNumbersCount.hasBonusNumber())
                 .count();
     }
 
     private static int countFourth() {
-        return (int) sameNumberCounts.stream()
-                .filter(sameNumberCount -> sameNumberCount.getCount() == 4)
+        return (int) winningNumbersCounts.stream()
+                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 4)
                 .count();
     }
 
     private static int countFifth() {
-        return (int) sameNumberCounts.stream()
-                .filter(sameNumberCount -> sameNumberCount.getCount() == 3)
+        return (int) winningNumbersCounts.stream()
+                .filter(winningNumbersCount -> winningNumbersCount.getCount() == 3)
                 .count();
     }
 }

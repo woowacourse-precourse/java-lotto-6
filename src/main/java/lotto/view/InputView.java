@@ -5,7 +5,7 @@ import static lotto.constants.ExceptionMessage.HAS_LETTER;
 import static lotto.constants.ExceptionMessage.IS_NOT_THOUSAND_UNIT;
 import static lotto.constants.Notice.ASK_BONUS_NUMBER;
 import static lotto.constants.Notice.ASK_PURCHASE_PRICE;
-import static lotto.constants.Notice.ASK_WINNER_NUMBERS;
+import static lotto.constants.Notice.ASK_WINNING_NUMBERS;
 
 public class InputView {
     public static int askPurchaseAmount() throws IllegalArgumentException {
@@ -17,9 +17,9 @@ public class InputView {
         return won;
     }
 
-    public static String askWinnerNumbers() {
+    public static String askWinningNumbers() {
         System.out.println();
-        System.out.println(ASK_WINNER_NUMBERS.getMessage());
+        System.out.println(ASK_WINNING_NUMBERS.getMessage());
         return readLine();
     }
 

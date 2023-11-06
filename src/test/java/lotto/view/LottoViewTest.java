@@ -3,7 +3,10 @@ package lotto.view;
 import static lotto.constant.Message.PURCHASE_AMOUNT_PROMPT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+import lotto.dto.LottoDto;
 import lotto.dto.LottoPurchaseDto;
+import lotto.dto.LottosDto;
 import lotto.model.LottoPurchaseAmount;
 import lotto.template.UiTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,5 +45,13 @@ class LottoViewTest extends UiTest {
 
         assertThat(getSystemOutput())
                 .contains("5개를 구매했습니다");
+    }
+
+    @Test
+    public void printLottoNumbers() {
+        List<LottoDto> lottoDtos = List.of(new LottoDto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoView.printLottoNumbers(new LottosDto(lottoDtos));
+        assertThat(getSystemOutput())
+                .contains("[1, 2, 3, 4, 5, 6]");
     }
 }

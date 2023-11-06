@@ -3,7 +3,6 @@ package lotto;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.service.InputService;
 import lotto.service.LottoService;
 import lotto.utils.ParseUtils;
 import org.junit.jupiter.api.Assertions;

@@ -55,6 +55,7 @@
 >   + [X] 사용자로부터 입력 받은 금액만큼 로또를 구입하는 기능.
 >   + [X] 구입한 번호와 당첨 번호를 비교하여 Prize enum 리스트를 반환하는 역할. 
 > + LottoDto
+> + LottoResultDto-로또의 상태 enum과 그 갯수를 key-value로 가진 map을 객체로 가지고 있는 역할 
 
 > ### Controller
 > + LottoController-전반적인 로또 게임 진행을 담당 하는 역할.

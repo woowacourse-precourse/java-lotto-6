@@ -24,6 +24,16 @@ class ApplicationTest extends NsTest {
         Prize.THREE.setCount(0);
     }
 
+
+    @Test
+    void 당첨번호_범위_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000" , "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+    }
+
     @Test
     void 당첨번호_중복숫자_테스트() {
         assertSimpleTest(() -> {

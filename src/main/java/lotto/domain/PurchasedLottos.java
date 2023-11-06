@@ -24,7 +24,7 @@ public class PurchasedLottos {
         return lottos.stream();
     }
 
-    public int getsize() {
+    public int getSize() {
         return lottos.size();
     }
 }

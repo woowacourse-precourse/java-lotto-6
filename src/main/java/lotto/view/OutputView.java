@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     public static void printPurchasedLottos(PurchasedLottos purchasedLottos) {
-        System.out.printf(SystemMessage.OUTPUT_PURCHASED_LOTTOS.getMessage(), purchasedLottos.getsize());
+        System.out.printf(SystemMessage.OUTPUT_PURCHASED_LOTTOS.getMessage(), purchasedLottos.getSize());
         purchasedLottos.stream()
                 .map(Lotto::getToIntegerList)
                 .forEach(System.out::println);

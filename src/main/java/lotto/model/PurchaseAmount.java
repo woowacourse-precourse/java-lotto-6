@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.message.ErrorMessage.NON_DIVISIBLE_BY_THOUSAND;
+import static lotto.message.ErrorMessage.UNDER_MINIMUM_PURCHASE_AMOUNT_ERROR;
+
 public record PurchaseAmount(
         int purchaseAmount
 ) {
@@ -16,13 +19,13 @@ public record PurchaseAmount(
 
     private void validateIsAboveMinimumAmount(int input) {
         if (input < 1000) {
-            throw new IllegalArgumentException("[ERROR] 최소 금액은 1,000원입니다.");
+            throw new IllegalArgumentException(UNDER_MINIMUM_PURCHASE_AMOUNT_ERROR);
         }
     }
 
     private void validateIsDivisible(int input) {
         if (input % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(NON_DIVISIBLE_BY_THOUSAND);
         }
     }
 

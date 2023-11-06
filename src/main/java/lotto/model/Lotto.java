@@ -1,5 +1,12 @@
 package lotto.model;
 
+import static lotto.controller.GameConstants.LOTTO_NUMBER_SIZE;
+import static lotto.controller.GameConstants.MAX_NUMBER;
+import static lotto.controller.GameConstants.MIN_NUMBER;
+import static lotto.message.ErrorMessage.DUPLICATE_ERROR_MESSAGE;
+import static lotto.message.ErrorMessage.OUT_OF_RANGE_ERROR_MESSAGE;
+import static lotto.message.ErrorMessage.UNAVAILABLE_LENGTH_ERROR_MESSAGE;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -20,8 +27,8 @@ public class Lotto {
     }
 
     private void validateHasSixSize(List<Integer> input) {
-        if (input.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+        if (input.size() != LOTTO_NUMBER_SIZE.getNumber()) {
+            throw new IllegalArgumentException(UNAVAILABLE_LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -32,13 +39,13 @@ public class Lotto {
                 .count();
 
         if (inputSize != uniqueInputSize) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않게 입력해야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }
 
     private void validateInRange(int input) {
-        if (input < 1 || input > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해야 합니다.");
+        if (input < MIN_NUMBER.getNumber() || input > MAX_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
         }
     }
 

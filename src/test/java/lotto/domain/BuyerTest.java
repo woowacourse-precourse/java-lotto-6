@@ -17,13 +17,14 @@ public class BuyerTest {
         int amount = 2000;
         int lottoCount = new Amount(amount).buyCount();
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(lottoNumberGenerator.pickUniqueNumbers()));
+            lotto.add(new Lotto(lottoNumberGenerator.pickUniqueNumbers()));
         }
 
+        Lottos lottos = new Lottos(lotto);
         Buyer buyer = new Buyer(lottos);
 
-        Assertions.assertThat(buyer.lottoCount()).isEqual(2);
+        Assertions.assertThat(buyer.lottoCount()).isEqualTo(2);
     }
 }

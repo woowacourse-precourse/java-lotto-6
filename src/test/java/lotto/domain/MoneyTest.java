@@ -3,8 +3,9 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.Money;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -42,9 +43,29 @@ class MoneyTest {
         Money money = new Money(input);
 
         // when
-        int result = money.getDividedBy1000Test();
+        int result = money.getDividedBy1000();
 
         // then
         assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("수익률을 계산하여 반환해야 한다.")
+    @Test
+    void getProfitRateTest() {
+        // given
+        Money money = new Money(110_000);
+        Map<Integer, Integer> resultOfLottos = Map.of(
+                1, 0,
+                2, 0,
+                3, 1,
+                4, 2,
+                5, 4
+        );
+
+        // when
+        double profitRate = money.getProfitRate(resultOfLottos);
+
+        // then
+        assertThat(profitRate).isEqualTo(1472.7);
     }
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
@@ -25,5 +26,17 @@ class LottoMachineTest {
 
         // then
         assertNotNull(lotto);
+    }
+
+    @Test
+    void 보너스_번호를_생성한다() {
+        // given
+        int bonus = 1;
+
+        // when
+        LottoNumber bonusNumber = lottoMachine.createBonusNumber(bonus);
+
+        // then
+        assertNotNull(bonusNumber);
     }
 }

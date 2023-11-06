@@ -7,7 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoView {
-
+    private static final String[] RANK_MESSAGE={
+            "3개 일치 (5,000원) - ",
+            "4개 일치 (50,000원) - ",
+            "5개 일치 (1,500,000원) - ",
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+            "6개 일치 (2,000,000,000원) - "};
     public int inputMoney(){
         System.out.println("구입금액을 입력해 주세요.");
         int money = Integer.parseInt(Console.readLine());
@@ -29,5 +34,14 @@ public class LottoView {
     public void showLottos(LottoRepository lottoRepository){
         List<Lotto> lottos = lottoRepository.getLottos();
         lottos.forEach(lotto->System.out.println(Arrays.toString(lotto.getNumbers().toArray())));
+    }
+    public void showStatus(LottoRepository lottoRepository){
+        int[] ranks = lottoRepository.getRanks();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(int i=4;i<=0;i--){
+            System.out.println(RANK_MESSAGE[i]+ranks[i]+"개");
+        }
+        System.out.printf("총 수익률은 %f%%입니다.\n",lottoRepository.getProfitRate()*100);
     }
 }

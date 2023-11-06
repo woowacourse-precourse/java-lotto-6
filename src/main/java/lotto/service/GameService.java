@@ -19,6 +19,9 @@ public class GameService {
     public static void playGame(){
         Playing.updateLottos(lottoCnt);
         OutputView.printLottosMessage(Playing.lottos);
+
+        OutputView.printWinningNumbersMessage();
+        InputValidator.checkWinningNumbersInput();
     }
 
 

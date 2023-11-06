@@ -12,7 +12,7 @@ public class Application {
         int bonus = user.inputBonusNumber();
 
         Lotto lotto = new Lotto(answerNum);
-        lotto.calLottoResult(lottoNumbers,bonus);
+        lotto.calLottoResult(lottoNumbers, bonus, money);
 
     }
 

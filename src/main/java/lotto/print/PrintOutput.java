@@ -9,8 +9,8 @@ public class PrintOutput {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printPurchasedLottoNumber(int num) {
-        System.out.println(num + "개를 구매했습니다.");
+    public void printPurchasedLottoNumber(int money) {
+        System.out.println((int)(money/1000) + "개를 구매했습니다.");
     }
 
     public void printRandomLottosNumbers(List<Lotto> lottos) {

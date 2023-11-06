@@ -9,10 +9,11 @@ import static lotto.util.Parser.stringToList;
 
 public class WinningNumbers {
     Lotto lotto;
-    int bounsNumber;
+    int bonusNumber;
 
-    public WinningNumbers(Lotto lotto) {
+    public WinningNumbers(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;
+        this.bonusNumber = bonusNumber;
     }
 
 

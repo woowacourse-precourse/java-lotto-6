@@ -23,7 +23,7 @@ public class LottoController {
         int count = money.getCount();
         List<Lotto> lottos = lottoGenerator.generateLottos(count);
         printBuyResult(lottos, count);
-        new WinningNumbers(new Lotto(stringToList(Console.readLine())));
+        makeWinningNumbers();
     }
 
     private Money askMoney() {
@@ -35,5 +35,11 @@ public class LottoController {
     private void printBuyResult(List<Lotto> lottos, int count){
         outputView.printLottoCount(count);
         lottos.stream().forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
+    }
+
+    private WinningNumbers makeWinningNumbers() {
+        Lotto lotto = new Lotto(inputView.requestWinningNumbers());
+        int bonusNum = inputView.requestBonusNumber();
+        return new WinningNumbers(lotto, bonusNum);
     }
 }

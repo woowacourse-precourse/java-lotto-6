@@ -14,13 +14,12 @@ public class LottoHost {
     public List<Integer> pickWinNumbers() {
         List<Integer> tempWinNumbers = inputWinNumbers();
 
-        ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
-        ValidateException.isWinNumbersCountSix(tempWinNumbers);
-        ValidateException.checkRangeWinNumbers(tempWinNumbers);
+        validateInputWinNumbers(tempWinNumbers);
 
         winNumbers = tempWinNumbers;
         return winNumbers;
     }
+
 
     public Integer pickBonusNumber() {
         Integer tempBonusNumber = inputBonusNumber();
@@ -32,16 +31,24 @@ public class LottoHost {
         return bonusNumber;
     }
 
+    public LottoTargetNumResults giveLottoTargetNumResults() {
+        return Config.lottoTargetNumResults(winNumbers, bonusNumber);
+    
+
+    }
+
+    private void validateInputWinNumbers(List<Integer> tempWinNumbers) {
+        ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
+        ValidateException.isWinNumbersCountSix(tempWinNumbers);
+        ValidateException.checkRangeWinNumbers(tempWinNumbers);
+    }
+
     private Integer inputBonusNumber() {
         return Input.InputNumber();
     }
 
     private List<Integer> inputWinNumbers() {
         return Input.InputNumbers();
-    }
-
-    public LottoTargetNumResults giveLottoTargetNumResults() {
-        return Config.lottoTargetNumResults(winNumbers, bonusNumber);
     }
 
 }

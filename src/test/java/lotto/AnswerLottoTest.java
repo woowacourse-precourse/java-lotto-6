@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
@@ -43,5 +44,19 @@ class AnswerLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format(ErrorMessage.LOTTO_LENGTH_ERROR.getMessage(),
                         NumberType.LOTTO_LENGTH.getValue()));
+    }
+
+    @Test
+    void 발행한_로또와_당첨_번호의_일치하는_숫자의_개수_확인_테스트() {
+        //Given
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
+        AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //When
+        int expectedResult = 6;
+        int result = answerLotto.countMatchNumber(lotto);
+
+        //When & Then
+        assertThat(result).isEqualTo(expectedResult);
     }
 }

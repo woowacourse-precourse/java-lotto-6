@@ -62,10 +62,9 @@ public class Application {
             if (Validator.isInputEmpty(winningNumbersInput)) {
                 continue;
             }
-
-            /**
-             * 구분자 검증
-             */
+            if (Validator.isValidCharacter(lottoBudgetInput)) {
+                continue;
+            }
 
             winningNumbersArray = Convertor.splitInput(winningNumbersInput);
             if (Controller.validateUserInputIsOnlyNumbers(winningNumbersArray)) {
@@ -73,6 +72,9 @@ public class Application {
             }
 
             winningNumbersTemp = Convertor.convertToList(winningNumbersArray);
+            if (Validator.isNumberCountOutOfRange(winningNumbersTemp)) {
+                continue;
+            }
             if (Controller.validateUserInputNumberIsOutOfValidRange(winningNumbersTemp)) {
                 continue;
             }
@@ -84,13 +86,10 @@ public class Application {
         }
         gameData.setWinningNumbers(winningNumbersTemp);
 
+
         View.printMessage(ASK_BONUS_NUMBERS);
         String bonusNumberInput;
         Integer bonusNumberTemp;
-
-        /**
-         * 보너스 번호 입력값 검증
-         */
 
         while (true) {
             bonusNumberInput = View.getUserInput();
@@ -100,12 +99,14 @@ public class Application {
             if (Validator.isNumberOnly(bonusNumberInput)) {
                 continue;
             }
+
             bonusNumberTemp = Convertor.convertInputToInteger(bonusNumberInput);
             if (Validator.isNumberOnValidRange(bonusNumberTemp)) {
                 continue;
             }
+
             List<Integer> winningNumbers = gameData.getWinningNumbers();
-            if (Validator.isNumberDuplicate(bonusNumberTemp, winningNumbers)) {
+            if (Validator.isBonusNumberDuplicate(bonusNumberTemp, winningNumbers)) {
                 continue;
             }
             break;

@@ -29,7 +29,7 @@ public class LottoController {
 
     private LottoTickets getLottoTickets(Money money) {
         int ticket = money.getTicket();
-        return LottoTickets.generateLottoTickets(new RandomLottoGenerator(), ticket);
+        return LottoTickets.generateRandomLottoTickets(new RandomLottoGenerator(), ticket);
     }
 
     private WinningLotto getWinningLotto() {

@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Buyer {
 
-    private int purchaseAmount;
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public void buyLotto(int purchaseAmount, List<Lotto> lottos) {
-        this.purchaseAmount = purchaseAmount;
+    public void buyLotto(List<Lotto> lottos) {
         this.lottos.addAll(lottos);
     }
 
@@ -18,6 +16,6 @@ public class Buyer {
     }
 
     public int getPurchaseAmount() {
-        return purchaseAmount;
+        return lottos.size() * Lotto.PRICE;
     }
 }

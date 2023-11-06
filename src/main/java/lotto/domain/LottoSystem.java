@@ -30,7 +30,7 @@ public class LottoSystem {
         LottoValidator.validatePurchaseAmount(purchaseAmount);
         int purchasesNumber = getPurchasesNumber(purchaseAmount);
         List<Lotto> lottos = LottoIssuer.issue(purchasesNumber);
-        buyer.buyLotto(purchaseAmount, lottos);
+        buyer.buyLotto(lottos);
     }
 
     private int getPurchasesNumber(int purchaseAmount) {

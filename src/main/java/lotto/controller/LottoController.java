@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.generator.RandomUniqueListGenerator;
-import lotto.model.LottoGameManager;
 import lotto.model.Lotto;
+import lotto.model.LottoGameManager;
 import lotto.model.LottoOwner;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningLotto;
@@ -22,6 +22,7 @@ public class LottoController {
         outputView.printWinnerStatistics();
         LottoGameManager lottoGameManager = LottoGameManager.of(lottoOwner, winningLotto);
         outputView.printWinningStatistics(lottoGameManager.getWinningStatistics());
+        outputView.printRateOfReturn(lottoGameManager.getRateOfReturn());
     }
 
     private Lotto getWinningLotto() {

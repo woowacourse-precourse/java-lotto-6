@@ -7,6 +7,7 @@ import static lotto.constant.OutputText.WINNING_STATISTICS;
 
 import lotto.constant.OutputText;
 import lotto.dto.LottosInfo;
+import lotto.dto.RateOfReturn;
 import lotto.dto.WinningStatistics;
 
 public class OutputView {
@@ -37,6 +38,10 @@ public class OutputView {
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
         printText(winningStatistics.convertOutputTextFormat());
+    }
+
+    public void printRateOfReturn(RateOfReturn rateOfReturn) {
+        printText(rateOfReturn.toString());
     }
 
     private void printSpace() {

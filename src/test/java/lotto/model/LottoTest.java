@@ -2,6 +2,8 @@ package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -20,6 +22,12 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호의_범위가_1보다_작거나_45보다_클_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0,1,2,3,4,46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

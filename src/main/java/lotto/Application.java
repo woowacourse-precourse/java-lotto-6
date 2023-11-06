@@ -7,9 +7,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
-	public static final int WINNING_NUMBER_LENGTH = 6;
-	public static final int LOTTO_MIN_NUMBER = 1;
-	public static final int LOTTO_MAX_NUMBER = 45;
 
 	private static Integer money;
 	private static List<Integer> winningNumberList;
@@ -48,7 +45,7 @@ public class Application {
 	public static void setWinningNumberList() {
 		try {
 			System.out.println("당첨 번호를 입력해 주세요.");
-			winningNumberList = readNumberList(WINNING_NUMBER_LENGTH);
+			winningNumberList = readNumberList(Constants.WINNING_NUMBER_LENGTH);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setWinningNumberList();
@@ -60,7 +57,7 @@ public class Application {
 			System.out.println("보너스 번호를 입력해 주세요.");
 			bonusNumber = readNumber();
 
-			if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
+			if (bonusNumber < Constants.LOTTO_MIN_NUMBER || bonusNumber > Constants.LOTTO_MAX_NUMBER) {
 				throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
 			}
 		} catch (IllegalArgumentException e) {
@@ -92,7 +89,7 @@ public class Application {
 			for (String input : inputList) {
 				Integer number = Integer.parseInt(input);
 
-				if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+				if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
 					throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
 				}
 
@@ -112,7 +109,7 @@ public class Application {
 		Integer lottoCount = money / 1000;
 		System.out.println(lottoCount + "개를 구매했습니다.");
 		for (int i = 0; i < lottoCount; i++) {
-			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, WINNING_NUMBER_LENGTH));
+			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.WINNING_NUMBER_LENGTH));
 			System.out.println(lotto);
 			lottoList.add(lotto);
 		}

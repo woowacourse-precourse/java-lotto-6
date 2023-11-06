@@ -30,5 +30,5 @@
 
 ## Refactoring check-list
 
-- [ ] 상수 분리하기
+- [x] 상수 분리하기: Contants 클래스 사용
 - [ ] User 클래스 구현하기

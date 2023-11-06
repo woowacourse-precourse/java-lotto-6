@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -12,6 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +52,18 @@ class LottoModelTest {
         assertThat(lottoModel.computeRate(totalEarned, purchased))
                 .isEqualTo(expect);
     }
+
+    @Test
+    void generateNewLotto_로또_번호_발행_오름차순_정렬_테스트() {
+        List<Integer> expect = new ArrayList<>(List.of(1,3,5,7,9,11));
+        assertRandomUniqueNumbersInRangeTest(
+                ()->{
+                    assertThat(lottoModel.generateNewLotto())
+                            .isEqualTo(expect);
+                },List.of(5,1,7,11,9,3)
+        );
+    }
+
 
     @ParameterizedTest
     @MethodSource("parameterProviderPublishTicket")

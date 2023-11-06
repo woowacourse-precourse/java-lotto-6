@@ -34,6 +34,7 @@
     - [x] 당첨 번호 빈도를 보여준다. - UI#printWinningFrequency
     - [x] 수익률을 보여준다. - UI#printReturnRate
         - 소수점 둘째 자리에서 반올림 되어야 한다.
+- [x] 틀린 입력인 이유를 알려준다.
 
 ---
 

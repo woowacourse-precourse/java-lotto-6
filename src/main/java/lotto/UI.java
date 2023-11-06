@@ -132,4 +132,8 @@ public class UI {
         String returnRateByRound = String.format("%.1f", returnRate);
         System.out.print("총 수익률은 " + returnRateByRound + "%입니다.");
     }
+    
+    public static void printExceptionCause(Exception e) {
+        System.out.println("[ERROR] " + e.getMessage());
+    }
 }

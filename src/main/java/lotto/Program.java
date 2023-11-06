@@ -20,7 +20,7 @@ public class Program {
                 lottos = Store.sellLottos(payment);
                 UI.printPurchases(lottos);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                UI.printExceptionCause(e);
                 continue;
             }
             break;
@@ -35,7 +35,7 @@ public class Program {
                 List<Integer> winningNumbers = UI.inputWinningNumbers();
                 winning = new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                UI.printExceptionCause(e);
                 continue;
             }
             break;
@@ -50,7 +50,7 @@ public class Program {
             try {
                 bonus = UI.inputBonusNumber();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                UI.printExceptionCause(e);
                 continue;
             }
             break;

@@ -34,7 +34,7 @@ public class GameInput {
         }
         List<Integer> winningNumbers = convertCommaStringToListInt(commaWinnigNumbers);
         Collections.sort(winningNumbers);
-        return new Lotto(winningNumbers);
+        return new Lotto(Collections.unmodifiableList(winningNumbers));
     }
 
     public static List<Integer> convertCommaStringToListInt(String commaString){

@@ -21,10 +21,10 @@ public class Lottos {
         int issueCount = countNumberOfLottoIssue(money);
         List<Lotto> numberOfLotto = new ArrayList<Lotto>(issueCount);
         for (int count = 0; count < issueCount; count++) {
-            List<Integer> radomNumbers = Randoms.pickUniqueNumbersInRange(
-                    LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS);
-            Collections.sort(radomNumbers);
-            numberOfLotto.add(new Lotto(radomNumbers));
+            List<Integer> randomNumbers = new ArrayList<Integer>(Randoms.pickUniqueNumbersInRange(
+                    LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS));
+            Collections.sort(randomNumbers);
+            numberOfLotto.add(new Lotto(Collections.unmodifiableList(randomNumbers)));
         }
         return new Lottos(numberOfLotto);
     }

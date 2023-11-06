@@ -30,13 +30,13 @@ public class LottoGame {
     }
 
     public void buyLottos() {
-        int price = ExceptionResolver.resolveInput(inputView::inputBuyingPrice);
+        int price = inputView.inputBuyingPrice();
         lottoMachine.buyLottos(RandomLottoNumberGenerator.getSupplier(), price);
     }
 
     private void inputWinningLotto() {
-        List<Integer> winningNumbers = ExceptionResolver.resolveInput(inputView::inputLottoNumbers);
-        int bonusNumber = ExceptionResolver.resolveInput(inputView::inputBonusNumber);
+        List<Integer> winningNumbers = inputView.inputLottoNumbers();
+        int bonusNumber = inputView.inputBonusNumber();
         lottoMachine.addWinningLotto(winningNumbers, bonusNumber);
     }
 

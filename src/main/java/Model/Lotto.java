@@ -15,23 +15,29 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto (String numbers) {
-        this.numbers = validate(numbers);
+        List<Integer> winningNumbers = convertToNumeric(numbers);
+        validate(winningNumbers);
+        this.numbers = winningNumbers;
     }
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    List<Integer> validate(String numbersInput) {
+    List<Integer> convertToNumeric(String numbersInput) {
         numbersInput = deleteWhiteSpace(numbersInput);
         numbersInput = correctCommas(numbersInput);
         validateWinningNumberNumeric(numbersInput);
-        List<Integer> numbers = Utils.convertStringToIntegerList(numbersInput);
+        return Utils.convertStringToIntegerList(numbersInput);
+    }
+
+    void validate(List<Integer> numbers) {
         validateWinningNumberLength(numbers);
         validateWinningNumberRange(numbers);
         validateWinningNumberDuplication(numbers);
-        return numbers;
     }
+
     void validateWinningNumberLength(List<Integer> winningNumber) {
         if (winningNumber.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();

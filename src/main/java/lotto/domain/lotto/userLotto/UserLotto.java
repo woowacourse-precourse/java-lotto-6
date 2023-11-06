@@ -1,6 +1,7 @@
 package lotto.domain.lotto.userLotto;
 
 import lotto.domain.*;
+import lotto.domain.generator.RandomNumberGenerator;
 import lotto.domain.lotto.AnswerLotto;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCondition;
@@ -14,7 +15,8 @@ public class UserLotto {
 
     public UserLotto(int purchasePrice) {
         this.purchasePrice = new PurchasePrice(purchasePrice);
-        this.lottos = new Lottos(purchasePrice / LottoCondition.PRICE.getValue());
+        this.lottos = new Lottos(RandomNumberGenerator.getInstance(),
+                purchasePrice / LottoCondition.PRICE.getValue());
     }
 
     public WinningResult calculateWinningResult(AnswerLotto answerLotto) {

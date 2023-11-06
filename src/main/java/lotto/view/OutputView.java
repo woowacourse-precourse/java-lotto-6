@@ -73,6 +73,10 @@ public class OutputView {
         printMessage(sb.toString());
     }
 
+    public static void printErrorMessage() {
+        printMessage("[ERROR]");
+    }
+
     private static String formatPrize(int prize) {
         DecimalFormat df = new DecimalFormat("###,###");
         return df.format(prize);
@@ -92,4 +96,5 @@ public class OutputView {
     private static void printMessage(String message) {
         System.out.println(message);
     }
+
 }

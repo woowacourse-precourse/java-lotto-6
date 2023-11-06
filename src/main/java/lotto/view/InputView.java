@@ -8,13 +8,29 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
+    private void validateStringToNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Constants.NOT_INT_NUMBER_ERROR);
+        }
+    }
+
+    private void validateLottoNumberRange(Integer number) {
+        if (number < Constants.MIN_LOTTO_NUM || number > Constants.MAX_LOTTO_NUM) {
+            throw new IllegalArgumentException(Constants.LOTTO_NUMBER_RANGE_ERROR);
+        }
+    }
+
     public Integer getPrice() {
         while (true) {
             System.out.println(Constants.GET_PRICE_MESSAGE);
             String price = Console.readLine();
 
             try {
+                validateStringToNumber(price);
                 validatePriceInput(price);
+
                 return Integer.parseInt(price);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -23,13 +39,8 @@ public class InputView {
     }
 
     private void validatePriceInput(String price) {
-        try {
-            int convertPrice = Integer.parseInt(price);
-            if (convertPrice % Constants.PRICE_UNIT != 0) {
-                throw new IllegalArgumentException(Constants.NOT_UNIT_PRICE_ERROR);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Constants.NOT_INT_PRICE_ERROR);
+        if (Integer.parseInt(price) % Constants.PRICE_UNIT != 0) {
+            throw new IllegalArgumentException(Constants.NOT_UNIT_PRICE_ERROR);
         }
     }
 
@@ -59,11 +70,8 @@ public class InputView {
         }
 
         for (String number: numbers) {
-            try {
-                Integer.parseInt(number);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(Constants.NOT_INT_NUMBER_ERROR);
-            }
+            validateStringToNumber(number);
+            validateLottoNumberRange(Integer.parseInt(number));
         }
     }
 
@@ -73,7 +81,10 @@ public class InputView {
             String bonusNumber = Console.readLine();
 
             try {
-                validateBonusNumberInput(bonusNumber, winningNumber);
+                validateStringToNumber(bonusNumber);
+                validateLottoNumberRange(Integer.parseInt(bonusNumber));
+                validateBonusNumberInput(Integer.parseInt(bonusNumber), winningNumber);
+
                 return Integer.parseInt(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -81,19 +92,9 @@ public class InputView {
         }
     }
 
-    private void validateBonusNumberInput(String bonusNumber, Lotto winningNumber) {
-        try {
-            Integer parseNumber = Integer.parseInt(bonusNumber);
-
-            if (parseNumber < Constants.MIN_LOTTO_NUM || parseNumber > Constants.MAX_LOTTO_NUM) {
-                throw new IllegalArgumentException(Constants.LOTTO_NUMBER_RANGE_ERROR);
-            }
-
-            if (winningNumber.getNumbers().contains(parseNumber)) {
-                throw new IllegalArgumentException(Constants.DUPLICATE_NUMBER_ERROR);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Constants.NOT_INT_NUMBER_ERROR);
+    private void validateBonusNumberInput(Integer bonusNumber, Lotto winningNumber) {
+        if (winningNumber.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(Constants.DUPLICATE_NUMBER_ERROR);
         }
     }
 }

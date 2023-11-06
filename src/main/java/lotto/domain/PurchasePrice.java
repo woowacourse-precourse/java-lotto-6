@@ -38,6 +38,10 @@ public class PurchasePrice {
         return null;
     }
 
+    public int getCount() {
+        return price / MULTIPLE;
+    }
+
     private void validate(int price) {
         isZero(price);
         isNegative(price);

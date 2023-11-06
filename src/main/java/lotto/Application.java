@@ -29,6 +29,10 @@ public class Application {
         Result result = calculateWinningRanksProcess(lottoController, outputView, purchase, lottos, jackpot);
 
         // 발행된 로또들의 수익률 계산
+        readProfitRateProcess(lottoController, outputView, result);
+    }
+
+    private static void readProfitRateProcess(LottoController lottoController, OutputView outputView, Result result) {
         Double rate = lottoController.calculateProfitRate(result);
         outputView.printProfitRate(rate);
     }

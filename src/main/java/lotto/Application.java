@@ -23,13 +23,23 @@ public class Application {
         outputIssuance.print(purchase_count, purchase_lottos);
 
         // 4. 당첨 번호 입력
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] stringNumbers = Console.readLine().split(",");
-        List<Integer> winNumbersList = Arrays.stream(stringNumbers)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<Integer> win_numbers = new ArrayList<>();
+        Lotto winLotto = null;
+        boolean valid_input = false;
+        while (!valid_input) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String[] string_numbers = Console.readLine().split(",");
+                win_numbers = Arrays.stream(string_numbers)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
 
-        Lotto winLotto = new Lotto(winNumbersList);
+                winLotto = new Lotto(win_numbers);
+                valid_input = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         ArrayList<Integer> win_lottos = winLotto.getNumbers();
         System.out.println();
 

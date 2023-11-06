@@ -39,4 +39,16 @@ class LottoTest {
 		//then
 		Assertions.assertThat(lottoNumbers).isEqualTo(expected);
 	}
+
+	@DisplayName("로또 번호 입력시 숫자가 아닌 값이 있으면 예외 발생")
+	@Test
+	public void checkListDigitWithString() {
+		// given
+		String input = "1,2,3,4,a,!";
+
+		// when & then
+		assertThatThrownBy(() -> new Lotto(input))
+				.isInstanceOf(IllegalArgumentException.class);
+	}
+
 }

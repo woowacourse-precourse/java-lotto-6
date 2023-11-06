@@ -1,22 +1,28 @@
 package lotto.domain.lotto.converter;
 
+import static lotto.global.constant.LottoConstant.LOTTO_NUMBER_DELIMITER;
+import static lotto.global.constant.LottoConstant.LOTTO_PREFIX;
+import static lotto.global.constant.LottoConstant.LOTTO_SUFFIX;
+
 import java.util.List;
 import java.util.StringJoiner;
 import lotto.domain.GameResult;
 import lotto.domain.Rank;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
+import lotto.global.constant.message.LottoMessage;
 
 public class LottoMessageConverter {
     private static StringJoiner joiner;
 
+
     public static String convertLottoNumberMessage(List<Lotto> lottos) {
         StringBuilder lottoNumberMessage = new StringBuilder();
-        String lottoAmountCheckMessage = String.format("\n%d개를 구매했습니다.\n", lottos.size());
+        String lottoAmountCheckMessage = String.format(LottoMessage.RANDOM_PURCHASE_RESULT.getText(), lottos.size());
         lottoNumberMessage.append(lottoAmountCheckMessage);
 
         for (Lotto lotto : lottos) {
-            joiner = new StringJoiner(", ", "[", "]\n");
+            joiner = new StringJoiner(LOTTO_NUMBER_DELIMITER, LOTTO_PREFIX, LOTTO_SUFFIX);
             for (LottoNumber number : lotto.getNumbers()) {
                 joiner.add(number.getValue().toString());
             }
@@ -28,12 +34,12 @@ public class LottoMessageConverter {
 
     public static String convertLottoResultMessage(GameResult result, double profitPercentage) {
         StringBuilder resultMessage = new StringBuilder();
-        resultMessage.append("\n당첨 통계\n---\n");
+        resultMessage.append(LottoMessage.RESULT_STATISTICS.getText());
         for (Rank rank : Rank.values()) {
             String rankResultMessage = String.format(rank.getWinningMessage(), result.getCountOfRank(rank));
             resultMessage.append(rankResultMessage);
         }
-        resultMessage.append(String.format("총 수익률은 %.1f%%입니다.", profitPercentage));
+        resultMessage.append(String.format(LottoMessage.PROFIT_PERCENTAGE.getText(), profitPercentage));
 
         return resultMessage.toString();
     }

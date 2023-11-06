@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import view.Output;
 
 public class Referee {
-    public static void calculateLottoResultAndProfit(List<Lotto> lottoList, List<Integer> winningNumbers,
+    public static void calculateLottoResultAndProfit(List<Lotto> lottoTickets, List<Integer> winningNumbers,
                                                      int bonusNumber, int purchaseAmount) {
-        Map<Rank, Long> winningCounts = countLottoRank(lottoList, winningNumbers, bonusNumber);
+        Map<Rank, Long> winningCounts = countLottoRank(lottoTickets, winningNumbers, bonusNumber);
         Output.printLottoGameResult();
 
         long totalPrizeAmount = 0;
@@ -24,28 +24,28 @@ public class Referee {
         double profitRate = (totalPrizeAmount / (double) purchaseAmount) * 100;
         Output.printLottoProfit(profitRate);
     }
-    
-    private static Map<Rank, Long> countLottoRank(List<Lotto> lottoList, List<Integer> winningNumbers,
+
+    private static Map<Rank, Long> countLottoRank(List<Lotto> lottoTickets, List<Integer> winningNumbers,
                                                   int bonusNumber) {
-        return calculateAllLottoPrize(lottoList, winningNumbers, bonusNumber)
+        return calculateAllLottoPrize(lottoTickets, winningNumbers, bonusNumber)
                 .stream()
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
 
-    private static List<Rank> calculateAllLottoPrize(List<Lotto> lottoList, List<Integer> winningNumbers,
+    private static List<Rank> calculateAllLottoPrize(List<Lotto> lottoTickets, List<Integer> winningNumbers,
                                                      int bonusNumber) {
-        return lottoList.stream()
+        return lottoTickets.stream()
                 .map(lotto -> calculatePrize(lotto, winningNumbers, bonusNumber))
                 .collect(Collectors.toList());
     }
 
     private static Rank calculatePrize(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         Set<Integer> userNumbers = new HashSet<>(lotto.getNumbers());
-        Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);
+        Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
 
         boolean hasBonusNumber = userNumbers.contains(bonusNumber);
 
-        long matchingNumbers = countMatchingNumbers(userNumbers, winningNumberSet);
+        long matchingNumbers = countMatchingNumbers(userNumbers, uniqueWinningNumbers);
 
         return calculatePrizeBasedOnMatching(matchingNumbers, hasBonusNumber);
     }
@@ -65,9 +65,9 @@ public class Referee {
         return Rank.FAIL;
     }
 
-    private static long countMatchingNumbers(Set<Integer> userNumbers, Set<Integer> winningNumberSet) {
+    private static long countMatchingNumbers(Set<Integer> userNumbers, Set<Integer> uniqueWinningNumbers) {
         return userNumbers.stream()
-                .filter(winningNumberSet::contains)
+                .filter(uniqueWinningNumbers::contains)
                 .count();
     }
 }

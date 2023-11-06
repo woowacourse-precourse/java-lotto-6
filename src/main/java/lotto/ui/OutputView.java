@@ -37,4 +37,8 @@ public class OutputView {
         DecimalFormat formatter = new DecimalFormat("###,###");
         return formatter.format(winningMoney);
     }
+
+    public void printYield(double yield) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
+    }
 }

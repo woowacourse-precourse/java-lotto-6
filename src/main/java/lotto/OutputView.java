@@ -6,10 +6,11 @@ import java.util.List;
 public class OutputView {
     private static final String OUTPUT_LOTTO_PERCHASED_COUNT = "%d개를 구매했습니다.";
     private static final String OUTPUT_LOTTO_WINNING_STATICS_MESSAGE = "당첨 통계\n---";
-    private static final String OUTPUT_LOTTO_TOTAL_RATE_OF_RETURN = "총 수익률은 %f%%입니다.";
+    private static final String OUTPUT_LOTTO_TOTAL_RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
 
     public static void printLottoPurchasedCount(int numberOfPurchasedCount){
         System.out.printf(OUTPUT_LOTTO_PERCHASED_COUNT, numberOfPurchasedCount);
+        System.out.println();
     }
 
     public static void printStatics(HashMap<LottoData, Integer> lotteryData) {
@@ -26,7 +27,7 @@ public class OutputView {
         }
     }
 
-    public static void printRateOfReturn(float rateOfReturn) {
+    public static void printRateOfReturn(String rateOfReturn) {
         System.out.printf(OUTPUT_LOTTO_TOTAL_RATE_OF_RETURN, rateOfReturn);
     }
 

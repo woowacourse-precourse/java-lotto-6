@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.system.validator.Validator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,5 +23,11 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void validateDuplicateNumber(List<Integer> numbers) {
         Validator.validateDuplicateNumber(numbers);
+    }
+
+    public List<Integer> ascendingSort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toUnmodifiableList());
     }
 }

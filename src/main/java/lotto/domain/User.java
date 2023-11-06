@@ -12,6 +12,22 @@ public class User {
         this.lottos = lottos;
     }
 
+    public Long calculateWinningAmount(List<Integer> winningNumbers, int bonusNumber){
+        Long totalWinningAmount = 0L;
+
+        for(Lotto lotto: lottos){
+            totalWinningAmount += lotto.getLottoRank(winningNumbers, bonusNumber)
+                    .getWinningAmount();
+        }
+        return totalWinningAmount;
+    }
+
+    public double calculateRateOfReturn(List<Integer> winningNumbers, int bonusNumber){
+        Long totalWinningAmount = calculateWinningAmount(winningNumbers, bonusNumber);
+
+        return ((double)totalWinningAmount/PURCHASE_AMOUNT)*100;
+    }
+
 
 
 

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.util.LottoRank;
+
 import java.util.List;
 
 public class Lotto {
@@ -23,6 +25,10 @@ public class Lotto {
                 .count();
     }
 
+    public LottoRank getLottoRank(List<Integer> winningNumbers, int bonusNumber){
+        int matchCount = checkWinningNumbers(winningNumbers);
+        return LottoRank.calculateRank(matchCount,checkBonusNumber(bonusNumber) );
+    }
     public int checkWinningNumbers(List<Integer> winningNumber) {
         int matchCount = 0;
 

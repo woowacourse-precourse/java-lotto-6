@@ -58,7 +58,7 @@ public class LottoController {
 
     private WinningCondition makeWinningCondition() {
         output.showWinningNumbersInputMessage();
-        Lotto winningLotto = makeWinningLotto(input.readWinningNumbers());
+        Lotto winningLotto = repeatMakeWinningLotto();
 
         output.showBonusNumberInputMessage();
         int bonusNumber = toInt(input.readBonusNumber());
@@ -66,8 +66,13 @@ public class LottoController {
         return new WinningCondition(winningLotto, bonusNumber);
     }
 
-    private Lotto makeWinningLotto(String winningNumbers) {
-        return Lotto.makeWinningLotto(winningNumbers);
+    private Lotto repeatMakeWinningLotto() {
+        try {
+            return Lotto.makeWinningLotto(input.readWinningNumbers());
+        } catch (IllegalArgumentException e) {
+            output.showError(e.getMessage());
+            return repeatMakeWinningLotto();
+        }
     }
 
     private LottoTickets makeLottoTickets(int money) {

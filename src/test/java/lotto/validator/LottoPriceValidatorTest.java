@@ -53,6 +53,20 @@ class LottoPriceValidatorTest {
         //when & then
         assertThatThrownBy(() -> LottoPriceValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 0으로 시작하는 값을 입력하면 안됩니다.");
+                .hasMessageContaining("[ERROR] 구매 금액은 0으로 시작하는 값을 입력하면 안됩니다.");
     }
+
+    @DisplayName("1000으로 나누어떨어지지만 음수인 경우 잘못된 입력 테스트 ")
+    @Test
+    void 금액_음수_입력시_예외() {
+        //given
+        String input = "-9000";
+
+        //when & then
+        assertThatThrownBy(() -> LottoPriceValidator.validate(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구매 금엑은 음수로 입력하면 안됩니다.");
+    }
+
+
 }

@@ -2,8 +2,8 @@ package lotto.input;
 
 import static lotto.error.message.InvalidInputErrorMessage.*;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.error.exception.InvalidInputException;
 import lotto.util.IntegerUtil;
 
@@ -35,7 +35,7 @@ public class InputValidator {
     }
 
     private void checkWinningNumberIsDuplicate(List<Integer> winningNumbers) {
-        if (Set.of(winningNumbers).size() != 6) {
+        if (new HashSet<>(winningNumbers).size() != 6) {
             throw new InvalidInputException(WINNING_NUMBERS_DUPLICATE.getMessage(), winningNumbers.toString());
         }
     }

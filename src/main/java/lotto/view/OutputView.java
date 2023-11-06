@@ -3,7 +3,6 @@ package lotto.view;
 import java.util.List;
 import lotto.domain.GameResult;
 import lotto.domain.Lotto;
-import lotto.domain.Profit;
 import lotto.domain.Ranking;
 
 public class OutputView {

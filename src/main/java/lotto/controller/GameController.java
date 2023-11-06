@@ -8,12 +8,12 @@ import lotto.domain.Money;
 import lotto.domain.Profit;
 import lotto.domain.WinningNumber;
 import lotto.view.OutputView;
-import lotto.view.UserInput;
+import lotto.view.InputView;
 
 import java.util.List;
 
 public class GameController {
-    private final UserInput userInput = new UserInput();
+    private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final CreateLotto createLotto = new CreateLotto();
     private final GameResult gameResult = new GameResult();
@@ -26,17 +26,17 @@ public class GameController {
     private boolean hasBonusNumber;
 
     public void start() {
-        money = userInput.askMoney();
+        money = inputView.askMoney();
         createLotto.setAmount(money);
         createLotto.multipleLotto();
         lottos = createLotto.getLottos();
         outputView.printLottoNumbers(lottos);
 
-        winningNumbers = userInput.askWinningNumber();
-        winningLotto = new Lotto(winningNumbers.getWinningNumbers());
+        winningNumbers = inputView.askWinningNumber();
+        winningLotto = new Lotto(winningNumbers.getWinningNumber());
 
         outputView.printBlankLine();
-        bonusNumber = userInput.askBonusNumber();
+        bonusNumber = inputView.askBonusNumber();
 
         for (int i = 0; i < createLotto.getAmount(); i++) {
             hasBonusNumber = gameResult.hasBonusNumber(lottos.get(i), bonusNumber);

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumber {
-    private List<Integer> winningNumbers;
+    private List<Integer> winningNumber;
     public WinningNumber(String inputWinning) {
-        winningNumbers = new ArrayList<>();
+        winningNumber = new ArrayList<>();
         isRightFormat(inputWinning);
-        setWinningNumbers(inputWinning);
+        setWinningNumber(inputWinning);
     }
 
     public void isRightFormat(String inputWinning) {
@@ -18,20 +18,21 @@ public class WinningNumber {
     }
 
     public void isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) < '0' || input.charAt(i) > '9') {
+                System.out.println("[ERROR] 숫자만 입력해주시기 바랍니다.");
+                throw new IllegalArgumentException();
+            }
         }
     }
 
-    public void setWinningNumbers(String inputWinning) {
+    public void setWinningNumber(String inputWinning) {
         for (String s : inputWinning.split(",")) {
-            winningNumbers.add(Integer.parseInt(s));
+            winningNumber.add(Integer.parseInt(s));
         }
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
     }
 }

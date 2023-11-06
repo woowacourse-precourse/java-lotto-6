@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class UserInputTest {
-    private UserInput userInput;
+class InputViewTest {
+    private InputView inputView;
 
     @BeforeEach
     void setUp() {
-        userInput = new UserInput();
+        inputView = new InputView();
     }
 
     @AfterEach
@@ -25,14 +25,14 @@ class UserInputTest {
     @Test
     void notThousandsMoney() {
         System.setIn(createUserInput("500"));
-        assertThatThrownBy(() -> userInput.askMoney())
+        assertThatThrownBy(() -> inputView.askMoney())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void notIntegerMoney() {
         System.setIn(createUserInput("2천"));
-        assertThatThrownBy(() -> userInput.askMoney())
+        assertThatThrownBy(() -> inputView.askMoney())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

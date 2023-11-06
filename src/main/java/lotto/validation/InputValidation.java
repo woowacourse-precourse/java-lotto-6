@@ -4,7 +4,6 @@ package lotto.validation;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.Lotto;
 import lotto.constants.ExceptionMessages;
 
 public class InputValidation {

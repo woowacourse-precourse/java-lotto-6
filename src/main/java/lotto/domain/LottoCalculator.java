@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.LottoInformation.LOTTO_PRICE;
+
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -52,7 +54,8 @@ public class LottoCalculator {
         return matchCount;
     }
 
-    public String calculateProfitRate(int money) {
+    public String calculateProfitRate() {
+        int money = calculateTotalSpent();
         long totalPrize = calculateTotalPrize();
         if (totalPrize == 0) {
             return "0.0";
@@ -69,6 +72,14 @@ public class LottoCalculator {
                 .mapToLong(entry ->
                         (long) entry.getKey().getMoney() * entry.getValue())
                 .sum();
+    }
+
+    public int calculateTotalSpent() {
+        int count = result.values()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+        return count * LOTTO_PRICE;
     }
 
     private boolean isContainBonusNumber(Lotto lotto) {

@@ -8,7 +8,7 @@ public class PrintMessages {
     public static final String WINNING_DETAILS = "\n당첨 통계\n" + "---";
     public static final String MATCH_NUMBER = "%d개 일치 (%s원) - %d개\n";
     public static final String MATCH_NUMBER_RANK_TWO = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
-    public static final String RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
+    public static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
 
 }
 

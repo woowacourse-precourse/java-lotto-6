@@ -24,8 +24,7 @@ public class LottoController {
         inputWinningNumber();
         inputBonusNumber();
         checkLottoRank();
-
-        double rate = getRateOfReturn(lottoRanks, purchasePrice);
+        calcRateOfReturn();
     }
 
     private void purchaseLotto() {
@@ -49,15 +48,16 @@ public class LottoController {
 
     private void checkLottoRank() {
         lottoRanks = lottos.checkRank(winningNumber);
+        OutputHandler.printWinningStatsSign();
         OutputHandler.printWinningStats(lottoRanks);
     }
 
-    private double getRateOfReturn(List<LottoRank> lottoRanks, String purchasePrice) {
+    private void calcRateOfReturn() {
         int totalReward = lottoRanks.stream()
                 .mapToInt(LottoRank::getReward)
                 .sum();
-
-        return totalReward / Double.parseDouble(purchasePrice);
+        double rateOfReturn = (totalReward / Double.parseDouble(purchasePrice)) * 100;
+        OutputHandler.printRateOfReturn(rateOfReturn);
     }
 
     private List<Integer> toIntegers(List<String> beforeWinningNumbers) {

@@ -4,46 +4,43 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.model.WinningNumbers;
+import lotto.utils.PrizeType;
 
 import java.util.List;
 
 public class LottoReader {
-    private final WinningNumbers winningNumbers;
-    private final BonusNumber bonusNumber;
-
-    public LottoReader(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
-
-    public List<Integer> read(LottoTicket lottoTicket) {
+    public static List<PrizeType> read(
+            WinningNumbers winningNumbers,
+            BonusNumber bonusNumber,
+            LottoTicket lottoTicket
+    ) {
         return lottoTicket.getLottos().stream()
-                .map(this::a)
+                .map(lotto -> match(winningNumbers, bonusNumber, lotto))
                 .toList();
     }
 
-    Integer a(Lotto lotto) {
-        Integer result = lotto.compare(winningNumbers.getWinningNumbers());
-        if (result.equals(6)) {
-            return 1;
+    public static PrizeType match(
+            WinningNumbers winningNumbers,
+            BonusNumber bonusNumber,
+            Lotto lotto
+    ) {
+        Integer matchedCount = lotto.compare(winningNumbers.getWinningNumbers());
+        if (matchedCount.equals(6)) {
+            return PrizeType.FIRST_PLACE;
         }
+
         if (lotto.contains(bonusNumber.getBonusNumber())) {
-            result++;
+            matchedCount++;
         }
-        if (result.equals(6)) {
-            return 2;
+
+        PrizeType prizeType = PrizeType.getTypeByCode(mapToPrizeCode(matchedCount));
+        if (prizeType == null) {
+            prizeType = PrizeType.LOSS;
         }
-        if (result.equals(5)) {
-            return 3;
-        }
-        if (result.equals(4)) {
-            return 4;
-        }
-        if (result.equals(3)) {
-            return 5;
-        }
-        return null;
+        return prizeType;
     }
 
-
+    private static Integer mapToPrizeCode(Integer value) {
+        return 8 - value;
+    }
 }

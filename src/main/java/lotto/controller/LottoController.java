@@ -4,12 +4,16 @@ import lotto.model.BonusNumber;
 import lotto.model.Deposit;
 import lotto.model.LottoTicket;
 import lotto.model.WinningNumbers;
+import lotto.utils.PrizeType;
+
+import java.util.List;
 
 import static lotto.controller.LottoDrawingMachine.drawBonusNumber;
 import static lotto.controller.LottoDrawingMachine.drawWinningNumbers;
 import static lotto.view.InputView.askPurchaseAmount;
 import static lotto.view.InputView.askUntilGetValidAnswer;
-import static lotto.view.OutputView.*;
+import static lotto.view.OutputView.printLottoTicket;
+import static lotto.view.OutputView.printPurchaseAmount;
 
 public class LottoController {
     public void run() {
@@ -17,7 +21,7 @@ public class LottoController {
         LottoTicket lottoTicket = purchaseLottoTicket(deposit);
         WinningNumbers winningNumbers = drawWinningNumbers();
         BonusNumber bonusNumber = drawBonusNumber();
-        printDrawingStatistic();
+        List<PrizeType> lottoResult = LottoReader.read(winningNumbers, bonusNumber, lottoTicket);
     }
 
     public Deposit makeDeposit() {

@@ -15,10 +15,10 @@ public class LottoController {
         PurchaseAmount purchaseAmount = createPurchaseAmount();
         int purchaseCount = calculatePurchaseCount(purchaseAmount);
 
-        BuyLottoRepository buyLottoRepo = lottoService.quickPick(purchaseCount);
-        WinningLottoRepository winningLottoRepo = lottoService.createWinningNumber();
+        BuyLottoRepository buyLottos = lottoService.quickPick(purchaseCount);
+        WinningLottoRepository winningLotto = lottoService.createWinningNumber();
 
-        ResultService.perLottoTotalCount(buyLottoRepo, winningLottoRepo);
+        ResultService.perLottoTotalCount(buyLottos, winningLotto);
         ResultService.calculateRateOfReturn(purchaseCount);
     }
 

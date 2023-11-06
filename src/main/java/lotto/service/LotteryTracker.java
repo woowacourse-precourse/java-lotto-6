@@ -29,12 +29,12 @@ public class LotteryTracker {
         return result.get(index).size();
     }
 
-    public void matching(BuyLottoRepository buyLottoRepo, WinningLottoRepository winningLottoRepo) {
+    public void matching(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto) {
         int correctNum =0;
-        int bonusNum = winningLottoRepo.getBonusNumber();
+        int bonusNum = winningLotto.getBonusNumber();
 
-        for (Lotto buyLotto : buyLottoRepo.getLottos()) {
-            correctNum = winningLottoRepo.countMatchingNumber(buyLotto);
+        for (Lotto buyLotto : buyLottos.getLottos()) {
+            correctNum = winningLotto.countMatchingNumber(buyLotto);
             matchingNumber(correctNum,buyLotto,bonusNum);
         }
     }

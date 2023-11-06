@@ -25,6 +25,8 @@ public class LottoController {
     public void startLotto() {
         Long money = inputPurchaseAmount();
         HashMap<String, Long> scoreBored = produceStatisticsLottoScore(money);
+        OutputView.outputViewStatistics(scoreBored);
+        getTotalReturn(scoreBored);
     }
 
     private Long inputPurchaseAmount() {
@@ -60,5 +62,14 @@ public class LottoController {
         List<Integer> winningLotto = inputWinningLottoNumber();
         Integer bonusNumber = inputBonusNumber();
         return lottoService.getResultScoreBoard(buyLotto(money), winningLotto, bonusNumber);
+    }
+
+    private Long getTotalReturn(HashMap<String, Long> scoreBoard) {
+        long totalScore = 0L;
+        for(Long score : scoreBoard.values()) {
+            totalScore += score;
+        }
+
+        return totalScore;
     }
 }

@@ -58,4 +58,11 @@ public class OutputViewTest {
 
         Assertions.assertThat(output.toString()).isEqualTo("총 수익률은 62.5%입니다.");
     }
+
+    @Test
+    void 당첨_통계_문구를_출력하는_기능_검증() {
+        outputView.printWinningStaticsInput();
+
+        Assertions.assertThat(output.toString()).isEqualTo("당첨 통계\n---\n");
+    }
 }

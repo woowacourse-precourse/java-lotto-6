@@ -17,7 +17,6 @@ public class LottoGame {
 
     public void run(){
         start();
-        end();
     }
 
     private void start(){
@@ -33,6 +32,6 @@ public class LottoGame {
     }
 
     private void end(Result result){
-
+        OutputView.printWinningResult(result);
     }
 }

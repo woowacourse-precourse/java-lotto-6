@@ -58,6 +58,7 @@ public class InputView {
         }
     }
     private static Optional<Lotto> inputSixNumbers(){
+        System.out.println();
         System.out.println(SIX_NUMBERS_INPUT_MESSAGE);
         String input = Console.readLine();
         List<Integer> numbers = new ArrayList<>();
@@ -77,6 +78,7 @@ public class InputView {
     }
 
     private static Optional<Bonus> inputBonusNumber(Lotto lotto){
+        System.out.println();
         System.out.println(BONUS_INPUT_MESSAGE);
         String input = Console.readLine();
         try{

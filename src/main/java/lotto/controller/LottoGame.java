@@ -27,6 +27,7 @@ public class LottoGame {
         OutputView.printPlayerLotto(playerLottos);
         lotto = InputView.LoopInputSixNumbers();
         bonus = InputView.LoopInputBonusNumber(lotto);
+        result = new Result(getResults(), money);
         // 게임 종료
         end();
     }

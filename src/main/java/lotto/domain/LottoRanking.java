@@ -22,15 +22,15 @@ public enum LottoRanking {
         this.winningMessage = winningMessage;
     }
 
-    private Integer getCountLottoMatched() {
+    public Integer getCountLottoMatched() {
         return countLottoMatched;
     }
 
-    private Integer getWinningMoney() {
+    public Integer getWinningMoney() {
         return winningMoney;
     }
 
-    private String getWinningMessage() {
+    public String getWinningMessage() {
         return winningMessage;
     }
 

@@ -14,25 +14,25 @@ public class InputView {
 
     private static final Pattern COMMAPATTERN = Pattern.compile("^[\\d]+,[\\d]+,[\\d],+[\\d]+,[\\d]+,[\\d]+$");
 
-    public Integer inputMoney() {
+    public int inputMoney() {
         System.out.print(INPUT_PURCHASE_AMOUNT);
         String input = Console.readLine();
         validateBlank(input);
-        return inputParserInteger(input);
+        return intParser(input);
     }
 
     public List<Integer> inputWinningNumbers() {
         System.out.print(INPUT_WINNING_NUMBER);
         String input = Console.readLine();
         validateComma(input);
-        return separateInputNumbers(input);
+        return separateNumbers(input);
     }
 
     public Integer inputBonusNumber() {
         System.out.print(INPUT_BONUS_NUMBER);
         String input = Console.readLine();
         validateBlank(input);
-        return inputParserInteger(input);
+        return integerParser(input);
     }
 
     private static void validateBlank(String input) {
@@ -47,7 +47,7 @@ public class InputView {
         }
     }
 
-    private static int inputParserInteger(String input) {
+    private static int intParser(String input) {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
@@ -55,7 +55,15 @@ public class InputView {
         }
     }
 
-    private static List<Integer> separateInputNumbers(String input) {
+    private static int integerParser(String input) {
+        try {
+            return Integer.valueOf(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 형식으로 입력해주세요.");
+        }
+    }
+
+    private static List<Integer> separateNumbers(String input) {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

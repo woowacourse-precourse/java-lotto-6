@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import static lotto.util.Conversion.stringToInt;
+import static lotto.util.Conversion.stringToList;
+
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
-import lotto.util.Conversion;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,7 +24,7 @@ public class LottoController {
 
     private void payMoney() {
         try {
-            int money = Conversion.stringToInt(InputView.purchase());
+            int money = stringToInt(InputView.purchase());
             purchase = new Purchase(money);
         } catch (IllegalArgumentException exception) {
             OutputView.error(exception.getMessage());
@@ -40,5 +43,14 @@ public class LottoController {
 
     private void winningLotto() {
         String winningNumber = InputView.winningLotto();
+
+        try {
+
+            new WinningLotto(stringToList(winningNumber));
+
+        } catch (IllegalArgumentException exception) {
+            OutputView.error(exception.getMessage());
+            winningLotto();
+        }
     }
 }

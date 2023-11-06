@@ -1,14 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        LottoManager lottoManager = new LottoManager();
-
         final int price = readPrice();
 
         User user = new User(price);
@@ -19,13 +15,13 @@ public class Application {
 
         user.setUserLotto(lotto);
 
-        int bonusNumber = readBonusNumber(lotto.getNumbers());
+        final int bonusNumber = readBonusNumber(lotto.getNumbers());
 
         user.setBonusNumber(bonusNumber);
 
-        lottoManager.printWinningResult(user);
+        LottoManager.printWinningResult(user);
 
-        lottoManager.getYield(user, price);
+        LottoManager.getYield(user, price);
     }
 
     private static int readPrice() {

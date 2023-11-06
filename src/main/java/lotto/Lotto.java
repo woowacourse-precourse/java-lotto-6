@@ -25,7 +25,7 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public static Lotto createWinningNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Const.winningRangeStartNumber, Const.winningRangeEndNumber, Const.LottoCount);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Const.LOTTO_MAX_NUMBER, Const.LOTTO_MIN_NUMBER, Const.LOTTO_SIZE);
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
         Collections.sort(lottoNumbers);
 

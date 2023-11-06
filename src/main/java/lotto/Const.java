@@ -1,24 +1,16 @@
 package lotto;
 
 public class Const {
-    public static final int winningRangeStartNumber = 1;
-    public static final int winningRangeEndNumber = 45;
-    public static final int LottoCount = 6;
+    public static final int LOTTO_MAX_NUMBER = 1;
+    public static final int LOTTO_MIN_NUMBER = 45;
+    public static final int LOTTO_SIZE = 6;
 
-    public static final int priceUnit = 1000;
-    public static final String priceUnitOutput = "1000원";
+    public static final int PRICE_UNIT = 1000;
+    public static final String PRICE_UNIT_OUTPUT = "1000원";
 
-    public static final String fifthPlaceCount = "3개 일치";
-    public static final String fourthPlaceCount = "4개 일치";
-    public static final String thirdPlaceCount = "5개 일치";
-    public static final String secondPlaceCount = "5개 일치, 보너스 볼 일치";
-    public static final String firstPlaceCount = "6개 일치";
-
-    public static final int fifthPrize = 5000;
-    public static final int fourthPrize = 50000;
-    public static final int thirdPrize = 1500000;
-    public static final int secondPrize = 30000000;
-    public static final int firstPrize = 2000000000;
-
-
+    public static final int FIFTH_PRIZE = 5_000;
+    public static final int FOURTH_PRIZE = 50_000;
+    public static final int THIRD_PRIZE = 1_500_000;
+    public static final int SECOND_PRIZE = 30_000_000;
+    public static final int FIRST_PRIZE = 2_000_000_000;
 }

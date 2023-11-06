@@ -34,7 +34,7 @@ class LottoManagerTest {
     @Test
     void lottoCount() {
         int price = LottoManager.priceInput("8000");
-        assertThat(price / Const.priceUnit).isEqualTo(8);
+        assertThat(price / Const.PRICE_UNIT).isEqualTo(8);
     }
 
     @DisplayName("숫자가 아닌 로또번호 입력시 예외가 발생한다.")

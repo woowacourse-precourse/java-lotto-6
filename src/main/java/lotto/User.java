@@ -18,7 +18,7 @@ public class User {
     private int firstPlace;
 
     public User(int price) {
-        this.lottoCount = price / Const.priceUnit;
+        this.lottoCount = price / Const.PRICE_UNIT;
         this.lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {

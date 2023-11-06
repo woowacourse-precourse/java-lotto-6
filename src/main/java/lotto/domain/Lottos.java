@@ -33,14 +33,18 @@ public class Lottos {
     public EnumMap<Rank, Integer> getRankResult(final WinningLotto winningLotto) {
         EnumMap<Rank, Integer> rankResult = initializeRankResultWithDefaultValue();
         for (Lotto lotto : lottos) {
-            int matchingCount = winningLotto.countMatchingNumber(lotto);
-            boolean bonusNumberExistence = winningLotto.hasBonusNumber(lotto);
-            Rank result = Rank.find(matchingCount, bonusNumberExistence);
-            if (hasValidRank(result)) {
-                rankResult.put(result, rankResult.getOrDefault(result, 0) + 1);
+            Rank matchedRank = findMatchedRank(winningLotto, lotto);
+            if (hasValidRank(matchedRank)) {
+                rankResult.put(matchedRank, rankResult.getOrDefault(matchedRank, 0) + 1);
             }
         }
         return rankResult;
+    }
+
+    private Rank findMatchedRank(final WinningLotto winningLotto, final Lotto lotto) {
+        int matchingCount = winningLotto.countMatchingNumber(lotto);
+        boolean bonusNumberExistence = winningLotto.hasBonusNumber(lotto);
+        return Rank.find(matchingCount, bonusNumberExistence);
     }
 
     private EnumMap<Rank, Integer> initializeRankResultWithDefaultValue() {

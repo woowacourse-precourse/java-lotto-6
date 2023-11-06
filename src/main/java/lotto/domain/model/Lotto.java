@@ -1,5 +1,6 @@
 package lotto.domain.model;
 
+import lotto.constant.RankConstant;
 import lotto.domain.validator.Validator;
 
 import java.util.ArrayList;
@@ -40,5 +41,40 @@ public class Lotto {
 
     public void showNumbers() {
         System.out.println(this.numbers);
+    }
+
+    public String calculateRank(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        int countOfMatchingNumber = countMatchingNumbers(winningNumber);
+
+        if (countOfMatchingNumber == 6) return RankConstant.FIRST;
+
+        if (countOfMatchingNumber == 5) {
+            if (isContainBonusNumber(bonusNumber)) return RankConstant.SECOND;
+
+            return RankConstant.THIRD;
+        }
+
+        if (countOfMatchingNumber == 4) return RankConstant.FOURTH;
+
+        if (countOfMatchingNumber == 3) return RankConstant.FIFTH;
+
+        return RankConstant.NONE;
+    }
+
+    private int countMatchingNumbers(WinningNumber winningNumber) {
+        List<Integer> winningNumbers = winningNumber.getRegularWinningNumbers();
+        int count = 0;
+
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
+    private boolean isContainBonusNumber(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getBonusNumber());
     }
 }

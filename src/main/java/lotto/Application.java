@@ -19,6 +19,7 @@ public class Application {
             try {
                 validatePurchaseAmountInput(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
+                printErrorMessage(ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT);
                 continue;
             }
             return Integer.parseInt(purchaseAmountInput);
@@ -29,11 +30,9 @@ public class Application {
         try {
             int purchaseAmount = Integer.parseInt(purchaseAmountInput);
             if (purchaseAmount % 1000 != 0) {
-                printErrorMessage(ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT);
                 throw new IllegalArgumentException();
             }
         } catch (NumberFormatException e) {
-            printErrorMessage(ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT);
             throw new IllegalArgumentException();
         }
     }

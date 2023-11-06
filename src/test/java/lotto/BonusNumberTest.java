@@ -1,11 +1,9 @@
 package lotto;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.BonusNumber;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class BonusNumberTest {
@@ -13,20 +11,20 @@ public class BonusNumberTest {
     public void 보너스_숫자가_범위를_벗어났을_때_테스트() {
         int bonusNumber = 500;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        assertThrows(IllegalArgumentException.class, () -> new BonusNumber(bonusNumber, winningNumbers));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new BonusNumber(bonusNumber, winningNumbers));
     }
 
     @Test
     public void 보너스_숫자가_당첨번호와_중복되는_경우_테스트() {
         int bonusNumber = 27;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 27);
-        assertThrows(IllegalArgumentException.class, () -> new BonusNumber(bonusNumber, winningNumbers));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new BonusNumber(bonusNumber, winningNumbers));
     }
 
     @Test
     public void 유효한_보너스_숫자_테스트() {
         int bonusNumber = 7;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        assertDoesNotThrow(() -> new BonusNumber(bonusNumber, winningNumbers));
+        Assertions.assertDoesNotThrow(() -> new BonusNumber(bonusNumber, winningNumbers));
     }
 }

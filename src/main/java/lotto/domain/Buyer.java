@@ -33,4 +33,12 @@ public class Buyer {
     public List<Lotto> getLottoList() {
         return lottoList;
     }
+
+    public int getNumberOfLotto() {
+        return purchaseAmount / LOTTO_PRICE;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

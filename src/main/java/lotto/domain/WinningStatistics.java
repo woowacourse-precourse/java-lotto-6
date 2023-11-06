@@ -17,13 +17,27 @@ public class WinningStatistics {
     public void analyzeLotto(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
-            int match = (int) lottoAnalyzer.getWinningNumbers().stream().filter(lottoNumbers::contains)
-                    .distinct()
-                    .count();
-            boolean hasBonusNumber = lottoNumbers.contains(lottoAnalyzer.getBonusNumber());
-            LottoRank lottoRank = LottoRank.getRank(match, hasBonusNumber);
-            winningStatistics.put(lottoRank, winningStatistics.getOrDefault(lottoRank, 0) + 1);
+            int match = getMatch(lottoNumbers);
+            boolean hasBonusNumber = isContains(lottoNumbers);
+            analyzeRank(match, hasBonusNumber);
         }
+    }
+
+    private void analyzeRank(int match, boolean hasBonusNumber) {
+        LottoRank lottoRank = LottoRank.getRank(match, hasBonusNumber);
+        winningStatistics.put(lottoRank, winningStatistics.getOrDefault(lottoRank, 0) + 1);
+    }
+
+    private boolean isContains(List<Integer> lottoNumbers) {
+        int bonusNumber = lottoAnalyzer.getBonusNumber();
+        return lottoNumbers.contains(bonusNumber);
+    }
+
+    private int getMatch(List<Integer> lottoNumbers) {
+        List<Integer> winningNumbers = lottoAnalyzer.getWinningNumbers();
+        return (int) winningNumbers.stream().filter(lottoNumbers::contains)
+                .distinct()
+                .count();
     }
 
     public Map<LottoRank, Integer> getWinningStatistics() {

@@ -7,12 +7,11 @@ public class LottoQuantity {
         this.quantity = calculate(amount);
     }
 
-    private int calculate(int amount) {
-        return amount / 1000;
+    public int getQuantity() {
+        return quantity;
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(this.quantity);
+    private int calculate(int amount) {
+        return amount / 1000;
     }
 }

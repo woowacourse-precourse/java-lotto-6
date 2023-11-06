@@ -1,10 +1,13 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.assertj.core.util.Arrays;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Function {
 	
@@ -71,7 +74,7 @@ public class Function {
 				check= true;
 				throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
 			}
-			if(winningNum.length>6) {
+			if(winningNum.length!= 6 ) {
 				check= true;
 				throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입해 주세요.");
 			}
@@ -112,5 +115,18 @@ public class Function {
 			throw new IllegalArgumentException("[ERROR] 1에서 45사이의 숫자를 입력해 주세요.");
 		}
 		return check;
+	}
+
+	protected ArrayList<Integer>[] publishNumbers(int count) {
+		ArrayList<Integer>[] publishedNumbers= new ArrayList[count];
+		System.out.println(count+"개를 구매했습니다. ");
+		for(int i=0; i<count; i++) {
+			publishedNumbers[i]=new ArrayList<Integer>();
+			List<Integer> numbers= Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			Collections.sort(numbers);
+			publishedNumbers[i].addAll(numbers);
+			System.out.println(publishedNumbers[i]);
+		}	
+		return publishedNumbers;
 	}
 }

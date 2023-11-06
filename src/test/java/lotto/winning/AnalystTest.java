@@ -1,6 +1,13 @@
 package lotto.winning;
 
 
+import static lotto.winning.Prize.FIFTH;
+import static lotto.winning.Prize.FIRST;
+import static lotto.winning.Prize.FOURTH;
+import static lotto.winning.Prize.SECOND;
+import static lotto.winning.Prize.THIRD;
+import static lotto.winning.Tally.COUNT;
+import static lotto.winning.Tally.AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
@@ -10,27 +17,27 @@ import org.junit.jupiter.api.Test;
 class AnalystTest {
     Analyst analyst = new Analyst();
 
-    HashMap<Prize, List<Integer>> mockUpdatedPrizes =
+    HashMap<Prize, HashMap<Tally, Integer>> mockUpdatedPrizes =
             analyst.updatePrizes(
                     List.of(2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6),
                     List.of(4, 3, 3, 2, 1, 1, 0, 1, 2, 0, 0, 1));
 
     @Test
     public void countPrizeTest() {
-        assertThat(mockUpdatedPrizes.get(Prize.FIRST).get(PrizeIndex.COUNT.getNumber())).isEqualTo(1);
-        assertThat(mockUpdatedPrizes.get(Prize.SECOND).get(PrizeIndex.COUNT.getNumber())).isEqualTo(1);
-        assertThat(mockUpdatedPrizes.get(Prize.THIRD).get(PrizeIndex.COUNT.getNumber())).isEqualTo(2);
-        assertThat(mockUpdatedPrizes.get(Prize.FOURTH).get(PrizeIndex.COUNT.getNumber())).isEqualTo(3);
-        assertThat(mockUpdatedPrizes.get(Prize.FIFTH).get(PrizeIndex.COUNT.getNumber())).isEqualTo(4);
+        assertThat(mockUpdatedPrizes.get(FIRST).get(COUNT)).isEqualTo(1);
+        assertThat(mockUpdatedPrizes.get(SECOND).get(COUNT)).isEqualTo(1);
+        assertThat(mockUpdatedPrizes.get(THIRD).get(COUNT)).isEqualTo(2);
+        assertThat(mockUpdatedPrizes.get(FOURTH).get(COUNT)).isEqualTo(3);
+        assertThat(mockUpdatedPrizes.get(FIFTH).get(COUNT)).isEqualTo(4);
     }
 
     @Test
     public void sumPrizeTest() {
-        assertThat(mockUpdatedPrizes.get(Prize.FIRST).get(PrizeIndex.PRIZE.getNumber())).isEqualTo(2000000000);
-        assertThat(mockUpdatedPrizes.get(Prize.SECOND).get(PrizeIndex.PRIZE.getNumber())).isEqualTo(30000000);
-        assertThat(mockUpdatedPrizes.get(Prize.THIRD).get(PrizeIndex.PRIZE.getNumber())).isEqualTo(1500000 * 2);
-        assertThat(mockUpdatedPrizes.get(Prize.FOURTH).get(PrizeIndex.PRIZE.getNumber())).isEqualTo(50000 * 3);
-        assertThat(mockUpdatedPrizes.get(Prize.FIFTH).get(PrizeIndex.PRIZE.getNumber())).isEqualTo(5000 * 4);
+        assertThat(mockUpdatedPrizes.get(FIRST).get(AMOUNT)).isEqualTo(2000000000);
+        assertThat(mockUpdatedPrizes.get(SECOND).get(AMOUNT)).isEqualTo(30000000);
+        assertThat(mockUpdatedPrizes.get(THIRD).get(AMOUNT)).isEqualTo(1500000 * 2);
+        assertThat(mockUpdatedPrizes.get(FOURTH).get(AMOUNT)).isEqualTo(50000 * 3);
+        assertThat(mockUpdatedPrizes.get(FIFTH).get(AMOUNT)).isEqualTo(5000 * 4);
     }
 
     @Test

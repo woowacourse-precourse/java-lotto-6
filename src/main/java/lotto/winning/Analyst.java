@@ -1,25 +1,32 @@
 package lotto.winning;
 
+import static lotto.winning.Prize.FIFTH;
+import static lotto.winning.Prize.FIRST;
+import static lotto.winning.Prize.FOURTH;
+import static lotto.winning.Prize.SECOND;
+import static lotto.winning.Prize.THIRD;
+import static lotto.winning.Tally.COUNT;
+import static lotto.winning.Tally.AMOUNT;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Analyst {
-    private static final int COUNT = PrizeIndex.COUNT.getNumber();
-    private static final int PRIZE = PrizeIndex.PRIZE.getNumber();
 
-    public double calculateReturnRatio(HashMap<Prize, List<Integer>> updatedPrizes, int totalPurchase) {
-        int totalPrize = updatedPrizes.values().stream().mapToInt(list -> list.get(PRIZE)).sum();
+    public double calculateReturnRatio(HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes, int totalPurchase) {
+        int totalPrize = updatedPrizes.values().stream().mapToInt(map -> map.get(AMOUNT)).sum();
 
         double returnRatio = ((double) totalPrize / totalPurchase) * 100;
 
         return new BigDecimal(returnRatio).setScale(1, RoundingMode.HALF_UP).doubleValue();
     }
 
-    public HashMap<Prize, List<Integer>> updatePrizes(List<Integer> winningNumberMatchCounts, List<Integer> bonusNumberMatchCounts) {
-        HashMap<Prize, List<Integer>> updatedPrizes = createDefaultPrizes();
+    public HashMap<Prize, HashMap<Tally, Integer>> updatePrizes(List<Integer> winningNumberMatchCounts,
+                                                                List<Integer> bonusNumberMatchCounts) {
+        HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes = createDefaultPrizes();
 
         for (int i = 0; i < winningNumberMatchCounts.size(); i++) {
             int winningMatchCount = winningNumberMatchCounts.get(i);
@@ -34,36 +41,36 @@ public class Analyst {
         return updatedPrizes;
     }
 
-    private void updatePrize(List<Integer> prize, Prize prizeAmount) {
-        prize.set(COUNT, prize.get(COUNT) + 1);
-        prize.set(PRIZE, prize.get(PRIZE) + prizeAmount.getPrize());
+    private void updatePrize(HashMap<Tally, Integer> updatedPrize, Prize prize) {
+        updatedPrize.put(COUNT, updatedPrize.get(COUNT) + 1);
+        updatedPrize.put(AMOUNT, updatedPrize.get(AMOUNT) + prize.getPrize());
     }
 
     private Prize determinePrizeRank(int winningMatchCount, int bonusMatchCount) {
         switch (winningMatchCount) {
             case 6:
-                return Prize.FIRST;
+                return FIRST;
             case 5:
                 if (bonusMatchCount > 0) {
-                    return Prize.SECOND;
+                    return SECOND;
                 }
                 if (bonusMatchCount == 0) {
-                    return Prize.THIRD;
+                    return THIRD;
                 }
             case 4:
-                return Prize.FOURTH;
+                return FOURTH;
             case 3:
-                return Prize.FIFTH;
+                return FIFTH;
             default:
                 return null;
         }
     }
 
-    private HashMap<Prize, List<Integer>> createDefaultPrizes() {
-        HashMap<Prize, List<Integer>> defaultPrizeTable = new HashMap<>();
+    private HashMap<Prize, HashMap<Tally, Integer>> createDefaultPrizes() {
+        HashMap<Prize, HashMap<Tally, Integer>> defaultPrizeTable = new HashMap<>();
 
         for (int value = 0; value < Prize.values().length; value++) {
-            defaultPrizeTable.put(Prize.values()[value], Arrays.asList(0, 0));
+            defaultPrizeTable.put(Prize.values()[value], new HashMap<>(Map.of(COUNT, 0, AMOUNT, 0)));
         }
 
         return defaultPrizeTable;

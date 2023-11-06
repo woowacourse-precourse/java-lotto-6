@@ -34,29 +34,29 @@ public class GameController {
     }
 
     private static void purchaseLotto(){
-        purchaseMoney = new PurchaseMoney(inputPurchaseMoney()); // 구매 금액 입력
+        purchaseMoney = new PurchaseMoney(inputPurchaseMoney());
         System.out.println();
 
-        LottoCount lottoCount = new LottoCount(purchaseMoney.getValue()); // 구매 금액 -> 로또 갯수 변환
+        LottoCount lottoCount = new LottoCount(purchaseMoney.getValue());
         outputLottoCount(lottoCount.getValue());
-        generateLottos(lottoCount.getValue()); // 로또 번호 생성
+        generateLottos(lottoCount.getValue());
         outputLottos();
         System.out.println();
     }
 
     private static void setWinningNumbers(){
-        winningNumbers = new Lotto(inputWinningNumber()); // 당첨 번호 입력
+        winningNumbers = new Lotto(inputWinningNumber());
         System.out.println();
     }
 
     private static void setBonusNumbers(){
-        bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers); // 보너스 번호 입력 받기
+        bonusNumber = new BonusNumber(inputBonusNumber(),winningNumbers);
         System.out.println();
     }
 
     private static void checkWinningDetails(){
-        winningDetails = new WinningDetails(lottos,winningNumbers.getNumbers(),bonusNumber.getValue()); //당첨 내역
-        OutputView.showWinningDetails(winningDetails); // 당첨 내역 출력
+        winningDetails = new WinningDetails(lottos,winningNumbers.getNumbers(),bonusNumber.getValue());
+        OutputView.showWinningDetails(winningDetails);
     }
 
     private static void calculateProfit(){

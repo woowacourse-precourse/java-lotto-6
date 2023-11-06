@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.Lottos.generateLottos;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
@@ -7,15 +9,17 @@ public class LottoGame {
     LottoResult lottoResult;
 
     public LottoGame() {
-        start();
         lottoResult = new LottoResult();
+
+        start();
     }
 
     private void start() {
         long userLottoPrice = readLottoPrice();
-        long lottoPrice = lottoResult.lottoNumbersPurchased(userLottoPrice);
-        System.out.println(lottoPrice + "개를 구매했습니다.");
+        long lottoCount = lottoResult.lottoNumbersPurchased(userLottoPrice);
+        System.out.println(lottoCount + "개를 구매했습니다.");
 
+        Lottos purchasedLottos = generateLottos(lottoCount);
     }
 
     private static int readLottoPrice() {

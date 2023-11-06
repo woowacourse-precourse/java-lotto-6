@@ -14,25 +14,26 @@ public class InputService {
     private final OutputService outputService = new OutputService();
 
     public Integer getPurchaseAmount() {
+
         System.out.println(PURCHASE_AMOUNT_INPUT.getMessage());
+
         try {
 
             String input = Console.readLine();
             Integer money = validateToInteger(input);
-
             return validateCorrectMoney(money);
         } catch (IllegalArgumentException e) {
 
             outputService.printError(e);
-            getPurchaseAmount();
+            return getPurchaseAmount();
         }
-        return null;
     }
 
     public HashSet<Integer> getWinningNumbers() {
 
         System.out.println();
         System.out.println(WINNING_AMOUNT_INPUT.getMessage());
+
         try {
             HashSet<Integer> winningNumbers = new HashSet<>();
 
@@ -40,15 +41,14 @@ public class InputService {
             String[] inputNumbers = input.split(",");
 
             addWinningNumber(winningNumbers, inputNumbers);
-
             validateWinningNumberSize(winningNumbers);
+
             return winningNumbers;
         } catch (IllegalArgumentException e) {
 
             outputService.printError(e);
-            getWinningNumbers();
+            return getWinningNumbers();
         }
-        return null;
     }
 
     private static void addWinningNumber(HashSet<Integer> winningNumbers, String[] inputNumbers) {
@@ -71,9 +71,7 @@ public class InputService {
         } catch (IllegalArgumentException e) {
 
             outputService.printError(e);
-            getBonusNumber();
+            return getBonusNumber();
         }
-
-        return null;
     }
 }

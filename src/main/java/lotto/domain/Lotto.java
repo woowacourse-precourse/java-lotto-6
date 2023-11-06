@@ -23,6 +23,9 @@ public class Lotto {
         if (isDuplicateNumber(numbers)) {
             ErrorMessage.LOTTO_NUMBER_IS_DUPLICATE.throwIllegalArgumentException();
         }
+        if (!isInRange(numbers)) {
+            ErrorMessage.LOTTO_NUMBER_IS_OUT_OF_RANGE.throwIllegalArgumentException();
+        }
     }
 
     public List<Integer> getNumbers() {
@@ -35,5 +38,11 @@ public class Lotto {
 
     private boolean isDuplicateNumber(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private boolean isInRange(List<Integer> numbers) {
+        return numbers.stream().allMatch(
+                number -> number >= LOTTO_START_RANGE && number <= LOTTO_END_RANGE
+        );
     }
 }

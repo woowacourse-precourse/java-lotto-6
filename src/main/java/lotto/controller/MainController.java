@@ -7,10 +7,10 @@ import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.service.StatisticsService;
+import lotto.utils.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -45,7 +45,7 @@ public class MainController {
 
     private WinningLotto initializeWinningLotto() {
         String winningNumbers = repeatTemplate(inputView::inputWinningNumbers);
-        List<Integer> numbers = convertToList(winningNumbers);
+        List<Integer> numbers = Converter.toIntegerList(winningNumbers);
         int bonusNumber = repeatTemplate(inputView::inputBonusNumber);
 
         return new WinningLotto(numbers, bonusNumber);
@@ -63,13 +63,6 @@ public class MainController {
     private List<LottoDto> toDto(List<Lotto> userLottos) {
         return userLottos.stream()
                 .map(userLotto -> new LottoDto(userLotto.getNumbers()))
-                .toList();
-    }
-
-    private List<Integer> convertToList(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
                 .toList();
     }
 

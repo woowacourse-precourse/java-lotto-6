@@ -1,5 +1,7 @@
 package domain;
 
+import static java.util.Collections.sort;
+
 import java.util.List;
 import java.util.regex.Pattern;
 import util.ErrorMessage;
@@ -41,6 +43,7 @@ public class Lotto {
 
 
     public static void outputLotto(Lotto lotto) {
+        sort(lotto.numbers);
         System.out.println(lotto.numbers.toString());
     }
 

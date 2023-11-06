@@ -20,4 +20,8 @@ public class LottoMachine {
         }
         return List.copyOf(lottos);
     }
+
+    public Lotto createWinningLotto(final List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
 }

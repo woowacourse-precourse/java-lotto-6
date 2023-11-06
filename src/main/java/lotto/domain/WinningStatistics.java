@@ -54,4 +54,8 @@ public class WinningStatistics {
                 .collect(Collectors.joining());
         return statistics + result;
     }
+
+    public Map<WinningCriteria, Integer> getWinningInfo() {
+        return winningInfo;
+    }
 }

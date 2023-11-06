@@ -30,4 +30,8 @@ public class BonusNumber {
     private boolean isOutsideRange(int bonusNumber) {
         return bonusNumber < Values.LOTTO_MIN_NUMBER || bonusNumber > Values.LOTTO_MAX_NUMBER;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

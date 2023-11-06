@@ -28,6 +28,10 @@ public class LottoGameController {
         return new Lotto(winningNumbers);
     }
 
+    public LottoNumber inputBonusNumber() {
+        return new LottoNumber(view.inputBonusNumberFromUser());
+    }
+
     public Result getResult(Lottos lottos, WinningLotto winningLotto) {
         Result result = new Result();
 

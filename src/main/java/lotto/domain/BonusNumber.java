@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import lotto.exception.InvalidInputException;
+
+import static lotto.utils.constants.BonusNumberConstants.*;
+
+
 public class BonusNumber {
     private final Integer number;
 
@@ -9,9 +14,13 @@ public class BonusNumber {
     }
 
     private void validate(Integer number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.");
+        if (!isCorrectNumberRange(number)) {
+            throw new InvalidInputException(INVALID_BONUS_NUMBER_RANGE_MESSAGE);
         }
+    }
+
+    private boolean isCorrectNumberRange(Integer number) {
+        return number < MIN_BONUS_NUMBER || number > MAX_BONUS_NUMBER;
     }
 
     public Integer getNumber() {

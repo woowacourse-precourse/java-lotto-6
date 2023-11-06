@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +29,7 @@ public class StatisticsTest {
         // then
         assertThat(summaries.size()).isEqualTo(5);
         final long[] rankCounts = summaries.stream().mapToLong(WinningSummary::count).toArray();
-        assertThat(rankCounts).containsExactly(1L, 0L, 0L, 0L, 2L);
+        assertThat(rankCounts).containsExactly(2L, 0L, 0L, 0L, 1L);
     }
 
     public static Stream<Arguments> generateLottoTickets() {

@@ -1,10 +1,9 @@
 package lotto.model;
 
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toMap;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public enum MatchingType {
 
@@ -15,8 +14,9 @@ public enum MatchingType {
     THREE(MatchCount.THREE, BonusStatus.NONE),
     NONE(MatchCount.NONE, BonusStatus.NONE);
 
-    private static final Map<BonusStatus, List<MatchingType>> matchingTypesByBonus
-            = Arrays.stream(values()).collect(groupingBy(type -> type.bonusStatus));
+    private static final Map<MatchCount, MatchingType> matchingTypes = Stream.of(values())
+            .filter(type -> type.bonusStatus == BonusStatus.NONE)
+            .collect(toMap(type -> type.matchCount, type -> type));
 
     private final MatchCount matchCount;
 
@@ -31,11 +31,20 @@ public enum MatchingType {
             final MatchCount matchCount,
             final BonusStatus bonusStatus
     ) {
-        final List<MatchingType> matchingTypes = matchingTypesByBonus.get(bonusStatus);
+        final MatchingType matchingType
+                = matchingTypes.getOrDefault(matchCount, MatchingType.NONE);
 
-        return matchingTypes.stream()
-                .filter(matchingType -> matchingType.matchCount == matchCount)
-                .findAny()
-                .orElse(MatchingType.NONE);
+        if (matchingType == FIVE && bonusStatus == BonusStatus.INCLUDED) {
+            return MatchingType.FIVE_WITH_BONUS;
+        }
+        return matchingType;
+    }
+
+    public int getCount() {
+        return matchCount.getCount();
+    }
+
+    public boolean hasBonus() {
+        return bonusStatus == BonusStatus.INCLUDED;
     }
 }

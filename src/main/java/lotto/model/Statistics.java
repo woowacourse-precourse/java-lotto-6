@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
@@ -31,8 +32,18 @@ public class Statistics {
         return rankMatchingCount.keySet()
                 .stream()
                 .filter(rank -> !rank.isNone())
-                .map(rank -> new WinningSummary(rank, rankMatchingCount.get(rank)))
+                .sorted(Collections.reverseOrder())
+                .map(this::summarizeResult)
                 .toList();
+    }
+
+    private WinningSummary summarizeResult(final LottoRank rank) {
+        return new WinningSummary(
+                rank.getNumberOfMatches(),
+                rank.containsBonus(),
+                rank.getPrize(),
+                rankMatchingCount.get(rank)
+        );
     }
 
     public BigDecimal sumUpWinningAmount() {

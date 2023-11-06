@@ -2,8 +2,8 @@ package lotto.model;
 
 import static java.util.stream.Collectors.toMap;
 
-import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public enum LottoRank {
 
@@ -14,7 +14,7 @@ public enum LottoRank {
     FIFTH(MatchingType.THREE, LottoPrize.FIFTH),
     NONE(MatchingType.NONE, LottoPrize.NONE);
 
-    private static final Map<MatchingType, LottoRank> ranks = Arrays.stream(values())
+    private static final Map<MatchingType, LottoRank> ranks = Stream.of(values())
             .collect(toMap(
                     rank -> rank.matchingType,
                     rank -> rank
@@ -39,5 +39,13 @@ public enum LottoRank {
 
     public long getPrize() {
         return lottoPrize.getAmount();
+    }
+
+    public int getNumberOfMatches() {
+        return matchingType.getCount();
+    }
+
+    public boolean containsBonus() {
+        return matchingType.hasBonus();
     }
 }

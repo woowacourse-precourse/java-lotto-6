@@ -51,14 +51,14 @@ class LottoTest {
     	assertEquals(6, lotto_list.size(),"6100을 넣고, 1000단위이기 떄문에 list의 사이즈는 6이어야 합니다.");
     }
 
-    @DisplayName("로또 숫자들(원소들) 텍스트 출력 확인")
+    @DisplayName("로또 숫자들(원소들) 텍스트 출력 확인한다.")
     @Test
     void testPlayerLottoNumbersDisplayCorrectly() {
     	List<Lotto> lotto_list = LottoService.createObjectPerThousandUnits(5000);
     	OutputView.printPlayerLottos(lotto_list);
     }
     
-    @DisplayName("등수에 따른 상금이 정상적으로 추출되는지")
+    @DisplayName("등수에 따른 상금이 정상적으로 추출 되는지 확인한다")
     @Test
     void testGetTotalWinningAmountSuccess() {
     	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
@@ -74,5 +74,20 @@ class LottoTest {
     	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
     }
     
+//    @DisplayName("각 등수가 정확히 카운트 되는지 확인한다.")
+//    @Test
+//    void testGetTotalWinningCountSuccess() {
+//    	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
+//    	int bonusNumber = 7;
+//    	List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+//    	List<Integer> numbersFirst = List.of(1,2,3,4,5,6);
+//    	Lotto firstLotto = new Lotto(numbersFirst);
+//    	List<Integer> numbersSecond = List.of(1,2,3,4,5,7);
+//    	Lotto secondLotto = new Lotto(numbersSecond);
+//    	List<Integer> numbersthird = List.of(1,2,3,4,5,10);
+//    	Lotto thirdLotto = new Lotto(numbersthird);
+//    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto);
+//    	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
+//    }
     
 }

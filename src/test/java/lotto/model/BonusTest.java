@@ -34,7 +34,7 @@ public class BonusTest {
 
         Bonus bonus = new Bonus(bonusNumber, lotto);
 
-        assertThat(bonus.isSameWith(bonusNumber)).isEqualTo(true);
+        assertThat(bonus.number()).isEqualTo(bonusNumber);
     }
 
     @Test
@@ -53,6 +53,6 @@ public class BonusTest {
 
         Bonus bonus = new Bonus(bonusNumber, lotto);
 
-        assertThat(bonus.isSameWith(bonusNumber)).isEqualTo(true);
+        assertThat(bonus.number()).isEqualTo(bonusNumber);
     }
 }

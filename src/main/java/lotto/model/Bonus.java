@@ -30,10 +30,6 @@ public class Bonus {
         }
     }
 
-    public boolean isSameWith(int compareNumber) {
-        return number == compareNumber;
-    }
-
     public int number() {
         return number;
     }

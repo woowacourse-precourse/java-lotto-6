@@ -33,4 +33,16 @@ public class MoneyTest {
         assertTrue(money.isSameAmount(5000));
     }
 
+    @Test
+    public void 금액_앞뒤의_공백제거() {
+        // Given
+        String input = " 1000 ";
+
+        // When
+        Money money = Money.create(input);
+
+        // Then
+        assertTrue(money.isSameAmount(1000));
+    }
+
 }

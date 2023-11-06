@@ -25,16 +25,16 @@ public class ConsoleOutputView implements OutputView {
     public void printUserLotto(List<LottoDto> lottoDtos) {
         print(OutputMessage.getUserLottoCountMessage(lottoDtos.size()));
         lottoDtos.stream()
-                .forEach(lottoDto -> print(lottoDto.getNumbers()));
+                .forEach(lottoDto -> print(lottoDto.numbers()));
     }
 
     @Override
     public void printWinningResult(WinningResultDto winningResultDto) {
         print(OutputMessage.getWinningResultStartMessage());
 
-        winningResultDto.getRankingDtos().stream()
+        winningResultDto.rankingDtos().stream()
                 .forEach(rankingDto -> {
-                    if (rankingDto.getRankingNumber().equals("FAIL")) return;
+                    if (rankingDto.rankingNumber().equals("FAIL")) return;
                     print(OutputMessage.getWinningResultMessage(rankingDto));
                 });
 

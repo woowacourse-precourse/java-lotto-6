@@ -34,15 +34,15 @@ public class OutputMessage {
     }
 
     public static String getWinningResultMessage(RankingDto rankingDto) {
-        if (rankingDto.getRankingNumber().equals("SECOND")) {
-            return String.format(SECOND_RANKING_RESULT_MESSAGE, rankingDto.getMatchCount(), decimalFormat.format(rankingDto.getReward()), rankingDto.getCount());
+        if (rankingDto.rankingNumber().equals("SECOND")) {
+            return String.format(SECOND_RANKING_RESULT_MESSAGE, rankingDto.matchCount(), decimalFormat.format(rankingDto.reward()), rankingDto.count());
         }
 
-        return String.format(WINNING_RESULT_MESSAGE, rankingDto.getMatchCount(), decimalFormat.format(rankingDto.getReward()), rankingDto.getCount());
+        return String.format(WINNING_RESULT_MESSAGE, rankingDto.matchCount(), decimalFormat.format(rankingDto.reward()), rankingDto.count());
     }
 
     public static String getRateOfReturnMessage(WinningResultDto winningResultDto) {
-        String returnRate = String.format("%,.1f", winningResultDto.getReturnRate());
+        String returnRate = String.format("%,.1f", winningResultDto.returnRate());
         return String.format(RATE_OF_RETURN_MESSAGE, returnRate);
     }
 }

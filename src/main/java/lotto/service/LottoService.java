@@ -1,12 +1,16 @@
 package lotto.service;
 
+import lotto.domain.Ranking;
 import lotto.domain.lotto.AnswerLotto;
 import lotto.domain.lotto.userLotto.UserLotto;
 import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
+import lotto.dto.RankingDto;
 import lotto.dto.WinningResultDto;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
 
@@ -34,6 +38,11 @@ public class LottoService {
     }
 
     public WinningResultDto getWinningResultDto() {
-        return new WinningResultDto(winningResult);
+        Map<Ranking, Integer> rankingCount = winningResult.getRankingCount();
+        List<RankingDto> rankingDtos = Arrays.stream(Ranking.values())
+                .map(ranking -> new RankingDto(ranking.name(), ranking.getMatchCount(), ranking.getReward(), rankingCount.get(ranking)))
+                .toList();
+
+        return new WinningResultDto(rankingDtos, winningResult.getReturnRate());
     }
 }

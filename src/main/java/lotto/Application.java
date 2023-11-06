@@ -2,8 +2,8 @@ package lotto;
 
 import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoRanking;
-import lotto.controller.LottoController;
 import lotto.domain.Lotto;
+import lotto.domain.LottoJudgement;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.dto.LottoAnswer;
 import lotto.view.LottoInputView;
@@ -69,11 +69,12 @@ public class Application {
         }
 
         LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
+        LottoJudgement judgement = new LottoJudgement(answer);
 
-        Map<LottoRanking, Integer> lottoResult = LottoController.calculateLottoRanking(answer, userLottos);
+        Map<LottoRanking, Integer> lottoResult = judgement.calculateLottoRanking(userLottos);
         outputView.printLottoResult(lottoResult);
 
-        int totalPrize = LottoController.calculateTotalPrize(lottoResult);
+        int totalPrize = LottoJudgement.calculateTotalPrize(lottoResult);
         outputView.printProfit(userPaid, totalPrize);
     }
 

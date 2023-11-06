@@ -66,8 +66,4 @@ public class LottoWallet {
                 .mapToDouble(LottoResult::getPrice)
                 .sum();
     }
-
-
-
-
 }

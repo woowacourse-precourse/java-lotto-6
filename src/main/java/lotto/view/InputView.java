@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 public class InputView {
     private final String WINNING_NUMBERS_DELIMITER = ",";
+
     public int inputMoney() {
         try {
             return Integer.parseInt(readLine());
@@ -20,8 +21,6 @@ public class InputView {
 
     public List<Integer> inputWinningNumbers() {
         String input = readLine();
-        validateWinningNumbersInput(input);
-
         String[] numbers = splitWinningNumbers(removeSpace(input));
         return convertToIntegers(numbers);
     }
@@ -35,14 +34,11 @@ public class InputView {
     }
 
     private List<Integer> convertToIntegers(String[] numbers) {
-        return Arrays.stream(numbers)
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    // 입력값에서 숫자와 쉼표(,)를 제외한 다른 문자가 있는지 검사
-    private void validateWinningNumbersInput(String input) {
-        if (!Pattern.matches("^[0-9,\\s]+$", input)) {
+        try {
+            return Arrays.stream(numbers)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT_TYPE.getMessage());
         }
     }

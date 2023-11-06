@@ -17,12 +17,12 @@ public class Controller {
     private Buyer buyer;
 
     public void run() {
-     purchaseLotto();
-     showPurchaseLotto();
-     setWinningNumbers();
-     setBonusNumber();
-     showWiningResult();
-     showRateOfReturn();
+        purchaseLotto();
+        showPurchaseLotto();
+        setWinningNumbers();
+        setBonusNumber();
+        showWiningResult();
+        showRateOfReturn();
     }
 
     private void purchaseLotto() {

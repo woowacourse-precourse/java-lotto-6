@@ -40,6 +40,6 @@ public enum PrizeTier {
 
     @Override
     public String toString() {
-        return tierName + " - " + prizeMoney + "원";
+        return tierName + " (" + prizeMoney + "원)";
     }
 }

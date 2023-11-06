@@ -28,6 +28,7 @@ public class LottoController {
         Money money = null;
         while (!validInput) {
             try {
+                inputView.printPurchaseAmount();
                 money = inputView.inputMoney();
                 printLottoQuantity(money);
                 validInput = true;
@@ -50,6 +51,7 @@ public class LottoController {
         List<Integer> winningNumbers;
         while (true) {
             try {
+                inputView.printWinningNumbers();
                 winningNumbers = inputView.inputLottoWinningNumbers();
                 winningLotto = new Lotto(winningNumbers);
                 break;
@@ -62,6 +64,7 @@ public class LottoController {
         int bonusNumber;
         while (true) {
             try {
+                inputView.printBonusNumber();
                 bonusNumber = inputView.inputBonusNumber(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {

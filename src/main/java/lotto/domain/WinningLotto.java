@@ -15,12 +15,19 @@ public class WinningLotto {
 
     public LottoRank lottoResult(Lotto lotto) {
         int matchCount = matchCount(lotto);
-        boolean bonus = bonusNumber.contains(lotto);
+        boolean bonus = bonusResult(lotto);
         return Arrays.stream(LottoRank.values())
-                .filter(lottoRank -> lottoRank.isBonus() == bonus)
                 .filter(lottoRank -> lottoRank.getCount() == matchCount)
+                .filter(lottoRank -> lottoRank.isBonus() == bonus)
                 .findFirst()
                 .orElse(LottoRank.LOSE);
+    }
+
+    public boolean bonusResult(Lotto lotto) {
+        if (matchCount(lotto) < 5) {
+            return false;
+        }
+        return bonusNumber.contains(lotto);
     }
 
     public int matchCount(Lotto lotto) {

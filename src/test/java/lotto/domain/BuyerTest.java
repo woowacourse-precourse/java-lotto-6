@@ -42,14 +42,15 @@ public class BuyerTest {
         Buyer buyer = new Buyer(lottos);
         WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), bonusNumber);
 
-        Map<LottoRank, Integer> result = buyer.lottoResult(winningLotto);
+        Map<LottoRank, Integer> result = buyer.confirmLotto(winningLotto);
+        System.out.println(result);
 
         Assertions.assertThat(result.get(LottoRank.FIRST)).isEqualTo(1);
         Assertions.assertThat(result.get(LottoRank.SECOND)).isEqualTo(1);
         Assertions.assertThat(result.get(LottoRank.THIRD)).isEqualTo(1);
         Assertions.assertThat(result.get(LottoRank.FOURTH)).isEqualTo(1);
         Assertions.assertThat(result.get(LottoRank.FIFTH)).isEqualTo(1);
-        Assertions.assertThat(result.get(LottoRank.LOSE)).isEqualTo(1);
+        Assertions.assertThat(result.get(LottoRank.LOSE)).isEqualTo(2);
     }
 
 
@@ -59,11 +60,12 @@ public class BuyerTest {
                                 new ArrayList<>(
                                         Arrays.asList(
                                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                                                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                                                 new Lotto(List.of(1, 2, 3, 4, 5, 9)),
+                                                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                                                 new Lotto(List.of(1, 2, 3, 4, 9, 10)),
                                                 new Lotto(List.of(1, 2, 3, 9, 10, 11)),
-                                                new Lotto(List.of(1, 2, 7, 9, 10, 11))
+                                                new Lotto(List.of(1, 2, 7, 9, 10, 11)),
+                                                new Lotto(List.of(10, 11, 12, 13, 14, 9))
                                         )
                                 )
                         )

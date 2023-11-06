@@ -15,7 +15,7 @@ public class Buyer {
         return this.lottos.lottoCount();
     }
 
-    public Map<LottoRank, Integer> lottoResult(WinningLotto winningLotto) {
-        return null;
+    public Map<LottoRank, Integer> confirmLotto(WinningLotto winningLotto) {
+        return lottos.winningLottoCompareLottos(winningLotto);
     }
 }

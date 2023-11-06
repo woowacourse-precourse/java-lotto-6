@@ -15,12 +15,11 @@ public class Execute {
         Lotto winningNum = Input.askWinningNum();
         Integer bonusNum = Input.askBonusNum();
 
-
         List<Lotto> lottoTickets = LottoMachine.buyLotto(asset.getMoney());
 
         lottoTickets.forEach(tickets -> LottoMachine.judgeGrade(winningNum, bonusNum, tickets));
 
-        System.out.println(state.getGradeState());
+        Output.printResult(state.getGradeState());
 
         Output.printRate(asset);
     }

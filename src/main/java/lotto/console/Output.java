@@ -1,10 +1,12 @@
 package lotto.console;
 
 import lotto.domain.Asset;
+import lotto.domain.Grade;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class Output {
@@ -14,12 +16,8 @@ public class Output {
         ticketBuffer.forEach( it -> System.out.println(it.getNumbers()));
     }
 
-    public static void printResult(int grade){
-        if(grade == 1) System.out.print("6개 일치 (2,000,000,000원)");
-        if(grade == 2) System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원)");
-        if(grade == 3) System.out.print("5개 일치 (1,500,000원)");
-        if(grade == 4) System.out.print("4개 일치 (50,000원)");
-        if(grade == 5) System.out.print("3개 일치 (5,000원)");
+    public static void printResult( Map<Grade, Integer> states ){
+        states.forEach((grade, value) -> System.out.println(grade.getMessage() + " - " + value + "개"));
     }
 
     public static void printRate(Asset asset){

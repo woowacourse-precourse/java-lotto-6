@@ -15,23 +15,8 @@ public class Asset {
         }
     }
 
-    public void increaseIncome(int grade){
-        if(grade == 1){
-            income += 2000000000;
-            return;
-        }
-        if(grade == 2){
-            income += 30000000;
-        }
-        if(grade == 3){
-            income += 1500000;
-        }
-        if(grade == 4){
-            income += 50000;
-        }
-        if(grade == 5){
-            income += 5000;
-        }
+    public void increaseIncome(Grade grade){
+        income += grade.getPrize();
     }
 
     public Float getRate(){

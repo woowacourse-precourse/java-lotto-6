@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.console.Output;
+import lotto.domain.Grade;
 import lotto.domain.Lotto;
 
 import java.util.List;
@@ -20,33 +21,15 @@ public class LottoMachine {
         return lottoTickets;
     }
 
-    public static void judgeGrade(Lotto winningNumbers, int bonusNum, Lotto LottoTicket){
+    public static void judgeGrade(Lotto winningNumbers, int bonusNum, Lotto LottoTicket) {
         int matchCnt = winningNumbers.matchNumbers(LottoTicket);
         boolean bonusMatch = LottoTicket.matchBonusNum(bonusNum);
 
-        if(matchCnt == 6) {
-            Execute.state.setGradeState(1);
-            Execute.asset.increaseIncome(1);
-            return;
-        }
-        if(matchCnt == 5 && bonusMatch) {
-            Execute.state.setGradeState(2);
-            Execute.asset.increaseIncome(2);
-            return;
-        }
-        if(matchCnt == 5) {
-            Execute.state.setGradeState(3);
-            Execute.asset.increaseIncome(3);
-            return;
-        }
-        if(matchCnt == 4) {
-            Execute.state.setGradeState(4);
-            Execute.asset.increaseIncome(4);
-            return;
-        }
-        if(matchCnt == 3) {
-            Execute.state.setGradeState(5);
-            Execute.asset.increaseIncome(5);
+        Grade grade = Grade.judge(matchCnt, bonusMatch);
+
+        if(grade != Grade.NOTHING){
+            Execute.state.setGradeState(grade);
+            Execute.asset.increaseIncome(grade);
         }
     }
 }

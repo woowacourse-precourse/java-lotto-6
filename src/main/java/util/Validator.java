@@ -27,6 +27,8 @@ public class Validator {
 
     public void checkBonusLottoInput(String input) {
         checkEmpty(input);
+        checkNotNumber(input);
+        checkEachChar(input);
         checkDuplicateOfBonus(input);
     }
 

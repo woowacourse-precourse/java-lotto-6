@@ -20,9 +20,10 @@ public class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입한 복권 번호와 당첨 번호를 비교하여 등수에 맞는 LottoPrize 객체를 반환해야 한다. 각 등수 별로 잘 반환되지 않으면 예외가 발생한다.")
+    @DisplayName("구입한 복권 번호와 당첨 번호를 비교하여 등수에 맞는 LottoPrize 객체를 반환해야 한다. 올바른 등수가 반환되지 않으면 테스트에 실패한다.")
     @Test
-    void compare_테스트() {
+    void match_테스트() {
+        // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
@@ -46,8 +47,11 @@ public class WinningLottoTest {
         }};
 
         for (int i = 0; i < purchased.size(); i++) {
-            assertThat(winningLotto.match(purchased.get(i)))
-                    .isEqualTo(expected.get(i));
+            // when
+            LottoPrize lottoPrize = winningLotto.match(purchased.get(i));
+
+            // then
+            assertThat(lottoPrize).isEqualTo(expected.get(i));
         }
     }
 }

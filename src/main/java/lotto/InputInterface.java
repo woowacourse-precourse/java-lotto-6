@@ -44,16 +44,14 @@ public class InputInterface {
     }
 
     private long getValidPurchasedAmount() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                long purchaseAmount = convertToPurchasedAmount(input);
-                return purchaseAmount;
-            } catch (Exception e) {
-                System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
-            }
+        try {
+            String input = Console.readLine();
+            long purchaseAmount = convertToPurchasedAmount(input);
+            return purchaseAmount;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
+            return getPurchasedAmount();
         }
-//        return getValidPurchasedAmount();
     }
 
     private static long convertToPurchasedAmount(String input) {
@@ -72,7 +70,7 @@ public class InputInterface {
         try {
             String input = Console.readLine();
             return convertToWinningNumbers(input);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getValidWinningNumbers();
         }
@@ -102,7 +100,7 @@ public class InputInterface {
         try {
             String input = Console.readLine();
             return convertToBonusNumber(input, numbers);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getValidBonusNumber(numbers);
         }

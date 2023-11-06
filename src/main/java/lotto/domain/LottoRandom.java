@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,8 @@ public class LottoRandom {
     private static int SIZE = 6;
 
     public List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN,MAX,SIZE);
+        List<Integer> numbers = List.copyOf(Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE));
+        return numbers;
     }
 
 }

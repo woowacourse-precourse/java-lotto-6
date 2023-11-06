@@ -48,6 +48,7 @@ public class OutputInterface {
     String renderPurchasedLottery(PurchasedLottery lottery) {
         String[] arguments = lottery.getNumbers()
                 .stream()
+                .sorted()
                 .map(number -> Integer.toString(number))
                 .toArray(String[]::new);
 

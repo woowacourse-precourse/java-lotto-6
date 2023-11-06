@@ -44,7 +44,7 @@ public class LottoResult {
         return content.toString();
     }
 
-    private double calcProfitRate() {
+    public double calcProfitRate() {
         double initialMoney = lottoAmount * 1000;
         double totalPrizeMoney = 0;
 

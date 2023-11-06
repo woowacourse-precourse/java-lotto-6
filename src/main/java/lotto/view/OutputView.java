@@ -14,7 +14,7 @@ public class OutputView {
 
     public static void displayLottos(List<LottoDto> lottoDtos) {
         printEmptyLine();
-        System.out.println(lottoDtos.size() + "개 구매하셨습니다.");
+        System.out.println(lottoDtos.size() + "개를 구매했습니다.");
         for (int i = 0; i < lottoDtos.size(); i++) {
             System.out.println(lottoDtos.get(i).numbers());
         }
@@ -25,12 +25,17 @@ public class OutputView {
         printEmptyLine();
         System.out.println(WINNING_STATISTICS);
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + lottoResult.statusCount(LottoStatus.FIFTH));
-        System.out.println("4개 일치 (50,000원) - " + lottoResult.statusCount(LottoStatus.FOURTH));
-        System.out.println("5개 일치 (1,500,000원) - " + lottoResult.statusCount(LottoStatus.THIRD));
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResult.statusCount(LottoStatus.SECOND));
-        System.out.println("6개 일치, 보너스 볼 일치 (2,000,000,000원) - " + lottoResult.statusCount(LottoStatus.FIRST));
-        System.out.println("총 수익률은 " + lottoResult.caculateProfitRate() + "입니다.");
+        System.out.println(
+                LottoStatus.FIFTH.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.FIFTH) + "개");
+        System.out.println(
+                LottoStatus.FOURTH.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.FOURTH) + "개");
+        System.out.println(
+                LottoStatus.THIRD.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.THIRD) + "개");
+        System.out.println(
+                LottoStatus.SECOND.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.SECOND) + "개");
+        System.out.println(
+                LottoStatus.FIRST.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.FIRST) + "개");
+        System.out.println("총 수익률은 " + lottoResult.caculateProfitRate() + "%입니다.");
     }
 
     public static void printEmptyLine() {

@@ -24,7 +24,7 @@ public class WinningNumber {
         }
     }
 
-    public void validateAlreadyHaveNumber(int bonusNumber) {
+    public void validateBonusNumber(int bonusNumber) {
         Set<Integer> duplicateChecker = new HashSet<>(regularWinningNumbers);
 
         if (!duplicateChecker.add(bonusNumber)) {

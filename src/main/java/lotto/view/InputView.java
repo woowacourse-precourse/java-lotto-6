@@ -43,16 +43,25 @@ public class InputView {
 
     public static int readBonusNumber(List<Integer> winningNumbers) {
         String input = Console.readLine();
-
-        // validation 추가 예정
-        InputValidation.checkBonusConvertNumber(input);
-        InputValidation.checkBonusNumberRange(input);
-        InputValidation.checkBonusNumberDuplication(winningNumbers, input);
+        checkBonusNumber(winningNumbers, input);
 
         return Integer.parseInt(input);
     }
 
+    private static void checkBonusNumber(List<Integer> winningNumbers, String input) {
+        InputValidation.checkBonusConvertNumber(input);
+        InputValidation.checkBonusNumberRange(input);
+        InputValidation.checkBonusNumberDuplication(winningNumbers, input);
+    }
+
     static class InputValidation {
+        private static final int THOUSAND = 1000;
+        private static final int ZERO = 0;
+        private static final int MAX_PURCHASE_AMOUNT = 100000;
+        private static final int SIX = 6;
+        private static final int ONE = 1;
+        private static final int FORTY_FIVE = 45;
+
         private static boolean isInteger(String input) {
             try {
                 Integer.parseInt(input);
@@ -70,7 +79,7 @@ public class InputView {
 
         private static void checkDivideThousand(String input) {
             int checkData = Integer.parseInt(input);
-            if (checkData % 1000 == 0) {
+            if (checkData % THOUSAND == ZERO) {
                 return;
             }
 
@@ -79,14 +88,14 @@ public class InputView {
 
         private static void checkMaxRangeNumber(String input) {
             int checkData = Integer.parseInt(input);
-            if (checkData > 100000) {
-                throw new IllegalArgumentException("[ERROR] 구매 금액은 100,000원을 넘을 수 없습니다. (100장 까지 구매 가능)");
+            if (checkData > MAX_PURCHASE_AMOUNT) {
+                throw new IllegalArgumentException("[ERROR] 구매 금액은 100,000원을 넘을 수 없습니다.");
             }
         }
 
         private static void checkNumberSixCount(String input) {
             String[] checkData = input.split(",");
-            if (checkData.length != 6) {
+            if (checkData.length != SIX) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 ',' 기준으로 6자리를 입력해야 합니다.");
             }
         }
@@ -112,7 +121,7 @@ public class InputView {
         private static boolean isLottoNumberRange(String input) {
             int checkNumber = Integer.parseInt(input);
 
-            return checkNumber >= 1 && checkNumber <= 45;
+            return checkNumber >= ONE && checkNumber <= FORTY_FIVE;
         }
 
         private static void checkWinningNumbersDuplication(String input) {

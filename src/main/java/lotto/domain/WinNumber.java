@@ -1,12 +1,9 @@
 package lotto.domain;
 
-import lotto.utils.GameRules;
 import lotto.view.InputView;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class WinNumber {
     private static final String INVALID_BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복됩니다.";

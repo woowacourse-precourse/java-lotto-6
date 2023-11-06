@@ -7,7 +7,6 @@ public enum Prize {
     BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     SIX(6, 2000000000, "6개 일치 (2,000,000,000원)");
 
-    static final int LOTTO_COUNT = 6;
     private final int count;
     private final int amount;
 
@@ -19,23 +18,24 @@ public enum Prize {
         this.information = information;
     }
 
-    public static int winningAmount(int matchWinningNumber, int matchBonusNumber) {
+    public static Prize matchPrize(int matchWinningNumber, int matchBonusNumber) {
         if (matchWinningNumber == Prize.BONUS.count) {
             bonusNumber(matchBonusNumber);
         }
         for (Prize prize : Prize.values()) {
             if (prize.count == matchWinningNumber) {
-                return prize.amount;
+                return prize;
             }
         }
-        return 0;
+        return null;
     }
 
-    public static int bonusNumber(int matchBonusNumber) {
+    public static Prize bonusNumber(int matchBonusNumber) {
         if (matchBonusNumber > 0) {
-            return Prize.BONUS.amount;
+            return Prize.BONUS;
         }
-        return Prize.FIVE.amount;
+        return Prize.FIVE;
     }
+
 }
 

@@ -8,6 +8,9 @@ public class Lotto {
     private static final String WRONG_SIZE_ERROR_MESSAGE = "6개의 정수를 입력해주세요.";
     private static final String OUT_OF_RANGE_ERROR_MESSAGE = "1 이상 45 이하의 정수를 입력해주세요.";
     private static final String DUPLICATE_NUMBERS_ERROR_MESSAGE = "서로 다른 정수를 입력해주세요.";
+    private static final int LOTTO_RANGE_BEGIN_NUMBER = 1;
+    private static final int LOTTO_RANGE_END_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -27,12 +30,12 @@ public class Lotto {
     }
 
     private boolean isSixNumbers(final List<Integer> numbers) {
-        return numbers.size() == 6;
+        return numbers.size() == LOTTO_SIZE;
     }
 
     private boolean isInLottoRange(final List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_RANGE_BEGIN_NUMBER || number > LOTTO_RANGE_END_NUMBER) {
                 return false;
             }
         }

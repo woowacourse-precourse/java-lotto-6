@@ -19,9 +19,9 @@ public class Game {
             int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
             List<Lotto> lottos = issueLottos(purchaseQuantity);
             OutputView.printPurchaseResult(lottos);
-            Lotto winnerNumbers = createWinnerNumbers();
-            int bonusNumber = createBonusNumber(winnerNumbers);
-            List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerNumbers, bonusNumber);
+            Lotto winnerLotto = createWinnerLotto();
+            int bonusNumber = createBonusNumber(winnerLotto);
+            List<SameNumber> sameNumbers = createSameNumbers(lottos, winnerLotto, bonusNumber);
             OutputView.printWinnerResult(sameNumbers, purchaseAmount);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
@@ -38,29 +38,28 @@ public class Game {
         return lottos;
     }
 
-    private Lotto createWinnerNumbers() {
+    private Lotto createWinnerLotto() {
         Convertor convertor = new Convertor();
         return new Lotto(convertor.convertToNumbers(InputView.askWinnerNumbers()));
     }
 
-    private int createBonusNumber(Lotto winnerNumbers) {
+    private int createBonusNumber(Lotto winnerLotto) {
         int bonusNumber = new Number(InputView.askBonusNumber()).getNumber();
-        validateDuplicated(bonusNumber, winnerNumbers);
+        validateDuplicated(bonusNumber, winnerLotto);
         return bonusNumber;
     }
 
-    private void validateDuplicated(int bonusNumber, Lotto winnerNumbers) {
-        if (winnerNumbers.getNumbers()
-                .contains(bonusNumber)) {
-            new IllegalArgumentException("보너스 번호는 당첨번호와 중복될 수 없습니다.");
+    private void validateDuplicated(int bonusNumber, Lotto winnerLotto) {
+        if (winnerLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
         }
     }
 
-    private List<SameNumber> createSameNumbers(List<Lotto> lottos, Lotto winnerNumbers, int bonusNumber) {
+    private List<SameNumber> createSameNumbers(List<Lotto> lottos, Lotto winnerLotto, int bonusNumber) {
         Comparator comparator = new Comparator();
         List<SameNumber> sameNumbers = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            int sameNumber = comparator.countSameNumber(lotto, winnerNumbers);
+            int sameNumber = comparator.countSameNumber(lotto, winnerLotto);
             boolean hasBonusNumber = comparator.checkBonusNumber(lotto, bonusNumber);
             sameNumbers.add(new SameNumber(sameNumber, hasBonusNumber));
         }

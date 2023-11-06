@@ -6,12 +6,12 @@ public class Result {
     private final BonusNumber bonusNumber;
 
     public Result(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        validateWinningNumbersContainBonusNumber(winningNumbers, bonusNumber);
+        validateOverlap(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateWinningNumbersContainBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private void validateOverlap(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

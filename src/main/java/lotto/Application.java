@@ -4,6 +4,7 @@ import lotto.domain.LottoManager;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResult;
+import lotto.domain.Money;
 import lotto.domain.User;
 import lotto.ui.Input;
 import lotto.ui.Output;
@@ -16,7 +17,7 @@ public class Application {
         User user = new User();
 
         Output.printPurchase();
-        user.purchaseLotto();
+        user.purchaseLotto(new Money(Input.get()));
         Output.printCount(user.lottoCount);
 
         // 4. 로또 번호 출력

@@ -9,7 +9,6 @@ public class LottoValidation {
     private static final int LOTTO_PRICE = 1000;
 
     public boolean validateInputPrice(int inputPrice) {
-
         if (inputPrice % LOTTO_PRICE != 0) {
             return false;
         }
@@ -40,7 +39,7 @@ public class LottoValidation {
 
     public void lottoNumberOverlap(List<Integer> lottoNumbersByUser) {
         Set<Integer> uniqueLottoNumber = new HashSet<>(lottoNumbersByUser);
-        if (uniqueLottoNumber.size() != lottoNumbersByUser.size()){
+        if (uniqueLottoNumber.size() != lottoNumbersByUser.size()) {
             throw new IllegalArgumentException(OutputMessage.OUTPUT_ERROR_LOTTO_NUMBER_UNIQUE.getMessage());
         }
     }
@@ -59,6 +58,13 @@ public class LottoValidation {
             return false;
         }
         return true;
+    }
+    public void isOverlapWithWinningNumbers(List<Integer> winningLottoNumbers, int bonusNumber) {
+        for (int winningNumber: winningLottoNumbers) {
+            if(winningNumber == bonusNumber){
+                throw new IllegalArgumentException("[ERROR]" + OutputMessage.OUTPUT_ERROR_LOTTO_NUMBER_UNIQUE.getMessage());
+            }
+        }
     }
 
 

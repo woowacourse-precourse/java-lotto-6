@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Arrays;
 import java.util.List;
 import model.Lotto;
 
@@ -12,4 +13,5 @@ public class OutputView {
             System.out.println(ticket.getNumbers());
         }
     }
+
 }

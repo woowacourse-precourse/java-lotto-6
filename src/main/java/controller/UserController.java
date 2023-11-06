@@ -11,6 +11,8 @@ public class UserController {
     LottoValidation lottoValidation = new LottoValidation();
     InputView inputView = new InputView();
 
+    List<Integer> winningLottoNumbers = new ArrayList<>();
+
     public int inputPriceHowManyLottos() {
         boolean isValidInput = false;
         String purchasePrice = "";
@@ -39,13 +41,10 @@ public class UserController {
         }
     }
 
-
-
     public List<Integer> generateUserLottoNumber() {
         boolean isValidInput = false;
-        List<Integer> winningLottoNumbers = new ArrayList<>();
         while (!isValidInput) {
-            try{
+            try {
                 inputView.showInputLottoNumberToUser();
                 String[] lottoNumbersByUser = Console.readLine().split(",");
                 lottoValidation.lottoNumberCount(lottoNumbersByUser);
@@ -59,10 +58,9 @@ public class UserController {
                 }
                 lottoValidation.lottoNumberOverlap(winningLottoNumbers);
                 isValidInput = true;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
         return winningLottoNumbers;
     }
@@ -73,5 +71,24 @@ public class UserController {
         }
     }
 
+    public int inputBonusNumber() {
+        boolean isValidInput = false;
+        int bonusNumber = 0;
+        while (!isValidInput) {
+            try {
+                inputView.showInputBonusNumberToUser();
+                String inputNumber = Console.readLine();
+                if (lottoValidation.isLottoNubmerInteger(inputNumber)) {
+                    bonusNumber = Integer.parseInt(inputNumber);
+                    validationLottoNumberInputByUser(bonusNumber);
+                }
+                lottoValidation.isOverlapWithWinningNumbers(winningLottoNumbers, bonusNumber);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
 
 }

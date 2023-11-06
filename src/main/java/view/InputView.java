@@ -10,4 +10,7 @@ public class InputView {
         System.out.println(InputMessage.INPUT_LOTTO_NUMBER.getMsg());
     }
 
+    public void showInputBonusNumberToUser(){
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMsg());
+    }
 }

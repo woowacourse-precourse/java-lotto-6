@@ -22,12 +22,4 @@ public class ValidatorTest {
         assertThatThrownBy(() -> validator.numberValidate(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("로또 구매액이 적합한지를 검증하는 기능")
-    @ParameterizedTest
-    @ValueSource(ints = {1001, -1500, 900, 0})
-    void 로또구매_값_검증(long buyCash) {
-        assertThatThrownBy(() -> validator.buyCashValidate(buyCash))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

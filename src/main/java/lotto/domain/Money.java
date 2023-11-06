@@ -13,13 +13,13 @@ public class Money {
 
     private void validateMoney(long value) {
         if (value > LottoConfig.MAXIMUM_PURCHASE_LIMIT) {
-            throw Errors.GREATER_THAN_MAXIMUM_PURCHASE_LIMIT.getLottoException();
+            throw Errors.INVALID_LIMIT.getLottoException();
         }
         if (value < LottoConfig.PRICE) {
             throw Errors.INVALID_MONEY.getLottoException();
         }
         if (value % LottoConfig.PRICE != 0) {
-            throw Errors.NOT_DIVISIBLE_BY_PRICE.getLottoException();
+            throw Errors.INVALID_UNDIVISIABLE.getLottoException();
         }
     }
 

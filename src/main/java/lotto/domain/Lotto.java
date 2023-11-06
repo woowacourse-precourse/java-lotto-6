@@ -20,13 +20,13 @@ public class Lotto {
             throw Errors.INVALID_SIZE.getLottoException();
         }
         if (hasDuplicatedNumbers(numbers)) {
-            throw Errors.DUPLICATED_LOTTO_NUMBER.getLottoException();
+            throw Errors.INVALID_DUPLICATED.getLottoException();
         }
         if (hasNumberOutOfRange(numbers)) {
             throw Errors.INVALID_RANGE.getLottoException();
         }
         if (isNotSorted(numbers)) {
-            throw Errors.IS_NOT_SORTED.getLottoException();
+            throw Errors.INVALID_SORTING.getLottoException();
         }
     }
 

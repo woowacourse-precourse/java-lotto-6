@@ -17,19 +17,20 @@ public class InputView {
         return Console.readLine().trim();
     }
 
+    //FIXME:오버플로우 발생시 NumberFormatException 발생... 처리?
     public int printAskingBudget() {
-        int budget;
+        long budget;
         System.out.println(MSG_ASKING_BUDGET);
         while (true) {
             try {
                 budget = Integer.parseInt(getUserInput());
                 break;
             } catch (NumberFormatException e) {
-                FormatException formatException = Errors.IS_NOT_NUMBER.getFormatException();
+                FormatException formatException = Errors.INVALID_NOT_NUMBER.getFormatException();
                 System.out.println(formatException.getMessage());
             }
         }
-        return budget;
+        return (int) budget;
     }
 
     public List<Integer> printAskingWinningNumbers() {
@@ -40,7 +41,7 @@ public class InputView {
                 winningNumbers = parseStringToList(getUserInput());
                 break;
             } catch (NumberFormatException e) {
-                FormatException formatException = Errors.IS_NOT_NUMBER.getFormatException();
+                FormatException formatException = Errors.INVALID_NOT_NUMBER.getFormatException();
                 System.out.println(formatException.getMessage());
             }
         }
@@ -62,7 +63,7 @@ public class InputView {
                 bonusNumber = Integer.parseInt(getUserInput());
                 break;
             } catch (NumberFormatException e) {
-                FormatException formatException = Errors.IS_NOT_NUMBER.getFormatException();
+                FormatException formatException = Errors.INVALID_NOT_NUMBER.getFormatException();
                 System.out.println(formatException.getMessage());
             }
         }

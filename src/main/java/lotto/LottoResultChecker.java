@@ -11,11 +11,10 @@ public class LottoResultChecker {
     }
 
     public Result check(Lotto lotto) {
-
-        int matchingNumbers = (int) lotto.getNumbers().stream()
+        int matchingNumbers = Long.valueOf(
+                lotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
-                .distinct()
-                .count();
+                .count()).intValue();
 
         boolean bonus = lotto.getNumbers().contains(winningLotto.getBonus());
 

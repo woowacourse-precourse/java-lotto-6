@@ -12,10 +12,7 @@ public class BonusNumber {
         return new BonusNumber(bonusNumber);
     }
 
-    public BonusStatus existOn(final Lotto lotto) {
-        if (lotto.contains(number)) {
-            return BonusStatus.INCLUDED;
-        }
-        return BonusStatus.NONE;
+    public boolean existOn(final Lotto lotto) {
+        return lotto.contains(number);
     }
 }

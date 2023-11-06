@@ -7,34 +7,43 @@ import java.util.stream.Stream;
 
 public enum LottoRank {
 
-    FIRST(MatchingType.SIX, LottoPrize.FIRST),
-    SECOND(MatchingType.FIVE_WITH_BONUS, LottoPrize.SECOND),
-    THIRD(MatchingType.FIVE, LottoPrize.THIRD),
-    FOURTH(MatchingType.FOUR, LottoPrize.FOURTH),
-    FIFTH(MatchingType.THREE, LottoPrize.FIFTH),
-    NONE(MatchingType.NONE, LottoPrize.NONE);
+    FIRST(MatchCount.SIX, false, LottoPrize.FIRST),
+    SECOND(MatchCount.FIVE, true, LottoPrize.SECOND),
+    THIRD(MatchCount.FIVE, false, LottoPrize.THIRD),
+    FOURTH(MatchCount.FOUR, false, LottoPrize.FOURTH),
+    FIFTH(MatchCount.THREE, false, LottoPrize.FIFTH),
+    NONE(MatchCount.NONE, false, LottoPrize.NONE);
 
-    private static final Map<MatchingType, LottoRank> ranks = Stream.of(values())
+    private static final Map<MatchCount, LottoRank> ranks = Stream.of(values())
+            .filter(rank -> !rank.bonusMatches)
             .collect(toMap(
-                    rank -> rank.matchingType,
+                    rank -> rank.matchCount,
                     rank -> rank
             ));
 
-    private final MatchingType matchingType;
+    private final MatchCount matchCount;
+
+    private final boolean bonusMatches;
 
     private final LottoPrize lottoPrize;
 
-    LottoRank(final MatchingType matchingType, final LottoPrize lottoPrize) {
-        this.matchingType = matchingType;
+    LottoRank(
+            final MatchCount matchCount,
+            final boolean bonusMatches,
+            final LottoPrize lottoPrize
+    ) {
+        this.matchCount = matchCount;
+        this.bonusMatches = bonusMatches;
         this.lottoPrize = lottoPrize;
     }
 
-    public static LottoRank of(final MatchingType matchingType) {
-        return ranks.getOrDefault(matchingType, LottoRank.NONE);
-    }
+    public static LottoRank of(final MatchCount matchCount, final boolean bonusMatches) {
+        final LottoRank rank = ranks.getOrDefault(matchCount, LottoRank.NONE);
 
-    public boolean isNone() {
-        return this == NONE;
+        if (bonusMatches && rank.matchCount == MatchCount.FIVE) {
+            return LottoRank.SECOND;
+        }
+        return rank;
     }
 
     public long getPrize() {
@@ -42,10 +51,10 @@ public enum LottoRank {
     }
 
     public int getNumberOfMatches() {
-        return matchingType.getCount();
+        return matchCount.getCount();
     }
 
-    public boolean containsBonus() {
-        return matchingType.hasBonus();
+    public boolean bonusMatches() {
+        return bonusMatches;
     }
 }

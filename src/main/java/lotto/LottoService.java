@@ -105,6 +105,19 @@ public class LottoService {
         return lottoResultStore.getLottoResultStore();
     }
 
+    public int totalRewardMoney() {
+        int totalRewardMoney = ZERO;
+        for (int reward : getLottoResultStore().keySet()) {
+            totalRewardMoney += reward * getLottoResultStore().get(reward);
+        }
+        return totalRewardMoney;
+    }
+
+    public double getTotalRewardResult() {
+        double totalReturn = (double) totalRewardMoney() / player.getBuyMoney();
+        return Math.round(totalReturn) / 10.0;
+    }
+
     public void validateBuyMoney(String inputMoney) {
         validateInputNumberBlank(inputMoney);
         validateBuyMoneyType(inputMoney);

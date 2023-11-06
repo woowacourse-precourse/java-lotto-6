@@ -11,9 +11,5 @@ public class RandomLottoNumber {
 
     public List<Integer> RandomLottoOutputNumber() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_KIND);
-
     }
-
-
-
 }

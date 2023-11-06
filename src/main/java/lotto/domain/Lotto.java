@@ -13,8 +13,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        overlappingNumbers(numbers);
+        validateVarious(numbers);
+        numbers = sorted(numbers);
         this.numbers = numbers;
     }
 
@@ -22,6 +22,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateVarious(List<Integer> numbers) {
+        validate(numbers);
+        numberRange(numbers);
+        overlappingNumbers(numbers);
     }
 
     private void overlappingNumbers(List<Integer> numbers) {

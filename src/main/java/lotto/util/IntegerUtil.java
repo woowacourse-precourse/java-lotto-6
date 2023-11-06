@@ -4,7 +4,7 @@ public class IntegerUtil {
 
     public static boolean checkNumberInRange(Integer number, Integer from, Integer to) {
         if (number == null || from == null || to == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalStateException();
         }
 
         if (number < from || number > to) {

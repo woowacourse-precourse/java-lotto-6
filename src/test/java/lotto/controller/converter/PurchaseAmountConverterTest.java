@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.controller.converter.PurchaseAmountConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,10 @@
-package lotto.Controller;
+package lotto.controller;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
-import lotto.Message;
+import lotto.controller.validator.BonusNumberValidator;
+import lotto.utils.Message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,7 @@
 # 🔢 우아한테크코스 프리코스 3주차 : 로또
 
+https://user-images.githubusercontent.com/122594223/280687804-57158e77-0dfb-41ed-893c-476b57a0cc15.mp4
+
 ## 목차
 
 - [1. 구현 기능 목록](#ballotboxwithcheck-구현-기능-목록)
@@ -9,30 +11,42 @@
 - [3. 다음 미션에 적용할 학습 내용](#ledger-다음-미션에-적용할-학습-내용)
 
 # :ballot_box_with_check: 구현 기능 목록
-- [ ] controller Package
-    - [ ] LottoController
+- [x] controller Package
+    - [x] LottoController
         - view Package와 domain Package의 데이터를 전달하며 값을 출력하는 클래스
         - 프로그램을 실행하는 `run` 메서드
         - 티켓 개수를 불러오는 `loadTicket` 메서드
         - 티켓 개수를 활용하여 구매한 로또 리스트를 불러오고 출력하도록 하는 `buyLotto` 메서드
         - 당첨 번호를 불러오는 `loadWinningLotto` 메서드
-        - 보너스 번호를 불러와 당첨번호와 비교하는 기능 구현 `loadBonusNumber` 메서드
+        - 보너스 번호를 불러와 당첨번호와 비교하는 `loadBonusNumber` 메서드
+        - 당첨 통계를 계산하고 출력하는 `lottoStatistics` 메서드
+        - 수익률을 출력하는 `lottoProfit` 메서드
 
 
-- [ ] domain Package
-    - [ ] LottoJudge
+- [x] domain Package
+    - [x] LottoJudge
         - 당첨 번호와 구매 번호의 매칭을 판단하는 클래스
+        - 새로운 인스턴스를 생성하고 반환하는 create 메서드
+        - 일치하는 개수에 따른 결과를 저장하는 `matchLottoHandler` 메서드
+        - 구매한 로또와 당첨 번호가 몇개나 일치하는지 비교하는 `compareLotto` 메서드
+        - 번호 5개가 일치하는 경우 보너스 번호가 일치하는지 확인하는 `checkBonus` 메서드
+    - [x] GenerateLotto
+        - 구매 번호를 랜덤한 값으로 구해주는 클래스
+        - 새로운 인스턴스를 생성하고 반환하는 create 메서드
+        - 구매 번호를 랜덤한 값으로 생성하는 `generateBuyLottos` 메서드
+        - 구매한 로또 리스트를 반환하는 `getBuyLottos` 메서드
     - wrapper Package 
         - [x] Money
             - 구입 금액에 대한 유효성 검사와 구입 금액에 따른 티켓 수 반환을 진행하는 클래스
-            - 객체를 생성하고 반환하는 create 메서드
+            - 새로운 인스턴스를 생성하고 반환하는 create 메서드
             - 구입 금액이 숫자로 반환이 가능한지 확인하는 `validateType` 메서드
             - 구입 금액이 0원 이하인지 확인하는 `validateMoney` 메서드
             - 구입 금액이 1000원으로 나눠 떨어지는지 확인하는 `validateDivision` 메서드
             - 구매 금액에 따른 티켓 수를 반환하는 `getTicket` 메서드
         - [x] Lotto
             - 모든 로또 번호 리스트들에 대한 유효성 검사와 로또 번호의 오름차순 값을 반환하는 일급 컬렉션
-            - 객체를 생성하고 반환하는 create 메서드
+            - 새로운 인스턴스를 생성하고 반환하는 create 메서드
+            - 매개 변수를 하나 받아서 인스턴스를 생성하고 반환하는 from 메서드
             - 로또 번호가 ,를 기준으로 나눠지고 숫자로 변환이 가능한지 확인하는 `validateType` 메서드
             - 로또 번호가 6개 맞는지 확인하는 `validateSize` 메서드
             - 중복되는 로또 번호가 있는지 확인하는 `validateDuplicate` 메서드
@@ -40,19 +54,26 @@
             - 로또 번호의 오름차순 값을 반환하는 `sortLottoNumbers` 메서드
         - [x] BuyLottos
             - 구입한 로또에 대한 정보를 갖고있는 클래스
-            - 객체를 생성하고 반환하는 create 메서드
+            - 새로운 인스턴스를 생성하고 반환하는 create 메서드
             - 구매한 로또를 반환하는 `getBuyLottos` 메서드
-        - [ ] WinLottoWithBonus
+        - [x] WinLottoWithBonus
             - 당첨 로또와 보너스 번호에 대한 유효성 검사와 반환을 진행하는 클래스 
-            - 객체를 생성하고 반환하는 create 메서드
+            - 새로운 인스턴스를 생성하고 반환하는 create 메서드
             - 보너스 번호가 숫자로 반환이 가능한지 확인하는 `validateType` 메서드
             - 로또 번호와 보너스 번호가 중복되는지 확인하는 `validateDuplicate` 메서드
             - 보너스 번호가 1 ~ 45 사이인지 확인하는 `validateRange` 메서드
             - 로또 객체를 반환하는 `getLotto` 메서드
             - 보너스 번호를 반환하는 `getBonusNumber` 메서드
+        - [x] LottoResult
+            - 당첨 통계 데이터를 저장하고 수익률을 계산하는 클래스
+            - 새로운 인스턴스를 생성하고 반환하는 create 메서드
+            - 당첨 통계를 반환하는 `getLottoResult` 메서드
+            - 수익률을 반환하는 `getProfit` 메서드
+            - 전체 구매 금액을 반환하는 `totalPurchaseAmount` 메서드
+            - 전체 당첨 금액을 반환하는 `totalPrize` 메서드
 
 
-- [ ] handler Package
+- [x] handler Package
     - [x] InputHandler
         - view Package의 ConsoleInput의 확장성과 변경 용이성을 위한 인터페이스
         - `inputValue` 메서드의 추상화
@@ -69,24 +90,19 @@
         - ErrorMessage와 함께 `IllegalArgumentException` 예외를 발생시키는 `getException` 메서드
     - [x] ConstantsHandler
         - 프로그램내의 상수들을 관리하는 클래스
-    - [ ] LottoHandler
+    - [x] LottoHandler
         - 로또 당첨 상태를 Enum으로 관리하는 클래스
+        - 일치하는 개수와 enum 상수의 개수가 일치하는 lottoHandler 타입의 enum 상수를 반환하는 `getLottoHandler` 메서드 구현
         - 일치하는 개수를 반환하는 `getCount` 메서드 구현
         - 추가적인 문장을 반환하는 `getMessage` 메서드 구현
         - 당첨 금액을 반환하는 `getPrize` 메서드 구현
+      
 
-
-- [ ] service Package
-    - [ ] LottoService
-        - 로또 게임에 대한 비즈니스 로직을 담당하는 클래스
-        - 구매한 티켓 수 만큼 랜덤한 번호로 로또를 구매하는 `generateBuyLottos` 메서드
-
-
-- [ ] view Package
+- [x] view Package
     - [x] ConsoleInput
         - 입력을 담당하는 클래스
         - 모든 입력값을 받아오는 `inputValue` 메서드 구현
-    - [ ] ConsoleOutput
+    - [x] ConsoleOutput
         - 출력을 담당하는 클래스
         - 로또 구입 금액 입력을 요청하는 `printInputMoneyMessage` 메서드 구현
         - 구입한 로또 리스트를 보여주는 `printBuyLottoList` 메서드 구현

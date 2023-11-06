@@ -4,6 +4,7 @@ import static lotto.constants.Value.INITIAL_ZERO;
 import static lotto.constants.Value.LOTTO_PRICE;
 import static lotto.constants.Value.PERCENT;
 
+import java.util.HashMap;
 import java.util.Map;
 import lotto.constants.Prize;
 
@@ -12,6 +13,7 @@ public class LottoResult {
     public Map<Prize, Integer> state;
 
     public LottoResult() {
+        state = new HashMap<>();
         initializePrize();
     }
 

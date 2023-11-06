@@ -1,4 +1,4 @@
-package lotto.domain.ViewTest;
+package lotto.ViewTest;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;

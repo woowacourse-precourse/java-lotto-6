@@ -1,11 +1,11 @@
 package lotto.domain.Model;
 
 public enum Prize {
-    THREE(5000, "3개 일치"),
-    FOUR(50000, "4개 일치"),
-    FIVE(1500000, "5개 일치"),
-    FIVE_PLUS(30000000, "5개 일치, 보너스 볼 일치"),
-    SIX(2000000000, "6개 일치");
+    FIFTH(5000, "3개 일치"),
+    FOURTH(50000, "4개 일치"),
+    THIRD(1500000, "5개 일치"),
+    SECOND(30000000, "5개 일치, 보너스 볼 일치"),
+    WINNER(2000000000, "6개 일치");
 
     private final int prize;
     private final String rank;
@@ -24,11 +24,11 @@ public enum Prize {
     }
 
     public static Prize prizeCount(int matchCount, boolean matchBonus) {
-        if (matchCount == 3) return THREE;
-        if (matchCount == 4) return FOUR;
-        if (matchCount == 5 && !matchBonus) return FIVE;
-        if (matchCount == 5) return FIVE_PLUS;
-        if (matchCount == 6) return SIX;
+        if (matchCount == 3) return FIFTH;
+        if (matchCount == 4) return FOURTH;
+        if (matchCount == 5 && !matchBonus) return THIRD;
+        if (matchCount == 5) return SECOND;
+        if (matchCount == 6) return WINNER;
         return null;
     }
 }

@@ -23,9 +23,7 @@ public class Application {
         List<Lotto> lottos = generateLottoTicketsProcess(lottoController, outputView, purchase);
 
         // 당첨 및 보너스 번호 생성
-        String winningNumbers = inputView.inputWinningNumbers();
-        String bonusNumber = inputView.inputBonusNumber();
-        Jackpot jackpot = lottoController.createWinningNumbers(winningNumbers, bonusNumber);
+        Jackpot jackpot = createJackPot(lottoController, inputView);
 
         // 발행된 로또들의 당첨 여부 계산
         Result result = lottoController.createResult(jackpot, lottos, purchase);
@@ -35,6 +33,12 @@ public class Application {
         // 발행된 로또들의 수익률 계산
         Double rate = lottoController.calculateProfitRate(result);
         outputView.printProfitRate(rate);
+    }
+
+    private static Jackpot createJackPot(LottoController lottoController, InputView inputView) {
+        String winningNumbers = inputView.inputWinningNumbers();
+        String bonusNumber = inputView.inputBonusNumber();
+        return lottoController.createWinningNumbers(winningNumbers, bonusNumber);
     }
 
     private static List<Lotto> generateLottoTicketsProcess(LottoController lottoController, OutputView outputView, Purchase purchase) {

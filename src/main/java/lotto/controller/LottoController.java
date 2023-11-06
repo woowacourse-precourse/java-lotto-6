@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 
 import java.util.List;
 
-import static lotto.view.LottoErrorMessage.INPUT_LOTTO_BUY_PRICE_ERROR_MESSAGE;
+import static lotto.constant.LottoErrorMessage.INPUT_LOTTO_BUY_PRICE_ERROR_MESSAGE;
 
 public class LottoController {
 

@@ -12,7 +12,7 @@ public class BuyLottoRepository {
         lottos.add(lotto);
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> getLotto() {
         return lottos;
     }
 }

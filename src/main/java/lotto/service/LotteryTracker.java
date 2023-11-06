@@ -9,19 +9,20 @@ import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.RankingRepository;
 import lotto.repository.WinningLottoRepository;
-import lotto.settings.WinningAmount;
 import lotto.view.View;
 
 public class LotteryTracker {
-    static List<List<Integer>> result = new ArrayList<>();
+    List<List<Integer>> result = new ArrayList<>();
 
-    public static LotteryTracker create(){
-        RankingRepository.create();
-
+    public LotteryTracker() {
         int size = LOTTO_NUMBER_SIZE.getNumber(); // 복권숫자 크기:6
         for(int i = 0; i<= size; i++){
             result.add(new ArrayList<>());
         }
+    }
+
+    public static LotteryTracker create(){
+        RankingRepository.create();
         return new LotteryTracker();
     }
 
@@ -33,7 +34,7 @@ public class LotteryTracker {
         int correctNum =0;
         int bonusNum = winningLotto.getBonusNumber();
 
-        for (Lotto buyLotto : buyLottos.getLottos()) {
+        for (Lotto buyLotto : buyLottos.getLotto()) {
             correctNum = winningLotto.countMatchingNumber(buyLotto);
             matchingNumber(correctNum,buyLotto,bonusNum);
         }

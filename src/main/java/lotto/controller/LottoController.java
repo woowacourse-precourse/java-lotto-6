@@ -10,7 +10,8 @@ import lotto.view.View;
 
 public class LottoController {
 
-    LottoService lottoService = new LottoService();
+    private final LottoService lottoService = new LottoService();
+    private final ResultService resultService = new ResultService();
     public void run(){
         PurchaseAmount purchaseAmount = createPurchaseAmount();
         int purchaseCount = calculatePurchaseCount(purchaseAmount);
@@ -18,8 +19,8 @@ public class LottoController {
         BuyLottoRepository buyLottos = lottoService.quickPick(purchaseCount);
         WinningLottoRepository winningLotto = lottoService.createWinningNumber();
 
-        ResultService.perLottoTotalCount(buyLottos, winningLotto);
-        ResultService.calculateRateOfReturn(purchaseCount);
+        resultService.perLottoTotalCount(buyLottos, winningLotto);
+        resultService.calculateRateOfReturn(purchaseCount);
     }
 
     private PurchaseAmount createPurchaseAmount() {

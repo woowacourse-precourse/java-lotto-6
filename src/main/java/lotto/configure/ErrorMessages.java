@@ -1,8 +1,7 @@
 package lotto.configure;
 
-import static lotto.configure.ErrorMessageHelper.ERROR_MESSAGE_COMMON_PREFIX;
-
 public enum ErrorMessages {
+    ERROR_MESSAGE_COMMON_PREFIX("[ERROR]"),
     PURCHASE_NUMBER_IS_NOT_AN_INTEGER(ERROR_MESSAGE_COMMON_PREFIX + " 구입 금액은 정수여야 합니다."),
     PURCHASE_NUMBER_IS_NEGATIVE(ERROR_MESSAGE_COMMON_PREFIX + " 구입 금액은 0 이상이어야 합니다."),
     PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000(ERROR_MESSAGE_COMMON_PREFIX + " 구입 금액은 1,000으로 나누어 떨어져야 합니다."),

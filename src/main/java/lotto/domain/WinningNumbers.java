@@ -15,12 +15,19 @@ public class WinningNumbers {
 
     private void validate(List<Integer> winningNumbers) {
         validateNumberBoundary(winningNumbers);
+        validateSize(winningNumbers);
     }
 
     private void validateNumberBoundary(List<Integer> winningNumbers) {
         for(int num : winningNumbers) {
             if(num<1 || num>45)
                 throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException();
         }
     }
 }

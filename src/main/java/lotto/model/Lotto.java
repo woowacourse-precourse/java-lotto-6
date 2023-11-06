@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,9 +30,11 @@ public class Lotto {
     public String toString() {
         StringBuilder formattedLottoNumbers = new StringBuilder();
         formattedLottoNumbers.append(DISPLAY_BEGIN_MARK);
-        for (int index = 0; index < numbers.size(); index++) {
-            formattedLottoNumbers.append(numbers.get(index));
-            if (index != numbers.size() - 1) {
+
+        List<Integer> sortedLottoNumbers = getSortedLottoNumbers();
+        for (int index = 0; index < sortedLottoNumbers.size(); index++) {
+            formattedLottoNumbers.append(sortedLottoNumbers.get(index));
+            if (index != sortedLottoNumbers.size() - 1) {
                 formattedLottoNumbers.append(DISPLAY_SEPARATE_MARK);
             }
         }
@@ -38,5 +42,11 @@ public class Lotto {
         return formattedLottoNumbers.toString();
     }
 
+
+    private List<Integer> getSortedLottoNumbers() {
+        List<Integer> sortedLottoNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedLottoNumbers);
+        return sortedLottoNumbers;
+    }
     // TODO: 추가 기능 구현
 }

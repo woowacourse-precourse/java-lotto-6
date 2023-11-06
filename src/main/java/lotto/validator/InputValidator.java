@@ -14,7 +14,6 @@ public class InputValidator {
     private static final String WRONG_NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자는 0으로 시작할 수 없습니다.";
 
     private InputValidator() {
-        throw new IllegalStateException("[ERROR] 해당 클래스는 생성자를 호출할 수 없습니다.");
     }
 
     public static void validate(final String input) {

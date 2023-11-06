@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum RankInfo {
-    FIRST(6, 2_000_000_000L),
-    SECOND(5, 30_000_000L),
-    THIRD(5, 1_500_000L),
-    FOURTH(4, 50_000L),
     FIFTH(3, 5_000L),
-    NONE(0, 0L);
+    FOURTH(4, 50_000L),
+    THIRD(5, 1_500_000L),
+    SECOND(5, 30_000_000L),
+    FIRST(6, 2_000_000_000L);
 
     private final int matchNumberCnt;
     private final Long prizeMoney;
@@ -37,4 +36,13 @@ public enum RankInfo {
     private static boolean checkBonusNumber(int value, boolean isBonusNumContained) {
         return value == SECOND.matchNumberCnt && isBonusNumContained;
     }
+
+    public int getMatchNumberCnt() {
+        return matchNumberCnt;
+    }
+
+    public Long getPrizeMoney() {
+        return prizeMoney;
+    }
+
 }

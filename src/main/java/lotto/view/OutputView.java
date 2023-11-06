@@ -1,8 +1,12 @@
 package lotto.view;
 
+import lotto.domain.RankInfo;
+import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class OutputView {
 
@@ -19,6 +23,22 @@ public class OutputView {
         System.out.printf(Constants.INPUT_MONEY.message, purchaseResults.size());
         purchaseResults
                 .forEach(result -> System.out.println(result.lottoNumbers()));
+    }
+
+    public void printLottoGameResult(LottoGameResult lottoGameResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        NumberFormat formatter = NumberFormat.getInstance();
+
+        for (RankInfo rankInfo : RankInfo.values()) {
+            int count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
+            long prizeMoney = rankInfo.getPrizeMoney();
+
+            String formattedPrizeMoney = formatter.format(prizeMoney);
+
+            System.out.println(rankInfo.getMatchNumberCnt() + "개 일치 (" + formattedPrizeMoney + "원) - " + count + "개");
+        }
     }
 
     private enum Constants {

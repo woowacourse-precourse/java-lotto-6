@@ -33,6 +33,7 @@ public class GameController {
         WinningNumbers winningNumbers = new WinningNumbers(lotto, bonusNumber);
 
         LottoGameResult lottoGameResult = lottoService.calcRank(lottoTickets.getTickets(), winningNumbers);
+        outputView.printLottoGameResult(lottoGameResult);
     }
 
 }

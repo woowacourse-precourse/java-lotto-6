@@ -9,7 +9,7 @@ import static lotto.util.ExceptionMessage.CHECK_SIZE_NUM;
 
 public class Lotto {
 
-    public static final int PRICE = 1000;
+    public static final Long PRICE = 1000L;
 
     private final List<Integer> numbers;
 

@@ -18,6 +18,14 @@ public class TypeConvertor {
         }
     }
 
+    public static Long stringToLong(final String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_NUMERIC.getMessage());
+        }
+    }
+
     public static List<Integer> stringToStringList(final String input) {
         try {
             return Arrays.stream(input.split(REGEX))

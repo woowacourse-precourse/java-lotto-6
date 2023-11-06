@@ -24,7 +24,7 @@ public class InputView {
         try {
             System.out.println(Message.INPUT_MONEY.message);
             String input = Console.readLine();
-            Integer convertInput = TypeConvertor.stringToInt(input);
+            Long convertInput = TypeConvertor.stringToLong(input);
             return PurchasePrice.of(convertInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

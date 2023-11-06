@@ -14,4 +14,8 @@ public enum LottoPrize {
     LottoPrize(final long amount) {
         this.amount = amount;
     }
+
+    public long getAmount() {
+        return amount;
+    }
 }

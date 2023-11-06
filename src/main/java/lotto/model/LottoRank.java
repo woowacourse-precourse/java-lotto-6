@@ -36,4 +36,8 @@ public enum LottoRank {
     public boolean isNone() {
         return this == NONE;
     }
+
+    public long getPrize() {
+        return lottoPrize.getAmount();
+    }
 }

@@ -5,6 +5,7 @@ import lotto.domain.MatchResult;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import static lotto.domain.MatchResult.NONE;
 import static lotto.domain.constant.StringConstant.*;
@@ -72,7 +73,7 @@ public class OutputService {
 
 
     private static void printBlankLines(int line) {
-        for (int i = 0; i < line; i++)
-            System.out.println();
+        IntStream.range(0, line)
+                .forEach(i -> System.out.println());
     }
 }

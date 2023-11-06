@@ -61,5 +61,4 @@ public class LottoService {
 
         printResult(result, margin);
     }
-
 }

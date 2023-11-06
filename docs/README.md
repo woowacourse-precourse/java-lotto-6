@@ -49,6 +49,7 @@
     - [x] askWinningNums
     - [x] askBonus
     - [x] generateLottos
+    - [x] StaisticsResult class
 - [ ] string을 enum으로 관리하자
 - [ ] n개 일치, 가격: enum으로 상수로 관리하자
 - [ ] countMap 클래스로 만들자

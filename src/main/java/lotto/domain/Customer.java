@@ -33,8 +33,8 @@ public class Customer {
         return this.MONEY / MONEY_STANDARD;
     }
 
-    public String calculateRevenueRatio(double winningSum) {
-        double result = winningSum / MONEY * MULTIPLY_STANDARD;
+    public String calculateRevenueRatio(Double winningSum) {
+        Double result = winningSum / MONEY * MULTIPLY_STANDARD;
         DecimalFormat standard = new DecimalFormat(DECIMAL_FORMAT);
         return standard.format(result);
     }
@@ -48,6 +48,4 @@ public class Customer {
     public List<Lotto> getAllLotto() {
         return Collections.unmodifiableList(buyLotto);
     }
-
-
 }

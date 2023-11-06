@@ -16,12 +16,12 @@ public class InputNumberException {
 
     private static void notNumberValidate(List<String> numbers) {
         numbers.forEach((String number) -> {
-                    try {
-                        Integer.parseInt(number);
-                    } catch (NumberFormatException exception) {
-                        throw new IllegalArgumentException(ERROR.getMessage() + NUMBER_RANGE.getMessage());
-                    }
-                });
+            try {
+                Integer.parseInt(number);
+            } catch (NumberFormatException exception) {
+                throw new IllegalArgumentException(ERROR.getMessage() + NUMBER_RANGE.getMessage());
+            }
+        });
     }
 
     private static void numberRangeValidate(List<String> numbers) {

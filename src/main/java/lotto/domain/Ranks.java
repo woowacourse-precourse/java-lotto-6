@@ -16,9 +16,8 @@ public class Ranks {
 
         for (Rank rank : ranks) {
             Integer key = rank.ordinal();
-            countResult.put(key, countResult.getOrDefault(key, 0)+1);
+            countResult.put(key, countResult.getOrDefault(key, 0) + 1);
         }
-
         return countResult;
     }
 

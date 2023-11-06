@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.exception.BonusNumberDuplicationException;
 import lotto.exception.WinningLottoNumbersDuplicationException;
+import lotto.exception.WrongLottoLengthException;
 
 public class WinningLotto {
+
+    private static final int LENGTH = 6;
 
     List<LottoNumber> winningLotto;
     LottoNumber bonusNumber;
@@ -14,6 +17,7 @@ public class WinningLotto {
 
         checkDuplication(winningLottoNumbers);
         checkDuplicationFrom(winningLottoNumbers, bonusNumber);
+        checkLength( winningLottoNumbers);
         winningLotto = winningLottoNumbers.stream()
                                           .map(Integer::parseInt)
                                           .map(number -> LottoNumber.of(number))
@@ -55,6 +59,11 @@ public class WinningLotto {
     private void checkDuplicationFrom(List<String> winningLotto, String bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
             throw new BonusNumberDuplicationException();
+        }
+    }
+    private void checkLength(List<String> lottoNumbers) {
+        if (lottoNumbers.size() != LENGTH) {
+            throw new WrongLottoLengthException();
         }
     }
 

@@ -76,6 +76,7 @@ public enum PrizeGrade {
 
     public boolean hasPositivePrizeAmount() {
         final int NO_PRIZE_AMOUNT = 0;
+
         return prizeAmount > NO_PRIZE_AMOUNT;
     }
 

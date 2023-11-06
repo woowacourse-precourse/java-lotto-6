@@ -1,7 +1,9 @@
 package lotto.domain.prize;
 
 import lotto.domain.prize.constants.PrizeGrade;
+import lotto.view.constants.PrintablePrizeType;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -28,14 +30,23 @@ public class FinalResults {
 
     public EnumMap<PrizeGrade, Integer> getPrizeGradeCount() {
         EnumMap<PrizeGrade, Integer> gradeCount = new EnumMap<>(PrizeGrade.class);
-        final int incrementValue = 1;
+        PrintablePrizeType[] printablePrizeType = PrintablePrizeType.values();
 
-        finalResults.forEach((key, value) -> {
-            boolean isPositivePrizeAmount = key.hasPositivePrizeAmount();
-            if (isPositivePrizeAmount) {
-                gradeCount.merge(key, incrementValue, Integer::sum);
-            }
-        });
+        Arrays.stream(printablePrizeType)
+                .filter(type -> type.getGrade().hasPositivePrizeAmount())
+                .filter(type.getGrade().isSame)
+
+        initializeGradeCount(gradeCount);
+
         return gradeCount;
+    }
+
+    private static void initializeGradeCount(EnumMap<PrizeGrade, Integer> gradeCount) {
+        Arrays.stream(PrizeGrade.values())
+                .forEach(grade -> gradeCount.put(grade, 0));
+    }
+
+    public boolean isSame(Prize prize1, Prize prize2) {
+
     }
 }

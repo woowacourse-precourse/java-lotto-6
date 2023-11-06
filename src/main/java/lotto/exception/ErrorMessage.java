@@ -1,18 +1,17 @@
 package lotto.exception;
 
 import lotto.domain.lottery.constants.LottoConstraint;
-import lotto.domain.parser.constants.InputConstraint;
 
 import static java.lang.String.format;
 
 public enum ErrorMessage {
-
     EMPTY_REQUEST("정상적으로 입력해주세요"),
     REQUEST_NOT_INTEGER("정수형으로 입력되어야 합니다."),
     CONTAIN_WHITESPACE("공백 없이 입력되어야 합니다."),
     NUMBER_DUPLICATED("중복된 숫자가 입력되었습니다."),
     BONUS_NUMBER_DUPLICATED("당첨 번호에 입력한 숫자가 보너스 번호에 입력되었습니다."),
     SYSTEM_CRASHED("시스템 내부에서 예기치 않은 문제가 발생했습니다."),
+    ENDS_WITH_DELIMITER("구분자로 끝나도록 입력할 수 없습니다."),
 
     NOT_ENOUGH_PAYMENT(
             format(
@@ -34,11 +33,6 @@ public enum ErrorMessage {
             format(
                     "구입 비용은 %d원 단위로 입력되어야 합니다.",
                     LottoConstraint.UNIT_PRICE.getValue())
-    ),
-    ENDS_WITH_DELIMITER(
-            format(
-                    "구분자(%s)로 끝나도록 입력할 수 없습니다.",
-                    InputConstraint.DELIMITER.getValue())
     ),
     NUMBER_COUNT_INVALID(
             format(

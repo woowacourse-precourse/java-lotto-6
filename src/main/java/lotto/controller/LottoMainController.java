@@ -4,6 +4,8 @@ import lotto.domain.lottery.Buyer;
 import lotto.domain.lottery.Lottos;
 import lotto.domain.prize.FinalResults;
 import lotto.domain.prize.Prize;
+import lotto.dto.FinalResultResponse;
+import lotto.view.output.FinalResultWriter;
 
 public class LottoMainController {
     private LottoMainController() {
@@ -13,8 +15,11 @@ public class LottoMainController {
         Buyer buyer = BuyerController.requestPayment();
         Lottos lottos = PurchaseController.purchase(buyer);
         Prize prize = PrizeController.requestJackpotNumbers();
-        FinalResults finalResults = FinalResultController.getFinalResult(lottos, prize);
 
-        FinalResultController.publish(buyer, finalResults);
+        FinalResults finalResults = FinalResultController.getFinalResult(lottos, prize);
+        FinalResultResponse finalResultResponse = FinalResultController.responseFinalResult(buyer, finalResults);
+
+        FinalResultWriter.responseMatchingResult(finalResultResponse);
+        FinalResultWriter.responseTotalYield(finalResultResponse);
     }
 }

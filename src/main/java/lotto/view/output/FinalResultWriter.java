@@ -7,7 +7,7 @@ import lotto.view.constants.PrintablePrizeType;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.Objects;
+import java.util.Optional;
 
 import static lotto.view.constants.PrintFormat.SEPARATOR_FORMAT;
 import static lotto.view.constants.PrintMessage.*;
@@ -16,18 +16,17 @@ public final class FinalResultWriter extends OutputWriter {
     private FinalResultWriter() {
     }
 
-    public static void printFinalResult(final FinalResultResponse response) {
+    public static void responseTotalYield(final FinalResultResponse response) {
+        String formattedYieldMessage = String.format(
+                RESPONSE_YIELD.getMessage(), response.getFormattedYield());
+        println(formattedYieldMessage);
+    }
+
+    public static void responseMatchingResult(FinalResultResponse response) {
         printNewLine();
         printMessage(RESPONSE_PRIZE_STATISTICS);
         printMessage(RESPONSE_SEPARATOR);
 
-        String formattedYieldMessage = String.format(
-                RESPONSE_YIELD.getMessage(), response.getFormattedYield());
-        printMatchingResult(response);
-        println(formattedYieldMessage);
-    }
-
-    private static void printMatchingResult(FinalResultResponse response) {
         EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.prizeResultCount();
         PrintablePrizeType[] printablePrizeTypes = PrintablePrizeType.values();
 
@@ -40,18 +39,27 @@ public final class FinalResultWriter extends OutputWriter {
             PrintablePrizeType type,
             EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap
     ) {
-        PrizeGrade grade = type.getGrade();
-
         DecimalFormat seperatedFormat = SEPARATOR_FORMAT.getFormat();
 
-        String format = seperatedFormat.format(grade.getPrizeAmount());
-        Integer integer = prizeGradeIntegerEnumMap.get(type.getGrade());
+        PrizeGrade grade = type.getGrade();
+        int typeMatchingCount = grade.getPrizeMatchingCount();
 
-        if (Objects.isNull(integer)) {
-            integer = 0;
-        }
+        String decimalTypeFormattedPrizeAmount = seperatedFormat.format(grade.getPrizeAmount());
+        Integer wrappedMappingCount = prizeGradeIntegerEnumMap.get(type.getGrade());
+        int defaultMatchingCount = getDefaultMatchingCount(wrappedMappingCount);
 
-        String format1 = String.format(type.getFormat(), grade.getPrizeMatchingCount(), format, integer);
-        System.out.println(format1);
+        String eachResultMessage = String.format(
+                type.getFormat(),
+                typeMatchingCount,
+                decimalTypeFormattedPrizeAmount,
+                defaultMatchingCount
+        );
+
+        System.out.println(eachResultMessage);
+    }
+
+    private static int getDefaultMatchingCount(Integer matchingCount) {
+        return Optional.ofNullable(matchingCount)
+                .orElse(0);
     }
 }

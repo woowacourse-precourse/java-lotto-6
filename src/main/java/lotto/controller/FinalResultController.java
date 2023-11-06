@@ -8,7 +8,6 @@ import lotto.domain.prize.PrizeRank;
 import lotto.domain.prize.Revenue;
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
-import lotto.view.output.FinalResultWriter;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -26,14 +25,13 @@ public class FinalResultController {
         return FinalResults.from(prizeRanks);
     }
 
-    public static void publish(
+    public static FinalResultResponse responseFinalResult(
             final Buyer buyer,
             final FinalResults finalResults
     ) {
         Revenue revenue = Revenue.of(buyer, finalResults);
         EnumMap<PrizeGrade, Integer> prizeGradeCount = finalResults.getPrizeGradeCount();
 
-        FinalResultResponse finalResultResponse = new FinalResultResponse(revenue.getYield(), prizeGradeCount);
-        FinalResultWriter.printFinalResult(finalResultResponse);
+        return new FinalResultResponse(revenue.getYield(), prizeGradeCount);
     }
 }

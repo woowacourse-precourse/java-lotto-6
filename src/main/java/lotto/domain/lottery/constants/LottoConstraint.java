@@ -2,7 +2,7 @@ package lotto.domain.lottery.constants;
 
 public enum LottoConstraint {
     UNIT_PRICE(1_000),
-    MAXIMUM_PURCHASE_PAYMENT(100_000),
+    MAXIMUM_PURCHASE_PAYMENT(10_000_000),
 
     LOTTO_PICK_COUNT(6),
     NUMBER_LOWER_BOUND(1),

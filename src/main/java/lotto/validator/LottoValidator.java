@@ -15,4 +15,21 @@ public class LottoValidator {
             throw new IllegalArgumentException("[ERROR] 숫자는 6개만 입력하세요.");
         }
     }
+
+    private boolean isNotInRange(List<Integer> numbers) {
+        Optional<Integer> notRangeNum = numbers.stream()
+                .filter(number -> 1 > number || number > 45)
+                .findAny();
+
+        if (notRangeNum.isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void checkRange(List<Integer> numbers) {
+        if(isNotInRange(numbers)){
+            throw new IllegalArgumentException("[ERROR] 입력 가능한 로또 숫자 범위는 1 ~ 45입니다.");
+        }
+    }
 }

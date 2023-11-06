@@ -4,6 +4,7 @@ public class Money {
     private static final String TYPE_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 최소 구입 금액은 %d원입니다.";
     private static final String DIVIDE_ERROR_MESSAGE = "[ERROR] 로또 구입 금액은 %d원으로 나누어 떨어져야 합니다.";
+    private static final String RATE_FORMAT = "%.1f";
     private static final int LOTTO_PRICE = 1000;
 
     private final int amount;
@@ -22,6 +23,10 @@ public class Money {
 
     public int getLottoCount() {
         return amount / LOTTO_PRICE;
+    }
+
+    public String getProfit(int prizeMoney) {
+        return String.format(RATE_FORMAT, (double) prizeMoney / amount);
     }
 
     private static void validateType(String inputAmount) {

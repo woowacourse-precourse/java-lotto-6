@@ -32,4 +32,8 @@ public enum Prize {
                 .filter(prize -> prize.condition.test(matchCount, isMatchBonus))
                 .findAny().get();
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

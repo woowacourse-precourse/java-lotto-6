@@ -1,5 +1,7 @@
 package lotto.Domain;
 
+import static lotto.Util.LottoNumberGenerator.createLottoNumberTickets;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +24,15 @@ public class PlayerPrice {
         return issuedLottoTickets;
     }
 
-    public int getBuyingPrice() {
+    public int getBuyingPay() {
         return buyingPay;
     }
 
-    public int getWinningPrice() {
+    public int getWinningMoney() {
         return winningMoney;
     }
 
-    public void addWinningPrice(int money) {
+    public void addWinningMoney(int money) {
         winningMoney += money;
     }
 }

@@ -1,6 +1,8 @@
 package lotto.Domain;
 
 import java.util.List;
+import lotto.Exception.BonusNumberException;
+import lotto.Exception.LottoNumberException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        lottoNumberException.validateLottoNumbers(numbers);
+        lottoNumberException.checkLottoNumbers(numbers);
     }
 
     public List<Integer> getLottoNumbers() {
@@ -22,7 +24,7 @@ public class Lotto {
     }
 
     public void setBonusNumber(int inputBonusNumber) {
-        bonusNumberException.validateBonusNumber(numbers, inputBonusNumber);
+        bonusNumberException.checkBonusNumber(numbers, inputBonusNumber);
         numbers.add(inputBonusNumber);
     }
 

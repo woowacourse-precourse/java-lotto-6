@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Domain.Lotto;
+import lotto.Enum.LottoRankingInfo;
 import lotto.Domain.PlayerNumber;
 import lotto.Domain.PlayerPrice;
 import lotto.View.OutputView;

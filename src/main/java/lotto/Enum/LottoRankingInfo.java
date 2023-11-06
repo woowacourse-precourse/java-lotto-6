@@ -1,4 +1,4 @@
-package lotto.Domain.Enum;
+package lotto.Enum;
 
 import java.util.Arrays;
 

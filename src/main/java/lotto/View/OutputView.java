@@ -2,6 +2,7 @@ package lotto.View;
 
 import java.util.Map;
 import lotto.Domain.PlayerPrice;
+import lotto.Enum.LottoRankingInfo;
 
 public class OutputView {
     private static void println(String message) {

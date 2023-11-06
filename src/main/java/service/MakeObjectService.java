@@ -3,6 +3,8 @@ package service;
 import domain.Amount;
 import domain.Lotto;
 import domain.Lottos;
+import domain.WinningNumbers;
+import java.util.List;
 
 public class MakeObjectService {
 
@@ -16,5 +18,9 @@ public class MakeObjectService {
 
     public static Lotto lotto() {
         return new Lotto();
+    }
+
+    public static Lotto lotto(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 }

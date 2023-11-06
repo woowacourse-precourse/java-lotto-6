@@ -3,7 +3,9 @@ package controller;
 import View.InputView;
 import View.OuputView;
 import domain.Amount;
+import domain.Lotto;
 import domain.Lottos;
+import domain.WinningNumbers;
 import service.MakeObjectService;
 import service.UserInputService;
 
@@ -21,6 +23,7 @@ public class LottoController {
 
         //createWinningNumbers
         InputView.winningNumbersMessage();
+        Lotto lotto = UserInputService.lotto();
 
         //compareLottoNumbers
         //printResult

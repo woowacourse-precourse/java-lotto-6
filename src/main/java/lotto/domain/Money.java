@@ -29,4 +29,8 @@ public class Money {
         return money / LottoConfig.LOTTO_PRICE;
     }
 
+    public int getPrice() {
+        return money;
+    }
+
 }

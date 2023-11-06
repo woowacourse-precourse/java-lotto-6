@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.LottoConfig;
 import lotto.constant.LottoRank;
 import lotto.util.NumberGenerator.INumberGenerator;
 import lotto.util.NumberGenerator.NumberGenerator;
@@ -26,10 +25,6 @@ public class LottoPack {
 
     public int size() {
         return lottoPack.size();
-    }
-
-    public int getPrice() {
-        return lottoPack.size() * LottoConfig.LOTTO_PRICE;
     }
 
     public LottoStatistics calculate(Result result) {

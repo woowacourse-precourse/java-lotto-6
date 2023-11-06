@@ -18,7 +18,11 @@ public class LottoController {
 
     public void play() {
 
-        LottoPack lottoPack = buyLottoPack();
+        Money money = loop(this::getMoney);
+        outputView.newline();
+
+        LottoPack lottoPack = LottoPack.createLottoPack(money.count());
+        outputView.printLottoPack(lottoPack);
         outputView.newline();
 
         Result result = getResult();
@@ -27,17 +31,9 @@ public class LottoController {
         LottoStatistics lottoStatistics = lottoPack.calculate(result);
         outputView.printResult(lottoStatistics);
 
-        IncomeRate incomeRate = new IncomeRate(lottoPack.getPrice(), lottoStatistics.getIncome());
+        IncomeRate incomeRate = new IncomeRate(money.getPrice(), lottoStatistics.getIncome());
         outputView.printIncomeRate(incomeRate);
 
-    }
-
-    private LottoPack buyLottoPack() {
-        Money money = loop(this::getMoney);
-        outputView.newline();
-        LottoPack lottoPack = LottoPack.createLottoPack(money.count());
-        outputView.printLottoPack(lottoPack);
-        return lottoPack;
     }
 
     private <T> T loop(Supplier<T> function) {

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    @Test
+    @Test // 여기서 체크 가능한게 정렬이 잘되는거랑 결과 출력과 수익률 출력.
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
             () -> {
@@ -45,6 +45,7 @@ class ApplicationTest extends NsTest {
             List.of(1, 3, 5, 14, 22, 45)
         );
     }
+
     @Test
     void 보너스_번호_예외_테스트() {
         assertSimpleTest(() -> {

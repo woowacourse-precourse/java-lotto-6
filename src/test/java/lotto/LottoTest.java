@@ -63,4 +63,13 @@ class LottoTest {
             .isInstanceOf(IllegalArgumentException.class))
             .isInstanceOf(AssertionError.class);
     }
+
+    @DisplayName("숫자 5개에 보너스 점수 1개면 2등이다.")
+    @Test
+    void confirmWinningRank() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        assertThat(lotto.confirmRank(new ArrayList<Integer>(List.of(1, 2, 3, 4, 5, 8)), 7)).isEqualTo(Rank.SECOND);
+    }
 }
+
+

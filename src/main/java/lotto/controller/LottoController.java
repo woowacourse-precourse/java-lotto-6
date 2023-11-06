@@ -12,7 +12,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-  private static lotto.model.Lotto Lotto;
   private static lotto.view.InputView inputView;
   private static lotto.controller.InputProcessor InputPresent;
   private static lotto.model.LottoGame LottoGame;
@@ -22,8 +21,6 @@ public class LottoController {
     InputPresent = new InputProcessor();
     LottoGame = new LottoGame();
   }
-
-  private static List<Integer> lotto = new ArrayList<>();
 
   public static List<List<Integer>> createLottos(int calculateLottoCount) {
     List<List<Integer>> lottos = new ArrayList<>();
@@ -43,8 +40,7 @@ public class LottoController {
     String winningNumber = inputView.inputWinningNumber();
     List<String> winningNumbers = InputProcessor.splitWinningNumbers(winningNumber);
     List<Integer> winningNumberSet = InputProcessor.convertToIntegerList(winningNumbers);
-    int bonusNumber = inputView.inputBonusNumber();
-
+    int bonusNumber = inputView.inputBonusNumber(winningNumberSet);
     List<Integer> rank = checkLottoResults(lottos, winningNumberSet, bonusNumber);
     printLottoResults(money, rank);
   }

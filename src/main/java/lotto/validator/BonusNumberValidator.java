@@ -29,8 +29,8 @@ public class BonusNumberValidator {
     }
   }
 
-  public static void isDuplicate(List<Integer> winningNumberSet ,int input) {
-      Integer inputInteger = input;
+  public static void isDuplicate(List<Integer> winningNumberSet ,String input) {
+      Integer inputInteger = Integer.valueOf(input);
       if (winningNumberSet.contains(inputInteger)) {
         throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_MESSAGE);
       }

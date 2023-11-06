@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoWinningNumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
@@ -28,17 +29,18 @@ public class InputView {
     return Console.readLine();
   }
 
-  public static int inputBonusNumber() {
+  public static int inputBonusNumber(List<Integer> winningNumberSet) {
     try{
       OutputView.printInputBonusNumberMessage();
       String bonusNumber = Console.readLine();
       BonusNumberValidator.isValueInRange(bonusNumber);
       BonusNumberValidator.isAllIntegersValid(bonusNumber);
       BonusNumberValidator.isEmptyString(bonusNumber);
+      BonusNumberValidator.isDuplicate(winningNumberSet, bonusNumber);
       return Integer.parseInt(bonusNumber);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      return inputBonusNumber();
+      return inputBonusNumber(winningNumberSet);
     }
   }
 }

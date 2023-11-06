@@ -67,4 +67,16 @@ class LottoTest {
 
         assertFalse(lotto.contains(bonusNumber));
     }
+
+    @Test
+    void 로또_결과가_6개_일치인_경우_해당하는_Result를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto compareLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7, compareLotto);
+        Result expected = Result.SIX_MATCH;
+
+        Result actual = lotto.countMatch(compareLotto, bonusNumber);
+
+        assertEquals(expected, actual);
+    }
 }

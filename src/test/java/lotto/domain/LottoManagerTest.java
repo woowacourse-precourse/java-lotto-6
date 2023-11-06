@@ -49,10 +49,10 @@ class LottoManagerTest {
     void checkWinning() {
         // given
         List<Lotto> userLottos = new ArrayList<>();
-        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        userLottos.add(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6))); // 6개 일치, 1등
+        userLottos.add(new Lotto(List.of(1, 2, 3, 7, 8, 9))); // 3개 일치, 5등
 
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 1등: 1, 5등: 1
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Integer bonusNumber = 10;
 
         // when
@@ -64,6 +64,24 @@ class LottoManagerTest {
 
     }
 
+    @DisplayName("로또 2등 당첨")
+    @Test
+    void checkSecondWinning() {
+        // given
+        List<Lotto> userLottos = new ArrayList<>();
+        userLottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));   // 5개 일치 + 보너스번호 일치, 2등
+
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Integer bonusNumber = 6;
+
+        // when
+        LottoResult lottoResult = LottoManager.checkWinning(userLottos, winningLotto, bonusNumber);
+
+        // then
+        assertThat(lottoResult.state.get(Prize.SECOND)).isEqualTo(1);
+        assertThat(lottoResult.state.get(Prize.THIRD)).isEqualTo(0);
+
+    }
 
 
 }

@@ -2,6 +2,7 @@ package lotto.provider;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.data.Lotto;
+import lotto.error.Error;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class LottoProvider {
     private int getPurchasableCount(String input) {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount%LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(Error.LOTTO_PURCHASE_AMOUNT_UNIT_ERROR.getMessage());
         }
         return purchaseAmount / LOTTO_PRICE;
     }

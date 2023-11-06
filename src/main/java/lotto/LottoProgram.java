@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.data.Lotto;
 import lotto.data.LottoResult;
 import lotto.data.WinningNumber;
+import lotto.error.Error;
 import lotto.provider.BonusProvider;
 import lotto.provider.LottoProvider;
 import lotto.provider.PrizeProvider;
@@ -64,7 +65,7 @@ public class LottoProgram {
     private void validateInteger(String input) {
         // 숫자가 아닌 경우 예외 발생
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(Error.LOTTO_PURCHASE_AMOUNT_UNIT_ERROR.getMessage());
         }
     }
 }

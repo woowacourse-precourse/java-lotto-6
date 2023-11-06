@@ -1,5 +1,7 @@
 package lotto.data;
 
+import lotto.error.Error;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException(Error.LOTTO_SIZE_ERROR.getMessage());
         }
     }
 }

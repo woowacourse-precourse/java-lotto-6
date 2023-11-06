@@ -1,5 +1,7 @@
 package lotto.provider;
 
+import lotto.error.Error;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,25 +33,25 @@ public class WinningNumberProvider {
 
     private void validateDuplication(List<Integer> winningNumbers, int winningNumber) {
         if (winningNumbers.contains(winningNumber)) {
-            throw new IllegalArgumentException("error");
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private void validateInteger(String input) {
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("error");
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_INPUT_INTEGER_ERROR.getMessage());
         }
     }
 
     private void validateRange(int input) {
         if (WINNING_START_NUMBER > input || input > WINNING_END_NUMBER) {
-            throw new IllegalArgumentException("error");
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     private void validateSize(List<Integer> winningNumber) {
         if (winningNumber.size() != 6) {
-            throw new IllegalArgumentException("error");
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_SIZE_ERROR.getMessage());
         }
     }
 }

@@ -17,16 +17,28 @@ public class PurchaseAmount {
     }
 
     private void validateRange(int amount) {
-        if (amount < MIN_PURCHASE_AMOUNT || amount > MAX_PURCHASE_AMOUNT) {
+        if (isLessThanMinimumAmount(amount) || isGreaterThanMaximumAmount(amount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage()
                     .formatted(MIN_PURCHASE_AMOUNT, MAX_PURCHASE_AMOUNT));
         }
     }
 
+    private boolean isLessThanMinimumAmount(int amount) {
+        return amount < MIN_PURCHASE_AMOUNT;
+    }
+
+    private boolean isGreaterThanMaximumAmount(int amount) {
+        return amount > MAX_PURCHASE_AMOUNT;
+    }
+
     private void validateUnit(int amount) {
-        if (amount % LottoConstants.LOTTO_PRICE != 0) {
+        if (isNotDividedByLottoPrice(amount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
         }
+    }
+
+    private boolean isNotDividedByLottoPrice(int amount) {
+        return amount % LottoConstants.LOTTO_PRICE != 0;
     }
 
     public int decrease(int lottoPrice) {

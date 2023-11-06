@@ -10,7 +10,11 @@ public class IssuedLottoDetails {
 
     private IssuedLottoDetails(List<Lotto> lottos) {
         this.quantity = lottos.size();
-        this.lottos = lottos.stream()
+        this.lottos = toList(lottos);
+    }
+
+    private List<String> toList(List<Lotto> lottos) {
+        return lottos.stream()
                 .map(Lotto::toString)
                 .toList();
     }

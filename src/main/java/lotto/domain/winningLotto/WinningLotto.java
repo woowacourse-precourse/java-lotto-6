@@ -15,11 +15,19 @@ public class WinningLotto {
     }
 
     public Rank determineRank(Lotto lotto) {
-        long matchCount = winningNumbers.matchCount(lotto);
-        boolean hasBonusNumber = lotto.contains(bonusNumber.number());
+        long matchCount = getMatchCount(lotto);
+        boolean hasBonusNumber = hasBonusNumber(lotto);
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchesCondition(matchCount, hasBonusNumber))
                 .findFirst()
                 .orElse(Rank.MISS);
+    }
+
+    private long getMatchCount(Lotto lotto) {
+        return winningNumbers.matchCount(lotto);
+    }
+
+    private boolean hasBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber.number());
     }
 }

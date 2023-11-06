@@ -19,21 +19,32 @@ public class WinningNumbers {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.LOTTO_NUMBERS_SIZE) {
+        if (isInvalidSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage()
                     .formatted(LottoConstants.LOTTO_NUMBERS_SIZE));
         }
     }
 
+    private boolean isInvalidSize(List<Integer> numbers) {
+        return numbers.size() != LottoConstants.LOTTO_NUMBERS_SIZE;
+    }
+
     private void validateRange(List<Integer> numbers) {
-        long numbersSizeWithValidRange = numbers.stream()
-                .filter(number ->
-                        (LottoConstants.MIN_LOTTO_NUMBER <= number && number <= LottoConstants.MAX_LOTTO_NUMBER))
-                .count();
+        long numbersSizeWithValidRange = getNumbersSizeWithValidRange(numbers);
         if (numbers.size() != numbersSizeWithValidRange) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage()
                     .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
         }
+    }
+
+    private long getNumbersSizeWithValidRange(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(this::isValidRange)
+                .count();
+    }
+
+    private boolean isValidRange(int number) {
+        return LottoConstants.MIN_LOTTO_NUMBER <= number && number <= LottoConstants.MAX_LOTTO_NUMBER;
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {

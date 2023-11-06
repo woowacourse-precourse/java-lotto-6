@@ -10,9 +10,21 @@ public record BonusNumber(int number) {
     }
 
     private void validate(int number) {
-        if (number < LottoConstants.MIN_LOTTO_NUMBER || number > LottoConstants.MAX_LOTTO_NUMBER) {
+        if (isInvalidRange(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage()
                     .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
         }
+    }
+
+    private boolean isInvalidRange(int number) {
+        return isLessThanMinimumLottoNumber(number) || isGreaterThanMaximumLottoNumber(number);
+    }
+
+    private boolean isLessThanMinimumLottoNumber(int number) {
+        return number < LottoConstants.MIN_LOTTO_NUMBER;
+    }
+
+    private boolean isGreaterThanMaximumLottoNumber(int number) {
+        return number > LottoConstants.MAX_LOTTO_NUMBER;
     }
 }

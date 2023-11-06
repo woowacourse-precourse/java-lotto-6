@@ -8,7 +8,7 @@ import lotto.constants.LottoConstants;
 public class LottoIssuer {
 
     public List<Lotto> issue(PurchaseAmount purchaseAmount) {
-        int lottoCount = purchaseAmount.getAmount() / LottoConstants.LOTTO_PRICE;
+        int lottoCount = getLottoCount(purchaseAmount);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(getLotto());
@@ -16,13 +16,15 @@ public class LottoIssuer {
         return List.copyOf(lottos);
     }
 
+    private int getLottoCount(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.getAmount() / LottoConstants.LOTTO_PRICE;
+    }
+
     private Lotto getLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 LottoConstants.MIN_LOTTO_NUMBER,
                 LottoConstants.MAX_LOTTO_NUMBER,
-                LottoConstants.LOTTO_NUMBERS_SIZE
-                )
-                .stream().sorted().toList();
+                LottoConstants.LOTTO_NUMBERS_SIZE).stream().sorted().toList();
         return new Lotto(randomNumbers);
     }
 }

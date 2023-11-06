@@ -165,4 +165,11 @@ public class Function {
 		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+matched[7]+"개");
 		System.out.println("6개 일치 (2,000,000,000원) - "+matched[6]+"개");
 	}
+	
+	protected void showRateOfReturn(int[] matched, int money) {
+		int sum=matched[3]*5000+matched[4]*50000+matched[5]*1500000+ matched[7]*30000000+matched[6]*2000000000;
+		double result= Math.round(sum/money);
+		System.out.printf("총 수익률은 %.1f%% 입니다.", result);
+		
+	}
 }

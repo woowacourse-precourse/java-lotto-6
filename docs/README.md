@@ -1,3 +1,24 @@
+## 🌸 프로젝트 소개
+
+    이 프로젝트는 2023 우아한테크코스 프리코스 3주차 미션 진행을 위한 Repository 입니다.
+
+## 📚 개발 환경
+
+    OS : MAC OS 14.1
+    Java : JDK 17.0.7
+    IDEA : IntelliJ 2023.2.3
+
+## 📁 Main 내부 구조
+
+    ㄴSrc
+        ㄴ Main
+            ㄴ Application.java          // Main  : 메인 작동 클래스
+            ㄴ Lotto.java                // Model : 로또 당첨 번호 클래스
+            ㄴ LottoDB.java              // Model : 사용자 로또 및 보너스 번호 저장 및 관리 클래스
+            ㄴ LottoController.java      // Controller : 작동 흐름 제어 및 연산 컨트롤러 클래스
+            ㄴ LottoView.java            // View : 사용자 화면 출력 담당 클래스
+            ㄴ Prize.java                // Enum : 로또의 당첨 금액을 관리하기 위한 Enum
+
 ## ✅ 기능 구현 리스트
 
     - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, 

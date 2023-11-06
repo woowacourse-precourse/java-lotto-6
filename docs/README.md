@@ -23,6 +23,8 @@
 - [v] 수익률 출력 -> 소수점 둘째 자리에서 반올림
 - [v] Lotto 클래스 상속 받아 로또 번호 생성하도록 수정
 - [v] 로또 번호 에러/예외 설정 및 출력 -> 에러 문구는 "[ERROR]"로 시작할 것
+- [v] else, switch 문 사용하지 않고 메소드 15라인 안쪽으로 하도록 할 것
+- [v] Java Enum을 적용할 것
 - [v] 여러 테스트 케이스 작성
 
 # 클래스 별 변수와 메소드
@@ -55,18 +57,27 @@
   - `private void validateUniqueBonusNumber(int input)`: 보너스 번호의 고유성을 검증합니다.
 
 ### LottoGame 클래스:
-- **인스턴스 변수:**
-  - `gameCount`: 구매한 로또 게임의 수입니다.
-  - `lottogame`: 구매한 로또 게임을 나타내는 Lotto 인스턴스의 리스트입니다.
+  **인스턴스 변수:**
+  - `private static final int LOTTO_PRICE = 1000;`: 로또 한 장의 가격을 나타내는 상수
+  - `private static final int MIN_NUMBER = 1;`: 로또 번호의 최소값을 나타내는 상수
+  - `private static final int MAX_NUMBER = 45;`: 로또 번호의 최대값을 나타내는 상수
+  - `private static final int LOTTO_NUMBERS_COUNT = 6;`: 한 게임당 선택할 수 있는 로또 번호 개수를 나타내는 상수
+  - `private static final int LOTTO_TOTAL_NUMBERS_COUNT = 7;`: 전체 로또 번호 개수(보너스 번호 포함)를 나타내는 상수
 
-- **메서드:**
-  - `public void setLottoGame(int number)`: 구매할 로또 게임 수를 설정합니다.
-  - `public void validatePurchaseAmount()`: 구매 금액을 읽어 검증합니다.
-  - `public void generateLottoNumbers()`: 지정된 게임 수에 기반하여 로또 번호를 생성하고 출력합니다.
-  - `public void printLotto()`: 생성된 로또 번호를 출력합니다.
-  - `public void printLottoWin(LottoWin lottoWin)`: 사용자 로또 번호를 당첨 번호와 비교하고 상금을 계산합니다.
-  - `private int countMatchingNumbers(Lotto userNumbers, Lotto winNumbers)`: 사용자 번호와 당첨 번호 간의 일치하는 숫자 수를 계산합니다.
-  - `public void getEarningRate(int match3, int match4, int match5, int match5WithBonus, int match6)`: 일치하는 숫자에 따른 총 수익과 수익률을 계산하고 출력합니다.
+  - `private int gameCount;`: 구매한 로또 게임의 개수를 저장하는 변수
+  - `public List<Lotto> lottogame;`: 로또 번호를 담는 리스트
+
+  **메소드:**
+  - `public LottoGame()`: LottoGame 클래스의 생성자. 로또 번호 리스트를 초기화한다.
+  - `public void setLottoGame(int number)`: 구매한 로또 게임의 개수를 설정하는 메소드
+  - `public void validatePurchaseAmount()`: 구매 금액이 유효한지 검증하고 게임의 개수를 설정하는 메소드
+  - `public void generateLottoNumbers()`: 지정된 개수만큼 로또 번호를 생성하고 출력하는 메소드
+  - `public void printLotto()`: 현재 로또 번호 리스트를 출력하는 메소드
+  - `public void printLottoWin(LottoWin lottoWin)`: 당첨 번호와 보너스 번호를 기반으로 로또 번호를 당첨 번호와 비교하고 결과를 출력하는 메소드
+  - `private int[] calculatePrizeCounts(LottoWin lottoWin)`: 당첨 번호와 비교하여 각 등수별 일치한 번호 개수를 계산하는 메소드
+  - `private int calculateTotalPrize(int[] prizeCounts)`: 각 등수별로 얻을 수 있는 총 상금을 계산하는 메소드
+  - `private void printPrizeCounts(int[] prizeCounts)`: 각 등수별 일치한 번호 개수와 상금을 출력하는 메소드
+  - `private int countMatchingNumbers(Lotto userNumbers, Lotto winNumbers)`: 사용자가 선택한 로또 번호와 당첨 번호를 비교하여 일치한 번호 개수를 계산하는 메소드
 
 ### 실행 결과 예시
 

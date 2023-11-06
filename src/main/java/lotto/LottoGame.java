@@ -12,6 +12,7 @@ public class LottoGame {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_NUMBERS_COUNT = 6;
+    private static final int LOTTO_TOTAL_NUMBERS_COUNT = 7;
 
     private int gameCount;
     public List<Lotto> lottogame;
@@ -60,36 +61,50 @@ public class LottoGame {
     }
 
     public void printLottoWin(LottoWin lottoWin) {
-        int match3 = 0;
-        int match4 = 0;
-        int match5 = 0;
-        int match5WithBonus = 0;
-        int match6 = 0;
+        int[] prizeCounts = calculatePrizeCounts(lottoWin);
+        printPrizeCounts(prizeCounts);
+        int totalPrize = calculateTotalPrize(prizeCounts);
+    
+        float earningRate = (totalPrize / (float) (this.gameCount * 1000)) * 100;
+        double roundedEarningRate = Math.round(earningRate * 100.0) / 100.0;
+        System.out.println("총 수익률은 " + roundedEarningRate + "%입니다.");
+    }
+
+    private int[] calculatePrizeCounts(LottoWin lottoWin) {
+        int[] matches = new int[8];
     
         for (Lotto numbers : this.lottogame) {
             int matchingNumbers = countMatchingNumbers(numbers, lottoWin.getWinNumbers());
             boolean hasBonusNumber = numbers.containsNumber(lottoWin.getBonusNumber());
+            int index = Math.min(matchingNumbers, 6);
     
-            if (matchingNumbers == 3) {
-                match3++;
-            } else if (matchingNumbers == 4) {
-                match4++;
-            } else if (matchingNumbers == 5 && hasBonusNumber) {
-                match5WithBonus++;
-            } else if (matchingNumbers == 5) {
-                match5++;
-            } else if (matchingNumbers == 6) {
-                match6++;
+            if (matchingNumbers == 5 && hasBonusNumber) {
+                index = 7;
             }
+    
+            matches[index]++;
         }
+    
+        return matches;
+    }    
 
-        System.out.println("3개 일치 (5,000원) - " + match3 + "개");
-        System.out.println("4개 일치 (50,000원) - " + match4 + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + match5 + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + match5WithBonus + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + match6 + "개");
+    private int calculateTotalPrize(int[] prizeCounts) {
+        int totalPrize = 0;
+        for (int i = 3; i <= LOTTO_NUMBERS_COUNT; i++) {
+            totalPrize += prizeCounts[i] * Prize.values()[i - 3].getAmount();
+        }
+        return totalPrize;
+    }
 
-        getEarningRate(match3, match4, match5, match5WithBonus, match6);
+    private void printPrizeCounts(int[] prizeCounts) {
+        String[] prizeNames = {
+            "", "", "", "3개 일치 (5,000원)", "4개 일치 (50,000원)",
+            "5개 일치 (1,500,000원)", "5개 일치, 보너스 볼 일치 (30,000,000원)", "6개 일치 (2,000,000,000원)"
+        };
+    
+        for (int i = 3; i <= LOTTO_TOTAL_NUMBERS_COUNT; i++) {
+            System.out.println(prizeNames[i] + " - " + prizeCounts[i] + "개");
+        }
     }
     
     private int countMatchingNumbers(Lotto userNumbers,  Lotto winNumbers) {
@@ -103,14 +118,6 @@ public class LottoGame {
             }
         }
         return count;
-    }
-
-    public void getEarningRate(int match3, int match4, int match5, int match5WithBonus, int match6){
-        int price = this.gameCount*1000;
-        int totalPrice = match3 * 5000 + match4 * 50000 + match5 * 1500000 + match5WithBonus * 30000000 + match6 * 2000000000;
-        float earningRate = (totalPrice/(float)price) * 100;
-        double roundedEarningRate = Math.round(earningRate * 100.0) / 100.0;
-        System.out.println("총 수익률은 " + roundedEarningRate + "%입니다.");
     }
 
 }

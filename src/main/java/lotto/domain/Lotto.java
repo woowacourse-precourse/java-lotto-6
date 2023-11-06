@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,5 +30,11 @@ public class Lotto {
 
             duplication.put(number, true);
         }
+    }
+
+    public void print() {
+        String numbersToString = numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
     }
 }

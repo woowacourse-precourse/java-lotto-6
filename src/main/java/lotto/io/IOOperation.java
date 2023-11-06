@@ -2,6 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Checker;
+import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,5 +62,15 @@ public class IOOperation {
             break;
         }
         return bonusNumber;
+    }
+
+    public static void printLottos(List<Lotto> lottos) {
+        Integer numberOfLotto = lottos.size();
+
+        System.out.println(numberOfLotto + "개를 구매했습니다.");
+
+        lottos.forEach((lotto) -> {
+            lotto.print();
+        });
     }
 }

@@ -19,9 +19,10 @@ public class GameController {
     public void play() {
         int payment = getPayment();
         Lottos lottos = buy(payment);
+        List<Integer> numbers = getLuckyNumbers();
+        int bonusNumber = getBonusNumber(numbers);
+        lottos.match(numbers, bonusNumber);
 
-        List<Integer> numbers = getNumbers();
-        getBonusNumber(numbers);
     }
 
     private Lottos buy(int payment) {
@@ -41,12 +42,12 @@ public class GameController {
         }
     }
 
-    private List<Integer> getNumbers() {
+    private List<Integer> getLuckyNumbers() {
         try {
-            return validator.validate(inputView.getNumbers());
+            return validator.validate(inputView.getLuckyNumbers());
         } catch (IllegalArgumentException e) {
             System.out.println(e);
-            return getNumbers();
+            return getLuckyNumbers();
         }
     }
 

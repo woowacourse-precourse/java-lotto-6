@@ -16,9 +16,9 @@ public class InputView {
             throw new IllegalArgumentException(ValidateErrorMessage.PAYMENT_ERROR.getMessage());
         }
     }
-    public List<Integer> getNumbers(){
+    public List<Integer> getLuckyNumbers(){
         try {
-            System.out.println("\n" + GameMessage.NUMBERS_INPUT_MESSAGE);
+            System.out.println("\n" + GameMessage.LUCKY_NUMBERS_INPUT_MESSAGE);
             return Arrays
                     .stream(Console.readLine().split(","))
                     .map(Integer::parseInt).collect(Collectors.toList());
@@ -28,7 +28,7 @@ public class InputView {
     }
     public int getBonusNumber(){
         try {
-            System.out.println("\n" + GameMessage.BONUS_NUMBERS_INPUT_MESSAGE);
+            System.out.println("\n" + GameMessage.BONUS_NUMBER_INPUT_MESSAGE);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {}
         throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_ERROR.getMessage());

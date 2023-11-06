@@ -4,6 +4,7 @@ import lotto.exception.OverLappingNumbersException;
 import lotto.exception.RangeLottoNumberException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.domain.Constant.MAX_RANGE;
 import static lotto.domain.Constant.MIN_RANGE;
@@ -47,10 +48,29 @@ public class Lotto {
         }
     }
 
-    public boolean numbersMatchWonLottoNumber(WonLotto wonLotto) {
-        for (Integer lottoNumber : numbers) {
-            if (lottoNumber.equals())
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public boolean isContain(int number) {
+        for (int num : numbers) {
+            if (num == number) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    public int numbersMatchWonLottoNumber(WonLotto wonLotto) {
+        int count = 0;
+        for (int num : numbers) {
+            if (wonLotto.isContain(num)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override

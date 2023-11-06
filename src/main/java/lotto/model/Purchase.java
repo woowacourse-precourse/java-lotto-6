@@ -12,7 +12,7 @@ public class Purchase {
     }
 
     public void validateNum(String purchasingAmount) {
-        if (purchasingAmount.matches("^[a-zA-Z]*$")) {
+        if (!purchasingAmount.matches("^[0-9]*$")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }

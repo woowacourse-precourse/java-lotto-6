@@ -4,7 +4,6 @@ import static lotto.validator.Error.NOT_NUMERIC_INPUT;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.validator.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,5 +33,21 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NUMERIC_INPUT.message())
                 .hasMessageStartingWith("[ERROR]");
+    }
+
+    @DisplayName("당첨 번호 입력 검증")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "1,2,3,4,5,6"})
+    void validateWinningNumbersInput(String input) {
+        assertDoesNotThrow(() -> Validator.validateWinningNumbersInput(input));
+    }
+
+    @DisplayName("당첨 번호 입력 검증_숫자가 아닌 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "1,A,3,4,5,6"})
+    void validateWinningNumbersInputFail(String input) {
+        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumbersInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Error.INVALID_FORMAT_WINNING_NUMBERS.message());
     }
 }

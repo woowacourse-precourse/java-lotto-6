@@ -1,9 +1,10 @@
-package lotto.constant;
+package lotto.view;
 
 public enum ViewConstant {
 
     ASK_PAYMENT_MESSAGE("구입금액을 입력해 주세요."),
-    NUMBER_PATTERN("\\d+");
+    NUMBER_PATTERN("\\d+"),
+    WINNING_NUMBER_PATTERN("([\\d]+[,])*[\\d]");
 
     private final String value;
 

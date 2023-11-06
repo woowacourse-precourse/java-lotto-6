@@ -22,7 +22,6 @@ class UserTest {
         // then
         assertThat(user.lottoCount).isEqualTo(lottoCount);
         assertThat(user.lottos).isNotEmpty();
-
     }
 
 }

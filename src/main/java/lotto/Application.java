@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
-import org.assertj.core.util.Arrays;
-
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
-import java.util.HashSet;
-
 
 public class Application {
     final static int lottoMin = 1;

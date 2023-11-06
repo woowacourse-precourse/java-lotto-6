@@ -2,6 +2,7 @@ package lotto.record;
 
 import static lotto.enumerate.ConfigInteger.DECIMAL_PLACE;
 import static lotto.enumerate.ConfigInteger.LONG_ROUND_DIVIDE_NUMBER;
+import static lotto.enumerate.ConfigInteger.LONG_ROUND_NUMBER;
 import static lotto.enumerate.ConfigString.STRING_FORMAT;
 import static lotto.enumerate.ConfigString.STRING_INDEX;
 import static lotto.enumerate.ErrorCode.PROFIT_RATE_DECIMAL_NOT_ONE;
@@ -13,7 +14,8 @@ import lotto.util.ExceptionCodeThrow;
 public record ProfitRate(double originalRate, double roundedRate) {
 
     public ProfitRate {
-        if (originalRate * LONG_ROUND_DIVIDE_NUMBER.getInt() != roundedRate) {
+        if ((double) Math.round(originalRate * LONG_ROUND_NUMBER.getInt()) / LONG_ROUND_NUMBER.getInt()
+                * LONG_ROUND_DIVIDE_NUMBER.getInt() != roundedRate) {
             ExceptionCodeThrow.exceptionCodeThrow(PROFIT_RATE_NOT_ROUNDED);
         }
         String formattedValue = String.format(STRING_FORMAT.getString().formatted(DECIMAL_PLACE.getInt()), roundedRate);

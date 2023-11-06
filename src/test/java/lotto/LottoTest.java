@@ -1,17 +1,28 @@
 package lotto;
 
-import lotto.model.Lotto;
-import lotto.record.LottoNumbers;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import lotto.controller.LottoController;
+import lotto.model.Amount;
+import lotto.model.Lotto;
+import lotto.record.LottoNumberRecord;
+import lotto.record.LottoNumbers;
+import lotto.view.InputViewImplementation;
+import lotto.view.OutputViewImplementation;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 class LottoTest {
+
+    private final LottoController lottoController;
+
+    LottoTest() {
+        this.lottoController = new LottoController(new InputViewImplementation(), new OutputViewImplementation());
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -32,23 +43,32 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(new LottoNumbers(List.of(0, 2, 3, 4, 5, 46))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("로또 번호는 정렬된 문자열로 반환되어야 한다.")
-    @Test
-    void sortedLottoNumberString() {
-        assertSimpleTest(() -> assertThat(new Lotto(new LottoNumbers(List.of(2, 4, 7, 31, 20, 8))).makeLottoNumberString())
-                .isEqualTo("[2, 4, 7, 8, 20, 31]"));
-    }
 
     @Test
+    @DisplayName("toRecord를 통하여 출력하는 값은 LottoRecord형태여야 한다.")
     void toRecord() {
+        assertSimpleTest(
+                () -> assertThat(new Lotto(new LottoNumbers(List.of(2, 3, 44, 32, 11, 20))).toRecord()).isInstanceOf(
+                        LottoNumberRecord.class));
     }
 
     @Test
+    @DisplayName("로또 번호는 정렬된 문자열로 반환되어야 한다.")
     void makeLottoNumberString() {
+        assertSimpleTest(
+                () -> assertThat(
+                        new Lotto(new LottoNumbers(List.of(2, 3, 44, 32, 11, 20))).makeLottoNumberString()).contains(
+                        "[2, 3, 11, 20, 32, 44]")
+        );
     }
 
     @Test
-    void buyLotto() {
+    @DisplayName("로또는 1000원에 1장씩 발행되어야 한다.")
+    void buyLottoTest() {
+        assertSimpleTest(
+                () -> assertThat(
+                        lottoController.buyLotto(new Amount("3000").getAmountCash()).lottoList().size())
+                        .isEqualTo(3)
+        );
     }
-    // 아래에 추가 테스트 작성 가능
 }

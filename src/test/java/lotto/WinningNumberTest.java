@@ -1,8 +1,12 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 
+import java.util.List;
 import lotto.model.WinningNumber;
+import lotto.record.LottoNumberRecord;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,9 +40,14 @@ class WinningNumberTest {
 
     @Test
     void countMatchingNumbers() {
+        assertSimpleTest(() -> assertThat(new WinningNumber("1,2,3,4,5,6", "7")
+                .countMatchingNumbers(new LottoNumberRecord(List.of(1,2,3,4,5,6))))
+                .isEqualTo(6));
     }
 
     @Test
     void hasMatchingBonusNumber() {
+        assertSimpleTest(() -> assertThat(new WinningNumber("1,2,3,4,5,6", "7")
+                .hasMatchingBonusNumber(new LottoNumberRecord(List.of(1,2,3,4,5,7)))).isTrue());
     }
 }

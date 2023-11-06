@@ -6,81 +6,72 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoStore {
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final WinningStatistics winningStatistics;
     private final LottoMachine lottoMachine;
+    private final WinningStatistics winningStatistics;
     private PurchaseAmount purchaseAmount;
     private PurchaseLottos purchaseLottos;
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
 
-    public LottoStore(InputView inputView, OutputView outputView, LottoMachine lottoMachine, WinningStatistics winningStatistics) {
-        this.inputView = inputView;
-        this.outputView =outputView;
+    public LottoStore(LottoMachine lottoMachine, WinningStatistics winningStatistics) {
         this.lottoMachine = lottoMachine;
         this.winningStatistics = winningStatistics;
     }
 
     public void visit() {
         buyLottos();
-        divideSection();
-        makeWinningLotto();
-        divideSection();
-        makeBonusNumber();
-        divideSection();
+        showPurchaseLottos();
+        setWinningLotto();
+        setBonusNumber();
         showWinningStatistics();
     }
 
-    private void buyLottos() {
+    public void buyLottos() {
         try {
-            inputPurchaseAmount();
-            divideSection();
-            showPurchaseLottos();
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            divideSection();
+            purchaseAmount = new PurchaseAmount(InputView.inputPurchaseAmount());
+            purchaseLottos = new PurchaseLottos(lottoMachine, purchaseAmount.getPurchaseAmount());
+            showEmptyLine();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            showEmptyLine();
             buyLottos();
         }
     }
 
-    private void inputPurchaseAmount() {
-        purchaseAmount = new PurchaseAmount(inputView.inputPurchaseAmount());
-        purchaseLottos = new PurchaseLottos(lottoMachine, purchaseAmount.getPurchaseAmount());
-    }
-
     private void showPurchaseLottos() {
-        outputView.showPurchaseLottos(purchaseLottos.getCount(), purchaseLottos.getPurchaseLottos());
+        OutputView.showPurchaseLottos(purchaseLottos.getCount(), purchaseLottos.getPurchaseLottos());
+        showEmptyLine();
     }
 
-    private void makeWinningLotto() {
+    private void setWinningLotto() {
         try {
-            winningLotto = new Lotto(inputView.inputWinningLotto());
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            divideSection();
-            makeWinningLotto();
+            winningLotto = new Lotto(InputView.inputWinningLotto());
+            showEmptyLine();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            showEmptyLine();
+            setWinningLotto();
         }
     }
 
-    private void makeBonusNumber() {
+    private void setBonusNumber() {
         try {
-            bonusNumber = new BonusNumber(inputView.inputBonusNumber(), winningLotto.getNumbers());
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            divideSection();
-            makeBonusNumber();
+            bonusNumber = new BonusNumber(InputView.inputBonusNumber(), winningLotto.getNumbers());
+            showEmptyLine();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            showEmptyLine();
+            setBonusNumber();
         }
     }
 
     private void showWinningStatistics() {
         winningStatistics.setWinningResult(purchaseLottos.getPurchaseLottos(), winningLotto.getNumbers(), bonusNumber.getBonusNumber());
         winningStatistics.setRateOfReturn(purchaseAmount.getPurchaseAmount());
-        outputView.showWinningStatistics(winningStatistics.getWinningResult(), winningStatistics.getRateOfReturn());
+        OutputView.showWinningStatistics(winningStatistics.getWinningResult(), winningStatistics.getRateOfReturn());
     }
 
-    private void divideSection() {
-        outputView.showEmptyLine();
+    private void showEmptyLine() {
+        OutputView.showEmptyLine();
     }
 }

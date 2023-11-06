@@ -1,8 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LottoGame {
 
     public LottoGame(){
@@ -24,12 +21,12 @@ public class LottoGame {
         GuideMessage.ofInputBounsNumber();
         Integer bonusNumber = GameInput.insertBonusNumber();
 
-        List<LottoResult> lottoResultWinners = findWinnerOfLotto(lottos,winnigNumbers,bonusNumber);
+        LottoResultWinners lottoResultWinners = findWinnerOfLotto(lottos,winnigNumbers,bonusNumber);
 
     }
 
-    public List<LottoResult> findWinnerOfLotto(Lottos lottos, Lotto winningNumbers, Integer bonusNumber) {
-        List<LottoResult> lottoResultWinners = new ArrayList<>();
+    public LottoResultWinners findWinnerOfLotto(Lottos lottos, Lotto winningNumbers, Integer bonusNumber) {
+        LottoResultWinners lottoResultWinners = new LottoResultWinners();
         for (int lottoIndex = 0; lottoIndex < lottos.getSize(); lottoIndex++) {
             Lotto lotto = lottos.getLotto(lottoIndex);
             LottoResult lottoResult = compareLottoToWinningNumbers(lotto,winningNumbers,bonusNumber);

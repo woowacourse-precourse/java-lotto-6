@@ -5,8 +5,8 @@ public enum LottoRanking {
     FOURTH(4, 50000), FIFTH(3, 5000), DEFAULT(0, 0);
 
     private final int value;
-    private final int price;
-    LottoRanking(int value, int price){
+    private final float price;
+    LottoRanking(int value, float price){
         this.value = value;
         this.price = price;
     }
@@ -14,7 +14,7 @@ public enum LottoRanking {
     public int getValue(){
         return value;
     }
-    public int getPrice(){
+    public float getPrice(){
         return price;
     }
     public LottoRanking findByValue(int value){

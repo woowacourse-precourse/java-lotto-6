@@ -59,8 +59,8 @@ public class OutputView {
         Stream<Prize> sortedKeyStream = winningResult.prizes()
                 .keySet()
                 .stream()
-                .sorted(Comparator.comparing(Prize::getBonusHit))
-                .sorted(Comparator.comparing(Prize::getWinningHit));
+                .sorted(Comparator.comparing(Prize::getGrade))
+                .sorted(Comparator.reverseOrder());
 
         sortedKeyStream.forEach(prize ->
         {

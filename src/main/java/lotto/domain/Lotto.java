@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
-public class Lotto {
+public class Lotto { //일급컬렉션
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

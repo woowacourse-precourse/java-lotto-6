@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.AnswerLotto;
+import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import org.assertj.core.api.Assertions;
@@ -17,7 +17,7 @@ public class AnswerLottoTest {
     @MethodSource("validAnswerLottoProvider")
     void createAnswerLottoWithValid(Lotto lotto, BonusNumber bonus) {
         Assertions.assertThatNoException()
-                .isThrownBy(() -> new AnswerLotto(lotto, bonus));
+                .isThrownBy(() -> new WinningLotto(lotto, bonus));
     }
 
     static Stream<Arguments> validAnswerLottoProvider() {
@@ -32,7 +32,7 @@ public class AnswerLottoTest {
     @ParameterizedTest
     @MethodSource("invalidBonusProvider")
     void createAnswerLottoWithInvalidBonus(Lotto lotto, BonusNumber bonus) {
-        Assertions.assertThatThrownBy(() -> new AnswerLotto(lotto, bonus))
+        Assertions.assertThatThrownBy(() -> new WinningLotto(lotto, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +48,7 @@ public class AnswerLottoTest {
     @ParameterizedTest
     @MethodSource("duplicateNumberProvider")
     void createAnswerLottoWithDuplicate(Lotto lotto, BonusNumber bonus) {
-        Assertions.assertThatThrownBy(() -> new AnswerLotto(lotto, bonus))
+        Assertions.assertThatThrownBy(() -> new WinningLotto(lotto, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

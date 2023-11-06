@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.AnswerLotto;
+import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
@@ -15,13 +15,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class CalculateRankTest {
     public static final List<Integer> ANSWER_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
     public static final BonusNumber ANSWER_BONUS_NUMBER = new BonusNumber(7);
-    private final AnswerLotto answerLotto = new AnswerLotto(new Lotto(ANSWER_NUMBERS),  ANSWER_BONUS_NUMBER);
+    private final WinningLotto answerLotto = new WinningLotto(new Lotto(ANSWER_NUMBERS),  ANSWER_BONUS_NUMBER);
 
     @DisplayName("로또 번호와 당첨 번호를 비교하여 1~5 등수를 계산한다.")
     @ParameterizedTest
     @MethodSource("calculateRankProvider")
     void calculateRankTest(Lotto trialLotto, Rank targetRank) {
-        Assertions.assertThat(answerLotto.calculateRank(trialLotto))
+        Assertions.assertThat(answerLotto.match(trialLotto))
                 .isEqualTo(targetRank);
     }
 
@@ -41,7 +41,7 @@ public class CalculateRankTest {
     @ParameterizedTest
     @MethodSource("calculateNoRankProvider")
     void calculateNoRankTest(Lotto trialLotto, Rank targetRank) {
-        Assertions.assertThat(answerLotto.calculateRank(trialLotto))
+        Assertions.assertThat(answerLotto.match(trialLotto))
                 .isEqualTo(targetRank);
 
     }

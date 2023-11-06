@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.AnswerLotto;
+import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaseInfo;
@@ -15,9 +15,10 @@ public class MainController {
     public static void run() {
         LottoPurchaseInfo lottoInfo = purchaseLottos();
         OutputView.printLottoPurchaseInfo(lottoInfo);
-        AnswerLotto answerLotto = initAnswerLotto();
-
+        WinningLotto answerLotto = initAnswerLotto();
+        OutputView.printResult(answerLotto, lottoInfo);
     }
+
 
     private static LottoPurchaseInfo purchaseLottos() {
         try {
@@ -34,10 +35,10 @@ public class MainController {
         }
     }
 
-    private static AnswerLotto initAnswerLotto() {
+    private static WinningLotto initAnswerLotto() {
         Lotto answerLotto = initLotto();
         BonusNumber bonus = initBonus();
-        return new AnswerLotto(answerLotto, bonus);
+        return new WinningLotto(answerLotto, bonus);
     }
 
     private static Lotto initLotto() {
@@ -60,4 +61,6 @@ public class MainController {
             return initBonus();
         }
     }
+
+
 }

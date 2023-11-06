@@ -2,7 +2,6 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.validate.Validate;

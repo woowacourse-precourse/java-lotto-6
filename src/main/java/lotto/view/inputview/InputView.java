@@ -21,12 +21,12 @@ public class InputView {
         }
     }
 
-    public static Object inputValue(InputValueType inputValueType, WinningNumbers winningNumbers) {
+    public static Object inputValue(InputValueType inputValueType, Object requiredObject) {
         while (true) {
             try {
                 System.out.println(inputValueType.getMessage());
 
-                Function<String, Object> createFunction = inputValueType.getCreateFunction(winningNumbers);
+                Function<String, Object> createFunction = inputValueType.getCreateFunction(requiredObject);
                 String input = Console.readLine();
 
                 return createFunction.apply(input);

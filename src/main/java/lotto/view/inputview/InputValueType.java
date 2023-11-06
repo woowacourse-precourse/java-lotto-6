@@ -22,9 +22,9 @@ public enum InputValueType {
         return message;
     }
 
-    public Function<String, Object> getCreateFunction(WinningNumbers winningNumbers) {
+    public Function<String, Object> getCreateFunction(Object requiredObject) {
         if (this.equals(BONUS_NUMBER)) {
-            return inputValue -> BonusNumber.create(inputValue, winningNumbers);
+            return inputValue -> BonusNumber.create(inputValue, (WinningNumbers) requiredObject);
         }
 
         return createFunction;

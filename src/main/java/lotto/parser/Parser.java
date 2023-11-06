@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.util.CharacterUnits.COMMA;
+import static lotto.util.CharacterUnits.SEPARATOR;
 
 public class Parser {
 
-    private static final String SEPARATOR = ",";
-
     public static List<String> parseNumberDummy(String input) {
         return Arrays.stream(input
-                        .split(SEPARATOR))
+                        .split(SEPARATOR.getUnit()))
                         .toList();
     }
 

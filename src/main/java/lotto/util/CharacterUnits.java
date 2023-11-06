@@ -4,7 +4,9 @@ public enum CharacterUnits {
     COMMA(","),
     SPACE(" "),
     LEFT_BRACKET("["),
-    RIGHT_BRACKET("]");
+    RIGHT_BRACKET("]"),
+    PATTERN("[ !@#$%^&*().?\":{}|<>]"),
+    SEPARATOR(",");
 
 
     private final String unit;

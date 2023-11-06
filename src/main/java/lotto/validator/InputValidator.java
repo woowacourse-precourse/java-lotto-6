@@ -6,10 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static lotto.util.CharacterUnits.COMMA;
+import static lotto.util.CharacterUnits.PATTERN;
 
 public class InputValidator {
 
-    private static final Pattern pattern = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+    private static final Pattern pattern = Pattern.compile(PATTERN.getUnit());
 
     public static void validateNumber(String input) {
         for (char token : input.toCharArray()) {
@@ -54,7 +55,5 @@ public class InputValidator {
         }
 
     }
-
-
 
 }

@@ -10,6 +10,10 @@ public class LottoUtil {
         return Console.readLine();
     }
 
+    public int getCount(String number) {
+        return Integer.parseInt(number) / 1000;
+    }
+
     public boolean validateNumber(String number) {
         try {
             Integer.parseInt(number);

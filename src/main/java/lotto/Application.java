@@ -9,15 +9,22 @@ public class Application {
         LottoView lottoView = new LottoView();
         LottoUtil lottoUtil = new LottoUtil();
         boolean numberCheck = false;
+        String payment = null;
+        int count = 0;
 
         lottoView.printBuyLottomMoneyMessage();
         while (!numberCheck) {
-            String payment = lottoUtil.getUserInput();
+            payment = lottoUtil.getUserInput();
             numberCheck = lottoUtil.validateNumber(payment);
             if(numberCheck) {
                 numberCheck = lottoUtil.validateThousand(payment);
             }
         }
+        count = lottoUtil.getCount(payment);
+
+
+
+
 
     }
 }

@@ -12,7 +12,7 @@ public class FrontController {
         controllers.put("pleaseEnterBonusNumberMessage", new BonusNumberController());
         controllers.put("informPurchasedLottosNumbersMessage", new GetNumberOfLottosController());
         controllers.put("printLottos", new PrintLottosController());
-        controllers.put("printWinningResult", new PrintWinningResult());
+        controllers.put("printWinningResult", new PrintWinningResultController());
     }
 
     public String match(String url, Map<String, Object> model) throws IllegalArgumentException {

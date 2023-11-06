@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Buyer;
 import lotto.domain.LotteryWinningNumbers;
 import lotto.dto.Lotto;
-import lotto.dto.ResultCalculationSystem;
+import lotto.dto.Ranking;
 import lotto.repository.LottoRepository;
 import lotto.validator.Validations;
 import lotto.view.ErrorView;
@@ -12,14 +12,16 @@ import lotto.view.ErrorView;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.enums.ErrorMessage.*;
+import static lotto.enums.GuideMessage.INFORM_PURCHASED_LOTTOS_NUMBERS_MESSAGE;
 
-public class Service {
+public class LottteryService {
     private final LottoRepository repository = LottoRepository.getInstance();
     private final ErrorView errorView = ErrorView.getInstance();
     private final Validations validations = new Validations();
-    private final ResultCalculationSystem resultCalculationSystem = new ResultCalculationSystem();
+    private final ResultCalculationService resultCalculationService = new ResultCalculationService();
     
     
     public void lottoPayment(String input) {
@@ -57,8 +59,10 @@ public class Service {
         validations.validateEnteredBonusNumber(winningNumbers, input);
     }
 
-    public int getNumberOfLottos() {
-        return repository.getBuyer().getNumberOfLotto();
+    public List<String> getNumberOfLottos() {
+        int numberOfLotto = repository.getBuyer().getNumberOfLotto();
+
+        return List.of(String.format(INFORM_PURCHASED_LOTTOS_NUMBERS_MESSAGE.getMessage(), numberOfLotto));
     }
 
     public void printLottos() {
@@ -67,15 +71,19 @@ public class Service {
             lotto.printNumber();
     }
 
-    public void printWinningResult() {
-        List<Lotto> lottos = repository.getBuyer().getLottos();
-        List<Integer> lottoWinningNumbers = repository.getLotteryWinningNumbers().getWinningNumbers();
-        int bonusNumber = repository.getLotteryWinningNumbers().getBonusNumber();
-        int desiredPurchaseAmount = repository.getBuyer().getDesiredPurchaseAmount();
+    public List<String> printWinningResult() {
+        Buyer buyer = repository.getBuyer();
+        Map<Integer, Ranking> rankingAccumulator = buyer.getRankingAccumulator();
 
-        resultCalculationSystem.makeWinningResult(lottos, lottoWinningNumbers, bonusNumber);
-        resultCalculationSystem.calculateRateOfReturn(desiredPurchaseAmount);
+        LotteryWinningNumbers lotteryWinningNumbers = repository.getLotteryWinningNumbers();;
 
-        resultCalculationSystem.printWinningResult();
+        resultCalculationService.makeWinningResult(buyer, lotteryWinningNumbers);
+
+        resultCalculationService.calculateRateOfReturn(buyer);
+
+
+        List<String> messages = resultCalculationService.printWinningResult(buyer);
+
+        return messages;
     }
 }

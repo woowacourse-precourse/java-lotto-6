@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.dto.Lotto;
-import lotto.dto.ResultCalculationSystem;
+import lotto.service.ResultCalculationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ResultCalculationSystemTest {
-    ResultCalculationSystem resultCalculationSystem = new ResultCalculationSystem();
+    ResultCalculationService resultCalculationSystem = new ResultCalculationService();
 
     @BeforeEach
     void init() {

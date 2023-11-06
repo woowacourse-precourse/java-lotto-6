@@ -2,12 +2,15 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.FrontController;
+import lotto.enums.GuideMessage;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static lotto.enums.ErrorMessage.*;
-import static lotto.enums.InputGuideMessage.*;
+import static lotto.enums.GuideMessage.*;
 
 public class View {
     private final FrontController frontController = new FrontController();
@@ -31,8 +34,6 @@ public class View {
                 errorView.printErrorPage(INVALID_AMOUNT_ERROR);
             }
         }
-
-
     }
 
     public void pleaseEnterWinningNumbersMessage() {
@@ -78,17 +79,29 @@ public class View {
     public void informPurchasedLottosNumbersMessage() {
         Map<String, Object> model = new HashMap<>();
         String view = frontController.match("informPurchasedLottosNumbersMessage", model);
-        System.out.printf(INFORM_PURCHASED_LOTTOS_NUMBERS_MESSAGE.getMessage(), model.get("numberOfLotto"));
+        List<String> messages = (List<String>) model.get("messages");
 
-        if (view != null) {
+        if (view != null)
             redirect(view);
-        }
+
+        if (messages != null)
+            printMessage(messages);
     }
 
     public void redirect(String url) {
         Map<String, Object> model = new HashMap<>();
         String view = frontController.match(url, model);
+        List<String> messages = (List<String>) model.get("messages");
+
         if (view != null)
             redirect(view);
+
+        if (messages != null)
+            printMessage(messages);
+    }
+
+    private void printMessage(List<String> messages) {
+        for (String message : messages)
+            System.out.println(message);
     }
 }

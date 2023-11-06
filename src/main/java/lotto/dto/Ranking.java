@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import lotto.enums.Rank;
+
 public class Ranking {
     private final int rank;
     private final int matchedWinningNumberAmount;
@@ -7,11 +9,11 @@ public class Ranking {
     private final int rewardMoney;
     private int numberOfWins = 0;
 
-    public Ranking(int rank, int matchedWinningNumberAmount, int matchedBonusNumberAmount, int rewardMoney) {
-        this.rank = rank;
-        this.matchedWinningNumberAmount = matchedWinningNumberAmount;
-        this.matchedBonusNumberAmount = matchedBonusNumberAmount;
-        this.rewardMoney = rewardMoney;
+    public Ranking(Rank rank) {
+        this.rank = rank.getRank();
+        this.matchedWinningNumberAmount = rank.getMatchedWinningNumberAmount();
+        this.matchedBonusNumberAmount = rank.getMatchedBonusNumberAmount();
+        this.rewardMoney = rank.getRewardMoney();
     }
 
     public void increaseNumberOfWins() {

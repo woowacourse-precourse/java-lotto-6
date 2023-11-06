@@ -7,6 +7,7 @@ import lotto.domain.WinningResult;
 import java.util.List;
 
 import static lotto.constant.MessageConstant.*;
+import static lotto.constant.SymbolConstant.NEW_LINE;
 import static lotto.constant.SymbolConstant.QUANTITY_UNIT;
 
 public class MessagePrinter {
@@ -17,7 +18,7 @@ public class MessagePrinter {
 
     public void printBuyingAmountMessage(final LottoGame lottoGame) {
         int buyingAmount = lottoGame.getBuyingAmount();
-        System.out.println(buyingAmount + BUYING_AMOUNT_MESSAGE);
+        System.out.println(NEW_LINE + buyingAmount + BUYING_AMOUNT_MESSAGE);
     }
 
     public void printLottoNumbers(final LottoGame lottoGame) {

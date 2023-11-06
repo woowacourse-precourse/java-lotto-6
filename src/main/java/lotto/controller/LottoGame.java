@@ -1,19 +1,17 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
-import java.util.List;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
-import lotto.utils.InputUtil;
 import lotto.utils.LottoUtils;
-import lotto.validation.Validation;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
+    private static final String DECIMAL_FORMAT = "###,###.0";
     private static final int LOTTO_PRISE = 1000;
     private static final int PERCENT = 100;
     private final LottoService lottoService = new LottoService();
@@ -34,7 +32,6 @@ public class LottoGame {
     }
 
     private void buyLotto() {
-        InputView.inputPrise();
         buyer = lottoService.purchaseLotto();
         buyer.showLottos();
     }
@@ -62,7 +59,12 @@ public class LottoGame {
 
     private void showResult() {
         OutputView.showResult(result);
-        OutputView.showRateOfReturn(((double) reward / getAmount()) * PERCENT);
+        OutputView.showRateOfReturn(returnRate());
+    }
+
+    private String returnRate() {
+        DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
+        return decFormat.format(((double) reward / getAmount()) * PERCENT);
     }
 
     private long getAmount() {

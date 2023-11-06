@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import lotto.domain.Rank;
 
@@ -15,7 +17,7 @@ public class OutputView {
         }
     }
 
-    public static void showRateOfReturn(double rate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
+    public static void showRateOfReturn(String rate) {
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

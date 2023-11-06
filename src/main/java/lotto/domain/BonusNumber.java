@@ -14,7 +14,7 @@ public class BonusNumber {
     private void validate(final int bonusNumber) {
         if (bonusNumber < LottoRule.LOTTO_MIN_NUMBER.getValue()
                 || bonusNumber > LottoRule.LOTTO_MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_OF_RANGE.getValue());
+            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BONUS_OUT_OF_RANGE.getValue());
         }
     }
 

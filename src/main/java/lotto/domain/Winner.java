@@ -33,6 +33,7 @@ public class Winner {
             lottoResult.addWinningCount(sameNumberCount);
             lottoResult.addTotalWinningMoney(sameNumberCount);
         }
+        lottoResult.calculateProfitMargin(user.getMoney());
     }
 
     private int checkUserLottoNumberCount(Lotto userLotto) {

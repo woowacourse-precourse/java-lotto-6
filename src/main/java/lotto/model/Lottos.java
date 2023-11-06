@@ -7,14 +7,15 @@ import lotto.model.lotto.LottoDTO;
 
 public class Lottos {
     private final List<Lotto> lottos;
-    private Lottos(List<Lotto> lottos){
+
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos of(final int numberOfLottos, final LottoGenerator lottoGenerator){
+    public static Lottos of(final int numberOfLottos, final LottoGenerator lottoGenerator) {
         final List<Lotto> purchasedLottos = new ArrayList<>(numberOfLottos);
 
-        for(int i=0; i < numberOfLottos ; i++){
+        for (int i = 0; i < numberOfLottos; i++) {
             final Lotto newLotto = lottoGenerator.generate();
             purchasedLottos.add(newLotto);
         }
@@ -22,7 +23,7 @@ public class Lottos {
         return new Lottos(purchasedLottos);
     }
 
-    public List<LottoDTO> toSortedLottoDTOs(){
+    public List<LottoDTO> toLottoDTOs() {
         return lottos.stream()
                 .map(Lotto::toLottoDTO)
                 .toList();

@@ -19,7 +19,7 @@ class LottosTest {
         Lottos lottos = Lottos.of(numberOfLottos, new TestLottoGenerator(validNumbers));
 
         assertThat(lottos).isNotNull();
-        assertThat(lottos.toSortedLottoDTOs()).hasSize(numberOfLottos);
+        assertThat(lottos.toLottoDTOs()).hasSize(numberOfLottos);
     }
 
     @DisplayName("로또 객체를 LottoDTO로 변환한다.")
@@ -29,7 +29,7 @@ class LottosTest {
         List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
         Lottos lottos = Lottos.of(numberOfLottos, new TestLottoGenerator(validNumbers));
 
-        List<LottoDTO> lottoDTOs = lottos.toSortedLottoDTOs();
+        List<LottoDTO> lottoDTOs = lottos.toLottoDTOs();
 
         assertThat(lottoDTOs).hasSize(numberOfLottos);
         assertThat(lottoDTOs.get(0).numbers()).containsExactlyElementsOf(validNumbers);

@@ -12,13 +12,21 @@ public class WinningResult {
 
     public WinningResult(List<LottoRank> ranks, int money) {
         putMatchCount(ranks);
-        //calculateProfitRate(money);
+        calculateProfitRate(money);
     }
 
     private void putMatchCount(List<LottoRank> ranks) {
         for (LottoRank rank : ranks) {
             winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1);
         }
+    }
+
+    private void calculateProfitRate(int money) {
+        double profit = winningResult.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().multiple(entry.getValue()))
+                .sum();
+
+        this.profitRate = (profit / money) * PERCENT.getNumber();
     }
 
     public Map<LottoRank, Integer> getWinningResult() {

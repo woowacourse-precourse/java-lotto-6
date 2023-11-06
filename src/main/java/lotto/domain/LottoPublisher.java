@@ -16,7 +16,11 @@ public class LottoPublisher {
         this.randomNumberPicker = randomNumberPicker;
     }
 
-    public LottoTickets publish(int quantity) {
+    public LottoTickets publish(LottoPurchaseAmount purchaseAmount) {
+        return publish(purchaseAmount.calculatePurchasableQuantity());
+    }
+
+    private LottoTickets publish(int quantity) {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int publishCount = 0; publishCount < quantity; publishCount++) {

@@ -50,10 +50,17 @@ public class LottoGame {
     private int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        int number = Integer.parseInt(input);
-
-        if (winningLotto.containsNumber(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        int number;
+        try {
+            number = Integer.parseInt(input);
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 값이어야 합니다.");
+            }
+            if (winningLotto.containsNumber(number)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
         }
 
         return number;

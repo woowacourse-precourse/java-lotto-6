@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.body.Main;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Main app = new Main();
     }
 }

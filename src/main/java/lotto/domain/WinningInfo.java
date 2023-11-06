@@ -24,13 +24,10 @@ public class WinningInfo {
     }
 
     public Rank match(Lotto lotto) {
-        boolean hasBonusNumber = false;
         int matchCount = (int) lotto.getLottoNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
-        if (matchCount == 5) {
-            return Rank.valueOf(matchCount, lotto.getLottoNumbers().contains(bonusNumber));
-        }
+        boolean hasBonusNumber = matchCount == 5 && lotto.getLottoNumbers().contains(bonusNumber);
         return Rank.valueOf(matchCount, hasBonusNumber);
     }
 

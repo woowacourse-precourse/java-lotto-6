@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoUtil {
+    final String NUM_COMMA_REG = "^[0-9,]+$";
 
     public String getUserInput() {
         return Console.readLine();
@@ -19,6 +20,13 @@ public class LottoUtil {
             lottos.add(numbers);
         }
         return lottos;
+    }
+
+    public boolean validateWinningNumber(String winningNumber) {
+        if(winningNumber.matches(NUM_COMMA_REG)) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -16,7 +16,13 @@ public class Application {
         lottoView.printLottoTicketCount(money.getCount());
         List<List<Integer>> lottos = lottoUtil.getLottos(money.getCount());
         lottoView.printLottoNumbers(lottos);
+        lottoView.printWinningNumberMessage();
 
+    }
+
+    public String getWinningNumber() {
+        String winningNumber = lottoUtil.getUserInput();
+        return winningNumber;
     }
 
 }

@@ -22,7 +22,16 @@ class LottoPriceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {999, 1001})
+    @ValueSource(ints = {0, 999})
+    void 로또_최소_가격보다_낮은_투자금액으로는_구매가능한_로또_개수를_계산할_수_없다(int money) {
+        LottoPrice lottoPrice = LottoPrice.STANDARD_PRICE;
+
+        assertThatThrownBy(() -> lottoPrice.calculateLottoCount(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1001, 2001})
     void 로또가격의_배수값을_갖지_않는_투자금액으로는_구매가능한_로또_개수를_계산할_수_없다(int money) {
         LottoPrice lottoPrice = LottoPrice.STANDARD_PRICE;
 

@@ -64,6 +64,22 @@ class LottoPrizeTest {
         assertThat(isWinningPrize).isFalse();
     }
 
+    @Test
+    void 같은_당첨상품이면_서로_같은_객체이다() {
+        LottoPrize actualLottoPrize = LottoPrize.FIRST_PRIZE;
+        LottoPrize expectedLottoPrize = LottoPrize.FIRST_PRIZE;
+
+        assertThat(actualLottoPrize).isSameAs(expectedLottoPrize);
+    }
+
+    @Test
+    void 같은_당첨상품이면_서로_같은_해시코드를_가진다() {
+        LottoPrize actualLottoPrize = LottoPrize.FIRST_PRIZE;
+        LottoPrize expectedLottoPrize = LottoPrize.FIRST_PRIZE;
+
+        assertThat(actualLottoPrize).hasSameHashCodeAs(expectedLottoPrize);
+    }
+
     private static Stream<Arguments> provideWinningPrizeCases() {
         return Stream.of(
                 Arguments.of(LottoPrize.FIFTH_PRIZE),

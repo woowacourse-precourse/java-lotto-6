@@ -20,13 +20,9 @@ public final class InvestmentMoney {
 
     private void validate(int money) {
         validatePositive(money);
-        validateNotZero(money);
+        validateZero(money);
         validateBelowMaximumLimit(money);
         validateDivisible(money);
-    }
-
-    private void validateDivisible(int money) {
-        LottoPrice.STANDARD_PRICE.validateDivisible(money);
     }
 
     private void validatePositive(int money) {
@@ -35,7 +31,7 @@ public final class InvestmentMoney {
         }
     }
 
-    private void validateNotZero(int money) {
+    private void validateZero(int money) {
         if (money == ZERO) {
             String exceptionMessage = String.format(ZERO_MONEY_EXCEPTION_FORMAT, ZERO);
             throw new IllegalArgumentException(exceptionMessage);
@@ -49,6 +45,10 @@ public final class InvestmentMoney {
         }
     }
 
+    private void validateDivisible(int money) {
+        LottoPrice.STANDARD_PRICE.validateDivisible(money);
+    }
+
     public static InvestmentMoney from(int money) {
         return new InvestmentMoney(money);
     }
@@ -57,15 +57,15 @@ public final class InvestmentMoney {
         return lottoPrice.calculateLottoCount(money);
     }
 
-    public double calculateTotalProfitRate(TotalPrizeAmount totalPrizeAmount) {
+    public TotalProfitRate calculateTotalProfitRate(TotalPrizeAmount totalPrizeAmount) {
         BigDecimal prizeToInvestmentRatio = totalPrizeAmount.calculatePrizeToInvestmentRatio(money);
         BigDecimal percentMultiplier = BigDecimal.valueOf(PERCENT_MULTIPLIER);
-        BigDecimal totalProfitRate = multiply(prizeToInvestmentRatio, percentMultiplier);
+        BigDecimal totalProfitRate = toPercentage(prizeToInvestmentRatio, percentMultiplier);
 
-        return totalProfitRate.doubleValue();
+        return TotalProfitRate.from(totalProfitRate.doubleValue());
     }
 
-    private BigDecimal multiply(BigDecimal prizeToInvestmentRatio, BigDecimal percentMultiplier) {
+    private BigDecimal toPercentage(BigDecimal prizeToInvestmentRatio, BigDecimal percentMultiplier) {
         return prizeToInvestmentRatio.multiply(percentMultiplier);
     }
 

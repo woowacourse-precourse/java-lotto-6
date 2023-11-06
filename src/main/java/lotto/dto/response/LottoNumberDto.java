@@ -11,6 +11,7 @@ public class LottoNumberDto {
 
     public static LottoNumberDto from(LottoNumber number) {
         int lottoNumber = number.getNumber();
+
         return new LottoNumberDto(lottoNumber);
     }
 

@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import lotto.view.OutputView;
 
 public final class RetryUtil {
-
     private static final OutputView OUTPUT_VIEW = OutputView.getInstance();
 
     private RetryUtil() {

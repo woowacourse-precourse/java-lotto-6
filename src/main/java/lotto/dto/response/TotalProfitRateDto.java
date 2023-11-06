@@ -11,6 +11,7 @@ public class TotalProfitRateDto {
 
     public static TotalProfitRateDto from(TotalProfitRate totalProfitRate) {
         double profitRate = totalProfitRate.getProfitRate();
+
         return new TotalProfitRateDto(profitRate);
     }
 

@@ -9,7 +9,7 @@ public final class PurchasableLottoCount {
 
     private final int count;
 
-    PurchasableLottoCount(int count) {
+    private PurchasableLottoCount(int count) {
         validate(count);
         this.count = count;
     }

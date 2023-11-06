@@ -15,11 +15,15 @@ public class LottoGroupDto {
 
     public static LottoGroupDto from(LottoGroup lottoGroup) {
         List<Lotto> purchasedLottos = lottoGroup.getPurchasedLottos();
-        List<LottoDto> lottoDtos = purchasedLottos.stream()
-                .map(LottoDto::from)
-                .toList();
+        List<LottoDto> lottoDtos = toLottoDtos(purchasedLottos);
 
         return new LottoGroupDto(purchasedLottos.size(), lottoDtos);
+    }
+
+    private static List<LottoDto> toLottoDtos(List<Lotto> purchasedLottos) {
+        return purchasedLottos.stream()
+                .map(LottoDto::from)
+                .toList();
     }
 
     public int getSize() {

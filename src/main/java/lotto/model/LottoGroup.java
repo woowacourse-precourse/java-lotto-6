@@ -16,22 +16,31 @@ public final class LottoGroup {
 
     public static LottoGroup create(PurchasableLottoCount purchasableLottoCount, NumberGenerator numberGenerator) {
         List<Lotto> generatedLottos = generateLottos(purchasableLottoCount, numberGenerator);
+
         return new LottoGroup(generatedLottos);
     }
 
     private static List<Lotto> generateLottos(PurchasableLottoCount purchasableLottoCount,
                                               NumberGenerator numberGenerator) {
-        return Stream.generate(() -> Lotto.create(numberGenerator))
+        return Stream.generate(() -> createLotto(numberGenerator))
                 .limit(purchasableLottoCount.getCount())
                 .toList();
     }
 
+    private static Lotto createLotto(NumberGenerator numberGenerator) {
+        return Lotto.create(numberGenerator);
+    }
+
     public PrizeSummary generatePrizeSummary(WinningCombination winningCombination) {
-        Map<LottoPrize, Long> prizeSummary = purchasedLottos.stream()
-                .map(purchasedLotto -> purchasedLotto.determineLottoPrize(winningCombination))
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<LottoPrize, Long> prizeSummary = calculatePrizeSummary(winningCombination);
 
         return PrizeSummary.from(prizeSummary);
+    }
+
+    private Map<LottoPrize, Long> calculatePrizeSummary(WinningCombination winningCombination) {
+        return purchasedLottos.stream()
+                .map(lotto -> lotto.determineLottoPrize(winningCombination))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
     public List<Lotto> getPurchasedLottos() {

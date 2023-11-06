@@ -25,8 +25,8 @@ public final class LottoNumber {
 
     private void validateInRange(int number) {
         if (isOutOfRange(number)) {
-            String formattedExceptionMessage = String.format(OUT_OF_RANGE_EXCEPTION_FORMAT, MIN_NUMBER, MAX_NUMBER);
-            throw new IllegalArgumentException(formattedExceptionMessage);
+            String exceptionMessage = String.format(OUT_OF_RANGE_EXCEPTION_FORMAT, MIN_NUMBER, MAX_NUMBER);
+            throw new IllegalArgumentException(exceptionMessage);
         }
     }
 
@@ -34,23 +34,12 @@ public final class LottoNumber {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
-    public static LottoNumber from(int number) {
-        if (isCached(number)) {
-            return getCachedLottoNumber(number);
-        }
-        return new LottoNumber(number);
-    }
-
-    private static boolean isCached(int number) {
-        return LOTTO_NUMBER_CACHE.containsKey(number);
-    }
-
-    private static LottoNumber getCachedLottoNumber(int number) {
-        return LOTTO_NUMBER_CACHE.get(number);
-    }
-
     private static void storeInCache(int number) {
         LOTTO_NUMBER_CACHE.put(number, new LottoNumber(number));
+    }
+
+    public static LottoNumber from(int number) {
+        return LOTTO_NUMBER_CACHE.computeIfAbsent(number, LottoNumber::new);
     }
 
     public int getNumber() {
@@ -73,5 +62,4 @@ public final class LottoNumber {
     public int hashCode() {
         return Objects.hash(number);
     }
-
 }

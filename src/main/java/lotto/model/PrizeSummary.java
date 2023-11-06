@@ -18,24 +18,22 @@ public final class PrizeSummary {
     public TotalProfitRate calculateTotalProfitRate(InvestmentMoney investmentMoney) {
         long prizesAmount = sumPrizesAmount();
         TotalPrizeAmount totalPrizeAmount = TotalPrizeAmount.from(prizesAmount);
-        double totalProfitRate = investmentMoney.calculateTotalProfitRate(totalPrizeAmount);
 
-        return TotalProfitRate.from(totalProfitRate);
+        return investmentMoney.calculateTotalProfitRate(totalPrizeAmount);
     }
 
     private long sumPrizesAmount() {
         return prizeSummary.entrySet()
                 .stream()
-                .mapToLong(entry -> {
-                    LottoPrize lottoPrize = entry.getKey();
-                    Long prizeCount = entry.getValue();
-                    return lottoPrize.calculatePrizeAmount(prizeCount);
-                })
+                .mapToLong(entry -> calculateTotalPrizeAmount(entry.getKey(), entry.getValue()))
                 .sum();
+    }
+
+    public long calculateTotalPrizeAmount(LottoPrize lottoPrize, Long count) {
+        return lottoPrize.calculatePrizeAmount(count);
     }
 
     public long getMatchCountForPrize(LottoPrize lottoPrize) {
         return prizeSummary.getOrDefault(lottoPrize, ZERO_COUNT_OF_MATCH);
     }
-
 }

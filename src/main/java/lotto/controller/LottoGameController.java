@@ -42,10 +42,24 @@ public class LottoGameController {
         printTotalProfitRate(prizeSummary, investmentMoney);
     }
 
-    private void printTotalProfitRate(PrizeSummary prizeSummary, InvestmentMoney investmentMoney) {
-        TotalProfitRate totalProfitRate = prizeSummary.calculateTotalProfitRate(investmentMoney);
-        TotalProfitRateDto totalProfitRateDto = TotalProfitRateDto.from(totalProfitRate);
-        outputView.printTotalProfitRate(totalProfitRateDto);
+    private InvestmentMoney createInvestmentMoney() {
+        InvestmentMoneyDto investmentMoneyDto = RetryUtil.retryOnFail(inputView::readInvestmentMoney);
+        int investmentMoney = investmentMoneyDto.getInvestmentMoney();
+        return InvestmentMoney.from(investmentMoney);
+    }
+
+    private LottoGroup createLottoGroup(InvestmentMoney investmentMoney) {
+        PurchasableLottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investmentMoney);
+        return LottoGroup.create(lottoCount, numberGenerator);
+    }
+
+    private PurchasableLottoCount createLottoCount(InvestmentMoney investmentMoney) {
+        return investmentMoney.calculatePurchasableLottoCount(LottoPrice.STANDARD_PRICE);
+    }
+
+    private void printLottoGroup(LottoGroup lottoGroup) {
+        LottoGroupDto lottoGroupDto = LottoGroupDto.from(lottoGroup);
+        outputView.printLottoGroup(lottoGroupDto);
     }
 
     private PrizeSummary summarizePrizes(LottoGroup lottoGroup) {
@@ -74,27 +88,13 @@ public class LottoGameController {
         return LottoNumber.from(bonusNumberDto.getBonusNumber());
     }
 
-    private LottoGroup createLottoGroup(InvestmentMoney investmentMoney) {
-        PurchasableLottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investmentMoney);
-        return LottoGroup.create(lottoCount, numberGenerator);
-    }
-
-    private PurchasableLottoCount createLottoCount(InvestmentMoney investmentMoney) {
-        return investmentMoney.calculatePurchasableLottoCount(LottoPrice.STANDARD_PRICE);
-    }
-
     private void printPrizeSummary(PrizeSummary prizeSummary) {
         outputView.printPrizeSummary(prizeSummary);
     }
 
-    private InvestmentMoney createInvestmentMoney() {
-        InvestmentMoneyDto investmentMoneyDto = RetryUtil.retryOnFail(inputView::readInvestmentMoney);
-        int investmentMoney = investmentMoneyDto.getInvestmentMoney();
-        return InvestmentMoney.from(investmentMoney);
-    }
-
-    private void printLottoGroup(LottoGroup lottoGroup) {
-        LottoGroupDto lottoGroupDto = LottoGroupDto.from(lottoGroup);
-        outputView.printLottoGroup(lottoGroupDto);
+    private void printTotalProfitRate(PrizeSummary prizeSummary, InvestmentMoney investmentMoney) {
+        TotalProfitRate totalProfitRate = prizeSummary.calculateTotalProfitRate(investmentMoney);
+        TotalProfitRateDto totalProfitRateDto = TotalProfitRateDto.from(totalProfitRate);
+        outputView.printTotalProfitRate(totalProfitRateDto);
     }
 }

@@ -7,8 +7,8 @@ import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.InvestmentMoneyDto;
 import lotto.dto.request.WinningLottoNumbersDto;
 import lotto.util.BlankValidator;
+import lotto.util.CommaSeparatedNumbersValidator;
 import lotto.util.DigitsOnlyValidator;
-import lotto.util.DigitsWithCommaSeparatedValidator;
 
 public class InputView {
     private static final String INVESTMENT_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -65,7 +65,7 @@ public class InputView {
 
     private void validateWinningNumbers(String rawWinningNumbers) {
         BlankValidator.validate(rawWinningNumbers);
-        DigitsWithCommaSeparatedValidator.validate(rawWinningNumbers);
+        CommaSeparatedNumbersValidator.validate(rawWinningNumbers);
     }
 
     private List<Integer> splitToInt(String delimiter, String input) {
@@ -89,6 +89,7 @@ public class InputView {
     }
 
     private static class LazyHolder {
+
         private static final InputView INSTANCE = new InputView();
 
     }

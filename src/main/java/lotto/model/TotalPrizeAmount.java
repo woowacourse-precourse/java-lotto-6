@@ -26,8 +26,8 @@ public final class TotalPrizeAmount {
     }
 
     public BigDecimal calculatePrizeToInvestmentRatio(int investment) {
-        BigDecimal totalPrizeAmount = new BigDecimal(this.prizesAmount);
-        BigDecimal investmentAmount = new BigDecimal(investment);
+        BigDecimal totalPrizeAmount = BigDecimal.valueOf(prizesAmount);
+        BigDecimal investmentAmount = BigDecimal.valueOf(investment);
 
         return totalPrizeAmount.divide(investmentAmount, MathContext.DECIMAL64);
     }

@@ -55,4 +55,9 @@ public class Lotto {
     public boolean has(int number) {
         return this.numbers.contains(number);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -31,4 +31,15 @@ class PurchaseAmountTest {
         //then
         assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.NOT_NATURAL_NUMBER.get());
     }
+
+    @DisplayName("구입 금액이 1000 단위가 아닌 경우에 대한 예외 검증")
+    @ValueSource(strings = {"1500", "500"})
+    @ParameterizedTest
+    void notDivideUnit(String input){
+        //given, when
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> new PurchaseAmount(input));
+
+        //then
+        assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.NOT_DIVIDE_UNIT.get(1000));
+    }
 }

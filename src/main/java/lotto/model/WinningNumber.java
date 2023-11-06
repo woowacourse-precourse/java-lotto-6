@@ -12,10 +12,20 @@ public class WinningNumber {
 
     public WinningNumber(String numbers) {
         List<String> splitNumbers = deleteBlankAndSplit(numbers);
-        this.winningNumbers = validateWinningNumbers(splitNumbers);
+        validateWinningNumbers(splitNumbers);
+        this.winningNumbers = splitNumbers.stream().map(Integer::parseInt).toList();
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     public void setBonusNumber(String bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
@@ -23,12 +33,12 @@ public class WinningNumber {
         return new ArrayList<>(List.of(numbers.replaceAll(" ", "").split(",")));
     }
 
-    private List<Integer> validateWinningNumbers(List<String> numbers) {
+    private void validateWinningNumbers(List<String> numbers) {
         if (areAllDigits(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
         }
 
-        if (isEmptyOrBlank(numbers)) {
+        if (areEmptyOrBlank(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
         }
 
@@ -41,8 +51,24 @@ public class WinningNumber {
         if (isZeroOrMinus(toIntList)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
         }
+    }
 
-        return toIntList;
+    private void validateBonusNumber(String bonus) {
+        if (!isDigit(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
+        }
+
+        if (isEmptyOrBlank(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        }
+
+        if (isDuplicatedWinningNumber(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DUPLICATE);
+        }
+
+        if (isZeroOrMinus(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
+        }
     }
 
     public boolean areAllDigits(List<String> numbers) {
@@ -53,15 +79,28 @@ public class WinningNumber {
         return str.chars().allMatch(Character::isDigit);
     }
 
-    private boolean isEmptyOrBlank(List<String> numbers) {
+    private boolean areEmptyOrBlank(List<String> numbers) {
         return numbers.stream().anyMatch(String::isEmpty);
+    }
+
+    private boolean isEmptyOrBlank(String bonus) {
+        return bonus.isEmpty() || bonus.isBlank();
     }
 
     private boolean isDuplicated(List<String> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
     }
 
+    private boolean isDuplicatedWinningNumber(String bonus) {
+        int number = Integer.parseInt(bonus);
+        return winningNumbers.stream().anyMatch(winningNumber -> winningNumber == number);
+    }
+
     private boolean isZeroOrMinus(List<Integer> numbers) {
         return numbers.stream().anyMatch(number -> number <= 0);
+    }
+
+    private boolean isZeroOrMinus(String bonus) {
+        return Integer.parseInt(bonus) <= 0;
     }
 }

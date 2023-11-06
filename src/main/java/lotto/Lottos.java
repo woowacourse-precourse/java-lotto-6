@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,10 +18,10 @@ public class Lottos {
 
     public HashMap<Rank, Integer> getWinningResult(LottoChecker lottoChecker) {
         HashMap<Rank, Integer> winningResult = new HashMap<>();
+        Arrays.stream(Rank.values()).forEach(rank -> winningResult.putIfAbsent(rank, 0));
+
         for (Lotto lotto : this.lottos) {
             Rank rank = lottoChecker.getRankByLotto(lotto);
-
-            winningResult.putIfAbsent(rank, 1);
             winningResult.put(rank, winningResult.get(rank) + 1);
         }
         return winningResult;

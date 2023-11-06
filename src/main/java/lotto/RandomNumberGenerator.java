@@ -1,7 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RandomNumberGenerator {
@@ -17,8 +20,9 @@ public class RandomNumberGenerator {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        sortedList.sort(Comparator.naturalOrder());
+        return sortedList;
     }
 
 

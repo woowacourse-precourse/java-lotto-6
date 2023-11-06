@@ -16,7 +16,7 @@ public class LottoChecker {
 
     private void validate(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.");
         }
         winningNumbers.forEach(this::validateNumberRange);
     }
@@ -30,7 +30,7 @@ public class LottoChecker {
     public Rank getRankByLotto(Lotto lotto) {
         int count = getCount(lotto);
         for (Rank rank : Rank.values()) {
-            if (rank.getRanking() == 5) {
+            if (count == 5) {
                 return checkRankSecond(lotto);
             }
             if (rank.getRanking() == count) {

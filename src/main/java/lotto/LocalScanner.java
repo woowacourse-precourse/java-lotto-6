@@ -9,6 +9,7 @@ public class LocalScanner {
     public Integer getPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         try {
             int price = Integer.parseInt(input);
             validatePrice(price);
@@ -27,6 +28,7 @@ public class LocalScanner {
     public Integer getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -37,6 +39,7 @@ public class LocalScanner {
     public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         return convertInputNumbers(input);
     }
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
 
@@ -41,6 +43,15 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> lottoService.splitWinningNumber("1,2,3,4,5,a"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 정상이면 올바른 값을 저장한다.")
+    @Test
+    void createLottoRightReturn() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        List<Integer> expectedResult = List.of(1,2,3,4,5,6);
+        assertEquals(expectedResult, lotto.getNumbers());
     }
 
     // 아래에 추가 테스트 작성 가능

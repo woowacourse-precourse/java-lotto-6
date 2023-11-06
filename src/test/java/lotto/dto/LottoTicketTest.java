@@ -1,11 +1,11 @@
 package lotto.dto;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static lotto.fixture.LottoFixture.lottoFixture;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import java.util.stream.IntStream;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
 class LottoTicketTest {
@@ -13,10 +13,9 @@ class LottoTicketTest {
     void 로또의_개수를_반환한다() {
         // given
         int lottoCount = 10;
-        List<Lotto> lottos = IntStream.range(0, lottoCount)
+        LottoTicket lottoTicket = IntStream.range(0, lottoCount)
                 .mapToObj(i -> lottoFixture())
-                .toList();
-        LottoTicket lottoTicket = new LottoTicket(lottos);
+                .collect(collectingAndThen(toList(), LottoTicket::new));
 
         // when
         int result = lottoTicket.count();

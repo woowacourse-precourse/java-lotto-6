@@ -1,5 +1,7 @@
 package lotto.application;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static lotto.enums.ErrorMassage.DUPLICATE_BONUS_NUMBER;
 import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
@@ -22,11 +24,10 @@ public class LottoStore {
 
     public LottoTicket issueLottoTicketByAuto(final LottoAmount lottoAmount) {
         final int quantity = lottoAmount.getLottoQuantity();
-        List<Lotto> lottos = IntStream.range(0, quantity)
+        return IntStream.range(0, quantity)
                 .mapToObj(i -> numberGenerator.generateNumbers(LOTTO_COUNT.getValue()))
                 .map(lottoMachine::createLotto)
-                .toList();
-        return new LottoTicket(lottos);
+                .collect(collectingAndThen(toList(), LottoTicket::new));
     }
 
     public WinningLotto issueWinningLotto(final List<Integer> numbers, final int bonusNumber) {

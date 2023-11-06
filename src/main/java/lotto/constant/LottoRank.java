@@ -37,6 +37,11 @@ public enum LottoRank {
                 return rank;
             }
         }
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getMatchCount() == matchCount) {
+                return rank;
+            }
+        }
         return LottoRank.OUT_OF_RANK;
     }
 }

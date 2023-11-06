@@ -7,6 +7,7 @@ import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
 
 public class Statistic {
+    // TODO: 11/6/23 상수 정리 
     private static final Integer MONEY_FIRST_PLACE = 2000000000;
     private static final Integer MONEY_SECOND_PLACE = 30000000;
     private static final Integer MONEY_THIRD_PLACE = 1500000;

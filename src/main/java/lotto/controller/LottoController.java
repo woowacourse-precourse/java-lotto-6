@@ -1,10 +1,11 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import lotto.model.GetLottoPurchase;
-import lotto.model.Lotto;
-import lotto.model.LottoNumbers;
+import java.util.Map;
+
+import lotto.model.*;
 import lotto.view.ExceptionMessage;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
@@ -19,8 +20,9 @@ public class LottoController {
     private boolean isGetBonus = false;
     private static List<Lotto> lottoList;
     private static List<Integer> lotto = new ArrayList<>();
-    private static Lotto winningLotto;
+    private static Lotto prizeLotto;
     private static int bonus;
+    private static Prize prize;
 
 
     public void run(){
@@ -31,8 +33,10 @@ public class LottoController {
         int lottoCount = purchaseAmount();
         OutputMessage.printLottoCount(lottoCount);
         lottoList = makeLottoList(lottoCount);
-        winningLotto = makeWinningLotto();
+        prizeLotto = makePrizeLotto();
         bonus = makeBonus();
+        computePrize(lottoList);
+
     }
 
     public int purchaseAmount(){
@@ -60,18 +64,18 @@ public class LottoController {
         return new Lotto(lotto);
     }
 
-    public Lotto makeWinningLotto(){
+    public Lotto makePrizeLotto(){
         LottoNumbers lottoNumbers = new LottoNumbers();
         lotto = new ArrayList<>();
         while(!isGetLotto){
             String num = InputMessage.inputPrizeLotto();
             lotto = lottoNumbers.setPrizeNumbers(num);
             if(lottoNumbers.validateRange() && lottoNumbers.validateDuplicate() && lottoNumbers.validateSize()){
-                winningLotto = new Lotto(lotto);
+                prizeLotto = new Lotto(lotto);
                 isGetLotto = true;
             }
         }
-        return winningLotto;
+        return prizeLotto;
     }
 
     public int makeBonus(){
@@ -93,4 +97,33 @@ public class LottoController {
         }
         return bonusNum;
     }
+
+    private void computePrize(List<Lotto> lottoList){
+        ComputePrize computePrize = new ComputePrize(prizeLotto, bonus);
+        Map<Prize,Integer> result = setResult();
+        OutputMessage.printPrizeStat();
+
+        for(int i = 0 ; i < lottoList.size(); i++){
+            prize = computePrize.match(lottoList.get(i));
+            result.put(prize, result.get(prize) + 1);
+        }
+
+        OutputMessage.printResult(result);
+        /*번호 가져오기
+           번호 비교
+           3개 미만 -> miss
+           3개, 4개, 6개 -> 순위 Prize 대로
+           5개 -> 보너스 번호 비교 후 순위 책정
+           출력
+         */
+    }
+
+    private Map<Prize,Integer> setResult(){
+        Map<Prize,Integer> result = new HashMap<>();
+        for (Prize prize : Prize.values()) {
+            result.put(prize,0);
+        }
+        return result;
+    }
+
 }

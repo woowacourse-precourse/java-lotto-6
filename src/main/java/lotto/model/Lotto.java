@@ -38,4 +38,19 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public int countMatch(Lotto prizeLotto){
+        int matchSum = 0;
+        for(int i = 0 ; i < numbers.size() ; i++){
+            if(prizeLotto.numbers.contains(numbers.get(i))){
+                matchSum++;
+            }
+        }
+        return matchSum;
+    }
+
+    public boolean checkBonus(int bonus){
+        return numbers.contains(bonus);
+    }
+
 }

@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import static lotto.controller.UserInputMessage.*;
-import static lotto.exception.ErrorMessage.*;
 import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import static lotto.validator.Validator.isPurchaseAmountValid;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
@@ -16,7 +16,8 @@ public class LottoController {
     }
 
     public void start() {
-        requestLottoPurchaseAmount();
+        int purchaseAmount = requestLottoPurchaseAmount();
+
     }
 
     public int requestLottoPurchaseAmount() {
@@ -31,5 +32,9 @@ public class LottoController {
             System.out.println(error.getMessage());
             return requestLottoPurchaseAmount();
         }
+    }
+
+    public Lotto requestWinningNumbers() {
+
     }
 }

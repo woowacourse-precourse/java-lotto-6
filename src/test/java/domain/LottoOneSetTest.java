@@ -12,4 +12,5 @@ package domain;
  * 2023-11-06        qkrtn_ulqpbq2       최초 생성
  */
 public class LottoOneSetTest {
+
 }

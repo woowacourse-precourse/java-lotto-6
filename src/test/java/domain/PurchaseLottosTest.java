@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 2023-11-06        qkrtn_ulqpbq2       최초 생성
  */
 public class PurchaseLottosTest {
-    @DisplayName("구매한 만큼 로또 번호 생성 - 3개의 로또가 모두 서로 다른 숫자로 이루어졌는지 확인")
+    @DisplayName("구매한 만큼 로또 목록을 생성합니다. - 3개의 로또가 모두 서로 다른 숫자로 이루어졌는지 확인합니다.")
     @Test
     void createRandomLottoNumbers() {
         PurchaseLottos purchaseLottos = new PurchaseLottos(3);

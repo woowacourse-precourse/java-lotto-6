@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.model.winning.WinningNumbers;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

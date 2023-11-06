@@ -12,6 +12,7 @@ public class LottoController {
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> lottos = Lotto.createLottos(lottoCount);
 
+        OutputView.printNewLine();
         OutputView.printTicketCount(lottoCount);
 
         for (Lotto lotto : lottos) {

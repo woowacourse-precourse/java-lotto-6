@@ -6,4 +6,8 @@ public class OutputView {
     public static void printTicketCount(int lottoCount) {
         System.out.println(lottoCount + TICKET_COUNT_MSG);
     }
+
+    public static void printNewLine() {
+        System.out.println();
+    }
 }

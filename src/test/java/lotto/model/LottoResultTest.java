@@ -7,11 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
 
-    @DisplayName("3등 당첨 내역이 아닌 경우 false 를 반환해야함.")
+    @DisplayName("2등 당첨 내역인 경우 true, 아닌 경우 false 를 반환 해야한다.")
     @Test
-    void THIRD_LANK_당첨_내역_확인_테스트() {
-        LottoResult lottoResult = new LottoResult(LottoRank.FIRST_RANK, 3);
-        assertThat(lottoResult.isLottoSecondRank()).isFalse();
+    void SECOND_LANK_당첨_내역_확인_테스트() {
+        LottoResult firstResult = new LottoResult(LottoRank.FIRST_RANK, 3);
+        LottoResult secondResult = new LottoResult(LottoRank.SECOND_RANK, 3);
+        assertThat(firstResult.isLottoSecondRank()).isFalse();
+        assertThat(secondResult.isLottoSecondRank()).isTrue();
     }
 
 }

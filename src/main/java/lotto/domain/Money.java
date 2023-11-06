@@ -31,4 +31,9 @@ public class Money {
         return this.amount == amount;
     }
 
+    @Override
+    public String toString() {
+        return IntegerUtil.formatByThousandSeparator(amount);
+    }
+
 }

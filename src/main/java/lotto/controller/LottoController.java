@@ -14,8 +14,7 @@ public class LottoController {
     public void run() {
         Client client = buyLottos();
         issueLottos(client);
-        WinningNumbers winningNumbers = createWinningNumbers();
-        createBonusNumber(winningNumbers);
+        WinningNumbers winningNumbers = drawWinningNumbers();
         announceLottoResults(client, winningNumbers);
     }
 
@@ -39,6 +38,12 @@ public class LottoController {
             view.printIssuedLotto(lotto.toString());
             client.receiveLotto(lotto);
         }
+    }
+
+    private WinningNumbers drawWinningNumbers() {
+        WinningNumbers winningNumbers = createWinningNumbers();
+        createBonusNumber(winningNumbers);
+        return winningNumbers;
     }
 
     private WinningNumbers createWinningNumbers() {

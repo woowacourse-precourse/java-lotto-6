@@ -29,6 +29,10 @@ public class LottoGame {
         WinningNumbers winningNumbers = repeatUntilValidWinningNumbersCreated();
         repeatUntilValidBonusNumberAssigned(winningNumbers);
 
+        showWinningStatistics(winningNumbers, lottoTickets, money);
+    }
+
+    private void showWinningStatistics(WinningNumbers winningNumbers, List<Lotto> lottoTickets, Money money) {
         LottoPrizeBreakdown result = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
         BigDecimal rateOfReturn = result.getRateOfReturn(money);
         outputView.showWinningStatistics(result, rateOfReturn);

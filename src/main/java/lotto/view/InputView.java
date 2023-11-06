@@ -8,28 +8,21 @@ import lotto.util.Util;
 
 public class InputView {
     public static String requestPurchasePrice() {
-        System.out.println(PURCHASE_PRICE);
-        printLineChanging();
+        System.out.println(PURCHASE_PRICE.getMessage());
 
         return Util.readInput();
     }
 
     public static String requestWinningNumber() {
-        System.out.println(WINNING_NUMBER);
-        printLineChanging();
+        System.out.println(WINNING_NUMBER.getMessage());
 
         return Util.readInput();
     }
 
     public static String requestBonusNumber() {
-        System.out.println(BONUS_NUMBER);
-        printLineChanging();
+        System.out.println(BONUS_NUMBER.getMessage());
 
         return Util.readInput();
-    }
-
-    public static void printLineChanging() {
-        System.out.println();
     }
 
 }

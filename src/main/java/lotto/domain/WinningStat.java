@@ -23,8 +23,8 @@ public class WinningStat {
     }
 
     public String createMessage() {
-        return String.format(SystemMessage.WINNING_STAT_MASSAGE_FORMAT.getMessage()
-                , lottoRankConstant.getMessage(), count);
+        return String.format(SystemMessage.WINNING_STAT_MASSAGE_FORMAT.getMessage(),
+                lottoRankConstant.getMessage(), count);
     }
 
     public boolean isThis(MatchResult matchResult) {

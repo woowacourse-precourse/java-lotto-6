@@ -9,16 +9,19 @@ public class WinningStats {
     private final List<WinningStat> winningCountByRank;
 
     private WinningStats(PurchasedLottos purchasedLottos, WinningNumbersWithBonus winningNumbersWithBonus) {
-        winningCountByRank = IntStream.range(SystemConstant.WINNING_STATS_START.getValue(),
-                        SystemConstant.WINNING_STATS_SIZE.getValue())
-                .mapToObj(WinningStat::create)
-                .toList();
-
+        winningCountByRank = createEmptyWinningStatList();
         countWinningCountByRank(purchasedLottos, winningNumbersWithBonus);
     }
 
     public static WinningStats of(PurchasedLottos purchasedLottos, WinningNumbersWithBonus winningNumbersWithBonus) {
         return new WinningStats(purchasedLottos, winningNumbersWithBonus);
+    }
+
+    private List<WinningStat> createEmptyWinningStatList() {
+        return IntStream.range(SystemConstant.WINNING_STATS_START.getValue(),
+                        SystemConstant.WINNING_STATS_SIZE.getValue())
+                .mapToObj(WinningStat::create)
+                .toList();
     }
 
     private void countWinningCountByRank(PurchasedLottos purchasedLottos,

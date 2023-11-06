@@ -1,13 +1,17 @@
 package lotto;
 
+import java.text.DecimalFormat;
+
 public enum LottoPrize {
-    FIRST_PRIZE(2_000_000_000L, 6, 0),
-    SECOND_PRIZE(30_000_000L, 5, 1),
-    THIRD_PRIZE(1_500_000L, 5, 0),
-    FOURTH_PRIZE(50_000L, 4, 0),
+
     FIFTH_PRIZE(5_000L, 3, 0),
+    FOURTH_PRIZE(50_000L, 4, 0),
+    THIRD_PRIZE(1_500_000L, 5, 0),
+    SECOND_PRIZE(30_000_000L, 5, 1),
+    FIRST_PRIZE(2_000_000_000L, 6, 0),
     NONE(0L, 0, 0);
 
+    private static final DecimalFormat df = new DecimalFormat("###,###");
     private final long winningAmount;
     private final int numNumberMatches;
     private final int numBonusNumberMatches;
@@ -18,15 +22,24 @@ public enum LottoPrize {
         this.numBonusNumberMatches = numBonusNumberMatches;
     }
 
+
+    public boolean matches(int numNumberMatches, int numBonusNumberMatches) {
+        return this.numNumberMatches == numNumberMatches &&
+                this.numBonusNumberMatches == numBonusNumberMatches;
+    }
+
     public long getWinningAmount() {
         return winningAmount;
     }
 
-    public int getNumNumberMatches() {
-        return numNumberMatches;
-    }
-
-    public int getNumBonusNumberMatches() {
-        return numBonusNumberMatches;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.numNumberMatches).append("개 일치");
+        if (this.numBonusNumberMatches != 0) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(" (").append(df.format(winningAmount)).append("원) - ");
+        return sb.toString();
     }
 }

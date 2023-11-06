@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import domain.LottoNumberGenerator;
 import domain.LottoProfitCalculator;
 import domain.LottoWinChecker;
 

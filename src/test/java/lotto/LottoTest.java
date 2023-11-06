@@ -29,9 +29,9 @@ class LottoTest {
     @Test
     void setAndGetLottoRankTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        lotto.setRank(Lotto.LottoRank.FIRST);
-        Lotto.LottoRank actual = lotto.getRank();
-        Lotto.LottoRank expected = Lotto.LottoRank.FIRST;
+        lotto.setRank(LottoRank.FIRST);
+        LottoRank actual = lotto.getRank();
+        LottoRank expected = LottoRank.FIRST;
 
         Assertions.assertEquals(expected, actual);
     }
@@ -39,8 +39,8 @@ class LottoTest {
     @Test
     void initialLottoRankTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto.LottoRank actual = lotto.getRank();
-        Lotto.LottoRank expected = Lotto.LottoRank.NO_WIN;
+        LottoRank actual = lotto.getRank();
+        LottoRank expected = LottoRank.NO_WIN;
 
         Assertions.assertEquals(expected, actual);
     }
@@ -48,7 +48,7 @@ class LottoTest {
     @Test
     void lottoRankGetPrizeTest() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        lotto.setRank(Lotto.LottoRank.FIRST);
+        lotto.setRank(LottoRank.FIRST);
         String actual = lotto.getRank().getPrize();
         String expected = "2000000000";
 

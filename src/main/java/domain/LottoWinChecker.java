@@ -1,6 +1,7 @@
 package domain;
 
 import lotto.Lotto;
+import lotto.LottoRank;
 
 import java.util.List;
 
@@ -19,21 +20,11 @@ public class LottoWinChecker {
         int correctNumbers = getCorrectNumbersCount();
         bonusChecker();
 
-        if (correctNumbers == 6) {
-            lotto.setRank(Lotto.LottoRank.FIRST);
-        }
-        if (correctNumbers == 5 && correctBonus) {
-            lotto.setRank(Lotto.LottoRank.SECOND);
-        }
-        if (correctNumbers == 5 && !correctBonus) {
-            lotto.setRank(Lotto.LottoRank.THIRD);
-        }
-        if (correctNumbers == 4) {
-            lotto.setRank(Lotto.LottoRank.FOURTH);
-        }
-        if (correctNumbers == 3) {
-            lotto.setRank(Lotto.LottoRank.FIFTH);
-        }
+        if (correctNumbers == 6) lotto.setRank(LottoRank.FIRST);
+        if (correctNumbers == 5 && correctBonus) lotto.setRank(LottoRank.SECOND);
+        if (correctNumbers == 5 && !correctBonus) lotto.setRank(LottoRank.THIRD);
+        if (correctNumbers == 4) lotto.setRank(LottoRank.FOURTH);
+        if (correctNumbers == 3) lotto.setRank(LottoRank.FIFTH);
     }
 
     int getCorrectNumbersCount() {

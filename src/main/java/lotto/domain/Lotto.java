@@ -1,10 +1,15 @@
 package lotto.domain;
 
+import static lotto.utils.ValueUnit.END_NUMBER;
+import static lotto.utils.ValueUnit.LOTTO_NUMBERS;
+import static lotto.utils.ValueUnit.START_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.exception.OutOfRangeNumbersException;
 import lotto.exception.WrongSameNumberException;
+import lotto.utils.ValueUnit;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,14 +22,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        Integer lottoNumbers = LOTTO_NUMBERS.getValue();
+        if (numbers.size() != lottoNumbers) {
             throw new IllegalArgumentException();
         }
     }
 
     private void checkSameNumbers(List<Integer> numbers) {
         Set<Integer> comparisonTarget = new HashSet<>(numbers);
-        if (comparisonTarget.size() != 6) {
+        Integer lottoNumbers = LOTTO_NUMBERS.getValue();
+        if (comparisonTarget.size() != lottoNumbers) {
             throw new WrongSameNumberException();
         }
     }
@@ -39,7 +46,9 @@ public class Lotto {
     }
 
     private boolean isInRangeOneToFortyFive(Integer number) {
-        return number <= 0 || number > 45;
+        Integer startNumber = START_NUMBER.getValue();
+        Integer endNumber = END_NUMBER.getValue();
+        return number < startNumber|| number > endNumber;
     }
 
     public List<Integer> getLottoNumbers() {

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import lotto.exception.OutOfRangeNumbersException;
 import lotto.exception.WrongSameNumberException;
+import lotto.utils.ValueUnit;
 
 public class WinningLotto extends Lotto {
 
@@ -22,7 +23,9 @@ public class WinningLotto extends Lotto {
     }
 
     private void checkBonusNumberInRange(Integer bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        ValueUnit startNumber = ValueUnit.START_NUMBER;
+        ValueUnit endNumber = ValueUnit.END_NUMBER;
+        if (bonusNumber < startNumber.getValue() || bonusNumber > endNumber.getValue()) {
             throw new OutOfRangeNumbersException();
         }
     }

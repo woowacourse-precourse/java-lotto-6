@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.adapter.IoAdapter;
 import lotto.domain.Statistics;
 import lotto.message.LottoMessage;
+import lotto.utils.ValueUnit;
 import lotto.vo.Money;
 
 public class PrintController {
@@ -29,8 +30,10 @@ public class PrintController {
         BigDecimal calcRateOfReturn = statistics.calcRateOfReturn(money.getMoney());
         LottoMessage rateOfReturnHead = LottoMessage.RATE_OF_RETURN_HEAD;
         LottoMessage rateOfReturnTail = LottoMessage.RATE_OF_RETURN_TAIL;
+        ValueUnit numberOfRoundingDigits = ValueUnit.NUMBER_OF_ROUNDING_DIGITS;
         String rateOfReturn = rateOfReturnHead.getMessage() +
-                calcRateOfReturn.setScale(1, RoundingMode.HALF_UP) + rateOfReturnTail.getMessage();
+                calcRateOfReturn.setScale(numberOfRoundingDigits.getValue(), RoundingMode.HALF_UP)
+                + rateOfReturnTail.getMessage();
         ioAdapter.printMessage(rateOfReturn);
     }
 

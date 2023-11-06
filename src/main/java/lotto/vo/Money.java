@@ -1,5 +1,7 @@
 package lotto.vo;
 
+import lotto.utils.ValueUnit;
+
 public final class Money {
 
     private final Integer money;
@@ -10,11 +12,13 @@ public final class Money {
     }
 
     public boolean isLottoCountSameAsMoney(Integer count) {
-        return money.equals(count * 1000);
+        ValueUnit lottoTicketPurchaseAmount = ValueUnit.LOTTO_TICKET_PURCHASE_AMOUNT;
+        return money.equals(count * lottoTicketPurchaseAmount.getValue());
     }
 
     public String lottoExchangeCount() {
-        return Integer.toString(money / 1000);
+        ValueUnit lottoTicketPurchaseAmount = ValueUnit.LOTTO_TICKET_PURCHASE_AMOUNT;
+        return Integer.toString(money / lottoTicketPurchaseAmount.getValue());
     }
 
     public Integer getMoney() {

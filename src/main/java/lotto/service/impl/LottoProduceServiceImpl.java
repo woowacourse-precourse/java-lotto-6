@@ -4,18 +4,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.adapter.IoAdapter;
+import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.message.LottoMessage;
 import lotto.service.LottoProduceService;
 import lotto.service.SortService;
-import lotto.domain.Lotto;
+import lotto.utils.ValueUnit;
 import lotto.vo.Money;
 
 public class LottoProduceServiceImpl implements LottoProduceService {
 
-    private static final int START_NUMBER = 1;
-    private static final int END_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
     private final SortService sortService;
     private final IoAdapter ioAdapter;
 
@@ -26,7 +24,8 @@ public class LottoProduceServiceImpl implements LottoProduceService {
 
     @Override
     public Wallet produceLotto(Money money) {
-        int count = 0;
+        ValueUnit startCount = ValueUnit.START_COUNT;
+        int count = startCount.getValue();
         printLottoCount(money);
         List<Lotto> lottoBundle = new ArrayList<>();
         while (!money.isLottoCountSameAsMoney(count)) {
@@ -45,7 +44,11 @@ public class LottoProduceServiceImpl implements LottoProduceService {
     }
 
     private List<Integer> makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_COUNT);
+        ValueUnit startNumber = ValueUnit.START_NUMBER;
+        ValueUnit endNumber = ValueUnit.END_NUMBER;
+        ValueUnit lottoNumbers = ValueUnit.LOTTO_NUMBERS;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startNumber.getValue(), endNumber.getValue(),
+                lottoNumbers.getValue());
         List<Integer> sortedLotto = sortService.sortLottoAsc(numbers);
         ioAdapter.printLotto(sortedLotto);
         return sortedLotto;

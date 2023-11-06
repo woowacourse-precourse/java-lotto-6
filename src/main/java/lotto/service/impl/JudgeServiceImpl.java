@@ -6,20 +6,25 @@ import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.service.JudgeService;
+import lotto.utils.ValueUnit;
 import lotto.vo.Result;
 
 public class JudgeServiceImpl implements JudgeService {
 
     private boolean isThirdToFifthPlace(int winCount) {
-        return winCount <= 5 && winCount >= 3;
+        ValueUnit fiveWins = ValueUnit.FIVE_WINS;
+        ValueUnit threeWins = ValueUnit.THREE_WINS;
+        return winCount <= fiveWins.getValue() && winCount >= threeWins.getValue();
     }
 
     private boolean isFirstPlace(int winCount) {
-        return winCount == 6;
+        ValueUnit allWins = ValueUnit.ALL_WINS;
+        return winCount == allWins.getValue();
     }
 
     private boolean isSecondPlace(int winCount, boolean hasBonusNumber) {
-        return winCount == 5 && hasBonusNumber;
+        ValueUnit fiveWins = ValueUnit.FIVE_WINS;
+        return winCount == fiveWins.getValue() && hasBonusNumber;
     }
 
     @Override
@@ -51,11 +56,15 @@ public class JudgeServiceImpl implements JudgeService {
     }
 
     private int calcRank(int winCount, boolean hasBonusNumber) {
+        ValueUnit noWin = ValueUnit.NO_WIN;
         if (isFirstPlace(winCount) || isSecondPlace(winCount, hasBonusNumber)) {
-            return winCount - 1;
+            ValueUnit minusOne = ValueUnit.MINUS_ONE;
+            return winCount - minusOne.getValue();
         } else if (isThirdToFifthPlace(winCount)) {
-            return winCount - 2;
+            ValueUnit minusTwo = ValueUnit.MINUS_TWO;
+            return winCount - minusTwo.getValue();
         }
-        return 0;
+
+        return noWin.getValue();
     }
 }

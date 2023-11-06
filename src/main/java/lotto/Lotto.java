@@ -51,36 +51,39 @@ public class Lotto {
 
         System.out.println("구입금액을 입력해 주세요.");
         try {
-            int price = StringToInt(readLine());
+            int price = Integer.parseInt(readLine());
             result = validatePrice(price);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자 형식이 아닙니다.");
-            inputYourMoney();
+
+            return inputYourMoney();
+
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 금액은 1,000원 단위 이어야 합니다.");
-            inputYourMoney();
+
+            return inputYourMoney();
         }
 
         return result;
     }
 
-    protected static int StringToInt(String str) {
-        List<Character> zeroToNine = new ArrayList<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < str.length(); i++) {
-            char chr = str.charAt(i);
-            if (zeroToNine.contains(chr)) {
-                result.append(chr);
-            }
-
-            if (!zeroToNine.contains(chr)) {
-                throw new NumberFormatException("[ERROR] 숫자 형식이 아닙니다.");
-            }
-        }
-
-
-        return Integer.parseInt(result.toString());
-    }
+//    protected static int StringToInt(String str) {
+//        List<Character> zeroToNine = new ArrayList<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
+//        StringBuilder result = new StringBuilder();
+//        for (int i = 0; i < str.length(); i++) {
+//            char chr = str.charAt(i);
+//            if (zeroToNine.contains(chr)) {
+//                result.append(chr);
+//            }
+//
+//            if (!zeroToNine.contains(chr)) {
+//                throw new NumberFormatException("[ERROR] 숫자 형식이 아닙니다.");
+//            }
+//        }
+//
+//
+//        return Integer.parseInt(result.toString());
+//    }
 
 
     private static int validatePrice(int price) {

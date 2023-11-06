@@ -12,7 +12,6 @@ public class LottoHost {
     private Integer bonusNumber;
 
     public List<Integer> pickWinNumbers() {
-        // TODO: 11/5/23 입력 체크.
         List<Integer> tempWinNumbers = inputWinNumbers();
 
         ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
@@ -24,7 +23,6 @@ public class LottoHost {
     }
 
     public Integer pickBonusNumber() {
-        // TODO: 11/5/23 입력 체크.
         Integer tempBonusNumber = inputBonusNumber();
 
         ValidateException.hasDuplicateNumAndNumbers(tempBonusNumber, winNumbers);
@@ -33,7 +31,6 @@ public class LottoHost {
         return bonusNumber;
     }
 
-    // TODO: 11/6/23 예외 처리
     private Integer inputBonusNumber() {
         return Input.InputNumber();
     }

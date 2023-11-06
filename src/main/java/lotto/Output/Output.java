@@ -3,6 +3,7 @@ package lotto.Output;
 import java.util.HashMap;
 import lotto.EnumList.ConstantNumber;
 import lotto.EnumList.WiningInventory;
+import lotto.ResultLotto;
 
 public class Output {
     private static final String result = "당첨 통계";
@@ -38,5 +39,9 @@ public class Output {
             }
             count++;
         }
+    }
+
+    public void printRateOfReturn(Double rate) {
+        System.out.print("총 수익률은 " + rate + "%입니다.");
     }
 }

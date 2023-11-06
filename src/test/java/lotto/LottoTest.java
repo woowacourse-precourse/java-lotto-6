@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import lotto.Domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -104,5 +105,23 @@ class LottoTest {
             Lotto lotto = new Lotto(lottoNumbers);
             lotto.setBonusNumber(Integer.parseInt(" "));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("추첨자가 보너스 번호를 입력한다.")
+    @Test
+    void BonusNumberCorrentTest() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+        Lotto lotto = new Lotto(numbers);
+        int bonusNumber = 7;
+
+        lotto.setBonusNumber(bonusNumber);
+
+        assertThat(lotto.getBonusNumber()).isEqualTo(bonusNumber);
     }
 }

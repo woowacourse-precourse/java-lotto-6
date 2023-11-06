@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.text.NumberFormat;
+
 public enum LottoGrade {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -31,6 +33,20 @@ public enum LottoGrade {
 
     public int getWinningMoney() {
         return winningMoney;
+    }
+
+    public String getMatchLabel() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.matchCount).append("개 일치");
+
+        if(this.matchBonus) {
+            sb.append(", 보너스 볼 일치");
+        }
+
+        String winningMoney = NumberFormat.getInstance().format(this.winningMoney);
+        sb.append(" (").append(winningMoney).append("원)");
+
+        return sb.toString();
     }
 
     private static boolean isMatchCountWorthy(LottoGrade grade, int matchCount) {

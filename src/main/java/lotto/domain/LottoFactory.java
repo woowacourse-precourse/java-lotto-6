@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class LottoFactory {
 
     private final NumberGenerator numberGenerator;
@@ -9,12 +11,13 @@ public class LottoFactory {
     }
 
     public Lotto create() {
-        return new Lotto(
-                numberGenerator.generate(
-                        Lotto.LOTTO_NUMBER_MIN,
-                        Lotto.LOTTO_NUMBER_MAX,
-                        Lotto.LOTTO_NUMBER_SIZE
-                )
+        List<Integer> generatedNumbers = numberGenerator.generate(
+                Lotto.LOTTO_NUMBER_MIN,
+                Lotto.LOTTO_NUMBER_MAX,
+                Lotto.LOTTO_NUMBER_SIZE
         );
+
+        generatedNumbers.sort(Integer::compareTo);
+        return new Lotto(generatedNumbers);
     }
 }

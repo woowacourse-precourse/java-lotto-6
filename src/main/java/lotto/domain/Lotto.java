@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.Constant.ErrorMessageConstant;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         checkNumOfLotto(numbers);
+        checkDuplicatedNumber(numbers);
         checkRangeOfLotto(numbers);
 
     }
@@ -33,8 +35,14 @@ public class Lotto {
         }
     }
 
+    private void checkDuplicatedNumber(List<Integer> numbers){
+        if(numbers.stream().distinct().count() != 6){
+            throw new IllegalArgumentException(ErrorMessageConstant.DUPLICATE);
+        }
+    }
+
     public void sortNumbers(List<Integer> numbers){
-        Collections.sort(numbers);
+        Arrays.sort(numbers.toArray());
     }
 
     @Override

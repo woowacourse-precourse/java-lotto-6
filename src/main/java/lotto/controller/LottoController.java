@@ -31,25 +31,29 @@ public class LottoController {
         List<Lotto> lottos = lottoService.purchaseLotto(money);
         outputView.printLottos(lottos);
 
-        List<Integer> drawNumbers = getDrawNumbers();
-        Integer bonusNumber = getBonusNumber();
-        WinningNumber winningNumber = new WinningNumber(drawNumbers, bonusNumber);
-
+        WinningNumber winningNumber = makeWinningNumber();
         LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumber);
-        outputView.printLottoResult(lottoResult);
-        outputView.printEarningRate(lottoResult.getLottoRanks(), money);
+        outputView.printLottoResult(lottoResult, money);
     }
 
-    private Integer getMoney() {
+    private int getMoney() {
         while (true) {
             try {
-                Integer moneyAmount = inputParser.parseMoney(inputView.getMoney());
+                int moneyAmount = inputParser.parseMoney(inputView.getMoney());
                 inputValidator.validateMoney(moneyAmount);
                 return moneyAmount;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
+    }
+
+    private WinningNumber makeWinningNumber() {
+        List<Integer> drawNumbers = getDrawNumbers();
+
+        Integer bonusNumber = getBonusNumber();
+
+        return new WinningNumber(drawNumbers, bonusNumber);
     }
 
     private List<Integer> getDrawNumbers() {

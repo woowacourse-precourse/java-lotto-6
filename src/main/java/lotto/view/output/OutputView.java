@@ -41,7 +41,7 @@ public class OutputView {
         System.out.println(output);
     }
 
-    public void printLottoResult(LottoResult lottoResult) {
+    public void printLottoResult(LottoResult lottoResult, int money) {
         System.out.printf(PRINT_TOTAL_RESULT);
         List<LottoRank> lottoRanks = lottoResult.getLottoRanks();
 
@@ -50,6 +50,8 @@ public class OutputView {
                 printRank(lottoRanks, rank);
             }
         }
+
+        printEarningRate(lottoRanks, money);
     }
 
     private void printRank(List<LottoRank> lottoRanks, LottoRank rank) {
@@ -67,7 +69,7 @@ public class OutputView {
                 Collections.frequency(lottoRanks, rank));
     }
 
-    public void printEarningRate(List<LottoRank> lottoRanks, Integer purchaseMoney) {
+    private void printEarningRate(List<LottoRank> lottoRanks, Integer purchaseMoney) {
         double totalCount = 0;
         for (LottoRank rank : lottoRanks) {
             totalCount += rank.getReward();

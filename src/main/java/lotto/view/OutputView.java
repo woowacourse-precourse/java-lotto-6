@@ -1,14 +1,14 @@
 package lotto.view;
 
-import static lotto.view.ViewConstant.OutputViewConstant.BONUS_NUMBER_MESSAGE;
-import static lotto.view.ViewConstant.OutputViewConstant.EARNING_RATE_MESSAGE;
-import static lotto.view.ViewConstant.OutputViewConstant.HUNDRED;
-import static lotto.view.ViewConstant.OutputViewConstant.NEW_LINE;
-import static lotto.view.ViewConstant.OutputViewConstant.PURCHASE_AMOUNT_MESSAGE;
-import static lotto.view.ViewConstant.OutputViewConstant.PURCHASE_MESSAGE;
-import static lotto.view.ViewConstant.OutputViewConstant.STATUS;
-import static lotto.view.ViewConstant.OutputViewConstant.THREE_DASH;
-import static lotto.view.ViewConstant.OutputViewConstant.WINNING_NUMBER_MESSAGE;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.BONUS_NUMBER_MESSAGE;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.EARNING_RATE_MESSAGE;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.HUNDRED;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.NEW_LINE;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.PURCHASE_AMOUNT_MESSAGE;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.PURCHASE_MESSAGE;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.STATUS;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.THREE_DASH;
+import static lotto.view.constant.ViewConstant.OutputViewConstant.WINNING_NUMBER_MESSAGE;
 public class OutputView {
 
     public void printMessage(String message) {

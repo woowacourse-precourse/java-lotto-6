@@ -38,8 +38,8 @@ public class OutputView {
         System.out.print(INPUT_BONUS_NUMBER.get());
     }
 
-    public void inputWinningStatistics() {
-        System.out.print(INPUT_WINNING_STATISTICS.get());
+    public void winningStatistics() {
+        System.out.print(WINNING_STATISTICS.get());
     }
 
     public void matchCount() {

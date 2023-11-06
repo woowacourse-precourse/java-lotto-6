@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.validation.InputException;
 
 public class Purchase {
     private final int amount;
@@ -15,11 +16,20 @@ public class Purchase {
         this.purchasedLotto = initializePurchasedLotto();
     }
 
-    public int initializeAmount() {
-        return Integer.parseInt(Console.readLine()) / 1000;
+    private int initializeAmount() {
+        String amount = Console.readLine();
+
+        try {
+            validate(amount);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.err.println(illegalArgumentException.getMessage());
+            return initializeAmount();
+        }
+
+        return Integer.parseInt(amount) / 1000;
     }
 
-    public List<Lotto> initializePurchasedLotto() {
+    private List<Lotto> initializePurchasedLotto() {
         List<Lotto> purchasedLotto = new ArrayList<>();
 
         for (int i = 0; i < this.amount; i++) {
@@ -42,5 +52,12 @@ public class Purchase {
         for (int i = 0; i < purchasedLotto.size(); i++) {
             purchasedLotto.get(i).printLottoNumber();
         }
+    }
+
+    private void validate(String amount) {
+        InputException.blank(amount);
+        InputException.notNumber(amount);
+        InputException.underThousand(amount);
+        InputException.notMultipleOfThousand(amount);
     }
 }

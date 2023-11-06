@@ -1,8 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constant.ExceptionMessage;
 import lotto.constant.SystemMessage;
 
+// TODO : 변수명에 하드코딩된 것 바꾸기
 public class OutputHandler {
 
     public static void requirePaymentPrice() {
@@ -43,4 +45,31 @@ public class OutputHandler {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn * 100);
     }
 
+    public static void requireInteger() {
+        System.out.println(ExceptionMessage.REQUIRE_INTEGER);
+    }
+
+    public static void requirePositiveInteger() {
+        System.out.println(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);
+    }
+
+    public static void requireNonemptyInput() {
+        System.out.println(ExceptionMessage.REQUIRE_NONEMPTY_INPUT);
+    }
+
+    public static void requireMultipleOfLottoPrice() {
+        System.out.println(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE);
+    }
+
+    public static void requireSixNumbers() {
+        System.out.println(ExceptionMessage.REQUIRE_SIX_NUMBERS);
+    }
+
+    public static void requireFiveCommas() {
+        System.out.println(ExceptionMessage.REQUIRE_FIVE_COMMAS);
+    }
+
+    public static void requireRightRangeNumber() {
+        System.out.println(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER);
+    }
 }

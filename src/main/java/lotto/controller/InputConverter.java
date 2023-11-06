@@ -18,11 +18,6 @@ public class InputConverter {
         return winningNumbers;
     }
 
-/*
-    public static int convertBonusNumber(String inputBonusNumber) {
-        return checkDigit(inputBonusNumber);
-    }*/
-
     public static int convertDigit(String inputNum) throws IllegalArgumentException{
         try {
             return Integer.parseInt(inputNum);

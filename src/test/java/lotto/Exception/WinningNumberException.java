@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.exception.WinningException.checkWinningNumberException;
+import static lotto.exception.WinningCommonException.checkWinningNumberException;
 
 //import static lotto.exception.ExceptionController.checkWinningNumberException;
 

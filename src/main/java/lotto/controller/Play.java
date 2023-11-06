@@ -4,14 +4,14 @@ import lotto.model.*;
 
 import java.util.*;
 
-import static lotto.exception.BonusNumberException.checkBonusNumberException;
+import static lotto.exception.BonusNumberCommonException.checkBonusNumberException;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
 import static lotto.exception.PriceException.checkPriceException;
-import static lotto.exception.WinningException.checkWinningNumberException;
+import static lotto.exception.WinningCommonException.checkWinningNumberException;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 

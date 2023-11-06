@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
-
 public enum Rank {
     FIFTH(5, 3, 5000, "3개 일치 (5,000원) - "),
     FOURTH(4, 4, 50000, "4개 일치 (50,000원) - "),

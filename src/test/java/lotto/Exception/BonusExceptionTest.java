@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.exception.BonusNumberException.checkBonusNumberException;
+import static lotto.exception.BonusNumberCommonException.checkBonusNumberException;
 
 public class BonusExceptionTest {
     @DisplayName("잘못된 보너스 숫자 예외 테스트")

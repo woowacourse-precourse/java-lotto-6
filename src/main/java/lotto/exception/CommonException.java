@@ -3,7 +3,7 @@ package lotto.exception;
 import lotto.model.Number;
 import static lotto.view.ErrorMessage.*;
 
-public class ExceptionController {
+public class CommonException {
     public static void checkNumberException(int num) throws IllegalArgumentException {
         try {
             Number.checkRange(num);

@@ -7,7 +7,7 @@ import java.util.List;
 
 import static lotto.view.ErrorMessage.duplicatedBonusNumber;
 
-public class BonusNumberException extends ExceptionController{
+public class BonusNumberCommonException extends CommonException {
 
     public static BonusNumber checkBonusNumberException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {

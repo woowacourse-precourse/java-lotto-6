@@ -30,19 +30,17 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+    private void validateRange(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if(numbers.get(i) < MIN_RANGE && numbers.get(i) > MAX_RANGE) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
-        numbers.forEach(this::validateRange);
-    }
-
-    private void validateRange(Integer number) {
-        if (number < MIN_RANGE && number > MAX_RANGE) {
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -51,7 +49,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int getMatchLottoNumber(WinningLotto winningLotto) {
+    public int getMatchedLottoCount(WinningLotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::isContain)
                 .count();
@@ -60,7 +58,7 @@ public class Lotto {
     public List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

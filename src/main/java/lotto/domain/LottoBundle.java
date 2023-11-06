@@ -10,6 +10,6 @@ public class LottoBundle {
     }
 
     public List<Lotto> getBundle() {
-        return bundle;
+        return List.copyOf(bundle);
     }
 }

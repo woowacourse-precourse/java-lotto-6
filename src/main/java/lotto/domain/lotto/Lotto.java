@@ -19,6 +19,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
     private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
@@ -38,25 +39,42 @@ public class Lotto {
 
     public StringBuilder giveInformation() {
         int sizeNumbers = numbers.size();
-        StringBuilder informationOfNumbers = new StringBuilder();
         int num = 0;
         List<Integer> organizeLotto = organizeLotto();
 
-        informationOfNumbers.append("[");
-
-        for (int i = 0; i < sizeNumbers; i++) {
-            num = organizeLotto.get(i);
-            informationOfNumbers.append(num);
-            if (i != sizeNumbers - 1) {
-                informationOfNumbers.append(", ");
-            }
-        }
-        informationOfNumbers.append("]");
+        StringBuilder informationOfNumbers = getInformationOfLotto(sizeNumbers, organizeLotto);
 
         return informationOfNumbers;
     }
 
+    private StringBuilder getInformationOfLotto(int sizeNumbers, List<Integer> organizeLotto) {
+        int num;
+        StringBuilder informationOfNumbers = new StringBuilder();
+
+        appendStringBuild(informationOfNumbers, "[");
+
+        for (int i = 0; i < sizeNumbers; i++) {
+            num = getNum(organizeLotto, i);
+            informationOfNumbers.append(num);
+
+            if (i != sizeNumbers - 1) {
+                appendStringBuild(informationOfNumbers, ", ");
+            }
+        }
+        appendStringBuild(informationOfNumbers, "]");
+
+        return informationOfNumbers;
+    }
+
+    private void appendStringBuild(StringBuilder informationOfNumbers, String string) {
+        informationOfNumbers.append(string);
+    }
+
     public Integer getNumber(Integer index) {
         return numbers.get(index);
+    }
+
+    private Integer getNum(List<Integer> organizeLotto, int i) {
+        return organizeLotto.get(i);
     }
 }

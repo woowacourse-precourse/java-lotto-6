@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoNumberValidatorTest {
+public class WinNumberValidatorTest {
     @Test
     @DisplayName("주어진 리스트에 중복 숫자가 있는지 확인합니다.")
     void duplicationTest() {

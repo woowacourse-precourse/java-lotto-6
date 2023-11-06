@@ -8,6 +8,7 @@ import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
 import static lotto.enums.ErrorMassage.INVALID_LOTTO_COUNT;
 import static lotto.enums.ErrorMassage.INVALID_NUMBER;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
+import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
 import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,7 +50,7 @@ class LottoControllerTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1.2.3.45,6", "65,1,2,3,4,5", "41,41,1,2,3,4", "1,2,3,4,5,6,7", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(
-                    INVALID_NUMBER.getMassage(),
+                    NOT_SEPARATE_BY_DELIMITER.getMassage(),
                     OUT_OF_RANGE_LOTTO_NUMBER.getMassage(),
                     DUPLICATE_LOTTO_NUMBER.getMassage(),
                     INVALID_LOTTO_COUNT.getMassage()

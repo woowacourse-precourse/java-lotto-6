@@ -1,5 +1,6 @@
 package lotto.unit.validate;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -8,10 +9,22 @@ import lotto.domain.Lotto;
 import lotto.dto.input.GetWinningNumberDto;
 import lotto.util.exception.ErrorMessage;
 import lotto.util.validate.Validator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ValidatorUnitTest {
+    @DisplayName("정상 실행")
+    @Test
+    void winningNumberNormalCase(){
+        //given
+        String winningNumbers = "1,2,3,4,5,6";
+        //when
+
+        //then
+        Assertions.assertThat(Validator.checkWinningNumbers(winningNumbers))
+                .contains(1);
+    }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
@@ -63,6 +76,18 @@ public class ValidatorUnitTest {
         assertThatThrownBy(() -> Validator.checkWinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_RIGHT_BOUNDARY.toString());
+    }
+
+    @DisplayName("로또 금액 정상 실행")
+    @Test
+    void checkBuyMoneyNormalCase(){
+        //given
+        String buyMoneys = "14000";
+        //when
+
+        //then
+        Assertions.assertThat(Validator.checkBuyMoney(buyMoneys))
+                .isEqualTo(14);
     }
 
     @DisplayName("천원보다 아래의 금액은 예외가 발생한다.")

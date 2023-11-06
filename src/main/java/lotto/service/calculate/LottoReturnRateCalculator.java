@@ -14,26 +14,25 @@ public class LottoReturnRateCalculator implements Calculator{
     private static final double HUNDRED_POINT = 100.0;
     private static final int HUNDRED = 100;
     @Override
-    public GetReturnRateDto calculateLottoReturnRate(GetLottoResultDto getLottoResultDto,
-                                                     GetLottoCountDto getLottoCountDto) {
+    public GetReturnRateDto calculateLottoReturnRate(final GetLottoResultDto getLottoResultDto,
+                                                     final GetLottoCountDto getLottoCountDto) {
 
         return new GetReturnRateDto(calculateRate(getLottoResultDto, getLottoCountDto));
     }
 
-    private static double calculateRate(GetLottoResultDto getLottoResultDto, GetLottoCountDto getLottoCountDto) {
+    private static double calculateRate(final GetLottoResultDto getLottoResultDto, final GetLottoCountDto getLottoCountDto) {
         return Math.round(getRate(getLottoResultDto, getLottoCountDto)*HUNDRED)/HUNDRED_POINT;
     }
 
-    private static double getRate(GetLottoResultDto getLottoResultDto, GetLottoCountDto getLottoCountDto) {
-        double rate = (double) calculateWinPrize(getLottoResultDto) / getBuyMoney(getLottoCountDto) * 100;
-        return rate;
+    private static double getRate(final GetLottoResultDto getLottoResultDto, final GetLottoCountDto getLottoCountDto) {
+        return (double) calculateWinPrize(getLottoResultDto) / getBuyMoney(getLottoCountDto) * 100;
     }
 
-    private static int getBuyMoney(GetLottoCountDto getLottoCountDto) {
+    private static int getBuyMoney(final GetLottoCountDto getLottoCountDto) {
         return getLottoCountDto.getCount() * THOUSAND;
     }
 
-    private static int calculateWinPrize(GetLottoResultDto getLottoResultDto) {
+    private static int calculateWinPrize(final GetLottoResultDto getLottoResultDto) {
         return getThreeHitPrize(getLottoResultDto)
                 + getFourHitPrize(getLottoResultDto)
                 + getFiveHitPrize(getLottoResultDto)
@@ -41,23 +40,23 @@ public class LottoReturnRateCalculator implements Calculator{
                 + getSixHitPrize(getLottoResultDto);
     }
 
-    private static int getSixHitPrize(GetLottoResultDto getLottoResultDto) {
+    private static int getSixHitPrize(final GetLottoResultDto getLottoResultDto) {
         return getLottoResultDto.sixHit() * SIX_HIT;
     }
 
-    private static int getFiveWithBonusPrize(GetLottoResultDto getLottoResultDto) {
+    private static int getFiveWithBonusPrize(final GetLottoResultDto getLottoResultDto) {
         return getLottoResultDto.fiveHitWithBonus() * FIVE_HIT_WITH_BONUS_PRIZE;
     }
 
-    private static int getFiveHitPrize(GetLottoResultDto getLottoResultDto) {
+    private static int getFiveHitPrize(final GetLottoResultDto getLottoResultDto) {
         return getLottoResultDto.fiveHit() * FIVE_HIT_PRIZE;
     }
 
-    private static int getFourHitPrize(GetLottoResultDto getLottoResultDto) {
+    private static int getFourHitPrize(final GetLottoResultDto getLottoResultDto) {
         return getLottoResultDto.fourHit() * FOUR_HIT_PRIZE;
     }
 
-    private static int getThreeHitPrize(GetLottoResultDto getLottoResultDto) {
+    private static int getThreeHitPrize(final GetLottoResultDto getLottoResultDto) {
         return getLottoResultDto.threeHit() * THREE_HIT_PRIZE;
     }
 }

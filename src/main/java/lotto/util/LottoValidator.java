@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.message.ExceptionMessage;
+
 import java.util.List;
 
 import static lotto.constant.ConstantValue.END_INCLUSIVE;
@@ -19,7 +21,7 @@ public class LottoValidator {
 
     public static void validateLottoNumberOutOfRange(Integer lottoNumber) {
         if (lottoNumber < START_INCLUSIVE || lottoNumber > END_INCLUSIVE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_OUT_OF_RANGE);
         }
     }
 }

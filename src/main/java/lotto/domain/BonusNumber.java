@@ -29,8 +29,7 @@ public class BonusNumber {
 
     private void validateBonusNumberDuplicationWithWinningNumbers(int inputBonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(inputBonusNumber)) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUM_AND_WINNING_NUM_DUPLICATE_ERROR.getMessage());
         }
     }
 

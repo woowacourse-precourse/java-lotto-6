@@ -109,6 +109,7 @@ public class LottoController {
 
     private void printResult(HashMap<String, Integer> countByPrize) {
         System.out.println(output.printResultMessage());
+        printFifthPrizeCount(countByPrize);
         printFourthPrizeCount(countByPrize);
         printThirdPrizeCount(countByPrize);
         printSecondPrizeCount(countByPrize);
@@ -139,6 +140,12 @@ public class LottoController {
                 countByPrize.get(Config.FOURTH_PRIZE_REWARD));
     }
 
+    private void printFifthPrizeCount(HashMap<String, Integer> countByPrize) {
+        System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
+                Config.FIFTH_PRIZE_HAS_WINNING, Config.FIFTH_PRIZE_REWARD,
+                countByPrize.get(Config.FIFTH_PRIZE_REWARD));
+    }
+
     //이 아래는 추후 LottoService 클래스로 이동(일부 메서드 접근 제어자 수정 필요)
     private HashMap<String, Integer> checkPrizeByLotto(HashMap<Integer, List<Integer>> countMatchByLotto) {
         HashMap<String, Integer> countByPrize = new HashMap<>();
@@ -151,6 +158,8 @@ public class LottoController {
                 countByMatchNumber(countMatchByLotto, Config.THIRD_PRIZE_HAS_WINNING));
         countByPrize.put(Config.FOURTH_PRIZE_REWARD,
                 countByMatchNumber(countMatchByLotto, Config.FOURTH_PRIZE_HAS_WINNING));
+        countByPrize.put(Config.FIFTH_PRIZE_REWARD,
+                countByMatchNumber(countMatchByLotto, Config.FIFTH_PRIZE_HAS_WINNING));
 
         return countByPrize;
     }

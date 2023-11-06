@@ -7,15 +7,15 @@ import lotto.vo.LottoBonusNumber;
 
 import java.util.List;
 
-public class LottoWinningService {
-    private static final LottoWinningService instance = new LottoWinningService();
+public class LottoWinningNumbersPickService {
+    private static final LottoWinningNumbersPickService instance = new LottoWinningNumbersPickService();
     private final LottoManualGenerateService lottoManualGenerator;
 
-    private LottoWinningService() {
+    private LottoWinningNumbersPickService() {
         this.lottoManualGenerator = LottoManualGenerateService.getInstance();
     }
 
-    public static LottoWinningService getInstance() {
+    public static LottoWinningNumbersPickService getInstance() {
         return instance;
     }
 

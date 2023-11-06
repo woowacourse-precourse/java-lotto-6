@@ -9,7 +9,7 @@ import lotto.exception.LottoStoreException;
 import lotto.service.LottoProfitService;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoWinningRankingService;
-import lotto.service.LottoWinningService;
+import lotto.service.LottoWinningNumbersPickService;
 import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,15 +21,15 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoPurchaseService lottoPurchaseService;
-    private final LottoWinningService lottoWinningService;
+    private final LottoWinningNumbersPickService lottoWinningNumbersPickService;
     private final LottoWinningRankingService lottoWinningRankingService;
     private final LottoProfitService lottoProfitService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoWinningService lottoWinningService, LottoWinningRankingService lottoWinningRankingService, LottoProfitService lottoProfitService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoWinningNumbersPickService lottoWinningNumbersPickService, LottoWinningRankingService lottoWinningRankingService, LottoProfitService lottoProfitService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoPurchaseService = lottoPurchaseService;
-        this.lottoWinningService = lottoWinningService;
+        this.lottoWinningNumbersPickService = lottoWinningNumbersPickService;
         this.lottoWinningRankingService = lottoWinningRankingService;
         this.lottoProfitService = lottoProfitService;
     }
@@ -98,7 +98,7 @@ public class LottoController {
     private Lotto getLottoWinningNumbers() throws LottoException {
         String input = inputView.inputWinningNumbers();
         Validator.validatedWinningNumbersFormat(input);
-        return lottoWinningService.pickWinningNumbers(input);
+        return lottoWinningNumbersPickService.pickWinningNumbers(input);
     }
 
     private LottoBonusNumber processLottoBonusNumberTransaction(Lotto lotto) {
@@ -117,7 +117,7 @@ public class LottoController {
     private LottoBonusNumber getBonusNumber() throws LottoException {
         String input = inputView.inputBonusNumber();
         Validator.validateBonusNumberNumeric(input);
-        return lottoWinningService.pickBonusNumber(input);
+        return lottoWinningNumbersPickService.pickBonusNumber(input);
     }
 
     private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, LottoBonusNumber lottoBonusNumber) {

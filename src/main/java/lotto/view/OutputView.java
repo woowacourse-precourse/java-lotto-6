@@ -1,9 +1,8 @@
 package lotto.view;
 
-import lotto.model.Rank;
-
 import java.util.List;
 import java.util.Map;
+import lotto.model.Rank;
 
 public class OutputView {
 
@@ -18,6 +17,7 @@ public class OutputView {
     private static final String THIRD_PLACE_RESULT_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
     private static final String SECOND_PLACE_RESULT_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST_PLACE_RESULT_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
+    private static final String TOTAL_YIELD_MESSAGE = "총 수익률은 %s%%입니다.";
 
     public void printPurchaseAmountInputMessage() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
@@ -50,5 +50,9 @@ public class OutputView {
         System.out.printf(THIRD_PLACE_RESULT_MESSAGE, winningStatistics.get(Rank.ThirdPlace));
         System.out.printf(SECOND_PLACE_RESULT_MESSAGE, winningStatistics.get(Rank.SecondPlace));
         System.out.printf(FIRST_PLACE_RESULT_MESSAGE, winningStatistics.get(Rank.FirstPlace));
+    }
+
+    public void printTotalYield(String totalYield) {
+        System.out.printf(TOTAL_YIELD_MESSAGE, totalYield);
     }
 }

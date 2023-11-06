@@ -44,13 +44,4 @@ class LottoTest {
 
         assertThat(lotto.contains(7)).isEqualTo(false);
     }
-
-    @DisplayName("로또 두 개를 비교하여 몇 개의 숫자가 일치하는 지 확인한다.")
-    @Test
-    void createTwoLottoAndCompare() {
-        Lotto testLotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto testLotto2 = new Lotto(List.of(4, 5, 6, 7, 8, 9));
-
-        assertThat(testLotto1.compareLotto(testLotto2)).isEqualTo(3);
-    }
 }

@@ -21,10 +21,12 @@ public class LottoController {
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
     }
     private Integer getLottoAmountofMoney(){
+        displayOutput.outputLottoAmountofMoney();
         return displayInput.inputLottoAmountofMoney();
     }
 
     private List<Integer> getAnswerLottoNumber(){
+        displayOutput.outputAnswerLotto();
         List<Integer> lottoNumbers = new ArrayList<>();
         String inputtedLottoNumbers = displayInput.inputLottoNumbers();
         String[] inputtedlottoNumberList = inputtedLottoNumbers.split(DELIMETER);
@@ -34,6 +36,7 @@ public class LottoController {
         return lottoNumbers;
     }
     private Integer getBonusNumber(){
+        displayOutput.outputBonusNumber();
         return displayInput.inputBonusNumber();
     }
 

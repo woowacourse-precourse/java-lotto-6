@@ -22,11 +22,13 @@ public class Validator {
         isNumberCharInteger(amount);
     }
 
-    public void isValidWinningNumbers(List<Integer> winningNumbers){
+    public List<Integer> isValidWinningNumbers(List<Integer> winningNumbers){
         isValidLength(winningNumbers);
         isDuplicateNumberInList(winningNumbers);
         isValidRangeNumberInList(winningNumbers);
+        return winningNumbers;
     }
+
 
     public void isValidBonusNumber(List<Integer> winningNumbers, int bonusNumber){
         isValidNumberInRange(bonusNumber);
@@ -80,7 +82,6 @@ public class Validator {
 
     public boolean isMultipleNumber(int number){
         int divisor = DIVISOR;
-
         if(number < divisor || number % divisor != 0){
             ErrorMessage.multipleErrorMessage(divisor);
             throw new IllegalArgumentException();

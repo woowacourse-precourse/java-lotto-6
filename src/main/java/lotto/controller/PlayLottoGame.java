@@ -29,6 +29,7 @@ public class PlayLottoGame {
 
     private final OutputView outputView = new OutputView();
     private final Parser parser = new Parser();
+    private List<Integer> winningNumbers;
 
     private User user;
 
@@ -75,15 +76,29 @@ public class PlayLottoGame {
         }
     }
     private List<Integer> inputWinningNumbers(){
-        String userInput = inputView.inputWinningNumbers();
-        List<Integer> winningNumbers = parser.parseInputWinningNumbers(userInput);
-        return winningNumbers;
+        while (true){
+            try {
+                String userInput = inputView.inputWinningNumbers();
+                winningNumbers = validator.isValidWinningNumbers(parser.parseInputWinningNumbers(userInput));
+                return winningNumbers;
+            }catch (IllegalArgumentException e){
+                return inputWinningNumbers();
+            }
+        }
     }
 
+    //통과
     private int inputBonusNumber(){
-        String userInput = inputView.inputBonusNumber();
-        int bonusNumber = parser.parseInputStringNumber(userInput);
-        return bonusNumber;
+        while (true){
+            try {
+                String userInput = inputView.inputBonusNumber();
+                int bonusNumber = parser.parseInputStringNumber(userInput);
+                validator.isValidBonusNumber(winningNumbers,bonusNumber);
+                return bonusNumber;
+            }catch (IllegalArgumentException e){
+                return inputBonusNumber();
+            }
+        }
     }
 
     public int isValidPurchaseAmount(String amount) {

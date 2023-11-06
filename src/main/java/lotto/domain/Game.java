@@ -12,9 +12,7 @@ public class Game {
     private final int bonusNumber;
 
     public Game(List<Integer> winningNumbers, int bonusNumber) {
-        validator.isValidWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
-        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

@@ -5,8 +5,6 @@ import lotto.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.domain.LottoCondition.PURCHASE_PRICE;
-
 public class UserLotto {
 
     private final List<Lotto> lottos = new ArrayList<>();
@@ -16,7 +14,7 @@ public class UserLotto {
 
     public UserLotto(int purchasePrice) {
         this.purchasePrice = new PurchasePrice(purchasePrice);
-        this.lottoAmount = new LottoAmount(purchasePrice / PURCHASE_PRICE.getValue());
+        this.lottoAmount = new LottoAmount(purchasePrice);
         generateLottos();
     }
 

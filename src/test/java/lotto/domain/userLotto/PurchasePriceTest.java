@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.domain.LottoCondition.PURCHASE_PRICE;
+import static lotto.domain.LottoCondition.PRICE;
 
 class PurchasePriceTest {
 
@@ -13,7 +13,7 @@ class PurchasePriceTest {
     void When_LessThanLottoPrice_Expect_Fail() {
         Assertions.assertThatThrownBy(() -> new PurchasePrice(500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("구입 금액은 " + PURCHASE_PRICE.getValue()+ "원 단위로 입력해야 합니다.");
+                .hasMessageContaining("구입 금액은 " + PRICE.getValue()+ "원 단위로 입력해야 합니다.");
     }
 
     @Test
@@ -21,7 +21,7 @@ class PurchasePriceTest {
     void When_NotDivisibleByLottoPrice_Expect_Fail() {
         Assertions.assertThatThrownBy(() -> new PurchasePrice(2500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("구입 금액은 " + PURCHASE_PRICE.getValue()+ "원 단위로 입력해야 합니다.");
+                .hasMessageContaining("구입 금액은 " + PRICE.getValue()+ "원 단위로 입력해야 합니다.");
     }
 
     @Test

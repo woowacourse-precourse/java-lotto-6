@@ -34,6 +34,6 @@ public class PurchaseLottos {
     }
 
     private Lotto validatedLotto(){
-        return new Lotto(new LottoOneSet().generateRandomNumbers());
+        return new Lotto(new LottoOneSet().getLottoOneSet());
     }
 }

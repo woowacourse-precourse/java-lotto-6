@@ -17,7 +17,7 @@ public class Lotto {
         if (hasSameNumbers(numbers)) {
             throw new IllegalArgumentException();
         }
-        if (areInRange(numbers)) {
+        if (!areInRange(numbers)) {
             throw new IllegalArgumentException();
         }
 

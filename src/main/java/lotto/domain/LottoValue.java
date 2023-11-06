@@ -11,8 +11,8 @@ public enum LottoValue {
     SIX(6, 2000000000, "6개 일치 (2,000,000,000원)");
 
     private final int count;
-    private final int winningMoney;
-    private final String result;
+    public final int winningMoney;
+    public final String result;
 
     LottoValue(int count, int winningMoney, String result) {
         this.count = count;
@@ -27,20 +27,5 @@ public enum LottoValue {
             }
         }
         return null;
-    }
-
-    public static void printResult(List<LottoValue> tmp){
-        for (LottoValue lottoValue : LottoValue.values()) {
-            System.out.println(lottoValue.result + " - " + tmp.stream().filter(a -> a.name().equals(lottoValue.name())).count() + "개");
-        }
-    }
-
-    public static void showProfit(List<LottoValue> tmp, int numOfLotto) {
-        int total = 0;
-        for (LottoValue lottoValue : tmp) {
-            total += lottoValue.winningMoney;
-        }
-        DecimalFormat df = new DecimalFormat("0.00");
-        System.out.println("총 수익률은 " + df.format(((float) total/(numOfLotto*1000))*100) + "%입니다.");
     }
 }

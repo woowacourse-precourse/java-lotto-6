@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Constant.ErrorMessageConstant;
+import lotto.view.ErrorMessageView;
+import lotto.view.InputView;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -22,7 +25,7 @@ public class Client {
     }
 
     public void setBonusNum() {
-        System.out.println("보너스 번호를 입력해주세요.");
+        InputView.insertBonusNumber();
         String tmp;
         while (true) {
             tmp = Console.readLine();
@@ -37,7 +40,7 @@ public class Client {
     }
 
     public Lotto getCilentLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        InputView.insertLottoNumber();
         String[] clientInput;
         while (true) {
             clientInput = Console.readLine().split(",");
@@ -46,7 +49,7 @@ public class Client {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList()));
             } catch (NumberFormatException e){
-                System.out.println("[ERROR] 숫자만 입력해주세요.");
+                ErrorMessageView.notInteger();
             }
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -54,17 +57,17 @@ public class Client {
         }
     }
 
-
     private void validateBonusNum(String tmp) {
         try{
             Integer.parseInt(tmp);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessageConstant.NOT_INTEGER);
         }
         if (Integer.parseInt(tmp) < 1 || Integer.parseInt(tmp) > 45) {
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력해주세요.");
-        } else if (this.lotto.getNumbers().contains(Integer.parseInt(tmp))) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호와 중복된 숫자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessageConstant.BETWEEN_1_AND_45);
+        }
+        if (this.lotto.getNumbers().contains(Integer.parseInt(tmp))) {
+            throw new IllegalArgumentException(ErrorMessageConstant.DUPLICATE);
         }
     }
 }

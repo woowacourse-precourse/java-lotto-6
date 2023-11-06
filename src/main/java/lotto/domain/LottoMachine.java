@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Constant.OutputConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class LottoMachine {
     }
 
     public void setLottos() {
-        System.out.println(this.numOfLotto + "개를 구매했습니다.");
+        System.out.println(this.numOfLotto + OutputConstant.NUM_OF_LOTTO);
         for (int i = 0; i < this.numOfLotto; i++) {
             this.lottos.add(makeLottoNum());
         }

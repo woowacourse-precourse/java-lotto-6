@@ -38,4 +38,14 @@ class LottoTest {
         } catch (NoSuchFieldException | IllegalAccessException e) {
         }
     }
+
+    @DisplayName("범위를 벗어난 범위 로또 번호")
+    @Test
+    void out_of_range() {
+        // given
+        // when
+        // then
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 51)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

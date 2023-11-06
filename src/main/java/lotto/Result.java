@@ -39,4 +39,19 @@ public class Result {
 
         return result;
     }
+
+    public double calculateRateOfReturn(List<Integer> result, int purchase) {
+        long prizeAmount = 0;
+        double rateOfReturn;
+
+        prizeAmount = prizeAmount + (5000L * result.get(0));
+        prizeAmount = prizeAmount + (50000L * result.get(1));
+        prizeAmount = prizeAmount + (1500000L * result.get(2));
+        prizeAmount = prizeAmount + (30000000L * result.get(3));
+        prizeAmount = prizeAmount + (2000000000L * result.get(4));
+
+        rateOfReturn = ((double) prizeAmount /purchase) * 100;
+
+        return rateOfReturn;
+    }
 }

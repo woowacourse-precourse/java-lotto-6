@@ -78,6 +78,8 @@ public class Application {
 
         List<Integer> matchingResult;
 
+        double rateOfReturn;
+
         while (true) {
             try {
                 purchase = getPurchaseAmount(getPurchaseUI);
@@ -121,5 +123,9 @@ public class Application {
         matchingResult = result.calculateResult(lottos,winningLotto, bonusNumber);
 
         winningResultUI.printWinningResultUI(matchingResult);
+
+        rateOfReturn = result.calculateRateOfReturn(matchingResult, purchase.getPurchaseAmount());
+
+        winningResultUI.printRateOfReturn(rateOfReturn);
     }
 }

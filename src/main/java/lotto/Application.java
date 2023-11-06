@@ -45,7 +45,13 @@ class SingleGame {
     public List<Integer> numbers;
     public boolean bonus;
     public int rank;
-
+    public int result;
+    public int profit;
+    public static final int FIRST_PROFIT = 2000000000;
+    public static final int SECOND_PROFIT = 30000000;
+    public static final int THIRD_PROFIT = 1500000;
+    public static final int FOURTH_PROFIT = 50000;
+    public static final int FIFTH_PROFIT = 5000;
     public void inputLottoNumbers() {
         String[] inputNumbers;
         inputNumbers = Console.readLine().split(",");
@@ -77,23 +83,27 @@ class SingleGame {
     public boolean compareBonus(List<Integer> user, List<Integer> lotto) {
         return user.contains(lotto.get(6));
     }
-    public int computeResult(){
+    public void computeResult(){
         if(this.rank==6){
-            return 1;
+            this.result = 1;
+            this.profit = FIRST_PROFIT;
         }
         if(this.rank==5 && this.bonus){
-            return 2;
+            this.result = 2;
+            this.profit = SECOND_PROFIT;
         }
         if(this.rank==5){
-            return 3;
+            this.result = 3;
+            this.profit = THIRD_PROFIT;
         }
         if(this.rank==4){
-            return 4;
+            this.result = 4;
+            this.profit = FOURTH_PROFIT;
         }
         if(this.rank==3){
-            return 5;
+            this.result = 5;
+            this.profit = FIFTH_PROFIT;
         }
-        return 0;
     }
 }
 

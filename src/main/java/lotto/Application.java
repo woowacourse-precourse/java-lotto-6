@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-        Customer customer = new Customer();
+        /*Customer customer = new Customer();
         Raffle raffle = new Raffle();
         //int[][] lottos = raffle.showLottes();
         int price = customer.inputpprice();
@@ -41,5 +41,8 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - " + countByRank.getOrDefault(Raffle.LottoRank.FIRST, 0) + "개");
         String returnRate = raffle.calculateReturnRate(ranks, price);
         System.out.println(returnRate);
+        */
+        UserInterface userInterface = new UserInterface();
+        userInterface.doLotto();
     }
 }

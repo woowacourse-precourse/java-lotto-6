@@ -15,18 +15,18 @@ public class Judgment {
     }
 
     public Integer countSameWinNumbers(Lotto lotto) {
-        Integer countSameWinNum = 0;
+        Integer count = 0;
         Integer numOfLotto = 0;
 
         for (int i = 0; i < SIZE_LOTTO_NUMBERS; i++) {
             numOfLotto = getLottoNumber(lotto, i);
 
             if (isSameWinNumbers(numOfLotto)) {
-                countSameWinNum = countSameWinNum + COUNT_NUMBER;
+                count = count + COUNT_NUMBER;
             }
         }
 
-        return countSameWinNum;
+        return count;
     }
 
     public Boolean isSameBonusNum(Lotto lotto) {

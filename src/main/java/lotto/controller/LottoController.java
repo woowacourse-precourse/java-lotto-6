@@ -23,7 +23,7 @@ public class LottoController {
     }
 
     private LottoTicket buyLottoTicket() {
-        Integer purchaseAmount = inputView.inputPurchaseAmount();
+        int purchaseAmount = inputView.inputPurchaseAmount();
         LottoStore lottoStore = new LottoStore();
         LottoTicket lottoTicket = new LottoTicket(lottoStore.sellLottos(purchaseAmount));
         outputView.printBuyLottos(lottoTicket.getLottosNumber(), lottoTicket.getLottos().size());

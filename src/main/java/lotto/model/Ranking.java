@@ -12,7 +12,7 @@ public enum Ranking {
     FIFTH(3, 5_000, (count, isBonus) -> count == 3),
     NONE(-1, 0, (count, isBonus) -> count < 3);
 
-    private final Integer matchCount;
+    private final int matchCount;
     private final int reward;
     private final BiFunction<Integer, Boolean, Boolean> isMatchFunction;
 
@@ -22,7 +22,7 @@ public enum Ranking {
         this.isMatchFunction = isMatchFunction;
     }
 
-    public static Ranking of(Integer matchCount, boolean isBonus) {
+    public static Ranking of(int matchCount, boolean isBonus) {
         return Arrays.stream(Ranking.values())
                 .filter(rank -> rank.isMatch(matchCount, isBonus))
                 .findFirst()

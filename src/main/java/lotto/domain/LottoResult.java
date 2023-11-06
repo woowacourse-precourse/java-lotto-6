@@ -18,20 +18,20 @@ public class LottoResult {
     public LottoCount getLottoStatus(List<Lotto> purchaseLottoNumber) {
         for (Lotto purchaseNumber : purchaseLottoNumber) {
             List<Integer> lottoNumbers = purchaseNumber.getNumbers();
-            int matchCount = bonusNumberCheck(getLottoMatchCount(lottoNumbers), lottoNumbers);
-            lottoCount = getCount(matchCount);
+            int matchCount = bonusNumberCheck(calculateLottoMatchCount(lottoNumbers), lottoNumbers);
+            lottoCount = calculateCount(matchCount);
         }
         outputLottoResult(lottoCount);
         return lottoCount;
     }
 
-    private int getLottoMatchCount(List<Integer> lottoNumbers) {
+    private int calculateLottoMatchCount(List<Integer> lottoNumbers) {
         return (int) lottoWinningNumbers.getWinningNumber().stream()
                 .filter(number -> lottoNumbers.stream().anyMatch(Predicate.isEqual(number)))
                 .count();
     }
 
-    private LottoCount getCount(int matchCount) {
+    private LottoCount calculateCount(int matchCount) {
         if (matchCount == LottoPrice.FIRST.getNumber()) {
             lottoCount.addSixCount();
         }

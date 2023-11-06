@@ -27,7 +27,7 @@ public class InputParser {
     public WinningLottoNumbers parseWinningLottoNumbers(String winningLottoNumbers){
         winningLottoNumbersInputValidator.validate(winningLottoNumbers);
         List<String> numbers = removeBlankInWinningLottoNumbers(winningLottoNumbers);
-        return WinningLottoNumbers.of(numbers);
+        return WinningLottoNumbers.from(numbers);
     }
 
     private String removeBlank(String userInput){

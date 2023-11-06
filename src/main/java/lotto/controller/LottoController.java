@@ -55,11 +55,11 @@ public class LottoController {
         return inputView.getWinningLottoNumbers();
     }
 
-    private void askUserToInsertBonusNumber(){
+    private void askUserToInsertBonusNumber() {
         outputView.askUserToInsertBonusNumber();
     }
 
-    private void endGame(){
+    private void endGame() {
         Console.close();
     }
 }

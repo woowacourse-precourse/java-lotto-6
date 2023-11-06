@@ -18,6 +18,21 @@ public class Lotto {
         isNoDuplicateLottoNumbers(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getWins(Lotto winningLotto) {
+        int winCount = 0;
+
+        for (int i = 0; i < 6; i++) {
+            if (winningLotto.numbers.contains(this.numbers.get(i))) {
+                winCount++;
+            }
+        }
+        return winCount;
+    }
+
     public void isInRangeLottoNumbers(List<Integer> numbers) {
         for (int num : numbers) {
             if (num > 45 || num < 1) {
@@ -38,5 +53,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
 }

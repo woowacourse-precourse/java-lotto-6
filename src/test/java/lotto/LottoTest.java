@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.domain.Lotto;
-import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +30,4 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

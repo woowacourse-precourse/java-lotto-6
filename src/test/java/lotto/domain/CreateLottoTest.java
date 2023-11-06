@@ -1,20 +1,20 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CreateLottoTest {
-    private CreateLotto createLotto;
 
-    @DisplayName("랜덤한 숫자로 로또 클래스를 생성한다.")
+    @DisplayName("주어진 갯수만큼의 로또로 이루어진 리스트를 생성한다.")
     @Test
-    void createRandomSingleLotto() {
-        createLotto = new CreateLotto();
-        assertThat(createLotto.createRandom()).isInstanceOf(Lotto.class);
+    void createLottoList() {
+        CreateLotto createLotto = new CreateLotto();
+
+        createLotto.setAmount(5);
+        createLotto.multipleLotto();
+
+        assertThat(createLotto.getLottos().get(4)).isInstanceOf(Lotto.class);
     }
 }

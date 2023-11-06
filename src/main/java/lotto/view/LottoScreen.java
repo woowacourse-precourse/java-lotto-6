@@ -14,8 +14,9 @@ import lotto.repository.LottoRepository;
 public class LottoScreen {
     public static final String RATE_FORMAT = "%.1f";
     public static final String RESULT_PREFIX = "총 수익률은";
-    public static final String RESULT_SUFFIX = "입니다.";
+    public static final String RESULT_SUFFIX = "입니다.\n";
     public static final String RESULT_FORMAT = RESULT_PREFIX + RATE_FORMAT +RESULT_SUFFIX;
+    public static final String REWIND_FORMAT = "%d개를 구매했습니다.\n";
 
     public static final String LOTTO_RESULT_FORMAT = "%s (%d원) - %d개\n";
     private static StringBuilder stringbuilder = new StringBuilder();
@@ -44,13 +45,14 @@ public class LottoScreen {
     }
 
     public void displayGeneratedLotto(UserMoney userMoney, LottoRepository lottoRepository) {
-        // 9개 구매했습니다
+        writer.writeFormat(REWIND_FORMAT, userMoney.getLottoChances());
+
         List<Lotto> allLottos = lottoRepository.getAllLottos();
         List<String> convertedLottos = allLottos.stream()
                 .map((lotto) -> String.join(", ", convertNumbers(lotto.getLotto())))
                 .toList();
 
-        convertedLottos.forEach((lotto -> writer.writeFormat("[%s]", lotto)));
+        convertedLottos.forEach((lotto -> writer.writeFormat("[%s]\n", lotto)));
     }
 
     public void displayLottoResult(LottoFinalResult lottoFinalResult) {

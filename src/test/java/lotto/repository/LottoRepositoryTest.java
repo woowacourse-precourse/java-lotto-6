@@ -35,23 +35,23 @@ public class LottoRepositoryTest {
         );
     }
 
-    @Test
-    void 로또_번호_조회하기() {
-        Lotto firstLotto = Lotto.from(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto secondLotto = Lotto.from(Arrays.asList(7, 8, 9, 10, 11, 12));
-        Lotto thirdLotto = Lotto.from(Arrays.asList(13, 14, 15, 16, 17, 18));
-
-        lottoRepository.saveLotto(firstLotto);
-        lottoRepository.saveLotto(secondLotto);
-        lottoRepository.saveLotto(thirdLotto);
-
-        assertThat(lottoRepository.checkRepositorySize()).isEqualTo(3);
-        assertThat(lottoRepository.findLottoNumbersByIndex(0))
-                .containsExactly(1,2,3,4,5,6);
-        assertThat(lottoRepository.findLottoNumbersByIndex(1))
-                .containsExactly(7, 8, 9, 10, 11, 12);
-        assertThat(lottoRepository.findLottoNumbersByIndex(2))
-                .containsExactly(13, 14, 15, 16, 17, 18);
-    }
+//    @Test -> 로또 전체 조회하기로 변경
+//    void 로또_번호_조회하기() {
+//        Lotto firstLotto = Lotto.from(Arrays.asList(1, 2, 3, 4, 5, 6));
+//        Lotto secondLotto = Lotto.from(Arrays.asList(7, 8, 9, 10, 11, 12));
+//        Lotto thirdLotto = Lotto.from(Arrays.asList(13, 14, 15, 16, 17, 18));
+//
+//        lottoRepository.saveLotto(firstLotto);
+//        lottoRepository.saveLotto(secondLotto);
+//        lottoRepository.saveLotto(thirdLotto);
+//
+//        assertThat(lottoRepository.checkRepositorySize()).isEqualTo(3);
+//        assertThat(lottoRepository.findLottoNumbersByIndex(0))
+//                .containsExactly(1,2,3,4,5,6);
+//        assertThat(lottoRepository.findLottoNumbersByIndex(1))
+//                .containsExactly(7, 8, 9, 10, 11, 12);
+//        assertThat(lottoRepository.findLottoNumbersByIndex(2))
+//                .containsExactly(13, 14, 15, 16, 17, 18);
+//    }
 
 }

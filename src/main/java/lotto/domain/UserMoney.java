@@ -22,7 +22,7 @@ public class UserMoney {
     }
 
     public float calculateTotalReturn(int calculateReturn) {
-        return calculateReturn / userMoneyValue * 100;
+        return (float) calculateReturn / userMoneyValue * 100;
     }
 
     private void validateMoney(int userMoneyValue) {

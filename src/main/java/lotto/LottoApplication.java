@@ -37,6 +37,10 @@ public class LottoApplication {
         return new RegisterUserMoneyController(lottoRepository, lottoScreen).process();
     }
 
+    private void displayGeneratedLotto(UserMoney userMoney) {
+        new DisplayLottoController(userMoney, lottoRepository, lottoScreen).process();
+    }
+
     private Lotto registerUserLotto() {
         return new RegisterLottoController(lottoScreen).process();
     }
@@ -45,9 +49,7 @@ public class LottoApplication {
         return new RegisterBonusController(lottoScreen).process();
     }
 
-    private void displayGeneratedLotto(UserMoney userMoney) {
-        new DisplayLottoController(userMoney, lottoRepository, lottoScreen).process();
-    }
+
 
     private void displayLottoResult(LottoWithBonus userLottoWithBonus, UserMoney userMoney,
                                     LottoRepository lottoRepository) {

@@ -33,6 +33,7 @@ public class DisplayLottoResultController implements DisplayController {
         lottoScreen.displayRateOfReturn(calculateRateOfReturn(lottoFinalResult, userMoney));
     }
 
+    // 위치 다시 생각해보기
     private float calculateRateOfReturn(LottoFinalResult lottoFinalResult, UserMoney userMoney) {
         return userMoney.calculateTotalReturn(lottoFinalResult.calculateReturn());
     }

@@ -23,7 +23,7 @@ public class NumberValidator {
 
     public static void isLottoPattern(String inputLotto) {
         if (!LOTTO_PATTERN.matcher(inputLotto).matches()) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_MATCHES_NUMBER_PATTERN.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.NOT_MATCHES_LOTTO_PATTERN.getErrorDescription());
         }
     }
 

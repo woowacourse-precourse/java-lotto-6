@@ -23,4 +23,12 @@ public class AmountTest {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @DisplayName("구입금액이 나누어 떨어지지 않을 경우 예외 발생")
+    @ValueSource(ints = {1050})
+    void buyAmountDivide(int amount) {
+        assertThatThrownBy(() -> new Amount(amount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

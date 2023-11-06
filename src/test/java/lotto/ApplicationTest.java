@@ -1,9 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import view.InputView;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -15,14 +19,50 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     @Test
     void 문자열_입력_예외_테스트() {
-        assertThatThrownBy(() -> InputView.isNumber("123a"))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 숫자를 입력해주세요.");
+        assertThatThrownBy(() -> InputView.convertToInt("123a"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @Test
+    void 로또_구매_테스트() {
+        assertThatThrownBy(() -> InputView.countCheck(1500))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3", "1,1,2,3,4,5", "1,29,49,2,3,6"})
+    @DisplayName("복권 생성 테스트")
+    void 복권_생성_테스트(String number) {
+        String[] numbers = number.split(",");
+        List<Integer> lotto = new ArrayList<>();
+
+        for (String num : numbers) {
+            lotto.add(Integer.parseInt(num));
+        }
+
+        assertThatThrownBy(() -> new Lotto(lotto))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2})
+    @DisplayName("보너스_번호_예외_테스트")
+    void 보너스_번호_예외_테스트(int bonusNumber) {
+        InputView.makeLottoList("1,2,3,4,5,6");
+        assertThatThrownBy(() -> InputView.duplicationCheck(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @Test
+    void 로또_입력_예외_테스트() {
+        assertThatThrownBy(() -> InputView.makeLottoList("1,2,3,4,5,a"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
     }
 
     @Test
     void 로또_구매_갯수_확인_테스트() {
         assertThatThrownBy(() -> InputView.countCheck(1234))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 구매가격은 1,000원 단위로 입력해주세요.");
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
     }
 
     @Test

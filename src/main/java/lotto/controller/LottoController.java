@@ -38,7 +38,22 @@ public class LottoController {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumber, bonusNumber);
+
         int revenue = lottoService.getRevenue(lottoResult);
+
+        for (int rank = 5; rank > 0; rank--) {
+            int rankCount = 0;
+            if (lottoResult.contains(rank)) {
+                rankCount = lottoResult.get(rank);
+            }
+            outputView.printLottoResult(rankCount, rank);
+        }
+
+        if (revenue == 0) {
+            outputView.printRevenue(0);
+        } else {
+            outputView.printRevenue(revenue / lottoCount);
+        }
     }
 
     private int getLottoCount(int purchaseAmount) {

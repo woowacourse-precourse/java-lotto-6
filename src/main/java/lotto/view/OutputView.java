@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
 import lotto.error.ErrorMessage;
 
@@ -11,6 +12,12 @@ public class OutputView {
     private static String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static String RESULT_STARTING_MESSAGE = "당첨 통계\n---";
     private static String ERROR_STARTING_MESSAGE = "[ERROR] ";
+    private static String FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - %s개";
+    private static String SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
+    private static String THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - %d개";
+    private static String FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - %d개";
+    private static String FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - %d개";
+    private static String REVENUE_MESSAGE  = "총 수익률은 %.2f%%입니다.";
 
     public void printPurchaseInputMessage() {
         System.out.println(LOTTO_PURCHASE_AMOUNT_INPUT_MESSAGE);
@@ -49,5 +56,27 @@ public class OutputView {
 
     public void println() {
         System.out.println();
+    }
+
+    public void printLottoResult(int rankCount, int rank) {
+        if (rank == 5) {
+            System.out.println(String.format(FIFTH_RANK_MESSAGE, rankCount));
+        }
+        if (rank == 4) {
+            System.out.println(String.format(FOURTH_RANK_MESSAGE, rankCount));
+        }
+        if (rank == 3) {
+            System.out.println(String.format(THIRD_RANK_MESSAGE, rankCount));
+        }
+        if (rank == 2) {
+            System.out.println(String.format(SECOND_RANK_MESSAGE, rankCount));
+        }
+        if (rank == 1) {
+            System.out.println(String.format(FIRST_RANK_MESSAGE, rankCount));
+        }
+    }
+
+    public void printRevenue(float revenue) {
+        System.out.println(String.format(REVENUE_MESSAGE, revenue));
     }
 }

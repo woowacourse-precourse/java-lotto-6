@@ -1,12 +1,8 @@
 package lotto.DiContainer;
 
-import java.util.List;
 import lotto.Controller.LottoController;
-import lotto.Domain.Lotto;
+import lotto.Decorator.LottoControllerDecorator;
 import lotto.Domain.LottoGroup;
-import lotto.Domain.LottoResult.LottoResult;
-import lotto.Domain.Money;
-import lotto.Domain.WinningLotto.BonusNumber;
 import lotto.Domain.WinningLotto.WinningLotto;
 import lotto.Model.LottoResultHandlerModel;
 import lotto.VIew.InputView;
@@ -24,7 +20,7 @@ public class DiContainer {
     }
 
     public LottoController getLottoController() {
-        return LottoController.of();
+        return LottoControllerDecorator.of();
     }
 
     public LottoResultHandlerModel getLottoResultHandlerModel(WinningLotto winningLotto, LottoGroup lottoGroup) {

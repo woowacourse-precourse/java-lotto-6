@@ -29,10 +29,10 @@ public class LottoGame {
         bonus = InputView.LoopInputBonusNumber(lotto);
         result = new Result(LottoResult.getResults(lotto, playerLottos, bonus), money);
         // 게임 종료
-        end();
+        end(result);
     }
 
-    private void end(){
+    private void end(Result result){
 
     }
 }

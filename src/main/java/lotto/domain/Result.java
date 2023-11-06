@@ -11,6 +11,14 @@ public class Result {
         this.profitRate = calculateProfitMargin(money);
     }
 
+    public Map<LottoRanking, Integer> getRankingCount() {
+        return rankingCount;
+    }
+
+    public Double getProfitRate() {
+        return profitRate;
+    }
+
     private Double calculateProfitMargin(Money money){
         int amount = money.getAmount();
         int sumProfit = 0;

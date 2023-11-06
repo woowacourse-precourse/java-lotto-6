@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import lotto.util.ErrorMessage;
 
 public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨 번호, 보너스 번호 입력 요청, 당첨 통계 및 결과 메세지 출력, 에러 메세지 출력
 
@@ -17,6 +18,7 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
     private static final String SEPARATOR = "---";
     private static final String COUNT_PRIZE_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
 
     public static String readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_PROMPT);
@@ -54,4 +56,7 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
         System.out.println(String.format(TOTAL_PROFIT_MESSAGE, profit));
     }
 
+    public static void displayErrorMessage(Exception ex) {
+        System.out.println(ErrorMessage.ERROR_MESSAGE_HEADER + ex.getMessage());
+    }
 }

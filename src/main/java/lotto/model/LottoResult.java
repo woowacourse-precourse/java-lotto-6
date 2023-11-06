@@ -30,6 +30,8 @@ public class LottoResult {
         resultCount.put(winningInfo, count + ONE_COUNT);
     }
 
-
+    public int getCount(WinningInfo winningInfo){
+        return resultCount.getOrDefault(winningInfo,0);
+    }
 
 }

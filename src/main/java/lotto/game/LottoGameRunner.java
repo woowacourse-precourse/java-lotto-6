@@ -1,7 +1,7 @@
 package lotto.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.GlobalValidator;
+import lotto.validator.GlobalValidator;
 import lotto.io.Printer;
 import lotto.io.UserInputReceiver;
 import lotto.lotto.Lotto;

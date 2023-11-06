@@ -42,7 +42,7 @@ class AnswerLottoTest {
         // when // then
         assertThatThrownBy(() -> AnswerLotto.of(mainLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+                .hasMessage(ErrorMessage.DUPLICATE_NUMBER.getMessage());
     }
 
     @DisplayName("보너스 번호의 범위가 1 ~ 45 이어야한다.")
@@ -63,7 +63,7 @@ class AnswerLottoTest {
     @MethodSource("lottoProvider")
     void getRank(List<Integer> lotto, Rank targetRank) {
         // given
-        AnswerLotto answerLotto = AnswerLotto.of(new Lotto(List.of(1,2,3,4,5,6)), 7);
+        AnswerLotto answerLotto = AnswerLotto.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         Lotto inputLotto = new Lotto(lotto);
 
         // when

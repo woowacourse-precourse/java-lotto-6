@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.Arrays;
-import javax.print.DocFlavor.STRING;
 import lotto.domain.Prize;
 import lotto.domain.PrizeResult;
 import lotto.domain.Rate;

@@ -20,7 +20,7 @@ public class NumberCandidateStrings {
         return new NumberCandidateStrings(numberCandidateStrings);
     }
 
-    public List<LottoNumber> toNumberList(){
-        return numberCandidateStrings.stream().map(NumberCandidateString::toLottoNumber).toList();
+    public List<LottoNumber> toLottoNumberList(){
+        return numberCandidateStrings.stream().map(NumberCandidateString::getNumber).map(LottoNumber::new).toList();
     }
 }

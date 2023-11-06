@@ -2,7 +2,6 @@ package lotto.controller;
 
 import lotto.domain.LottoNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoService;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.NumberCandidateString;
@@ -12,26 +11,26 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        LottoService lottoService = initLottoService();
+        //Todo
+        Lottos lottos = issueLottos();
+        OutputView.printPurchaseHistory(lottos.getList());
 
         String winningNumber = InputView.receiveWinningNumber();
         NumberCandidateStrings numberCandidateStrings = NumberCandidateStrings.valueOf(winningNumber.split(","));
-        Lotto lotto = new Lotto(numberCandidateStrings.toNumberList());
+        Lotto lotto = new Lotto(numberCandidateStrings.toLottoNumberList());
 
         NumberCandidateString bonusNumber = new NumberCandidateString(InputView.receiveBonusNumber());
-        LottoNumber number =bonusNumber.toLottoNumber();
+        LottoNumber number = new LottoNumber(bonusNumber.getNumber());
     }
 
-    private LottoService initLottoService() {
+    private Lottos issueLottos() {
         NumberCandidateString numberCandidateString = new NumberCandidateString(InputView.collectionOfMoney());
-        LottoNumber lottoNumber = numberCandidateString.toLottoNumber();
-        Money money = Money.of(lottoNumber.getNumber());
+        Integer amount = numberCandidateString.getNumber();
+        Money money = Money.of(amount);
 
         Lottos lottos = Lottos.from(money.calcBillCount());
-        LottoService service = new LottoService(lottos);
 
-        OutputView.printPurchaseHistory(lottos.getList());
-        return service;
+        return lottos;
     }
 
 }

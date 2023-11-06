@@ -4,7 +4,6 @@ import Validate.ValidateException;
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Input;
-import lotto.utill.Utii;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class LottoHost {
         List<Integer> tempWinNumbers = Input.InputNumbers();
 
         ValidateException.hasDuplicateEachNumbers(tempWinNumbers);
+        ValidateException.isWinNumbersCountSix(tempWinNumbers);
 
         winNumbers = tempWinNumbers;
         return winNumbers;

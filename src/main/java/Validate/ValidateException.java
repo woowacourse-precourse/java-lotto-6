@@ -1,5 +1,7 @@
 package Validate;
 
+import lotto.utill.Utii;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +16,7 @@ public class ValidateException {
     private static final Character COMMA_CHAR = ',';
     private static final Integer POSITIVE_CONDITION_ZERO = 0;
     private static final Integer ZERO_NUM = 0;
+    private static final Integer SIZE_WIN_NUMBERS_HOST = 6;
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -90,17 +93,25 @@ public class ValidateException {
         throw new IllegalArgumentException("[ERROR] 돈은 1000원 단위 입니다.");
     }
 
-
     // 로또 진행자.
     public static boolean hasDuplicateEachNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
 
         for (Integer num : numbers) {
             if (!set.add(num)) {
-                throw new IllegalArgumentException("[ERROR] 당청 번호 각각은 중복이 되면 안 됩니다.");
+                throw new IllegalArgumentException("[ERROR] 당첨 번호 각각은 중복이 되면 안 됩니다.");
             }
         }
 
         return false;
+    }
+
+    public static boolean isWinNumbersCountSix(List<Integer> numbers) {
+        Integer sizeNumbers = numbers.size();
+        if (Utii.isSameInt(sizeNumbers, SIZE_WIN_NUMBERS_HOST)) {
+            return true;
+        }
+        
+        throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
     }
 }

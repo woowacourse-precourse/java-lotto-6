@@ -34,6 +34,11 @@ public class LottoController {
         outputView.printProfitRate(lottoResultHandlerModel.findProfitRate());
     }
 
+    private Money getMoney() {
+        String inputMoney = inputView.inputMoney();
+        return Money.from(inputMoney);
+    }
+
     private WinningLotto getWinningLotto() {
         String inputWinningNumber = inputView.inputWinningNumber();
         String inputBonusNumber = inputView.inputBonusNumber();
@@ -47,8 +52,4 @@ public class LottoController {
         return lottoGroup;
     }
 
-    private Money getMoney() {
-        String inputMoney = inputView.inputMoney();
-        return Money.from(inputMoney);
-    }
 }

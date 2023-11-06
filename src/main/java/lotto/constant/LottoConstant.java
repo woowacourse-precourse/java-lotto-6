@@ -2,7 +2,7 @@ package lotto.constant;
 
 public enum LottoConstant {
     ZERO(0),
-    TWO(0),
+    TWO(2),
     LOTTO_LENGTH(6),
     RANGE_START_NUMBER(1),
     RANGE_END_NUMBER(45);

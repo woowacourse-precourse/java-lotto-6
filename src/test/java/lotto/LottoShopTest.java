@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottoShopTest {
     private Validate validate;
+    private final int LOTTO_PRICE = 1000;
 
     @BeforeEach
     public void setUp() {
@@ -39,5 +40,19 @@ public class LottoShopTest {
         int expectedSize = 10;
 
         assertEquals(expectedSize, lottos.size());
+    }
+
+    @Test
+    public void 로또_가격으로_나누어_떨어지지_않는_금액_입력() {
+        // Given: 로또 발행 숫자 값을 고정
+        LottoGenerator lottoGenerator = mock(LottoGenerator.class);
+        when(lottoGenerator.getLotto()).thenReturn(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+
+        int money = 8500;
+
+        LottoShop lottoShop = new LottoShop(lottoGenerator, validate);
+
+        // When & Then
+        assertThrows(IllegalArgumentException.class, () -> lottoShop.buyLotto(money));
     }
 }

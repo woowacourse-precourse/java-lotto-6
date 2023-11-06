@@ -52,8 +52,8 @@ public class LottoRankResult {
                 .reduce(BigInteger.ZERO, BigInteger::add);
     }
 
-    private float calculateTotalReturn(final int purchaseAmount, final BigInteger totalPrize) {
-        float totalPrizeFloat = totalPrize.floatValue();
-        return (totalPrizeFloat / purchaseAmount) * PERCENT_RATIO_UNIT;
+    private float calculateTotalReturn(final int purchaseAmount, final BigInteger prize) {
+        float totalPrize = prize.floatValue();
+        return (totalPrize / purchaseAmount) * PERCENT_RATIO_UNIT;
     }
 }

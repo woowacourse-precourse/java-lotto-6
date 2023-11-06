@@ -16,12 +16,12 @@ public class Judgment {
 
     public Integer countSameWinNumbers(Lotto lotto) {
         Integer count = 0;
-        Integer numOfLotto = 0;
+        Integer lottoNumber = 0;
 
         for (int i = 0; i < SIZE_LOTTO_NUMBERS; i++) {
-            numOfLotto = getLottoNumber(lotto, i);
+            lottoNumber = getLottoNumber(lotto, i);
 
-            if (isSameWinNumbers(numOfLotto)) {
+            if (isSameWinNumbers(lottoNumber)) {
                 count = count + COUNT_NUMBER;
             }
         }

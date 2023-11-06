@@ -9,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.utils.Utils;
 import lotto.validation.Validation;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Service {
 	
@@ -33,6 +34,13 @@ public class Service {
 		int count = buyer.getPurchaseAmount() / LOTTO_PRICE;
 		for (int i = 0; i < count; i++) {
 			buyOneLotto();
+		}
+	}
+	
+	public void showBuyingResult() {
+		OutputView.printCountOfLotto(buyer.getPurchaseAmount() / LOTTO_PRICE);
+		for(Lotto lotto : buyer.getPurchasedLotteries()) {
+			OutputView.printNumbersOfLotto(lotto.getNumbers());
 		}
 	}
 	

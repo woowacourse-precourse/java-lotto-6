@@ -10,12 +10,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void inputNumbers() {
-    }
-
-    private void inputBonusNumber() {
-
-    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

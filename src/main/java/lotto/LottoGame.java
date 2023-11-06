@@ -19,21 +19,6 @@ public class LottoGame {
         }
     }
 
-    private void winnigNumbers() {
-
-    }
-
-    private void pickBonusNumber() {
-
-    }
-
-    private void getLottoRank() {
-
-    }
-
-    private void getMoneyForRank() {
-
-    }
 
     private void inputMoney() {
         boolean validInput = false;
@@ -53,6 +38,30 @@ public class LottoGame {
         if (!(money % 1000 == 0)) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 천원 단위여야 합니다.");
         }
+    }
+
+    private void inputNumbers() {
+
+    }
+
+    private void splitByComma() {
+        
+    }
+
+    private void winnigNumbers() {
+
+    }
+
+    private void pickBonusNumber() {
+
+    }
+
+    private void getLottoRank() {
+
+    }
+
+    private void getMoneyForRank() {
+
     }
 
     private void generateLottoTickets() {

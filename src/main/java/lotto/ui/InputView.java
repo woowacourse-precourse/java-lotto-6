@@ -12,13 +12,15 @@ public class InputView {
 
     public String scanLottoAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        inputValidator.validate(input);
-        return input;
+        return scanInput();
     }
 
     public String scanWinningLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
+        return scanInput();
+    }
+
+    private String scanInput() {
         String input = Console.readLine();
         inputValidator.validate(input);
         return input;

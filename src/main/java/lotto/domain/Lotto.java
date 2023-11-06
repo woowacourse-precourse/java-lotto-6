@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoValue;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,17 +14,11 @@ import java.util.stream.Collectors;
 public class Lotto {
     private final List<LottoNumber> numbers;
 
-    // 로또 번호 발행 시 사용할 생성자
-    public Lotto() {
-        this.numbers = issueLotto();
-        Collections.sort(this.numbers);
-    }
-
-    // 사용자가 당첨번호 입력 시 사용할 생성자
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
 
+        Collections.sort(numbers);
         this.numbers = changeIntToLottoNumber(numbers);
     }
 
@@ -50,13 +43,5 @@ public class Lotto {
         return numbers.stream().map(e -> new LottoNumber(e)).collect(Collectors.toList());
     }
 
-    // 로또 숫자 리스트 랜덤하게 선택 후 List<LottoNumber> 형태로 반환
-    private List<LottoNumber> issueLotto() {
-        return changeIntToLottoNumber(pickRankNum());
-    }
 
-    private List<Integer> pickRankNum() {
-        return Randoms.pickUniqueNumbersInRange(LottoValue.MIN_VALUE.getValue(),
-                LottoValue.MAX_VALUE.getValue(), LottoValue.WINNING_NUMBER_CNT.getValue());
-    }
 }

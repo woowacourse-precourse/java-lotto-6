@@ -14,6 +14,27 @@ public enum Ranking {
     private final boolean bonus;
     private final String result;
 
+    public static Ranking findRanking(int corrects, boolean bonus) {
+        if (FIRST.corrects == corrects) {
+            return FIRST;
+        }
+        if (SECOND.bonus == bonus
+                && SECOND.corrects == corrects) {
+            return SECOND;
+        }
+        if (THIRD.bonus == bonus
+                && THIRD.corrects == corrects) {
+            return THIRD;
+        }
+        if (FORTH.corrects == corrects) {
+            return FORTH;
+        }
+        if (FIFTH.corrects == corrects) {
+            return FIFTH;
+        }
+        return BLANK;
+    }
+
     Ranking(int prize, int corrects, boolean bonus, String result) {
         this.prize = prize;
         this.corrects = corrects;
@@ -23,14 +44,6 @@ public enum Ranking {
 
     public int getPrize() {
         return prize;
-    }
-
-    public int getCorrects() {
-        return corrects;
-    }
-
-    public boolean isBonus() {
-        return bonus;
     }
 
     public String getResult() {

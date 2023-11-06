@@ -31,31 +31,10 @@ public class LottoMachine {
         for (Lotto lotto : lottos) {
             int corrects = lotto.findCorrects(winningNumbers);
             boolean bonus = lotto.contains(bonusNumber);
-            Ranking ranking = findRanking(corrects, bonus);
+            Ranking ranking = Ranking.findRanking(corrects, bonus);
             rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
         }
 
         return rankingCounts;
-    }
-
-    private Ranking findRanking(int corrects, boolean bonus) {
-        if (Ranking.FIRST.getCorrects() == corrects) {
-            return Ranking.FIRST;
-        }
-        if (Ranking.SECOND.isBonus() == bonus
-                && Ranking.SECOND.getCorrects() == corrects) {
-            return Ranking.SECOND;
-        }
-        if (Ranking.THIRD.isBonus() == bonus
-                && Ranking.THIRD.getCorrects() == corrects) {
-            return Ranking.THIRD;
-        }
-        if (Ranking.FORTH.getCorrects() == corrects) {
-            return Ranking.FORTH;
-        }
-        if (Ranking.FIFTH.getCorrects() == corrects) {
-            return Ranking.FIFTH;
-        }
-        return Ranking.BLANK;
     }
 }

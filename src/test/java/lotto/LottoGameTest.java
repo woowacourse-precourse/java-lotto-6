@@ -13,4 +13,12 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자만 입력하세요");
     }
+
+    @DisplayName("입력 값이 1000으로 나누어지는 값인지 확인한다")
+    @Test
+    void checkMultipleOfThousand() {
+        assertThatThrownBy(() -> new LottoGame().validateMultiple("12200"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
+    }
 }

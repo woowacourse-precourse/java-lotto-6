@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.stream.Stream;
 
 public class LottoGame {
     public void start() {
@@ -8,11 +9,21 @@ public class LottoGame {
         OutputView.print(Message.LINE_BREAK);
 
         String money = InputView.read();
+        validateNumber(money);
+
     }
 
     public void validateNumber(String input) {
         if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
+        }
+    }
+
+    public void validateMultiple(String input) {
+        if (Stream.of(input)
+                .map(Integer::parseInt)
+                .anyMatch(number -> number % 1000 != 0)) {
+            throw new IllegalArgumentException("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
         }
     }
 }

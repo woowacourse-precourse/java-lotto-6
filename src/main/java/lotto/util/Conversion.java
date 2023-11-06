@@ -12,7 +12,7 @@ public class Conversion {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException(MUST_INTEGER);
+            throw new IllegalArgumentException(MUST_INTEGER.getError());
         }
     }
 

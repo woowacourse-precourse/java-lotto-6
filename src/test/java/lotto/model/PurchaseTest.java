@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.util.message.Error.MUST_MONEY_UNIT;
 
+import lotto.util.message.Digit;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ class PurchaseTest {
     public void inputMoneyValidate(int money) {
         Assertions.assertThatThrownBy(() -> new Purchase(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(MUST_MONEY_UNIT);
+                .hasMessageContaining(MUST_MONEY_UNIT.getError(Digit.MONEY_UNIT.getNumber()));
     }
 
     @ParameterizedTest

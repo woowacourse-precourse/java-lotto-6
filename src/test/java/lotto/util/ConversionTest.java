@@ -16,6 +16,6 @@ class ConversionTest {
     public void stringToIntTest(String input) {
         Assertions.assertThatThrownBy(() -> Conversion.stringToInt(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(MUST_INTEGER);
+                .hasMessageContaining(MUST_INTEGER.getError());
     }
 }

@@ -14,10 +14,9 @@ public class LottoWinning {
     public LottoWinning() {
     }
 
-    public LottoWinning(List<Integer> numbers, int bonusNum) {
-        validateDuplicate(numbers, bonusNum);
-        this.winningNum = new Lotto(numbers);
-        this.bonusNum = new LottoNumber(bonusNum);
+    public LottoWinning(Lotto numbers, LottoNumber bonusNum) {
+        this.winningNum = numbers;
+        this.bonusNum = bonusNum;
     }
 
     public Lotto getWinningNum() {

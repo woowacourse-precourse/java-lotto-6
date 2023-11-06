@@ -24,6 +24,7 @@ public class OutputView {
         for (Lotto lotto : allLottoList.getLottos()) {
             printLottoNumbersList(lotto);
         }
+        System.out.println();
     }
 
     private void printLottoNumbersList(Lotto lotto) {

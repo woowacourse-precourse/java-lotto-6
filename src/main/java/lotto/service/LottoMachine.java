@@ -26,27 +26,27 @@ public class LottoMachine {
 
         if(matchCnt == 6) {
             Execute.state.setGradeState(1);
-            Output.printResult(1);
+            Execute.asset.increaseIncome(1);
             return;
         }
         if(matchCnt == 5 && bonusMatch) {
             Execute.state.setGradeState(2);
-            Output.printResult(2);
+            Execute.asset.increaseIncome(2);
             return;
         }
         if(matchCnt == 5) {
             Execute.state.setGradeState(3);
-            Output.printResult(3);
+            Execute.asset.increaseIncome(3);
             return;
         }
         if(matchCnt == 4) {
             Execute.state.setGradeState(4);
-            Output.printResult(4);
+            Execute.asset.increaseIncome(4);
             return;
         }
         if(matchCnt == 3) {
             Execute.state.setGradeState(5);
-            Output.printResult(5);
+            Execute.asset.increaseIncome(5);
         }
     }
 }

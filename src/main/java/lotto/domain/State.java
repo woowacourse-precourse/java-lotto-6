@@ -8,7 +8,8 @@ public class State {
     private List<Integer> gradeState;
 
     public State (){
-        this.gradeState = List.of(0,0,0,0,0,0);
+        this.gradeState = Stream.of(0,0,0,0,0,0)
+                .collect(Collectors.toList());
     }
     public void setGradeState(Integer grade) {
         Integer currentState = gradeState.get(grade);

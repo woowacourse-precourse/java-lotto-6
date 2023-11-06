@@ -35,7 +35,7 @@ public class Asset {
     }
 
     public Float getRate(){
-        return income / money;
+        return income / money * 100;
     }
     public Float getMoney(){
         return money;

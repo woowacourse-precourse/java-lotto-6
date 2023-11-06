@@ -53,7 +53,7 @@ public class LottoWinnerSystem {
     }
 
     // 일치하는 번호 개수에 따라 당첨 통계 업데이트
-    private void compareOneLotto(List<Integer> compareLotto, List<Integer> bonusNumber, int matchCount) {
+    public void compareOneLotto(List<Integer> compareLotto, List<Integer> bonusNumber, int matchCount) {
         if (matchCount == 3) {
             fifth += 1;
         }
@@ -69,7 +69,7 @@ public class LottoWinnerSystem {
     }
 
     // 5개 일치할 때 보너스 번호에 따라 당첨 통계를 다르게 업데이트
-    private void bonusCase(List<Integer> compareLotto, List<Integer> bonusNumber) {
+    public void bonusCase(List<Integer> compareLotto, List<Integer> bonusNumber) {
         if (isContainBonusNumber(compareLotto, bonusNumber)) {
             second += 1;
             return;

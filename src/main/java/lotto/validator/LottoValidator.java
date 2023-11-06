@@ -5,11 +5,14 @@ import java.util.stream.IntStream;
 
 public class LottoValidator{
 
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
 
     public static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
         validateSort(numbers);
     }
 
@@ -24,8 +27,15 @@ public class LottoValidator{
            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복 숫자가 존재합니다.");
        }
     }
-    private static void validateContainsComma(List<Integer> numbers) {
+    private static void validateRange(List<Integer> numbers) {
+        numbers.stream()
+                .forEach(number -> validateRangeHelper(number));
+    }
 
+    private static void validateRangeHelper(int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이여야 합니다.");
+        }
     }
 
     private static void validateSort(List<Integer> numbers) {

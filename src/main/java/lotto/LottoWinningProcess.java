@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.ui.InputView;
+import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
     public PurchaseMoney setUpPurchaseMoney() {
@@ -15,7 +16,9 @@ public class LottoWinningProcess {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < purchaseMoney.getLottoTicketQuantity(); i++) {
-            lottos.add(new Lotto(NumberGenerator.generate()));
+            Lotto lotto = new Lotto(NumberGenerator.generate());
+            OutputView.printLottoNumbers(lotto.getNumbers());
+            lottos.add(lotto);
         }
 
         return lottos;

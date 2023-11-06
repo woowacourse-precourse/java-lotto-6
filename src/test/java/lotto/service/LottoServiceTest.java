@@ -50,7 +50,7 @@ class LottoServiceTest {
 
     @Nested
     @DisplayName("LottoService.initWinningNumbers 테스트")
-    class InitWinningNumbers {
+    class InitWinningNumbersTest {
         @DisplayName("당첨번호를 초기화한 후에 저장된 크기가 6인지 검증한다.")
         @Test
         void 당첨번호_초기화_후_크기_테스트() {
@@ -69,6 +69,18 @@ class LottoServiceTest {
 
             List<Integer> winningNumbers = lottoService.getWinningNumbers();
             assertThat(winningNumbers).containsExactly(7,2,23,33,42,4);
+        }
+    }
+
+    @Nested
+    @DisplayName("LottoService.initBonusNumber 테스트")
+    class initBonusNumberTest {
+        @DisplayName("보너스 번호를 초기화하고 검증한다.")
+        @Test
+        void 보너스번호_초기화_테스트() {
+            lottoService.initBonusNumber(7);
+            int bonusNumber = lottoService.getBonusNumber();
+            assertThat(bonusNumber).isEqualTo(7);
         }
     }
 }

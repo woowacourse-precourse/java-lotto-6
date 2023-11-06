@@ -1,10 +1,10 @@
 package lotto.generator;
 
-import lotto.io.Read;
+import lotto.io.MoneyReader;
 
 public class LottoQuantity {
     public static int Quantity() {
-        int cnt = Read.reader() / 1000;
+        int cnt = MoneyReader.money_reader() / 1000;
         return cnt;
     }
 }

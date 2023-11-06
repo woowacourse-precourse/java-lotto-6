@@ -1,15 +1,15 @@
 package lotto.io;
 
 
-import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.ValueException;
 
-import java.util.List;
 
-public class BonusNumber {
-    public List<Integer> bonusnumber;
-    public List bonusNumberGenerator(){
-        bonusnumber = Randoms.pickUniqueNumbersInRange(1, 45, 1);
-        System.out.println(bonusnumber);
-        return bonusnumber;
+public class BonusNumberReader {
+    public static int bonusnumber(){
+        String bonusnumber = Console.readLine();
+        System.out.println("보너스 번호"+bonusnumber);
+        ValueException.validateNumber(bonusnumber);
+        return Integer.parseInt(bonusnumber);
     }
 }

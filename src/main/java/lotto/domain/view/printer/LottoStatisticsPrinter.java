@@ -24,7 +24,7 @@ public class LottoStatisticsPrinter {
 
         Statistics statistics = order.getStatistics();
         Map<ScoreConfig, Integer> winningInfo = statistics.getWinning();
-        List<ScoreConfig> scores = statistics.getScores();
+        List<ScoreConfig> scores = statistics.getFormattedScores();
 
         scores.stream()
                 .filter(score -> score != ScoreConfig.NOTHING)

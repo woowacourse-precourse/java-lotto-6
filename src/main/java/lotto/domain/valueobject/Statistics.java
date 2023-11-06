@@ -26,7 +26,7 @@ public class Statistics {
         }
     }
 
-    public List<ScoreConfig> getScores() {
+    public List<ScoreConfig> getFormattedScores() {
         List<ScoreConfig> scores = Arrays.asList(ScoreConfig.values());
         Collections.reverse(scores);
         return scores;

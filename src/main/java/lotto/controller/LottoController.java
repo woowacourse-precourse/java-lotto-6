@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.util.Constants.ZERO;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,6 @@ import lotto.view.OutputView;
 public class LottoController {
     private static final boolean TRUE = true;
     private static final boolean FALSE = false;
-    private static final int ZERO = 0;
     private static final Long LONG_ZERO = 0L;
 
     boolean validInput = FALSE;

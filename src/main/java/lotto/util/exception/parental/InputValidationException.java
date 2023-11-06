@@ -1,10 +1,10 @@
 package lotto.util.exception.parental;
 
+import static lotto.util.Constants.ERROR;
+
 import lotto.util.enums.ErrorMessage;
 
 public abstract class InputValidationException extends IllegalArgumentException{
-    private final static String ERROR = "[ERROR] ";
-
     private final ErrorMessage errorMessage;
 
     protected InputValidationException(ErrorMessage errorMessage) {

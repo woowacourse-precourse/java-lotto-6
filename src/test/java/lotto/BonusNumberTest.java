@@ -28,7 +28,7 @@ public class BonusNumberTest {
     @ValueSource(ints = {0,55})
     void 로또_번호_범위_테스트(int input) {
         Assertions.assertThatThrownBy(
-                () -> BonusNumber.create(input)
+                () -> new BonusNumber(input)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,11 +37,11 @@ public class BonusNumberTest {
     void 로또_번호_중복_테스트() {
         // given
         List<Integer> numbers= List.of(1,2,3,4,5,6);
-        WinningNumber winningNumber = WinningNumber.create(numbers);
+        WinningNumber winningNumber = new WinningNumber(numbers);
         int bonusNumber = 6;
         // when, then
         Assertions.assertThatThrownBy(
-                () -> BonusNumber.create(bonusNumber)
+                () -> new BonusNumber(bonusNumber)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

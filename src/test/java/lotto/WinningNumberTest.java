@@ -31,7 +31,7 @@ public class WinningNumberTest {
         winningNumber.add(7);
         // when,then
         Assertions.assertThatThrownBy(
-                () -> WinningNumber.create(winningNumber)
+                () -> new WinningNumber(winningNumber)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -67,7 +67,7 @@ public class WinningNumberTest {
                 .collect(Collectors.toList());
         // when,then
         Assertions.assertThatThrownBy(
-                () -> WinningNumber.create(intList)
+                () -> new WinningNumber(intList)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -81,7 +81,7 @@ public class WinningNumberTest {
                 .collect(Collectors.toList());
         // when,then
         Assertions.assertThatThrownBy(
-                () -> WinningNumber.create(intList)
+                () -> new WinningNumber(intList)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 

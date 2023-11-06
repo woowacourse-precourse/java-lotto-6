@@ -68,7 +68,7 @@ public class LottoGame {
             winningNumberString = InputView.receiveUserInput();
             Validator.checkWinningNumberForm(winningNumberString);
             Validator.areAllPrimeNumber(List.of(winningNumberString.split(",")));
-            winningNumber = WinningNumber.create(stringToIntList(winningNumberString));
+            winningNumber = new WinningNumber(stringToIntList(winningNumberString));
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -91,7 +91,7 @@ public class LottoGame {
             OutputView.printInputBonusNumber();
             numberString = InputView.receiveUserInput();
             LottoNumberValidator.validateBonusNumber(numberString);
-            bonusNumber = BonusNumber.create(Integer.parseInt(numberString));
+            bonusNumber = new BonusNumber(Integer.parseInt(numberString));
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

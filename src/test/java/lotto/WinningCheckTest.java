@@ -17,8 +17,8 @@ public class WinningCheckTest {
     void 당첨_확인_기능_테스트() {
         // given
         Payment payment = new Payment(5000);
-        WinningNumber winningNumber = WinningNumber.create(Arrays.asList(1, 2, 3, 4, 5, 6)); //1등 번호
-        BonusNumber bonusNumber = BonusNumber.create(7); //보너스 번호
+        WinningNumber winningNumber = new WinningNumber(Arrays.asList(1, 2, 3, 4, 5, 6)); //1등 번호
+        BonusNumber bonusNumber = new  BonusNumber(7); //보너스 번호
         WinningAndBonusNumber.create(winningNumber, bonusNumber);
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); //1등
         Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); //2등

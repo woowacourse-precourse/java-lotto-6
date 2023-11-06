@@ -56,6 +56,7 @@ public class OutputView {
             int rankingCount = entry.getValue();
             if (rank.equals(Rank.SECOND)) {
                 System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
+                continue;
             }
             System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
         }

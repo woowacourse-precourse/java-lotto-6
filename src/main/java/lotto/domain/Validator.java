@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
+
+import lotto.constants.ErrorMessages;
 
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Controller.LOTTERY_PRICE;
+import static lotto.domain.Controller.LOTTERY_PRICE;
 
 public class Validator {
 
@@ -11,7 +13,7 @@ public class Validator {
     public static final Integer FIRST_LOTTERY_NUMBER = 1;
     public static final Integer LAST_LOTTERY_NUMBER = 45;
     public static final Integer MAX_LOTTERY_COUNT = 6;
-    public static final Integer WINNING_NUMBERS_MIN_DUPLICATE_COUNT = 2;
+    public static final Integer NUMBERS_MIN_DUPLICATE_COUNT = 2;
     public static final Integer BONUS_NUMBER_MIN_DUPLICATE_COUNT = 1;
 
     public static boolean isInputEmpty(String userInput) {
@@ -96,7 +98,7 @@ public class Validator {
     public static boolean isWinningNumberDuplicate(Integer checkingNumber, List<Integer> referenceNumbers) {
         try {
             int duplicateNumberFrequency = Collections.frequency(referenceNumbers, checkingNumber);
-            if (duplicateNumberFrequency >= WINNING_NUMBERS_MIN_DUPLICATE_COUNT) {
+            if (duplicateNumberFrequency >= NUMBERS_MIN_DUPLICATE_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_DUPLICATE.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
@@ -127,6 +129,33 @@ public class Validator {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
+        }
+        return false;
+    }
+
+    public static boolean areUserInputsOnlyNumbers(String[] winningNumbers) {
+        for (String winningNumber : winningNumbers) {
+            if (Validator.isNumberOnly(winningNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean areUserInputNumbersOutOfRange(List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (Validator.isNumberOnValidRange(winningNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean areUserInputNumberDuplicated(List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (Validator.isWinningNumberDuplicate(winningNumber, winningNumbers)) {
+                return true;
+            }
         }
         return false;
     }

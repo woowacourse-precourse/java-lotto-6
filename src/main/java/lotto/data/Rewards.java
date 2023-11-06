@@ -45,7 +45,6 @@ public enum Rewards {
 
     }
 
-
     public int correctLottos() {
         return correctLottos;
     }
@@ -54,13 +53,12 @@ public enum Rewards {
         return correctBonus;
     }
 
-    public int money() {
-        return money;
-    }
-
     public String getNotifyMessege() {
         return notifyMessege;
     }
 
+    public int money() {
+        return money;
+    }
 
 }

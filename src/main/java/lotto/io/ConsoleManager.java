@@ -1,9 +1,13 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.BonusNumber;
 import lotto.Lotto;
+import lotto.WinningType;
 import lotto.vo.Price;
 
 public class ConsoleManager {
@@ -62,6 +66,16 @@ public class ConsoleManager {
                 this.printError(e);
             }
         }
+    }
+
+    public void printStatics(Map<WinningType, Integer> statics) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Arrays.stream(WinningType.values())
+                .forEach(type -> {
+                    String message = MessageFormat.format("{0}{1}개", type.getMessage(), statics.get(type));
+                    System.out.println(message);
+                });
     }
 
 }

@@ -30,6 +30,8 @@ public class LottoManager {
         BonusNumber bonusNumber = consoleManager.inputBonusNumber(winningLotto);
 
         Map<WinningType, Integer> statics = lottoCalculator.getMatchStatics(lottos, winningLotto, bonusNumber);
+
+        consoleManager.printStatics(statics);
     }
 
 }

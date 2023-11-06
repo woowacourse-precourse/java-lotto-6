@@ -21,9 +21,9 @@ public class LottoController {
         // 구입 금액 입력
         OutputView.printRequestPurchaseAmount();
         InputView.readLine();
-
         // 로또 구매 결과 출력
         OutputView.printResponsePurchaseAmount(1);
+        // TODO: 구매 로또 번호 출력
     }
 
     private void setWinningNumbers() {

@@ -15,7 +15,7 @@ public class LottoWinningProcess {
         PurchaseMoney purchaseMoney = setUpPurchaseMoney();
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < purchaseMoney.getLottoTicketQuantity(); i++) {
+        for (int i = 0; i < purchaseMoney.getLottoQuantity(); i++) {
             Lotto lotto = new Lotto(NumberGenerator.generate());
             OutputView.printLottoNumbers(lotto.getNumbers());
             lottos.add(lotto);

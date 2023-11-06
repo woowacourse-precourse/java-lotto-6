@@ -1,7 +1,7 @@
 package lotto;
 
 public class PurchaseMoney {
-    private static int LOTTO_TICKET_PRICE = 1000;
+    private static int LOTTO_PRICE = 1000;
 
     private final int amount;
 
@@ -9,7 +9,7 @@ public class PurchaseMoney {
         this.amount = amount;
     }
 
-    public int getLottoTicketQuantity() {
-        return amount / LOTTO_TICKET_PRICE;
+    public int getLottoQuantity() {
+        return amount / LOTTO_PRICE;
     }
 }

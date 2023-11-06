@@ -28,12 +28,9 @@ public class LottoInputValidatorTest {
     @DisplayName("입력한 당첨 번호는 알맞은 구분자와 숫자 범위와 갯수를 만족해야한다.")
     @Test
     void testValidWinningNumbers() {
-        List<Integer> validWinningNumbers = new ArrayList<>();
+        List<Integer> validWinningNumbers;
         int number = LottoConstants.LOTTO_START_NUMBER.getConstant();
-        for (int i = 0; i < LottoConstants.LOTTO_PER_NUMBERS.getConstant(); i++) {
-            validWinningNumbers.add(number);
-            number++;
-        }
+        validWinningNumbers = createWinningNumbers(number);
         LottoInputValidator.WinningNumbersIsValid(validWinningNumbers);
     }
 
@@ -62,5 +59,44 @@ public class LottoInputValidatorTest {
         assertThatIllegalArgumentException().isThrownBy(() ->
                 LottoInputValidator.WinningNumbersIsValid(invalidWinningNumbers)
         );
+    }
+
+    @DisplayName("보너스 번호가 지정된 범위에 있고, 당첨 번호와 중복되지 않아야 한다.")
+    @Test
+    void testValidBonusNumber() {
+        int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
+        LottoInputValidator.bonusNumberIsValid(createWinningNumbers(startNumber), startNumber + 1);
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복된다면 IllegalArgumentException 으로 예외처리 한다.")
+    @Test
+    void testInvalidBonusNumberByWinningNumbersContain() {
+        int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
+        List<Integer> winningNumbers = createWinningNumbers(startNumber);
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                LottoInputValidator.bonusNumberIsValid(winningNumbers, startNumber)
+        );
+    }
+
+    @DisplayName("보너스 번호가 지정된 범위 안에 있지 않다면 IllegalArgumentException 으로 예외처리 한다.")
+    @Test
+    void testInvalidBonusNumberByLottoNumber() {
+        int startNumber = LottoConstants.LOTTO_START_NUMBER.getConstant();
+        List<Integer> winningNumbers = createWinningNumbers(startNumber);
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                LottoInputValidator.bonusNumberIsValid(
+                        winningNumbers,
+                        LottoConstants.LOTTO_END_NUMBER.getConstant() + 1
+                )
+        );
+    }
+
+    private List<Integer> createWinningNumbers(int startNumber) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (int i = 0; i < LottoConstants.LOTTO_PER_NUMBERS.getConstant(); i++) {
+            winningNumbers.add(startNumber);
+            startNumber++;
+        }
+        return winningNumbers;
     }
 }

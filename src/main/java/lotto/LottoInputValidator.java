@@ -14,16 +14,33 @@ public class LottoInputValidator {
     public static void WinningNumbersIsValid(List<Integer> winningNumbers) {
         if (winningNumbers.size() != LottoConstants.LOTTO_PER_NUMBERS.getConstant()) {
             throw new IllegalArgumentException(
-                    LottoErrorMessageConstants.WINNER_NUMBER_INVALID_NUMBER_ERROR_MESSAGE.getMessage()
+                    LottoErrorMessageConstants.WINNING_NUMBER_INVALID_NUMBER_ERROR_MESSAGE.getMessage()
             );
         }
         for (int winningNumber : winningNumbers) {
-            if (LottoConstants.LOTTO_START_NUMBER.getConstant() > winningNumber
-                    && winningNumber > LottoConstants.LOTTO_END_NUMBER.getConstant()) {
+            if (isNotNumberInLottoBoundary(winningNumber)) {
                 throw new IllegalArgumentException(
-                        LottoErrorMessageConstants.WINNER_NUMBER_INVALID_NUMBER_ERROR_MESSAGE.getMessage()
+                        LottoErrorMessageConstants.WINNING_NUMBER_INVALID_NUMBER_ERROR_MESSAGE.getMessage()
                 );
             }
         }
+    }
+
+    public static void bonusNumberIsValid(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    LottoErrorMessageConstants.BONUS_NUMBER_IS_CONTAINS_WINNING_NUMBER.getMessage()
+            );
+        }
+        if (isNotNumberInLottoBoundary(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    LottoErrorMessageConstants.BONUS_NUMBER_INVALID_NUMBER_ERROR_MESSAGE.getMessage()
+            );
+        }
+    }
+
+    private static boolean isNotNumberInLottoBoundary(int number) {
+        return LottoConstants.LOTTO_START_NUMBER.getConstant() > number
+                || number > LottoConstants.LOTTO_END_NUMBER.getConstant();
     }
 }

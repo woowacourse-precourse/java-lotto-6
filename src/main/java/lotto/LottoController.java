@@ -6,6 +6,7 @@ public class LottoController {
     public static void start() {
         Lottos lottos = purchaseLotto();
         List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber(winningNumbers);
     }
 
     private static Lottos purchaseLotto() {
@@ -28,4 +29,10 @@ public class LottoController {
         return winningNumbers;
     }
 
+    private static int setBonusNumber(List<Integer> winningNumbers) {
+        String requestBonusNumber = LottoView.requestBonusNumber();
+        int bonusNumber = LottoParser.readLineToNumber(requestBonusNumber);
+        LottoInputValidator.bonusNumberIsValid(winningNumbers, bonusNumber);
+        return bonusNumber;
+    }
 }

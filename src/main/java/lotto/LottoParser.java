@@ -10,7 +10,7 @@ public class LottoParser {
             number = Integer.parseInt(readLine);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(
-                    LottoErrorMessageConstants.PURCHASE_PRICE_NOT_NUMBER_INPUT_ERROR_MESSAGE.getMessage()
+                    LottoErrorMessageConstants.INPUT_NOT_NUMBER_ERROR_MESSAGE.getMessage()
             );
         }
         return number;
@@ -26,7 +26,7 @@ public class LottoParser {
             }
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(
-                    LottoErrorMessageConstants.WINNER_NUMBER_INVALID_INPUT_ERROR_MESSAGE.getMessage()
+                    LottoErrorMessageConstants.INPUT_NOT_NUMBER_ERROR_MESSAGE.getMessage()
             );
         }
         return numbers;

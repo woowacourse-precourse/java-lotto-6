@@ -10,7 +10,7 @@ public class LottosTest {
     @Test
     void testCreateValidLottos() {
         int quantity = 3;
-        Lottos lottos = new Lottos(quantity);
+        Lottos lottos = Lottos.purchaseLottos(quantity);
 
         assertThat(lottos.getLottos().size()).isEqualTo(quantity);
     }

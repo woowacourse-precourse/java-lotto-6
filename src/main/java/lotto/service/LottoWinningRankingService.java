@@ -45,25 +45,16 @@ public class LottoWinningRankingService {
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {
-        // for 문으로 2, 3등에 대한 조건을 만들면 되지만, 코드 이해는 이 방법이 더 쉬워보인다.
-        if (matchedNumberCount == LottoWinningRanking.FIRST.getMatchedNumberCount()) {
-            return LottoWinningRanking.FIRST;
+        for (LottoWinningRanking ranking : LottoWinningRanking.values()) {
+            if (isMatchingRanking(ranking, matchedNumberCount, needsBonusNumber)) {
+                return ranking;
+            }
         }
-        if (matchedNumberCount == LottoWinningRanking.SECOND.getMatchedNumberCount() &&
-                needsBonusNumber == LottoWinningRanking.SECOND.getNeedsBonusNumber()) {
-            return LottoWinningRanking.SECOND;
-        }
-        if (matchedNumberCount == LottoWinningRanking.THIRD.getMatchedNumberCount() &&
-                needsBonusNumber == LottoWinningRanking.THIRD.getNeedsBonusNumber()) {
-            return LottoWinningRanking.THIRD;
-        }
-        if (matchedNumberCount == LottoWinningRanking.FOURTH.getMatchedNumberCount()) {
-            return LottoWinningRanking.FOURTH;
-        }
-        if (matchedNumberCount == LottoWinningRanking.FIFTH.getMatchedNumberCount()) {
-            return LottoWinningRanking.FIFTH;
-        }
-
         return LottoWinningRanking.NONE;
+    }
+
+    private boolean isMatchingRanking(LottoWinningRanking ranking, int matchedNumberCount, boolean needsBonusNumber) {
+        return matchedNumberCount == ranking.getMatchedNumberCount()
+                && (!ranking.getNeedsBonusNumber() || needsBonusNumber);
     }
 }

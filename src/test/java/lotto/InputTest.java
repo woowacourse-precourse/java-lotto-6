@@ -40,6 +40,34 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호 입력시 비정상적인 문자열을 받는 경우")
+    @Test
+    void illigalBonusNumberInput() {
+        Input input = new Input();
+
+        // 정상적인 경우 테스트
+        assertThat(input.bonusNumberInput("11"))
+                .isEqualTo(new ArrayList<>(Arrays.asList(11)));
+        assertThat(input.purchaseAmountInput("45"))
+                .isEqualTo(new ArrayList<>(Arrays.asList(45)));
+
+        // 비정상적인 경우 테스트
+        // 문자열에 숫자를 제외한 다른 문자가 있을 경우
+        assertThatThrownBy(() -> input.purchaseAmountInput("!1"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.purchaseAmountInput("1#"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.purchaseAmountInput("-23"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.purchaseAmountInput("+5"))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 문자열이 비어있는 경우
+        assertThatThrownBy(() -> input.purchaseAmountInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 보너스 번호가 1 ~ 45 사이가 아닐 경우
+        assertThatThrownBy(() -> input.purchaseAmountInput("1234"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")

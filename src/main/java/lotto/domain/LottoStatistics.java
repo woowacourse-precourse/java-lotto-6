@@ -42,7 +42,6 @@ public class LottoStatistics {
             wins[rank.ordinal()]++;
         }
 
-        System.out.println("totalRevenue = " + totalRevenue);
         List<Integer> winsPerCategory = new ArrayList<>();
         for (LottoRank rank : LottoRank.values()) {
             winsPerCategory.add(wins[rank.ordinal()]);
@@ -53,6 +52,6 @@ public class LottoStatistics {
 
     private double calculateRateOfReturn() {
         double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
-        return Math.round((totalRevenue / purchaseAmount - 1) * 100) / 100.0;
+        return totalRevenue / purchaseAmount;
     }
 }

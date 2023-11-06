@@ -7,12 +7,13 @@ import static lotto.util.ErrorConstants.OVER_RANGE;
 import static lotto.util.ErrorConstants.OVER_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -20,7 +21,7 @@ public class Lotto {
     }
 
     public static Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
@@ -42,7 +43,7 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    
+
     @Override
     public String toString() {
         return numbers.toString();

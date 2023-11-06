@@ -43,6 +43,6 @@ class LottoStatisticsTest {
         double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
 
         double rateOfReturn = lottoStatistics.getTotalRate();
-        assertThat(rateOfReturn).isEqualTo(Math.round((2031555000 / purchaseAmount - 1) * 10) / 10.0);
+        assertThat(rateOfReturn).isEqualTo(2031555000 / purchaseAmount);
     }
 }

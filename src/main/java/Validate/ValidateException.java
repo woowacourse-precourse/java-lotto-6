@@ -10,6 +10,7 @@ public class ValidateException {
     private static final String SPECIAL_CHARACTER_REGEX = ".*[!@#$%^&*().?\":{}|<>].*";
     private static final Character COMMA_CHAR = ',';
     private static final Integer POSITIVE_CONDITION_ZERO = 0;
+    private static final Integer ZERO_NUM = 0;
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -67,6 +68,14 @@ public class ValidateException {
         Integer inputNum = Integer.valueOf(strLine);
         if (inputNum < POSITIVE_CONDITION_ZERO) {
             throw new NumberFormatException("입력된 값은 양수가 아닙니다.");
+        }
+    }
+
+    public static void zeroNum(String strLine) {
+        Integer inputNum = Integer.valueOf(strLine);
+
+        if (inputNum == ZERO_NUM) {
+            throw new IllegalArgumentException("0은 입력할수 없습니다.");
         }
     }
 }

@@ -40,6 +40,7 @@ public class Utii {
         ValidateException.negative(inputStringLine);
         ValidateException.includeString(inputStringLine);
         ValidateException.includeSpecialString(inputStringLine);
+        ValidateException.zeroNum(inputStringLine);
 
         return Integer.valueOf(inputStringLine);
     }

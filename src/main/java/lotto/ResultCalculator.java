@@ -10,7 +10,7 @@ public class ResultCalculator {
     public ResultCalculator(Lottos lottos, Lotto winningLotto) {
         Map<Lotto, PrizeGrade> result = new HashMap<>();
         lottos.getTickets().stream()
-                .forEach(lotto -> result.add(lotto, calculatePrizeGrade(lotto, winningLotto)));
+                .forEach(lotto -> result.put(lotto, calculatePrizeGrade(lotto, winningLotto)));
         this.result = result;
     }
 }

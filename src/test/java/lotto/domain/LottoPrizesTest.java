@@ -15,7 +15,7 @@ class LottoPrizesTest {
     @DisplayName("당첨금을 컴마로 구분하고, '원'을 붙여 정확히 리턴하는지 확인합니다.")
     @ParameterizedTest(name = "{0}")
     @MethodSource("argumentsProvider")
-    void getParsedWinningAmount(
+    void winningAmountToString(
             String testMessage,
             LottoPrizes lottoPrizes,
             String expectedOutput) {

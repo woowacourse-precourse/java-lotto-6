@@ -1,11 +1,13 @@
 package service;
 
 import model.MyLotto;
+import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class InputService {
 
+    NumberGenerator numberGenerator = new NumberGenerator();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
     MyLotto myLotto = new MyLotto();
@@ -17,10 +19,12 @@ public class InputService {
         lottoCost = inputView.getLottoCostData();
         myLotto.buyLotto(lottoCost);
         lottoPaper = myLotto.getLottoPaper();
+        outputView.printNewLine();
         outputView.printPublishedLotto(lottoPaper);
     }
 
-    public void getLottoNumber(){
-
+    public void createLottoNumber(){
+        myLotto.createMyLottoNumber(lottoPaper);
+        outputView.printMyLottoNumber(myLotto.getMyLottoNumber());
     }
 }

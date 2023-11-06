@@ -16,10 +16,6 @@ public class InputValidator {
         }
     }
 
-    private boolean hasComma(List<Integer> winningNumbers) {
-        return winningNumbers.contains(",");
-    }
-
     private boolean isNumeric(String inputMoney) {
         return inputMoney.matches(NUMERIC);
     }

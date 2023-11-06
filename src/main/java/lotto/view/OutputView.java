@@ -1,17 +1,20 @@
 package lotto.view;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Map;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
 
 public class OutputView {
 
-    private static final String NEW_LINE = "\n";
-    private static final String MESSAGE_NUMBER_OF_PURCHASED_LOTTOS = NEW_LINE + "%d개를 구매했습니다.";
-    private static final String MESSAGE_RESULT_HEADER = "당첨 통계" + NEW_LINE + "---";
-    private static final String MESSAGE_RESULT_CONTENT = "%d개 일치 (%d원) - %d개";
-    private static final String MESSAGE_RESULT_CONTENT_SECOND_PLACE = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
+    private static final String MESSAGE_NUMBER_OF_PURCHASED_LOTTOS = "%d개를 구매했습니다.";
+    private static final String MESSAGE_RESULT_HEADER = "당첨 통계\n---";
+    private static final String MESSAGE_RESULT_CONTENT = "%d개 일치 (%s원) - %d개";
+    private static final String MESSAGE_RESULT_CONTENT_SECOND_PLACE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String MESSAGE_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
+
+    private static final NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
 
     public static void printNumberOfPurchasedLottos(int numberOfPurchasedLottos) {
         System.out.println(String.format(MESSAGE_NUMBER_OF_PURCHASED_LOTTOS, numberOfPurchasedLottos));
@@ -20,7 +23,6 @@ public class OutputView {
     public static void printGeneratedLottos(Lottos lottos) {
         lottos.getLottos()
                 .forEach(lotto -> System.out.println(lotto.getNumbers()));
-        System.out.println(NEW_LINE);
     }
 
     public static void printStatistics(Map<Prize, Long> prizeResult) {
@@ -41,16 +43,18 @@ public class OutputView {
     }
 
     private static void printCommonStatistics(Prize prize, Long count) {
+        String formattedPrizeMoney = numberFormat.format(prize.getPrizeMoney());
         System.out.println(String.format(MESSAGE_RESULT_CONTENT,
                 prize.getMatchCount(),
-                prize.getPrizeMoney(),
+                formattedPrizeMoney,
                 count));
     }
 
     private static void printSecondPlaceStatistics(Prize prize, Long count) {
+        String formattedPrizeMoney = numberFormat.format(prize.getPrizeMoney());
         System.out.println(String.format(MESSAGE_RESULT_CONTENT_SECOND_PLACE,
                 prize.getMatchCount(),
-                prize.getPrizeMoney(),
+                formattedPrizeMoney,
                 count));
     }
 

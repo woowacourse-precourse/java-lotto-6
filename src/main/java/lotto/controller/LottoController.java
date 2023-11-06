@@ -7,11 +7,11 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Number;
+import lotto.model.NumberGenerator;
+import lotto.model.RandomNumberGenerator;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.model.WinningResultCalculator;
-import lotto.util.NumberGenerator;
-import lotto.util.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

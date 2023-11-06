@@ -103,7 +103,7 @@
 
 
 ### 구현 목록
-- [ ] InputUtil 객체
+- [x] InputUtil 객체
 - [x] RandomUtil 객체
 - [x] PlayerLotto 객체
 - [x] LottoResult 객체

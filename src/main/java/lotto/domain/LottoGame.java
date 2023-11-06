@@ -9,11 +9,11 @@ public class LottoGame {
     }
 
     private void start() {
-        int userLottoPrice = readLottoPrice();
+        //int userLottoPrice = readLottoPrice();
         
     }
 
-    private int readLottoPrice() {
+    public int readLottoPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         int price = Integer.parseInt(Console.readLine());
 

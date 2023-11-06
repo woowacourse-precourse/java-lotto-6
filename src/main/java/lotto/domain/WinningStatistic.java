@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningStatistic {
-    private final Map<Rank, Integer> result = new EnumMap<Rank, Integer>(Rank.class);
+    private final Map<Rank, Integer> result = new EnumMap<>(Rank.class);
 
     public WinningStatistic(List<Rank> ranks) {
         for (Rank rank : Rank.values()) {

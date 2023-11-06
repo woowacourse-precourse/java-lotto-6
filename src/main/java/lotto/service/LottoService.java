@@ -21,13 +21,9 @@ public class LottoService {
     }
 
     private Lotto issueLotto() {
-        Set<Integer> numbers = new HashSet<>();
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUM, Constants.MAX_LOTTO_NUM, Constants.LOTTO_LENGTH);
 
-        while (numbers.size() < Constants.LOTTO_LENGTH) {
-            numbers.add(Randoms.pickNumberInRange(Constants.MIN_LOTTO_NUM, Constants.MAX_LOTTO_NUM));
-        }
-
-        return new Lotto(List.copyOf(numbers));
+        return new Lotto(numbers);
     }
 
     public String getLottoList(ArrayList<Lotto> lottos) {

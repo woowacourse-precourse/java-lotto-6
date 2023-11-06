@@ -57,7 +57,7 @@
 ***
 ### LottoDispenser 🤖
 - `LottoDispenser` 클래스는 로또 발행을 관리한다.
-- [❌] 로또 구입 금액에 맞게 로또를 발행한다.
+- [✅] 로또 구입 금액에 맞게 로또를 발행한다.
 ***
 ### WinningLotto 🎊
 `WinningLotto` 클래스는 당첨 로또와 보너스 번호를 관리한다.

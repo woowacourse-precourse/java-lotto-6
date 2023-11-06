@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
@@ -20,7 +21,7 @@ public class InputView {
 
         validateWinningNumbersInput(input);
 
-        return null;
+        return toIntegers(split(input));
     }
 
     private static void validatePurchaseAmountInput(String input) {
@@ -30,13 +31,21 @@ public class InputView {
     }
 
     private static void validateWinningNumbersInput(String input) {
-        if (endsWithComma(input) || hasNotPositiveInteger(split(input))) {
+        if (endsWithComma(input) || hasNotPositiveInteger(split(input)) || isNotSixIntegers(split(input))) {
             throw new IllegalArgumentException();
         }
     }
 
     private static int toInteger(String input) {
         return Integer.parseInt(input);
+    }
+
+    private static List<Integer> toIntegers(String[] values) {
+        List<Integer> integers = new ArrayList<>();
+        for (String value : values) {
+            integers.add(toInteger(value));
+        }
+        return integers;
     }
 
     private static boolean isNotPositiveInteger(String input) {
@@ -64,5 +73,9 @@ public class InputView {
 
     private static boolean endsWithComma(String input) {
         return input.endsWith(",");
+    }
+
+    private static boolean isNotSixIntegers(String[] numbers) {
+        return numbers.length != 6;
     }
 }

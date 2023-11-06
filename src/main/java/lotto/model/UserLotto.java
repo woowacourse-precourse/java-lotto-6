@@ -13,6 +13,16 @@ public class UserLotto {
         this.lottoCount = money / 1000;
     }
 
+    private void publishLottoBundle() {
+        lottos = new ArrayList<>();
+        Lotto newLotto;
+
+        for(int i = 0; i < lottoCount; i++) {
+            newLotto = publishLotto();
+            lottos.add(newLotto);
+        }
+    }
+
     private Lotto publishLotto() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < 6) {

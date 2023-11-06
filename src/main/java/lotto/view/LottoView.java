@@ -38,7 +38,7 @@ public class LottoView {
 
     public void printLottos(Lottos lottos) {
         List<Lotto> findLottos = lottos.getLottos();
-        System.out.printf("\n%d개를 구매했습니다.\n",findLottos.size());
+        System.out.printf("\n%d개를 구매했습니다.\n", findLottos.size());
         for (Lotto lotto : findLottos) {
             output.println(lotto.getNumbers().toString());
         }
@@ -48,22 +48,24 @@ public class LottoView {
         System.out.println("\n당첨 통계 \n---");
         Map<WinningRank, Integer> winningResults = winningResult.getResult();
         for (WinningRank winningRank : winningResults.keySet()) {
-            if(winningRank == WinningRank.EMPTY) {
+            if (winningRank == WinningRank.EMPTY) {
                 continue;
             }
             int matchCount = winningRank.getCount();
             int money = winningRank.getMoney();
             boolean hasBonusNumber = winningRank.isBonusNumber();
-            if(hasBonusNumber) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개 \n",matchCount,money,winningResults.get(winningRank));
+            if (hasBonusNumber) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개 \n", matchCount, money,
+                        winningResults.get(winningRank));
                 continue;
             }
-            System.out.printf("%d개 일치 (%,d원) - %d개 \n",matchCount,money,winningResults.get(winningRank));
+            System.out.printf("%d개 일치 (%,d원) - %d개 \n", matchCount, money,
+                    winningResults.get(winningRank));
         }
     }
 
     public void printWinningProfit(float rateOfReturn) {
         double result = Math.round(rateOfReturn * 100) / 100.0;
-        output.printf("총 수익률은 %.1f%%입니다.",result);
+        output.printf("총 수익률은 %.1f%%입니다.", result);
     }
 }

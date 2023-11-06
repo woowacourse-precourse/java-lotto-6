@@ -19,11 +19,12 @@ public class Lottos {
         Map<WinningRank, Integer> winningResult = initWinningResult();
         for (Lotto lotto : lottos) {
             WinningRank winningRank = winningLotto.findWinningRank(lotto);
-            winningResult.put(winningRank, winningResult.getOrDefault(winningRank,0) + 1);
+            winningResult.put(winningRank, winningResult.getOrDefault(winningRank, 0) + 1);
         }
         return new WinningResult(winningResult);
     }
-    private Map<WinningRank,Integer> initWinningResult() {
+
+    private Map<WinningRank, Integer> initWinningResult() {
         Map<WinningRank, Integer> winningResult = new EnumMap<>(WinningRank.class);
         for (WinningRank winningRank : WinningRank.values()) {
             winningResult.put(winningRank, 0);

@@ -2,9 +2,9 @@ package lotto.domain.lotto;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -31,6 +31,7 @@ public class Lotto {
         }
 
     }
+
     private boolean isOutOfRange(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < 1 || number > 45);
@@ -53,16 +54,18 @@ public class Lotto {
     public int calculateMatchCount(Lotto otherLotto) {
         int result = 0;
         for (int number : numbers) {
-            if(otherLotto.hasSameNumber(number)) {
-               result++;
+            if (otherLotto.hasSameNumber(number)) {
+                result++;
             }
         }
         return result;
     }
+
     //todo : 메서드명 생각해보기
     private boolean hasSameNumber(int number) {
         return numbers.contains(number);
     }
+
     public boolean hasSameNumber(BonusNumber bonusNumber) {
         return numbers.stream()
                 .anyMatch(bonusNumber::hasSameNumber);

@@ -19,7 +19,7 @@ class WinningLottoTest {
 
     @ParameterizedTest
     @DisplayName("BonusNumber가 Lotto와 중복되는 숫자라면 예외가 발생헌다.")
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     void WinningLott_생성_예외(int number) {
         // given
         BonusNumber bonusNumber = new BonusNumber(number);
@@ -31,7 +31,7 @@ class WinningLottoTest {
 
     @ParameterizedTest
     @DisplayName("BonusNumber가 Lotto와 중복되지 않는다면 생성 성공")
-    @ValueSource(ints = {7,30,45})
+    @ValueSource(ints = {7, 30, 45})
     void WinningLotto_생성_성공(int number) {
         // given
         BonusNumber bonusNumber = new BonusNumber(number);
@@ -55,6 +55,7 @@ class WinningLottoTest {
         Assertions.assertThat(winningRank).isEqualTo(expected);
 
     }
+
     public static Stream<Arguments> argumentsFindWinningRankWithLotto() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), WinningRank.FIRST),
@@ -65,7 +66,6 @@ class WinningLottoTest {
                 Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11)), WinningRank.EMPTY)
         );
     }
-
 
     // todo : 값이 제대로 생성되었는지?
 }

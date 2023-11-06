@@ -79,13 +79,20 @@ class LottoTest {
 
     public static Stream<Arguments> argumentsLottoMatchCount() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 5),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 7)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 4),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 3),
-                Arguments.of(new Lotto(List.of(1, 2, 7, 8, 9, 10)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 2),
-                Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 1),
-                Arguments.of(new Lotto(List.of(7, 8, 9, 10, 11, 12)), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 0)
-                );
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 5),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 7)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 4),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 3),
+                Arguments.of(new Lotto(List.of(1, 2, 7, 8, 9, 10)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 2),
+                Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 1),
+                Arguments.of(new Lotto(List.of(7, 8, 9, 10, 11, 12)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6)), 0)
+        );
     }
 }

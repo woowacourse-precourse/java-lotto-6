@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class WinningRankTest {
 
 
-
     @ParameterizedTest
     @DisplayName("적절한 WinningRank를 찾는 기능")
     @MethodSource("argumentsFindWinningRank")
@@ -24,6 +23,7 @@ class WinningRankTest {
         //then
         Assertions.assertThat(findWinningRank).isEqualTo(winningRank);
     }
+
     private static Stream<Arguments> argumentsFindWinningRank() {
         return Stream.of(
                 Arguments.of(6, false, WinningRank.FIRST),

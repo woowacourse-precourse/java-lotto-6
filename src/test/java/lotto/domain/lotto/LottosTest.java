@@ -43,7 +43,9 @@ class LottosTest {
         Lotto testLottoData4 = new Lotto(List.of(1, 2, 3, 4, 7, 8));
         Lotto testLottoData5 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
 
-        Lottos lottos = new Lottos(List.of(testLottoData1, testLottoData2, testLottoData3, testLottoData4, testLottoData5));
+        Lottos lottos = new Lottos(
+                List.of(testLottoData1, testLottoData2, testLottoData3, testLottoData4,
+                        testLottoData5));
         WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
         return winningResult;
     }

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ConsoleInput implements Input{
+public class ConsoleInput implements Input {
 
     public static final String SPLIT_REGEX = ",";
 
@@ -39,13 +39,15 @@ public class ConsoleInput implements Input{
     public String getString() {
         return consoleLine();
     }
+
     @Override
     public List<String> getStrings() {
         return Stream.of(consoleLine().split(SPLIT_REGEX))
                 .collect(Collectors.toList());
     }
+
     private void validate(String str) {
-        if(str == null || str.isBlank()) {
+        if (str == null || str.isBlank()) {
             throw new IllegalArgumentException("값을 입력해야 합니다");
         }
     }

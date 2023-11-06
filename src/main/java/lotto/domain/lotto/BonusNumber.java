@@ -10,7 +10,7 @@ public class BonusNumber {
     }
 
     private void validate(int number) {
-        if(number < 1 || number > 45) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야합니다.");
         }
     }

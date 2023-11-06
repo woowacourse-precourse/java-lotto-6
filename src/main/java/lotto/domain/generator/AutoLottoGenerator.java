@@ -3,7 +3,7 @@ package lotto.domain.generator;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 
-public class AutoLottoGenerator implements LottoGenerator{
+public class AutoLottoGenerator implements LottoGenerator {
 
     private final NumbersGenerator numbersGenerator;
 

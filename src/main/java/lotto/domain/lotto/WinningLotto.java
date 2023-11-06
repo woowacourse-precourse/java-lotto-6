@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import lotto.domain.result.WinningRank;
 
 public class WinningLotto {
+
     private Lotto lotto;
     private BonusNumber bonusNumber;
 
@@ -13,7 +14,7 @@ public class WinningLotto {
     }
 
     private void validate(Lotto lotto, BonusNumber bonusNumber) {
-        if(lotto.hasSameNumber(bonusNumber)) {
+        if (lotto.hasSameNumber(bonusNumber)) {
             throw new IllegalArgumentException("ERROR");
         }
     }

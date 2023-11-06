@@ -10,7 +10,7 @@ public class LottoMoney {
     }
 
     private void validate(int money) {
-        if(money == 0 || money % 1000 != 0) {
+        if (money == 0 || money % 1000 != 0) {
             throw new IllegalArgumentException("error");
         }
     }

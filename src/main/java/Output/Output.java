@@ -48,5 +48,6 @@ public class Output {
             String paper = lottoBuyPaperPrint(lotto.get(i).getLotto());
             System.out.println(paper);
         }
+        System.out.println();
     }
 }

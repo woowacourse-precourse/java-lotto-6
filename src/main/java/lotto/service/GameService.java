@@ -45,18 +45,8 @@ public class GameService {
     }
 
     public double calculateTotalReturnRate(){
-        double sum = calculateTotalProfit();
-        int initialPrice = purchaseAmount.getPurchaseAmount();
-        return sum/initialPrice*100;
-    }
-
-    public double calculateTotalProfit(){
-        double total = 0;
-        List<Integer> matchingCounts = matchingCount.getMatchingCounts();
-        for(int i=0; i<matchingCounts.size(); i++){
-            total += Statistic.values()[i].getPrize() * matchingCounts.get(i);
-        }
-        return total;
+        double profit = CalculateTotal.profit(matchingCount.getMatchingCounts());
+        return CalculateTotal.returnRate(profit, purchaseAmount.getPurchaseAmount());
     }
 
 }

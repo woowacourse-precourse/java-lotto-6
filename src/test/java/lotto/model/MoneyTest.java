@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -26,5 +27,11 @@ class MoneyTest {
     void createBonusByDuplicatedAnswer() {
         assertThatThrownBy(() -> new Money("1111"))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 5000 원이라면 구매한 로또 개수가 5 개이다.")
+    @Test
+    void countLottos() {
+        assertThat(new Money("5000").getMoney()).isEqualTo(5);
     }
 }

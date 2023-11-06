@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -38,5 +40,15 @@ class MoneyTest {
     void createMoneyByNotThousands(String userInput) {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1000원 개수 세기")
+    @Test
+    void countThousand(){
+        // given
+        Money money = new Money("2000");
+
+        // when, then
+        assertThat(money.countThousand()).isEqualTo(2);
     }
 }

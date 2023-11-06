@@ -3,11 +3,18 @@ package lotto.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoNumberRange;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoGenerator {
-    private Set<Integer> numbers;
+    private final Set<Integer> numbers = new HashSet<>();
+    private final int MAX_SIZE = 6;
+
+    private void initNumbers() {
+        numbers.clear();
+    }
+
     private int generateRandomNumber() {
         return Randoms.pickNumberInRange(
                 LottoNumberRange.MIN.getValue(),
@@ -16,7 +23,9 @@ public class LottoGenerator {
     }
 
     public List<Integer> generateLottoNumbers() {
-        while (numbers.size() < 6) {
+        initNumbers();
+
+        while (numbers.size() < MAX_SIZE) {
             numbers.add(generateRandomNumber());
         }
 

@@ -9,14 +9,6 @@ import lotto.constant.LottoConstant;
 
 public class Lotto {
 
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-
-    public static final String ERROR_LOTTO_NUMBER_COUNT_MESSAGE = "[ERROR] 당첨 번호는 쉼표로 구분된 여섯개의 숫자여야 합니다.";
-    public static final String ERROR_LOTTO_NUMBER_RANGE_MESSAGE = "[ERROR] 당첨 번호는 1이상 45이하의 숫자여야 합니다.";
-    public static final String ERROR_LOTTO_NUMBER_DUPLICATE_MESSAGE = "[ERROR] 당첨 번호는 중복되지 않은 여섯개의 숫자여야 합니다.";
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

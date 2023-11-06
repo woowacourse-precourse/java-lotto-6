@@ -17,4 +17,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_OF_RANGE.getValue());
         }
     }
+
+    public void containsLotto(Lotto lotto) {
+
+    }
 }

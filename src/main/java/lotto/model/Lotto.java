@@ -13,6 +13,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         isCorrectRange(numbers);
         isCorrectSize(numbers);
@@ -42,4 +46,5 @@ public class Lotto {
             duplicate.add(number);
         }
     }
+
 }

@@ -1,6 +1,6 @@
-package lotto.model.converter.StringToType;
+package lotto.model.converter;
 
-import static lotto.util.ExceptionMessage.INVALID_LONG_TYPE;
+import static lotto.util.ExceptionMessage.INVALID_TYPE;
 
 public class LongConverter implements StringConverter<Long> {
     @Override
@@ -8,7 +8,7 @@ public class LongConverter implements StringConverter<Long> {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_LONG_TYPE.getMessage());
+            throw new IllegalArgumentException(INVALID_TYPE.getMessage());
         }
     }
 }

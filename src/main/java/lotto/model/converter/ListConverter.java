@@ -1,4 +1,4 @@
-package lotto.model.converter.StringToType;
+package lotto.model.converter;
 
 import java.util.Arrays;
 import java.util.List;

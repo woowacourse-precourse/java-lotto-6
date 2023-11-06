@@ -4,7 +4,7 @@
     - [] 입력문구를 출력한다. InputView#inputPrice
     - [] 가격 입력 문구 출력 InputView#inputPrice
     - [] 가격을 입력받는다.
-        - [] 1000원 단위를 입력 받았는지 검증.
+        - [] 1000원 단위를 입력 받았는지 검증. Customer#validatePrice
     - [] 가격에 맞는 갯수로 로또를 생성한다. Customer#buy
         - [] 로또 생성 LottoRandomGenerator#generateLotto
             - 유효성검사 LottoPaper#validateLotto

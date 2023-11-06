@@ -43,7 +43,7 @@ public class GameController {
 
     private void createCashAndLottoMachine() {
         try {
-            cash = inputView.InputCash();
+            cash = inputView.inputCash();
             lottoMachine = new LottoMachine(numberGenerator, cash);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);

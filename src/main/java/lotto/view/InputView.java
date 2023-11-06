@@ -14,7 +14,7 @@ import static lotto.util.CharacterUnits.COMMA;
 
 public class InputView {
 
-    public Cash InputCash() {
+    public Cash inputCash() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = getInput();
         Integer cash = Parser.parseInt(input);

@@ -3,19 +3,25 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
-
     private static final int LOTTO_SIZE = 6;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
+    private final List<Integer> numbers;
+
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        numbers = sorted(numbers);
+        this.numbers = numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -49,5 +55,16 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(winningLotto::isContain)
                 .count();
+    }
+
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

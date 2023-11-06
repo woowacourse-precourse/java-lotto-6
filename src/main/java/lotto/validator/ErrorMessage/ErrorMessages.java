@@ -7,7 +7,8 @@ public enum ErrorMessages {
     NOT_DIVIDED_THOUSAND_EXCEPTION_MESSAGE("구입 금액은 1000원으로 나누어 떨어져야 합니다."),
     NOT_IN_RIGHT_RANGE_EXCEPTION_MESSAGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     NOT_RIGHT_AMOUNT_OF_WINNING_NUMBER_EXCEPTION_MESSAGE("6개의 숫자를 입력해야 합니다."),
-    DUPLICATED_NUMBER_EXCEPTION_MESSAGE("중복되지 않은 숫자를 입력해야 합니다.");
+    DUPLICATED_NUMBER_EXCEPTION_MESSAGE("중복되지 않은 숫자를 입력해야 합니다."),
+    WINNING_LOTTO_CONTAINS_EXCEPTION_MESSAGE("당첨 번호에 보너스 번호가 포함되었습니다.");
 
     private String message;
 

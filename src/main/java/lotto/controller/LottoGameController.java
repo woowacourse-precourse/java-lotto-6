@@ -27,7 +27,7 @@ public class LottoGameController {
         generateLottoNumber(game);
         printLottoNumber(game);
         WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumbers());
-        BonusNumber bonusNumber = inputUserBonusNumber();
+        BonusNumber bonusNumber = inputUserBonusNumber(winningLotto);
         bonusNumber.getBonusNumber();
     }
 
@@ -54,8 +54,8 @@ public class LottoGameController {
         return inputView.inputWinningLottoNumbers();
     }
 
-    private BonusNumber inputUserBonusNumber() {
+    private BonusNumber inputUserBonusNumber(WinningLotto winningLotto) {
         outputView.printEmptyLine();
-        return BonusNumber.create(inputView.inputBonusNumber());
+        return BonusNumber.create(inputView.inputBonusNumber(winningLotto.getWinningLottoNumbers()));
     }
 }

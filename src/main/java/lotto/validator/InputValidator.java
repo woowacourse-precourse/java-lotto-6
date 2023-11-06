@@ -14,6 +14,7 @@ public class InputValidator {
     private static final String NOT_NUMBER_EXCEPTION_MESSAGE = ErrorMessages.NOT_NUMBER_EXCEPTION_MESSAGE.getMessage();
     private static final String NOT_RIGHT_AMOUNT_OF_WINNING_LOTTO = ErrorMessages.NOT_RIGHT_AMOUNT_OF_WINNING_NUMBER_EXCEPTION_MESSAGE.getMessage();
     private static final String DUPLICATED_NUMBER_EXCEPTION_MESSAGE = ErrorMessages.DUPLICATED_NUMBER_EXCEPTION_MESSAGE.getMessage();
+    private static final String WINNING_LOTTO_CONTAINS_EXCEPTION_MESSAGE = ErrorMessages.WINNING_LOTTO_CONTAINS_EXCEPTION_MESSAGE.getMessage();
 
     public static void validateInputIsEmpty(String input) {
         if (input.isBlank()) {
@@ -52,6 +53,12 @@ public class InputValidator {
         Set<Integer> set = winningNumbers.stream().collect(Collectors.toSet());
         if (set.size() != winningNumbers.size()) {
             throw new IllegalStateException(ERROR_MESSAGE + DUPLICATED_NUMBER_EXCEPTION_MESSAGE);
+        }
+    }
+
+    public static void validateIsWinningLottoNumberContains(String bonusLottoNumber, List<Integer> winningLotto) {
+        if (winningLotto.contains(Integer.parseInt(bonusLottoNumber))) {
+            throw new IllegalStateException(ERROR_MESSAGE + WINNING_LOTTO_CONTAINS_EXCEPTION_MESSAGE);
         }
     }
 }

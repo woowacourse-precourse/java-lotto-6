@@ -41,12 +41,12 @@ public class InputView {
         }
     }
 
-    public String inputBonusNumber() {
+    public String inputBonusNumber(List<Integer> winningLotto) {
         while (true) {
             try {
                 System.out.println(INPUT_BONUS_LOTTO_NUMBER_MESSAGE);
                 String bonusLottoNumber = Console.readLine();
-                validateUserInputBonusLottoNumber(bonusLottoNumber);
+                validateUserInputBonusLottoNumber(bonusLottoNumber, winningLotto);
                 return bonusLottoNumber;
             } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
@@ -56,10 +56,11 @@ public class InputView {
         }
     }
 
-    private void validateUserInputBonusLottoNumber(String bonusLottoNumber) {
+    private void validateUserInputBonusLottoNumber(String bonusLottoNumber, List<Integer> winningLotto) {
         InputValidator.validateInputIsEmpty(bonusLottoNumber);
         InputValidator.validateInputIsNumber(bonusLottoNumber);
         InputValidator.validateLottoNumberIsNotInRightRange(bonusLottoNumber);
+        InputValidator.validateIsWinningLottoNumberContains(bonusLottoNumber, winningLotto);
     }
 
     private void validateUserInputMoney(String money) {

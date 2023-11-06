@@ -1,6 +1,5 @@
 package lotto.domain.host;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
 import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class LottoHost {
     private List<Integer> winNumbers;
-    private String bonusNumbers;
+    private Integer bonusNumber;
 
     public List<Integer> pickWinNumbers() {
         // TODO: 11/5/23 입력 체크.
@@ -19,21 +18,20 @@ public class LottoHost {
         return winNumbers;
     }
 
-    public String pickBonusNumber() {
+    public Integer pickBonusNumber() {
         // TODO: 11/5/23 입력 체크.
-        bonusNumbers = inputBonusNumbers();
-        return bonusNumbers;
+        bonusNumber = inputBonusNumber();
+        return bonusNumber;
     }
 
-    private String inputBonusNumbers() {
-        String inputBonusNumber = Console.readLine();
-
-        return inputBonusNumber;
+    // TODO: 11/6/23 예외 처리 
+    private Integer inputBonusNumber() {
+        return Utii.InputNumber();
     }
 
 
     public LottoTargetNumResults giveLottoTargetNumResults() {
-        return Config.lottoTargetNumResults(winNumbers, bonusNumbers);
+        return Config.lottoTargetNumResults(winNumbers, bonusNumber);
     }
 
 }

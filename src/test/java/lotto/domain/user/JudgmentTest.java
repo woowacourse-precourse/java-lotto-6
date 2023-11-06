@@ -31,7 +31,7 @@ class JudgmentTest {
         lottoEnvelop.add(lotto_2);
         lottoEnvelop.add(lotto_3);
 
-        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
 
         judgment = new Judgment(lottoTargetNumResults);
     }
@@ -42,7 +42,7 @@ class JudgmentTest {
     void countSameWinNum(int num1, int num2, int num3, int num4, int num5, int num6, int num7) {
         // given
         lotto_1 = new Lotto(List.of(num1, num2, num3, num4, num5, num6));
-        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // when
         Integer result = judgment.countSameWinNum(lotto_1);
@@ -57,7 +57,7 @@ class JudgmentTest {
     void isSameBonusNum(int num1, int num2, int num3, int num4, int num5, int num6) {
         // given
         lotto_1 = new Lotto(List.of(num1, num2, num3, num4, num5, num6));
-        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // when
         Boolean result = judgment.isSameBonusNum(lotto_1);

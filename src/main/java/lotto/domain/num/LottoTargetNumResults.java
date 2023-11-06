@@ -15,9 +15,9 @@ public class LottoTargetNumResults {
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
-    public LottoTargetNumResults(List<Integer> winNumbers, String strOfPickBonusNum) {
+    public LottoTargetNumResults(List<Integer> winNumbers, Integer bonusNumber) {
         this.winLottoNums = Config.winLottoNums(winNumbers);
-        this.bonusLottoNum = Config.bonusLottoNum(strOfPickBonusNum);
+        this.bonusLottoNum = Config.bonusLottoNum(bonusNumber);
     }
 
     // TODO: 11/5/23 삭제 해도 될꺼 같다. 확인 

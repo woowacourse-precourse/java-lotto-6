@@ -55,8 +55,8 @@ public class Process {
         lottoHost.pickWinNumbers();
     }
 
-    public String pickBonusNumber() {
-        return lottoHost.pickBonusNumber();
+    public void pickBonusNumber() {
+        lottoHost.pickBonusNumber();
     }
 
     /**

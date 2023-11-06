@@ -34,12 +34,12 @@ public class Config {
         return new LottoEnvelop();
     }
 
-    public static BonusLottoNum bonusLottoNum(String strOfPickBonusNum) {
-        return new BonusLottoNum(strOfPickBonusNum);
+    public static BonusLottoNum bonusLottoNum(Integer bonusNumber) {
+        return new BonusLottoNum(bonusNumber);
     }
 
-    public static LottoTargetNumResults lottoTargetNumResults(List<Integer> winNumbers, String strOfPickBonusNum) {
-        return new LottoTargetNumResults(winNumbers, strOfPickBonusNum);
+    public static LottoTargetNumResults lottoTargetNumResults(List<Integer> winNumbers, Integer bonusNumber) {
+        return new LottoTargetNumResults(winNumbers, bonusNumber);
     }
 
     public static WinLottoNums winLottoNums(List<Integer> strOfPickWinNum) {

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.LottoTargetNumResults;
+import lotto.utill.Utii;
 
 /**
  * 사용자 클래스
@@ -34,9 +35,8 @@ public class User {
      * @return
      */
     public Integer payMoney() {
-        // TODO: 11/5/23 Utill로 빼기
-        String money = Console.readLine();
-        useMoney = Integer.valueOf(money);
+        // TODO: 11/6/23 예외 처리.
+        useMoney = Utii.InputNumber();
 
         return useMoney;
     }

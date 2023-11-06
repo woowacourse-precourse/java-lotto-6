@@ -18,8 +18,8 @@ class LottoTargetNumResultsTest {
     @BeforeEach
     void setUp() {
         winLottoNums = new WinLottoNums(List.of(1, 2, 3, 4, 5, 6));
-        bonusLottoNum = new BonusLottoNum("7");
-        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), "7");
+        bonusLottoNum = new BonusLottoNum(7);
+        lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
     }
 
     // TODO: 11/5/23 삭제 요망

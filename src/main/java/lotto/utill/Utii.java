@@ -32,6 +32,12 @@ public class Utii {
         return results;
     }
 
+    public static Integer InputNumber() {
+        String inputStringLine = Console.readLine().trim();
+
+        return Integer.valueOf(inputStringLine);
+    }
+
     private static String[] makeArrSplitComma(String inputStringLine) {
         return inputStringLine.split(COMMA_REGEX);
     }

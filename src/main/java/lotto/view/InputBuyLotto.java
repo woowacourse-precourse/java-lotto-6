@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.DivideThousand;
 import lotto.exception.ZeroException;
 
+import java.util.regex.Pattern;
+
 public class InputBuyLotto {
     private static final String BUY_MESSAGE = "구입금액을 입력해 주세요.";
     private static final int ZERO = 0;
@@ -19,10 +21,8 @@ public class InputBuyLotto {
 
     private void validate(String money) {
 
-        try {
-            int number = Integer.parseInt(money);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+        if (!Pattern.compile("\\d+").matcher(money).matches()) {
+            throw new IllegalArgumentException();
         }
     }
 

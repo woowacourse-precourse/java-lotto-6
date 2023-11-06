@@ -18,6 +18,12 @@ public class LottoMachine {
         lottoCount = Integer.parseInt(input) / 1000;
     }
 
+    List<Integer> generateLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        LottoNumbersException.validateLottoNumbers(numbers);
+        return numbers;
+    }
+
     public List<Lotto> giveLottoBundle() {
         List<Lotto> lottoBundle = new ArrayList<Lotto>();
 
@@ -28,18 +34,5 @@ public class LottoMachine {
 
         return lottoBundle;
     }
-
-    List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-        LottoNumbersException.notSixNumbers(numbers);
-        LottoNumbersException.duplicateNumber(numbers);
-        for (Integer number : numbers) {
-            LottoNumbersException.numberNotInRange(number);
-        }
-
-        return numbers;
-    }
-
 
 }

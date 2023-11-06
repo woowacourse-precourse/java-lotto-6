@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Lotto {
     protected final List<Integer> numbers;
-    private static final int MAX_NUMBERS = 6;
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
+    public static final int MAX_NUMBERS = 6;
+    public static final int MIN_VALUE = 1;
+    public static final int MAX_VALUE = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -32,7 +32,7 @@ public class Lotto {
         }
     }
 
-    protected void validate(List<Integer> numbers){
+    protected void validate(List<Integer> numbers) {
         checkLength(numbers);
         isInRange(numbers);
     }

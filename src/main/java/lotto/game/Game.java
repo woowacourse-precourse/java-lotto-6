@@ -1,4 +1,4 @@
-package lotto;
+package lotto.game;
 
 public interface Game {
     default void awake() {
@@ -9,15 +9,15 @@ public interface Game {
      *
      * @return : true if start gameLoop()
      */
-    default boolean beforeLoop() {
-        return true;
+    default BeforeLoopResult beforeLoop() {
+        return BeforeLoopResult.GAME_READY;
     }
 
     /**
      * @return : true if continue loop
      */
-    default boolean gameLoop() {
-        return false;
+    default GameLoopResult gameLoop() {
+        return GameLoopResult.END_GAME;
     }
 
     /**
@@ -25,8 +25,8 @@ public interface Game {
      *
      * @return : true if restart
      */
-    default boolean afterLoop() {
-        return false;
+    default AfterLoopResult afterLoop() {
+        return AfterLoopResult.END_GAME;
     }
 
     default void cleanup() {

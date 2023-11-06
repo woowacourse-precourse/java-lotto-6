@@ -1,4 +1,4 @@
-package lotto;
+package lotto.game;
 
 import lotto.exceptions.GameNullPointerException;
 
@@ -23,14 +23,14 @@ public class GameManager {
     }
 
     private boolean inGameLoop() {
-        if (!game.beforeLoop()) {
+        if (game.beforeLoop() == BeforeLoopResult.GAME_NOT_READY) {
             return false;
         }
 
         boolean continueGame = true;
         while (continueGame) {
-            continueGame = game.gameLoop();
+            continueGame = game.gameLoop() == GameLoopResult.CONTINUE_GAME;
         }
-        return game.afterLoop();
+        return game.afterLoop() == AfterLoopResult.RESTART_GAME;
     }
 }

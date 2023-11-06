@@ -14,19 +14,29 @@ public class LottoController {
     }
 
     public void run() {
-        getUserInputAndValidate();
+        getUserInput();
     }
 
-    private void getUserInputAndValidate() {
-        ConsoleOutput.displayUserInputPrompt();
-        String input = inputView.getUserPurchaseAmount();
-        try {
-            InputValidator.validateUserInput(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            getUserInputAndValidate();
+    private void getUserInput() {
+        String input;
+        while (true) {
+            ConsoleOutput.displayUserInputPrompt();
+            input = inputView.getUserPurchaseAmount();
+            if (isValidInput(input)) {
+                break;
+            }
         }
         setPlayerVariableValue(input);
+    }
+
+    private boolean isValidInput(String input) {
+        try {
+            InputValidator.validateUserInput(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     private void setPlayerVariableValue(String input) {

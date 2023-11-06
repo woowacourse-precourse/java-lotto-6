@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -23,5 +24,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("stringToInt 테스트.")
+    @Test
+    void stringToInt_TEST() {
+        assertEquals(2000, Application.stringToInt("2000"));
+        assertEquals(3333, Application.stringToInt("3333"));
+        assertThatThrownBy(() -> Application.stringToInt("2000j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

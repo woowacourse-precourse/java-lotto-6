@@ -1,13 +1,18 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
-        int lotto_purchase_amount = inputLottoPurchase();
-        List<Lotto> a = new ArrayList<Lotto>();
+        int lotto_purchase_amount;
+        List<Lotto> lottos;
         
+        lotto_purchase_amount = inputLottoPurchase();
+        lottos = lottoIssuance(lotto_purchase_amount / 1000);
+        System.out.println(lottos);
     }
 
     static int inputLottoPurchase(){
@@ -27,7 +32,11 @@ public class Application {
     }
 
     static ArrayList<Lotto> lottoIssuance(int purchase_amount){
-        return new ArrayList<Lotto>();
+        ArrayList<Lotto> lottos = new ArrayList<Lotto>();
+        for (int i =0; i < purchase_amount; i++){
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
     }
 
     static int stringToInt(String value) throws IllegalArgumentException{

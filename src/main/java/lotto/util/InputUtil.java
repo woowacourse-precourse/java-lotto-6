@@ -19,6 +19,7 @@ public class InputUtil {
             StringValidator.validateOnlyNumber(line);
             long money = Long.parseLong(line);
             MoneyValidator.validateMinimumMoney(money);
+            MoneyValidator.validateMoneyDivisible(money);
             return Long.parseLong(line);
         });
     }

@@ -13,8 +13,11 @@ public class LottoShop {
 
     private final int LOTTO_PRICE = ShopConfig.LOTTO_PRICE.getValue();
 
-    public List<Lotto> purchase(int cash) {
-        int count = cash / LOTTO_PRICE;
+    public int countPurchasableAmount(int cash) {
+        return cash / LOTTO_PRICE;
+    }
+
+    public List<Lotto> purchaseMany(int count) {
         return lottoGenerator.generateByCount(count);
     }
 

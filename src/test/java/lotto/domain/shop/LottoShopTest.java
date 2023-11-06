@@ -1,7 +1,5 @@
 package lotto.domain.shop;
 
-import java.util.List;
-import lotto.domain.lotto.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,11 +14,10 @@ public class LottoShopTest {
     @CsvSource(value = {"1000,1", "2000,2", "3000,3"})
     void purchaseTest(int cash, int expectedCount) {
         // when
-        List<Lotto> lotteries = lottoShop.purchase(cash);
-        int count = lotteries.size();
+        int purchasableCount = lottoShop.countPurchasableAmount(cash);
 
         // then
-        Assertions.assertThat(count)
+        Assertions.assertThat(purchasableCount)
                 .isEqualTo(expectedCount);
     }
 

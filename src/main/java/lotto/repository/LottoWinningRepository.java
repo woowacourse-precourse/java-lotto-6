@@ -8,4 +8,8 @@ public class LottoWinningRepository {
     public void save(LottoWinning lottoWinning){
         LottoWinningRepository.lottoWinning = lottoWinning;
     }
+
+    public LottoWinning getLottoWinning(){
+        return lottoWinning;
+    }
 }

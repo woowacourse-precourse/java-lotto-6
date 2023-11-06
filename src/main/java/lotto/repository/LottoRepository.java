@@ -9,4 +9,8 @@ public class LottoRepository {
     public void save(List<Lotto> myLotto){
         LottoRepository.myLotto = myLotto;
     }
+
+    public List<Lotto> getMyLotto(){
+        return myLotto;
+    }
 }

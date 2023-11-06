@@ -73,7 +73,7 @@ public class LottoService {
     }
 
     private double getReturnRate(int winningAmount, int originalAmount){
-        return winningAmount / originalAmount;
+        return Math.round(winningAmount / originalAmount * 100);
     }
 
     private int getSameCount(Lotto lotto, LottoWinning lottoWinning){

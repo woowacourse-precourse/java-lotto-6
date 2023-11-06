@@ -29,26 +29,50 @@ public class InputView {
     }
 
     public int inputPurchaseAmount() {
-        System.out.println(InputMessage.REQUEST_PURCHASE_AMOUNT.message);
-        String userInputNumber = Console.readLine();
+        while (true) {
+            System.out.println(InputMessage.REQUEST_PURCHASE_AMOUNT.message);
+            String userInputNumber = Console.readLine();
 
-        return Integer.parseInt(userInputNumber);
+            try {
+                validator.validatePurchaseAmount(userInputNumber);
+
+                return Integer.parseInt(userInputNumber);
+            } catch (IllegalArgumentException ie) {
+                System.out.println(ie.getMessage());
+            }
+        }
     }
 
     public List<Integer> inputWinningNumbers() {
-        System.out.println(InputMessage.REQUEST_WINNING_NUMBERS.message);
-        String userInputBeforeSplit = Console.readLine();
-        List<String> userInputNumbers = Arrays.asList(userInputBeforeSplit.split(SEPARATOR));
+        while (true) {
+            System.out.println(InputMessage.REQUEST_WINNING_NUMBERS.message);
+            String userInputBeforeSplit = Console.readLine();
+            List<String> userInputNumbers = Arrays.asList(userInputBeforeSplit.split(SEPARATOR));
 
-        return userInputNumbers.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+            try {
+                validator.validateWinningNumbers(userInputNumbers);
+
+                return userInputNumbers.stream()
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+            } catch (IllegalArgumentException ie) {
+                System.out.println(ie.getMessage());
+            }
+        }
     }
 
-    public int inputBonusNumber() {
-        System.out.println(InputMessage.REQUEST_BONUS_NUMBER.message);
-        String userInputNumber = Console.readLine();
+    public int inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            System.out.println(InputMessage.REQUEST_BONUS_NUMBER.message);
+            String userInputNumber = Console.readLine();
 
-        return Integer.parseInt(userInputNumber);
+            try {
+                validator.validateBonusNumber(winningNumbers, userInputNumber);
+
+                return Integer.parseInt(userInputNumber);
+            } catch (IllegalArgumentException validationFailure) {
+                System.out.println(validationFailure.getMessage());
+            }
+        }
     }
 }

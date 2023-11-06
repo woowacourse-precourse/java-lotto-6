@@ -32,7 +32,7 @@ public class Simulation {
 
     // 당첨 통계 계산
     private void getMatchingNumber(List<Integer> winningNumber, int bonusNumber, long userCost) {
-        winningStatistics.calculateStatistics(winningNumber, bonusNumber, userCost);
+        winningStatistics.calculateStatistics(winningNumber, bonusNumber);
         double totalSum = winningStatistics.matchingTotal(userCost);
         lottoResultPrinter.printResult(winningStatistics.getMatchingNumber(), totalSum); // 출력
     }

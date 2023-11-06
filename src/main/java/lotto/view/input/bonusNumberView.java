@@ -4,11 +4,10 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import lotto.util.constants.InputConstants;
 
-public class AmountView implements Input {
-
+public class bonusNumberView implements Input{
     @Override
     public String getInput() {
-        System.out.println(InputConstants.INPUT_AMOUNT.getInputMessage());
+        System.out.println(InputConstants.INPUT_BONUS_NUMBER.getInputMessage());
         return readLine();
     }
 }

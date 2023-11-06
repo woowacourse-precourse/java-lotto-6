@@ -1,5 +1,5 @@
 package lotto.view.input;
 
-public interface Input<T> {
-    T getInput();
+public interface Input {
+    String getInput();
 }

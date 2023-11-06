@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.util.constants.DomainConstants;
 
 public class LottoTicket {
     private final List<Lotto> lottoTicket;

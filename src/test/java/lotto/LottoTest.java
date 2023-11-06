@@ -27,7 +27,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호가 순서대로 정렬된다.")
+    @DisplayName("로또 번호가 오름차순으로 정렬된다.")
     @Test
     void sortLottoNumber() {
         List<Integer> lottoTest = Arrays.asList(1, 2, 3, 4, 5, 6);

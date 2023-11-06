@@ -1,9 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.DomainConstants;
+import lotto.util.constants.DomainConstants;
 import lotto.domain.LottoTicket;
+import lotto.util.convertor.Convertor;
+import lotto.util.convertor.StringConvertor;
+import lotto.util.validator.AmountValidator;
+import lotto.util.validator.Validator;
 import lotto.view.input.AmountView;
-import lotto.view.input.Input;
 import lotto.view.output.LottoView;
 import lotto.view.output.Output;
 
@@ -16,14 +19,25 @@ public class LottoController {
     }
 
     public void buyLotto() {
-        int amount = inputAmount();
-        generateLottoTicket(amount);
+        String amountInput;
+        Validator validator = new AmountValidator();
+
+        do {
+            amountInput = inputAmount();
+        } while(validator.inputValidate(amountInput));
+
+        Convertor<Integer> amountConvertor = new StringConvertor<>(Integer::parseInt);
+        generateLottoTicket(amountConvertor.convert(amountInput));
         displayMyLotto();
     }
 
-    public int inputAmount() {
-        Input<Integer> amountInputView = new AmountView<>(Integer::parseInt);
+    public String inputAmount() {
+        AmountView amountInputView = new AmountView();
         return amountInputView.getInput();
+    }
+
+    public void validateAmount() {
+
     }
 
     public void generateLottoTicket(int amount) {

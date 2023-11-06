@@ -2,7 +2,7 @@ package lotto.view.output;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
+import lotto.util.constants.OutputConstants;
 
 public class LottoView implements Output {
 

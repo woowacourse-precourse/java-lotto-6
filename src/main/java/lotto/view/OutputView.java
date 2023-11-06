@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoTicket;
+import lotto.domain.Profit;
 import lotto.enums.Rank;
 
 public class OutputView {
@@ -16,15 +16,12 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void printPurchaseCount(int purchaseCount) {
-        System.out.printf("%d개를 구매했습니다.\n", purchaseCount);
+    public static void printPurchaseCount(LottoTicket lottoTicket) {
+        System.out.printf("%d개를 구매했습니다.\n", lottoTicket.getLottoCount());
     }
 
-    public static void printPurchaseLottoTickets(List<Lotto> lottos) {
-        StringBuilder lottoPrinter = new StringBuilder();
-        lottos.stream()
-                .forEach(lotto -> lottoPrinter.append(lotto).append("\n"));
-        System.out.println(lottoPrinter);
+    public static void printPurchaseLottoTickets(LottoTicket lottoTicket) {
+        System.out.println(lottoTicket.getPrintedLottoTicket());
     }
 
     public static void printWinningNumberMessage() {
@@ -42,9 +39,9 @@ public class OutputView {
                 .forEach(rank -> System.out.printf(rank.getMatchInfo(), lottoResult.findMatchCountFor(rank)));
     }
 
-    public static void printRateOfReturn(double rateOfReturn) {
+    public static void printRateOfReturn(Profit profit) {
         DecimalFormat df = new DecimalFormat("#,##0.0");
-        System.out.printf("총 수익률은 %s%%입니다.", df.format(rateOfReturn));
+        System.out.printf("총 수익률은 %s%%입니다.", df.format(profit.getRateOfReturn()));
     }
 
     public static void printErrorMessageFor(IllegalArgumentException exception) {

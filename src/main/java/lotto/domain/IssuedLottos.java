@@ -21,4 +21,15 @@ public class IssuedLottos {
             .map(Lotto::convertToResponse)
             .collect(Collectors.toList());
     }
+
+    public List<Rank> determineRanks(Lotto winnnigLotto, BonusNumber bonusNumber) {
+        List<Rank> ranks = new ArrayList<>();
+        for(Lotto lotto: lottos) {
+            int criterion = lotto.countMatching(winnnigLotto);
+            boolean hasBonusNum = bonusNumber.contained(lotto);
+            Rank rank = Rank.determineByMatchingCount(criterion, hasBonusNum);
+            ranks.add(rank);
+        }
+        return ranks;
+    }
 }

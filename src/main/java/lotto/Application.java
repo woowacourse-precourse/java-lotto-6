@@ -1,11 +1,13 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.io.LottoPrizeResult;
 import lotto.model.dto.BuyInfo;
 import lotto.model.dto.Lotto;
 import lotto.model.dto.LottoBonus;
 import lotto.model.vo.SeasonLottoResultVO;
 import lotto.service.domain.lotto.LottoIoService;
+import lotto.view.LottoResultPrint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,22 @@ import java.util.List;
 public class Application {
     private static final LottoController lottoController = new LottoController();
     public static void main(String[] args) {
+
+        LottoResultPrint lottoResultPrint = new LottoResultPrint();
+
+        lottoResultPrint.addResult(3,false);
+        lottoResultPrint.addResult(4,false);
+        lottoResultPrint.addResult(4,false);
+        lottoResultPrint.addResult(5,false);
+
+        lottoResultPrint.lottoResultPrint();
+        //3개 일치 ( 5,000원 ) - 1개
+        //4개 일치 ( 50,000월 ) - 2개
+        //5개 일치 ( 1,500,000원 ) - 1개
+        //5개 일치, 보너스 볼 일치 ( 30,000,000원 ) - 0개
+        //6개 일치 ( 2,000,000,000원 ) - 0개
+
+
 
 
 

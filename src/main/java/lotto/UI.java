@@ -40,13 +40,13 @@ public class UI {
         }
     }
 
-    public static int getBonusNumber(){
+    public static int getBonusNumber(List<Integer> winningNumber){
         System.out.println();
         while (true) {
             try{
                 System.out.println(GET_BONUS_NUMBER_MSG);
                 String input = Console.readLine();
-                validateBonusNumber(input);
+                validateBonusNumber(input, winningNumber);
                 return Integer.parseInt(input);
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());

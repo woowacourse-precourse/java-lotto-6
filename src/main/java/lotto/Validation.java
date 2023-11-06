@@ -71,8 +71,15 @@ public class Validation {
         }
     }
 
-    public static void validateBonusNumber(String input) throws IllegalArgumentException{
+    public static void validateBonusNumber(String input, List<Integer> winningNumber) throws IllegalArgumentException{
         int number = validateInteger(input);
         validateNumberRange(number);
+        validateUnique(number,winningNumber);
+    }
+
+    private static void validateUnique(int number, List<Integer> winningNumber){
+        if (winningNumber.contains(number)){
+            throw new IllegalArgumentException(INPUT_NUMBER_UNIQUE_EXCEPTION_MSG);
+        }
     }
 }

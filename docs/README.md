@@ -30,7 +30,9 @@
     - [x] 숫자가 아닌 경우 예외 처리한다. - validation.validateInteger()
       - [x] "[ERROR] 숫자를 입력해야 합니다." 메세지를 출력하고, 그 부분부터 입력을 다시 받는다. - UI.getBonusNumber()
     - [x] 숫자가 1과 45 사이의 숫자가 아닌 경우 예외 처리한다. - validation.validateNumberRange()
-      - [x] "[ERROR] 숫자의 범위는 1~45 사이어야 합니다. " 메세지를 출력하고, 그 부분부터 입력을 다시 받는다.- UI.getBonusNumber()
+      - [x] "[ERROR] 숫자의 범위는 1~45 사이어야 합니다. " 메세지를 출력하고, 그 부분부터 입력을 다시 받는다. - UI.getBonusNumber()
+    - [x] 보너스 번호가 당첨 번호와 겹치는 경우 예외 처리한다. - validation.validateUnique()
+      - [x] "[ERROR] 보너스 번호는 당첨 번호와 달라야 합니다." 메세지를 출력하고, 그 부분부터 입력을 다시 받는다. - UI.getBonusNumber()
 - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.
   - [ ] 6개가 일치하는 경우를 확인한다. (1등)
   - [ ] 5개가 일치하는 경우를 확인한다. (2, 3등)

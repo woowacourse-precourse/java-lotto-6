@@ -10,4 +10,5 @@ public class Constant {
     public static final String INPUT_DIVISION_EXCEPTION_MSG = "[ERROR] 쉼표를 기준으로 구분해야 합니다.";
     public static final String INPUT_WINNING_NUMBER_COUNT_EXCEPTION_MSG = "[ERROR] 6개의 숫자를 입력해야 합니다.";
     public static final String INPUT_NUMBER_RANGE_EXCEPTION_MSG = "[ERROR] 숫자의 범위는 1~45 사이어야 합니다.";
+    public static final String INPUT_NUMBER_UNIQUE_EXCEPTION_MSG = "[ERROR] 보너스 번호는 당첨 번호와 달라야 합니다.";
 }

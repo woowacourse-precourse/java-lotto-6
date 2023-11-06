@@ -16,7 +16,7 @@ public class LottoGame {
         int money = getMoney();
         publishLottos(money);
         this.winningNumber = getWinningNumber();
-        this.bonusNumber = getBonusNumber();
+        this.bonusNumber = getBonusNumber(winningNumber);
         checkLottos();
     }
 

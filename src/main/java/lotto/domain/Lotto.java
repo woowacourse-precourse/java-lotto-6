@@ -37,21 +37,11 @@ public class Lotto {
     }
 
     public Ranking getRanking(List<Integer> winningNumbers, int bonusNumber) {
-        int sameInWinningNumbers = (int) numbers.stream().filter(n -> winningNumbers.contains(n)).count();
-        if (sameInWinningNumbers == 6) {
-            return Ranking.FIRST;
-        }
-        if (sameInWinningNumbers == 5 && numbers.contains(bonusNumber)) {
-            return Ranking.SECOND;
-        }
-        if (sameInWinningNumbers == 5) {
-            return Ranking.THIRD;
-        }
-        if (sameInWinningNumbers == 4) {
-            return Ranking.FOURTH;
-        }
-        if (sameInWinningNumbers == 3) {
-            return Ranking.FIFTH;
+        int matchNumber = (int) numbers.stream().filter(n -> winningNumbers.contains(n)).count();
+        for (Ranking ranking : Ranking.values()) {
+            if (ranking.getMatchNumber() == matchNumber && ranking.isMatchBonus() == numbers.contains(bonusNumber)) {
+                return ranking;
+            }
         }
         return Ranking.NONE;
     }

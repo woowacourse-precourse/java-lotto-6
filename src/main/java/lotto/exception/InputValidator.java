@@ -8,6 +8,7 @@ public class InputValidator {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 45;
     private static final int SIZE = 6;
+    private static final int MINIMUM_PURCHASE_AMOUNT = 1000;
 
     //당첨 번호 예외 체크
     public void checkWinningNumbers(List<Integer> numbers) {
@@ -26,13 +27,15 @@ public class InputValidator {
     }
 
     //보너스 번호 예외 체크
-    public void checkBonusNumber(int bonusNumber) {
+    public void checkBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (!verifyNumberInRange(bonusNumber)) throw new IllegalArgumentException("[ERROR] 1~45 범위 내 숫자만 입력 가능합니다.");
+        else if(checkDuplicate(bonusNumber, winningNumbers)) throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 숫자입니다.");
     }
 
     //구입 금액 예외 체크
     public void checkBuyingAmount(int buyingAmount) {
         if(!checkDivisibleBy1000(buyingAmount)) throw new IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지지 않습니다.");
+        else if(buyingAmount < MINIMUM_PURCHASE_AMOUNT) throw  new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원 입니다.");
     }
 
     private boolean numbersSize(List<Integer> numbers) {
@@ -71,5 +74,9 @@ public class InputValidator {
 
     private boolean checkDivisibleBy1000(int buyingAmount){
         return buyingAmount % 1000 == 0;
+    }
+
+    private boolean checkDuplicate(int bonusNumber, List<Integer> winningNumbers){
+        return winningNumbers.contains(bonusNumber);
     }
 }

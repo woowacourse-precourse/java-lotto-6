@@ -2,7 +2,7 @@ package lotto.controller.util.parser;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.controller.util.ErrorMessage;
+import lotto.configuration.ErrorMessage;
 
 public class InputParser {
     private static final String COMMA_SEPARATOR = ",";

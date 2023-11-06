@@ -25,7 +25,7 @@ class PurchaseAmountTest {
     void createPurchaseAmountByChangeRemaining(int purchaseAmount) {
         assertThatThrownBy(() -> new PurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.CHANGE_REMAINED.getWithPrefix());
+                .hasMessageContaining(ErrorMessage.CHANGE_REMAINING.getWithPrefix());
     }
 
     @DisplayName("구입 금액으로 구입 가능한 로또 개수를 계산한다.")

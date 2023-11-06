@@ -1,6 +1,9 @@
 package lotto.utils;
 
 public enum LottoConstantValue {
+    NO_PURCHASE_AMOUNT(0),
+    NO_REMAINING_CHANGE(0),
+    PERCENTAGE_MULTIPLIER(100),
     DEFAULT_COUNT(0),
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45),

@@ -4,8 +4,6 @@ import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstantValue;
 
 public class PurchaseAmount {
-    private static final int NO_MONEY = 0;
-    private static final int PERCENTAGE_MULTIPLIER = 100;
     private final int purchaseAmount;
 
     public PurchaseAmount(int purchaseAmount) {
@@ -20,14 +18,14 @@ public class PurchaseAmount {
     }
 
     private void validateMoreThanZero(int purchaseAmount) {
-        if (purchaseAmount <= NO_MONEY) {
+        if (purchaseAmount <= LottoConstantValue.NO_PURCHASE_AMOUNT.get()) {
             throw new IllegalArgumentException(ErrorMessage.NO_PURCHASE_AMOUNT.getWithPrefix());
         }
     }
 
     private void validateChangeNoRemaining(int purchaseAmount) {
-        if (purchaseAmount % LottoConstantValue.LOTTO_PRICE.get() != NO_MONEY) {
-            throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINED.getWithPrefix());
+        if ((purchaseAmount % LottoConstantValue.LOTTO_PRICE.get()) != LottoConstantValue.NO_REMAINING_CHANGE.get()) {
+            throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINING.getWithPrefix());
         }
     }
 
@@ -44,6 +42,6 @@ public class PurchaseAmount {
     }
 
     public double calculateProfitRate(long allPrizeProfit) {
-        return (allPrizeProfit / (double) purchaseAmount) * PERCENTAGE_MULTIPLIER;
+        return (allPrizeProfit / (double) purchaseAmount) * LottoConstantValue.PERCENTAGE_MULTIPLIER.get();
     }
 }

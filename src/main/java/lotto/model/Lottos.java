@@ -10,10 +10,10 @@ import lotto.util.RandomUtil;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(PaymentAmount paymentAmount) {
+    public Lottos(PaymentAmount paymentAmount, RandomUtil randomUtil) {
         int numberOfLotto = computeNumberOfLotto(paymentAmount.getPrice());
         lottos = IntStream.range(0, numberOfLotto)
-                .mapToObj(i -> new Lotto(RandomUtil.createRandomNumbersInRange(1, 45, 6))).toList();
+                .mapToObj(i -> new Lotto(randomUtil.createRandomNumbersInRange(1, 45, 6))).toList();
     }
 
     private int computeNumberOfLotto(int price) {
@@ -23,7 +23,7 @@ public class Lottos {
     @Override
     public String toString() {
         StringBuilder lottosInfo = new StringBuilder();
-        lottosInfo.append(String.format(NUMBER_OF_LOTTO_MESSAGE.getMessage(), lottos.size()));
+        lottosInfo.append(String.format(NUMBER_OF_LOTTO_MESSAGE.getMessage(), lottos.size())).append('\n');
         lottos.forEach(lotto -> lottosInfo.append(lotto.toString()).append('\n'));
         return lottosInfo.toString();
     }

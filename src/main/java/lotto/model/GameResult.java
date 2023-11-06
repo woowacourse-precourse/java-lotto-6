@@ -9,13 +9,13 @@ import lotto.constant.GradeConstant;
 public class GameResult {
 
     private final Map<GradeConstant, Integer> gradeResult;
-    private final long totalPrize;
+    private final double profitRate;
 
-    public GameResult(List<GradeConstant> gradeConstants) {
+    public GameResult(List<GradeConstant> gradeConstants, int purchaseMoney) {
         gradeResult = new HashMap<>();
         initGradeResult(gradeConstants);
 
-        totalPrize = initTotalPrize(gradeConstants);
+        profitRate = initProfitRate(gradeConstants, purchaseMoney);
     }
 
     private void initGradeResult(List<GradeConstant> gradeConstants) {
@@ -24,7 +24,12 @@ public class GameResult {
         }
     }
 
-    private long initTotalPrize(List<GradeConstant> gradeConstants) {
+    private double initProfitRate(List<GradeConstant> gradeConstants, int purchaseMoney) {
+        long total = getTotalPrize(gradeConstants);
+        return (100 * total) / (1.0 * purchaseMoney);
+    }
+
+    private long getTotalPrize(List<GradeConstant> gradeConstants) {
         return gradeConstants.stream()
                 .mapToLong(GradeConstant::prize)
                 .sum();
@@ -34,7 +39,7 @@ public class GameResult {
         return Collections.unmodifiableMap(gradeResult);
     }
 
-    public long getTotalPrize() {
-        return totalPrize;
+    public double getProfitRate() {
+        return profitRate;
     }
 }

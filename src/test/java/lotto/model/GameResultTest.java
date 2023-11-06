@@ -22,7 +22,7 @@ public class GameResultTest {
                 GradeConstant.NOTHING // 0원
         );
 
-        gameResult = new GameResult(gradeConstants);
+        gameResult = new GameResult(gradeConstants, 4000);
     }
 
     @DisplayName("각 등급의 개수를 정확하게 계수할 수 있다.")
@@ -38,11 +38,12 @@ public class GameResultTest {
         assertThat(gradeResult.getOrDefault(GradeConstant.NOTHING, 0)).isEqualTo(1);
     }
 
-    @DisplayName("int 범위를 벗어나는 총 상금을 잘 계산할 수 있다.")
+    @DisplayName("수익률을 정확하게 계산할 수 있다.")
     @Test
-    void int_범위_벗어나는_총_상금_게산_성공_테스트() {
-        long expectedResult = 4_030_000_000L;
+    void 수익률_계산_성공_테스트() {
+        long totalPrize = 4_030_000_000L;
+        double expectedProfitRate = (100 * totalPrize) / (1.0 * 4000);
 
-        assertThat(expectedResult).isEqualTo(gameResult.getTotalPrize());
+        assertThat(expectedProfitRate).isEqualTo(gameResult.getProfitRate());
     }
 }

@@ -15,12 +15,10 @@ public class LottoGame {
     public LottoGame() {}
     private static LottoPurchaseAmount lottoPurchaseAmount;
     private static BonusNumber bonusNumber;
+    private static Lotto lotto;
     private static List<Lotto> lottoList;
     private static List<Integer> winningLottoNumbers;
     private static int winningBonusNumber;
-
-
-
 
     public void LottoGameRun() {
 
@@ -30,10 +28,8 @@ public class LottoGame {
         OutputView.printLottoAmount(lottoPurchaseCount);
         OutputView.printPurchasedLottoList(lottoList);
 
-        winningLottoNumbers = parseLottoNumbers(InputView.inputLottoNumbers());
+        winningLottoNumbers = inputLottoNumbers();
         winningBonusNumber = inputBonusNumber();
-
-
     }
 
     public int inputPurchaseAmount() {
@@ -61,19 +57,15 @@ public class LottoGame {
         return new Lotto(lottoNumbers);
     }
 
-    private static List<Integer> parseLottoNumbers(String input) {
-
-        List<Integer> lottoNumbers = new ArrayList<>();
-        ;
-
-        String[] eachLottoNumbers = input.split(",");
-
-        for (String token : eachLottoNumbers) {
-            int lottoNumber = Integer.parseInt(token);
-            lottoNumbers.add(lottoNumber);
+    private List<Integer> inputLottoNumbers()
+    {
+        try{
+            lotto = new Lotto(InputView.inputLottoNumbers());
+            return lotto.getLottoNumbers();
         }
-
-        return lottoNumbers;
+        catch(IllegalArgumentException e){
+            return inputLottoNumbers();
+        }
     }
 
     private static int inputBonusNumber()

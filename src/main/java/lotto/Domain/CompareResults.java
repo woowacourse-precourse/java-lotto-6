@@ -21,7 +21,7 @@ public class CompareResults {
 
     private static int countMatchingNumber(Lotto lotto, List<Integer> winningNumbers) {
         int count = 0;
-        for (int number : lotto.getNumbers()) {
+        for (int number : lotto.getLottoNumbers()) {
             if (winningNumbers.contains(number)) {
                 count++;
             }

@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+import lotto.Lotto;
 import lotto.Money;
 
 public class OutputView {
@@ -8,5 +10,11 @@ public class OutputView {
     public void printLottoCount(Money money) {
         System.out.print("\n" + money.getLottoCount());
         System.out.println(LOTTO_COUNT_MESSAGE);
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            lotto.printNumbers();
+        }
     }
 }

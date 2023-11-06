@@ -10,7 +10,7 @@ public class LottoSeller {
     private final LottoMachine lottoMachine = new LottoMachine();
     private Money money;
     private List<Lotto> createdLotto;
-
+    
     public Money receiveMoneyFromPlayer() {
         while (true) {
             try {
@@ -27,5 +27,9 @@ public class LottoSeller {
 
     private List<Lotto> getLottos(int lottoCount) {
         return lottoMachine.createLottos(lottoCount);
+    }
+
+    private void printLottos() {
+        outputView.printLottos(createdLotto);
     }
 }

@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.vo.BonusNumber;
 import lotto.vo.TicketCount;
 
 public class Lotteries {
@@ -19,6 +20,18 @@ public class Lotteries {
                 .toList();
 
         return new Lotteries(lotteries);
+    }
+
+    public Statistic getResult(final BonusNumber bonusNumber, final Lotto winningLotto) {
+        List<Integer> matchedNumberResults = lotteries.stream()
+                .map(lotto -> lotto.countMatchedNumber(winningLotto))
+                .toList();
+
+        List<Boolean> bonusNumberResults = lotteries.stream()
+                .map(lotto -> lotto.containBonusNumber(bonusNumber))
+                .toList();
+
+        return Statistic.from(matchedNumberResults, bonusNumberResults);
     }
 
     public List<Lotto> getLotteries() {

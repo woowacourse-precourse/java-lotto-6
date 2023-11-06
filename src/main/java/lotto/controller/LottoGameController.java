@@ -39,10 +39,6 @@ public class LottoGameController {
         showResult(statistic, profitRate);
     }
 
-    private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
-        return ProfitRate.from(statistic.getRank(), buyAmount);
-    }
-
     private BuyAmount initBuyAmount() {
         return view.getBuyAmount();
     }
@@ -58,17 +54,21 @@ public class LottoGameController {
         return Lotteries.createLotteries(ticketCount, new RandomLottoNumberGenerator());
     }
 
-    private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
-                                      final BonusNumber bonusNumber) {
-        return Statistic.from(lotteries, winningLotto, bonusNumber);
-    }
-
     private Lotto initWinningLotto() {
         return view.getWinningLotto();
     }
 
     private BonusNumber initBonusNumber(final List<Integer> winningNumbers) {
         return view.getBonusNumber(winningNumbers);
+    }
+
+    private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
+                                      final BonusNumber bonusNumber) {
+        return lotteries.getResult(bonusNumber, winningLotto);
+    }
+
+    private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
+        return ProfitRate.from(statistic.getRank(), buyAmount);
     }
 
     private void showTicketCount(final TicketCount ticketCount) {

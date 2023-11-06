@@ -10,6 +10,7 @@ import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.ExceedsMaxLottoNumberException;
 import lotto.exception.InvalidLottoSizeException;
 import lotto.exception.LessThanMinLottoNumberException;
+import lotto.vo.BonusNumber;
 
 public class Lotto {
 
@@ -64,6 +65,20 @@ public class Lotto {
     private boolean hasLessThanMinNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> (number < LottoInfo.LOTTO_MIN_NUMBER.getValue()));
+    }
+
+    public int countMatchedNumber(final Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(number -> lotto.contain(number))
+                .count();
+    }
+
+    public boolean containBonusNumber(final BonusNumber bonusNumber) {
+        return this.contain(bonusNumber.number());
+    }
+
+    public boolean contain(Integer number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {

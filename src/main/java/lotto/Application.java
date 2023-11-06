@@ -30,10 +30,9 @@ public class Application {
     }
 
     public static void checkMoneyUnit(int money) {
-        if (money % 1000 == 0) {
-            return;
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 
     public static List<Integer> inputLotto() {
@@ -48,7 +47,12 @@ public class Application {
                     checkLottoSize(winning_lotto);
                     try {
                         checkWinningLottoRange(winning_lotto);
-                        return winning_lotto;
+                        try {
+                            checkWinningLottoDuplicate(winning_lotto);
+                            return winning_lotto;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("[ERROR] 당첨 로또는 중복되지 않은 수여야 합니다.");
+                        }
                     } catch (IllegalArgumentException e) {
                         System.out.println("[ERROR] 당첨 로또는 1에서 45 사이 정수여야 합니다.");
                     }
@@ -62,10 +66,9 @@ public class Application {
     }
 
     public static void checkLottoSize(List<Integer> lotto) {
-        if (lotto.size() > 0 && lotto.size() < 7) {
-            return;
+        if (lotto.size() < 1 || lotto.size() > 6) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 
     public static Boolean checkLottoRange(int lotto_number) {
@@ -80,6 +83,16 @@ public class Application {
             if (!checkLottoRange(i)) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    public static Integer removeLottoDuplicateSize(List<Integer> lotto) {
+        return lotto.stream().distinct().collect(Collectors.toList()).size();
+    }
+
+    public static void checkWinningLottoDuplicate(List<Integer> lotto) {
+        if (lotto.size() != removeLottoDuplicateSize(lotto)) {
+            throw new IllegalArgumentException();
         }
     }
 }

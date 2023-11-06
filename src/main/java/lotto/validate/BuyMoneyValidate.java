@@ -16,7 +16,7 @@ public class BuyMoneyValidate {
 
     public static void validateBuyMoneyIsEmpty(String buyMoney) {
         if (buyMoney.isEmpty()) {
-            throw new IllegalArgumentException(BUY_EMPTY_ERROR.getMessage());
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + BUY_EMPTY_ERROR.getMessage());
         }
     }
 
@@ -24,19 +24,19 @@ public class BuyMoneyValidate {
         try {
             Integer.parseInt(buyMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BUY_CHAR_ERROR.getMessage());
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + BUY_CHAR_ERROR.getMessage());
         }
     }
 
     public static void validateBuyMoneyIsMinus(int money) {
         if (money < 0) {
-            throw new IllegalArgumentException(BUY_MINUS_ERROR.getMessage());
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + BUY_MINUS_ERROR.getMessage());
         }
     }
 
     public static void validateBuyMoneyIsNotThousand(int money) {
         if (money % LOTTO_COST.getValue() != 0) {
-            throw new IllegalArgumentException(BUY_CONDITION_ERROR.getMessage());
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + BUY_CONDITION_ERROR.getMessage());
         }
     }
 

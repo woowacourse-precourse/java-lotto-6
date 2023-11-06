@@ -16,8 +16,8 @@ import static lotto.domain.constants.LottoConstants.TOTAL_PROFIT_PERCENTAGE_FORM
 
 public enum OutputMessage {
 
-    ASK_FOR_TICKET_PRICE("구입금액을 입력해 주세요."),
-    ANNOUNCE_FOR_PURCHASE("%d개를 구매했습니다."),
+    ASK_FOR_PURCHASE_PRICE("구입금액을 입력해 주세요."),
+    ANNOUNCE_FOR_PURCHASE_COUNT("%d개를 구매했습니다."),
     ASK_FOR_LOTTO_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     ASK_FOR_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계\n---"),
@@ -31,14 +31,6 @@ public enum OutputMessage {
 
     public String getMessage() {
         return message;
-    }
-
-    public String getMessage(int number) {
-        return String.format(message, number);
-    }
-
-    public String getMessage(float percentage) {
-        return String.format(message, percentage);
     }
 
     public enum WinningStatisticsDetails {

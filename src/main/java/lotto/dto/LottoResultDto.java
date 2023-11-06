@@ -1,20 +1,26 @@
 package lotto.dto;
 
-import java.util.List;
+import lotto.domain.result.LottoCalculateResult;
+import lotto.domain.result.LottoMatchResult;
 
 public class LottoResultDto {
-    private final List<Integer> winResults;
-    private final float profitPercentage;
+    private final LottoMatchResult lottoMatchResult;
+    private final LottoCalculateResult lottoCalculateResult;
 
-    public LottoResultDto(List<Integer> winResults, float profitPercentage) {
-        this.winResults = winResults;
-        this.profitPercentage = profitPercentage;
+    private LottoResultDto(LottoMatchResult lottoMatchResult, LottoCalculateResult lottoCalculateResult) {
+        this.lottoMatchResult = lottoMatchResult;
+        this.lottoCalculateResult = lottoCalculateResult;
     }
 
-    public List<Integer> getWinResults() {
-        return winResults;
+    public static LottoResultDto fromMatchAndCalculateResults(LottoMatchResult matchResult, LottoCalculateResult calculateResult) {
+        return new LottoResultDto(matchResult, calculateResult);
     }
-    public float getProfitPercentage() {
-        return profitPercentage;
+
+    public LottoMatchResult getLottoMatchResult() {
+        return lottoMatchResult;
+    }
+
+    public LottoCalculateResult getLottoCalculateResult() {
+        return lottoCalculateResult;
     }
 }

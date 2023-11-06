@@ -10,6 +10,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public void printLottoNumbers() {
+        System.out.print("[");
+        for(int number : numbers) {
+            System.out.print(number + ", ");
+        }
+        System.out.println("]");
+    }
+
     public int getMatchCount(List<Integer> winningNumbers) {
         boolean[] checkBox = makeCheckBox();
         return (int)winningNumbers.stream()
@@ -31,7 +39,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        if (numbers.size() > numbers.stream().distinct().count())
+        if (numbers.size() > numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45))
             throw new IllegalArgumentException();
     }
 }

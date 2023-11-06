@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
-import lotto.controller.Validator;
+import java.util.Set;
 
 public class Lotto {
     private static final int NUMBERS_SIZE = 6;
@@ -22,11 +23,11 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private static void validateDuplicate(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            for (int j = i + 1; j < numbers.size(); j++) {
-                if (numbers.get(i).equals(numbers.get(j))) {
-                    throw new IllegalArgumentException("중복된 숫자가 있습니다.");
-                }
+        Set<Integer> set = new HashSet<>();
+
+        for (int number : numbers) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException("중복된 숫자가 있습니다.");
             }
         }
     }

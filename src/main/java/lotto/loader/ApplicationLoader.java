@@ -17,4 +17,8 @@ public class ApplicationLoader {
         LottoController controller = container.getBean(LottoController.class);
         controller.play();
     }
+
+    public static ApplicationContainer getContainer() {
+        return container;
+    }
 }

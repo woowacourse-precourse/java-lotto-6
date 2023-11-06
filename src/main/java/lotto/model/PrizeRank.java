@@ -29,4 +29,16 @@ public enum PrizeRank {
     public boolean isWinningRank(int count, boolean hasBonus) {
         return this.matchCount == count && (!this.bonusMatch || hasBonus);
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusMatch() {
+        return bonusMatch;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }

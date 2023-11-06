@@ -20,13 +20,17 @@ public class LottoSeller {
     }
 
     public void makeLottoEnvelope(Integer money) {
-        Integer countLotto = (money / PRICE_LOTTO);
+        Integer sizeLottoEnvelop = getSizeLottoEnvelop(money);
         Lotto lotto = null;
 
-        for (int index = 0; index < countLotto; index++) {
+        for (int index = 0; index < sizeLottoEnvelop; index++) {
             lotto = Config.lotto();
             lottoEnvelop.add(lotto);
         }
+    }
+
+    private int getSizeLottoEnvelop(Integer money) {
+        return money / PRICE_LOTTO;
     }
 
     public String tellNumberLotto() {

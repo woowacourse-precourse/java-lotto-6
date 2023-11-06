@@ -1,5 +1,9 @@
 package lotto.View;
 
+import static lotto.Util.Constants.DELIMITER;
+
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
     private final InputValidator inputValidator;
     private final String BUY_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
@@ -15,14 +19,25 @@ public class InputView {
         return INSTANCE;
     }
 
-    public void printBuyPriceMessageOnConsole() {
+    public String receiveBuyPrice() {
         System.out.println(BUY_PRICE_MESSAGE);
+        String inputMoney = Console.readLine();
+        inputValidator.validateInputMoney(inputMoney);
+        return inputMoney;
     }
-    public void printWinningNumberMessageOnConsole() {
+
+    public String[] receiveWinningNumber() {
         System.out.println(WINNING_NUMBER_MESSAGE);
+        String inputWinningNum = Console.readLine();
+        inputValidator.validateInputWinningNumbers(inputWinningNum);
+        return inputWinningNum.split(DELIMITER);
     }
-    public void printBonusNumberMessageOnConsole() {
+
+    public String receiveBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
+        String inputBonusNum = Console.readLine();
+        inputValidator.validateInputBonusNumber(inputBonusNum);
+        return inputBonusNum;
     }
 
 }

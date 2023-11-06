@@ -1,5 +1,6 @@
 package lotto.View;
 
+import static lotto.Util.Constants.DELIMITER;
 import static lotto.Util.Constants.LOTTO_NUMBER_LENGTH;
 
 import lotto.Util.ExceptionMessageFormatter;
@@ -8,7 +9,6 @@ import lotto.Util.LottoGameException;
 public class InputValidator {
     private static final InputValidator INSTANCE = new InputValidator();
     private final String NUMBER_REGEX = "^[0-9]+$";
-    private final String DELIMITER = ",";
 
     private InputValidator() {
     }

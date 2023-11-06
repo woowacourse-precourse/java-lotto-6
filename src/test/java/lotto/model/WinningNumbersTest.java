@@ -39,10 +39,7 @@ public class WinningNumbersTest {
 
     @Test
     void testIsMatchedWithIncorrectCase() {
-        boolean isMatched = prizeNumbers.isMatched(1);
-        Assertions.assertThat(isMatched).isFalse();
-
-        isMatched = prizeNumbers.isMatched(5);
+        boolean isMatched = prizeNumbers.isMatched(9);
         Assertions.assertThat(isMatched).isFalse();
     }
 

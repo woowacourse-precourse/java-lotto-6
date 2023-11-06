@@ -1,9 +1,8 @@
-package lotto.controller;
+package lotto.controller.validator;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.controller.validator.WinningNumberValidator;
 import lotto.utils.Message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

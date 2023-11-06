@@ -1,15 +1,15 @@
-package lotto.Controller;
+package lotto.controller.validator;
 
 import java.util.HashSet;
 import java.util.Set;
-import lotto.MagicNumber;
-import lotto.Message;
+import lotto.utils.GameConstants;
+import lotto.utils.Message;
 
 public class WinningNumberValidator implements Validator {
 
     @Override
     public void validate(String winningNumbers) throws IllegalArgumentException {
-        String[] splitWinningNumbers = winningNumbers.split(",");
+        String[] splitWinningNumbers = winningNumbers.split(GameConstants.SEPARATOR);
         Set<Integer> validLottoNumbers = new HashSet<>();
 
         isValidLength(splitWinningNumbers);
@@ -24,7 +24,7 @@ public class WinningNumberValidator implements Validator {
     }
 
     private void isValidLength(String[] splitWinningNumbers) {
-        if (splitWinningNumbers.length != MagicNumber.VALID_LOTTO_NUMBER_COUNT) {
+        if (splitWinningNumbers.length != GameConstants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(Message.INVALID_LOTTO_NUMBER_COUNT_EXCEPTION);
         }
     }
@@ -38,16 +38,16 @@ public class WinningNumberValidator implements Validator {
     }
 
     private void isInRange(int lottoNumber) {
-        if (lottoNumber < MagicNumber.MIN_LOTTO_NUMBER) {
+        if (lottoNumber < GameConstants.MIN_LOTTO_NUMBER) {
             throw new IllegalArgumentException(Message.OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
-        if (lottoNumber > MagicNumber.MAX_LOTTO_NUMBER) {
+        if (lottoNumber > GameConstants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(Message.OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }
 
     private void checkDuplication(Set<Integer> validLottoNumbers) {
-        if (validLottoNumbers.size() != MagicNumber.VALID_LOTTO_NUMBER_COUNT) {
+        if (validLottoNumbers.size() != GameConstants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(Message.DUPLICATED_NUMBER_EXCEPTION_MESSAGE);
         }
     }

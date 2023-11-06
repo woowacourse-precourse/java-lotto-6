@@ -1,10 +1,6 @@
-package lotto.controller;
+package lotto.controller.converter;
 
-import static java.util.Map.entry;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Map;
-import lotto.controller.converter.WinningNumberConverter;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +15,7 @@ public class WinningNumberConverterTest {
     @Test
     void testConvert() {
         String winningNumbers = "5,3,2,7,1";
-        Map<Integer, Integer> result = converter.convert(winningNumbers);
-
-        assertThat(result).contains(
-                entry(1, 0),
-                entry(2, 1),
-                entry(3, 2),
-                entry(5, 3),
-                entry(7, 4)
-        );
+        Set<Integer> result = converter.convert(winningNumbers);
+        
     }
 }

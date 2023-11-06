@@ -4,12 +4,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Iterator;
 import lotto.model.Lotto;
-import lotto.model.WinningStatistics;
 import lotto.utils.Message;
 
 public class View {
-
-
     public void displayPurchaseAmountMessage() {
         System.out.println(Message.PURCHASE_AMOUNT_MESSAGE);
     }
@@ -26,10 +23,14 @@ public class View {
         System.out.println(Message.WINNING_STATISTICS_MESSAGE);
     }
 
-    public void displayRandomLottos(Iterator<Lotto> lottoIterator) {
+    public void displayLottos(Iterator<Lotto> lottoIterator) {
         while (lottoIterator.hasNext()) {
             System.out.println(lottoIterator.next());
         }
+    }
+
+    public void displayIssuedLottoCount(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
     private String getUserInput() {
@@ -48,7 +49,7 @@ public class View {
         return getUserInput();
     }
 
-    public void displayWinningStatistics(WinningStatistics winningStatistics) {
-        System.out.println(winningStatistics);
+    public void displayWinningStatistics(String statistics) {
+        System.out.println(statistics);
     }
 }

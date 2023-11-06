@@ -1,7 +1,7 @@
 package lotto.controller.validator;
 
-import lotto.GameConstants;
-import lotto.Message;
+import lotto.utils.GameConstants;
+import lotto.utils.Message;
 
 public class BonusNumberValidator implements Validator {
     @Override

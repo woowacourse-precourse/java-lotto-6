@@ -1,8 +1,8 @@
-package lotto.Controller;
+package lotto.controller.validator;
 
 
-import lotto.MagicNumber;
-import lotto.Message;
+import lotto.utils.GameConstants;
+import lotto.utils.Message;
 
 public class PurchaseAmountValidator implements Validator {
 
@@ -31,7 +31,7 @@ public class PurchaseAmountValidator implements Validator {
     }
 
     private void isDivisibleBy1000(String input) {
-        if (purchaseAmount % MagicNumber.UNIT_PURCHASE_PRICE != 0) {
+        if (purchaseAmount % GameConstants.UNIT_PURCHASE_PRICE != 0) {
             throw new IllegalArgumentException(Message.INDIVISIBLE_BY_UNIT_PRICE_EXCEPTION_MESSAGE);
         }
     }

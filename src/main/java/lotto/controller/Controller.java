@@ -39,7 +39,7 @@ public class Controller {
         Set<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
         isBonusNumberDuplicated(winningNumbers, bonusNumber);
-        lottoManager.setWinningNumbers(winningNumbers, bonusNumber);
+        lottoManager.setPrizeNumbers(winningNumbers, bonusNumber);
     }
 
     private void isBonusNumberDuplicated(Set<Integer> winningNumbers, int bonusNumber) {

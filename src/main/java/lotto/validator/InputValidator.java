@@ -34,15 +34,9 @@ public class InputValidator {
     public List<Integer> checkWinningNumber(String winningNumber)throws IllegalArgumentException{
         checkLastCommas(winningNumber);
         List<String> stringwinningnumbers = Utils.makeStringtoArray(winningNumber);
-        for(String number : stringwinningnumbers){
-            if(!Constants.INTEGER.matcher(number).matches() || number.isBlank()){
-                throw new IllegalArgumentException("[ERROR] 공백 없이 숫자를 입력해 주세요");
-            }
-        }
+        checkLetterAndBlank(stringwinningnumbers);
         winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
-        if (winningNumbers.size() != Constants.MAX_LOTTO_PICK_NUMBER ){
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
-        }
+        checkLetterLong(winningNumbers);
         checkDuplicateWinningNumber(winningNumbers);
         checkNumberRange(winningNumbers);
         return winningNumbers;
@@ -59,9 +53,21 @@ public class InputValidator {
         }
 
     }
-    public void checkNumberRange(List<Integer> winningNumbers) throws IllegalArgumentException{
-        if(Collections.max(winningNumbers) > Constants.MAX_LOTTO_NUMBER || Collections.min(winningNumbers )< Constants.ONE){
+    public void checkNumberRange(List<Integer> numbers) throws IllegalArgumentException{
+        if(Collections.max(numbers) > Constants.MAX_LOTTO_NUMBER || Collections.min(numbers )< Constants.ONE){
              throw new IllegalArgumentException("[ERROR] 입력이 가능한 숫자의 범위는 1 ~ 45 입니다.");
+        }
+    }
+    public void checkLetterAndBlank(List<String> strings){
+        for(String number : strings){
+            if(!Constants.INTEGER.matcher(number).matches() || number.isBlank()){
+                throw new IllegalArgumentException("[ERROR] 공백 없이 숫자를 입력해 주세요");
+            }
+        }
+    }
+    public void checkLetterLong(List<Integer> strings){
+        if (strings.size() != Constants.MAX_LOTTO_PICK_NUMBER ){
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
         }
     }
 

@@ -47,6 +47,11 @@ public class WinningCalculator {
                 .count();
     }
 
+    public String calculateROI(int amount){
+        totalPrizeMoney *= 1.0;
+        return totalprizeMoneyToString(totalPrizeMoney / (amount * LOTTO_PRICE) * 100);
+    }
+
     private String totalprizeMoneyToString(double amount){
         return String.format("%.1f", amount);
     }

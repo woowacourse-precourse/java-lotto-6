@@ -4,8 +4,8 @@ package lotto.model.winningLotto;
 import lotto.model.lotto.Lotto;
 
 public class WinningLotto {
-    protected final Lotto winningNumber;
-    protected final int bonusNumber;
+    private final Lotto winningNumber;
+    private final int bonusNumber;
 
     private WinningLotto(Lotto winningNumber, int bonusNumber){
         this.winningNumber = winningNumber;
@@ -17,6 +17,6 @@ public class WinningLotto {
     }
 
     public WinningLottoDTO toWinningLottoDTO(){
-        return WinningLottoDTO.of(WinningLotto.of(winningNumber, bonusNumber));
+        return WinningLottoDTO.of(winningNumber, bonusNumber);
     }
 }

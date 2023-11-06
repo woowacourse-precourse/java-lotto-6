@@ -22,9 +22,9 @@ public class Lotto {
         List<Integer> checkedList = new ArrayList<>();
         for (int i = 0; i<numbers.size(); i++) {
             if (checkedList.contains(numbers.get(i))) {
-                checkedList.add(numbers.get(i));
-            } else {
                 throw new IllegalArgumentException();
+            } else {
+                checkedList.add(numbers.get(i));
             };
         }
     }

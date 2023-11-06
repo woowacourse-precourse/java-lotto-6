@@ -2,10 +2,11 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.view.OutputView;
+import lotto.model.Quantity;
 
 public class LottoController {
         private Lotto lotto;
-        private int quantityNum;
+        private int quantity;
 
         public LottoController() {
                 set();
@@ -14,7 +15,7 @@ public class LottoController {
         }
 
         public void set() {
-                quantityNum = InputController.setQuantity();
+                quantity = InputController.setQuantity();
         }
 
         public void conduct() {

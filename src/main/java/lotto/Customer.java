@@ -71,7 +71,8 @@ public class Customer {
         for (int i = 0; i < lottos.size(); i++) {
 
             int correctCount = winLotto.compareLotto(lottos.get(i));
-            Output.countRank(correctCount);
+            int correctBonus = winLotto.compareBonusLotto(lottos.get(i));
+            Output.countRank(correctCount, correctBonus);
         }
     }
 

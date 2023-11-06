@@ -30,4 +30,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 3, 5, 7, 9, 11));
         assertTrue(lotto.compareNum(1));
     }
+
+    @Test
+    void compareBonusNumTest() {
+
+        Lotto lotto = new Lotto(List.of(1, 3, 5, 7, 9, 11));
+        assertTrue(lotto.compareNum(1));
+    }
 }

@@ -122,4 +122,16 @@ public class WinLotto {
 
         return compareResult;
     }
+
+    public int compareBonusLotto(Lotto lotto) {
+
+        int compareBonusNum = 0;
+
+        if (lotto.compareBonusNum(bonusNumber)) {
+
+            compareBonusNum++;
+        }
+
+        return compareBonusNum;
+    }
 }

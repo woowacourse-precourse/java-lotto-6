@@ -81,4 +81,14 @@ public class WinLottoTest {
         int rank = winLotto.compareLotto(lotto);
         assertEquals(6, rank);
     }
+
+    @Test
+    void compareBonusLottoTest() {
+
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinLotto winLotto = new WinLotto("1,2,3,4,5,7", "6");
+
+        int rank = winLotto.compareLotto(lotto);
+        assertEquals(5, rank);
+    }
 }

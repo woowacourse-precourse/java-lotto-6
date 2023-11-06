@@ -8,7 +8,6 @@ import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 public class LottoNumber {
 
-
     private final int number;
 
     public LottoNumber(int number) {
@@ -20,6 +19,10 @@ public class LottoNumber {
         int inputNumber = Utils.convertStringToInt(input);
         validate(inputNumber);
         this.number = inputNumber;
+    }
+
+    public int getNumber(){
+        return this.number;
     }
 
     private void validate(int number) {

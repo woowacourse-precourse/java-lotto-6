@@ -34,5 +34,31 @@ class LottoTest {
         assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.DUPLICATED_LOTTO_NUMBER.get());
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 해당 숫자가 존재하는 경우")
+    @Test
+    void containsLottoNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber lottoNumber = new LottoNumber(3);
+
+        //when
+        boolean result = lotto.contains(lottoNumber);
+
+        //then
+        assertThat(result).isEqualTo(true);
+    }
+
+    @DisplayName("로또 번호에 해당 숫자가 존재하지 않은 경우")
+    @Test
+    void notContainsLottoNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber lottoNumber = new LottoNumber(3);
+
+        //when
+        boolean result = lotto.contains(lottoNumber);
+
+        //then
+        assertThat(result).isEqualTo(true);
+    }
 }

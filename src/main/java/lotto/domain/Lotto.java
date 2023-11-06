@@ -18,6 +18,11 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean contains(LottoNumber number){
+        return numbers.stream()
+                .anyMatch(lottoNumber -> lottoNumber.getNumber() == number.getNumber());
+    }
+
     private void validate(List<Integer> numbers) {
         validateCount(numbers);
         validateDuplicate(numbers);

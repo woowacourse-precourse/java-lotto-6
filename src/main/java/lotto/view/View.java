@@ -2,14 +2,15 @@ package lotto.view;
 
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
+import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
 import static lotto.view.constants.SymbolType.POSTFIX;
 import static lotto.view.constants.SymbolType.PREFIX;
 import static lotto.view.constants.SymbolType.SEPARATOR;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.view.constants.MessageType;
 
 public final class View {
@@ -61,6 +62,10 @@ public final class View {
     /* Input View */
     private static String enterMessage() {
         return Validator.validate(Console.readLine());
+    }
+
+    public static void requestWinningNumbers() {
+        printlnMessage(WINNING_NUMBERS_REQUEST_MESSAGE);
     }
 
     private static class Validator {

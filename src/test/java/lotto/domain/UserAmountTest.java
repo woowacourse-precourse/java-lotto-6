@@ -38,4 +38,18 @@ public class UserAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 구입 금액은 1000으로 나누어떨어져야 합니다.");
     }
+
+    @Test
+    void 발행_가능한_로또_수량을_계산하는_기능_검증() {
+        //given
+        String userAmountInput = "6000";
+        UserAmount userAmount = UserAmount.from(userAmountInput);
+        int testUserAmount = Integer.parseInt(userAmountInput) / 1000;
+
+        //when
+        int issueAbleCount = userAmount.calculateIssueAbleCount();
+
+        //then
+        Assertions.assertThat(issueAbleCount).isEqualTo(testUserAmount);
+    }
 }

@@ -2,8 +2,8 @@ package lotto.constant;
 
 public class Constant {
     public final static String buy = "구입금액을 입력해 주세요.";
-    public final static String win = "당첨 번호를 입력해 주세요.";
-    public final static String extra = "보너스 번호를 입력해 주세요.";
+    public final static String win = "\n당첨 번호를 입력해 주세요.";
+    public final static String extra = "\n보너스 번호를 입력해 주세요.";
     public final static String error = "[ERROR] ";
     public final static String notNumber = "입력 값이 숫자여야 합니다.";
     public final static String invaildMoney = "구입 금액은 1,000원 단위여야 합니다.";

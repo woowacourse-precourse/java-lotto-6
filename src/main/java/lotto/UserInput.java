@@ -13,12 +13,12 @@ public class UserInput {
     }
 
     public static String inputNumbers(){
-        System.out.println(Constant.buy);
+        System.out.println(Constant.win);
         return readLine();
     }
 
     public static String inputBonus(){
-        System.out.println(Constant.buy);
+        System.out.println(Constant.extra);
         return readLine();
     }
 }

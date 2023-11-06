@@ -2,6 +2,8 @@ package lotto;
 
 import lotto.constant.Constant;
 
+import static lotto.common.Common.strToInt;
+
 public class Money {
 
     int val;
@@ -15,15 +17,6 @@ public class Money {
         }
     }
 
-    private int strToInt(String s){
-        int len = s.length();
-
-        if (len > 1) {
-            return ((s.charAt(len - 1) - '0')
-                    + strToInt(s.substring(0, len - 1)) * 10);
-        }
-        return s.charAt(0) - '0';
-    }
 
     private void vaildString(String s){
         for (int i = 0; i < s.length(); i++){

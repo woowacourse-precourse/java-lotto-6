@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.Exception;
 
 import lotto.model.BonusNumber;
 import lotto.model.Price;
@@ -9,26 +9,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.controller.ExceptionController.*;
+import static lotto.exception.ExceptionController.*;
+import static lotto.exception.PriceException.checkPriceException;
 
 public class ExceptionControllerTest {
-    @DisplayName("가격 예외 테스트")
-    @Test
-    void checkPriceExceptionTest() {
-        //Assertions.assertThatThrownBy(() -> checkPriceException("a")).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> checkPriceException(999)).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> checkPriceException(0)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("올바른 가격 예외 테스트")
-    @Test
-    void checkRightPriceExceptionTest() {
-        Price price = new Price(1000);
-        Price resultPrice = checkPriceException(1000);
-
-        Assertions.assertThat(price.getPrice()).isEqualTo(resultPrice.getPrice());
-    }
-
     @DisplayName("잘못된 보너스 숫자 예외 테스트")
     @Test
     void checkBonusNumberExceptionTest() {

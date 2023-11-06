@@ -1,16 +1,16 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.model.Number;
 
 import java.util.*;
 
-import static lotto.controller.ExceptionController.*;
+import static lotto.exception.ExceptionController.*;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
+import static lotto.exception.PriceException.checkPriceException;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 

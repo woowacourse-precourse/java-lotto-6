@@ -28,14 +28,14 @@ public class PrizeResult {
     }
 
     public static Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
-        return (double) calculateNetProfit(money, prizeResults) / (double) money * 100;
+        return (double) calculateProfit(money, prizeResults) / (double) money * 100;
     }
 
-    private static Long calculateNetProfit(Integer money, Map<Prize, Long> prizeResults) {
+    private static Long calculateProfit(Integer money, Map<Prize, Long> prizeResults) {
         Long totalProfit =  prizeResults.entrySet().stream()
                 .mapToLong(prizeResult -> prizeResult.getKey().getPrizeMoney() * prizeResult.getValue())
                 .sum();
-        return totalProfit - money;
+        return totalProfit;
     }
 
 }

@@ -17,23 +17,26 @@ public class LottoGameController {
     }
 
     public void run() {
-        enterMoney();
-        makeLotto();
+        String lottoCount = enterMoney();
+        makeLotto(lottoCount);
     }
 
-    private void makeLotto() {
+    private void makeLotto(String lottoCount) {
+        printMessage("\n" + lottoCount + Message.LOTTO_COUNT);
         String lotto = lottoGameService.makeLotto();
+        printMessage(lotto);
     }
 
-    private void enterMoney() {
+    private String enterMoney() {
         printMessage(Message.ASK_MONEY.toString());
-        String money = inputView.inputMoney();
+        String lottoCount = null;
         try {
-            lottoGameService.buyLotto(money);
+            lottoCount = lottoGameService.buyLotto(inputView.inputMoney());
         } catch (IllegalArgumentException e) {
             printMessage(e.getMessage());
             enterMoney();
         }
+        return lottoCount;
     }
 
     private void printMessage(String message) {

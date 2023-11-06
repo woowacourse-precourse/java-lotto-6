@@ -1,5 +1,5 @@
 package lotto.domain;
 
-public record WinningLotto(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+public record WinningLotto(Lotto winningNumbers, BonusNumber bonusNumber) {
 
 }

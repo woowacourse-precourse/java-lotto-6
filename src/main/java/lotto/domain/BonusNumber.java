@@ -8,13 +8,13 @@ public class BonusNumber {
 
     final private int bonusNumber;
 
-    public BonusNumber(int bonusNumber, WinningNumbers winningNumbers) {
+    public BonusNumber(int bonusNumber, Lotto winningNumbers) {
         validate(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(int bonusNumber, WinningNumbers winningNumbers) {
-        List<Integer> winningNumber = winningNumbers.getWinningNumber();
+    private void validate(int bonusNumber, Lotto winningNumbers) {
+        List<Integer> winningNumber = winningNumbers.getNumbers();
         if (isDuplicateBonusNumber(bonusNumber, winningNumber)) {
             throw new IllegalArgumentException(Messages.ERROR_DUPLICATE_BONUS_NUMBER);
         }

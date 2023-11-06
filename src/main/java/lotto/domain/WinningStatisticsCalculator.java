@@ -25,7 +25,7 @@ public class WinningStatisticsCalculator {
     }
 
     private int countMatchingNumbers(Lotto lotto) {
-        List<Integer> winningNumbers = winningLotto.winningNumbers().getWinningNumber();
+        List<Integer> winningNumbers = winningLotto.winningNumbers().getNumbers();
         List<Integer> lottoNumbers = lotto.getNumbers();
         int matchingCount = (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)

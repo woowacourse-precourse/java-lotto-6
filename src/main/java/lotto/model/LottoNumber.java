@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Objects;
+
 public class LottoNumber {
     private static final Integer NUMBER_MIN_RANGE = 1;
     private static final Integer NUMBER_MAX_RANGE = 45;
@@ -16,5 +18,18 @@ public class LottoNumber {
         if (number < NUMBER_MIN_RANGE || number > NUMBER_MAX_RANGE) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoNumber that = (LottoNumber) o;
+        return Objects.equals(number, that.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

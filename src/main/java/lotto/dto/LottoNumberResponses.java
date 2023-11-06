@@ -10,7 +10,7 @@ public record LottoNumberResponses(
         int purchaseCount,
         List<LottoNumberResponse> lottoResponses
 ) {
-    public static LottoNumberResponses buildLottoResponses(
+    public static LottoNumberResponses build(
             final Buyer buyer,
             final Lottos lottos
     ) {
@@ -19,7 +19,7 @@ public record LottoNumberResponses(
         List<Lotto> lottoTickets = lottos.getLottoTickets();
         List<LottoNumberResponse> lottoResponses =
                 lottoTickets.stream()
-                        .map(LottoNumberResponse::buildLottoResponse)
+                        .map(LottoNumberResponse::build)
                         .toList();
 
         return new LottoNumberResponses(ticketCount, lottoResponses);

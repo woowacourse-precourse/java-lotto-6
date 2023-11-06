@@ -13,7 +13,7 @@ public class PurchaseController {
         Lottos lottos = Lottos.create(buyer);
 
         LottoNumberResponses lottoResponses =
-                LottoNumberResponses.buildLottoResponses(buyer, lottos);
+                LottoNumberResponses.build(buyer, lottos);
 
         OutputView.printNewLine();
         OutputView.printPurchaseCount(lottoResponses);

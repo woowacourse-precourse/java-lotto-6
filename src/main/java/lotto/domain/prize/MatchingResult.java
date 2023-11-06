@@ -30,7 +30,7 @@ public class MatchingResult {
         return Objects.equals(this.prizeMatchingCount, prizeMatchingCount);
     }
 
-    public boolean isMatchingBonus() {
+    public boolean getMatchingBonus() {
         return bonusMatching;
     }
 }

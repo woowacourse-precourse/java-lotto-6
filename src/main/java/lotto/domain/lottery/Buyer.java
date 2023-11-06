@@ -10,8 +10,8 @@ import static lotto.domain.lottery.constants.LottoConstraint.UNIT_PRICE;
 import static lotto.exception.ErrorMessage.*;
 
 public class Buyer {
-    private static final int ZERO = 0;
-
+    private static final int INT_ZERO = 0;
+    
     private final int payment;
     private final int ticketCount;
 
@@ -33,7 +33,6 @@ public class Buyer {
     private int calculateTicketCount(final int payment) {
         return payment / UNIT_PRICE.getValue();
     }
-
 
     private void validateUnitPrice(final int payment) {
         if (isNotDivisibleByUnitPrice(payment)) {
@@ -62,7 +61,7 @@ public class Buyer {
     }
 
     private boolean isNotDivisibleByUnitPrice(final int payment) {
-        return !Objects.equals(calculateRemainder(payment), ZERO);
+        return !Objects.equals(calculateRemainder(payment), INT_ZERO);
     }
 
     private static int calculateRemainder(final int payment) {

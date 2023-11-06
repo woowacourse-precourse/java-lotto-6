@@ -13,7 +13,10 @@ public enum PrintMessage {
      * Response
      */
     RESPONSE_PURCHASE_COUNT("%d개를 구매했습니다."),
-    RESPONSE_LOTTO_RESULT("[%s]");
+    RESPONSE_LOTTO_RESULT("[%s]"),
+    RESPONSE_PRIZE_STATISTICS("당첨 통계"),
+    RESPONSE_SEPARATOR("---"),
+    RESPONSE_YIELD("총 수익률은 %s%%입니다.");
 
     private final String message;
 

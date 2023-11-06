@@ -77,7 +77,7 @@ public class LottoService {
         return scoreBoard;
     }
 
-    public HashMap<String, Long> getStatisticsLottoScore(List<List<Integer>> myLotto, List<Integer> winningLotto, Integer bonusNumber) {
+    public HashMap<String, Long> getResultScoreBoard(List<List<Integer>> myLotto, List<Integer> winningLotto, Integer bonusNumber) {
         HashMap<String, Long> scoreBoard = generateResultScoreBoard();
         for (int i = 0; i < myLotto.size(); i++) {
             scoreBoard = calculateLottoScore(countMatchingWinningNumbers(myLotto.get(i),winningLotto),bonusNumber,scoreBoard);

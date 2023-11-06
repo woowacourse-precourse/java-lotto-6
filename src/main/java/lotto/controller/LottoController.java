@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.LottoResult;
+import lotto.validator.BonusNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -46,6 +47,7 @@ public class LottoController {
 
 
     int bonusNumber = inputView.inputBonusNumber();
+    BonusNumberValidator.isDuplicate(winningNumberSet, bonusNumber);
 
     List<Integer> rank = LottoGame.checkWinningStatus(lottos, winningNumberSet, bonusNumber);
     OutputView.printSuccessResult();

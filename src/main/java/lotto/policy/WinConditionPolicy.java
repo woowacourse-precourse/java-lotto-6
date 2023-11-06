@@ -31,4 +31,8 @@ public enum WinConditionPolicy {
     public String getOutputMessage(int count) {
         return outputMessage + count + "개";
     }
+
+    public int getReward() {
+        return reward;
+    }
 }

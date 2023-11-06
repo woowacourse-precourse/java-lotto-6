@@ -21,6 +21,7 @@ public class Application {
         setWinResult(user, winLottoNumber, bonusLottoNumber);
         Result result = Result.of(winResult);
         controller.showWinStatistics(result);
+        controller.showTotalProfitRate(result, purchaseAmount);
     }
 
     private static void setWinResult(User user, Lotto winLottoNumber, int bonusLottoNumber) {

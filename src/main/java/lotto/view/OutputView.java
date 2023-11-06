@@ -14,6 +14,10 @@ public class OutputView {
 
     public void printWinStatistics(Result result) {
         System.out.println(PrintMessage.WIN_STATISTICS_OUTPUT_MESSAGE.getMessage());
-        System.out.println(result);
+        System.out.print(result);
+    }
+
+    public void printTotalProfitRate(double totalProfitRate) {
+        System.out.printf(PrintMessage.TOTAL_PROFIT_RATE_OUTPUT_MESSAGE.getMessage(), totalProfitRate);
     }
 }

@@ -25,6 +25,14 @@ public class Result {
         return new Result(winConditionAndCount);
     }
 
+    public double getTotalWinProfit() {
+        long sum = 0;
+        for (WinConditionPolicy winCondition : winConditionAndCount.keySet()) {
+            sum += (winCondition.getReward()) * (winConditionAndCount.get(winCondition));
+        }
+        return sum;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

@@ -9,7 +9,8 @@ public enum PrintMessage {
 
     // OutputView
     LOTTO_COUNT_OUTPUT_MESSAGE("개를 구매했습니다."),
-    WIN_STATISTICS_OUTPUT_MESSAGE("당첨 통계\n---");
+    WIN_STATISTICS_OUTPUT_MESSAGE("당첨 통계\n---"),
+    TOTAL_PROFIT_RATE_OUTPUT_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

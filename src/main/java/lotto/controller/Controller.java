@@ -76,4 +76,9 @@ public class Controller {
     public void showWinStatistics(Result result) {
         outputView.printWinStatistics(result);
     }
+
+    public void showTotalProfitRate(Result result, double purchaseAmount) {
+        double totalProfitRate = result.getTotalWinProfit() / purchaseAmount * 100;
+        outputView.printTotalProfitRate(totalProfitRate);
+    }
 }

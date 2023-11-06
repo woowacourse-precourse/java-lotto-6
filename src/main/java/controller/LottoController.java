@@ -16,8 +16,7 @@ public class LottoController {
         OuputView.buyMessage(amount);
 
         //createLottos
-        Lottos lottos = MakeObjectService.lottos();
-        lottos.add(amount);
+        Lottos lottos = MakeObjectService.lottos(amount);
 
         //createWinningNumbers
         //compareLottoNumbers

@@ -8,13 +8,11 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(){
+    public Lottos(Amount amount){
         lottos = new ArrayList<>();
-    }
-
-    public void add(Amount amount) {
         for(int i = 0; i < amount.getAmount(); i++){
             lottos.add(MakeObjectService.lotto());
         }
     }
+
 }

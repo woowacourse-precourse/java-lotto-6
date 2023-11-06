@@ -10,8 +10,8 @@ public class MakeObjectService {
         return new Amount(input);
     }
 
-    public static Lottos lottos() {
-        return new Lottos();
+    public static Lottos lottos(Amount amount) {
+        return new Lottos(amount);
     }
 
     public static Lotto lotto() {

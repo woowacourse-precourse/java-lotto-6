@@ -6,22 +6,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_COMMA_ERROR_MESSAEGE;
+import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_NUMERIC_ERROR_MESSAGE;
+import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_UNIQUE_ERROR_MESSAGE;
 import static lotto.validator.AssertException.assertExceptionTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 class WinningLottoValidatorTest {
-    private static final String WINNING_LOTTO_COMMA_ERROR_MESSAEGE =
-            "[ERROR] 첫 번째 또는 마지막 문자의 콤마 또는 연속된 콤마는 입력할 수 없습니다.";
-    private static final String NUMERIC_ERROR_MESSAGE =
-            "[ERROR] 1부터 45까지의 자연수와 콤마만 입력할 수 있습니다.";
-
-    private static final String WINNING_LOTTO_UNIQUE_ERROR_MESSAGE = "[ERROR] 중복된 번호는 입력할 수 없습니다.";
-
     @Nested
     @DisplayName("로또 당첨 번호 입력에 대한 검증")
     class create{
-
         @DisplayName("모든 검증 통과시 입력한 문자열 반환")
         @Test
         void success() {
@@ -42,7 +37,7 @@ class WinningLottoValidatorTest {
             // given
             Validator<String> validator = new WinningLottoValidator();
             // when, then
-            assertExceptionTest(validator, input, NUMERIC_ERROR_MESSAGE);
+            assertExceptionTest(validator, input, WINNING_LOTTO_NUMERIC_ERROR_MESSAGE.getMessage());
         }
 
         @DisplayName("최대 최소 범위를 넘은 숫자를 입력시 예외를 발생시킨다.")
@@ -52,7 +47,7 @@ class WinningLottoValidatorTest {
             // given
             Validator<String> validator = new WinningLottoValidator();
             // when, then
-            assertExceptionTest(validator, input, NUMERIC_ERROR_MESSAGE);
+            assertExceptionTest(validator, input, WINNING_LOTTO_NUMERIC_ERROR_MESSAGE.getMessage());
         }
 
         @DisplayName("6개보다 적거나 많은 로또 번호 입력시 예외를 발생시킨다.")
@@ -62,7 +57,7 @@ class WinningLottoValidatorTest {
             // given
             Validator<String> validator = new WinningLottoValidator();
             // when, then
-            assertExceptionTest(validator, input, NUMERIC_ERROR_MESSAGE);
+            assertExceptionTest(validator, input, WINNING_LOTTO_NUMERIC_ERROR_MESSAGE.getMessage());
         }
 
         @DisplayName("연속된 콤마 입력시 예외를 발생시킨다.")
@@ -72,7 +67,7 @@ class WinningLottoValidatorTest {
             Validator<String> validator = new WinningLottoValidator();
             String input = "1,,2,,3,,,,,4,,,5,,6";
             // when, then
-            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAEGE);
+            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAEGE.getMessage());
         }
 
         @DisplayName("맨 처음 또는 맨 마지막에 콤마 입력시 예외를 발생시킨다.")
@@ -82,7 +77,7 @@ class WinningLottoValidatorTest {
             // given
             Validator<String> validator = new WinningLottoValidator();
             // when, then
-            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAEGE);
+            assertExceptionTest(validator, input, WINNING_LOTTO_COMMA_ERROR_MESSAEGE.getMessage());
         }
 
         @DisplayName("중복된 번호 입력시 예외를 발생시킨다.")
@@ -92,7 +87,7 @@ class WinningLottoValidatorTest {
             Validator<String> validator = new WinningLottoValidator();
             String input = "1,4,10,14,25,25";
             //when, then
-            assertExceptionTest(validator, input, WINNING_LOTTO_UNIQUE_ERROR_MESSAGE);
+            assertExceptionTest(validator, input, WINNING_LOTTO_UNIQUE_ERROR_MESSAGE.getMessage());
         }
     }
 }

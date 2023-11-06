@@ -17,5 +17,4 @@ class NumberSplitterTest {
         List<String> numberSplit = NumberSplitter.splitNumbers(input);
         assertThat(numberSplit).contains("1", "2", "3", "5", "10", "24");
     }
-
 }

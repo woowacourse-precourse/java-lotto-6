@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -110,14 +111,15 @@ public class LottoGame {
     // 수익률 출력
     public static void rateOfReturn(int[] winningList, int buy) {
         double total = 0;
-
         for (Prize prize : Prize.values()) {
             int count = winningList[prize.ordinal()];
             total += prize.getPrizeAmount() * count;
         }
-
         double rate = (total / (buy * 1000));
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", rate);
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String formattedRate = decimalFormat.format(rate);
+
+        System.out.printf("총 수익률은 %s%%입니다.\n", formattedRate);
     }
 
     // 예외 상황 출력

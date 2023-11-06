@@ -6,29 +6,21 @@ public class PurchaseAmount {
 
     private Integer purchaseAmount;
 
-    private PurchaseAmount(String purchaseAmount) {
+    private PurchaseAmount(Integer purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        this.purchaseAmount = parseInt(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
     }
 
-    public static PurchaseAmount create(String purchaseAmount) {
+    public static PurchaseAmount create(Integer purchaseAmount) {
         return new PurchaseAmount(purchaseAmount);
     }
 
-    private static void validatePurchaseAmount(String purchaseAmount) {
-        validatePurchaseAmountDigit(purchaseAmount);
+    private static void validatePurchaseAmount(Integer purchaseAmount) {
         validatePurchaseUnit(purchaseAmount);
     }
 
-    private static void validatePurchaseAmountDigit(String purchaseAmount) {
-        if (purchaseAmount.chars()
-                .anyMatch(ch -> !Character.isDigit(ch))) {
-            throw new IllegalArgumentException("구입 금액은 정수이어야 합니다.");
-        }
-    }
-
-    private static void validatePurchaseUnit(String purchaseAmount) {
-        if (parseInt(purchaseAmount) % 1000 != 0) {
+    private static void validatePurchaseUnit(Integer purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위이어야 합니다.");
         }
     }

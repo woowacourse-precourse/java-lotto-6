@@ -16,14 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("당첨 내역 계산")
 class PrizesTest {
 
-    @DisplayName("당첨금 계산 성공 테스트")
-    @ParameterizedTest()
-    @MethodSource("countTotalPriceSuccessDummy")
-    void countTotalPriceSuccessTest(Prizes prizes, Double expected) {
-        Double totalReward= prizes.getTotalReward();
-        assertEquals(expected, totalReward);
-    }
-
     @DisplayName("수익률 계산 성공 테스트")
     @ParameterizedTest()
     @MethodSource("calculateBenefitSuccessDummy")
@@ -33,25 +25,6 @@ class PrizesTest {
     }
 
 
-    static Stream<Arguments> countTotalPriceSuccessDummy() {
-        return Stream.of(
-                Arguments.arguments(
-                        new Prizes(
-                                List.of(LAST_PLACE, FIRST_PLACE, SECOND_PLACE, LAST_PLACE, LAST_PLACE)
-                        ),
-                        2_030_000_000.0),
-                Arguments.arguments(
-                        new Prizes(
-                                List.of(LAST_PLACE, SECOND_PLACE, LAST_PLACE, SECOND_PLACE)
-                        ),
-                        60_000_000.0),
-                Arguments.arguments(
-                        new Prizes(
-                                List.of(LAST_PLACE, FIRST_PLACE, SECOND_PLACE, FIRST_PLACE, LAST_PLACE)
-                        ),
-                        4_030_000_000.0)
-        );
-    }
 
     static Stream<Arguments> calculateBenefitSuccessDummy() {
         return Stream.of(

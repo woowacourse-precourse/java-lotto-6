@@ -6,10 +6,6 @@ import java.util.List;
 public class LottoTicket {
     private final List<Lotto> lottos;
 
-    public LottoTicket(List<Lotto> lottos) {
-        this.lottos = lottos;
-    }
-
     public LottoTicket(int count, LottoGenerator lottoGenerator) {
         this.lottos = generate(count, lottoGenerator);
     }

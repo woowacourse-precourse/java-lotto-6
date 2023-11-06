@@ -10,6 +10,7 @@ public class Ui {
     public static final String PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String BUY_CONFIRM_MESSAGE = "%s개를 구매했습니다.";
     public static final String INPUT_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_LOTTO_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public void printPrice() {
         System.out.println(PRICE_INPUT_MESSAGE);
@@ -34,5 +35,9 @@ public class Ui {
 
     public void printReadLottoNumber() {
         System.out.println(INPUT_LOTTO_NUMBER_MESSAGE);
+    }
+
+    public void printReadBonusLottoNumber() {
+        System.out.println(INPUT_BONUS_LOTTO_NUMBER_MESSAGE);
     }
 }

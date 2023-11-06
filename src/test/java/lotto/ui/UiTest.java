@@ -50,4 +50,12 @@ class UiTest {
         ui.printReadLottoNumber();
         Assertions.assertThat(outputStreamCaptor.toString().trim()).isEqualToIgnoringNewLines(expectMessage);
     }
+
+    @Test
+    void 보너스_로또입력을_유도하는_문장을_출력한다() {
+        final String expectMessage = "보너스 번호를 입력해 주세요.";
+        Ui ui = new Ui();
+        ui.printReadBonusLottoNumber();
+        Assertions.assertThat(outputStreamCaptor.toString().trim()).isEqualToIgnoringNewLines(expectMessage);
+    }
 }

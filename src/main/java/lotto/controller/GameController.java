@@ -15,6 +15,7 @@ public class GameController {
         amount = repeatInputAmount();
         lottosPurchased = new LottosPurchased(amount.getAmount());
         outputView.printNumberOfLottosPurchased(lottosPurchased.getNumberOfLottos());
+        outputView.printLottosPurchased(lottosPurchased.getLottos());
     }
 
     private Amount repeatInputAmount() {

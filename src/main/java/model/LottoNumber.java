@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import util.NumberGenerator;
 
-public class WinningNumber {
+public class LottoNumber {
 
     NumberGenerator numberGenerator = new NumberGenerator();
     public List<Integer> number = new ArrayList<>();
-    public WinningNumber(){
-        setWinningNumber();
+    public LottoNumber(){
+        CreateLottoNumber();
     }
 
-    public void setWinningNumber(){
+    public void CreateLottoNumber(){
         number = numberGenerator.generate();
     }
 

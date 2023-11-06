@@ -11,7 +11,6 @@ public class WinningNumberValidator {
     private static final int WINNING_NUMBERS_COUNT = 6;
 
 
-
     private static Set<Integer> parseToIntSet(String winningNumbers) {
         try {
             return Stream.of(winningNumbers.split(","))
@@ -20,6 +19,12 @@ public class WinningNumberValidator {
                     .collect(Collectors.toCollection(LinkedHashSet::new));
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.", exception);
+        }
+    }
+
+    private static void validateNoDuplicates(Set<Integer> numbers) {
+        if (numbers.size() < WINNING_NUMBERS_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
     }
 

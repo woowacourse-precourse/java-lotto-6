@@ -10,8 +10,8 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public void inputWinningNumbers() {
-
+    public int inputWinningNumbers() {
+        return Integer.parseInt(Console.readLine());
     }
 
     public void inputBonusNumber() {

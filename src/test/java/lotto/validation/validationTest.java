@@ -20,5 +20,14 @@ public class validationTest {
                 .hasMessageContaining(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
     }
 
+    @Test
+    @DisplayName("구입금액은 1000원으로 나누어떨어지지 않으면 예외를 발생시킨다.")
+    void 구입금액_테스트() {
+        int purchasePrice = 3500;
+        assertThatThrownBy(() -> validateService.validatePurchasePriceAll(purchasePrice)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
+    }
+
 
 }

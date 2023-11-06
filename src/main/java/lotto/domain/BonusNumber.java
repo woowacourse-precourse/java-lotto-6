@@ -14,7 +14,7 @@ public class BonusNumber {
 
     public void validateBonusNumber(int inputBonusNumber, List<Integer> winningNumbers) {
         validateBonusNumberRange(inputBonusNumber);
-        validateDuplication(inputBonusNumber, winningNumbers);
+        validateBonusNumberDuplication(inputBonusNumber, winningNumbers);
     }
 
     private void validateBonusNumberRange(int inputBonusNumber) {
@@ -23,7 +23,7 @@ public class BonusNumber {
         }
     }
 
-    private void validateDuplication(int inputBonusNumber, List<Integer> winningNumbers) {
+    private void validateBonusNumberDuplication(int inputBonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(inputBonusNumber)) {
             throw new IllegalArgumentException("보너스 번호가 당첨 번호와 중복됩니다. 다시 입력해 주세요.");
         }

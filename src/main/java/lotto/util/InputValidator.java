@@ -79,7 +79,7 @@ public class InputValidator {
 
     // 당첨 번호와 보너스 번호에 대한 공통 검증 사항 시작
     private void validateNumberInRange(int number) {
-        if (number < GlobalConstant.NUMBER_MIN.getValue() || number > GlobalConstant.NUMBER_MAX.getValue()) {
+        if (number < GlobalConstant.LOTTO_NUMBER_MIN.getValue() || number > GlobalConstant.LOTTO_NUMBER_MAX.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.NUMBER_RANGE_EXCEPTION_MSG.getMsg());
         }
     }
@@ -93,7 +93,7 @@ public class InputValidator {
     }
 
     private void validateAnswerCount(int numberCount) {
-        if (numberCount != GlobalConstant.NUMBER_AMOUNT.getValue()) {
+        if (numberCount != GlobalConstant.LOTTO_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.ANSWER_AMOUNT_EXCEPTION_MSG.getMsg());
         }
     }
@@ -106,7 +106,7 @@ public class InputValidator {
     }
 
     private void validateDuplicatedNumber(Set<String> duplicateRemovedAnswer) {
-        if (duplicateRemovedAnswer.size() != GlobalConstant.NUMBER_AMOUNT.getValue()) {
+        if (duplicateRemovedAnswer.size() != GlobalConstant.LOTTO_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.ANSWER_DUPLICATED_EXCEPTION_MSG.getMsg());
         }
     }

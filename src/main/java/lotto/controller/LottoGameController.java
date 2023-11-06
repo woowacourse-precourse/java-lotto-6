@@ -26,20 +26,20 @@ public class LottoGameController {
     public void run() {
         BuyAmount buyAmount = initBuyAmount();
         TicketCount ticketCount = initTicketCount(buyAmount);
-        Lotteries lotteries = initLotteries(ticketCount);
+        showTicketCount(ticketCount);
 
+        Lotteries lotteries = initLotteries(ticketCount);
         showLotteriesNumber(lotteries);
 
         Lotto winningLotto = initWinningLotto();
         BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
 
         Statistic statistic = createStatistic(lotteries, winningLotto, bonusNumber);
-        ProfitRate profitRate = calculateProfitRate(buyAmount, statistic);
-
+        ProfitRate profitRate = calculateProfitRate(statistic, buyAmount);
         showResult(statistic, profitRate);
     }
 
-    private ProfitRate calculateProfitRate(BuyAmount buyAmount, Statistic statistic) {
+    private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
         return ProfitRate.from(statistic.getRank(), buyAmount);
     }
 
@@ -47,10 +47,9 @@ public class LottoGameController {
         return view.getBuyAmount();
     }
 
-    private TicketCount initTicketCount(BuyAmount buyAmount) {
+    private TicketCount initTicketCount(final BuyAmount buyAmount) {
         Integer count = buyAmount.amount() / ONE_LOTTO_PRICE.getValue();
         TicketCount ticketCount = new TicketCount(count);
-        view.printTicketCountMessage(count);
 
         return ticketCount;
     }
@@ -72,11 +71,15 @@ public class LottoGameController {
         return view.getBonusNumber(winningNumbers);
     }
 
+    private void showTicketCount(final TicketCount ticketCount) {
+        view.showTicketCount(ticketCount.count());
+    }
+
     private void showLotteriesNumber(final Lotteries lotteries) {
         view.showLotteriesNumber(LottoDto.toDto(lotteries.getLotteries()));
     }
 
-    private void showResult(Statistic statistic, ProfitRate profitRate) {
+    private void showResult(final Statistic statistic, final ProfitRate profitRate) {
         view.showStatistics(StatisticDto.from(statistic));
         view.showProfitRate(profitRate.getRate());
     }

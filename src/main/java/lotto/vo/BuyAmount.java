@@ -17,7 +17,7 @@ public record BuyAmount(Integer amount) {
         if (isLessThanLottoPrice(amount)) {
             throw new InsufficientAmountException();
         }
-        if (hasChange(amount)) {
+        if (hasChangeMoney(amount)) {
             throw new RemainingChangeException();
         }
     }
@@ -26,7 +26,7 @@ public record BuyAmount(Integer amount) {
         return amount < ONE_LOTTO_PRICE.getValue();
     }
 
-    private boolean hasChange(final Integer amount) {
+    private boolean hasChangeMoney(final Integer amount) {
         return (amount % ONE_LOTTO_PRICE.getValue()) != ZERO;
     }
 }

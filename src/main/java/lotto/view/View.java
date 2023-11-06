@@ -63,7 +63,7 @@ public class View {
         }
     }
 
-    public void printTicketCountMessage(final Integer count) {
+    public void showTicketCount(final Integer count) {
         outputView.printTicketCountMessage(count);
     }
 

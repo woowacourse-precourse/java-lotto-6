@@ -17,6 +17,7 @@ public class Lotteries {
         List<Lotto> lotteries = IntStream.range(0, ticketCount.count())
                 .mapToObj(eachTicket -> Lotto.createLotto(numberGenerator))
                 .toList();
+        
         return new Lotteries(lotteries);
     }
 

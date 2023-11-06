@@ -22,8 +22,10 @@ public class LottoController {
                 Lotto winningLotto = new Lotto(winningNumbers);
                 // TODO : 사용자의 로또와 당첨 번호를 비교하여 결과 출력 등
                 break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다. 다시 시도해주세요.");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[ERROR] 잘못된 입력입니다. 다시 시도해주세요.");
             }
         }
     }

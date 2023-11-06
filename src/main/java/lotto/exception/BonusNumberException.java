@@ -11,9 +11,15 @@ public class BonusNumberException {
     private static final String IS_DUPLICATE_MESSAGE = "입력하신 보너스 숫자가 당첨 번호와 중복인 숫자가 있습니다.";
     private static final String IS_ONLY_ONE_MESSAGE = "보너스 숫자는 한 개만 입력해주세요";
 
+    public BonusNumberException(String input, List<Integer> winnerNum){
+        isNumber(input);
+        isBlank(input);
+        isNumberOnlyOne(input);
+        isRightRange(input);
+        isDuplicateWithWinnerNum(input, winnerNum);
+    }
 
-
-    public void isNumber(String input) {
+    private void isNumber(String input) {
         try{
             Integer.parseInt(input);
         } catch(NumberFormatException e){
@@ -21,27 +27,27 @@ public class BonusNumberException {
         }
     }
 
-    public void isRightRange(String input) {
+    private void isRightRange(String input) {
         int bonusNum = Integer.parseInt(input);
         if(bonusNum < BONUS_NUMBER_START || bonusNum > BONUS_NUMBER_FINISH){
             throw new IllegalArgumentException(IS_RIGHT_RANGE_MESSAGE);
         }
     }
 
-    public void isBlank(String input) {
+    private void isBlank(String input) {
         if(input.trim().isEmpty()){
             throw new IllegalArgumentException(IS_BLANK_MESSAGE);
         }
     }
 
-    public void isDuplicateWithWinnerNum(String bonusNumber, List<Integer> winnerNum) {
+    private void isDuplicateWithWinnerNum(String bonusNumber, List<Integer> winnerNum) {
         int bonusNum = Integer.parseInt(bonusNumber);
         if(winnerNum.stream().anyMatch(i -> i == bonusNum)){
             throw new IllegalArgumentException(IS_DUPLICATE_MESSAGE);
         }
     }
 
-    public void isNumberOnlyOne(String input) {
+    private void isNumberOnlyOne(String input) {
         if(input.split(",").length != 1){
             throw new IllegalArgumentException(IS_ONLY_ONE_MESSAGE);
         }

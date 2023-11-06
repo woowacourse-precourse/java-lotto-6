@@ -60,4 +60,4 @@
     - [x]   입력된 로또 구입 금액이 숫자가 아니라면 변환 시 IllegalArgumentException이 반환된다.
     - [x]   입력된 로또 구입 금액이 Long 범위 밖이라면 변환 시 IllegalArgumentException이 반환된다.
 2. 로또 발행 수 계산 테스트
-    - [ ]  입력 구입 금액에 따라 로또를 구매한다.
+    - [x]  입력 구입 금액에 따라 로또를 구매한다.

@@ -9,8 +9,9 @@ public class BuyPrice {
         while (true) {
             try {
                 String input = Console.readLine();
-                Lotto.buy_range(input);
-                Lotto.buy_price(Integer.parseInt(input));
+                ErrorInput errorInput = new ErrorInput();
+                errorInput.buy_range(input);
+                errorInput.buy_price(Integer.parseInt(input));
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

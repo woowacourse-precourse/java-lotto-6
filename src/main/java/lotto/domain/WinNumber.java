@@ -13,7 +13,8 @@ public class WinNumber {
             try {
                 String input = Console.readLine();
                 String[] number = input.split(",");
-                List<Integer> winnum = Lotto.win_range(number);
+                ErrorInput errorInput = new ErrorInput();
+                List<Integer> winnum = errorInput.win_range(number);
                 return winnum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

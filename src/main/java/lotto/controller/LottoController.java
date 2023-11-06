@@ -18,7 +18,7 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Lotteries lotteries = runRepeat(this::makeLotteries);
+        Lotteries lotteries = repeatUntilNoException(this::makeLotteries);
         printLotteries(lotteries);
 
         WinningNumber winningNumber = makeWinningNumber();
@@ -38,8 +38,8 @@ public class LottoController {
     }
 
     private WinningNumber makeWinningNumber() {
-        List<Number> winningNumbers = runRepeat(this::readValidatedWinningNumber);
-        Number bonusNumber = runRepeat(() -> readValidatedBonusNumber(winningNumbers));
+        List<Number> winningNumbers = repeatUntilNoException(this::readValidatedWinningNumber);
+        Number bonusNumber = repeatUntilNoException(() -> readValidatedBonusNumber(winningNumbers));
 
         return new WinningNumber(winningNumbers, bonusNumber);
     }
@@ -69,13 +69,12 @@ public class LottoController {
         outputView.printWinningStatistics(statistics);
     }
 
-    private <T> T runRepeat(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException exception) {
-                outputView.printExceptionMessage(exception);
-            }
+    private <T> T repeatUntilNoException(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return repeatUntilNoException(supplier);
         }
     }
 }

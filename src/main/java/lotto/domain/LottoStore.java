@@ -1,13 +1,9 @@
 package lotto.domain;
 
 import static lotto.constant.DomainConstant.LOTTO_PRICE;
-import static lotto.constant.DomainConstant.LOTTO_SIZE;
 import static lotto.constant.DomainConstant.START_INDEX;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.constant.ErrorMessage;
@@ -36,11 +32,7 @@ public final class LottoStore {
     }
 
     private List<Integer> createLottoNumbers() {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        while (uniqueNumbers.size() < LOTTO_SIZE.getValue()) {
-            uniqueNumbers.add(numberGenerator.generate());
-        }
-        return new ArrayList<>(uniqueNumbers);
+        return numberGenerator.generateNumbers();
     }
 
     private int calculateNumberOfLottos(long investmentAmount) {

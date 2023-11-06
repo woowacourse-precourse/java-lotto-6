@@ -3,9 +3,9 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,10 +13,9 @@ import org.junit.jupiter.api.Test;
 public class LottoStoreTest {
 
     private final NumberGenerator mockNumberGenerator = new NumberGenerator() {
-        private int number = 1;
         @Override
-        public int generate() {
-            return number++;
+        public List<Integer> generateNumbers() {
+            return IntStream.rangeClosed(1, 6).boxed().collect(Collectors.toList());
         }
     };
 
@@ -28,8 +27,7 @@ public class LottoStoreTest {
 
         lottos.forEach(lotto -> {
             List<Integer> numbers = lotto.numbers();
-            Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-            assertThat(numbers.size()).isEqualTo(uniqueNumbers.size());
+            assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
         });
     }
 

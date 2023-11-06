@@ -98,7 +98,7 @@ public class Game {
         List<Integer> result = new ArrayList<>();
 
         for (String number : numbers) {
-            validator.isAnswerNumeric(number);
+            validator.validateAnswer(number, START, END);
             result.add(Integer.parseInt(number));
         }
         return result;

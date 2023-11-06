@@ -20,8 +20,21 @@ public class Validator {
         }
     }
 
-    public void isAnswerNumeric(String number) {
+    public void validateAnswer(String number, Integer start, Integer end) {
+        isAnswerNumeric(number);
+        isAnswerInRange(number, start, end);
+    }
+
+    private void isAnswerNumeric(String number) {
         if (!number.matches(REGULAR_NUMBER)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isAnswerInRange(String bonus, Integer start, Integer end) {
+        Integer number = Integer.parseInt(bonus);
+
+        if (number <= start || end <= number) {
             throw new IllegalArgumentException();
         }
     }

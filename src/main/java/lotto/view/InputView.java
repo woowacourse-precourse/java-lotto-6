@@ -11,22 +11,37 @@ public class InputView {
     private static final String COMMA = ",";
 
     public int inputMoney() {
-        String input = Console.readLine();
-        MoneyInputValidator.validate(input);
-        return Integer.parseInt(input);
+        try {
+            String input = Console.readLine();
+            MoneyInputValidator.validate(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputMoney();
+        }
     }
 
     public List<Integer> inputWinningNumbers() {
-        String input = Console.readLine();
-        WinningNumbersInputValidator.validate(input);
-        return Stream.of(input.split(COMMA))
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            String input = Console.readLine();
+            WinningNumbersInputValidator.validate(input);
+            return Stream.of(input.split(COMMA))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
     public int inputBonusNumber() {
-        String input = Console.readLine();
-        BonusNumberInputValidator.validate(input);
-        return Integer.parseInt(input);
+        try {
+            String input = Console.readLine();
+            BonusNumberInputValidator.validate(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputBonusNumber();
+        }
     }
 }

@@ -44,7 +44,7 @@ public class WinningResult {
     private int calculateTotalPurchaseAmount() {
         return winningResult.values().stream()
                 .mapToInt(Integer::intValue)
-                .sum();
+                .sum() * GameConfig.LOTTO_PRICE.getValue();
     }
 
     private int calculateTotalWinningMoney() {

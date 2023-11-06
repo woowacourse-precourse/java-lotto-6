@@ -1,26 +1,27 @@
 package lotto.model;
 
-import java.util.List;
-
 public enum LottoPrize {
 
-    FIRST_PRIZE(2_000_000_000),
-    SECOND_PRIZE(30_000_000),
-    THIRD_PRIZE(1_500_000),
-    FOURTH_PRIZE(50_000),
-    FIFTH_PRIZE(5_000);
+    FIRST_PRIZE("6개 일치 (2,000,000,000원) - ", 2_000_000_000),
+    SECOND_PRIZE("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30_000_000),
+    THIRD_PRIZE("5개 일치 (1,500,000원) - ", 1_500_000),
+    FOURTH_PRIZE("4개 일치 (50,000원) - ", 50_000),
+    FIFTH_PRIZE("3개 일치 (5,000원) - ", 5_000),
+    NO_PRIZE("당첨 안됨 (0원)", 0);
 
-    private final int prize;
+    private final String description;
+    private final long prize;
 
-    LottoPrize(final int prize) {
+    LottoPrize(final String description, final long prize) {
+        this.description = description;
         this.prize = prize;
     }
 
-    public int getPrize() {
-        return prize;
+    public String getDescription() {
+        return description;
     }
 
-    public static long calculateWinningPrize(final LottoPrize lottoPrize, final long count) {
-        return lottoPrize.getPrize() * count;
+    public long getPrize() {
+        return prize;
     }
 }

@@ -7,14 +7,23 @@ import java.util.regex.Pattern;
 
 public class NumberUtil {
 
-	private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
+	private static final Pattern BONUS_NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
+	private static final Pattern WINNING_NUMBERs_PATTERN = Pattern.compile("^[0-9,]*$");
 
-	public static boolean isNumeric(String number) {
+	public static boolean isNumericBonusNumber(String number) {
 		if (number == null) {
 			return false;
 		}
 
-		return NUMBER_PATTERN.matcher(number).matches();
+		return BONUS_NUMBER_PATTERN.matcher(number).matches();
+	}
+
+	public static boolean isNumericWinningNumbers(String numbers) {
+		if (numbers == null) {
+			return false;
+		}
+
+		return WINNING_NUMBERs_PATTERN.matcher(numbers).matches();
 	}
 
 	public static boolean isLottoNumberRange(int number) {

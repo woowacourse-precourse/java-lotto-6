@@ -10,7 +10,7 @@ class NumberUtilTest {
 	void isNumeric_true() {
 		String money = "1000";
 
-		boolean result = NumberUtil.isNumeric(money);
+		boolean result = NumberUtil.isNumericBonusNumber(money);
 
 		assertThat(result).isTrue();
 	}
@@ -19,7 +19,7 @@ class NumberUtilTest {
 	void isNumeric_false() {
 		String money = "천원";
 
-		boolean result = NumberUtil.isNumeric(money);
+		boolean result = NumberUtil.isNumericBonusNumber(money);
 
 		assertThat(result).isFalse();
 	}

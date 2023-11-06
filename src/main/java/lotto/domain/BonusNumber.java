@@ -25,7 +25,7 @@ public class BonusNumber {
 			throw new IllegalArgumentException(BLANK_BONUS_NUMBER.getMessage());
 		}
 
-		if (!NumberUtil.isNumeric(number)) {
+		if (!NumberUtil.isNumericBonusNumber(number)) {
 			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
 		}
 

@@ -26,7 +26,7 @@ public class PurchaseAmount {
 			throw new IllegalArgumentException(BLANK_PURCHASE_AMOUNT.getMessage());
 		}
 
-		if (!NumberUtil.isNumeric(amount)) {
+		if (!NumberUtil.isNumericBonusNumber(amount)) {
 			throw new IllegalArgumentException(NON_NUMERIC_PURCHASE_AMOUNT.getMessage());
 		}
 

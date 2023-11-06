@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import static lotto.config.ErrorMessage.BLANK_WINNING_NUMBERS;
+import static lotto.config.ErrorMessage.INVALID_WINNING_NUMBERS;
 
 import lotto.util.InputUtil;
+import lotto.util.NumberUtil;
 
 public class WinningNumbers {
 
@@ -21,6 +23,10 @@ public class WinningNumbers {
 	private void validate(String numbers) {
 		if (InputUtil.isBlankOrNull(numbers)) {
 			throw new IllegalArgumentException(BLANK_WINNING_NUMBERS.getMessage());
+		}
+
+		if (!NumberUtil.isNumericWinningNumbers(numbers)) {
+			throw new IllegalArgumentException(INVALID_WINNING_NUMBERS.getMessage());
 		}
 	}
 

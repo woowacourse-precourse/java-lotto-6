@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import lotto.config.LottoConfig;
+import lotto.exception.Errors;
+
 public class Quantity {
     private final int quantity;
 
     private Quantity(final int quantity) {
-        if (quantity < 0) {
-            throw new IllegalArgumentException("[ERROR] QUANTITY SHOULD BE MORE THAN 1");
+        if (quantity < 0 || quantity > LottoConfig.MAXIMUM_PURCHASE_LIMIT / LottoConfig.PRICE) {
+            throw Errors.INVALID_QUANTITY.getLottoException();
         }
         this.quantity = quantity;
     }

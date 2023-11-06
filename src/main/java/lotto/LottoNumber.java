@@ -23,4 +23,11 @@ public class LottoNumber {
     private boolean isOutOfRange(long number) {
         return number < NUMBER_LOW_BOUND || number > NUMBER_HIGH_BOUND;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        LottoNumber others = (LottoNumber) object;
+
+        return lottoNumber == others.lottoNumber;
+    }
 }

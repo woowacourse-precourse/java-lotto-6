@@ -27,7 +27,7 @@ public class Lotto {
         }
     }
 
-    private static void checkRangeOfLottoNumber(int number) {
+    public static void checkRangeOfLottoNumber(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_ERROR);
         }
@@ -44,6 +44,12 @@ public class Lotto {
 
     public List<Integer> sortNumbers(Lotto numbers) {
         return getNumbers(numbers).stream().sorted().collect(Collectors.toList());
+    }
+
+    public List<Integer> getLottoIncludeBonusNumber(Lotto lotto, int bonusNumber) {
+        List<Integer> lottoIncludeBonusNumber = getNumbers(lotto);
+        lottoIncludeBonusNumber.add(bonusNumber);
+        return lottoIncludeBonusNumber;
     }
 
 }

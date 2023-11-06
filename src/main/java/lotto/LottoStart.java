@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoStart {
@@ -46,7 +47,22 @@ public class LottoStart {
     }
 
     private static void secondGameProgress() {
-        System.out.print(LottoStart.MAKE_WINNING_NUMBER);
+        System.out.println(LottoStart.MAKE_WINNING_NUMBER);
+        System.out.println(LottoStart.MAKE_BONUS_NUMBER);
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(secondInputProgress(), secondInputProgress2());
+    }
+
+    public static List<Integer> secondInputProgress() {
+        String inputWinningNumbers = Console.readLine();
+        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.substring(1, inputWinningNumbers.length()-1).split(","))
+                .map(Integer::parseInt)
+                .toList();
+        return winningNumbers;
+    }
+
+    public static int secondInputProgress2() {
+        String inputBounsNumbers = Console.readLine();
+        return Integer.parseInt(inputBounsNumbers);
     }
 
     private static void thirdGameProgress() {

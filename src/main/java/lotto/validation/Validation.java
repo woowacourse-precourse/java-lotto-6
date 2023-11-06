@@ -4,7 +4,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lotto.utils.Utils;
+
 public class Validation {
+	
+	public static void validateInputFormat(String input) {
+		List<String> inputNumbers = Utils.splitString(input);
+		validateNaturalNumberList(inputNumbers);
+	}
 	
     public static void validateDistinctedNumbers(List<Integer> numbers) {
     	Set<Integer> DistinctedNumbers = new HashSet<Integer>(numbers);
@@ -42,13 +49,13 @@ public class Validation {
 		}
 	}
 	
-	public void validateDividablePaid(int price, int paid) {
+	public static void validateDividablePaid(int paid, int price) {
 		if ( paid < price || paid % price != 0) {
 			throw new IllegalArgumentException();
 		}
 	}
 	
-	public void validateBuyableAmount(int max, int paid) {
+	public static void validateBuyableAmount(int paid, int max) {
 		if ( max < paid ) {
 			throw new IllegalArgumentException();
 		}

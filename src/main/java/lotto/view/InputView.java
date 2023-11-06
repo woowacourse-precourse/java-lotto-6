@@ -19,9 +19,9 @@ public class InputView {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
-        validateWinningNumbersInput(input);
+        validateWinningNumbersInput(removeSpaces(input));
 
-        return toIntegers(split(input));
+        return toIntegers(split(removeSpaces(input)));
     }
 
     private static void validatePurchaseAmountInput(String input) {
@@ -77,5 +77,9 @@ public class InputView {
 
     private static boolean isNotSixIntegers(String[] numbers) {
         return numbers.length != 6;
+    }
+
+    private static String removeSpaces(String input) {
+        return input.replaceAll(" ", "");
     }
 }

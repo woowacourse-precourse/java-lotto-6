@@ -26,7 +26,7 @@ public class PurchaseAmountTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"2000", "3000", "15000"})
+    @ValueSource(strings = {"2000", "3000", "15000", "50000"})
     void 입력값이_1000원_단위면_정상작동(String userInput) {
         assertThatCode(() -> PurchaseAmount.from(userInput))
                 .doesNotThrowAnyException();

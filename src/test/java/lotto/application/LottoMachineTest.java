@@ -1,35 +1,38 @@
 package lotto.application;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.domain.LottoTicket;
 import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
     private final LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
 
     @Test
-    void 로또를_생성한다() {
+    void 개수만큼_로또를_자동으로_생성한다() {
         // when
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = lottoMachine.createLotto(numbers);
+        int quantity = 3;
+
+        // when
+        LottoTicket lottoTicket = lottoMachine.createLottoTicketByAuto(quantity);
 
         // then
-        assertNotNull(lotto); // TODO
+        assertThat(lottoTicket.count()).isEqualTo(quantity);
     }
 
     @Test
-    void 보너스_번호를_생성한다() {
+    void 로또를_생성한다() {
         // given
-        int bonus = 1;
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when
-        LottoNumber bonusNumber = lottoMachine.createLottoNumber(bonus);
+        Lotto lotto = lottoMachine.createLotto(numbers);
 
         // then
-        assertNotNull(bonusNumber); // TODO
+        assertThat(lotto.numbers()).hasSize(numbers.size());
     }
 
     @Test
@@ -41,6 +44,18 @@ class LottoMachineTest {
         Lotto lotto = lottoMachine.createLotto(numbers);
 
         // then
-        assertNotNull(lotto); // TODO
+        assertThat(lotto.numbers()).isSorted();
+    }
+
+    @Test
+    void 로또_번호를_생성한다() {
+        // given
+        int number = 1;
+
+        // when
+        LottoNumber lottoNumber = lottoMachine.createLottoNumber(number);
+
+        // then
+        assertThat(lottoNumber.toString()).isEqualTo("1");
     }
 }

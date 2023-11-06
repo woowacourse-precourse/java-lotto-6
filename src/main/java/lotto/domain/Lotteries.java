@@ -31,11 +31,11 @@ public class Lotteries {
                 .toList();
     }
 
-    public LottoMatchingResults generateGameResult(WinningLotto winningLotto) {
-        List<LottoMatchingResult> results = lotteries.stream()
-                .map(lotto -> LottoMatchingResult.of(lotto, winningLotto))
+    public MatchingResults generateGameResult(WinningLotto winningLotto) {
+        List<MatchingResult> results = lotteries.stream()
+                .map(lotto -> MatchingResult.of(lotto, winningLotto))
                 .toList();
 
-        return LottoMatchingResults.from(results);
+        return MatchingResults.from(results);
     }
 }

@@ -19,7 +19,7 @@ import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
 
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
-import lotto.domain.LottoMatchingResult;
+import lotto.domain.MatchingResult;
 import lotto.exception.LottoGameException;
 
 public enum WinningGrade {
@@ -44,7 +44,7 @@ public enum WinningGrade {
         this.price = price;
     }
 
-    public static WinningGrade receiveLottoRank(LottoMatchingResult lottoMatchingResult) {
+    public static WinningGrade receiveLottoRank(MatchingResult lottoMatchingResult) {
         return Arrays.stream(WinningGrade.values())
                 .filter(grade -> lottoMatchingResult.isSameMatchingCount(grade.matchingCount))
                 .filter(grade -> lottoMatchingResult.isBonusMatching(grade.matchingBonus))

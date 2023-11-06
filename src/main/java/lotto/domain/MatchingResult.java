@@ -3,19 +3,19 @@ package lotto.domain;
 import java.util.function.UnaryOperator;
 import lotto.domain.constants.MatchingCount;
 
-public class LottoMatchingResult {
+public class MatchingResult {
 
     private final MatchingCount matchingCount;
     private final boolean bonusMatching;
 
-    private LottoMatchingResult(Lotto lotto, WinningLotto winningLotto) {
+    private MatchingResult(Lotto lotto, WinningLotto winningLotto) {
         long count = winningLotto.countMatchingNumbers(lotto);
         this.matchingCount = MatchingCount.from(count);
         this.bonusMatching = winningLotto.containsBonusNumber(lotto);
     }
 
-    public static LottoMatchingResult of(Lotto lotto, WinningLotto winningLotto) {
-        return new LottoMatchingResult(lotto, winningLotto);
+    public static MatchingResult of(Lotto lotto, WinningLotto winningLotto) {
+        return new MatchingResult(lotto, winningLotto);
     }
 
     public boolean isBonusMatching(UnaryOperator<Boolean> matchingBonus) {

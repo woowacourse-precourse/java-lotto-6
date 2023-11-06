@@ -3,16 +3,16 @@ package lotto.domain;
 import java.util.List;
 import lotto.domain.constants.WinningGrade;
 
-public class LottoMatchingResults {
+public class MatchingResults {
 
-    private final List<LottoMatchingResult> results;
+    private final List<MatchingResult> results;
 
-    private LottoMatchingResults(List<LottoMatchingResult> results) {
+    private MatchingResults(List<MatchingResult> results) {
         this.results = results;
     }
 
-    public static LottoMatchingResults from(List<LottoMatchingResult> results) {
-        return new LottoMatchingResults(results);
+    public static MatchingResults from(List<MatchingResult> results) {
+        return new MatchingResults(results);
     }
 
     public List<WinningGrade> receiveLottoRanks() {

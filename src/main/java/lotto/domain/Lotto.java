@@ -26,7 +26,7 @@ public class Lotto {
                 .filter(winningNumbers::contains)
                 .count();
     }
-    
+
     public List<Integer> getCurrentNumbers() {
         return Collections.unmodifiableList(numbers);
     }
@@ -35,5 +35,8 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -9,29 +9,29 @@ import java.util.stream.Stream;
 
 public class LottoShop {
 
-    private static final int DENOMINATION = 1000;
 
     private LottoShop() {
     }
 
     public static Lottos buyLottos(long amount) {
-        validateMultipleOfDenomination(amount);
+        validateTicketPurchase(amount);
         return new Lottos(createLottos(amount));
     }
 
     private static List<Lotto> createLottos(long amount) {
         return Stream.generate(LottoFactory::createLotto)
-                .limit(amount / DENOMINATION)
+                .limit(amount / LottoRule.STANDARD.getTicketPrice())
                 .toList();
     }
 
-    /**
-     * 표준 예외 처리하기
-     */
-    private static void validateMultipleOfDenomination(long amount) {
-        if (amount % DENOMINATION != 0) {
+    private static void validateTicketPurchase(long amount) {
+        if (isPurchaseTicketPossible(amount)) {
             throw new IllegalStateException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
+    }
+
+    private static boolean isPurchaseTicketPossible(long amount) {
+        return amount % LottoRule.STANDARD.getTicketPrice() != 0;
     }
 
 }

@@ -1,14 +1,11 @@
 package lotto.view.input.validator;
 
 import lotto.message.ErrorMessage;
+import lotto.util.LottoRule;
 
 import java.util.*;
 
 public class LottoNumberInputValidator {
-
-    private static final int START_LOTTO_NUMBER = 1;
-    private static final int END_LOTTO_NUMBER = 45;
-    private static final int LOTTO_LIMIT_VALUE = 6;
 
     public int parseInt(String requestNumber) {
         int number;
@@ -33,11 +30,11 @@ public class LottoNumberInputValidator {
     }
 
     private boolean isLottoNumberRange(int number) {
-        return number < START_LOTTO_NUMBER || number > END_LOTTO_NUMBER;
+        return number < LottoRule.STANDARD.getStartNumber() || number > LottoRule.STANDARD.getLastNumber();
     }
 
     public void validateLottoSize(List<Integer> lotto) {
-        if (LOTTO_LIMIT_VALUE != lotto.size()) {
+        if (LottoRule.STANDARD.getLottoSize() != lotto.size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }

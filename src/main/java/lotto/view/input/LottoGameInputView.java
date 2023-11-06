@@ -30,7 +30,7 @@ public class LottoGameInputView implements ConsoleInput {
 
     private void validateAmount(long amount) {
         gameInfoValidator.validatePositiveNumber(amount);
-        gameInfoValidator.validateMultipleOfDenomination(amount);
+        gameInfoValidator.validateTicketPurchase(amount);
     }
 
     private void printRequestLottoPurchaseAmount() {

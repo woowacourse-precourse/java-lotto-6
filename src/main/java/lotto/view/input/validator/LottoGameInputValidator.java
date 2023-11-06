@@ -1,10 +1,9 @@
 package lotto.view.input.validator;
 
 import lotto.message.ErrorMessage;
+import lotto.util.LottoRule;
 
 public class LottoGameInputValidator {
-
-    private static final int DENOMINATION = 1000;
 
     public long parseLong(String requestNumber) {
         long number;
@@ -22,9 +21,13 @@ public class LottoGameInputValidator {
         }
     }
 
-    public void validateMultipleOfDenomination(long amount) {
-        if (amount % DENOMINATION != 0) {
+    public void validateTicketPurchase(long amount) {
+        if (isPurchaseTicketPossible(amount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
         }
+    }
+
+    private static boolean isPurchaseTicketPossible(long amount) {
+        return amount % LottoRule.STANDARD.getTicketPrice() != 0;
     }
 }

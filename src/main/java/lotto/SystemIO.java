@@ -17,11 +17,10 @@ public class SystemIO {
     }
 
     public static void showTickets(Map<Long,List<Integer>> tickets) {
-        System.out.println("8개를 구매했습니다.");
+        System.out.println(tickets.size() + "개를 구매했습니다.");
         for (List<Integer> ticket : tickets.values()) {
             System.out.println(ticket);
         }
-
     }
     public static void showResult() {
     }

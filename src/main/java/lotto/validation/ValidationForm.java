@@ -3,35 +3,38 @@ package lotto.validation;
 import lotto.property.ValidationProperty;
 
 import static lotto.property.ValidationProperty.*;
+import static lotto.validation.validator.CostValidator.costFormatIsCorrect;
+import static lotto.validation.validator.CostValidator.costIsStandardUnder;
 import static lotto.validation.validator.WinningValidator.*;
-import static lotto.validation.validator.CostValidator.*;
 
 
 public class ValidationForm {
 
-    public static void verifyFormatForInputValue(ValidationProperty validatorType,String inputValue){
-        if (validatorType.equals(WINNING)){
+    public static void verifyFormatForInputValue(ValidationProperty validatorType, String inputValue) {
+        if (validatorType.equals(WINNING)) {
             verifyForWinningNumber(inputValue);
         }
-        if (validatorType.equals(WINNINGS)){
+        if (validatorType.equals(WINNINGS)) {
             verifyForWinningNumbers(inputValue);
         }
-        if (validatorType.equals(COST)){
+        if (validatorType.equals(COST)) {
             verifyForPurchaseCost(inputValue);
         }
     }
 
-    static void verifyForWinningNumbers(String winningNumbers){
+    static void verifyForWinningNumbers(String winningNumbers) {
         winningsFormatIsCorrect(winningNumbers);
         winningsCountIsOverOrUnder(winningNumbers);
     }
-    static void verifyForWinningNumber(String winningNumber){
+
+    static void verifyForWinningNumber(String winningNumber) {
         valueIsEmpty(winningNumber);
         valueContainsSpace(winningNumber);
         valueIsNumeric(winningNumber);
-        winningIsCorrectRange(winningNumber);
+        valueIsCorrectRange(winningNumber);
     }
-    static void verifyForPurchaseCost(String purchaseCost){
+
+    static void verifyForPurchaseCost(String purchaseCost) {
         valueIsEmpty(purchaseCost);
         valueContainsSpace(purchaseCost);
         valueIsNumeric(purchaseCost);

@@ -16,16 +16,16 @@ public class Winning{
     private final List<Integer> winningNumbers;
 
     public Winning (String inputWinningNumbers){
-        this.winningNumbers = winningNumbersConvertToList(inputWinningNumbers);
+        this.winningNumbers = winningNumbersParsingForFieldValue(inputWinningNumbers);
     }
 
-    private List<Integer> winningNumbersConvertToList(String inputWinningNumbers){
+    private List<Integer> winningNumbersParsingForFieldValue(String inputWinningNumbers){
         List<String> winningNumberList = Arrays.asList(inputWinningNumbers.split(DELIMITER));
         validate(inputWinningNumbers, winningNumberList);
         List<Integer> winningNumbers = new ArrayList<>(winningNumberList.stream().map(Integer::parseInt).toList());
         return winningNumbers;
     }
-    static void validate(String winningNumbers, List<String> winningNumberList){
+    private void validate(String winningNumbers, List<String> winningNumberList){
         verifyFormatForInputValue(WINNINGS,winningNumbers);
         winningNumberList.forEach(number->verifyFormatForInputValue(WINNING,number));
     }

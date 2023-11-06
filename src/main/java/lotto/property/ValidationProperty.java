@@ -1,5 +1,5 @@
 package lotto.property;
 
 public enum ValidationProperty {
-    WINNING, WINNINGS, COST
+    WINNING, WINNINGS, COST, BONUS
 }

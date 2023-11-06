@@ -29,6 +29,6 @@ public class Lotto {
     private void validateUniqueNumbers(List<Integer> numbers) {
     	Set<Integer> uniqueNumbers = new HashSet<>();
     	for(int number : numbers) uniqueNumbers.add(number);
-    	if(uniqueNumbers.size()<6) throw new IllegalArgumentException();
+    	if(uniqueNumbers.size()<6) throw new IllegalArgumentException("[ERROR] 6개의 숫자중에서 중복이 있습니다.");
     }
 }

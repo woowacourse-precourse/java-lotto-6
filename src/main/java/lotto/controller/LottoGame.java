@@ -89,7 +89,13 @@ public class LottoGame {
 
     private void determineAllLottoScore() {
         for (Lotto lotto : userLotteries) {
-            resultService.deterMineScore(lotto);
+            try {
+                resultService.deterMineScore(lotto);
+            } catch (NullPointerException e) {
+                ErrorMessageViewer.printNoFirstRankNumbers();
+            } catch (IllegalArgumentException e) {
+                ErrorMessageViewer.printNoBonusNumber();
+            }
         }
     }
 

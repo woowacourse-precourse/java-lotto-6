@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.domain.lotto.LottoErrorMessage.DUPLICATION_ERROR;
+import static lotto.domain.lotto.LottoErrorMessage.SIZE_ERROR;
 import static lotto.domain.lotto.LottoNumberConfig.NUMBER_COUNT;
 
 import java.util.List;
@@ -14,10 +16,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if(validateSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException(SIZE_ERROR.getMessage());
         }
         if(validateDuplication(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+            throw new IllegalArgumentException(DUPLICATION_ERROR.getMessage());
         }
     }
 

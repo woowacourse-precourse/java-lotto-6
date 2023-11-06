@@ -7,6 +7,7 @@ public class Money {
     private static final int THOUSAND = 1000;
 
     public Money(int money) {
+        validate(money);
         this.money = money;
     }
 
@@ -25,5 +26,9 @@ public class Money {
         if (inputValue % THOUSAND != ZERO) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getTicket() {
+        return money / 1000;
     }
 }

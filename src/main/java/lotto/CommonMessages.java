@@ -26,9 +26,16 @@ public enum CommonMessages {
 
     public String getMessage(double profit) {
 
+        String profitResult;
+
+        if (profit == 0 ) {
+            profitResult = "0.0";
+            return this.message + profitResult + "%입니다.";
+        }
+
         DecimalFormat df = new DecimalFormat("###,###.0");
         double resultProfit = Math.round(profit*100.0*100.0) / 100.0;
-        String profitResult = df.format(resultProfit);
+        profitResult = df.format(resultProfit);
         return this.message + profitResult + "%입니다.";
     }
 }

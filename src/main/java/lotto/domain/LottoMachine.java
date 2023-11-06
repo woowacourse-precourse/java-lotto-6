@@ -26,4 +26,14 @@ public class LottoMachine {
     private static Lotto makeLottoNum() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
+
+    public List<LottoValue> judgeWinningLotto(Client client) {
+        List<LottoValue> lottoValues = new ArrayList<>();
+        for (Lotto lotto: this.lottos){
+            if(lotto.match(client.getLotto(), client.getBonusNum()) != null){
+                lottoValues.add(lotto.match(client.getLotto(), client.getBonusNum()));
+            }
+        }
+        return lottoValues;
+    }
 }

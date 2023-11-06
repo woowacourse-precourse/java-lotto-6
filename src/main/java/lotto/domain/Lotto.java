@@ -35,4 +35,17 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
+    public LottoValue match(Lotto winningLotto, int bonusNum) {
+        int count = 0;
+        for (Integer number : this.numbers) {
+            if (winningLotto.getNumbers().contains(number)) {
+                count++;
+            }
+        }
+        if (count == 5 && this.numbers.contains(bonusNum)) {
+            return LottoValue.FIVE_BONUS;
+        }
+        return LottoValue.getLottoValue(count);
+    }
 }

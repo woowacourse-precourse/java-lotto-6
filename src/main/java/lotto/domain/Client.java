@@ -17,6 +17,10 @@ public class Client {
         this.lotto = getCilentLotto();
     }
 
+    public int getBonusNum() {
+        return this.bonusNum;
+    }
+
     public void setBonusNum() {
         System.out.println("보너스 번호를 입력해주세요.");
         String tmp;
@@ -82,6 +86,4 @@ public class Client {
             throw new IllegalArgumentException();
         }
     }
-
-
 }

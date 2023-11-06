@@ -2,6 +2,7 @@ package lotto.domain.calculator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class WinCalculator {
     private static List<Integer> winningNumber;
@@ -12,13 +13,17 @@ public class WinCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> calculate(List<Integer> purchaseNumber) {
+    public Map<String, Integer> calculate(List<Integer> purchaseNumber) {
         int count = winningNumberCounter(purchaseNumber);
-        int IsMatchedBonusNumber = 0; // false
+        int isMatchedBonusNumber = 0; // false
         if(count == 5) {
-            IsMatchedBonusNumber = bonusNumberCounter(purchaseNumber);
+            isMatchedBonusNumber = bonusNumberCounter(purchaseNumber);
         }
-        return Arrays.asList(count, IsMatchedBonusNumber);
+        Map<String, Integer> result = Map.of(
+                "matchedNumberCount", count,
+                "isMatchedBonusNumber", isMatchedBonusNumber
+        );
+        return result;
     }
 
     private static Integer winningNumberCounter(List<Integer> purchaseNumber) {

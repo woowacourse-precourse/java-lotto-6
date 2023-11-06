@@ -12,7 +12,9 @@ public class WonRecord {
     private static int fifthPrizeCount = 0;
 
 
-    public void recorder(int count, int bonus) {
+    public void recorder(Map<String, Integer> result) {
+        int count = result.get("matchedNumberCount");
+        int bonus = result.get("isMatchedBonusNumber");
         if(count == 3) {
             fifthPrizeCount++;
         }

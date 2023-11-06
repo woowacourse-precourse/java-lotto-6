@@ -66,9 +66,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"0.1", "1번", "자동", "-0.9"})
     void createWinningNumberByNonInteger(String number) {
-        WinningNumber winningNumber = new WinningNumber();
-
-        assertThatThrownBy(() -> winningNumber.setWinningNumber(number))
+        assertThatThrownBy(() -> new WinningNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
@@ -76,9 +74,7 @@ class LottoTest {
     @DisplayName("로또 번호가 6개가 아닐 경우 예외가 발생한다.")
     @Test
     void createWinningNumberBySevenNumber() {
-        WinningNumber winningNumber = new WinningNumber();
-
-        assertThatThrownBy(() -> winningNumber.setWinningNumber("1,2,3,4,5,6,7"))
+        assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 6개를 입력하셔야 합니다.");
     }
@@ -86,9 +82,7 @@ class LottoTest {
     @DisplayName("로또 번호가 1부터 45 사이의 숫자가 아닐 경우 예외가 발생한다.")
     @Test
     void createWinningNumberByOutOfRange() {
-        WinningNumber winningNumber = new WinningNumber();
-
-        assertThatThrownBy(() -> winningNumber.setWinningNumber("0,1,2,3,4,5"))
+        assertThatThrownBy(() -> new WinningNumber("0,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
@@ -96,11 +90,9 @@ class LottoTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.")
     @Test
     void createBonusNumberByMatchingWinningNumber() {
-        WinningNumber winningNumber = new WinningNumber();
-        winningNumber.setWinningNumber("1,2,3,4,5,6");
-        BonusNumber bonusNumber = new BonusNumber(winningNumber.getWinningNumber());
+        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
 
-        assertThatThrownBy(() -> bonusNumber.setBonusNumber("3"))
+        assertThatThrownBy(() -> new BonusNumber(winningNumber.getWinningNumber(), "3"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
@@ -114,7 +106,7 @@ class LottoTest {
         WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
 
-        winCalculator.calculate(purchaseNumber);
+        wonRecord.recorder(winCalculator.calculate(purchaseNumber));
 
         assertThat(wonRecord.getFirstPrizeCount()).isEqualTo(1);
     }
@@ -128,7 +120,7 @@ class LottoTest {
         WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
 
-        winCalculator.calculate(purchaseNumber);
+        wonRecord.recorder(winCalculator.calculate(purchaseNumber));
 
         assertThat(wonRecord.getSecondPrizeCount()).isEqualTo(1);
     }
@@ -142,7 +134,7 @@ class LottoTest {
         WinCalculator winCalculator = new WinCalculator(winningNumber, bonusNumber);
         WonRecord wonRecord = new WonRecord();
 
-        winCalculator.calculate(purchaseNumber);
+        wonRecord.recorder(winCalculator.calculate(purchaseNumber));
 
         assertThat(wonRecord.getThirdPrizeCount()).isEqualTo(1);
     }

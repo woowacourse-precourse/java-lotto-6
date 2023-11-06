@@ -92,8 +92,8 @@ public class Controller {
         return wonRecord.getAllPrizeCount();
     }
 
-    private void wonRecordManager(WonRecord wonRecord, List<Integer> winningStatus) {
-        wonRecord.recorder(winningStatus.get(0), winningStatus.get(1)); // status를 map으로 바꾸면 가독성 높아질 듯.
+    private void wonRecordManager(WonRecord wonRecord, Map<String, Integer> result) {
+        wonRecord.recorder(result);
     }
 
     private void rateOfReturnManager(int purchase, Map<String, Integer> allPrizeCount) {

@@ -29,4 +29,19 @@ public class LottoNumberTest {
         // Then
         assertTrue(result.isSameAmount(5));
     }
+
+    @Test
+    public void 로또번호_앞뒤의_공백제거() {
+        // Given
+        String input = " 45 ";
+
+        // When
+        LottoNumber result = LottoNumber.create(input);
+
+        // Then
+        assertTrue(result.isSameAmount(45));
+    }
+
+
+
 }

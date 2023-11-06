@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
-import static lotto.NumberConverter.convertNumberToLottoNumber;
+import static lotto.domain.NumberConverter.convertNumberToLottoNumber;
 
 public class Lotto {
     public static final int MAX_NUMBER_OF_NUMBERS = 6;

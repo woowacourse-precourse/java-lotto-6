@@ -1,6 +1,6 @@
 package lotto.common;
 
-public class LottoFinalConsts {
+public interface LottoFinalConsts {
     public final String LOTTO_FIRST = "6";
     public final String LOTTO_SECOND = "5+1";
     public final String LOTTO_THIRD = "5";

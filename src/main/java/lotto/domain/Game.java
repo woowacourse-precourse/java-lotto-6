@@ -2,15 +2,36 @@ package lotto.domain;
 
 import static common.ErrorCode.NOT_NUMBER_STRING;
 import static lotto.view.InputView.inputLottoPurchaseAmount;
+import static lotto.view.InputView.inputWinningNumbers;
 
 import common.exception.InvalidArgumentException;
+import java.util.List;
 
 public class Game {
 
     private final LottoPurchaseAmount amount;
+    private final WinningNumbers winningNumbers;
 
     public Game() {
         this.amount = createAmount();
+        this.winningNumbers = createWinningNumbers();
+    }
+
+    private WinningNumbers createWinningNumbers() {
+        try {
+            return createWinningNumbersFromUser();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningNumbers();
+        }
+    }
+
+    private WinningNumbers createWinningNumbersFromUser() {
+        List<String> numbers = inputWinningNumbers();
+        List<Integer> winningNumbers = numbers.stream()
+                .map(this::parseInt)
+                .toList();
+        return new WinningNumbers(winningNumbers);
     }
 
     private LottoPurchaseAmount createAmount() {

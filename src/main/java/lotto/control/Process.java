@@ -66,6 +66,6 @@ public class Process {
     }
 
     public StringBuilder showRateResult() {
-        return user.calculateTotalRate();
+        return user.giveRateResult();
     }
 }

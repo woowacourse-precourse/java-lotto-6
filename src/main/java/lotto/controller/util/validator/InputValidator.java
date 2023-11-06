@@ -18,15 +18,15 @@ public class InputValidator {
         }
     }
 
-    public void validateWinningNumbers(List<Integer> drawNumbers) {
-        isWinningNumberLengthCorrect(drawNumbers);
+    public void validateDrawNumbers(List<Integer> drawNumbers) {
+        isDrawNumberLengthCorrect(drawNumbers);
 
         isDuplicated(drawNumbers);
 
         drawNumbers.forEach(this::isNumberInRange);
     }
 
-    private void isWinningNumberLengthCorrect(List<Integer> numbers) {
+    private void isDrawNumberLengthCorrect(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_LOTTO_NUMBER_LENGTH);
         }

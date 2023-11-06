@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.controller.util.handler.InputHandler;
 import lotto.controller.util.parser.InputParser;
 import lotto.controller.util.validator.InputValidator;
 import lotto.model.service.LottoChecker;
@@ -18,14 +19,13 @@ public class Application {
         LottoService lottoService = new LottoService(lottoGenerator, lottoChecker);
 
         InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-
         InputParser inputParser = new InputParser();
         InputValidator inputValidator = new InputValidator();
+        OutputView outputView = new OutputView();
+        InputHandler inputHandler = new InputHandler(inputView, outputView,
+                inputParser, inputValidator);
 
-        LottoController lottoController = new LottoController(lottoService, inputView, outputView, inputParser,
-                inputValidator);
-
+        LottoController lottoController = new LottoController(lottoService, inputHandler, outputView);
         lottoController.startLotto();
     }
 }

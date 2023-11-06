@@ -1,10 +1,10 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
+import lotto.domain.Lotto;
 
 public class LottoGenerator {
-    public List<Integer> generate(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public Lotto generate(){
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }

@@ -90,3 +90,5 @@
 - [ ] InputUtil 객체
 - [x] RandomUtil 객체
 - [x] PlayerLotto 객체
+- [x] LottoResult 객체
+- [x] WinningLotto 객체

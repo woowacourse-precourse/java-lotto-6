@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constants.Notice.PROFIT_RATE;
 import static lotto.constants.Notice.PURCHASE_RESULT;
 import static lotto.constants.Notice.WINNER_RESULT;
 import static lotto.constants.Rank.FIFTH;
@@ -34,7 +35,7 @@ public class OutputView {
         System.out.println(THIRD.getMessage() + countThird() + UNIT);
         System.out.println(SECOND.getMessage() + countSecond() + UNIT);
         System.out.println(FIRST.getMessage() + countFirst() + UNIT);
-        System.out.println("총 수익률은 " + calculateProfitRate(purchaseAmount) + "%입니다.");
+        System.out.printf(PROFIT_RATE.getMessage(), calculateProfitRate(purchaseAmount));
     }
 
     private static int calculateProfit() {

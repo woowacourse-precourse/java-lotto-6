@@ -5,7 +5,8 @@ public enum Notice {
     PURCHASE_RESULT("개를 구매했습니다."),
     ASK_WINNER_NUMBERS("당첨 번호를 입력해 주세요."),
     ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-    WINNER_RESULT("당첨 통계\n---");
+    WINNER_RESULT("당첨 통계\n---"),
+    PROFIT_RATE("총 수익률은 %.1f%%입니다.");
     private final String message;
 
     Notice(String message) {

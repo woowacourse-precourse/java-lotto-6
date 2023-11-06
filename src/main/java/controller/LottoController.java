@@ -5,7 +5,6 @@ import View.OuputView;
 import domain.Lottos;
 import service.MakeObjectService;
 import service.UserInputService;
-import service.ValidationService;
 
 public class LottoController {
 
@@ -14,7 +13,7 @@ public class LottoController {
     public void run() {
         //buyLotto
         InputView.buyMessage();
-        lottos = MakeObjectService.lottos(ValidationService.amount(UserInputService.run()));
+        lottos = MakeObjectService.lottos(UserInputService.amount());
         OuputView.buyMessage(lottos);
 
         //createLotto
@@ -24,3 +23,5 @@ public class LottoController {
     }
 
 }
+
+

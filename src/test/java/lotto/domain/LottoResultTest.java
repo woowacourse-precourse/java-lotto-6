@@ -31,7 +31,7 @@ public class LottoResultTest {
 
         // when
         LottoResult lottoResult = new LottoResult(
-                new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
+                new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
 
         // then
@@ -44,7 +44,7 @@ public class LottoResultTest {
     public void correspondFourNumber() {
         // given
         Lotto issuedlotto = new Lotto(Arrays.asList(3, 4, 5, 6, 10, 11));
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
+        LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
@@ -59,7 +59,7 @@ public class LottoResultTest {
     public void correspondFiveNumber() {
         // given
         Lotto issuedlotto = new Lotto(Arrays.asList(2, 3, 4, 5, 6, 11));
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
+        LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
@@ -74,7 +74,7 @@ public class LottoResultTest {
     public void correspondSixNumber() {
         // given
         Lotto issuedlotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus), Arrays.asList(issuedlotto));
+        LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
         Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
@@ -98,7 +98,7 @@ public class LottoResultTest {
         Lotto issuedLotto8 = new Lotto(Arrays.asList(1, 3, 5, 14, 22, 45));
 
         // when
-        LottoResult lottoResult = new LottoResult(new WinningNumber(winningLotto, bonus),
+        LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus),
                 Arrays.asList(issuedLotto1, issuedLotto2, issuedLotto3, issuedLotto4,
                         issuedLotto5, issuedLotto6, issuedLotto7, issuedLotto8));
         Float price = lottoResult.returnCalculation();

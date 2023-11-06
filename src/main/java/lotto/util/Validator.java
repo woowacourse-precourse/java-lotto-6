@@ -13,7 +13,7 @@ import static lotto.util.ErrorMessage.INPUT_NOT_THOUSAND_UNIT;
 import static lotto.util.ErrorMessage.INPUT_OUT_OF_SIZE;
 
 import java.util.Arrays;
-import lotto.domain.Lotto;
+import java.util.List;
 
 public class Validator {
 
@@ -75,15 +75,15 @@ public class Validator {
         }
     }
 
-    public void validateBonusNumber(Lotto lotto, String number) {
+    public void validateBonusNumber(List<Integer> lotto, String number) {
         validateNumber(number);
         validateNumberSize(number);
         validateNumberInRange(Integer.parseInt(number));
         validateBonusDuplicate(lotto, Integer.parseInt(number));
     }
 
-    private void validateBonusDuplicate(Lotto lotto, int number) {
-        if (lotto.getNumbers().contains(number)) {
+    private void validateBonusDuplicate(List<Integer> lotto, int number) {
+        if (lotto.contains(number)) {
             throw new IllegalArgumentException(INPUT_BONUS_DUPLICATE.getMessage());
         }
     }

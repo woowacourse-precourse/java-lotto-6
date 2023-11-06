@@ -10,7 +10,7 @@ import static lotto.util.ErrorMessage.INPUT_OUT_OF_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
-import lotto.domain.Lotto;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -111,7 +111,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"ㅇ", "1s", " "})
     public void inputBonusNotNumberException(String bonusNumber) {
         // given
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> lotto = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // when & then
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, bonusNumber))
@@ -124,7 +124,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"0", "46", "100"})
     public void inputBonusNotInRangeException(String bonusNumber) {
         // given
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> lotto = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // when & then
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, bonusNumber))
@@ -137,7 +137,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"1", "2", "6"})
     public void inputBonusDuplicateException(String bonusNumber) {
         // given
-        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> lotto = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // when & then
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, bonusNumber))

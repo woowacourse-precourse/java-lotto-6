@@ -17,7 +17,7 @@ public class ListUtilsTest {
         ListUtils listUtils = new ListUtils();
 
         // when
-        List<Integer> lotto = listUtils.stringToIntegerList(inputLotto);
+        List<Integer> lotto = listUtils.stringToIntegerSortedList(inputLotto);
 
         // then
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);

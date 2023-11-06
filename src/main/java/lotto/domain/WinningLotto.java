@@ -1,4 +1,4 @@
 package lotto.domain;
 
-public record WinningNumber(Lotto lotto, Bonus bonus) {
+public record WinningLotto(Lotto lotto, Bonus bonus) {
 }

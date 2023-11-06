@@ -9,13 +9,15 @@ import java.util.Map;
 
 public class LottoResult {
     private static final int PERCENTAGE = 100;
+    private static final int DEFAULT = 0;
+    private static final int INCREASE = 1;
 
     private final Map<WinningPrize, Integer> result = new HashMap<>();
-    private int tryCount = 0;
+    private int tryCount = DEFAULT;
 
     {
         for (WinningPrize prize : WinningPrize.values()) {
-            result.put(prize, 0);
+            result.put(prize, DEFAULT);
         }
     }
 
@@ -24,7 +26,7 @@ public class LottoResult {
         if (prize == null) {
             return;
         }
-        result.put(prize, result.get(prize) + 1);
+        result.put(prize, result.get(prize) + INCREASE);
     }
 
     public int getEachResult(WinningPrize prize) {
@@ -35,7 +37,7 @@ public class LottoResult {
         float investment = tryCount * LottoConfig.PRICE.value();
         float profit = Arrays.stream(WinningPrize.values())
                 .map(it -> it.prize() * getEachResult(it))
-                .reduce(0, Integer::sum);
+                .reduce(DEFAULT, Integer::sum);
         return  (profit / investment) * PERCENTAGE;
     }
 }

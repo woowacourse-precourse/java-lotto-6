@@ -31,6 +31,10 @@ public class Communicator {
         return getStringWithPrompt("당첨 번호를 입력해주세요.");
     }
 
+    public String instructBonusNumber() {
+        return getStringWithPrompt("보너스 번호를 입력해 주세요.");
+    }
+
     public void printException(RuntimeException exception) {
         printer.print(exception.getMessage());
     }

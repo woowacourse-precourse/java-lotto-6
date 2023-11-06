@@ -88,6 +88,19 @@ class CommunicatorTest {
         assertThat(output()).contains("당첨 번호를 입력해주세요.");
     }
 
+    @Test
+    @DisplayName("보너스 번호 입력 문구를 출력한다.")
+    void test_InstructBonusNumber() {
+        //given
+        setIn(" ");
+
+        //when
+        communicator.instructBonusNumber();
+
+        //then
+        assertThat(output()).contains("보너스 번호를 입력해 주세요.");
+    }
+
     static Stream<Arguments> stringAndStringProvider() {
         return Stream.of(
                 Arguments.of("", "입력 금액이 비어 있습니다."),

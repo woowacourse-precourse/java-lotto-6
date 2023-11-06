@@ -6,7 +6,7 @@ public class Validator {
         try{
             Integer.parseInt(inputMessage);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.REQUEST_INTEGER_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_MESSAGE.getMessage());
         }
         return true;
     }

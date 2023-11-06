@@ -1,10 +1,7 @@
 package lotto.domain;
 
-import static lotto.etc.ErrorConstant.LOW_THOUSAND_ERROR;
-import static lotto.etc.ErrorConstant.NOT_DIVIDE_THOUSAND_ERROR;
-import static lotto.etc.RuleConstant.COUNT;
-import static lotto.etc.RuleConstant.END_INCLUSIVE;
-import static lotto.etc.RuleConstant.START_INCLUSIVE;
+import static lotto.etc.ErrorConstant.*;
+import static lotto.etc.RuleConstant.*;
 import static lotto.etc.SystemConstant.THREE_ZERO;
 import static lotto.etc.Validate.validateNumber;
 
@@ -50,7 +47,7 @@ public class Lottos {
         }
 
         String lastThreeChars = time.substring(time.length() - 3);
-        if (!lastThreeChars.equals(THREE_ZERO)) {
+        if (!lastThreeChars.equals(THREE_ZERO.toString())) {
             System.out.println(NOT_DIVIDE_THOUSAND_ERROR);
             throw new IllegalArgumentException();
         }

@@ -2,8 +2,6 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.wrapper.BonusNumber;
-import lotto.domain.wrapper.LottoNumber;
-import lotto.utils.ErrorMessage;
 import lotto.utils.Prize;
 
 public class PrizeChecker {
@@ -17,7 +15,10 @@ public class PrizeChecker {
 
     public Prize calculatePrize(Lotto lotto) {
         int sameCount = lotto.getSameCount(winningLotto);
-        boolean hasBonusNumber = lotto.doesHaveLottoNumber(bonusNumber);
-        return Prize.getPrizeRank(sameCount, hasBonusNumber);
+        if (Prize.canGetPrize(sameCount)) {
+            boolean hasBonusNumber = lotto.doesHaveLottoNumber(bonusNumber);
+            return Prize.getPrize(sameCount, hasBonusNumber);
+        }
+        return Prize.NO_PRIZE;
     }
 }

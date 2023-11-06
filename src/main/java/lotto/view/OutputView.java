@@ -16,13 +16,9 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printLottoCount(int count) {
-        String message = String.format(PURCHASE_COUNT_RESULT, count);
-
-        System.out.println(message);
-    }
-
     public void printLottoNumbers(List<Lotto> tickets) {
+        String message = String.format(PURCHASE_COUNT_RESULT, tickets.size());
+        System.out.println(message);
         for (Lotto ticket : tickets) {
             System.out.println(ticket.getNumbers());
         }

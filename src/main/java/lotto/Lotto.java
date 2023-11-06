@@ -1,8 +1,8 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import static lotto.ErrorMessage.*;
 import static lotto.LottoConstants.*;
@@ -36,8 +36,7 @@ public class Lotto {
                 .filter(number -> contains(number))
                 .count();
         boolean contains = contains(bonus);
-
-        return Grade.draw(count, contains);
+        return Grade.get(count, contains);
     }
 
     @Override

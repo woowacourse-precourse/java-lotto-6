@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.Arrays;
+import java.util.Optional;
 
 public enum Grade {
     FIRST(6, false, 2_000_000_000),
@@ -19,10 +19,22 @@ public enum Grade {
         this.prize = prize;
     }
 
-    static Grade draw(int count, boolean bonus) {
-        return Arrays.stream(Grade.values())
-                .filter(value -> value.count == count && value.bonus == bonus)
-                .findFirst()
-                .orElse(null);
+    static Grade get(int count, boolean bonus) {
+        if (count == FIRST.count && bonus == FIFTH.bonus) {
+            return FIRST;
+        }
+        if (count == SECOND.count && bonus == SECOND.bonus) {
+            return SECOND;
+        }
+        if (count == THIRD.count && bonus == THIRD.bonus) {
+            return THIRD;
+        }
+        if (count == FOURTH.count) {
+            return FOURTH;
+        }
+        if (count == FIFTH.count) {
+            return FIFTH;
+        }
+        return null;
     }
 }

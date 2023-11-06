@@ -17,6 +17,7 @@ public class Game {
         long money = inputMoney();
         List<Lotto> tickets = buy(money);
         WinningNumbers winningNumbers = inputWinningNumbers();
+        winningNumbers.draw(tickets);
     }
 
     private long inputMoney() {
@@ -63,9 +64,9 @@ public class Game {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        List<Integer> numbers = inputNumbers();
+        Lotto winning = new Lotto(inputNumbers());
         int bonus = inputBonus();
-        return new WinningNumbers(numbers, bonus);
+        return new WinningNumbers(winning, bonus);
     }
 
     private List<Integer> inputNumbers() {
@@ -73,13 +74,12 @@ public class Game {
         List<Integer> numbers = Arrays.stream(Console.readLine().split(WINNING_NUMBERS_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        validateNumbers(numbers);
+        numbers.forEach(this::validateNumber);
         return numbers;
     }
 
-    private void validateNumbers(List<Integer> numbers) {
-        boolean outOfBound = numbers.stream().anyMatch(number -> number < LOTTO_MIN || number > LOTTO_MAX);
-        if (outOfBound) {
+    private void validateNumber(int number) {
+        if (number < LOTTO_MIN || number > LOTTO_MAX) {
             throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE_MESSAGE);
         }
     }
@@ -92,6 +92,11 @@ public class Game {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
         }
+        validateNumber(bonus);
         return bonus;
+    }
+
+    private void draw() {
+
     }
 }

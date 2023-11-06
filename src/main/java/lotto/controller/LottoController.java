@@ -3,6 +3,9 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Result;
+import lotto.model.Ticket;
+import lotto.model.WinningNum;
 import lotto.model.Lotto;
 
 public class LottoController {
@@ -18,10 +21,12 @@ public class LottoController {
         return ticket;
     }
 
-    public static List<Double> determine(List<Lotto> ticket, List<Integer> winningNum, int bonusNum) {
-        List<Double> result = new ArrayList<Double>();
-        for (Lotto lotto : ticket) {
-            result.add(searchSameNum(lotto.getNumbers(), winningNum, bonusNum));
+    public static List<Result> determine(Ticket ticket, WinningNum winningNum, int bonusNum) {
+        List<Result> result = new ArrayList<Result>();
+        for (Lotto lotto : ticket.getLottos()) {
+            double countOfSameNum = searchSameNum(lotto.getNumbers(), winningNum.getNumbers(), bonusNum);
+            Result lottoResult = Result.getResult(countOfSameNum);
+            result.add(lottoResult);
         }
         return result;
     }
@@ -47,39 +52,11 @@ public class LottoController {
         return result;
     }
 
-    public static int[] countResult(List<Double> results) {
-        int[] count = { 0, 0, 0, 0, 0 };
-        for (Double result : results) {
-            if (result == 3) {
-                ++count[0];
-            } else if (result == 4) {
-                ++count[1];
-            } else if (result == 5) {
-                ++count[2];
-            } else if (result == 5.5) {
-                ++count[3];
-            } else if (result == 6) {
-                ++count[4];
-            }
+    public static double calculateReturn(List<Result> result, int payment) {
+        double returnMoney = 0;
+        for (Result lottoResult : result) {
+            returnMoney += lottoResult.getReturnMoney();
         }
-        return count;
-    }
-
-    public static double calculateReturn(List<Double> results, int amount) {
-        double money = 0;
-        for (Double result : results) {
-            if (result == 3) {
-                money += 5000;
-            } else if (result == 4) {
-                money += 50000;
-            } else if (result == 5) {
-                money += 1500000;
-            } else if (result == 5.5) {
-                money += 30000000;
-            } else if (result == 6) {
-                money += 2000000000;
-            }
-        }
-        return (money / amount) * 100.00;
+        return ((returnMoney / payment) * 100.00);
     }
 }

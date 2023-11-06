@@ -4,6 +4,9 @@ import static java.lang.System.out;
 
 import java.util.List;
 import lotto.model.Lotto;
+import java.util.Collections;
+import lotto.model.Result;
+import lotto.model.Ticket;
 
 public class Output {
     private static final String INPUT_PAYMENT = "구입금액을 입력해 주세요.";
@@ -26,8 +29,8 @@ public class Output {
         out.println(String.format(NUM_OF_LOTTO, numOfLotto / 1000));
     }
 
-    public static void printTicket(List<Lotto> ticket) {
-        for (Lotto lotto : ticket) {
+    public static void printTicket(Ticket ticket) {
+        for (Lotto lotto : ticket.getLottos()) {
             out.println(lotto.getNumbers().toString());
         }
     }
@@ -40,13 +43,13 @@ public class Output {
         out.println(INPUT_BONUS_NUM);
     }
 
-    public static void printResult(int[] resultCount, double rateOfReturn) {
+    public static void printResult(List<Result> result, double rateOfReturn) {
         out.println(OUTPUT_RESULT);
-        printSame3(resultCount[0]);
-        printSame4(resultCount[1]);
-        printSame5(resultCount[2]);
-        printSame5Bonus(resultCount[3]);
-        printSame6(resultCount[4]);
+        printSame3(Collections.frequency(result, Result.SAME3));
+        printSame4(Collections.frequency(result, Result.SAME4));
+        printSame5(Collections.frequency(result, Result.SAME5));
+        printSame5Bonus(Collections.frequency(result, Result.SAME5_BONUS));
+        printSame6(Collections.frequency(result, Result.SAME6));
         out.println(String.format(RATE_OF_RETURN, rateOfReturn));
     }
 

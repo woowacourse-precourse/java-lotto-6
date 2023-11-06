@@ -16,14 +16,13 @@ public class LottoService {
 
     public void createLottoTicket(String moneyInput) {
         this.lottoTicket = new LottoTicket(moneyInput);
-        this.lottos = generateLottoTickets();
     }
 
     public int getTicketCount() {
         return this.lottoTicket.getTicketCount();
     }
 
-    private List<Lotto> generateLottoTickets() {
+    public List<Lotto> generateLottoTickets() {
         List<Lotto> generatedLottos = new ArrayList<>();
         int lottoCount = getTicketCount();
         for (int i = 0; i < lottoCount; i++) {
@@ -33,7 +32,7 @@ public class LottoService {
         return generatedLottos;
     }
 
-    private static List<Integer> generateLottoNumbers() {
+    private List<Integer> generateLottoNumbers() {
         Set<Integer> uniqueNumbers = new HashSet<>();
         while (uniqueNumbers.size() < 6) {
             int number = Randoms.pickNumberInRange(1, 45);

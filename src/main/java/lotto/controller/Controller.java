@@ -48,7 +48,7 @@ public class Controller {
     }
 
     private void lottoGameSetting() {
-        this.purchasedLottos = lottoService.purchaseLottoTickets();
+        this.purchasedLottos = lottoService.generateLottoTickets();
         OutputView.displayLottoNumber(this.purchasedLottos);
     }
 

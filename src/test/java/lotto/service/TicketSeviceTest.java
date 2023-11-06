@@ -25,11 +25,12 @@ class TicketSeviceTest {
     @Test
     void purchaseAmountMethodTest() {
         //given
-        int money = 8000;
+        String input = "8000";
+        Integer money = Integer.parseInt(input);
         int expectedTicketCount = money / TICKET_PRICE.getValue();
 
         //when
-        int ticketCount = ticketService.purchaseAmount(money);
+        int ticketCount = ticketService.purchaseAmount(input);
 
         //wthen
         assertEquals(expectedTicketCount, ticketCount);
@@ -38,8 +39,9 @@ class TicketSeviceTest {
     @DisplayName("구매비용이 1,000원 단위가 아니라면 에러가 발생한다.")
     @Test
     void purchaseAmountMethodUnitExceptionTest() {
-        int money = 8500; // 유효하지 않은 금액
-        assertThrows(IllegalArgumentException.class, () -> ticketService.purchaseAmount(money));
+        String input = "8500"; // 유효하지 않은 금액
+        Integer money = Integer.parseInt(input);
+        assertThrows(IllegalArgumentException.class, () -> ticketService.purchaseAmount(input));
     }
 
     @DisplayName("자동 구매한 번호를 저장한다.")

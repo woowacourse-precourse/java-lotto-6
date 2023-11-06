@@ -16,7 +16,8 @@ public class TicketService {
         this.memoryTicketRepository = memoryTicketRepository;
     }
 
-    public int purchaseAmount(Integer money) {
+    public Integer purchaseAmount(String input) {
+        Integer money = Integer.parseInt(input);
         Censor.validatePurchaseUnit(money);
         return money / TICKET_PRICE.getValue();
     }

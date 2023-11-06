@@ -7,9 +7,9 @@ import lotto.util.Censor;
 
 public class InputView {
 
-    public static Integer purchaseAmount() {
+    public static String purchaseAmount() {
         System.out.println(SET_PURCHASE_AMOUNT.getContent());
-        return Integer.parseInt(Censor.commonValid(Console.readLine()));
+        return Censor.commonValid(Console.readLine());
     }
 
 }

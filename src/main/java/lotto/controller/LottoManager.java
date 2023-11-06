@@ -19,7 +19,7 @@ public class LottoManager {
         purchaseTickets(InputView.purchaseAmount());
     }
 
-    private void purchaseTickets(Integer money) {
+    private void purchaseTickets(String money) {
         int ticketCnt = ticketService.purchaseAmount(money);
         List<Ticket> tickets = IntStream.range(0, ticketCnt)
                 .mapToObj(ticket -> ticketService.automaticPurchase())

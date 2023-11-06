@@ -12,4 +12,8 @@ public class LottoBundle {
     public List<Lotto> getBundle() {
         return List.copyOf(bundle);
     }
+
+    public int showInvestment() {
+        return bundle.size() * 1000;
+    }
 }

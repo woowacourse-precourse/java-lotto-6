@@ -29,6 +29,10 @@ public enum Rank {
         return corrects;
     }
 
+    public long sumPrize(long result, int count) {
+        return result + getPrize() * count;
+    }
+
     public static Rank valueOfCorrects(Double corrects) {
         return BY_CORRECTS.get(corrects);
     }

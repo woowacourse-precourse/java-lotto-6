@@ -30,7 +30,9 @@ public class LottoService {
 		return lottos;
 	}
 
-	public List<Integer> checkNumbers(String inputNumbers) {
+	public List<Integer> checkNumbers(String inputNumbers) throws IllegalArgumentException{
+		String[] numbers = inputNumbers.split(",");
+		validator.isThisSizeSix(numbers);
 		return null;
 	}
 }

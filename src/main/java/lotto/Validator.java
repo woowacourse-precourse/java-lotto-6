@@ -14,4 +14,10 @@ public class Validator {
 			throw new IllegalArgumentException(ErrorCode.NOT_DIVISIBLE_BY_THOUSAND.getErrorMessage());
 		}
 	}
+
+	public void isThisSizeSix(String[] numbers) throws IllegalArgumentException{
+		if (numbers.length != 6) {
+			throw new IllegalArgumentException(ErrorCode.ELEMENTS_SHOULD_BE_SIX.getErrorMessage());
+		}
+	}
 }

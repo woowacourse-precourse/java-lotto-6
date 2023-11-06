@@ -1,2 +1,4 @@
-package lotto.data;public class LottoRecipe {
+package lotto.model.data;
+
+public class LottoRecipe {
 }

@@ -1,12 +1,12 @@
 package lotto.model.validator;
 
-import static lotto.model.util.AmountOfLotto.LOTTO_PRICE;
-import static lotto.model.util.AmountOfLotto.MAXIMUM_PRICE;
-import static lotto.model.util.AmountOfLotto.MINIMUM_PRICE;
-import static lotto.model.util.ExceptionMessage.BIGGER_THAN_MAX;
-import static lotto.model.util.ExceptionMessage.INVALID_INPUT_TYPE;
-import static lotto.model.util.ExceptionMessage.NOT_DIVIDE_BY_LOTTO_PRICE;
-import static lotto.model.util.ExceptionMessage.NOT_POSITIVE_INPUT;
+import static lotto.util.AmountOfLotto.LOTTO_PRICE;
+import static lotto.util.AmountOfLotto.MAXIMUM_PRICE;
+import static lotto.util.AmountOfLotto.MINIMUM_PRICE;
+import static lotto.util.ExceptionMessage.BIGGER_THAN_MAX;
+import static lotto.util.ExceptionMessage.INVALID_INPUT_TYPE;
+import static lotto.util.ExceptionMessage.NOT_DIVIDE_BY_LOTTO_PRICE;
+import static lotto.util.ExceptionMessage.NOT_POSITIVE_INPUT;
 
 public class AmountOfLottoValidatorImpl implements AmountOfLottoValidator {
 

@@ -8,6 +8,6 @@ public class YieldRate {
     }
 
     public double getYieldRate() {
-        return yieldRate * 100;
+        return Math.round(yieldRate * 1000) / 10.0;
     }
 }

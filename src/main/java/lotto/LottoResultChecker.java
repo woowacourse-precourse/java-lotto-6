@@ -31,7 +31,6 @@ public class LottoResultChecker {
             lottoResultMemo.put(winning, lottoResultMemo.getOrDefault(winning, 0) + 1);
         }
 
-        Integer totalPrize = 0;
         System.out.println("3개 일치 (5,000원) - " + lottoResultMemo.getOrDefault(Winning.THREE, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + lottoResultMemo.getOrDefault(Winning.FOUR, 0) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + lottoResultMemo.getOrDefault(Winning.FIVE, 0) + "개");
@@ -39,15 +38,18 @@ public class LottoResultChecker {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResultMemo.getOrDefault(Winning.FIVE_AND_BONUS, 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultMemo.getOrDefault(Winning.SIX, 0) + "개");
 
-        totalPrize += lottoResultMemo.getOrDefault(Winning.THREE, 0) * Winning.THREE.getPrize();
-        totalPrize += lottoResultMemo.getOrDefault(Winning.FOUR, 0) * Winning.FOUR.getPrize();
-        totalPrize += lottoResultMemo.getOrDefault(Winning.FIVE, 0) * Winning.FIVE.getPrize();
-        totalPrize += lottoResultMemo.getOrDefault(Winning.FIVE_AND_BONUS, 0) * Winning.FIVE_AND_BONUS.getPrize();
-        totalPrize += lottoResultMemo.getOrDefault(Winning.SIX, 0) * Winning.SIX.getPrize();
+        System.out.printf("총 수익률은 %.1f%%입니다.", calculatePortfolio());
 
-        float portfolio = (float) totalPrize / (lottoBundle.size() * 1000) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.", portfolio);
+    }
 
+    private float calculatePortfolio() {
+        float portfolio = lottoResultMemo.getOrDefault(Winning.THREE, 0) * Winning.THREE.getPrize();
+        portfolio += lottoResultMemo.getOrDefault(Winning.FOUR, 0) * Winning.FOUR.getPrize();
+        portfolio += lottoResultMemo.getOrDefault(Winning.FIVE, 0) * Winning.FIVE.getPrize();
+        portfolio += lottoResultMemo.getOrDefault(Winning.FIVE_AND_BONUS, 0) * Winning.FIVE_AND_BONUS.getPrize();
+        portfolio += lottoResultMemo.getOrDefault(Winning.SIX, 0) * Winning.SIX.getPrize();
+        portfolio = portfolio / (lottoBundle.size() * 1000) * 100;
+        return portfolio;
     }
 
     private void setWinNumbers() {

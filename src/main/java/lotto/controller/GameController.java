@@ -1,17 +1,19 @@
 package lotto.controller;
 
-import static lotto.SystemMessage.INPUT_BONUS;
-import static lotto.SystemMessage.INPUT_PURCHASE_AMOUNT;
-import static lotto.SystemMessage.INPUT_WINNING_LOTTO;
+import static lotto.view.SystemMessage.INPUT_BONUS;
+import static lotto.view.SystemMessage.INPUT_PURCHASE_AMOUNT;
+import static lotto.view.SystemMessage.INPUT_WINNING_LOTTO;
+import static lotto.view.SystemMessage.OUTPUT_PURCHASE_AMOUNT;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Referee;
 import lotto.domain.Win;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameController {
     public void run() {
         LottoController lottoController = new LottoController(readPurchaseAmount());
-        lottoController.printLottos();
+        printLottoAmountAndLottos(lottoController);
 
         Win win = new Win();
         win.setWinningLotto(readWinningLotto());
@@ -21,18 +23,23 @@ public class GameController {
         referee.compare(lottoController.getLottos(), win.getWinningLotto(), win.getBonus());
     }
 
+    private void printLottoAmountAndLottos(LottoController lottoController) {
+        OutputView.printMessage(String.format(OUTPUT_PURCHASE_AMOUNT.getMessage(), lottoController.getLottoAmount()));
+        lottoController.printLottos();
+    }
+
     private static int readPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT.getMessage());
-        return Integer.parseInt(Console.readLine());
+        OutputView.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
+        return Integer.parseInt(InputView.read());
     }
 
     private static String readWinningLotto() {
-        System.out.println(INPUT_WINNING_LOTTO.getMessage());
-        return Console.readLine();
+        OutputView.printMessage(INPUT_WINNING_LOTTO.getMessage());
+        return InputView.read();
     }
 
     private static int readBonus() {
-        System.out.println(INPUT_BONUS.getMessage());
-        return Integer.parseInt(Console.readLine());
+        OutputView.printMessage(INPUT_BONUS.getMessage());
+        return Integer.parseInt(InputView.read());
     }
 }

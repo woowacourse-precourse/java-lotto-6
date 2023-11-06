@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Comparator;
 import java.util.List;
+import lotto.view.OutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,7 +22,7 @@ public class Lotto {
 
     public void printNaturalOrder() {
         numbers.sort(Comparator.naturalOrder());
-        System.out.println(numbers);
+        OutputView.printMessage(numbers.toString());
     }
 
     public List<Integer> getNumbers() {

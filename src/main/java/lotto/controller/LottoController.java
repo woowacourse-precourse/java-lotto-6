@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.SystemMessage.OUTPUT_PURCHASE_AMOUNT;
 import static lotto.config.LottoConfig.MAX_NUMBER;
 import static lotto.config.LottoConfig.MIN_NUMBER;
 import static lotto.config.LottoConfig.NUMBER_OF_NUMBERS;
@@ -16,11 +15,11 @@ public class LottoController {
     private final int lottoAmount;
 
     public LottoController(int purchaseAmount) {
-        this.lottoAmount = getLottoAmount(purchaseAmount);
+        this.lottoAmount = calculateLottoAmount(purchaseAmount);
         this.lottos = makeLottos();
     }
 
-    private int getLottoAmount(int purchaseAmount) {
+    private int calculateLottoAmount(int purchaseAmount) {
         return purchaseAmount / PRICE.getNumber();
     }
 
@@ -39,8 +38,6 @@ public class LottoController {
     }
 
     public void printLottos() {
-        System.out.printf(OUTPUT_PURCHASE_AMOUNT.getMessage(), lottoAmount);
-
         for (Lotto lotto : lottos) {
             lotto.printNaturalOrder();
         }
@@ -48,5 +45,9 @@ public class LottoController {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public int getLottoAmount() {
+        return lottoAmount;
     }
 }

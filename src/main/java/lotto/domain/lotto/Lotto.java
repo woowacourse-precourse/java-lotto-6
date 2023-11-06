@@ -7,6 +7,7 @@ import static lotto.domain.lotto.LottoNumberConfig.MAXIMUM_RANGE;
 import static lotto.domain.lotto.LottoNumberConfig.MINIMUM_RANGE;
 import static lotto.domain.lotto.LottoNumberConfig.NUMBER_COUNT;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -27,6 +28,10 @@ public class Lotto {
         if(validateRange(numbers)) {
             throw new IllegalArgumentException(INVALID_RANGE_ERROR.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     private boolean validateSize(List<Integer> numbers) {

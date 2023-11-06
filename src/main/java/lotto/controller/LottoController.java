@@ -22,7 +22,7 @@ public class LottoController {
     }
 
     public void start() {
-        Money money = new Money(getUserAmount());
+        Money money = new Money(generateMoney());
         LottoQuantity lottoQuantity = new LottoQuantity(money.getQuantity());
         output.printPurchaseQuantity(lottoQuantity.getQuantity());
 
@@ -35,19 +35,23 @@ public class LottoController {
         output.printResult(winningLottoCounts, profit.calculate());
     }
 
-    private int getUserAmount() {
+    private int generateMoney() {
         int money;
-        UserAmountValidator userAmountValidator = new UserAmountValidator();
         try {
             output.printInputPurchaseAmountMessage();
-            String userInput = input.getUserAmount();
-            userAmountValidator.validateUserAmout(userInput);
-            money = Integer.parseInt(userInput);
+            money = getUserAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            money = getUserAmount();
+            money = generateMoney();
         }
         return money;
+    }
+
+    private int getUserAmount() {
+        UserAmountValidator userAmountValidator = new UserAmountValidator();
+        String userInput = input.getUserAmount();
+        userAmountValidator.validateUserAmout(userInput);
+        return Integer.parseInt(userInput);
     }
 
     private List<Lotto> buyLottos(LottoQuantity lottoQuantity) {
@@ -59,12 +63,9 @@ public class LottoController {
 
     private List<Integer> generateWinningNumbers() {
         List<Integer> winningNumbers;
-        WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
         try {
             output.printInputWinningNumbersMessage();
-            List<String> userInput = input.getWinningNumbers();
-            winningNumbersValidator.validateWinningNumbers(userInput);
-            winningNumbers = userInput.stream().map(Integer::parseInt).collect(Collectors.toList());
+            winningNumbers = getWinningNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningNumbers = generateWinningNumbers();
@@ -72,21 +73,34 @@ public class LottoController {
         return winningNumbers;
     }
 
+    private List<Integer> getWinningNumbers() {
+        List<String> userInput = input.getWinningNumbers();
+        WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
+        winningNumbersValidator.validateWinningNumbers(userInput);
+        return userInput.stream().map(Integer::parseInt).collect(Collectors.toList());
+    }
+
     private int generateBonusNumber(WinningNumbers winningNumbers) {
         int bonusNumber;
-        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
         System.out.println();
         try {
             output.printInputBonusNumberMessage();
-            String userInput = input.getBonusNumber();
-            bonusNumberValidator.validateBonusNumber(userInput);
-            bonusNumber = Integer.parseInt(userInput);
-            winningNumbers.validateDuplication(bonusNumber);
+            bonusNumber = getBonusNumber(winningNumbers);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bonusNumber = generateBonusNumber(winningNumbers);
         }
         Console.close();
+        return bonusNumber;
+    }
+
+    private int getBonusNumber(WinningNumbers winningNumbers) {
+        String userInput = input.getBonusNumber();
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+        bonusNumberValidator.validateBonusNumber(userInput);
+        int bonusNumber = Integer.parseInt(userInput);
+        winningNumbers.validateDuplication(bonusNumber);
         return bonusNumber;
     }
 }

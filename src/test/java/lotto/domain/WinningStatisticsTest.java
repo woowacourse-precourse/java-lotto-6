@@ -15,21 +15,21 @@ class WinningStatisticsTest {
     @DisplayName("of 메서드는 올바른 WinningStatistics 객체를 반환한다.")
     void of_Method_Return_Correct_WinningStatistics_Object() {
         int matchCount = 6;
-        int bonusCount = 0;
+        boolean isMatchBonus = false;
 
-        assertThat(WinningStatistics.of(matchCount, bonusCount)).isInstanceOf(WinningStatistics.class);
+        assertThat(WinningStatistics.of(matchCount, isMatchBonus)).isInstanceOf(WinningStatistics.class);
     }
 
     @Nested
-    @DisplayName("맞은 개수와 보너스 개수를 비교하여 등수를 반환한다.")
+    @DisplayName("맞은 개수와 보너스 일치 여부를 비교하여 등수를 반환한다.")
     class WinningStatisticsOf {
 
         @Test
         void return_FIRST() {
             int matchCount = 6;
-            int bonusCount = 0;
+            boolean isMatchBonus = false;
 
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertEquals(winningStatistics, WinningStatistics.FIRST);
         }
@@ -37,9 +37,9 @@ class WinningStatisticsTest {
         @Test
         void return_SECOND() {
             int matchCount = 5;
-            int bonusCount = 1;
+            boolean isMatchBonus = true;
 
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertEquals(winningStatistics, WinningStatistics.SECOND);
         }
@@ -47,9 +47,9 @@ class WinningStatisticsTest {
         @Test
         void return_THIRD() {
             int matchCount = 5;
-            int bonusCount = 0;
+            boolean isMatchBonus = false;
 
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertEquals(winningStatistics, WinningStatistics.THIRD);
         }
@@ -57,9 +57,9 @@ class WinningStatisticsTest {
         @Test
         void return_FOURTH() {
             int matchCount = 4;
-            int bonusCount = 0;
+            boolean isMatchBonus = false;
 
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertEquals(winningStatistics, WinningStatistics.FOURTH);
         }
@@ -67,9 +67,9 @@ class WinningStatisticsTest {
         @Test
         void return_FIFTH() {
             int matchCount = 3;
-            int bonusCount = 0;
+            boolean isMatchBonus = false;
 
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertEquals(winningStatistics, WinningStatistics.FIFTH);
         }
@@ -77,9 +77,9 @@ class WinningStatisticsTest {
         @Test
         void return_MISS() {
             int matchCount = 0;
-            int bonusCount = 0;
+            boolean isMatchBonus = false;
 
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertEquals(winningStatistics, WinningStatistics.MISS);
         }
@@ -92,8 +92,8 @@ class WinningStatisticsTest {
         @Test
         void hasBonusCount_true() {
             int matchCount = 5;
-            int bonusCount = 1;
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            boolean isMatchBonus = true;
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertTrue(winningStatistics.hasBonusCount());
         }
@@ -101,8 +101,8 @@ class WinningStatisticsTest {
         @Test
         void hasBonusCount_false() {
             int matchCount = 5;
-            int bonusCount = 0;
-            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, bonusCount);
+            boolean isMatchBonus = false;
+            WinningStatistics winningStatistics = WinningStatistics.of(matchCount, isMatchBonus);
 
             assertFalse(winningStatistics.hasBonusCount());
         }

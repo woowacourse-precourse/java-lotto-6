@@ -34,13 +34,7 @@ public class Lotto {
                 .filter(numbers::contains)
                 .count();
 
-        int bonusMatch = 0;
-
-        if (numbers.contains(bonusNumber.getBonusNumber())) {
-            bonusMatch = 1;
-        }
-
-        return WinningStatistics.of(match, bonusMatch);
+        return WinningStatistics.of(match, bonusNumber.isMatch(numbers));
     }
 
     private List<Integer> sortedLotto(List<Integer> numbers) {

@@ -9,6 +9,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicateNumber(numbers);
+
         this.numbers = numbers;
     }
 
@@ -19,6 +21,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (numbers.contains(number)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 있습니다.");
+            }
+        }
+    }
 
     /**
      * 로또를 오른 차순으로 정리

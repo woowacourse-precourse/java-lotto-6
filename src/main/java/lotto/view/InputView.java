@@ -54,11 +54,10 @@ public class InputView {
 
     private int validateInteger(String input) {
         try {
-            Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(PERMIT_ONLY_NUMBER);
         }
-        return Integer.parseInt(input);
     }
 
     private void validateBlankAndEmptyInteger(String input) {

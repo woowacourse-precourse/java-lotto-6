@@ -25,12 +25,10 @@ public class StringValidator {
         }
     }
 
-    public static void validateNotNull(String line) {
+    private static void validateNotNull(String line) {
         final String message = "로또 구입 금액을 입력하세요.";
         if (line == null) {
             throw new IllegalArgumentException(message);
         }
     }
-
-
 }

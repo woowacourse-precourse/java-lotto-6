@@ -25,6 +25,10 @@ public class PurchaseAmount {
         }
     }
 
+    public int getLottoCount() {
+        return this.purchaseAmount / 1000;
+    }
+
     public Integer getPurchaseAmount() {
         return purchaseAmount;
     }

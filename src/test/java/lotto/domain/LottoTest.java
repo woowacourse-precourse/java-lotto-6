@@ -26,4 +26,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
+
+    @Test
+    void 숫자의_범위가_1_미만인_로또번호가_존재할_경우_예외를_던진다() {
+        List<Integer> numbers = List.of(0, 1, 2, 3, 4, 5);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainException.ERROR.getMessage());
+    }
+
 }

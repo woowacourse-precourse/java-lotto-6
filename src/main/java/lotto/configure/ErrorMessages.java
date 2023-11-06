@@ -1,6 +1,6 @@
-package lotto.util;
+package lotto.configure;
 
-import static lotto.configure.ErrorMessage.ERROR_MESSAGE_COMMON_PREFIX;
+import static lotto.configure.ErrorMessageHelper.ERROR_MESSAGE_COMMON_PREFIX;
 
 public enum ErrorMessages {
     PURCHASE_NUMBER_IS_NOT_AN_INTEGER(ERROR_MESSAGE_COMMON_PREFIX + " 구입 금액은 정수여야 합니다."),

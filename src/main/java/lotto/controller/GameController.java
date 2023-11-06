@@ -6,7 +6,11 @@ public class GameController {
 
     private static GameController gameController;
 
-    private GameController(InputView inputView) {}
+    private InputView inputView;
+
+    private GameController(InputView inputView) {
+        this.inputView = inputView;
+    }
 
     public static GameController getInstance(InputView inputView) {
         if (gameController == null) {

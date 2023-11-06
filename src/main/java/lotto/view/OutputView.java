@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.model.LottoNumberModel;
 import lotto.model.LottoResultModel;
 
 import java.util.List;
@@ -8,14 +9,14 @@ import java.util.Map;
 
 public class OutputView {
 
-    public void purchaseLottoNumbersDisplay(List<Lotto> lottos){
-        int lottoQuantity = lottos.size();
+    public void purchaseLottoNumbersDisplay(LottoNumberModel lottos){
+        int lottoQuantity = lottos.getLotto().size();
 
         System.out.println("");
         System.out.println(lottoQuantity+"개를 구매했습니다.");
 
         for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
-            lottos.get(quantity-1).lottoNumberDisplay();
+            lottos.getLotto().get(quantity-1).lottoNumberDisplay();
         }
 
         System.out.println("");

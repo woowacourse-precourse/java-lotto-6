@@ -1,4 +1,4 @@
-package lotto.view.constants;
+package lotto.view;
 
 public class SeparatorConstant {
 

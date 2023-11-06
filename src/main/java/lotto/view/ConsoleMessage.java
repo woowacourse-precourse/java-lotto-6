@@ -1,31 +1,23 @@
-package lotto.view.constants;
+package lotto.view;
 
 public enum ConsoleMessage {
-
-    // request
+    
     ENTER_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     ENTER_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-
-    // response
+    
     SUCCESS_PURCHASE_LOTTO("%d개를 구매했습니다."),
     RESULTS_SUMMARY("당첨 통계"),
     LOTTO_NUMBER_MATCH("%d개 일치 (%s원) - %d개"),
     LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    TOTAL_RETURN("총 수익률은 %.1f%%입니다."),
-
-    // error
-    PURCHASE_AMOUNT_ERROR("[ERROR] 1000원 단위의 금액을 입력해 주세요."),
-    WINNING_NUMBERS_ERROR("[ERROR] 1~45 사이의 숫자 6개를 공백 없이 %s로 구분하여 입력해 주세요."),
-    BONUS_NUMBER_ERROR("[ERROR] 1~45 사이의 숫자를 입력해 주세요."),
-    DUPLICATE_NUMBER_ERROR("[ERROR] 중복된 숫자가 있습니다.");
-
+    TOTAL_RETURN("총 수익률은 %.1f%%입니다.");
+    
     private final String message;
-
+    
     ConsoleMessage(final String message) {
         this.message = message;
     }
-
+    
     public String getMessage() {
         return message;
     }

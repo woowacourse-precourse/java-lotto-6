@@ -2,6 +2,11 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class InputService {
 
     public static final int AMOUNT_UNIT = 1000;
@@ -11,6 +16,23 @@ public class InputService {
         int purchaseAmount = validateAmount(readLine());
         validateAmountUnit(purchaseAmount);
         return purchaseAmount;
+    }
+
+    public static Lotto getUserInputForLottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String numbers = readLine();
+        return validateLottoNumbersFormat(numbers);
+    }
+
+    private static Lotto validateLottoNumbersFormat(String numbers) {
+        try {
+            List<Integer> lotto = Stream.of(numbers.trim().split("\\s*, \\s*"))
+                    .mapToInt(Integer::parseInt).boxed()
+                    .collect(Collectors.toList());
+            return new Lotto(lotto);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.CONVERT_AMOUNT_ERROR);
+        }
     }
 
     private static int validateAmount(String purchaseAmount) {

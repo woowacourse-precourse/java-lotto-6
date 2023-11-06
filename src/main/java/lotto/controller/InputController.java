@@ -16,25 +16,27 @@ public class InputController {
 
     public int askBudget() {
         String budget = inputView.scanBudget();
-        return Integer.parseInt(budget);
+        return createBudget(budget);
     }
 
     public WinningLotto askWinningLotto() {
-        Lotto winningNumbers = askWinningNumbers();
-        int bonusNumber = askBonusNumber();
-        return new WinningLotto(winningNumbers, bonusNumber);
+        String winningNumbers = inputView.scanWinningNumbers();
+        String bonusNumber = inputView.scanBonusNumber();
+        return new WinningLotto(createWinningNumbers(winningNumbers), createBonusNumber(bonusNumber));
     }
 
-    public Lotto askWinningNumbers() {
-        String userInput = inputView.scanWinningNumbers();
+    public int createBudget(String budget) {
+        return Integer.parseInt(budget);
+    }
 
+    public Lotto createWinningNumbers(String winningNumbers) {
         List<Integer> lotto = new ArrayList<>();
-        Parser.parseWithComma(userInput)
+        Parser.parseWithComma(winningNumbers)
                 .forEach(number -> lotto.add(Integer.parseInt(number)));
         return new Lotto(lotto);
     }
 
-    public int askBonusNumber() {
-        return Integer.parseInt(inputView.scanBonusNumber());
+    public int createBonusNumber(String bonusNumber) {
+        return Integer.parseInt(bonusNumber);
     }
 }

@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.wrapper.PurchaseAmout;
+import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.LottoConstantValue;
 
 public class VendingMachine {
     private static final int START_COUNT = 0;
-    private final PurchaseAmout purchaseAmout;
+    private final PurchaseAmount purchaseAmount;
 
-    public VendingMachine(PurchaseAmout purchaseAmount) {
-        this.purchaseAmout = purchaseAmount;
+    public VendingMachine(PurchaseAmount purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
     }
     public Lottos getLottos() {
-        int lottoCount = purchaseAmout.getAvailableLottoCount();
+        int lottoCount = purchaseAmount.getAvailableLottoCount();
         List<Lotto> lottos = new ArrayList<>();
         for (int count = START_COUNT; count < lottoCount; count++) {
             Lotto lotto = createLotto();

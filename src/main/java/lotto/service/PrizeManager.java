@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.Map;
-import lotto.domain.wrapper.PurchaseAmout;
+import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.Prize;
 
 public class PrizeManager {
@@ -15,8 +15,8 @@ public class PrizeManager {
         return prizesCount.get(prize);
     }
 
-    public double getProfitRate(PurchaseAmout purchaseAmout) {
-        return purchaseAmout.calculateProfitRate(getAllPrizeProfit());
+    public double getProfitRate(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.calculateProfitRate(getAllPrizeProfit());
     }
 
     private long getAllPrizeProfit() {

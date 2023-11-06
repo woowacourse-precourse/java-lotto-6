@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.wrapper.PurchaseAmout;
+import lotto.domain.wrapper.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +22,10 @@ class PrizeManagerTest {
                 new Lotto(List.of(1,2,3,7,8,9))
         ));
         PrizeManager prizeManager = new PrizeManager(winningNumbers, bonusNumber, lottos);
-        PurchaseAmout purchaseAmout = new PurchaseAmout(2000);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(2000);
         double expectedProfitRate = (55000 / (double) 2000) * 100;
         // when
-        double profitRate = prizeManager.getProfitRate(purchaseAmout);
+        double profitRate = prizeManager.getProfitRate(purchaseAmount);
         // then
         assertThat(profitRate).isEqualTo(expectedProfitRate);
     }

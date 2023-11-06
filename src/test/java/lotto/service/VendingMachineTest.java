@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.Application;
 import lotto.domain.Lottos;
-import lotto.domain.wrapper.PurchaseAmout;
+import lotto.domain.wrapper.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +17,8 @@ class VendingMachineTest extends NsTest {
     @Test
     void buyLottos() {
         // given
-        PurchaseAmout purchaseAmout = new PurchaseAmout(8000);
-        VendingMachine vendingMachine = new VendingMachine(purchaseAmout);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(8000);
+        VendingMachine vendingMachine = new VendingMachine(purchaseAmount);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Lottos lottos = vendingMachine.getLottos();

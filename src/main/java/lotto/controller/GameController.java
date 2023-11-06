@@ -1,11 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.wrapper.LottoNumber;
-import lotto.domain.wrapper.PurchaseAmout;
+import lotto.domain.wrapper.PurchaseAmount;
 import lotto.service.PrizeChecker;
 import lotto.service.VendingMachine;
 import lotto.service.PrizeManager;
@@ -18,24 +17,24 @@ public class GameController {
     OutputView outputView = new OutputView();
 
     public void play() {
-        PurchaseAmout purchaseAmout = getPurchaseAmout();
-        Lottos plyerLottos = buyLottos(purchaseAmout);
+        PurchaseAmount purchaseAmount = getPurchaseAmout();
+        Lottos plyerLottos = buyLottos(purchaseAmount);
         printLottos(plyerLottos);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
         PrizeChecker prizeChecker = new PrizeChecker(new Lotto(winningNumbers), new LottoNumber(bonusNumber));
         PrizeManager prizeManager = new PrizeManager(plyerLottos.getPrizeCounts(prizeChecker));
         printPrizeResults(prizeManager);
-        printPrizeProfit(prizeManager, purchaseAmout);
+        printPrizeProfit(prizeManager, purchaseAmount);
     }
 
-    private PurchaseAmout getPurchaseAmout() {
+    private PurchaseAmount getPurchaseAmout() {
         outputView.printGetPurchaseAmountMessage();
-        return new PurchaseAmout(inputView.getPurchaseAmount());
+        return new PurchaseAmount(inputView.getPurchaseAmount());
     }
 
-    private Lottos buyLottos(PurchaseAmout purchaseAmout) {
-        VendingMachine vendingMachine = new VendingMachine(purchaseAmout);
+    private Lottos buyLottos(PurchaseAmount purchaseAmount) {
+        VendingMachine vendingMachine = new VendingMachine(purchaseAmount);
         return vendingMachine.getLottos();
     }
 
@@ -65,7 +64,7 @@ public class GameController {
         }
     }
 
-    private void printPrizeProfit(PrizeManager prizeManager, PurchaseAmout purchaseAmout) {
-        outputView.printProfitRate(prizeManager.getProfitRate(purchaseAmout));
+    private void printPrizeProfit(PrizeManager prizeManager, PurchaseAmount purchaseAmount) {
+        outputView.printProfitRate(prizeManager.getProfitRate(purchaseAmount));
     }
 }

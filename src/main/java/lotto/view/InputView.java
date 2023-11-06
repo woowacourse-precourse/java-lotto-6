@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.wrapper.LottoNumber;
-import lotto.domain.wrapper.PurchaseAmout;
+import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstant;
 
@@ -15,7 +15,7 @@ public class InputView {
             validateNotNull(input);
             validateNotEmpty(input);
             validateParsedToInteger(input);
-            new PurchaseAmout(Integer.parseInt(input));
+            new PurchaseAmount(Integer.parseInt(input));
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             getPurchaseAmount();

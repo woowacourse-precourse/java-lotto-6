@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class PurchaseAmoutTest {
+class PurchaseAmountTest {
     @DisplayName("구입 금액이 0원 이하일 경우 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(ints = {-1000, 0})
     void createPurchaseAmountBylessThanOrEqualToZero(int purchaseAmount) {
-        assertThatThrownBy(() -> new PurchaseAmout(purchaseAmount))
+        assertThatThrownBy(() -> new PurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NO_MONEY.getWithPrefix());
     }
@@ -23,7 +23,7 @@ class PurchaseAmoutTest {
     @ParameterizedTest
     @ValueSource(ints = {800, 1500, 8010})
     void createPurchaseAmountByChangeRemaining(int purchaseAmount) {
-        assertThatThrownBy(() -> new PurchaseAmout(purchaseAmount))
+        assertThatThrownBy(() -> new PurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.CHANGE_REMAINED.getWithPrefix());
     }
@@ -32,9 +32,9 @@ class PurchaseAmoutTest {
     @Test
     void calculateAvailableLottoCount() {
         // given
-        PurchaseAmout purchaseAmout = new PurchaseAmout(8000);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(8000);
         // when
-        int availableLottoCount = purchaseAmout.getAvailableLottoCount();
+        int availableLottoCount = purchaseAmount.getAvailableLottoCount();
         // then
         assertThat(availableLottoCount).isEqualTo(8);
     }
@@ -43,9 +43,9 @@ class PurchaseAmoutTest {
     @Test
     void calculateProfitRate() {
         // given
-        PurchaseAmout purchaseAmout = new PurchaseAmout(10000);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
         // when
-        double profitRate = purchaseAmout.calculateProfitRate(5000L);
+        double profitRate = purchaseAmount.calculateProfitRate(5000L);
         // then
         assertThat(profitRate).isEqualTo(50.0);
     }

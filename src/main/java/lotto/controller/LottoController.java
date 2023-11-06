@@ -30,6 +30,7 @@ public class LottoController {
         printPurchasedLotto(purchaseAmount.getPurchaseAmount());
 
         storeLottoResult();
+        printLottoResult(purchaseAmount);
     }
 
     private PurchaseAmount payOnAmount() {
@@ -91,5 +92,10 @@ public class LottoController {
             System.out.println(bonusNumberError.getMessage());
             return getBonusNumber(answerLotto);
         }
+    }
+
+    private void printLottoResult(PurchaseAmount purchaseAmount) {
+        outputView.printLottoResult(winningLottoStorage);
+        outputView.printRateOfReturn(winningLottoStorage.getRateOfReturn(purchaseAmount.getPurchaseAmount()));
     }
 }

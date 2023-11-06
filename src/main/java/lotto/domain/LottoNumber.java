@@ -8,7 +8,7 @@ public class LottoNumber {
 
     public LottoNumber(String stringNumber) {
         try {
-            int parsedNumber = Integer.parseInt(stringNumber);
+            int parsedNumber = Integer.parseInt(stringNumber.trim());
             validate(parsedNumber);
             this.number = parsedNumber;
         } catch (NumberFormatException nfe) {

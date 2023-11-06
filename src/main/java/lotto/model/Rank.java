@@ -7,7 +7,7 @@ public enum Rank {
     ECT(0, 0,  (matchingNumber, isBonusContain) -> matchingNumber < 3),
     THREE(3, 5000,  (matchingNumber, isBonusContain) -> matchingNumber == 3),
     FOUR(4, 50000,  (matchingNumber, isBonusContain) -> matchingNumber == 4),
-    FIVE(5, 1500000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && isBonusContain),
+    FIVE(5, 1500000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && !isBonusContain),
     FIVE_BONUS(5, 30000000,  (matchingNumber, isBonusContain) -> matchingNumber == 5 && isBonusContain),
     SIX(6, 2000000000, (matchingNumber, isBonusContain) -> matchingNumber == 6);
 
@@ -21,11 +21,11 @@ public enum Rank {
         this.isMatch = isMatch;
     }
 
-    public static Rank findRank(int number, boolean isBonusContain) {
+    public static Rank findRank(int matchingNumber, boolean isBonusContain) {
         return Arrays.stream(values())
-                .filter(rank -> rank.isMatch.test(number, isBonusContain))
+                .filter(rank -> rank.isMatch.test(matchingNumber, isBonusContain))
                 .findAny()
-                .orElse(ECT);
+                .orElse(Rank.ECT);
     }
 
     public int getPrize() {

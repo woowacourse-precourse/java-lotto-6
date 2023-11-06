@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validator.InputLottoWinningNumbersValidator;
@@ -13,7 +11,6 @@ import lotto.view.InputView;
 
 public class InputProcessor {
     private static final int LOTTO_PRICE = 1000;
-  public static String getInput;
 
   public static int calculateLottoCount(int money) {
       return money / LOTTO_PRICE;

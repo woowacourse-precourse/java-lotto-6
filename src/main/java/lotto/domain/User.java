@@ -2,14 +2,18 @@ package lotto.domain;
 
 import lotto.application.IOService;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
     private List<Lotto> lottos;
     private int lottoCnt;
-    private long prizeMoney;
+    private long totalPrize;
+    private HashMap<Rank, Integer> cntRank;
 
-
+    public User() {
+        this.cntRank = new HashMap<>();
+    }
 
     public List<Lotto> getLottos() {
         return lottos;
@@ -18,8 +22,8 @@ public class User {
         return lottoCnt;
     }
 
-    public long getPrizeMoney() {
-        return prizeMoney;
+    public long getTotalPrize() {
+        return totalPrize;
     }
 
     public void setLottos(List<Lotto> lottos) {
@@ -30,9 +34,17 @@ public class User {
         this.lottoCnt = lottoCnt;
     }
 
-    public void setPrizeMoney(long prizeMoney) {
-        this.prizeMoney = prizeMoney;
+    public void setTotalPrize(long rankMoney) {
+        this.totalPrize = rankMoney;
     }
 
+    public void addCntrank(Rank rank){
+        if(!cntRank.containsKey(rank)){
+            cntRank.put(rank, 1);
+            return;
+        }
 
+        Integer beforeCnt = cntRank.get(rank);
+        cntRank.put(rank, beforeCnt + 1);
+    }
 }

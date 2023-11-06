@@ -3,7 +3,9 @@ package lotto;
 import static lotto.Enum.ErrorMessage.DUPLICATED_ERROR;
 import static lotto.Enum.ErrorMessage.LENGHT_ERROR;
 import static lotto.Enum.ErrorMessage.NOT_NUMBER_ERROR;
+import static lotto.Enum.ErrorMessage.NUMBER_RANGE_ERROR;
 import static lotto.Enum.ErrorMessage.UNIT_ERROR;
+import static lotto.Enum.Number.MIN_NUMBER;
 import static lotto.Enum.Number.UNIT;
 
 import java.util.ArrayList;
@@ -50,5 +52,18 @@ public class Exception {
             throw new IllegalArgumentException(LENGHT_ERROR.getMessage());
         }
         return numbers;
+    }
+
+    public static void checkBonusNumber(List<Integer> winningNumbers, String input) {
+        checkIfNumber(input);
+        int result = Integer.parseInt(input);
+        checkIfNumberInRange(result);
+        checkIfDuplicated(winningNumbers, result);
+    }
+
+    private static void checkIfNumberInRange(int number) {
+        if (number < MIN_NUMBER.getNumber() || number > 45) {
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
+        }
     }
 }

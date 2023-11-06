@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.Enum.InputMessage.BUY_HOW_MANY;
+import static lotto.Enum.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.Enum.InputMessage.INPUT_PURCHASE_AMOUNT;
 import static lotto.Enum.InputMessage.INPUT_WINNING_NUMBER;
 import static lotto.Enum.Number.UNIT;
@@ -39,6 +40,17 @@ public class Application {
                 System.out.println(INPUT_WINNING_NUMBER.getMessage());
                 input = Console.readLine();
                 winningNumber = Exception.checkWinningNumber(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.println(INPUT_BONUS_NUMBER.getMessage());
+                input = Console.readLine();
+                Exception.checkBonusNumber(winningNumber, input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

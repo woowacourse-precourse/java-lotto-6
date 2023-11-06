@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.constants.Message.COMMA;
 import static lotto.constants.Value.ASCII_ZERO;
 import static lotto.constants.Value.FIRST_CHARACTER;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
@@ -44,6 +45,12 @@ public class Validator {
     public static void checkRange(Integer userInput) {
         if ((userInput < MIN_LOTTO_NUMBER.get()) || (userInput > MAX_LOTTO_NUMBER.get())) {
             throw new IllegalArgumentException(RANGE_ERROR.getMessage());
+        }
+    }
+
+    public static void checkComma(String userInput){
+        if(userInput.substring(userInput.length() - 1) == COMMA.getMessage()){
+            throw new IllegalArgumentException();
         }
     }
 }

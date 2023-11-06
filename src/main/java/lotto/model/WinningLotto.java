@@ -13,6 +13,7 @@ public class WinningLotto {
     private void validateBonusNumber(Lotto lotto, String bonus) {
         isInteger(bonus);
         isCorrectRange(bonus);
+        isDuplicateWinningLotto(lotto, bonus);
     }
 
     private void isInteger(String bonus) {
@@ -26,6 +27,14 @@ public class WinningLotto {
 
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void isDuplicateWinningLotto(Lotto lotto, String bonus) {
+        int bonusNumber = Integer.parseInt(bonus);
+
+        if (lotto.isContain(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
         }
     }
 }

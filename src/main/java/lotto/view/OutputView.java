@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.configuration.InputMessage;
+
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -10,5 +12,10 @@ public class OutputView {
             joiner.add(number.toString());
         }
         System.out.println(joiner.toString());
+    }
+
+    public static void inputWinningNumber() {
+        System.out.println();
+        InputMessage.INPUT_WINNING_NUMBERS.inputMessage();
     }
 }

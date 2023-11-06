@@ -12,6 +12,9 @@ import lotto.domain.lotto.exception.InvalidLottoLengthException;
  */
 public final class LottoValidator {
 
+    /**
+     * 외부 생성자 접근을 제한합니다.
+     */
     private LottoValidator() {
     }
 

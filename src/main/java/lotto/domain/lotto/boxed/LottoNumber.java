@@ -65,6 +65,9 @@ public sealed class LottoNumber permits BonusNumber {
         return Objects.hash(value);
     }
 
+    /**
+     * 원본 로또 번호 객체를 deepcopy 합니다.
+     */
     public LottoNumber clone() {
         return new LottoNumber(value);
     }

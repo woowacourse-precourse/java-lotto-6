@@ -6,8 +6,8 @@ import lotto.player.Prize;
 import lotto.player.Wallet;
 
 public class Game {
-    Wallet wallet;
-    int prizeCount;
+    private Wallet wallet;
+    private int prizeCount;
     private LottoShop lottoShop;
 
     public Game(){

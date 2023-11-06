@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import lotto.domain.result.WinningRank;
+
 public class WinningLotto {
     private Lotto lotto;
     private BonusNumber bonusNumber;
@@ -16,4 +18,9 @@ public class WinningLotto {
         }
     }
 
+    public WinningRank findWinningRank(Lotto lotto) {
+        int matchCount = lotto.calculateMatchCount(this.lotto);
+        boolean hasBonusNumber = lotto.hasSameNumber(bonusNumber);
+        return WinningRank.findWinningRank(matchCount, hasBonusNumber);
+    }
 }

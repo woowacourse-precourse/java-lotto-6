@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import java.util.regex.Pattern;
 import lotto.domain.LottoNumbers;
+import lotto.domain.Unit;
 
 public class NumberValidator {
 
@@ -30,6 +31,11 @@ public class NumberValidator {
     public void validateDuplicateNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스번호가 당첨번호에 속해있습니다.");
+        }
+    }
+    public void validatePurchasePrice(int purchasePrice) {
+        if (purchasePrice % Unit.PURCHASE_UNIT.getValue() != Unit.ZERO.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
 }

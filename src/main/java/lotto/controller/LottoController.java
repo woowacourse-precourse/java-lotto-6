@@ -4,6 +4,7 @@ import lotto.generator.RandomUniqueListGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoOwner;
 import lotto.model.PurchasePrice;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,10 +17,17 @@ public class LottoController {
         PurchasePrice purchasePrice = PurchasePrice.from(inputView.getPurchaseAmount());
         LottoOwner lottoOwner = LottoOwner.of(purchasePrice, new RandomUniqueListGenerator());
         outputView.printLottosInfo(lottoOwner.getLottosInfo());
-        outputView.printEnterWinningNumbers();
-        Lotto winningLotto = Lotto.from(inputView.getWinningNumbers());
-        outputView.printEnterBonusNumber();
-        int bonusNumber = inputView.getBonusNumber();
+        WinningLotto winningLotto = WinningLotto.of(getWinningLotto(), getBonusNumber());
         outputView.printWinnerStatistics();
+    }
+
+    private Lotto getWinningLotto() {
+        outputView.printEnterWinningNumbers();
+        return Lotto.from(inputView.getWinningNumbers());
+    }
+
+    private int getBonusNumber() {
+        outputView.printEnterBonusNumber();
+        return inputView.getBonusNumber();
     }
 }

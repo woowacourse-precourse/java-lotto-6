@@ -26,13 +26,18 @@ public class Application {
         Jackpot jackpot = createJackPotProcess(lottoController, inputView);
 
         // 발행된 로또들의 당첨 여부 계산
-        Result result = lottoController.createResult(jackpot, lottos, purchase);
-        lottoController.calculateWinningRanks(result);
-        outputView.printWinningStatistics(result);
+        Result result = calculateWinningRanksProcess(lottoController, outputView, purchase, lottos, jackpot);
 
         // 발행된 로또들의 수익률 계산
         Double rate = lottoController.calculateProfitRate(result);
         outputView.printProfitRate(rate);
+    }
+
+    private static Result calculateWinningRanksProcess(LottoController lottoController, OutputView outputView, Purchase purchase, List<Lotto> lottos, Jackpot jackpot) {
+        Result result = lottoController.createResult(jackpot, lottos, purchase);
+        lottoController.calculateWinningRanks(result);
+        outputView.printWinningStatistics(result);
+        return result;
     }
 
     private static Jackpot createJackPotProcess(LottoController lottoController, InputView inputView) {

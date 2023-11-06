@@ -38,7 +38,7 @@ public class OutputView {
     }
 
     public static String getFormatStringFrom(double decimal) {
-        String formatted = String.format("%,.2f", decimal);
+        String formatted = String.format(RegexConstant.DECIMAL_FORMAT.getRegex(), decimal);
         formatted = formatted.replaceAll(RegexConstant.TRAILING_ZEROS_FROM_DOUBLE.getRegex(),
                 SystemMessage.EMPTY.getMessage());
         formatted = formatted.replaceAll(RegexConstant.LAST_DOTS.getRegex(),

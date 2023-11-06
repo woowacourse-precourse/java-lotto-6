@@ -3,7 +3,8 @@ package lotto.system;
 public enum RegexConstant {
     INPUT_PATTERN("[0-9]+"),
     TRAILING_ZEROS_FROM_DOUBLE("\\.?0*$"),
-    LAST_DOTS("\\.$");
+    LAST_DOTS("\\.$"),
+    DECIMAL_FORMAT("%,.2f");
 
     private final String regex;
 

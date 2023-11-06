@@ -15,15 +15,15 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public LottoNumber(String input){
+    public LottoNumber(String input) {
         int inputNumber = Utils.convertStringToInt(input);
         validate(inputNumber);
         this.number = inputNumber;
     }
 
     private void validate(int number) {
-        if ( MAX_NUMBER < number || number < MIN_NUMBER ) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        if (MAX_NUMBER < number || number < MIN_NUMBER) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.get(MIN_NUMBER, MAX_NUMBER));
         }
     }
 }

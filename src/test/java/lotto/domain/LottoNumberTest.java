@@ -18,7 +18,7 @@ class LottoNumberTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> new LottoNumber(input));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.NOT_NUMBER.getMessage());
+        assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.NOT_NUMBER.get());
     }
 
     @DisplayName("로또 번호 범위를 벗어나는 경우에 대한 예외 검증")
@@ -29,7 +29,7 @@ class LottoNumberTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> new LottoNumber(input));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        assertThat(exception.getMessage()).isEqualTo(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE.get(1,45));
     }
 
 }

@@ -21,6 +21,10 @@ public class LottoGameController {
         view.printUserLottos(lottos.getAllLottoNumbersMessage(), lottos.getLottoAmount());
     }
 
+    public Lotto inputWinningLotto() {
+        return generateWinningLotto(view.inputWinningNumbers());
+    }
+
     public Lotto generateWinningLotto(List<Integer> winningNumbers) {
         return new Lotto(winningNumbers);
     }

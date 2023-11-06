@@ -14,7 +14,7 @@ public class WinningNumber {
     }
 
     private void validateRange(int number) {
-        if(number < LottoConfig.LOTTO_NUMBER_FROM || LottoConfig.LOTTO_NUMBER_TO < number) {
+        if (number < LottoConfig.LOTTO_NUMBER_FROM || LottoConfig.LOTTO_NUMBER_TO < number) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE_MESSAGE);
         }
     }

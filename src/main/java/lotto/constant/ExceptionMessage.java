@@ -8,7 +8,7 @@ public class ExceptionMessage {
     public static final String DUPLICATION_MESSAGE = "[ERROR] 중복된 숫자가 입력되었습니다.";
     public static final String NOT_POSITIVE_MESSAGE = "[ERROR] 입력한 숫자가 양수가 아닙니다.";
     public static final String NOT_UNIT_NUMBER_MESSAGE = "[ERROR] 입력한 숫자의 단위가 잘못되었습니다.";
-    public static final String BONUS_NUMBER_OVERLAPPED_MESSAGE = "[ERROR] 입력한 보너스 숫자가 겹칩니다.";
+    public static final String BONUS_NUMBER_OVERLAPPED_MESSAGE = "[ERROR] 입력한 보너스` 숫자가 겹칩니다.";
 
     private ExceptionMessage() {
     }

@@ -31,8 +31,9 @@ class LottoTest {
             assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
+
     }
-    
+
     @DisplayName("toString 테스트")
     @Nested
     class toString {
@@ -41,11 +42,11 @@ class LottoTest {
         @Test
         void printLottoWithUnsortedIntegers() {
 
-            List<Integer> numbers = new ArrayList<>(List.of(6,5,4,3,2,1));
+            List<Integer> numbers = new ArrayList<>(List.of(6, 5, 4, 3, 2, 1));
             Lotto lotto = new Lotto(numbers);
 
             String string = lotto.toString();
-            String expect = List.of(1,2,3,4,5,6).toString();
+            String expect = List.of(1, 2, 3, 4, 5, 6).toString();
 
             assertEquals(string, expect);
 

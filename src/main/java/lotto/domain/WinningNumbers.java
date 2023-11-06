@@ -25,14 +25,14 @@ public class WinningNumbers {
     }
 
     private static void validateLength(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != LottoConfig.LOTTO_LENGTH) {
+        if (winningNumbers.size() != LottoConfig.LOTTO_LENGTH) {
             throw new IllegalArgumentException(ExceptionMessage.LENGTH_ERROR_MESSAGE);
         }
     }
 
     private static void validateDuplication(List<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>(winningNumbers);
-        if(set.size() != winningNumbers.size()) {
+        if (set.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATION_MESSAGE);
         }
     }

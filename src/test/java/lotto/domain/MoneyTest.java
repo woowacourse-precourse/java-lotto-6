@@ -30,7 +30,7 @@ class MoneyTest {
 
         @DisplayName("로또 가격에 맞지 않는 수를 넣으면 오류를 띄운다.")
         @ParameterizedTest
-        @ValueSource(ints = {1,2,3,1001,2001})
+        @ValueSource(ints = {1, 2, 3, 1001, 2001})
         void createWithNonUnitNumber(int number) {
             assertThatThrownBy(() -> new Money(number))
                     .isInstanceOf(IllegalArgumentException.class)

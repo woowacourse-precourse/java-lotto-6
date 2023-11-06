@@ -4,10 +4,10 @@ public class IncomeRate {
 
     private final float incomeRate;
 
-    public IncomeRate(int used,int income) {
+    public IncomeRate(int used, int income) {
         income *= 10000;
         int multipliedIncomeRate = income / used;
-        incomeRate = ((float)multipliedIncomeRate) / 100;
+        incomeRate = ((float) multipliedIncomeRate) / 100;
     }
 
     public float getIncomeRate() {

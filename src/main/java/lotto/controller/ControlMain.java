@@ -99,8 +99,8 @@ public class ControlMain {
     public void bonusNumAllError(String choice, List<Integer> numbers) {
         ErrorCheck.isSpaceValue(choice);
         ErrorCheck.isDigitErrorCheck(choice);
-        ErrorCheck.isvalidateMaxAndMinNum(choice);
-        ErrorCheck.isDuplicationErrorcheck(choice, numbers);
+        ErrorCheck.isValidateMaxAndMinNum(choice);
+        ErrorCheck.isDuplicationErrorCheck(choice, numbers);
     }
 
     public void priceLottoAllError(String price) {

@@ -29,4 +29,10 @@ public class Lotto {
             throw new IllegalArgumentException(LOTTO_COMBINATION_DO_NOT_HAVE_DUPLICATES.getErrorMessage());
         }
     }
+
+    public boolean isBonusNumberIn(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+
 }

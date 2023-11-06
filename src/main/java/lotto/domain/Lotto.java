@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,9 +41,9 @@ public class Lotto {
     private List<LottoNumber> convertToLottoNumber(List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::new)
+                .sorted(Comparator.comparingInt(LottoNumber::getNumber))
                 .toList();
     }
-
     public List<LottoNumber> getNumbers(){
         return numbers;
     }

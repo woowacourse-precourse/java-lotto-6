@@ -6,6 +6,7 @@ import static lotto.constant.message.ErrorMessage.DUPLICATE_BONUS;
 import static lotto.constant.message.ErrorMessage.INVALID_NUMBER_RANGE;
 
 import java.util.List;
+import lotto.constant.Prize;
 
 public class WinningNumbers {
     private Lotto winningNumber;
@@ -16,10 +17,22 @@ public class WinningNumbers {
     }
 
     public void makeBonusNumber(int bonusNumber) throws IllegalArgumentException {
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    public Prize checkPrize(Lotto otherLotto) {
+        int count = winningNumber.matchCount(otherLotto);
+        boolean bonusMatch = otherLotto.isContain(bonusNumber);
+        if (count == 5 && bonusMatch) {
+            return Prize.SECOND;
+        }
+        return Prize.getByMatch(count);
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
         validateDuplicateBonus(winningNumber, bonusNumber);
-
-        this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
@@ -33,7 +46,7 @@ public class WinningNumbers {
     }
 
     private void validateDuplicateBonus(Lotto winningNumber, int bonusNumber) {
-        if (winningNumber.getNumbers().contains(bonusNumber)) {
+        if (winningNumber.isContain(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
     }

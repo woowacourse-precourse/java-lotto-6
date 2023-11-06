@@ -1,5 +1,6 @@
 package lotto.domain.money;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,5 +47,33 @@ class MoneyTest {
 
         // then
         assertTrue(enough);
+    }
+
+    @DisplayName("두 Money 객체는 같은 금액을 가질 때 동등해야 한다.")
+    @Test
+    public void should_MoneyObjects_Be_Equal_When_They_Have_Same_Money() {
+        // given
+        // when
+        Money money1 = Money.fromInitialMoney(1000);
+        Money money2 = Money.fromInitialMoney(1000);
+        Money money3 = Money.fromInitialMoney(2000);
+
+        // then
+        assertEquals(money1, money2);
+        assertNotEquals(money1, money3);
+    }
+
+    @Test
+    @DisplayName("두 Money 객체의 해시 코드는 같은 금액을 가질 때 동일해야 한다.")
+    public void should_HashCode_Of_MoneyObjects_Be_Equal_When_They_Have_Same_Money() {
+        // given
+        // when
+        Money money1 = Money.fromInitialMoney(1000);
+        Money money2 = Money.fromInitialMoney(1000);
+        Money money3 = Money.fromInitialMoney(2000);
+
+        // then
+        assertEquals(money1.hashCode(), money2.hashCode());
+        assertNotEquals(money1.hashCode(), money3.hashCode());
     }
 }

@@ -10,8 +10,8 @@ public class GameController {
     private final Calculator calculator;
     private final Lottos lottos;
     private final PurchaseAmount purchaseAmount;
-    private final WinningNumber winningNumber;
-    private final BonusNumber bonusNumber;
+    private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
     private int coin;
 
@@ -20,24 +20,23 @@ public class GameController {
         this.calculator = new Calculator();
         this.lottos = new Lottos();
         this.purchaseAmount = new PurchaseAmount(InputView.inputPurchaseAmount());
+        coin = Parser.parseAmountToCoin(purchaseAmount);
         OutputView.printNumberOfLottoPurchase(coin);
-        this.winningNumber = new WinningNumber(InputView.inputWinningNumber());
-        this.bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+
     }
 
     public void run() {
-        coin = Parser.parseAmountToCoin(purchaseAmount);
-
         for (int i = 0; i < coin; i++) {
             Lotto lotto = lottoMachine.createLotto();
             lottos.addLotto(lotto);
             System.out.println(lotto.toString());
         }
 
-        calculator.calculateResult(lottos.getLottos(),
+        this.winningNumber = new WinningNumber(InputView.inputWinningNumber());
+        this.bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+
+        Result result = calculator.calculateResult(lottos.getLottos(),
                 winningNumber.getWinningNumber(),
                 bonusNumber.getBonusNumber());
-
-
     }
 }

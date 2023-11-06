@@ -18,11 +18,11 @@
             - [x] domain) 금액이 올바른 값인지 확인 - LottoStoreClerk.checkLottoOrderAmount()
           - [x] domain) 주문 갯수에 맞게 로또 발행 - LottoStoreClerk.lottoGenerater()
     - [x] view) 발행된 로또 출력 
-- [ ] controller) 당첨 번호 입력 요청
-    - [ ] view) 당첨 번호 입력
+- [x] controller) 당첨 번호 입력 요청
+    - [x] view) 당첨 번호 입력
 - [ ] controller) 입력된 당첨 번호 확인및 저장 요청
     - [ ] domain) 당첨 번호 입력값 검사
-    - [ ] domain) 당첨 번호 저장
+    - [x] domain) 당첨 번호 저장
 - [ ] controller) 보너스 번호 입력 요청
     - [ ] view) 보너스 번호 입력
 - [ ] controller) 입력된 보너스 번호 확인및 저장 요청

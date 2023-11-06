@@ -8,6 +8,10 @@ public class LottoSimulationResult {
 
     public LottoSimulationResult() {
         this.resultCount = new ArrayList<>(LottoMatchResult.values().length);
+
+        for (int i = 0; i < LottoMatchResult.values().length; i++) {
+            resultCount.add(0);
+        }
     }
 
     public void add(LottoMatchResult result) {
@@ -31,7 +35,11 @@ public class LottoSimulationResult {
         StringBuilder result = new StringBuilder();
 
         for (LottoMatchResult matchResult : LottoMatchResult.values()) {
-            result.append(String.format("%s - %d개", matchResult, resultCount.get(matchResult.getIndex())));
+            if (matchResult == LottoMatchResult.UNMATCHED) {
+                continue;
+            }
+
+            result.append(String.format("%s - %d개\n", matchResult, resultCount.get(matchResult.getIndex())));
         }
         result.append(String.format("총 수익률은 %.2f%%입니다.", calculateReturn() * 100));
 

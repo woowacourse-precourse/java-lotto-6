@@ -1,7 +1,6 @@
 package lotto.random;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constant.LottoConstraint;
 import java.util.List;
 
 public class GeneralRandomNumberGenerator implements RandomNumberGenerator {

@@ -45,7 +45,7 @@ public class LottoController {
 
     List<Lotto> makeRandomLotto(Money money) {
         List<Lotto> randomLotto = new ArrayList<>();
-        Integer size = money.numberOfPurchaseAvailable();
+        int size = money.numberOfPurchaseAvailable();
         for (int i = 0; i < size; i++) {
             Lotto newLotto = LottoGenerator.generateRandomLotto();
             randomLotto.add(newLotto);

@@ -5,35 +5,35 @@ import static lotto.model.constant.LottoConfig.ZERO;
 
 public class Money {
 
-    private final Integer money;
+    private final int money;
 
-    public Money(Integer money) {
+    public Money(int money) {
         validateOverZero(money);
         validateWonUnit(money);
         this.money = money;
     }
 
-    public Integer availableLottoCount() {
+    public int availableLottoCount() {
         return this.money / LOTTO_AMOUNT;
     }
 
-    public Integer getMoney() {
+    public int getMoney() {
         return this.money;
     }
 
-    private void validateOverZero(Integer money) {
+    private void validateOverZero(int money) {
         if (isOverMinimum(money)) {
             throw new IllegalArgumentException("[ERROR] 돈은 1,000원 이상 입력가능합니다.");
         }
     }
 
-    private void validateWonUnit(Integer money) {
+    private void validateWonUnit(int money) {
         if (money % LOTTO_AMOUNT != ZERO) {
             throw new IllegalArgumentException("[ERROR] 돈은 1,000원 단위로 입력가능합니다.");
         }
     }
 
-    private static boolean isOverMinimum(Integer money) {
+    private static boolean isOverMinimum(int money) {
         return money < LOTTO_AMOUNT;
     }
 }

@@ -11,14 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    List<WinningCount> winningCounts;
+    private static List<WinningCount> winningCounts;
 
-    public Calculator(List<WinningCount> winningCounts) {
-        this.winningCounts = winningCounts;
-    }
-
-
-    public Map<Integer, Integer> classify(List<WinningCount> winningCounts) {
+    public static Map<Integer, Integer> classify(List<WinningCount> winningCounts) {
+        Calculator.winningCounts = winningCounts;
         Map<Integer, Integer> winningResult = new HashMap<>();
         winningResult.put(1, countFirst());
         winningResult.put(2, countSecond());
@@ -28,11 +24,11 @@ public class Calculator {
         return winningResult;
     }
 
-    public double calculateProfitRate(int purchaseAmount) {
+    public static double calculateProfitRate(int purchaseAmount) {
         return calculateProfit() * 100.0 / purchaseAmount;
     }
 
-    private int calculateProfit() {
+    private static int calculateProfit() {
         return countFirst() * FIRST.getPrize()
                 + countSecond() * SECOND.getPrize()
                 + countThird() * THIRD.getPrize()
@@ -41,33 +37,33 @@ public class Calculator {
     }
 
 
-    private int countFirst() {
+    private static int countFirst() {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == FIRST.getCount())
                 .count();
     }
 
-    private int countSecond() {
+    private static int countSecond() {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == SECOND.getCount()
                         && winningCount.hasBonusNumber())
                 .count();
     }
 
-    private int countThird() {
+    private static int countThird() {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == THIRD.getCount()
                         && !winningCount.hasBonusNumber())
                 .count();
     }
 
-    private int countFourth() {
+    private static int countFourth() {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == FOURTH.getCount())
                 .count();
     }
 
-    private int countFifth() {
+    private static int countFifth() {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == FIFTH.getCount())
                 .count();

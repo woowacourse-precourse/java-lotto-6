@@ -94,8 +94,7 @@ public class Game {
 
     private void createWinningResult() {
         List<WinningCount> winningCounts = createWinningCounts();
-        Calculator calculator = new Calculator(winningCounts);
-        winningResult = calculator.classify(winningCounts);
+        winningResult = Calculator.classify(winningCounts);
     }
 
     private List<WinningCount> createWinningCounts() {
@@ -105,7 +104,6 @@ public class Game {
     }
 
     private void createProfitRate() {
-        Calculator calculator = new Calculator(createWinningCounts());
-        profitRate = calculator.calculateProfitRate(purchaseAmount);
+        profitRate = Calculator.calculateProfitRate(purchaseAmount);
     }
 }

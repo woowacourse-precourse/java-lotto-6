@@ -28,10 +28,14 @@ public class GameService {
     }
 
     public void createLotteries() {
-        lotteries = Lotteries.from(purchaseAmount.calculateNumberOfLotteries());
+        lotteries = Lotteries.from(purchaseAmount.calculateAmountOfLotteries());
     }
 
     public List<List<Integer>> printLottoNumbers() {
         return lotteries.getNumbersOfLotteries();
+    }
+
+    public int printPurchaseAmount() {
+        return purchaseAmount.calculateAmountOfLotteries();
     }
 }

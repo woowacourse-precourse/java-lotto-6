@@ -5,7 +5,7 @@ import lotto.constant.OutputConstant;
 
 public class OutputView {
 
-    public void printPurchaseAmount(String purchaseAmount) {
+    public void printPurchaseAmount(int purchaseAmount) {
         System.out.printf(OutputConstant.PURCHASE_RESULT.getMessage(), purchaseAmount);
     }
 

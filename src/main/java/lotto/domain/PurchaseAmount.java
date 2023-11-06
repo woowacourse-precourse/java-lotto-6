@@ -38,7 +38,7 @@ public class PurchaseAmount {
         }
     }
 
-    public int calculateNumberOfLotteries() {
+    public int calculateAmountOfLotteries() {
         return totalPrice / NumberConstant.LOTTO_PRICE.getNumber();
     }
 }

@@ -32,7 +32,7 @@ public class LottoResult {
         for (Lotto lotto : lotteries) {
             winningCount = lotto.compareTo(winningLotto.getWinningLotto());
             countResultMap();
-            countBonusNumber(winningLotto.getBonusNumber());
+            countBonusNumber(lotto, winningLotto.getBonusNumber());
         }
     }
 
@@ -42,12 +42,16 @@ public class LottoResult {
         }
     }
 
-    private void countBonusNumber(int bonusNumber) {
+    private void countBonusNumber(Lotto lotto, int bonusNumber) {
         if (winningCount != PriceConstant.SECOND_PLACE.getCount()) {
             return;
         }
 
-        resultMap.put(PriceConstant.SECOND_PLACE.getCount(), resultMap.get(PriceConstant.SECOND_PLACE.getCount()) + 1);
-        resultMap.put(PriceConstant.THIRD_PLACE.getCount(), resultMap.get(PriceConstant.THIRD_PLACE.getCount()) - 1);
+        if (lotto.isCompareByBonusNumber(bonusNumber)) {
+            resultMap.put(PriceConstant.SECOND_PLACE.getCount(),
+                    resultMap.get(PriceConstant.SECOND_PLACE.getCount()) + 1);
+            resultMap.put(PriceConstant.THIRD_PLACE.getCount(),
+                    resultMap.get(PriceConstant.THIRD_PLACE.getCount()) - 1);
+        }
     }
 }

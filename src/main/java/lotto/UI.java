@@ -21,7 +21,7 @@ public class UI {
 
     public static void printLottos(int amount, List<Lotto> lottos){
         System.out.println();
-        System.out.println(Integer.toString(amount) + LOTTO_AMOUNT_MSG);
+        System.out.println(amount + LOTTO_AMOUNT_MSG);
         for (Lotto lotto : lottos){
             System.out.println(lotto.getNumbers());
         }

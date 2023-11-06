@@ -8,9 +8,9 @@ import static lotto.UI.*;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGame {
-    private final List<Lotto> lottos = new ArrayList<>();;
+    private final List<Lotto> lottos = new ArrayList<>();
     private final List<Integer> winningNumber;
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public LottoGame() {
         int money = getMoney();

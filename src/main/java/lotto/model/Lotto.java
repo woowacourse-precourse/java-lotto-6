@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(numbers);
     }
 
     private void validate(final List<Integer> numbers) {
@@ -20,5 +20,11 @@ public class Lotto {
         if (uniqueNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.format());
         }
+    }
+
+    private List<Integer> sortLottoNumbers(final List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }

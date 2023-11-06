@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.io.InputHandler;
+import lotto.view.InputView;
 
 public class WinningLotto {
 
@@ -19,7 +19,7 @@ public class WinningLotto {
     }
 
     private Lotto makeWinningLotto() {
-        return new Lotto(InputHandler.readWinnerNumber());
+        return new Lotto(InputView.readWinnerNumber());
     }
 
 

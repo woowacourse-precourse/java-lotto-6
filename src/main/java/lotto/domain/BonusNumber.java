@@ -1,12 +1,12 @@
 package lotto.domain;
 
-import lotto.io.InputHandler;
+import lotto.view.InputView;
 
 public class BonusNumber {
     private final int bonusNumber;
 
     public BonusNumber() {
-        bonusNumber = InputHandler.readBonusNumber();
+        bonusNumber = InputView.readBonusNumber();
     }
 
     public int getBonusNumber(){

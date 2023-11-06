@@ -1,4 +1,4 @@
-package lotto.io;
+package lotto.view;
 
 
 import lotto.domain.Award;
@@ -9,9 +9,9 @@ import lotto.util.Util;
 import java.util.Collections;
 import java.util.List;
 
-public final class OutputHandler {
+public final class OutputView {
 
-    private OutputHandler(){
+    private OutputView(){
 
     }
 

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.io.OutputHandler;
+import lotto.view.OutputView;
 import lotto.util.Util;
 import lotto.verifier.LottoVerifier;
 
@@ -27,7 +27,7 @@ public class Lotto {
     }
 
     public void printLottoInfo() {
-        OutputHandler.printLotto(numbers);
+        OutputView.printLotto(numbers);
     }
 
     public int compareWithAnotherLotto(Lotto another) {

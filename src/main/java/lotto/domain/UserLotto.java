@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.io.InputHandler;
-import lotto.io.OutputHandler;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 import lotto.system.Constant;
 import lotto.util.RandomNumGenerator;
 
@@ -36,11 +36,11 @@ public class UserLotto {
     }
 
     private void printMyLotto() {
-        OutputHandler.printReceipts(userRepository.size());
+        OutputView.printReceipts(userRepository.size());
         userRepository.printAllLotto();
     }
 
     private int calculateLottoNum(){
-        return InputHandler.readMoney() / Constant.MONEY_UNIT;
+        return InputView.readMoney() / Constant.MONEY_UNIT;
     }
 }

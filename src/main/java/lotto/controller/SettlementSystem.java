@@ -4,7 +4,7 @@ import lotto.domain.Award;
 import lotto.domain.BonusNumber;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
-import lotto.io.OutputHandler;
+import lotto.view.OutputView;
 import lotto.domain.manager.AwardManager;
 import lotto.domain.manager.YieldManager;
 
@@ -23,7 +23,7 @@ public class SettlementSystem {
     }
 
     public void renderResult() {
-        OutputHandler.printReward(awards);
-        OutputHandler.printYield(yield);
+        OutputView.printReward(awards);
+        OutputView.printYield(yield);
     }
 }

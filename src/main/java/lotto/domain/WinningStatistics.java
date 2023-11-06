@@ -1,12 +1,13 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class WinningStatistics {
-    private Map<WinningRank, Integer> winningStatistics = new HashMap<>();
+    private Map<WinningRank, Integer> winningStatistics = new EnumMap<>(WinningRank.class);
     private BigDecimal revenueRate = BigDecimal.ZERO;
 
     private WinningStatistics(Lottos userLottos, WinningLotto winningLotto, Budget budget) {

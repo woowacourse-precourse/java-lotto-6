@@ -17,6 +17,15 @@ public class ValidateCheck {
         }
     }
 
+    public static boolean pureIntegerCheck(String number){
+        try {
+            int convertNumber = Integer.parseInt(number);
+        } catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
+
     public static boolean inputAmountValidate(int amount){
         return amount%Constants.LOTTO_PRICE.getNumber()==0;
     }

@@ -35,7 +35,7 @@ public class LottoController {
 
     private void buyLotto() {
         buyAmount = InputView.getBuyAmountFromInput();
-        lottos = createLottosFromAmount(buyAmount);
+        lottos = createLottosFromAmount();
         LottosDTO lottosDTO = lottos.toLottosDTO();
         OutputView.displayAllLottos(lottosDTO);
     }
@@ -61,7 +61,7 @@ public class LottoController {
         return new LottoResultsDTO(lottoStatistics, buyAmount.getAbleToBuyCount());
     }
 
-    private Lottos createLottosFromAmount(BuyAmount buyAmount) {
+    private Lottos createLottosFromAmount() {
         List<Lotto> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < buyAmount.getAbleToBuyCount(); i++) {
             Lotto lotto = new Lotto(lottoNumberGenerator.generateNumber());

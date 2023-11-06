@@ -26,6 +26,11 @@ public class LottoGame {
     public void start() {
         purchaseAmount();
         makeLotto();
+        winningNumber();
+    }
+
+    private void winningNumber() {
+        outputView.winnerNumber();
     }
 
     private void makeLotto() {
@@ -40,7 +45,7 @@ public class LottoGame {
     private void purchaseAmount() {
         outputView.purchaseAmount();
         while (true) {
-            String input = inputView.purchaseAmount();
+            String input = inputView.readLine();
             try {
                 user.setPurchaseAmount(input);
                 purchaseAmount = user.getPurchaseAmount() / DIVIDE_NUMBER;

@@ -25,7 +25,6 @@ public class DrawingResult {
     }
 
     private int countLottoTickets() {
-        System.out.println("drawingResult.values() = " + drawingResult.values());
         return drawingResult.values().stream()
                 .filter(ticketCount -> ticketCount > 0)
                 .mapToInt(Integer::intValue)

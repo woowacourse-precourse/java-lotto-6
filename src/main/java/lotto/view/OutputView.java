@@ -24,4 +24,14 @@ public class OutputView {
         String formattedMessage = String.format(ResponseMessage.PURCHASE_AMOUNT.getMessage(), amount);
         System.out.println(formattedMessage);
     }
+
+    public static void printResponseWinningStats() {
+        String formattedMessage = String.format(ResponseMessage.WINNING_STATS.getMessage(), 1, 2, 3, 4, 5);
+        System.out.println(formattedMessage);
+    }
+
+    public static void printResponseProfitRate() {
+        String formattedMessage = String.format(ResponseMessage.WINNING_PROFIT_RATE.getMessage(), 1.1);
+        System.out.println(formattedMessage);
+    }
 }

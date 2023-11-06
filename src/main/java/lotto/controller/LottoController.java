@@ -28,6 +28,8 @@ public class LottoController {
         InputView.readLine();
 
         // 당첨 통계 출력
+        OutputView.printResponseWinningStats();
+        OutputView.printResponseProfitRate();
     }
 
 }

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.dto.LottoDto;
+import lotto.dto.LottoResultDto;
 import lotto.service.StatisticsService;
 import lotto.utils.Converter;
 import lotto.view.InputView;
@@ -66,7 +67,11 @@ public class MainController {
         LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
         double rateOfReturn = statisticsService.calculateRateOfReturn(lottoResult.getResult(), userLottos);
 
-        outputView.printLottoResult(lottoResult.getResult(), rateOfReturn);
+        outputView.printLottoResult(toDto(lottoResult), rateOfReturn);
+    }
+
+    private LottoResultDto toDto(LottoResult lottoResult) {
+        return new LottoResultDto(lottoResult.getResult());
     }
 
     private <T> T repeatTemplate(Supplier<T> inputReader) {

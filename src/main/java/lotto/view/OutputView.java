@@ -1,10 +1,9 @@
 package lotto.view;
 
-import lotto.domain.LottoRanking;
 import lotto.dto.LottoDto;
+import lotto.dto.LottoResultDto;
 
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     protected static final String NEWLINE = System.lineSeparator();
@@ -39,15 +38,15 @@ public class OutputView {
         System.out.println(numbersMessageBuilder);
     }
 
-    public void printLottoResult(Map<LottoRanking, Integer> result, double rateOfReturn) {
-        printWinningStatistics(result);
+    public void printLottoResult(LottoResultDto lottoResult, double rateOfReturn) {
+        printWinningStatistics(lottoResult);
         printRateOfResult(rateOfReturn);
     }
 
-    private void printWinningStatistics(Map<LottoRanking, Integer> result) {
+    private void printWinningStatistics(LottoResultDto lottoResult) {
         newLine();
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        System.out.println(MessageGenerator.generateStatisticsMessage(result));
+        System.out.println(MessageGenerator.generateStatisticsMessage(lottoResult.result()));
     }
 
     public void printRateOfResult(double rateOfReturn) {

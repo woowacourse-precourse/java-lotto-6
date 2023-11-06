@@ -30,17 +30,6 @@ public class LottoController {
         proceedLottery();
     }
 
-    private void proceedLottery() {
-        RankResultDto rankResultDto = lottoGameService.calculateRank();
-        printResult(rankResultDto);
-    }
-
-    private void printResult(RankResultDto rankResultDto) {
-        outputView.printRankStatistics();
-        outputView.printRankResult(rankResultDto);
-        outputView.printTotalReturn(rankResultDto.totalReturn());
-    }
-
     private void getUserInputForLottoGame() {
         repeatGetUserInput(this::purchaseUserLotto, outputView::printPurchasedLottos);
         repeatGetUserInput(this::determineWinningNumbers, lottoGameService::determineWinningNumbers);
@@ -61,6 +50,17 @@ public class LottoController {
     private BonusNumberDto determineBonusNumber() {
         outputView.printInputBonusNumber();
         return inputParser.parseBonusNumber(inputView.getUserInput());
+    }
+
+    private void proceedLottery() {
+        RankResultDto rankResultDto = lottoGameService.calculateRank();
+        printResult(rankResultDto);
+    }
+
+    private void printResult(RankResultDto rankResultDto) {
+        outputView.printRankStatistics();
+        outputView.printRankResult(rankResultDto);
+        outputView.printTotalReturn(rankResultDto.totalReturn());
     }
 
     private <T> void repeatGetUserInput(Supplier<T> supplier, Consumer<T> consumer) {

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -59,5 +60,31 @@ class LottoWinningNumberTest {
         assertThatThrownBy(() -> {
             new LottoWinningNumber(numbers);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void containsNumber_호출_시_번호가_포함되어_있으면_true_를_반환한다() throws Exception {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(numbers);
+
+        // when
+        boolean contains = lottoWinningNumber.containsNumber(1);
+
+        // then
+        assertThat(contains).isEqualTo(true);
+    }
+
+    @Test
+    public void containsNumber_호출_시_번호가_포함되지_않았으면_false_를_반환한다() throws Exception {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(numbers);
+
+        // when
+        boolean contains = lottoWinningNumber.containsNumber(45);
+
+        // then
+        assertThat(contains).isEqualTo(false);
     }
 }

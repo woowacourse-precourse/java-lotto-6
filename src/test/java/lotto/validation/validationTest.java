@@ -38,5 +38,14 @@ public class validationTest {
                 .hasMessageContaining(ErrorMessage.INSUFFICIENT_PRICE_MESSAGE.getMessage());
     }
 
+    @Test
+    @DisplayName("당첨번호 입력시 1~45 사이의 숫자가 아닐시 예외를 발생시킨다.")
+    void 당첨번호_입력_범위_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
+        assertThatThrownBy(() -> validateService.validateInputWinningNumbersAll(winningNumbers)).isInstanceOf(
+                        IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
+    }
+
 
 }

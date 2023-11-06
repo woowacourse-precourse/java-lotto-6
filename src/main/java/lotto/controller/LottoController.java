@@ -31,7 +31,15 @@ public class LottoController {
     }
 
     private void setAmount() {
-        this.amount = new Amount(getPurchaseAmount());
+        while (true) {
+            try {
+                this.amount = new Amount(getPurchaseAmount());
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 
     private double getPurchaseAmount() {

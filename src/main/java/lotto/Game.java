@@ -8,5 +8,6 @@ public class Game {
     public void run() {
         askPurchaseAmount();
         int purchaseAmount = inputPurchaseAmount();
+        int purchaseCount = getLottoCount(purchaseAmount);
     }
 }

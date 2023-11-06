@@ -12,16 +12,16 @@ import java.util.Set;
 public class WinningNumbers {
 
     private static final int VALID_SIZE = 6;
-    private final List<LottoNumber> numbers;
+    private final List<WinningNumber> numbers;
 
     public WinningNumbers(List<Integer> numbers) {
         validateNumbers(numbers);
-        this.numbers = convertLottoNumbers(numbers);
+        this.numbers = convertWinningNumbers(numbers);
     }
 
-    private static List<LottoNumber> convertLottoNumbers(List<Integer> numbers) {
+    private static List<WinningNumber> convertWinningNumbers(List<Integer> numbers) {
         return numbers.stream()
-                .map(LottoNumber::new)
+                .map(WinningNumber::new)
                 .collect(toList());
     }
 

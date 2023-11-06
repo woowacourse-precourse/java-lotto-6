@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoEnvelop {
-    private List<Lotto> lottoEnvelops;
+    private List<Lotto> lottoEnvelop;
 
     public LottoEnvelop() {
-        lottoEnvelops = new ArrayList<>();
+        lottoEnvelop = new ArrayList<>();
     }
 
     public void add(Lotto lotto) {
-        lottoEnvelops.add(lotto);
+        lottoEnvelop.add(lotto);
     }
 
     public Integer size() {
-        return lottoEnvelops.size();
+        return lottoEnvelop.size();
     }
 
     public StringBuilder giveInformation() {
-        int sizeLottoEnvelop = lottoEnvelops.size();
+        int sizeLottoEnvelop = lottoEnvelop.size();
 
         StringBuilder information = getInformationEnvelop(sizeLottoEnvelop);
 
@@ -48,10 +48,10 @@ public class LottoEnvelop {
     }
 
     private Lotto getLotto(int i) {
-        return lottoEnvelops.get(i);
+        return lottoEnvelop.get(i);
     }
 
     public Lotto takeLotto(Integer index) {
-        return this.lottoEnvelops.get(index);
+        return this.lottoEnvelop.get(index);
     }
 }

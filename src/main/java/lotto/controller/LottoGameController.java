@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import java.util.EnumMap;
+
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Payment;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.strategy.AutoIssueStrategy;
 import lotto.domain.strategy.ManualIssuanceStrategy;
@@ -17,6 +20,9 @@ public class LottoGameController {
         printPurchaseHistory(payment, lottos);
 
         WinningLotto winningLotto = issueWinningLottoByManual(getWinningLotto());
+        EnumMap<Rank, Integer> rankResult = lottos.getRankResult(winningLotto);
+        OutputView.printWinningStatistics(rankResult);
+        OutputView.printTotalYield(payment.calculateYield(lottos.calculateTotalReward(rankResult)));
     }
 
     private Payment getPayment() {

@@ -91,6 +91,6 @@
 - [x] 당첨 번호 입력 가이드를 출력하고 값을 입력받는다
 - [x] 보너스 번호 입력 가이드를 출력하고 값을 입력받는다
 - [x] 당첨 번호를 발행한다
-- [ ] 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다
-- [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, `[ERROR]`로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다
-  - [ ] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 예외 유형을 처리한다
+- [x] 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, `[ERROR]`로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다
+  - [x] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 예외 유형을 처리한다

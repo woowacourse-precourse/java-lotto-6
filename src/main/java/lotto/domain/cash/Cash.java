@@ -6,6 +6,7 @@ public class Cash {
 
     public Cash(int amount) {
         validateUnit(amount);
+        validateIsPositive(amount);
         this.amount = amount;
     }
 
@@ -15,6 +16,13 @@ public class Cash {
         int zero = 0;
         if (remainder > zero) {
             throw new IllegalArgumentException(CashExceptionMessages.INVALID_CASH_UNIT.getMessage());
+        }
+    }
+
+    private void validateIsPositive(int amount) {
+        int zero = 0;
+        if (amount <= zero) {
+            throw new IllegalArgumentException(CashExceptionMessages.NEGATIVE_OR_ZERO.getMessage());
         }
     }
 

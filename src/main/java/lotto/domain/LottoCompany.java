@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static lotto.constant.GeneralConstant.NUMBERS_SIZE;
 import static lotto.constant.GeneralConstant.ZERO;
 import static lotto.constant.GeneralConstant.INT_NULL;
 import static lotto.constant.GeneralConstant.PRIZE_RANK_WEIGHT;

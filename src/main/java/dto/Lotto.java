@@ -22,7 +22,10 @@ public class Lotto {
             System.out.print(numbers.get(i) + ", ");
         }
         System.out.println(numbers.get(5) + "]");
+    }
 
+    public List<Integer> getLottoNumbers(){
+        return numbers;
     }
 
     // TODO: 추가 기능 구현

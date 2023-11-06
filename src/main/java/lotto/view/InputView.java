@@ -17,8 +17,9 @@ public class InputView {
         return WinNumberValidate.validateWinNumber(winNumber);
     }
 
-    public static String getBonusNumber() {
-        return Console.readLine();
+    public static int getBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
     }
 
 }

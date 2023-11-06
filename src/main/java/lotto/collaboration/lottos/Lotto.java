@@ -1,6 +1,7 @@
 package lotto.collaboration.lottos;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.io.Randoms;
 
 public class Lotto {
@@ -48,6 +49,10 @@ public class Lotto {
         // TODO : 외부 의존성 사용 테스트 작성
         // TODO : 중복 번호 발생 문제 처리해야 함 (현재 예외 발생하고 있으나, 알아서 재생성해주도록 하는 편이 좋겠다고 생각함. 사용자가 조작하지 않는 부분의 부작용까지 사용자에게 알리면 필요치않게 혼동이 커짐)
         return new Lotto(randoms.getSixNumbers());
+    }
+
+    public Stream<Integer> stream() {
+        return numbers.stream();
     }
 
     @Override

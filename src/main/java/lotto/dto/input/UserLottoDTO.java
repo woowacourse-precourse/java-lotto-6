@@ -16,7 +16,7 @@ public class UserLottoDTO {
     private void validateLotto(String inputLotto) {
         NumberValidator.isNullOrEmpty(inputLotto);
         NumberValidator.isLottoPattern(inputLotto);
-        Arrays.stream(inputLotto.split(Parser.LOTTO_SEPARATOR))
+        Arrays.stream(inputLotto.split(Parser.SEPARATOR))
                 .forEach((number) -> NumberValidator.startsWithZero(number));
     }
 

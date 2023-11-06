@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.domain.Lotto.MAX_VALUE;
+import static lotto.domain.Lotto.MIN_VALUE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
@@ -11,13 +14,10 @@ import lotto.repository.LottoRepository;
 import lotto.util.LottoGenerator;
 
 public class LottoService {
-    public static final int SPECIAL_CASE = 5;
-    public static final int SPECIAL_RESULT = 7;
-
-    public static final int START_INCLUSIVE = 0;
-    public static final int MIN_VALUE = 1;
-    public static final int MAX_VALUE = 45;
     public static final int STANDARD_SIZE = 6;
+    private static final int SPECIAL_CASE = 5;
+    private static final int SPECIAL_RESULT = 7;
+    private static final int START_INCLUSIVE = 0;
 
     public static void generateRandomLotto(UserMoney money, LottoRepository repository) {
         int chances = money.getLottoChances();
@@ -47,6 +47,4 @@ public class LottoService {
     private static boolean isBonusInLotto(LottoWithBonus userLottoWithBonus, Lotto generatedRandomLotto) {
         return userLottoWithBonus.isBonusInLotto(generatedRandomLotto);
     }
-
-    // 결과를 출력하기 위한 DTO를 형성할 수 있어야 한다
 }

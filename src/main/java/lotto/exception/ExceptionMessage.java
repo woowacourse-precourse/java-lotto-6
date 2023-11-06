@@ -13,15 +13,19 @@ public enum ExceptionMessage {
     ;
 
     private static final String PREFIX = "[ERROR] ";
+    private static final String SUFFIX = "을(를) 다시 입력해주세요";
     private final String errorDescription;
 
     ExceptionMessage(String errorDescription) {
         this.errorDescription = errorDescription;
     }
 
-
-
     public String getErrorDescription() {
-        return PREFIX + errorDescription;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(PREFIX);
+        stringBuilder.append(errorDescription);
+
+
+        return stringBuilder.toString();
     }
 }

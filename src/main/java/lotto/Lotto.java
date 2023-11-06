@@ -35,6 +35,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     //문자열에 있는 공백을 제거하고, 문자열을 검증하는 메서드
     public Lotto(String numbers){
         numbers = numbers.replace(SPACE,NULL);

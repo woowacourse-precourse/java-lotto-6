@@ -16,20 +16,24 @@ import lotto.view.constants.ConstantMessage;
 
 public class OutputView {
     public static void responseTickets(int ticketAmount, List<Lotto> tickets) {
-        ConstantMessage.printConstantMessage(RESPONSE_TICKET_AMOUNT, ticketAmount);
-        for (Lotto ticket : tickets) {
-            System.out.println(ticket.getNumbers());
-        }
+        ConstantMessage.printNotice(RESPONSE_TICKET_AMOUNT, ticketAmount);
+        printTickets(tickets);
     }
 
     public static void responseWinningStatics() {
-        ConstantMessage.printConstantMessage(RESPONSE_WINNING_STATISTICS);
-        ConstantMessage.printConstantMessage(RESPONSE_HYPHEN_SEPARATOR);
-        ConstantMessage.printConstantMessage(RESPONSE_FIFTH);
-        ConstantMessage.printConstantMessage(RESPONSE_FOURTH);
-        ConstantMessage.printConstantMessage(RESPONSE_THIRD);
-        ConstantMessage.printConstantMessage(RESPONSE_SECOND);
-        ConstantMessage.printConstantMessage(RESPONSE_FIRST);
-        ConstantMessage.printConstantMessage(RESPONSE_PROFIT_RATE);
+        ConstantMessage.printNotice(RESPONSE_WINNING_STATISTICS);
+        ConstantMessage.printNotice(RESPONSE_HYPHEN_SEPARATOR);
+        ConstantMessage.printNotice(RESPONSE_FIFTH);
+        ConstantMessage.printNotice(RESPONSE_FOURTH);
+        ConstantMessage.printNotice(RESPONSE_THIRD);
+        ConstantMessage.printNotice(RESPONSE_SECOND);
+        ConstantMessage.printNotice(RESPONSE_FIRST);
+        ConstantMessage.printNotice(RESPONSE_PROFIT_RATE);
+    }
+
+    private static void printTickets(List<Lotto> tickets) {
+        for (Lotto ticket : tickets) {
+            System.out.println(ticket.getNumbers());
+        }
     }
 }

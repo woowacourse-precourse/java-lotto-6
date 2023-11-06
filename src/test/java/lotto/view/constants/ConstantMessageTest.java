@@ -11,7 +11,7 @@ public class ConstantMessageTest {
     @DisplayName("상수 메시지를 출력한다.")
     @Test
     void printMessage() {
-        ConstantMessage.printConstantMessage(RESPONSE_SECOND, 4);
-        ConstantMessage.printConstantMessage(RESPONSE_PROFIT_RATE, new BigDecimal("3.15"));
+        ConstantMessage.printNotice(RESPONSE_SECOND, 4);
+        ConstantMessage.printNotice(RESPONSE_PROFIT_RATE, new BigDecimal("3.15"));
     }
 }

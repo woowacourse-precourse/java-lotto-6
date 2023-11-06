@@ -42,11 +42,11 @@ public enum ConstantMessage {
         this.message = message;
     }
 
-    public static void printConstantMessage(ConstantMessage constantMessage) {
+    public static void printNotice(ConstantMessage constantMessage) {
         System.out.println(constantMessage.getMessage());
     }
 
-    public static void printConstantMessage(ConstantMessage constantMessage, Object number) {
+    public static void printNotice(ConstantMessage constantMessage, Object number) {
         System.out.printf((constantMessage.getMessage()) + "%n", number);
     }
 

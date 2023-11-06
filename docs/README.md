@@ -17,6 +17,7 @@
 5. ~~당첨번호 입력 - View - inputView - winNum~~
 6. ~~쉼표로 분리된 숫자 Integer로 변환 후 list에 담기~~
 6. ~~Lotto클래스로 당첨번호 6자리인지 확인 - Model - Lotto - validate~~
+7. ~~로또 중복 번호 확인 기능 - Model - Lotto - duplicateCheck~~
 6. 당첨번호 HashSet에 넣기 - Model - Lotto - winNumIntersection
 7. 보너스 번호 입력 - View - inputView - bonusNum
 8. 보너스 번호 1개 List에 넣기 - Model - Lotto - bonusNumIntersection

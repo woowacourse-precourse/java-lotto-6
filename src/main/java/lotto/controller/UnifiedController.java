@@ -11,6 +11,7 @@ import static lotto.model.SystemConstant.DataType.LONG;
 import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
+import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printNumOfTickets;
 import static lotto.view.SystemMessage.ASK_BONUS;
@@ -65,15 +66,36 @@ public class UnifiedController {
             Register.money = new Money(Long.parseLong(InputView.inputData(LONG)));
         }
         if (systemMessage == ASK_WINNING_NUMBERS) {
-            Register.firstPrizeLotto = new Lotto(covertElementStringToInteger(InputView.inputData(INTEGER_LIST)));
+            Register.firstPrizeLotto = createLotto();
         }
         if (systemMessage == ASK_BONUS) {
-            Set<Integer> firstPrizeNumbers = new HashSet<>(Register.firstPrizeLotto.getNumbers());
-            Register.bonus = new Bonus(Integer.parseInt(InputView.inputData(INTEGER)), firstPrizeNumbers);
+            Register.bonus = createBonus();
         }
     }
 
-    public List<Integer> covertElementStringToInteger(String input) {
+    public Lotto createLotto() {
+        List<Integer> lottoNumbers = convertElementStringToInteger(InputView.inputData(INTEGER_LIST));
+        if (Register.bonus != null) {
+            compareBonusAndWinningNumbers(new HashSet<>(lottoNumbers), Register.bonus.getNumber());
+        }
+        return new Lotto(lottoNumbers);
+    }
+
+    public Bonus createBonus() {
+        int number = Integer.parseInt(InputView.inputData(INTEGER));
+        if (Register.firstPrizeLotto != null) {
+            compareBonusAndWinningNumbers(new HashSet<>(Register.firstPrizeLotto.getNumbers()), number);
+        }
+        return new Bonus(number);
+    }
+
+    public void compareBonusAndWinningNumbers(Set<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
+        }
+    }
+
+    public List<Integer> convertElementStringToInteger(String input) {
         List<Integer> numbers = new ArrayList<>();
         for (String element : input.split(",")) {
             numbers.add(Integer.parseInt(element));

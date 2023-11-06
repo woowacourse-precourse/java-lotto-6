@@ -2,28 +2,18 @@ package lotto.model;
 
 import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
-import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 import static lotto.view.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
-
-import java.util.Set;
 
 public class Bonus {
     private int number;
 
-    public Bonus(int number, Set<Integer> firstPrizeNumbers) {
-        validate(number, firstPrizeNumbers);
+    public Bonus(int number) {
+        validate(number);
         this.number = number;
     }
 
-    private void validate(int number, Set<Integer> firstPrizeNumbers) {
-        validateDuplicatedNumber(number, firstPrizeNumbers);
+    private void validate(int number) {
         validateRangeOfNumbers(number);
-    }
-
-    private void validateDuplicatedNumber(int number, Set<Integer> firstPrizeNumbers) {
-        if (firstPrizeNumbers.contains(number)) {
-            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
-        }
     }
 
     private void validateRangeOfNumbers(int number) {

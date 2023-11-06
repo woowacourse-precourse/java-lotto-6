@@ -15,10 +15,16 @@ public class WinNumber {
         this.winNumber = winNumber;
     }
 
-    public static WinNumber of(String winNumber) {
-        return new WinNumber(Arrays.stream(winNumber.split(SPLIT_CHARACTER))
-                .map(Integer::parseInt)
-                .toList());
+    public static WinNumber of(String input) {
+        WinNumber winNumber = null;
+        try {
+            winNumber = new WinNumber(Arrays.stream(input.split(SPLIT_CHARACTER))
+                    .map(Integer::parseInt)
+                    .toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자 형식이 아닙니다.");
+        }
+        return winNumber;
     }
 
     private void has6Numbers(List<Integer> numbers) {

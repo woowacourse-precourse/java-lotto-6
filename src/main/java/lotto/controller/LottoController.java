@@ -11,26 +11,26 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService service;
+    private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService service) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.service = service;
+        this.lottoService = lottoService;
     }
 
     public void run() {
         // 입력
         MoneyDto money = inputView.inputMoney();
         // 실행
-        LottosDto lottoTickets = service.purchaseLottoTickets(money);
+        LottosDto lottoTickets = lottoService.purchaseLottoTickets(money);
         // 출력
         printPurchasedLottoTickets(lottoTickets);
 
         // 입력
         WinningCombinationDto winningNumbers = inputView.inputWinningNumbers();
         // 실행
-        DrawingResultDto result = service.calculateDrawingResult(winningNumbers);
+        DrawingResultDto result = lottoService.calculateDrawingResult(winningNumbers);
         // 출력
         outputView.printResult(result);
     }

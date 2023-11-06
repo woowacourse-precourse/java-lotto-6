@@ -12,7 +12,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        long removeDuplicationNumbersSize = numbers.stream().distinct().count();
+
+        if (removeDuplicationNumbersSize != 6) {
             throw new IllegalArgumentException();
         }
     }

@@ -8,6 +8,7 @@ import static lotto.view.ErrorMessage.NOT_INTEGER_LIST;
 import static lotto.view.ErrorMessage.NOT_NUMBER;
 import static lotto.view.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
 import static lotto.view.OutputView.printErrorMessage;
+import static lotto.view.OutputView.printGainPercentage;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printNumOfTickets;
 import static lotto.view.OutputView.printSystemMessage;
@@ -126,6 +127,18 @@ public class OutputViewTest {
 
         //when
         printWinningLottosInfo(rank, cnt);
+        //then
+        assertThat(output.toString()).isEqualTo(expect);
+    }
+
+    @DisplayName("수익률 출력 테스트")
+    @ParameterizedTest
+    @ValueSource(doubles = {1.3, 2.2, 3.5, 4.1, 5.9, 2000000.2})
+    void 출력테스트_printGainPercentage(double input) {
+        //given
+        String expect = "총 수익률은 " + input + "%입니다.\n";
+        //when
+        printGainPercentage(input);
         //then
         assertThat(output.toString()).isEqualTo(expect);
     }

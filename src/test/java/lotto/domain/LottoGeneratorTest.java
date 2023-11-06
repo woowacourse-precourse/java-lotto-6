@@ -28,7 +28,7 @@ class LottoGeneratorTest {
         assertThat(LottoGenerator.createWinningLotto("1,2,3,4,5,6").getNumbers()).isEqualTo(lotto.getNumbers());
 
     }
-    @DisplayName("보너스 번호를 입력 받아, Integer로 변환")
+    @DisplayName("보너스 번호를 입력 받아 보너스 번호 생성")
     @Test
     void createBonusNumber(){
 
@@ -41,7 +41,4 @@ class LottoGeneratorTest {
         // then
         assertThat(bonusNumber).isEqualTo(7);
     }
-
-
-
-    }
+}

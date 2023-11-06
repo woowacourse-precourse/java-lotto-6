@@ -8,8 +8,8 @@ import java.util.List;
 import lotto.util.RandomLottoNumberGenerator;
 
 public class Lotto {
-    public static final String LOTTO_NUMBER_BOUNDARY_ERROR = "로또번호는 1에서 45 사이여야 합니다";
-    private static final String LOTTO_NUMBER_DUPLICATION_ERROR = "로또 번호는 서로 중복될 수 없습니다";
+    public static final String LOTTO_NUMBER_BOUNDARY_ERROR = "로또번호는 1에서 45 사이여야 합니다.";
+    private static final String LOTTO_NUMBER_DUPLICATION_ERROR = "로또 번호는 서로 중복될 수 없습니다.";
     private static final int LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;

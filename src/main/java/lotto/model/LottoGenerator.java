@@ -33,7 +33,7 @@ public class LottoGenerator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException(ErrorCode.LOTTO_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorCode.LOTTO_SIZE.getMessage());
         }
     }
 

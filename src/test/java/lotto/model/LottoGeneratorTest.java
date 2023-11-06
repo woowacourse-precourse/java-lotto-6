@@ -24,7 +24,7 @@ class LottoGeneratorTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8);
         assertThatThrownBy(() -> LottoGenerator.generateAnswerLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("쉼표(,)로 구분한 6개의 숫자를 입력해야 합니다.");
+                .hasMessageContaining("6개의 번호를 입력해야 합니다.");
     }
 
     @DisplayName("값 범위 확인")

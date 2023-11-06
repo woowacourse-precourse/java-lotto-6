@@ -5,24 +5,24 @@ import java.util.List;
 public class Player {
 
     private List<Lotto> lottos;
-    private int money;
+    private Money money;
     private LottoStore lottoStore;
 
-    private Player(int money, LottoStore lottoStore) {
+    private Player(Money money, LottoStore lottoStore) {
         this.money = money;
         this.lottoStore = lottoStore;
     }
 
-    public static Player of(int money, LottoStore lottoStore) {
+    public static Player of(Money money, LottoStore lottoStore) {
         return new Player(money, lottoStore);
     }
 
     public void buyLotto() {
-        this.lottos = lottoStore.sellLotto(this.money);
+        lottos = lottoStore.sellLotto(money);
     }
 
     public int getEA() {
-        return this.lottos.size();
+        return lottos.size();
     }
 
     public List<List<Integer>> getHistory() {

@@ -3,6 +3,8 @@ package ui;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Input {
     private static final String priceMessage = "구입 금액을 입력해주세요";
@@ -14,11 +16,11 @@ public class Input {
         return Integer.parseInt(Console.readLine());
     }
 
-    public int[] getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         System.out.println(winningNumbersMessage);
         return Arrays.stream(Console.readLine().split(","))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public int getBonusNumber() {

@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.exception.message;
 
 import static lotto.model.LottoInfo.LOTTO_MAX_NUMBER;
 import static lotto.model.LottoInfo.LOTTO_MIN_NUMBER;

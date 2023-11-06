@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import static lotto.message.ErrorMessage.LOTTO_MIN_PRICE_ERROR_MESSAGE;
+import static lotto.exception.message.ErrorMessage.LOTTO_MIN_PRICE_ERROR_MESSAGE;
 
 public class InsufficientAmountException extends IllegalArgumentException {
 

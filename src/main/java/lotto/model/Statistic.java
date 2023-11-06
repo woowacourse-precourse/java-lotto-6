@@ -24,8 +24,8 @@ public class Statistic {
                                                       final List<Boolean> includeBonusNumber) {
         Map<LottoRank, Integer> playerRank = new HashMap<>();
 
-        int lottoSize = matchedNumberCount.size();
-        for (int index = 0; index < lottoSize; index++) {
+        int lottoCount = matchedNumberCount.size();
+        for (int index = 0; index < lottoCount; index++) {
             LottoRank rank = determineRank(matchedNumberCount.get(index), includeBonusNumber.get(index));
             playerRank.put(rank, playerRank.getOrDefault(rank, DEFAULT_COUNT) + COUNT);
         }
@@ -35,7 +35,8 @@ public class Statistic {
 
     private static LottoRank determineRank(Integer matchedCount, Boolean includeBonus) {
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getMatchedCount() == matchedCount && rank.isIncludeBonus() == includeBonus)
+                .filter(rank -> rank.getMatchedCount() == matchedCount &&
+                        rank.isIncludeBonus() == includeBonus)
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
     }

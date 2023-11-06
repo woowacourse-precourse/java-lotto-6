@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import static lotto.message.ErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR_MESSAGE;
+import static lotto.exception.message.ErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR_MESSAGE;
 
 public class DuplicateLottoNumberException extends IllegalArgumentException {
 

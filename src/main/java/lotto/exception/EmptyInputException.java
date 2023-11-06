@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import static lotto.message.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
+import static lotto.exception.message.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
 
 public class EmptyInputException extends IllegalArgumentException {
 

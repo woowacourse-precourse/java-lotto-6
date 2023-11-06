@@ -18,6 +18,20 @@ public class Output {
     public static final String HAS_DUPLICATE_NUMBER_ERROR = ERROR + "중복된 로또 번호 입니다.";
     public static final String MUST_BE_SIX_NUMBER_ERROR = ERROR + "로또 번호는 6자리여야 합니다.";
     public static final String MUST_INPUT_MONEY_UNITS_OF_1000_WON_ERROR = ERROR + "1000원 단위로 입력해주세요.";
+
+    enum PrizeNotice {
+        FIFTH("3개 일치 (5,000원) - %d개" + NEW_LINE),
+        FOURTH("4개 일치 (50,000원) - %d개" + NEW_LINE),
+        THIRD("5개 일치 (1,500,000원) - %d개" + NEW_LINE),
+        SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개" + NEW_LINE),
+        FIRST("6개 일치 (2,000,000,000원) - %d개" + NEW_LINE);
+
+        private final String notice;
+
+        PrizeNotice(String value) {
+            notice = value;
+        }
+    }
     public void notifyPayment() {
         System.out.println(INFORM_GET_PURCHASE_AMOUNT);
     }
@@ -36,11 +50,10 @@ public class Output {
     public void notifyWinningDetails(List<Integer> result) {
         System.out.println(INFORM_WINNING_STATISTICS);
         System.out.println(DIVIDE_LINE);
-        System.out.printf("3개 일치 (5,000원) - %d개\n", result.get(4));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", result.get(3));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", result.get(2));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", result.get(1));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", result.get(0));
+        int index = result.size() - 1;
+        for (PrizeNotice prizeNotice: PrizeNotice.values()) {
+            System.out.printf(prizeNotice.notice, result.get(index--));
+        }
     }
 
     public void notifyProfitRate(float rate) {

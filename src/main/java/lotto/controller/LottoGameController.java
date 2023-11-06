@@ -23,6 +23,6 @@ public class LottoGameController {
         final Lotteries lotteries = purchaseController.purchaseLotteries(payment);
         final WinningLotto winningLotto = winningLottoController.receiveWinningLotto();
 
-        statisticsController.receiveGameResult(lotteries, winningLotto);
+        statisticsController.receiveGameResult(payment, lotteries, winningLotto);
     }
 }

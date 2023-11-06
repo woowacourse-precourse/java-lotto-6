@@ -83,20 +83,20 @@ public class BuyLotto {
     }
 
     public List<Integer> lottoRankEdit(List<Integer> rank, int rank_num) {
-        if(rank_num==7){
-            rank.set(0,rank.get(0)+1);
+        if (rank_num == 7) {
+            rank.set(4, rank.get(4) + 1);
         }
-        if(rank_num==6){
-            rank.set(1,rank.get(1)+1);
+        if (rank_num == 6) {
+            rank.set(3, rank.get(3) + 1);
         }
-        if(rank_num==5){
-            rank.set(2,rank.get(2)+1);
+        if (rank_num == 5) {
+            rank.set(2, rank.get(2) + 1);
         }
-        if(rank_num==4){
-            rank.set(3,rank.get(3)+1);
+        if (rank_num == 4) {
+            rank.set(1, rank.get(1) + 1);
         }
-        if(rank_num==3){
-            rank.set(4,rank.get(4)+1);
+        if (rank_num == 3) {
+            rank.set(0, rank.get(0) + 1);
         }
         return rank;
     }
@@ -106,7 +106,7 @@ public class BuyLotto {
         for (int i = 0; i < lotto.size(); i++) {
             List<Integer> paper = lotto.get(i).getLotto();
             int rank = paperRank(paper, answer_number, bonus);
-
+            result = lottoRankEdit(result, rank);
         }
     }
 }

@@ -13,6 +13,8 @@ public class LottoController {
     private final DisplayOutput displayOutput = new DisplayOutput();
     private final DisplayInput displayInput = new DisplayInput();
 
+    private final String DELIMETER = ",";
+
     public void play(){
         LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
@@ -25,7 +27,7 @@ public class LottoController {
     private List<Integer> getAnswerLottoNumber(){
         List<Integer> lottoNumbers = new ArrayList<>();
         String inputtedLottoNumbers = displayInput.inputLottoNumbers();
-        String[] inputtedlottoNumberList = inputtedLottoNumbers.split(",");
+        String[] inputtedlottoNumberList = inputtedLottoNumbers.split(DELIMETER);
         for(String lottoNumber : inputtedlottoNumberList){
             lottoNumbers.add(Integer.parseInt(lottoNumber));
         }

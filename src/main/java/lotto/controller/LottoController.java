@@ -14,63 +14,71 @@ public class LottoController {
         int lottoCount = purchaseLotto.getLottoCount();
         printPurchaseLottoCount(lottoCount);
 
-        GenerateLotto generateLotto = getLottoTickets(lottoCount);
-        List<Lotto> lottos = generateLotto.getLottos();
-        printLottoTickets(lottos);
+        List<Lotto> lottos = generateLottos(lottoCount);
 
         WinningLotto winningLotto = getWinningLotto();
         List<Integer> winnerNumber = winningLotto.getWinnerNumber();
 
-        BonusLotto bonusLotto = getBonusLotto(winningLotto.getWinnerNumber());
-        int bonusNumber = bonusLotto.getBonusLotto();
+        int bonusNumber = getBonusNumber(winnerNumber);
 
-        ResultLotto resultLotto = new ResultLotto();
-        for (Lotto lotto : lottos) {
-            resultLotto.addResult(lotto, winnerNumber, bonusNumber);
-        }
-        printMatchLotto(resultLotto);
-
-        printProfitRate(resultLotto, purchaseLotto.getLottoCount() * LottoConfig.PURCHASE_AMOUNT_UNIT);
+        printMatchAndProfitRate(lottos, winnerNumber, bonusNumber, lottoCount);
     }
 
     private PurchaseLotto getPurChaseAmount() {
         while (true) {
             try {
                 printInputPurchaseAmount();
-                String amount = InputView.inputPurchaseAmount();
-                return new PurchaseLotto(amount);
+                return new PurchaseLotto(InputView.inputPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private List<Lotto> generateLottos(int lottoCount) {
+        GenerateLotto generateLotto = getLottoTickets(lottoCount);
+        List<Lotto> lottos = generateLotto.getLottos();
+        printLottoTickets(lottos);
+        return lottos;
+    }
+
     private GenerateLotto getLottoTickets(int lottoCount) {
-       return new GenerateLotto(lottoCount);
+        return new GenerateLotto(lottoCount);
     }
 
     private WinningLotto getWinningLotto() {
         while (true) {
             try {
                 printInputWinnerNumbers();
-                String winnerNumbers = InputView.inputWinnerNumbers();
-                return new WinningLotto(winnerNumbers);
+                return new WinningLotto(InputView.inputWinnerNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private BonusLotto getBonusLotto(List<Integer> winnerNumber) {
+    private int getBonusNumber(List<Integer> winnerNumber) {
         while (true) {
             try {
                 printInputBonusNumber();
-                String bonusNumber = InputView.inputBonusNumbers();
-                return new BonusLotto(bonusNumber, winnerNumber);
+                return new BonusLotto(InputView.inputBonusNumbers(), winnerNumber).getBonusLotto();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
-}
 
+    private void printMatchAndProfitRate(List<Lotto> lottos, List<Integer> winnerNumber, int bonusNumber, int lottoCount) {
+        ResultLotto resultLotto = getResultLotto(lottos, winnerNumber, bonusNumber);
+        printMatchLotto(resultLotto);
+        printProfitRate(resultLotto, lottoCount * LottoConfig.PURCHASE_AMOUNT_UNIT);
+    }
+
+    private ResultLotto getResultLotto(List<Lotto> lottos, List<Integer> winnerNumber, int bonusNumber) {
+        ResultLotto resultLotto = new ResultLotto();
+        for (Lotto lotto : lottos) {
+            resultLotto.addResult(lotto, winnerNumber, bonusNumber);
+        }
+        return resultLotto;
+    }
+}

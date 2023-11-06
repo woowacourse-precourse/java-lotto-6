@@ -32,25 +32,7 @@ public class LottoGame {
             throw new IllegalArgumentException();
         }
 
-        HashSet<Integer> set = new HashSet<>();
-
-        for(int number: numbers){
-
-            if(set.isEmpty()){
-               set.add(number);
-               continue;
-            }
-
-            if (set.contains(number)){
-
-                throw new IllegalArgumentException();
-
-            }
-
-            set.add(number);
-
-
-        }
+        Lotto.checkDuplicate(numbers);
     }
 
 }

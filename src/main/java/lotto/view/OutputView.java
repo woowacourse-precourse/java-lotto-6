@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoService;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class OutputView {
@@ -46,7 +47,8 @@ public class OutputView {
     }
     
     public static void printReturnOnInvestment(double roi){
-        System.out.println("총 수익률은 "+ String.format("%.2f", roi) +"%입니다.");
+        DecimalFormat df = new DecimalFormat("0.##");
+        System.out.println("총 수익률은 " + df.format(roi) + "%입니다.");
     }
 
     

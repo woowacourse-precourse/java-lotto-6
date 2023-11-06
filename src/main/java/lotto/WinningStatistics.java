@@ -15,6 +15,10 @@ public class WinningStatistics {
         this.lottoTickets = new ArrayList<>();
     }
 
+    public List<Integer> getMatchingNumber() {
+        return matchingNumber;
+    }
+
     // 로또 구매
     public long purchaseLottoTickets(long totalAmount) {
         long ticket = totalAmount / DIVISION_ROLE; // 몇 장인지 확인
@@ -66,61 +70,12 @@ public class WinningStatistics {
     }
 
     // 이득률 계산
-    private double matchingTotal(long userCost) {
+    public double matchingTotal(long userCost) {
         long totalSum = matchingNumber.get(3) * 5_000 +
                 matchingNumber.get(4) * 50_000 +
                 matchingNumber.get(5) * 1_500_000 +
                 matchingNumber.get(6) * 2_000_000_000 +
                 matchingNumber.get(0) * 30_000_000;
         return (double) totalSum / userCost * 100;
-    }
-
-
-    public void start() {
-        long userCost = getUserCost(); // 로또 구입 금액 입력
-        System.out.println();
-        long ticket = purchaseLottoTickets(userCost); // 구매한 금액만큼 로또 구입
-
-        generateNumberToTicket(ticket); // 로또 번호 출력
-        System.out.println();
-
-        List<Integer> winningNumber = getUserWinningNumber(); // 당첨 번호 입력
-        System.out.println();
-
-        int bonusNumber = getUserBonusNumber(); // 보너스 번호 입력
-        System.out.println();
-        getMatchingNumber(winningNumber, bonusNumber, userCost);
-    }
-
-    // 당첨 통계를 계산
-    private void getMatchingNumber(List<Integer> winningNumber, int bonusNumber, long userCost) {
-        LottoResultPrinter lottoResultPrinter = new LottoResultPrinter();
-        calculateStatistics(winningNumber, bonusNumber, userCost);
-        double totalSum = matchingTotal(userCost);
-        lottoResultPrinter.printResult(matchingNumber, totalSum); // 출력
-    }
-
-    private static List<Integer> getUserWinningNumber() {
-        UserInputHandler userInputHandler = new UserInputHandler();
-        return userInputHandler.inputUserWinningNumbers();
-    }
-
-    private static int getUserBonusNumber() {
-        UserInputHandler userInputHandler = new UserInputHandler();
-        return userInputHandler.inputUserBonusNumber();
-    }
-
-    private void generateNumberToTicket(long ticket) {
-        LottoResultPrinter lottoResultPrinter = new LottoResultPrinter();
-
-        for (int i = 0; i < ticket; i++) {
-            List<Integer> lottoNumbers = generateSaveLottoNumbers();
-            lottoResultPrinter.purchaseAllLotto(lottoNumbers); // 출력
-        }
-    }
-
-    private static long getUserCost() {
-        UserInputHandler userInputHandler = new UserInputHandler();
-        return userInputHandler.inputUserLottoPurchase();
     }
 }

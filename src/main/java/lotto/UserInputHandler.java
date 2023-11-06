@@ -15,6 +15,7 @@ public class UserInputHandler {
     static final int DIVISION_ROLE = 1000; // 나누어 떨어져야 하는 값 : 1,000원 단위
     private String winningNumbers;
 
+
     // 1. 로또 구매 금액 입력
     public long inputUserLottoPurchase() {
         boolean restart = true;

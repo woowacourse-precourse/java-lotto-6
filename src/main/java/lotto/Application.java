@@ -3,6 +3,9 @@ package lotto;
 public class Application {
     public static void main(String[] args) {
         WinningStatistics winningStatistics = new WinningStatistics();
-        winningStatistics.start();
+        UserInputHandler userInputHandler = new UserInputHandler();
+        LottoResultPrinter lottoResultPrinter = new LottoResultPrinter();
+        Simulation simulation = new Simulation(winningStatistics, userInputHandler, lottoResultPrinter);
+        simulation.start();
     }
 }

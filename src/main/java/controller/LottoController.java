@@ -1,10 +1,5 @@
 package controller;
 
-import static constant.ConstantNumber.LOTTO_SIZE;
-import static constant.ConstantNumber.MAX_NUMBER;
-import static constant.ConstantNumber.MIN_NUMBER;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import constant.Rank;
 import domain.BonusNumber;
 import domain.Lotto;
@@ -13,10 +8,7 @@ import domain.Money;
 import domain.RankCount;
 import domain.RateOfReturn;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 import validator.LottoValidator;
 import view.InputView;
 import view.OutputView;
@@ -42,7 +34,7 @@ public class LottoController {
         OutputView.LottoTicketCount(money.getLottoCount());
 
         // 3. 로또 생성
-        makeLottoLists(money.getLottoCount());
+        lottos = Lottos.makeLottos(money.getLottoCount());
 
         // 4. 로또 당첨 번호 및 보너스 번호 입력, 수익률 계산
         runLottoGame();
@@ -64,16 +56,6 @@ public class LottoController {
         }
     }
 
-    private void makeLottoLists(long ticketCount) {
-        List<Lotto> lottoList = LongStream.range(0, ticketCount)
-                .mapToObj(lotto -> new Lotto(chooseRandomLottoNumbers()))
-                .peek(Lotto::printNumbers)
-                .collect(Collectors.toList());
-
-        lottos = new Lottos(lottoList);
-        System.out.println();
-    }
-
     private void runLottoGame() {
         getWinningNumbersAndBonusNumber();
         rankCount.calculateRankCount(lottos, winningNumbers, bonusNumber);
@@ -84,11 +66,6 @@ public class LottoController {
         OutputView.resultStart();
         OutputView.printStatistics(rankCount.getRankCount());
         OutputView.printRateOfReturn(rateOfReturn.getRate());
-    }
-
-
-    private List<Integer> chooseRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), LOTTO_SIZE.getNumber());
     }
 
     private void getWinningNumbersAndBonusNumber() {

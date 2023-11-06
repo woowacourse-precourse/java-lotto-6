@@ -22,7 +22,7 @@ public class RankCount {
     }
 
     public void calculateRankCount(Lottos lottos, Lotto winningNumbers, BonusNumber bonusNumber) {
-        for (Lotto lotto : lottos.getLottoLists()) {
+        for (Lotto lotto : lottos.getLottoList()) {
             Rank rank = lotto.getRank(winningNumbers.getNumbers(), bonusNumber.getBonusNumber());
 
             int currentCount = rankCount.getOrDefault(rank, 0);

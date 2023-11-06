@@ -9,7 +9,6 @@ import java.util.List;
 
 import static lotto.model.PrizeRank.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
 
@@ -44,7 +43,9 @@ class ResultTest {
         lottos.add(lotto5);
         lottos.add(lotto6);
 
-        Result result = new Result(jackpot, lottos);
+        Purchase purchase = Purchase.fromPurchaseAmount("6000");
+
+        Result result = new Result(jackpot, lottos, purchase);
 
         // when
         result.calculateWinningRanks();

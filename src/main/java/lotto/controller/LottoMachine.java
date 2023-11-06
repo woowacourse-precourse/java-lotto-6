@@ -13,17 +13,17 @@ import lotto.view.LottoView;
 
 public class LottoMachine {
     LottoView lottoView = new LottoView();
-    PriceInputHandler purchaseInputHandler = new PriceInputHandler();
-    TargetNumberHandler targetInputHandler = new TargetNumberHandler();
+    PriceInputHandler priceInputHandler = new PriceInputHandler();
+    TargetNumberHandler targetNumberHandler = new TargetNumberHandler();
 
     public void run() {
         LottoBuyer buyer = buyLotto();
         Map<Rank, Integer> result = matchLotto(buyer);
-        calculate(buyer, result);
+        calculateReward(buyer, result);
     }
 
     private LottoBuyer buyLotto() {
-        int amount = purchaseInputHandler.dividePaymentIntoLottoPrice();
+        int amount = priceInputHandler.dividePaymentIntoLottoPrice();
         List<Lotto> lottoTickets = LottoShop.sell(amount);
         lottoView.printLotto(lottoTickets);
 
@@ -31,15 +31,16 @@ public class LottoMachine {
     }
 
     private Map<Rank, Integer> matchLotto(LottoBuyer buyer) {
-        Lotto target = targetInputHandler.setTargetLottoByInput();
-        int bonus = targetInputHandler.setBonusByInput(target);
+        Lotto target = targetNumberHandler.setTargetLottoByInput();
+        int bonus = targetNumberHandler.setBonusByInput(target);
 
         return buyer.checkAllLotto(target, bonus);
     }
 
-    private void calculate(LottoBuyer buyer, Map<Rank, Integer> result) {
+    private void calculateReward(LottoBuyer buyer, Map<Rank, Integer> result) {
         int payment = buyer.payment();
         double rateOfReturn = Calculator.calculateRateOfReturn(result, payment);
+
         lottoView.printResult(result, rateOfReturn);
     }
 }

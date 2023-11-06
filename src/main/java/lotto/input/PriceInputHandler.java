@@ -13,18 +13,18 @@ public class PriceInputHandler {
 
     public int dividePaymentIntoLottoPrice() {
         System.out.println(PURCHASE_INFO_MESSAGE);
-        int payment = getValidPayment();
+        int payment = handleInputToPayment();
         return payment / AppConfig.LOTTO_PRICE;
     }
 
-    private int getValidPayment() {
+    private int handleInputToPayment() {
         boolean isInputInvalid = true;
         int result = 0;
 
-        while (isInputInvalid){
+        while (isInputInvalid) {
             try {
                 String input = Console.readLine();
-                result = parseInteger(input);
+                result = parsePayment(input);
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(PURCHASE_ERROR_MESSAGE);
@@ -33,8 +33,8 @@ public class PriceInputHandler {
         return result;
     }
 
-    private int parseInteger(String input) {
-        int price = Integer.parseInt(input);
+    private int parsePayment(String input) {
+        int price = Integer.parseInt(input.trim());
         validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
         validateUnit(price);
         return price;

@@ -9,8 +9,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validate(unique(numbers));
-        validate(validRange(numbers));
+        validate(distinct(numbers));
+        validate(filterRange(numbers));
         this.numbers = numbers;
     }
 
@@ -21,11 +21,11 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private List<Integer> unique(List<Integer> numbers) {
+    private List<Integer> distinct(List<Integer> numbers) {
         return numbers.stream().distinct().toList();
     }
 
-    private List<Integer> validRange(List<Integer> numbers) {
+    private List<Integer> filterRange(List<Integer> numbers) {
         return numbers.stream().filter(integer -> integer <= AppConfig.LOTTO_NUMBER_MAX_RANGE)
                 .filter(integer -> integer >= AppConfig.LOTTO_NUMBER_MIN_RANGE)
                 .toList();

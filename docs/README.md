@@ -60,11 +60,14 @@
     - 정적 팩토리 메소드: 일치하는 개수와 보너스 번호 일치 여부를 받아서, 해당하는 LottoGrade를 반환한다.
 
 
-- LottoGenerator (interface)
-    - generate: Lotto를 생성한다.
+- LottoFactory
+    - create: Lotto를 생성한다.
 
+
+- NumberGenerator (interface)
+    - generate: 최소, 최대, 개수를 받아 숫자 리스트를 반환한다.
 - RandomLottoGenerator
-    - generate: 랜덤으로 Lotto를 생성한다.
+    - generate: 최소, 최대, 개수를 받아 랜덤한 숫자 리스트를 반환한다.
 
 
 - LottoPerformanceCalculator

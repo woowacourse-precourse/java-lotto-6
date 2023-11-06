@@ -24,24 +24,13 @@ public class Controller {
 
     private void startLotto(){
         Amount amount = requestPlayerAmountInput();
-
-        List<Lotto> purchaseLotto = purchaseLottery(amount);
-        ResultMessage.setPurchaseMessage(amount,purchaseLotto);
+        ResultMessage.setPurchaseMessage(amount,lottoNumRandomGenerator.purchaseLottery(amount));
 
         Lotto winningNum = requestPlayerWinningInput();
         int bonusNum = requestPlayerBonusInput();
     }
 
-    private List<Lotto> purchaseLottery(Amount amount){
-        List<Lotto> result = new ArrayList<>();
 
-        for(int count=0;count<amount.getCount();count++){
-            Lotto lotto = new Lotto(lottoNumRandomGenerator.setRandomNum());
-            result.add(lotto);
-        }
-
-        return result;
-    }
 
     private Amount requestPlayerAmountInput(){
         RequestMessage.requestTotalPrice();

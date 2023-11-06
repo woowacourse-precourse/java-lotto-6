@@ -44,4 +44,15 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 중복될 수 없습니다");
         }
     }
+
+    public static void validateNumberRange(List<Integer> numbers) {
+        if (isInvalid(numbers)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static boolean isInvalid(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> number < 1 || number > 45);
+    }
+    // 보너스 넘버에 대한 validation 필요
 }

@@ -6,15 +6,25 @@ import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
+    private PurchaseAmount purchaseAmount;
     private PurchasedLottos purchasedLottos;
     private Lotto winningLotto;
 
-    public PurchasedLottos getPurchasedLottos(PurchaseAmount purchaseAmount) {
-        this.purchasedLottos = new PurchasedLottos(purchaseAmount);
-        return this.purchasedLottos;
+    public void setPurchasedLottos(String inputAmount) {
+        this.purchaseAmount = new PurchaseAmount(inputAmount);
+        this.purchasedLottos = new PurchasedLottos(this.purchaseAmount);
     }
 
-    public void setWinningLotto(WinningLotto winningLotto) {
+    public PurchaseAmount getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public PurchasedLottos getPurchasedLottos() {
+        return purchasedLottos;
+    }
+
+    public void setWinningLotto(String inputWinningNumbers) {
+        WinningLotto winningLotto = new WinningLotto(inputWinningNumbers);
         this.winningLotto = winningLotto.getLotto();
     }
 }

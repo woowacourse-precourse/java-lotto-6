@@ -22,12 +22,11 @@ public class LottoController {
     private void purchaseLotto() {
         try {
             String inputAmount = InputView.receivePurchaseAmount();
-            PurchaseAmount purchaseAmount = new PurchaseAmount(inputAmount);
 
-            PurchasedLottos purchasedLottos = lottoService.getPurchasedLottos(purchaseAmount);
+            lottoService.setPurchasedLottos(inputAmount);
 
-            OutputView.printPurchaseLottoCounts(purchaseAmount);
-            OutputView.printRandomLottoNumbers(purchasedLottos);
+            OutputView.printPurchaseLottoCounts(lottoService.getPurchaseAmount());
+            OutputView.printRandomLottoNumbers(lottoService.getPurchasedLottos());
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             purchaseLotto();
@@ -36,10 +35,9 @@ public class LottoController {
 
     private void receiveWinningLotto() {
         try {
-            String inputWinningNumber = InputView.receiveWinningNumber();
-            WinningLotto winningLotto = new WinningLotto(inputWinningNumber);
+            String inputWinningNumbers = InputView.receiveWinningNumber();
 
-            lottoService.setWinningLotto(winningLotto);
+            lottoService.setWinningLotto(inputWinningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             receiveWinningLotto();

@@ -23,7 +23,7 @@ public class GameInput {
         return Integer.valueOf(money);
     }
 
-    public static List<Integer> insertWinnigNumbers(){
+    public static Lotto insertWinnigNumbers(){
         String commaWinnigNumbers = Console.readLine();
         try {
             IntegerValidator.checkWinnigNumbersValue(commaWinnigNumbers);
@@ -31,7 +31,7 @@ public class GameInput {
             System.out.println(illegalArgumentException.getMessage());
             return null;
         }
-        return convertCommaStringToListInt(commaWinnigNumbers);
+        return new Lotto(convertCommaStringToListInt(commaWinnigNumbers));
     }
 
     public static List<Integer> convertCommaStringToListInt(String commaString){

@@ -56,6 +56,6 @@
     - [x]   0이하의 값을 입력할 경우 IllegalArgumentException을 반환한다.
     - [x]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어진다면 어떠한 Exception도 감지되지 않는다.
     - [x]   로또 구입 금액이 로또 금액 (현재 기준 1,000원)으로 나누어 떨어지지 않는다면 IllegalArgumentException을 반환한다.
-    - [ ]   입력된 로또 구입 금액이 Long 범위 내의 숫자로만 이루어질 경우 어떠한 Exception도 감지되지 않는다.
-    - [ ]   입력된 로또 구입 금액이 숫자가 아니라면 변환 시 IllegalArgumentException이 반환된다.
-    - [ ]   입력된 로또 구입 금액이 Long 범위 밖이라면 변환 시 IllegalArgumentException이 반환된다.
+    - [x]   입력된 로또 구입 금액이 Long 범위 내의 숫자로만 이루어질 경우 어떠한 Exception도 감지되지 않는다.
+    - [x]   입력된 로또 구입 금액이 숫자가 아니라면 변환 시 IllegalArgumentException이 반환된다.
+    - [x]   입력된 로또 구입 금액이 Long 범위 밖이라면 변환 시 IllegalArgumentException이 반환된다.

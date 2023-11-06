@@ -12,6 +12,7 @@ public class Game {
     public static void play() {
         inputLottoPurchaseAmount();
         issueLottos();
+        printLottos();
     }
 
     private static void inputLottoPurchaseAmount() {
@@ -38,5 +39,13 @@ public class Game {
 
     private static List<Integer> getRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(Lotto.MINIMUM_NUMBER, Lotto.MAXIMUM_NUMBER, Lotto.NUMBERS_SIZE);
+    }
+
+    private static void printLottos() {
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }

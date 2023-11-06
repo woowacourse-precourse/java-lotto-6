@@ -7,7 +7,7 @@ import java.util.Set;
 public class CompareResults {
 
     public static int[] compareLottoResults(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber) {
-        int[] matchingCounts = new int[7];
+        int[] matchingCounts = new int[8];
 
         for (Lotto lotto : lottoList) {
             int matchingCount = countMatchingNumber(lotto, winningNumbers);
@@ -34,12 +34,12 @@ public class CompareResults {
             matchingCounts[matchingCount]++;
         }
         if (bonusMatch) {
-            matchingCounts[6]++;
+            matchingCounts[7]++;
         }
         return matchingCounts;
     }
 
-   /* public static long calculatePrizeAmount(int[] matchingCounts) {
+    public static long calculatePrizeAmount(int[] matchingCounts) {
         long prizeAmount = 0;
 
         if (matchingCounts[6] > 0) {
@@ -58,7 +58,7 @@ public class CompareResults {
             prizeAmount += matchingCounts[3] * 5_000L;
         }
         return prizeAmount;
-    }*/
+    }
 
     public static double calculateProfitRate(long totalPrizeAmount, long totalPurchaseAmount) {
         return (double) totalPrizeAmount / totalPurchaseAmount;

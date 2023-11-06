@@ -32,7 +32,7 @@ public class LottoGame {
 
         OutputView.printMatchingCounts(matchingCounts);
 
-/*        long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
+/*       long totalPrizeAmount = CompareResults.calculatePrizeAmount(matchingCounts);
         double profitRate = CompareResults.calculateProfitRate(totalPrizeAmount, purchaseAmount);
 
         OutputView.printProfitRate(profitRate);*/

@@ -35,6 +35,10 @@ public class Lottos {
         }
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
     public List<Lotto> make(Randoms lottosRandoms) {
         int ticketAmount = getTicketAmount();
 

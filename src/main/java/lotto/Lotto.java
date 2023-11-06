@@ -13,6 +13,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
     private void validate(List<Integer> numbers) {
 
         if (numbers.size() != 6) {
@@ -26,11 +30,8 @@ public class Lotto {
             if (checkTable.containsKey(element)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
             }
-            checkTable.put(element,1);
+            checkTable.put(element, 1);
         }
     }
 
-
-
-    // TODO: 추가 기능 구현
 }

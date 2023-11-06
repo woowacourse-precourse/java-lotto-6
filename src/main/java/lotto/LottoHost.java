@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,18 +23,7 @@ public class LottoHost {
 	}
 
 	List<Integer> makeRandomLottoNumber() {
-		List<Integer> randomNumberList = new ArrayList<>();
-		HashSet<Integer> numberCheck = new HashSet();
-
-		while(randomNumberList.size() < 6) {
-			int num = Randoms.pickNumberInRange(1, 45);
-			if(!numberCheck.contains(num)) {
-				randomNumberList.add(num);
-				numberCheck.add(num);
-			}
-		}
-
-		return randomNumberList;
+		return Randoms.pickUniqueNumbersInRange(1, 45, 6);
 	}
 
 	List<Integer> compareLottoNumber(List<Lotto> lottoList) {

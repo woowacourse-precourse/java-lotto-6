@@ -93,10 +93,10 @@ public class ProgramManager {
 	}
 
 	int calcPrizeMoney(List<Integer> resultList) {
-		return resultList.get(0)*5000
+		return (resultList.get(0)*5000
 			+ resultList.get(1)*50000
 			+ resultList.get(2)*1500000
 			+ resultList.get(3)*30000000
-			+ resultList.get(4)*2000000000;
+			+ resultList.get(4)*2000000000);
 	}
 }

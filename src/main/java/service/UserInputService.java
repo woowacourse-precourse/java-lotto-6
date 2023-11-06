@@ -11,14 +11,14 @@ public class UserInputService {
         return checkIsDivideByLottoPrice(checkIsNumber());
     }
 
-    private static String run(){
+    private static String input(){
         return Console.readLine();
     }
 
     private static int checkIsNumber(){
         while(true){
             try{
-                return Integer.parseInt(run());
+                return Integer.parseInt(input());
             } catch (IllegalArgumentException e){
                 System.out.println(ONLY_INPUT_NUMBER.get());
             }

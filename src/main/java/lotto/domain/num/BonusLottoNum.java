@@ -9,7 +9,6 @@ public class BonusLottoNum {
         this.bonusNum = bonusNumber;
     }
 
-     
     public Boolean isSame(Integer num) {
         return Utii.isSameInt(bonusNum, num);
     }

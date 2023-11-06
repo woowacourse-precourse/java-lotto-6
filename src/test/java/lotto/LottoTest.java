@@ -4,9 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import tool.Convert;
 import validation.IntegerValidator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -28,7 +30,19 @@ class LottoTest {
     @DisplayName("로또 금액이 1,000 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
     @Test
     void inputLottoPriceByIsNotRemainderZero() {
-        assertThatThrownBy(() -> IntegerValidator.checkRemainderZero(8400, Const.LOTTO_PRICE))
+        assertThatThrownBy(() -> Input.inputLottoNumber("8400"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("String을 Int List로 바꾸어 준 후 오름차순 정렬한다.")
+    @Test
+    void createIntListByInputString() {
+        assertThat(Input.inputWinningNumbers("6,5,3,4,1,2")).isEqualTo(List.of(1,2,3,4,5,6));
+    }
+
+    @DisplayName("1~45사이의 값이 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByInputStringExceptRange1To45() {
+        assertThatThrownBy(() -> new Lotto(Input.inputWinningNumbers("46,5,3,4,1,2")))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

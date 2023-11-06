@@ -18,6 +18,7 @@ public class WinningLottoInput {
     public static List<Integer> winnigLottoInput() {
         System.out.println(WINNIG_LOTTO_MESSAGE);
         String numbers = UserInput.userInput();
+        System.out.println("");
         List<String> nums = separateNumbers(numbers);
         List<Integer> wins = validateWinning(nums);
         wins = sorted(wins);

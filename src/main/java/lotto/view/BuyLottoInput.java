@@ -17,6 +17,7 @@ public class BuyLottoInput {
     public static int validatePrice(String price) {
         try {
             validateInteger(price);
+            validateOverZero(price);
             validateKilo(price);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + System.lineSeparator());
@@ -36,6 +37,13 @@ public class BuyLottoInput {
     public static void validateKilo(String price) {
         if (Integer.parseInt(price) % 1000 != 0) {
             BuyLottoException.buyKiloException();
+        }
+
+    }
+
+    public static void validateOverZero(String price) {
+        if (Integer.parseInt(price) < 1000) {
+            BuyLottoException.buyOverzeroException();
         }
 
     }

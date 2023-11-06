@@ -91,5 +91,12 @@ public class InputViewTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
+        @ParameterizedTest
+        @ValueSource(strings = {"1,", "123,456,", "1,2,3,4,5,"})
+        @DisplayName("입력된 번호의 마지막이 문자로 끝날 경우 예외가 발생한다.")
+        void validateLastCharacter_LastCharacter_exceptionThrown(String strings) {
+            Assertions.assertThatThrownBy(() -> getInputView().validateLastCharacter(strings))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
     }
 }

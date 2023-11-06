@@ -20,7 +20,7 @@ class LottoTicketDispenserTest {
         // given
         int cost = 3_000;
         // when
-        PurchasedLottoTickets purchasedLottoTickets = lottoTicketDispenser.buyAutoCreatedTicket(cost);
+        PurchasedTickets purchasedLottoTickets = lottoTicketDispenser.buyAutoCreatedTicket(cost);
         // then
         assertThat(purchasedLottoTickets.size()).isEqualTo(3);
     }

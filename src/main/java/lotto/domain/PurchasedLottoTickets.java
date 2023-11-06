@@ -1,9 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.StringJoiner;
 
-public class PurchasedLottoTickets {
+public class PurchasedLottoTickets implements PurchasedTickets {
 
     private final List<Lotto> lottoTickets;
 
@@ -16,6 +15,7 @@ public class PurchasedLottoTickets {
         return String.join("", lottoTickets.toString());
     }
 
+    @Override
     public int size() {
         return lottoTickets.size();
     }

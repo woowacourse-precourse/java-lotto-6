@@ -1,7 +1,9 @@
 package lotto.output;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.ListDataTypeConverter;
 
 public class PrintService {
@@ -22,7 +24,7 @@ public class PrintService {
         for (Integer key : lottoNumbers.keySet()) {
             String lottoNumber = String.join(", ",
                 ListDataTypeConverter.integerToString(lottoNumbers.get(key)));
-            System.out.printf("[ %s ]\n", lottoNumber);
+            System.out.printf("[%s]\n", lottoNumber);
         }
     }
 
@@ -35,5 +37,19 @@ public class PrintService {
             당첨통계
             ---
             """);
+    }
+
+    public static void result(Map<Integer, Integer> result) {
+        Set<Integer> keys = result.keySet();
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        keys.forEach(key -> {
+            switch (key) {
+               case 5000 -> System.out.printf("3개 일치 (%s원) - %d개\n", decimalFormat.format(key),result.get(key));
+               case 50_000 -> System.out.printf("4개 일치 (%s원) - %d개\n", decimalFormat.format(key),result.get(key));
+               case 1_500_000 -> System.out.printf("5개 일치 (%s원) - %d개\n", decimalFormat.format(key),result.get(key));
+               case 30_000_000 -> System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", decimalFormat.format(key),result.get(key));
+               case 2_000_000_000 -> System.out.printf("6개 일치 (%s원) - %d개\n", decimalFormat.format(key),result.get(key));
+            }
+        });
     }
 }

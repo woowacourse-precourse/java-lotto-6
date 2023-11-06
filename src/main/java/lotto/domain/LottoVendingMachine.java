@@ -15,6 +15,10 @@ public class LottoVendingMachine {
 
     public void purchaseLotto(int amount) {
         int lottoTicketNumber = amount / Constants.UNIT;
+        createLotto(lottoTicketNumber);
+    }
+
+    private void createLotto(int lottoTicketNumber) {
         for (int i = 0; i < lottoTicketNumber; i++) {
             List<Integer> numbers = getRandomNumbers();
             Lotto lotto = new Lotto(numbers);

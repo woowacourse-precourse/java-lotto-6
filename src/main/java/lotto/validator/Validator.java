@@ -28,4 +28,10 @@ public abstract class Validator {
             throw new IllegalArgumentException(ExceptionMessage.PURCHASE_UNIT_EXCEPTION.getMessage());
         }
     }
+
+    void validateLottoRange(int number) {
+        if (number < Constants.MIN_LOTTO_NUMBER || number > Constants.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_RANGE_EXCEPTION.getMessage());
+        }
+    }
 }

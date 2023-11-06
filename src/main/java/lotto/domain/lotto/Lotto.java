@@ -47,7 +47,7 @@ public class Lotto {
         }
     }
 
-    public int compareToAnswerLotto(Lotto answerLotto) {
+    public int compareToWinningNumbers(Lotto answerLotto) {
         return (int) numbers.stream()
                 .filter(number -> answerLotto.getNumbers().contains(number))
                 .count();

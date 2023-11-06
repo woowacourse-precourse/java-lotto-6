@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constants.ErrorMessage;
 import lotto.constants.Message;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
@@ -27,11 +28,11 @@ public class LottoService {
 
     private void validatePaidAmount(int payMoney) {
         if (payMoney < Value.LOTTO_TICKET_PRICE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_FORMAT.getMessage());
         }
 
         if ((payMoney % Value.LOTTO_TICKET_PRICE) != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_FORMAT.getMessage());
         }
     }
 

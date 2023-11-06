@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constants.ErrorMessage;
+import lotto.constants.Message;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -24,14 +25,14 @@ public class Controller {
 
 
     private void buyLotto() {
+        System.out.println(Message.PAY_MONEY_REQUEST_MESSAGE);
         while (true) {
             try {
                 int payMoney = inputService.inputPayMoney();
                 lottoService.setBuyLotto(payMoney);
-
                 break;
             } catch (IllegalArgumentException e){
-                System.out.println(ErrorMessage.AMOUNT_FORMAT.getMessage());
+                System.out.println(e.getMessage());
             }
         }
 
@@ -39,18 +40,29 @@ public class Controller {
     }
 
     private void createWinningLotto() {
+        System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
         while (true) {
             try {
                 List<Integer> winningLottoNumbers = inputService.inputWinningLottoNumbers();
                 WinningLotto winningLotto = new WinningLotto(winningLottoNumbers);
-
+                createWinningLottoBonus(winningLotto);
                 lottoResultService.setWinningLotto(winningLotto);
-                int winningBonusNumber = inputService.inputWinningBonusNumber(winningLotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    private void createWinningLottoBonus(WinningLotto winningLotto) {
+        System.out.println(Message.BONUS_NUMBER_REQUEST_MESSAGE);
+        while (true) {
+            try {
+                int winningBonusNumber = inputService.inputWinningBonusNumber(winningLotto);
                 winningLotto.setBonusNumber(winningBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.WINNING_NUMBER_FORMAT);
+                System.out.println(e.getMessage());
             }
         }
     }

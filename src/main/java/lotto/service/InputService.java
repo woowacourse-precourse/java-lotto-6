@@ -16,23 +16,17 @@ public class InputService {
 
 
     public int inputPayMoney() {
-        System.out.println(Message.PAY_MONEY_REQUEST_MESSAGE);
         String payMoney = Console.readLine();
-
         return parseUtils.parseStringToInt(payMoney);
     }
 
     public List<Integer> inputWinningLottoNumbers() {
-        System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
-
         String inputWinningLottoNumbers = Console.readLine();
         return parseUtils.parseStringToIntegerList(inputWinningLottoNumbers);
 
     }
 
     public int inputWinningBonusNumber(WinningLotto winningLotto) {
-        System.out.println(Message.BONUS_NUMBER_REQUEST_MESSAGE);
-
         String winningBonusNumber = Console.readLine();
         return parseUtils.parseStringToInt(winningBonusNumber);
     }

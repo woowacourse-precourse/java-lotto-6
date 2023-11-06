@@ -11,7 +11,7 @@ public class ParseUtils {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.TYPE_FORMAT.getMessage());
         }
     }
 

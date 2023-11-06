@@ -46,4 +46,17 @@ public class LottoWallet {
         return lottoResults;
     }
 
+    // 수익률 계산
+    public double calculateProfitRate() {
+        if(paidAmount == 0) {
+            throw new ArithmeticException("투입금액이 0원입니다. 수익률을 계산할 수 없습니다.");
+        }
+        double totalPrize = calculateTotalPrice();
+        double profitRate = (totalPrize / paidAmount) * 100;
+
+        return roundToTwoDecimalPlaces(profitRate);
+    }
+
+
+
 }

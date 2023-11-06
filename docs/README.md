@@ -22,10 +22,10 @@
 ### ✅로또 게임 진행
 - [ ] 입력 받은 로또 구입 금액  `Money` 생성
 
-
 - [ ] (로또 구입 금액 / 1000) 개의 `Lotto`를 생성.
-    - [ ] 로또의 번호는 `Randoms.pickUniqueNumbersInRange()` 메서드를 사용,
-      오름차순으로 정렬
+    - [] `Randoms.pickUniqueNumbersInRange()` 메서드로 `LottoNumber` 생성
+    - [x] `LottoNumber`를 가지는 Lotto 생성
+      - [x] 로또 숫자는 오름 차순으로 정렬한다.
     - [x] [ERROR] 로또의 번호가 1보다 작거나 45보다 큰 경우.
     - [x] [ERROR] 로또의 번호가 중첩됬을 경우.
     - [x] [ERROR] 로또의 번호가 6개로 이루어져있지 않는 경우.

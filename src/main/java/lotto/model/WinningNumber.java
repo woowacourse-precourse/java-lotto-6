@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.ErrorType.*;
+
 import java.util.List;
 
 public class WinningNumber {
@@ -16,7 +18,7 @@ public class WinningNumber {
 
     private void validate(final List<Integer> numbers, final int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BONUS_DUPLICATED.getMessage());
         }
     }
 

@@ -39,6 +39,13 @@ public class StatisticsOffice {
         winningStatus.merge(rank, 1, Integer::sum);
     }
 
+    public static String calculateProfitRate(Map<Rank, Integer> winningStatus, int money){
+        double profit = 0.0;
+        for (Rank rank : winningStatus.keySet()){
+            profit += rank.getReward() * winningStatus.get(rank);
+        }
+        return String.format("%.1f", profit*100/money);
+    }
 
 
 }

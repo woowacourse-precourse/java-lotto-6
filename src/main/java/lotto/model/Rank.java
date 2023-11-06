@@ -20,6 +20,10 @@ public enum Rank {
         this.reward = reward;
     }
 
+    public int getReward() {
+        return reward;
+    }
+
     public static Rank calculate(int matchCount, boolean hasBonusNumber){
         if(matchCount == THIRD_PLACE.matchCount && !hasBonusNumber){
             return THIRD_PLACE;

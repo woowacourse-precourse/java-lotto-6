@@ -95,11 +95,14 @@
 
 ### 🛠 테스트 코드 (작은 단위 테스트)
 
-- [X] : `NumberUtilTest` 숫자 검증 테스트
-- [X] : `PurchaseAmoutTest` 구매금액 예외상황 테스트
-- [X] : `LottoTest` 로또번호 예외상황 테스트
-- [X] : `LottoMachineTest` 로또 발행 테스트
-- [X] : `BonusNumberTest` 보너스 번호 예외상황 테스트
+- [X] : `PurchaseAmoutTest`
+- [X] : `LottoTest`
+- [X] : `LottoMachineTest`
+- [X] : `BonusNumberTest`
+- [X] : `WinningNumbersTest`
+  - 당첨 번호 예외 검증
+  - 당첨 번호, 보너스 번호 중복 예외 검증
+- [X] : `NumberUtilTest`
 
 ## 🤔 패키지 구상
 

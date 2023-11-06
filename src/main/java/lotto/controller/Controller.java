@@ -82,6 +82,7 @@ public class Controller {
 
 	private <T> String getValidInput(Function<String, T> constructor) {
 		String input;
+
 		do {
 			input = InputView.getUserInput();
 			try {

@@ -9,14 +9,14 @@ import static lotto.view.constant.viewMessage.*;
 
 public class OutputView {
 
-    public void outputPurchaseLottos(LottoStorage result, int count) {
+    public void outputPurchaseResult(LottoStorage lottoStorage, int count) {
         System.out.printf(OUTPUT_PURCHASE_RESULT, count);
-        for (Lotto lotto : result.getLottoStorage()) {
+        for (Lotto lotto : lottoStorage.getLottoStorage()) {
             System.out.println(lotto);
         }
     }
 
-    public void outputWinningResult(LottoResult result, Integer money) {
+    public void outputLottoResult(LottoResult result, int money) {
         System.out.print(OUTPUT_WINNING_STATISTICS_INTRO);
 
         System.out.printf(

@@ -22,7 +22,7 @@ public class LottoController {
         LottoMoney lottoMoney = inputLottoMoney();
         List<Lotto> lottos = purchaseLottos(lottoMoney);
         LottoStorage lottoStore = LottoStorage.from(lottos);
-        outputView.outputPurchaseLottos(lottoStore, lottoMoney.availableLottoCount());
+        outputView.outputPurchaseResult(lottoStore, lottoMoney.availableLottoCount());
 
         Lotto winningNumber = inputWinningNumber();
         Integer bonusNumber = inputBonusNumber();
@@ -30,7 +30,7 @@ public class LottoController {
         WinningNumbers winningNumbers = winningNumbers(winningNumber, bonusNumber);
 
         LottoResult lottoResult = LottoResult.of(lottoStore, winningNumbers);
-        outputView.outputWinningResult(lottoResult, lottoMoney.getMoney());
+        outputView.outputLottoResult(lottoResult, lottoMoney.getMoney());
     }
 
     private WinningNumbers winningNumbers(Lotto winningNumber, Integer bonusNumber) {

@@ -10,9 +10,11 @@ import static lotto.util.GameConstant.*;
 public class LottoNumberFactory implements NumberFactory {
     @Override
     public List<Integer> getNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 CONSTANT_LOTTO_MIN_NUMBER.getConstant(),
                 CONSTANT_LOTTO_MAX_NUMBER.getConstant(),
                 CONSTANT_LOTTO_LENGTH.getConstant());
+
+        return randomNumbers.stream().sorted().toList();
     }
 }

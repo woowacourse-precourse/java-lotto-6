@@ -1,13 +1,11 @@
 package lotto.view.output;
 
-import lotto.model.Game;
-
 import java.util.List;
 
 public interface OutputView {
     void printNewLine();
-    void printPurchaseResult(int purchaseResult);
-    void printLotto(List<Integer> lotto);
-    void printGameResult(Game game);
-    void printGameInterestRate(double interestRate);
+    void printLottoQuantity(int purchaseResult);
+    void printPurchasedLotto(List<Integer> lotto);
+    void printGameResults(List<Integer> gameResults);
+    void printGameProfit(double profit);
 }

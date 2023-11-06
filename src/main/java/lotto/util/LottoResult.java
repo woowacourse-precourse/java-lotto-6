@@ -1,7 +1,6 @@
 package lotto.util;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum LottoResult {
     FIRST_GRADE(6, false, 1),
@@ -21,13 +20,11 @@ public enum LottoResult {
         this.grade = grade;
     }
 
-    public static int getGrade(int matchedNumber, boolean bonusResult) {
-        List<LottoResult> lottoResults = Arrays.stream(values())
+    public static int getGrade(long matchedNumber, boolean bonusResult) {
+        if(matchedNumber < 3) return 0;
+        if(matchedNumber == SECOND_GRADE.grade && bonusResult) return SECOND_GRADE.grade;
+        return Arrays.stream(values())
                 .filter(value -> value.matchedNumber == matchedNumber)
-                .toList();
-
-        if(matchedNumber != 5) return lottoResults.get(0).grade;
-        if(bonusResult) return 2;
-        return 3;
+                .findFirst().get().grade;
     }
 }

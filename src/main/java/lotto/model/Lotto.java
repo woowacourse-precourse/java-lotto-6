@@ -1,10 +1,14 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.Exception.isValidDuplicateNumber;
+import static lotto.Exception.isValidSixNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private Integer bonusNumber;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -12,14 +16,34 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        checkIsSixNumber(numbers);
+        checkDuplicateNumber(numbers);
+    }
+
+
+    private void checkIsSixNumber(List<Integer> numbers) {
+        try{
+            isValidSixNumber(numbers.size());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public void setBonusNumber(Integer bonusNumber) {
-        this.bonusNumber = bonusNumber;
+    public void checkDuplicateNumber(List<Integer> numbers) {
+        try {
+            Set<Integer> numSet = new HashSet<>(numbers);
+            isValidDuplicateNumber(numbers.size() == numSet.size());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean againInputList(){
+        Set<Integer> numSet = new HashSet<>(numbers);
+        return numbers.size() != numSet.size() || numbers.size() != 6;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

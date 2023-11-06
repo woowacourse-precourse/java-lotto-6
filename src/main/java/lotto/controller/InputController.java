@@ -37,7 +37,7 @@ public class InputController {
         try {
             return isValidNumberFormat(input);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return checkValidNumberFormat(Console.readLine());
         }
     }
@@ -46,7 +46,7 @@ public class InputController {
         try{
             integers.forEach(Exception::isValidLottoNumberRange);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             checkRangeLottoNumber(createWinningLottoList(Console.readLine()));
         }
     }
@@ -56,7 +56,7 @@ public class InputController {
             isValidNotThousandAndNegativeException(number);
             return number;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             int returnNum = checkValidNumberFormat(Console.readLine());
             return checkNotThousandAndNegative(returnNum);
         }

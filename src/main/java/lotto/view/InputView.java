@@ -5,9 +5,7 @@ import lotto.model.Lotto;
 import lotto.controller.InputController;
 import lotto.model.Model;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
     private final InputController inputController;
@@ -23,19 +21,21 @@ public class InputView {
     }
 
     private void inputLottoWinningNumber() {
-        List<Integer> list = inputWinningNumnberList();
+        inputWinningNumberList();
         Integer bonusNumber = inputBonusNumber();
-        // todo : 코드 수정 예정
-        lotto = new Lotto(list);
-        lotto.setBonusNumber(bonusNumber);
+        // todo: 보너스 넘버 추가 저장 필요
+//        lotto.setBonusNumber(bonusNumber);
     }
 
-    private List<Integer> inputWinningNumnberList() {
+    private void inputWinningNumberList() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String inputLottoNumber = Console.readLine();
-        List<Integer> list = inputController.createWinningLottoList(inputLottoNumber);
-        inputController.checkRangeLottoNumber(list);
-        return list;
+        List<Integer> list;
+        do{
+            String inputLottoNumber = Console.readLine();
+            list = inputController.createWinningLottoList(inputLottoNumber);
+            inputController.checkRangeLottoNumber(list);
+            lotto = new Lotto(list);
+        }while (lotto.againInputList());
     }
 
     private Integer inputBonusNumber() {

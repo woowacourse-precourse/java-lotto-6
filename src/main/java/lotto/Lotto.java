@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean hasSameNumbers(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
+
+
 }

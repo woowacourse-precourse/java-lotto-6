@@ -1,11 +1,16 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.generate.RandomGenerator;
 
 public class Application {
     public static void main(String[] args) {
     	System.out.println("구입금액을 입력해 주세요.");
     	int number = purchase();
+    	
+    	System.out.println("\n"+ number + "개를 구입했습니다.");
+    	RandomGenerator generator = new RandomGenerator(number);
+    	generator.print();
     	
     }
     

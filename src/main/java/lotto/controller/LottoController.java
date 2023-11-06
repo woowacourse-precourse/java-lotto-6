@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoChecker;
-import lotto.domain.LottoConstant;
-import lotto.domain.LottoNumberGenerator;
+import lotto.domain.*;
 import lotto.validator.InputBonusNumberValidator;
 import lotto.validator.InputPurchaseAmountValidator;
 import lotto.validator.InputWinningLotteryNumberValidator;
@@ -14,6 +11,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final InputView inputView;
@@ -48,7 +46,8 @@ public class LottoController {
         int bonusNumber = getValidatedBonusNumber(winningLotteryNumbers);
 
         LottoChecker lottoChecker = new LottoChecker(lottos, winningLotteryNumbers, bonusNumber);
-        lottoChecker.checkResults();
+        Map<LottoRank, Integer> results = lottoChecker.compareLottoNumbers();
+        outputView.printResultMessage(results);
     }
 
     private int getValidatedPurchaseAmount() {

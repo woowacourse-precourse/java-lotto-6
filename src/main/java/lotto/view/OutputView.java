@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void printPurchaseAmountInputMessage() {
@@ -31,7 +33,27 @@ public class OutputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void printResultMessage() {
+    public static void printResultMessage(Map<LottoRank, Integer> results) {
         System.out.println("\n당첨 통계\n---");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.NONE) {
+                String resultMessage = createResultMessage(rank, results.getOrDefault(rank, 0));
+                System.out.println(resultMessage);
+            }
+        }
     }
+
+    private static String createResultMessage(LottoRank rank, int count) {
+        String resultMessage = "";
+        if (rank == LottoRank.FIVE_MATCH_WITH_BONUS) {
+            return resultMessage = String.format("%d개 일치, 보너스 볼 일치 (%s원)- %d개", rank.getMatchCount(), winningMoneyFormat(rank.getWinningMoney()), count);
+        }
+        resultMessage = String.format("%d개 일치 (%s원)- %d개", rank.getMatchCount(), winningMoneyFormat(rank.getWinningMoney()), count);
+        return resultMessage;
+    }
+
+    private static String winningMoneyFormat(int winningMoney) {
+        return String.format("%,d", winningMoney);
+    }
+
 }

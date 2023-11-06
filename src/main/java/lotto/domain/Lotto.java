@@ -10,7 +10,12 @@ import lotto.execption.LottoNumberSizeException;
 
 
 public class Lotto {
+    private static final Integer LOTTO_SIZE = 6;
+    private static final Integer NUMBER_START_RANGE = 1;
+    private static final Integer NUMBER_END_RANGE = 45;
+
     private final List<Integer> numbers;
+
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
@@ -21,21 +26,21 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new LottoNumberSizeException();
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
-        if (numberSet.size() != 6) {
+        if (numberSet.size() != LOTTO_SIZE) {
             throw new DuplicateLottoNumberException();
         }
     }
 
     public void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < NUMBER_START_RANGE || number > NUMBER_END_RANGE) {
                 throw new LottoNumberRangeException();
             }
         }

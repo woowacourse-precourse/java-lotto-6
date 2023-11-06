@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class Constants {
     /** 로또에 사용되는 문구 */

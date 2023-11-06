@@ -1,4 +1,7 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.Constants;
+import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;

@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Constants;
 
 public class InputView {
     public Integer getPrice() {

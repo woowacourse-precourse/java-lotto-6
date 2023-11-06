@@ -7,6 +7,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import domain.Lotto;
 
@@ -51,4 +53,12 @@ class LottoTest {
 				.isInstanceOf(IllegalArgumentException.class);
 	}
 
+	@DisplayName("로또 번호 입력시 6개가 아니면 예외 발생")
+	@ParameterizedTest
+	@ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
+	public void checkListLength(String input) {
+		// when & then
+		assertThatThrownBy(() -> new Lotto(input))
+				.isInstanceOf(IllegalArgumentException.class);
+	}
 }

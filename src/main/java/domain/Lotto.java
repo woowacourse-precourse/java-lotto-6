@@ -15,6 +15,7 @@ public class Lotto {
 	public Lotto(String numbers) {
 		List<String> convertedNumbers = convertStringToList(removeSpacesBetweenNumbersAndCommas(numbers));
 		validateIsDigit(convertedNumbers);
+		validateIsSixLength(convertedNumbers);
 		this.numbers = convertStringListToIntegerList(convertedNumbers);
 	}
 
@@ -22,6 +23,16 @@ public class Lotto {
 		return numbers.stream()
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
+	}
+
+	private void validateIsSixLength(List<String> numbers) {
+		if (!isSixLength(numbers)) {
+			throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표로 구분해서 6개를 입력하세요");
+		}
+	}
+
+	private boolean isSixLength(List<String> numbers) {
+		return numbers.size() == 6;
 	}
 
 	private void validateIsDigit(List<String> numbers) {

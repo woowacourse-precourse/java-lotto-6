@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validator {
-    private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]?$");
+    private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
     private static final int MINIMUM_UNIT = 1000;
     private static final int ZERO = 0;
     private static final int MIN_LOTTO_NUMBER = 1;

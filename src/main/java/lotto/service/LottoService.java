@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.LuckyNumbers;
 import lotto.dto.Dto;
 import lotto.utils.UserNumbersUtils;
 
@@ -56,7 +55,7 @@ public class LottoService {
     }
 
     public List<String> getLottoTickets() {
-        return makeLottoTickets.make(dto.getLottoTickets().getTickets());
+        return MakeLottoTickets.make(dto.getLottoTickets().getTickets());
     }
 
     public void makeWinningStatistics() {

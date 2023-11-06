@@ -3,9 +3,8 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
-import lotto.dto.Dto;
 
-public class makeLottoTickets {
+public class MakeLottoTickets {
     private static List<String> lottoTickets = new ArrayList<>();
     public static List<String> make(List<Lotto> tickets) {
         add(tickets);

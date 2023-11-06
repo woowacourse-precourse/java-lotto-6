@@ -18,6 +18,6 @@ public class EarningRateTest {
     @Test
     void testEarningRate2() {
         EarningRate earningRate = new EarningRate();
-        assertThat(earningRate.calculateEarningRate(List.of(5, 10))).isEqualTo(1500000 + 30000000);
+        assertThat(earningRate.calculateEarningRate(List.of(5, 7))).isEqualTo(1500000 + 30000000);
     }
 }

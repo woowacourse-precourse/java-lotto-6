@@ -30,8 +30,14 @@ public class Lotto {
                 .toList();
     }
 
-    public boolean isDuplicateNumber(final int number) {
+    public boolean isContainsNumber(final int number) {
         return numbers.contains(number);
+    }
+
+    public long winningNumberCount(final Lotto winningLottoTicket) {
+        return numbers.stream()
+                .filter(winningLottoTicket.numbers::contains)
+                .count();
     }
 
     public List<Integer> getNumbers() {

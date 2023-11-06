@@ -65,7 +65,7 @@ public class InputValidatorTest {
     @Test
     @DisplayName("당첨 번호 입력이 ,로 구분했을때 6개로 나눠지지 않으면 예외가 발생한다")
     void splitWinningNumbersCheckSize() {
-        assertThatThrownBy(() -> validator.validateWinningNumberInputView(",a,b,c,"))
+        assertThatThrownBy(() -> validator.validateWinningNumberInputView("3425324,"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 쉼표를 기준으로 당첨 번호 6개를 입력해 주세요");
     }
@@ -85,5 +85,13 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 당첨 번호는 중복되어선 안됩니다");
 
+    }
+
+    @Test
+    @DisplayName("입력된 보너스 번호가 1~45 사이가 아니면 예외가 발생한다")
+    void inputBonusNumbersOutOfRange() {
+        assertThatThrownBy(() -> validator.validateBonusNumberInputView("55"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[Error] 보너스 번호는 1부터 45까지의 숫자만 가능합니다");
     }
 }

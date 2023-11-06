@@ -29,8 +29,8 @@ public class ResultService {
     }
 
     private static void printSortResult(Lotto result) {
-        List<Integer> sortResult = result.sortNumbers(result);
-        System.out.println(sortResult);
+        List<Integer> sortedResult = result.sortNumbers(result);
+        System.out.println(sortedResult);
     }
 
 

@@ -28,7 +28,7 @@ class LottoTest {
     @Test
     void testCreateLotto() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = Lotto.create(numbers);
 
         int lottoSum = lotto.getNumbers().stream()
                 .mapToInt(Integer::intValue)

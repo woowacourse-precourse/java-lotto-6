@@ -1,12 +1,14 @@
 package lotto.validator;
 
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.constants.Constants;
 import lotto.utils.Utils;
 
 public class InputValidator {
     private int totalMoney;
+    private List<Integer> winningNumbers;
 
     public int checkAll(String money) throws IllegalArgumentException{
         checkInteger(money);
@@ -35,14 +37,22 @@ public class InputValidator {
                 throw new IllegalArgumentException("[ERROR] 공백 없이 숫자를 입력해 주세요");
             }
         }
-        List<Integer> winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
+        winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
         if (winningNumbers.size() != Constants.MAX_LOTTO_PICK_NUMBER ){
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
-        }return winningNumbers;
+        }
+        checkDuplicateWinningNumber(winningNumbers);
+        return winningNumbers;
     }
-    public void checkLastCommas(String stringnumber) throws IllegalArgumentException{
-        if(stringnumber.endsWith(Constants.COMMAS)){
+    public void checkLastCommas(String stringNumber) throws IllegalArgumentException{
+        if(stringNumber.endsWith(Constants.COMMAS)){
             throw new IllegalArgumentException("[ERROR] 맨 뒤에 쉼표를 쓰지 마세요.");
+        }
+    }
+    public void checkDuplicateWinningNumber(List<Integer> winningNumbers){
+        long number = winningNumbers.stream().distinct().count();
+        if(winningNumbers.size() != number){
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자를 입력하지 마세요");
         }
 
     }

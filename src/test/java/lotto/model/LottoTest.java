@@ -38,4 +38,33 @@ class LottoTest {
         // then
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("해당 숫자가 로또 번호에 포함되어 있는지 확인한다.")
+    void isContainsNumber() throws Exception {
+        // given
+        final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        final Lotto lotto = new Lotto(numbers);
+
+        // when
+        final boolean isContains = lotto.isContainsNumber(1);
+
+        // then
+        assertThat(isContains).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또 티켓을 전달받아 정답 개수를 반환한다.")
+    void winningNumberCount() throws Exception {
+        // given
+        final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        final Lotto lotto = new Lotto(numbers);
+        final Lotto targetLotto = new Lotto(numbers);
+
+        // when
+        final long winningNumberCount = lotto.winningNumberCount(targetLotto);
+
+        // then
+        assertThat(winningNumberCount).isEqualTo(6);
+    }
 }

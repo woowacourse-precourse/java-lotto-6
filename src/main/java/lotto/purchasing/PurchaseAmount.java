@@ -5,7 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.function.Predicate;
 import lotto.Askable;
 
-public class PurchaseAmount implements Askable {
+public class PurchaseAmount implements Askable<String> {
     String input;
 
     @Override

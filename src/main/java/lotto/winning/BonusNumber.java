@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import lotto.Askable;
 
-public class BonusNumber implements Askable {
+public class BonusNumber implements Askable<Integer> {
     @Override
     public Integer ask() {
         System.out.println(inputBonusNumber);

@@ -1,6 +1,6 @@
 package lotto;
 
-public interface Askable {
+public interface Askable<T> {
     String inputPurchaseAmount = "구입금액을 입력해주세요.";
     String inputWinningNumbers = "당첨 번호를 입력해주세요.";
     String inputBonusNumber = "보너스 번호를 입력해 주세요.";
@@ -11,5 +11,5 @@ public interface Askable {
     String WinningNumberAmountError = "[ERROR] 로또 번호는 6개여야 합니다.";
     String BonusNumberAmountError = "[ERROR] 보너스 번호는 1개여야 합니다.";
 
-    <T> T ask();
+    T ask();
 }

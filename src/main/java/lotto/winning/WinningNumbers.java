@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import lotto.Askable;
 
-public class WinningNumbers implements Askable {
+public class WinningNumbers implements Askable<List<Integer>> {
     @Override
     public List<Integer> ask() {
         System.out.println(inputWinningNumbers);

@@ -5,10 +5,14 @@ import lotto.dto.FinalResultResponse;
 import lotto.dto.LottoNumberResponse;
 import lotto.dto.LottoNumberResponses;
 import lotto.view.constants.PrintMessage;
+import lotto.view.constants.PrintablePrizeType;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.Objects;
 
-import static lotto.domain.prize.constants.PrizeGrade.HIT_THREE;
+import static lotto.view.constants.PrintFormat.SEPARATOR_FORMAT;
 import static lotto.view.constants.PrintMessage.*;
 
 public class OutputView {
@@ -45,17 +49,34 @@ public class OutputView {
 
         String formattedYieldMessage = String.format(
                 RESPONSE_YIELD.getMessage(), response.getFormattedYield());
-        printEachMatcingResult(response);
+        printMatcingResult(response);
         println(formattedYieldMessage);
     }
 
-    private static void printEachMatcingResult(FinalResultResponse response) {
+    private static void printMatcingResult(FinalResultResponse response) {
         EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.prizeResultCount();
+        PrintablePrizeType[] printablePrizeTypes = PrintablePrizeType.values();
 
-        if (prizeGradeIntegerEnumMap.containsKey(HIT_THREE)) {
-            String format = RESPONSE_MATCHING.getMessage();
-            String formattedMessage = String.format(format, HIT_THREE.getPrizeMatchingCount(), HIT_THREE.getPrizeAmount(), prizeGradeIntegerEnumMap.get(HIT_THREE));
-            OutputView.println(formattedMessage);
+        Arrays.stream(printablePrizeTypes)
+                .forEach(type -> printEachMatchingResult(type, prizeGradeIntegerEnumMap));
+    }
+
+    private static void printEachMatchingResult(
+            PrintablePrizeType type,
+            EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap
+    ) {
+        PrizeGrade grade = type.getGrade();
+
+        DecimalFormat seperatedFormat = SEPARATOR_FORMAT.getFormat();
+
+        String format = seperatedFormat.format(grade.getPrizeAmount());
+        Integer integer = prizeGradeIntegerEnumMap.get(type.getGrade());
+
+        if (Objects.isNull(integer)) {
+            integer = 0;
         }
+
+        String format1 = String.format(type.getFormat(), grade.getPrizeMatchingCount(), format, integer);
+        System.out.println(format1);
     }
 }

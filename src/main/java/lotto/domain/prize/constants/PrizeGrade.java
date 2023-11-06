@@ -11,14 +11,38 @@ import static lotto.domain.prize.constants.PrizeMatchingCount.*;
 import static lotto.exception.ErrorMessage.SYSTEM_CRASHED;
 
 public enum PrizeGrade {
-    HIT_SIX(SIX, always -> true, 200_000_000),
-    HIT_FIVE_AND_BONUS(FIVE, keep -> keep, 30_000_000),
-    HIT_FIVE(FIVE, reverse -> !reverse, 1_500_000),
-    HIT_FOUR(FOUR, always -> true, 50_000),
-    HIT_THREE(THREE, always -> true, 5_000),
-    HIT_TWO(TWO, always -> true, 0),
-    HIT_ONE(ONE, always -> true, 0),
-    HIT_ZERO(ZERO, always -> true, 0);
+    HIT_SIX(SIX,
+            always -> true,
+            200_000_000
+    ),
+    HIT_FIVE_AND_BONUS(FIVE
+            , keep -> keep,
+            30_000_000
+    ),
+    HIT_FIVE(FIVE,
+            reverse -> !reverse,
+            1_500_000
+    ),
+    HIT_FOUR(FOUR,
+            always -> true,
+            50_000
+    ),
+    HIT_THREE(THREE,
+            always -> true,
+            5_000
+    ),
+    HIT_TWO(TWO,
+            always -> true,
+            0
+    ),
+    HIT_ONE(ONE,
+            always -> true,
+            0
+    ),
+    HIT_ZERO(ZERO,
+            always -> true,
+            0
+    );
 
     private final PrizeMatchingCount prizeMatchingCount;
     private final UnaryOperator<Boolean> matchingBonus;

@@ -18,7 +18,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = List.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {

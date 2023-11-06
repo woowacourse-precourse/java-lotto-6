@@ -1,6 +1,6 @@
 package lotto;
 
-import Model.User;
+import model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

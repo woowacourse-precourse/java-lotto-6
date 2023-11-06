@@ -48,4 +48,8 @@ public class WinningNumber {
         }
         return result;
     }
+
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
+    }
 }

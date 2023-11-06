@@ -28,4 +28,8 @@ public class BonusNumber {
         }
         return result;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

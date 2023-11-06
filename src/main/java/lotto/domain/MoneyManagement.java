@@ -16,7 +16,7 @@ public class MoneyManagement {
     }
 
     private void validNumber(final String userInput) {
-        if (!userInput.matches("%d")) {
+        if (!userInput.matches("\\d+")) {
             throw new IllegalArgumentException("금액은 숫자만 입력 가능합니다.");
         }
     }

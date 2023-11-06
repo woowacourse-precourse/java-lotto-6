@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.validation.PurchaseAmountValidator;
+import lotto.view.OutputView;
 
 public class PurchaseAmount {
 
@@ -15,7 +16,13 @@ public class PurchaseAmount {
         int totalPrice = lottoPrice * lottoCount;
 
         amount -= totalPrice;
+        displayPurchasedLottoQuantity(lottoCount);
+        
         return lottoCount;
+    }
+
+    private void displayPurchasedLottoQuantity(int count) {
+        OutputView.printPurchasedLottoQuantity(count);
     }
 
     private int calculateLottoCount(int lottoPrice) {

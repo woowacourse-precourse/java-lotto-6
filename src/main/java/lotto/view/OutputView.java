@@ -12,6 +12,11 @@ public class OutputView {
         System.out.println(message.getMessage(numbers.toArray()));
     }
 
+    public static void printPurchasedLottoQuantity(int count) {
+        LottoMessage message = LottoMessage.PURCHASED_LOTTO_QUANTITY_MESSAGE;
+        System.out.println(message.getMessage(count));
+    }
+
     public static void printLottoRank(LottoRank lottoRank, int count) {
         LottoMessage message = getLottoRankMessage(lottoRank.isMatchBonus());
 

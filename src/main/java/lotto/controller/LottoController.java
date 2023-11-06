@@ -96,10 +96,9 @@ public class LottoController {
         }
 
         bonusNumInput = Integer.parseInt(bonusNum);
-        if (ReadWinningNum.isBonusNumRange(bonusNumInput)) {
-            return true;
-        }
-        if (lotto.bonusValidateBool(bonusNumInput)) {
+        boolean isNumInRange = ReadWinningNum.isBonusNumRange(bonusNumInput);
+        boolean isNumInput = lotto.bonusValidateBool(bonusNumInput);
+        if (isNumInRange || isNumInput) {
             return true;
         }
         return false;

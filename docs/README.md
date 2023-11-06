@@ -108,3 +108,4 @@
 - [x] PlayerLotto 객체
 - [x] LottoResult 객체
 - [x] WinningLotto 객체
+- [x] InputValidator 객체

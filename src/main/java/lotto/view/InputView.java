@@ -23,12 +23,20 @@ public class InputView {
 
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         int number = Integer.parseInt(Console.readLine());
         validateRange(number);
+        validateDuplicate(winningNumbers, number);
         return number;
     }
+
+    private void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 보너스 번호를 입력하였습니다.");
+        }
+    }
+
 
     public void validateRange(int number) {
         if (number < 1 || number > 45) {

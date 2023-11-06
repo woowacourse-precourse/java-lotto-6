@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static lotto.util.Parser.stringToInt;
 import static lotto.util.Parser.stringToList;
@@ -29,5 +31,11 @@ public class WinningNumbers {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateDuplication(List<Integer> winningNumbers) {
+        int setSize = Set.copyOf(winningNumbers).size();
+        if(setSize != 6)
+            throw new IllegalArgumentException();
     }
 }

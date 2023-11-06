@@ -58,11 +58,18 @@ IDE에서 실행
 
 ```bash
 ├── domain
-│   ├── Lotto.java
-│   ├── LottoDraw.java
-│   ├── InputManager.java
-│   ├── InputDataAdapter.java
-│   └──  LottoVendingMachine.java
+│   ├── vendingMachine
+│   │   ├── LottoVendingMachine.java
+│   │   ├── cash
+│   │   │   ├── CashManager.java
+│   │   │   ├── LottoCashManager.java 
+│   │   ├── lotto
+│   │   │   ├── Lotto.java
+│   │   │   ├── AutoLottoGenerator.java
+│   │       ├── LottoGenerator.java
+│   ├── InputOutput
+│   │   ├──  InputDataAdapter.java
+│   │   ├──  InputManager.java
 │
 ├── constants
     └──  LottoConstants

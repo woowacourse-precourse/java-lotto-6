@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
+import lotto.domain.vendingMachine.LottoVendingMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

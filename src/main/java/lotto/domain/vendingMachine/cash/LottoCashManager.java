@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.vendingMachine.cash;
 
 import lotto.constants.LottoConstants;
 

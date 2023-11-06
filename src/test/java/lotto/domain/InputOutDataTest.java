@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.Assertions;
+import lotto.domain.inputOutput.InputDataAdapter;
+import lotto.domain.inputOutput.InputManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.*;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.inputOutput;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.InputOutputConstants;

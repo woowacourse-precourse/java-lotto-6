@@ -1,7 +1,10 @@
-package lotto.domain;
+package lotto.domain.vendingMachine;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.LottoConstants;
+import lotto.domain.vendingMachine.cash.LottoCashManager;
+import lotto.domain.vendingMachine.lotto.AutoLottoGenerator;
+import lotto.domain.vendingMachine.lotto.Lotto;
+import lotto.domain.vendingMachine.lotto.LottoGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;

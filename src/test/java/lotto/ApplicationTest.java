@@ -153,15 +153,15 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트_로또_진행자_당첨번호_중복_검사() {
         assertSimpleTest(() -> {
-            runException("3000", "1,2,2,4,5,6");
+            runException("3000", "1,2,2,4,5,6", "1,1,3,4,5,6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
     @Test
-    void 예외_테스트_로또_진행자_당첨번호_범위_검사() {
+    void 예외_테스트_로또_진행자_당첨번호_크기_6인지_검사() {
         assertSimpleTest(() -> {
-            runException("3000", "1,2,3,4,5,6,8");
+            runException("3000", "1,2,3,4,5,6,8", "1,2,3,4,5,6,7,8,9");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

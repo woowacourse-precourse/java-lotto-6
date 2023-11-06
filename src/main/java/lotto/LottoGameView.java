@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoGameView {
@@ -38,28 +36,13 @@ public class LottoGameView {
         System.out.println();
     }
 
-    public List<Integer> inputWinningNumbers() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>();
+    public WinningNumbers inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
         String input = Console.readLine();
-        validateWinningNumbers(input);
-        String[] split = input.split(",");
-
-        for (String s : split) {
-            winningNumbers.add(Integer.parseInt(s));
-        }
-        return winningNumbers;
+        return new WinningNumbers(input);
     }
 
     private void validateWinningNumbers(String input) {
-        InputValidator.validateIsNotBlank(input);
-        String[] split = input.split(",");
-        InputValidator.validateStringArrayLength(split, 6);
-        InputValidator.validateIsNumbers(split);
-        for (String s : split) {
-            InputValidator.validateNumberInRange(Integer.parseInt(s), 1, 45);
-        }
 
-        InputValidator.validateIsUnique(Arrays.asList(split));
     }
 }

@@ -51,6 +51,10 @@ public final class LottoOutputView {
         printGainRatio(gainRatio);
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     private static void printRankResult(List<Long> countByRank) {
         for (int i = 0; i < countByRank.size(); i++) {
             String rankMessage = String.format(RANK_MESSAGE[i], countByRank.get(i));

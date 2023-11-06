@@ -12,12 +12,12 @@ public class WinningLottoTest {
 
     private static Stream<Arguments> createRankTestData() {
         return Stream.of(
-                Arguments.of(Rank.FIRST, LottoFixtures.createSixMatchedWinningLotto()),
-                Arguments.of(Rank.SECOND, LottoFixtures.createFiveAndBonusMatchedWinningLotto()),
-                Arguments.of(Rank.THIRD, LottoFixtures.createFiveMatchedWinningLotto()),
-                Arguments.of(Rank.FOURTH, LottoFixtures.createFourMatchedWinningLotto()),
-                Arguments.of(Rank.FIFTH, LottoFixtures.createThreeMatchedWinningLotto()),
-                Arguments.of(Rank.MISS, LottoFixtures.createMissMatchedWinningLotto())
+                Arguments.of(Rank.FIRST,  LottoFixtures.createSixMatchedLotto()),
+                Arguments.of(Rank.SECOND, LottoFixtures.createFiveAndBonusMatchedLotto()),
+                Arguments.of(Rank.THIRD,  LottoFixtures.createFiveMatchedLotto()),
+                Arguments.of(Rank.FOURTH, LottoFixtures.createFourMatchedLotto()),
+                Arguments.of(Rank.FIFTH,  LottoFixtures.createThreeMatchedLotto()),
+                Arguments.of(Rank.MISS,   LottoFixtures.createMissMatchedLotto())
         );
     }
 
@@ -25,8 +25,8 @@ public class WinningLottoTest {
     @ParameterizedTest
     @MethodSource("createRankTestData")
     void getRankWithMatchedNumbers(Rank rank, Lotto lotto) {
-        WinningLotto normalWinningLotto = WinningLottoFixtures.createWinningLotto();
-        Rank matchedRank = normalWinningLotto.match(lotto);
+        WinningLotto winningLotto = WinningLottoFixtures.createWinningLotto();
+        Rank matchedRank = winningLotto.match(lotto);
         assertThat(matchedRank).isEqualTo(rank);
     }
 }

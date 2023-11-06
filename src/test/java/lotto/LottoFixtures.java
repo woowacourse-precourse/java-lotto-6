@@ -12,27 +12,27 @@ public class LottoFixtures {
         return new Lotto(lottoNumbers);
     }
 
-    public static Lotto createSixMatchedWinningLotto() {
+    public static Lotto createSixMatchedLotto() {
         return createLotto(1, 2, 3, 4, 5, 6);
     }
 
-    public static Lotto createFiveAndBonusMatchedWinningLotto() {
+    public static Lotto createFiveAndBonusMatchedLotto() {
         return createLotto(1, 2, 3, 4, 5, 7);
     }
 
-    public static Lotto createFiveMatchedWinningLotto() {
+    public static Lotto createFiveMatchedLotto() {
         return createLotto(1, 2, 3, 4, 5, 8);
     }
 
-    public static Lotto createFourMatchedWinningLotto() {
+    public static Lotto createFourMatchedLotto() {
         return createLotto(1, 2, 3, 4, 8, 9);
     }
 
-    public static Lotto createThreeMatchedWinningLotto() {
+    public static Lotto createThreeMatchedLotto() {
         return createLotto(1, 2, 3, 8, 9, 10);
     }
 
-    public static Lotto createMissMatchedWinningLotto() {
+    public static Lotto createMissMatchedLotto() {
         return createLotto(1, 2, 8, 9, 10, 11);
     }
 }

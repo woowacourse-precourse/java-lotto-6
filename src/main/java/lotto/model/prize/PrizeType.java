@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.prize;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;

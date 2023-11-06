@@ -40,4 +40,4 @@
 - [x] 당첨 번호 입력 형식 검증
 
 ### WinningLottoConverter(입력 문자열 당첨 로또로 변환)
-- [ ] 문자열을 인자로 받아서 WinningLotto 생성
+- [x] 문자열을 인자로 받아서 WinningLotto 생성

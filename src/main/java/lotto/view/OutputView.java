@@ -15,8 +15,11 @@ public class OutputView {
     private final String FIVE_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private final String SIX = "6개 일치 (2,000,000,000원) - ";
     private final String SOME = "개";
+    private int prizeCount;
 
-
+    public OutputView() {
+        prizeCount = 0;
+    }
 
     public void purchasesNumberView(int AMOUNT){
         System.out.println("\n" + AMOUNT + PURCHASES_NUMBER);
@@ -28,13 +31,11 @@ public class OutputView {
         }
     }
 
-    public void winningStatistics(){
+    public void winningStatistics(List<Integer> checkCount){
         System.out.println("\n" + WINNING_STATISTICS);
         System.out.println(LINE);
 
-        System.out.print(THREE);
-        //개수 입력
-        System.out.println(SOME);
+        threePrize(checkCount);
 
         System.out.print(FOUR);
         //개수 입력
@@ -51,6 +52,36 @@ public class OutputView {
         System.out.print(SIX);
         //개수 입력
         System.out.println(SOME);
+    }
+
+    public int countPrize(List<Integer> checkCount, int Number){
+        prizeCount = 0;
+        for (int integer : checkCount) {
+            if(integer == Number){
+                prizeCount++;
+            }
+        }
+        return prizeCount;
+    }
+
+    public void threePrize(List<Integer> checkCount){
+        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+    }
+
+    public void fourPrize(List<Integer> checkCount){
+        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+    }
+
+    public void fivePrize(List<Integer> checkCount){
+        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+    }
+
+    public void fiveBonusPrize(List<Integer> checkCount){
+        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+    }
+
+    public void sixPrize(List<Integer> checkCount){
+        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
     }
 
     public void yieldRateOfReturn(double YIELD){

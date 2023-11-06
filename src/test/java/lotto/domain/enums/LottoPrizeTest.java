@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.domain.enums;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.enums.LottoPrize;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -33,5 +33,11 @@ public class Validator {
         return true;
     }
 
+    // 1000원으로 나누어 떨어지는지 검증
+    public static Boolean isDividedBy(int divisor, Long amount) {
+        if (amount%divisor != 0)
+            throw new IllegalArgumentException("[ERROR]");
 
+        return true;
+    }
 }

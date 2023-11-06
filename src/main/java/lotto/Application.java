@@ -22,9 +22,9 @@ public class Application {
         }
 
         // 2-1. 구입한 금액만큼 로또 번호 생성
-        int count = purchase / 1000; // 생성할 로또 수량
+        int lottoCount = purchase / 1000; // 생성할 로또 수량
         List<Lotto> lottoList = new ArrayList<>();
-        for(int i=0; i<count; i++){
+        for(int i=0; i<lottoCount; i++){
             Lotto lotto = new Lotto(createRandomLottoNum());
             lottoList.add(lotto);
         }

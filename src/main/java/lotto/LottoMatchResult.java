@@ -33,4 +33,8 @@ public class LottoMatchResult {
         }
         return spendMoney.calculateProfitRate(prizeSum);
     }
+
+    public LottoMatchResultDto toDto() {
+        return new LottoMatchResultDto(lottoRankCount, profitRate);
+    }
 }

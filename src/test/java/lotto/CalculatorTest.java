@@ -35,7 +35,7 @@ class CalculatorTest {
         LottoDrawResult lottoDrawResult = new LottoDrawResult(drawLotto, bonus);
 
         Double returnRate = Calculator.returnRate(lottos, lottoDrawResult);
-        Assertions.assertThat(returnRate).isGreaterThan(1.66);
-        Assertions.assertThat(returnRate).isLessThan(1.68);
+        Assertions.assertThat(returnRate).isGreaterThan(166.5);
+        Assertions.assertThat(returnRate).isLessThan(166.7);
     }
 }

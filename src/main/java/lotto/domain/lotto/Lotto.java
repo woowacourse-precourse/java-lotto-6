@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static lotto.util.ConstantUtils.LOTTO_SIZE_CRITERION;
 
@@ -9,11 +9,15 @@ import lotto.util.ValidationUtils;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    protected Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public int getMatchCount(List<Integer> winningNumbers) {
@@ -26,7 +30,7 @@ public class Lotto {
         return bonusNumber.isIn(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    protected void validate(List<Integer> numbers) {
         ValidationUtils.validateNotNull(numbers);
         validateLottoNumbersSize(numbers);
         validateNoDuplicatedLottoNumbers(numbers);

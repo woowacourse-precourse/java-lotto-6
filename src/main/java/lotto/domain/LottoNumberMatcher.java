@@ -1,18 +1,15 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoNumberMatcher {
-
-    private final List<Rank> matchedLottoRank = new ArrayList<>();
-
     private List<Lotto> randomLottos;
     private Lotto mainLotto;
     private BonusLotto bonus;
+    private final List<Rank> matchedLottoRank = new ArrayList<>();
 
     public LottoNumberMatcher(RandomLotto randomLotto, UserLotto userLotto) {
         randomLottos = randomLotto.getRandomLottoNumbers();
@@ -25,16 +22,12 @@ public class LottoNumberMatcher {
 
         for (Lotto lotto : randomLottos) {
             List<Integer> randomNumber = lotto.getNumbers();
-
             int matchingCount = countMatchingNumbers(randomNumber, userMainNumber);
             boolean hasBonus = hasBonusNumber(randomNumber);
 
-            System.out.println(randomNumber);
-            System.out.println(matchingCount);
-            System.out.println(hasBonus);
-
-            matchedLottoRank.add(Rank.findRank(matchingCount,hasBonus));
+            matchedLottoRank.add(Rank.findRank(matchingCount, hasBonus));
         }
+
         return matchedLottoRank;
     }
 
@@ -53,12 +46,12 @@ public class LottoNumberMatcher {
     }
 
     private int calculateMatchingNumbers(int allNumbers, int distinctNumbers) {
+        //합친 리스크의 크기 - 중복을 삭제한 리스트의 크기 = 중복된 숫자의 개수
         return (allNumbers - distinctNumbers);
     }
 
     private boolean hasBonusNumber(List<Integer> randomLotto) {
         return randomLotto.contains(bonus.getBonusNumber());
     }
-
 
 }

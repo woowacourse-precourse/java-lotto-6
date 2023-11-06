@@ -14,21 +14,24 @@ public class LottoController {
     public void run() {
         ConsoleInput input = new ConsoleInput();
         int purchaseAmount = input.getPurchaseAmount();
-        WinningNumbers winningNumbers = input.getWinningNumbers();
 
         LottoBuying lottoBuying = new LottoBuying();
         List<Lotto> lottos = lottoBuying.buyLottos(purchaseAmount);
 
-        WinningCalculator winningCalculator = new WinningCalculator();
-        List<Lotto> winningLottos = generateWinningLottos();
-
-        winningCalculator.calculateWinnings(lottos, winningLottos);
-
         ConsoleOutput output = new ConsoleOutput();
         output.displayPurchasedLottos(lottos);
+
+        WinningNumbers winningNumbers = input.getWinningNumbers();
+        WinningCalculator winningCalculator = new WinningCalculator();
+        List<Lotto> winningLottos = generateWinningLottos();
+        winningCalculator.calculateWinnings(lottos, winningLottos);
+
         output.displayWinningStatistics(winningCalculator.getWinningStatistics());
-        output.displayTotalProfitRate(winningCalculator.calculateTotalProfitRate(purchaseAmount));
+
+        double totalProfitRate = winningCalculator.calculateTotalProfitRate(purchaseAmount);
+        output.displayTotalProfitRate(totalProfitRate);
     }
+
 
     private List<Lotto> generateWinningLottos() {
         List<Lotto> winningLottos = new ArrayList<>();

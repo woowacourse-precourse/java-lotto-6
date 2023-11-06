@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Comparator;
 import java.util.List;
 import lotto.model.LottoTicket;
 import lotto.model.WinningStatistics;
@@ -20,6 +21,7 @@ public class LottoService {
         LottoGenerator lottoGenerator = new LottoGenerator();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lotto = lottoGenerator.generateLotto();
+            lotto.sort(Comparator.naturalOrder());
             lottoTickets.add(lotto);
         }
     }

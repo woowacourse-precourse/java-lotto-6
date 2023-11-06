@@ -73,7 +73,7 @@ class LottoServiceTest {
         String winningNumber = "46";
 
         Assertions.assertThatThrownBy(
-                        () -> lottoService.validateInputPlayerNumber(winningNumber))
+                        () -> lottoService.validateWinningNumber(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

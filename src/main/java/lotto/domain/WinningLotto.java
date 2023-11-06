@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.utils.InputValidator;
 
 public class WinningLotto {
     private static final int MIN_VALUE = 1;
@@ -16,9 +17,12 @@ public class WinningLotto {
 
     public WinningLotto(String winningNumbers, String bonusNumber) {
         this.winningNumbers = getWinningNumbers(winningNumbers);
+        this.bonusNumber = getBonusNumber(bonusNumber);
     }
 
     private Lotto getWinningNumbers(String winningNumbers) {
+        InputValidator.validateEmpty(winningNumbers);
+        InputValidator.validateNull(winningNumbers);
         List<Integer> numbers = parseNumbers(winningNumbers);
         validateSize(numbers);
         validateUnique(numbers);
@@ -26,11 +30,32 @@ public class WinningLotto {
         return new Lotto(numbers);
     }
 
+    private int getBonusNumber(String bonusNumber) {
+        InputValidator.validateEmpty(bonusNumber);
+        InputValidator.validateNull(bonusNumber);
+        return parseNumber(bonusNumber);
+    }
+
     private List<Integer> parseNumbers(String numbers) {
         return Stream.of(numbers.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private int parseNumber(String number) {
+        int parsedNumber;
+        try {
+            parsedNumber = Integer.parseInt(number.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수만 입력 가능");
+        }
+
+        if (parsedNumber <= 0) {
+            throw new IllegalArgumentException("양의 정수만 입력 가능");
+        }
+
+        return parsedNumber;
     }
 
     private void validateSize(List<Integer> numbers) {

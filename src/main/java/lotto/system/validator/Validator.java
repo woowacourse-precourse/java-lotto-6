@@ -15,7 +15,7 @@ public class Validator {
         INVALID_ARABIC_NUMBER("[ERROR] 아라비아 숫자만 입력할 수 있습니다."),
         NOT_DIVISIBLE_BY_1000("[ERROR] 1,000원 단위로만 입력할 수 있습니다."),
         NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-        DUPLICATE_NUMBER("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다.");
+        DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다.");
         private final String message;
 
         ExceptionMessage(String message) {
@@ -48,10 +48,10 @@ public class Validator {
         }
     }
 
-    public void validateDuplicateNumber(List<Integer> winningNumbers, String input) {
+    public void validateBonusNumberInWinningNumber(List<Integer> winningNumbers, String input) {
         int bonusNumber = Integer.parseInt(input);
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER.message);
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.message);
         }
     }
 

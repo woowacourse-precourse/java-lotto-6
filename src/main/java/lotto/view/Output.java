@@ -17,6 +17,7 @@ public class Output {
     private static final String DIVIDER = "---";
     private static final String WINNING_RANK_COUNT_FORMAT = " - %d개";
     private static final String TOTAL_RETURN_FORMAT = "총 수익률은 %,.1f%%입니다.";
+    private static final String ERROR_FORMAT = "[ERROR] %s";
 
     public void showMoneyInputMessage() {
         System.out.println(MONEY_INPUT_MESSAGE);
@@ -65,6 +66,10 @@ public class Output {
 
     private void showTotalReturn(double totalReturn) {
         System.out.printf(TOTAL_RETURN_FORMAT, totalReturn);
+    }
+
+    public void showError(String message) {
+        System.out.printf((ERROR_FORMAT) + LINE_BREAK, message);
     }
 
     private void lineBreak() {

@@ -13,7 +13,8 @@ public class WinNumberTest {
     @Test
     void should_throwException_when_isNotNumeric() {
         Assertions.assertThatThrownBy(() -> WinNumber.of("1,2,3,4,5,a"))
-                .isInstanceOf(NumberFormatException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("숫자 형식이 아닙니다.");
     }
 
     @DisplayName("당첨 번호를 6개 입력하지 않으면 예외가 발생한다.")

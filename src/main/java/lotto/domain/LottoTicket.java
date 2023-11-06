@@ -34,4 +34,8 @@ public class LottoTicket {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
         return new Lotto(numbers);
     }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }

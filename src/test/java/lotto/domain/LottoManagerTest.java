@@ -8,9 +8,8 @@ import org.junit.jupiter.api.Test;
 
 public class LottoManagerTest {
 
-    private final Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
     private final int bonusNumber = 7;
-    private final LottoManager lottoManager = new LottoManager(winningLotto, bonusNumber);
+    private final LottoManager lottoManager = new LottoManager(List.of(1,2,3,4,5,6), bonusNumber);
 
     private final List<Lotto> lottos = List.of(
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),

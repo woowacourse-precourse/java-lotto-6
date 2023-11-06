@@ -1,40 +1,36 @@
 package lotto.model;
 
 
+import java.util.Arrays;
+import java.util.function.BiFunction;
+
 public enum Ranking {
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
-    FOURTH(4, 50_000),
-    FIFTH(3, 5_000),
-    NONE(null, 0);
+    FIRST(6, 2_000_000_000, (count, isBonus) -> count == 6),
+    SECOND(5, 30_000_000, (count, isBonus) -> count == 5 && isBonus),
+    THIRD(5, 1_500_000, (count, isBonus) -> count == 5 && !isBonus),
+    FOURTH(4, 50_000, (count, isBonus) -> count == 4),
+    FIFTH(3, 5_000, (count, isBonus) -> count == 3),
+    NONE(null, 0, (count, isBonus) -> count < 3);
 
     private final Integer matchCount;
     private final int reward;
+    private final BiFunction<Integer, Boolean, Boolean> isMatchFunction;
 
-    Ranking(Integer matchCount, int reward) {
+    Ranking(Integer matchCount, int reward, BiFunction<Integer, Boolean, Boolean> isMatchFunction) {
         this.matchCount = matchCount;
         this.reward = reward;
+        this.isMatchFunction = isMatchFunction;
     }
 
-    public static Ranking of(int matchCount, boolean isBonus){
-        if (matchCount == FIRST.matchCount) {
-            return FIRST;
-        }
+    public static Ranking of(Integer matchCount, boolean isBonus) {
+        return Arrays.stream(Ranking.values())
+                .filter(rank -> rank.isMatch(matchCount, isBonus))
+                .findFirst()
+                .orElse(NONE);
+    }
 
-        if (matchCount == SECOND.matchCount) {
-            return isBonus ? SECOND : THIRD;
-        }
-
-        if (matchCount == FOURTH.matchCount) {
-            return FOURTH;
-        }
-
-        if (matchCount == FIFTH.matchCount) {
-            return FIFTH;
-        }
-
-        return NONE;
+    private boolean isMatch(int count, boolean isBonus) {
+        return isMatchFunction.apply(count, isBonus);
     }
 
     public int getReward() {

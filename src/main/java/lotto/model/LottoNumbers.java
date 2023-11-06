@@ -17,6 +17,16 @@ public class LottoNumbers {
         this.lottoNumbers = lottoNumbers;
     }
 
+    public int countMatchNumber(LottoNumbers winningNumbers) {
+        int matchCount = 0;
+        for (int winningNumber : winningNumbers.getLottoNumbers()) {
+            if(isContainNumber(winningNumber)){
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
     public boolean isContainNumber(int number) {
         for (int lottoNumber : lottoNumbers) {
             if (lottoNumber == number) {
@@ -50,5 +60,9 @@ public class LottoNumbers {
         if(useLottoNumber.containsKey(number)){
             throw new LottoNumbersException(ErrorCode.LOTTO_NUMBER_DUPLICATED);
         }
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
     }
 }

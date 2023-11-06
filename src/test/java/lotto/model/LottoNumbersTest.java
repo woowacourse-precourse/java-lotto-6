@@ -59,4 +59,22 @@ class LottoNumbersTest {
         assertThat(containNumber).isTrue();
         assertThat(containNumber2).isFalse();
     }
+
+    @Test
+    @DisplayName("당첨 번호와 로또 일치 개수 확인")
+    void countMatchNumber(){
+        WinningNumbers winningNumbers = new WinningNumbers(new LottoNumbers(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
+        LottoNumbers lottoNumbers = new LottoNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int result = lottoNumbers.countMatchNumber(winningNumbers.getWinningNumbers());
+
+        LottoNumbers lottoNumbers2 = new LottoNumbers(Arrays.asList(1, 2, 3, 4, 5, 7));
+        int result2 = lottoNumbers2.countMatchNumber(winningNumbers.getWinningNumbers());
+
+        LottoNumbers lottoNumbers3 = new LottoNumbers(Arrays.asList(11, 12, 13, 14, 15, 17));
+        int result3 = lottoNumbers3.countMatchNumber(winningNumbers.getWinningNumbers());
+
+        assertThat(result).isEqualTo(6);
+        assertThat(result2).isEqualTo(5);
+        assertThat(result3).isEqualTo(0);
+    }
 }

@@ -30,10 +30,9 @@ public class RandomNumberGenerator {
         while (leftIndex < left.size() && rightIndex < right.size()) {
             if (left.get(leftIndex) < right.get(rightIndex)) {
                 merged.add(left.get(leftIndex++));
+                continue;
             }
-            else if (left.get(leftIndex) >= right.get(rightIndex)){
-                merged.add(right.get(rightIndex++));
-            }
+            merged.add(right.get(rightIndex++));
         }
 
         while (leftIndex < left.size()) {

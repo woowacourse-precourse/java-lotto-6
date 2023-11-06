@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.groupingBy;
 import java.util.List;
 import java.util.Map;
 import lotto.collaboration.enums.Prize;
+import lotto.collaboration.lottos.dto.PlayerLotto;
 
 public class WinningLotto {
 
@@ -27,21 +28,21 @@ public class WinningLotto {
         }
     }
 
-    public Map<Prize, List<Lotto>> matchNumbers(List<Lotto> buyLottos) {
-        Map<Prize, List<Lotto>> result = buyLottos.stream()
+    public Map<Prize, List<PlayerLotto>> matchNumbers(List<PlayerLotto> buyLottos) {
+        Map<Prize, List<PlayerLotto>> result = buyLottos.stream()
                 .collect(groupingBy(lotto ->
-                        Prize.matchPrize(matchNumbers(lotto), matchBonusNumber(lotto))));
+                        Prize.matchPrize(this.matchNumbers(lotto), matchBonusNumber(lotto))));
 
         return result;
     }
 
-    private int matchNumbers(Lotto lotto) {
+    private int matchNumbers(PlayerLotto lotto) {
         return (int) lotto.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    private boolean matchBonusNumber(Lotto lotto) {
+    private boolean matchBonusNumber(PlayerLotto lotto) {
         return lotto.stream().anyMatch(number -> bonusNumber == number);
     }
 

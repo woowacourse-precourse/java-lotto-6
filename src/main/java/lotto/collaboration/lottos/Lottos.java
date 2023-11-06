@@ -45,7 +45,7 @@ public class Lottos {
 
         while (true) {
             List<PlayerLotto> playerLottos = IntStream.range(0, ticketAmount)
-                    .mapToObj(i -> new PlayerLotto(Lotto.make(lottosRandoms).stream().toList()))
+                    .mapToObj(i -> new PlayerLotto(Lotto.make(lottosRandoms)))
                     .toList();
             if (playerLottos.size() == playerLottos.stream().distinct().count()) {
                 return playerLottos;

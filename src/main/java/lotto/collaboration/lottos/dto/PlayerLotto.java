@@ -2,8 +2,25 @@ package lotto.collaboration.lottos.dto;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
+import lotto.collaboration.lottos.Lotto;
 
-public record PlayerLotto(List<Integer> numbers) {
+public class PlayerLotto {
+
+    private final List<Integer> numbers;
+
+    public PlayerLotto(Lotto lotto) {
+        this.numbers = lotto.stream().sorted().toList();
+    }
+
+    public Stream<Integer> stream() {
+        return numbers.stream();
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,9 +1,9 @@
 package lotto.game;
 
 import java.util.List;
-import lotto.collaboration.lottos.Lotto;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
+import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Output;
 import lotto.game.io.Randoms;
 import lotto.game.io.views.LottoGameView;
@@ -34,7 +34,7 @@ public class LottoGame {
             }
         }
 
-        List<Lotto> buyLottos = lottos.make(randoms);
+        List<PlayerLotto> buyLottos = lottos.make(randoms);
         lottoGameView.announcePurchaseLottos(buyLottos);
 
         // TODO : winningNumbers와 bonusNumber는 아무리 봐도 하나의 타입이다.. 두 행동을 하나로 묶는 리팩토링을 수행하면 좋겠다.
@@ -53,7 +53,8 @@ public class LottoGame {
             }
         }
 
-        lottoGameView.announceWinningStatistics(purchaseAmount,
+        lottoGameView.announceWinningStatistics(
+                purchaseAmount,
                 winningLotto.matchNumbers(buyLottos));
     }
 

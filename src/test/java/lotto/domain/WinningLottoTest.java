@@ -32,10 +32,10 @@ class WinningLottoTest {
         @ParameterizedTest
         @MethodSource("successWinningLotto")
         void create_당첨_번호_입력이_정상적인_경우를_확인(List<Integer> winningNumbers, Integer bonusNumber) {
-            System.out.println("winningNumbers = " + winningNumbers);
-            System.out.println("bonusNumber = " + bonusNumber);
+            Lotto winningLotto = new Lotto(winningNumbers);
+            
             assertThatNoException().isThrownBy(()
-                    -> WinningLotto.of(winningNumbers, bonusNumber));
+                    -> WinningLotto.of(winningLotto, bonusNumber));
         }
     }
 
@@ -47,9 +47,8 @@ class WinningLottoTest {
         @DisplayName("당첨 번호가 6개가 아니라면 예외가 발생한다")
         void exception_당첨_번호가_6개가_아니라면_예외가_발생한다() {
             List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5);
-            Integer bonusNumber = 7;
 
-            assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> new Lotto(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR]");
         }
@@ -58,9 +57,8 @@ class WinningLottoTest {
         @DisplayName("당첨 번호에 중복이 있으면 예외가 발생한다")
         void exception_당첨_번호에_중복이_있으면_예외가_발생한다() {
             List<Integer> winningNumbers = List.of(1, 2, 2, 4, 5, 6);
-            Integer bonusNumber = 7;
 
-            assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> new Lotto(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR]");
         }
@@ -69,9 +67,8 @@ class WinningLottoTest {
         @DisplayName("당첨 번호가 정해진 범위를 벗어나면 예외가 발생한다")
         void exception_당첨_번호가_정해진_범위를_벗어나면_예외가_발생한다() {
             List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
-            Integer bonusNumber = 7;
-
-            assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
+            
+            assertThatThrownBy(() -> new Lotto(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR]");
         }
@@ -81,8 +78,10 @@ class WinningLottoTest {
         @ValueSource(ints = {-1, 0, 46})
         void exception_보너스_번호가_정해진_범위를_벗어나면_예외가_발생한다(int bonusNumber) {
             List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    
+            Lotto winningLotto = new Lotto(winningNumbers);
 
-            assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> WinningLotto.of(winningLotto, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR]");
         }
@@ -92,8 +91,10 @@ class WinningLottoTest {
         void exception_당첨_번호와_보너스_번호가_중복되면_예외가_발생한다() {
             List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
             Integer bonusNumber = 1;
+    
+            Lotto winningLotto = new Lotto(winningNumbers);
 
-            assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> WinningLotto.of(winningLotto, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR]");
         }
@@ -110,7 +111,9 @@ class WinningLottoTest {
             List<Integer> winningLottoNumbers = List.of(1, 2, 3, 7, 8, 9);
 
             Lotto lotto = new Lotto(lottoNumbers);
-            WinningLotto winningLotto = WinningLotto.of(winningLottoNumbers, 10);
+            Lotto anotherLotto = new Lotto(winningLottoNumbers);
+            
+            WinningLotto winningLotto = WinningLotto.of(anotherLotto, 10);
 
             assertThat(winningLotto.countMatchingNumbers(lotto))
                     .isEqualTo(3);
@@ -123,7 +126,9 @@ class WinningLottoTest {
             List<Integer> winningLottoNumbers = List.of(1, 2, 3, 7, 8, 9);
 
             Lotto lotto = new Lotto(lottoNumbers);
-            WinningLotto winningLotto = WinningLotto.of(winningLottoNumbers, 6);
+            Lotto anotherLotto = new Lotto(winningLottoNumbers);
+            
+            WinningLotto winningLotto = WinningLotto.of(anotherLotto, 6);
 
             assertThat(winningLotto.containsBonusNumber(lotto))
                     .isTrue();

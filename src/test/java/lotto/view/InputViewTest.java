@@ -20,7 +20,7 @@ class InputViewTest {
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNotNumericException")
     @DisplayName("숫자 이외의 값은 입력할 수 없다.")
-    void readPurchaseAmountTest(final String input) {
+    void purchaseAmountNotNumericExceptionTest(final String input) {
         customReader.initInput(input);
         assertThatThrownBy(inputView::readPurchaseAmount)
                 .isInstanceOf(NumberFormatException.class);

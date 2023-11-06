@@ -23,4 +23,11 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,", "1.2.3", "한,글"})
+    void 당첨번호를_입력받을때_숫자_리스트로_구분할_수_없는_경우_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> InputValidator
+                .validateWinNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

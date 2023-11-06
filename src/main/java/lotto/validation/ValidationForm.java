@@ -20,6 +20,9 @@ public class ValidationForm {
         if (validatorType.equals(COST)) {
             verifyForPurchaseCost(inputValue);
         }
+        if (validatorType.equals(BONUS)) {
+
+        }
     }
 
     static void verifyForWinningNumbers(String winningNumbers) {
@@ -32,6 +35,13 @@ public class ValidationForm {
         valueContainsSpace(winningNumber);
         valueIsNumeric(winningNumber);
         valueIsCorrectRange(winningNumber);
+    }
+
+    static void verifyForBonusNumber(String bonusNumber) {
+        valueIsEmpty(bonusNumber);
+        valueContainsSpace(bonusNumber);
+        valueIsNumeric(bonusNumber);
+        valueIsCorrectRange(bonusNumber);
     }
 
     static void verifyForPurchaseCost(String purchaseCost) {

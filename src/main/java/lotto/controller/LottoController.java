@@ -61,7 +61,7 @@ public class LottoController {
         Lotto winningLotto = repeatMakeWinningLotto();
 
         output.showBonusNumberInputMessage();
-        int bonusNumber = toInt(input.readBonusNumber());
+        int bonusNumber = repeatReadBonusNumber();
 
         return new WinningCondition(winningLotto, bonusNumber);
     }
@@ -72,6 +72,15 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             output.showError(e.getMessage());
             return repeatMakeWinningLotto();
+        }
+    }
+
+    private int repeatReadBonusNumber() {
+        try {
+            return toInt(input.readBonusNumber());
+        } catch (IllegalArgumentException e) {
+            output.showError(e.getMessage());
+            return repeatReadBonusNumber();
         }
     }
 

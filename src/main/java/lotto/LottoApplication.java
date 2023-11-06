@@ -33,11 +33,12 @@ public class LottoApplication {
             matchingNumbersCounter = new int[getNumberOfLotto(receivedAmount)];
             List<Result> results = compareTicketAndLottos(ticket, createdLottos);
 
-            int[] rankingCounter = getRankingCounter(results);
-            Output.printWinningStatistic(rankingCounter);
+            int[] rankCounter = getRankingCounter(results);
+            Output.printWinningStatistic(rankCounter);
 
-            double totalProfit = calculateWinningProfit(receivedAmount, calculateTotalWinningAmount(rankingCounter));
+            double totalProfit = calculateWinningProfit(receivedAmount, calculateTotalWinningAmount(rankCounter));
             Output.printTotalProfit(String.valueOf(totalProfit));
+
         } catch (IllegalArgumentException iae) {
             Output.printErrorMessage(iae.getMessage());
         }
@@ -103,13 +104,13 @@ public class LottoApplication {
     }
 
     private int[] getRankingCounter(List<Result> results) {
-        int[] rankingCounter = new int[6]; // index 0은 사용 안 함
+        int[] rankCounter = new int[6]; // index 0은 사용 안 함
 
         for (Result result : results) {
-            rankingCounter[result.getRanking()]++;
+            rankCounter[result.getRank().getNumber()]++;
         }
 
-        return rankingCounter;
+        return rankCounter;
     }
 
     private long calculateTotalWinningAmount(int[] rankingCounter) {

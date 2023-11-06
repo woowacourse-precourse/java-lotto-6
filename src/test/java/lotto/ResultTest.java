@@ -20,7 +20,7 @@ class ResultTest {
     @DisplayName("결과가 2등인지 확인합니다.")
     @Test
     void createSecondRankingByTicketAndLotto() {
-        assertThat(secondRanking.getRanking()).isEqualTo(2);
+        assertThat(secondRanking.getRank()).isEqualTo(2);
     }
 
 }

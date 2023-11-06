@@ -5,7 +5,7 @@ import java.util.List;
 public class Result {
     private int matchingNumbersCounter;
     private boolean isBonusMatching;
-    private Rank rank;
+    private Rank rank = Rank.OTHERS;
 
     Result(Ticket ticket, Lotto lotto) {
         compareTicketAndLotto(ticket, lotto);
@@ -50,7 +50,7 @@ public class Result {
         }
     }
 
-    public Rank getRanking() {
+    public Rank getRank() {
         return rank;
     }
 }

@@ -84,7 +84,7 @@ public class LottoCheck {
         }
         long money;
         money = lottoPickNumbers.length * 1000L;
-        profit = (sum / money) * 100;
-        return "총 수익률은 " + String.format("%.1f", profit) + "입니다.";
+        profit = ((double) sum / money) * 100;
+        return "총 수익률은 " + String.format("%.1f", profit) + "%입니다.";
     }
 }

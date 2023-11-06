@@ -15,13 +15,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_SIX_SIZE);
-        }
-        Set<Integer> temp = new HashSet<>(numbers);
-        if (numbers.size() != temp.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_EXISTS);
-        }
+        isSixSize(numbers);
+        isDuplicateExists(numbers);
+        isInRange(numbers);
+    }
+
+    // TODO: 추가 기능 구현
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    private static void isInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (!(number >= 1 && number <= 45)) {
                 throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
@@ -29,9 +34,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private static void isDuplicateExists(List<Integer> numbers) {
+        Set<Integer> temp = new HashSet<>(numbers);
+        if (numbers.size() != temp.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_EXISTS);
+        }
+    }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    private static void isSixSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_SIX_SIZE);
+        }
     }
 }

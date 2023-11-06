@@ -10,7 +10,7 @@ import lotto.domain.WinningNumbers;
 import lotto.dto.LottoPlayInfo;
 import lotto.dto.LottoResult;
 
-public class LottoResultService {
+public final class LottoResultService {
     private final PrizeCalculator prizeCalculator;
     private final ROICalculator roiCalculator;
 

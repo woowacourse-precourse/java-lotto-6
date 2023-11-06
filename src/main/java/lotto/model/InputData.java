@@ -52,6 +52,7 @@ public class InputData {
 				String inputData = Console.readLine();
 				Validate.numericInput(inputData);
 				bonusNumber = Integer.parseInt(inputData);
+				Validate.numberInRange(bonusNumber);
 				isValidInput = true;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());

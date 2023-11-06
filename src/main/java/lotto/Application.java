@@ -11,6 +11,7 @@ class money_for_lotto{
         moneyIsNumber(inputNumber);
         realNumber = Integer.parseInt(inputNumber);
         moneyIsOver0(realNumber);
+        multipleOfThousand(realNumber);
         return Integer.parseInt(inputNumber);
     }
 
@@ -25,6 +26,11 @@ class money_for_lotto{
     public static void moneyIsOver0(int realNumber){
         if(realNumber<1){
             throw new IllegalArgumentException("[ERROR] 0보다 큰 수를 입력하세요");
+        }
+    }
+    public static void multipleOfThousand(int realNumber){
+        if(realNumber%1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 1000의 배수를 입력하세요");
         }
     }
 

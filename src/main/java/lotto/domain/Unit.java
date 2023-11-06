@@ -15,12 +15,6 @@ public enum Unit {
         return purchasePrice / PURCHASE_UNIT.unit;
     }
 
-    public static void validatePurchasePrice(int purchasePrice) {
-        if (purchasePrice % PURCHASE_UNIT.unit != ZERO.unit) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해야 합니다.");
-        }
-    }
-
     public int getValue() {
         return unit;
     }

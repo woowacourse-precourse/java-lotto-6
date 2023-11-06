@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import lotto.exception.DuplicateWinningNumberException;
+import lotto.exception.InvalidLottoInputFormatException;
 
 public class InputWinningLottoView extends InputView {
     private static final Pattern PATTERN = Pattern.compile("(\\d{1,2},){5}\\d{1,2}");
@@ -28,7 +30,7 @@ public class InputWinningLottoView extends InputView {
 
     private void validateFormat(String inputValue) {
         if (!PATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoInputFormatException();
         }
     }
 
@@ -38,7 +40,7 @@ public class InputWinningLottoView extends InputView {
                 .toList();
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new DuplicateWinningNumberException();
         }
     }
 }

@@ -11,4 +11,7 @@ public class BonusNumber {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

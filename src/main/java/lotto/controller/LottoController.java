@@ -1,12 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.User;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class LottoController {
@@ -48,6 +46,11 @@ public class LottoController {
             } catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
+        }
+
+        Result result = new Result(new LinkedHashMap<>());
+        for(Lotto lotto : user.getLottos()) {
+            result.compare(lotto.getNumbers(), winningNumber.getWinningNumber(), bonusNumber.getBonusNumber());
         }
     }
 }

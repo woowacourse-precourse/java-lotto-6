@@ -24,6 +24,7 @@ public class PurchasingService {
     }
 
     private int checkAmount(String value) {
+        validateEmpty(value);
         validateOnlyNumber(value);
         int amount = Integer.parseInt(value);
         validateMinPurchase(amount);
@@ -31,9 +32,15 @@ public class PurchasingService {
         return amount;
     }
 
-    private void validateOnlyNumber(String amount) {
+    private void validateEmpty(String value) {
+        if (value.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력 값이 없습니다.");
+        }
+    }
+
+    private void validateOnlyNumber(String value) {
         try {
-            Integer.parseInt(amount);
+            Integer.parseInt(value);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }

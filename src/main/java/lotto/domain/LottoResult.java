@@ -55,6 +55,20 @@ public class LottoResult {
         }
     }
 
+    private long totalPrize() {
+        long totalPrize = 0;
+        for (LottoRank lottoRank : LottoRank.values()) {
+            totalPrize = lottoResult.get(lottoRank) * lottoRank.getPrize();
+        }
+        return totalPrize;
+    }
+
+    public Double getTotalReturn(int purchaseAmount) {
+        Double totalReturn = (double) totalPrize() / purchaseAmount;
+        totalReturn *= 100;
+        return totalReturn;
+    }
+
     public HashMap<LottoRank, Integer> getLottoResult() {
         return lottoResult;
     }

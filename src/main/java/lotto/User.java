@@ -12,7 +12,6 @@ public class User {
     private int money;
     private int ticketCount;
     private List<Lotto> lottos;
-    private final int LOTTO_NUMBER_COUNT = 6;
 
     User(){
         getMoney();
@@ -22,6 +21,7 @@ public class User {
         System.out.println("\n" + Message.LOTTO_RANDOM_PRINT);
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lotto.printNumbers();
             lottos.add(lotto);
         }
     }

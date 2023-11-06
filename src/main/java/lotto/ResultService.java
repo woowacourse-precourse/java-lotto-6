@@ -14,6 +14,11 @@ public class ResultService {
         System.out.printf("%d개를 구매했습니다.", purchaseNumber);
     }
 
+    public static void printStringForResults() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
     public static List<Lotto> getResultsOfLottoIssuance(int purchaseNumber) {
         List<Lotto> resultsOfLottoIssuance = new ArrayList<>();
         for (int i = 1; i <= purchaseNumber; i++) {

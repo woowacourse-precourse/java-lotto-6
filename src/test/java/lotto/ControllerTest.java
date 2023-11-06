@@ -11,6 +11,11 @@ import org.junit.jupiter.api.Test;
 public class ControllerTest {
 
     @Test
+    void validateLottoNumber_로또번호_쉼표로_나뉘어서_저장_안되면_예외반환() {
+        assertThat(Validator.validateLottoNumber("1,2,3,4,5,6")).isEqualTo(List.of(1,2,3,4,5,6));
+    }
+
+    @Test
     void validateBonusNumber_보너스번호_숫자아니면_예외반환() {
         assertThatThrownBy(() -> Validator.validateBonusNumber("aaa")).isInstanceOf(IllegalArgumentException.class);
     }

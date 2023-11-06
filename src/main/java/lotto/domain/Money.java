@@ -9,8 +9,14 @@ public class Money {
         this.money = money;
     }
 
+    public int get() {
+        return money/1000;
+    }
+
     private void validate(int money) {
         if(0 != money%1000)
             throw new IllegalArgumentException();
     }
+
+
 }

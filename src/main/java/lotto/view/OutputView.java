@@ -36,6 +36,6 @@ public class OutputView {
     }
 
     private static String getWinningResultMessage(int count) {
-        return count + ViewMessage.OUTPUT_PURCHASED_LOTTOS.getMessage();
+        return ViewMessage.OUTPUT_PURCHASED_LOTTOS.getPurchasedLottosMessage(count);
     }
 }

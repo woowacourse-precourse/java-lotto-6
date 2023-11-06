@@ -2,10 +2,7 @@ package lotto.domain;
 
 import lotto.ErrorMessage;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private static final int LOTTO_NUMBER_COUNT = 6;
@@ -16,10 +13,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return Collections.unmodifiableList(sortedNumbers);
+    }
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkDuplicate(numbers);

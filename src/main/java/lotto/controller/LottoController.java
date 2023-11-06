@@ -15,7 +15,9 @@ import java.util.stream.Collectors;
 import static lotto.controller.constant.ErrorConst.INPUT_NOT_INT;
 import static lotto.controller.constant.ErrorConst.INPUT_NOT_LONG;
 import static lotto.ui.constant.MessageConst.PURCHASE_REQUEST;
+import static lotto.ui.constant.MessageConst.WINNING_BONUS_REQUEST;
 import static lotto.ui.constant.MessageConst.WINNING_DETAILS_NOTICE;
+import static lotto.ui.constant.MessageConst.WINNING_MAIN_REQUEST;
 
 public class LottoController {
 
@@ -66,6 +68,7 @@ public class LottoController {
     }
 
     private Lotto setUPWinningMain() {
+        OutputView.printMessage(WINNING_MAIN_REQUEST);
         String input = InputView.input();
 
         List<Integer> winningMain = makeIntegerList(input);
@@ -73,6 +76,7 @@ public class LottoController {
     }
 
     private Bonus setUPWinningBonus() {
+        OutputView.printMessage(WINNING_BONUS_REQUEST);
         String input = InputView.input();
 
         int winningBonus = makeInt(input);

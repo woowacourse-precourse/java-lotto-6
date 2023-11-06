@@ -4,7 +4,9 @@ import static lotto.util.Constant.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,8 +29,8 @@ public class Lotto {
 
     private static List<Integer> randomPickNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_MINIMUM_RANGE, LOTTO_MAXIMUM_RANGE, LOTTO_PICK_COUNT);
-        Collections.sort(randomNumbers);
+                        LOTTO_MINIMUM_RANGE, LOTTO_MAXIMUM_RANGE, LOTTO_PICK_COUNT)
+                .stream().sorted().collect(Collectors.toList());
         return randomNumbers;
     }
 

@@ -8,6 +8,7 @@ public class PurchaseLotto {
     private static final int AMOUNT_UNIT = 1000;
     private static final int MINIMUM_AMOUNT = 1000;
     private static final int LOTTO_PRICE = 1000;
+    private int purchaseAmount;
     private int numberOfPurchases;
 
     public void purchase(String input) {
@@ -15,6 +16,7 @@ public class PurchaseLotto {
         int money = Integer.parseInt(input);
         validateMinimumAmount(money);
         validateAmountUnit(money);
+        this.purchaseAmount = money;
         this.numberOfPurchases = money / LOTTO_PRICE;
     }
 
@@ -34,6 +36,10 @@ public class PurchaseLotto {
         if (!moneyPattern.matcher(money).matches()) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public int getNumberOfPurchases() {

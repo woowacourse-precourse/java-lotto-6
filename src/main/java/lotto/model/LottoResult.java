@@ -9,6 +9,7 @@ public class LottoResult {
     private int third;
     private int fourth;
     private int fifth;
+    private int totalPrizeMoney;
 
     public LottoResult(int resetNumber) {
         this.first = resetNumber;
@@ -22,18 +23,23 @@ public class LottoResult {
         for (int i = 0; i < winningMatchResult.size(); i++) {
             if (winningMatchResult.get(i) == 6) {
                 first++;
+                totalPrizeMoney += LottoRankings.FIRST.getWinningAmount();
             }
             if (winningMatchResult.get(i) == 5 && bonusMatchResult.get(i)) {
                 second++;
+                totalPrizeMoney += LottoRankings.SECOND.getWinningAmount();
             }
             if (winningMatchResult.get(i) == 5 && !bonusMatchResult.get(i)) {
                 third++;
+                totalPrizeMoney += LottoRankings.THIRD.getWinningAmount();
             }
             if (winningMatchResult.get(i) == 4) {
                 fourth++;
+                totalPrizeMoney += LottoRankings.FOURTH.getWinningAmount();
             }
             if (winningMatchResult.get(i) == 3) {
                 fifth++;
+                totalPrizeMoney += LottoRankings.FIFTH.getWinningAmount();
             }
         }
     }
@@ -56,5 +62,9 @@ public class LottoResult {
 
     public int getFifth() {
         return fifth;
+    }
+
+    public int getTotalPrizeMoney() {
+        return totalPrizeMoney;
     }
 }

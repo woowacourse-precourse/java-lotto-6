@@ -5,7 +5,7 @@ public class Yield {
     private String yield;
 
     public void calculateYield(int totalPrizeMoney, int purchaseAmount) {
-        double result = totalPrizeMoney / (double) purchaseAmount * 100;
+        double result = (totalPrizeMoney * 100) / (double) purchaseAmount;
         this.yield = String.format("%.1f", result);
     }
 

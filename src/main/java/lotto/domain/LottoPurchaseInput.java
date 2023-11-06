@@ -24,7 +24,6 @@ public class LottoPurchaseInput {
         }
     }
 
-    public static void validate(String input) {
     public static List<Integer> inputWinningNumbers() {
         try {
             OutputMessage.ASK_WINNING_LOTTO_NUMBER.printMessage();
@@ -40,6 +39,24 @@ public class LottoPurchaseInput {
             return inputWinningNumbers();
         }
     }
+
+    public static int inputBonusNumber() {
+        try {
+            OutputMessage.ASK_BONUS_NUMBER.printMessage();
+            String input = Console.readLine().trim();
+
+            validate(input);
+            Util.validateInteger(input);
+            int bonusNumber = Integer.parseInt(input);
+            LottoUtil.validateLottoNum(bonusNumber);
+
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
+    }
+
         if (input.contains(" ")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_CONTAINS_WHITE_CHAR.getMessage());
         }

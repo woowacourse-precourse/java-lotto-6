@@ -1,7 +1,11 @@
-package lotto.domain.exception;
+package lotto.exception;
 
 
 import lotto.domain.Lotto;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class UserInputValidator {
     private static final String DELIMITER = ",";
@@ -18,23 +22,30 @@ public class UserInputValidator {
 
     public static void validateWinningLotto(String winningLotto) {
         String[] splitLotto = winningLotto.split(DELIMITER);
-
         isValidLottoSize(splitLotto.length);
         for (String lottoNumber : splitLotto) {
             isNumber(lottoNumber);
             isValidLottoRange(Integer.parseInt(lottoNumber));
         }
+        isValidDuplicateWinningLotto(List.of(splitLotto));
     }
 
     public static void validateBonusNumber(Lotto winningLotto, String bonusNumber) {
         isNumber(bonusNumber);
         isValidLottoRange(Integer.parseInt(bonusNumber));
-        isValidDuplicateWinningLotto(winningLotto, Integer.parseInt(bonusNumber));
+        isValidDuplicateBonusNumber(winningLotto, Integer.parseInt(bonusNumber));
     }
 
-    private static void isValidDuplicateWinningLotto(Lotto winningLotto, int bonusNumber) {
+    private static void isValidDuplicateBonusNumber(Lotto winningLotto, int bonusNumber) {
         if (winningLotto.contain(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 로또 번호와 보너스 번호는 서로 달라야 합니다.");
+        }
+    }
+
+    private static void isValidDuplicateWinningLotto(List<String> splitLotto) {
+        Set<String> setLotto = new HashSet<>(splitLotto);
+        if (setLotto.size() != splitLotto.size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 로또 번호는 중복되면 안됩니다.");
         }
     }
 

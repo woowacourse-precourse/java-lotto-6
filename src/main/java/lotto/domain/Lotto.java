@@ -32,6 +32,14 @@ public class Lotto {
         return this.numbers.contains(bonusNumber);
     }
 
+    public Integer size() {
+        return numbers.size();
+    }
+
+    public Integer get(int index) {
+        return numbers.get(index);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

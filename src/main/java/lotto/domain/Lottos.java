@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lottos {
+    private static final String OUTPUT_PURCHASE_COUNT = "\n%d개를 구매했습니다.\n";
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
     private static final int STANDARD_LOTTO_AMOUNT = 1000;
-    private static final String OUTPUT_PURCHASE_COUNT = "\n%d개를 구매했습니다.\n";
+
     private final int purchasePrice;
     private final List<Lotto> lottos;
 
@@ -33,6 +34,14 @@ public class Lottos {
     public List<Integer> generateLotto() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE).
                 stream().sorted().collect(Collectors.toList());
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     @Override

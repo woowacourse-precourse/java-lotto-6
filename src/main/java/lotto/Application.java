@@ -3,11 +3,12 @@ package lotto;
 import java.util.List;
 
 public class Application {
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
     private static final PrintOut printOut = new PrintOut();
     private static final InputHandler inputHandler = new InputHandler();
     private static final LottoResult lottoResult = new LottoResult();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
+    private static final Validation validation = new Validation();
 
     public static void main(String[] args) {
         int userPurchaseAmount = getUserPurchaseAmount();

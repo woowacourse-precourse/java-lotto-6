@@ -13,12 +13,20 @@ public class Application {
 	private static List<Integer> winningNumberList;
 	private static Integer bonusNumber;
 	private static List<Lotto> lottoList = new ArrayList<>();
+	private static LottoResult[] resultCheckList = {
+			LottoResult.THREE,
+			LottoResult.FOUR,
+			LottoResult.FIVE,
+			LottoResult.FIVE_BONUS,
+			LottoResult.SIX
+	};
 
 	public static void main(String[] args) {
 		setMoney();
 		setLottoList();
 		setWinningNumberList();
 		setBonusNumber();
+		printResult();
 	}
 
 	private static void setMoney() {
@@ -29,7 +37,6 @@ public class Application {
 			if (money % 1000 != 0) {
 				throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력 가능합니다!");
 			}
-
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setMoney();
@@ -98,5 +105,26 @@ public class Application {
 			System.out.println(lotto);
 			lottoList.add(lotto);
 		}
+	}
+
+	public static void printResult() {
+		Double resultMoney = 0.0;
+		System.out.println("당첨 통계");
+		System.out.println("---");
+		for (Lotto lotto : lottoList) {
+			lotto.setResult(winningNumberList, bonusNumber);
+		}
+
+		for (LottoResult result : resultCheckList) {
+			int count = 0;
+			for (Lotto lotto : lottoList) {
+				if (result.equals(lotto.getResult())) {
+					count++;
+				}
+			}
+			System.out.println(result.message + " - " + count + "개");
+			resultMoney += result.money * count;
+		}
+		System.out.printf("총 수익률은 %.1f%%입니다.%n", resultMoney / money * 100);
 	}
 }

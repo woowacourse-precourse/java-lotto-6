@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.ErrorMessage;
 
 import java.util.List;
 
@@ -23,9 +24,29 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumbersSize(numbers);
+        validateDuplicatedNumbers(numbers);
+        validateNumbersInRange(numbers);
+    }
+
+    private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_FIXED_CIPHERS) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.UNCORRECT_LOTTO_NUMBER_SIZE.getMessage());
         }
+    }
+
+    private void validateDuplicatedNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS.getMessage());
+        }
+    }
+
+    private void validateNumbersInRange(List<Integer> numbers) {
+        numbers.forEach(n -> {
+            if (n < START_INCLUSIVE_LOTTO_NUMBER || n > END_INCLUSIVE_LOTTO_NUMBER) {
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
+            }
+        });
     }
 
     private List<Integer> generateNumbers() {

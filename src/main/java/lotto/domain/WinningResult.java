@@ -3,7 +3,7 @@ package lotto.domain;
 
 import static lotto.constant.NumberConstant.*;
 
-public class WinningResult {
+public final class WinningResult {
 
     private int rank1;
     private int rank2;

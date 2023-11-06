@@ -8,7 +8,7 @@ import static lotto.constant.ExceptionConstant.*;
 import static lotto.constant.NumberConstant.MAX_LOTTO_NUMBER;
 import static lotto.constant.NumberConstant.MIN_LOTTO_NUMBER;
 
-public class WinningLotto {
+public final class WinningLotto {
 
     private final List<Integer> winningNumbers;
     private int bonusNumber;

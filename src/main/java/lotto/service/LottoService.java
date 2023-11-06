@@ -7,5 +7,5 @@ import lotto.dto.WinningStatisticsDto;
 public interface LottoService {
     List<Lotto> issueNewLotto(int count) throws IllegalArgumentException;
 
-    WinningStatisticsDto getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber);
+    WinningStatisticsDto getWinningStatistics(List<Lotto> lottos, Lotto winningLotto, int bonusNumber);
 }

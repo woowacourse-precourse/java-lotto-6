@@ -71,8 +71,23 @@ public class GameController {
     }
 
     private void setBonusNumber() {
+        boolean valid = false;
         outputView.displayMessage(OutputMessage.GET_BONUS_NUMBER);
-        bonusNumber = inputView.getBonusNumber();
+        while (!valid) {
+            try {
+                bonusNumber = inputView.getBonusNumber();
+                validateContains(bonusNumber);
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateContains(int bonusNumber) throws IllegalArgumentException {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(createErrorMessage(ErrorMessage.NUMBER_DUPLICATE_ERROR));
+        }
     }
 
     private String createErrorMessage(ErrorMessage errorMessage) {

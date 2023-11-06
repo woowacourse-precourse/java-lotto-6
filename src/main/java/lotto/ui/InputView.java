@@ -42,8 +42,17 @@ public class InputView {
 
     public int getBonusNumber() {
         int bonusNumber = 0;
-        String input = Console.readLine();
+        boolean validInput = false;
 
+        while (!validInput) {
+            String input = Console.readLine();
+            try {
+                bonusNumber = inputValidator.validateBonusNumber(input);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return bonusNumber;
     }
 }

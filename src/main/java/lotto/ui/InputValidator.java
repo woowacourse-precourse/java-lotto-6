@@ -105,6 +105,14 @@ public class InputValidator {
         }
     }
 
+    public int validateBonusNumber(String input) throws IllegalArgumentException {
+        validateNonEmpty(input);
+        validateNumericFormat(input);
+        int bonusNumber = convertToInt(input);
+        validateRange(bonusNumber);
+        return bonusNumber;
+    }
+
     private String createErrorMessage(ErrorMessage errorMessage) {
         return errorMessage.getMessage() + " " + commonErrorMessage;
     }

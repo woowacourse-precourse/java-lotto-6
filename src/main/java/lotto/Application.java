@@ -9,20 +9,17 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Application {
     public static void main(String[] args) {
         //티켓 구매
-        SystemIO.requestPurchaseAmount();
-        String purchaseAmount = readLine();
+        String purchaseAmount = SystemIO.requestPurchaseAmount();
         BuyTickets buyTickets = new BuyTickets(purchaseAmount);
 
         //당첨 번호 입력
-        SystemIO.requestWinningNumber();
-        List<Integer> winningNumbers = SystemIO.readWinningNumbers();
+        List<Integer> winningNumbers = SystemIO.requestWinningNumber();
         Map<Long, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
-        SystemIO.requestBonusNumber();
-        int bonusNumber = SystemIO.readBonusNumber();
+        int bonusNumber = SystemIO.requestBonusNumber();
 
         //추첨 진행
         Lotto lotto = new Lotto(winningNumbers);
-        Map<String, Long> matchResult = lotto.matchUserNumberWithWinningNumbers(lotteryNumbers);
+        lotto.matchUserNumberWithWinningNumbers(winningNumbers, bonusNumber);
 
         /**
          * BuyTickets 클래스의 getLotteryNumbers를 main메서드 영역으로 받음

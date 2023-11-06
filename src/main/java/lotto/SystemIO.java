@@ -8,15 +8,17 @@ import java.util.Map;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class SystemIO {
-    public static void requestPurchaseAmount() {
+    public static String requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
+        return readLine();
     }
 
-    public static void requestWinningNumber() {
+    public static List<Integer> requestWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
+        return readWinningNumbers();
     }
 
-    public static List<Integer> readWinningNumbers() {
+    private static List<Integer> readWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
         List<String> stringWinningNumbers = Arrays.asList(readLine().split(","));
         for (String stringWinningNumber : stringWinningNumbers) {
@@ -29,11 +31,12 @@ public class SystemIO {
         return winningNumbers;
     }
 
-    public static void requestBonusNumber() {
+    public static int requestBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
+        return readBonusNumber();
     }
 
-    public static int readBonusNumber() {
+    private static int readBonusNumber() {
         try{
             return Integer.parseInt(readLine());
         }catch (NumberFormatException e) {

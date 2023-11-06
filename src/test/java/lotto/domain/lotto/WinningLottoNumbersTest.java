@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.lotto.dto.LottoNumberMatchDTO;
+import lotto.dto.LottoNumberMatchDTO;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

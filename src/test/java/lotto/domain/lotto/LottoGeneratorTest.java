@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.dto.LottoNumbersDTO;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
 import org.assertj.core.api.Assertions;
@@ -12,12 +13,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoGeneratorTest {
 
-    private LottoGenerator lottoGenerator;
+    private LottoNumbersGenerator lottoGenerator;
 
     @BeforeEach
     void setup() {
         PickNumbersStrategy pickNumbersStrategy = new PickRandomNumbersStrategy();
-        lottoGenerator = new LottoGenerator(pickNumbersStrategy);
+        lottoGenerator = new LottoNumbersGenerator(pickNumbersStrategy);
     }
 
     @DisplayName("로또 생성기가 로또를 발행했을 때 예외가 발생하지 않는다.")
@@ -33,7 +34,7 @@ public class LottoGeneratorTest {
     @ValueSource(strings = {"1", "2", "3"})
     void generateLotteriesByCount(int count) {
         // when
-        List<Lotto> lotteries = lottoGenerator.generateByCount(count);
+        List<LottoNumbersDTO> lotteries = lottoGenerator.generateByCount(count);
         int lotteriesCount = lotteries.size();
 
         // when & then

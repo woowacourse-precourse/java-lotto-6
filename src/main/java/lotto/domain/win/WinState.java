@@ -1,7 +1,7 @@
 package lotto.domain.win;
 
 import java.util.Arrays;
-import lotto.domain.lotto.dto.LottoNumberMatchDTO;
+import lotto.dto.LottoNumberMatchDTO;
 
 public enum WinState {
 

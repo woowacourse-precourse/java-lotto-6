@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LottoShopTest {
 
-    private LottoShop lottoShop = new LottoShop();
+    private final LottoShop lottoShop = new LottoShop();
 
     @DisplayName("돈을 지불했을 때, 알맞는 개수의 로또를 판매한다.")
     @ParameterizedTest

@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class LottoBuyPrice {
 
-    private static final double ALLOWED_AMOUNT_UNIT = 1000.0;
+    private static final int ALLOWED_AMOUNT_UNIT = 1000;
 
     private final int price;
 

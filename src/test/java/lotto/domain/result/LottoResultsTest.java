@@ -15,7 +15,7 @@ class LottoResultsTest {
 
     static Stream<Arguments> listAndBigDecimalProvider() {
         return Stream.of(
-                Arguments.of(List.of(LottoResult.SIX_MATCHING, LottoResult.FOUR_MATCHING), new BigDecimal("300500.0")),
+                Arguments.of(List.of(LottoResult.SIX_MATCHING, LottoResult.FOUR_MATCHING), new BigDecimal("20000500.0")),
                 Arguments.of(List.of(LottoResult.THREE_MATCHING, LottoResult.THREE_MATCHING), new BigDecimal("100.0")),
                 Arguments.of(List.of(LottoResult.NO_MATCHING, LottoResult.NO_MATCHING), new BigDecimal("0.0")),
                 Arguments.of(

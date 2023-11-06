@@ -29,15 +29,14 @@ class LottoServiceTest {
         return Stream.of(
                 Arguments.of("1,10,오,11,15,16", "올바른 입력 형식이 아닙니다. 숫자를 입력해주세요."),
                 Arguments.of("46,10,5,11,15,16", "1~45 사이의 숫자를 입력해주세요."),
-                Arguments.of("0,10,5,11,15,16", "1~45 사이의 숫자를 입력해주세요."),
-                Arguments.of("45,10,5,11,15,11", "중복이 포함되어 있습니다.")
+                Arguments.of("0,10,5,11,15,16", "1~45 사이의 숫자를 입력해주세요.")
         );
     }
 
     static Stream<Arguments> listAndBonusProvider() {
         return Stream.of(
-                Arguments.of(List.of(45, 10, 5, 11, 15, 16, 30), Bonus.emptyBonus()),
-                Arguments.of(List.of(45, 10, 5, 11, 15), Bonus.emptyBonus())
+                Arguments.of(List.of(45, 10, 5, 11, 15, 16, 30), new Bonus()),
+                Arguments.of(List.of(45, 10, 5, 11, 15), new Bonus())
         );
     }
 
@@ -113,7 +112,7 @@ class LottoServiceTest {
     void test_SaveJackpotLottoSuccessful() {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Bonus bonus = new Bonus(1);
+        Bonus bonus = new Bonus(10);
 
         //when
         Lotto jackpotLotto = lottoService.saveJackpotLotto(numbers, bonus);

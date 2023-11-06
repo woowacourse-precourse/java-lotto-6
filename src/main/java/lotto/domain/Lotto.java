@@ -28,9 +28,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException("로또는 6개의 숫자로 되어있어야 합니다.");
-        }
+        validateSize(numbers);
+        validateDistinct(numbers);
     }
 
     public String toTextFormat() {
@@ -75,5 +74,20 @@ public class Lotto {
 
     private boolean hasBonusNumberMatching(long count, Integer bonusNumber) {
         return count == MATCHING_FIVE && numbers.contains(bonusNumber);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException("로또는 6개의 숫자로 되어있어야 합니다.");
+        }
+    }
+
+    private void validateDistinct(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+        if (numbers.size() != distinctCount) {
+            throw new IllegalArgumentException("중복이 포함되어 있습니다.");
+        }
     }
 }

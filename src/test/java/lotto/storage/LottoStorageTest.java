@@ -79,7 +79,7 @@ class LottoStorageTest {
     @DisplayName("저장된 당첨 로또가 있으면 해당 로또의 Optional을 반환한다.")
     void test_FindJackpotSuccessful() {
         //given
-        Lotto jackpot = new Lotto(List.of(1, 2, 3, 4, 5, 6), new Bonus());
+        Lotto jackpot = new Lotto(List.of(1, 2, 3, 4, 5, 6), new Bonus(10));
         lottoStorage.saveLotto(jackpot);
 
         //when

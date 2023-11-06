@@ -8,9 +8,10 @@ import java.util.List;
 
 public class LottoResults {
     private static final BigDecimal PERCENTAGE = new BigDecimal(100);
-    private static final int FIRST_DECIMAL = 1;
+    private static final int FIRST_DECIMAL_ON_PERCENTAGE = 3;
     private static final String COUNT_SUFFIX = "개";
     private static final String RESULT_DELIM = "---";
+    private static final int PERCENTAGE_SCALE = 1;
 
     private final List<LottoResult> results;
 
@@ -40,8 +41,9 @@ public class LottoResults {
     }
 
     public BigDecimal calculateProfitRate(BigDecimal payment) {
-        return sum().divide(payment, FIRST_DECIMAL, RoundingMode.HALF_UP)
+        BigDecimal profitRate = sum().divide(payment, FIRST_DECIMAL_ON_PERCENTAGE, RoundingMode.HALF_UP)
                 .multiply(PERCENTAGE);
+        return profitRate.setScale(PERCENTAGE_SCALE, RoundingMode.HALF_UP);
     }
 
     private void appendResultToText(StringBuilder sb, LottoResult result) {

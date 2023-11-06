@@ -46,7 +46,7 @@ class LottoControllerTest {
     @DisplayName("로또 구입 시 IllegalArgumentException이 발생하면 에러 메시지를 출력하고 구입 금액을 다시 입력받는다.")
     void test_Run_ReceivePaymentAgain() {
         //given
-        String input = "0\n1000\n1,2,3,4,5,6\n1";
+        String input = "0\n1000\n1,2,3,4,5,6\n10";
         setIn(input);
         setOut();
 

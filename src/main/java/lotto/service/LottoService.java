@@ -82,11 +82,9 @@ public class LottoService {
     }
 
     private List<Integer> returnValidatedNumbers(String[] numbers) {
-        List<Integer> validatedNumbers = Arrays.stream(numbers)
+        return Arrays.stream(numbers)
                 .map(this::returnValidatedNumber)
                 .toList();
-        validateDistinct(validatedNumbers);
-        return validatedNumbers;
     }
 
     private Integer returnValidatedNumber(String numberInput) {
@@ -98,15 +96,6 @@ public class LottoService {
     private void validateNumber(Integer number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.");
-        }
-    }
-
-    private void validateDistinct(List<Integer> numbers) {
-        long distinctCount = numbers.stream()
-                .distinct()
-                .count();
-        if (numbers.size() != distinctCount) {
-            throw new IllegalArgumentException("중복이 포함되어 있습니다.");
         }
     }
 

@@ -9,6 +9,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Quantity;
 import lotto.domain.WinningLotto;
+import lotto.exception.LottoException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,6 +30,7 @@ public class LottoController {
         Lottos lottos = Lottos.of(totalLotteries, generator);
         output.printBoughtLottos(lottos);
         Lotto winningNumbers = parseListToLotto();
+
         BonusNumber bonusNumber = parseIntToBonusNumber();
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
         LottoResult result = LottoResult.of(lottos, winningLotto);
@@ -41,7 +43,16 @@ public class LottoController {
     }
 
     private Lotto parseListToLotto() {
-        return new Lotto(input.printAskingWinningNumbers());
+        Lotto parsedLotto;
+        while (true) {
+            try {
+                parsedLotto = new Lotto(input.printAskingWinningNumbers());
+                break;
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return parsedLotto;
     }
 
     private BonusNumber parseIntToBonusNumber() {

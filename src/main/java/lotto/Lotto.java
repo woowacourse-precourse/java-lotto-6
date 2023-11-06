@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.domain.BonusNumber;
+import lotto.exception.Errors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,8 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoConfig.MAX_BALLS) {
+            throw Errors.INVALID_SIZE.getException();
         }
     }
 

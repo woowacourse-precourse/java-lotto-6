@@ -42,12 +42,14 @@ public class LottoController {
         outputView.printLottoNumbers(lottos);
 
         List<Integer> winningLotteryNumbers = getValidatedWinningLotteryNumbers();
-
         int bonusNumber = getValidatedBonusNumber(winningLotteryNumbers);
 
         LottoChecker lottoChecker = new LottoChecker(lottos, winningLotteryNumbers, bonusNumber);
         Map<LottoRank, Integer> results = lottoChecker.compareLottoNumbers();
         outputView.printResultMessage(results);
+
+        int totalWinningMoney = lottoChecker.calculateTotalWinningMoney(results);
+        outputView.printRateOfReturnMessage(purchaseAmount, totalWinningMoney);
     }
 
     private int getValidatedPurchaseAmount() {

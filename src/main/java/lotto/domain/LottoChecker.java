@@ -46,4 +46,12 @@ public class LottoChecker {
         }
         return matchCount;
     }
+
+    public int calculateTotalWinningMoney(Map<LottoRank, Integer> results) {
+        int totalWinningMoney = 0;
+        for (Map.Entry<LottoRank, Integer> entry : results.entrySet()) {
+            totalWinningMoney += entry.getKey().getWinningMoney() * entry.getValue();
+        }
+        return totalWinningMoney;
+    }
 }

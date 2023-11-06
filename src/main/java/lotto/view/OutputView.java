@@ -56,4 +56,10 @@ public class OutputView {
         return String.format("%,d", winningMoney);
     }
 
+    public void printRateOfReturnMessage(int purchaseAmount, int totalWinningMoney) {
+        double rateOfReturn = (double)(totalWinningMoney) / purchaseAmount * 100;
+        rateOfReturn = Math.round(rateOfReturn * 10) / 10.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
+    }
+
 }

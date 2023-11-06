@@ -7,9 +7,13 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
 import lotto.domain.RandomLottoMachine;
+import lotto.domain.WinningLotto;
 import lotto.exception.BelowMinimumPurchasePriceException;
+import lotto.exception.InvalidLottoException;
 import lotto.exception.InvalidPurchasePriceFormatException;
 import lotto.exception.NonMultipleOfPriceUnitException;
+import lotto.util.WinningLottoConverter;
+import lotto.util.WinningLottoValidator;
 
 public class Application {
 
@@ -23,6 +27,26 @@ public class Application {
         int lottoCount = application.calculateLottoPurchaseCount();
         List<Lotto> lottos = application.generateLottos(lottoCount);
         application.printPurchasedLottos(lottos);
+        WinningLotto winningLotto = application.getWinningLottoWithBonusNumber();
+    }
+
+    private WinningLotto getWinningLottoWithBonusNumber() {
+        WinningLotto winningLotto = getWinningLotto();
+        return null;
+    }
+
+    private WinningLotto getWinningLotto() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String winningLottoNumbers = Console.readLine();
+                System.out.println();
+                WinningLottoValidator.validate(winningLottoNumbers);
+                return WinningLottoConverter.convertToWinningLotto(winningLottoNumbers);
+            } catch (InvalidLottoException invalidLottoException) {
+                printErrorMessage(invalidLottoException);
+            }
+        }
     }
 
     private void printPurchasedLottos(List<Lotto> lottos) {

@@ -35,7 +35,7 @@ public class WinningNumber {
 
     private void validateWinningNumbers(List<String> numbers) {
 
-        if(!isSizeSix(numbers)) {
+        if (!isSizeSix(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.ONLY_SIZE_IS_SIX);
         }
 

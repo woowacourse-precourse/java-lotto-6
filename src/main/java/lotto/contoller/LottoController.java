@@ -22,7 +22,7 @@ public class LottoController {
         lottoView.printLottoNumber(lottoList);
 
         WinningNumber winningNumber = receiveWinningNumber();
-        winningNumber = receiveBonusNumber(winningNumber);
+        receiveBonusNumber(winningNumber);
 
         Result result = lottoList.calculateWinningStatistics(winningNumber);
         lottoView.printResult(result, purchaseAmount);
@@ -52,13 +52,13 @@ public class LottoController {
         }
     }
 
-    private WinningNumber receiveBonusNumber(WinningNumber winningNumber) {
+    private void receiveBonusNumber(WinningNumber winningNumber) {
         while (true) {
             try {
                 lottoView.printInputBonusNumber();
                 String answer = Console.readLine();
                 winningNumber.setBonusNumber(answer);
-                return winningNumber;
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

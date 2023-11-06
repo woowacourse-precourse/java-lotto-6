@@ -37,7 +37,7 @@ public class LottoView {
     }
 
     public void printResult(Result result, PurchaseAmount purchaseAmount) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         Map<Matching, Integer> map = result.getResult();

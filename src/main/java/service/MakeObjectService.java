@@ -1,11 +1,12 @@
 package service;
 
+import domain.Amount;
 import domain.Lottos;
 
 public class MakeObjectService {
 
-    public static Lottos lottos(int input){
-        return new Lottos();
+    public static Amount amount(int input){
+        return new Amount(input);
     }
 
 }

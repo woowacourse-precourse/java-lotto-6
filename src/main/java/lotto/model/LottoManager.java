@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LottoManager {
-    private static final String WRONG_TYPE_OF_LOTTO = "[ERROR] 당첨 로또만 올 수 있습니다.";
     private final Token token;
     private List<Lotto> lottos;
     private AnswerLotto answerLotto;

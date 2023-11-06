@@ -5,6 +5,8 @@ import lotto.utils.numbergenerators.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 import static lotto.utils.PurchaseManager.dividePurchaseAmount;
 
 
@@ -26,6 +28,8 @@ public class LottoController {
         buyLotto(purchaseAmount.getPurchaseAmount());
 
         printPurchasedLotto(purchaseAmount.getPurchaseAmount());
+
+        storeLottoResult();
     }
 
     private PurchaseAmount payOnAmount() {
@@ -55,5 +59,37 @@ public class LottoController {
         purchasedLotto.getPurchasedLotto().stream()
                 .map(Lotto::toString)
                 .forEach(outputView::printPurchasedLotto);
+    }
+
+    private void storeLottoResult() {
+        Lotto answerLotto = getWinningLotto();
+        BonusNumber bonusNumber = getBonusNumber(answerLotto);
+
+        for (Lotto lotto : purchasedLotto.getPurchasedLotto()) {
+            int correctNumbers = lotto.countCorrectLottoNumbers(answerLotto);
+            boolean correctBonusNumber = lotto.containsBonusNumber(bonusNumber.getBonusNumber());
+
+            winningLottoStorage.store(Rank.of(correctNumbers, correctBonusNumber));
+        }
+    }
+
+    private Lotto getWinningLotto() {
+        List<Integer> winningNumber = inputView.insertWinningNumber();
+
+        try {
+            return new Lotto(winningNumber);
+        } catch (IllegalArgumentException winningLottoError) {
+            System.out.println(winningLottoError.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private BonusNumber getBonusNumber(Lotto answerLotto) {
+        try {
+            return BonusNumber.of(answerLotto, inputView.insertBonusNumber());
+        } catch (IllegalArgumentException bonusNumberError) {
+            System.out.println(bonusNumberError.getMessage());
+            return getBonusNumber(answerLotto);
+        }
     }
 }

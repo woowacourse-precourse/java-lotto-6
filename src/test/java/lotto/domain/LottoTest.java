@@ -1,8 +1,11 @@
 package lotto.domain;
 
 import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -25,4 +28,26 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 1 ~ 45 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByOutRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호를 반환한다.")
+    void getNumbersTest() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> lottoNumbersForTest = List.of(1, 2, 3, 4, 5, 6);
+
+        //when
+        List<Integer> lottoNumbers = lotto.getNumbers();
+
+        //then
+        Assertions.assertThat(lottoNumbers).isEqualTo(lottoNumbersForTest);
+    }
 }

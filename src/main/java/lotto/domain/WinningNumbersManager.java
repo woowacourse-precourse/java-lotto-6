@@ -49,7 +49,7 @@ public class WinningNumbersManager {
     }
 
     private PrizeType getWinningStatus(Lotto lotto) {
-        int matchCount = lotto.getMatchCount(winningNumbers);
+        int matchCount = lotto.numberMatch(winningNumbers);
         boolean isBonusMatch = false;
 
         if (matchCount == 5 && lotto.isMatch(bonusNumber)) {

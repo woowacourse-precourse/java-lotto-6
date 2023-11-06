@@ -37,11 +37,11 @@ public class Lotto {
         return String.join(DELIMITER, numbers.stream().map(number -> number.toString()).toList());
     }
 
-    public int getMatchCount(List<Integer> winningNumbers) {
+    public int numberMatch(List<Integer> matchNumbers) {
         int count = 0;
 
-        for (Integer number : numbers) {
-            if (winningNumbers.contains(number)) {
+        for (Integer matchNumber : matchNumbers) {
+            if (isMatch(matchNumber)) {
                 count++;
             }
         }
@@ -49,7 +49,7 @@ public class Lotto {
         return count;
     }
 
-    public boolean isMatch(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean isMatch(int number) {
+        return numbers.contains(number);
     }
 }

@@ -28,6 +28,6 @@ public class OutputView {
                 , result.getRankCount(LottoRank.FIRST)
         );
         System.out.printf(OUTPUT_RATE_OF_RETURN,
-                (float) result.calculatePrice() * 100 / money);
+                (float) result.calculatePriceSum() * 100 / money);
     }
 }

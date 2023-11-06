@@ -20,7 +20,7 @@ class LottoResultTest {
         WinningNumbers winningNumber = WinningNumbers.of(Lotto.from(winningNumbers), bonusNumber);
         // when
         LottoResult lottoResult = LottoResult.of(lottoStorage, winningNumber);
-        long price = lottoResult.calculatePrice();
+        long price = lottoResult.calculatePriceSum();
         // then
         Assertions.assertThat(price).isEqualTo(10000);
     }

@@ -13,12 +13,12 @@ public class LottoResult {
             result.merge(lottoRank, 1, Integer::sum);
         }
     }
-    // of -> from
+
     public static LottoResult of(LottoStorage lottoStorage, WinningNumbers winningNumbers) {
         return new LottoResult(lottoStorage,winningNumbers);
     }
 
-    public long calculatePrice() {
+    public long calculatePriceSum() {
         long prize = 0L;
         for (LottoRank lottoRank : result.keySet()) {
             prize += (long) result.get(lottoRank) * lottoRank.getPrice();

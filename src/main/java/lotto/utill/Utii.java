@@ -37,7 +37,8 @@ public class Utii {
 
         ValidateException.blankCheck(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
-
+        ValidateException.negative(inputStringLine);
+        
         return Integer.valueOf(inputStringLine);
     }
 

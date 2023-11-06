@@ -16,6 +16,10 @@ public class BonusNumber {
         this.number = number;
     }
 
+    public boolean isBonusNumber(int number) {
+        return this.number == number;
+    }
+
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
         if(validateBonusNumberInNumbers(winningNumbers,bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR.getMessage());

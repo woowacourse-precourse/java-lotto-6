@@ -10,28 +10,34 @@ public class GameController {
     private final Calculator calculator;
     private final Lottos lottos;
     private final PurchaseAmount purchaseAmount;
-    private final int coin;
+    private final WinningNumber winningNumber;
+    private final BonusNumber bonusNumber;
 
-    private WinningNumber winningNumber;
-    private BonusNumber bonusNumber;
+    private int coin;
 
     public GameController() {
         this.lottoMachine = new LottoMachine();
         this.calculator = new Calculator();
         this.lottos = new Lottos();
         this.purchaseAmount = new PurchaseAmount(InputView.inputPurchaseAmount());
-        this.coin = Parser.parseAmountToCoin(purchaseAmount);
         OutputView.printNumberOfLottoPurchase(coin);
+        this.winningNumber = new WinningNumber(InputView.inputWinningNumber());
+        this.bonusNumber = new BonusNumber(InputView.inputBonusNumber());
     }
 
     public void run() {
+        coin = Parser.parseAmountToCoin(purchaseAmount);
+
         for (int i = 0; i < coin; i++) {
             Lotto lotto = lottoMachine.createLotto();
             lottos.addLotto(lotto);
             System.out.println(lotto.toString());
         }
 
-        winningNumber = new WinningNumber(InputView.inputWinningNumber());
-        bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+        calculator.calculateResult(lottos.getLottos(),
+                winningNumber.getWinningNumber(),
+                bonusNumber.getBonusNumber());
+
+
     }
 }

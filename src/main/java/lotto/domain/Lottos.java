@@ -13,4 +13,8 @@ public class Lottos {
     public void addLotto(Lotto lotto){
         lottos.add(lotto);
     }
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
 }

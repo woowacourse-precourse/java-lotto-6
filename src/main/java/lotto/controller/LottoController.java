@@ -9,7 +9,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoResultsDTO;
 import lotto.domain.Lottos;
-import lotto.domain.LottosDTO;
 import lotto.domain.NumberGenerator;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
@@ -36,8 +35,7 @@ public class LottoController {
     private void buyLotto() {
         buyAmount = InputView.getBuyAmountFromInput();
         lottos = createLottosFromAmount();
-        LottosDTO lottosDTO = lottos.toLottosDTO();
-        OutputView.displayAllLottos(lottosDTO);
+        OutputView.displayAllLottos(lottos.toLottosDTO());
     }
 
     private void drawLotto() {
@@ -47,12 +45,12 @@ public class LottoController {
     }
 
     private void winningStatistics() {
-        LottoResultsDTO resultDTO = createLottoResultDTO();
+        LottoResultsDTO resultDTO = createLottoResultsDTO();
         OutputView.displayAllLottosStatistics(resultDTO);
         OutputView.displayRateOfReturn(resultDTO);
     }
 
-    private LottoResultsDTO createLottoResultDTO() {
+    private LottoResultsDTO createLottoResultsDTO() {
         List<LottoResults> lottoResults = lottos.calculateAllOfLottoResult(winningNumbers);
         Map<LottoResults, Integer> lottoStatistics = new HashMap<>();
         for (LottoResults result : lottoResults) {

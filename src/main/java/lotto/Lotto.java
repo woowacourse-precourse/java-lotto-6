@@ -18,9 +18,8 @@ public class Lotto {
     }
 
     private void findSameNum(List<Integer> numbers) {
-        int test = 0;
         for (int num : numbers) {
-            test = numbers.stream().filter(i -> i == num).toList().size();
+            int test = numbers.stream().filter(i -> i == num).toList().size();
             if (test >= 2) {
                 throw new IllegalArgumentException();
             }

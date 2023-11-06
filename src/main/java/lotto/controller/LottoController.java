@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +11,7 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.error.ErrorMessage;
 import lotto.service.LottoService;
+import lotto.util.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -43,12 +43,9 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printPurchaseInputMessage();
-                int purchaseAmount = inputView.getNumber();
-                if (purchaseAmount != 0 && purchaseAmount % 1000 != 0) {
-                    throw new IllegalArgumentException();
-                }
+                int number = inputView.getNumber();
                 outputView.println();
-                return new PurchaseAmount(purchaseAmount);
+                return new PurchaseAmount(number);
             } catch(IllegalArgumentException e) {
                 outputView.printErrorMessage(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT);
             }
@@ -74,10 +71,7 @@ public class LottoController {
     private Lotto getLotto() {
         while (true) {
             try {
-                List<Integer> numbers = new ArrayList(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER,
-                        LottoConstant.LOTTO_MAX_NUMBER,
-                        LottoConstant.LOTTO_LENGTH));
-                Collections.sort(numbers);
+                List<Integer> numbers = getSortedLottoNumbers();
                 Lotto lotto = new Lotto(numbers);
                 outputView.printLottoNumber(numbers);
                 return lotto;
@@ -129,5 +123,11 @@ public class LottoController {
     private void announceRevenue(PurchaseAmount purchaseAmount, float revenue) {
         float earningRate = lottoService.getEarningRate(purchaseAmount, revenue);
         outputView.printRevenue(earningRate);
+    }
+
+    private List<Integer> getSortedLottoNumbers() {
+        List<Integer> numbers = NumberGenerator.generate();
+        Collections.sort(numbers);
+        return numbers;
     }
 }

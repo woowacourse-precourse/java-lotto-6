@@ -82,4 +82,15 @@ public class ProfitTest {
         //then
         assertThat(profit.getTotalEarningRate(purchaseMoney)).isEqualTo(200000000);
     }
+
+    @Test
+    @DisplayName("1000원 로또를 구매한 경우,하나도 당첨되지 않으면 이익률 0% 반환")
+    void 로또_한개_구매_당첨_안됨() throws Exception{
+        //given
+        final int purchaseMoney = 1000;
+        //when
+        Profit profit = new Profit(rank);
+        //then
+        assertThat(profit.getTotalEarningRate(purchaseMoney)).isEqualTo(0);
+    }
 }

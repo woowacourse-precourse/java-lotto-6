@@ -2,10 +2,18 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Referee {
+    private static Map<Rank, Long> countLottoRank(List<Lotto> lottoList, List<Integer> winningNumbers,
+                                                  int bonusNumber) {
+        return calculateAllLottoPrize(lottoList, winningNumbers, bonusNumber)
+                .stream()
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+    }
+
     private static List<Rank> calculateAllLottoPrize(List<Lotto> lottoList, List<Integer> winningNumbers,
                                                      int bonusNumber) {
         return lottoList.stream()

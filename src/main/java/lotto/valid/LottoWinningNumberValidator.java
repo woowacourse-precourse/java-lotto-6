@@ -1,31 +1,45 @@
 package lotto.valid;
 
+import lotto.models.Lotto;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoWinningNumberValidator {
+public class LottoWinningNumberValidator extends Validator {
 
-    public static List<Integer> winningNumberValidator(String winningNumber) throws IllegalArgumentException {
-        List<String> validatedNumbers = splitAndValidateLength(winningNumber);
+    public static List<Integer> winningNumberValidator(String stringWinningNumbers) throws IllegalArgumentException {
+        List<String> validatedNumbers = splitAndValidateLength(stringWinningNumbers);
         List<Integer> winningNumbers = convertToInteger(validatedNumbers);
 
+        validateRange(winningNumbers);
         validateDuplicate(winningNumbers);
 
         return winningNumbers;
     }
 
-    public static int bonusNumberValidator(String bonusNumber) throws IllegalArgumentException {
-        int validatedBonusNumber = convertToInteger(bonusNumber);
+    public static int bonusNumberValidator(Lotto lotto, String bonusNumber) throws IllegalArgumentException {
+        int validatedBonusNumber = isNumeric(bonusNumber);
 
         validateRange(validatedBonusNumber);
+        validateDuplicateBonusNumber(lotto, validatedBonusNumber);
 
         return validatedBonusNumber;
+    }
+
+    private static void validateDuplicateBonusNumber(Lotto lotto, int validatedBonusNumber) throws IllegalArgumentException {
+        if (lotto.getNumbers().contains(validatedBonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 
     private static void validateRange(int bonusNumber) throws IllegalArgumentException {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
         }
+    }
+
+    private static void validateRange(List<Integer> winningNumbers) throws IllegalArgumentException {
+        winningNumbers.forEach(LottoWinningNumberValidator::validateRange);
     }
 
     private static void validateDuplicate(List<Integer> winningNumbers) throws IllegalArgumentException {
@@ -37,16 +51,8 @@ public class LottoWinningNumberValidator {
     private static List<Integer> convertToInteger(List<String> validatedNumbers) throws IllegalArgumentException {
         try {
             return validatedNumbers.stream()
-                    .map(Integer::parseInt)
+                    .map(LottoWinningNumberValidator::isNumeric)
                     .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
-        }
-    }
-
-    private static int convertToInteger(String validatedNumbers) throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(validatedNumbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }

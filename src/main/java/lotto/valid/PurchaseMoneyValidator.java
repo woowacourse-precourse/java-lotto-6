@@ -1,6 +1,6 @@
 package lotto.valid;
 
-public class PurchaseMoneyValidator {
+public class PurchaseMoneyValidator extends Validator {
 
     public static boolean validate(String purchaseMoney) {
         try {
@@ -13,20 +13,6 @@ public class PurchaseMoneyValidator {
         }
 
         return true;
-    }
-
-    private static int isNumeric(String purchaseMoney) throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(purchaseMoney);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
-        }
-    }
-
-    private static void isPositive(int purchaseMoney) throws IllegalArgumentException {
-        if (purchaseMoney <= 0) {
-            throw new IllegalArgumentException("[ERROR] 0보다 큰 숫자를 입력해주세요.");
-        }
     }
 
     private static void isMultipleOfThousand(int purchaseMoney) throws IllegalArgumentException {

@@ -12,7 +12,7 @@ public class LottoGame {
 
     public void start() {
         int money = InputView.inputPurchaseMoney();
-        int lottoAmount = money / 1000;
+        int lottoAmount = calcLottoAmount(money);
         lottoManager = new LottoManager(lottoAmount);
 
         OutputView.printPurchaseLottos(lottoAmount, lottoManager.getLottos());
@@ -21,5 +21,9 @@ public class LottoGame {
 
         LottoResult lottoResult = lottoManager.calcLottoResult(winningNumber);
         OutputView.printLottoResult(lottoResult);
+    }
+
+    private int calcLottoAmount(int money) {
+        return money / 1000;
     }
 }

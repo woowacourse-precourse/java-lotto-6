@@ -49,7 +49,7 @@ public class Lotto {
     private int countMatchNumbers(WinningNumber winningNumber) {
         int matchCount = 0;
         for (Integer number : numbers) {
-            if (winningNumber.getNumbers().contains(number)) {
+            if (winningNumber.getLotto().getNumbers().contains(number)) {
                 matchCount++;
             }
         }
@@ -61,4 +61,7 @@ public class Lotto {
         return String.join(", ", numbers.toString());
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

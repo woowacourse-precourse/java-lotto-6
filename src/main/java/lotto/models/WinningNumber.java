@@ -3,16 +3,16 @@ package lotto.models;
 import java.util.List;
 
 public class WinningNumber {
-    private final List<Integer> numbers;
+    private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningNumber(List<Integer> numbers, int bonusNumber) {
-        this.numbers = numbers;
+    public WinningNumber(Lotto lotto, int bonusNumber) {
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public Lotto getLotto() {
+        return lotto;
     }
 
     public int getBonusNumber() {

@@ -1,11 +1,10 @@
 package lotto.views;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.models.Lotto;
 import lotto.models.WinningNumber;
 import lotto.valid.LottoWinningNumberValidator;
 import lotto.valid.PurchaseMoneyValidator;
-
-import java.util.List;
 
 public class InputView {
 
@@ -26,28 +25,28 @@ public class InputView {
     }
 
     public static WinningNumber inputWinningNumber() {
-        List<Integer> winningNumbers = inputLottoWinningNumber();
-        int bonusNumber = inputBonusNumber();
-        return new WinningNumber(winningNumbers, bonusNumber);
+        Lotto lotto = inputLottoWinningNumber();
+        int bonusNumber = inputBonusNumber(lotto);
+        return new WinningNumber(lotto, bonusNumber);
     }
 
 
-    private static List<Integer> inputLottoWinningNumber() {
+    private static Lotto inputLottoWinningNumber() {
         while (true) {
             System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
             try {
-                return LottoWinningNumberValidator.winningNumberValidator(Console.readLine());
+                return new Lotto(LottoWinningNumberValidator.winningNumberValidator(Console.readLine()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static int inputBonusNumber() {
+    private static int inputBonusNumber(Lotto winningNumbers) {
         while (true) {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             try {
-                return LottoWinningNumberValidator.bonusNumberValidator(Console.readLine());
+                return LottoWinningNumberValidator.bonusNumberValidator(winningNumbers, Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

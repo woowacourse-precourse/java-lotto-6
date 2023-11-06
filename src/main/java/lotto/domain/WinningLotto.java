@@ -15,9 +15,9 @@ public class WinningLotto {
 
     private final int specialNumber;
 
-    public WinningLotto(List<Integer> standardNumbers, int specialNumber) throws IllegalArgumentException{
-        this.standardNumbers = new Lotto(standardNumbers);
-        validateSpecialNumber(specialNumber, standardNumbers);
+    public WinningLotto(Lotto lotto, int specialNumber) throws IllegalArgumentException{
+        this.standardNumbers = lotto;
+        validateSpecialNumber(specialNumber, lotto.getNumbers());
         this.specialNumber = specialNumber;
     }
 

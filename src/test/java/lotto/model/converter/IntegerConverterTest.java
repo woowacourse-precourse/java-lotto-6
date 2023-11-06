@@ -1,6 +1,6 @@
-package lotto.model.converter.ListToType;
+package lotto.model.converter;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static lotto.util.ExceptionMessage.INVALID_TYPE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
@@ -31,8 +31,8 @@ class IntegerConverterTest {
 
     static Stream<List> convertedGoodToNumber() {
         return Stream.of(
-                Arrays.asList("1,2,3,4,5,6"),
-                Arrays.asList("45,45,45,45,45,45")
+                Arrays.asList("1", "2", "3", "4", "5", "6"),
+                Arrays.asList("45", "45", "45", "45", "45", "45")
         );
     }
 
@@ -44,6 +44,14 @@ class IntegerConverterTest {
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> integerConverter.toTypeList(inputs))
-                .withMessage()
+                .withMessage(INVALID_TYPE.getMessage());
+    }
+
+    static Stream<List> convertedBadToNumber() {
+        return Stream.of(
+                Arrays.asList("1", ".", "3", "4", "5", "6"),
+                Arrays.asList("2147483648", "1", "2", "3", "4", "5"),
+                Arrays.asList("1", "", "3", "4", "5", "6")
+        );
     }
 }

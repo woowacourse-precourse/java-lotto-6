@@ -1,7 +1,10 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
-    public static Purchase getPurchaseAmount(GetPurchaseUI getPurchaseUI) {
+    private static Purchase getPurchaseAmount(GetPurchaseUI getPurchaseUI) {
 
         String input = getPurchaseUI.enterPurchaseAmountUI();
 
@@ -11,7 +14,10 @@ public class Application {
     public static void main(String[] args) {
 
         GetPurchaseUI getPurchaseUI = new GetPurchaseUI();
+        PrintLottoUI printLottoUI = new PrintLottoUI();
         Purchase purchase;
+        int lottoCount;
+        List<Lotto> lottos = new ArrayList<>();
 
         while (true) {
             try {
@@ -22,6 +28,15 @@ public class Application {
             }
         }
 
-        System.out.println(purchase.getPurchaseAmount());
+        lottoCount = purchase.getPurchaseAmount() / 1000;
+
+        printLottoUI.printLottoCount(lottoCount);
+
+        for (int i = 0; i < lottoCount; i++) {
+            MakeLotto makeLotto = new MakeLotto();
+            lottos.add(makeLotto.makeLotto());
+            printLottoUI.printLotto(lottos.get(i).getLotto());
+        }
+
     }
 }

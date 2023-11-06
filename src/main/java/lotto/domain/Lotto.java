@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Lotto {
 
-    private static final int MAX_NUMBER_RANGE = 45;
     private static final int MIN_NUMBER_RANGE = 1;
+    private static final int MAX_NUMBER_RANGE = 45;
 
     private final List<Integer> numbers;
 

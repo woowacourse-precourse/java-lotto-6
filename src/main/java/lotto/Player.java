@@ -1,17 +1,18 @@
 package lotto;
 
 public class Player {
-    private PlayerLotto lottos;
+    private final PlayerLotto playerLotto;
     private final int purchaseAmount;
 
-    private Player(PlayerLotto lottos, int purchaseAmount) {
-        this.lottos = lottos;
+    private Player(PlayerLotto playerLotto, int purchaseAmount) {
+        this.playerLotto = playerLotto;
         this.purchaseAmount = purchaseAmount;
     }
 
     public static Player initialize(int purchaseAmount) {
         validateRange(purchaseAmount);
         validateUnit(purchaseAmount);
+
         return new Player(new PlayerLotto(), purchaseAmount);
     }
 
@@ -30,5 +31,9 @@ public class Player {
 
     public int getPurchaseQuantity() {
         return purchaseAmount / LottoConfig.PURCHASING_UNIT.getValue();
+    }
+
+    public void buyLotto() {
+        playerLotto.publish(getPurchaseQuantity());
     }
 }

@@ -5,6 +5,7 @@ public class LottoController {
 
     public void execute() {
         settingPlayer();
+        player.buyLotto();
     }
 
     private void settingPlayer() {

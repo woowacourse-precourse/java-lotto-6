@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    public static final String OUT_OF_LOTTO_NUMBERS_SIZE = "[ERROR] 로또 번호는 6개입니다.";
+    public static final String LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 입력 값은 중복을 허용하지 않습니다.";
+    public static final String OUT_OF_LOTTO_VALUE_RANGE = "[ERROR] 로또 입력 값은 1이상 45이하의 값만 가능합니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,13 +22,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개입니다.");
+            throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBERS_SIZE);
         }
     }
 
     private void validateUniqueElements(List<Integer> numbers, HashSet<Integer> uniqueNumberSet) {
         if (numbers.size() != uniqueNumberSet.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 입력 값은 중복을 허용하지 않습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
     }
 
@@ -35,7 +38,7 @@ public class Lotto {
 
     public void validationInRange(List<Integer> lotto) {
         if (!lotto.stream().allMatch(this::range)) {
-            throw new IllegalArgumentException("[ERROR] 로또 입력 값은 1이상 45이하의 값만 가능합니다.");
+            throw new IllegalArgumentException(OUT_OF_LOTTO_VALUE_RANGE);
         }
     }
 

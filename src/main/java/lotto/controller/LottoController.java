@@ -1,105 +1,66 @@
 package lotto.controller;
 
-import static lotto.domain.constant.DomainConstant.LOTTO_PRICE;
-
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.generator.LottoGenerator;
 import lotto.domain.LottoResult;
-import lotto.domain.money.Money;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.money.Money;
 
 public class LottoController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final LottoViewController lottoViewController;
     private final LottoGenerator lottoGenerator;
 
     public LottoController() {
-        this(new LottoGenerator());
+        this(new LottoViewController(), new LottoGenerator());
     }
 
-    public LottoController(final LottoGenerator lottoGenerator) {
+    public LottoController(final LottoViewController lottoViewController, final LottoGenerator lottoGenerator) {
+        this.lottoViewController = lottoViewController;
         this.lottoGenerator = lottoGenerator;
     }
 
     public void play() {
-        final UserLotto userLotto = receiveUserLotto();
-        final Money purchaseAmount = new Money(userLotto.getLottoCount() * LOTTO_PRICE);
+        final Money purchaseAmount = receivePurchaseAmount();
+        final UserLotto userLotto = receiveUserLotto(purchaseAmount);
         displayUserLotto(userLotto);
 
-        final WinningLotto winningLotto = receiveWinningLottoNumber();
+        final WinningLotto winningLotto = receiveWinningLotto();
 
         final LottoResult lottoResult = userLotto.compareAllLotto(winningLotto);
-
-        printLottoResultStatistics(lottoResult, purchaseAmount);
-    }
-
-    private void displayUserLotto(final UserLotto userLotto) {
-        final long totalLotto = userLotto.getLottoCount();
-        final String allLotto = userLotto.displayAllLotto();
-
-        outputView.printUserLotto(totalLotto, allLotto);
-    }
-
-    private UserLotto receiveUserLotto() {
-        final Money purchaseAmount = receivePurchaseAmount();
-        final List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
-
-        return new UserLotto(userLottoNumbers);
+        displayLottoResult(purchaseAmount, lottoResult);
     }
 
     private Money receivePurchaseAmount() {
-        try {
-            outputView.requestAmount();
-            final long purchaseAmount = inputView.receivePurchaseAmount();
-
-            outputView.printNewLine();
-            return new Money(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return receivePurchaseAmount();
-        }
+        return new Money(lottoViewController.receivePurchaseAmount());
     }
 
-    private WinningLotto receiveWinningLottoNumber() {
-        final String winningNumbers = receiveWinningNumber();
-        final int bonusNumber = receiveBonusNumber(winningNumbers);
+    private UserLotto receiveUserLotto(final Money purchaseAmount) {
+        final List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
+        return new UserLotto(userLottoNumbers);
+    }
+
+    private void displayUserLotto(final UserLotto userLotto) {
+        final long lottoCount = userLotto.getLottoCount();
+        final String allLotto = userLotto.toString();
+
+        lottoViewController.displayUserLotto(lottoCount, allLotto);
+    }
+
+    private WinningLotto receiveWinningLotto() {
+        final String winningNumbers = lottoViewController.receiveWinningNumber();
+        final int bonusNumber = lottoViewController.receiveBonusNumber(winningNumbers);
 
         return lottoGenerator.createWinningLottoFromInput(winningNumbers, bonusNumber);
     }
 
-    private String receiveWinningNumber() {
-        try {
-            outputView.requestWinningNumber();
-            final String winningNumber = inputView.receiveWinningNumber();
+    private void displayLottoResult(final Money purchaseAmount, final LottoResult lottoResult) {
+        final List<Long> winCounts = lottoResult.getWinCountOfEachPrize();
 
-            outputView.printNewLine();
-            return winningNumber;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return receiveWinningNumber();
-        }
-    }
-
-    private int receiveBonusNumber(final String winningNumbers) {
-        try {
-            outputView.requestBonusNumber();
-            final int bonusNumber = inputView.receiveBonusNumber(winningNumbers);
-
-            outputView.printNewLine();
-            return bonusNumber;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return receiveBonusNumber(winningNumbers);
-        }
-    }
-
-    private void printLottoResultStatistics(final LottoResult lottoResult, final Money purchaseAmount) {
         final Money totalRevenue = lottoResult.getTotalRevenue();
-        outputView.printStatistics(lottoResult.getStatistics());
-        outputView.printEarningRate(purchaseAmount.amount(), totalRevenue.amount());
+        final double earningRate = totalRevenue.getPercentageOf(purchaseAmount);
+
+        lottoViewController.printResultMessage(winCounts, earningRate);
     }
 }

@@ -4,9 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
-import static lotto.LottoDetailConstant.*;
+import static lotto.LottoDetailNumberConstant.*;
 
 public class LottoService {
     private static final String BUY_MONEY_UNIT_EXCEPTION_MESSAGE = "[ERROR] 구입 금액은 1000원 단위의 금액을 입력해야 합니다.";
@@ -17,11 +18,12 @@ public class LottoService {
     private static final String INPUT_PLAYER_LOTTO_NUMBER_SIZE_EXCEPTION_MESSAGE = "[ERROR] 당첨번호는 6자리를 입력해야 합니다.";
     private static final String DUPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호와 다른 보너스 번호를 입력해야 합니다.";
     private static final Pattern NUMBER_MATCH = Pattern.compile("^[0-9]*$");
-    private static final int LOTTO_PRICE = 1000;
-    private static final int ZERO = 0;
     private final List<List<Integer>> lottoNumberStore = new ArrayList<>();
     private final List<Integer> winningNumberStore = new ArrayList<>();
     private final Player player = new Player();
+    private final LottoMatchCount lottoMatchCount = new LottoMatchCount();
+    private final LottoResultStore lottoResultStore = new LottoResultStore();
+    private Lotto lotto;
 
     public int calculateLottoTicket(String inputMoney) {
         validateBuyMoney(inputMoney);
@@ -54,7 +56,11 @@ public class LottoService {
     }
 
     public void settingWinningNumber(List<Integer> inputWinningNumber) {
-        player.settingWinningNumbers(inputWinningNumber);
+        lotto = new Lotto(inputWinningNumber);
+    }
+
+    public Lotto getLotto() {
+        return lotto;
     }
 
     public int createBonusNumber(String inputBonusNumber) {
@@ -64,6 +70,39 @@ public class LottoService {
 
     public void settingBonusNumber(int inputBonusNumber) {
         player.settingBonusNumber(inputBonusNumber);
+    }
+
+    public void playerNumberCompareLottoNumber() {
+        for (List<Integer> lottoNumber : lottoNumberStore) {
+            for (int winningNumber : lotto.getNumbers()) {
+                compareWinningNumberMatch(winningNumber, lottoNumber);
+            }
+            compareBonusNumberMatch(player.getBonusNumber(), lottoNumber);
+            checkLottoRank(lottoMatchCount.getWinningNumberMatch(), lottoMatchCount.getBonusNumberMatch());
+            lottoMatchCount.resetCount();
+        }
+    }
+
+    public void resetLottoResultStore() {
+        lottoResultStore.resetLottoResultStore();
+    }
+
+    private void compareWinningNumberMatch(int winningNumber, List<Integer> lottoNumber) {
+        if (lottoNumber.contains(winningNumber))
+            lottoMatchCount.plusWinningMatchCount();
+    }
+
+    private void compareBonusNumberMatch(int bonusNumber, List<Integer> lottoNumber) {
+        if (lottoNumber.contains(bonusNumber))
+            lottoMatchCount.plusBonusMatchCount();
+    }
+
+    private void checkLottoRank(int winningNumberMatch, int bonusNumberMatch) {
+        lottoResultStore.checkLottoRank(winningNumberMatch, bonusNumberMatch);
+    }
+
+    public Map<Integer, Integer> getLottoResultStore() {
+        return lottoResultStore.getLottoResultStore();
     }
 
     public void validateBuyMoney(String inputMoney) {
@@ -81,7 +120,7 @@ public class LottoService {
     public void validateBonusNumber(String inputBonusNumber) {
         validateInputNumberBlank(inputBonusNumber);
         validateInputPlayerLottoNumberRange(toInt(inputBonusNumber));
-        validateWinningNumberDuplicateBonusNumber(winningNumberStore, inputBonusNumber);
+        validateWinningNumberDuplicateBonusNumber(lotto.getNumbers(), inputBonusNumber);
     }
 
     private void validateBuyMoneyType(String inputMoney) {

@@ -7,16 +7,14 @@ import java.util.List;
 
 public class Input {
     public static List<Integer> InputNumbers() {
-        List<Integer> results = null;
-        String[] arr = null;
+        List<Integer> resultNumbers = null;
         String inputStringLine = Console.readLine().trim();
 
         validateInputNumbers(inputStringLine);
 
-        arr = Utii.makeArrSplitComma(inputStringLine);
-        results = Utii.makeListFromArr(arr);
+        resultNumbers = makeListFromSplitComma(inputStringLine);
 
-        return results;
+        return resultNumbers;
     }
 
     private static void validateInputNumbers(String inputStringLine) {
@@ -41,5 +39,15 @@ public class Input {
         ValidateException.blankCheck(inputStringLine);
         ValidateException.negative(inputStringLine);
         ValidateException.zeroNum(inputStringLine);
+    }
+
+    private static List<Integer> makeListFromSplitComma(String inputStringLine) {
+        List<Integer> resultNumbers;
+        String[] arr;
+
+        arr = Utii.makeArrSplitComma(inputStringLine);
+        resultNumbers = Utii.makeListFromArr(arr);
+
+        return resultNumbers;
     }
 }

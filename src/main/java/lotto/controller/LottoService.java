@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.Dto.ErrorDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
@@ -21,15 +20,14 @@ public class LottoService {
     public LottoService(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoGenerator = new LottoGenerator();
     }
 
     public void run() {
         handleUserMoney();
 
         myLottos = lottoGenerator.generateMyTickets();
-        outputView.showMyTickets();
-//
+        outputView.showMyTickets(myLottos.toDto());
+
 //        handleWinnerNumber();
 //        handleBonusNumber();
 //
@@ -49,17 +47,9 @@ public class LottoService {
 
     private void handleUserMoney() {
         outputView.askMoney();
-        ErrorDto errorDto = new ErrorDto(false, "");
-        String money = "";
-        handleOnlyDigitCase(errorDto, money);
-//        Exception(inputView,OutputView,)
-    }
-
-    private void handleOnlyDigitCase(ErrorDto errorDto, String money) {
         while (true) {
             try {
-                money = inputView.readMoney();
-                lottoGenerator.checkInputFormat(money);
+                lottoGenerator = new LottoGenerator(inputView.readMoney());
                 break;
             } catch (Exception e) {
                 System.err.println(e.getMessage());

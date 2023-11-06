@@ -3,7 +3,7 @@ package lotto.global.factory;
 import lotto.module.console.Console;
 import lotto.module.console.ConsoleMessageComposer;
 import lotto.module.console.input.ConsoleReader;
-import lotto.module.console.input.impl.ConsoleReaderImple;
+import lotto.module.console.input.impl.ConsoleReaderImpl;
 import lotto.module.console.input.validation.InputValidation;
 import lotto.module.console.output.ConsoleWriter;
 import lotto.module.console.output.impl.ConsoleWriterImpl;
@@ -43,7 +43,7 @@ public class LottoConsoleManagerFactory {
 
     private static ConsoleReader getSingletonConsoleReaderImpl() {
         if (consoleReader == null) {
-            consoleReader = ConsoleReaderImple.newInstance(getSingletonInputValidation());
+            consoleReader = ConsoleReaderImpl.newInstance(getSingletonInputValidation());
         }
         return consoleReader;
     }

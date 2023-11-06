@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,5 +20,9 @@ public class Lotto {
 
     private void sortNumbersAscending() {
         Collections.sort(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

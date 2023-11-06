@@ -7,9 +7,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public interface LottoConfig {
-    RandomNumberGenerator randomNumberGenerator();
-    LottoService lottoService();
+    LottoController lottoController();
     InputView inputView();
     OutputView outputView();
-    LottoController lottoController();
+    LottoService lottoService();
+    RandomNumberGenerator randomNumberGenerator();
 }

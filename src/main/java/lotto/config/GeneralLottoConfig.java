@@ -8,16 +8,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GeneralLottoConfig implements LottoConfig {
-
-    //TODO: 메서드 순서 변경
     @Override
-    public RandomNumberGenerator randomNumberGenerator() {
-        return new GeneralRandomNumberGenerator();
-    }
-
-    @Override
-    public LottoService lottoService() {
-        return new LottoService(randomNumberGenerator());
+    public LottoController lottoController() {
+        return new LottoController(lottoService(), inputView(), outputView());
     }
 
     @Override
@@ -31,7 +24,11 @@ public class GeneralLottoConfig implements LottoConfig {
     }
 
     @Override
-    public LottoController lottoController() {
-        return new LottoController(lottoService(), inputView(), outputView());
+    public LottoService lottoService() {
+        return new LottoService(randomNumberGenerator());
+    }
+    @Override
+    public RandomNumberGenerator randomNumberGenerator() {
+        return new GeneralRandomNumberGenerator();
     }
 }

@@ -9,13 +9,8 @@ import lotto.view.OutputView;
 
 public class TestLottoConfig implements LottoConfig {
     @Override
-    public RandomNumberGenerator randomNumberGenerator() {
-        return (min, max, count) -> TestConstant.normalNumbers;
-    }
-
-    @Override
-    public LottoService lottoService() {
-        return new LottoService(randomNumberGenerator());
+    public LottoController lottoController() {
+        return new LottoController(lottoService(), inputView(), outputView());
     }
 
     @Override
@@ -29,7 +24,12 @@ public class TestLottoConfig implements LottoConfig {
     }
 
     @Override
-    public LottoController lottoController() {
-        return new LottoController(lottoService(), inputView(), outputView());
+    public LottoService lottoService() {
+        return new LottoService(randomNumberGenerator());
+    }
+
+    @Override
+    public RandomNumberGenerator randomNumberGenerator() {
+        return (min, max, count) -> TestConstant.normalNumbers;
     }
 }

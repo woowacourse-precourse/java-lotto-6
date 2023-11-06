@@ -15,6 +15,12 @@ public class Lotto {
         return numbers;
     }
 
+    public int getMatchCount(WinningNumber winningNum) {
+        return (int) numbers.stream()
+                .filter(winningNum::isContainLottoNumber)
+                .count();
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

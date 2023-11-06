@@ -15,6 +15,7 @@ public enum Winning {
     ZERO(null, 0, 0);
 
     static Viewer output = new UserScreen();
+
     private final String textmatch;
     private final int matchwinningcountnumber;
     private final long prize;
@@ -25,7 +26,6 @@ public enum Winning {
         this.prize = prize;
 
     }
-
 
     public void PrintWinnging(int count) {
         if (this == ZERO) {

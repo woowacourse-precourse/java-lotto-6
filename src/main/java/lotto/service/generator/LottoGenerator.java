@@ -12,7 +12,7 @@ public class LottoGenerator {
 
     private static List<Integer> NumberAscendingSort() {
         List<Integer> numbers = RandomNumberGenerator();
-        List<Integer> number = new ArrayList<Integer>(numbers);
+        List<Integer> number = new ArrayList<>(numbers);
         Collections.sort(number);
         return number;
     }

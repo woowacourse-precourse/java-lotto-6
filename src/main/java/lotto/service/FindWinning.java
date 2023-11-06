@@ -31,8 +31,8 @@ public class FindWinning {
     private Map<Winning, Integer> WinningCalculate(List<Lotto> lottos, FindWinning winninglotto) {
         Map<Winning, Integer> result = SetResult();
         Winning winning;
-        for (int i = 0; i < lottos.size(); i++) {
-            winning = winninglotto.Match(lottos.get(i));
+        for (Lotto lotto : lottos) {
+            winning = winninglotto.Match(lotto);
             result.put(winning, result.get(winning) + 1);
         }
         return result;

@@ -131,9 +131,8 @@ public class ErrorCheckTest {
         numbers.add(4);
         numbers.add(5);
         numbers.add(6);
-        LottoWinning winning = new LottoWinning();
         Lotto winningnumber = new Lotto(numbers);
-        winning.setWinningnumber(winningnumber);
+        LottoWinning.setWinningnumber(winningnumber);
         try {
             ErrorCheck.BonusNumberInput("1");
         } catch (IllegalArgumentException error) {

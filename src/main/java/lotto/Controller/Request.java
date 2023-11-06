@@ -34,8 +34,7 @@ public class Request {
     }
 
     private Lotto WinningNumberInputConversion(String input) {
-        Lotto data = TextNumberConvert.WinnerNumberConvert(input);
-        return data;
+        return TextNumberConvert.WinnerNumberConvert(input);
     }
 
     private void WinningNumberMultipleRead() {
@@ -53,8 +52,7 @@ public class Request {
     }
 
     private int BonusNumberInputConversion(String input) {
-        int data = TextNumberConvert.BonusNumberConversion(input);
-        return data;
+        return TextNumberConvert.BonusNumberConversion(input);
     }
 
     private void BonusNumberMultipleRead() {

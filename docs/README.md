@@ -268,18 +268,18 @@ classDiagram
     FindWinning --> RateofReturn
     RateofReturn --> PrintScreen
     FindWinning --> enum Winning
-enum Winning-->Text
-enum Winning-->NumberData
-enum Winning-->ErrorCheck
-ErrorCheck-->Text
-ErrorCheck-->WinningLotto
-ErrorCheck-->ErrorText
-ErrorCheck-->NumberData
-TextNumberConvert-->ErrorCheck
-interface Viewr<--PrintScreen
-interface Viewr<--enum Winning
-interface Viewr<--Request
-interface input<--Request
+    enum Winning-->Text
+    enum Winning-->NumberData
+    enum Winning-->ErrorCheck
+    ErrorCheck-->Text
+    ErrorCheck-->WinningLotto
+    ErrorCheck-->ErrorText
+    ErrorCheck-->NumberData
+    TextNumberConvert-->ErrorCheck
+    interface Viewr<--PrintScreen
+    interface Viewr<--enum Winning
+    interface Viewr<--Request
+    interface input<--Request
 
 class LottoIssuance{
 +void Issuance()

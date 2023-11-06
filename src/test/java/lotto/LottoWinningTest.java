@@ -14,7 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoWinningTest extends NsTest {
-    LottoWinning lottowinning = new LottoWinning();
 
     public long setup() {
         List<Integer> winningnumber = new ArrayList<>();
@@ -27,8 +26,8 @@ public class LottoWinningTest extends NsTest {
         winningnumber.add(6);
         Lotto winnigNumber = new Lotto(winningnumber);
         lottos.add(winnigNumber);
-        lottowinning.setWinningnumber(winnigNumber);
-        lottowinning.setBonusnumber(7);
+        LottoWinning.setWinningnumber(winnigNumber);
+        LottoWinning.setBonusnumber(7);
         FindWinning winning = new FindWinning();
         winning.Result(lottos, winning);
         return LottoWinning.GetTotalWinningPrice();

@@ -1,9 +1,7 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningNumberTest extends NsTest {
-    LottoWinning winning = new LottoWinning();
     Request request = new Request();
 
     @DisplayName("정상 입력")
@@ -31,8 +28,8 @@ public class WinningNumberTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1,2,3,4,5,6", "7");
         });
-        assertEquals(winning.GetBonusNumber(), bonusnumber);
-        assertEquals(winning.GetWinningNumber().GetLotto(), winningnumber);
+        assertEquals(LottoWinning.GetBonusNumber(), bonusnumber);
+        assertEquals(LottoWinning.GetWinningNumber().GetLotto(), winningnumber);
     }
 
     @Override

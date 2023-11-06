@@ -71,6 +71,6 @@ public class RateOfReturnTest {
     }
 
     public void runMain(long totalwinningmoney, long buymoney) {
-        rateofreturn.CalculateRateOfReturn(totalwinningmoney, buymoney);
+        RateofReturn.CalculateRateOfReturn(totalwinningmoney, buymoney);
     }
 }

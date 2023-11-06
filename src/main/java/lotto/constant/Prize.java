@@ -1,4 +1,5 @@
 package lotto.constant;
 
-public enum LottoPrize {
+public enum Prize {
+
 }

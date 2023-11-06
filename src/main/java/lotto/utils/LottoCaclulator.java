@@ -1,10 +1,11 @@
-package lotto.domain;
+package lotto.utils;
 
 import java.util.List;
+import lotto.domain.MatchNumber;
 
 public class LottoCaclulator {
 
-    public static double calculateRateOfReturn(List<Integer> winningCount, int money) {
+    public static double calculateRateOfReturn(final List<Integer> winningCount, final int money) {
         double sum = 0;
         int i = 0;
         for (MatchNumber match : MatchNumber.getMembers()) {

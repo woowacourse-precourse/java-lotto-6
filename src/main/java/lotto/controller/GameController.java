@@ -2,11 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Bonus;
-import lotto.domain.LottoCaclulator;
 import lotto.domain.LottoManager;
 import lotto.domain.MatchNumber;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
+import lotto.utils.LottoCaclulator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

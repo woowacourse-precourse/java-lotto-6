@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
+import lotto.utils.LottoCaclulator;
 import org.junit.jupiter.api.Test;
 
 class LottoCaclulatorTest {

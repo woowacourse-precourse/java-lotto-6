@@ -28,6 +28,10 @@ public class WinningLotto {
         }
     }
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
     @Override
     public String toString() {
         return winningLotto.toString();

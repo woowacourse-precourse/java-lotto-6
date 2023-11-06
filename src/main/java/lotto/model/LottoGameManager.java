@@ -32,7 +32,7 @@ public class LottoGameManager {
         return lottoCost / LottoGameRule.LOTTO_COST_UNIT.getConstant();
     }
 
-    public String getLottoBucket() {
+    public String showPublishedLotto() {
         return lottoBucket.showLottoBucket();
     }
 

@@ -43,7 +43,7 @@ public class LottoGameController {
     }
 
     private void printPublishedLotto() {
-        OutputView.writeLine(lottoGameManager.getLottoBucket());
+        OutputView.writeLine(lottoGameManager.showPublishedLotto());
     }
 
     private void inputWiningNumbers() {

@@ -3,9 +3,9 @@ package lotto.model;
 import java.util.List;
 
 public class Lotto {
-    public static final int MAX_LOTTO_NUMBER = 45;
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int LOTTO_NUMBER_SIZE = 6;
+    protected static final int MAX_LOTTO_NUMBER = 45;
+    protected static final int MIN_LOTTO_NUMBER = 1;
+    protected static final int LOTTO_NUMBER_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -47,5 +47,9 @@ public class Lotto {
           throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다 범위 "
                   + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
       }
+    }
+
+    protected boolean isInputNumberContainLottoNumbers(Integer inputNumber) {
+        return (numbers.contains(inputNumber));
     }
 }

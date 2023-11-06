@@ -14,16 +14,42 @@ public class UserIoManager {
     }
 
     public UserMoney readUserMoney() {
-        outputView.printUserMoneyInputGuide();
-        int userMoney = inputView.readUserMoney();
-        return new UserMoney(userMoney);
+        while (true) {
+            try {
+                outputView.printUserMoneyInputGuide();
+                int userMoney = inputView.readUserMoney();
+                return new UserMoney(userMoney);
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     public WinningNumbers readWinningNumbersWithBonusNumber() {
-        outputView.printWinningNumbersGuide();
-        List<Integer> numbers = inputView.readWinningNumbers();
-        outputView.printBonusNumberGuide();
-        Integer bonusNumber = inputView.readBonusNumber();
+        List<Integer> numbers = readWinningNumbers();
+        Integer bonusNumber = readBonusNumber();
         return new WinningNumbers(numbers, bonusNumber);
+    }
+
+    private List<Integer> readWinningNumbers() {
+        while (true) {
+            try {
+                outputView.printWinningNumbersGuide();
+                return inputView.readWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    private Integer readBonusNumber() {
+        while (true) {
+            try {
+                outputView.printBonusNumberGuide();
+                return inputView.readBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 }

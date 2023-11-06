@@ -1,7 +1,7 @@
 package lotto.util;
 
 import lotto.configure.InputConfiguration;
-import lotto.configure.LottoConfiguration;
+import lotto.configure.DomainConfiguration;
 import lotto.configure.ErrorMessages;
 
 import java.util.Arrays;
@@ -109,10 +109,10 @@ public class Validator {
     }
 
     private static boolean isNumberOverRange(Integer winningNumber) {
-        return winningNumber > LottoConfiguration.LOTTO_NUMBER_MAX;
+        return winningNumber > DomainConfiguration.LOTTO_NUMBER_MAX;
     }
 
     private static boolean isNumberBelowRange(Integer winningNumber) {
-        return winningNumber < LottoConfiguration.LOTTO_NUMBER_MIN;
+        return winningNumber < DomainConfiguration.LOTTO_NUMBER_MIN;
     }
 }

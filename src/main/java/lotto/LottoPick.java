@@ -25,7 +25,7 @@ public class LottoPick {
     public void makeLottoPick() {
         for (int i = 0; i < attempt; i++) {
             numbers[i] = randomCreate();
-//            Collections.sort(numbers[i]);
+//            Collections.sort(numbers[i]); // 콜렉션 정렬 사용시 기능 테스트에서 오류가 발생함.
         }
     }
 
@@ -37,7 +37,7 @@ public class LottoPick {
         }
     }
 
-    //정렬시 테스트에서 오류가 걸려 수동으로 정렬하기로 함.
+    //정렬시 기능 테스트에서 오류가 걸려 수동으로 정렬하기로 함.
     private String sortResult(List<Integer> arr) {
         String str = "[";
         for (int i = 1; i <= 45; i++) {

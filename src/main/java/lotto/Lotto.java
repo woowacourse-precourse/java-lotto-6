@@ -34,13 +34,6 @@ public class Lotto {
         numbers.add(number);
     }
 
-    //숫자 출력.
-    public void outputLottoNumber() {
-        for (Integer number : numbers) {
-            System.out.print(number + ", ");
-        }
-    }
-
     // 보너스 숫자 입증 확인.
     private void validateBonusNumber(int number) {
         for (Integer num : numbers) {

@@ -32,7 +32,7 @@ public class LottoCheck {
         System.out.println(place3th(lottoResult[5]));
         System.out.println(place2th(lottoResult[7]));
         System.out.println(place1th(lottoResult[6]));
-        System.out.println(profit());
+        System.out.println(profit(profit()));
     }
 
     // 로또 결과 값 전달.
@@ -76,7 +76,12 @@ public class LottoCheck {
     }
 
     //수익률 리턴
-    private String profit() {
+    private String profit(double profit) {
+        return "총 수익률은 " + String.format("%.1f", profit) + "%입니다.";
+    }
+
+    //수익률
+    private double profit(){
         long sum = 0;
         double profit = 0;
         for (int i = 3; i <= 7; i++) {
@@ -85,6 +90,6 @@ public class LottoCheck {
         long money;
         money = lottoPickNumbers.length * 1000L;
         profit = ((double) sum / money) * 100;
-        return "총 수익률은 " + String.format("%.1f", profit) + "%입니다.";
+        return profit;
     }
 }

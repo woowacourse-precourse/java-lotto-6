@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import validation.IntegerValidator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,4 +25,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 금액이 1,000 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void inputLottoPriceByIsNotRemainderZero() {
+        assertThatThrownBy(() -> IntegerValidator.checkRemainderZero(8400, Const.LOTTO_PRICE))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

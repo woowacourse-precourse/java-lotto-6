@@ -1,11 +1,13 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.util.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -26,5 +28,21 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
 
-    @
+    @DisplayName("로또 금액 입력시 1000원보다 작은 숫자가 입력되면 예외가 발생한다.")
+    @Test
+    void 금액이_1000원보다_작을_때_테스트(){
+        String 금액값 = "999";
+        assertThatThrownBy(() ->
+                Validator.validateInputAmount(금액값))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 금액 입력시 숫자가 입력되지 않으면 예외가 발생한다.")
+    @Test
+    void 금액이_숫자가_아닐_때_테스트(){
+        String 금액값 = "ab12";
+
+    }
+
+
 }

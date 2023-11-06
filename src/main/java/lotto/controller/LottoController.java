@@ -7,8 +7,8 @@ public class LottoController {
     public static void inputPurchaseAmount(){
         String amount = Console.readLine();
         Validator.validateInputAmount(amount);
-
     }
+    
 
 
 }

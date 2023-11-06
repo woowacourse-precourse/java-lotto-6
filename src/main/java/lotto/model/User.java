@@ -14,7 +14,8 @@ public class User {
         lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLotto; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(new ArrayList<>(lottoNumber));
             lottos.add(lotto);
         }
 

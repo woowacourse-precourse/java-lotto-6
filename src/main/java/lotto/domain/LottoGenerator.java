@@ -12,11 +12,11 @@ public class LottoGenerator {
         return new Lotto(numbers);
     }
 
-    public static Lottos makeNewLottos(Integer count) {
+    public static LottoTicket makeNewLottos(Integer count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             lottos.add(makeNewLotto());
         }
-        return new Lottos(lottos);
+        return new LottoTicket(lottos);
     }
 }

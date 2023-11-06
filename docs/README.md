@@ -124,7 +124,7 @@
         - [x] 유저가 수익률을 계산한다.
 
 
-- [ ] Input ( IllegalArgumentException 예외 정확하게)
+- [x] Input ( IllegalArgumentException 예외 정확하게)
     - [x] 구입 금액 입력
         - [x] 1000원 단위 입력을 받는다.
     - [x] 당첨 번호 입력 (게임 호스트)

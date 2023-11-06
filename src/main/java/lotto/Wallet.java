@@ -13,7 +13,7 @@ public class Wallet {
 
     void addBalance(int money) {
         validateNumber(money);
-        this.balance += money;
+        this.balance = money;
     }
 
     private void validateNumber(int number) {

@@ -19,6 +19,16 @@ public class OutputView {
 
     public void printGameResult(Map<Integer, Integer> lottoResult) {
         System.out.println(OutputConstant.WINNING_STATS.getMessage());
+
+        for (Map.Entry<Integer, Integer> result : lottoResult.entrySet()) {
+            System.out.printf(OutputConstant.WINNING_STATS_RESULT.getMessage(),
+                    result.getKey(), PriceConstant.getPricebyCount(result.getKey()), result.getValue());
+
+            if (result.getKey() == PriceConstant.SECOND_PLACE.getCount()) {
+                System.out.printf(OutputConstant.WINNING_STATS_BONUS_RESULT.getMessage(),
+                        result.getKey(), PriceConstant.getPricebyCount(result.getKey()), result.getValue());
+            }
+        }
     }
 
     public void printEarningRate(double printEarningRate) {

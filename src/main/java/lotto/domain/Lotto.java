@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.function.Predicate;
 import lotto.constant.ExceptionConstant;
 import lotto.constant.NumberConstant;
 
@@ -41,7 +42,7 @@ public class Lotto implements Comparable<Lotto> {
     }
 
     public boolean isCompareByBonusNumber(int bonusNumber) {
-        for(Integer integer : this.numbers) {
+        for(Integer integer : numbers) {
             if (integer == bonusNumber) {
                 return true;
             }
@@ -51,12 +52,9 @@ public class Lotto implements Comparable<Lotto> {
 
     @Override
     public int compareTo(Lotto otherLotto) {
-        int sameCount = 0;
-        for(Integer integer : this.numbers) {
-            if (otherLotto.numbers.equals(integer)) {
-                sameCount++;
-            }
-        }
-        return sameCount;
+        return (int) numbers.stream()
+                .filter(number -> otherLotto.getNumbers().stream()
+                        .anyMatch(Predicate.isEqual(number)))
+                .count();
     }
 }

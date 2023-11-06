@@ -12,7 +12,6 @@ public class Application {
         try {
             GameMainController gameMainController = new GameMainController
                     (new GameService(), new InputView(new InputValidator()), new OutputView());
-
             gameMainController.run();
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());

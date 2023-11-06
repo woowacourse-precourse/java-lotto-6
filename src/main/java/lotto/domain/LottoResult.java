@@ -32,27 +32,27 @@ public class LottoResult {
     public void countWinningCase(List<Lotto> lotteries, WinningLotto winningLotto) {
         for (Lotto lotto : lotteries) {
             winningCount = lotto.compareTo(winningLotto.getWinningLotto());
-            countResultMap();
-            countBonusNumber(lotto, winningLotto.getBonusNumber());
+            countResultMap(lotto, winningLotto.getBonusNumber());
         }
     }
 
-    private void countResultMap() {
+    private void countResultMap(Lotto lotto, int bonusNumber) {
         if (resultMap.containsKey(winningCount)) {
+            countBonusNumber(lotto, bonusNumber);
             resultMap.put(winningCount, resultMap.get(winningCount) + 1);
         }
     }
 
     private void countBonusNumber(Lotto lotto, int bonusNumber) {
-        if (winningCount != PriceConstant.SECOND_PLACE.getCount()) {
+        if (winningCount != PriceConstant.THIRD_PLACE.getCount()) {
             return;
         }
 
         if (lotto.isCompareByBonusNumber(bonusNumber)) {
             resultMap.put(PriceConstant.SECOND_PLACE.getCount(),
-                    resultMap.get(PriceConstant.SECOND_PLACE.getCount()) + 1);
+                    resultMap.get(winningCount) + 1);
             resultMap.put(PriceConstant.THIRD_PLACE.getCount(),
-                    resultMap.get(PriceConstant.THIRD_PLACE.getCount()) - 1);
+                    resultMap.get(winningCount) - 1);
         }
     }
 

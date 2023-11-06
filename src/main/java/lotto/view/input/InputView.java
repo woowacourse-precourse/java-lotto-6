@@ -6,6 +6,9 @@ import java.util.List;
 public class InputView {
     private static final LottoInputView lottoInputView = new ConsoleLottoInputView();
 
+    private InputView() {
+    }
+
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
 

@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 public class StringParser {
 
+    private StringParser() {
+    }
+
     public static List<Integer> split(String input) {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)

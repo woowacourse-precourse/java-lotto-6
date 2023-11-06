@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
+    private InputValidator() {
+    }
+
     public static int validateNumericFormat(String input) {
         try {
             return Integer.parseInt(input);

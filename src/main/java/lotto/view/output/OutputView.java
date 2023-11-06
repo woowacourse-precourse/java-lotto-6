@@ -6,6 +6,9 @@ import java.util.List;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static void printPurchaseLottos(List<LottoDto> lottoDto) {
         String result = OutputFormatter.makePurchaseLottos(lottoDto);
         System.out.println(result);

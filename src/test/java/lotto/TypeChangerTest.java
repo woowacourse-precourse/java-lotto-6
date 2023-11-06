@@ -14,7 +14,7 @@ public class TypeChangerTest {
 
     @Test
     void 문자열을_숫자로_바꾼다() {
-        assertThat(typeChanger.stringToInteger("1")).isInstanceOf(Integer.class);
+        assertThat(typeChanger.from("1")).isInstanceOf(Integer.class);
     }
 
     @Test

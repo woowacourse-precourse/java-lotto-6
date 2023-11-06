@@ -21,7 +21,7 @@ public class TypeChanger {
         return List.of(numbers.split(","));
     }
 
-    public int stringToInteger(String number) {
+    public int from(String number) {
         return Integer.parseInt(number);
     }
 

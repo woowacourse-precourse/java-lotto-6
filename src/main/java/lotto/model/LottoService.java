@@ -50,5 +50,8 @@ public class LottoService {
 		}
 		return rankCount;
 	}
-	
+	public static double calculateReturnOnInvestment(long totalWinningAmount,List<Lotto> playerLottos) {
+		double investment = playerLottos.size() * 1000.0;
+		return (totalWinningAmount / investment) * 100;
+	}
 }

@@ -95,5 +95,11 @@ class LottoTest {
     	assertEquals(2, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("THIRD"));
     }
     
-    
+    @DisplayName("수익률 계산이 정확한지 확인한다.")
+    @Test
+    void shouldCalculateCorrectReturnOnInvestment() {
+    	double answer = 62.5;
+    	List<Lotto> playerLotto = LottoService.createObjectPerThousandUnits(8000);
+    	assertEquals(62.5, LottoService.calculateReturnOnInvestment(5000, playerLotto));
+    }
 }

@@ -22,7 +22,7 @@ public class LottoController {
 		List<Integer> winningNumbers = InputData.winningNumber();
 		OutputView.printBonusNumberInstruction();
 		int bonusNumber = InputData.bonusNumber(winningNumbers);
-		
+		OutputView.printWinningStatistics(LottoService.getTotalWinningRankCount(playerLotto, winningNumbers, bonusNumber));
 	}
 	
 	

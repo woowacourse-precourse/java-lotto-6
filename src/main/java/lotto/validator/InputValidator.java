@@ -16,9 +16,14 @@ public class InputValidator {
         }
     }
 
-    //,로 구분됐는지
+    private boolean hasBlank(String numbers) {
+        return numbers.contains(" ");
+    }
 
-    //, 제외 숫자만 입력에 있는지
+    public void checkBlank(String numbers) {
+        if(hasBlank(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력에 공백은 허용되지 않습니다.");
+        }
+    }
 
-    // 중복이 있는지
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
+import lotto.model.Result;
 import lotto.model.User;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -19,8 +20,8 @@ public class LottoController {
         Lottos lottos = purchaseLottos(purchaseAmount);
         OutputView.printLottoNumbers(lottos);
         WinningLotto winningLotto = createWinningLotto();
-        user.compareLottos(winningLotto);
-        OutputView.printResult(user.getResult());
+        Result result = lottos.compareLottos(winningLotto);
+        OutputView.printResult(result.getResult());
         OutputView.printProfitPercentage(user.calculateProfitPercentage(purchaseAmount));
     }
 

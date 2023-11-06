@@ -9,12 +9,12 @@ public class WinningNumber {
 
     private final Lotto winningLotto;
 
-    private final BonusNumber bonusNumber;
+    private final LottoNumber bonusNumber;
 
     public WinningNumber(final List<Integer> numbers, final int bonusNumber) {
         validate(numbers, bonusNumber);
         this.winningLotto = new Lotto(numbers);
-        this.bonusNumber = BonusNumber.of(bonusNumber);
+        this.bonusNumber = LottoNumber.of(bonusNumber);
     }
 
     private void validate(final List<Integer> numbers, final int bonusNumber) {
@@ -25,7 +25,7 @@ public class WinningNumber {
 
     public LottoRank compare(final Lotto lotto) {
         final MatchCount matchCount = winningLotto.findMatchCount(lotto);
-        final boolean bonusMatches = bonusNumber.existOn(lotto);
+        final boolean bonusMatches = lotto.contains(bonusNumber);
         return LottoRank.of(matchCount, bonusMatches);
     }
 }

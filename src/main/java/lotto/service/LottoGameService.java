@@ -30,11 +30,15 @@ public class LottoGameService {
         }
     }
 
-    public int lottoQuantity(int lottoPurchaseAmount){
+    public boolean isThousandUnits(int lottoPurchaseAmount){
         int lottoPurchaseAmountRemain = lottoPurchaseAmount % 1000;
         if(lottoPurchaseAmountRemain != 0){
             throw new IllegalArgumentException(LottoException.INPUT_NOT_THOUSAND_UNITS.getMessage());
         }
+        return true;
+    }
+
+    public int lottoQuantity(int lottoPurchaseAmount){
         int lottoQuantity = lottoPurchaseAmount / 1000;
         return lottoQuantity;
     }

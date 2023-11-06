@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.PurchaseAmount;
 import lotto.view.InputView;
 
-public class LottoStore {
+public class LottoController {
     public void playLotto() {
         purchaseLotto();
     }

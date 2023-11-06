@@ -13,8 +13,6 @@ public class LottoController {
         Integer numberOfLotto = LottoView.getNumberOfLottoForPrice();
         System.out.println(numberOfLotto + "개를 구매했습니다.");
         List<Lotto> lottoList = generateLottoList(numberOfLotto);
-        for (int i = 0; i < lottoList.size(); i++) {
-            System.out.println(lottoList.get(i).toString());
-        }
+        LottoView.printLottoList(lottoList);
     }
 }

@@ -1,6 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
+
+import java.util.List;
 
 import static lotto.service.LottoService.inputPrice;
 
@@ -13,6 +16,12 @@ public class LottoView {
         numberOfLotto = inputPrice(Console.readLine());
         System.out.println();
         return numberOfLotto;
+    }
+
+    public static void printLottoList(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {
+            System.out.println(lotto.toString());
+        }
     }
 
 

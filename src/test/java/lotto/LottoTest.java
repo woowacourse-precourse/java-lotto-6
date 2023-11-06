@@ -30,7 +30,7 @@ class LottoTest {
     void createLottoByNotNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_OVER_RANGE_EXCEPTION.getMessage());
+                .hasMessage(ErrorMessage.NUMBER_RANGE_EXCEPTION.getMessage());
     }
 
     @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")

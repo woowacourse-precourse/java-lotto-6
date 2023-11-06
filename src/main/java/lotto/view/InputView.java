@@ -24,19 +24,19 @@ import java.util.List;
 
 public class InputView {
     public long receivePurchaseAmount() {
-        String purchaseAmount = Console.readLine();
+        final String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
         return Long.parseLong(purchaseAmount);
     }
 
-    private void validatePurchaseAmount(String purchaseAmount) {
+    private void validatePurchaseAmount(final String purchaseAmount) {
         if (purchaseAmount.isBlank()) {
             throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
         }
         if (isNotContainsOnlyNumber(purchaseAmount)) {
             throw new IllegalArgumentException(NOT_CONTAINS_ONLY_NUMBER.getErrorMessage());
         }
-        long amount = Long.parseLong(purchaseAmount);
+        final long amount = Long.parseLong(purchaseAmount);
         if (amount < ONE_LOTTO_PRICE) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
         }
@@ -45,17 +45,17 @@ public class InputView {
         }
     }
 
-    private boolean isNotContainsOnlyNumber(String purchaseAmount) {
+    private boolean isNotContainsOnlyNumber(final String purchaseAmount) {
         return !purchaseAmount.matches(NUMBER_REGEX);
     }
 
     public String receiveWinningNumber() {
-        String winningNumber = Console.readLine();
+        final String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
         return winningNumber;
     }
 
-    private void validateWinningNumber(String winningNumber) {
+    private void validateWinningNumber(final String winningNumber) {
         if (winningNumber.isBlank()) {
             throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
         }
@@ -68,16 +68,16 @@ public class InputView {
         validateEachNumber(winningNumber);
     }
 
-    private boolean hasNotSixNumbers(String winningNumber) {
+    private boolean hasNotSixNumbers(final String winningNumber) {
         return winningNumber.split(COMMA).length != NUMBERS_COUNT;
     }
 
-    private boolean isInvalidNumbersFormat(String winningNumber) {
+    private boolean isInvalidNumbersFormat(final String winningNumber) {
         return !winningNumber.matches(NUMBERS_FORMAT_REGEX);
     }
 
-    private void validateEachNumber(String winningNumber) {
-        List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
+    private void validateEachNumber(final String winningNumber) {
+        final List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
         try {
             numbers.forEach(this::validateLottoNumber);
         } catch (IllegalArgumentException e) {
@@ -85,13 +85,13 @@ public class InputView {
         }
     }
 
-    public int receiveBonusNumber(String winningNumber) {
-        String bonusNumber = Console.readLine();
+    public int receiveBonusNumber(final String winningNumber) {
+        final String bonusNumber = Console.readLine();
         validateBonusNumber(winningNumber, bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 
-    private void validateBonusNumber(String winningNumber, String bonusNumber) {
+    private void validateBonusNumber(final String winningNumber, final String bonusNumber) {
         if (bonusNumber.isBlank()) {
             throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
         }
@@ -101,14 +101,14 @@ public class InputView {
         }
     }
 
-    private void validateLottoNumber(String number) {
+    private void validateLottoNumber(final String number) {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER.getErrorMessage());
         }
 
-        int bonusNumberInt = Integer.parseInt(number);
+        final int bonusNumberInt = Integer.parseInt(number);
         if (bonusNumberInt < MIN_RANGE || bonusNumberInt > MAX_RANGE) {
             throw new IllegalArgumentException(OVER_RANGE.getErrorMessage());
         }

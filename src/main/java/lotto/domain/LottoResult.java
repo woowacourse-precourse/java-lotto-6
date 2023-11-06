@@ -21,7 +21,7 @@ public record LottoResult(Map<LottoPrizes, Long> result) {
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    private String displayPrizes(LottoPrizes lottoPrizes) {
+    private String displayPrizes(final LottoPrizes lottoPrizes) {
         final long winCount = result.get(lottoPrizes);
         return lottoPrizes.getTerm()
                 + SPACE
@@ -39,7 +39,7 @@ public record LottoResult(Map<LottoPrizes, Long> result) {
                 .reduce(Money.ZERO, Money::sum);
     }
 
-    private Money getRevenue(LottoPrizes lottoPrizes) {
+    private Money getRevenue(final LottoPrizes lottoPrizes) {
         final long winCount = result.get(lottoPrizes);
         final Money winAmount = lottoPrizes.getWinningAmount();
         return winAmount.multiplyByCount(winCount);

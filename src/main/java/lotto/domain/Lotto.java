@@ -12,12 +12,12 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (numbers.size() != SIX) {
             throw new IllegalArgumentException(COUNT_NOT_SIX.getErrorMessage());
         }
@@ -29,20 +29,20 @@ public class Lotto {
         }
     }
 
-    private boolean hasNumberNotInRange(List<Integer> numbers) {
+    private boolean hasNumberNotInRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE);
     }
 
-    private boolean hasDuplicateNumber(List<Integer> numbers) {
-        List<Integer> distinctNumbers = numbers.stream()
+    private boolean hasDuplicateNumber(final List<Integer> numbers) {
+        final List<Integer> distinctNumbers = numbers.stream()
                 .distinct()
                 .toList();
 
         return !distinctNumbers.equals(numbers);
     }
 
-    public boolean isContain(int number) {
+    public boolean isContain(final int number) {
         return numbers.contains(number);
     }
 

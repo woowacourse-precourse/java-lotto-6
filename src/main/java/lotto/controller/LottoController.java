@@ -26,28 +26,28 @@ public class LottoController {
     }
 
     public void play() {
-        UserLotto userLotto = receiveUserLotto();
-        Money purchaseAmount = new Money(userLotto.getLottoCount() * ONE_LOTTO_PRICE);
+        final UserLotto userLotto = receiveUserLotto();
+        final Money purchaseAmount = new Money(userLotto.getLottoCount() * ONE_LOTTO_PRICE);
         displayUserLotto(userLotto);
 
-        WinningLotto winningLotto = receiveWinningLottoNumber();
+        final WinningLotto winningLotto = receiveWinningLottoNumber();
 
-        LottoResult lottoResult = userLotto.compareAllLotto(winningLotto);
+        final LottoResult lottoResult = userLotto.compareAllLotto(winningLotto);
 
         printLottoResultStatistics(lottoResult, purchaseAmount);
     }
 
-    private void displayUserLotto(UserLotto userLotto) {
-        long totalLotto = userLotto.getLottoCount();
-        String allLotto = userLotto.displayAllLotto();
+    private void displayUserLotto(final UserLotto userLotto) {
+        final long totalLotto = userLotto.getLottoCount();
+        final String allLotto = userLotto.displayAllLotto();
 
         outputView.printNewLine();
         outputView.printUserLotto(totalLotto, allLotto);
     }
 
     private UserLotto receiveUserLotto() {
-        Money purchaseAmount = receivePurchaseAmount();
-        List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
+        final Money purchaseAmount = receivePurchaseAmount();
+        final List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
 
         return new UserLotto(userLottoNumbers);
     }
@@ -68,8 +68,8 @@ public class LottoController {
     }
 
     private WinningLotto receiveWinningLottoNumber() {
-        String winningNumbers = receiveWinningNumber();
-        int bonusNumber = receiveBonusNumber(winningNumbers);
+        final String winningNumbers = receiveWinningNumber();
+        final int bonusNumber = receiveBonusNumber(winningNumbers);
         outputView.printNewLine();
 
         return lottoGenerator.createWinningLottoFromInput(winningNumbers, bonusNumber);
@@ -91,7 +91,7 @@ public class LottoController {
         return winningNumber;
     }
 
-    private int receiveBonusNumber(String winningNumbers) {
+    private int receiveBonusNumber(final String winningNumbers) {
         int bonusNumber;
         while (true) {
             try {
@@ -107,8 +107,8 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void printLottoResultStatistics(LottoResult lottoResult, Money purchaseAmount) {
-        Money totalRevenue = lottoResult.getTotalRevenue();
+    private void printLottoResultStatistics(final LottoResult lottoResult, final Money purchaseAmount) {
+        final Money totalRevenue = lottoResult.getTotalRevenue();
         outputView.printStatistics(lottoResult.getStatistics());
         outputView.printEarningRate(purchaseAmount.amount(), totalRevenue.amount());
     }

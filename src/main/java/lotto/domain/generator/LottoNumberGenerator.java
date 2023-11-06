@@ -11,14 +11,14 @@ import java.util.List;
 
 public final class LottoNumberGenerator {
     public List<Integer> createLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, NUMBERS_COUNT);
+        final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, NUMBERS_COUNT);
 
         return numbers.stream()
                 .sorted()
                 .toList();
     }
 
-    public List<Integer> createByInput(String input) {
+    public List<Integer> createByInput(final String input) {
         return Arrays.stream(input.split(COMMA))
                 .map(Integer::parseInt)
                 .sorted()

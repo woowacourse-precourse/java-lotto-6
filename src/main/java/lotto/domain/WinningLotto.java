@@ -8,7 +8,7 @@ import static lotto.domain.constant.DomainConstant.THREE;
 import java.util.List;
 
 public record WinningLotto(List<Integer> numbers, int bonusNumber) {
-    public LottoPrizes compare(Lotto lotto) {
+    public LottoPrizes compare(final Lotto lotto) {
         long matchCount = getMatchCount(lotto);
         if (matchCount == THREE) {
             return LottoPrizes.THREE_NUMBERS_MATCHED;
@@ -28,7 +28,7 @@ public record WinningLotto(List<Integer> numbers, int bonusNumber) {
         return null;
     }
 
-    public long getMatchCount(Lotto lotto) {
+    public long getMatchCount(final Lotto lotto) {
         return numbers.stream()
                 .filter(lotto::isContain)
                 .count();

@@ -23,7 +23,7 @@ public class ViewConstant {
 
             private final String errorMessage;
 
-            InputErrorMessage(String errorMessage) {
+            InputErrorMessage(final String errorMessage) {
                 this.errorMessage = errorMessage;
             }
 

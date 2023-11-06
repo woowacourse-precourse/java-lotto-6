@@ -8,23 +8,23 @@ public record Money(long amount) {
     private static final String WON = "원";
     private static final String DECIMAL_FORMAT = "###,###";
 
-    public Money add(long money) {
+    public Money add(final long money) {
         return new Money(amount + money);
     }
 
-    public Money sum(Money money) {
+    public Money sum(final Money money) {
         return new Money(amount + money.amount());
     }
 
-    public Money multiplyByCount(long count) {
+    public Money multiplyByCount(final long count) {
         return new Money(amount * count);
     }
 
-    public boolean isLessThan(Money other) {
+    public boolean isLessThan(final Money other) {
         return amount < other.amount();
     }
 
-    public boolean cantDividedBy(Money other) {
+    public boolean cantDividedBy(final Money other) {
         return amount % other.amount() != DomainConstant.ZERO;
     }
 

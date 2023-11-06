@@ -41,7 +41,7 @@
 ***
 ### LottoNumberGenerator ⚙️
 `LottoNumberGenerator` 클래스는 로또 번호들의 생성을 관리한다.
-- [❌] 발행할 수만큼 로또 번호들을 무작위로 생성한다.
+- [✅] 발행할 수만큼 로또 번호들을 무작위로 생성한다.
 ***
 ### Money 💰
 `Money` 클래스는 돈을 관리한다.

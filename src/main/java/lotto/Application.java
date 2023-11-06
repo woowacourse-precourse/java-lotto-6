@@ -12,6 +12,9 @@ public class Application {
 
     public static void startLotto(){
         User user = new User();
+
+
+
         Lotto lotto = new Lotto(getLottoNumbers());
 
     }

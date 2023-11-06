@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class User {
 
     private int money;
-    private int tickets;
+    private int ticketCount;
 
     User(){
         getMoney();
@@ -15,7 +15,7 @@ public class User {
         while(true){
             try{
                 this.money = Integer.parseInt(Console.readLine());
-                this.tickets = getTickets(money);
+                this.ticketCount = getTicketCount(money);
                 return;
             } catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 구매 금액은 천원 단위로 입력해주세요.");
@@ -26,7 +26,7 @@ public class User {
     /**
      * 천원단위로 나눠 떨어지지 않을 때 예외처리
      * */
-    private int getTickets(int money){
+    private int getTicketCount(int money){
         if(money % 1000 != 0){
             throw new IllegalArgumentException();
         }

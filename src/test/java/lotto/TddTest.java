@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -60,15 +61,15 @@ public class TddTest {
 
     @Test
     public void 당첨번호는_반점_기준으로_6자리_입력(){
-        int[] expectedWinningNumbers = {1, 2, 3, 4, 5, 6};
-        int[] WinningNumbers = parseNumbers("1,2,3,4,5,6");
+        List<Integer> expectedWinningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> WinningNumbers = parseNumbers("1,2,3,4,5,6");
         assertThat(WinningNumbers).isEqualTo(expectedWinningNumbers);
     }
 
-    private int[] parseNumbers(String input) {
+    private List<Integer> parseNumbers(String input) {
         return Arrays.stream(input.split(","))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 

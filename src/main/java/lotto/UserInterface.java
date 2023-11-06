@@ -19,4 +19,8 @@ public class UserInterface {
     public void showText(String text) {
         System.out.println(text);
     }
+
+    public void newLine() {
+        System.out.println();
+    }
 }

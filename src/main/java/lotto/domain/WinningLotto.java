@@ -12,7 +12,7 @@ public class WinningLotto {
 		this.winningNumbers = winningNumbers;
 		this.bonusNumber = bonusNumber;
 
-		checkDuplicationBonusNumber(winningNumbers, this.bonusNumber);
+		checkDuplicationBonusNumber(this.winningNumbers, this.bonusNumber);
 	}
 
 	public WinningNumbers getWinningNumbers() {

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.function.Function;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoPlayer;
@@ -25,62 +26,58 @@ public class Controller {
 	}
 
 	private void purchaseLotto() {
-		try {
-			OutputView.askPurchaseAmount();
+		OutputView.askPurchaseAmount();
 
-			String money = InputView.getUserInput();
+		String money = getValidInput(PurchaseAmount::new);
 
-			PurchaseAmount purchaseAmount = new PurchaseAmount(money);
+		PurchaseAmount purchaseAmount = new PurchaseAmount(money);
 
-			lottoPlayer = lottoMachine.purchaseLotto(purchaseAmount);
+		lottoPlayer = lottoMachine.purchaseLotto(purchaseAmount);
 
-			OutputView.printPlayerLottos(lottoPlayer);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			purchaseLotto();
-		}
+		OutputView.printPlayerLottos(lottoPlayer);
 	}
 
 	private void createWinningLotto() {
-		try {
-			WinningNumbers winningNumbers = createWinningNumbers();
-			BonusNumber bonusNumber = createBonusNumber();
+		WinningNumbers winningNumbers = createWinningNumbers();
+		BonusNumber bonusNumber = createBonusNumber();
 
-			winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-		} catch (IllegalArgumentException e) {
-			OutputView.printExceptionMessage(e.getMessage());
-			createWinningLotto();
-		}
+		winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 	}
 
 	private BonusNumber createBonusNumber() {
-		try {
-			OutputView.askBonusNumber();
-			String number = InputView.getUserInput();
+		OutputView.askBonusNumber();
 
-			return new BonusNumber(number);
-		} catch (IllegalArgumentException e) {
-			OutputView.printExceptionMessage(e.getMessage());
-			return createBonusNumber();
-		}
+		String number = getValidInput(BonusNumber::new);
+
+		return new BonusNumber(number);
 	}
 
 	private WinningNumbers createWinningNumbers() {
-		try {
-			OutputView.askWinningNumbers();
+		OutputView.askWinningNumbers();
 
-			String numbers = InputView.getUserInput();
+		String numbers = getValidInput(WinningNumbers::new);
 
-			return new WinningNumbers(numbers);
-		} catch (IllegalArgumentException e) {
-			OutputView.printExceptionMessage(e.getMessage());
-			return createWinningNumbers();
-		}
+		return new WinningNumbers(numbers);
 	}
 
 	private void printResult() {
 		LottoResult lottoResult = new LottoResult(winningLotto, lottoPlayer);
 
 		OutputView.printWinningStatistics(lottoResult);
+	}
+
+	private <T> String getValidInput(Function<String, T> constructor) {
+		String input;
+		do {
+			input = InputView.getUserInput();
+			try {
+				constructor.apply(input);
+			} catch (IllegalArgumentException e) {
+				OutputView.printExceptionMessage(e.getMessage());
+				input = null;
+			}
+		} while (input == null);
+
+		return input;
 	}
 }

@@ -48,10 +48,10 @@ public class InputViewTest {
                 assertThatThrownBy(() -> {
                     int amount = Integer.parseInt(input);
                     if (amount <= 1000) {
-                        throw new IllegalArgumentException("[ERROR] 금액은 1000원 이하일 수 없습니다.");
+                        throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위 이상으로 입력해 주세요.");
                     }
                 }).isInstanceOf(IllegalArgumentException.class)
-                        .hasMessageContaining("ERROR] 금액은 1000원 이하일 수 없습니다.");
+                        .hasMessageContaining("ERROR] 금액은 1,000원 단위 이상으로 입력해 주세요.");
             }
 
             @Test

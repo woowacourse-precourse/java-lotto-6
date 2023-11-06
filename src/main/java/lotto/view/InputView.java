@@ -8,7 +8,7 @@ import static lotto.constants.Notice.ASK_PURCHASE_PRICE;
 import static lotto.constants.Notice.ASK_WINNER_NUMBERS;
 
 public class InputView {
-    public static int askPurchaseAmount() {
+    public static int askPurchaseAmount() throws IllegalArgumentException {
         System.out.println(ASK_PURCHASE_PRICE.getMessage());
         String input = readLine();
         validateType(input);
@@ -37,7 +37,7 @@ public class InputView {
 
     private static boolean hasLetter(String input) {
         return input.chars()
-                .anyMatch(Character::isLetter);
+                .anyMatch(c -> !Character.isDigit(c));
     }
 
     private static void validateThousandUnit(int won) {

@@ -13,6 +13,8 @@ public abstract class RegisterAbstractController<E> implements RegisterControlle
         } catch (IllegalArgumentException e) {
             errorView.showErrorMessage(e.getMessage());
             return process();
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException();
         }
     }
 

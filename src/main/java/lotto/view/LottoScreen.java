@@ -1,6 +1,5 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFinalResult;
@@ -32,15 +31,12 @@ public class LottoScreen {
     public UserMoneyDTO inputUserMoney() {
         writer.writeLine("구입 금액을 입력해 주세요.");
         String line = reader.readLine();
-        writer.writeLine("line = " + line);
-
         return new UserMoneyDTO(line.trim());
     }
 
     public UserBonusDTO registerBonus() {
         writer.writeLine(("\n보너스 번호를 입력해 주세요."));
-        String line = reader.readLine();
-        return new UserBonusDTO(line.trim());
+        return new UserBonusDTO(reader.readLine().trim());
     }
 
     public UserLottoDTO registerLotto() {
@@ -49,7 +45,7 @@ public class LottoScreen {
     }
 
     public void displayGeneratedLotto(UserMoney userMoney, LottoRepository lottoRepository) {
-        System.out.printf(REWIND_FORMAT, userMoney.getLottoChances());
+        writer.writeFormat(REWIND_FORMAT, userMoney.getLottoChances());
 
         List<Lotto> allLottos = lottoRepository.getAllLottos();
         List<String> convertedLottos = allLottos.stream()

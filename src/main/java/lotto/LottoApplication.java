@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.display.DisplayLottoController;
 import lotto.controller.display.DisplayLottoResultController;
 import lotto.controller.register.RegisterBonusController;
@@ -10,14 +9,17 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWithBonus;
 import lotto.domain.UserMoney;
-import lotto.io.ConsoleReader;
-import lotto.io.ConsoleWriter;
 import lotto.repository.LottoRepository;
 import lotto.view.LottoScreen;
 
 public class LottoApplication {
-    private final LottoScreen lottoScreen = new LottoScreen(new ConsoleReader(), new ConsoleWriter());
-    private final LottoRepository lottoRepository = new LottoRepository();
+    private final LottoScreen lottoScreen;
+    private final LottoRepository lottoRepository;
+
+    public LottoApplication(LottoScreen lottoScreen, LottoRepository lottoRepository) {
+        this.lottoScreen = lottoScreen;
+        this.lottoRepository = lottoRepository;
+    }
 
     void run() {
         // Controller 에서 원하는 객체를 반환하는 구간이다
@@ -48,8 +50,8 @@ public class LottoApplication {
         return new RegisterLottoController(lottoScreen).process();
     }
 
-    private Bonus registerUserBonus(Lotto lotto) {
-        return new RegisterBonusController(lottoScreen).process();
+    private Bonus registerUserBonus(Lotto userLotto) {
+        return new RegisterBonusController(lottoScreen, userLotto).process();
     }
 
     private void displayLottoResult(LottoWithBonus userLottoWithBonus, UserMoney userMoney,

@@ -27,5 +27,25 @@
   - 1부터 45까지의 중복 없는 정렬된 랜덤한 6개의 숫자를 뽑아주는 함수입니다.
 
 
+#### PlayerLotto 객체
+금액 입력 후 사용자의 로또의 정보를 가지는 객체입니다.
+- playerLotto 변수
+    - List<Lotto>의 형태, 구입한 Lotto를 저장
+- purchasesPrice 변수
+    - int의 형태, 구입 가격
+- lottoAmount 변수
+    - int의 형태, 구입 수량
+
+
+- createPlayerLotto 함수
+    - 구매 수량만큼의 로또를 생성하는 함수
+- getPlayerLotto 함수
+    - playerLotto를 반환하는 함수
+- getPurchasesPrice 함수
+    - getPurchasesPrice를 반환하는 함수
+- getLottoAmount 함수
+    - getLottoAmount를 반환하는 함수
+
+
 ### 구현 목록
 - [ ] InputUtil 객체

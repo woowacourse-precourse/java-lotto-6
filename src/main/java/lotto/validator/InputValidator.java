@@ -28,13 +28,25 @@ public class InputValidator {
     }
 
     public List<Integer> checkWinningNumber(String winningNumber)throws IllegalArgumentException{
-
+        checkLastCommas(winningNumber);
         List<String> stringwinningnumbers = Utils.makeStringtoArray(winningNumber);
+        for(String number : stringwinningnumbers){
+            if(!Constants.INTEGER.matcher(number).matches() || number.isBlank()){
+                throw new IllegalArgumentException("[ERROR] 공백 없이 숫자를 입력해 주세요");
+            }
+        }
         List<Integer> winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
         if (winningNumbers.size() != Constants.MAX_LOTTO_PICK_NUMBER ){
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
         }return winningNumbers;
     }
+    public void checkLastCommas(String stringnumber) throws IllegalArgumentException{
+        if(stringnumber.endsWith(Constants.COMMAS)){
+            throw new IllegalArgumentException("[ERROR] 맨 뒤에 쉼표를 쓰지 마세요.");
+        }
+
+    }
+
 
 
 

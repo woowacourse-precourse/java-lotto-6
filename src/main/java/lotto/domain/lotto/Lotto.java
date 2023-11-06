@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Lotto {
 
-    private static final int LOTTO_NUMBERS_SIZE = 6;
+    public static final int LOTTO_NUMBERS_SIZE = 6;
     private static final String UNKNOWN_NUMBERS_MESSAGE = "알 수 없는 숫자 목록으로 로또를 생성할 수 없습니다.";
     private static final String UNKNOWN_LOTTO_MESSAGE = "알 수 없는 로또와 매치할 수 없습니다.";
     private static final String LOTTO_NUMBERS_DUPLICATION_MESSAGE = "로또 번호에 중복된 숫자를 포함할 수 없습니다.";

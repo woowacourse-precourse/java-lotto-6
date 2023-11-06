@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class LottoNumber {
 
-    private static final int MIN_NUMBER_RANGE = 1;
-    private static final int MAX_NUMBER_RANGE = 45;
+    public static final int MIN_NUMBER_RANGE = 1;
+    public static final int MAX_NUMBER_RANGE = 45;
     private static final String UNKNOWN_NUMBER_MESSAGE = "알 수 없는 숫자로 로또 번호를 생성할 수 없습니다.";
     private static final String INVALID_NUMBER_RANGE_MESSAGE =
             "로또 번호는 " + MIN_NUMBER_RANGE + "부터 " + MAX_NUMBER_RANGE + " 사이의 숫자여야 합니다.";

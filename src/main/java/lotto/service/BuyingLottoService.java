@@ -1,8 +1,11 @@
 package lotto.service;
 
-import lotto.service.exception.HandleNumberFormattingException;
+import java.util.Collections;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.service.exception.NumberFormattingExceptionHandler;
 import lotto.service.exception.InputErrorMessage;
-import lotto.service.exception.HandleIllegalArgumentException;
+import lotto.service.exception.IllegalArgumentExceptionHandler;
 
 public class BuyingLottoService {
 
@@ -13,7 +16,7 @@ public class BuyingLottoService {
             verifyMoneyUnit(convertStringtoInt(input));
             verifyRange(convertStringtoInt(input));
 
-        } catch (HandleNumberFormattingException | HandleIllegalArgumentException e){
+        } catch (NumberFormattingExceptionHandler | IllegalArgumentExceptionHandler e){
             System.out.println(e.getMessage());
             return -1;
         }
@@ -29,19 +32,25 @@ public class BuyingLottoService {
         try{
             Integer.parseInt(moneyInput);
         }catch(NumberFormatException e) {
-            throw new HandleNumberFormattingException(InputErrorMessage.INVALID_NUMBER);
+            throw new NumberFormattingExceptionHandler(InputErrorMessage.INVALID_NUMBER);
         }
     }
 
     private void verifyMoneyUnit(int moneyInput){
         if (moneyInput % 1000 != 0) {
-            throw new HandleIllegalArgumentException(InputErrorMessage.WRONG_INPUT_MONEY_UNIT);
+            throw new IllegalArgumentExceptionHandler(InputErrorMessage.WRONG_INPUT_MONEY_UNIT);
         }
     }
 
     private void verifyRange(int moneyInput){
         if(moneyInput>50000){
-            throw new HandleIllegalArgumentException(InputErrorMessage.OVER_RANGE_MONEY);
+            throw new IllegalArgumentExceptionHandler(InputErrorMessage.OVER_RANGE_MONEY);
         }
+    }
+
+    public List<Integer> sortLottoNumber(Lotto lotto){
+        List<Integer> sortingNumber = lotto.getNumbers();
+        Collections.sort(sortingNumber);
+        return sortingNumber;
     }
 }

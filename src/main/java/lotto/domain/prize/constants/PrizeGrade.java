@@ -13,7 +13,7 @@ import static lotto.exception.ErrorMessage.SYSTEM_CRASHED;
 public enum PrizeGrade {
     HIT_SIX(SIX,
             always -> true,
-            200_000_000
+            2_000_000_000
     ),
     HIT_FIVE_AND_BONUS(FIVE
             , keep -> keep,

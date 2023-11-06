@@ -45,7 +45,7 @@ public class Buyer {
 
     private void validateMaximumPayment(final int payment) {
         if (isBiggerThanMaximumPayment(payment)) {
-            throw LottoException.from(EXCEED_PAYMENT);
+            throw LottoException.from(NUMBER_OUT_OF_RANGE);
         }
     }
 
@@ -71,7 +71,7 @@ public class Buyer {
     private boolean isSmallerThanUnitPrice(final int payment) {
         return payment < UNIT_PRICE.getValue();
     }
-    
+
     // Getter
     public int getPayment() {
         return payment;

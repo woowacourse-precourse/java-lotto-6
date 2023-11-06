@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class LottoService {
     // Utility Method
     public static List<Integer> generateOrderedLottoNumbers() {
         List<Integer> randomNumbers = generateLottoNumber();
-        Collections.sort(randomNumbers);
+        List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
+        
+        Collections.sort(sortedNumbers);
         return randomNumbers;
     }
 

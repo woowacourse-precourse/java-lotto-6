@@ -72,6 +72,15 @@ public class UserInputTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호를 중복으로 입력할 경우")
+    @Test
+    void userInputDuplicatedWinningNumber(){
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5");
+            assertThat(output()).contains(Message.ERROR_WINNING_DUPLICATE);
+        });
+    }
+
     @DisplayName("보너스 번호를 정수로 입력하지 않는 경우")
     @Test
     void userInputStringBonusNumber(){

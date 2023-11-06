@@ -77,37 +77,40 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public List<Integer> lotteryMatch(List<Lotto> lotteries, Lotto winningNumbers, int bonusNumber) {
+        List<Integer> matchResult = initMatchResult();
+
+        for (Lotto lottery : lotteries) {
+            int matchCount = numbersMatcher.matches(lottery.getNumbers(), winningNumbers.getNumbers());
+            updateMatchResult(matchResult, lottery.getNumbers(), matchCount, bonusNumber);
+        }
+
+        return matchResult;
+    }
+
+    private List<Integer> initMatchResult() {
         List<Integer> matchResult = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             matchResult.add(0);
         }
 
-        for (Lotto lottery : lotteries) {
-            int matchCount = numbersMatcher.matches(lottery.getNumbers(), winningNumbers.getNumbers());
+        return matchResult;
+    }
 
-            if (matchCount == 6) {
-                matchResult.add(0, matchResult.get(0) + 1);
-                continue;
-            }
-            if (matchCount == 5 && lottery.getNumbers().contains(bonusNumber)) {
-                matchResult.add(1, matchResult.get(1) + 1);
-                continue;
-            }
-            if (matchCount == 5) {
-                matchResult.add(2, matchResult.get(2) + 1);
-                continue;
-            }
-            if (matchCount == 4) {
-                matchResult.add(3, matchResult.get(3) + 1);
-                continue;
-            }
-            if (matchCount == 3) {
-                matchResult.add(4, matchResult.get(4) + 1);
-            }
+    private void updateMatchResult(List<Integer> matchResult, List<Integer> purchasedLottery, int matchCount, int bonusNumber) {
+        if (matchCount == 6) {
+            matchResult.set(0, matchResult.get(0) + 1);
+            return;
         }
 
-        return matchResult;
+        if (matchCount == 5 && purchasedLottery.contains(bonusNumber)) {
+            matchResult.set(1, matchResult.get(1) + 1);
+            return;
+        }
+
+        if (matchCount <= 5 && matchCount >= 3) {
+            matchResult.set(7 - matchCount, matchResult.get(7 - matchCount) + 1);
+        }
     }
 
     @Override
@@ -129,11 +132,7 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public double getRateOfReturn(int payment, int reward) {
-        double ratio = (double) reward / payment * 10000;
-        return toPercentage(ratio);
-    }
-
-    private double toPercentage(double ratio) {
-        return Math.round(ratio) / 100.0;
+        double ratio = (double) reward / payment * 1000;
+        return Math.round(ratio) / 10.0;
     }
 }

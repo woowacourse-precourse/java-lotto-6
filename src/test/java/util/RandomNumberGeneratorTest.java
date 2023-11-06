@@ -22,4 +22,8 @@ class RandomNumberGeneratorTest {
             assertTrue(num <= end);
         }
     }
+
+    void create_중복되지_않는다(){
+
+    }
 }

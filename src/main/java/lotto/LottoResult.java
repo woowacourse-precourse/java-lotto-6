@@ -24,4 +24,19 @@ public class LottoResult {
     public int getCount(Rank rank) {
         return resultCount.get(rank);
     }
+
+    public double calculateWinningRate(int purchaseAmount) {
+        int totalPrize = Rank.calculateTotalPrize(resultCount);
+        int profit = totalPrize - purchaseAmount;
+
+        double winningRate;
+
+        if (profit < 0) {
+            winningRate = ((double) totalPrize / purchaseAmount) * 100;
+        } else {
+            winningRate = ((double) profit / purchaseAmount) * 100;
+        }
+
+        return Math.round(winningRate * 10) / 10.0;
+    }
 }

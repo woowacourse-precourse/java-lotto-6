@@ -15,13 +15,13 @@ public enum Prize {
     private final Boolean checkBonus;
     private final Double reward;
 
-    Prize(Integer countOfSameNumbers, Boolean checkBonus, Double reward) {
+    Prize(final Integer countOfSameNumbers, final Boolean checkBonus, final Double reward) {
         this.countOfSameNumbers = countOfSameNumbers;
         this.checkBonus = checkBonus;
         this.reward = reward;
     }
 
-    public static Prize of(Integer countOfSameNumbers, Boolean checkBonus) {
+    public static Prize of(final Integer countOfSameNumbers, final Boolean checkBonus) {
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.countOfSameNumbers == countOfSameNumbers && prize.checkBonus == checkBonus)
                 .findFirst()

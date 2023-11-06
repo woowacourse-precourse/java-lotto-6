@@ -29,11 +29,11 @@ public class LottoStatistics {
     public String calculateTotalProfit(Map<String, Integer> summary, List<String> lottoPlacePrize, int lottoPurchaseAmount) {
         double profit = 0;
 
-        int lottoPlacePrizeIdx = 0;
+        int lottoPlacePrizeIdx = lottoPlacePrize.size()-1;
         for (Map.Entry<String, Integer> entry : summary.entrySet()) {
             int lottoPrize = Integer.parseInt(lottoPlacePrize.get(lottoPlacePrizeIdx));
             profit += entry.getValue() * lottoPrize;
-            lottoPlacePrizeIdx++;
+            lottoPlacePrizeIdx--;
         }
 
         return String.format("%.1f", profit/(lottoPurchaseAmount*1000)*100);

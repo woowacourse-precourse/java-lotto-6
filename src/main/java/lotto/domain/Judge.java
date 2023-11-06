@@ -73,4 +73,17 @@ public class Judge {
 
         return result;
     }
+
+    public static Double rateOfReturn(List<Integer> result, Integer price) {
+        Double accumulate = 0d;
+
+        for (Integer rank = result.size() - 1; rank >= 0; rank--) {
+            Integer count = result.get(rank);
+            Integer reward = Ranking.findRankingByRank(rank + 1).reward();
+
+            accumulate += reward * count;
+        }
+
+        return accumulate / price * 100;
+    }
 }

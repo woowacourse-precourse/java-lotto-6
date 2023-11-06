@@ -54,4 +54,14 @@ public class JudgeTest {
 
         assertThat(Judge.result(lottos, winningNumbers, bonusNumber)).isEqualTo(result);
     }
+
+    @Test
+    void 수익률_계산() {
+        List<Integer> lottoResult = Arrays.asList(1, 0, 0, 1, 0);
+
+        Double result = 100002500d;
+        Integer price = 2000;
+
+        assertThat(Judge.rateOfReturn(lottoResult, price)).isEqualTo(result);
+    }
 }

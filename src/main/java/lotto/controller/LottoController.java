@@ -13,6 +13,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
 import lotto.model.WinningLotto;
+import lotto.model.WinningResult;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -25,8 +26,9 @@ public class LottoController {
     public void run() {
         payMoney();
         buyLottos();
-        winningLotto();
-        bonusLotto();
+        getWinningLotto();
+        getBonusLotto();
+        showWinningResult();
     }
 
     private void payMoney() {
@@ -34,7 +36,7 @@ public class LottoController {
             int money = stringToInt(input(PURCHASE_AMOUNT.getMessage()));
             purchase = new Purchase(money);
         } catch (IllegalArgumentException exception) {
-            OutputView.error(exception.getMessage());
+            OutputView.printError(exception.getMessage());
             payMoney();
         }
     }
@@ -45,10 +47,10 @@ public class LottoController {
         List<Lotto> lotto = Lotto.generator(count);
         lottos = new Lottos(lotto);
 
-        OutputView.lottoInfo(lotto, count);
+        OutputView.printLottoInfo(lotto, count);
     }
 
-    private void winningLotto() {
+    private void getWinningLotto() {
         String winningNumber = input(WINNING_NUMBER.getMessage());
 
         try {
@@ -56,19 +58,24 @@ public class LottoController {
             winningLotto = new WinningLotto(stringToList(winningNumber));
 
         } catch (IllegalArgumentException exception) {
-            OutputView.error(exception.getMessage());
-            winningLotto();
+            OutputView.printError(exception.getMessage());
+            getWinningLotto();
         }
     }
 
-    private void bonusLotto() {
+    private void getBonusLotto() {
         String bonus = input(BONUS_NUMBER.getMessage());
 
         try {
             bonusNumber = new BonusNumber(stringToInt(bonus), winningLotto.getWinning());
         } catch (IllegalArgumentException exception) {
-            OutputView.error(exception.getMessage());
-            bonusLotto();
+            OutputView.printError(exception.getMessage());
+            getBonusLotto();
         }
+    }
+
+    private void showWinningResult() {
+        WinningResult.checkWinning(bonusNumber.getBonus(), winningLotto.getWinning(), lottos.getLottos());
+        OutputView.printResultStatistics();
     }
 }

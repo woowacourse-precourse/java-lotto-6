@@ -4,6 +4,7 @@ import static lotto.constants.ExceptionMessage.IS_DUPLICATED;
 import static lotto.constants.ExceptionMessage.IS_INSUFFICIENT;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,7 +12,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicated(numbers);
-        numbers.stream().sorted();
+        numbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
         this.numbers = numbers;
     }
 

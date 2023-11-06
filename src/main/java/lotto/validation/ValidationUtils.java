@@ -105,5 +105,21 @@ public class ValidationUtils {
         }
     }
 
+    public boolean validateBonusNumber(String bonusNumber) {
+        // 숫자인지, 1에서 45사이 인지
+        try {
+            int number = Integer.parseInt(bonusNumber);
+
+            if (number < 1 || 45 < number) {
+                throw new IllegalArgumentException();
+            }
+
+            return true;
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR] " + "1부터 45 사이의 정수만 입력가능 합니다.");
+        }
+
+        return false;
+    }
 
 }

@@ -21,7 +21,7 @@ public class LottoController {
     }
 
     public void startLotto() {
-        int money = lottoView.inputMoney();
+        int money = lottoView.inputMoney(); // 나중에 문자열로 바꿔서 검증유틸에서 모두 처리하도록?
         boolean isValid = validationUtils.validateUserAmount(money);
 
         while(!isValid) {
@@ -42,7 +42,16 @@ public class LottoController {
         }
 
         // 보너스 번호 입력 받기
-        // 입력 예외 처리(잘못된 입력 시 다시 입력)
+        String bonusNumber = lottoView.inputBonusNumber();
+        isValid = validationUtils.validateBonusNumber(bonusNumber);
+        while(!isValid) {
+            bonusNumber = lottoView.inputBonusNumber();
+            isValid = validationUtils.validateBonusNumber(bonusNumber);
+        }
+
+        // 당첨 번호와 겹치는 번호가 없는지 확인 필요
+
+
 
         // 구입 로또와 당첨번호 비교해서 결과 담는 클래스 생성
         // 결과를 뷰로 넘겨서 일치여부 출력하고 수익률 출력하고 종료

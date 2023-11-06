@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class TicketsAmountTest {
+    @DisplayName("2000원을 입력하면 로또는2장, 금액은 2000원이 저장된다.")
     @Test
     void testTicketsAmountWithValidInput() {
         // Arrange

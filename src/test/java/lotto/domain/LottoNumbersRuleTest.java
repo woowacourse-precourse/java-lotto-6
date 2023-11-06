@@ -2,9 +2,14 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoNumbersRuleTest {
 
@@ -17,6 +22,25 @@ class LottoNumbersRuleTest {
 
         // then
         assertEquals(expected, result);
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @MethodSource("provideDataForIsLottoNumbersSizeMismatched")
+    @DisplayName("로또 번호가 6개가 아닌가: 아닌 경우 true, 6개 이면 false")
+    void givenNumbers_whenIsLottoNumbersSizeMismatched_thenReturnResult(List<Integer> numbers, boolean expected) {
+        // when
+        boolean result = LottoNumbersRule.isLottoNumbersSizeMismatched(numbers);
+
+        // then
+        assertEquals(expected, result);
+    }
+
+    static Stream<Arguments> provideDataForIsLottoNumbersSizeMismatched() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5), true),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7), true),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), false)
+        );
     }
 
 }

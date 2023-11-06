@@ -20,7 +20,12 @@ public class LottoBuyer {
 
     public void inputPurchaseAmount() {
         System.out.print(REQUEST_INPUT_MESSAGE);
-        buyLotto(Console.readLine());
+        try {
+            buyLotto(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+            inputPurchaseAmount();
+        }
     }
 
     public void buyLotto(String inputAmount) {

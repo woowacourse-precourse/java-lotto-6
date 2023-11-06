@@ -10,6 +10,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractMasterDetailListProcessor;
 
 public class LottoManager {
     private int bonusNumber;
@@ -87,10 +88,14 @@ public class LottoManager {
 
     public void inputBonusNumber() {
         System.out.print(LottoManagerMsg.INPUT_BONUS_NUMBERS.getDescription());
-        String inputNumber = Console.readLine();
-        List<String> numberToStream = Arrays.stream(inputNumber.split(",")).toList();
-
-        setBonusNumber(numberToStream);
+        try {
+            String inputNumber = Console.readLine();
+            List<String> numberToStream = Arrays.stream(inputNumber.split(",")).toList();
+            setBonusNumber(numberToStream);
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+            inputBonusNumber();
+        }
     }
 
     public List<Integer> createLottoNumber() {
@@ -112,10 +117,15 @@ public class LottoManager {
 
     public void inputWinningNumbers() {
         System.out.print(LottoManagerMsg.INPUT_WINNING_NUMBERS.getDescription());
-        String stringWinningNumbers = Console.readLine();
-        List<String> listToStream = Arrays.stream(stringWinningNumbers.split(",")).toList();
+        try {
+            String stringWinningNumbers = Console.readLine();
+            List<String> listToStream = Arrays.stream(stringWinningNumbers.split(",")).toList();
+            setWinningNumbers(listToStream);
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+            inputWinningNumbers();
+        }
 
-        setWinningNumbers(listToStream);
     }
 
     public void setWinningNumbers(List<String> numbers) {

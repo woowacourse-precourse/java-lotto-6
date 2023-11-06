@@ -10,11 +10,12 @@ public class WinningLotto {
     private static final Integer WINNING_LOTTO_SIZE = 7;
 
     private final Lotto winningLotto;
-    private final Integer bonusNumber
+    private final Integer bonusNumber;
 
 
     public WinningLotto(List<Integer> winningLotto, Integer bonusNumber) {
         this.winningLotto = new Lotto(winningLotto);
+        validateBonusNumber(winningLotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

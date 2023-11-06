@@ -45,6 +45,18 @@ class MoneyTest {
         assertThrows(MoneyException.class, () -> Money.from(inputMoney));
     }
 
+    @DisplayName("1000원 단위로 금액이 입력되었을때 정상 수행되는지 확인")
+    @Test
+    void createMoneyByDivisible() {
+        //given
+        String inputMoney = "1000";
+
+        //when
+        Money money = Money.from(inputMoney);
+
+        //then
+        assertThat(money.getMoney()).isEqualTo(1000);
+    }
 
     @DisplayName("공백이 포함된 금액을 입력했을때 예외발생하는지 확인")
     @Test

@@ -42,14 +42,14 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
 
 ✅ 입력 기능
 
-- [ ] 입력 기능
+- [x] 입력 기능
 
 ✅ 출력 기능
 
 - [x] 로또 구입 수량 출력 기능
-- [ ] 발행한 로또 번호 출력 기능
+- [x] 발행한 로또 번호 출력 기능
 - [x] 당첨 통계 출력 기능
-- [ ] 당첨 내역 출력 기능
+- [x] 당첨 내역 출력 기능
 - [x] 총 수익률 출력 기능
 
 ✅ 입력 검사 기능
@@ -64,9 +64,9 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
     - [x] [ERROR] 6개가 아닌 경우
     - [x] [ERROR] 중복된 경우
 - 보너스 번호 검사 기능
-    - [ ] [ERROR] 숫자가 아닌 경우
-    - [ ] [ERROR] 1~45 사이의 값이 아닌 경우
-    - [ ] [ERROR] 당첨 번호와 중복된 경우
+    - [x] [ERROR] 숫자가 아닌 경우
+    - [x] [ERROR] 1~45 사이의 값이 아닌 경우
+    - [x] [ERROR] 당첨 번호와 중복된 경우
 - [x] 들어온 String을 List 로 변환하는 기능
 
 ✅ 로또 발행 기능

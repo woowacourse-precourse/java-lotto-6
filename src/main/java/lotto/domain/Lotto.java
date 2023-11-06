@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +10,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplication(numbers);
+        validateLottoNumbersDuplication(numbers);
+        validateLottoNumberRange(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
@@ -26,12 +24,20 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    private void validateDuplication(List<Integer> numbers) {
+    private void validateLottoNumbersDuplication(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateLottoNumberRange(List<Integer> numbers) {
+        numbers.forEach(item -> {
+            if (item < 1 || item > 45) {
+                throw new IllegalArgumentException();
+            }
+        });
     }
 
 

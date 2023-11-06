@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class InputTest {
     @DisplayName("구매 금액 입력시 비정상적인 문자열을 받는 경우")
     @Test
-    void nonNumericCharInInput() {
+    void illigalPurchaseAmountInput() {
         Input input = new Input();
 
         // 정상적인 경우 테스트
@@ -39,6 +39,8 @@ public class InputTest {
         assertThatThrownBy(() -> input.purchaseAmountInput("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test

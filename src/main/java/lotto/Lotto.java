@@ -10,11 +10,20 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static List<Lotto> generateRandomLotto(int number) {
+        // TODO: 미구현
+        return null;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        // TODO: numbers 내부 중복 값 검증 필요
     }
 
-    // TODO: 추가 기능 구현
+    public LottoMatchResult matchWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        return null;
+    }
 }

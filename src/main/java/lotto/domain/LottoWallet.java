@@ -57,6 +57,11 @@ public class LottoWallet {
         return roundToTwoDecimalPlaces(profitRate);
     }
 
+    private double roundToTwoDecimalPlaces(double value) {
+        return Math.round(value * 10) / 10.0;
+    }
+
+
 
 
 }

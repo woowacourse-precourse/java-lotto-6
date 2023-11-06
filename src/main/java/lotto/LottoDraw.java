@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.constant.DrawMessage;
+import lotto.constant.LottoRank;
 import lotto.domain.*;
 import lotto.service.PrintUtil;
 
@@ -59,13 +60,17 @@ public class LottoDraw {
             String checkBonus = lottoStatistics.compareLottoNumbersWithBonusNumber(lottoNumbers[i], bonusNumber);
 
             if (winCount < 3) continue;
-            if (winCount != 5) checkBonus = "NoBonus";
-
-            String getKey = winCount + checkBonus;
-            summary.put(getKey, summary.getOrDefault(getKey, 0) + 1);
-            lottoPrizeSummary.put(winCount, summary);
+            implementCount(summary, winCount, checkBonus);
         }
         return summary;
+    }
+
+    public void implementCount(Map<String, Integer> summary, int winCount, String checkBonus) {
+        if (winCount != 5) checkBonus = "NoBonus";
+
+        String getKey = winCount + checkBonus;
+        summary.put(getKey, summary.getOrDefault(getKey, 0) + 1);
+        lottoPrizeSummary.put(winCount, summary);
     }
 
     public void printLottoResults() {

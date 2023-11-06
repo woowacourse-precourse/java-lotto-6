@@ -23,6 +23,9 @@ public class Lotto {
         return numbers.contains(num);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
     @Override
     public String toString() {
         List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());

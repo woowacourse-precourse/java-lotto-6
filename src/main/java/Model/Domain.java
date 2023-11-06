@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Domain {
     private final Service SERVICE = Service.getInstance();
-    public final List<Integer> NUMBERS = SERVICE.lottoGenerator();
+
     public static final int LOTTO_PRICE = 1000;
-    public int BONUS_NUMBER = SERVICE.numberGenerator();
+    public List<Integer> lottoWinningNumber;
+    public int bonusNumber;
     public int price;
-    public int lottoNumber;
     public double revenueRate;
 
     private List<Lotto> myLotto;

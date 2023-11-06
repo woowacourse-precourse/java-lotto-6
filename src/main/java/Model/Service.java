@@ -29,7 +29,7 @@ public class Service {
     }
 
     public int numberFrequencyCount(List<Integer> list) {
-        Set<Integer> set = new HashSet<>(DOMAIN.NUMBERS);
+        Set<Integer> set = new HashSet<>(DOMAIN.lottoWinningNumber);
         return (int) list.stream()
                 .filter(set::contains)
                 .count();
@@ -44,5 +44,9 @@ public class Service {
 
     public void setPrice(int price) {
         DOMAIN.price = price;
+    }
+
+    public void setLottoWinningNumber(List<Integer> lottoWinningNumber) {
+        DOMAIN.lottoWinningNumber = lottoWinningNumber;
     }
 }

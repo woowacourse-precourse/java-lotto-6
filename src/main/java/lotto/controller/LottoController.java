@@ -6,6 +6,7 @@ import lotto.domain.NumberMatcher;
 import lotto.domain.User;
 import lotto.io.InputStream;
 import lotto.io.OutputStream;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import java.util.List;
@@ -48,7 +49,7 @@ public class LottoController {
         outputView.printEmptyLine();
     }
 
-    public void inputWinningInfo() {
+    public void inputWinningNumbers() {
         while (true) {
             try {
                 outputView.printWinningNumbersInputMessage();
@@ -60,5 +61,21 @@ public class LottoController {
                 outputView.print(e.getMessage());
             }
         }
+    }
+
+    public void inputBonusNumber() {
+        List<Integer> answerNumbers = numberMatcher.getAnswerNumbers();
+        while (true) {
+            try {
+                outputView.printBonusNumberInputMessage();
+                int bonusNumber = inputView.inputBonusNumber();
+                Validator.checkDuplicated(answerNumbers, bonusNumber);
+                this.numberMatcher.setBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
+        outputView.printEmptyLine();
     }
 }

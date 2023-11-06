@@ -30,4 +30,8 @@ public class OutputView {
     public void printWinningNumbersInputMessage() {
         outputStream.print(Message.INPUT_WINNING_NUMBERS.get());
     }
+
+    public void printBonusNumberInputMessage() {
+        outputStream.print(Message.INPUT_BONUS_NUMBER.get());
+    }
 }

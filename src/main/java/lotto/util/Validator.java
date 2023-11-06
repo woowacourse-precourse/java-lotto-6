@@ -4,7 +4,6 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.Format;
 import lotto.constant.LottoFigure;
 import lotto.constant.Value;
-import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
@@ -12,12 +11,15 @@ public class Validator {
     private static final int ZERO = Value.ZERO.get();
     private static final int DELIMITER_COUNT = LottoFigure.LOTTO_NUMBER_COUNT.get() - 1;
 
-    public static int checkLottoNumber(String input) throws IllegalArgumentException {
-        int positive = checkPositive(checkInteger(input));
-        if (positive < LottoFigure.START_NUMBER.get() || positive > LottoFigure.END_NUMBER.get()) {
+    public static int checkLottoNumberInput(String input) throws IllegalArgumentException {
+        return checkLottoRange((checkInteger(input)));
+    }
+
+    public static int checkLottoRange(int number) {
+        if (number < LottoFigure.START_NUMBER.get() || number > LottoFigure.END_NUMBER.get()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE.get());
         }
-        return positive;
+        return number;
     }
 
     public static int checkInteger(String input) throws IllegalArgumentException {
@@ -35,6 +37,12 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_ERROR.get());
         }
         return number;
+    }
+
+    public static void checkDuplicated(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATED.get());
+        }
     }
 
     public static void checkThousandDivision(int number) {

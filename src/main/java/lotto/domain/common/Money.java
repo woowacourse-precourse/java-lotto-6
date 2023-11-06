@@ -7,8 +7,8 @@ public class Money {
     private static final int NEGATIVE_STANDARD = 0;
     private static final String NEGATIVE_MONEY_MESSAGE = "돈은 음수가 될 수 없습니다.";
     private static final String UNKNOWN_MONEY_MESSAGE = "알 수 없는 돈과 해당 연산을 수행할 수 없습니다.";
+    private static final String DIVIDE_WITH_ZERO_MESSAGE = "0원으로 나눌 수 없습니다.";
     public static final String CURRENCY = "원";
-    public static final String DIVIDE_WITH_ZERO_MESSAGE = "0원으로 나눌 수 없습니다.";
 
     private final long value;
 

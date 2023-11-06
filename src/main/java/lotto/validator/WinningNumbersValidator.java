@@ -30,22 +30,22 @@ public class WinningNumbersValidator {
     }
 
     private List<Integer> splitWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(NUMBER_SPLITOR.pattern()))
+        return Arrays.stream(winningNumbers.split(NUMBER_SEPARATOR.pattern()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     private void containsInvalidRangeNumberInWinningNumbers(List<Integer> winningNumbers) {
         for (int winningNumber : winningNumbers) {
-            if (winningNumber < MIN_LOTTO_NUMBER.value() || MAX_LOTTO_NUMBER.value() < winningNumber) {
-                throw new IllegalArgumentException(LOTTO_ERROR.message());
+            if (winningNumber < MIN_WINNING_NUMBER.value() || MAX_WINNING_NUMBER.value() < winningNumber) {
+                throw new IllegalArgumentException(WINNING_NUMBERS_RANGE_ERROR.message());
             }
         }
     }
 
     private void hasDuplicatesInWinningNumbers(List<Integer> winningNumbers) {
         if (isDuplicate(winningNumbers)) {
-            throw new IllegalArgumentException(LOTTO_ERROR.message());
+            throw new IllegalArgumentException(WINNING_NUMBERS_DUPLICATE_ERROR.message());
         }
     }
 

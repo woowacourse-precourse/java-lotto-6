@@ -6,7 +6,7 @@ public enum Criteria {
 
     private final int criteria;
 
-    private Criteria(int criteria) {
+    Criteria(int criteria) {
         this.criteria = criteria;
     }
 

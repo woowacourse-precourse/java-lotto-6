@@ -18,19 +18,19 @@ public class WinningNumbers {
     private static final WinningNumbersValidator WINNING_NUMBERS_VALIDATOR = new WinningNumbersValidator();
     private static final BonusNumberValidator BONUS_NUMBER_VALIDATOR = new BonusNumberValidator();
 
-    private WinningNumbers(String winningNumbers) {
-        this.winningNumbers = splitWinningNumbers(winningNumbers);
+    private WinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
     }
 
-    private List<Integer> splitWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(NUMBER_SPLITOR.pattern()))
+    private static List<Integer> splitNumbers(String numbers) {
+        return Arrays.stream(numbers.split(NUMBER_SEPARATOR.pattern()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public static WinningNumbers from(String winningNumbers) {
+        public static WinningNumbers from(String winningNumbers) {
         WINNING_NUMBERS_VALIDATOR.validate(winningNumbers);
-        return new WinningNumbers(winningNumbers);
+        return new WinningNumbers(splitNumbers(winningNumbers));
     }
 
     public void createBonusNumber(String bonusNumber) {

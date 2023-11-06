@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import static lotto.util.Constants.*;
+import static util.Constants.*;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.util.StringToNumberConvertor;
+import util.StringToNumberConvertor;
 
 public class WinningNumbers {
 

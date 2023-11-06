@@ -1,4 +1,4 @@
-package lotto.util;
+package util;
 
 public enum UtilErrorMessages {
 

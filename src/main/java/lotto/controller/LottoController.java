@@ -14,11 +14,20 @@ public class LottoController {
         printPurchaseLottoCount(lottoCount);
 
         GenerateLotto generateLotto = getLottoTickets(lottoCount);
-        printLottoTickets(generateLotto.getLottos());
+        List<Lotto> lottos = generateLotto.getLottos();
+        printLottoTickets(lottos);
 
         WinningLotto winningLotto = getWinningLotto();
+        List<Integer> winnerNumber = winningLotto.getWinnerNumber();
 
         BonusLotto bonusLotto = getBonusLotto(winningLotto.getWinnerNumber());
+        int bonusNumber = bonusLotto.getBonusLotto();
+
+        ResultLotto resultLotto = new ResultLotto();
+        for (Lotto lotto : lottos) {
+            resultLotto.addResult(lotto, winnerNumber, bonusNumber);
+        }
+        printMatchLotto(resultLotto);
     }
 
     private PurchaseLotto getPurChaseAmount() {

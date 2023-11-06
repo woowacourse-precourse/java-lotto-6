@@ -1,5 +1,7 @@
 package lotto.Model;
 
+import static lotto.Model.LottoRangeStorage.MIN_NUM;
+
 import java.util.List;
 import lotto.View.ExceptionMessage;
 import lotto.Controller.InputController;
@@ -25,7 +27,7 @@ public class BonusNumber {
         }
     }
     private void validateRange(int bonus){
-        if(bonus < ExceptionMessage.MIN_NUM || bonus > ExceptionMessage.MAX_NUM ){
+        if(bonus < LottoRangeStorage.MIN_NUM || bonus > LottoRangeStorage.MAX_NUM ){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER);
         }
     }

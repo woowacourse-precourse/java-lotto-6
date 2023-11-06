@@ -28,13 +28,13 @@ public class Lotto {
         }
     }
     private void validateLength(List<Integer> numbers){
-        if (numbers.size() != ExceptionMessage.LOTTO_LENGTH) {
+        if (numbers.size() != LottoRangeStorage.LOTTO_LENGTH) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_LENGTH);
         }
     }
     private  void validateScope(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < ExceptionMessage.MIN_NUM|| number > ExceptionMessage.MAX_NUM) {
+            if (number < LottoRangeStorage.MIN_NUM|| number > LottoRangeStorage.MAX_NUM) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_SCOPE);
             }
         }

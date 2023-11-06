@@ -48,7 +48,6 @@ enum LottoPrize {
     }
     public  void printMessage(int count){
         if (this != FAIL){
-            //System.out.println(description);
             OuputView.printDescription(description);
         }
     }

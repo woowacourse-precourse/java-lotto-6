@@ -32,8 +32,7 @@ public class OutputView {
     }
 
     public void readEarningRate(int inputMoney, long totalEarnings) {
-        double rate = (double)totalEarnings/(double) inputMoney;
-        rate = Math.round((rate*10))/10.0;
-        System.out.println(FRONT_EARNING_RATE_MESSAGE+rate+BACK_EARNING_RATE_MESSAGE);
+        double percent = (double)totalEarnings/(double) inputMoney *100.0;
+        System.out.println(FRONT_EARNING_RATE_MESSAGE+String.format("%.1f",percent)+BACK_EARNING_RATE_MESSAGE);
     }
 }

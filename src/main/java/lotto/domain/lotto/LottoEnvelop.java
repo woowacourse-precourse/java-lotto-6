@@ -36,6 +36,7 @@ public class LottoEnvelop {
             lottoInformation = getLottoInformation(lotto);
             appendLottoInformation(lottoInformation, information);
         }
+        
         return information;
     }
 

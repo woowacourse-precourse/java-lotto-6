@@ -14,6 +14,6 @@ public class LottoGame {
 
     public void start() {
         outputView.askForPurchaseAmount();
-        String amount = inputView.getPurchaseAmount();
+        int amount = inputView.getPurchaseAmount();
     }
 }

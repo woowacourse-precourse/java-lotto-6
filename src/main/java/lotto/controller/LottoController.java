@@ -23,10 +23,10 @@ public class LottoController {
     }
 
     public void run() {
-        User user = ExceptionHandler.input(this::createUser);
+        User user = createUser();
         outputView.lottoQuantityAndNumber(user.getLotto());
 
-        WinningNumbers winningNumbers = getWinningNumbers();
+        WinningNumbers winningNumbers = createWinningNumbers();
         Map<Prize, Integer> rewardCount = lottoService.getRewardCount(user.getLotto(), winningNumbers);
         outputView.winningRecord(rewardCount);
 
@@ -34,19 +34,19 @@ public class LottoController {
         outputView.rewardRatioRecord(rewardRatio);
     }
 
-    private User createUser() {
-        CreateUserDto createUserDto = checkUser();
+    User createUser() {
+        CreateUserDto createUserDto = ExceptionHandler.input(this::checkUser);
         createUserDto.setPublishedLotto(lottoService.publish(createUserDto.getQuantity()));
         return User.create(createUserDto);
     }
 
-    private CreateUserDto checkUser() {
-        long purchaseAmount = ExceptionHandler.input(inputView::getPurchaseAmount);
+    CreateUserDto checkUser() {
+        long purchaseAmount = inputView.getPurchaseAmount();
         CreateUserDto createUserDto = new CreateUserDto(purchaseAmount);
         return createUserDto;
     }
 
-    private WinningNumbers getWinningNumbers() {
+    WinningNumbers createWinningNumbers() {
         Set<Integer> originalWinningNumbers = ExceptionHandler.input(inputView::getOriginalWinningNumbers);
         int bonusNumber = ExceptionHandler.process(inputView::getBonusNumber, originalWinningNumbers);
         return lottoService.getWinningNumbers(originalWinningNumbers, bonusNumber);

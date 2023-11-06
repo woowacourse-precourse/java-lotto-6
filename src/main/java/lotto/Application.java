@@ -59,6 +59,10 @@ public class Application {
 		try {
 			System.out.println("보너스 번호를 입력해 주세요.");
 			bonusNumber = readNumber();
+
+			if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
+				throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
+			}
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setBonusNumber();
@@ -70,9 +74,6 @@ public class Application {
 		try {
 			number = Integer.parseInt(Console.readLine());
 
-			if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
-				throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
-			}
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
 		}

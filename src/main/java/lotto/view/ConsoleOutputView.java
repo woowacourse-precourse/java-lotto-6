@@ -4,10 +4,13 @@ import static lotto.view.LottoGameMessage.COUNT_OF_PURCHASED_LOTTO;
 import static lotto.view.LottoGameMessage.REQUEST_BONUS_LOTTO_NUMBER;
 import static lotto.view.LottoGameMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.view.LottoGameMessage.REQUEST_WINNING_LOTTO_NUMBERS;
+import static lotto.view.LottoGameMessage.TOTAL_RETURN;
 import static lotto.view.LottoGameMessage.WINNING_STATISTICS;
 
 import lotto.dto.LottoNumbersDTO;
 import lotto.dto.LottoRankResultDTO;
+import lotto.dto.LottoTotalReturnDTO;
+import lotto.model.LottoRankResult;
 
 public class ConsoleOutputView {
     public void requestPurchaseAmount() {
@@ -42,6 +45,10 @@ public class ConsoleOutputView {
     public void printWinningNumberCount(LottoRankResultDTO lottoRankResultDTO) {
         System.out.printf(lottoRankResultDTO.getRankMessage(), lottoRankResultDTO.getCount());
         printBlankLine();
+    }
+
+    public void printTotalReturn(LottoTotalReturnDTO lottoTotalReturnDTO) {
+        System.out.printf(TOTAL_RETURN.getMessage(), lottoTotalReturnDTO.getTotalReturn());
     }
 
     private void printBlankLine() {

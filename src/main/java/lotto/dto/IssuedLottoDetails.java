@@ -20,7 +20,7 @@ public class IssuedLottoDetails {
     }
 
     public int getLottosQuantity() {
-        return lottos.size();
+        return quantity;
     }
 
     public List<String> getLottos() {

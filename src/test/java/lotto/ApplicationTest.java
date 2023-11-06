@@ -23,7 +23,13 @@ class ApplicationTest extends NsTest {
         Prize.FOUR.setCount(0);
         Prize.THREE.setCount(0);
     }
-
+    @Test
+    void 구입금액_숫자_테스트() {
+        assertSimpleTest(() -> {
+            runException("asdf");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Test
     void 구입금액_천원단위_테스트() {

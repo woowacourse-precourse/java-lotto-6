@@ -30,6 +30,8 @@ class LottoTest {
         assertThat(lotto1.compare(lotto2, 10)).isEqualTo(Rank.THIRD);
         Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto1.compare(lotto3, 10)).isEqualTo(Rank.FIRST);
+        Lotto lotto4 = new Lotto(List.of(6, 5, 8, 9, 10, 11));
+        assertThat(lotto1.compare(lotto4, 1)).isEqualTo(Rank.LOSE);
     }
 
     // 아래에 추가 테스트 작성 가능

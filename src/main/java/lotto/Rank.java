@@ -5,7 +5,8 @@ public enum Rank {
     SECOND(5.5f, 30000000),
     THIRD(5, 1500000),
     FOURTH(4, 50000),
-    FIFTH(3, 5000);
+    FIFTH(3, 5000),
+    LOSE(0, 0);
 
     private float matchCount;
     private int prize;
@@ -15,6 +16,9 @@ public enum Rank {
     }
 
     public boolean equals(float matchCount) {
+        if (this == Rank.LOSE && matchCount < Rank.FIFTH.matchCount) {
+            return true;
+        }
         return this.matchCount == matchCount;
     }
 }

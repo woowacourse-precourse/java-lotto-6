@@ -23,4 +23,11 @@ public enum LottoResult {
         return this.matchCount == matchCount;
     }
 
+    public static LottoResult valueOf(int matchCount, boolean bonusMatch) {
+        return Arrays.stream(values())
+                .filter(lottoResult -> lottoResult.check(matchCount, bonusMatch))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
 }

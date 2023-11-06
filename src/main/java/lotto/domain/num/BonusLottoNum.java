@@ -8,8 +8,8 @@ import lotto.utill.Utii;
 public class BonusLottoNum {
     private Integer bonusNum;
 
-    public BonusLottoNum(String bonusNum) {
-        this.bonusNum = Integer.valueOf(bonusNum);
+    public BonusLottoNum(Integer bonusNumber) {
+        this.bonusNum = bonusNumber;
     }
 
     /**

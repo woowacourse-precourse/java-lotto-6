@@ -3,6 +3,8 @@ package lotto.domain.num;
 import lotto.config.Config;
 import lotto.utill.Utii;
 
+import java.util.List;
+
 /**
  * 당첨 번호와 보너스 번호들의 모임 클래스
  */
@@ -13,9 +15,9 @@ public class LottoTargetNumResults {
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
-    public LottoTargetNumResults(String strOfPickWinNum, String strOfPickBonusNum) {
-        this.winLottoNums = Config.winLottoNums(strOfPickWinNum);
-        this.bonusLottoNum = Config.bonusLottoNum(strOfPickBonusNum);
+    public LottoTargetNumResults(List<Integer> winNumbers, Integer bonusNumber) {
+        this.winLottoNums = Config.winLottoNums(winNumbers);
+        this.bonusLottoNum = Config.bonusLottoNum(bonusNumber);
     }
 
     // TODO: 11/5/23 삭제 해도 될꺼 같다. 확인 

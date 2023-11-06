@@ -10,23 +10,11 @@ import java.util.stream.Collectors;
  * 당첨 번호 클래스
  */
 public class WinLottoNums {
-    private static final String COMMA_REGEX = ",";
     private List<Integer> winLottoNums;
 
-    public WinLottoNums(String numLine) {
-        String[] numArr = makeArrFromStrLine(numLine);
+    public WinLottoNums(List<Integer> winLottoNums) {
 
-        winLottoNums = makeIntListFromStrArr(numArr);
-    }
-
-    private String[] makeArrFromStrLine(String numLine) {
-        return numLine.split(COMMA_REGEX);
-    }
-
-    private List<Integer> makeIntListFromStrArr(String[] numArr) {
-        return Arrays.stream(numArr)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        this.winLottoNums = winLottoNums;
     }
 
     /**

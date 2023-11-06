@@ -53,7 +53,7 @@ public class ResultCalculator {
         int totalProfit = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        profitRate = (double) totalProfit / amount;
+        profitRate = (double) totalProfit / amount * 100;
     }
 
     public double getProfitRate() { return profitRate; }

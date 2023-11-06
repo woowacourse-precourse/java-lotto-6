@@ -2,7 +2,7 @@ package lotto.exception;
 
 public enum Message {
     BONUS_SIZE("하나의 숫자만 입력해 주시요"),
-    NUMBER_EMPTY("입력을 비울 수 없습니다."),
+    NUMBER_EMPTY("공백을 입력할 수 없습니다."),
     NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     NUMBER_SIZE("6자리를 기입해 주세요."),
     NUMBER_UNIQUE("중복되는 숫자가 존재합니다."),

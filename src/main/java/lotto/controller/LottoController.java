@@ -2,9 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.BonusNumber;
-import lotto.model.LottoConstants;
 import lotto.model.LottoTicket;
-import lotto.model.MoneyValidator;
+import lotto.model.Money;
 import lotto.model.ResultDetails;
 import lotto.model.WinningNumbers;
 import lotto.model.WinningNumbersData;
@@ -24,8 +23,8 @@ public class LottoController {
     }
 
     public void play() {
-        int purchaseAmount = generateValidMoney();
-        int numberOfLottoPurchased = purchaseAmount / LottoConstants.LOTTO_PRICE_UNIT;
+        Money money = generateValidMoney();
+        int numberOfLottoPurchased = money.getNumberOfLottoPurchased();
 
         LottoTicket lottoTicket = LottoTicket.create(numberOfLottoPurchased);
 
@@ -36,16 +35,14 @@ public class LottoController {
 
         outputView.printWinningStatisticsHeader();
         outputView.printWinningStatistics(resultDetails);
-        outputView.printProfitRate(resultDetails.calculateProfitRate(purchaseAmount));
+        outputView.printProfitRate(resultDetails.calculateProfitRate(money.getMoney()));
     }
 
-    private int generateValidMoney() {
+    private Money generateValidMoney() {
         while (true) {
             try {
                 outputView.printPurchaseAmountMessage();
-                int purchaseAmount = inputView.inputNumber();
-                MoneyValidator.validateMoney(purchaseAmount);
-                return purchaseAmount;
+                return new Money(inputView.inputNumber());
             } catch (final IllegalArgumentException illegalArgumentException) {
                 outputView.printExceptionMessage(illegalArgumentException.getMessage());
             }

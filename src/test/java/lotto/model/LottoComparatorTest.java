@@ -24,12 +24,12 @@ class LottoComparatorTest {
         allLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
         // when
-        Map<LottoResult, Integer> allResult = new LinkedHashMap<>();
-        for (LottoResult init : LottoResult.values()) {
+        Map<LottoRank, Integer> allResult = new LinkedHashMap<>();
+        for (LottoRank init : LottoRank.values()) {
             allResult.put(init, 0);
         }
         for (Lotto l : allLotto) {
-            LottoResult result = LottoComparator.getPlace(answer, l);
+            LottoRank result = LottoComparator.getPlace(answer, l);
             allResult.put(result, allResult.get(result) + 1);
         }
 

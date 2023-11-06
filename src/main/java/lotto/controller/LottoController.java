@@ -8,7 +8,7 @@ import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoComparator;
 import lotto.model.LottoGenerator;
-import lotto.model.LottoResult;
+import lotto.model.LottoRank;
 import lotto.model.LottoWithBonus;
 import lotto.model.Money;
 import lotto.util.Message;
@@ -35,7 +35,7 @@ public class LottoController {
         printGeneratedLotto(randomLotto);
         Lotto winningLotto = requestWinningLotto();
         LottoWithBonus winningLottoWithBonus = requestBonusNumberOf(winningLotto);
-        Map<LottoResult, Integer> allResult = compareLotto(winningLottoWithBonus, randomLotto);
+        Map<LottoRank, Integer> allResult = compareLotto(winningLottoWithBonus, randomLotto);
     }
 
     Money requestMoney() {
@@ -88,13 +88,13 @@ public class LottoController {
         }
     }
 
-    Map<LottoResult, Integer> compareLotto(LottoWithBonus answer, List<Lotto> randomLotto) {
-        Map<LottoResult, Integer> allResult = new LinkedHashMap<>();
-        for (LottoResult init : LottoResult.values()) {
+    Map<LottoRank, Integer> compareLotto(LottoWithBonus answer, List<Lotto> randomLotto) {
+        Map<LottoRank, Integer> allResult = new LinkedHashMap<>();
+        for (LottoRank init : LottoRank.values()) {
             allResult.put(init, 0);
         }
         for (Lotto lotto : randomLotto) {
-            LottoResult result = LottoComparator.getPlace(answer, lotto);
+            LottoRank result = LottoComparator.getPlace(answer, lotto);
             allResult.put(result, allResult.get(result) + 1);
         }
         return allResult;

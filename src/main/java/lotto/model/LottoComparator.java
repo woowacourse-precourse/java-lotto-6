@@ -1,15 +1,15 @@
 package lotto.model;
 
 public class LottoComparator {
-    public static LottoResult getPlace(LottoWithBonus answer, Lotto lotto) {
+    public static LottoRank getPlace(LottoWithBonus answer, Lotto lotto) {
         Long sameNumbers = answer.countSameNumbers(lotto);
         Boolean hasBonusNumber = answer.checkBonusNumberOf(lotto);
-        for (LottoResult result : LottoResult.values()) {
+        for (LottoRank result : LottoRank.values()) {
             if (result.getSameNumbers().equals(sameNumbers) && (!result.mustCheckBonus() || hasBonusNumber)) {
                 return result;
             }
         }
-        return LottoResult.NO_PRIZE;
+        return LottoRank.NO_PRIZE;
     }
 
 }

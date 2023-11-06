@@ -1,14 +1,20 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class User {
 
     private int money;
     private int ticketCount;
+    private List<Lotto> lottos;
 
     User(){
         getMoney();
+    }
+
+    public void getRandomLotto(){
+
     }
 
     private void getMoney(){
@@ -18,7 +24,7 @@ public class User {
                 this.ticketCount = getTicketCount(money);
                 return;
             } catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 구매 금액은 천원 단위로 입력해주세요.");
+                System.out.println(Message.ERROR_MESSAGE + " " + Message.ONE_HUNDRED_DIVIDE);
             }
         }
     }

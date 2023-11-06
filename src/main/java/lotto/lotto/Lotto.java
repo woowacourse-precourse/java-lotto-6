@@ -23,6 +23,10 @@ public class Lotto {
         return new Lotto(lottoNumbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         checkNumbersCount(numbers);
         checkDuplicateNumbers(numbers);

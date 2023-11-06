@@ -20,6 +20,7 @@ public class MainController {
 
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
+        WinningResult winningResult = lottos.getWinningResult(winningNumber, bonusNumber);
     }
 
     private PurchaseAmount getPurchaseAmount() {

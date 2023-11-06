@@ -1,14 +1,21 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class PurchaseCost {
 
     private final long purchaseCost;
 
     public PurchaseCost(String purchaseCost) {
+        try{
+            validateNumber(purchaseCost);
+            validateNegativeNumber(purchaseCost);
+            validateNumberUnit(purchaseCost);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            new PurchaseCost(Console.readLine());
+        }
 
-        validateNumber(purchaseCost);
-        validateNegativeNumber(purchaseCost);
-        validateNumberUnit(purchaseCost);
         this.purchaseCost = Long.parseLong(purchaseCost)/1000;
     }
 

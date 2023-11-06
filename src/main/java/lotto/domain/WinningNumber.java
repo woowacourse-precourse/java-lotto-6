@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,14 +18,18 @@ public class WinningNumber {
     }
 
     public WinningNumber(String inputWinningNumber) {
-        validateSplitCheck(inputWinningNumber);
-        this.inputWinningNumber = inputWinningNumber;
-        validateIsNumber(inputWinningNumber);
-        validateRange(inputWinningNumber);
-        validateCount(inputWinningNumber);
-
-        winningNumber = new ArrayList<>();
-        setWinningNumberList(this.inputWinningNumber);
+        try{
+            validateSplitCheck(inputWinningNumber);
+            this.inputWinningNumber = inputWinningNumber;
+            validateIsNumber(inputWinningNumber);
+            validateRange(inputWinningNumber);
+            validateCount(inputWinningNumber);
+            winningNumber = new ArrayList<>();
+            setWinningNumberList(this.inputWinningNumber);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            new WinningNumber(Console.readLine());
+        }
     }
 
 

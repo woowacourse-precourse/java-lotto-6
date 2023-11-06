@@ -1,13 +1,20 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class BonusNumber {
 
-    private final int number;
+    private int number;
 
     public BonusNumber(String number) {
-        validateNumber(number);
-        validateRange(number);
-        this.number = Integer.parseInt(number);
+        try {
+            validateNumber(number);
+            validateRange(number);
+            this.number = Integer.parseInt(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            new BonusNumber(Console.readLine());
+        }
     }
 
     private static void validateNumber(String number){

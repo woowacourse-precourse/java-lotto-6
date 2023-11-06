@@ -23,12 +23,7 @@ public class WiningResultUtil {
     }
 
     public Map<String, Integer> calculateMatchCount(int bonus, RateOfReturn rateOfReturn){
-        matchCounts.put(WinningRate.FIFTH.getMessage(), 0);
-        matchCounts.put(WinningRate.FOURTH.getMessage(), 0);
-        matchCounts.put(WinningRate.THIRD.getMessage(), 0);
-        matchCounts.put(WinningRate.SECOND.getMessage(), 0);
-        matchCounts.put(WinningRate.FIRST.getMessage(), 0);
-        matchCounts.put(WinningRate.LOSE.getMessage(),0);
+        initMatchCounts();
         for (List<Integer> lottoNumbers : lottoNumber) {
             int matchCount = (int) lottoNumbers.stream()
                     .filter(winningNumber::contains)
@@ -44,7 +39,12 @@ public class WiningResultUtil {
     }
 
     private void initMatchCounts() {
-
+        matchCounts.put(WinningRate.FIFTH.getMessage(), 0);
+        matchCounts.put(WinningRate.FOURTH.getMessage(), 0);
+        matchCounts.put(WinningRate.THIRD.getMessage(), 0);
+        matchCounts.put(WinningRate.SECOND.getMessage(), 0);
+        matchCounts.put(WinningRate.FIRST.getMessage(), 0);
+        matchCounts.put(WinningRate.LOSE.getMessage(),0);
     }
 
 

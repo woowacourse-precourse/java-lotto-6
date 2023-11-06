@@ -7,11 +7,10 @@ import lotto.util.WiningResultUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.LongStream;
 
-public class InputService {
+public class GameService {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     GenerateLottoNumberUtil generateLottoNumberUtil = new GenerateLottoNumberUtil();
@@ -24,7 +23,7 @@ public class InputService {
     BonusNumber bonusNumber;
 
 
-    public InputService(){
+    public GameService(){
         //이 부분 controller로 빼기
        purchase();
        generateLottoNumber();

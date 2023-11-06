@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import lotto.service.InputService;
+import lotto.service.GameService;
 
 public class GameController {
-    InputService inputService;
+    GameService gameService;
 
     public GameController(){
-        inputService = new InputService();
+        gameService = new GameService();
     }
 
 }

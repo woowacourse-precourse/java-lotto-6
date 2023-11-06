@@ -9,7 +9,7 @@ public enum OutputMessage {
     SEPARATOR("---"),
     RESULT("%d개 일치 (%s원) - %d개\n"),
     BONUS_RESULT("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
-    TOTAL_RETURN("총 수익률은 %.2f%%입니다.\n");
+    TOTAL_RETURN("총 수익률은 %.1f%%입니다.\n");
 
     private final String message;
 

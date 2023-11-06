@@ -1,4 +1,4 @@
-package lotto.annotation.configuration;
+package lotto.context.container.implementation.annotationConfig.annotation.configuration;
 
 import java.io.File;
 import java.io.IOException;

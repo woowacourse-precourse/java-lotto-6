@@ -1,4 +1,4 @@
-package lotto.container.exception;
+package lotto.context.exception;
 
 public class UndefinedBeanConfigurationException extends BeanException {
     public UndefinedBeanConfigurationException(String beanName) {

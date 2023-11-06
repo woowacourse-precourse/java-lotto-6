@@ -1,7 +1,7 @@
 package lotto.config;
 
-import lotto.annotation.bean.Bean;
-import lotto.annotation.configuration.Configuration;
+import lotto.context.container.implementation.annotationConfig.annotation.bean.Bean;
+import lotto.context.container.implementation.annotationConfig.annotation.configuration.Configuration;
 import lotto.controller.LottoController;
 import lotto.controller.LottoControllerImpl;
 import lotto.service.LottoService;

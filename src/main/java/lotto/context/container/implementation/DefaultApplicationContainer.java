@@ -1,10 +1,10 @@
-package lotto.container.container.implementation;
+package lotto.context.container.implementation;
 
 import lotto.config.ApplicationConfig;
-import lotto.container.beanFactory.BeanFactory;
-import lotto.container.container.ApplicationContainer;
-import lotto.container.exception.NoSuchBeanException;
-import lotto.container.exception.UndefinedBeanConfigurationException;
+import lotto.context.beanFactory.BeanFactory;
+import lotto.context.container.ApplicationContainer;
+import lotto.context.exception.NoSuchBeanException;
+import lotto.context.exception.UndefinedBeanConfigurationException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -41,12 +41,8 @@ public class DefaultApplicationContainer implements ApplicationContainer {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getOrRegisterBean(String beanName) {
-        if (!factory.contains(beanName)) {
-            registerBeanByConfig(beanName);
-        }
-        return (T) factory.getBean(beanName);
+    public void remove(String beanName) {
+        factory.remove(beanName);
     }
 
     private void registerBeanByConfig(Class<?> beanClass) {
@@ -59,7 +55,7 @@ public class DefaultApplicationContainer implements ApplicationContainer {
 
         Object[] args = Arrays.stream(method.getParameters())
                 .map(param -> prefix(param.getType().getSimpleName()))
-                .map(this::getOrRegisterBean)
+                .map(this::getBean)
                 .toArray();
 
         factory.registerBean(beanName, () -> {

@@ -1,4 +1,4 @@
-package lotto.annotation.bean;
+package lotto.context.container.implementation.annotationConfig.annotation.bean;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

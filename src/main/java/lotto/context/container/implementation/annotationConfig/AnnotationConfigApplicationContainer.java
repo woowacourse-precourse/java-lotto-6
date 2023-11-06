@@ -1,27 +1,26 @@
-package lotto.container.container.implementation;
+package lotto.context.container.implementation.annotationConfig;
 
-import lotto.container.beanFactory.BeanFactory;
-import lotto.container.container.ApplicationContainer;
-import lotto.container.exception.NoSuchBeanException;
-import lotto.container.exception.UndefinedBeanConfigurationException;
-import lotto.annotation.bean.BeanScanner;
-import lotto.annotation.configuration.ConfigurationScanner;
-import lotto.container.container.Strategy;
+import lotto.context.beanFactory.BeanFactory;
+import lotto.context.container.ApplicationContainer;
+import lotto.context.exception.NoSuchBeanException;
+import lotto.context.exception.UndefinedBeanConfigurationException;
+import lotto.context.container.implementation.annotationConfig.annotation.bean.BeanScanner;
+import lotto.context.container.implementation.annotationConfig.annotation.configuration.ConfigurationScanner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class AnnotationApplicationContainer implements ApplicationContainer {
-    private final Strategy strategy;
+public class AnnotationConfigApplicationContainer implements ApplicationContainer {
+    private final LoadingStrategy loadingStrategy;
     private final BeanFactory factory;
     private final List<Class<?>> annotatedClasses;
     private final List<Method> annotatedMethods;
 
-    public AnnotationApplicationContainer(BeanFactory factory, Strategy strategy, String basePackage) {
+    public AnnotationConfigApplicationContainer(BeanFactory factory, LoadingStrategy loadingStrategy, String basePackage) {
         this.factory = factory;
-        this.strategy = strategy;
+        this.loadingStrategy = loadingStrategy;
         this.annotatedClasses = ConfigurationScanner.scan(basePackage);
         this.annotatedMethods = new ArrayList<>();
         init();
@@ -48,12 +47,8 @@ public class AnnotationApplicationContainer implements ApplicationContainer {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getOrRegisterBean(String beanName) {
-        if (!factory.contains(beanName)) {
-            registerBeanByAnnotation(beanName);
-        }
-        return (T) factory.getBean(beanName);
+    public void remove(String beanName) {
+        factory.remove(beanName);
     }
 
     private void init() {
@@ -62,10 +57,8 @@ public class AnnotationApplicationContainer implements ApplicationContainer {
             annotatedMethods.addAll(BeanScanner.scan(clazz));
         }
 
-        if (strategy.equals(Strategy.EAGER)) {
-            for (Method method : annotatedMethods) {
-                registerBeanByAnnotation(method.getName());
-            }
+        if (loadingStrategy.equals(LoadingStrategy.EAGER)) {
+            annotatedMethods.forEach(method -> registerBeanByAnnotation(method.getName()));
         }
     }
 
@@ -74,13 +67,11 @@ public class AnnotationApplicationContainer implements ApplicationContainer {
         factory.registerBean(beanName, getSupplier(configClass));
     }
 
-    @SuppressWarnings("unchecked")
-    private <T> Supplier<T> getSupplier(Class<?> clazz) {
+    private Supplier<?> getSupplier(Class<?> clazz) {
         return () -> {
             try {
-                return (T) clazz.getDeclaredConstructor().newInstance();
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
-                     InvocationTargetException e) {
+                return clazz.getDeclaredConstructor().newInstance();
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                 throw new UndefinedBeanConfigurationException(prefix(clazz.getSimpleName()));
             }
         };
@@ -91,14 +82,14 @@ public class AnnotationApplicationContainer implements ApplicationContainer {
 
         Object[] args = Arrays.stream(method.getParameters())
                 .map(param -> prefix(param.getType().getSimpleName()))
-                .map(this::getOrRegisterBean)
+                .map(this::getBean)
                 .toArray();
 
         factory.registerBean(beanName, () -> {
             try {
                 return method.invoke(getBean(method.getDeclaringClass()), args);
             } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
+                throw new UndefinedBeanConfigurationException(beanName);
             }
         });
     }
@@ -106,7 +97,7 @@ public class AnnotationApplicationContainer implements ApplicationContainer {
     private Method findBeanCreationMethod(String beanName) {
         return annotatedMethods.stream()
                 .filter(m -> m.getName().equals(beanName))
-                .findAny()
+                .findFirst()
                 .orElseThrow(() -> new UndefinedBeanConfigurationException(beanName));
     }
 
@@ -114,7 +105,6 @@ public class AnnotationApplicationContainer implements ApplicationContainer {
         if (input == null || input.isEmpty()) {
             return input;
         }
-
         char firstChar = Character.toLowerCase(input.charAt(0));
         return firstChar + input.substring(1);
     }

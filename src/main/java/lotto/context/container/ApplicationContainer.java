@@ -1,4 +1,4 @@
-package lotto.container.container;
+package lotto.context.container;
 
 public interface ApplicationContainer {
     int getBeanCount();
@@ -7,5 +7,5 @@ public interface ApplicationContainer {
 
     <T> T getBean(String beanName);
 
-    <T> T getOrRegisterBean(String beanName);
+    void remove(String beanName);
 }

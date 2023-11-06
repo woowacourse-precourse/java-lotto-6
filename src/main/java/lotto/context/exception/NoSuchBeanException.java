@@ -1,4 +1,4 @@
-package lotto.container.exception;
+package lotto.context.exception;
 
 public class NoSuchBeanException extends IllegalStateException {
     public NoSuchBeanException(String beanName) {

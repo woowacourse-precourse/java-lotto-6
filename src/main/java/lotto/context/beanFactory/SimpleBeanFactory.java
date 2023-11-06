@@ -1,6 +1,6 @@
-package lotto.container.beanFactory;
+package lotto.context.beanFactory;
 
-import lotto.container.exception.NoSuchBeanException;
+import lotto.context.exception.NoSuchBeanException;
 
 import java.util.HashMap;
 import java.util.Map;

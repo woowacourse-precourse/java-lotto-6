@@ -1,4 +1,4 @@
-package lotto.container.beanFactory;
+package lotto.context.beanFactory;
 
 import java.util.function.Supplier;
 

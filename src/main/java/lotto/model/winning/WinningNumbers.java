@@ -1,10 +1,11 @@
 package lotto.model.winning;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningNumbers {
     private static final String DUPLICATED_BONUS_NUMBER_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호와 다른 번호여야 합니다.";
+    private static final String DELIMITER_REGEX = ",";
 
     private final List<Integer> numbers;
     private int bonusNumber;
@@ -25,14 +26,11 @@ public class WinningNumbers {
     }
 
     private List<Integer> convertToNumbers(String inputNumbers) {
-        List<Integer> numbers = new ArrayList<>();
-
-        for (String number : inputNumbers.split(",")) {
-            numbers.add(Integer.parseInt(number));
-        }
-
-        return numbers;
+        return Arrays.stream(inputNumbers.split(DELIMITER_REGEX))
+                .map(Integer::parseInt)
+                .toList();
     }
+
 
     private void validateDuplicatedBonusNumber(String bonusNumber) {
         if (numbers.contains(Integer.parseInt(bonusNumber))) {

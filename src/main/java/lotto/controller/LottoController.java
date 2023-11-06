@@ -18,8 +18,8 @@ public class LottoController {
 
     public LottoController() {
         this.validator = new Validator();
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+        this.inputView = InputView.getInstance();
+        this.outputView = OutputView.getInstance();
         this.lottoManager = inputPurchaseMoney();
         this.referee = new Referee();
     }
@@ -42,7 +42,7 @@ public class LottoController {
         lottoManager.setWinningLotto(winningLotto);
     }
 
-    public void getLottoPrize() {
+    public void getLottoResult() {
         final List<Lotto> lottos = lottoManager.getLottos();
         final WinningLotto winningLotto = lottoManager.getWinningLotto();
         referee.judge(lottos, winningLotto);

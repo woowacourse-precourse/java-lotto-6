@@ -25,6 +25,12 @@ public class OutputView {
         String formattedMessage = String.format(ResponseMessage.PURCHASE_COUNT.getMessage(),
                 lottoTicket.getLottoCount());
         System.out.println(formattedMessage);
+
+        lottoTicket.getLottoTicket().stream()
+                .map(lotto -> lotto.getNumbers().toString())
+                .forEach(System.out::println);
+
+        System.out.println();
     }
 
     public static void printResponseWinningStats() {

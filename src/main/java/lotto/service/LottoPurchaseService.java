@@ -19,7 +19,6 @@ public class LottoPurchaseService {
     public LottoTicket buyLottoTicket(String purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         int lottoCount = calculateLottoCount(purchaseAmount);
-        // TODO: 갯수만큼 로또 구매(1. 랜덤 번호 생성, 2. lotto 객체 생성 3. 리스트로 저장 4. lottoTicket에 리스트 저장)
         return makeLottoTicket(lottoCount);
     }
 

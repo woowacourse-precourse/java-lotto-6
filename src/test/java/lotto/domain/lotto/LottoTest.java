@@ -64,9 +64,10 @@ class LottoTest {
         BonusNumber bonusNumber = new BonusNumber(number);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         // when
-        boolean hasSameNumber = lotto.hasSameNumber(bonusNumber);
+        boolean hasBonusNumber = lotto.hasSameNumber(bonusNumber);
 
         // then
+        org.assertj.core.api.Assertions.assertThat(hasBonusNumber).isEqualTo(expected);
     }
 
     @ParameterizedTest

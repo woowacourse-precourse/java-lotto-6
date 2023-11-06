@@ -20,7 +20,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.PURCHASE_NOT_INTEGER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.INPUT_NOT_INTEGER.getMessage());
         }
     }
 
@@ -30,7 +30,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.LOTTO_NOT_INTEGER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.INPUT_NOT_INTEGERS.getMessage());
         }
     }
 }

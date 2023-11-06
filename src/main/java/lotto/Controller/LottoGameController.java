@@ -17,7 +17,7 @@ public class LottoGameController {
     private BonusNumber bonusNumber;
     private List<List<Integer>> randomLottos;
 
-    public void initializeGame() {
+    public void gameStart() {
         initialize();
         start(randomLottos);
     }

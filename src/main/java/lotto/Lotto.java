@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +16,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public Map<String, Long> matchUserNumberWithWinningNumbers(Map<Long, List> lotteryNumbers) {
+        Map<String, Long> matchResult = new HashMap<>();
+        return matchResult;
     }
 
     // TODO: 추가 기능 구현

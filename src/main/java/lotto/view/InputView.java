@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.util.NumberParser.parseWinningNum;
@@ -8,20 +9,18 @@ import static lotto.util.NumberParser.parseWinningNum;
 public class InputView {
 
     public int readPurchaseMoney() {
-        boolean flag = false;
-        int purchaseMoney = 0;
-        while (!flag) {
+        int purchaseMoney;
+        while (true) {
             try {
                 String purchaseMoneyStr = readLine();
                 purchaseMoney = validatePurchaseMoneyIsInt(purchaseMoneyStr); // int인지 검증, 오류나면 catch로ㅠ
                 validatePurchaseMoneyIsMultipleOfThousand(purchaseMoney);
-                flag = true;
+                return purchaseMoney;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 OutputView.printStartMessage();
             }
         }
-        return purchaseMoney;
     }
 
     // excpetion
@@ -41,23 +40,26 @@ public class InputView {
     // end
 
     public ArrayList<Integer> readWinningNum() {
-        boolean flag = false;
-        ArrayList<Integer> winningNum = new ArrayList<>();
-        while (!flag) {
+        ArrayList<Integer> winningNum;
+        while (true) {
             try {
                 String winningNumStr = readLine();
-                validateWinningNumCommaAfterComma(winningNumStr);
-                validateBlankInWinningNum(winningNumStr);
-                validateWinningNumLastCharIsComma(winningNumStr);
+                winningNumValidates(winningNumStr);
                 winningNum = parseWinningNum(winningNumStr);
+                validateDuplicateNumInWinningNum(winningNum);
                 validateWinningNumCountIsOver(winningNum);
-                flag=true;
+                return winningNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 OutputView.printInputWinnerNumMessage();
             }
         }
-        return winningNum;
+    }
+
+    public void winningNumValidates(String winningNumStr) {
+        validateWinningNumCommaAfterComma(winningNumStr);
+        validateBlankInWinningNum(winningNumStr);
+        validateWinningNumLastCharIsComma(winningNumStr);
     }
 
     // exception
@@ -88,21 +90,26 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 마지막에 ','가 입력 되었습니다.");
         }
     }
+
+    public void validateDuplicateNumInWinningNum(ArrayList<Integer> winningNums) {
+        HashSet<Integer> winningNumSet = new HashSet<>(winningNums);
+        if (winningNumSet.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 중복허용이 되지 않습니다.");
+        }
+    }
     // end
     public int readBonusNum() {
-        boolean flag = false;
         int bonusNum = 0;
-        while (!flag) {
+        while (true) {
             try {
                 String bonusNumStr = readLine();
                 bonusNum = validateBonusNumIsInt(bonusNumStr);
                 validateBonusNumIsInRange(bonusNum);
-                flag = true;
+                return bonusNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return bonusNum;
     }
 
     public int validateBonusNumIsInt(String bonusNumStr) {

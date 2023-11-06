@@ -21,53 +21,93 @@ public class GameController {
     private Lottos lottos;
     private LottoGame lottoGame;
     private Profit profit;
+    private NumberUtil numberUtil;
     private WinningNumbers winningNumbers;
 
-    public GameController() {
-        this.profit = new Profit();
-        this.winningNumbers = new WinningNumbers();
+    public GameController(Profit profit,NumberUtil numberUtil, WinningNumbers winningNumbers) {
+        this.profit = profit;
+        this.numberUtil = numberUtil;
+        this.winningNumbers = winningNumbers;
     }
 
     public void play() {
         inputMoney();
         generateLottos();
 
-        Map<LottoRank, Integer> lottoResultsMap = generateWinningResult();
-
-        printWinningResult(lottoResultsMap);
-        printProfitPercentage(money.getMoney(), lottoResultsMap);
+        inputWinningResult();
+        generateWinningResult();
 
     }
 
     private void inputMoney() {
-        OutputView.printMessageLine(GameMessage.INPUT_MONEY.getMessage());
-        MoneyDto moneyDto = new MoneyDto(InputView.input());
-
-        int inputMoney = NumberConverter.convertToNumber(moneyDto.money());
-        money = new Money(inputMoney);
+        int retry = 1;
+        while (retry-- > 0) {
+            try {
+                OutputView.printMessageLine(GameMessage.INPUT_MONEY.getMessage());
+                long inputMoney = InputView.inputInteger();
+                money = new Money(inputMoney);
+                return;
+            } catch (Exception e) {
+                OutputView.printMessageLine("[ERROR]" + e.getMessage());
+            }
+        }
+        throw new IllegalStateException("[ERROR] 입력 횟수 5번 초과");
     }
 
     private void generateLottos() {
-        lottos = new Lottos(money.getNumberOfTheLotto(), new NumberGenerator());
-        String lottoResult = lottos.generateLottosResult();
+        lottos = new Lottos(money.getNumberOfTheLotto(), numberUtil);
 
-        int lottoCount = money.getNumberOfTheLotto();
+        String lottoResult = lottos.generateLottosResult();
+        long lottoCount = money.getNumberOfTheLotto();
 
         OutputView.printMessageLine(BUY_LOTTO_MESSAGE.makeMessage(lottoCount));
         OutputView.printMessageLine(lottoResult);
     }
 
-    private Map<LottoRank, Integer> generateWinningResult() {
-        OutputView.printMessageLine(GameMessage.INPUT_WINNING_NUMBERS.getMessage());
-        WinningNormalNumberDto winningNormalNumberDto = new WinningNormalNumberDto(InputView.input());
+    private void inputWinningResult() {
+        String winningNormalNumbers = inputWinningNormalNumbers().inputNumbers();
+        String bonusNumber = inputBonusNumber().number();
 
-        OutputView.printMessageLine(GameMessage.INPUT_BONUS_NUMBERS.getMessage());
-        BonusNumberDto bonusNumberDto = new BonusNumberDto(InputView.input());
+        winningNumbers.generateWinningNormalNumbers(winningNormalNumbers);
+        winningNumbers.generateBonusNumber(bonusNumber);
+    }
 
+
+    private WinningNormalNumberDto inputWinningNormalNumbers() {
+        int retry = 5;
+        while(retry-- > 0) {
+            try{
+                OutputView.printMessageLine(GameMessage.INPUT_WINNING_NUMBERS.getMessage());
+                return new WinningNormalNumberDto(InputView.input());
+
+            } catch (Exception e) {
+                OutputView.printMessageLine("[ERROR]" + e.getMessage());
+            }
+        }
+        throw new IllegalStateException("[ERROR] 입력 횟수 5번 초과");
+    }
+
+    private BonusNumberDto inputBonusNumber() {
+        int retry = 5;
+        while (retry-- > 0) {
+            try {
+                OutputView.printMessageLine(GameMessage.INPUT_BONUS_NUMBERS.getMessage());
+                return new BonusNumberDto(InputView.input());
+            } catch (Exception e) {
+                OutputView.printMessageLine("[ERROR]" + e.getMessage());
+            }
+        }
+        throw new IllegalStateException("[ERROR] 입력 횟수 5번 초과");
+    }
+
+
+
+    private void generateWinningResult() {
         lottoGame = new LottoGame(lottos, winningNumbers);
-        lottoGame.generateWinningNumbers(winningNormalNumberDto.inputNumbers(), bonusNumberDto.number());
+        Map<LottoRank, Integer> lottoResultsMap =  lottoGame.calculateLottoResults();
 
-        return lottoGame.calculateLottoResults();
+        printWinningResult(lottoResultsMap);
+        printProfitPercentage(money.getMoney(), lottoResultsMap);
     }
 
     private void printWinningResult(Map<LottoRank, Integer> lottoResultsMap) {
@@ -76,7 +116,7 @@ public class GameController {
         OutputView.printMessage(result);
     }
 
-    private void printProfitPercentage(int money, Map<LottoRank, Integer> lottoResultsMap) {
+    private void printProfitPercentage(long money, Map<LottoRank, Integer> lottoResultsMap) {
         double profitRate = profit.calculateProfit(money,lottoResultsMap);
 
         String profitMessage = PROFIT_MESSAGE.makeMessage(profitRate);

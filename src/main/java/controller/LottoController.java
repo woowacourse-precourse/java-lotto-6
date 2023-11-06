@@ -1,6 +1,7 @@
 package controller;
 
 import domain.PurchaseAmount;
+import domain.PurchaseLottos;
 import view.InputView;
 
 /**
@@ -15,6 +16,8 @@ import view.InputView;
  * 2023-11-06        qkrtn_ulqpbq2       최초 생성
  */
 public class LottoController {
+
+    private static int amount;
     public void playLotto(){
         try {
             purchaseLotto();
@@ -27,6 +30,13 @@ public class LottoController {
 
     private void purchaseLotto(){
         PurchaseAmount purchaseAmount = setPurchaseAmount();
+        int numberOfLottosPurchased = purchaseAmount.getNumberOfLottoPurchased();
+        amount = purchaseAmount.getAmount();
+        setPurchaseLottos(numberOfLottosPurchased);
+    }
+
+    private void setPurchaseLottos(int numberOfLottosPurchased){
+        new PurchaseLottos(numberOfLottosPurchased);
     }
 
     private PurchaseAmount setPurchaseAmount(){

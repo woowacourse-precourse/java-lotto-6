@@ -43,7 +43,7 @@ public class LottoPublisher {
 
     private void createLottos() {
         this.userLottos = IntStream.range(ZERO.getNumber(), countLottoAmount(money))
-                .mapToObj(index -> new Lotto(Util.generateRandomLottoNumber()))
+                .mapToObj(index -> new Lotto(Util.generateRandomNumber()))
                 .collect(Collectors.toList());
     }
 

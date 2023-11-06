@@ -19,4 +19,11 @@ public class Util {
         return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getNumber(), MAXIMUM_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_LENGTH.getNumber());
     }
 
+    public static List<Integer> sortListAscending(List<Integer> result) {
+        List<Integer> sortedResult = new ArrayList<>(result);
+        Collections.sort(sortedResult);
+
+        return sortedResult;
+    }
+
 }

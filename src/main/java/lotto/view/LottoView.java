@@ -22,10 +22,9 @@ public class LottoView {
     }
 
     // 로또 당첨 번호 입력 받기
-    public static Integer inputWinningNumber() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
-        return price;
+    public static String inputWinningNumber() {
+        System.out.println("당첨번호를 입력해 주세요.");
+        return Console.readLine();
     }
 
 

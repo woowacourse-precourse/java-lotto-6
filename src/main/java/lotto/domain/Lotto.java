@@ -29,4 +29,18 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public int countMatchingNumbers(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContainWinningNumbers)
+                .count();
+    }
+
+    private boolean isContainWinningNumbers(int lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

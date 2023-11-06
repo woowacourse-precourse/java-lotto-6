@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class RankingCounter {
 
-    private Map<Ranking, Integer> rankingCounts;
+    private final Map<Ranking, Integer> rankingCounts;
 
     public RankingCounter() {
         rankingCounts = new EnumMap<>(Ranking.class);
@@ -16,25 +16,23 @@ public class RankingCounter {
             rankingCounts.put(ranking, Unit.ZERO.getValue());
         }
     }
-
     public void changeCountWhenHasBonusNumber() {
         increaseCount(Ranking.SECOND);
         decreaseCount(Ranking.THIRD);
     }
 
-
-    public void increaseCount(Ranking ranking) {
+    private void increaseCount(Ranking ranking) {
         rankingCounts.put(ranking, rankingCounts.getOrDefault(ranking, 0) + 1);
     }
 
-    public void decreaseCount(Ranking ranking) {
+    private void decreaseCount(Ranking ranking) {
         rankingCounts.put(ranking, rankingCounts.getOrDefault(ranking, 0) - 1);
 
     }
 
-    public void increaseRankingCount(int count) {
+    public void increaseRankingCount(int rank) {
         for (Ranking ranking : Ranking.values()) {
-            if (ranking.getRank() == count) {
+            if (ranking.getRank() == rank) {
                 increaseCount(ranking);
             }
         }

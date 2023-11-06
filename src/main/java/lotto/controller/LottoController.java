@@ -2,6 +2,9 @@ package lotto.controller;
 
 import static lotto.constant.Constant.ZERO;
 
+import java.util.List;
+
+import lotto.domain.Lotto;
 import lotto.domain.LottoTicketManager;
 import lotto.domain.LottoTickets;
 import lotto.domain.number.AutoNumberGenerator;
@@ -19,11 +22,12 @@ public class LottoController {
         lottoTickets = new LottoTickets();
     }
 
-    public void buyTicket(String price) {
+    public List<Lotto> buyTicket(String price) {
         Integer numberOfTickets = lottoTicketManager.countTickets(price);
         while (numberOfTickets-- > ZERO ){
             lottoTickets.setTicket(lottoNumberGenerator.getLottoNumbers());
         }
+        return lottoTickets.getLottoTickets();
     }
 
 }

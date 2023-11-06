@@ -1,8 +1,8 @@
-package lotto;
+package lotto.number;
 
 public class Number {
 
-    private int value;
+    protected int value;
 
     public int getValue(){
         return this.value;

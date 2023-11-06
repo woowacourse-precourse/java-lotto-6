@@ -26,4 +26,12 @@ public class LottoEnvelope {
     public Float getEarningRate(List<Integer> winningNumbers, Integer bonusNumber) {
         return null;
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public Integer getLottoCount() {
+        return lottos.size();
+    }
 }

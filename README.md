@@ -23,9 +23,19 @@
 ### 8️⃣ 수익률 구하고 출력하기
   - 소수점 둘째자리에서 반올림하기
 
-# 예외 상황 목록
-### 1. 구입 금액이 숫자가 아닐 경우 : `PURCHASE_AMOUNT_IS_STRING`
-### 2. 구입 금액이 1000으로 나누어 떨어지지 않을 경우 : `PURCHASE_AMOUNT_REMAIN`
-### 3. 구입 금액이 int범위를 벗어날 경우 : `PURCHASE_AMOUNT_OVERFLOW`
-### 4. 구입 금액이 음수일 경우 : `PURCHASE_AMOUNT_NEGATIVE_NUMBER`
+# 🚨 예외 상황 목록
+## 💠 구입 금액 예외처리
+1. 구입 금액이 숫자가 아닐 경우 : `PURCHASE_AMOUNT_IS_STRING`
+2. 구입 금액이 1000으로 나누어 떨어지지 않을 경우 : `PURCHASE_AMOUNT_REMAIN`
+3. 구입 금액이 int범위를 벗어날 경우 : `PURCHASE_AMOUNT_OVERFLOW`
+4. 구입 금액이 음수일 경우 : `PURCHASE_AMOUNT_NEGATIVE_NUMBER`
 
+## 💠 당첨 번호 예외처리
+1. 당첨 번호가 입력되지 않은 경우 : `WINNING_NUMBERS_IS_NULL`
+2. 당첨 번호가 숫자가 아닐 경우 : `WINNING_NUMBERS_IS_STRING`
+3. 당첨 번호가 6개가 아닐경우 : `WINNING_NUMBERS_SIZE`
+4. 당첨 번호가 범위를 벗어난 경우 : `WINNING_NUMBERS_RANGE`
+5. 당첨 번호에 중복되는 숫자가 있는 경우 : `WINNIG_NUMBERS_DUPLICATE`
+
+## 💠 보너스 번호 예외처리
+1. 보너스 번호가 당첨 숫자와 중복될 경우

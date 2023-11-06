@@ -1,14 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

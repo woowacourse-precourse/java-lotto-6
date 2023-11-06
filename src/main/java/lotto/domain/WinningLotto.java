@@ -16,7 +16,11 @@ public class WinningLotto extends Lotto {
     public static WinningLotto of(List<Integer> numbers, Integer bonusNumber) {
         return new WinningLotto(numbers, bonusNumber);
     }
-    
+
+    public boolean isWinningNumber(final Integer number) {
+        return this.getNumbers().contains(number);
+    }
+
     public List<Integer> getWinningLottoNumbers() {
         return this.getNumbers();
     }

@@ -23,7 +23,7 @@ public enum Rank {
     }
 
     private static Rank getRank(int matchCount, boolean isBonusMatch) {
-        if (matchCount == 2) {
+        if (matchCount == 6) {
             return FIRST;
         }
         if (matchCount == 5 && isBonusMatch) {

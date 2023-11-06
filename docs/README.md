@@ -63,5 +63,5 @@
 
 - [x] 당첨 통계를 출력해주는 기능 `OutputView`#`printWinningLotteryTickets`
     - [x] Map 자료 구조를 이용하여 {등수, 당첨 티켓 개수}를 출력
-    - [x]수익률을 출력(뒤에 %를 붙여서)
+    - [x] 수익률을 출력(뒤에 %를 붙여서)
 

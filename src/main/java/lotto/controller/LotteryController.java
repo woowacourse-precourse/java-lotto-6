@@ -19,30 +19,70 @@ public class LotteryController {
     private JudgeWinningTickets judgeWinningTickets;
     private int payment;
     private int ticketCount;
+    private int bonusNumber;
+    private String revenueRate;
+    private List<List<Integer>> lotteryTickets;
     private Map<Integer, Integer> winningTicketsCount;
+    private List<Integer> winningTicketNumbers;
     private Revenue revenue;
 
-
-    public void lottoGameStart() {
+    public LotteryController()  {
         inputView = new InputView();
         issueLottery = new IssueLottery();
         outputView = new OutputView();
         judgeWinningTickets = new JudgeWinningTickets();
         revenue = new Revenue();
+    }
+    public void lottoGameStart() {
         System.out.println("구입금액을 입력해 주세요.");
-        payment = inputView.askPayment();
-        ticketCount = payment / 1000;
-        List<List<Integer>> lotteryTickets = issueLottery.issueTickets(ticketCount);
-        outputView.printLotteryTickets(ticketCount, lotteryTickets);
-        System.out.println();
+        setPayment();
+        setTickets();
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningTicketNumbers = inputView.askWinningTicketNumbers();
+        setWinningTickets();
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = inputView.askBonusNumber();
+        setBonusNumber();
         winningTicketsCount = judgeWinningTickets.countWinningTickets(ticketCount, lotteryTickets, winningTicketNumbers, bonusNumber);
         outputView.printWinningLotteryTickets(winningTicketsCount);
-
-        String revenueRate = revenue.calculateRevenue(payment, winningTicketsCount);
+        revenueRate = revenue.calculateRevenue(payment, winningTicketsCount);
         outputView.printRevenueRate(revenueRate);
     }
+
+
+    private String setValidPayment() {
+        String input = inputView.getUserInput();
+        try {
+            isValidPayment(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setValidPayment();
+        }
+        return input;
+    }
+
+    private void setPayment() {
+        String input = setValidPayment();
+        payment = Integer.parseInt(input);
+        ticketCount = payment / 1000;
+        System.out.println();
+    }
+
+    private void isValidPayment(String input) {
+        if(!input.matches("\\d+"))
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+    }
+    private void setTickets() {
+        lotteryTickets = issueLottery.issueTickets(ticketCount);
+        outputView.printLotteryTickets(ticketCount, lotteryTickets);
+        System.out.println();
+    }
+    private void setWinningTickets() {
+        winningTicketNumbers = inputView.askWinningTicketNumbers();
+    }
+    private void setBonusNumber() {
+     bonusNumber = inputView.askBonusNumber();
+    }
+
+
+
+
 }

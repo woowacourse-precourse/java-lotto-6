@@ -15,15 +15,19 @@ public class LottoPurchase {
 		return Integer.parseInt(amout);
 	}
 
-	public int numberaCount() {
+	public void numberaCount() {
 		number = purchase() / LOTTO_MIN_AMOUNT;
-		return number;
 
 	}
 
-	public void printButLotto() {
+	public int getNumber() {
+		return number;
+	}
 
-		System.out.println(numberaCount() + OUPUT_LOTTO_BYE);
+	public void printButLotto() {
+		
+		System.out.println();
+		System.out.println(getNumber() + OUPUT_LOTTO_BYE);
 
 	}
 }

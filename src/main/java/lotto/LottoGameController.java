@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class LottoGameController {
-    private final View view = new View();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public BuyCash inputBuyCash() {
-        return new BuyCash(view.inputBuyCashFromUser());
+        return new BuyCash(inputView.inputBuyCashFromUser());
     }
 
     public Lottos purchaseLotto(BuyCash buyCash) {
@@ -17,11 +18,11 @@ public class LottoGameController {
     }
 
     public void printBuyLottosInformation(Lottos lottos) {
-        view.printUserLottos(lottos.getAllLottoNumbersMessage(), lottos.getLottoAmount());
+        outputView.printUserLottos(lottos.getAllLottoNumbersMessage(), lottos.getLottoAmount());
     }
 
     public Lotto inputWinningLotto() {
-        return generateWinningLotto(view.inputWinningNumbers());
+        return generateWinningLotto(inputView.inputWinningNumbers());
     }
 
     public Lotto generateWinningLotto(List<Integer> winningNumbers) {
@@ -29,7 +30,7 @@ public class LottoGameController {
     }
 
     public LottoNumber inputBonusNumber() {
-        return new LottoNumber(view.inputBonusNumberFromUser());
+        return new LottoNumber(inputView.inputBonusNumberFromUser());
     }
 
     public Result getResult(Lottos lottos, WinningLotto winningLotto) {
@@ -44,6 +45,7 @@ public class LottoGameController {
     }
 
     public void printWinningResult(Result result, BuyCash buyCash) {
-        view.printWinningResult(result.getAllRankStatistics(), buyCash.getTotalProfitRate(result.getTotalProfit()));
+        outputView.printWinningResult(result.getAllRankStatistics(),
+                buyCash.getTotalProfitRate(result.getTotalProfit()));
     }
 }

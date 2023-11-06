@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.strategy;
+
+import lotto.domain.Lotto;
 
 public interface LottoGenerateStrategy {
     int MIN_NUMBER = 1;

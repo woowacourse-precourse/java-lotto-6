@@ -5,15 +5,16 @@ import lotto.domain.Lotto;
 import lotto.domain.Budget;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
-import lotto.domain.UserLottoGenerateStrategy;
+import lotto.domain.strategy.UserLottoGenerateStrategy;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningLottoGenerateStrategy;
+import lotto.domain.strategy.WinningLottoGenerateStrategy;
 import lotto.domain.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private Budget budget;
+    private LottoGenerator lottoGenerator;
 
     public void runMachine(){
         Lottos userLottos = buyLotto();
@@ -25,7 +26,8 @@ public class LottoController {
     private Lottos buyLotto(){
         try {
             budget = Budget.from(InputView.getBudgetInput());
-            Lottos userMultipleLottos = new LottoGenerator(new UserLottoGenerateStrategy()).generateLottosByBudget(budget);
+            lottoGenerator.setLottoGenerateStrategy(new UserLottoGenerateStrategy());
+            Lottos userMultipleLottos = lottoGenerator.generateLottosByBudget(budget);
             OutputView.printUserLottos(userMultipleLottos, budget);
             return userMultipleLottos;
         } catch (IllegalArgumentException e){
@@ -48,7 +50,8 @@ public class LottoController {
     private Lotto getWinningLotto(){
         try {
             InputView.printRequireWinningNumbersMessage();
-            return new LottoGenerator(new WinningLottoGenerateStrategy()).generateLotto();
+            lottoGenerator.setLottoGenerateStrategy(new WinningLottoGenerateStrategy());
+            return lottoGenerator.generateLotto();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return getWinningLotto();

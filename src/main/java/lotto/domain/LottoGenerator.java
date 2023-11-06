@@ -1,17 +1,11 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.util.LottoParser;
+import lotto.domain.strategy.LottoGenerateStrategy;
 
 public class LottoGenerator {
     private LottoGenerateStrategy lottoGenerateStrategy;
-
-    public LottoGenerator(LottoGenerateStrategy lottoGenerateStrategy){
-        this.lottoGenerateStrategy = lottoGenerateStrategy;
-    }
 
     public Lotto generateLotto(){
         return this.lottoGenerateStrategy.generate();
@@ -24,5 +18,9 @@ public class LottoGenerator {
             lottos.add(generateLotto());
         }
         return Lottos.from(lottos);
+    }
+
+    public void setLottoGenerateStrategy(LottoGenerateStrategy lottoGenerateStrategy) {
+        this.lottoGenerateStrategy = lottoGenerateStrategy;
     }
 }

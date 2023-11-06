@@ -59,4 +59,19 @@ public class LottoResult {
     public Map<Integer, Integer> getResultMap() {
         return resultMap;
     }
+
+    public double calculateEarningRate(int purchaseAmount) {
+        int totalEarning = calculateTotalEarning();
+        if (totalEarning == 0) {
+            return 0;
+        }
+
+        return (double) totalEarning / (double) purchaseAmount;
+    }
+
+    private int calculateTotalEarning() {
+        return resultMap.keySet().stream()
+                .mapToInt(key -> PriceConstant.getPricebyCount(key) * resultMap.get(key))
+                .sum();
+    }
 }

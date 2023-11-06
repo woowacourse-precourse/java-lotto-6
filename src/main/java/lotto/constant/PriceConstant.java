@@ -19,7 +19,14 @@ public enum PriceConstant {
         return count;
     }
 
-    public int getPrice() {
-        return price;
+    public static int getPricebyCount(int count) {
+        int priceByCount = 0;
+
+        for (PriceConstant priceConstant : PriceConstant.values()) {
+            if (priceConstant.count == count) {
+                priceByCount = priceConstant.price;
+            }
+        }
+        return priceByCount;
     }
 }

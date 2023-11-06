@@ -6,7 +6,6 @@ import lotto.domain.Ranking;
 
 import java.util.List;
 import lotto.domain.RankingCounter;
-import lotto.service.LottoCalculator;
 
 public class OutputView {
 

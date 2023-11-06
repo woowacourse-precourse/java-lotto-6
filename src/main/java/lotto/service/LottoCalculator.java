@@ -10,7 +10,6 @@ import lotto.domain.RankingCounter;
 import lotto.domain.WinningLotto;
 import lotto.dto.ComparatorRequest;
 
-
 public class LottoCalculator {
 
     private static final int HUNDRED_PERCENT = 100;

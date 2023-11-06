@@ -41,5 +41,11 @@ public class Validation {
 			throw new IllegalArgumentException();
 		}
 	}
+	
+	public void validateDividablePaid(int price, int paid) {
+		if ( paid < price || paid % price != 0) {
+			throw new IllegalArgumentException();
+		}
+	}
 
 }

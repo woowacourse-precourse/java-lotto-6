@@ -14,40 +14,40 @@ import lotto.util.RateOfReturnUtil;
 
 public enum User {
     INSTANCE;
-    private static final LottoWallet lottoWallet = new LottoWallet();
-    private static List<Integer> prizeCounts = new ArrayList<Integer>();
-    private static int cost;
-    private static double rateOfReturn;
+    private final LottoWallet lottoWallet = new LottoWallet();
+    private List<Integer> prizeCounts = new ArrayList<Integer>();
+    private int cost;
+    private double rateOfReturn;
 
-    public static void purchaseLotto(int money) {
+    public void purchaseLotto(int money) {
         cost = money;
         MoneyValidator.validateMoney(money);
         clearPrizeCounts();
         lottoWallet.addLotto(money / LOTTO_PRICE);
     }
 
-    private static void clearPrizeCounts() {
+    private void clearPrizeCounts() {
         prizeCounts = new ArrayList<>(Collections.nCopies(PRIZE_RANK_MAX, ZERO));
     }
 
-    public static void plusPrizeCount(int prizeRank) {
+    public void plusPrizeCount(int prizeRank) {
         int count = prizeCounts.get(prizeRank);
         prizeCounts.set(prizeRank, count + 1);
     }
 
-    public static void calcRateOfReturn() {
+    public void calcRateOfReturn() {
         rateOfReturn = RateOfReturnUtil.calcRateOfReturn(cost, prizeCounts);
     }
 
-    public static double getRateOfReturn() {
+    public double getRateOfReturn() {
         return rateOfReturn;
     }
 
-    public static List<Lotto> getMyLotto() {
+    public List<Lotto> getMyLotto() {
         return lottoWallet.getLottos();
     }
 
-    public static List<Integer> getPrizeCounts() {
+    public List<Integer> getPrizeCounts() {
         return prizeCounts;
     }
 }

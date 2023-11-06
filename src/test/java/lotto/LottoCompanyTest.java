@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoCompanyTest {
+    LottoCompany lottoCompany = LottoCompany.INSTANCE;
     private static final HashMap<String, Integer> RANK_INDEXES = new HashMap<String, Integer>() {{
         put("FIRST", 4);
         put("SECOND", 3);
@@ -21,8 +22,8 @@ public class LottoCompanyTest {
 
     @BeforeEach
     void beforeEach() {
-        LottoCompany.setPrizeNumbers(List.of(1, 2, 3, 4, 5, 6));
-        LottoCompany.setBonusNumber(7);
+        lottoCompany.setPrizeNumbers(List.of(1, 2, 3, 4, 5, 6));
+        lottoCompany.setBonusNumber(7);
     }
 
     @DisplayName("1등 테스트")
@@ -30,7 +31,7 @@ public class LottoCompanyTest {
     void testFirstRank() {
         //given
         //when
-        int result = LottoCompany.matchPrize(List.of(1, 2, 3, 4, 5, 6));
+        int result = lottoCompany.matchPrize(List.of(1, 2, 3, 4, 5, 6));
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("FIRST"));
@@ -41,7 +42,7 @@ public class LottoCompanyTest {
     void testSecondRank() {
         //given
         //when
-        int result = LottoCompany.matchPrize(List.of(1, 2, 3, 4, 5, 7));
+        int result = lottoCompany.matchPrize(List.of(1, 2, 3, 4, 5, 7));
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("SECOND"));
@@ -52,7 +53,7 @@ public class LottoCompanyTest {
     void testThirdRank() {
         //given
         //when
-        int result = LottoCompany.matchPrize(List.of(1, 2, 3, 4, 5, 9));
+        int result = lottoCompany.matchPrize(List.of(1, 2, 3, 4, 5, 9));
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("THIRD"));
@@ -63,7 +64,7 @@ public class LottoCompanyTest {
     void testFourthHRank() {
         //given
         //when
-        int result = LottoCompany.matchPrize(List.of(1, 2, 3, 4, 8, 9));
+        int result = lottoCompany.matchPrize(List.of(1, 2, 3, 4, 8, 9));
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("FOURTH"));
@@ -74,7 +75,7 @@ public class LottoCompanyTest {
     void testFifthRank() {
         //given
         //when
-        int result = LottoCompany.matchPrize(List.of(1, 2, 3, 9, 10, 8));
+        int result = lottoCompany.matchPrize(List.of(1, 2, 3, 9, 10, 8));
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("FIFTH"));
@@ -85,7 +86,7 @@ public class LottoCompanyTest {
     void testNoRank() {
         //given
         //when
-        int result = LottoCompany.matchPrize(List.of(1, 2, 11, 9, 10, 8));
+        int result = lottoCompany.matchPrize(List.of(1, 2, 11, 9, 10, 8));
 
         //then
         assertThat(result).isEqualTo(RANK_INDEXES.get("NO"));

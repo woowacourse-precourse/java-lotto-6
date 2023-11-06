@@ -15,13 +15,13 @@ public class LottoWallet {
     public LottoWallet() {}
 
     public void addLotto(int number) {
-        clearLottos();
+        clearWallet();
         for (int i = ZERO; i < number; i++) {
             myLotto.add(new Lotto(pickNumbers()));
         }
     }
 
-    private void clearLottos() {
+    private void clearWallet() {
         myLotto.clear();
     }
 

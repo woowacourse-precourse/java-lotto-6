@@ -15,17 +15,17 @@ public enum LottoCompany {
     private static List<Integer> prizeNumbers = new ArrayList<Integer>();
     private static int bonusNumber;
 
-    public static void setPrizeNumbers(List<Integer> prizeNumbers) {
+    public void setPrizeNumbers(List<Integer> prizeNumbers) {
         NumberValidator.validateLottoNumbers(prizeNumbers);
         LottoCompany.prizeNumbers = prizeNumbers;
     }
 
-    public static void setBonusNumber(int bonusNumber) {
+    public void setBonusNumber(int bonusNumber) {
         NumberValidator.validateBonusNumber(bonusNumber);
         LottoCompany.bonusNumber = bonusNumber;
     }
 
-    public static int matchPrize(List<Integer> numbers) {
+    public int matchPrize(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         int weight = calculatePrizeRank(set);
         if(weight == PRIZE_RANK_WEIGHT.get("THIRD")) {
@@ -34,7 +34,7 @@ public enum LottoCompany {
         return getRankIndex(weight);
     }
 
-    private static int calculatePrizeRank(Set<Integer> set) {
+    private int calculatePrizeRank(Set<Integer> set) {
         int weight = ZERO;
         for(int number : prizeNumbers) {
             weight = matchPrizeNumber(weight, set, number);
@@ -42,21 +42,21 @@ public enum LottoCompany {
         return weight;
     }
 
-    private static int matchPrizeNumber(int weight, Set<Integer> set, int number) {
+    private int matchPrizeNumber(int weight, Set<Integer> set, int number) {
         if(set.contains(number)) {
             return ++weight;
         }
         return weight;
     }
 
-    private static int calculateBonusNumber(int weight, Set<Integer> set) {
+    private int calculateBonusNumber(int weight, Set<Integer> set) {
         if(set.contains(bonusNumber)) {
            return PRIZE_RANK_WEIGHT.get("SECOND");
         }
         return weight;
     }
 
-    private static int getRankIndex(int weight) {
+    private int getRankIndex(int weight) {
         int index = ZERO;
         for(int value : PRIZE_RANK_WEIGHT.values()) {
             if(weight == value) {

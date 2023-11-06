@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static common.ErrorCode.NOT_NUMBER_STRING;
+import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;
 
@@ -15,6 +16,30 @@ public class Game {
     public Game() {
         this.amount = createAmount();
         this.winningNumbers = createWinningNumbers();
+        addBonusNumber();
+    }
+
+    private void addBonusNumber() {
+        try {
+            winningNumbers.addBonus(createBonusNumber());
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private WinningNumber createBonusNumber() {
+        try {
+            return createBonusNumberFromUser();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createBonusNumber();
+        }
+    }
+
+    private WinningNumber createBonusNumberFromUser() {
+        String input = inputBonusNumber();
+        int bonusNumber = parseInt(input);
+        return new WinningNumber(bonusNumber);
     }
 
     private WinningNumbers createWinningNumbers() {

@@ -21,4 +21,9 @@ public class InputView {
         String[] numbers = input.split(SEPARATOR);
         return List.of(numbers);
     }
+
+    public static String inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }

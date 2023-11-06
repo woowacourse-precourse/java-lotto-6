@@ -35,11 +35,11 @@ public class Application {
         //로또 개수만큼 반복 => 나중에 개별 함수화 리팩토링!
         for(int i = 0; i < purchaseCount; i++){
             lottoNumbers = process.generateLottoNumbers();
+            process.sortLottoNumbers(lottoNumbers);
             Lotto lotto = new Lotto(lottoNumbers);
             eachLottoNumber = lotto.getLottoNumbers();
             System.out.println(eachLottoNumber);
         }
-
 
         System.out.println();
 

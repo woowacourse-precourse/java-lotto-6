@@ -88,15 +88,10 @@ public class LottoDraw {
     }
 
     public Map<String, Integer> innerMap() {
-        Map<String, Integer> innerMap = new HashMap<>();
+        Map<String, Integer> innerMap = new LinkedHashMap<>();
 
-        for (int winCount = 3; winCount <= 6; winCount++) {
-            String str = winCount + "NoBonus";
-            innerMap.put(str, 0);
-            if (winCount == 5) {
-                str = winCount + "Bonus";
-                innerMap.put(str, 0);
-            }
+        for(LottoRank lottoRank : LottoRank.values()) {
+            innerMap.put(lottoRank.getWinningCount() + lottoRank.getBonus(), 0);
         }
         return innerMap;
     }

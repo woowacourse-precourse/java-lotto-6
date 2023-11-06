@@ -39,12 +39,8 @@ public enum LottoResult {
             if (cntCorrNum < 3) {
                 continue;
             }
-            if (cntCorrNum == 6) {
-                cntCorrNum += 1;
-            }
-            if (cntCorrNum == 5) {
-                cntCorrNum += isBonusNumInLotto(bonusNum, eachLotto);
-            }
+            cntCorrNum += findIndexInResult(cntCorrNum, bonusNum, eachLotto);
+            
             LottoResult lottoResultSaveName = lottoResultValues[cntCorrNum - 3];
             lottoResultSaveName.numOfMatches += 1;
         }
@@ -65,11 +61,20 @@ public enum LottoResult {
         return 0;
     }
 
+    public static int findIndexInResult(int cntCorrNum, int bonusNum, List<Integer> eachLotto) {
+        if (cntCorrNum == 6) {
+            cntCorrNum += 1;
+        }
+        if (cntCorrNum == 5) {
+            cntCorrNum += isBonusNumInLotto(bonusNum, eachLotto);
+        }
+        return cntCorrNum;
+    }
+
     public static int isBonusNumInLotto(int bonusNum, List<Integer> eachLotto) {
         if (isInLotto(bonusNum, eachLotto) == 1) {
             return 1;
         }
-        ;
         return 0;
     }
 

@@ -15,7 +15,7 @@ public class UtilsTest {
     @ParameterizedTest
     @MethodSource("splitByDelimiterProvider")
     public void splitByDelimiterTest(String source, String delimiter, List<String> expected) {
-        List<String> actual = Utils.splitByDelimiter(source, delimiter);
+        List<String> actual = Utils.splitStringToList(source, delimiter);
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 

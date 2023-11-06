@@ -34,7 +34,7 @@ public class MainController {
 
     private static AnswerLotto initAnswerLotto() {
         String lottoNumberString = InputView.readString(ViewMessage.INPUT_ANSWER_LOTTO);
-        List<String> strings = Utils.splitByDelimiter(lottoNumberString, ",");
+        List<String> strings = Utils.splitStringToList(lottoNumberString, ",");
         Lotto answerLotto = new Lotto(Utils.convertListStringToListInteger(strings));
         int bonus = InputView.readInteger(ViewMessage.INPUT_BONUS_NUMBER);
         return new AnswerLotto(answerLotto, bonus);

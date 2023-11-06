@@ -41,14 +41,14 @@
 - 테스트 코드 작성
 
 ## 기능 추출
-- [] 랜덤 숫자 생성하기
-- [] 구입 금액 입력받기(UI)
-- [] 당첨 번호 입력받기, 보너스 번호 입력받기(UI)
-- [] 발행한 로또 출력하기(UI)
-- [] 당첨자
-  - [] 당첨자 계산하기
-  - [] 당첨자 결과 출력하기(UI)
-- [] 수익률
-  - [] 수익률 계산하기
-  - [] 수익률 출력하기(UI)
+- [] 랜덤 숫자 생성하기 RandomNumberGenerator#generateRandomNumber()
+- [] 구입 금액 입력받기(UI) insertMoney()
+- [] 당첨 번호 입력받기, 보너스 번호 입력받기(UI) inputWinnerNumber(), inputBonusNumner()
+- [] 발행한 로또 출력하기(UI) printMyLottoNumbers()
+- [] 당첨자 Winner
+  - [] 당첨자 계산하기 checkLottoNumbers()
+  - [] 당첨자 결과 출력하기(UI) printLottoResult()
+- [] 수익률 Profit
+  - [] 수익률 계산하기 calculateProfit()
+  - [] 수익률 출력하기(UI) printProfit()
 - [] 예외처리

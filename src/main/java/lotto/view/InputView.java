@@ -83,7 +83,7 @@ public class InputView {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_BLANK_NUMBER.getMessage());
         }
-        if (!input.matches("^\\d+$")) {
+        if (!input.matches("^-?\\d+$")) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }

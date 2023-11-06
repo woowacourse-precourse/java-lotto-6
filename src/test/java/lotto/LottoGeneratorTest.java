@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoGeneratorTest {
     @DisplayName("구입 금액이 1,000원보다 적으면 예외가 발생한다")
     @Test
-    void createLottoByOverSize() {
+    void purchaseAmountLessThan1000() {
         assertThatThrownBy(() -> LottoGenerator.from(900))
                 .isInstanceOf(IllegalArgumentException.class);
     }

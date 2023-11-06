@@ -9,11 +9,15 @@ import lotto.utils.LottoConstant;
 import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
 
-public class Lottos {
+public class LottosManager {
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public LottosManager(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public int getLottoCount() {
+        return lottos.size();
     }
 
     public Map<Prize, Integer> getPrizeCounts(PrizeChecker prizeChecker) {
@@ -39,10 +43,6 @@ public class Lottos {
             prizeCounts.put(prize, LottoConstantValue.DEFAULT_COUNT.get());
         }
         return prizeCounts;
-    }
-
-    public int getLottoCount() {
-        return lottos.size();
     }
 
     @Override

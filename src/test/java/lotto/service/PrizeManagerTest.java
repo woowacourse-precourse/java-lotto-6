@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.LottosManager;
 import lotto.domain.wrapper.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,11 +17,11 @@ class PrizeManagerTest {
         // given
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
         int bonusNumber = 7;
-        Lottos lottos = new Lottos(List.of(
+        LottosManager lottosManager = new LottosManager(List.of(
                 new Lotto(List.of(1,2,3,4,7,8)),
                 new Lotto(List.of(1,2,3,7,8,9))
         ));
-        PrizeManager prizeManager = new PrizeManager(winningNumbers, bonusNumber, lottos);
+        PrizeManager prizeManager = new PrizeManager(winningNumbers, bonusNumber, lottosManager);
         PurchaseAmount purchaseAmount = new PurchaseAmount(2000);
         double expectedProfitRate = (55000 / (double) 2000) * 100;
         // when

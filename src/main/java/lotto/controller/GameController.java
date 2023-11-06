@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.LottosManager;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.domain.wrapper.PurchaseAmount;
 import lotto.service.PrizeChecker;
@@ -18,12 +18,12 @@ public class GameController {
 
     public void play() {
         PurchaseAmount purchaseAmount = getPurchaseAmout();
-        Lottos plyerLottos = buyLottos(purchaseAmount);
-        printLottos(plyerLottos);
+        LottosManager plyerLottosManager = buyLottos(purchaseAmount);
+        printLottos(plyerLottosManager);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
         PrizeChecker prizeChecker = new PrizeChecker(new Lotto(winningNumbers), new LottoNumber(bonusNumber));
-        PrizeManager prizeManager = new PrizeManager(plyerLottos.getPrizeCounts(prizeChecker));
+        PrizeManager prizeManager = new PrizeManager(plyerLottosManager.getPrizeCounts(prizeChecker));
         printPrizeResults(prizeManager);
         printPrizeProfit(prizeManager, purchaseAmount);
     }
@@ -33,14 +33,14 @@ public class GameController {
         return new PurchaseAmount(inputView.getPurchaseAmount());
     }
 
-    private Lottos buyLottos(PurchaseAmount purchaseAmount) {
+    private LottosManager buyLottos(PurchaseAmount purchaseAmount) {
         VendingMachine vendingMachine = new VendingMachine(purchaseAmount);
         return vendingMachine.getLottos();
     }
 
-    private void printLottos(Lottos playerLottos) {
-        outputView.printBuyingMessage(playerLottos.getLottoCount());
-        outputView.printLottos(playerLottos.toString());
+    private void printLottos(LottosManager playerLottosManager) {
+        outputView.printBuyingMessage(playerLottosManager.getLottoCount());
+        outputView.printLottos(playerLottosManager.toString());
     }
 
     private List<Integer> getWinningNumbers() {

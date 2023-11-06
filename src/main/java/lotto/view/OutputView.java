@@ -5,6 +5,7 @@ import lotto.constant.ViewMessage;
 import lotto.domain.Lotto;
 import lotto.domain.ResultLotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -35,6 +36,12 @@ public class OutputView {
     public static void printMatchLotto(ResultLotto resultLotto) {
         printlnViewMessage(RESULT_LOTTO);
         resultLotto.printResult();
+    }
+
+    public static void printProfitRate(ResultLotto resultLotto, int purchaseAmount) {
+        double profitRate = resultLotto.calculateProfitRate(purchaseAmount);
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        System.out.printf(PROFIT_RATE + "%n", df.format(profitRate));
     }
 
     private static void printlnViewMessage(ViewMessage message) {

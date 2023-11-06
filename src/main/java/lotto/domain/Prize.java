@@ -33,4 +33,8 @@ public enum Prize {
     public String getMessage() {
         return this.message;
     }
+
+    public int getPrizeAmount(){
+        return this.prizeAmount;
+    }
 }

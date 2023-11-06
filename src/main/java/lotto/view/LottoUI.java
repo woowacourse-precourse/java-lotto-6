@@ -2,10 +2,13 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.validate.LottoValidator;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Locale;
 
 public class LottoUI {
     public static int getPurchaseAmount() {
@@ -29,5 +32,33 @@ public class LottoUI {
             System.out.println(numbers);
         }
         System.out.println();
+    }
+
+    public static Lotto getWinningLotto() {
+        while(true){
+            try{
+                System.out.println("당첨 번호를 입력해 주세요.");
+                List<Integer> winningNumbers = convertStringToIntegerList(Console.readLine());
+                LottoValidator.validateLottoNumber(winningNumbers);
+                System.out.println();
+                return new Lotto(winningNumbers);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static List<Integer> convertStringToIntegerList(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] numberStrings = input.split(",");
+
+        for (String numberString : numberStrings) {
+            try {
+                numbers.add(Integer.parseInt(numberString.trim()));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 당첨 숫자 입력 방식입니다.");
+            }
+        }
+        return numbers;
     }
 }

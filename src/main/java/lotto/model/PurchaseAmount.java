@@ -23,6 +23,7 @@ public class PurchaseAmount {
     }
 
     private void displayPurchasedLottoQuantity(int count) {
+        OutputView.printNewLine();
         OutputView.printPurchasedLottoQuantity(count);
     }
 

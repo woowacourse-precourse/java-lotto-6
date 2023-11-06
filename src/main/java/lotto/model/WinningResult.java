@@ -19,6 +19,7 @@ public class WinningResult {
     }
 
     public void displayWinningResult() {
+        OutputView.printNewLine();
         OutputView.printWinningResultTitle();
 
         for (LottoRank lottoRank : LottoRank.getLottoRanksDescendingOrder()) {

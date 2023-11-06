@@ -8,6 +8,7 @@ import lotto.model.WinningNumber;
 import lotto.model.WinningResult;
 import lotto.util.Parser;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -29,7 +30,9 @@ public class LottoController {
     }
 
     private BonusNumber readBonusNumber() {
+        OutputView.printNewLine();
         int bonusNumber = Parser.parseToInt(InputView.readBonusNumber());
+        
         return new BonusNumber(bonusNumber);
     }
 

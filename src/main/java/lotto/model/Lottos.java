@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.GameConfig;
+import lotto.view.OutputView;
 
 public class Lottos {
 
@@ -27,6 +28,7 @@ public class Lottos {
 
     public void displayLottos() {
         lottos.forEach(Lotto::displayLottoNumbers);
+        OutputView.printNewLine();
     }
 
     private void generateLottos(int count) {

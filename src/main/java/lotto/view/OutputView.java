@@ -43,4 +43,8 @@ public class OutputView {
     public static void printWinningResultTitle() {
         System.out.println(LottoMessage.WINNING_STATISTICS_TITLE_MESSAGE.getMessage());
     }
+
+    public static void printNewLine() {
+        System.out.println();
+    }
 }

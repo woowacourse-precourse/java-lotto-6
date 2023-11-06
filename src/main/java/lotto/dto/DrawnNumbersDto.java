@@ -44,4 +44,12 @@ public class DrawnNumbersDto {
             throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers;
+    }
+
+    public Integer getBonusNumber() {
+        return this.bonusNumber;
+    }
 }

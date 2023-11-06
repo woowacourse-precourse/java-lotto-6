@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.dto.DrawnNumbersDto;
 
 public class DrawnNumbers {
     private final List<Integer> winningNumbers;
@@ -12,7 +13,7 @@ public class DrawnNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public DrawnNumbers from(List<Integer> winningNumbers, Integer bonusNumber) {
-        return new DrawnNumbers(winningNumbers, bonusNumber);
+    public static DrawnNumbers from(DrawnNumbersDto drawnNumbersDto) {
+        return new DrawnNumbers(drawnNumbersDto.getWinningNumbers(), drawnNumbersDto.getBonusNumber());
     }
 }

@@ -11,5 +11,6 @@ public class Application {
         lottoCnt = issuanceLotto(Input.money());
         Output.howManyLottoMessage(lottoCnt);
 
+
     }
 }

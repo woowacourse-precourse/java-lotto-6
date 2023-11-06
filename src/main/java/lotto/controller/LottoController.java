@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -12,7 +14,9 @@ public class LottoController {
     public void run() {
         LottoService lottoService = initLottoService();
         String winningNumber = InputView.receiveWinningNumber();
-
+        String[] split = winningNumber.split(",");
+        List<NumberCandidateString> numberCandidateStrings = Arrays.stream(split)
+                .map(number -> new NumberCandidateString(number)).toList();
     }
 
     private LottoService initLottoService() {

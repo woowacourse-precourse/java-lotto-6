@@ -1,5 +1,6 @@
 package lotto;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("특정 숫자가 포함되어 있으면 true를 반환한다.")
+    @Test
+    void containsNumberTest() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        Assertions.assertTrue(lotto.containsNumber(1));
+        Assertions.assertTrue(lotto.containsNumber(6));
+        Assertions.assertFalse(lotto.containsNumber(7));
+    }
 }

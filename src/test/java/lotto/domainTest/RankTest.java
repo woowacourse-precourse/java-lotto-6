@@ -1,4 +1,4 @@
-package lotto.test;
+package lotto.domainTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,4 +1,4 @@
-package lotto.test;
+package lotto.domainTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -24,6 +24,7 @@ public class UserTest {
         assertThatThrownBy(() -> BillException.isBillValid(Bill))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     @DisplayName("로또 구매 금액이 12000원이라면 생성된 로또의 수는 12개여야한다")
     void lottoCountTest() {

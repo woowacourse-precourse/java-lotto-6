@@ -8,8 +8,6 @@ import lotto.exception.LottoException;
 
 public class Money {
 
-    private static final int ZERO = 0;
-
     private final int money;
 
     private Money(int money) {
@@ -22,7 +20,7 @@ public class Money {
     }
 
     private static void validateMoney(final int money) {
-        if (isNotPositive(money)) {
+        if (isNotEnough(money)) {
             throw LottoException.of(NOT_ENOUGH_MONEY);
         }
 
@@ -31,8 +29,8 @@ public class Money {
         }
     }
 
-    private static boolean isNotPositive(int money) {
-        return money <= ZERO;
+    private static boolean isNotEnough(int money) {
+        return money < MONEY_UNIT.getValue();
     }
 
     private static boolean isNotCorrectUnit(final int money) {

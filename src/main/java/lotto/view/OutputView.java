@@ -19,16 +19,20 @@ public class OutputView {
         lottoNumbers.forEach(System.out::println);
     }
 
-    public void printResult(final ResultsDto resultsDto) {
+    public void printResults(final ResultsDto resultsDto) {
         System.out.println(LOTTO_RESULT_HEADER);
 
         final List<ResultDto> results = resultsDto.resultsDto();
 
-        results.forEach(result -> System.out.printf(LOTTO_RESULT_FORMAT,
+        results.forEach(this::printResult);
+    }
+
+    private void printResult(ResultDto result) {
+        System.out.printf(LOTTO_RESULT_FORMAT,
                 result.sameNumberCount(),
                 getBonus(result),
                 result.reward(),
-                result.count()));
+                result.count());
     }
 
     private String getBonus(final ResultDto result) {

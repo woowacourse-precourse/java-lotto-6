@@ -59,4 +59,12 @@ public class LottoGameService {
         int currentCount = lottoRakingMap.getOrDefault(lottoRank, 0);
         lottoRakingMap.put(lottoRank, currentCount + 1);
     }
+
+    public double calculateProfitRate(int purchaseAmount, EnumMap<LottoRank, Integer> lottoRakingMap) {
+        return (double) lottoRakingMap.keySet().stream()
+                .filter(rank -> rank != LottoRank.LAST_PLACE)
+                .mapToInt(rank ->
+                        rank.getPrizeMoney() * lottoRakingMap.get(rank))
+                .sum() / purchaseAmount * 100;
+    }
 }

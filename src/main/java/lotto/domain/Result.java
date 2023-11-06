@@ -23,7 +23,7 @@ public enum Result {
     }
 
     public static Result of(int matchCount, boolean isBonusMatched) {
-        if (matchCount == FIVE_MATCH_WITH_BONUS.reward && isBonusMatched) return FIVE_MATCH_WITH_BONUS;
+        if (matchCount == FIVE_MATCH_WITH_BONUS.match && isBonusMatched) return FIVE_MATCH_WITH_BONUS;
         return Arrays.stream(values())
                 .filter(result -> matchCount == result.match)
                 .findFirst()

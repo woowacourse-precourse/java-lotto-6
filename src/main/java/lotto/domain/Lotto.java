@@ -53,10 +53,7 @@ public class Lotto {
         boolean isBonusMatched = false;
         for (Integer number : numbers) {
             if (target.contains(number)) count++;
-            if (number.equals(bonus.bonus())) {
-                count++;
-                isBonusMatched = true;
-            }
+            if (number.equals(bonus.bonus())) isBonusMatched = true;
         }
         return Result.of(count, isBonusMatched);
     }

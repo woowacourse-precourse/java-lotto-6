@@ -32,12 +32,8 @@ public enum LottoRank {
                 .orElse(NONE);
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getPrize() {
-        return prize;
+    public static int calculatePrizeByCount(LottoRank rank, int count) {
+        return rank.prize * count;
     }
 
     public String getMessage() {

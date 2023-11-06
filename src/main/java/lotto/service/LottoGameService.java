@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.dto.LottoNumbersDTO;
 import lotto.dto.LottoRankResultDTO;
+import lotto.dto.LottoTotalReturnDTO;
 import lotto.model.LottoRank;
 import lotto.model.LottoRankResult;
 import lotto.model.Lotto;
@@ -18,10 +19,12 @@ import lotto.view.ConsoleOutputView;
 public class LottoGameService {
     private final ConsoleInputView inputView;
     private final ConsoleOutputView outputView;
+    private final LottoRankResult lottoRankResult;
 
-    public LottoGameService(ConsoleInputView inputView, ConsoleOutputView outputView) {
+    public LottoGameService(ConsoleInputView inputView, ConsoleOutputView outputView ,LottoRankResult lottoRankResult) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoRankResult = lottoRankResult;
     }
 
     public int calculateLottoCountOnBuy(final LottoBuyer buyer) {
@@ -57,6 +60,10 @@ public class LottoGameService {
         outputView.printWinningStatistics();
         LottoRankResult result = calculateWinningResult(winningLotto, lottos);
         printWinningCountsByRank(result);
+    }
+
+    public void printTotalReturn(int countOfLotto) {
+        outputView.printTotalReturn(new LottoTotalReturnDTO(lottoRankResult, countOfLotto));
     }
 
     private Lotto getWinningLottoNumbers() {
@@ -96,12 +103,11 @@ public class LottoGameService {
     }
 
     private LottoRankResult calculateWinningResult(WinningLotto winningLotto, Lottos lottos) {
-        LottoRankResult result = new LottoRankResult();
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.findLottoByIndex(i);
-            result.countWinningResult(winningLotto, lotto);
+            lottoRankResult.countWinningResult(winningLotto, lotto);
         }
-        return result;
+        return lottoRankResult;
     }
 
     private void printWinningCountsByRank(LottoRankResult result) {

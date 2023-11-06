@@ -24,31 +24,35 @@ public class LotteryGame {
 
     }
 
-    private int getPrice() {
-        String inputPrice;
+    private void setLottoList(){
+        int price = getPrice();
 
+    }
+
+    private int getPrice() {
         while (true) {
             try {
-                inputPrice = inputHandler.readLine();
+                String inputPrice = inputHandler.readLine();
                 PriceValidator.isInteger(inputPrice);
-                break;
+
+                int price = Integer.parseInt(inputPrice);
+
+                PriceValidator.validateCost(price);
+                PriceValidator.validateThousand(price);
+
+                return price;
             } catch (IllegalArgumentException e) {
-                outputHandler.print(ERROR + ErrorMessage.REQUEST_INTEGER_MESSAGE.getMessage());
+                outputHandler.print(ERROR+e.getMessage());
             }
         }
-
-        return Integer.parseInt(inputPrice);
     }
 
     private List<Lotto> getLottoList(int price) {
-        if (PriceValidator.validateCost(price) && PriceValidator.validateThousand(price)) {
-            int count = price / 1000;
-            Lotto[] lottos = new Lotto[price / 1000];
-            for (int i = 0; i < count; i++) {
-                lottos[i] = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            }
-            return Arrays.asList(lottos);
+        int count = price / 1000;
+        Lotto[] lottos = new Lotto[price / 1000];
+        for (int i = 0; i < count; i++) {
+            lottos[i] = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         }
-        throw new IllegalArgumentException();
+        return Arrays.asList(lottos);
     }
 }

@@ -2,12 +2,14 @@ package lotto.controller;
 
 import static lotto.view.OutputView.printByLottoCount;
 import static lotto.view.OutputView.printLottos;
+import static lotto.view.OutputView.printWinningResultAndRateOfReturn;
 
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.LottosGeneratorMachine;
 import lotto.model.Money;
+import lotto.model.RateOfReturn;
 import lotto.model.WinningLotto;
 import lotto.model.WinningResult;
 import lotto.model.WinningStandard;
@@ -25,7 +27,13 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         WinningResult winningResult = calculateWinningResult(lottos, winningLotto);
 
-        winningResult.getWinningResult().entrySet().forEach(System.out::println);
+        double rateOfReturn = getRateOfReturn(money, winningResult);
+        printWinningResultAndRateOfReturn(winningResult, rateOfReturn);
+    }
+
+    private double getRateOfReturn(Money money, WinningResult winningResult) {
+        RateOfReturn rateOfReturn = new RateOfReturn(money, winningResult);
+        return rateOfReturn.getRateOfReturn();
     }
 
     private WinningResult calculateWinningResult(Lottos lottos, WinningLotto winningLotto) {
@@ -48,7 +56,7 @@ public class LottoController {
 
     private Money getMoney() {
         int money = InputView.getUserInputForLottoBuyAccount();
-        
+
         return new Money(money);
     }
 

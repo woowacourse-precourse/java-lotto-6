@@ -11,4 +11,19 @@ public final class OutputManager {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public static void printWinResult(List<Integer> winCnts, long containBonusCnt, long notContainBonusCnt) {
+        System.out.printf(
+                "3개 일치 (5,000원) - %d개\n"
+                        + "4개 일치 (50,000원) - %d개\n"
+                        + "5개 일치 (1,500,000원) - %d개\n"
+                        + "5개 일치, 보너스 불 일치 (30,000,000원) - %d개\n"
+                        + "6개 일치 (2,000,000,000원) - %d개"
+                , winCnts.stream().filter(num -> num == 3).count()
+                , winCnts.stream().filter(num -> num == 4).count()
+                , containBonusCnt
+                , notContainBonusCnt
+                , winCnts.stream().filter(num -> num == 6).count()
+        );
+    }
 }

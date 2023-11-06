@@ -3,17 +3,19 @@ package lotto.domain;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.global.util.InputManager.inputPayment;
 import static lotto.global.util.OutputManager.printHistory;
+import static lotto.global.util.OutputManager.printWinResult;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Round {
 
     private int payment;   // 지불 금액
     private List<Integer> winCnts;    // 당첨 개수
     private List<Lotto> lottos = new ArrayList<>();
+    private List<Boolean> containsBonus;
 
     public void extractor(int totalCnt) {
         for (int i=0; i<totalCnt; i++) {
@@ -30,38 +32,40 @@ public class Round {
         return payment / 1000;
     }
 
-    public void judge(Lotto winNum) {
-//        for (Lotto lotto : lottos) {
-//            int winCnt = 0;
-//            for (Integer num : winNum.getNumbers()) {
-//                if (lotto.getNumbers().contains(num))
-//                    winCnt++;
-//            }
-//            winCnts.add(winCnt);
-//        }
-        winCnts = lottos.stream()
-                .map(lotto -> (int) winNum.getNumbers().stream()
-                        .filter(num -> lotto.getNumbers().contains(num))
-                        .count())
+    public void judge(Lotto winNum, int bonusNum) {
+
+        containsBonus = lottos.stream()
+                .map(lotto -> lotto.getNumbers().contains(bonusNum))
                 .toList();
+
+        winCnts = lottos.stream()
+                .map(lotto -> {
+                    int winCnt = 0;
+
+                    for (Integer num : winNum.getNumbers()) {
+                        if (lotto.getNumbers().contains(num))
+                            winCnt++;
+                    }
+
+                    if (lotto.getNumbers().contains(bonusNum))
+                        winCnt++;
+
+                    return winCnt;
+                })
+                .toList();
+    }
+
+    public void showResult() {
+
+        long containBonusCnt = (int) (IntStream.range(0, winCnts.size())
+                .filter(i -> containsBonus.get(i) && winCnts.get(i) == 5)
+                .count());
+        long notContainBonusCnt = winCnts.stream().filter(num -> num == 5).count() - containBonusCnt;
+
+        printWinResult(winCnts, containBonusCnt, notContainBonusCnt);
     }
 
     public List<Integer> getWinCnts() {
         return winCnts;
-    }
-
-    public void showResult() {
-        System.out.printf(
-                "3개 일치 (5,000원) - %d개\n"
-                        + "4개 일치 (50,000원) - %d개\n"
-                        + "5개 일치 (1,500,000원) - %d개\n"
-                        + "5개 일치, 보너스 불 일치 (30,000,000원) - %d개\n"
-                        + "6개 일치 (2,000,000,000원) - %d개"
-                , winCnts.stream().filter(num -> num == 3).count()
-                , winCnts.stream().filter(num -> num == 4).count()
-                , winCnts.stream().filter(num -> num == 5).count()
-                , winCnts.stream().filter(num -> num == 5).count()
-                , winCnts.stream().filter(num -> num == 6).count()
-        );
     }
 }

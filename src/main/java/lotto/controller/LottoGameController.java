@@ -26,19 +26,18 @@ public class LottoGameController {
     }
 
     private void lottoPurchase() {
-        String inputPurchaseAmount = getValidInputPurchaseAmount();
-        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
-        int quantity = purchaseAmount / LOTTO_PRICE;
-        List<Lotto> userLottos = lottoService.purchase(quantity);
-        OutputView.purchaseQuantityAndLottoNumbers(userLottos);
+        int purchaseAmount = getValidPurchaseAmount();
+        int purchaseQuantity = purchaseAmount / LOTTO_PRICE;
+        List<Lotto> userLottos = lottoService.purchase(purchaseQuantity);
+        OutputView.purchaseResults(userLottos);
     }
 
-    private String getValidInputPurchaseAmount() {
+    private int getValidPurchaseAmount() {
         while (true) {
             try {
                 String inputPurchaseAmount = InputView.purchaseAmount();
                 Validator.purchaseAmount(inputPurchaseAmount);
-                return inputPurchaseAmount;
+                return Integer.parseInt(inputPurchaseAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.errorMessage(e);
             }
@@ -46,32 +45,31 @@ public class LottoGameController {
     }
 
     private void lottoGameInit() {
-        String inputWinningNumbers = getValidInputWinningNumbers();
-        String[] winningNumbers = inputWinningNumbers.split(",");
+        String[] winningNumbers = getValidWinningNumbers();
         lottoService.initWinningNumbers(winningNumbers);
-        String inputBonusNumber = getValidInputBonusNumber(winningNumbers);
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+        int bonusNumber = getValidBonusNumber(winningNumbers);
         lottoService.initBonusNumber(bonusNumber);
     }
 
-    private String getValidInputBonusNumber(String[] winningNumbers) {
+    private String[] getValidWinningNumbers() {
         while (true) {
-            String inputBonusNumber = InputView.bonusNumber();
             try {
-                Validator.inputBonusNumber(inputBonusNumber,winningNumbers);
-                return inputBonusNumber;
+                String[] inputWinningNumbers = InputView.winningNumbers().split(",");
+                Validator.winningNumbers(inputWinningNumbers);
+                return inputWinningNumbers;
             } catch (IllegalArgumentException e) {
                 OutputView.errorMessage(e);
             }
         }
     }
 
-    private String getValidInputWinningNumbers() {
+    private int getValidBonusNumber(String[] winningNumbers) {
         while (true) {
-            String inputWinningNumbers = InputView.winningNumbers();
             try {
-                Validator.inputWinningNumbers(inputWinningNumbers);
-                return inputWinningNumbers;
+                String inputBonusNumber = InputView.bonusNumber();
+                Validator.bonusNumber(inputBonusNumber,winningNumbers);
+                return Integer.parseInt(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.errorMessage(e);
             }
@@ -81,6 +79,6 @@ public class LottoGameController {
     private void printLottoResults() {
         HashMap<LottoRank, Integer> winningRankCount = lottoService.checkLottoResult();
         double profitRate = lottoService.calculateProfitRate();
-        OutputView.winningResult(winningRankCount,profitRate);
+        OutputView.lottoResults(winningRankCount,profitRate);
     }
 }

@@ -30,10 +30,9 @@ public enum LottoRank {
             }
             return THIRD;
         }
-        return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getRankMatchCount() == matchingCount)
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(NO_MATCHING_RANK));
+
+        LottoRank matchingRank  = findRankByMatchingCount(matchingCount);
+        return matchingRank;
     }
 
     public int getRankMatchCount() {
@@ -46,5 +45,12 @@ public enum LottoRank {
 
     public String getPrizeAsString() {
         return prizeAsString;
+    }
+
+    private static LottoRank findRankByMatchingCount(int matchingCount) {
+        return Arrays.stream(LottoRank.values())
+                .filter(rank -> rank.getRankMatchCount() == matchingCount)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NO_MATCHING_RANK));
     }
 }

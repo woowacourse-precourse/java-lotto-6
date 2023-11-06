@@ -25,7 +25,7 @@ public class LottoController {
         WinningLotto winningLotto = createWinningLotto(winningLottoNumber, bonusNumber);
         LottoResult lottoResult = winningLotto.calculateStatistics(buyerLotto);
         OutputView.printResult(lottoResult.getSortedStatistics());
-        OutputView.printProfitPercent(lottoResult.calculatePercent());
+        OutputView.printProfitPercent(lottoResult.calculateProfitPercent());
     }
 
     private BuyerLotto createBuyerLotto() {

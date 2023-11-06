@@ -29,7 +29,7 @@ public class LottoResult {
         return sortedStatistics;
     }
 
-    public double calculatePercent() {
+    public double calculateProfitPercent() {
         int sum = 0;
         int totalPrice = 0;
 

@@ -1,9 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+
 import lotto.domain.Lotto;
 import lotto.enums.LottoPrize;
-import lotto.domain.LottoResult;
 
 public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";
@@ -37,14 +38,14 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printPrizeCount(LottoResult lottoResult) {
+    public void printPrizeCount(Map<LottoPrize, Integer> result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개\n", lottoResult.getCount(LottoPrize.FIFTH_PLACE));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", lottoResult.getCount(LottoPrize.FORTH_PLACE));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", lottoResult.getCount(LottoPrize.THIRD_PLACE));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoResult.getCount(LottoPrize.SECOND_PLACE));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResult.getCount(LottoPrize.FIRST_PLACE));
+        System.out.printf("3개 일치 (5,000원) - %d개\n", result.get(LottoPrize.FIFTH_PLACE));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", result.get(LottoPrize.FORTH_PLACE));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", result.get(LottoPrize.THIRD_PLACE));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", result.get(LottoPrize.SECOND_PLACE));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", result.get(LottoPrize.FIRST_PLACE));
     }
 
     public void printMoneyRate(double rate) {

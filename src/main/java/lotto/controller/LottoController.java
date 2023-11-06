@@ -28,7 +28,7 @@ public class LottoController {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.countPrizes(lottoWallet, winningLotto);
-        outputView.printPrizeCount(lottoResult);
+        outputView.printPrizeCount(lottoResult.getResult());
 
         TotalAmount totalAmount = new TotalAmount(lottoResult.getTotalAmount());
         MoneyRate moneyRate = new MoneyRate(totalAmount, money);

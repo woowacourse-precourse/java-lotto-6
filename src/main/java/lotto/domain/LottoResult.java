@@ -27,6 +27,10 @@ public class LottoResult {
         return result.get(lottoPrize);
     }
 
+    public Map<LottoPrize, Integer> getResult() {
+        return result;
+    }
+
     public long getTotalAmount() {
         return Arrays.stream(LottoPrize.values())
                 .mapToLong(lottoPrize -> lottoPrize.getAmount() * result.get(lottoPrize))

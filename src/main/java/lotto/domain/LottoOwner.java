@@ -7,7 +7,7 @@ import java.util.List;
 public class LottoOwner {
     private List<Lotto> lottos;
     private int spendMoney;
-    private int gainMoney;
+    private long gainMoney;
 
     public int purchaseLotto(int money) {
         spendMoney = money;

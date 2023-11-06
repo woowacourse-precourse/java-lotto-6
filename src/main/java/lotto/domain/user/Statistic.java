@@ -36,30 +36,11 @@ public class Statistic {
             Integer countSame = judgment.countSameWinNumbers(lotto);
             Boolean isSameBonus = judgment.isSameBonusNum(lotto);
 
-            if (Utii.isSameInt(countSame, 6)) {
-                // 1등: 6개 번호 일치 / 2,000,000,000원
-                countOfFirstPlace = countOfFirstPlace + 1;
-            }
-
-            if (Utii.isSameInt(countSame, 5) && isSameBonus) {
-                // 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-                countOfSecondPlace = countOfSecondPlace + 1;
-            }
-
-            if (Utii.isSameInt(countSame, 5) && !isSameBonus) {
-                // 3등: 5개 번호 일치 / 1,500,000원
-                countOfThirdPlace = countOfThirdPlace + 1;
-            }
-
-            if (Utii.isSameInt(countSame, 4)) {
-                // 4등: 4개 번호 일치 / 50,000원
-                countOfFourthPlace = countOfFourthPlace + 1;
-            }
-
-            if (Utii.isSameInt(countSame, 3)) {
-                // 5등: 3개 번호 일치 / 5,000원
-                countOfFifthPlace = countOfFifthPlace + 1;
-            }
+            isFirstPlace(countSame);
+            isSecondPlace(countSame, isSameBonus);
+            isThirdPlace(countSame, isSameBonus);
+            isFourthPlace(countSame);
+            isFifthPlace(countSame);
         }
     }
 
@@ -88,5 +69,44 @@ public class Statistic {
         calculateTotalWinMoney();
 
         return totalWinMoney;
+    }
+
+    private void isFirstPlace(Integer countSame) {
+        if (isSameCount(countSame, 6)) {
+            // 1등: 6개 번호 일치 / 2,000,000,000원
+            countOfFirstPlace = countOfFirstPlace + 1;
+        }
+    }
+
+    private void isSecondPlace(Integer countSame, Boolean isSameBonus) {
+        if (isSameCount(countSame, 5) && isSameBonus) {
+            // 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
+            countOfSecondPlace = countOfSecondPlace + 1;
+        }
+    }
+
+    private void isThirdPlace(Integer countSame, Boolean isSameBonus) {
+        if (isSameCount(countSame, 5) && !isSameBonus) {
+            // 3등: 5개 번호 일치 / 1,500,000원
+            countOfThirdPlace = countOfThirdPlace + 1;
+        }
+    }
+
+    private void isFourthPlace(Integer countSame) {
+        if (isSameCount(countSame, 4)) {
+            // 4등: 4개 번호 일치 / 50,000원
+            countOfFourthPlace = countOfFourthPlace + 1;
+        }
+    }
+
+    private void isFifthPlace(Integer countSame) {
+        if (isSameCount(countSame, 3)) {
+            // 5등: 3개 번호 일치 / 5,000원
+            countOfFifthPlace = countOfFifthPlace + 1;
+        }
+    }
+
+    private boolean isSameCount(Integer countSame, Integer targetCont) {
+        return Utii.isSameInt(countSame, targetCont);
     }
 }

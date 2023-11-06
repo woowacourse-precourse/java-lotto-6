@@ -1,5 +1,9 @@
-package lotto.domain;
+package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.view.Message;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.utils.Reader;
 
 import java.util.Arrays;
@@ -8,49 +12,49 @@ import java.util.List;
 public class Prompter {
     private static final String REGEX = ",";
     private static final int NO_LIMIT = -1;
-    private final Messenger messenger;
+    private final Message message;
 
-    public Prompter(Messenger messenger) {
-        this.messenger = messenger;
+    public Prompter(Message message) {
+        this.message = message;
     }
 
     public Money promptMoney() {
         try {
-            messenger.promptMoney();
+            message.promptMoney();
             Money money = new Money(readInteger());
-            messenger.newLine();
+            message.newLine();
             return money;
         } catch (IllegalArgumentException e) {
-            messenger.invalidMoneyError();
-            messenger.newLine();
+            message.invalidMoneyError();
+            message.newLine();
             return promptMoney();
         }
     }
 
     public WinningLotto promptWinningLotto() {
         try {
-            messenger.promptWinningNumbers();
+            message.promptWinningNumbers();
             List<Integer> winningNumbers = readIntegerList(REGEX, NO_LIMIT);
             Lotto lotto = new Lotto(winningNumbers);
-            messenger.newLine();
+            message.newLine();
             return promptBonusNumber(lotto);
         } catch (IllegalArgumentException e) {
-            messenger.invalidWinningNumbersError();
-            messenger.newLine();
+            message.invalidWinningNumbersError();
+            message.newLine();
             return promptWinningLotto();
         }
     }
 
     private WinningLotto promptBonusNumber(Lotto lotto) {
         try {
-            messenger.promptBonusNumber();
+            message.promptBonusNumber();
             int bonusNumber = readInteger();
             WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-            messenger.newLine();
+            message.newLine();
             return winningLotto;
         } catch (IllegalArgumentException e) {
-            messenger.invalidBonusNumberError();
-            messenger.newLine();
+            message.invalidBonusNumberError();
+            message.newLine();
             return promptBonusNumber(lotto);
         }
     }

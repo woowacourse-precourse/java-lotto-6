@@ -1,6 +1,9 @@
-package lotto.utils;
+package lotto.view;
 
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
+import lotto.domain.Player;
 import lotto.enums.Ranking;
 
 import java.math.BigDecimal;
@@ -10,14 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MessageBuilder {
-    private final static int SCALE = 1, EXCEPT_BLANK = 1;
-    private final static RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
+    private static final int SCALE = 1, EXCEPT_BLANK = 1;
+    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
 
-    private MessageBuilder() {
-
-    }
-
-    public static String build(Player player) {
+    public String build(Player player) {
         Lottos lottos = player.getLottos();
 
         StringBuilder result = new StringBuilder(String.valueOf(lottos.getSize()))
@@ -33,7 +32,7 @@ public class MessageBuilder {
         return result.toString();
     }
 
-    public static String build(Player player, LottoResult lottoResult) {
+    public String build(Player player, LottoResult lottoResult) {
         Map<Ranking, Integer> rankingCounts = lottoResult.getRankingCounts();
         BigDecimal prizeRate = lottoResult.calculatePrizeRate(player.getMoney(), SCALE, ROUNDING_MODE);
 

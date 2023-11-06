@@ -1,22 +1,24 @@
 package lotto.domain;
 
+import lotto.controller.Prompter;
+import lotto.view.Message;
 import lotto.enums.Ranking;
 import lotto.utils.StateChecker;
 
 import java.util.Map;
 
 public class Game {
+    private final Message message;
     private final Prompter prompter;
     private final LottoMachine lottoMachine;
-    private final Messenger messenger;
     private Player player;
     private WinningLotto winningLotto;
     private LottoResult lottoResult;
 
-    public Game(Prompter prompter, LottoMachine lottoMachine, Messenger messenger) {
+    public Game(Message message, Prompter prompter) {
+        this.message = message;
         this.prompter = prompter;
-        this.lottoMachine = lottoMachine;
-        this.messenger = messenger;
+        this.lottoMachine = new LottoMachine();
     }
 
     public void joinPlayer() {
@@ -25,13 +27,15 @@ public class Game {
         player = new Player(money, lottos);
     }
 
-    public void printIssuedLottos() {
+    public void showIssuedLottos() {
         StateChecker.checkNullState(player);
-        messenger.print(player);
+
+        message.print(player);
     }
 
     public void generateWinningLotto() {
         StateChecker.checkNullState(player);
+
         winningLotto = prompter.promptWinningLotto();
     }
 
@@ -42,8 +46,9 @@ public class Game {
         lottoResult = new LottoResult(rankingCounts);
     }
 
-    public void printResult() {
+    public void showResult() {
         StateChecker.checkNullState(player, winningLotto, lottoResult);
-        messenger.print(player, lottoResult);
+
+        message.print(player, lottoResult);
     }
 }

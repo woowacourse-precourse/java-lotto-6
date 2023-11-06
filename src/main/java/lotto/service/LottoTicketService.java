@@ -7,8 +7,8 @@ import lotto.model.collections.LottoPurchaseAmount;
 import lotto.model.collections.LottoTicketCount;
 import lotto.validator.PurchaseAmountValidator;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static lotto.constant.LottoConfig.*;
@@ -31,9 +31,10 @@ public class LottoTicketService {
     }
 
     public Lotto createLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
-        Collections.sort(lottoNumbers);
-        return new Lotto(lottoNumbers);
+        return Randoms.pickUniqueNumbersInRange(startInclusive,endInclusive,count)
+                .stream()
+                .sorted()
+                .collect(Collectors.collectingAndThen(Collectors.toList(),Lotto::new));
     }
 
     public LottoBundle generateLottoBundle(int ticketCount){

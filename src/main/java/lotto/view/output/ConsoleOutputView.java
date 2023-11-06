@@ -7,6 +7,7 @@ import java.util.List;
 public class ConsoleOutputView implements OutputView {
 
     private static final String LOTTO_DELIMITER = ", ";
+    private static final String RATE_DIGIT = "%.1f";
     private static final int RATE_PERCENT = 100;
 
     @Override
@@ -59,7 +60,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printProfitRate(final double rate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", rate * RATE_PERCENT) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format(RATE_DIGIT, rate * RATE_PERCENT) + "%입니다.");
     }
 
     @Override

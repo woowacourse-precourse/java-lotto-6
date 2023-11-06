@@ -2,6 +2,7 @@ package lotto.domain.win;
 
 import java.util.Arrays;
 import lotto.dto.LottoNumberMatchDTO;
+import lotto.dto.WinStateInformationDTO;
 
 public enum WinState {
 
@@ -15,13 +16,13 @@ public enum WinState {
     private final String description;
     private final int includedNumbersCount;
     private final TriBoolean isRequireBonusNumberState;
-    private final int winnings;
+    private final int prize;
 
-    WinState(String description, int includedNumbersCount, TriBoolean isRequireBonusNumberState, int winnings) {
+    WinState(String description, int includedNumbersCount, TriBoolean isRequireBonusNumberState, int prize) {
         this.description = description;
         this.includedNumbersCount = includedNumbersCount;
         this.isRequireBonusNumberState = isRequireBonusNumberState;
-        this.winnings = winnings;
+        this.prize = prize;
     }
 
     public static WinState from(LottoNumberMatchDTO lottoNumberMatchDTO) {
@@ -32,6 +33,10 @@ public enum WinState {
                 .filter(winState -> winState.equals(includedNumbersCount, isIncludedBonusNumber))
                 .findFirst()
                 .orElse(NONE);
+    }
+
+    public WinStateInformationDTO getWinStateInformation(int winningCount) {
+        return new WinStateInformationDTO(description, prize, winningCount);
     }
 
     private boolean equals(int includedNumbersCount, TriBoolean isIncludedBonusNumber) {

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class LottoVendingMachine {
     }
 
     public void purchaseLotto(int amount) {
-        int lottoTicketNumber = amount / 1000;
+        int lottoTicketNumber = amount / Constants.UNIT;
         for (int i = 0; i < lottoTicketNumber; i++) {
             List<Integer> numbers = getRandomNumbers();
             Lotto lotto = new Lotto(numbers);
@@ -22,7 +23,7 @@ public class LottoVendingMachine {
     }
 
     public List<Integer> getRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(Constants.MIN, Constants.MAX, Constants.LOTTO_NUMBER_COUNT);
     }
 
     public List<Lotto> getLottos() {

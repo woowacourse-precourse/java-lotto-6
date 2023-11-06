@@ -20,7 +20,7 @@ public class LottoService {
     }
 
     private void validateMoney(int money) {
-        if(money % 1000 != 0) {
+        if(money < 1000 || money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
         }
     }

@@ -25,4 +25,10 @@ public class InputProcessor {
         inputValidator.validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
+
+    public Integer processBonusNumber(String input, List<Integer> winningNumbers) {
+        Integer bonusNumber = StringUtil.convertToInteger(input);
+        inputValidator.validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
 }

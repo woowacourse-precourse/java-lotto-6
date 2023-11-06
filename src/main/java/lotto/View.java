@@ -50,4 +50,13 @@ public class View {
         System.out.println("보너스 번호를 입력해 주세요.");
         return inputNumericValue();
     }
+
+    public void printWinningResult(List<String> ranksStatistics, double totalProfitRate) {
+        System.out.println("---");
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        ranksStatistics.forEach(System.out::println);
+
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", totalProfitRate));
+    }
 }

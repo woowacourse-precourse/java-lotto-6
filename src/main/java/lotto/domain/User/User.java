@@ -17,6 +17,7 @@ public class User {
     public User() {
         inputLottoAmount();
         createLotties();
+        printLotties();
     }
 
     private void inputLottoAmount() {
@@ -31,6 +32,14 @@ public class User {
             List<Integer> lottoNumber = createLottoNumber();
             Lotto lotto = new Lotto(lottoNumber);
             lotties.add(lotto);
+        }
+    }
+
+    private void printLotties() {
+        System.out.println();
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        for (int i = 0; i < lottoCount; i++) {
+            System.out.println(lotties.get(i).getNumbers());
         }
     }
 

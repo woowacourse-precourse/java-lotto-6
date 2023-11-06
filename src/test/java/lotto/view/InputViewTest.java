@@ -86,12 +86,24 @@ class InputViewTest {
     @Test
     void readBonusNumber_Fail_ByNotInteger() {
         // given
-        System.setIn(createUserInput("Not number"));
+        System.setIn(createUserInput("notNumber"));
 
         // when, then
         Assertions.assertThatThrownBy(InputView::readBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_INTEGER_INPUT);
+    }
+
+    @DisplayName("값 입력 시 공백이 포함되어 있으면 예외가 발생한다.")
+    @Test
+    void read_Fail_ByContainsBlank() {
+        // given
+        System.setIn(createUserInput(" 2"));
+
+        // when, then
+        Assertions.assertThatThrownBy(InputView::readBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 공백이 포함되어 있습니다.");
     }
 
     InputStream createUserInput(String input) {

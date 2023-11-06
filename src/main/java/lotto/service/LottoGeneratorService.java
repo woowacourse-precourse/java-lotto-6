@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,9 +23,10 @@ public class LottoGeneratorService {
     }
 
     private Set<Integer> generateLottoNumbers() {
-        Set<Integer> numbers = new HashSet<>();
+        Set<Integer> numbers;
         do {
-            numbers.add(Randoms.pickNumberInRange(MIN_RANDOMNUMBER, MAX_RANDOMNUMBER));
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_RANDOMNUMBER, MAX_RANDOMNUMBER, 6);
+            numbers = new HashSet<>(randomNumbers);
         } while (!(numbers.size() == MAX_LOTTO_NUMBER_SIZE));
         return numbers;
     }

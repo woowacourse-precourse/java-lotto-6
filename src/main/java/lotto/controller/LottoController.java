@@ -21,7 +21,7 @@ public class LottoController {
         this(new LottoGenerator());
     }
 
-    public LottoController(LottoGenerator lottoGenerator) {
+    public LottoController(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 
@@ -53,18 +53,16 @@ public class LottoController {
     }
 
     private Money receivePurchaseAmount() {
-        long purchaseAmount;
-        while (true) {
-            try {
-                outputView.requestAmount();
-                purchaseAmount = inputView.receivePurchaseAmount();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-                outputView.printNewLine();
-            }
+        try {
+            outputView.requestAmount();
+            final long purchaseAmount = inputView.receivePurchaseAmount();
+            return new Money(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            outputView.printNewLine();
+
+            return receivePurchaseAmount();
         }
-        return new Money(purchaseAmount);
     }
 
     private WinningLotto receiveWinningLottoNumber() {
@@ -76,35 +74,27 @@ public class LottoController {
     }
 
     private String receiveWinningNumber() {
-        String winningNumber;
-        while (true) {
-            try {
-                outputView.requestWinningNumber();
-                winningNumber = inputView.receiveWinningNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-                outputView.printNewLine();
-            }
+        try {
+            outputView.requestWinningNumber();
+            return inputView.receiveWinningNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            outputView.printNewLine();
+
+            return receiveWinningNumber();
         }
-        outputView.printNewLine();
-        return winningNumber;
     }
 
     private int receiveBonusNumber(final String winningNumbers) {
-        int bonusNumber;
-        while (true) {
-            try {
-                outputView.requestBonusNumber();
-                bonusNumber = inputView.receiveBonusNumber(winningNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-                outputView.printNewLine();
-            }
-        }
+        try {
+            outputView.requestBonusNumber();
+            return inputView.receiveBonusNumber(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            outputView.printNewLine();
 
-        return bonusNumber;
+            return receiveBonusNumber(winningNumbers);
+        }
     }
 
     private void printLottoResultStatistics(final LottoResult lottoResult, final Money purchaseAmount) {

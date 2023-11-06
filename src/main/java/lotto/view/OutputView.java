@@ -31,9 +31,17 @@ public class OutputView {
                 .filter(rank -> !rank.equals(Rank.ECT))
                 .forEach(rank -> System.out.println(getLottoStatistics(rank, rankResult)));
 
-        double earnings = lottos.calEarnings(rankResult);
+        double earnings = calEarnings(rankResult);
         int cost = money.getMoney();
         System.out.printf(EARNING_RATE, getEarningRate(earnings, cost));
+    }
+
+    private double calEarnings(Map<Rank, Integer> rankResult) {
+        double earnings = 0;
+        for (Rank rank : Rank.values()) {
+            earnings += (rankResult.get(rank) * rank.getPrize());
+        }
+        return earnings;
     }
 
     private String getEarningRate(double earnings, int cost) {

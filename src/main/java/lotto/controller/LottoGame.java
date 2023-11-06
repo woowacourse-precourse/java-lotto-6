@@ -5,6 +5,7 @@ import lotto.model.*;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
@@ -39,9 +40,9 @@ public class LottoGame {
         outputView.count(lottoPaper);
 
         for (int index = 0; index < lottoPaper; index++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_SIZE);
-            List<Integer> sortNumbers = new ArrayList<>(numbers);
-            Lotto lotto = new Lotto(sortNumbers);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_SIZE));
+            Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
             totalLotto.add(lotto);
 
         }

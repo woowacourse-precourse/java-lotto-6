@@ -1,30 +1,31 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.StringJoiner;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstant;
 import lotto.utils.LottoConstantValue;
-import lotto.utils.Prize;
 
 public class Lotto {
-    private final List<LottoNumber> numbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers.stream()
+    public Lotto(List<Integer> lottoNumbers) {
+        validate(lottoNumbers);
+        this.lottoNumbers = lottoNumbers.stream()
                 .map(LottoNumber::new)
                 .toList();
     }
 
-    private void validate(List<Integer> numbers) {
-        validateLength(numbers);
-        validateDuplication(numbers);
+    private void validate(List<Integer> lottoNumbers) {
+        validateLength(lottoNumbers);
+        validateDuplication(lottoNumbers);
     }
 
-    private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()) {
+    private void validateLength(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()) {
             throw new IllegalArgumentException(
                     ErrorMessage.INVALID_LOTTO_NUMBERS_LENGTH.getWithFormatAndPrefix(
                             LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()
@@ -33,22 +34,20 @@ public class Lotto {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
-        long uniqueNumbersLength = numbers.stream()
-                .distinct()
-                .count();
-        if (numbers.size() != uniqueNumbersLength) {
+    private void validateDuplication(List<Integer> lottoNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+        if (lottoNumbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION.getWithPrefix());
         }
     }
 
     public boolean doesHaveLottoNumber(LottoNumber lottoNumber) {
-        return numbers.contains(lottoNumber);
+        return lottoNumbers.contains(lottoNumber);
     }
 
     public int getSameCount(Lotto otherLotto) {
-        return numbers.stream()
-                .filter(otherLotto.numbers::contains)
+        return lottoNumbers.stream()
+                .filter(otherLotto.lottoNumbers::contains)
                 .toList()
                 .size();
     }
@@ -59,7 +58,7 @@ public class Lotto {
                 LottoConstant.DELIMITER.getLottoStringWithSpace(),
                 LottoConstant.OPENING_BRACKET.get(),
                 LottoConstant.CLOSING_BRACKET.get());
-        numbers.stream()
+        lottoNumbers.stream()
                 .sorted()
                 .map(LottoNumber::toString)
                 .forEach(lottoPrintFormat::add);

@@ -22,19 +22,19 @@ public enum Rank {
     }
 
     public static Rank findByMatchCountAndBonus(int matchCount, boolean matchBonus) {
-        if (matchCount < 3) {
+        if (matchCount < FIFTH.matchCount) {
             return NO_RANK;
         }
-        if (matchCount == 3) {
+        if (matchCount == FIFTH.matchCount) {
             return FIFTH;
         }
-        if (matchCount == 4) {
+        if (matchCount == FOURTH.matchCount) {
             return FOURTH;
         }
-        if (matchCount == 5 && !matchBonus) {
+        if (matchCount == THIRD.matchCount && !matchBonus) {
             return THIRD;
         }
-        if (matchCount == 5) {
+        if (matchCount == SECOND.matchCount) {
             return SECOND;
         }
         return FIRST;

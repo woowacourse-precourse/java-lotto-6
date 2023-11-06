@@ -2,8 +2,9 @@ package lotto.domain;
 
 public class ProfitRateCalculator {
 
+    private static final int PERCENTAGE = 100;
+
     public double calculate(int purchaseAmount, long reward) {
-        double profitRate = (double) reward / purchaseAmount * 100;
-        return Math.round(profitRate * 10) / 10.0;
+        return (double) reward / purchaseAmount * PERCENTAGE;
     }
 }

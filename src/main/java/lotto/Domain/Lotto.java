@@ -1,5 +1,8 @@
 package lotto.Domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -23,6 +26,13 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public static List<Integer> createLottoRandomNumber() {
+        final List<Integer> numbers;
+        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 
     public List<Integer> getNumbers() {

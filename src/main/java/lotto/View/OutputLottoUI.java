@@ -2,14 +2,14 @@ package lotto.View;
 
 import java.util.List;
 
-public class LottoUi {
+public class OutputLottoUI {
 
     public static void inputMoneyView() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
     public static void lottoCountView(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println("\n" +lottoCount + "개를 구매했습니다.");
     }
 
     public static void lottoNumbersView(List<Integer> lotto) {

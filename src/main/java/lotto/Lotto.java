@@ -26,22 +26,22 @@ public class Lotto {
         if (numbers.size() != LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException(LottoError.NumberCount.getErrorMessage());
         }
-        if(!validateDuplicatedNumber(numbers)){
+        if (!validateDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException(LottoError.NumberDuplication.getErrorMessage());
         }
-        if(!validateOverRangeNumber(numbers)){
+        if (!validateOverRangeNumber(numbers)) {
             throw new IllegalArgumentException(LottoError.NumberRange.getErrorMessage());
         }
     }
 
-    private boolean validateDuplicatedNumber(List<Integer> numbers){
+    private boolean validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         return numbers.size() == numberSet.size();
     }
 
-    private boolean validateOverRangeNumber(List<Integer> numbers){
-        for(int number : numbers){
-            if(number > MAX_LOTTO_NUMBER.getNumber() || number < MIN_LOTTO_NUMBER.getNumber()){
+    private boolean validateOverRangeNumber(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number > MAX_LOTTO_NUMBER.getNumber() || number < MIN_LOTTO_NUMBER.getNumber()) {
                 return false;
             }
         }

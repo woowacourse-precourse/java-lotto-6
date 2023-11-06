@@ -119,7 +119,7 @@ public class LottoController {
     public void insertResult(Lotto lotto, Lotto winNumbers) {
         ResultInit();
         int CorrectCount = lottoService.sameNumberCount(lotto, winNumbers);
-        if(CorrectCount >= MIN_PRIZE_CORRECT_COUNT.getNumber()){
+        if (CorrectCount >= MIN_PRIZE_CORRECT_COUNT.getNumber()) {
             String prizeCount = String.valueOf(CorrectCount);
             if (CorrectCount == 5 && lottoService.isSameBonusNumber(lotto, bonus)) {
                 prizeCount += "+1";

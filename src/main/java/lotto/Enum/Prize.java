@@ -29,9 +29,9 @@ public enum Prize {
         return count;
     }
 
-    public static Prize fromCount(String count){
-        for(Prize prize : Prize.values()){
-            if(prize.count.equals(count)){
+    public static Prize fromCount(String count) {
+        for (Prize prize : Prize.values()) {
+            if (prize.count.equals(count)) {
                 return prize;
             }
         }

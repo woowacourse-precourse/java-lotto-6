@@ -1,6 +1,8 @@
-package lotto.domain.userLotto;
+package lotto.domain.lotto.userLotto;
 
 import lotto.domain.*;
+import lotto.domain.lotto.AnswerLotto;
+import lotto.domain.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;

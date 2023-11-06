@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.domain.LottoCondition.*;
+import static lotto.domain.lotto.LottoCondition.*;
 
 public class Lotto {
 

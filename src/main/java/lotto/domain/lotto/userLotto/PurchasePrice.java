@@ -1,6 +1,6 @@
-package lotto.domain.userLotto;
+package lotto.domain.lotto.userLotto;
 
-import static lotto.domain.LottoCondition.PRICE;
+import static lotto.domain.lotto.LottoCondition.PRICE;
 
 public class PurchasePrice {
 

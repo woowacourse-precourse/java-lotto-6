@@ -1,10 +1,11 @@
 package lotto.domain.userLotto;
 
+import lotto.domain.lotto.userLotto.PurchasePrice;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.domain.LottoCondition.PRICE;
+import static lotto.domain.lotto.LottoCondition.PRICE;
 
 class PurchasePriceTest {
 

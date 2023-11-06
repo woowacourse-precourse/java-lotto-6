@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.domain.AnswerLotto;
-import lotto.domain.userLotto.UserLotto;
+import lotto.domain.lotto.AnswerLotto;
+import lotto.domain.lotto.userLotto.UserLotto;
 import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
 import lotto.dto.WinningResultDto;

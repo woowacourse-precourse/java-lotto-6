@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-import static lotto.domain.LottoCondition.*;
+import static lotto.domain.lotto.LottoCondition.*;
 
 public class NumberGenerator {
 

@@ -47,4 +47,8 @@ public class Lotto {
                 .count();
         return (int) sameNumberCount;
     }
+
+    public boolean hasNumber(int number) {
+        return getNumbers().contains(number);
+    }
 }

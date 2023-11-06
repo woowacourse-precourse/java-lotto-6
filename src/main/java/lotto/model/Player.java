@@ -47,4 +47,8 @@ public class Player {
         return this.matchCount[cnt];
     }
 
+    public int[] getMatchCount() {
+        return matchCount;
+    }
+
 }

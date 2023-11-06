@@ -12,7 +12,7 @@ public class LottoResult {
 
     private static final int NONE = 0;
 
-    private Map<LottoRankAndPrize, Integer> totalRanks;
+    private final Map<LottoRankAndPrize, Integer> totalRanks;
     private final int lottoPurchasePrice;
     private int totalPrize = NONE;
 
@@ -34,7 +34,16 @@ public class LottoResult {
     }
 
     public int calculateTotalPrize(){
-        return 0;
+        int totalPrize = 0;
+
+        for (Map.Entry<LottoRankAndPrize, Integer> entry : totalRanks.entrySet()) {
+            LottoRankAndPrize rankAndPrize = entry.getKey();
+            int count = entry.getValue();
+
+            totalPrize += rankAndPrize.getPrize() * count;
+        }
+        this.totalPrize = totalPrize;
+        return totalPrize;
     }
 
     public int getTotalPrizeAmount() {

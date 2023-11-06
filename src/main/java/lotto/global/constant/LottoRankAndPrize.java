@@ -23,9 +23,21 @@ public enum LottoRankAndPrize {
         this.bonusMatched = bonusMatched;
     }
 
-    public static LottoRankAndPrize determineRankByLottoMatched(int lottoMatched){
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getLottoMatched() {
+        return lottoMatched;
+    }
+
+    public boolean isBonusMatched() {
+        return bonusMatched;
+    }
+
+    public static LottoRankAndPrize determineRankByLottoMatched(int lottoMatched, boolean bonusMatched){
         for(LottoRankAndPrize rankAndPrize : LottoRankAndPrize.values()) {
-            if(rankAndPrize.lottoMatched == lottoMatched) {
+            if(rankAndPrize.lottoMatched == lottoMatched && rankAndPrize.bonusMatched == bonusMatched) {
                 return rankAndPrize;
             }
         }

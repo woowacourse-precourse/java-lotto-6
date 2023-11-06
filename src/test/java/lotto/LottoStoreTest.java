@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {
-
     @DisplayName("총 발행개수 만큼의 로또를 발행")
     @Test
     void publishLottoesByTotalLottoNumber() {
@@ -19,5 +18,4 @@ class LottoStoreTest {
 
         assertThat(result).isEqualTo(expected);
     }
-
 }

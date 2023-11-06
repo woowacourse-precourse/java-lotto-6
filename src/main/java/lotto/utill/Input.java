@@ -11,17 +11,20 @@ public class Input {
         String[] arr = null;
         String inputStringLine = Console.readLine().trim();
 
-        // TODO: 11/6/23
-        ValidateException.includeStringExceptionComma(inputStringLine);
-        ValidateException.blankCheck(inputStringLine);
-        ValidateException.includeBlank(inputStringLine);
-        ValidateException.commaStartAndEnd(inputStringLine);
-        ValidateException.hasConsecutiveEmptyValues(inputStringLine);
+        validateInputNumbers(inputStringLine);
 
         arr = Utii.makeArrSplitComma(inputStringLine);
         results = Utii.makeListFromArr(arr);
 
         return results;
+    }
+
+    private static void validateInputNumbers(String inputStringLine) {
+        ValidateException.includeStringExceptionComma(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
+        ValidateException.includeBlank(inputStringLine);
+        ValidateException.commaStartAndEnd(inputStringLine);
+        ValidateException.hasConsecutiveEmptyValues(inputStringLine);
     }
 
     public static Integer InputNumber() {

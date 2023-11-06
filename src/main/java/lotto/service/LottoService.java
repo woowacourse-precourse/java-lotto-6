@@ -21,6 +21,10 @@ public class LottoService {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     public List<Lotto> purchase (int purchaseQuantity) {
         for (int i = ZERO; i < purchaseQuantity; i++) {
             List<Integer> lottoNumbers = randomNumberGenerator.uniqueNumbers();

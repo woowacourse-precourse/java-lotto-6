@@ -10,6 +10,8 @@ public class GameView {
         printConstantMessage(ASK_LOTTO_PURCHASE_AMOUNT);
         return Console.readLine();
     }
+
+
     public static void printConstantMessage(ConstantMessage constantMessage){
         System.out.println(constantMessage.getMessage());
     }

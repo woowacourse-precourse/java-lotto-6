@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.LottoService;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.Lottos;
 import lotto.view.GameView;
+import org.assertj.core.api.ListAssert;
 
 public class GameController {
 
@@ -16,9 +18,8 @@ public class GameController {
 
     public void run(){
         int lottoPurchaseAmount = getLottoPurchaseAmount(view.inputLottoPurchaseAmount());
-        System.out.println(lottoPurchaseAmount);
-        PurchaseAmount purchaseAmount = new PurchaseAmount(lottoPurchaseAmount);
-        System.out.println(purchaseAmount.getAmount());
+        Lottos lottos = model.issueLottos(lottoPurchaseAmount);
+
     }
 
     private int getLottoPurchaseAmount(String input) {

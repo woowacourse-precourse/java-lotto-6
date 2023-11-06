@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constants.LottoConstants.LOTTO_NUMBER_OVER_MAX;
 import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,5 +43,21 @@ public class Lotto {
     private boolean isInvalidLottoNumber(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number > LOTTO_NUMBER_OVER_MAX);
+    }
+
+    public List<Integer> getLotto() {
+        return Collections.unmodifiableList(lottoNumbers);
+    }
+
+    public int matchLottoCount(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .mapToInt(number -> (int) lottoNumbers.stream()
+                        .filter(lotto -> lotto == number)
+                        .count())
+                .sum();
+    }
+
+    public boolean isBonusMatch(int bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
     }
 }

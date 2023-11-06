@@ -10,5 +10,6 @@ public class Application {
     public static void main(String[] args) {
         OutputView.askAmountForLotto();
         OutputView.repeatGenerateRandomLotto();
+        OutputView.askWinningNumbers();
     }
 }

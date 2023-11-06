@@ -64,5 +64,9 @@ Lotto클래스 getNumbers메소드
 ```````````````````````````````
 7. 로또들을 count만큼 반복하고 보여주는 기능 추가
 ``````````````````````````
-Outputview repeatGenerateRandomLotto메소드
+Outputview클래스 repeatGenerateRandomLotto메소드
+```````````````````````````````
+8. 당첨 숫자들을 입력해달라고 출력하는 기능 추가
+``````````````````````````
+Outputview클래스 askWinningNumbers메소드
 ```````````````````````````````

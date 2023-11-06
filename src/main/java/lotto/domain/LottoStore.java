@@ -11,10 +11,7 @@ public class LottoStore {
         this.userLottoTickets = userLottoTickets;
     }
 
-    public String PrintReceipt(List<Lotto> lottoTickets) {
-        return null;
-
+    public List<Lotto> getUserLottoTickets() {
+        return userLottoTickets;
     }
-
-
 }

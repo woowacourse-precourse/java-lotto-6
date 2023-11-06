@@ -11,29 +11,29 @@ public enum Prize {
     SECOND_PLACE(5, true, 30_000_000.0),
     FIRST_PLACE(6, false, 2_000_000_000.0);
 
-    private final Integer countOfSameNumbers;
-    private final Boolean checkBonus;
+    private final Integer countOfMatchedNumber;
+    private final Boolean isBonusNumber;
     private final Double reward;
 
-    Prize(final Integer countOfSameNumbers, final Boolean checkBonus, final Double reward) {
-        this.countOfSameNumbers = countOfSameNumbers;
-        this.checkBonus = checkBonus;
+    Prize(final Integer countOfMatchedNumber, final Boolean isBonusNumber, final Double reward) {
+        this.countOfMatchedNumber = countOfMatchedNumber;
+        this.isBonusNumber = isBonusNumber;
         this.reward = reward;
     }
 
     public static Prize of(final Integer countOfSameNumbers, final Boolean checkBonus) {
         return Arrays.stream(Prize.values())
-                .filter(prize -> prize.countOfSameNumbers == countOfSameNumbers && prize.checkBonus == checkBonus)
+                .filter(prize -> prize.countOfMatchedNumber == countOfSameNumbers && prize.isBonusNumber == checkBonus)
                 .findFirst()
                 .orElse(LAST_PLACE);
     }
 
-    public Integer getCountOfSameNumbers() {
-        return countOfSameNumbers;
+    public Integer getCountOfMatchedNumber() {
+        return countOfMatchedNumber;
     }
 
-    public Boolean getCheckBonus() {
-        return checkBonus;
+    public Boolean isBonusNumber() {
+        return isBonusNumber;
     }
 
     public Double getReward() {

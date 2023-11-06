@@ -121,11 +121,11 @@ public class InputView {
 
     private String getInput() throws IllegalStateException {
        String input = Console.readLine();
-        validateInputBlank(input);
+       validateNoLineFound(input);
        return input;
     }
 
-    private void validateInputBlank(String input) throws IllegalStateException {
+    private void validateNoLineFound(String input) throws IllegalStateException {
         if (input.isBlank() || input == null) {
             throw new IllegalStateException("[ERROR] 입력값을 입력하지 않았습니다.");
         }

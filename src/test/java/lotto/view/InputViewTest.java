@@ -46,7 +46,7 @@ class InputViewTest extends IOTest{
     @ParameterizedTest()
     @ValueSource(strings = {" "})
     void createCashByBlankInputExceptionTest(String input) {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> {
                     systemIn(input);
                     inputView.InputCash();
@@ -81,7 +81,7 @@ class InputViewTest extends IOTest{
     @ParameterizedTest()
     @ValueSource(strings = {" "})
     void createWinnerNumbersByBlankInputExceptionTest(String inputWrongWinnerNumbers) {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> {
                     systemIn(inputWrongWinnerNumbers);
                     inputView.inputWinnerNumbers();
@@ -142,7 +142,7 @@ class InputViewTest extends IOTest{
     @ParameterizedTest()
     @ValueSource(strings = {" "})
     void createWinnerBonusNumberByBlankInputSuccessTest(String inputWrongBonusNumber) {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> {
                     systemIn(inputWrongBonusNumber);
                     inputView.inputBonusNumber();

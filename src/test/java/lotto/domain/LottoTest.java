@@ -81,8 +81,8 @@ class LottoTest {
     @MethodSource("compareWinnerLottoSuccessDummy")
     void compareWinnerLottoSuccessTest(Lotto lotto, List<Integer> winnerNumbers, Integer bonusNumber, Prize expected) {
         Prize result = lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber);
-        assertEquals(expected.getCountOfSameNumbers(), result.getCountOfSameNumbers());
-        assertEquals(expected.getCheckBonus(), result.getCheckBonus());
+        assertEquals(expected.getCountOfMatchedNumber(), result.getCountOfMatchedNumber());
+        assertEquals(expected.isBonusNumber(), result.isBonusNumber());
     }
 
     @DisplayName("로또 번호 문자열로 표현하는 기능 테스트")

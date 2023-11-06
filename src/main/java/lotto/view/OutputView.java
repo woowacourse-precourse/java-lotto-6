@@ -28,14 +28,14 @@ public class OutputView {
         System.out.println("---");
         for (Prize prize : Prize.values()) {
             if (prize == Prize.LAST_PLACE) continue;
-            if (!prize.getCheckBonus()) {
+            if (!prize.isBonusNumber()) {
                 System.out.printf("%d개 일치 (%s원) - %d개",
-                        prize.getCountOfSameNumbers(),
+                        prize.getCountOfMatchedNumber(),
                         formatter.format(prize.getReward()),
                         prizes.countPrize(prize));
-            } else if (prize.getCheckBonus()){
+            } else if (prize.isBonusNumber()){
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
-                        prize.getCountOfSameNumbers(),
+                        prize.getCountOfMatchedNumber(),
                         formatter.format(prize.getReward()),
                         prizes.countPrize(prize));
             }

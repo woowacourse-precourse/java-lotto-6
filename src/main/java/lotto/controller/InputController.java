@@ -21,18 +21,20 @@ public class InputController {
 
     public static void inputMoney() {
         String stringMoney = readLine();
+        validator.checkInputMoneyFigure(stringMoney);
         money = Integer.parseInt(stringMoney);
-        validator.checkInputMoney();
+        validator.checkInputMoneyUnit();
     }
     public static void inputWinningNumbers() {
         winningNumbers = new ArrayList<>();
-        String[] numberStrings = readLine().split(",", -1);
-        validator.checkWinningNumBlank(numberStrings);
+        String[] numberStrings = readLine().split(",");
 
         for (String numberString : numberStrings) {
+            numberString = numberString.trim();
             winningNumbers.add(Integer.parseInt(numberString));
         }
 
+        // validator.checkWinningNumBlank(numberStrings);
         validator.checkWinningNumRangeOver();
         validator.checkWinningNumDuplication();
         validator.checkWinningNumAmount();

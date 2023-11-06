@@ -1,20 +1,29 @@
 package lotto.util;
 
+import lotto.controller.InputController;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static lotto.controller.InputController.*;
 
 public class CheckValidation {
-    public void checkInputMoney() {
+    public void checkInputMoneyUnit() {
         if (money % 1000 !=0) {
             throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }
     }
+    public void checkInputMoneyFigure(String stringMoney) {
+        String regex = "[0-9]+";
+        if (!Pattern.matches(regex, stringMoney)) {
+            throw new IllegalArgumentException("숫자만 입력가능합니다.");
+        }
+    }
     public void checkWinningNumBlank(String[] numberStrings) {
-        boolean checkBlank = Arrays.stream(numberStrings).noneMatch(str -> str.equals(" ") || str.equals(""));
+        boolean checkBlank = Arrays.stream(numberStrings).noneMatch(str -> str.equals(" "));
         if (!checkBlank) {
             throw new IllegalArgumentException("입력하신 값 중에 공백이 존재합니다.");
         }
@@ -35,8 +44,8 @@ public class CheckValidation {
         }
     }
     public void checkWinningNumAmount() {
-        if (winningNumbers.stream().count() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개 입니다.");
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호는 6개 입니다. 6개의 당첨 번호를 입력해주세요");
         }
     }
     public void checkBonusNumDuplication() {

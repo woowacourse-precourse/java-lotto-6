@@ -49,4 +49,8 @@ public class Lotto {
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 
+    public boolean contains(final Number bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 }

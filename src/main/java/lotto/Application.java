@@ -22,6 +22,31 @@ public class Application {
         Lotto winningLotto = drawLotto();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = drawBonus();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int totalReward = award(winningLotto, bonusNumber, lottoList);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", 100.0 * totalReward / (times * 1000));
+    }
+
+    private static int award(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList) {
+        int[] countOfPrize = calculateResult(winningLotto, bonusNumber, lottoList);
+        LottoRank[] ranks = LottoRank.values();
+        int totalReward = 0;
+        for (int i = 4; i >= 0; i--) {
+            LottoRank rank = ranks[i];
+            System.out.println(rank.description + " - " + countOfPrize[rank.prize] + "개");
+            totalReward += (rank.reward * countOfPrize[rank.prize]);
+        }
+        return totalReward;
+    }
+
+    private static int[] calculateResult(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList) {
+        int[] countOfPrize = new int[7];
+        for (Lotto lotto : lottoList) {
+            LottoRank rank = lotto.getRank(winningLotto, bonusNumber);
+            countOfPrize[rank.prize]++;
+        }
+        return countOfPrize;
     }
 
     private static int purchaseLotto() {

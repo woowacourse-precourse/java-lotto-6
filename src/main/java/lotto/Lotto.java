@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
 
+import static lotto.LottoRank.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -33,5 +35,22 @@ public class Lotto {
                 return o1 - o2;
             }
         });
+    }
+
+    public LottoRank getRank(Lotto winningLotto, int bonusNumber) {
+        long numberScore = this.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+        if (numberScore == 6)
+            return FIRST;
+        else if (numberScore == 5 && this.numbers.contains(bonusNumber))
+            return SECOND;
+        else if (numberScore == 5)
+            return THIRD;
+        else if (numberScore == 4)
+            return FORTH;
+        else if (numberScore == 3)
+            return FIFTH;
+        return SIXTH;
     }
 }

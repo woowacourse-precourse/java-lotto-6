@@ -43,8 +43,8 @@ public enum LottoGrade {
             sb.append(", 보너스 볼 일치");
         }
 
-        String winningMoney = NumberFormat.getInstance().format(this.winningMoney);
-        sb.append(" (").append(winningMoney).append("원)");
+        String commarizedWinningMoney = NumberFormat.getInstance().format(this.winningMoney);
+        sb.append(" (").append(commarizedWinningMoney).append("원)");
 
         return sb.toString();
     }

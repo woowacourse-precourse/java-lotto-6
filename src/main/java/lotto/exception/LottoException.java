@@ -1,7 +1,7 @@
 package lotto.exception;
 
 import lotto.Service.InputService;
-import lotto.domain.LottoEnum;
+import lotto.domain.StatisticsUtilEnum;
 
 import java.util.HashSet;
 import java.util.List;
@@ -62,7 +62,7 @@ public class LottoException {
 
     private boolean check1000Division(String line) {
         try {
-            if (Integer.parseInt(line) % LottoEnum.LOTTO_PRICE.getStatus() != 0) {
+            if (Integer.parseInt(line) % StatisticsUtilEnum.LOTTO_PRICE.getStatus() != 0) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

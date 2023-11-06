@@ -1,6 +1,6 @@
 package lotto.Service;
 
-import lotto.domain.LottoEnum;
+import lotto.domain.StatisticsUtilEnum;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class InputService {
 
     public Integer getStringPriceToInt(String line) {
-        return Integer.parseInt(line) / LottoEnum.LOTTO_PRICE.getStatus();
+        return Integer.parseInt(line) / StatisticsUtilEnum.LOTTO_PRICE.getStatus();
     }
 
     public void isString(String line) {

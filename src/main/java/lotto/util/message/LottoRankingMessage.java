@@ -6,11 +6,11 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum LottoRankingMessage {
-    FIRST("6개 일치 %s - %s개", RankInfo.FIRST),
-    SECOND("5개 일치, 보너스 볼 일치 %s - %s개", RankInfo.SECOND),
-    THIRD("5개 일치 %s - %d개", RankInfo.THIRD),
-    FOURTH("4개 일치 %s - %d개", RankInfo.FOURTH),
-    FIFTH("3개 일치 %s - %d개", RankInfo.FIFTH);
+    FIRST("6개 일치 (%s원) - %s개", RankInfo.FIRST),
+    SECOND("5개 일치, 보너스 볼 일치 (%s원) - %s개", RankInfo.SECOND),
+    THIRD("5개 일치 (%s원) - %d개", RankInfo.THIRD),
+    FOURTH("4개 일치 (%s원) - %d개", RankInfo.FOURTH),
+    FIFTH("3개 일치 (%s원) - %d개", RankInfo.FIFTH);
 
     private final String message;
     private final RankInfo lottoRanking;
@@ -22,7 +22,7 @@ public enum LottoRankingMessage {
 
     public static String findLottoRankingMessage(final RankInfo lottoRanking, int numberOfWins) {
         return Arrays.stream(LottoRankingMessage.values())
-                .filter(utils -> utils.lottoRanking == lottoRanking)
+                .filter(utils -> utils.lottoRanking == lottoRanking) //todo: 네이밍 수정 필요
                 .map(utils -> getFormat(lottoRanking, numberOfWins, utils))
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);

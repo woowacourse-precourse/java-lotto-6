@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.view.InputValidator;
+import lotto.view.InputView;
 
 public class Number {
 
@@ -10,8 +12,7 @@ public class Number {
         this.value = value;
     }
 
-    public static Number from(final String userInput) {
-        int value = validateDigit(userInput);
+    public static Number from(final int value) {
         return new Number(value);
     }
 
@@ -23,14 +24,5 @@ public class Number {
     public String toString() {
         return String.valueOf(value);
     }
-
-    private static int validateDigit(String userInput) {
-        try {
-            return Integer.parseInt(userInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다!");
-        }
-    }
-
 
 }

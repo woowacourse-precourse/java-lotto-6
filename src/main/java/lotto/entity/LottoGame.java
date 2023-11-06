@@ -15,7 +15,7 @@ public class LottoGame {
         this.id = id;
     }
 
-    private void addLotto(Lotto lotto) {
+    public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
 }

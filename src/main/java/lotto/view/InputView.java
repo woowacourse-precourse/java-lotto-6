@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Constants;
-import lotto.domain.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +43,7 @@ public class InputView {
         }
     }
 
-    public Lotto getWinningNumber() {
+    public List<Integer> getWinningNumber() {
         while (true) {
             System.out.println(Constants.GET_WINNING_NUMBER_MESSAGE);
             String winningNumber = Console.readLine();
@@ -52,10 +51,9 @@ public class InputView {
             try {
                 validateWinningNumberInput(winningNumber);
 
-                List<Integer> numbers = Arrays.stream(winningNumber.split(","))
+                return Arrays.stream(winningNumber.split(","))
                         .map(Integer::parseInt)
                         .toList();
-                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -75,7 +73,7 @@ public class InputView {
         }
     }
 
-    public Integer getBonusNumber(Lotto winningNumber) {
+    public Integer getBonusNumber(List<Integer> winningNumber) {
         while (true) {
             System.out.println(Constants.GET_BONUS_NUMBER_MESSAGE);
             String bonusNumber = Console.readLine();
@@ -92,8 +90,8 @@ public class InputView {
         }
     }
 
-    private void validateBonusNumberInput(Integer bonusNumber, Lotto winningNumber) {
-        if (winningNumber.getNumbers().contains(bonusNumber)) {
+    private void validateBonusNumberInput(Integer bonusNumber, List<Integer> winningNumber) {
+        if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(Constants.DUPLICATE_NUMBER_ERROR);
         }
     }

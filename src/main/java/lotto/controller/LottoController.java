@@ -8,6 +8,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -25,10 +26,11 @@ public class LottoController {
         ArrayList<Lotto> lottos = lottoService.getLottos(price);
         outputView.printLottos(lottoService.getLottoList(lottos), lottos.size());
 
-        Lotto winningNumber = inputView.getWinningNumber();
+        List<Integer> winningNumber = inputView.getWinningNumber();
         Integer bonusNumber = inputView.getBonusNumber(winningNumber);
+        Lotto winningLotto = new Lotto(winningNumber);
 
-        HashMap<Ranking, Integer> winningStatic = lottoService.getWinningStatic(lottos, winningNumber, bonusNumber);
+        HashMap<Ranking, Integer> winningStatic = lottoService.getWinningStatic(lottos, winningLotto, bonusNumber);
         outputView.printWinningStatic(lottoService.makeWinningStaticResult(winningStatic));
 
         Double rateOfReturn = lottoService.getRateOfReturn(price, winningStatic);

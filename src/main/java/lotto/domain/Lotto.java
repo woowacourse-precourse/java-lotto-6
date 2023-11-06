@@ -24,7 +24,11 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int compare(Lotto issued) {
-        return (int) this.numbers.stream().filter(issued.numbers::contains).count();
+    public int countMatchingNumbers(Lotto winningNumber) {
+        return (int) winningNumber.getNumbers().stream().filter(numbers::contains).count();
+    }
+
+    public boolean isBonusNumberMatch(int matchCount, int bonusNumber) {
+        return matchCount == 5 && numbers.contains(bonusNumber);
     }
 }

@@ -19,9 +19,15 @@ public enum CountMessage {
         this.price = price;
     }
 
-    public String getMessage() { return message; }
+    public String getMessage() {
+        return message;
+    }
 
-    public int getCount() { return count; }
+    public int getCount() {
+        return count;
+    }
 
-    public Double getPrice() { return price; }
+    public Double getPrice() {
+        return price;
+    }
 }

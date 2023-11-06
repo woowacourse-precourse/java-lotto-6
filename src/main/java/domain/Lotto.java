@@ -1,25 +1,29 @@
 package domain;
 
-import exception.InputException;
-
 import static config.ErrorMessage.*;
 import static config.LottoConst.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import exception.InputException;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        numbers = Removeduplication(numbers);
+        numbers = removeDuplication(numbers);
         validateInRange(numbers);
         validateSize(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
 
-    private List<Integer> Removeduplication(List<Integer> numbers) {
+    private List<Integer> removeDuplication(List<Integer> numbers) {
         Set<Integer> lottoSet = new HashSet<>(numbers);
         return new ArrayList<>(lottoSet);
     }
@@ -31,7 +35,7 @@ public class Lotto {
     }
 
     private void validateInRange(List<Integer> numbers) {
-        for(int number : numbers) {
+        for (int number : numbers) {
             InputException.validateRange(number);
         }
     }
@@ -48,8 +52,8 @@ public class Lotto {
     public int compareLotto(Lotto lotto) {
         Set<Integer> orignLotto = new HashSet<>(numbers);
         int count = COUNT_INIT.getNumber();
-        for(Integer number : lotto.numbers) {
-            if(orignLotto.contains(number)) {
+        for (Integer number : lotto.numbers) {
+            if (orignLotto.contains(number)) {
                 count++;
             }
         }

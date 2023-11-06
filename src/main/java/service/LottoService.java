@@ -40,7 +40,7 @@ public class LottoService {
     }
 
     public Double findRate(int[] winLottoArr) {
-        return calculateRate(winLottoArr,userLottoVO.getPay());
+        return calculateRate(winLottoArr, userLottoVO.getPay());
     }
 
 }

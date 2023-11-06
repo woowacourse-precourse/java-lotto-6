@@ -1,16 +1,16 @@
 package view;
 
-import static exception.InputException.*;
-
-import camp.nextstep.edu.missionutils.Console;
-
 import static config.OutputMessage.*;
-
-import controller.GameController;
-import domain.Lotto;
+import static exception.InputException.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Console;
+
+import controller.GameController;
+
+import domain.Lotto;
 
 public class InputView {
 
@@ -44,7 +44,7 @@ public class InputView {
 
     private List<Integer> makeWinNumber(String[] winNumbers) {
         List<Integer> winNumber = new ArrayList<>();
-        for(String number : winNumbers) {
+        for (String number : winNumbers) {
             winNumber.add(validateRange(validateInteger(number)));
         }
         return winNumber;

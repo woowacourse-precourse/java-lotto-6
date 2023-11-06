@@ -1,8 +1,8 @@
 package VO;
 
-import domain.Lotto;
-
 import java.util.List;
+
+import domain.Lotto;
 
 public class UserLottoVO {
 
@@ -18,14 +18,18 @@ public class UserLottoVO {
         this.pay = pay;
     }
 
-    public List<Lotto> getLottoList() { return lottoList; }
+    public List<Lotto> getLottoList() {
+        return lottoList;
+    }
 
-    public Integer getPay() { return pay; }
+    public Integer getPay() {
+        return pay;
+    }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for(Lotto lotto : lottoList) {
+        for (Lotto lotto : lottoList) {
             builder.append(lotto.toString()).append(NEW_LINE);
         }
         return builder.toString();

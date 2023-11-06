@@ -14,6 +14,8 @@ public enum LottoConst {
         this.number = number;
     }
 
-    public int getNumber() { return number; }
+    public int getNumber() {
+        return number;
+    }
 
 }

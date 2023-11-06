@@ -26,7 +26,7 @@ public class GameController {
         lottoService.addWinningLotto(winningLotto);
     }
 
-    public void bonusLottoAdd(int number) throws IllegalArgumentException{
+    public void bonusLottoAdd(int number) throws IllegalArgumentException {
         lottoService.addBonusNumber(number);
         winList();
     }

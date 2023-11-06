@@ -1,16 +1,18 @@
 package util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static util.LottoUtil.*;
+
 import java.util.Arrays;
 import java.util.List;
 
-import VO.UserLottoVO;
-import domain.Lotto;
-import domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static util.LottoUtil.*;
+import domain.Lotto;
+import domain.WinningLotto;
+
+import VO.UserLottoVO;
 
 public class LottoUtilTest {
 
@@ -24,7 +26,7 @@ public class LottoUtilTest {
     @DisplayName("사용자의 로또와 당첨번호를 비교해 등수로 분류한 배열로 반환")
     @Test
     void countWinLottoByRank() {
-        final WinningLotto winningLotto = WinningLotto.getInstance();
+        final WinningLotto winningLotto = new WinningLotto();
         final UserLottoVO userLottoVO = new UserLottoVO();
         winningLotto.setNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         winningLotto.setBonusNumber(7);

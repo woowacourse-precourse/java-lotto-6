@@ -19,4 +19,8 @@ public class Output {
     public static void printWinningNumberMessage(){
         System.out.println(WINNING_NUMBER.message());
     }
+
+    public static void printBonusNumberMessage(){
+        System.out.println(BONUS_NUMBER.message());
+    }
 }

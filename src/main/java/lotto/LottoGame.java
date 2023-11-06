@@ -10,6 +10,11 @@ public class LottoGame {
         String money = InputView.read();
     }
 
+    public void validateNumber(String input) {
+        if (!input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
+        }
+    }
 }
 
 class OutputView {

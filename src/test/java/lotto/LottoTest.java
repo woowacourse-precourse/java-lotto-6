@@ -3,6 +3,7 @@ package lotto;
 import lotto.controller.WinningNumberController;
 import lotto.domain.*;
 import lotto.domain.constants.ExceptionMessage;
+import lotto.domain.constants.LottoPrizeRule;
 import lotto.util.Calculator;
 import lotto.util.Parser;
 import org.junit.jupiter.api.DisplayName;
@@ -183,6 +184,9 @@ class LottoTest {
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
 
-        return 2_000_000_000 + 30_000_000 + 1_500_000 + 50_000 + 5_000;
+        int totalProfit = LottoPrizeRule.findPrizeByPlace(1) + LottoPrizeRule.findPrizeByPlace(2)
+                + LottoPrizeRule.findPrizeByPlace(3) + LottoPrizeRule.findPrizeByPlace(4)
+                + LottoPrizeRule.findPrizeByPlace(5);
+        return totalProfit;
     }
 }

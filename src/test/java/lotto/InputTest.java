@@ -3,7 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +24,21 @@ public class InputTest {
 
         // then
         String actual = Input.getAmount();
-        Assertions.assertEquals(expect, actual);
+        Assertions.assertThat(expect).isEqualTo(actual);
+    }
+
+    @Test
+    @DisplayName("구입 금액 유효 검사 정상 동작하는지 테스트")
+    public void testAmountValid() {
+        //given
+        String expect = "800";
+        InputStream inputStream = setConsole(expect);
+        System.setIn(inputStream);
+
+        String amount = Input.getAmount();
+        //when
+        Assertions.assertThatIllegalArgumentException();
+
+        //then
     }
 }

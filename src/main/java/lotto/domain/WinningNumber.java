@@ -14,6 +14,10 @@ public class WinningNumber {
         this.numbers = numbers;
     }
 
+    public int get(int index) {
+        return numbers.get(index);
+    }
+
     private void lengthValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

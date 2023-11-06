@@ -90,6 +90,7 @@ public class Application {
     public static void BonusNumberInput(){
         System.out.println("보너스 번호를 입력해주세요");
         bonusNumber = LottoNumberValidate(Console.readLine());
+        System.out.println();
     }
 
     public static void WinningLottoInput(){
@@ -113,7 +114,6 @@ public class Application {
     }
 
     public static int CheckLottoRank(int lottoResult){
-        System.out.println(lottoResult);
         if (lottoResult == 6)
             return 1;
         if (lottoResult == 15)
@@ -158,10 +158,11 @@ public class Application {
     }
 
     public static void SumLottoResult(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for(int i=lotteryWinningRank-1; i>0; i--){
             totalLottoMoney += GetMoney(i, myWinningLotto.get(i));
         }
-        System.out.println(totalLottoMoney);
     }
 
     public static void RateOnReturn(){
@@ -181,7 +182,6 @@ public class Application {
 
         LotteryWinningInit();
         MyLottoCheck(lotto);
-        System.out.println(myWinningLotto);
 
         SumLottoResult();
         RateOnReturn();

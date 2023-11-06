@@ -46,13 +46,14 @@ public class LottoService {
         return lottoStorage.saveLotto(jackpotLotto);
     }
 
-    public List<LottoResult> matchLotteries() {
+    public LottoResults matchLotteries() {
         Lotto jackpotLotto = lottoStorage.findJackpot()
                 .orElseThrow(() -> new IllegalArgumentException("아직 입력된 당첨 번호가 없습니다."));
         List<Lotto> lotteries = lottoStorage.findAllBoughtLotteries();
-        return lotteries.stream()
+        List<LottoResult> results = lotteries.stream()
                 .map(lotto -> generateLottoResult(jackpotLotto, lotto))
                 .toList();
+        return LottoResults.of(results);
     }
 
     private List<Integer> generateRandomNumbers() {

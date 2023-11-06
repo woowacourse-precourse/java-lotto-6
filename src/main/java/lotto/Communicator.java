@@ -45,6 +45,11 @@ public class Communicator {
         lotteries.forEach(this::printLotto);
     }
 
+    public void printResults(LottoResults results) {
+        printer.print("당첨 통계");
+        printer.print(results.toTextFormat());
+    }
+
     private BigDecimal getMoneyWithPrompt(String prompt) {
         printer.print(prompt);
         return getNonNullMoney();

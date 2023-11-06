@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
@@ -24,6 +25,30 @@ class CommunicatorTest {
     static final Communicator communicator = new Communicator();
 
     ByteArrayOutputStream outputStream;
+
+    static Stream<Arguments> stringAndStringProvider() {
+        return Stream.of(
+                Arguments.of("", "입력 금액이 비어 있습니다."),
+                Arguments.of(" ", "올바른 숫자 형식이 아닙니다."),
+                Arguments.of("10 000", "올바른 숫자 형식이 아닙니다."),
+                Arguments.of("0", "0보다 큰 금액을 입력해주세요."),
+                Arguments.of("-10000", "0보다 큰 금액을 입력해주세요."),
+                Arguments.of("5500", "구매 금액은 1000원 단위여야 합니다.")
+        );
+    }
+
+    static Stream<Arguments> listAndStringProvider() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(LottoResult.FOUR_MATCHING, LottoResult.FIVE_MATCHING),
+                        "4개 일치 (50,000원) - 1개" + System.lineSeparator() + "5개 일치 (1,500,000원) - 1개"
+                ),
+                Arguments.of(
+                        List.of(LottoResult.FIVE_MATCHING, LottoResult.FIVE_MATCHING),
+                        "5개 일치 (1,500,000원) - 2개"
+                )
+        );
+    }
 
     @BeforeEach
     void setUp() {
@@ -101,15 +126,18 @@ class CommunicatorTest {
         assertThat(output()).contains("보너스 번호를 입력해 주세요.");
     }
 
-    static Stream<Arguments> stringAndStringProvider() {
-        return Stream.of(
-                Arguments.of("", "입력 금액이 비어 있습니다."),
-                Arguments.of(" ", "올바른 숫자 형식이 아닙니다."),
-                Arguments.of("10 000", "올바른 숫자 형식이 아닙니다."),
-                Arguments.of("0", "0보다 큰 금액을 입력해주세요."),
-                Arguments.of("-10000", "0보다 큰 금액을 입력해주세요."),
-                Arguments.of("5500", "구매 금액은 1000원 단위여야 합니다.")
-        );
+    @ParameterizedTest
+    @MethodSource("listAndStringProvider")
+    @DisplayName("당첨 내역을 출력한다.")
+    void test_PrintResult(List<LottoResult> results, String expectedMessage) {
+        //given
+        LottoResults lottoResults = LottoResults.of(results);
+
+        //when
+        communicator.printResults(lottoResults);
+
+        //then
+        assertThat(output()).contains(expectedMessage);
     }
 
     void setIn(String input) {

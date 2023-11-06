@@ -17,11 +17,13 @@ public class LottoService {
 		return lotto_list;
 	}
 	private static int getWinningCount(List<Integer> playerLottoNumber,List<Integer> winningNumbers) {
-	    int winningCount = 0;
-	    for(int i=0;i<LOTTO_NUMBERS_COUNT;i++) {
-	    	if(playerLottoNumber.get(i) == winningNumbers.get(i)) winningCount++;
+		int winningCount = 0;
+	    for (int number : playerLottoNumber) {
+	        if (winningNumbers.contains(number)) {
+	            winningCount++;
+	        }
 	    }
-		return winningCount;
+	    return winningCount;
 	}
 	private static boolean isBonusNumberIncluded(List<Integer> playerLottoNumber,int bonusNumber) {
 		boolean bonusMatch = false;

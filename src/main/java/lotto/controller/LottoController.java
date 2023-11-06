@@ -10,8 +10,8 @@ public class LottoController {
 	//플레이어 로또 구매
 	private static List<Lotto> playerBuyLotto() {
 		OutputView.printBuyInstruction();
-		int playerFinance = InputData.playerFinance();
-		List<Lotto> playerLottos = LottoService.createObjectPerThousandUnits(playerFinance);
+		int playerFinance = Integer.parseInt(InputData.playerFinance());
+		List<Lotto> playerLottos = new ArrayList<Lotto>(LottoService.createObjectPerThousandUnits(playerFinance));
 		OutputView.printNumberOfLottosPurchased(playerLottos);
 		OutputView.printPlayerLottos(playerLottos);
 		return playerLottos;
@@ -19,13 +19,14 @@ public class LottoController {
 	
 	private static void matchLottosToPrizes(List<Lotto> playerLotto) {
 		OutputView.printWinningNumberInstruction();
-		List<Integer> winningNumbers = InputData.winningNumber();
+		List<Integer> winningNumber = InputData.winningNumber();
 		OutputView.printBonusNumberInstruction();
-		int bonusNumber = InputData.bonusNumber(winningNumbers);
-		OutputView.printWinningStatistics(LottoService.getTotalWinningRankCount(playerLotto, winningNumbers, bonusNumber));
-		long totalWinningAmount = LottoService.getTotalWinningAmount(playerLotto, winningNumbers, bonusNumber);
-		double roi = LottoService.calculateReturnOnInvestment(totalWinningAmount, playerLotto);
-		OutputView.printReturnOnInvestment(roi);
+		int bonusNumber = InputData.bonusNumber(winningNumber);
+		Map<String,Integer> rankCount = LottoService.getTotalWinningRankCount(playerLotto, winningNumber, bonusNumber);
+		OutputView.printWinningStatistics(rankCount);
+		long totalWinningAmount = LottoService.getTotalWinningAmount(playerLotto, winningNumber, bonusNumber);
+		double returnOnInvestment = LottoService.calculateReturnOnInvestment(totalWinningAmount, playerLotto);
+		OutputView.printReturnOnInvestment(returnOnInvestment);
 	}
 	
 	

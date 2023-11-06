@@ -20,9 +20,9 @@ public class OutputView {
     
     public static void printPlayerLottos(List<Lotto> playersLottos) {
     	for(Lotto lotto : playersLottos) {
-    		List<Integer> lottoNumberSort = lotto.getNumbers();
-    		Collections.sort(lottoNumberSort);
-    		System.out.println(lottoNumberSort.toString());
+    		List<Integer> lottoNumberSort = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(lottoNumberSort);
+            System.out.println(lottoNumberSort.toString());
     	}
     	System.out.println();
     }
@@ -33,11 +33,10 @@ public class OutputView {
     public static void printBonusNumberInstruction() {
     	System.out.println();
     	System.out.println("보너스 번호를 입력해 주세요.");
-    	System.out.println();
     }
     
     public static void printWinningStatistics(Map<String,Integer> rankCount) {
-    	System.out.println("당첨 통계");
+    	System.out.println("\n당첨 통계");
     	System.out.println("---");
     	System.out.println("3개 일치 (5,000원) - "+rankCount.getOrDefault("FIFTH", 0)+"개");
     	System.out.println("4개 일치 (50,000원) - "+rankCount.getOrDefault("FOURTH", 0)+"개");

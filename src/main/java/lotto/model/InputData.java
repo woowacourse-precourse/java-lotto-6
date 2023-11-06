@@ -5,14 +5,15 @@ import lotto.validate.Validate;
 import java.util.*;
 
 public class InputData {
-	public static int playerFinance() {
-		int inputData =0;
+	public static String playerFinance() {
+		String inputData ="";
 		boolean isValidInput = false;
 		while(!isValidInput) {
 			try {
-				inputData = Integer.parseInt(Console.readLine());
-				Validate.minimumAmount(inputData);//최소금액검사
-				Validate.thousandMultiple(inputData);//1000단위인지
+				inputData = Console.readLine();
+				Validate.numericInput(inputData);
+				Validate.minimumAmount(Integer.parseInt(inputData));//최소금액검사
+				Validate.thousandMultiple(Integer.parseInt(inputData));//1000단위인지
 				isValidInput = true;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());

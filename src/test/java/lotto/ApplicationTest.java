@@ -1,8 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,8 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    
-    @Disabled
+
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -48,8 +45,7 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-    
-    @Disabled
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -57,7 +53,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-    
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

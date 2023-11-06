@@ -22,4 +22,10 @@ public class Lottos {
     public int getLottoAmount() {
         return lottos.size();
     }
+
+    public List<String> getIssuedLottoNumbers() {
+        return lottos.stream()
+                .map(lotto -> lotto.toString())
+                .collect(Collectors.toList());
+    }
 }

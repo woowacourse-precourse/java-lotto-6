@@ -2,19 +2,23 @@ package lotto.domain;
 
 import lotto.constants.LottoRule;
 import lotto.exception.LottoNumberDuplicateException;
-import lotto.exception.LottoNumbersSizeException;
 import lotto.exception.LottoNumberRangeException;
+import lotto.exception.LottoNumbersSizeException;
 
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateNumberSize(numbers);
         validateLottoRange(numbers);
         validateLottoDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private void validateNumberSize(List<Integer> numbers) {

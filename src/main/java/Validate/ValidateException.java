@@ -42,16 +42,6 @@ public class ValidateException {
         }
     }
 
-    //
-//    public static void includeSpecialString(String strLine) {
-//        Pattern pattern = Pattern.compile(SPECIAL_CHARACTER_REGEX);
-//        Matcher matcher = pattern.matcher(strLine);
-//
-//        if (matcher.matches()) {
-//            throw new NumberFormatException("[ERROR] 문자열에 특수 문자가 포함되어 있습니다.");
-//        }
-//    }
-//
     public static void commaStartAndEnd(String strLine) {
         int length = strLine.length();
 

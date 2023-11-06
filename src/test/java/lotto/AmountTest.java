@@ -38,7 +38,7 @@ public class AmountTest {
         Amount amount = new Amount(100000);
         int totalPrize = 62490;
 
-        String result = amount.calculateEarningsRate(62490);
+        String result = amount.calculateEarningsRate(totalPrize);
         String expected = "62.5";
 
         assertThat(result).isEqualTo(expected);

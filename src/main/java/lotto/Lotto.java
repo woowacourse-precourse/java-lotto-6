@@ -22,7 +22,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void sort() {
         Collections.sort(numbers);
     }
@@ -34,6 +33,16 @@ public class Lotto {
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int countMatchWithWinningLotto(Lotto winningLotto) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningLotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static int getPrice() {

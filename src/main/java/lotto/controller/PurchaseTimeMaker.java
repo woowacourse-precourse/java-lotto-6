@@ -22,7 +22,7 @@ public class PurchaseTimeMaker {
 
 	private static void validatePurchaseUnit(int purchaseAmount) {
 
-		if (purchaseAmount % LOTTO_PRICE != 0) {
+		if (purchaseAmount % LOTTO_PRICE != 0 || purchaseAmount == 0) {
 			ErrorPrinter.printPurchaseUnitError();
 			throw new IllegalArgumentException();
 		}

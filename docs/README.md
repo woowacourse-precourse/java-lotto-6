@@ -22,8 +22,8 @@
 7. ~~보너스 번호 입력 - View - inputView - bonusNum~~
 9. ~~보너스 번호 유효범위 검증 - Model - Bonus - rangeCheck~~
 10. ~~보너스 번호 당첨번호랑 중복 비교 - Model - Bonus - duplicateCheck~~
-9. 당첨번호랑 로또번호 비교하기 Set교집합 - Model - Lotto - winNumIntersection
-10. 당첨번호랑 보너스번호 비교하기 list contain - Model - Lotto - bonusNumIntersection
+9. ~~당첨번호랑 로또번호 비교하기 Set교집합 - Model - Intersection - winNum~~
+10. 당첨번호랑 보너스번호 비교하기 list contain - Model - Intersection - bonusNum
 11. 당첨 통계 계산 - Model - Result - statistics
 10. 당첨 통계 출력 - View - outputView - statistics
 11. 수익률 계산 - Model - Result - profit

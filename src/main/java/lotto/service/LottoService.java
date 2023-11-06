@@ -16,26 +16,21 @@ public class LottoService {
     LottoGenerator lottoGenerator = new LottoGenerator();
 
     public List<Lotto> generateLotto(int count) {
-        return IntStream.range(0, count)
-                .mapToObj(i -> lottoGenerator.lottoGenerate())
+        return IntStream.range(0, count).mapToObj(i -> lottoGenerator.lottoGenerate())
                 .collect(Collectors.toList());
     }
 
     public List<ResultResponseDto> convertToDto(List<LottoResult> lottoResults) {
-        return Stream.of(LottoResult.FIFTH, LottoResult.FOURTH,
-                        LottoResult.THIRD, LottoResult.SECOND, LottoResult.FIRST)
-                .map(resultRank -> {
-                    int count = getLottoResultCount(lottoResults, resultRank);
-                    return resultRank.toResponseDto(count);
-                })
-                .collect(Collectors.toList());
+        return Stream.of(LottoResult.FIFTH, LottoResult.FOURTH, LottoResult.THIRD,
+                LottoResult.SECOND, LottoResult.FIRST).map(resultRank -> {
+            int count = getLottoResultCount(lottoResults, resultRank);
+            return resultRank.toResponseDto(count);
+        }).collect(Collectors.toList());
     }
 
     private int getLottoResultCount(List<LottoResult> lottoResults, LottoResult result) {
-        return (int) lottoResults.stream().filter(temp -> temp == result)
-                .count();
+        return (int) lottoResults.stream().filter(temp -> temp == result).count();
     }
-
 
     public List<LottoResult> returnLottoResult(Lotto userLotto, Lottos generatedLottos,
             int bonusNumber) {

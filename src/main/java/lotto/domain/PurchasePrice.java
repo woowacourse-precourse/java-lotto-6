@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.List;
+import lotto.controller.dto.ResultResponseDto;
+
 public class PurchasePrice {
 
     private final int price;
@@ -17,6 +20,15 @@ public class PurchasePrice {
 
     public double getReturnRate(int profit){
         return Math.round(((double) profit / this.price) * 10000) / 100.0f;
+    }
+
+    public double calculatePriceRate(List<ResultResponseDto> dtos) {
+        int sum = 0;
+        for (ResultResponseDto dto : dtos) {
+            int temp = dto.getTotalCount() * dto.getWinnerPrice();
+            sum = sum + temp;
+        }
+        return getReturnRate(sum);
     }
 
 

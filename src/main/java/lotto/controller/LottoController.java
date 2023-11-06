@@ -36,20 +36,15 @@ public class LottoController {
             List<ResultResponseDto> dtos = lottoService.convertToDto(results);
             OutputView.printLottoResult(dtos);
             // 수익률
-            double earningRate = calculatePriceRate(purchasePrice, dtos);
-            OutputView.printEarningRate(earningRate);
+            extractEarningRate(purchasePrice, dtos);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private double calculatePriceRate(PurchasePrice price, List<ResultResponseDto> dtos) {
-        int sum = 0;
-        for (ResultResponseDto dto : dtos) {
-            int temp = dto.getTotalCount() * dto.getWinnerPrice();
-            sum = sum + temp;
-        }
-        return price.getReturnRate(sum);
+    private static void extractEarningRate(PurchasePrice purchasePrice, List<ResultResponseDto> dtos) {
+        double earningRate = purchasePrice.calculatePriceRate(dtos);
+        OutputView.printEarningRate(earningRate);
     }
 
     private static int getUserBonusNumber() {

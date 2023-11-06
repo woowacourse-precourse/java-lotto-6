@@ -101,6 +101,26 @@
     - 1에서 45의 숫자가 입력되었는지 확인
 
 
+#### LottoService 객체
+- playerLotto 변수
+  - PlayerLotto의 형태
+- winningLotto 변수
+  - WinningLotto의 형태
+- lottoResult 변수
+  - Map<LottoResult, Integer>의 형태
+  - 로또 등수 별 몇 번 당첨 되었는지 확인하는 함수
+
+
+- createPlayerLotto 함수
+  - 플레이어가 구입 금액을 입력받고 그에 맞는 로또 수 생성
+- printPlayerLotto 함수
+  - 구입한 로또의 정보를 출력하는 함수
+- createWinningLotto 함수
+  - 플레이어가 당첨 로또를 생성하는 함수
+- matchLotto 함수
+  - 플레이어가 구입한 로또의 등수의 수를 새는 함수
+- printMatchLotto 함수
+  - 총 당첨된 등수와 수익률을 출력하는 함수
 
 ### 구현 목록
 - [x] InputUtil 객체

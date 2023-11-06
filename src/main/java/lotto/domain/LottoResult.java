@@ -27,7 +27,7 @@ public class LottoResult {
         int sum = INITIAL_ZERO.get();
 
         for (Prize key : state.keySet()) {
-            sum += key.getPrizeAmount() * state.get(key);
+            sum += (key.getPrizeAmount() * state.get(key));
         }
 
         return ((double) sum / (lottoCount * LOTTO_PRICE.get())) * PERCENT.get();

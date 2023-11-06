@@ -52,4 +52,7 @@ public class PrintService {
             }
         });
     }
+    public static void error(String message) {
+        System.out.printf("[ERROR] %s\n", message);
+    }
 }

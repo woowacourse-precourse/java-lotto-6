@@ -5,9 +5,6 @@ import domain.Calculator;
 import domain.Lotto;
 
 public class OutputView {
-    public void printInputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
     public void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
@@ -34,13 +31,5 @@ public class OutputView {
 
     public void lineBreak() {
         System.out.println();
-    }
-
-    public void printInputPrizeNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-    }
-
-    public void printInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
     }
 }

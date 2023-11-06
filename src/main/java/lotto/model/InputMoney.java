@@ -1,12 +1,12 @@
-package lotto.view;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.OutputView;
 
-import java.util.InputMismatchException;
-
-public class InputMoneyView {
+public class InputMoney {
     private final String NUMBER_FORMAT_EXCEPTION = "숫자만 입력해주세요.";
     private final String UNIT_NOT_THOUSAND = "1000원 단위로 입력하세요.";
+    private final OutputView outputView = new OutputView();
     public int Number(){
         String input = Console.readLine();
 

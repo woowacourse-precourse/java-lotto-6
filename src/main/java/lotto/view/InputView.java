@@ -10,13 +10,15 @@ import java.util.Arrays;
 public class InputView {
     public static final String SPLIT_DELIMETER = ",";
 
-    public static Player inputCash() {
+    public static int inputCash() {
+        System.out.println("구입금액을 입력해 주세요.");
         int cash = Integer.parseInt(Console.readLine());
-        Player player = new Player(cash);
-        return player;
+        return cash;
     }
 
-    public static Lotto inputLotto() {
+    public static Lotto inputWinningLotto() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         String[] splitedInput = input.split(SPLIT_DELIMETER);
         Lotto lotto = new Lotto(Arrays.stream(splitedInput).map(Integer::valueOf).toList());
@@ -24,6 +26,8 @@ public class InputView {
     }
 
     public static Bonus inputBonus() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         Bonus bonus = new Bonus(Integer.parseInt(input));
 

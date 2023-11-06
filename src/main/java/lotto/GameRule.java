@@ -24,7 +24,7 @@ public class GameRule {
     }
 
     public String calculateProfit(int inputMoney, List<Integer> gameResult) {
-        int income = 0;
+        int income = 0; // 초기 수익.
         PrizeMoney[] prizeMonies = PrizeMoney.values();
         for (int index = 0; index < gameResult.size(); index++) {
             income += gameResult.get(index) * prizeMonies[index].getMoney();

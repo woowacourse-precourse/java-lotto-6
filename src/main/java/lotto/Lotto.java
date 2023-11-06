@@ -1,7 +1,5 @@
 package lotto;
 
-import static lotto.Constants.IntConstants.MAX_RANGE;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +42,7 @@ public class Lotto {
     private void isProperRange(List<Integer> numbers) {
         List<Integer> filteredNumbers = numbers.stream()
                 .filter(num -> num >= IntConstants.MIN_RANGE.getValue()
-                        && num <= MAX_RANGE.getValue())
+                        && num <= IntConstants.MAX_RANGE.getValue())
                 .toList();
 
         if (filteredNumbers.size() != numbers.size()) {

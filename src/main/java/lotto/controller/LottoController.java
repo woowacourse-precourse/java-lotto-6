@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoSeller;
+import lotto.domain.NumberMatcher;
 import lotto.domain.User;
 import lotto.io.InputStream;
 import lotto.io.OutputStream;
@@ -15,6 +16,7 @@ public class LottoController {
     private final OutputView outputView;
     private final User user;
     private final LottoSeller seller;
+    private NumberMatcher numberMatcher;
 
     public LottoController(InputStream inputStream, OutputStream outputStream) {
         this.inputView = new InputView(inputStream);
@@ -44,5 +46,19 @@ public class LottoController {
         outputView.printBuyMessage(lottos.size());
         lottos.forEach(lotto -> outputView.print(lotto.toString()));
         outputView.printEmptyLine();
+    }
+
+    public void inputWinningInfo() {
+        while (true) {
+            try {
+                outputView.printWinningNumbersInputMessage();
+                List<Integer> numbers = inputView.inputWinningNumbers();
+                this.numberMatcher = NumberMatcher.from(numbers);
+                outputView.printEmptyLine();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
     }
 }

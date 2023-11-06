@@ -14,5 +14,6 @@ public class Application {
 
         lottoController.inputMoney();
         lottoController.buyLottos();
+        lottoController.inputWinningInfo();
     }
 }

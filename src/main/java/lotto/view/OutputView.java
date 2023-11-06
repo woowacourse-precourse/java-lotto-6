@@ -26,4 +26,8 @@ public class OutputView {
     public void print(String message) {
         outputStream.print(message);
     }
+
+    public void printWinningNumbersInputMessage() {
+        outputStream.print(Message.INPUT_WINNING_NUMBERS.get());
+    }
 }

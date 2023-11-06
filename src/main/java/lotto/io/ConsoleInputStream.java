@@ -1,6 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.ErrorMessage;
 
 public class ConsoleInputStream implements InputStream {
 
@@ -10,7 +11,11 @@ public class ConsoleInputStream implements InputStream {
     }
 
     @Override
-    public int inputInt() {
-        return Integer.parseInt(Console.readLine());
+    public int inputInt() throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER.get());
+        }
     }
 }

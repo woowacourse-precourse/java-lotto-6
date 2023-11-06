@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.model.LottoManager;
 import lotto.view.InputView;
 
 public class Application {
@@ -15,6 +14,6 @@ public class Application {
         inputView.printWinningNumbersMessage();
         lottoController.createWinningLotto();
 
-        lottoController.getLottoPrize();
+        lottoController.getLottoResult();
     }
 }

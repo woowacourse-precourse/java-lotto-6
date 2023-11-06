@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.User;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class LottoController {
 
     private static User user;
+    private static WinningNumber winningNumber;
 
     public void start(){
         OutputView.printRequestPurchaseAmount();
@@ -24,5 +26,14 @@ public class LottoController {
         }
         OutputView.printLottoQuantity(user.getLottoQuantity());
         OutputView.printLottoNumber(user.getLottos());
+
+        while(true){
+            try{
+                winningNumber = new WinningNumber(InputView.inputWinningNumber());
+                break;
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

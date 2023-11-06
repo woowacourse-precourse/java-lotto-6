@@ -26,6 +26,11 @@ public class LottoResultHandlerModel {
         return lottoResult;
     }
 
+    public float findProfitRate() {
+        float rate = (float) lottoResult.findTotalAward() * 100 / (lottoGroup.findLottoNumbersSize() * 1000);
+        return (float) (Math.round(rate * 100.0) / 100.0);
+    }
+
     public void checkAllWinning() {
         for (int i = 0; i < lottoGroup.findLottoNumbersSize(); i++) {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);

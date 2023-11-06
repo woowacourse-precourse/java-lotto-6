@@ -33,4 +33,10 @@ public class LottoResult {
     public List<Prize> findAllPrize() {
         return new ArrayList<>(lottoResult.values());
     }
+
+    public int findTotalAward() {
+        return lottoResult.values().stream()
+                .mapToInt(prize -> prize.getAward() * prize.getCount())
+                .sum();
+    }
 }

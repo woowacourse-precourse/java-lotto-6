@@ -9,11 +9,11 @@ import java.util.Set;
 public class LottoGroup {
 
     private final List<Lotto> lottoGroup;
-    private static final Integer LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     private LottoGroup(Money money) {
         this.lottoGroup = new LinkedList<>();
-        Integer lottoCount = findLottoCount(money);
+        int lottoCount = findLottoCount(money);
         for (int i = 0; i < lottoCount; i++) {
             this.lottoGroup.add(Lotto.from(generateLottoNumbers()));
         }

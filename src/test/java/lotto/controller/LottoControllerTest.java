@@ -27,6 +27,6 @@ class LottoControllerTest {
         // then
         assertThatThrownBy(inputView::requestInteger)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("구입 금액은 숫자로 주어져야 합니다.");
+                .hasMessageContaining("구입 금액은 정수로 주어져야 합니다.");
     }
 }

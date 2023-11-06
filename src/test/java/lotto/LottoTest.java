@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoAmount;
+import lotto.domain.LottoNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +41,14 @@ class LottoTest {
         assertThrows(IllegalArgumentException.class, ()-> {
             LottoAmount lotto=new LottoAmount(2100);
         });
+    }
+
+    @Test
+    void 로또숫자생성기(){
+        LottoNumbers lottoNumbers= new LottoNumbers();
+        List<Integer> lottoTest= lottoNumbers.setLottoNumbers();
+        assertEquals(lottoTest.size(), 6);
+
     }
 
 }

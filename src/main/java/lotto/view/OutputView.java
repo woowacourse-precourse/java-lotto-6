@@ -14,28 +14,28 @@ public class OutputView {
     private static final String winningResultPrintFormat = "%d개 일치%s(%s원) - %d개\n";
     private static final String rateOfReturnPrintFormat = "총 수익률은 %.1f%%입니다.\n";
 
-    public void showEmptyLine(){
+    public static void showEmptyLine(){
         System.out.println();
     }
 
-    public void showPurchaseLottos(int purchaseLottosCount, List<Lotto> purchaseLottos) {
+    public static void showPurchaseLottos(int purchaseLottosCount, List<Lotto> purchaseLottos) {
         System.out.printf(purchaseLottosCountPrintFormat, purchaseLottosCount);
         for (Lotto purchaseLotto : purchaseLottos) {
             System.out.println(purchaseLotto.getNumbers());
         }
     }
 
-    public void showWinningStatistics(Map<WinningPrize, Integer> winningResult, double rateOfReturn) {
+    public static void showWinningStatistics(Map<WinningPrize, Integer> winningResult, double rateOfReturn) {
         showWinningStatisticsMessage();
         showResult(winningResult);
         showRateOfReturn(rateOfReturn);
     }
 
-    private void showWinningStatisticsMessage() {
+    private static void showWinningStatisticsMessage() {
         System.out.println(winningStatisticsPrintMessage);
     }
 
-    private void showResult(Map<WinningPrize, Integer> winningResult) {
+    private static void showResult(Map<WinningPrize, Integer> winningResult) {
         for (Map.Entry<WinningPrize, Integer> entry : winningResult.entrySet()) {
             WinningPrize winningPrize = entry.getKey();
             int count = entry.getValue();
@@ -48,7 +48,7 @@ public class OutputView {
         }
     }
 
-    private void showRateOfReturn(double rateOfReturn) {
+    private static void showRateOfReturn(double rateOfReturn) {
         System.out.printf(rateOfReturnPrintFormat, rateOfReturn);
     }
 }

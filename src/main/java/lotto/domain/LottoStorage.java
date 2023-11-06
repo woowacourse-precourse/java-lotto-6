@@ -1,8 +1,10 @@
 package lotto.domain;
 
 
+import java.util.List;
 import lotto.common.Constant;
 import lotto.common.ErrorMessage;
+import lotto.domain.dto.LottoNumberCompareResult;
 
 public class LottoStorage {
 
@@ -15,6 +17,10 @@ public class LottoStorage {
 
         this.winningLotto = winningLotto;
         this.totalPrice = totalPrice;
+    }
+
+    public LottoNumberCompareResult compareToWinningLottoNumber(List<Integer> automaticLottoNumber) {
+
     }
 
     public Integer getTicketCount() {

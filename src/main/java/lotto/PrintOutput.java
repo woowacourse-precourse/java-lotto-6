@@ -19,8 +19,8 @@ public class PrintOutput {
     }
     public void printRateOfReturn(double ROR){
         DecimalFormat dc = new DecimalFormat("###,###,###,###,###,##0.0");
-        String ch = dc.format(ROR);
-        System.out.printf("총 수익률은 " + ch + "%%입니다.");
+        String FormatROR = dc.format(ROR);
+        System.out.printf("총 수익률은 " + FormatROR + "%%입니다.");
     }
 }
 

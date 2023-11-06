@@ -33,5 +33,9 @@ public class LottoController {
     public void calculateWinningRanks(Result result) {
         result.calculateWinningRanks();
     }
-    
+
+    // 로또 수익률 계산
+    public Double calculateProfitRate(Result result) {
+        return result.calculateProfitRate();
+    }
 }

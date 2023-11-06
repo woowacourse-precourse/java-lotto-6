@@ -17,7 +17,6 @@ import lotto.domain.LottoBonus;
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
-    public final String SEPARATED_LOTTO_PRICE = addThousandsSeparator(LOTTO_PRICE);
 
     int purchaseAmount;
     Lotto lottoWinningNumbers;
@@ -37,12 +36,12 @@ public class LottoController {
     }
 
     public void requestLottoPurchaseAmount() {
-        System.out.printf(REQUEST_LOTTO_PURCHASE_AMOUNT, SEPARATED_LOTTO_PRICE);
-        System.out.println();
+        System.out.println(REQUEST_LOTTO_PURCHASE_AMOUNT);
         String userInput = Console.readLine();
         try {
             isPurchaseAmountValid(userInput);
             purchaseAmount = Integer.parseInt(userInput);
+            System.out.println();
         } catch (Exception error) {
             System.out.println(error.getMessage());
             requestLottoPurchaseAmount();
@@ -57,6 +56,7 @@ public class LottoController {
         for (Lotto randomNumber : lottoRandomNumbers) {
             System.out.println(randomNumber);
         }
+        System.out.println();
     }
 
     public void generateLottoRandomNumbers(int lottoTicket) {
@@ -72,6 +72,7 @@ public class LottoController {
         try {
             isWinningNumberValid(userInput);
             lottoWinningNumbers = makeWinningNumbers(userInput);
+            System.out.println();
         } catch (Exception error) {
             System.out.println(error.getMessage());
             requestWinningNumbers();
@@ -86,6 +87,7 @@ public class LottoController {
             int bonusNumber = Integer.parseInt(userInput);
             isBonusNumberDuplicate(lottoWinningNumbers.getNumbers(), bonusNumber);
             lottoBonusNumber = new LottoBonus(bonusNumber);
+            System.out.println();
         } catch (Exception error) {
             System.out.println(error.getMessage());
             requestBonusNumber();

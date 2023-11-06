@@ -11,9 +11,9 @@ public class LottoResult {
         this.result = result;
     }
 
-    public static LottoResult of(WinningNumber winningNumber, BonusNumber bonusNumber, LottoTicket lottoTickets) {
+    public static LottoResult of(WinningNumber winningNumber, BonusNumber bonusNumber, LottoTicket lottoTicket) {
         Map<Rank, Integer> result = new HashMap<>();
-        for (Lotto lotto : lottoTickets.getLottoTicket()) {
+        for (Lotto lotto : lottoTicket.getLottoTicket()) {
             Rank rank = Rank.findRank(winningNumber, bonusNumber, lotto);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }

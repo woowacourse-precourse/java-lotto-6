@@ -36,5 +36,9 @@ public class User {
             throw new IllegalArgumentException(moneyInputErrorWarning);
         }
 
+        if(inputMoney<0){
+            throw new IllegalArgumentException();
+        }
+
     }
 }

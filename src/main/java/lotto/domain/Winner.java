@@ -29,4 +29,14 @@ public class Winner {
             int sameNumberCount = checkUserLottoNumberCount(userLotto);
         }
     }
+
+    private int checkUserLottoNumberCount(Lotto userLotto) {
+        int sameNumberCount = 0;
+        for (Integer lottoNumber : lotto.getLottoNumbers()) {
+            if (userLotto.checkUserAndLottoNumbers(userLotto.getLottoNumbers(), lottoNumber)) {
+                sameNumberCount += 1;
+            }
+        }
+        return sameNumberCount;
+    }
 }

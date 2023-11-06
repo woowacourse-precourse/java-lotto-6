@@ -13,6 +13,7 @@ public class WinningNumbersValidator {
         isBlank(winningNumbers);
         isNotValidWinningNumbersPattern(winningNumbers);
         List<Integer> splitWinningNumbers = splitWinningNumbers(winningNumbers);
+        isInvalidSizeWinningNumbers(splitWinningNumbers);
         containsInvalidRangeNumberInWinningNumbers(splitWinningNumbers);
         hasDuplicatesInWinningNumbers(splitWinningNumbers);
     }
@@ -33,6 +34,12 @@ public class WinningNumbersValidator {
         return Arrays.stream(winningNumbers.split(NUMBER_SEPARATOR.pattern()))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private void isInvalidSizeWinningNumbers(List<Integer> winningNumbers) {
+        if(winningNumbers.size() != WINNING_NUMBER_SIZE.value()) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_SIZE_ERROR.message());
+        }
     }
 
     private void containsInvalidRangeNumberInWinningNumbers(List<Integer> winningNumbers) {

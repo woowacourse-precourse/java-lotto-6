@@ -25,4 +25,12 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
+
+    @Test
+    void 보너스_번호가_45_초과일_경우_예외를_반환한다() {
+        assertThatThrownBy(() -> new BonusNumber(46, lotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainException.ERROR.getMessage());
+    }
+
 }

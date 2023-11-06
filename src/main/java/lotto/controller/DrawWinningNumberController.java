@@ -5,8 +5,11 @@ import lotto.domain.WinningManager;
 import lotto.service.BuyingLottoService;
 import lotto.service.WinningNumberService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
-public class WinningNumberController {
+public class DrawWinningNumberController {
+
+    private static final int STOP_FLAG = 0;
 
     private WinningNumberService winningNumberService = new WinningNumberService();
 
@@ -24,9 +27,11 @@ public class WinningNumberController {
 
         int bonusNumber;
         do {
-            String inputBonusNumber = InputView.inputWinningNumberMessage();
+            String inputBonusNumber = InputView.inputBonusNumberMessage();
             bonusNumber = winningNumberService.validateBonusNumber(inputBonusNumber);
-        }while(0>bonusNumber);
+        }while(STOP_FLAG>bonusNumber);
+
+        OutputView.outputWinningStatisitcs();
 
         manager = new WinningManager(winningNumber,bonusNumber);
         return manager;

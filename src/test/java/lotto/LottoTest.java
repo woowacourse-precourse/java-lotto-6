@@ -26,11 +26,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("1 미만, 45 초과의 숫자가 있으면 예외가 발생한다.")
-    @ParameterizedTest
-    @MethodSource("generateWrongRangeNumber")
-    void createLottoByWrongRangeNumber(List<Integer> numbers) {
-        assertThatThrownBy(() -> new Lotto(numbers))
+    @DisplayName("45 초과의 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByUpRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1 미만 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByDownRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

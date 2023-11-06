@@ -13,7 +13,7 @@ public class InputMoney extends InputNumber {
 
     @Override
     public Integer sendInputData() {
-        return this.number % 1000;
+        return this.number;
     }
 
     public void validate() {

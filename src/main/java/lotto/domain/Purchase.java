@@ -20,5 +20,13 @@ public class Purchase {
         return Integer.parseInt(purchaseAmount) / THOUSAND;
     }
 
+    // 구입금액 validation
+    public void validatePurchaseAmount(String amount) {
+        InputValidation inputValidation = new InputValidation();
+
+        inputValidation.isNumber(amount);
+        inputValidation.isDividedOneThousand(Integer.parseInt(amount));
+        inputValidation.isNullOrBlank(amount);
+    }
 
 }

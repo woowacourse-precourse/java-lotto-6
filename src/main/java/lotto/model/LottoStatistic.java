@@ -6,6 +6,7 @@ import java.util.EnumMap;
 public class LottoStatistic {
 
     private static final int INITIAL_COUNT = 0;
+    private static final int RATE = 100;
 
     private final EnumMap<LottoPrize, Integer> prizeCounts;
     private long winningAmount = 0;
@@ -29,6 +30,6 @@ public class LottoStatistic {
     }
 
     public double getEarningRate(final PurchaseAmount amount) {
-        return (double) winningAmount / amount.toInt();
+        return (double) winningAmount / amount.toInt() * RATE;
     }
 }

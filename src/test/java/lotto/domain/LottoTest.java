@@ -11,7 +11,7 @@ import java.util.List;
 class LottoTest {
 
     @Test
-    @DisplayName("기능1,2 테스트 : 입력된 숫자조합에 이상이 없으면 로또가 하나 정상적으로 발행된다.")
+    @DisplayName("기능1,2 테스트 : 입력된 숫자 리스트에 이상이 없으면 로또가 하나 정상적으로 발행된다.")
     void createLottoByNormalArgument(){
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
@@ -43,6 +43,18 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(list))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("기능5 테스트 : 숫자 리스트에 중복된 숫자가 있다면 예외가 발생한다.")
+    void createLottoByDuplicatedNumber(){
+        // given
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 5);
+
+        // when, then
+        assertThatThrownBy(() -> new Lotto(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_COMBINATION_DO_NOT_HAVE_DUPLICATES.getErrorMessage());
     }
 
 

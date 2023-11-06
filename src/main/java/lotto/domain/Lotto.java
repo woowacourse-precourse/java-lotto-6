@@ -55,4 +55,11 @@ public class Lotto {
         }
         return lottoNumbers;
     }
+
+    public boolean checkUserAndLottoNumbers(List<Integer> userLotto, int lottoNumber){
+        if(userLotto.contains(lottoNumber)){
+            return true;
+        }
+        return false;
+    }
 }

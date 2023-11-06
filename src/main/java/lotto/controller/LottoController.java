@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
@@ -13,13 +12,15 @@ public class LottoController {
     OutputView outputView = new OutputView();
 
     public void startProgram() {
-        purchaseLottos();
-        setWinningNumber();
+        Lottos lottos = purchaseLottos();
+        FinalWinningNumber finalWinningNumber = setWinningNumber();
+        printResult(lottos, finalWinningNumber);
     }
 
-    private void purchaseLottos() {
+    private Lottos purchaseLottos() {
         Lottos lottos = initLottos();
         printAllLottoNumbers(lottos);
+        return lottos;
     }
 
     private Lottos initLottos() {
@@ -33,8 +34,15 @@ public class LottoController {
         }
     }
 
-    private void setWinningNumber() {
+    private FinalWinningNumber setWinningNumber() {
         WinningNumber winningNumber = new WinningNumber(inputView.inputWinningNumber());
         BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
+        return new FinalWinningNumber(winningNumber, bonusNumber);
+    }
+
+    private void printResult(Lottos lottos, FinalWinningNumber finalWinningNumber) {
+        outputView.outputWinningStatistics();
+        HashMap<LottoRank, Integer> rankCount = lottos.getLottosResult(finalWinningNumber);
+
     }
 }

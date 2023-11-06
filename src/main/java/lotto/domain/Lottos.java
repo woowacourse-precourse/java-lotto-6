@@ -5,6 +5,7 @@ import lotto.service.LottoService;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class Lottos {
@@ -52,5 +53,14 @@ public class Lottos {
             allLottoNumbers.add(lotto.getNumbers());
         }
         return Collections.unmodifiableList(allLottoNumbers);
+    }
+
+    public HashMap<LottoRank, Integer> getLottosResult(FinalWinningNumber finalWinningNumber) {
+        HashMap<LottoRank, Integer> rankCount = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            LottoRank lottoRank = lotto.compareLottoNumberWithFianlWinningNumber(finalWinningNumber);
+            rankCount.put(lottoRank, rankCount.getOrDefault(lottoRank, 0) + 1);
+        }
+        return rankCount;
     }
 }

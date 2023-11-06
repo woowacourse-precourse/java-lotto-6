@@ -11,7 +11,7 @@ public class Money {
         this.money = Integer.parseInt(money);
     }
 
-    public int lottoCount() {
+    public int countLottos() {
         return money / LOTTO_PRICE;
     }
 

@@ -38,11 +38,13 @@ public class StateController {
     }
 
     private void purchaseLotto() {
-        lottos = new Lottos(IntStream
-            .range(0, money.lottoCount())
-            .mapToObj(i -> new Lotto(LottoGenerator()))
-            .toList());
-        printLottoCount(money.lottoCount());
+        lottos = new Lottos(
+            IntStream
+                .range(0, money.countLottos())
+                .mapToObj(i -> new Lotto(LottoGenerator()))
+                .toList()
+        );
+        printLottoCount(money.countLottos());
 
         for (Lotto lotto : lottos.getLottos()) {
             printLotto(lotto.getNumbers());
@@ -54,7 +56,6 @@ public class StateController {
             .of(readAnswer().trim().split(","))
             .map(Integer::parseInt)
             .toList();
-
         try {
             this.answerLotto = new Lotto(answerLotto);
         } catch (IllegalArgumentException exception) {
@@ -76,9 +77,11 @@ public class StateController {
         Map<Price, Integer> scores = lottos.calculateScore(answerLotto, bonus);
         printResult();
         for (Map.Entry<Price, Integer> score : scores.entrySet()) {
-            printPrice(score.getKey().getGuideline()
-                , NumberFormat.getInstance().format(score.getKey().getReward())
-                , score.getValue());
+            printPrice(
+                score.getKey().getGuideline(),
+                NumberFormat.getInstance().format(score.getKey().getReward()),
+                score.getValue()
+            );
         }
         printProfit(lottos.calculateProfit(scores, money.getMoney()));
     }

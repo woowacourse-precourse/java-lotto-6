@@ -9,9 +9,9 @@ public enum Price {
     FORTH(4, "4개 일치 ", 50000),
     FIFTH(3, "3개 일치 ", 5000);
 
+    private final int score;
     private final String guideline;
     private final int reward;
-    private final int score;
 
     Price(int score, String guideline, int reward) {
         this.guideline = guideline;
@@ -26,15 +26,15 @@ public enum Price {
             .orElse(null);
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public String getGuideline() {
         return this.guideline;
     }
 
     public int getReward() {
         return reward;
-    }
-
-    public int getScore() {
-        return score;
     }
 }

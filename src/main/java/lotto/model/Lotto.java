@@ -1,10 +1,10 @@
 package lotto.model;
 
+import static lotto.model.Lottos.INITIAL_SCORE;
+import static lotto.model.Lottos.MIN_PRICE_SCORE;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static lotto.model.Lottos.MIN_SCORE;
-import static lotto.model.Lottos.NONE_SCORE;
 
 public class Lotto {
 
@@ -22,13 +22,14 @@ public class Lotto {
     }
 
     public int calculateScore(Lotto answer) {
-        int count = (int) answer.getNumbers().stream()
+        int count = (int) answer.getNumbers()
+            .stream()
             .filter(numbers::contains)
             .count();
-        if (count >= MIN_SCORE) {
+        if (count >= MIN_PRICE_SCORE) {
             return count;
         }
-        return NONE_SCORE;
+        return INITIAL_SCORE;
     }
 
     public boolean hasBonus(int bonus) {

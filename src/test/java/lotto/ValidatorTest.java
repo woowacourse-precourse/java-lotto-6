@@ -11,7 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class ValidatorTest {
-    private final Validator validator = new Validator();
     private List<String> testCases;
 
     @BeforeEach
@@ -24,7 +23,7 @@ class ValidatorTest {
     void isBlankOrNULLTest() {
         testCases = Arrays.asList(new String[]{"", null});
         for (String testCase : testCases) {
-            assertThatThrownBy(() -> validator.validate(testCase));
+            assertThatThrownBy(() -> Validator.isBlankOrNULL(testCase));
         }
     }
 
@@ -33,7 +32,7 @@ class ValidatorTest {
     void containSpaceTest() {
         testCases = Arrays.asList(new String[]{" 1", "1, 2", "1 ", "1,2 "});
         for (String testCase : testCases) {
-            assertThatThrownBy(() -> validator.validate(testCase));
+            assertThatThrownBy(() -> Validator.containSpace(testCase));
         }
     }
 }

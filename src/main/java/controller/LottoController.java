@@ -1,8 +1,12 @@
 package controller;
 
+import domain.Lotto;
 import domain.PurchaseAmount;
 import domain.PurchaseLottos;
 import view.InputView;
+import view.OutputView;
+
+import java.util.List;
 
 /**
  * packageName    : controller
@@ -18,6 +22,7 @@ import view.InputView;
 public class LottoController {
 
     private static int amount;
+    private static List<Lotto> lotto;
     public void playLotto(){
         try {
             purchaseLotto();
@@ -32,14 +37,21 @@ public class LottoController {
         PurchaseAmount purchaseAmount = setPurchaseAmount();
         int numberOfLottosPurchased = purchaseAmount.getNumberOfLottoPurchased();
         amount = purchaseAmount.getAmount();
-        setPurchaseLottos(numberOfLottosPurchased);
-    }
-
-    private void setPurchaseLottos(int numberOfLottosPurchased){
-        new PurchaseLottos(numberOfLottosPurchased);
+        PurchaseLottos purchaseLottos = setPurchaseLottos(numberOfLottosPurchased);
+        lotto = purchaseLottos.getPurchaseLottos();
+        printInfo(lotto, numberOfLottosPurchased);
     }
 
     private PurchaseAmount setPurchaseAmount(){
         return new PurchaseAmount(InputView.enterAmount());
+    }
+
+    private PurchaseLottos setPurchaseLottos(int numberOfLottosPurchased){
+        return new PurchaseLottos(numberOfLottosPurchased);
+    }
+
+    private void printInfo(List<Lotto> lotto, int numberOfLottosPurchased){
+        OutputView.printNumberOfLottosPurchased(numberOfLottosPurchased);
+        OutputView.printLottos(lotto);
     }
 }

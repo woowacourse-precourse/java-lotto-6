@@ -13,6 +13,10 @@ public class ProfitsService {
         this.buyerPurchaseAmount = buyer.getPurchaseAmount();
     }
 
+    public int getBuyerProfits() {
+        return buyerProfits;
+    }
+
     public double getRateOfReturn() {
         return rateOfReturn;
     }

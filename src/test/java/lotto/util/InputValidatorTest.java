@@ -28,6 +28,17 @@ class InputValidatorTest {
     }
 
     @Test
+    void null을_검증_시도하면_IllegalArgumentException_발생() {
+        String blank = "";
+
+        assertThatThrownBy(() -> inputValidator.parseValidatedInt(null))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> inputValidator.parseValidatedInt(blank))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 이십일억보다_큰_숫자를_입력하면_예외를_발생한다() {
         String tooLargeNumberString = String.valueOf(MEMORY_SIZE_LIMIT);
 
@@ -38,11 +49,18 @@ class InputValidatorTest {
     @Test
     void 검증_실패시_오류코드를_포함한_에러_메시지_발생() {
         String notNumberString = "숫자가 아니다.";
-        String tooLargeNumberString = String.valueOf(MEMORY_SIZE_LIMIT);
-
         assertThatThrownBy(() -> inputValidator.parseValidatedInt(notNumberString))
                 .hasMessageContaining(ERROR_CODE);
+
+        String tooLargeNumberString = String.valueOf(MEMORY_SIZE_LIMIT);
         assertThatThrownBy(() -> inputValidator.parseValidatedInt(tooLargeNumberString))
                 .hasMessageContaining(ERROR_CODE);
+
+        assertThatThrownBy(() -> inputValidator.parseValidatedInt(null))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String blank = "";
+        assertThatThrownBy(() -> inputValidator.parseValidatedInt(blank))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

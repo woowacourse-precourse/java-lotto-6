@@ -1,9 +1,8 @@
 package lotto.model;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +12,15 @@ public class Lotto {
         validateDuplicateNumbers(numbers);
         numbers.sort(Integer::compareTo);
         this.numbers = numbers;
+    }
+
+    public static List<Lotto> purchaseLottos(int purchaseCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchaseCount; i++) {
+            List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
     }
 
     private static void validateDuplicateNumbers(List<Integer> numbers) {

@@ -37,7 +37,7 @@ class StatisticsServiceTest {
     @DisplayName("사용자가 구매한 로또 번호의 결과를 통해 수익률을 계산할 수 있다.")
     void calculateRateOfReturn() {
         LottoResult lottoResult = statisticsService.checkLottoResult(winningLotto, userLottos);
-        double result = statisticsService.calculateRateOfReturn(lottoResult);
+        double result = statisticsService.calculateRateOfReturn(lottoResult, userLottos);
 
         assertThat(result).isEqualTo(62.5);
     }

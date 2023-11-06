@@ -12,7 +12,6 @@ import java.util.Map;
 
 public class StatisticsService {
     private static final int HUNDRED = 100;
-    private static final int INITIAL_VALUE = 0;
 
     private final PrizeMoneyRepository prizeMoneyRepository;
 
@@ -31,20 +30,17 @@ public class StatisticsService {
         return lottoResult;
     }
 
-    public double calculateRateOfReturn(LottoResult lottoResult) {
-        Map<LottoRanking, Integer> result = lottoResult.getResult();
-
-        double totalPrizeMoney = calculateTotalPrizeMoney(result);
-        int totalPurchaseAmount = calculateTotalPurchaseAmount(result);
+    public double calculateRateOfReturn(LottoResult lottoResult, List<Lotto> userLottos) {
+        double totalPrizeMoney = calculateTotalPrizeMoney(lottoResult);
+        int totalPurchaseAmount = calculateTotalPurchaseAmount(userLottos);
 
         return totalPrizeMoney / totalPurchaseAmount * HUNDRED;
     }
 
-    private int calculateTotalPurchaseAmount(Map<LottoRanking, Integer> result) {
-        return result.values()
-                .stream()
-                .map(value -> value * Constants.LOTTO_PRICE)
-                .reduce(INITIAL_VALUE, Integer::sum);
+    private double calculateTotalPrizeMoney(LottoResult lottoResult) {
+        Map<LottoRanking, Integer> result = lottoResult.getResult();
+
+        return calculateTotalPrizeMoney(result);
     }
 
     private double calculateTotalPrizeMoney(Map<LottoRanking, Integer> result) {
@@ -56,5 +52,9 @@ public class StatisticsService {
 
     private int calculatePrizeMoney(Map<LottoRanking, Integer> result, LottoRanking lottoRanking) {
         return result.get(lottoRanking) * prizeMoneyRepository.findByLottoRanking(lottoRanking);
+    }
+
+    private int calculateTotalPurchaseAmount(List<Lotto> userLottos) {
+        return userLottos.size() * Constants.LOTTO_PRICE;
     }
 }

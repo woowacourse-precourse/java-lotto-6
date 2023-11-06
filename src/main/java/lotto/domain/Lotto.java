@@ -6,6 +6,7 @@ import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.enums.Prize;
 
 public record Lotto(List<LottoNumber> numbers) {
     public Lotto {
@@ -32,11 +33,17 @@ public record Lotto(List<LottoNumber> numbers) {
         return Collections.unmodifiableList(numbers);
     }
 
+    public Prize match(final Lotto lotto, final LottoNumber bonus) {
+        final int matchCount = getMatchCount(lotto);
+        final boolean matchBonus = contains(bonus);
+        return Prize.valueOf(matchCount, matchBonus);
+    }
+
     public boolean contains(final LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 
-    public int getMatchCount(final Lotto lotto) {
+    private int getMatchCount(final Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::contains)
                 .count();

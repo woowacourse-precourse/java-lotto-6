@@ -15,7 +15,7 @@ public class Rate {
         }
         return result;
     }
-햣
+
     public double getRate() {
         return rate;
     }

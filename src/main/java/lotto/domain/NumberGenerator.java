@@ -3,15 +3,13 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import lotto.util.LottoConstants;
 
 public class NumberGenerator {
-    private static final int MIN_NUMBER_RANGE = 1;
-    private static final int MAX_NUMBER_RANGE = 45;
-    private static final int NUMBER_COUNT = 6;
-
     public static List<Integer> generateRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE,
-                NUMBER_COUNT);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER_RANGE.getValue(),
+                LottoConstants.MAX_NUMBER_RANGE.getValue(),
+                LottoConstants.NUMBER_COUNT.getValue());
 
         sortNumbers(randomNumbers);
 

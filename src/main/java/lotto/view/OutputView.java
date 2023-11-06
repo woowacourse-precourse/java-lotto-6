@@ -1,5 +1,17 @@
 package lotto.view;
 
+import static lotto.constants.OutputMessage.ASK_AMOUNT_COMMENT;
+import static lotto.constants.OutputMessage.ASK_BONUS_LOTTO_NUMBER_COMMENT;
+import static lotto.constants.OutputMessage.ASK_WIN_LOTTO_NUMBER_COMMENT;
+import static lotto.constants.OutputMessage.FIFTH_PRIZE_COMMENT;
+import static lotto.constants.OutputMessage.FIRST_PRIZE_COMMENT;
+import static lotto.constants.OutputMessage.FOURTH_PRIZE_COMMENT;
+import static lotto.constants.OutputMessage.LOTTO_BUY_QUANTITY_COMMENT;
+import static lotto.constants.OutputMessage.RESULT_START_COMMENT;
+import static lotto.constants.OutputMessage.SECOND_PRIZE_COMMENT;
+import static lotto.constants.OutputMessage.THIRD_PRIZE_COMMENT;
+import static lotto.constants.OutputMessage.TOTAL_PROFIT_RATE_COMMENT;
+
 import java.util.List;
 
 public class OutputView {
@@ -18,7 +30,7 @@ public class OutputView {
      * 구입 금액 입력
      */
     public static void amountOutput() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ASK_AMOUNT_COMMENT.getComment());
     }
 
     /**
@@ -27,7 +39,7 @@ public class OutputView {
      * @param quantity
      */
     public static void lottoBuyQuantityOutput(int quantity) {
-        System.out.println(quantity + "개를 구매했습니다.");
+        System.out.printf(LOTTO_BUY_QUANTITY_COMMENT.getComment(), quantity);
     }
 
     /**
@@ -43,28 +55,27 @@ public class OutputView {
      * 로또 당첨 번호
      */
     public static void winLottoNumberOutput() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(ASK_WIN_LOTTO_NUMBER_COMMENT.getComment());
     }
 
     /**
      * 보너스 당첨 번호
      */
     public static void bonusLottoNumberOutput() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(ASK_BONUS_LOTTO_NUMBER_COMMENT.getComment());
     }
 
     /**
      * 당첨 통계
      */
     public static void lottoResultOutput(List<Integer> prizeResults, String profitRate) {
-        System.out.println("당첨 통계");
-        System.out.println("----");
-        System.out.printf("3개 일치 (5,000원) - %d개\n", prizeResults.get(4));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", prizeResults.get(3));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", prizeResults.get(2));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", prizeResults.get(1));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", prizeResults.get(0));
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.println(RESULT_START_COMMENT.getComment());
+        System.out.printf(FIFTH_PRIZE_COMMENT.getComment(), prizeResults.get(4));
+        System.out.printf(FOURTH_PRIZE_COMMENT.getComment(), prizeResults.get(3));
+        System.out.printf(THIRD_PRIZE_COMMENT.getComment(), prizeResults.get(2));
+        System.out.printf(SECOND_PRIZE_COMMENT.getComment(), prizeResults.get(1));
+        System.out.printf(FIRST_PRIZE_COMMENT.getComment(), prizeResults.get(0));
+        System.out.printf(TOTAL_PROFIT_RATE_COMMENT.getComment(), profitRate);
     }
 
     /**

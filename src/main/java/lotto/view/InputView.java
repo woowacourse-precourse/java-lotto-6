@@ -11,7 +11,7 @@ public class InputView {
 
     private static final String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String ASK_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String ASK_BONUS_WINNING_NUMBER_MESSAGE = "[ERROR] 보너스 번호를 입력해 주세요.";
+    private static final String ASK_BONUS_WINNING_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String START_OF_SENTENCE_CHARACTER = "[ERROR] 문장은 첫번째 문자를 숫자 외 허용하지 않습니다.";
     private static final String END_OF_SENTENCE_CHARACTER = "[ERROR] 문장은 마지막 문자를 숫자 외 허용하지 않습니다.";
     public static final String PERMIT_ONLY_NUMBER = "[ERROR] 정수 외에는 입력받을 수 없습니다.";
@@ -27,12 +27,18 @@ public class InputView {
     }
 
     public Lotto askWinningNumber() {
-        printWinningNumber();
+        try {
+            printWinningNumber();
             String input = Console.readLine();
             validateBlankAndEmptyInteger(input);
             validateFirstCharacter(input);
             validateLastCharacter(input);
             return new Lotto(new ArrayList<>(parseNumbers(input)));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            askWinningNumber();
+        }
+        return null;
     }
 
     public void validateLastCharacter(String input) {

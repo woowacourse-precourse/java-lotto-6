@@ -89,11 +89,11 @@
 - Lotto : 로또의 6개 숫자를 가지는 일급 컬렉션
 - LottoNumberGenerator : 로또 번호를 생성하는 역할을 한다.
 - LottoNumberRule : 로또 번호 규칙에 대한 상수
-- LottoPrizeBreakdown : 당첨 내역과 당첨 금액을 담는 값 객체
+- LottoPrizeBreakdown : 당첨 내역과 당첨 금액을 가지고, 수익률을 계산한다.
 - LottoRank : 로또 등수 정보를 가진다.
-- LottoTicketMaker : 로또를 발행하고 당첨내역 및 수익률을 생성하는 역할을 한다.
+- LottoTicketMaker : 로또를 발행한다.
 - Money : 금액의 값 객체
-- WinningNumbers : 당첨 번호와 보너스 번호를 담는 값 객체
+- WinningNumbers : 당첨 번호와 보너스 번호를 가지고, 당첨내역을 생성한다.
 - YieldRate : 수익률 값 객체
 
 ### Util

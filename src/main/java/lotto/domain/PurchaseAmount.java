@@ -7,14 +7,20 @@ public class PurchaseAmount {
     private static final int ZERO = 0;
 
     private final int amount;
+    private final int lottoCount;
 
     public PurchaseAmount(String amount) {
         validate(amount);
         this.amount = toInt(amount);
+        this.lottoCount = this.amount / AMOUNT_UNIT;
     }
 
     public int getAmount() {
         return this.amount;
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
     }
 
     private void validate(String amount) {

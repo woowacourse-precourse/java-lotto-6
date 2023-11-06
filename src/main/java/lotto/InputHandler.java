@@ -16,9 +16,6 @@ public class InputHandler {
             winningNumber = Arrays.stream(Console.readLine().split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
-                    .peek(number -> {
-                        validation.numberRange(number);
-                    })
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");

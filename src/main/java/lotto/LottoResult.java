@@ -31,7 +31,7 @@ public class LottoResult {
         return Math.round(totalReturn * 10.0) / 10.0;
     }
 
-    public WinningCriteria getWinningCriteria(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
+    public WinningCriteria getWinningCriteria(Lotto lotto, Lotto winningNumber, int bonusNumber) {
         int matchCount = lotto.countMatches(winningNumber);
         boolean bonus = lotto.additionalNumber(bonusNumber);
         if (matchCount == 6) return WinningCriteria.FIRST_PLACE;

@@ -13,6 +13,10 @@ public class BonusNumberRepository {
         bonusNumbers.add(bonusNumber);
     }
 
+    public static void clear() {
+        bonusNumbers.clear();
+    }
+
     public static int findBonusNumber() {
         return findByIndex(DEFAULT).getNumber();
     }

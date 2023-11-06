@@ -13,6 +13,10 @@ public class WinningLottoRepository {
         winningLotties.add(winningLotto);
     }
 
+    public static void clear() {
+        winningLotties.clear();
+    }
+
     public static List<Integer> findWinningNumbers() {
         return findByIndex(DEFAULT).getNumbers();
     }

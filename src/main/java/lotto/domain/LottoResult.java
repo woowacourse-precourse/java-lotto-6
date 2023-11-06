@@ -4,9 +4,13 @@ import java.util.List;
 import lotto.util.enums.LottoRank;
 
 public class LottoResult {
-    private final List<LottoRank> ranks;
+    private final List<LottoRank> rankResults;
 
-    public LottoResult(List<LottoRank> ranks) {
-        this.ranks = ranks;
+    public LottoResult(List<LottoRank> rankResults) {
+        this.rankResults = rankResults;
+    }
+
+    public List<LottoRank> getRankResults() {
+        return rankResults;
     }
 }

@@ -2,16 +2,27 @@ package lotto.domain.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.LottoResult;
 import lotto.util.enums.LottoRank;
 
 public class LottoResultRepository {
-    private static List<LottoRank> lottoResults = new ArrayList<>();
+    private static final int DEFAULT = 0;
 
-    public static List<LottoRank> lottoResults() {
-        return lottoResults;
+    private static List<LottoResult> lottoResults = new ArrayList<>();
+
+    public static void add(LottoResult lottoResult) {
+        lottoResults.add(lottoResult);
     }
 
-    public static void add(LottoRank lottoRank) {
-        lottoResults.add(lottoRank);
+    public static void clear() {
+        lottoResults.clear();
+    }
+
+    public static List<LottoRank> findLottoRankResults() {
+        return findByIndex(DEFAULT).getRankResults();
+    }
+
+    private static LottoResult findByIndex(int index) {
+        return lottoResults.get(index);
     }
 }

@@ -14,4 +14,8 @@ public class LottoRepository {
     public static void add(Lotto lotto) {
         lotties.add(lotto);
     }
+
+    public static void clear() {
+        lotties.clear();
+    }
 }

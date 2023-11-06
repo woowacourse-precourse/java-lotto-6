@@ -58,4 +58,8 @@ public class OutputView {
     public void displayEarningRate(float earningRate) {
         System.out.print(EARNING_RATE_RESULT + String.format("%.1f", earningRate) + "%입니다.");
     }
+
+    public void displayERRORMESSAGE(String message){
+        System.out.println(message);
+    }
 }

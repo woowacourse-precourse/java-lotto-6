@@ -22,7 +22,6 @@ class MoneyTest {
     void createMoneyByNotPositiveNumber(String userInput) {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
     @DisplayName("구매 금액앞에 0이 포함될 때, 예외 처리")
@@ -31,8 +30,14 @@ class MoneyTest {
     void createMoneyByFirstNumberZero(String userInput) {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
+    @DisplayName("구매 금액이 1000단위가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"999", "1500","1001"})
+    void createMoneyByNotThousands(String userInput) {
+        assertThatThrownBy(() -> new Money(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

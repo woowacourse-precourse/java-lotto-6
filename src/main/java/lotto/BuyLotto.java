@@ -21,7 +21,6 @@ public class BuyLotto {
 
     public List<Integer> pickNumber() {
         List<Integer> paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(paper);
         return paper;
     }
 

@@ -82,14 +82,14 @@ public class ValidateException {
 //            }
 //        }
 //    }
-//
-//    public static void negative(String strLine) {
-//        Integer inputNum = Integer.valueOf(strLine);
-//        if (inputNum < POSITIVE_CONDITION_ZERO) {
-//            throw new NumberFormatException("[ERROR] 입력된 값은 양수가 아닙니다.");
-//        }
-//    }
-//
+
+    public static void negative(String strLine) {
+        Integer inputNum = Integer.valueOf(strLine);
+        if (inputNum < POSITIVE_CONDITION_ZERO) {
+            throw new NumberFormatException("[ERROR] 입력된 값은 양수가 아닙니다.");
+        }
+    }
+
 //    public static void zeroNum(String strLine) {
 //        Integer inputNum = Integer.valueOf(strLine);
 //

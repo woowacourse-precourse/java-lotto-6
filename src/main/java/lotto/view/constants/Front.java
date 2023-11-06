@@ -1,7 +1,7 @@
 package lotto.view.constants;
 
 public enum Front {
-    REQUEST_PERCHASE_AMOUNT("구입 금액을 입력해 주세요."),
+    REQUEST_PURCHASE_AMOUNT("구입 금액을 입력해 주세요."),
     CHECK_LOTTO_TICKETS("개를 구매했습니다."),
     REQUEST_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_NUMBERS("보너스 번호를 입력해 주세요."),

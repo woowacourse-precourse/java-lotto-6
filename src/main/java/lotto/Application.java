@@ -7,7 +7,7 @@ public class Application {
         OutputView.print(Message.PAYMENT_REQUEST);
         OutputView.print(Message.LINE_BREAK);
 
-
+        String payment = InputView.read();
 
     }
 

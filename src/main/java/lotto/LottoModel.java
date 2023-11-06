@@ -3,6 +3,7 @@ import camp.nextstep.edu.missionutils.Randoms; import java.util.ArrayList; impor
 
 public class LottoModel {
     private int lottoPrice;
+    private Lotto winningLotto;
     private ArrayList<Lotto> boughtLottos;
 
     public LottoModel() {
@@ -11,6 +12,9 @@ public class LottoModel {
 
         LottoView.printLottoAmount(lottoPrice);
         LottoView.printGeneratedLottos(boughtLottos);
+
+        winningLotto = LottoControl.inputWinningNumbers();
+        LottoControl.inputBonusNumber(winningLotto);
     }
 
     private ArrayList<Lotto> generateLottos(int lottoPrice) {

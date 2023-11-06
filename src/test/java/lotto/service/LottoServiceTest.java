@@ -36,5 +36,6 @@ class LottoServiceTest {
     void issueLotteryTicket() {
         List<Integer> lotteryTicketNumbers = lottoService.issueLotteryTicket();
         System.out.println("lotteryTicketNumbers = " + lotteryTicketNumbers.toString());
+        assertThat(lotteryTicketNumbers).isSorted();
     }
 }

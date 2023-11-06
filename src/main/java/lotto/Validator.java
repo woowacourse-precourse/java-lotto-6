@@ -16,4 +16,18 @@ public class Validator {
 
         return true;
     }
+
+    // 숫자 입력이 맞는지 검증
+    public static Boolean isNumber(String input) {
+        try {
+            Long number = Long.parseLong(input);
+            // Long으로 변환된 값이 입력 값과 같지 않을 시 예외 발생
+            if (number.toString().equals(input))
+                throw new IllegalArgumentException("[ERROR]");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+
+        return true;
+    }
 }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import lotto.data.Lotto;
 import lotto.data.Rewards;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,9 +22,9 @@ import java.util.stream.Stream;
 
 
 class LottoModelTest {
-    private final List<Integer> WINNING_NUMS = Arrays.asList(1, 2, 3, 4, 5, 6);
-    private final int CHECK_BONUS = 999;
     private final int BONUS_NUM = 40;
+    private final int CHECK_BONUS = 999;
+    private final List<Integer> WINNING_NUMS = Arrays.asList(1, 2, 3, 4, 5, 6);
 
     static Stream<Arguments> parameterProviderPublishTicket() {
         return Stream.of(
@@ -44,54 +45,6 @@ class LottoModelTest {
     @BeforeEach
     void setUp() {
         lottoModel = new LottoModel();
-    }
-
-    @ParameterizedTest
-    @CsvSource({"5000,8000,62.5", "10000,8000,125.0"})
-    void computeRate_소숫점_둘째자리에서_반올림_확인(int totalEarned, int purchased, String expect) {
-        assertThat(lottoModel.computeRate(totalEarned, purchased))
-                .isEqualTo(expect);
-    }
-
-    @Test
-    void generateNewLotto_로또_번호_발행_오름차순_정렬_테스트() {
-        List<Integer> expect = new ArrayList<>(List.of(1,3,5,7,9,11));
-        assertRandomUniqueNumbersInRangeTest(
-                ()->{
-                    assertThat(lottoModel.generateNewLotto())
-                            .isEqualTo(expect);
-                },List.of(5,1,7,11,9,3)
-        );
-    }
-
-
-    @ParameterizedTest
-    @MethodSource("parameterProviderPublishTicket")
-    void publishTicket_로또번호_오름차순_발급_확인(List<Integer> lottoNums, String expect) {
-        assertThat(lottoModel.publishTicket(lottoNums)).isEqualTo(expect);
-    }
-
-    @Test
-    void initWinningTable_당첨로또_테이블_생성_확인() {
-        HashMap<Rewards, Integer> expect = new HashMap<>();
-        expect.put(Rewards.FIRST, 0);
-        expect.put(Rewards.SECOND, 0);
-        expect.put(Rewards.THIRD, 0);
-        expect.put(Rewards.FOURTH, 0);
-        expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.initWinningTable()).isEqualTo(expect);
-    }
-
-    @Test
-    void initWinningNumsTable_로또_당첨번호_테이블_생성_확인() {
-        HashMap<Integer, Integer> expect = new HashMap<>();
-        expect.put(1, 0);
-        expect.put(2, 0);
-        expect.put(3, 0);
-        expect.put(4, 0);
-        expect.put(5, 0);
-        expect.put(6, 0);
-        assertThat(lottoModel.initWinningNumsTable(WINNING_NUMS)).isEqualTo(expect);
     }
 
     @ParameterizedTest
@@ -134,6 +87,53 @@ class LottoModelTest {
                 new MockLotto(List.of(1, 2, 3, 4, 5, BONUS_NUM)),
                 BONUS_NUM))
                 .isEqualTo(expect);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"5000,8000,62.5", "10000,8000,125.0"})
+    void computeRate_소숫점_둘째자리에서_반올림_확인(int totalEarned, int purchased, String expect) {
+        assertThat(lottoModel.computeRate(totalEarned, purchased))
+                .isEqualTo(expect);
+    }
+
+    @Test
+    void generateNewLotto_로또_번호_발행_오름차순_정렬_테스트() {
+        List<Integer> expect = new ArrayList<>(List.of(1, 3, 5, 7, 9, 11));
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    assertThat(lottoModel.generateNewLotto())
+                            .isEqualTo(expect);
+                }, List.of(5, 1, 7, 11, 9, 3)
+        );
+    }
+
+    @Test
+    void initWinningNumsTable_로또_당첨번호_테이블_생성_확인() {
+        HashMap<Integer, Integer> expect = new HashMap<>();
+        expect.put(1, 0);
+        expect.put(2, 0);
+        expect.put(3, 0);
+        expect.put(4, 0);
+        expect.put(5, 0);
+        expect.put(6, 0);
+        assertThat(lottoModel.initWinningNumsTable(WINNING_NUMS)).isEqualTo(expect);
+    }
+
+    @Test
+    void initWinningTable_당첨로또_테이블_생성_확인() {
+        HashMap<Rewards, Integer> expect = new HashMap<>();
+        expect.put(Rewards.FIRST, 0);
+        expect.put(Rewards.SECOND, 0);
+        expect.put(Rewards.THIRD, 0);
+        expect.put(Rewards.FOURTH, 0);
+        expect.put(Rewards.FIFTH, 0);
+        assertThat(lottoModel.initWinningTable()).isEqualTo(expect);
+    }
+
+    @ParameterizedTest
+    @MethodSource("parameterProviderPublishTicket")
+    void publishTicket_로또번호_오름차순_발급_확인(List<Integer> lottoNums, String expect) {
+        assertThat(lottoModel.publishTicket(lottoNums)).isEqualTo(expect);
     }
 
     @ParameterizedTest

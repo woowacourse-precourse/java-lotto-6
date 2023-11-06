@@ -1,6 +1,9 @@
 package Model;
 
+import static java.util.Arrays.asList;
+
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +31,7 @@ public class Service {
         return Randoms.pickNumberInRange(1, 45);
     }
 
-    public int numberFrequencyCount(List<Integer> list) {
+    private int numberFrequencyCount(List<Integer> list) {
         Set<Integer> set = new HashSet<>(DOMAIN.lottoWinningNumber);
         return (int) list.stream()
                 .filter(set::contains)
@@ -53,4 +56,10 @@ public class Service {
     public void setBonusNumber(int bonusNumber) {
         DOMAIN.bonusNumber = bonusNumber;
     }
+
+    public List<String> splitLottoNumbers(String lottoNumber) {
+        return Arrays.asList(lottoNumber.split(","));
+    }
+
+
 }

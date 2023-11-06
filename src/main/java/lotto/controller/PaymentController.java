@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.Payment;
+import lotto.exception.ParserException;
 import lotto.exception.PaymentException;
 import lotto.exception.PaymentExceptionMessage;
+import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,9 +26,9 @@ public final class PaymentController {
     private Integer requestAmount(){
         String amountInfo = InputView.readLine();
         try{
-            Integer amount = Integer.parseInt(amountInfo);
+            Integer amount = Parser.parseInfoToNumber(amountInfo);
             return amount;
-        } catch (NumberFormatException exception){
+        } catch (ParserException exception){
             throw new PaymentException(PaymentExceptionMessage.NOT_NUMBER);
         }
     }

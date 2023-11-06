@@ -7,8 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+    private static final int LOTTO_PRICE = 1000;
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        int count = askPurchaseAmount() / LOTTO_PRICE;
+        System.out.println(count + "개를 구매했습니다.");
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(numbers);
+            lotto.print();
+        }
     }
 
     static int askPurchaseAmount() {

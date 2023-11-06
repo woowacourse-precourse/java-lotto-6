@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Player {
-    private List<Integer> winningNumbers;
     private int purchaseAmount;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public void setPurchaseAmount(String input) {
         int purchaseAmount = toInteger(input);
@@ -76,6 +77,29 @@ public class Player {
         Set<Integer> tmpWinningNumbers = new HashSet<>(winningNumbers);
 
         if (tmpWinningNumbers.size() != Lotto.NUMBERS_SIZE) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void setBonusNumber(String input) {
+        int bonusNumber = toInteger(input);
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumber(Integer bonusNumber) {
+        validateBonusNumberValue(bonusNumber);
+        validateBonusNumberDuplicatedWithWinningNumbers(bonusNumber);
+    }
+
+    private void validateBonusNumberValue(Integer bonusNumber) {
+        if (bonusNumber < Lotto.MINIMUM_NUMBER || bonusNumber > Lotto.MINIMUM_NUMBER) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBonusNumberDuplicatedWithWinningNumbers(Integer bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

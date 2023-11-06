@@ -28,8 +28,13 @@ public class ResultService {
 
     public static void printResults(HashMap<Integer, Integer> results) {
         for (int caseNumber : results.keySet()) {
-            System.out.printf(WinnigCase.MATCH_THREE.getContents() + " - %d개", results.get(caseNumber));
+            System.out.printf(WinnigCase.getByCaseNumber(caseNumber).getContents()
+                    + " - %d개", results.get(caseNumber));
         }
+    }
+
+    public static double calculateRateOfReturn() {
+        return 1.0;
     }
 
 

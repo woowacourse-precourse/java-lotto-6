@@ -7,7 +7,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.*;
-import static lotto.constants.ErrorConstants.NOTINARRANGEERROR;
+import static lotto.constants.ErrorConstants.*;
 import static lotto.constants.MessageConstant.*;
 import static lotto.constants.NumConstant.*;
 
@@ -39,16 +39,30 @@ public class LottoShop {
         }
     }
     private Lotto inputLottoNum(){
-        System.out.println();
-        System.out.println(INPUTWINNUM);
-        String inputWinnerLottoNum = readLine();
-        String[] lottoNums = inputWinnerLottoNum.split(",");
-        List<Integer> winnerLottoNums = new ArrayList<>();
-        for (String lottoNum : lottoNums) {
-            winnerLottoNums.add(Integer.parseInt(lottoNum));
+        while(true) {
+            System.out.println();
+            System.out.println(INPUTWINNUM);
+            List<Integer> winnerLottoNums = new ArrayList<>();
+            String inputWinnerLottoNum = readLine();
+            String[] lottoNums = inputWinnerLottoNum.split(",");
+            try {
+                for (String lottoNum : lottoNums) {
+                    validateInputNum(lottoNum);
+                    winnerLottoNums.add(Integer.parseInt(lottoNum));
+                }
+                Lotto lotto = new Lotto(winnerLottoNums);
+                return lotto;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        Lotto lotto = new Lotto(winnerLottoNums);
-        return lotto;
+    }
+    public void validateInputNum(String input) {
+        for(int i = 0; i < input.length(); i++){
+            if(input.charAt(i) < '0' || input.charAt(i) > '9'){
+                throw new IllegalArgumentException(NOTNUMBERERROR.toString());
+            }
+        }
     }
     private int inputBonusNum(){
         while (true) {

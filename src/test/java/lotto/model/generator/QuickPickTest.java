@@ -18,7 +18,7 @@ class QuickPickTest {
     @BeforeEach
     void beforeEach() {
         quickPick = new QuickPick();
-        lottoNumbers = quickPick.drawLots(COUNT_OF_LOTTO_NUMBER.getDetails());
+        lottoNumbers = quickPick.drawLots();
     }
 
     @Test

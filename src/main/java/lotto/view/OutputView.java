@@ -1,29 +1,33 @@
 package lotto.view;
 
-import lotto.dto.PurchaseResult;
-import lotto.dto.WinningResult;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
+import lotto.model.Lottos;
+import lotto.model.PriceMoney;
 
 import static lotto.view.constant.viewMessage.*;
 
 public class OutputView {
 
-    public void outputPurchaseLottos(PurchaseResult result) {
-        System.out.printf(OUTPUT_PURCHASE_RESULT, result.purchaseCount());
-        for (Lotto lotto : result.lottos()) {
+    public void outputPurchaseLottos(Lottos result, int count) {
+        System.out.printf(OUTPUT_PURCHASE_RESULT, count);
+        for (Lotto lotto : result.getLottos()) {
             System.out.println(lotto);
         }
-        System.out.println();
     }
 
-    public void outputWinningResult(WinningResult result) {
+    public void outputWinningResult(LottoResult result, Integer money) {
         System.out.print(OUTPUT_WINNING_STATISTICS_INTRO);
 
         System.out.printf(
                 OUTPUT_WINNING_STATISTICS_RESULT
-                , result.rank()[5], result.rank()[4],
-                result.rank()[3], result.rank()[2], result.rank()[1]
+                , result.getRankCount(PriceMoney.FIFTH)
+                , result.getRankCount(PriceMoney.FOURTH)
+                , result.getRankCount(PriceMoney.THIRD)
+                , result.getRankCount(PriceMoney.SECOND)
+                , result.getRankCount(PriceMoney.FIRST)
         );
-        System.out.printf(OUTPUT_RATE_OF_RETURN, result.rateOfReturn());
+        System.out.printf(OUTPUT_RATE_OF_RETURN,
+                (float) result.calculatePrice() * 100 / money);
     }
 }

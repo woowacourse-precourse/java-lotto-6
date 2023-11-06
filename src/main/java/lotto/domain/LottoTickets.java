@@ -10,9 +10,16 @@ public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(int purchaseAmount) {
+        validateDivisibleByLottoPrice(purchaseAmount);
         int lottoCount = purchaseAmount / 1000;
         lottoTickets = new ArrayList<>();
-        publishLottoTickets(purchaseAmount);
+        publishLottoTickets(lottoCount);
+    }
+
+    private void validateDivisibleByLottoPrice(int purchaseAmount) {
+        if (purchaseAmount % 1000 > 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원단위로 입력해주세요.");
+        }
     }
 
     private void publishLottoTickets(int lottoCount) {

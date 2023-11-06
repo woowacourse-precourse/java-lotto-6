@@ -38,14 +38,19 @@ public class LottoGamePlay implements GamePlay{
     public void play() {
         GetLottoCountDto lottoCountDto = input.getLottoBuyMoney();
         Printer.changeLine();
+
         GetGeneratedLottosDto getGeneratedLottosDto = generator.generateLottos(lottoCountDto);
         output.printLottoNumbers(getGeneratedLottosDto);
+
         GetWinningNumberDto winningNumber = input.getWinningNumber();
         Printer.changeLine();
+
         GetBonusNumberDto bonusNumber = input.getBonusNumber(winningNumber);
         Printer.changeLine();
+
         GetLottoResultDto lottoResult = resultCheck.getLottoResult(winningNumber, bonusNumber, new GetLottosDto(getGeneratedLottosDto.getLottos()));
         output.printLottoResult(lottoResult);
+
         GetReturnRateDto getReturnRateDto = calculator.calculateLottoReturnRate(lottoResult, lottoCountDto);
         output.printRate(getReturnRateDto);
     }

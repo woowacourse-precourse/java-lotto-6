@@ -15,8 +15,9 @@ public enum Message {
     BOUGHT("개를 구매했습니다.\n"),
     CLOSE("]\n"),
     RATE("총 수익률은 "),
-    PRINT("입니다.\n"),
+    PRINT_RATE("입니다.\n"),
     STATISTICS("당첨 통계"),
+    PERCENTAGE("%%"),
     LINE("---");
     private final String message;
     private Message(final String message) {

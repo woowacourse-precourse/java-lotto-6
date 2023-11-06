@@ -14,7 +14,7 @@ public class Printer {
         System.out.printf(Message.THREE_HIT + "%d"+ Message.COUNT,threeHit);
     }
     public static void printFourHit(int fourHit){
-        System.out.printf(Message.FIVE_HIT + "%d"+ Message.COUNT,fourHit);
+        System.out.printf(Message.FOUR_HIT + "%d"+ Message.COUNT,fourHit);
     }
     public static void printFiveHit(int fiveHit){
         System.out.printf(Message.FIVE_HIT + "%d"+ Message.COUNT,fiveHit);
@@ -41,7 +41,7 @@ public class Printer {
         System.out.printf("%d", num);
     }
     public static void printRate(double rate){
-        System.out.printf(Message.RATE + "%.2f" + Message.PRINT, rate);
+        System.out.printf(Message.RATE + "%.1f"+Message.PERCENTAGE+ Message.PRINT_RATE, rate);
     }
     public static void printStatistics(){
         System.out.println(Message.STATISTICS);

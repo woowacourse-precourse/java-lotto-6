@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.view.ConsoleOutput;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -7,5 +8,9 @@ public class LottoController {
 
     public LottoController(InputView inputView) {
         this.inputView = inputView;
+    }
+
+    public void run() {
+        ConsoleOutput.displayUserInputPrompt();
     }
 }

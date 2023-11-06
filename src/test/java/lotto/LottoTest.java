@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static lotto.Lotto.winningNumber;
 import static lotto.Lotto.winningNumberLogic;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -50,5 +51,31 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+
+    @Test
+    void 당첨번호와_보너스번호가_같으면_예외처리() {
+        assertThatThrownBy(() -> {
+            Lotto lotto = new Lotto(List.of(1, 21, 32, 43, 25, 16));
+            int bonusNumber = 16;
+            lotto.validationDuplicateWinningNumbersAndBonusNumber(bonusNumber);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨번호와 보너스번호가 중복됩니다.");
+    }
+
+    @Test
+    void 문자열을_숫자로_바꾸기() {
+        String[] str = {"123","123[","123s"};
+
+        assertThatThrownBy(()->{
+            for(String s : str){
+                Lotto.StringToInt(s);
+            }
+        })
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessageContaining("[ERROR] 숫자 형식이 아닙니다.");
+
+    }
+
 
 }

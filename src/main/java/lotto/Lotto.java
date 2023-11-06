@@ -1,5 +1,7 @@
 package lotto;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,27 +47,47 @@ public class Lotto {
     }
 
     protected static int inputYourMoney() {
-        int price = 0;
+        int result = 0;
+
+        System.out.println("구입금액을 입력해 주세요.");
         try {
-            System.out.println("구입금액을 입력해 주세요.");
-            price = Integer.parseInt(readLine());
+            int price = StringToInt(readLine());
+            result = validatePrice(price);
         } catch (NumberFormatException e) {
-            System.err.println("[ERROR] 숫자형식을 입력해주세요");
+            System.out.println("[ERROR] 숫자 형식이 아닙니다.");
+            inputYourMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 금액은 1,000원 단위 이어야 합니다.");
+            inputYourMoney();
         }
 
-        return validatePrice(price);
+        return result;
     }
+
+    protected static int StringToInt(String str) {
+        List<Character> zeroToNine = new ArrayList<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            char chr = str.charAt(i);
+            if (zeroToNine.contains(chr)) {
+                result.append(chr);
+            }
+
+            if (!zeroToNine.contains(chr)) {
+                throw new NumberFormatException("[ERROR] 숫자 형식이 아닙니다.");
+            }
+        }
+
+
+        return Integer.parseInt(result.toString());
+    }
+
 
     private static int validatePrice(int price) {
 
-        try {
-            String rest = price % 1000 + "";
-            if (!rest.equals("0")) {
-                throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위 이어야 합니다.");
-            }
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            inputYourMoney();
+        String rest = price % 1000 + "";
+        if (!rest.equals("0")) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위 이어야 합니다.");
         }
 
         return price / 1000;
@@ -130,8 +152,9 @@ public class Lotto {
     }
 
     protected void lottoGame(int bonusNumber, List<List<Integer>> myLottoNumber) {
-        List<Integer> gameResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
+        validationDuplicateWinningNumbersAndBonusNumber(bonusNumber);
 
+        List<Integer> gameResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
         System.out.printf("당첨 번호 : %s\n", numbers);
 
         for (int i = 0; i < myLottoNumber.size(); i++) {
@@ -142,18 +165,23 @@ public class Lotto {
                     cnt++;
                 }
             }
-            if (cnt == 5) {
-                for (int j=0; j<myLottoNumber.size(); j++) {
-                    if (myLottoNumber.get(j).contains(bonusNumber)) {
-                        bonusCnt++;
-                    }
-                }
+            if (myLottoNumber.get(i).contains(bonusNumber) && cnt == 5) {
+                bonusCnt++;
             }
+
             gameResult = inputResults(cnt, bonusCnt, gameResult);
         }
         String myProfit = getMyProfit(myLottoNumber.size(), gameResult) + "%";
 
         lottoResult(gameResult, myProfit);
+    }
+
+    protected void validationDuplicateWinningNumbersAndBonusNumber(int bonusNumber) {
+        for (Integer number : numbers) {
+            if (number.equals(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복됩니다.");
+            }
+        }
     }
 
     private List<Integer> inputResults(int cnt, int bonusCnt, List<Integer> gameResult) {
@@ -170,7 +198,7 @@ public class Lotto {
         if (cnt == 5 && bonusCnt == 1) {
             gameResult.add(6, gameResult.get(6) + 1);
         }
-        if (cnt == 7) {
+        if (cnt == 6) {
             gameResult.add(7, gameResult.get(7) + 1);
         }
 
@@ -185,7 +213,7 @@ public class Lotto {
         System.out.printf(LottoNotice.THIRD_PLACE.getString() + "%d개\n", lottoResult.get(5));
         System.out.printf(LottoNotice.SECOND_PLACE.getString() + "%d개\n", lottoResult.get(6));
         System.out.printf(LottoNotice.FIRST_PLACE.getString() + "%d개\n", lottoResult.get(7));
-        System.out.printf("총 수익률은 %s입니다.",myProfit);
+        System.out.printf("총 수익률은 %s입니다.", myProfit);
     }
 
     private String getMyProfit(int investMoney, List<Integer> lottoResult) {
@@ -196,13 +224,13 @@ public class Lotto {
             if (i == 3)
                 returnMoney += LottoReward.FIFTH_PLACE.getReward() * lottoResult.get(3);
             if (i == 4)
-                returnMoney += LottoReward.FORTH_PLACE.getReward()*lottoResult.get(4);
+                returnMoney += LottoReward.FORTH_PLACE.getReward() * lottoResult.get(4);
             if (i == 5)
-                returnMoney += LottoReward.THIRD_PLACE.getReward()*lottoResult.get(5);
+                returnMoney += LottoReward.THIRD_PLACE.getReward() * lottoResult.get(5);
             if (i == 6)
-                returnMoney += LottoReward.SECOND_PLACE.getReward()*lottoResult.get(6);
+                returnMoney += LottoReward.SECOND_PLACE.getReward() * lottoResult.get(6);
             if (i == 7)
-                returnMoney += LottoReward.FIRST_PLACE.getReward()*lottoResult.get(7);
+                returnMoney += LottoReward.FIRST_PLACE.getReward() * lottoResult.get(7);
 
         }
         DecimalFormat df = new DecimalFormat("#,###.#");

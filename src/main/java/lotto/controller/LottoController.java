@@ -42,5 +42,6 @@ public class LottoController {
 
         OutputView.printResultMessage();
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle,winningNumbers,bonusNumber);
+        OutputView.printLottoResult(lottoResult);
     }
 }

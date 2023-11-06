@@ -14,5 +14,4 @@ public class LottoResult {
     public EnumMap<RankCategory, Integer> getResults() {
         return results;
     }
-
 }

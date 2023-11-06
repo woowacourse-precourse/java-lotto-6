@@ -1,12 +1,13 @@
 package lotto.constant;
 
 public enum RankCategory {
-    FIRST(6, 2_000_000_000, false),
-    SECOND(5, 30_000_000, true),
-    THIRD(5, 1_500_000, false),
-    FOURTH(4, 50_000, false),
+    NONE(0, 0, false),
     FIFTH(3, 5_000, false),
-    NONE(0, 0, false);
+    FOURTH(4, 50_000, false),
+    THIRD(5, 1_500_000, false),
+    SECOND(5, 30_000_000, true),
+    FIRST(6, 2_000_000_000, false);
+
 
     private final int matchingNumbers;
     private final int prize;
@@ -16,6 +17,18 @@ public enum RankCategory {
         this.matchingNumbers = matchingNumbers;
         this.prize = prize;
         this.bonusStatus = bonusStatus;
+    }
+
+    public int getMatchingNumbers() {
+        return matchingNumbers;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public boolean isBonusStatus() {
+        return bonusStatus;
     }
 
     public static RankCategory of(int matchingNumbers, boolean bonusStatus) {

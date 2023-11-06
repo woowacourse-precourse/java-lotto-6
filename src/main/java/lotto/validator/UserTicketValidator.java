@@ -23,14 +23,14 @@ public class UserTicketValidator {
         }
     }
 
-    private static void validateTicketPriceIsMultiple(String input) {
+    public static void validateTicketPriceIsMultiple(String input) {
         int price = Integer.parseInt(input);
         if (price % 1000 != 0) {
             throw new IllegalArgumentException(errorMessage("가격 정보는 1000단위로 입력할 수 있습니다."));
         }
     }
 
-    private static void validateTicketPriceCount(String input) {
+    public static void validateTicketPriceCount(String input) {
         int price = Integer.parseInt(input);
         if (price / 1000 <= 0) {
             throw new IllegalArgumentException(errorMessage("로또는 1개 이상구매해야합니다."));

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.domain.winning.WinningNumbers;
+import lotto.domain.winning.WinningResult;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.winning;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 
 import static lotto.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR;
 

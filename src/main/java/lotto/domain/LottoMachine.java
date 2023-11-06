@@ -4,7 +4,6 @@ import static lotto.ErrorMessage.LOTTO_PURCHASE_ERROR;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.creator.NumbersCreator;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;

@@ -5,7 +5,6 @@ import static lotto.ErrorMessage.LOTTO_LENGTH_ERROR;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.domain.creator.NumbersCreator;
 
 public final class Lotto {
     private static final int LOTTO_LENGTH = 6;

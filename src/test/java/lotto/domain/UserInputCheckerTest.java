@@ -14,7 +14,13 @@ class UserInputCheckerTest {
     }
 
     @Test
+    void 입력값_자료형_확인() {
+        assertThrows(IllegalArgumentException.class, () -> userInputChecker.checkInt("a"));
+    }
+
+    @Test
     void 구입금액_확인() {
         assertThrows(IllegalArgumentException.class, () -> userInputChecker.checkInputUnit(10010));
     }
+
 }

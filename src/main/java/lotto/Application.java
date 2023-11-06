@@ -49,8 +49,9 @@ public class Application {
 
     private static void lottoIssue(int lottoCnt, List<Lotto> lottos) {
         for (int i = 0; i < lottoCnt; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(Comparator.naturalOrder());
+            List<Integer> nr = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(nr);
+            Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());
             lottos.add(lotto);
@@ -123,9 +124,10 @@ public class Application {
     }
 
     private static void printEarningRate(int income, int money) {
+        DecimalFormat df = new DecimalFormat("###,###.0");
         // 수익률 = 당첨금 / 구입금 * 100) -> 5000/8000 = 0.625 * 100 = 62.5%
         float earningRate = ((float) income / money) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
+        System.out.println("총 수익률은 "+df.format(earningRate)+"%입니다.");
     }
 
     public static void main(String[] args) {

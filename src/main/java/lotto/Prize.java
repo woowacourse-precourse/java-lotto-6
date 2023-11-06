@@ -54,5 +54,14 @@ public enum Prize {
         System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 
+    public static void countPrizeHistory(List<Long> matchWinningNumber, List<Long> matchBonusNumber) {
+        for (int i = 0; i < matchWinningNumber.size(); i++) {
+            Prize prize = Prize.matchPrize(matchWinningNumber.get(i), matchBonusNumber.get(i));
+            if (prize != null) {
+                prizeHistory.add(prize.name());
+            }
+        }
+    }
+
 }
 

@@ -9,8 +9,9 @@ public class BonusNumber {
 
     private final int value;
 
-    public BonusNumber(final String number, Lotto lotto){
-        validate(number.replace(" ",""),lotto);
+    public BonusNumber(String number, final Lotto lotto){
+        number = number.replace(" ","");
+        validate(number,lotto);
         value = Integer.parseInt(number);
     }
 

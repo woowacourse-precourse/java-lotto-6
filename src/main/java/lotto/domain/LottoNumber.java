@@ -23,4 +23,8 @@ public class LottoNumber {
         return new LottoNumber(processStringToInt(input));
     }
 
+    public boolean isSameAmount(int number) {
+        return this.number == number;
+    }
+
 }

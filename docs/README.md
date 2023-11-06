@@ -1,11 +1,11 @@
 # 로또
 
 ## 📝 구현할 기능 목록
-- 🟩 로또 구입 금액 입력 받기
+- ✅ 로또 구입 금액 입력 받기
   - [x] 숫자가 아닌 값 입력 받을 시 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
-  - [ ] 0이하인값 입력 받을 시 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
-  - [ ] 1000원으로 나눠 떨어지지 않으면 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
-  - [ ] 에러 난 부분부터 다시 입력 받기
+  - [x] 0이하인값 입력 받을 시 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
+  - [x] 1000원으로 나눠 떨어지지 않으면 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력
+  - [x] 에러 난 부분부터 다시 입력 받기
 - 🟩 로또 수량 및 번호 출력
   - [ ] 로또 수량 출력
   - [ ] 수량 만큼 로또 번호 오름차순 정렬 후 출력

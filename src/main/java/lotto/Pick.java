@@ -21,6 +21,7 @@ public class Pick {
 
                 cutNumbers();
                 raiseInvalidNumbersException();
+                raiseDuplicateNumbersException();
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] 올바른 숫자를 입력해야 합니다.");
@@ -61,6 +62,12 @@ public class Pick {
 
     private static void raiseInvalidNumbersException() {
         if (luckyNumber.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void raiseDuplicateNumbersException() {
+        if(luckyNumber.size() != luckyNumber.stream().distinct().count()){
             throw new IllegalArgumentException();
         }
     }

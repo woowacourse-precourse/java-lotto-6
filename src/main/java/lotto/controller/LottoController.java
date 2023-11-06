@@ -18,5 +18,11 @@ public class LottoController {
         Lotto lotto = lottoMachine.generateLotto();
     }
 
+    private void validatePurchaseAmount(int money) {
+        if (money < 1000 || money % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 정수여야 합니다.");
+        }
+    }
+
 
 }

@@ -3,7 +3,7 @@ package lotto.model.lottoResultChecker;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LottoResult {
+public class LottoMatchingData {
     private final Map<Integer, Integer> resultCounts = new HashMap<>();
 
     public void addResult(int matchCount, boolean bonusMatch) {

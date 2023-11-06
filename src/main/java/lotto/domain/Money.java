@@ -17,7 +17,7 @@ public class Money {
         return amount;
     }
 
-    public int getDividedBy1000Test() {
+    public int getDividedBy1000() {
         return (int) (amount / 1_000);
     }
 

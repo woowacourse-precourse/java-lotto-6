@@ -14,12 +14,13 @@ public class LottoView {
     }
 
     public void printLottoTicketCount(int lottoCount) {
+        printEnterLine();
         System.out.println(lottoCount + lottoCountMessage);
     }
 
     public void printLottoNumbers(List<List<Integer>> lottos) {
         lottos.forEach(lottoNumbers -> {
-            System.out.println(lottoNumbers.toArray());
+            System.out.println(lottoNumbers.toString());
         });
     }
 
@@ -28,6 +29,7 @@ public class LottoView {
     }
 
     public void printWinningNumberMessage() {
+        printEnterLine();
         System.out.println(inputWinningNumberMessage);
     }
 

@@ -4,14 +4,18 @@ import lotto.controller.Money;
 import lotto.utils.LottoUtil;
 import lotto.view.LottoView;
 
-public class Application {
-    private static LottoView lottoView = new LottoView();
+import java.util.ArrayList;
+import java.util.List;
 
+public class Application {
+    static LottoView lottoView = new LottoView();
+    static LottoUtil lottoUtil = new LottoUtil();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         lottoView.printBuyLottomMoneyMessage();
         Money money = new Money();
         lottoView.printLottoTicketCount(money.getCount());
+        List<List<Integer>> lottos = lottoUtil.getLottos(money.getCount());
+        lottoView.printLottoNumbers(lottos);
 
     }
 

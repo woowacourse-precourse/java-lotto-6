@@ -48,7 +48,7 @@ public class Lotto {
             return 5;
         }
 
-        return result;
+        return -1;
     }
 
     private void validateSize(List<Integer> numbers) {

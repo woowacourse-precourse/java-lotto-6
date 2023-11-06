@@ -20,6 +20,18 @@ public enum LottoRanking {
         this.hasBonusNumber = hasBonusNumber;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public boolean isHasBonusNumber() {
+        return hasBonusNumber;
+    }
+
     public static LottoRanking determineRanking(int matchCount, boolean hasBonusNumber) {
         return Arrays.stream(LottoRanking.values())
                 .filter(ranking -> ranking.matchCount == matchCount && ranking.hasBonusNumber == hasBonusNumber)

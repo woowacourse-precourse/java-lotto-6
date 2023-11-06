@@ -1,7 +1,9 @@
 package lotto.validator;
 
+import static lotto.controller.LottoController.LOTTO_PRICE;
 import static lotto.exception.ErrorMessage.*;
 
+import java.util.List;
 import lotto.controller.LottoController;
 
 public class Validator {
@@ -22,7 +24,7 @@ public class Validator {
     }
 
     public static void isDividedByLottoPrice(int money) {
-        if (money % LottoController.LOTTO_PRICE != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT_ERROR);
         }
     }
@@ -37,4 +39,15 @@ public class Validator {
             }
         }
     }
+
+    public static void isWinningNumberValid(String input) {
+        isInputEmpty(input);
+        isInputNumberValid(input);
+    }
+
+    public static void isInputNumberValid(String input) {
+
+    }
+
+
 }

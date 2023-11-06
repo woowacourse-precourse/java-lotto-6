@@ -24,7 +24,6 @@ public class LottoController {
         try {
             System.out.printf(REQUEST_LOTTO_PURCHASE_AMOUNT, SEPARATED_LOTTO_PRICE);
             System.out.println();
-
             String userInput = Console.readLine();
             isPurchaseAmountValid(userInput);
             return Integer.parseInt(userInput);
@@ -35,6 +34,10 @@ public class LottoController {
     }
 
     public Lotto requestWinningNumbers() {
+        try {
+            System.out.println(REQUEST_WINNING_NUMBERS);
+            String userInput = Console.readLine();
 
+        }
     }
 }

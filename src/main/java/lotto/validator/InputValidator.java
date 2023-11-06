@@ -73,11 +73,17 @@ public class InputValidator {
     public int checkBonusNumber(String number) throws IllegalArgumentException{
         checkBonusInteger(number);
         int bonusNumber =  Utils.makeStringToInteger(number);
+        checkBonusNumberRange(bonusNumber);
         return bonusNumber;
     }
     public void checkBonusInteger (String number) throws IllegalArgumentException{
         if(!Constants.INTEGER.matcher(number).matches()){
             throw new IllegalArgumentException("[ERROR] 숫자를 한개만 입력해 주세요");
+        }
+    }
+    public void checkBonusNumberRange(int number) throws IllegalArgumentException{
+        if(number < Constants.ONE || number > Constants.MAX_LOTTO_NUMBER){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

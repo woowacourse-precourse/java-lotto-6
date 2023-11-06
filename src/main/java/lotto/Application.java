@@ -3,7 +3,6 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
@@ -31,7 +30,7 @@ public class Application {
 	private static void setMoney() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
-			money = readNumber();
+			money = ConsoleReader.readNumber();
 
 			if (money % 1000 != 0) {
 				throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력 가능합니다!");
@@ -45,7 +44,25 @@ public class Application {
 	public static void setWinningNumberList() {
 		try {
 			System.out.println("당첨 번호를 입력해 주세요.");
-			winningNumberList = readNumberList(Constants.WINNING_NUMBER_LENGTH);
+			// winningNumberList = readNumberList(Constants.WINNING_NUMBER_LENGTH);
+			winningNumberList = ConsoleReader.readNumberList();
+
+			if (winningNumberList.size() != Constants.WINNING_NUMBER_LENGTH) {
+				winningNumberList = null;
+				throw new IllegalArgumentException("[ERROR] " + Constants.WINNING_NUMBER_LENGTH + "개를 입력해야 합니다!");
+			}
+
+			for (Integer number : winningNumberList) {
+				if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
+					winningNumberList = null;
+					throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
+				}
+
+				if (winningNumberList.stream().distinct().toList().size() < Constants.WINNING_NUMBER_LENGTH) {
+					winningNumberList = null;
+					throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다!");
+				}
+			}
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setWinningNumberList();
@@ -55,7 +72,7 @@ public class Application {
 	public static void setBonusNumber() {
 		try {
 			System.out.println("보너스 번호를 입력해 주세요.");
-			bonusNumber = readNumber();
+			bonusNumber = ConsoleReader.readNumber();
 
 			if (bonusNumber < Constants.LOTTO_MIN_NUMBER || bonusNumber > Constants.LOTTO_MAX_NUMBER) {
 				throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
@@ -64,45 +81,6 @@ public class Application {
 			System.out.println(e.getMessage());
 			setBonusNumber();
 		}
-	}
-
-	private static Integer readNumber() {
-		Integer number = null;
-		try {
-			number = Integer.parseInt(Console.readLine());
-
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
-		}
-		return number;
-	}
-
-	private static List<Integer> readNumberList(int size) {
-		List<Integer> numberList = new ArrayList<>();
-		try {
-			String[] inputList = Console.readLine().split(",");
-
-			if (inputList.length != size) {
-				throw new IllegalArgumentException("[ERROR] " + size + "개를 입력해야 합니다!");
-			}
-
-			for (String input : inputList) {
-				Integer number = Integer.parseInt(input);
-
-				if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
-					throw new IllegalArgumentException("[ERROR] 1-45 사이의 숫자만 입력할 수 없습니다!");
-				}
-
-				if (numberList.contains(number)) {
-					throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다!");
-				}
-
-				numberList.add(number);
-			}
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
-		}
-		return numberList;
 	}
 
 	public static void setLottoList() {

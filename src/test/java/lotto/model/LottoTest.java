@@ -34,6 +34,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("Lotto 숫자를 오름차순으로 정렬하여 반환한다.")
+    @Test
+    void sortNumbers() {
+        assertThat(new Lotto(List.of(6, 5, 4, 3, 2, 1)).getNumbers())
+            .containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
     @DisplayName("로또 번호에 보너스 번호가 포함되어 있으면 true를 반환한다.")
     @Test
     void lottoHasBonus() {

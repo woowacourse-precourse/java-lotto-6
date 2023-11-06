@@ -8,13 +8,12 @@ import lotto.util.RankUtil;
 public class User {
     private static final int LOTTO_PRICE = Constant.LOTTO_PRICE;
     private static final int MONEY_THRESHOLD = Constant.MONEY_THRESHOLD;
-    private final List<Lotto> lottos;
+    private final List<Lotto> lottos = new ArrayList<>();
     private final long money;
 
     public User(long money) {
         validate(money);
         this.money = money;
-        lottos = buyLotto();
     }
 
     private void validate(long money) {
@@ -44,17 +43,16 @@ public class User {
         }
     }
 
-    private List<Lotto> buyLotto() {
-        List<Lotto> lottoList = new ArrayList<>();
+    public void buyLotto() {
         final long lottoCount = money / LOTTO_PRICE;
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = RandomNumber.generateLotteryNumber();
-            lottoList.add(new Lotto(numbers));
+            lottos.add(new Lotto(numbers));
         }
-        return lottoList;
+        printMyLotto();
     }
 
-    public void printMyLotto() {
+    private void printMyLotto() {
         final String message = "%d개를 구매했습니다.";
         validateLottoListNotEmpty();
         System.out.println(String.format(message, lottos.size()));

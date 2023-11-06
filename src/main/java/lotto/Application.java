@@ -10,7 +10,7 @@ public class Application {
         final long money = InputUtil.inputMoney();
 
         final User user = new User(money);
-        user.printMyLotto();
+        user.buyLotto();
 
         final List<Integer> winningNumbers = InputUtil.inputWinningNumbers();
         final int bonusNumber = InputUtil.inputBonusNumber(winningNumbers);

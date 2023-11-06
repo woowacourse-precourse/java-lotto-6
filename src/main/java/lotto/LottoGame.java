@@ -9,6 +9,7 @@ public class LottoGame {
         int lottoAmount = money / 1000;
 
 
+
     }
 
 }

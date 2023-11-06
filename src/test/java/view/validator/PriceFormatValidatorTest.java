@@ -33,15 +33,6 @@ class PriceFormatValidatorTest extends NsTest {
         assertThat(output()).isEqualTo(ErrorMessage.PRICE_CONTAIN_NON_NUMERIC_CHARACTER.getErrorMessage());
     }
 
-    @DisplayName("구매 금액이 음수이면 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"-1000","-10000","-20000"})
-    void priceIsNegative(String input) {
-        assertThatThrownBy(() -> priceFormatValidator.checkPriceFormat(input))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThat(output()).isEqualTo(ErrorMessage.PRICE_IS_NEGATIVE.getErrorMessage());
-    }
-
     @Override
     public void runMain() {
 

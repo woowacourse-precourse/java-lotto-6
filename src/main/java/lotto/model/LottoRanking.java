@@ -24,6 +24,17 @@ public class LottoRanking {
         this.lottoBucket = lottoBucket;
     }
 
+    public String calculateEarningsRate() {
+        double lottoCost = lottoBucket.getLottoAmount() * LottoGameRule.LOTTO_COST_UNIT.getConstant();
+        return String.format("%.2f", (calculateTotalWinningSum() - lottoCost) / lottoCost
+                * LottoGameRule.EARNINGS_RATE_PERCENTAGE.getConstant());
+    }
+
+    private int calculateTotalWinningSum() {
+        return winningDetails.keySet().stream()
+                .mapToInt(ruleOfRank -> ruleOfRank.getMoney() * winningDetails.get(ruleOfRank)).sum();
+    }
+
     public Map<LottoWinningRule, Integer> getWinningDetails() {
         checkWinning();
         return winningDetails;

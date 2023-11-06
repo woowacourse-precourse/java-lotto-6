@@ -1,20 +1,26 @@
 package lotto.View;
 
+import lotto.Model.Lotto;
+
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.Constants.*;
 public class OutputView {
-    public static void printPurchaseResult(List<Integer> purchaseResult) {
-        System.out.println(purchaseResult.size() + PURCHASE_COUNT_MESSAGE);
-        purchaseResult.forEach(System.out::println);
+    public static void printPurchaseResult(List<Lotto> purchaseResult, int lottoCount) {
+        System.out.println(lottoCount + PURCHASE_COUNT_MESSAGE);
+        for(Lotto numbers : purchaseResult) {
+            System.out.println(numbers.toString());
+        }
     }
 
     public static void printWinningStatistics(List<Integer> winningStatistics) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        System.out.println(THREE_MATCHES_MESSAGE + winningStatistics.get(0));
-        System.out.println(FOUR_MATCHES_MESSAGE + winningStatistics.get(1));
-        System.out.println(FIVE_MATCHES_MESSAGE + winningStatistics.get(2));
-        System.out.println(SIX_MATCHES_MESSAGE + winningStatistics.get(3));
+        System.out.println(THREE_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 3) + "개");
+        System.out.println(FOUR_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 4) + "개");
+        System.out.println(FIVE_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 5) + "개");
+        System.out.println(FIVE_MATCHES_WITH_BONUS_MESSAGE + Collections.frequency(winningStatistics, 5) + "개");
+        System.out.println(SIX_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 6) + "개");
     }
 
     public static void printReturnRate(double returnRate) {

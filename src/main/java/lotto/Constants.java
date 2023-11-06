@@ -14,6 +14,7 @@ public class Constants {
     public static final String THREE_MATCHES_MESSAGE = "3개 일치 (5,000원) - ";
     public static final String FOUR_MATCHES_MESSAGE = "4개 일치 (50,000원) - ";
     public static final String FIVE_MATCHES_MESSAGE = "5개 일치 (1,500,000원) - ";
+    public static final String FIVE_MATCHES_WITH_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String SIX_MATCHES_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     public static final String ERROR_MESSAGE = "[ERROR] ";
     public static final String NUMBER_RANGE_ERROR = ERROR_MESSAGE + "로또 번호는 1부터 45 사이의 숫자여야 합니다.";

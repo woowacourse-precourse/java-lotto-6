@@ -15,8 +15,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
 import lotto.domain.LottoNumber;
+import lotto.dto.LottoTicket;
 import lotto.dto.WinningLotto;
-import lotto.enums.ErrorMassage;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {
@@ -32,10 +32,10 @@ class LottoStoreTest {
         doReturn(lottoFixture()).when(lottoMachine).createLotto(any());
 
         // when
-        List<Lotto> lottos = lottoStore.issueLottoByAuto(lottoAmount);
+        LottoTicket lottoTicket = lottoStore.issueLottoTicketByAuto(lottoAmount);
 
         // then
-        assertThat(lottos).hasSize(amount / LOTTO_PRICE.getValue());
+        assertThat(lottoTicket.count()).isEqualTo(amount / LOTTO_PRICE.getValue());
     }
 
     @Test

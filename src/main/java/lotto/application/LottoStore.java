@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
 import lotto.domain.LottoNumber;
+import lotto.dto.LottoTicket;
 import lotto.dto.WinningLotto;
 
 public class LottoStore {
@@ -19,12 +20,13 @@ public class LottoStore {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> issueLottoByAuto(final LottoAmount lottoAmount) {
+    public LottoTicket issueLottoTicketByAuto(final LottoAmount lottoAmount) {
         final int quantity = lottoAmount.getLottoQuantity();
-        return IntStream.range(0, quantity)
+        List<Lotto> lottos = IntStream.range(0, quantity)
                 .mapToObj(i -> numberGenerator.generateNumbers(LOTTO_COUNT.getValue()))
                 .map(lottoMachine::createLotto)
                 .toList();
+        return new LottoTicket(lottos);
     }
 
     public WinningLotto issueWinningLotto(final List<Integer> numbers, final int bonusNumber) {

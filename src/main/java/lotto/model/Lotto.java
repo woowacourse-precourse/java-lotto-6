@@ -21,7 +21,7 @@ public class Lotto {
 
     private void vaildateLengthOfNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 로또번호를 입력해주세요");
         }
     }
 

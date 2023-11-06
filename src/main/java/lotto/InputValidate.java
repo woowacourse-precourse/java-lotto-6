@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputValidate {
+    private static final String SEPERATE = ",";
     private ValidateTools validateTools;
     public InputValidate(ValidateTools validateTools){
         this.validateTools = validateTools;
@@ -44,7 +45,7 @@ public class InputValidate {
 
 
     public List<String> changeList(String input){
-        List<String> splitNums = Arrays.asList(input.split(","));
+        List<String> splitNums = Arrays.asList(input.split(SEPERATE));
         return splitNums;
     }
 

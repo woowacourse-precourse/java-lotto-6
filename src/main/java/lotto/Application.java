@@ -49,15 +49,9 @@ public class Application {
     }
 
     public static List<Integer> RandomLottoNumber() {
-        List<Integer> computer = new ArrayList<>();
-        while (computer.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber);
-            }
-        }
-        Collections.sort(computer);
-        return computer;
+        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(lottoMin, lottoMax, lottolength);
+        Collections.sort(randomNumber);
+        return randomNumber;
     }
 
     public static void GetLottos(){

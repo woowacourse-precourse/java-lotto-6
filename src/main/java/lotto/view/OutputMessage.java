@@ -5,7 +5,8 @@ public enum OutputMessage {
     REQUEST_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     PURCHASE_RESULT("개를 구매했습니다."),
-    WINNING_STATISTICS("당첨 통계\n---"),
+    WINNING_STATISTICS("당첨 통계"),
+    SEPARATOR("---"),
     TOTAL_RETURN("총 수익률은 f%%입니다.");
 
     private final String message;

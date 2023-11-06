@@ -8,7 +8,8 @@ public enum ExceptionMessages {
     INPUT_MULTIPLE_NUMBER("입력 값은 %d의 배수여야 합니다."),
     EXCEED("입력 값은 %d 이하의 값이어야 합니다."),
     NUMBER_IN_RANGE("입력 값의 범위는 %d부터 %d 사이의 숫자여야 합니다."),
-    DUPLICATED_NUMBER_IN_LIST("입력 값은 앞서 입력한 값들과 중복되지 않아야 합니다.");
+    DUPLICATED_NUMBER_IN_LIST("입력 값은 앞서 입력한 값들과 중복되지 않아야 합니다."),
+    INPUT_ATTEMPT_EXCEEDED_MESSAGE("시도 횟수 초과");
 
     private static final String ERROR_TAG = "[ERROR] ";
     private final String exceptionMessage;

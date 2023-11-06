@@ -15,14 +15,24 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
 
     public void run() {
+        purchaseLottoes();
+        WinNumbersDto winNumbersDto = createWinNumbers();
+    }
+
+    private WinNumbersDto createWinNumbers() {
+        List<Integer> winNumbers = inputWinNumbers();
+        int bonusNumber = 0;
+        return new WinNumbersDto(winNumbers, bonusNumber);
+    }
+
+    private List<Integer> inputWinNumbers() {
+        outputView.beforeInputWinNumbers();
+        return inputView.inputNumbers();
+    }
+
+    private void purchaseLottoes() {
         MoneyDto moneyDto = getMoneyFromClient();
         createLottoes(moneyDto);
-
-        outputView.beforeInputWinNumbers();
-        List<Integer> winNumbers = inputView.inputNumbers();
-        int bonusNumber = 0;
-        WinNumbersDto winNumbersDto = new WinNumbersDto(winNumbers, bonusNumber);
-        System.out.println(winNumbersDto);
     }
 
     private MoneyDto getMoneyFromClient() {

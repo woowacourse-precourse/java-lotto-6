@@ -6,8 +6,9 @@ public enum ErrorMessage {
     MINUS_MONEY("금액은 양수여야합니다."),
     NOT_DIVIDED_BY_LOTTO_PRICE("1,000원으로 나누어떨어지는 금액만 입력 가능합니다."),
     OUT_OF_LOTTO_NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    DUPLICATED_NUMBERS("로또 번호는 중복되면 안 됩니다."),
+    DUPLICATED_NUMBERS("로또 번호는 중복되면 안됩니다."),
     UNCORRECT_LOTTO_NUMBER_SIZE("로또 번호는 6자리여야합니다."),
+    OUT_OF_BONUS_NUMBER_RANGE("보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATED_BONUS_NUMBER("보너스 번호는 로또 번호와 중복되지 않아야합니다.");
 
     private static final String ERROR_CODE = "[ERROR] ";

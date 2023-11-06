@@ -95,9 +95,12 @@
 2. 상태 : InputView, OutputView, LottoService
 3. 행위
     - void run()
-    - MoneyDto getMoneyFromClient()
-    - LottoesDto createLottoes(MoneyDto)
+    - void purchaseLottoes()
+      - MoneyDto getMoneyFromClient()
+      - LottoesDto createLottoes(MoneyDto)
     - WinNumbersDto createWinNumbers()
+      - List<Integer> inputWinNumbers()
+      - int inputBonusNumber()
     - ResultDto getResult()
 
 ## LottoService

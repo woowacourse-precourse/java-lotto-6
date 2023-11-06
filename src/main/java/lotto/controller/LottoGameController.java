@@ -29,13 +29,21 @@ public class LottoGameController {
     }
 
     private Purchase purchaseLottoTickets() {
-        Purchase customerPurchase = new Purchase(inputView.requestPrice());
-        outputView.printPurchases(customerPurchase.getTicketCount());
-        lottoMachine = new LottoMachine(customerPurchase.getTicketCount());
-        return customerPurchase;
+        purchase = new Purchase();
+        while(purchase.getInputUntilValid()) {
+            try {
+                String price = inputView.requestPrice();
+                purchase.setOrderInfo(price);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchase;
     }
 
     private void getLottoTickets() {
+        lottoMachine = new LottoMachine(purchase.getTicketCount());
+        outputView.printPurchases(purchase.getTicketCount());
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 

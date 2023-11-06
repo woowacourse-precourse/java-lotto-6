@@ -1,6 +1,6 @@
 package lotto.code;
 
-public enum PrizeCode {
+public enum PrizeType {
     FIFTH(5, 5000, "3개 일치 (($money$)원) - ($count$)개"),
     FOURTH(4, 50000, "4개 일치 (($money$)원) - ($count$)개"),
     THIRD(3, 1500000, "5개 일치 (($money$)원) - ($count$)개"),
@@ -8,7 +8,7 @@ public enum PrizeCode {
     FIRST(1, 2000000000, "6개 일치 (($money$)원) - ($count$)개"),
     ;
 
-    PrizeCode(int prize, int prizeMoney, String message) {
+    PrizeType(int prize, int prizeMoney, String message) {
         this.prize = prize;
         this.prizeMoney = prizeMoney;
         this.message = message;

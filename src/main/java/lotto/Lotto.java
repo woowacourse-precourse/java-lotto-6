@@ -1,16 +1,16 @@
 package lotto;
 
-import lotto.code.PrizeCode;
+import lotto.code.PrizeType;
+import lotto.dto.WinningLottoNumberDto;
 import lotto.utils.PrintUtils;
 import lotto.utils.ValidationUtils;
 
 import java.util.List;
 
-import static lotto.code.PrizeCode.*;
+import static lotto.code.PrizeType.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private PrizeCode prizeCode;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -26,30 +26,29 @@ public class Lotto {
         PrintUtils.print(this.numbers.toString());
     }
 
-    public void checkWinning(List<Integer> winningNumbers, int bonusNumber) {
+    public PrizeType checkWinning(WinningLottoNumberDto winningLottoNumber) {
+        List<Integer> winningNumbers = winningLottoNumber.getWinnerNumbers();
+        PrizeType prize = null;
         int count = (int) this.numbers.stream().filter(winningNumbers::contains).count();
         switch (count) {
             case 6:
-                this.prizeCode = FIRST;
+                prize = FIRST;
                 break;
             case 5:
-                if (numbers.contains(bonusNumber)) {
-                    this.prizeCode = SECOND;
+                if (numbers.contains(winningLottoNumber.getBonusNumber())) {
+                    prize = SECOND;
                 } else {
-                    this.prizeCode = THIRD;
+                    prize = THIRD;
                 }
                 break;
             case 4:
-                this.prizeCode = FOURTH;
+                prize = FOURTH;
                 break;
             case 3:
-                this.prizeCode = FIFTH;
+                prize = FIFTH;
                 break;
             default:
         }
-    }
-
-    public PrizeCode getPrizeCode() {
-        return prizeCode;
+        return prize;
     }
 }

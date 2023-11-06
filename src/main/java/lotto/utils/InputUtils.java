@@ -3,6 +3,7 @@ package lotto.utils;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.code.ErrorMessage;
 import lotto.code.GameMessage;
+import lotto.dto.WinningLottoNumberDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +34,12 @@ public class InputUtils {
         }
 
         return Integer.parseInt(input);
+    }
+
+    public static WinningLottoNumberDto getWinningLottoNumber() {
+        List<Integer> winnerNumbers = InputUtils.getWinnerNumbers();
+        int bonusNumber = InputUtils.getBonusNumber();
+        return new WinningLottoNumberDto(winnerNumbers, bonusNumber);
     }
 
     public static List<Integer> getWinnerNumbers() {

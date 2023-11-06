@@ -1,7 +1,9 @@
 package lotto;
 
 import lotto.code.GameMessage;
-import lotto.code.PrizeCode;
+import lotto.code.PrizeType;
+import lotto.dto.LottoPurchaseDto;
+import lotto.dto.WinningLottoNumberDto;
 import lotto.utils.PrintUtils;
 
 import java.text.DecimalFormat;
@@ -12,30 +14,35 @@ import java.util.Map;
 import static lotto.code.GameMessage.WINNING;
 
 public class WinningCheckMachine {
-    private Map<PrizeCode, Integer> prizeCount = new EnumMap<>(PrizeCode.class);
+    private Map<PrizeType, Integer> prizeCount = new EnumMap<>(PrizeType.class);
     private double totalWinningMoney = 0;
     private double rate = 0;
 
     public WinningCheckMachine() {
-        for (PrizeCode prizeCode : PrizeCode.values()) {
-            this.prizeCount.put(prizeCode, 0);
+        for (PrizeType prizeType : PrizeType.values()) {
+            this.prizeCount.put(prizeType, 0);
         }
     }
 
-    public void check(List<Lotto> lottos, List<Integer> winnerNumbers, int bonusNumber) {
+    public void check(List<Lotto> lottos, WinningLottoNumberDto winningLottoNumber, LottoPurchaseDto lottoPurchase) {
+        checkLotto(lottos, winningLottoNumber);
+        calculateOfRate(lottoPurchase.getAmount());
+        print();
+    }
+
+    public void checkLotto(List<Lotto> lottos, WinningLottoNumberDto winningLottoNumber) {
         for (Lotto lotto : lottos) {
-            lotto.checkWinning(winnerNumbers, bonusNumber);
-            PrizeCode prizeCode = lotto.getPrizeCode();
-            if (prizeCode != null) {
-                int count = this.prizeCount.get(prizeCode);
-                this.prizeCount.put(prizeCode, count + 1);
-                this.totalWinningMoney += prizeCode.getPrizeMoney();
+            PrizeType prizeType = lotto.checkWinning(winningLottoNumber);
+            if (prizeType != null) {
+                int count = this.prizeCount.get(prizeType);
+                this.prizeCount.put(prizeType, count + 1);
+                this.totalWinningMoney += prizeType.getPrizeMoney();
             }
         }
     }
 
     public void calculateOfRate(int amount) {
-        this.rate = (totalWinningMoney / (double) amount) * 100;
+        this.rate = (this.totalWinningMoney / (double) amount) * 100;
     }
 
     public void print() {
@@ -44,18 +51,18 @@ public class WinningCheckMachine {
         PrintUtils.print("---");
 
 
-        for (PrizeCode prizeCode : PrizeCode.values()) {
-            int count = this.prizeCount.get(prizeCode);
-            PrintUtils.print(getWinningMessage(prizeCode, count));
+        for (PrizeType prizeType : PrizeType.values()) {
+            int count = this.prizeCount.get(prizeType);
+            PrintUtils.print(getWinningMessage(prizeType, count));
         }
 
         PrintUtils.print(GameMessage.TOTAL_RATE.getMessage().replace("($rate$)", String.valueOf(rate)));
     }
 
-    private String getWinningMessage(PrizeCode prizeCode, int count){
-        String message = prizeCode.getMessage();
+    private String getWinningMessage(PrizeType prizeType, int count){
+        String message = prizeType.getMessage();
 
-        int amount = prizeCode.getPrizeMoney();
+        int amount = prizeType.getPrizeMoney();
         DecimalFormat df = new DecimalFormat("###,###");
         String money = df.format(amount);
 

@@ -1,36 +1,20 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.code.GameMessage;
+import lotto.dto.LottoPurchaseDto;
+import lotto.dto.WinningLottoNumberDto;
 import lotto.utils.InputUtils;
-import lotto.utils.PrintUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static lotto.utils.Constant.LOTTO_AMOUNT;
 
 public class Application {
     public static void main(String[] args) {
-        int amount = InputUtils.getAmount();
+        LottoMachine lottoMachine = new LottoMachine();
+        LottoPurchaseDto lottoPurchase = lottoMachine.purchase();
+        List<Lotto> lottos = lottoMachine.publish(lottoPurchase.getQuantity());
 
-        int lottoCount = amount / LOTTO_AMOUNT;
-        PrintUtils.print("");
-        PrintUtils.print(lottoCount + GameMessage.LOTTO_COUNT.getMessage());
-
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
-        }
-
-        List<Integer> winnerNumbers = InputUtils.getWinnerNumbers();
-        int bonusNumber = InputUtils.getBonusNumber();
+        WinningLottoNumberDto winningLottoNumber = InputUtils.getWinningLottoNumber();
 
         WinningCheckMachine winningCheckMachine = new WinningCheckMachine();
-        winningCheckMachine.check(lottos, winnerNumbers, bonusNumber);
-        winningCheckMachine.calculateOfRate(amount);
-        winningCheckMachine.print();
+        winningCheckMachine.check(lottos, winningLottoNumber, lottoPurchase);
     }
 }

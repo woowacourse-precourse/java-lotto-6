@@ -128,7 +128,7 @@ class LottoServiceTest {
         lottoStorage.saveLotto(lotto);
 
         //when
-        List<LottoResult> results = lottoService.matchLotteries();
+        LottoResults results = lottoService.matchLotteries();
 
         //then
         assertThat(results.get(0)).isEqualTo(result);
@@ -146,9 +146,9 @@ class LottoServiceTest {
         lottoStorage.saveLotto(secondLotto);
 
         //when
-        List<LottoResult> results = lottoService.matchLotteries();
+        LottoResults results = lottoService.matchLotteries();
 
         //then
-        assertThat(results).hasSize(2);
+        assertThat(results.size()).isEqualTo(2);
     }
 }

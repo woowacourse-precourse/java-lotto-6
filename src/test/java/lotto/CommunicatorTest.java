@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
@@ -24,6 +25,17 @@ class CommunicatorTest {
     static final Communicator communicator = new Communicator();
 
     ByteArrayOutputStream outputStream;
+
+    static Stream<Arguments> stringAndStringProvider() {
+        return Stream.of(
+                Arguments.of("", "입력 금액이 비어 있습니다."),
+                Arguments.of(" ", "올바른 숫자 형식이 아닙니다."),
+                Arguments.of("10 000", "올바른 숫자 형식이 아닙니다."),
+                Arguments.of("0", "0보다 큰 금액을 입력해주세요."),
+                Arguments.of("-10000", "0보다 큰 금액을 입력해주세요."),
+                Arguments.of("5500", "구매 금액은 1000원 단위여야 합니다.")
+        );
+    }
 
     @BeforeEach
     void setUp() {
@@ -101,14 +113,19 @@ class CommunicatorTest {
         assertThat(output()).contains("보너스 번호를 입력해 주세요.");
     }
 
-    static Stream<Arguments> stringAndStringProvider() {
-        return Stream.of(
-                Arguments.of("", "입력 금액이 비어 있습니다."),
-                Arguments.of(" ", "올바른 숫자 형식이 아닙니다."),
-                Arguments.of("10 000", "올바른 숫자 형식이 아닙니다."),
-                Arguments.of("0", "0보다 큰 금액을 입력해주세요."),
-                Arguments.of("-10000", "0보다 큰 금액을 입력해주세요."),
-                Arguments.of("5500", "구매 금액은 1000원 단위여야 합니다.")
+    @Test
+    @DisplayName("당첨 내역을 출력한다.")
+    void test_PrintResult() {
+        //given
+        LottoResults results = LottoResults.of(List.of(LottoResult.FIVE_MATCHING, LottoResult.FOUR_MATCHING));
+
+        //when
+        communicator.printResults(results);
+
+        //then
+        assertThat(output()).contains(
+                "4개 일치 (50,000원) - 1개",
+                "5개 일치 (1,500,000원) - 1개"
         );
     }
 

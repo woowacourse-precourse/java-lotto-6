@@ -11,8 +11,8 @@ public class BuyTickets {
     private Map<Long, List<Integer>> LotteryNumbers = new HashMap<>();
 
     public BuyTickets(String purchaseAmount) {
-        int numberOfTickets = validate(purchaseAmount);
-        LotteryNumbers = makeLotteryNumber(numberOfTickets);
+        int ticketAmounts = validate(purchaseAmount);
+        LotteryNumbers = makeLotteryNumber(ticketAmounts);
         SystemIO.showTickets(LotteryNumbers);
     }
 

@@ -1,6 +1,8 @@
 package lotto.controller;
 
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoPurchaseManager;
 import lotto.utils.Messages;
 import lotto.service.LottoService;
@@ -19,10 +21,10 @@ public class LottoController {
 
     public void process(){
         final int trial = insertMoney();
-        buyLottos(trial);
-        pickLottoNumbers();
-        pickBonusNumber();
-        lottoService.aggregateLotto();
+        List<Lotto> myLotto = buyLottos(trial);
+        Lotto winningLotto = pickLottoNumbers();
+        int bonusNumber = pickBonusNumber();
+        lottoService.aggregateLotto(myLotto, winningLotto, bonusNumber);
         showFinalResult(trial);
     }
 
@@ -40,30 +42,30 @@ public class LottoController {
         return LottoPurchaseManager.createLottoPurchaseManager(moneyBeforeValidated).getTrial();
     }
 
-    private void buyLottos(final int trial){
+    private List<Lotto> buyLottos(final int trial){
         outputView.printWithArguments(Messages.ALARM_TRIAL.toString(), trial);
-        lottoService.generateLottos(trial);
+        List<Lotto> myLotto =  lottoService.generateLottos(trial);
         outputView.printLottos(lottoService.getLottos());
+        return myLotto;
     }
 
-    private void pickLottoNumbers(){
+    private Lotto pickLottoNumbers(){
         while (true){
             try{
                 String numbersBeforeValidated = inputView.readWinningNumbers();
-                lottoService.pickWinningLotto(numbersBeforeValidated);
-                break;
+                return lottoService.pickWinningLotto(numbersBeforeValidated);
             }catch (IllegalStateException | IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
     }
 
-    private void pickBonusNumber(){
+    private int pickBonusNumber(){
         while (true){
             try{
                 String bonusNumberBeforeValidated = inputView.readBonusNumber();
-                lottoService.pickBonusNumber(bonusNumberBeforeValidated);
-                break;
+                return lottoService.pickBonusNumber(bonusNumberBeforeValidated);
+
             }catch (IllegalStateException | IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

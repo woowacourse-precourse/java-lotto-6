@@ -23,7 +23,7 @@ public class LottoService {
     public List<Lotto> getLottos(){
         return myLotto;
     }
-    public void generateLottos(final int trial){
+    public List<Lotto> generateLottos(final int trial){
         for(int i = 0; i < trial; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, NUMBERS_PER_LOTTO);
             List<Integer> sortedNumbers = numbers.stream()
@@ -32,29 +32,33 @@ public class LottoService {
             Lotto newLotto = new Lotto(sortedNumbers);
             myLotto.add(newLotto);
         }
+        return myLotto;
     }
-    public void aggregateLotto(){
+    public void aggregateLotto(List<Lotto> myLotto, Lotto winningLotto, int bonusNumber){
         for(Lotto lotto: myLotto){
             Lotto finalPickedLotto = winningLotto;
 
             int matchedNumbers = (int) lotto.getLotto().stream()
                     .filter(finalPickedLotto.getLotto()::contains)
                     .count();
-            boolean haveBonusNumber = finalPickedLotto.getLotto().contains(bonusNumber);
+            boolean haveBonusNumber = lotto.getLotto().contains(bonusNumber);
 
             Optional<RankGroup> rankGroup = RankGroup.findByLotto(haveBonusNumber, matchedNumbers);
             if(rankGroup.isPresent()){
+                System.out.println(haveBonusNumber);
                 increaseResult(rankGroup.get());
             }
         }
     }
-    public void pickWinningLotto(String numbersBeforeValidated){
+    public Lotto pickWinningLotto(String numbersBeforeValidated){
         WinningLotto.getInstance().createWinningLotto(numbersBeforeValidated);
         winningLotto = WinningLotto.getInstance().getWinningLotto();
+        return winningLotto;
     }
-    public void pickBonusNumber(String bonusNumberBeforeValidated){
+    public int pickBonusNumber(String bonusNumberBeforeValidated){
         WinningLotto.getInstance().createBonusNumber(bonusNumberBeforeValidated);
         bonusNumber = WinningLotto.getInstance().getBonusNumber();
+        return bonusNumber;
     }
     public float countProfitRate(final int trial){
         int total = RankGroup.getTotalReward();

@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 public class OutputView {
     private static final String ENTER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
+    private static final String ENTER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public void printEnterAmountMessage() {
         System.out.println(ENTER_AMOUNT_MESSAGE);
@@ -12,6 +13,10 @@ public class OutputView {
 
     public void printNumberOfLottoPurchases(int numberOfPurchases) {
         System.out.println(numberOfPurchases + PURCHASE_MESSAGE);
+    }
+
+    public void printEnterWinningNumbersMessage() {
+        System.out.println(ENTER_WINNING_NUMBERS_MESSAGE);
     }
 
     public void printStatsTitle() {

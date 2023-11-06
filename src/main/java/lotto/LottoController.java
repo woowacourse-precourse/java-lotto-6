@@ -109,6 +109,7 @@ public class LottoController {
 
     private void printResult(HashMap<String, Integer> countByPrize) {
         System.out.println(output.printResultMessage());
+        printFourthPrizeCount(countByPrize);
         printThirdPrizeCount(countByPrize);
         printSecondPrizeCount(countByPrize);
         printFirstPrizeCount(countByPrize);
@@ -126,10 +127,16 @@ public class LottoController {
                 countByPrize.get(Config.SECOND_PRIZE_REWARD));
     }
 
-    private  void printThirdPrizeCount(HashMap<String, Integer> countByPrize) {
+    private void printThirdPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
                 Config.THIRD_PRIZE_HAS_WINNING, Config.THIRD_PRIZE_REWARD,
                 countByPrize.get(Config.THIRD_PRIZE_REWARD));
+    }
+
+    private void printFourthPrizeCount(HashMap<String, Integer> countByPrize) {
+        System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
+                Config.FOURTH_PRIZE_HAS_WINNING, Config.FOURTH_PRIZE_REWARD,
+                countByPrize.get(Config.FOURTH_PRIZE_REWARD));
     }
 
     //이 아래는 추후 LottoService 클래스로 이동(일부 메서드 접근 제어자 수정 필요)
@@ -142,6 +149,8 @@ public class LottoController {
                 countByMatchNumber(countMatchByLotto, Config.SECOND_PRIZE_HAS_WINNING, Config.SECOND_PRIZE_HAS_BONUS));
         countByPrize.put(Config.THIRD_PRIZE_REWARD,
                 countByMatchNumber(countMatchByLotto, Config.THIRD_PRIZE_HAS_WINNING));
+        countByPrize.put(Config.FOURTH_PRIZE_REWARD,
+                countByMatchNumber(countMatchByLotto, Config.FOURTH_PRIZE_HAS_WINNING));
 
         return countByPrize;
     }

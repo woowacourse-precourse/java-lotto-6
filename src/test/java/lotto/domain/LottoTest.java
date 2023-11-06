@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -28,23 +28,20 @@ class LottoTest {
 
     @DisplayName("로또 번호와 보너스 번호가 중복되면 예외 발생")
     @Test
-    void checkInclusionOfBonusNumber(){
+    void checkInclusionOfBonusNumber() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when, then
-        assertThatThrownBy(() ->lotto.checkInclusion(6))
+        assertThatThrownBy(() -> lotto.checkInclusion(6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 
     @DisplayName("로또 번호의 각 번호를 검증")
     @ParameterizedTest
-    @ValueSource(strings = {"a", "01", "0","46"})
-    void checkLottoNumber(String lottoNumber){
-        assertThatThrownBy(()->Lotto.checkLottoNumber(lottoNumber))
+    @ValueSource(strings = {"a", "01", "0", "46"})
+    void checkLottoNumber(String lottoNumber) {
+        assertThatThrownBy(() -> Lotto.checkLottoNumber(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }

@@ -3,11 +3,14 @@ package view;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
 
@@ -89,6 +92,7 @@ public class InputViewTest {
         @Nested
         class 입력_실패_케이스 {
 
+
             @Test
             void 입력_된_숫자가_45_이상_이상일_경우_예외_발생() {
                 assertThatThrownBy(() -> {
@@ -109,7 +113,21 @@ public class InputViewTest {
                         throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 이하로 입력해 주세요.");
                     }
                 }).isInstanceOf(IllegalArgumentException.class)
-                        .hasMessageContaining("ERROR] 당첨 번호는 6개 이하로 입력해 주세요.");
+                        .hasMessageContaining("[ERROR] 당첨 번호는 6개 이하로 입력해 주세요.");
+            }
+
+            @ParameterizedTest
+            @ValueSource(ints = {1})
+            void 당첨_번호_중복_체크(int number) {
+                assertThrows(IllegalArgumentException.class, () -> {
+                    if (isContains(number)) {
+                        throw new IllegalArgumentException("[ERROR] 중복된 숫자가 포함 되어 있습니다.");
+                    }
+                }, "[ERROR] 중복된 숫자가 포함 되어 있습니다.");
+            }
+
+            private boolean isContains(int number) {
+                return lottoNumbersInput.contains(number);
             }
         }
 

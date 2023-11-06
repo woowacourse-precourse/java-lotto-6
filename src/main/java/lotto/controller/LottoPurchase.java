@@ -23,6 +23,7 @@ public class LottoPurchase {
             lottoNumberException.checkPositiveInteger(input);   //자연수
             lottoNumberException.checkOutOfIntegerRange(input); //정수 범위
             lottoNumberException.checkLessThanMaxAmount(input); //구매금액의 최댓값
+            lottoNumberException.checkThousandUnits(input);     //1,000단위 입력
         } catch (IllegalArgumentException exception) {
             inputView.showInputErrorMessage(exception.getMessage());
             return false;

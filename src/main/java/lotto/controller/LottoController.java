@@ -4,7 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     public void run() {
@@ -13,6 +16,8 @@ public class LottoController {
 
         OutputView.printBuyLotto(money);
         OutputView.printLottos(lottos);
+
+        List<Integer> winningNumber = InputView.getWinningNumber();
     }
 
     private String inputMoney() {

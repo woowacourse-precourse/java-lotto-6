@@ -7,11 +7,14 @@ import java.util.List;
 
 public class InputView {
     private static final String INPUT_LOTTO_AMOUNT ="구입금액을 입력해 주세요.";
-    private static final String TYPE_ERROR ="숫자가 아닌 값을 입력하셨습니다.";
+    private static final String TYPE_ERROR ="[ERROR] 숫자가 아닌 값을 입력하셨습니다.";
+    private static final String NUMBER_OF_INPUT_CNT_ERROR ="[ERROR] 로또 숫자만큼 다시 입력해주세요!";
+
     private static final String INPUT_WINNING_NUMBERS ="당첨 번호를 입력해주세요.";
     private static List<Integer> winningNumbers;
     private static final String RANGE_ERROR="[ERROR] 옳지 않은 범위의 숫자를 입력하셨습니다.";
     private static final int MAX_LOTTO_NUM=45;
+    private static final int LOTTO_NUM=6;
 
     public static int inputPlayerAmount(){
         System.out.println(INPUT_LOTTO_AMOUNT);
@@ -38,6 +41,7 @@ public class InputView {
             checkRange(num);
             winningNumbers.add(num);
         }
+        checkCntNumber();
         return winningNumbers;
     }
 
@@ -57,7 +61,11 @@ public class InputView {
         return num;
     }
 
-
+    private static void checkCntNumber(){
+        if(winningNumbers.size()!= LOTTO_NUM){
+            throw new IllegalArgumentException(NUMBER_OF_INPUT_CNT_ERROR);
+        }
+    }
 
 
 

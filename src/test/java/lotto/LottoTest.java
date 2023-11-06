@@ -69,6 +69,22 @@ class LottoTest {
     }
 
     @Test
+    void 당첨번호_개수_test1(){
+        assertThrows(IllegalArgumentException.class, ()-> {
+            String inputNumbers="1,2,3,4,5,6,7";
+            InputView.inputWinningNumbers(inputNumbers);
+        });
+    }
+
+    @Test
+    void 당첨번호_개수_test2(){
+        assertThrows(IllegalArgumentException.class, ()-> {
+            String inputNumbers="1,2,3,4,5";
+            InputView.inputWinningNumbers(inputNumbers);
+        });
+    }
+
+    @Test
     void 중복번호_test(){
         assertThrows(IllegalArgumentException.class, ()-> {
             List<Integer> lottonum= List.of(1,2,3,4,5,5);

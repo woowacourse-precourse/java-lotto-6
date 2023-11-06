@@ -27,4 +27,11 @@ class InputValidatorTest {
                 .hasMessageContaining("[ERROR] : 입력 값은 정수 타입이어야 합니다");
     }
 
+    @DisplayName("구매 금액이 정수 범위를 넘을 때 오류 발생")
+    @Test
+    void purchaseAmountOverIntegerRange(){
+        assertThatThrownBy(()->validatePurchaseAmount("1000000000000000"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] : 가능한 정수 범위를 초과했습니다.");
+    }
 }

@@ -9,10 +9,23 @@ public class Application {
 
     private static int getPurchaseAmountWithInput() {
         System.out.println(MESSAGE_FOR_PURCHASE_AMOUNT_INPUT);
-        //while (true) {
+        while (true) {
             String purchaseAmountInput = Console.readLine();
-        //}
-        return 0;
+            try {
+                validatePurchaseAmountInput(purchaseAmountInput);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            return Integer.parseInt(purchaseAmountInput);
+        }
+    }
+
+    private static void validatePurchaseAmountInput(String purchaseAmountInput) {
+        try {
+            int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

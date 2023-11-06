@@ -12,6 +12,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
 import lotto.view.constants.MessageType;
 
 public final class View {
@@ -73,7 +75,7 @@ public final class View {
     private static class Validator {
         private static String validate(String message) {
             if (isBlank(message)) {
-                throw new IllegalArgumentException("빈 문자열이 입력되었습니다.");
+                throw LottoException.from(ErrorMessage.BLANK_INPUT_ERROR);
             }
             return message;
         }
@@ -90,7 +92,7 @@ public final class View {
 
         private static void validateNumber(String cost) {
             if (isNotNumber(cost)) {
-                throw new IllegalArgumentException("숫자를 입력해주세요.");
+                throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
             }
         }
 
@@ -100,7 +102,7 @@ public final class View {
 
         private static void validateUnit(String cost) {
             if (isNotDivisible(cost)) {
-                throw new IllegalArgumentException(String.format("%s원 단위의 구입 금액을 입력해주세요."));
+                throw LottoException.from(ErrorMessage.INVALID_UNIT_ERROR);
             }
         }
 
@@ -114,7 +116,7 @@ public final class View {
 
         private static void validateInvalidSeparators(String message) {
             if (hasEdgeSeparator(message) || hasDuplicatedSeparator(message)) {
-                throw new IllegalArgumentException("올바르지 않은 구분자 입력입니다.");
+                throw LottoException.from(ErrorMessage.INVALID_SEPARATOR_ERROR);
             }
         }
 

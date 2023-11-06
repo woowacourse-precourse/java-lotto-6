@@ -16,11 +16,15 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        for (Integer number : numbers) {
+            if(numbers.indexOf(number)!=numbers.lastIndexOf(number)){
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
-    public static Map<String, Long> matchUserNumberWithWinningNumbers(List<Integer> winningNumbers, int BonusNumbers) {
-        Map<String, Long> matchResult = new HashMap<>();
-        return matchResult;
+    public static WinningRank matchUserNumberWithWinningNumbers(List<Integer> winningNumbers, int BonusNumbers) {
+        return WinningRank.FIRST_WINNING;
     }
 
     // TODO: 추가 기능 구현

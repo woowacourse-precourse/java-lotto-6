@@ -47,4 +47,7 @@ public class Customer {
             winPrice += (key * result.get(key));
         }
     }
+    public Double calcRateOfReturn() {
+        return winPrice / (double) buyPrice * 100;
+    }
 }

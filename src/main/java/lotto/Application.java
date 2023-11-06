@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.BuyingController;
 import lotto.controller.LottoNumberAddController;
+import lotto.controller.WinningBonusNumberController;
 import lotto.controller.WinningNumberController;
 
 public class Application {
@@ -15,5 +16,8 @@ public class Application {
 
         WinningNumberController winningNumberController = new WinningNumberController();
         winningNumberController.handle();
+
+        WinningBonusNumberController winningBonusNumberController = new WinningBonusNumberController();
+        winningBonusNumberController.handle();
     }
 }

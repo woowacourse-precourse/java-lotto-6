@@ -26,7 +26,16 @@ public class InputValidator {
         return input % PAY_AMOUNT_UNIT.getValue() == 0;
     }
 
-    public boolean isValidWinningNumberRange(List<Integer> input) {
+    public boolean isValidNumberRange(int input) {
+        if ( input < LOTTO_NUMBER_START_INCLUSIVE.getValue() &&
+                input > LOTTO_NUMBER_END_INCLUSIVE.getValue() ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isValidNumberRange(List<Integer> input) {
         for (Integer element : input) {
             if (element < LOTTO_NUMBER_START_INCLUSIVE.getValue() &&
                     element > LOTTO_NUMBER_END_INCLUSIVE.getValue()) {

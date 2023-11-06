@@ -15,6 +15,7 @@ public class LottoManager {
     private static LottoManager lottoManager;
     private int lottoTicketCount;
     private List<Integer> winningNumber;
+    private int bonusNumber;
 
 
     private LottoManager() {
@@ -61,5 +62,9 @@ public class LottoManager {
 
     public void setWinningNumber(List<Integer> winningNumber) {
         this.winningNumber = winningNumber;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

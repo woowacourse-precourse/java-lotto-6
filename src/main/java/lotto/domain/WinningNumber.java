@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.util.Util;
 
 public class WinningNumber extends Validation {
     private final List<Integer> winningNumber;
@@ -16,10 +17,7 @@ public class WinningNumber extends Validation {
             checkNumberRange(number);
         }
 
-        List<Integer> numbersInteger = numbers.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
+        List<Integer> numbersInteger = Util.convertToIntegerList(numbers);
         checkNumbersLength(numbersInteger);
         checkNumbersDuplicate(numbersInteger);
 

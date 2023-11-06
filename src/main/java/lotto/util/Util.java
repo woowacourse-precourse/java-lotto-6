@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Util {
     public static String readInput() {
@@ -24,6 +25,12 @@ public class Util {
         Collections.sort(sortedResult);
 
         return sortedResult;
+    }
+
+    public static List<Integer> convertToIntegerList(List<String> strings) {
+        return strings.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 }

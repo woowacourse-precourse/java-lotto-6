@@ -33,15 +33,22 @@ class Output {
         System.out.println("\n" + PROMPT_WINNING_NUMBERS);
     }
 
-    static void printLottoNumbers(List<String> sixLottoNumbers) {
-        System.out.println(String.join(",", sixLottoNumbers) + "\n");
+    static void printLottoNumbers(List<Integer> sixLottoNumbers) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < sixLottoNumbers.size(); i++) {
+            sb.append(sixLottoNumbers.get(i));
+            if (i != sixLottoNumbers.size() - 1) {
+                sb.append(",");
+            }
+        }
+        System.out.println(sb.toString() + "\n");
     }
 
     static void printBonusNumberMessage() {
         System.out.println(PROMPT_BONUS_NUMBER);
     }
 
-    static void printBonusNumber(String bonusNumber) {
+    static void printBonusNumber(int bonusNumber) {
         System.out.println(bonusNumber + "\n");
     }
 

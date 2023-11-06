@@ -24,7 +24,12 @@ public class LottoController {
     }
 
     private Lottos initLottos() {
-        return new Lottos(inputView.inputPurchaseAmount());
+        try {
+            return new Lottos(inputView.inputPurchaseAmount());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initLottos();
+        }
     }
 
     private void printAllLottoNumbers(Lottos lottos) {
@@ -35,9 +40,25 @@ public class LottoController {
     }
 
     private FinalWinningNumber setWinningNumber() {
-        WinningNumber winningNumber = new WinningNumber(inputView.inputWinningNumber());
-        BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
-        return new FinalWinningNumber(winningNumber, bonusNumber);
+        return new FinalWinningNumber(initWinningNumber(), initBonusNumber());
+    }
+
+    private WinningNumber initWinningNumber() {
+        try {
+            return new WinningNumber(inputView.inputWinningNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initWinningNumber();
+        }
+    }
+
+    private BonusNumber initBonusNumber() {
+        try {
+            return new BonusNumber(inputView.inputBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initBonusNumber();
+        }
     }
 
     private void printResult(Lottos lottos, FinalWinningNumber finalWinningNumber) {

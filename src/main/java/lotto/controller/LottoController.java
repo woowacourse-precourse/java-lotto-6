@@ -10,6 +10,8 @@ import lotto.domain.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Map;
+
 public class LottoController {
     static final LottoGenerator LOTTO_GENERATOR = new LottoGenerator();
     static final WinningNumberGenerator WINNING_NUMBER_GENERATOR = new WinningNumberGenerator();
@@ -25,6 +27,8 @@ public class LottoController {
         WinningNumber winningNumber = WINNING_NUMBER_GENERATOR.run();
         BonusNumber bonusNumber = BONUS_NUMBER_GENERATOR.run(winningNumber);
 
+        Map<String, Integer> statistics = lotteries.produceStatistics(winningNumber, bonusNumber);
+        OutputView.showStatics(statistics);
     }
 
     private int buyLotto() {

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.config.LottoRank;
 import lotto.model.Lotto;
 import lotto.model.User;
 
@@ -41,5 +42,20 @@ public class PrintView {
         System.out.println(sb.toString());
     }
 
+    public static void printWinningResult(int[] winningCount) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n당첨 통계");
+        sb.append("\n---");
 
+        for (int i = 0; i < LottoRank.values().length; i++) {
+            LottoRank rank = LottoRank.values()[i];
+            int count = winningCount[rank.getRank()];
+
+            sb.append("\n").append(rank.getDescription());
+            sb.append(" ").append(count).append("개");
+        }
+
+
+        System.out.println(sb.toString());
+    }
 }

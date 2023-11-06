@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int REQUIRED_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,18 +16,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Set<Integer> deduplicationNumbers = new HashSet<>(numbers);
-
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != REQUIRED_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
-        if (deduplicationNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != REQUIRED_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
 
-        if (numbers.stream().allMatch(v -> v >= 1 && v <= 45) != true) {
-            throw new IllegalArgumentException();
+        if (numbers.stream().anyMatch(v -> v < MIN_NUMBER || v > MAX_NUMBER)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이어야 합니다.");
         }
     }
 

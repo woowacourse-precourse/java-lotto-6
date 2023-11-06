@@ -44,7 +44,7 @@
 ## 예외 처리
 
 - 로또 구입금액 입력
-    - 구입금액이 숫자가 아닐 시 IllegalArgumentException 발생
+    - 구입금액이 양의 정수가 아닐 시 IllegalArgumentException 발생
     - 구입금액이 로또 가격(1,000원) 단위가 아닐 시 IllegalArgumentException 발생
 - 로또 생성
     - 로또 개수가 6개 초과 시 IllegalArgumentException 발생

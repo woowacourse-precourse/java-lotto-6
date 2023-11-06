@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import static lotto.constant.ErrorMessage.REMAINING_CHANGE_ERROR_MESSAGE;
+import static lotto.message.ErrorMessage.REMAINING_CHANGE_ERROR_MESSAGE;
 
 public class RemainingChangeException extends IllegalArgumentException {
 

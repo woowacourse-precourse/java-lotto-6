@@ -3,7 +3,7 @@ package lotto.util;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import lotto.constant.LottoInfo;
+import lotto.model.LottoInfo;
 import lotto.model.LottoNumberGenerator;
 import lotto.model.RandomLottoNumberGenerator;
 import org.junit.jupiter.api.Assertions;

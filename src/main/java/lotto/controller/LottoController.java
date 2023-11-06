@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
+import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
 
 import java.util.List;
 import lotto.dto.LottoDto;

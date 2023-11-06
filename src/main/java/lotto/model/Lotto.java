@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.LottoInfo;
 import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.ExceedsMaxLottoNumberException;
 import lotto.exception.InvalidLottoSizeException;

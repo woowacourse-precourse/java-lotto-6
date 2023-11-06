@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import static lotto.constant.ErrorMessage.NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE;
+import static lotto.message.ErrorMessage.NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE;
 
 public class NegativeOrZeroInputException extends IllegalArgumentException {
 

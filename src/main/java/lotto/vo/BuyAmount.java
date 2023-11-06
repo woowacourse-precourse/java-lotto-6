@@ -1,6 +1,6 @@
 package lotto.vo;
 
-import static lotto.constant.LottoInfo.ONE_LOTTO_PRICE;
+import static lotto.model.LottoInfo.ONE_LOTTO_PRICE;
 
 import lotto.exception.InsufficientAmountException;
 import lotto.exception.RemainingChangeException;

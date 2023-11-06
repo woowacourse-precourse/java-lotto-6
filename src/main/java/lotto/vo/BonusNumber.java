@@ -1,10 +1,10 @@
 package lotto.vo;
 
-import static lotto.constant.LottoInfo.LOTTO_MAX_NUMBER;
+import static lotto.model.LottoInfo.LOTTO_MAX_NUMBER;
 
-import lotto.constant.LottoInfo;
 import lotto.exception.ExceedsMaxLottoNumberException;
 import lotto.exception.LessThanMinLottoNumberException;
+import lotto.model.LottoInfo;
 
 public record BonusNumber(Integer number) {
 

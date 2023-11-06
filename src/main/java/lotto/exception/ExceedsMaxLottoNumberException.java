@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import static lotto.constant.ErrorMessage.LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE;
+import static lotto.message.ErrorMessage.LARGER_THAN_MAX_LOTTO_NUMBER_ERROR_MESSAGE;
 
 public class ExceedsMaxLottoNumberException extends IllegalArgumentException {
 

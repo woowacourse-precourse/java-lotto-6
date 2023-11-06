@@ -108,5 +108,6 @@ public class BuyLotto {
             int rank = paperRank(paper, answer_number, bonus);
             result = lottoRankEdit(result, rank);
         }
+        return result;
     }
 }

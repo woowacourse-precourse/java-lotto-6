@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 public class InputView {
     public String requestMoneyFromUser(){

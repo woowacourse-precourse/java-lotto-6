@@ -4,26 +4,23 @@ import lotto.global.utils.generator.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RandomLottoList {
 
     private final List<Integer> randomLottoList;
-    private final int bonusNumber;
 
     public RandomLottoList(RandomNumberGenerator randomNumberGenerator) {
-        List<Integer> randomLottoListAndBonusNumber = randomNumberGenerator.generate();
-        this.bonusNumber = randomLottoListAndBonusNumber.get(6);
-        randomLottoListAndBonusNumber.remove(6);
-        Collections.sort(randomLottoListAndBonusNumber);
-        this.randomLottoList = randomLottoListAndBonusNumber;
+        List<Integer> randomList = randomNumberGenerator.generate();
+        this.randomLottoList = randomList.stream()
+                .sorted()
+                .toList();
     }
 
     public List<Integer> getRandomLottoList() {
         return randomLottoList;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 }

@@ -30,7 +30,7 @@ class LottoFactoryTest {
     @DisplayName("로또 결과 등수의 수량을 계산할 수 있다.")
     @ParameterizedTest
     @MethodSource("lottoDataProvider")
-    void calculateResult(List<Integer> lotto, int bonusNumber, Rank rank, int count) {
+    void calculateResult(List<Integer> lotto, int bonusNumber, Rank targetRank, int targetCount) {
         // given
         LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.from(6000));
         AnswerLotto answerLotto = AnswerLotto.of(new Lotto(lotto), bonusNumber);
@@ -39,7 +39,8 @@ class LottoFactoryTest {
         Result result = lottoFactory.calculateResult(answerLotto);
 
         // then
-        assertThat(result.getRankCount().get(rank)).isEqualTo(count);
+        assertThat(result.getRankCount().values().stream().mapToLong(count -> count).sum()).isEqualTo(6);
+        assertThat(result.getRankCount().get(targetRank)).isEqualTo(targetCount);
     }
 
     static Stream<Arguments> lottoDataProvider() {

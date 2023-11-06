@@ -22,7 +22,6 @@ public class OutputView {
         }
     }
 
-
     public static void printResultMessage() {
         System.out.println(OutputConstants.LOTTO_RESULT.getMessage());
     }

@@ -22,7 +22,6 @@ public class InputValidator {
         }
     }
 
-
     private static boolean isBlank(String input) {
         return input.isBlank();
     }

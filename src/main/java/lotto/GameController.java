@@ -10,8 +10,7 @@ public class GameController {
     GameRule gameRule = new GameRule();
     InputView inputView = new InputView(new InputValidator());
     OutputView outputView = new OutputView();
-
-
+    
     public void runGame() {
         inputView.printInsertMoney();
         Cpu cpu = insertMoneyControl();

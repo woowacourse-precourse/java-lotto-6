@@ -7,9 +7,8 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-
 	int getPrice() {
-		int price = 0;
+		int price;
 		while(true) {
 			try {
 				System.out.println("구입금액을 입력해 주세요.");
@@ -25,29 +24,31 @@ public class InputView {
 	}
 
 	int validatePriceIsNumber(String input) {
-		int price = 0;
+		int price;
 		try {
 			price = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 숫자만 입력할 수 있습니다.");
+			throw new IllegalArgumentException(ErrorMessage.PRICE_NUMBER.getErrorMsg());
 		}
 		return price;
 	}
 
 	void validatePriceIsDivideBy1000(int price) {
 		if(price % 1000 != 0) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위로 입력해주세요.");
+			throw new IllegalArgumentException(ErrorMessage.PRICE_DIVIDE_BY_1000.getErrorMsg());
 		}
 	}
 
 	String getLottoNumber() {
-		String input = null;
+		String input;
 		while(true) {
 			System.out.println("당첨 번호를 입력해 주세요.");
 			input = Console.readLine();
 			try {
-				validateLottoNumber(input);
+				validateLottoIsNumber(input);
+				validateLottoNumberRange(input);
 				validateLottoNumberLength(input);
+				validateLottoNumberNotDuplicate(input);
 				break;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
@@ -56,21 +57,43 @@ public class InputView {
 		return input;
 	}
 
-	void validateLottoNumber(String input) {
+	void validateLottoIsNumber(String input) {
 		try {
 			List<String> inputList = Arrays.asList(input.replaceAll(" ", "").split(","));
 			for(String word : inputList) {
 				Integer.parseInt(word);
 			}
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 쉼표(,)만 입력해주세요.");
+			throw new IllegalArgumentException(ErrorMessage.WINNING_NUM_CONTAIN_NUMBER_AND_COMMA.getErrorMsg());
+		}
+	}
+
+	void validateLottoNumberRange(String input) {
+		List<String> inputList = Arrays.asList(input.replaceAll(" ", "").split(","));
+		for(String word : inputList) {
+			if(Integer.parseInt(word) <= 0 || Integer.parseInt(word) > 45) {
+				throw new IllegalArgumentException(ErrorMessage.WINNING_NUM_RANGE.getErrorMsg());
+			}
 		}
 	}
 
 	void validateLottoNumberLength(String input) {
 		List<String> inputList = Arrays.asList(input.replaceAll(" ", "").split(","));
 		if(inputList.size() != 6) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 여섯개의 숫자를 입력해주세요.");
+			throw new IllegalArgumentException(ErrorMessage.WINNING_NUM_SIZE.getErrorMsg());
+		}
+	}
+
+	void validateLottoNumberNotDuplicate(String input) {
+		List<String> inputList = Arrays.asList(input.replaceAll(" ", "").split(","));
+		for(String num : inputList) {
+			List<String> copyList = new ArrayList<>();
+			copyList.addAll(inputList);
+			copyList.remove(inputList.indexOf(num));
+			if(copyList.contains(num)) {
+				throw new IllegalArgumentException(ErrorMessage.WINNING_NUM_NOT_DUPLICATE.getErrorMsg());
+			}
+
 		}
 	}
 
@@ -96,21 +119,21 @@ public class InputView {
 		try {
 			bonusNumber = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+			throw new IllegalArgumentException(ErrorMessage.BONUS_IS_NUMBER.getErrorMsg());
 		}
 		return bonusNumber;
 	}
 
 	void validateBonusInRange(int bonusNumber) {
 		if(bonusNumber <= 0 || bonusNumber > 45) {
-			throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
+			throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE.getErrorMsg());
 		}
 	}
 
 	void validateBonusWithWinningNumber(int bonusNumber, Lotto winningLotto) {
 		List<Integer> winningNumbers = winningLotto.getNumbers();
 		if(winningNumbers.contains(bonusNumber)) {
-			throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+			throw new IllegalArgumentException(ErrorMessage.BONUS_NOT_SAME_WINNING_NUM.getErrorMsg());
 		}
 	}
 }

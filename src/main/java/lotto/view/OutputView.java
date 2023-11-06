@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.utils.Constants;
 import lotto.utils.GameMessage;
 
 public class OutputView {
@@ -14,7 +15,7 @@ public class OutputView {
 
     public static void printTicketCount(int ticketCount) {
         System.out.println();
-        System.out.printf(GameMessage.PURCHASED_TICKET_COUNT.getMessage(), ticketCount);
+        System.out.printf(GameMessage.PURCHASED_TICKET_COUNT_MESSAGE.getMessage(), ticketCount);
         System.out.println();
     }
 
@@ -26,8 +27,8 @@ public class OutputView {
 
     public static void printRankCount(Map<Rank, Integer> rankCount) {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(GameMessage.WINNING_STATICS_MESSAGE.getMessage());
+        System.out.println(Constants.SEPERATOR_LINE);
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MATCH_5_BONUS) {
                 System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개 ", rank.getPrize(), rankCount.getOrDefault(rank, 0));

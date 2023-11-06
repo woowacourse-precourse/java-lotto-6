@@ -2,6 +2,7 @@ package domain;
 
 import exception.ImpossibleStateException;
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum LottoWinningMatchState {
     ALL_MATCH(6),
@@ -15,10 +16,17 @@ public enum LottoWinningMatchState {
         this.matchCount = matchCount;
     }
 
-    public static LottoWinningMatchState calculateMatchState(int matchCount) {
-        return Arrays.stream(LottoWinningMatchState.values())
+    public static Optional<LottoWinningMatchState> calculateMatchState(int matchCount) {
+        validateMatchCount(matchCount);
+
+         return Arrays.stream(LottoWinningMatchState.values())
                 .filter(match -> match.matchCount == matchCount)
-                .findAny()
-                .orElseThrow(ImpossibleStateException::new);
+                .findAny();
+    }
+
+    private static void validateMatchCount(int matchCount) {
+        if (matchCount < 0 || ALL_MATCH.matchCount < matchCount) {
+            throw new ImpossibleStateException();
+        }
     }
 }

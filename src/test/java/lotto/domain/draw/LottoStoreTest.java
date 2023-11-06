@@ -3,6 +3,7 @@ package lotto.domain.draw;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.money.Money;
 import org.junit.jupiter.api.DisplayName;

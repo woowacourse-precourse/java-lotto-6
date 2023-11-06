@@ -1,12 +1,11 @@
-package lotto.domain.draw;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Lottos;
 import lotto.domain.money.Money;
 
 public class LottoStore {
+
     private final NumbersGenerator numbersGenerator;
 
     public LottoStore(NumbersGenerator numbersGenerator) {

@@ -2,9 +2,9 @@ package lotto.config;
 
 import lotto.controller.LottoController;
 import lotto.domain.draw.DrawingMachine;
-import lotto.domain.draw.LottoStore;
-import lotto.domain.draw.NumbersGenerator;
-import lotto.domain.draw.RandomNumbersGenerator;
+import lotto.domain.lotto.LottoStore;
+import lotto.domain.lotto.NumbersGenerator;
+import lotto.domain.lotto.RandomNumbersGenerator;
 import lotto.io.input.Reader;
 import lotto.io.input.StdReader;
 import lotto.io.output.StdWriter;

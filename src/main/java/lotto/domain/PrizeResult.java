@@ -10,7 +10,17 @@ import java.util.stream.Collectors;
 
 public class PrizeResult {
 
-    public static Map<Prize, Long> getPrizeResults(Map<Prize, Long> prizeResults) {
+    private final Map<Prize, Long> prizeResult;
+
+    public PrizeResult(Lottos lottos, WinnerLotto winnerLotto) {
+        this.prizeResult = processPrizeResult(calculatePrizeResult(lottos, winnerLotto));
+    }
+
+    public Map<Prize, Long> getPrizeResult() {
+        return this.prizeResult;
+    }
+
+    private Map<Prize, Long> processPrizeResult(Map<Prize, Long> prizeResults) {
         return Arrays.stream(Prize.values())
                 .skip(1)
                 .collect(Collectors.toMap(
@@ -21,17 +31,17 @@ public class PrizeResult {
                 ));
     }
 
-    public static Map<Prize, Long> calculatePrizeResults(Lottos lottos, WinnerLotto winnerLotto) {
+    private Map<Prize, Long> calculatePrizeResult(Lottos lottos, WinnerLotto winnerLotto) {
         return lottos.getLottos().stream()
                 .map(lotto -> findPrize(lotto.countMatch(winnerLotto), lotto.countBonusMatch(winnerLotto)))
                 .collect(Collectors.groupingBy(prize -> prize, Collectors.counting()));
     }
 
-    public static Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
+    public Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
         return (double) calculateProfit(money, prizeResults) / (double) money * 100;
     }
 
-    private static Long calculateProfit(Integer money, Map<Prize, Long> prizeResults) {
+    private Long calculateProfit(Integer money, Map<Prize, Long> prizeResults) {
         Long totalProfit =  prizeResults.entrySet().stream()
                 .mapToLong(prizeResult -> prizeResult.getKey().getPrizeMoney() * prizeResult.getValue())
                 .sum();

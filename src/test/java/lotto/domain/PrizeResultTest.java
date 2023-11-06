@@ -25,17 +25,27 @@ public class PrizeResultTest {
             new Lotto(List.of(7, 8, 9, 10, 11, 12))
     );
 
+    List<Lotto> lottosSmallPrize = Arrays.asList(
+            new Lotto(List.of(1, 10, 11, 12, 13, 14)),
+            new Lotto(List.of(1, 10, 11, 12, 13, 14)),
+            new Lotto(List.of(1, 10, 11, 12, 13, 14)),
+            new Lotto(List.of(1, 10, 11, 12, 13, 14)),
+            new Lotto(List.of(1, 10, 11, 12, 13, 14)),
+            new Lotto(List.of(1, 10, 11, 12, 13, 14)),
+            new Lotto(List.of(1, 10, 11, 12, 13, 14))
+    );
+
 
     @Test
     @DisplayName("당첨 결과를 계산한다.")
     void calculatePrizeResults() {
-        assertThat(PrizeResult.calculatePrizeResults(new Lottos(lottos), winnerLotto))
+        assertThat(new PrizeResult(new Lottos(lottos), winnerLotto).getPrizeResult())
                 .containsExactlyInAnyOrderEntriesOf(Map.of(
                         Prize.FIRST_PLACE, 1L,
                         Prize.SECOND_PLACE, 1L,
                         Prize.FOURTH_PLACE, 1L,
-                        Prize.FIFTH_PLACE, 1L,
-                        Prize.NO_PRIZE, 3L
+                        Prize.THIRD_PLACE, 0L,
+                        Prize.FIFTH_PLACE, 1L
                 ));
     }
 
@@ -57,18 +67,22 @@ public class PrizeResultTest {
                 Prize.FIRST_PLACE, 1L
         );
 
-        assertThat(PrizeResult.getPrizeResults(prizeResults)).isEqualTo(finalPrizeResults);
+        PrizeResult prizeResult = new PrizeResult(new Lottos(lottos), winnerLotto);
+
+        assertThat(prizeResult.getPrizeResult())
+                .isEqualTo(finalPrizeResults);
     }
 
     @Test
     @DisplayName("수익률을 계산한다.")
     void calculateProfitRate() {
-        assertThat(PrizeResult.calculateProfitRate(moneySpent, Map.of(
-                Prize.FIRST_PLACE, 1L,
-                Prize.SECOND_PLACE, 1L,
+        PrizeResult prizeResult = new PrizeResult(new Lottos(lottosSmallPrize), winnerLotto);
+        assertThat(prizeResult.calculateProfitRate(moneySpent, Map.of(
+                Prize.FIRST_PLACE, 0L,
+                Prize.SECOND_PLACE, 0L,
                 Prize.FOURTH_PLACE, 0L,
-                Prize.FIFTH_PLACE, 0L,
-                Prize.NO_PRIZE, 3L
-        ))).isEqualTo(29000000.0);
+                Prize.FIFTH_PLACE, 7L,
+                Prize.NO_PRIZE, 0L
+        ))).isEqualTo(500);
     }
 }

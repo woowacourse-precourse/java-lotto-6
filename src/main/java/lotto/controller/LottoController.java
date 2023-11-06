@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.domain.PrizeResult.calculatePrizeResults;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class LottoController {
 
         Map<Prize, Long> prizeResults = getPrizeResults(lottos, winnerLotto);
         OutputView.printStatistics(prizeResults);
-        OutputView.printProfitRate(PrizeResult.calculateProfitRate(money.getMoney(), prizeResults));
+        OutputView.printProfitRate(getProfitRate(money, lottos, winnerLotto));
     }
 
     private Money getMoney() {
@@ -50,6 +49,12 @@ public class LottoController {
     }
 
     private Map<Prize, Long> getPrizeResults(Lottos lottos, WinnerLotto winnerLotto) {
-        return PrizeResult.getPrizeResults(calculatePrizeResults(lottos, winnerLotto));
+        PrizeResult prizeResult = new PrizeResult(lottos, winnerLotto);
+        return prizeResult.getPrizeResult();
+    }
+
+    private Double getProfitRate(Money money, Lottos lottos, WinnerLotto winnerLotto) {
+        PrizeResult prizeResult = new PrizeResult(lottos, winnerLotto);
+        return prizeResult.calculateProfitRate(money.getMoney(), prizeResult.getPrizeResult());
     }
 }

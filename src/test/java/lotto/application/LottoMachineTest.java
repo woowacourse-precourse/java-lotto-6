@@ -1,6 +1,5 @@
 package lotto.application;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
@@ -18,7 +17,7 @@ class LottoMachineTest {
         Lotto lotto = lottoMachine.createLotto(numbers);
 
         // then
-        assertNotNull(lotto);
+        assertNotNull(lotto); // TODO
     }
 
     @Test
@@ -30,6 +29,18 @@ class LottoMachineTest {
         LottoNumber bonusNumber = lottoMachine.createLottoNumber(bonus);
 
         // then
-        assertNotNull(bonusNumber);
+        assertNotNull(bonusNumber); // TODO
+    }
+
+    @Test
+    void 로또를_생성하면_오름차순으로_정렬된다() {
+        // given
+        List<Integer> numbers = List.of(6, 5, 4, 3, 2, 1);
+
+        // when
+        Lotto lotto = lottoMachine.createLotto(numbers);
+
+        // then
+        assertNotNull(lotto); // TODO
     }
 }

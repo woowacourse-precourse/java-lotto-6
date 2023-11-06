@@ -1,8 +1,11 @@
 package lotto.utils;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.List;
 
 public class ParserTest {
 
@@ -11,4 +14,15 @@ public class ParserTest {
     void 문자를_숫자로_변경한다(String input, int result) {
         Assertions.assertThat(Parser.parseToInteger(input)).isEqualTo(result);
     }
+
+    @Test
+    void 문자를_숫자_리스트로_변경한다() {
+        //given
+        String input = "1, 2, 3, 4, 5";
+        //when
+        List<Integer> output = Parser.parseToIntegers(input);
+        //then
+        Assertions.assertThat(output).containsExactly(1, 2, 3, 4, 5);
+    }
+
 }

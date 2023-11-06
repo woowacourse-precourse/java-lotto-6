@@ -2,10 +2,8 @@ package lotto.Domain;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
 
 public class Human {
     private List<Lotto> lottos = new ArrayList<>();

@@ -29,7 +29,7 @@ public class LottoMachine {
     }
 
     private void checkMoney(Money money) {
-        if (money.getMoney() % LOTTO_PRICE != 0) {
+        if (money.getMoney() % LOTTO_PRICE != 0 || money.getMoney() == 0) {
             throw ExceptionManager.ERROR_MSG_PREFIX.createIllegalArgumentException(
                     "1,000원 단위로 입력해야 합니다.");
         }

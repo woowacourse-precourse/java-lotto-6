@@ -74,3 +74,7 @@ Outputview클래스 askWinningNumbers메소드
 ``````````````````````````
 Inputview클래스 getWinningNumbers메소드
 ```````````````````````````````
+10. 당첨 숫자를 입력할 때 6개 초과 혹은 미만의 숫자를 입력했을 때 나는 오류 추가
+``````````````````````````
+CustomizedException클래스 winningNumbersSizeMoreOrLess메소드
+```````````````````````````````

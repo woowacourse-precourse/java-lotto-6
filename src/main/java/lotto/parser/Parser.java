@@ -18,6 +18,7 @@ public class Parser {
         List<Integer> parsedNumbers = Arrays.stream(input.split(DELIMITER.getSymbol()))
                 .map(Parser::validateEmptyAndParse)
                 .toList();
+        InputValidator.validateDuplicateNumber(parsedNumbers);
         InputValidator.validateLottoNumberCount(parsedNumbers);
         parsedNumbers.forEach(InputValidator::validateLottoNumberRange);
         return parsedNumbers;

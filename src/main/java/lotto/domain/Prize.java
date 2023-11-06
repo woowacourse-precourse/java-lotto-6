@@ -1,8 +1,12 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Prize {
+    EMPTY(0
+            , 0
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber < 3),
     FIFTH(5_000,
             3,
             (matchedLottoNumber, containBonusNumber) -> matchedLottoNumber == 3),
@@ -30,5 +34,17 @@ public enum Prize {
         this.isMatch = isMatch;
     }
 
+    public static Prize getPrize(final int matchLottoNumber, final boolean containBonusNumber) {
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.isMatch.test(matchLottoNumber, containBonusNumber))
+                .findAny()
+                .orElse(EMPTY);
+    }
+    public int getMoney() {
+        return money;
+    }
 
+    public int getMatchLottoNumber() {
+        return matchedLottoNumber;
+    }
 }

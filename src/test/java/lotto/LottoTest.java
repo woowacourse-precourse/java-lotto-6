@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoTest {
+class LottoTest extends NsTest {
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -42,5 +43,21 @@ class LottoTest {
         List<Lotto> lottos = Application.createLottos(purchaseAmount);
 
         assertThat(lottos.size()).isEqualTo(purchaseAmount / LottoNumbers.PURCHASE_AMOUNT_UNIT);
+    }
+
+    @DisplayName("구매한 로또 개수를 출력한다.")
+    @Test
+    void printPurchaseCount() {
+        Application application = new Application();
+        int purchaseCount = 8;
+
+        application.printPurchaseCount();
+
+        assertThat(output()).contains("개를 구매했습니다.");
+    }
+
+    @Override
+    protected void runMain() {
+
     }
 }

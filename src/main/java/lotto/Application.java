@@ -11,6 +11,7 @@ public class Application {
         System.out.println(InputMessage.purchaseAmount);
         int result = inputPurchaseAmount();
         List<Lotto> lottos = createLottos(result);
+        printPurchaseCount();
     }
 
     public static int inputPurchaseAmount() {
@@ -67,19 +68,23 @@ public class Application {
         }
     }
 
-    public Lotto createLotto() {
+    public static Lotto createLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumbers.START_LOTTO_NUMBER,
                 LottoNumbers.END_LOTT0_NUMBER, LottoNumbers.COUNT));
     }
 
     public static List<Lotto> createLottos(int purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
-        int count = purchaseAmount / LottoNumbers.PURCHASE_AMOUNT_UNIT;
+        User.purchaseCount = purchaseAmount / LottoNumbers.PURCHASE_AMOUNT_UNIT;
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < User.purchaseCount; i++) {
             lottos.add(createLotto());
         }
 
         return lottos;
+    }
+
+    public static void printPurchaseCount() {
+        System.out.println(OuputMessage.purchaseCount);
     }
 }

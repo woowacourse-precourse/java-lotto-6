@@ -18,12 +18,4 @@ public class LottoResult {
     public Boolean getCorrectBonusNumber() {
         return isCorrectBonusNumber;
     }
-
-    @Override
-    public String toString() {
-        return "LottoResult{" +
-                "correctNumbers=" + correctNumbers +
-                ", isCorrectBonusNumber=" + isCorrectBonusNumber +
-                '}';
-    }
 }

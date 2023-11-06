@@ -1,15 +1,20 @@
-package lotto;
+package lotto.domain;
 
-import java.util.Collections;
+import lotto.constants.Rank;
+import lotto.model.Lotto;
+
+import java.util.Comparator;
 import java.util.List;
 
 public class Controller {
 
     static final Integer LOTTERY_PRICE = 1_000;
 
-    public static Integer calculateLotteryCount(Integer budget) {
-        return budget / LOTTERY_PRICE;
+    public static void sortNumbers(List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
     }
+
+
 
     public static Integer countMatchingNumbersByLotteryNumber(List<Integer> winningNumbers, Integer lotteryNumber) {
         int matchingCount = 0;
@@ -56,44 +61,18 @@ public class Controller {
         }
     }
 
-    public static Integer calculateTotalPrize(List<Rank> rankList) {
-        Integer totalPrize = 0;
-        for (Rank rank : Rank.values()) {
-            int rankFrequency = Collections.frequency(rankList, rank);
-            totalPrize += rank.calculatePrizeByRank(rankFrequency);
-        }
-        return totalPrize;
-    }
-
-    public static Double calculatePricePrizeRatio(Integer totalPrize, Integer price) {
-        return (double) totalPrize / price * 100;
-    }
-
-    public static boolean validateUserInputIsOnlyNumbers(String[] winningNumbers) {
-        for (String winningNumber : winningNumbers) {
-            if (Validator.isNumberOnly(winningNumber)) {
-                return true;
+    public static void fillMatchingNumberCountList(
+            List<Lotto> lottoList,
+            List<Integer> winningNumbers,
+            List<Integer> matchingNumberCountList) {
+        for (Lotto lotto : lottoList) {
+            int countTemp = 0;
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            for (Integer lottoNumber : lottoNumbers) {
+                countTemp += Controller.countMatchingNumbersByLotteryNumber(winningNumbers, lottoNumber);
             }
+            matchingNumberCountList.add(countTemp);
         }
-        return false;
-    }
-
-    public static boolean validateUserInputNumberIsOutOfValidRange(List<Integer> winningNumbers) {
-        for (Integer winningNumber : winningNumbers) {
-            if (Validator.isNumberOnValidRange(winningNumber)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean validateUserInputNumberIsDuplicate(List<Integer> winningNumbers) {
-        for (Integer winningNumber : winningNumbers) {
-            if (Validator.isWinningNumberDuplicate(winningNumber, winningNumbers)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
 

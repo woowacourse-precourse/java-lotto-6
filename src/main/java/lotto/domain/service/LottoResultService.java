@@ -51,7 +51,7 @@ public class LottoResultService {
             return LottoRank.FOURTH;
         }
         if (Util.isEqual(match, MATCH_FIVE)) {
-            compareWithBonusNumber(lottoNumbers);
+            return compareWithBonusNumber(lottoNumbers);
         }
         if (Util.isEqual(match, MATCH_SIX)) {
             return LottoRank.FIRST;

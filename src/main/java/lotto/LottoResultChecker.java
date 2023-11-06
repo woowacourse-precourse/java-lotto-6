@@ -21,15 +21,11 @@ public class LottoResultChecker {
     }
 
     public void showLottoResultView() {
+        checkLottoBundle();
+
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-
-        for (Lotto l : lottoBundle) {
-            Integer label = l.compareWithWinNumbers(winNumbers, bonusNumber);
-            Winning winning = Winning.getWinning(label);
-            lottoResultMemo.put(winning, lottoResultMemo.getOrDefault(winning, 0) + 1);
-        }
 
         System.out.println("3개 일치 (5,000원) - " + lottoResultMemo.getOrDefault(Winning.THREE, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + lottoResultMemo.getOrDefault(Winning.FOUR, 0) + "개");
@@ -39,7 +35,14 @@ public class LottoResultChecker {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultMemo.getOrDefault(Winning.SIX, 0) + "개");
 
         System.out.printf("총 수익률은 %.1f%%입니다.", calculatePortfolio());
+    }
 
+    private void checkLottoBundle() {
+        for (Lotto l : lottoBundle) {
+            Integer label = l.compareWithWinNumbers(winNumbers, bonusNumber);
+            Winning winning = Winning.getWinning(label);
+            lottoResultMemo.put(winning, lottoResultMemo.getOrDefault(winning, 0) + 1);
+        }
     }
 
     private float calculatePortfolio() {

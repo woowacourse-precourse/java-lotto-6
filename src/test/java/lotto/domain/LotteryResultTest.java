@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LotteryResultTest {
 
     @Test
+    @DisplayName("복권 결과와 올바른 액수가 매칭되는가")
     void winnerMoneyTest() {
         LotteryResult shouldFirst = LotteryResult.getWinnerMoneyOf(6, 0);
         LotteryResult shouldSecond = LotteryResult.getWinnerMoneyOf(5, 1);

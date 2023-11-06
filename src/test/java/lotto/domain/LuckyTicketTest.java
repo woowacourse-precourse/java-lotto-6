@@ -5,6 +5,7 @@ import lotto.domain.collections.LotteryResultCollection;
 import lotto.domain.collections.UserTicketCollection;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -29,6 +30,7 @@ class LuckyTicketTest {
     }
 
     @Test
+    @DisplayName("당첨복권과 사용자 복권의 매칭 테스트")
     public void luckyTicketMatchTest() {
         List<Integer> luckyNumbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto luckyLotto = new Lotto(luckyNumbers);

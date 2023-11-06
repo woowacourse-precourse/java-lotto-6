@@ -1,9 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import lotto.constant.LottoConstant;
 
 public class Lotto {
     private final List<Integer> numbers;

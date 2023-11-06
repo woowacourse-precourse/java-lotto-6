@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.constant.LottoConstant;
 
 public class LottoBonusNumber {
 

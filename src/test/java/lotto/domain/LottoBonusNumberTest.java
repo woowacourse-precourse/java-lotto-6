@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.constant.LottoConstant;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

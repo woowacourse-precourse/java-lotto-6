@@ -2,7 +2,7 @@ package lotto.dto;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.LottoPrize;
+import lotto.domain.LottoPrize;
 
 public class LottoWinningStatistics {
 

@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoWinningNumberCreateRequest;

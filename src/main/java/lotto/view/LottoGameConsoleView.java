@@ -1,7 +1,9 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoWinningNumberCreateRequest;

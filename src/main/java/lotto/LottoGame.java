@@ -1,10 +1,18 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoBonusNumber;
+import lotto.domain.LottoPrize;
+import lotto.domain.LottoPurchase;
+import lotto.domain.LottoWinningNumber;
+import lotto.domain.LottoWinningResult;
 import lotto.dto.LottoBonusNumberCreateRequest;
 import lotto.dto.LottoPurchaseRequest;
 import lotto.dto.LottoWinningNumberCreateRequest;
 import lotto.dto.LottoWinningStatistics;
+import lotto.generator.LottoGenerator;
+import lotto.view.LottoGameView;
 
 public class LottoGame {
 

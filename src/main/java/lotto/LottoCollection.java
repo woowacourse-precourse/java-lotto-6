@@ -28,4 +28,13 @@ public class LottoCollection {
             lotto.printLottoNumbers();
         }
     }
+
+    public void matchLottoNumbers(LottoResult result) {
+        int matchingCount = 0;
+        boolean matchingBonusCount = false;
+        for (Lotto lotto : lottoCollection) {
+            matchingCount = lotto.countMatchingLottoNumbers(result);
+            matchingBonusCount = lotto.hasBonusNumber(result);
+        }
+    }
 }

@@ -11,11 +11,11 @@ import java.util.List;
 
 public class LottoService {
 
-    InputView inputView = new InputView();
-    Buyer buyer = new Buyer();
+    private InputView inputView = new InputView();
+    private Buyer buyer = new Buyer();
 
-    public int getLotteryTicketCount() {
-        return inputView.inputPurchasePrice() / 1000;
+    public int getLotteryTicketCount(int purchasePrice) {
+        return purchasePrice / 1000;
     }
 
     public List<Integer> issueLotteryTicket() {
@@ -28,11 +28,12 @@ public class LottoService {
         return lotteryTicketNumbers;
     }
 
-    public void issueLotteryTicketAll() {
-        int lotteryTicketCount = getLotteryTicketCount();
+    public Buyer issueLotteryTicketAll(int purchasePrice) {
+        int lotteryTicketCount = getLotteryTicketCount(purchasePrice);
         while(lotteryTicketCount-- > 0) {
             issueLotteryTicket();
         }
+        return buyer;
     }
 
     public int getMatchingNumbers(List<Integer> lotteryNumbers, List<Integer> winningNumbers) {
@@ -74,8 +75,7 @@ public class LottoService {
         return Prize.UNRANKED;
     }
 
-    public double getRateOfReturn(List<Prize> prizes) {
-        double purchasePrice = inputView.inputPurchasePrice();
+    public double getRateOfReturn(List<Prize> prizes, double purchasePrice) {
         double totalPrizeMoney = getTotalPrizeMoney(prizes);
         return totalPrizeMoney / purchasePrice * 100;
     }

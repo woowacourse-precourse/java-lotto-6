@@ -14,6 +14,8 @@ public class TextResourceProvider {
     public static final String BONUS_NUMBER_MUST_BE_BETWEEN_1_AND_45_TEXT = "보너스번호는 1과 45 사이의 숫자여야 합니다";
     public static final String BONUS_NUMBER_SHOULD_NOT_IN_WINNING_NUMBERS_TEXT = "보너스번호는 당첨번호에 없는 숫자여야 합니다";
 
+    public static final TextFormat ERROR_TEXT_FORMAT = new TextFormat("[ERROR] %s");
+
     // TEXT
     public static final String INPUT_PURCHASE_AMOUNT_TEXT = "구입금액을 입력해 주세요.";
     public static final String INPUT_WINNING_NUMBERS_TEXT = "당첨 번호를 입력해 주세요.";
@@ -21,12 +23,12 @@ public class TextResourceProvider {
     public static final String INPUT_BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
     public static final String OUTPUT_LOTTERY_RESULT_TEXT = "당첨 통계";
     public static final String OUTPUT_LOTTERY_RESULT_HEADER_LINE_TEXT = "---";
-    public static final TextFormat QUANTITY_OUTPUT_TEXT_FORMAT = new TextFormat("%s개를 구매하였습니다.");
+    public static final TextFormat QUANTITY_OUTPUT_TEXT_FORMAT = new TextFormat("%s개를 구매했습니다.");
     public static final TextFormat LOTTO_NUMBERS_TEXT_FORMAT = new TextFormat("[%s, %s, %s, %s, %s, %s]");
 
     public static final TextFormat LOTTERY_RANKING_RESULT_FORMAT = new TextFormat("%s - %s개");
     public static final TextFormat LOTTERY_RANKING_RESULT_DEFAULT_HEADER_FORMAT = new TextFormat("%s개 일치 (%s원)");
     public static final TextFormat LOTTERY_RANKING_RESULT_SECOND_HEADER_FORMAT = new TextFormat(
             "%s개 일치, 보너스 볼 일치 (%s원)");
-    public static final TextFormat LOTTERY_EARNING_RATE_RESULT_TEXT = new TextFormat("총 수익율은 %s입니다.");
+    public static final TextFormat LOTTERY_EARNING_RATE_RESULT_TEXT = new TextFormat("총 수익률은 %s%입니다.");
 }

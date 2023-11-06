@@ -44,7 +44,8 @@ public class Controller {
         LotteryResults results = calculator.getTotalResults(receipts);
         long resultAmount = results.getTotalAmount();
         long purchaseAmount = calculatePurchaseAmount(receipts);
-        double earningRate = resultAmount / purchaseAmount * 100;
+
+        double earningRate = ((double)resultAmount / (double)purchaseAmount) * 100;
         out.printResults(results.toList(), earningRate);
     }
 

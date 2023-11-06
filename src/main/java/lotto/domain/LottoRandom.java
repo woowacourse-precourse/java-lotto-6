@@ -13,15 +13,7 @@ public class LottoRandom {
     private static int SIZE = 6;
 
     public List<Integer> generateNumbers() {
-        Set<Integer> numbers = new TreeSet<>();
-        while (numbers.size() < SIZE) {
-            int number = Randoms.pickNumberInRange(MIN, MAX);
-            if (numbers.contains(number)) {
-                continue;
-            }
-            numbers.add(number);
-        }
-        return numbers.stream().toList();
+        return Randoms.pickUniqueNumbersInRange(MIN,MAX,SIZE);
     }
 
 }

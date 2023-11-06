@@ -16,7 +16,7 @@ public class Application {
         controller.purchaseLotteries();
         controller.drawWinningLottery();
         controller.calculateEarningRate();
-        Console.close();
+//        Console.close();
 
     }
 }

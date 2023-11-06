@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 import static lotto.resource.TextResourceProvider.BONUS_NUMBER_CANNOT_CONVERT_TO_INTEGER_TEXT;
 import static lotto.resource.TextResourceProvider.BONUS_NUMBER_MUST_BE_BETWEEN_1_AND_45_TEXT;
 import static lotto.resource.TextResourceProvider.BONUS_NUMBER_SHOULD_NOT_IN_WINNING_NUMBERS_TEXT;
+import static lotto.resource.TextResourceProvider.ERROR_TEXT_FORMAT;
 import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_DELIMITER;
 import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
@@ -34,7 +35,6 @@ public class InputInterface {
 
     public List<Integer> getWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_TEXT);
-
         return getValidWinningNumbers();
     }
 
@@ -44,14 +44,16 @@ public class InputInterface {
     }
 
     private long getValidPurchasedAmount() {
-        try {
-            String input = Console.readLine();
-            long purchaseAmount = convertToPurchasedAmount(input);
-            return purchaseAmount;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return getValidPurchasedAmount();
+        while (true) {
+            try {
+                String input = Console.readLine();
+                long purchaseAmount = convertToPurchasedAmount(input);
+                return purchaseAmount;
+            } catch (Exception e) {
+                System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
+            }
         }
+//        return getValidPurchasedAmount();
     }
 
     private static long convertToPurchasedAmount(String input) {
@@ -71,7 +73,7 @@ public class InputInterface {
             String input = Console.readLine();
             return convertToWinningNumbers(input);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getValidWinningNumbers();
         }
     }
@@ -101,7 +103,7 @@ public class InputInterface {
             String input = Console.readLine();
             return convertToBonusNumber(input, numbers);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getValidBonusNumber(numbers);
         }
     }

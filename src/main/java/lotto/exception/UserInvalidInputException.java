@@ -23,6 +23,6 @@ public class UserInvalidInputException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return String.format("%s %s : %s ", ERROR_MESSAGE_TAG, super.getMessage(), invalidInput);
+        return String.format("%s : %s ", super.getMessage(), invalidInput);
     }
 }

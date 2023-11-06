@@ -29,7 +29,7 @@ public class Service {
     }
 
     public void setPrice() {
-        Domain.price = 1;
+        domain.price = 1;
     }
 
     public int numberFrequencyCount(List<Integer> list) {

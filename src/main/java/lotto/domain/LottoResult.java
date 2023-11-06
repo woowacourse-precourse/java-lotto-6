@@ -1,13 +1,13 @@
 package lotto.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import lotto.constant.PriceConstant;
 
 public class LottoResult {
 
-    Map<Integer, Integer> resultMap;
+    Map<String, Integer> resultMap;
     private int winningCount;
 
     private LottoResult() {
@@ -18,13 +18,13 @@ public class LottoResult {
         return new LottoResult();
     }
 
-    private Map<Integer, Integer> generateResultMap() {
-        resultMap = new ConcurrentHashMap<>();
-        resultMap.put(PriceConstant.FIFTH_PLACE.getCount(), 0);
-        resultMap.put(PriceConstant.FOURTH_PLACE.getCount(), 0);
-        resultMap.put(PriceConstant.THIRD_PLACE.getCount(), 0);
-        resultMap.put(PriceConstant.SECOND_PLACE.getCount(), 0);
-        resultMap.put(PriceConstant.FIRST_PLACE.getCount(), 0);
+    private Map<String, Integer> generateResultMap() {
+        resultMap = new LinkedHashMap<>();
+        resultMap.put(PriceConstant.FIFTH_PLACE.getLabel(), 0); //3
+        resultMap.put(PriceConstant.FOURTH_PLACE.getLabel(), 0); //4
+        resultMap.put(PriceConstant.THIRD_PLACE.getLabel(), 0); //5
+        resultMap.put(PriceConstant.SECOND_PLACE.getLabel(), 0); //5
+        resultMap.put(PriceConstant.FIRST_PLACE.getLabel(), 0); //6
 
         return resultMap;
     }
@@ -32,14 +32,20 @@ public class LottoResult {
     public void countWinningCase(List<Lotto> lotteries, WinningLotto winningLotto) {
         for (Lotto lotto : lotteries) {
             winningCount = lotto.compareTo(winningLotto.getWinningLotto());
-            countResultMap(lotto, winningLotto.getBonusNumber());
+            countResultMap(winningCount);
+            countBonusNumber(lotto, winningLotto.getBonusNumber());
         }
     }
 
-    private void countResultMap(Lotto lotto, int bonusNumber) {
-        if (resultMap.containsKey(winningCount)) {
-            countBonusNumber(lotto, bonusNumber);
-            resultMap.put(winningCount, resultMap.get(winningCount) + 1);
+    private void countResultMap(int winningCount) {
+        if (winningCount == PriceConstant.FIFTH_PLACE.getCount()) {
+            resultMap.put(PriceConstant.FIFTH_PLACE.getLabel(), resultMap.get(PriceConstant.FIFTH_PLACE.getLabel()) + 1);
+        }
+        if (winningCount == PriceConstant.FOURTH_PLACE.getCount()) {
+            resultMap.put(PriceConstant.FOURTH_PLACE.getLabel(), resultMap.get(PriceConstant.FOURTH_PLACE.getLabel()) + 1);
+        }
+        if (winningCount == PriceConstant.FIRST_PLACE.getCount()) {
+            resultMap.put(PriceConstant.FIRST_PLACE.getLabel(), resultMap.get(PriceConstant.FIRST_PLACE.getLabel()) + 1);
         }
     }
 
@@ -49,14 +55,16 @@ public class LottoResult {
         }
 
         if (lotto.isCompareByBonusNumber(bonusNumber)) {
-            resultMap.put(PriceConstant.SECOND_PLACE.getCount(),
-                    resultMap.get(winningCount) + 1);
-            resultMap.put(PriceConstant.THIRD_PLACE.getCount(),
-                    resultMap.get(winningCount) - 1);
+            resultMap.put(PriceConstant.SECOND_PLACE.getLabel(),
+                    resultMap.get(PriceConstant.SECOND_PLACE.getLabel()) + 1);
+            return;
         }
+
+        resultMap.put(PriceConstant.THIRD_PLACE.getLabel(),
+                resultMap.get(PriceConstant.THIRD_PLACE.getLabel()) + 1);
     }
 
-    public Map<Integer, Integer> getResultMap() {
+    public Map<String, Integer> getResultMap() {
         return resultMap;
     }
 
@@ -71,7 +79,7 @@ public class LottoResult {
 
     private int calculateTotalEarning() {
         return resultMap.keySet().stream()
-                .mapToInt(key -> PriceConstant.getPricebyCount(key) * resultMap.get(key))
+                .mapToInt(key -> PriceConstant.getPriceByLabel(key) * resultMap.get(key))
                 .sum();
     }
 }

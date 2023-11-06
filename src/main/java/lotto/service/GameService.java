@@ -39,7 +39,7 @@ public class GameService {
         return purchaseAmount.calculateAmountOfLotteries();
     }
 
-    public Map<Integer, Integer> printGameResult() {
+    public Map<String, Integer> printGameResult() {
         return lottoResult.getResultMap();
     }
 

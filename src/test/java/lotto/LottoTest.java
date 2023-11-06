@@ -45,11 +45,21 @@ class LottoTest {
 
     @DisplayName("동일한 번호의 숫자를 계산하여 출력하는지 확인한다.")
     @Test
-    void test() {
+    void printSameNumber() {
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
         Lotto lotto2 = new Lotto(List.of(1,2,3,8,9,10));
 
         int sameNumber = lotto1.compareTo(lotto2);
         assertThat(sameNumber).isEqualTo(3);
+    }
+
+    @DisplayName("로또 번호와 보너스 번호가 동일하면 true를 반환한다.")
+    @Test
+    void printCompareByBonusNumber() {
+        Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
+        int bonusNumber = 6;
+        boolean answer = lotto1.isCompareByBonusNumber(bonusNumber);
+
+        assertThat(answer).isTrue();
     }
 }

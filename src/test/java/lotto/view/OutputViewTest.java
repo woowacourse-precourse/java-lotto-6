@@ -2,10 +2,7 @@ package lotto.view;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import lotto.constant.PriceConstant;
 import lotto.domain.Lotteries;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;

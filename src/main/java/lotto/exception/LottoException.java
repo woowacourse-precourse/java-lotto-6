@@ -25,7 +25,7 @@ public class LottoException {
         for (int i = 0; i < numbers.length(); i++) {
             char n = numbers.charAt(i);
             if (!(Character.isDigit(n)) || n == ',') {
-                throw new IllegalArgumentException(Constants.ERROR + "로또 번호 입력은 숫자와 콤마(,)로 구성되어야 합니다.");
+                throw new IllegalArgumentException(Constants.ERROR + "로또 번호 입력은 숫자와 콤마(,)로 구성되어야 합니다");
             }
         }
     }

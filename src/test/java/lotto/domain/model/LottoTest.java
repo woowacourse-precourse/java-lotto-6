@@ -66,4 +66,19 @@ class LottoTest {
         softAssertions.assertAll();
     }
 
+    @Test
+    void 로또_숫자_범위_테스트() {
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        softAssertions.assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(IllegalArgumentExceptionType.LOTTO_RANGE_ERROR.getMessage());
+
+        softAssertions.assertThatThrownBy(() -> new Lotto(List.of(41, 42, 43, 44, 45, 46)))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(IllegalArgumentExceptionType.LOTTO_RANGE_ERROR.getMessage());
+
+        softAssertions.assertAll();
+    }
+
 }

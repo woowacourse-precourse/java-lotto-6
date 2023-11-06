@@ -18,7 +18,12 @@ public class InputView {
     }
 
     public int readIntLine() {
-        return 0;
+        String input = readLine().trim();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_FORMAT.getMessage());
+        }
     }
 
     public List<Integer> readMultipleIntLine() {

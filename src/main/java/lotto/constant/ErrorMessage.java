@@ -33,6 +33,11 @@ public enum ErrorMessage {
             Long.MIN_VALUE,
             Long.MAX_VALUE
     )),
+    INVALID_INTEGER_FORMAT(String.format(
+            "%,d 이상 %,d 이하의 숫자만 입력 가능합니다.",
+            Integer.MIN_VALUE,
+            Integer.MAX_VALUE
+    )),
     INVALID_MULTIPLE_INTEGER_FORMAT(String.format(
             "%,d 이상 %,d 이하의 ','로 구분된 숫자들만 입력 가능합니다.",
             Integer.MIN_VALUE,

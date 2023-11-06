@@ -17,6 +17,7 @@ public class Issue {
         while (true) {
             try {
                 initialCash = Integer.parseInt(Console.readLine());
+                raiseUnitException();
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] 올바른 숫자를 입력해야 합니다.");
@@ -55,5 +56,11 @@ public class Issue {
         inputCash();
         makeSortedLotto();
         printLotto();
+    }
+
+    private static void raiseUnitException() {
+        if (initialCash % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }

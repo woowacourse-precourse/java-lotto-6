@@ -18,7 +18,7 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Lotteries lotteries = repeatUntilNoException(this::makeLotteries);
+        Lotteries lotteries = makeLotteries();
         printLotteries(lotteries);
 
         WinningNumber winningNumber = makeWinningNumber();
@@ -28,6 +28,10 @@ public class LottoController {
     }
 
     private Lotteries makeLotteries() {
+        return repeatUntilNoException(this::readValidatedLotteries);
+    }
+
+    private Lotteries readValidatedLotteries() {
         int purchaseAmount = inputView.readPurchaseAmount();
         return Lotteries.from(purchaseAmount);
     }

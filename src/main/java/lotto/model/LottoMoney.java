@@ -3,11 +3,11 @@ package lotto.model;
 import static lotto.model.constant.LottoConfig.LOTTO_AMOUNT;
 import static lotto.model.constant.LottoConfig.ZERO;
 
-public class Money {
+public class LottoMoney {
 
     private final int money;
 
-    public Money(int money) {
+    public LottoMoney(int money) {
         validateOverZero(money);
         validateWonUnit(money);
         this.money = money;

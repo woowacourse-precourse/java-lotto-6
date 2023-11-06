@@ -19,10 +19,10 @@ public class LottoController {
     }
 
     public void run() {
-        Money money = inputLottoMoney();
-        List<Lotto> lottos = purchaseLottos(money);
+        LottoMoney lottoMoney = inputLottoMoney();
+        List<Lotto> lottos = purchaseLottos(lottoMoney);
         LottoStorage lottoStore = LottoStorage.from(lottos);
-        outputView.outputPurchaseLottos(lottoStore, money.availableLottoCount());
+        outputView.outputPurchaseLottos(lottoStore, lottoMoney.availableLottoCount());
 
         Lotto winningNumber = inputWinningNumber();
         Integer bonusNumber = inputBonusNumber();
@@ -30,7 +30,7 @@ public class LottoController {
         WinningNumbers winningNumbers = winningNumbers(winningNumber, bonusNumber);
 
         LottoResult lottoResult = LottoResult.of(lottoStore, winningNumbers);
-        outputView.outputWinningResult(lottoResult, money.getMoney());
+        outputView.outputWinningResult(lottoResult, lottoMoney.getMoney());
     }
 
     private WinningNumbers winningNumbers(Lotto winningNumber, Integer bonusNumber) {
@@ -60,26 +60,26 @@ public class LottoController {
         }
     }
 
-    private static List<Lotto> purchaseLottos(Money money) {
+    private static List<Lotto> purchaseLottos(LottoMoney lottoMoney) {
         try {
-            return addLottoByMoney(money);
+            return addLottoByMoney(lottoMoney);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return purchaseLottos(money);
+            return purchaseLottos(lottoMoney);
         }
     }
 
-    private static List<Lotto> addLottoByMoney(Money money) {
+    private static List<Lotto> addLottoByMoney(LottoMoney lottoMoney) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < money.availableLottoCount(); i++) {
+        for (int i = 0; i < lottoMoney.availableLottoCount(); i++) {
             lottos.add(Lotto.from(LottoGenerator.lottoGenerator()));
         }
         return lottos;
     }
 
-    private Money inputLottoMoney() {
+    private LottoMoney inputLottoMoney() {
         try {
-            return new Money(inputView.inputMoney());
+            return new LottoMoney(inputView.inputMoney());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLottoMoney();

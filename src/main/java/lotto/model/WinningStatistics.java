@@ -37,7 +37,6 @@ public class WinningStatistics {
 
     private void calculateProfitRate() {
         profitRate = ((double) totalWinningAmount) / purchaseAmount * 100;
-        profitRate = Math.round(profitRate * 100) / 10.0;
     }
 
     private void calculateTotalAmount(int additionalAmount) {
@@ -68,6 +67,22 @@ public class WinningStatistics {
     }
 
     private String profitRateToString() {
-        return "총 수익률은 " + profitRate + "%입니다. ";
+        double roundedProfitRate = Math.round(profitRate) / 10.0;
+
+        return "총 수익률은 " + roundedProfitRate + "%입니다. ";
+    }
+
+    // for test
+
+    public Map<WinningRank, Integer> getWinningRecords() {
+        return winningRecords;
+    }
+
+    public int getTotalWinningAmount() {
+        return totalWinningAmount;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
     }
 }

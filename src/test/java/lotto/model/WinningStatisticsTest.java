@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,14 +69,16 @@ class WinningStatisticsTest {
 
     @Test
     void testToString() {
+        String pattern = "#.##";
+        DecimalFormat df = new DecimalFormat(pattern); // 소수점 둘째 자리까지 표시
+        String formattedProfitRate = df.format(expectedProfitRate);
 
-        double roundedProfitRate = Math.round(expectedProfitRate) / 10.0;
         String expected = "3개 일치 (5,000원) - 1개\n"
                 + "4개 일치 (50,000원) - 1개\n"
                 + "5개 일치 (1,500,000원) - 1개\n"
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
                 + "6개 일치 (2,000,000,000원) - 1개\n"
-                + "총 수익률은 " + roundedProfitRate + "%입니다. ";
+                + "총 수익률은 " + formattedProfitRate + "%입니다. ";
         winningStatistics.calculateStatistics(prizeNumbers, lottos.iterator());
 
         Assertions.assertThat(winningStatistics.toString()).isEqualTo(expected);

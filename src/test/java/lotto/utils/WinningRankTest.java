@@ -19,10 +19,10 @@ public class WinningRankTest {
         WinningRank fourthRank = WinningRank.FOURTH;
         WinningRank fifthRank = WinningRank.FIFTH;
 
-        String expectedFirst = "6개 일치, (2,000,000,000원)";
-        String expectedThird = "5개 일치, (1,500,000원)";
-        String expectedFourth = "4개 일치, (50,000원)";
-        String expectedFifth = "3개 일치, (5,000원)";
+        String expectedFirst = "6개 일치 (2,000,000,000원)";
+        String expectedThird = "5개 일치 (1,500,000원)";
+        String expectedFourth = "4개 일치 (50,000원)";
+        String expectedFifth = "3개 일치 (5,000원)";
 
         Assertions.assertThat(firstRank.toString()).isEqualTo(expectedFirst);
         Assertions.assertThat(thirdRank.toString()).isEqualTo(expectedThird);

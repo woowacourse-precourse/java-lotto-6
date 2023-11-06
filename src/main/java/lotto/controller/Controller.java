@@ -65,21 +65,38 @@ public class Controller {
     private int getPurchaseAmount() {
         String purchaseAmount = view.getPurchaseAmount();
         purchaseNumberHandler = new PurchaseAmountHandler(purchaseAmount);
-        purchaseNumberHandler.handle();
+        try {
+            purchaseNumberHandler.handle();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
+
         return purchaseNumberHandler.getHandledResult();
     }
 
     private Set<Integer> getWinningNumbers() {
         String winningNumbers = view.getWinningNumbers();
         winningNumberHandler = new WinningNumberHandler(winningNumbers);
-        winningNumberHandler.handle();
+        try {
+            winningNumberHandler.handle();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
+        }
+
         return winningNumberHandler.getHandledResult();
     }
 
     private int getBonusNumber() {
         String bonusNumber = view.getBonusNumber();
         bonusNumberHandler = new BonusNumberHandler(bonusNumber);
-        bonusNumberHandler.handle();
+        try {
+            bonusNumberHandler.handle();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
         return bonusNumberHandler.getHandledResult();
     }
 }

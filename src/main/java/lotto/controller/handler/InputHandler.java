@@ -9,7 +9,12 @@ public abstract class InputHandler<T> {
     protected String input;
 
     public void handle() {
-        validator.validate(input);
+        try {
+            validator.validate(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
     }
 
     public T getHandledResult() {

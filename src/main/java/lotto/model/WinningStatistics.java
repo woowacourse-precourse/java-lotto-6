@@ -69,9 +69,9 @@ public class WinningStatistics {
 
     private String profitRateToString() {
         String pattern = "#.##";
-        DecimalFormat profitRateFormat = new DecimalFormat(pattern);
-        String roundedProfitRate = profitRateFormat.format(profitRate);
-        return "총 수익률은 " + roundedProfitRate + "%입니다. ";
+        DecimalFormat df = new DecimalFormat(pattern); // 소수점 둘째 자리까지 표시
+        String formattedProfitRate = df.format(profitRate);
+        return "총 수익률은 " + formattedProfitRate + "%입니다. ";
     }
 
     // for test

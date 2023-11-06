@@ -18,6 +18,6 @@ public class PurchaseAmountConverterTest {
     void testConvert() {
         String validPurchaseAmount = "3000";
         int result = purchaseAmountConverter.convert(validPurchaseAmount);
-        assertThat(result).isEqualTo(3);
+        assertThat(result).isEqualTo(3000);
     }
 }

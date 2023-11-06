@@ -36,7 +36,9 @@ public class Lottos {
             int matchingCount = winningLotto.countMatchingNumber(lotto);
             boolean bonusNumberExistence = winningLotto.hasBonusNumber(lotto);
             Rank result = Rank.find(matchingCount, bonusNumberExistence);
-            rankResult.put(result, rankResult.getOrDefault(result, 0) + 1);
+            if (hasValidRank(result)) {
+                rankResult.put(result, rankResult.getOrDefault(result, 0) + 1);
+            }
         }
         return rankResult;
     }
@@ -45,9 +47,15 @@ public class Lottos {
         EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
         int defaultValue = 0;
         for (Rank rank : Rank.values()) {
-            rankResult.put(rank, defaultValue);
+            if (hasValidRank(rank)) {
+                rankResult.put(rank, defaultValue);
+            }
         }
         return rankResult;
+    }
+
+    private boolean hasValidRank(final Rank result) {
+        return !result.isUnranked(result);
     }
 
     public long calculateTotalReward(final EnumMap<Rank, Integer> rankResult) {

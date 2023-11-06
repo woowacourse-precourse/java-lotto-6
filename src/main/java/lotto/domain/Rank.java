@@ -47,4 +47,8 @@ public enum Rank {
         return (long) rank.reward * count;
     }
 
+    public boolean isUnranked(final Rank rank) {
+        return rank.equals(UNRANKED);
+    }
+
 }

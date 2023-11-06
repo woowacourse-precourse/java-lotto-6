@@ -50,8 +50,7 @@ class LottosTest {
                 Arguments.of(List.of(1, 2, 3, 4, 5, 7), Rank.SECOND, 1),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 8), Rank.THIRD, 1),
                 Arguments.of(List.of(1, 2, 3, 4, 7, 8), Rank.FOURTH, 1),
-                Arguments.of(List.of(1, 2, 3, 7, 8, 9), Rank.FIFTH, 1),
-                Arguments.of(List.of(1, 2, 7, 8, 9, 10), Rank.UNRANKED, 1)
+                Arguments.of(List.of(1, 2, 3, 7, 8, 9), Rank.FIFTH, 1)
         );
     }
 

@@ -1,12 +1,16 @@
 package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.EnumSource.Mode;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class RankTest {
@@ -35,6 +39,28 @@ class RankTest {
                 Arguments.of(1, true, Rank.UNRANKED),
                 Arguments.of(0, true, Rank.UNRANKED)
         );
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @EnumSource(value = Rank.class, names = "UNRANKED")
+    @DisplayName("순위가 없는지 확인: UNRANKED는 순위가 없음")
+    void givenRank_whenIsUnranked_thenReturnTrue(Rank rank) {
+        // when
+        boolean result = rank.isUnranked(rank);
+
+        // then
+        assertTrue(result);
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
+    @EnumSource(value = Rank.class, names = "UNRANKED", mode = Mode.EXCLUDE)
+    @DisplayName("순위가 없는지 확인: UNRANKED 이외는 순위가 존재")
+    void givenRank_whenIsUnranked_thenReturnFalse(Rank rank) {
+        // when
+        boolean result = rank.isUnranked(rank);
+
+        // then
+        assertFalse(result);
     }
 
 }

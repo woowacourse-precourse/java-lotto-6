@@ -2,8 +2,8 @@ package lotto.view;
 
 import lotto.constant.LottoWinning;
 import lotto.domain.Lotto;
+import lotto.domain.UserLottos;
 
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -20,14 +20,14 @@ public class OutputView {
         System.out.printf(NUMBER_OF_PURCHASE, num);
     }
 
-    public void printAllLottoNumbersList(List<Lotto> allLottoList) {
-        for (Lotto lottoList : allLottoList) {
-            printLottoNumbersList(lottoList);
+    public void printAllLottoNumbersList(UserLottos allLottoList) {
+        for (Lotto lotto : allLottoList.getLottos()) {
+            printLottoNumbersList(lotto);
         }
     }
 
-    private void printLottoNumbersList(Lotto lottoList) {
-        System.out.println(lottoList);
+    private void printLottoNumbersList(Lotto lotto) {
+        System.out.println(lotto);
     }
 
     public void printWinningStatistics(Map<Integer, Integer> winningCnt, int rateOfReturn) {

@@ -60,6 +60,29 @@ class LottoControllerTest {
         assertThat(result.getWinningResult()).isEqualTo(expectedMap);
     }
 
+    @Test
+    @DisplayName("수익률을 계산하는 메서드를 통합 테스트한다.")
+    void calculateEarningRate_integration() {
+        /**
+         * given : 당첨, 보너스 번호와 로또 2개가 담긴 티켓이 주어진다.
+         * when : 구매 금액(8000)과 당첨 금액(5000)으로 결과를 계산한다.
+         * then : 예상한 수익률은 62.5(%)이다.
+         */
+        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+        BonusNumber bonusNumber = new BonusNumber("7");
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 41, 42, 43));
+        Lotto lotto3 = new Lotto(List.of(10, 11, 12, 13, 14, 15));
+        List<Lotto> tickets = List.of(lotto1, lotto3);
+        LottoAmount amount = new LottoAmount("8000");
+
+        WinningResult result = calulcate(tickets, winningNumber, bonusNumber);
+        double totalPrize = result.getTotalPrize();
+        EarningRate earningRate = new EarningRate(totalPrize, amount);
+
+        assertThat(earningRate.getEarningRate()).isEqualTo(62.5);
+    }
+
+
     private WinningResult calulcate(List<Lotto> tickets, WinningNumber winningNumber, BonusNumber bonusNumber) {
         WinningResult winningResult = new WinningResult();
         for (Lotto lotto : tickets) {

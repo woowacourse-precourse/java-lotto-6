@@ -15,6 +15,7 @@ public class LottoController {
         BonusNumber bonusNum = inputBonusNumber(winningNum);
         WinningResult winningResult = calculateWinningResult(lottoNum, winningNum, bonusNum);
         OutputView.printWinningResult(winningResult);
+        calculateEarningRate(winningResult, amount);
     }
 
     private LottoAmount inputAmount() {
@@ -72,5 +73,10 @@ public class LottoController {
             winningResult.addRanking(ranking);
         }
         return winningResult;
+    }
+
+    private void calculateEarningRate(WinningResult winningResult, LottoAmount amount) {
+        double totalPrize = winningResult.getTotalPrize();
+        EarningRate earningRate = new EarningRate(totalPrize, amount);
     }
 }

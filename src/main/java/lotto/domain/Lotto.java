@@ -4,6 +4,8 @@ import static lotto.exception.ErrorMessage.DUPLICATE_NUMBERS_ERROR;
 import static lotto.exception.ErrorMessage.INVALID_COUNT_OF_WINNING_NUMBERS_ERROR;
 import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,6 +50,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 }

@@ -2,7 +2,6 @@ package lotto.controller;
 
 import static lotto.controller.UserInputMessage.*;
 import static lotto.util.RandomNumberGenerator.generateRandomNumbers;
-import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
 import static lotto.validator.Validator.isBonusNumberDuplicate;
 import static lotto.validator.Validator.isBonusNumberValid;

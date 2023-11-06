@@ -18,12 +18,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class RecordServiceTest {
 
-    List<LottoTicket> bonusTickets = new ArrayList<>();
 
-    @BeforeEach
-    void init(){
-        bonusTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 5, true));
-    }
+
 
 
     @Test
@@ -43,6 +39,21 @@ class RecordServiceTest {
         Assertions.assertThat(Result.FORTH.getResultCount()).isEqualTo(1);
         Assertions.assertThat(Result.THIRD.getResultCount()).isEqualTo(1);
         Assertions.assertThat(Result.FIRST.getResultCount()).isEqualTo(1);
+    }
+
+
+    @Test
+    @DisplayName("보너스 번호가 생길 경우에 대한 테스트!")
+    void recordBonusResultTest(){
+        //given
+        List<LottoTicket> bonusTickets = new ArrayList<>();
+        bonusTickets.add(new LottoTicket(List.of(1,2,3,4,5,6), 5, true));
+        bonusTickets.add(new LottoTicket(List.of(3,4,5,6,7,8), 5, true));
+        //when
+        recordResult(bonusTickets);
+        //then
+
+        Assertions.assertThat(Result.SECOND.getResultCount()).isEqualTo(2);
     }
 
 

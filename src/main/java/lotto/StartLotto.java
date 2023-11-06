@@ -48,26 +48,10 @@ public class StartLotto {
 
         for (String s : inputString) {
             int number = changeStringToInteger(s);
-            checkNumberInRange(number);
-            checkDuplicatedNumber(number, retVal);
             retVal.add(number);
         }
 
         return retVal;
-    }
-
-    private void checkNumberInRange(int number) {
-        if (number < 1 || 45 < number) {
-            throw new IllegalArgumentException("당첨(보너스) 번호는 1 ~ 45 사이의 값을 가집니다.");
-        }
-    }
-
-    private void checkDuplicatedNumber(int number, List<Integer> numberList) {
-        for (Integer oneNumber : numberList) {
-            if (number == oneNumber) {
-                throw new IllegalArgumentException("당첨(보너스) 번호는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
-            }
-        }
     }
 
     public void printMessageForInputPurchasePrice() {

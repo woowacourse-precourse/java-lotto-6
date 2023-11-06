@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Money;
 import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
@@ -34,5 +36,9 @@ public class LottoGameService {
     public void makeBonusNumber(String inputBonusNumber) {
         int bonusNumber = lottoFactory.makeBonusNumber(winningLottoNumber, inputBonusNumber);
         winningLotto = lottoFactory.makeWinningLottoWithBonusNumber(winningLottoNumber, bonusNumber);
+    }
+
+    public void calculateResult() {
+        List<LottoResult> lottoResults = userLotto.calculateResult(winningLotto);
     }
 }

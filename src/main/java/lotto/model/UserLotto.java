@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserLotto {
@@ -11,6 +12,14 @@ public class UserLotto {
 
     public int size() {
         return lottos.size();
+    }
+
+    public List<LottoResult> calculateResult(WinningLotto winningLotto) {
+        List<LottoResult> lottoResults = new ArrayList<>();
+        lottos.forEach(lotto -> {
+            lottoResults.add(lotto.calculateResult(winningLotto));
+        });
+        return lottoResults;
     }
 
     @Override

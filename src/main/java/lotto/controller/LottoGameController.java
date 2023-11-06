@@ -21,6 +21,7 @@ public class LottoGameController {
         makeLotto(lottoCount);
         enterWinningLotto();
         enterBonusNumber();
+        lottoGameService.calculateResult();
     }
     private void enterBonusNumber() {
         printMessage(Message.ASK_BONUS_NUMBER.toString());

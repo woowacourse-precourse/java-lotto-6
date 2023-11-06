@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,5 +33,10 @@ public class Lotto {
 
     public boolean isContain(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public LottoResult calculateResult(WinningLotto winningLotto) {
+        int count = (int) numbers.stream().filter(winningLotto::isContain).count();
+        return LottoResult.calculate(count, winningLotto.isContainBonusNumber(numbers));
     }
 }

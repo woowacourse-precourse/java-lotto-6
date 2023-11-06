@@ -1,21 +1,29 @@
-package lotto;
+package lotto.view;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import lotto.domain.Lotto;
+import lotto.domain.result.LottoResults;
+import lotto.io.printer.Printer;
+import lotto.io.printer.PrinterFactory;
+import lotto.io.reader.Reader;
+import lotto.io.reader.ReaderFactory;
+
 public class Communicator {
-    private static final Reader DEFAULT_READER = new ConsoleReader();
-    private static final Printer DEFAULT_PRINTER = new ConsolePrinter();
+    private static final BigDecimal PRICE_PER_LOTTO = new BigDecimal(1000);
+    private static final int DIVISIBLE = 0;
+    private static final int GREATER_FLAG = 1;
 
     private final Reader reader;
     private final Printer printer;
 
     public Communicator() {
-        this(DEFAULT_READER, DEFAULT_PRINTER);
+        this(ReaderFactory.getReader(), PrinterFactory.getPrinter());
     }
 
-    public Communicator(Reader reader, Printer printer) {
+    private Communicator(Reader reader, Printer printer) {
         this.reader = reader;
         this.printer = printer;
     }
@@ -36,7 +44,7 @@ public class Communicator {
     }
 
     public void printException(RuntimeException exception) {
-        printer.print(exception.getMessage());
+        printer.print("[ERROR] %s".formatted(exception.getMessage()));
     }
 
     public void printLotteriesBought(List<Lotto> lotteries) {
@@ -80,14 +88,14 @@ public class Communicator {
     }
 
     private void validateDivisible(BigDecimal payment) {
-        BigDecimal remainder = payment.remainder(new BigDecimal(1000));
-        if (remainder.compareTo(BigDecimal.ZERO) != 0) {
+        BigDecimal remainder = payment.remainder(PRICE_PER_LOTTO);
+        if (remainder.compareTo(BigDecimal.ZERO) != DIVISIBLE) {
             throw new IllegalArgumentException("구매 금액은 1000원 단위여야 합니다.");
         }
     }
 
     private void validatePositive(BigDecimal payment) {
-        if (payment.compareTo(BigDecimal.ZERO) < 1) {
+        if (payment.compareTo(BigDecimal.ZERO) < GREATER_FLAG) {
             throw new IllegalArgumentException("0보다 큰 금액을 입력해주세요.");
         }
     }

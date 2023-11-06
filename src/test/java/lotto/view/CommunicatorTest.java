@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -20,10 +20,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.result.LottoResult;
+import lotto.domain.result.LottoResults;
 
 class CommunicatorTest {
-    static final Communicator communicator = new Communicator();
-
+    Communicator communicator;
     ByteArrayOutputStream outputStream;
 
     static Stream<Arguments> stringAndStringProvider() {
@@ -59,6 +60,7 @@ class CommunicatorTest {
 
     @BeforeEach
     void setUp() {
+        communicator = new Communicator();
         setOut();
     }
 

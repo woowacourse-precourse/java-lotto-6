@@ -1,4 +1,4 @@
-package lotto;
+package lotto.io.printer;
 
 public class ConsolePrinter implements Printer {
     @Override

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -7,8 +7,20 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
+import lotto.domain.result.LottoResult;
+import lotto.domain.result.LottoResults;
+import lotto.domain.vo.Bonus;
+import lotto.storage.LottoStorage;
 
 public class LottoService {
+    private static final BigDecimal PRICE_PER_LOTTO = new BigDecimal(1000);
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final int NUMBER_COUNT = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+
     private final LottoStorage lottoStorage;
 
     public LottoService(LottoStorage lottoStorage) {
@@ -16,7 +28,7 @@ public class LottoService {
     }
 
     public List<Lotto> generateLotteries(BigDecimal payment) {
-        int numberOfLotteries = payment.divide(new BigDecimal(1000), RoundingMode.UNNECESSARY)
+        int numberOfLotteries = payment.divide(PRICE_PER_LOTTO, RoundingMode.UNNECESSARY)
                 .intValueExact();
         return IntStream.range(0, numberOfLotteries)
                 .mapToObj(index -> saveRandomLotto())
@@ -57,7 +69,7 @@ public class LottoService {
     }
 
     private List<Integer> generateRandomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, NUMBER_COUNT);
         return numbers.stream()
                 .sorted()
                 .toList();
@@ -84,7 +96,7 @@ public class LottoService {
     }
 
     private void validateNumber(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.");
         }
     }

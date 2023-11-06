@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain.vo;
+
+import lotto.domain.LottoType;
 
 public class Bonus {
     private final LottoType lottoType;
@@ -12,7 +14,7 @@ public class Bonus {
         this(LottoType.JACKPOT, bonusNumber);
     }
 
-    public Bonus(LottoType lottoType, Integer bonusNumber) {
+    private Bonus(LottoType lottoType, Integer bonusNumber) {
         this.lottoType = lottoType;
         this.bonusNumber = bonusNumber;
     }

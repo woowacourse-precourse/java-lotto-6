@@ -1,9 +1,15 @@
-package lotto;
+package lotto.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import lotto.domain.Lotto;
+import lotto.domain.result.LottoResults;
+import lotto.domain.vo.Bonus;
+import lotto.service.LottoService;
+import lotto.view.Communicator;
 
 public class LottoController {
     private final Communicator communicator;
@@ -16,15 +22,29 @@ public class LottoController {
 
     public void run() {
         BigDecimal payment = settlePayment();
+        buyLotteries(payment);
+        confirmJackpotLotto();
+        finishUp(payment);
+    }
+
+    private void buyLotteries(BigDecimal payment) {
         List<Lotto> lotteries = lottoService.generateLotteries(payment);
         communicator.printLotteriesBought(lotteries);
+    }
 
-        confirmJackpotLotto();
+    private void finishUp(BigDecimal payment) {
+        LottoResults results = lottoService.matchLotteries();
+        communicator.printResults(payment, results);
+    }
+
+    private void confirmJackpotLotto() {
+        List<Integer> jackpotNumbers = confirmJackpotNumbers();
+        confirmBonusAndSave(jackpotNumbers);
     }
 
     private BigDecimal settlePayment() {
         BigDecimal payment = BigDecimal.ZERO;
-        while(payment.equals(BigDecimal.ZERO)) {
+        while (payment.equals(BigDecimal.ZERO)) {
             payment = receivePayment();
         }
         return payment;
@@ -74,10 +94,5 @@ public class LottoController {
             communicator.printException(exception);
             return Bonus.emptyBonus();
         }
-    }
-
-    private void confirmJackpotLotto() {
-        List<Integer> jackpotNumbers = confirmJackpotNumbers();
-        confirmBonusAndSave(jackpotNumbers);
     }
 }

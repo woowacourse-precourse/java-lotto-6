@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,6 +16,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.service.LottoService;
+import lotto.storage.LottoStorage;
+import lotto.view.Communicator;
 
 class LottoControllerTest {
     ByteArrayOutputStream outputStream;
@@ -62,7 +65,7 @@ class LottoControllerTest {
     @DisplayName("로또 구입 후 생성된 로또들을 출력한다.")
     void test_Run_PrintLotteriesBought() {
         //given
-        String input = "2000\n1,2,3,4,5,6\n1";
+        String input = "2000\n1,2,3,4,5,6\n10";
         setIn(input);
         setOut();
 
@@ -82,7 +85,7 @@ class LottoControllerTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     //given
-                    String input = "1000\n1,2,3,4,5,6\n1";
+                    String input = "1000\n1,2,3,4,5,6\n10";
                     setIn(input);
                     setOut();
 
@@ -103,7 +106,7 @@ class LottoControllerTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     //given
-                    String input = "2000\n1,2,3,4,5,6\n1";
+                    String input = "2000\n1,2,3,4,5,6\n10";
                     setIn(input);
                     setOut();
 
@@ -124,7 +127,7 @@ class LottoControllerTest {
     @DisplayName("당첨 번호 입력 시 IllegalArgumentException이 발생하면 에러 메시지를 출력하고 당첨 번호를 다시 입력받는다.")
     void test_Run_ReceiveJackpotNumberAgain() {
         //given
-        String input = "1000\n1,2,3,4,5,0\n1,2,3,4,5,6\n1";
+        String input = "1000\n1,2,3,4,5,0\n1,2,3,4,5,6\n10";
         setIn(input);
         setOut();
 

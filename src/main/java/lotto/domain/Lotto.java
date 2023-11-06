@@ -1,14 +1,23 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+import lotto.domain.vo.Bonus;
+
 public class Lotto {
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final String FORMAT_STARTER = "[";
+    private static final String DIVIDER = ", ";
+    private static final String FORMAT_ENDER = "]";
+    private static final int BONUS_IDENTIFIER = 2;
+    private static final long MATCHING_FIVE = 5L;
+
     private final List<Integer> numbers;
     private final Bonus bonus;
 
-    public Lotto(List<Integer>numbers) {
+    public Lotto(List<Integer> numbers) {
         this(numbers, new Bonus());
     }
 
@@ -19,22 +28,22 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("로또는 6개의 숫자로 되어있어야 합니다.");
         }
     }
 
     public String toTextFormat() {
-        StringBuilder sb = new StringBuilder("[");
+        StringBuilder sb = new StringBuilder(FORMAT_STARTER);
         numbers.forEach(number -> sb.append(number)
-                .append(", "));
+                .append(DIVIDER));
         sb.delete(sb.length() - 2, sb.length());
-        sb.append("]");
+        sb.append(FORMAT_ENDER);
         return sb.toString();
     }
 
     public boolean isJackpotLotto() {
-        return bonus.isJackpot() ;
+        return bonus.isJackpot();
     }
 
     public List<Integer> getNumbers() {
@@ -54,7 +63,7 @@ public class Lotto {
                 .filter(this::hasMatchingNumber)
                 .count();
         if (hasBonusNumberMatching(count, jackpotLotto.getBonusNumber())) {
-            count += 2;
+            count += BONUS_IDENTIFIER;
         }
         return count;
     }
@@ -65,6 +74,6 @@ public class Lotto {
     }
 
     private boolean hasBonusNumberMatching(long count, Integer bonusNumber) {
-        return count == 5L && numbers.contains(bonusNumber);
+        return count == MATCHING_FIVE && numbers.contains(bonusNumber);
     }
 }

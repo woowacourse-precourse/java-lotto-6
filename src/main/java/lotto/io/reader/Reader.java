@@ -1,4 +1,4 @@
-package lotto;
+package lotto.io.reader;
 
 import java.math.BigDecimal;
 

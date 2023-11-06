@@ -1,8 +1,10 @@
-package lotto;
+package lotto.storage;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import lotto.domain.Lotto;
 
 public class LottoStorage {
     private final List<Lotto> lotteries;

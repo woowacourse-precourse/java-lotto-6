@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.result;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -7,6 +7,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoResults {
+    private static final BigDecimal PERCENTAGE = new BigDecimal(100);
+    private static final int FIRST_DECIMAL = 1;
+    private static final String COUNT_SUFFIX = "개";
+    private static final String RESULT_DELIM = "---";
+
     private final List<LottoResult> results;
 
     private LottoResults(List<LottoResult> results) {
@@ -26,7 +31,7 @@ public class LottoResults {
     }
 
     public String toTextFormat() {
-        StringBuilder sb = new StringBuilder("---").append(System.lineSeparator());
+        StringBuilder sb = new StringBuilder(RESULT_DELIM).append(System.lineSeparator());
         Arrays.stream(LottoResult.values())
                 .filter(LottoResult::isWinner)
                 .forEach(result -> appendResultToText(sb, result));
@@ -35,14 +40,14 @@ public class LottoResults {
     }
 
     public BigDecimal calculateProfitRate(BigDecimal payment) {
-        return sum().divide(payment, 1, RoundingMode.HALF_UP)
-                .multiply(new BigDecimal(100));
+        return sum().divide(payment, FIRST_DECIMAL, RoundingMode.HALF_UP)
+                .multiply(PERCENTAGE);
     }
 
     private void appendResultToText(StringBuilder sb, LottoResult result) {
         sb.append(result.getMessage())
                 .append(sumRepetitiveLotteries(result))
-                .append("개")
+                .append(COUNT_SUFFIX)
                 .append(System.lineSeparator());
     }
 

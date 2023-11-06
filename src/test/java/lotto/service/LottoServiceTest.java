@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,6 +14,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import lotto.domain.Lotto;
+import lotto.domain.result.LottoResult;
+import lotto.domain.result.LottoResults;
+import lotto.domain.vo.Bonus;
+import lotto.storage.LottoStorage;
 
 class LottoServiceTest {
     LottoStorage lottoStorage;
@@ -138,10 +144,10 @@ class LottoServiceTest {
     @DisplayName("구매 로또 개수만큼 결과를 반환한다.")
     void test_MatchLotteries_ResultSize() {
         //given
-        Lotto jackpotLotto = new Lotto(List.of(1,2,3,4,5,6), new Bonus(10));
+        Lotto jackpotLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), new Bonus(10));
         lottoStorage.saveLotto(jackpotLotto);
-        Lotto firstLotto = new Lotto(List.of(1,2,3,7,8,9));
-        Lotto secondLotto = new Lotto(List.of(1,2,3,4,7,8));
+        Lotto firstLotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto secondLotto = new Lotto(List.of(1, 2, 3, 4, 7, 8));
         lottoStorage.saveLotto(firstLotto);
         lottoStorage.saveLotto(secondLotto);
 

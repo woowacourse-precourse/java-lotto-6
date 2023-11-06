@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.util.LottoConstants;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -9,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(new ArrayList<>(numbers));
     }
 
     public Integer getMatchingNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
@@ -48,5 +50,10 @@ public class Lotto {
 
     private boolean hasDuplicates(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
+    }
+
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return numbers;
     }
 }

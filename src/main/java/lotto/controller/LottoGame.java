@@ -89,24 +89,14 @@ public class LottoGame {
 
     private void determineAllLottoScore() {
         for (Lotto lotto : userLotteries) {
-            try {
-                resultService.deterMineScore(lotto);
-            } catch (NullPointerException e) {
-                ErrorMessageViewer.printNoFirstRankNumbers();
-            } catch (IllegalArgumentException e) {
-                ErrorMessageViewer.printNoBonusNumber();
-            }
+            resultService.deterMineScore(lotto);
         }
     }
 
     private void printResults() {
         OutputViewer.printPrefaceOfResult();
         printLottoScoresByRank();
-        try {
-            OutputViewer.printLastMessageWith(resultService.getProfitRatio());
-        } catch (ArithmeticException e) {
-            ErrorMessageViewer.printNoAmount();
-        }
+        OutputViewer.printLastMessageWith(resultService.getProfitRatio());
     }
 
     private void printLottoScoresByRank() {

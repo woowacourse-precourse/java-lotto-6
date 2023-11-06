@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 
 public class OutputView {
+    private static final String STATS_MESSAGE = "당첨 통계";
 
     public static void printQuantity(int quantity) {
         System.out.println(quantity + "개를 구매했습니다.");
@@ -17,5 +18,9 @@ public class OutputView {
             }
         }
         System.out.println("]");
+    }
+
+    public static void printStatsMessage() {
+        System.out.print(STATS_MESSAGE + "\n---\n");
     }
 }

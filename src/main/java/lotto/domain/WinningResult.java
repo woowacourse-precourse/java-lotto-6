@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class WinningResult {
 
-    private Map<Ranking, Integer> rankingCount = new EnumMap<>(Ranking.class);
+    private final Map<Ranking, Integer> rankingCount = new EnumMap<>(Ranking.class);
     private double returnRate;
 
     public WinningResult(List<Ranking> rankingCount, int purchasePrice) {

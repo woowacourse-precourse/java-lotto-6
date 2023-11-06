@@ -28,7 +28,11 @@ public class LottoWinningNumber {
         return winningNumbers;
     }
 
-    public int lottoBonusNumber(String bonusNumber) {
+    public int lottoBonusNumber(String bonusNumber, List<Integer> lottoNumbers) {
+
+        lottoBonusNumberValidation(bonusNumber);
+        lottoBonusNUmberValidation(bonusNumber, lottoNumbers);
+
         return Integer.parseInt(bonusNumber);
     }
 
@@ -45,5 +49,17 @@ public class LottoWinningNumber {
 
     }
 
+    public void lottoBonusNumberValidation(String bonusNumber) {
+
+        lottoValidation.validatorBonusOnlyNumber(bonusNumber);
+        lottoValidation.validatorBonusExceedRange(bonusNumber);
+
+    }
+
+    public void lottoBonusNUmberValidation(String bonusNumber, List<Integer> lottoNumbers) {
+
+        lottoValidation.validatorBonusDistinct(bonusNumber, lottoNumbers);
+
+    }
 
 }

@@ -10,7 +10,7 @@ import lotto.view.OutputView;
 public class TestLottoConfig implements LottoConfig {
     @Override
     public RandomNumberGenerator randomNumberGenerator() {
-        return (min, max) -> TestConstant.normalNumbers;
+        return (min, max, count) -> TestConstant.normalNumbers;
     }
 
     @Override

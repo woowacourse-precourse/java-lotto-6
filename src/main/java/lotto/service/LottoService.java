@@ -43,7 +43,9 @@ public class LottoService {
 
     private List<Integer> generateLottoNumbers() {
         return randomNumberGenerator.pickUniqueNumbersInRange(
-                LottoConstraint.MIN_LOTTO_NUMBER.getValue(), LottoConstraint.MAX_LOTTO_NUMBER.getValue()
+                LottoConstraint.MIN_LOTTO_NUMBER.getValue(),
+                LottoConstraint.MAX_LOTTO_NUMBER.getValue(),
+                LottoConstraint.LOTTO_NUMBER_COUNT.getValue()
         );
     }
 

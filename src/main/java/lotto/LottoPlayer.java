@@ -3,7 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class lottoPlayer {
+public class LottoPlayer {
     private final List<Lotto> lottos = new ArrayList<>();
     private int money = 0;
 

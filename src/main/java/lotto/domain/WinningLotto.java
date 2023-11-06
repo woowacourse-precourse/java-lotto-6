@@ -11,4 +11,7 @@ public class WinningLotto extends Lotto {
     public static WinningLotto from(List<Integer> numbers) {
         return new WinningLotto(numbers);
     }
+
+    public void addBonusNumber(Integer bonusNumber) {
+    }
 }

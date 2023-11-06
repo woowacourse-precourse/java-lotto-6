@@ -1,10 +1,10 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 public class Purchase {
 
-    private static final int PURCHASE_MONEY_UNIT = 1000;
     public static final int ZERO = 0;
 
     private final int lottoAmount;
@@ -12,7 +12,7 @@ public class Purchase {
     public Purchase(int purchaseMoney) {
         validate(purchaseMoney);
 
-        this.lottoAmount = purchaseMoney / PURCHASE_MONEY_UNIT;
+        this.lottoAmount = purchaseMoney / LottoConstant.LOTTO_PRICE.get();
     }
 
     private void validate(int purchaseMoney) {
@@ -27,7 +27,7 @@ public class Purchase {
     }
 
     private void validateMultipleOf1000(int purchaseMoney) {
-        if (purchaseMoney % PURCHASE_MONEY_UNIT != 0) {
+        if (purchaseMoney % LottoConstant.LOTTO_PRICE.get() != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_MONEY_NOT_MULTIPLE_OF_1000.get());
         }
     }

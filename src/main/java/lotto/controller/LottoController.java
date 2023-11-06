@@ -27,9 +27,12 @@ public class LottoController {
         OutputView.printPurchaseCount(count);
         LottoService lottoService = new LottoService(new ArrayList<>());
         for(int i = 0; i  < count; i++){
-            OutputView.printPurchaseLottoList(lottoService.createLottoList());
+            OutputView.printBoughtLottoNumbers(lottoService.createLottoList());
         }
     }
 
-
+    private void winningLotto() {
+        OutputView.printWinningNumbers();
+        InputView.readWinningNumbers();
+    }
 }

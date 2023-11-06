@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -10,6 +9,7 @@ public class OutputView {
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
     private static final String COMMA = ", ";
+    private static final String TYPE_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static void printPurchaseAmount() {
         System.out.println(TYPE_PURCHASE_AMOUNT);
     }
@@ -19,7 +19,7 @@ public class OutputView {
         System.out.printf("%d개를 구매했습니다." , count);
     }
 
-    public static void printPurchaseLottoList(List<Integer> numbers) {
+    public static void printBoughtLottoNumbers(List<Integer> numbers) {
         blankSpace();
         System.out.print(OPEN_BRACKET);
         String result = numbers.stream()
@@ -27,6 +27,11 @@ public class OutputView {
                 .collect(Collectors.joining(COMMA));
         System.out.print(result);
         System.out.print(CLOSE_BRACKET);
+    }
+
+    public static void printWinningNumbers() {
+        blankSpace();
+        System.out.println(TYPE_WINNING_NUMBERS);
     }
 
     private static void blankSpace() {

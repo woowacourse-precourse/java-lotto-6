@@ -55,7 +55,7 @@ public class BuyLotto {
         int bonus_number = 0;
         int result = 0;
         for (int p = 0, a = 0; (p > 5 || a > 5); ) {
-            if (paper.get(p) == answer_number.get(a)) {
+            if (paper.get(p).equals(answer_number.get(a))) {
                 correct_number++;
                 p++;
                 a++;

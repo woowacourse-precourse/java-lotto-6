@@ -29,6 +29,7 @@ public class LottoSeller {
         }
     }
 
+    // TODO: 11/6/23 상수 정리 
     public String tellNumberLotto() {
         return lottoEnvelop.size() + "개를 구매했습니다.";
     }

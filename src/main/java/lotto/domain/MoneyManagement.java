@@ -12,6 +12,7 @@ public class MoneyManagement {
         validNumber(userInput);
         int userAmount = toInt(userInput);
         validRange(userAmount);
+        validLottoAmount(userAmount);
     }
 
     private void validNumber(final String userInput) {
@@ -28,5 +29,15 @@ public class MoneyManagement {
         if (userAmount < 1000) {
             throw new IllegalArgumentException("로또 최소 구입 가능 금액은 1000원입니다.");
         }
+    }
+
+    private void validLottoAmount(final int userAmount) {
+        if (userAmount % 1000 != 0) {
+            throw new IllegalArgumentException("로또 금액은 1000원 단위입니다.");
+        }
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

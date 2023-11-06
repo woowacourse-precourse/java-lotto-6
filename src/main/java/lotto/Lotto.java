@@ -38,6 +38,9 @@ public class Lotto {
         return lottoRanking.findByValue(commonNum.size());
     }
 
+    public List<Integer> getLottoDetail(){
+        return numbers;
+    }
     private LottoRanking getSecondOrThird(int bonus, List<Integer> answer) {
         if(answer.contains(bonus)) {
             return LottoRanking.SECOND;

@@ -1,10 +1,16 @@
 package lotto.view;
 
+import lotto.repository.LottoRepository;
+import lotto.repository.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputValidate {
-
+    Repository repository;
+    public InputValidate(Repository repository) {
+        this.repository = repository;
+    }
     public int lottoCountValidate(String amount){
         try {
             return validateCount(amount);
@@ -49,7 +55,10 @@ public class InputValidate {
         return money;
     }
     private int validateIsDigit(String inputValue) throws IllegalArgumentException{
-        return Integer.parseInt(inputValue);
+        int value = Integer.parseInt(inputValue);
+        if(value <= 0 || value > 45)
+            throw new IllegalArgumentException();
+        return value;
     }
     private String[] getLottoByString(String lottoNum) {
         String[] splitLottoAnswer = lottoNum.split(",");
@@ -57,5 +66,10 @@ public class InputValidate {
             throw new IllegalArgumentException();
         }
         return splitLottoAnswer;
+    }
+
+    private boolean checkBonusNumberInAnswer(int bonus){
+        List<Integer> lottoAnswer = repository.getAnswerLotto().getLottoDetail();
+        return !lottoAnswer.contains(bonus);
     }
 }

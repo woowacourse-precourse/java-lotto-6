@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface Repository {
     public Lotto getAnswerLotto();
+    public void setAnswerLotto(Lotto lotto);
     public void saveBonusNumber(int bonusNumber);
     public int getBonusNumber();
     public List<Lotto> getLottoNumbers();

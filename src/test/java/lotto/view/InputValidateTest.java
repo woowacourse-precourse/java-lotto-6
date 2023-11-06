@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.repository.LottoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ class InputValidateTest {
 
     @BeforeEach
     void appconfig(){
-        inputValidate = new InputValidate();
+        inputValidate = new InputValidate(new LottoRepository());
     }
 
     @Test
@@ -43,7 +44,14 @@ class InputValidateTest {
         assertThat(inputValidate.lottoAnswerValidate("1,2,3,4,5,6").size()).isEqualTo(6);
         assertThat(inputValidate.lottoAnswerValidate("1,2,3,4,5,6").get(5)).isEqualTo(6);
     }
+    @Test
+    void lottoAnswerValidate_범위틀린_값_입력() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
 
+        assertThat(inputValidate.lottoAnswerValidate("1,2,3,4,5,60").isEmpty()).isEqualTo(true);
+        assertThat(outContent.toString()).isEqualTo("[ERROR] 로또 번호 형식이 맞지 않습니다.\r\n");
+    }
     @Test
     void lottoAnswerValidate_다른_값_입력(){
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -63,6 +71,14 @@ class InputValidateTest {
         System.setOut(new PrintStream(outContent));
 
         assertThat(inputValidate.bonusNumValidate("asd")).isEqualTo(0);
+        assertThat(outContent.toString()).isEqualTo("[ERROR] 로또 구매 금액 형식이 맞지 않습니다.\r\n");
+    }
+    @Test
+    void bonusNumValidate_범위틀린_값_입력() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        assertThat(inputValidate.bonusNumValidate("65")).isEqualTo(0);
         assertThat(outContent.toString()).isEqualTo("[ERROR] 로또 구매 금액 형식이 맞지 않습니다.\r\n");
     }
 }

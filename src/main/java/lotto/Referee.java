@@ -3,8 +3,16 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Referee {
+    private static List<Rank> calculateAllLottoPrize(List<Lotto> lottoList, List<Integer> winningNumbers,
+                                                     int bonusNumber) {
+        return lottoList.stream()
+                .map(lotto -> calculatePrize(lotto, winningNumbers, bonusNumber))
+                .collect(Collectors.toList());
+    }
+
     private static Rank calculatePrize(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         Set<Integer> userNumbers = new HashSet<>(lotto.getNumbers());
         Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);

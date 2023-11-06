@@ -7,7 +7,8 @@ public class Validator {
 
     private enum ExceptionMessage {
         EMPTY_VALUE_NOT_ALLOWED("빈 값을 입력할 수 없습니다."),
-        INVALID_ARABIC_NUMBER("아라비아 숫자만 입력할 수 있습니다.");
+        INVALID_ARABIC_NUMBER("아라비아 숫자만 입력할 수 있습니다."),
+        NOT_DIVISIBLE_BY_1000("[ERROR] 1,000원 단위로만 입력할 수 있습니다.");
         private final String message;
 
         ExceptionMessage(String message) {
@@ -24,6 +25,12 @@ public class Validator {
     public void validateArabicNumber(String input) {
         if (!ARABIC_NUMBER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_ARABIC_NUMBER.message);
+        }
+    }
+
+    public void validateDivisibleBy1000(String input) {
+        if (Integer.parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_BY_1000.message);
         }
     }
 }

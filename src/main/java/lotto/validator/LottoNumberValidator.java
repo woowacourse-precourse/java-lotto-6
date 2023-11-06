@@ -27,7 +27,7 @@ public class LottoNumberValidator {
     }
 
     private static void validateBlankException(List<Integer> input) {
-        if (input == null || input.contains(null)) {
+        if (input == null) {
             throw new IllegalArgumentException(ERROR_BLANK);
         }
     }

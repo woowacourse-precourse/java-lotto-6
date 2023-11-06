@@ -2,7 +2,6 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +17,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static List<Integer> getLottoNumbers() {
+    public static List<Integer> getRandomNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
         Set<Integer> nonDuplicateNumbers = new HashSet<>(lottoNumbers);
         while (nonDuplicateNumbers.size() != lottoNumbers.size()) {
@@ -27,6 +26,9 @@ public class Lotto {
         }
 
         return lottoNumbers;
+    }
+    public List<Integer> getLottoNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {

@@ -8,15 +8,17 @@ import java.util.List;
 
 public class LottoUI {
     public static int getPurchaseAmount() {
+        int purchaseAmount;
         while(true){
             try{
                 System.out.println("구입금액을 입력해 주세요.");
-                return LottoValidator.validatePurchaseAmount(Console.readLine());
+                purchaseAmount = LottoValidator.validatePurchaseAmount(Console.readLine());
+                System.out.println();
+                return purchaseAmount;
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
     }
-
 
 }

@@ -17,17 +17,17 @@ public class LottoPurchaseManager {
         return new LottoPurchaseManager(lottoPurchaseAmount);
     }
 
-    private Lottos createLottos() {
-        long quantity = calculateLottoQuantity();
-        return LottoGenerator.generateLottos(quantity);
-    }
-
     public LottoPurchaseAmount getPurchaseAmount() {
         return purchaseAmount;
     }
 
     public Lottos getLottos() {
         return lottos;
+    }
+
+    private Lottos createLottos() {
+        long quantity = calculateLottoQuantity();
+        return LottoGenerator.generateLottos(quantity);
     }
 
     private long calculateLottoQuantity() {

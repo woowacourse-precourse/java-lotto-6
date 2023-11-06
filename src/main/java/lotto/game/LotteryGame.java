@@ -15,13 +15,15 @@ import lotto.validator.PriceValidator;
 public class LotteryGame {
     private List<Lotto> lottoList;
     private WinNumber winNumber;
+    private int cost;
+    private Map<Rank, Integer> result;
     private final InputHandler inputHandler = new InputHandler();
     private final OutputHandler outputHandler = new OutputHandler();
 
     public void run() {
         init();
         outputHandler.print(Messasge.RESULT);
-
+        result = getResult();
     }
 
     private void init() {
@@ -29,6 +31,7 @@ public class LotteryGame {
         lottoList = getLottoList(getPrice());
         outputHandler.print(Messasge.REQUEST_NUMBERS);
         winNumber = getWinNumber();
+        outputHandler.print(Messasge.getResultMessage(result, getProfitRate(cost)));
     }
 
     private int getPrice() {
@@ -42,6 +45,7 @@ public class LotteryGame {
                 PriceValidator.validateCost(price);
                 PriceValidator.validateThousand(price);
 
+                cost = price;
                 return price;
             } catch (IllegalArgumentException e) {
                 outputHandler.print(Messasge.ERROR + e.getMessage());
@@ -107,5 +111,15 @@ public class LotteryGame {
             result.put(rank, result.getOrDefault(rank, 0)+1);
         }
         return result;
+    }
+
+    private double getProfitRate(int cost){
+        long totalReward = 0L;
+
+        for(Rank rank : result.keySet()){
+            totalReward += rank.reward * result.get(rank) ;
+        }
+
+        return (double) totalReward / cost * 100;
     }
 }

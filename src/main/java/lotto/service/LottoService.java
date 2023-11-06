@@ -5,10 +5,11 @@ import lotto.domain.*;
 import java.util.List;
 
 public class LottoService {
-    private LottoMarket lottoMarket = new LottoMarket(new RandomNumbersGenerator());
+    private WinningNumbers winningNumbers;
     private LottoBuyer lottoBuyer;
 
     public void buyLotto(Money money) {
+        LottoMarket lottoMarket = new LottoMarket(new RandomNumbersGenerator());
         List<Lotto> lottos = lottoMarket.sellLotto(money);
         lottoBuyer = new LottoBuyer(lottos);
     }
@@ -17,7 +18,13 @@ public class LottoService {
         return lottoBuyer.getLottos();
     }
 
-    public void setWiningNumbersAndBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public void setWiningNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         winningNumbers.addBonusNumber(bonusNumber);
+        this.winningNumbers = winningNumbers;
+    }
+
+    public void compareAllLotto() {
+        LottoCompare lottoCompare = new LottoCompare();
+        lottoCompare.compareAllLottoToWinning(findLottos(), winningNumbers);
     }
 }

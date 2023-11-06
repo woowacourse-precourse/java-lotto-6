@@ -31,10 +31,11 @@ public class LottoController {
         WinningNumbers winningNumbers = inputView.readWinningNumbers();
         outputView.printInputBonusNumberMessage();
         BonusNumber bonusNumber = inputView.readBonusNumber();
-        lottoService.setWiningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+        lottoService.setWiningNumbers(winningNumbers, bonusNumber);
     }
 
     private void compare() {
         outputView.printWinningStatisticsMessage();
+        lottoService.compareAllLotto();
     }
 }

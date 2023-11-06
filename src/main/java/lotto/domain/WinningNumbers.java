@@ -51,4 +51,12 @@ public class WinningNumbers {
     private boolean bonusNumberAlreadyIncluded(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getNumber());
     }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+    public boolean hasBonusNumber(List<Integer> lotto) {
+        return lotto.contains(bonusNumber.getNumber());
+    }
 }

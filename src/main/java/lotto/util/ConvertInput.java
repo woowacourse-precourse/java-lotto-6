@@ -12,16 +12,16 @@ public class ConvertInput {
 
     public static int makePlayerMoneyToInt(String input) {
         try {
-            validateOneInput(input);
+            validateCount(input);
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw Exception.of(PURCHASE_AMOUNT_IS_NOT_NUMBER);
+            throw Exception.from(PURCHASE_AMOUNT_IS_NOT_NUMBER);
         }
     }
 
-    private static void validateOneInput(String input) {
+    private static void validateCount(String input) {
         if(!hasOnlyOneValue(input)){
-            throw Exception.of(PURCHASE_AMOUNT_HAS_MORE_THAN_ONE_VALUE);
+            throw Exception.from(PURCHASE_AMOUNT_HAS_MORE_THAN_ONE_VALUE);
         }
     }
 

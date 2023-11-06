@@ -5,7 +5,7 @@ public class Exception extends IllegalArgumentException {
         super(errorMessage.getErrorMessage());
     }
 
-    public static Exception of(ErrorMessage errorMessage) {
+    public static Exception from(ErrorMessage errorMessage) {
         return new Exception(errorMessage);
     }
 }

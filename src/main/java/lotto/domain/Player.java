@@ -22,7 +22,7 @@ public class Player {
         gameCount = makeGameCount(purchaseAmount);
     }
 
-    public static Player of(String userInput) {
+    public static Player from(String userInput) {
         return new Player(userInput);
     }
 
@@ -34,19 +34,19 @@ public class Player {
 
     private void validateNegativeNumber(int convertedInput) {
         if (isNegativeNumber(convertedInput)) {
-            throw Exception.of(PURCHASE_AMOUNT_IS_NEGATIVE_NUMBER);
+            throw Exception.from(PURCHASE_AMOUNT_IS_NEGATIVE_NUMBER);
         }
     }
 
     private void validateLessThanMinimumAmount(int convertedInput) {
         if (!isLessThanMinimumAmount(convertedInput)) {
-            throw Exception.of(PURCHASE_AMOUNT_IS_LESS_THAN_MINIMUM_AMOUNT);
+            throw Exception.from(PURCHASE_AMOUNT_IS_LESS_THAN_MINIMUM_AMOUNT);
         }
     }
 
     private void validateDividedByUnitAmount(int convertedInput) {
         if(!isDividedByUnitAmount(convertedInput)) {
-            throw Exception.of(PURCHASE_AMOUNT_IS_NOT_DIVIDED_UNIT_AMOUNT);
+            throw Exception.from(PURCHASE_AMOUNT_IS_NOT_DIVIDED_UNIT_AMOUNT);
         }
     }
 

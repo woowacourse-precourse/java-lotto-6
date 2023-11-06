@@ -14,13 +14,13 @@ public class InputValidator {
 
     private static void checkNull(String input) {
         if (isNull(input)) {
-            throw Exception.of(INPUT_IS_NULL);
+            throw Exception.from(INPUT_IS_NULL);
         }
     }
 
     private static void checkEmpty(String input) {
         if (!hasValue(input)) {
-            throw Exception.of(INPUT_IS_EMPTY);
+            throw Exception.from(INPUT_IS_EMPTY);
         }
     }
 

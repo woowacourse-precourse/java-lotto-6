@@ -21,6 +21,10 @@ public class UserMoney {
         return userMoneyValue / UNIT_VALUE;
     }
 
+    public float calculateTotalReturn(int calculateReturn) {
+        return calculateReturn / userMoneyValue * 100;
+    }
+
     private void validateMoney(int userMoneyValue) {
         if (!isDividedByUnit(userMoneyValue)) { // NOT_UNIT 네이밍 다시 생각하기
             throw new IllegalArgumentException(ExceptionMessage.NOT_UNIT.getErrorDescription());

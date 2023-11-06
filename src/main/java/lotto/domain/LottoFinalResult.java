@@ -18,6 +18,13 @@ public class LottoFinalResult {
         finalResultMap.replace(lottoResult, count + 1);
     }
 
+    public int calculateReturn() {
+        return finalResultMap.entrySet()
+                .stream()
+                .mapToInt((set) -> set.getKey().getWinningAmount() + set.getValue())
+                .sum();
+    }
+
     private void initLottoResult() {
         Arrays.stream(LottoResult.values())
                 .forEach((value) -> finalResultMap.put(value, INIT_VALUE));

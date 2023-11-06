@@ -15,10 +15,10 @@ public class InputValidateTest {
     }
     @Test
     void 보너스_숫자의_갯수가_1개인지_확인(){
-        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateNumber(" 1 2"));
-        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateNumber("1,2,3"));
-        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateNumber(""));
-        assertEquals("1", inputValidate.validateNumber("1"));
+        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateIsNumber(" 1 2"));
+        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateIsNumber("1,2,3"));
+        assertThrows(IllegalArgumentException.class, () -> inputValidate.validateIsNumber(""));
+        assertEquals("1", inputValidate.validateIsNumber("1"));
     }
 
     @Test

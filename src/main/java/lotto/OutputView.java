@@ -1,12 +1,19 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
     public void askPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printNumberPurchase(String s){
-        System.out.println(s+"개를 구매했습니다.");
+    public void printNumberPurchase(int cnt){
+        System.out.println(cnt+"개를 구매했습니다.");
+    }
+
+    public void printGeneratedNums(List<Integer> nums){
+        System.out.println(nums.stream().map(i -> i.toString()).collect(Collectors.joining(",", "[", "]")));
     }
 
     public void askWinningNums(){

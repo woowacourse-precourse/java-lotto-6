@@ -4,10 +4,12 @@ import static java.lang.Integer.parseInt;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
 public class InputValidate {
-    public String validateNumber(String input) {
+    public int validateCost(String input){
+        return changeInt(validateIsNumber(input));
+    }
+
+    public String validateIsNumber(String input) {
         try {
             parseInt(input);
         } catch (NumberFormatException e) {
@@ -27,7 +29,7 @@ public class InputValidate {
     }
 
     private boolean isThereGap(List<String> nums){
-        nums.stream().map(this::validateNumber);
+        nums.stream().map(this::validateIsNumber);
         return true;
     }
 

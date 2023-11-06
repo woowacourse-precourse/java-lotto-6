@@ -40,6 +40,7 @@ public class LottoController {
             }
         }
 
+        OutputView.printRequestBonusNumberMessage();
         while(true){
             try{
                 bonusNumber = new BonusNumber(winningNumber.getWinningNumber(),InputView.inputBonusNumber());

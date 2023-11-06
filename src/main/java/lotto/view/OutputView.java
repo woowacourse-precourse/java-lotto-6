@@ -3,10 +3,9 @@ package lotto.view;
 import lotto.domain.RankInfo;
 import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
+import lotto.util.message.LottoRankingMessage;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class OutputView {
 
@@ -29,17 +28,13 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        NumberFormat formatter = NumberFormat.getInstance();
-
         for (RankInfo rankInfo : RankInfo.values()) {
             int count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
-            long prizeMoney = rankInfo.getPrizeMoney();
-
-            String formattedPrizeMoney = formatter.format(prizeMoney);
-
-            System.out.println(rankInfo.getMatchNumberCnt() + "개 일치 (" + formattedPrizeMoney + "원) - " + count + "개");
+            String lottoRankingMessage = LottoRankingMessage.findLottoRankingMessage(rankInfo, count);
+            System.out.println(lottoRankingMessage);
         }
     }
+
 
     private enum Constants {
         INPUT_MONEY("%d개를 구매했습니다.%n"),

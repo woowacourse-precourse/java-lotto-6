@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.ExceptionMessage;
+import lotto.util.message.ExceptionMessage;
 
 public class PurchasePrice {
 
@@ -21,7 +21,7 @@ public class PurchasePrice {
         }
     }
 
-    public Long getPurchaseLottoAmount() {
-        return this.money / Lotto.PRICE;
+    public int getPurchaseLottoAmount() {
+        return Math.toIntExact(this.money / Lotto.PRICE);
     }
 }

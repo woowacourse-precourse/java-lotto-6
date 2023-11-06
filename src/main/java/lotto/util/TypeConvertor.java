@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.util.ExceptionMessage.NOT_NUMERIC;
+import static lotto.util.message.ExceptionMessage.NOT_NUMERIC;
 
 public class TypeConvertor {
 

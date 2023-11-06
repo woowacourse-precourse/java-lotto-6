@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.message;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoInfo;

@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import lotto.util.ExceptionMessage;
+import lotto.util.message.ExceptionMessage;
 
 import java.util.List;
 
 import static lotto.domain.LottoInfo.*;
-import static lotto.util.ExceptionMessage.CHECK_SIZE_NUM;
+import static lotto.util.message.ExceptionMessage.CHECK_SIZE_NUM;
 
 public class Lotto {
 

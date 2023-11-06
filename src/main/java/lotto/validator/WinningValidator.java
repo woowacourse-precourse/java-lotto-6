@@ -16,7 +16,7 @@ public class WinningValidator {
     }
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 골라야 합니다. ");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 반드시 6개를 골라야 합니다. ");
         }
     }
 

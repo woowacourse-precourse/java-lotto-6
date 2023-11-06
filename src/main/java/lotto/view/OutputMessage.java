@@ -7,6 +7,17 @@ import java.text.DecimalFormat;
 
 public class OutputMessage {
 
+    private OutputMessage() {
+    }
+
+    private static class OutputMessageHolder {
+        private static OutputMessage outputMessage;
+    }
+
+    public static OutputMessage getInstance() {
+        return OutputMessageHolder.outputMessage;
+    }
+
     private static String USER_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
     private static final String WINNING_RESULT_START_MESSAGE = "당첨 통계\n---";
     private static final String WINNING_RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";

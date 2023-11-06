@@ -7,11 +7,14 @@ import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
 
-    private ConsoleOutputView() {
+    private final OutputMessage outputMessage;
+
+    private ConsoleOutputView(OutputMessage outputMessage) {
+        this.outputMessage = outputMessage;
     }
 
     private static class ConsoleOutputViewHolder {
-        private static ConsoleOutputView consoleOutputView = new ConsoleOutputView();
+        private static ConsoleOutputView consoleOutputView = new ConsoleOutputView(OutputMessage.getInstance());
     }
 
     public static ConsoleOutputView getInstance() {

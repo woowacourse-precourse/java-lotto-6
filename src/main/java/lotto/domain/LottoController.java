@@ -8,6 +8,7 @@ import java.util.List;
 public class LottoController {
     private int lottoAmount;
     private List<Lotto> myLotto;
+    private List<Integer> prizeLotto;
 
     public void startGame() {
         setMyLotto();
@@ -28,6 +29,8 @@ public class LottoController {
     }
 
     private void setPrizeLotto() {
-
+        UserInput userInput = new UserInput();
+        userInput.setPrizeLotto();
+        prizeLotto = userInput.getPrizeLotto();
     }
 }

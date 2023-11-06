@@ -9,7 +9,16 @@ public class Amount {
     private final int numberOfLottos;
 
     public Amount(int amount) {
+        validate(amount);
         this.amount = amount;
         this.numberOfLottos = 1;
+    }
+
+    private void validate(final int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(NOT_POSITIVE_EXCEPTION_MESSAGE);
+        } else if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(NOT_DIVIDED_BY_PRICE_EXCEPTION_MESSAGE);
+        }
     }
 }

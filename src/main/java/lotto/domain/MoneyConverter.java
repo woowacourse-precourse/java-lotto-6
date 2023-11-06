@@ -3,20 +3,18 @@ package lotto.domain;
 import lotto.util.Constants;
 import lotto.util.ErrorMessage;
 
-import java.util.regex.Pattern;
 
 public class MoneyConverter {
     private final int chance;
 
     public MoneyConverter(String input) {
-        patternCheck(input, Constants.MONEY_PATTERN);
+        patternCheck(input);
         this.chance = convertMoneyToChances(input);
     }
 
-    private void patternCheck(String input, Pattern pattern) {
-        if (!pattern.matcher(input).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INFO
-                            + ErrorMessage.MONEY_ERROR);
+    private void patternCheck(String input) {
+        if (!Constants.MONEY_PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException(ErrorMessage.MONEY_CONVERT_ERROR);
         }
     }
 

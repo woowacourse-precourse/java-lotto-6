@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.util.Constants;
 import lotto.util.ErrorMessage;
 
 import java.util.*;
@@ -14,32 +15,26 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO +
-                            ErrorMessage.LOTTO_SIZE_ERROR);
+        if (numbers.size() != Constants.LOTTO_NUM_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR);
         }
     }
 
     private void uniqueValidate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != 6) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO +
-                            ErrorMessage.LOTTO_UNIQUE_ERROR);
+        if (uniqueNumbers.size() != Constants.LOTTO_NUM_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_UNIQUE_ERROR);
         }
     }
 
     private void rangeValidate(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO +
-                            ErrorMessage.LOTTO_RANGE_ERROR);
+        if (numbers.stream().anyMatch(number -> number < Constants.LOTTO_MIN_NUM || number > Constants.LOTTO_MAX_NUM)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_ERROR);
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

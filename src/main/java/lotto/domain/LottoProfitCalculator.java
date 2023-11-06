@@ -13,18 +13,18 @@ public class LottoProfitCalculator {
         setTotalProfitPercentile(totalProfit(lottoResult), chance);
     }
 
+    private void setTotalProfitPercentile(int totalProfit, int chance) {
+        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT) * Constants.PERCENTAGE_MULTIPLIER;
+    }
+
     private int totalProfit(Map<Integer, Integer> lottoResult) {
-        int totalProfit = 0;
+        int totalProfit = Constants.INIT_VALUE_ZERO;
 
         for (Prize prize : Prize.values()) {
             totalProfit += prize.getPrizeAmount() *
-                    lottoResult.getOrDefault(prize.getMatchCount(), 0);
+                    lottoResult.getOrDefault(prize.getMatchCount(), Constants.INIT_VALUE_ZERO);
         }
         return totalProfit;
-    }
-
-    private void setTotalProfitPercentile(int totalProfit, int chance) {
-        totalProfitPercentile = (double) totalProfit / (chance * Constants.MONEY_UNIT) * Constants.PERCENTAGE_MULTIPLIER;
     }
 
     public String getTotalProfitPercentile() {

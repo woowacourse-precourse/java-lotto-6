@@ -1,8 +1,6 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoCountCalculator;
-import lotto.domain.LottoProfitCalculator;
 import lotto.util.OutputMessage;
 
 import java.util.List;
@@ -19,14 +17,17 @@ public class OutputView {
         }
     }
 
-    public void printResult(Map<Integer, Integer> count, String Profit) {
-        System.out.print(OutputMessage.OUTPUT_RESULT_INFO +
-                        OutputMessage.OUTPUT_RESULT_3 + count.get(3) + OutputMessage.OUTPUT_RESULT_UNIT +
-                        OutputMessage.OUTPUT_RESULT_4 + count.get(4) + OutputMessage.OUTPUT_RESULT_UNIT +
-                        OutputMessage.OUTPUT_RESULT_5 + count.get(5) + OutputMessage.OUTPUT_RESULT_UNIT +
-                        OutputMessage.OUTPUT_RESULT_B + count.get(7) + OutputMessage.OUTPUT_RESULT_UNIT +
-                        OutputMessage.OUTPUT_RESULT_6 + count.get(6) + OutputMessage.OUTPUT_RESULT_UNIT +
-                        OutputMessage.OUTPUT_RESULT_PROFIT_FIRST + Profit + OutputMessage.OUTPUT_RESULT_PROFIT_LAST
-        );
+    public void printResult(Map<Integer, Integer> count, String profit) {
+        String countUnit = OutputMessage.OUTPUT_RESULT_UNIT;
+
+        String resultBuilder = OutputMessage.OUTPUT_RESULT_INFO +
+                OutputMessage.OUTPUT_RESULT_3 + count.get(3) + countUnit +
+                OutputMessage.OUTPUT_RESULT_4 + count.get(4) + countUnit +
+                OutputMessage.OUTPUT_RESULT_5 + count.get(5) + countUnit +
+                OutputMessage.OUTPUT_RESULT_B + count.get(7) + countUnit +
+                OutputMessage.OUTPUT_RESULT_6 + count.get(6) + countUnit +
+                OutputMessage.OUTPUT_RESULT_PROFIT_FIRST + profit + OutputMessage.OUTPUT_RESULT_PROFIT_LAST;
+
+        System.out.print(resultBuilder);
     }
 }

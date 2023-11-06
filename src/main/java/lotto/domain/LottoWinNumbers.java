@@ -10,10 +10,6 @@ import java.util.stream.Collectors;
 public class LottoWinNumbers {
     List<Integer> lottoWinNumbers = new ArrayList<>();
 
-    public List<Integer> getLottoWinNumbers() {
-        return lottoWinNumbers;
-    }
-
     public LottoWinNumbers(String input) {
         this.lottoWinNumbers = sliceLottoNumbers(input);
         sizeCheck();
@@ -22,10 +18,9 @@ public class LottoWinNumbers {
     }
 
     private void rangeCheck() {
-        if (lottoWinNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO
-                            + ErrorMessage.LOTTO_RANGE_ERROR);
+        if (lottoWinNumbers.stream()
+                .anyMatch(number -> number < Constants.LOTTO_MIN_NUM || number > Constants.LOTTO_MAX_NUM)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_ERROR);
         }
     }
 
@@ -35,26 +30,24 @@ public class LottoWinNumbers {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO
-                            + ErrorMessage.LOTTO_STRING_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_STRING_ERROR);
         }
     }
 
     private void sizeCheck() {
-        if (lottoWinNumbers.size() != 6) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO
-                            + ErrorMessage.LOTTO_SIZE_ERROR);
+        if (lottoWinNumbers.size() != Constants.LOTTO_NUM_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR);
         }
     }
 
     private void uniqueCheck() {
         Set<Integer> uniqueNumbers = new HashSet<>(lottoWinNumbers);
-        if (uniqueNumbers.size() != 6) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.ERROR_INFO
-                            + ErrorMessage.LOTTO_UNIQUE_ERROR);
+        if (uniqueNumbers.size() != Constants.LOTTO_NUM_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_UNIQUE_ERROR);
         }
+    }
+
+    public List<Integer> getLottoWinNumbers() {
+        return lottoWinNumbers;
     }
 }

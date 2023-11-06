@@ -22,14 +22,18 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    public Winning getWinning(List<Integer> winningNumbers, int bonusNumber){
+    private int countMatchingNumber(List<Integer> winningNumbers){
         int count = 0;
         for(Integer winningNumber : winningNumbers){
             if(numbers.contains(winningNumber)){
                 count += 1;
             }
         }
+        return count;
+    }
+
+    public Winning getWinning(List<Integer> winningNumbers, int bonusNumber){
+        int count = countMatchingNumber(winningNumbers);
 
         if(count == 6){ return Winning.FIRST; }
         if(count == 5){

@@ -8,7 +8,7 @@ public class Number {
         this.value = value;
     }
 
-    public Number from(final int value) {
+    public static Number from(final int value) {
         return new Number(value);
     }
 

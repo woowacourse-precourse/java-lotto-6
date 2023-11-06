@@ -5,12 +5,15 @@ import java.util.List;
 public class Lotto {
     private final List<Number> numbers;
 
-    public Lotto(List<Number> numbers) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers
+                .stream()
+                .map(Number::from)
+                .toList();
     }
 
-    private void validate(List<Number> numbers) {
+    private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

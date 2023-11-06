@@ -1,6 +1,5 @@
 package lotto.domain.controller;
 
-import static java.lang.Math.round;
 import static lotto.global.constant.LottoNumberType.LOTTO_AMOUNT_UNIT;
 
 import java.util.List;
@@ -14,9 +13,6 @@ import lotto.global.utils.generator.NumbersGenerator;
 import lotto.global.view.OutputView;
 
 public class LottoController {
-
-    private static final int PERCENTAGE_VALUE = 100;
-    private static final double MULTIPLIER = 10.0;
 
     private final ClientService clientService;
     private final LottoService lottoService;
@@ -36,8 +32,7 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         lottoResultManager.calculateResult(winningLotto);
         OutputView.outputStatistics(
-                round(lottoResultManager.getTotalRevenue() / (double) purchaseAmount * PERCENTAGE_VALUE * MULTIPLIER)
-                        / MULTIPLIER, lottoResultManager);
+                lottoService.getRateOfReturn(purchaseAmount, lottoResultManager), lottoResultManager);
     }
 
     private WinningLotto getWinningLotto() {

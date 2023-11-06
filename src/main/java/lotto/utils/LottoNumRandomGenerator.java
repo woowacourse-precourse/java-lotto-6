@@ -26,8 +26,8 @@ public class LottoNumRandomGenerator {
     }
 
     public List<Integer> setRandomNum(){
-        List<Integer> result=sortRandomNum(Randoms.pickUniqueNumbersInRange(MIN, MAX, AMOUNT));
-        return result;
+        List<Integer> sortedResult = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN, MAX, AMOUNT));
+        return sortRandomNum(sortedResult);
     }
 
     private List<Integer> sortRandomNum(List<Integer> randomNum){

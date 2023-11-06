@@ -12,7 +12,7 @@ public class StubNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public List<Integer> generateSortedList() {
+    public List<Integer> generate() {
         return numbers;
     }
 }

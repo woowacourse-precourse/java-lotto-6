@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Map;
 import lotto.model.Lottos;
 import lotto.model.Money;
@@ -22,19 +23,20 @@ public class OutputView {
         printLine();
     }
 
-    public void showLottoStatistics(Rank rank, Lottos lottos, User user) {
+    public void showLottoStatistics(Lottos lottos, User user) {
         Map<Rank, Integer> rankResult = lottos.saveRankResult(user);
-        rankResult.remove(Rank.ECT);
         System.out.println(STAT_MESSAGE);
-        rankResult.forEach((key, value) -> {
-            if (rank == Rank.FIVE_BONUS) {
-                System.out.printf(STAT_RESULT_BONUS, rank.getMatchingNumber(),
-                        MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
-            } else {
-                System.out.printf(STAT_RESULT, rank.getMatchingNumber(),
-                        MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
-            }
-        });
+        Arrays.stream(rankResult.keySet().toArray(new Rank[0]))
+                .forEach(rank -> System.out.println(getLottoStatistics(rank, rankResult)));
+    }
+
+    private String getLottoStatistics(Rank rank, Map<Rank, Integer> rankResult) {
+        if (rank == Rank.FIVE_BONUS) {
+            return String.format(STAT_RESULT_BONUS, rank.getMatchingNumber(),
+                    MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
+        }
+        return String.format(STAT_RESULT, rank.getMatchingNumber(),
+                MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
     }
 
     public void printLine() {

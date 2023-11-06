@@ -24,15 +24,16 @@ public class Lottos {
             Rank rank = user.getRank(lotto);
             rankResult.put(rank, rankResult.get(rank));
         }
+        rankResult.remove(Rank.ECT);
         return rankResult;
     }
 
     private Map<Rank, Integer> initRank() {
-        Map<Rank, Integer> map = new EnumMap<>(Rank.class);
+        Map<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            map.put(rank, 0);
+            rankResult.put(rank, 0);
         }
-        return map;
+        return rankResult;
     }
 
 }

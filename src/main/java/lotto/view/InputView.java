@@ -16,12 +16,12 @@ public class InputView {
     }
 
     public static String winningLottoNumbersInput() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.printf("%n당첨 번호를 입력해 주세요.%n");
         return Console.readLine();
     }
 
     public static String winningLottoBonusNumberInput() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.printf("%n보너스 번호를 입력해 주세요.%n");
         return Console.readLine();
     }
 }

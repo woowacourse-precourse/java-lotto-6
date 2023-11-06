@@ -4,6 +4,7 @@ import lotto.domain.*;
 import lotto.enums.Rank;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.List;
 
 /* *
@@ -16,7 +17,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private static void printNumberOfPurchasedLottoTickets(int numberOfTickets) {
+    public static void printNumberOfPurchasedLottoTickets(int numberOfTickets) {
         System.out.printf("%d개를 구매했습니다.%n", numberOfTickets);
     }
 
@@ -27,17 +28,14 @@ public class OutputView {
     }
 
     public static void printWinningResults(WinningResult winningResult) {
+        System.out.println();
         DecimalFormat formatter = new DecimalFormat("###,###");
 
-        for (Rank rank : Rank.valuesByReverseOrder()) {
+        Arrays.stream(Rank.valuesByReverseOrder()).forEach(rank -> {
             System.out.printf("%s개 일치", rank.getMatchedCount());
-            if (rank.containsBonus()) {
-                System.out.print(", 보너스 볼 일치");
-            }
-            System.out.printf(" (%s원)", formatter.format(rank.getWinningAmount()));
-            System.out.printf(" - %s개", winningResult.getCount(rank));
-            System.out.println();
-        }
+            if(rank.containsBonus()) System.out.print(", 보너스 볼 일치");
+            System.out.printf(" (%s원) - %s개%n", formatter.format(rank.getWinningAmount()), winningResult.getCount(rank));
+        });
     }
 
     public static void printTotalReturn(TotalWinning totalWinning) {

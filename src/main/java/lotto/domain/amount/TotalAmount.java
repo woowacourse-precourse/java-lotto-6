@@ -11,4 +11,8 @@ public class TotalAmount extends Amount {
     public static TotalAmount initial() {
         return new TotalAmount(0);
     }
+
+    public TotalAmount addLottoPrize(LottoPrize lottoPrize) {
+        return new TotalAmount(this.amount + lottoPrize.getPrizeAmount());
+    }
 }

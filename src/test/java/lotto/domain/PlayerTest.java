@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
@@ -42,6 +43,24 @@ class PlayerTest {
     @Test
     void inputLottoWinningNumbersByValue() {
         assertThatThrownBy(() -> new Player().setWinningNumbers("1,2,3,4,5,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 보너스 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"0", "46"})
+    void inputLottoBonusNumberByValue(String input) {
+        assertThatThrownBy(() -> new Player().setBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 보너스 번호가 로또 당첨 번호에 포함되면 예외가 발생한다.")
+    @Test
+    void inputLottoBonusNumberByDuplicatedWithLottoWinningNumbers() {
+        Player player = new Player();
+        player.setWinningNumbers("1,2,3,4,5,6");
+
+        assertThatThrownBy(() -> player.setBonusNumber("1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

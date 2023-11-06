@@ -17,9 +17,9 @@ class BudgetTest {
 
     @ParameterizedTest
     @CsvSource({
-            "3000, 3",
-            "10000, 10",
-            "100000, 100"
+            "3_000, 3",
+            "10_000, 10",
+            "100_000, 100"
     })
     void 로또_티켓_생성(int input, int expectedTickets) {
         Budget budget = new Budget(input);

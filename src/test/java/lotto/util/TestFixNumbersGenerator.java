@@ -3,7 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class TestRandomNumbersGenerator implements NumbersGenerator {
+public class TestFixNumbersGenerator implements NumbersGenerator {
 
   private static final int MIN_RANGE = 1;
   private static final int MAX_RANGE = 6;

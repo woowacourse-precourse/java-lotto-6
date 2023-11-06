@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public class Profit {
+    private static final int MINIMUM_PROFIT = 0;
     private Integer amount;
 
     Profit() {
@@ -19,7 +20,7 @@ public class Profit {
     }
 
     private boolean isNotPositiveProfit(Integer profit) {
-        return profit >= 0;
+        return profit < MINIMUM_PROFIT;
     }
 
     public Integer getAmount() {

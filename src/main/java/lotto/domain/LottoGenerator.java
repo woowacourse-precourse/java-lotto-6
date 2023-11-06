@@ -35,18 +35,8 @@ public class LottoGenerator {
     }
 
     public static Integer createBonusNumber(Lotto winningLotto, String userInput) {
-        boolean isRunning = TRUE.get();
-
-        while (isRunning) {
-            try {
-                Lotto.checkLottoNumber(userInput);
-                winningLotto.checkInclusion(Integer.parseInt(userInput));
-                isRunning = FALSE.get();
-            } catch (IllegalArgumentException ex) {
-                Output.printError(ex);
-            }
-        }
-
+        Lotto.checkLottoNumber(userInput);
+        winningLotto.checkInclusion(Integer.parseInt(userInput));
         return Integer.parseInt(userInput);
     }
 }

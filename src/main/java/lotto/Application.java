@@ -12,21 +12,12 @@ import lotto.ui.Output;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-
-        // 5. 당첨 번호 입력
-
-
-
-        // 6. 보너스 번호 입력
-        Output.printBonusNumber();
-        Integer bonusNumber = LottoGenerator.createBonusNumber(winningLotto, Input.get());
-
-        // 7. 당첨 내역 계산 로직
-        LottoResult lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
-
-        // 9. 당첨 결과 출력
-        Output.printResult(lottoResult, lottoResult.calculateEarningsRate(user.lottoCount));
+//
+//        // 7. 당첨 내역 계산 로직
+//        LottoResult lottoResult = LottoManager.checkWinning(user.lottos, winningLotto, bonusNumber);
+//
+//        // 9. 당첨 결과 출력
+//        Output.printResult(lottoResult, lottoResult.calculateEarningsRate(user.lottoCount));
 
 
     }

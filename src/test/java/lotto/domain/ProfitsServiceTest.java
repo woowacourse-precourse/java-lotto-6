@@ -1,13 +1,12 @@
-package lotto.service;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Buyer;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
+import lotto.service.LottoService;
+import lotto.service.ProfitsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

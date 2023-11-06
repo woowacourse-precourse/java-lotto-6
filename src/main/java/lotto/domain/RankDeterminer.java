@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RankDeterminer {
     private final Lotto winningLotto;
@@ -13,17 +14,15 @@ public class RankDeterminer {
     }
 
     public List<LottoRank> determineAllRank(List<Lotto> userLottos) {
-        List<LottoRank> rankResult = new ArrayList<>();
-        for (Lotto lotto : userLottos) {
-            rankResult.add(determineEachRank(lotto));
-        }
-
-        return rankResult;
+        return userLottos.stream()
+                .map(this::determineEachRank)
+                .collect(Collectors.toList());
     }
 
     private LottoRank determineEachRank(Lotto lotto) {
         int matchingCount = lotto.countMatchingNumbers(winningLotto);
         boolean isSameBonus = lotto.isContainNumber(bonusNumber.getBonusNumber());
+
         LottoRank rank = LottoRank.findRank(matchingCount);
         if (rank.equals(LottoRank.THIRD) && isSameBonus) {
             return LottoRank.SECOND;

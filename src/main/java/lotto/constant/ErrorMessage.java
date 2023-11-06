@@ -4,13 +4,13 @@ public enum ErrorMessage {
     PREFIX("[ERROR] %s"),
 
     INDIVISIBLE_AMOUNT(String.format(
-            "%d원 단위의 금액을 입력해야 합니다.",
+            "%,d원 단위의 금액을 입력해야 합니다.",
             LottoConstraint.PRICE_PER_LOTTO.getValue()
     )),
     OUT_RANGE_AMOUNT(String.format(
-            "%d원 이상, %d원 이하의 금액을 입력해야 합니다.",
-            LottoConstraint.MIN_AMOUNT.getValue(),
-            LottoConstraint.MAX_AMOUNT.getValue()
+            "%,d원 이상, %,d원 이하의 금액을 입력해야 합니다.",
+            (long) LottoConstraint.MIN_PURCHASE_QUANTITY.getValue() * LottoConstraint.PRICE_PER_LOTTO.getValue(),
+            (long) LottoConstraint.MAX_PURCHASE_QUANTITY.getValue() * LottoConstraint.PRICE_PER_LOTTO.getValue()
     )),
 
     INVALID_LOTTO_NUMBERS_SIZE(String.format(
@@ -26,6 +26,12 @@ public enum ErrorMessage {
 
     BONUS_NUMBER_ALREADY_INITIALIZED("보너스 번호는 한 번만 초기화할 수 있습니다."),
     DUPLICATE_BONUS_NUMBER("보너스 번호는 로또 번호와 중복될 수 없습니다."),
+
+    INVALID_LONG_FORMAT(String.format(
+            "%,d 이상 %,d 이하의 숫자만 입력 가능합니다.",
+            Long.MIN_VALUE,
+            Long.MAX_VALUE)
+    ),
     ;
     private final String message;
 

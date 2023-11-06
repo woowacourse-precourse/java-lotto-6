@@ -53,5 +53,6 @@ ________
 ### 게임 시작 & 입력
 
 - `LottoController` 클래스 `run`메서드를 통해 게임 진행
-    - [x] `createLottoGenerate` 메서드를 통해 `LottoDto` 참조값 생성 
- 
+    - [x] `createLottoGenerate` 메서드를 통해 `LottoDto` 참조값 생성
+- `InpputView` 클래스 추가
+    - [x] 로또를 구매하기 위한 입력 기능 

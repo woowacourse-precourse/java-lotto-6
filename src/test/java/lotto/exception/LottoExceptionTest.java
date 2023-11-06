@@ -50,8 +50,6 @@ class LottoExceptionTest {
         input.add(3);
         input.add(4);
         input.add(2);
-        //input.stream().sorted().collect(Collectors.toList());
-        System.out.println(input);
         //then
         assertThatThrownBy(() -> new LottoException().isAscending(input)).isInstanceOf(
                 IllegalStateException.class);

@@ -8,6 +8,7 @@ import lotto.domain.winningNumber.WinningNumber;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,31 +40,23 @@ public class Lotto {
     }
 
     public LottoRank compareLottoNumberWithFinalWinningNumber(FinalWinningNumber finalWinningNumber) {
-        List<Integer> comparisonResult = Arrays.asList(0, 0);
-        for(int number : numbers) {
-            if(isDuplicateLottoNumberAndWinningNumber(number, finalWinningNumber.winningNumber())) {
-                comparisonResult.set(0, comparisonResult.get(0) + 1);
-            }
-            if(isDuplicateLottoNumberAndBonusNumber(number, finalWinningNumber.bonusNumber())) {
-                comparisonResult.set(1, 1);
-            }
-        }
-        return LottoRank.getRank(comparisonResult);
+        return LottoRank.getRank(Arrays.asList(
+                compareWithWinningNumber(finalWinningNumber.winningNumber()),
+                compareWithBonusNumber(finalWinningNumber.bonusNumber())
+        ));
     }
 
-    private boolean isDuplicateLottoNumberAndWinningNumber(int number, WinningNumber winningNumber) {
-        for(int currentWinningNumber : winningNumber.getWinningNumber()) {
-            if(number == currentWinningNumber) {
-                return true;
-            }
-        }
-        return false;
+    private int compareWithWinningNumber(WinningNumber winningNumber) {
+        return (int)numbers.stream()
+                .filter(o -> winningNumber.getWinningNumber().stream()
+                        .anyMatch(Predicate.isEqual(o)))
+                .count();
     }
 
-    private boolean isDuplicateLottoNumberAndBonusNumber(int number, BonusNumber bonusNumber) {
-        if(number == bonusNumber.getBonusNumber()) {
-            return true;
+    private int compareWithBonusNumber(BonusNumber bonusNumber) {
+        if(numbers.stream().anyMatch(i -> equals(bonusNumber.getBonusNumber()))){
+            return 1;
         }
-        return false;
+        return 0;
     }
 }

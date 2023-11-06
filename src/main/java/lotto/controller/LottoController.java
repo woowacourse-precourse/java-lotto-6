@@ -5,13 +5,13 @@ import static lotto.view.Prompt.WAIT_FOR_PURCHASE_AMOUNT;
 import static lotto.view.Prompt.WAIT_FOR_WINNING_NUMBERS;
 
 import lotto.BonusNumber;
-import lotto.ConsoleUserInterface;
+import lotto.io.ConsoleUserInterface;
 import lotto.LotteryPortfolio;
 import lotto.Lotto;
 import lotto.LottoService;
 import lotto.PurchaseAmount;
 import lotto.RandomLotteryNumberProvider;
-import lotto.UserInputReader;
+import lotto.io.UserInputReader;
 import lotto.view.PortfolioConsoleView;
 
 public class LottoController {

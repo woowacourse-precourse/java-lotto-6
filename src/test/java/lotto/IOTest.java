@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import lotto.io.UserInputReader;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

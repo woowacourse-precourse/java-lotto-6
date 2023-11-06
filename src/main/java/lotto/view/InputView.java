@@ -2,7 +2,6 @@ package lotto.view;
 
 import static java.util.stream.Collectors.toList;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -59,6 +58,7 @@ public final class InputView extends ConsoleView {
 
     private List<Integer> parseToList(String input) {
         return Arrays.stream(input.split(DELIMITER))
+            .map(String::trim)
             .map(Integer::parseInt)
             .collect(toList());
     }

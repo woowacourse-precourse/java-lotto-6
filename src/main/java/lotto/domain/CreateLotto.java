@@ -17,10 +17,6 @@ public class CreateLotto {
         amount = money.getMoney() / 1000;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public void multipleLotto() {
         lottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {

@@ -86,6 +86,22 @@
 - getWinningAmount 함수
   - winningAmount 반환하는 함수
 
+
+#### InputValidator 객체
+입력 값에 대한 유효성 검사를 진행하는 함수입니다.
+- validateLottoPriceInput 함수
+  - 구매 금액 검증
+    - 1000으로 나누어 떨어지는 양의 정수인지 확인
+- validateLottoNumberInput 함수
+  - 당첨 로또 번호 검증
+    - ,로 구분된 문자열이 6개인가 확인
+    - 1에서 45의 숫자가 입력되었는지 확인
+- validateBonusNumberInput 함수
+  - 보너스 번호 검증
+    - 1에서 45의 숫자가 입력되었는지 확인
+
+
+
 ### 구현 목록
 - [ ] InputUtil 객체
 - [x] RandomUtil 객체

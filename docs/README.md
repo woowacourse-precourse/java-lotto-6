@@ -32,7 +32,7 @@
   + [0] 입력된 string 형식의 값을 list로 반환하는 기능
 
 ### controller package
-  + [ ] model, view를 통해 로또 진행
+  + [0] model, view를 통해 로또 진행
 
 ### constants package
   + [0] 상수 string을 enum으로 관리하는 기능 
@@ -40,12 +40,12 @@
 
 ### utility package
 - computerInputException class (Lotto)
-  + [ ] 랜덤 로또 갯수가 6자리를 넘을 경우 - 에러 출력 Lotto.java 활용
-  + [ ] 랜덤 로또 숫자에 중복이 있을 경우 - 에러 출력 Lotto.java 활용
+  + [0] 랜덤 로또 갯수가 6자리를 넘을 경우 - 에러 출력 Lotto.java 활용
+  + [0] 랜덤 로또 숫자에 중복이 있을 경우 - 에러 출력 Lotto.java 활용
 
 - userInputException class
-  + [ ] 입력된 구입 금액이 1000 단위로 떨어지지 않을 경우 - 재입력
-  + [ ] 입력된 구입 금액이 숫자가 아닐 경우 - 재입력
+  + [0] 입력된 구입 금액이 1000 단위로 떨어지지 않을 경우 - 재입력
+  + [0] 입력된 구입 금액이 숫자가 아닐 경우 - 재입력
   + [ ] 로또 당첨 번호가 6자리를 넘을 경우 - 재입력
   + [ ] 로또 당첨 번호에 숫자외 값이 올경우 -재입력
   + [ ] 보너스 번호와 당첨 번호에 중복이 있을 경우 - 재입력

@@ -21,7 +21,7 @@ public class LottoController {
         lottoView.printLottoPurchase(lottoPurchaseReturn);
 
         LottoMachine lottoMachine = lottoService.createLottoMachine(lottoPurchaseReturn);
-
+        lottoView.printPublishedLotto(lottoMachine.getLottos());
 
     }
 }

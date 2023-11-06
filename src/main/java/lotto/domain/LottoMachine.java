@@ -18,4 +18,8 @@ public class LottoMachine {
         this.lottoReturnRate = 0;
     }
 
+    public List<Lotto> getLottos(){
+        return this.lottos;
+    }
+
 }

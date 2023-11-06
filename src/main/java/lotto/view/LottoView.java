@@ -2,6 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.LottoFinalConsts;
+import lotto.domain.Lotto;
+
+import java.util.List;
 
 public class LottoView implements LottoFinalConsts {
 
@@ -12,5 +15,11 @@ public class LottoView implements LottoFinalConsts {
 
     public void printLottoPurchase(int lottoPurchase){
         System.out.printf("%d%s", lottoPurchase, PRINT_LOTTO_PURCHASE_COUNT);
+    }
+
+    public void printPublishedLotto(List<Lotto> lottos){
+        for (Lotto lotto:lottos) {
+            System.out.println(lotto.toString());
+        }
     }
 }

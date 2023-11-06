@@ -44,4 +44,17 @@ public class LottoExceptionTest {
         assertThrows(IllegalArgumentException.class, () ->
                 lottoException.validInputBonusNumber(number), "[ERROR] 보너스 번호는 숫자로 구성되어야 합니다");
     }
+
+    @Test
+    void 보너스_번호_범위_벗어난_입력() {
+        int bonusNumber = 80;
+        // 에러메시지와 상관없이 IllegalArgumentException만 발생하면 통과가 됨
+//        assertThrows(IllegalArgumentException.class, () ->
+//                lottoException.validateBonusNumberPermittedRange(bonusNumber), "[ERROR] 보너스 번호의 범위는 1~45이여야 합니다");
+
+        // 에러메시지까지 일치해야 통과하는 테스트 코드
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+                lottoException.validateBonusNumberPermittedRange(bonusNumber));
+        assertEquals("[ERROR] 보너스 번호의 범위는 1~45이여야 합니다", exception.getMessage());
+    }
 }

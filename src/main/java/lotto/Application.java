@@ -14,34 +14,27 @@ public class Application {
 
         View.printMessage(ASK_BUDGET);
 
-        String lottoBudgetInput = "";
+        String lottoBudgetInput;
+        Integer budget;
 
         while (true) {
             lottoBudgetInput = View.getUserInput();
-//            Validator.validationFlag = Validator.isInputEmpty(lottoBudgetInput);
             if (Validator.isInputEmpty(lottoBudgetInput)) {
                 continue;
             }
-//            Validator.validationFlag = Validator.isNumber(lottoBudgetInput);
-            if (Validator.isNumber(lottoBudgetInput)) {
+            if (Validator.isNumberOnly(lottoBudgetInput)) {
                 continue;
             }
-//            Validator.validationFlag = Validator.isPriceUnder1000(lottoBudgetInput);
-            if (Validator.isPriceUnder1000(lottoBudgetInput)) {
+            budget = Convertor.convertInputToInteger(lottoBudgetInput);
+            if (Validator.isPriceUnder1000(budget)) {
                 continue;
             }
-//            Validator.validationFlag = Validator.isPriceIndivisible(lottoBudgetInput);
-            if (Validator.isPriceIndivisible(lottoBudgetInput)) {
+            if (Validator.isPriceIndivisible(budget)) {
                 continue;
             }
-
-            if (!Validator.validationFlag) {
-                break;
-            }
+            break;
         }
 
-
-        Integer budget = Convertor.convertInputToInteger(lottoBudgetInput);
         Integer lotteryCount = Controller.calculateLotteryCount(budget);
         View.printLotteryCount(lotteryCount);
 
@@ -49,7 +42,7 @@ public class Application {
         List<Lotto> lottoList = gameData.getLottoList();
         for (int i = 0; i < lotteryCount; i++) {
             List<Integer> lotteryNumbers = Lotto.generateLotteryNumbers();
-            Lotto.sortLotteryNumbers(lotteryNumbers);
+            Lotto.sortNumbers(lotteryNumbers);
             lottoList.add(new Lotto(lotteryNumbers));
         }
 
@@ -60,14 +53,64 @@ public class Application {
         System.out.println();
 
         View.printMessage(ASK_WINNING_NUMBERS);
-        String winningNumbersInput = View.getUserInput();
-        String[] winningNumbersArray = Convertor.splitInput(winningNumbersInput);
-        List<Integer> winningNumbersTemp = Convertor.convertToList(winningNumbersArray);
+
+        String winningNumbersInput;
+        String[] winningNumbersArray;
+        List<Integer> winningNumbersTemp;
+        while (true) {
+            winningNumbersInput = View.getUserInput();
+            if (Validator.isInputEmpty(winningNumbersInput)) {
+                continue;
+            }
+
+            /**
+             * 구분자 검증
+             */
+
+            winningNumbersArray = Convertor.splitInput(winningNumbersInput);
+            if (Controller.validateUserInputIsOnlyNumbers(winningNumbersArray)) {
+                continue;
+            }
+
+            winningNumbersTemp = Convertor.convertToList(winningNumbersArray);
+            if (Controller.validateUserInputNumberIsOutOfValidRange(winningNumbersTemp)) {
+                continue;
+            }
+            if (Controller.validateUserInputNumberIsDuplicate(winningNumbersTemp)) {
+                continue;
+            }
+
+            break;
+        }
         gameData.setWinningNumbers(winningNumbersTemp);
 
         View.printMessage(ASK_BONUS_NUMBERS);
-        String bonusNumberInput = View.getUserInput();
-        Integer bonusNumberTemp = Convertor.convertInputToInteger(bonusNumberInput);
+        String bonusNumberInput;
+        Integer bonusNumberTemp;
+
+        /**
+         * 보너스 번호 입력값 검증
+         */
+
+        while (true) {
+            bonusNumberInput = View.getUserInput();
+            if (Validator.isInputEmpty(bonusNumberInput)) {
+                continue;
+            }
+            if (Validator.isNumberOnly(bonusNumberInput)) {
+                continue;
+            }
+            bonusNumberTemp = Convertor.convertInputToInteger(bonusNumberInput);
+            if (Validator.isNumberOnValidRange(bonusNumberTemp)) {
+                continue;
+            }
+            List<Integer> winningNumbers = gameData.getWinningNumbers();
+            if (Validator.isNumberDuplicate(bonusNumberTemp, winningNumbers)) {
+                continue;
+            }
+            break;
+        }
+
         gameData.setBonusNumber(bonusNumberTemp);
 
         List<Integer> winningNumbers = gameData.getWinningNumbers();

@@ -68,4 +68,33 @@ public class Controller {
     public static Double calculatePricePrizeRatio(Integer totalPrize, Integer price) {
         return (double) totalPrize / price * 100;
     }
+
+    public static boolean validateUserInputIsOnlyNumbers(String[] winningNumbers) {
+        for (String winningNumber : winningNumbers) {
+            if (Validator.isNumberOnly(winningNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean validateUserInputNumberIsOutOfValidRange(List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (Validator.isNumberOnValidRange(winningNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean validateUserInputNumberIsDuplicate(List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            if (Validator.isNumberDuplicate(winningNumber, winningNumbers)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+

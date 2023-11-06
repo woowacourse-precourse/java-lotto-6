@@ -1,15 +1,21 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class Judge {
 
-    public int countMatchingNumbers(List<Lotto> lottoList, List<Integer> winNumbers) {
-        int count = 0;
+    public List<LottoResult> countMatchingNumbers(List<Lotto> lottoList, List<Integer> winNumbers) {
+        List<LottoResult> results = new ArrayList<>();
+
         for (Lotto lotto : lottoList) {
-            count += countMatchingNumbersInLotto(lotto, winNumbers);
+            int matchingCount = countMatchingNumbersInLotto(lotto, winNumbers);
+            boolean isWinner = isWinner(matchingCount);
+            results.add(new LottoResult(isWinner, matchingCount));
         }
-        return count;
+
+        return results;
     }
 
     private int countMatchingNumbersInLotto(Lotto lotto, List<Integer> winNumbers) {
@@ -22,8 +28,8 @@ public class Judge {
         return count;
     }
 
-    public boolean matchesBonusNumber(List<Lotto> numbers, int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    private boolean isWinner(int matchingCount) {
+        return matchingCount >= 3;
     }
 
 }

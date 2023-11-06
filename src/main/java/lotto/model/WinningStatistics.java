@@ -35,7 +35,8 @@ public class WinningStatistics {
     }
 
     private boolean isSecondOrThirdPlace(Rank rank, boolean isBonusNumberMatch) {
-        return (rank.matchingCount == SECOND_OR_THIRD_PLACE_STANDARD) && (isBonusNumberMatch == rank.isBonusNumberMatch);
+        return (rank.matchingCount == SECOND_OR_THIRD_PLACE_STANDARD)
+                && (isBonusNumberMatch == rank.isBonusNumberMatch);
     }
 
     private void checkRest(Rank rank) {

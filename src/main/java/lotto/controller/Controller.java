@@ -30,15 +30,22 @@ public class Controller {
         displayIssuedLottoNumbers(purchaseAmount);
 
         view.displayWinningNumberMessage();
-        setWinningNumbers();
+        Set<Integer> winningNumbers = getWinningNumbers();
+        setPrizeNumbers(winningNumbers);
 
         displayGameResult();
     }
 
-    private void setWinningNumbers() {
-        Set<Integer> winningNumbers = getWinningNumbers();
+    private void setPrizeNumbers(Set<Integer> winningNumbers) {
+
         int bonusNumber = getBonusNumber();
-        isBonusNumberDuplicated(winningNumbers, bonusNumber);
+        try {
+            isBonusNumberDuplicated(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setPrizeNumbers(winningNumbers);
+        }
+
         lottoManager.setPrizeNumbers(winningNumbers, bonusNumber);
     }
 
@@ -69,7 +76,7 @@ public class Controller {
             purchaseNumberHandler.handle();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getPurchaseAmount();
         }
 
         return purchaseNumberHandler.getHandledResult();

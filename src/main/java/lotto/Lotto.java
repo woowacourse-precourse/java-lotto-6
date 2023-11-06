@@ -2,10 +2,7 @@ package lotto;
 
 import lotto.Enum.LottoError;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.Enum.constants.*;
 
@@ -14,8 +11,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = sortedLotto(numbers);
+    }
+
+    private List<Integer> sortedLotto(List<Integer> numbers) {
+        List<Integer> mutableNumber = new ArrayList<>(numbers);
+        Collections.sort(mutableNumber);
+        return mutableNumber;
     }
 
     public List<Integer> getNumbers() {
@@ -47,5 +49,4 @@ public class Lotto {
         }
         return true;
     }
-
 }

@@ -39,10 +39,13 @@ public class Print {
 
     private static String getResultString(LottoEnum value) {
         DecimalFormat df = new DecimalFormat("###,###");
+        int winCount = value.getWinCount();
+        String reward = df.format(value.getReward());
+        int count = Result.getCount(value);
         if (value.equals(W2)){
-            return value.getWinCount() + "개 일치, 보너스 볼 일치 (" + df.format(value.getReward()) + "원) - " + Result.getCount(value) + "개";
+            return winCount + "개 일치, 보너스 볼 일치 (" + reward + "원) - " + count + "개";
         }
-        return value.getWinCount() + "개 일치 (" + df.format(value.getReward()) + "원) - " + Result.getCount(value) + "개";
+        return winCount + "개 일치 (" + reward + "원) - " + count + "개";
     }
 
 
@@ -50,6 +53,7 @@ public class Print {
     private static String getRewardPercent(int amount) {
         int total = Result.getTotal();
         double totalDouble = 100.0 * total / (amount * LOTTO_PRICE);
+        System.out.println(totalDouble);
         String temp = String.format("%.1f%%", totalDouble);
         return temp.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
     }

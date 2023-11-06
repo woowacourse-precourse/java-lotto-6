@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Payment;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -10,6 +11,7 @@ public class LottoController {
 
     public void run() {
         buyTickets();
+        printTickets();
     }
 
     private void buyTickets() {
@@ -20,5 +22,9 @@ public class LottoController {
             System.out.println(e.getMessage());
             buyTickets();
         }
+    }
+
+    private void printTickets() {
+        OutputView.printTickets(lottoService.tickets());
     }
 }

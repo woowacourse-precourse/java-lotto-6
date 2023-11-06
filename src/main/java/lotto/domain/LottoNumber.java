@@ -3,8 +3,13 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.service.LottoGeneratorService;
+import lotto.view.ErrorMessage;
 
 public class LottoNumber {
+
+    private static final String COMMA = ",";
+    private static final String EMPTY = "";
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -45,7 +50,7 @@ public class LottoNumber {
     }
 
     private List<Integer> toListInteger(String value) {
-        List<String> values = Arrays.asList(value.split(","));
+        List<String> values = Arrays.asList(value.split(COMMA));
         List<Integer> numbers = values.stream()
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
@@ -54,43 +59,44 @@ public class LottoNumber {
 
     private void validateEmpty(String value) {
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY);
         }
     }
 
     private void validateOnlyNumberAndComma(String value) {
-        String removeComma = value.replace(",","");
+        String removeComma = value.replace(COMMA,EMPTY);
         try {
             Long.parseLong(removeComma);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER_ADN_COMMA);
         }
     }
 
     private void validateValueExists(String value) {
-        List<String> numbers = Arrays.asList(value.split(","));
+        List<String> numbers = Arrays.asList(value.split(COMMA));
         for (String number : numbers) {
             if (number.isEmpty()) {
-                throw new IllegalArgumentException("[ERROR] 입력되지 않은 번호가 있습니다.");
+                throw new IllegalArgumentException(ErrorMessage.VALUE_EXISTS);
             }
         }
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 여야 합니다.");
+        if (numbers.size() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.WINING_NUMBER_SIZE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
+        if (numbers.stream().distinct().count() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.WINING_NUMBER_DUPLICATE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().filter(n -> (n >= 1) && (n <= 45)).count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (numbers.stream().filter(n -> (n >= LottoGeneratorService.MIN_LOTTO_NUMBER) &&
+                (n <= LottoGeneratorService.MAX_LOTTO_NUMBER)).count() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.WINING_NUMBER_RANGE);
         }
     }
 
@@ -98,14 +104,14 @@ public class LottoNumber {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER);
         }
     }
 
     private void validateRangeOfBonus(String value) {
         int number = Integer.parseInt(value);
-        if ((number < 1) || (number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if ((number < LottoGeneratorService.MIN_LOTTO_NUMBER) || (number > LottoGeneratorService.MAX_LOTTO_NUMBER)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE);
         }
     }
 
@@ -113,7 +119,7 @@ public class LottoNumber {
         int number = Integer.parseInt(value);
         for (Integer winningNumber : winningNumbers) {
             if (winningNumber == number) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE);
             }
         }
     }

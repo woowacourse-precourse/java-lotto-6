@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.service.LottoGeneratorService;
+import lotto.view.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,20 +19,21 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 여야 합니다.");
+        if (numbers.size() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        if (numbers.stream().distinct().count() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().filter(n -> (n >= 1) && (n <= 45)).count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (numbers.stream().filter(n -> (n >= LottoGeneratorService.MIN_LOTTO_NUMBER) &&
+                (n <= LottoGeneratorService.MAX_LOTTO_NUMBER)).count() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE);
         }
     }
 }

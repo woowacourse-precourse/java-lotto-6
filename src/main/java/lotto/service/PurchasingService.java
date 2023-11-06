@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.view.ErrorMessage;
 
 public class PurchasingService {
 
@@ -34,7 +35,7 @@ public class PurchasingService {
 
     private void validateEmpty(String value) {
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY);
         }
     }
 
@@ -42,19 +43,19 @@ public class PurchasingService {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER);
         }
     }
 
     private void validateMinPurchase(int amount) {
         if (amount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 로또를 한 장 이상 구매해야 합니다. (로또 1장 1,000원)");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_MIN);
         }
     }
 
     private void validatePurchaseUnits(int amount) {
         if (amount % LOTTO_PRICE != NONE) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매 가능합니다. (로또 1장 1,000원)");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_UNITS);
         }
     }
 

@@ -11,8 +11,10 @@ public class OutputView {
     private static final String PURCHASE_QUANTITY_INFORMATION = "개를 구매했습니다.";
     private static final String WINING_RESULT_INFORMATION = "당첨 통계";
     private static final String SEPARATION_INDICATION = "---";
-    private static final String WINING_STATISTICS_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    private static final String WINING_STATISTICS = "%d개 일치 (%,d원) - %d개";
+    private static final String WINING_STATISTICS_BONUS_INFORMATION = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String WINING_STATISTICS_INFORMATION = "%d개 일치 (%,d원) - %d개";
+    private static final String RATE_OF_RETURN_INFORMATION = "총 수익률은 %.1f%%입니다.";
+    private static final int SECOND_RANK_WINING_AMOUNT = 30_000_000;
 
     public static void printErrorMessage(String message) {
         System.out.println(message);
@@ -33,7 +35,7 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(ProfitsService profitsService) {
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitsService.getRateOfReturn()));
+        System.out.println(String.format(RATE_OF_RETURN_INFORMATION, profitsService.getRateOfReturn()));
     }
 
     private static void printPurchaseQuantity(int quantity) {
@@ -53,9 +55,9 @@ public class OutputView {
 
     private static void printWiningStatistics(LottoService lottoService) {
         for (WiningRank rank : lottoService.getWiningDetails().keySet()) {
-            String message = WINING_STATISTICS;
-            if (rank.getWiningAmount() == 30_000_000) {
-                message = WINING_STATISTICS_BONUS;
+            String message = WINING_STATISTICS_INFORMATION;
+            if (rank.getWiningAmount() == SECOND_RANK_WINING_AMOUNT) {
+                message = WINING_STATISTICS_BONUS_INFORMATION;
             }
 
             System.out.println(String.format(message, rank.getMatchCount(), rank.getWiningAmount(),

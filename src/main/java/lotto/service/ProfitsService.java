@@ -5,6 +5,8 @@ import lotto.domain.WiningRank;
 
 public class ProfitsService {
 
+    private static final int PERCENTAGE = 100;
+
     private int buyerPurchaseAmount;
     private int buyerProfits;
     private double rateOfReturn;
@@ -23,7 +25,7 @@ public class ProfitsService {
 
     public void calculateRateOfReturn(LottoService lottoService) {
         calculateBuyerProfits(lottoService);
-        rateOfReturn = (double) buyerProfits / buyerPurchaseAmount * 100;
+        rateOfReturn = (double) buyerProfits / buyerPurchaseAmount * PERCENTAGE;
     }
 
     private void calculateBuyerProfits(LottoService lottoService) {

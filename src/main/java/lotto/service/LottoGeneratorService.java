@@ -10,9 +10,9 @@ import lotto.domain.Lotto;
 
 public class LottoGeneratorService {
 
-    private static final int MIN_RANDOMNUMBER = 1;
-    private static final int MAX_RANDOMNUMBER = 45;
-    private static final int MAX_LOTTO_NUMBER_SIZE = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int MAX_LOTTO_NUMBER_SIZE = 6;
 
     public Lotto createLotto() {
         List<Integer> numbers = new ArrayList<>(generateLottoNumbers());
@@ -24,7 +24,8 @@ public class LottoGeneratorService {
     private Set<Integer> generateLottoNumbers() {
         Set<Integer> numbers;
         do {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_RANDOMNUMBER, MAX_RANDOMNUMBER, 6);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                    MAX_LOTTO_NUMBER_SIZE);
             numbers = new HashSet<>(randomNumbers);
         } while (!(numbers.size() == MAX_LOTTO_NUMBER_SIZE));
         return numbers;

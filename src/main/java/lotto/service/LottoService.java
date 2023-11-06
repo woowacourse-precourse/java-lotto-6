@@ -50,7 +50,7 @@ public class LottoService {
         for (Lotto lotto : buyer.getLottoTickets()) {
             setMacthNumbers(lotto, lottoNumber);
             setNotMacthNumbers(lotto, lottoNumber);
-            confrimMatchBonusNumber(lottoNumber);
+            confirmMatchBonusNumber(lottoNumber);
             applyWiningResult();
         }
     }
@@ -67,7 +67,7 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    private void confrimMatchBonusNumber(LottoNumber lottoNumber) {
+    private void confirmMatchBonusNumber(LottoNumber lottoNumber) {
         if (notMatchNumbers.size() == BONUS_CHECK_CRITERIA) {
             bonusMatch = notMatchNumbers.contains(lottoNumber.getBonusNumber());
         }
@@ -80,5 +80,4 @@ public class LottoService {
             }
         }
     }
-
 }

@@ -22,7 +22,7 @@ class LottoNumberTest {
     void createWiningNumbersByBlack() {
         assertThatThrownBy(() -> lottoNumber.drawWiningNumbers("1, 2"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
+                .hasMessageContaining("[ERROR] 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
     }
 
     @DisplayName("당첨 번호가 쉼표를 제외하고 숫자가 아니면 예외가 발생한다.")
@@ -30,7 +30,7 @@ class LottoNumberTest {
     void createWiningNumbersByNotNumber() {
         assertThatThrownBy(() -> lottoNumber.drawWiningNumbers("a,b,c"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
+                .hasMessageContaining("[ERROR] 공백 없이 쉼표(,)로 구분된 숫자로만 입력해주세요.");
     }
 
     @DisplayName("당첨 번호 중 빈 값이 있으면 예외가 발생한다.")

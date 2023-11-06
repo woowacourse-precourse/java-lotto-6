@@ -27,6 +27,7 @@ public class LottoController {
         System.out.println("구입금액을 입력해 주세요.");
         int cost = inputView.getCost();
 
+        lottoService.initializeLottery(cost);
         System.out.println(lottoService.getNumberOfLotto() + "개를 구매했습니다.");
         outputView.printLotto(lottoService.getLotto());
 
@@ -37,6 +38,6 @@ public class LottoController {
 
         List<Integer> resultRecord = lottoService.getResultRecordOfLotto(winningLotteryNumber, bonusWinningLotteryNumber);
         outputView.printResultRecord(resultRecord);
-        System.out.println(Double.toString(lottoService.getProfitRate(resultRecord)));
+        System.out.println("총 수익률은 " + Double.toString(lottoService.getProfitRate(resultRecord)) + "%입니다.");
     }
 }

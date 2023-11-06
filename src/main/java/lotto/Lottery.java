@@ -16,7 +16,7 @@ public class Lottery {
     public Lottery(int cost)
     {
         this.cost = cost;
-        this.numberOfLotto = cost / LottoConstant.TICKET_PRICE;
+        this.numberOfLotto = (int) cost / LottoConstant.TICKET_PRICE;
         this.lotto = pickLotto(this.numberOfLotto);
     }
 
@@ -32,15 +32,13 @@ public class Lottery {
 
     private List<Lotto> pickLotto(int numberOfLotto)
     {
-        List<Lotto> pickedLotto = new ArrayList<>();
-        IntStream.range(0, numberOfLotto)
+        return IntStream.range(0, numberOfLotto)
                         .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
                             .map(lotto -> lotto.stream()
                             .sorted()
                             .collect(Collectors.toList()))
                         .map(Lotto::new)
                         .collect(Collectors.toList());
-        return pickedLotto;
     }
 
 }

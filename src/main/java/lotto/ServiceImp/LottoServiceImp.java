@@ -20,19 +20,19 @@ public class LottoServiceImp implements LottoService {
     @Override
     public int getNumberOfLotto()
     {
-        return lottery.getNumberOfLotto();
+        return this.lottery.getNumberOfLotto();
     }
 
     @Override
     public List<Lotto> getLotto()
     {
-        return lottery.getLotto();
+        return this.lottery.getLotto();
     }
 
     @Override
     public List<Integer> getResultRecordOfLotto(Lotto winningLotteryNumber, int bonusNumber)
     {
-        List<Lotto> lotto = getLotto();
+        List<Lotto> lotto = this.lottery.getLotto();
         List<Integer> resultRecord = new ArrayList<>(Collections.nCopies(RecordConstant.NUMBER_OF_RANKING, 0));
         for(Lotto lo : lotto)
         {
@@ -88,8 +88,8 @@ public class LottoServiceImp implements LottoService {
             acc += ranking.getReward() * resultRecord.get(ranking.getIndex());
         }
 
-        double divResult = acc / lottery.getNumberOfLotto();
-        double result = (double) Math.round(divResult * 100) / 100;
+        double divResult = (double) acc / (this.lottery.getNumberOfLotto() * 1000);
+        double result = (double) Math.round(divResult * 1000) / 10;
         return result;
     }
 }

@@ -18,7 +18,7 @@ public class InputUtilsTest {
     }
 
     @Test
-    void 로또_구입_금액_숫자_이외_에러_처리() {
+    void 로또_구입_금액_숫자_이외_입력_에러_처리() {
         try {
             InputUtils.validateInputMoney("hello");
             fail("테스트에 실패하였습니다.");
@@ -28,7 +28,7 @@ public class InputUtilsTest {
     }
 
     @Test
-    void 로또_구입_금액_1000_단위_아닐_시_에러_처리(){
+    void 로또_구입_금액_1000_단위_입력_아닐_시_에러_처리(){
         try {
             InputUtils.validateInputMoney("1001");
             fail("테스트에 실패하였습니다.");
@@ -36,4 +36,5 @@ public class InputUtilsTest {
             assertEquals("[ERROR] 1,000단위의 값을 입력해야 합니다.", e.getMessage());
         }
     }
+
 }

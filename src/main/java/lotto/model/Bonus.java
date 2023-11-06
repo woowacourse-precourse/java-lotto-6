@@ -6,16 +6,18 @@ import java.util.List;
 public class Bonus {
 
     private final List<Integer> numbers;
+    private final int bonus;
 
-    public Bonus(List<Integer> numbers) {
-        validate(numbers);
+    public Bonus(List<Integer> numbers, int bonus) {
         rangeCheck(numbers);
+        duplicateCheck(numbers, bonus);
         this.numbers = numbers;
+        this.bonus = bonus;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 1) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1자리 입니다.");
+    private void duplicateCheck(List<Integer> numbers, int bonus) {
+        if (numbers.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨번호랑 중복입니다.");
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.model.Money;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
@@ -8,17 +10,21 @@ import java.util.regex.Pattern;
 
 public class StringToIntegerUtil {
 
-    public static int stringToMoney(String input) {
+    public static Money stringToMoney(String input) {
         if (containsThousandSeparator(input)) {
             validateCommaAtPosition(input);
             input = removeComma(input);
         }
 
+        int amount = 0;
+
         try {
-            return Integer.parseInt(input);
+            amount = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
+        
+        return new Money(amount);
     }
 
     protected static boolean containsThousandSeparator(String input) {
@@ -38,5 +44,5 @@ public class StringToIntegerUtil {
     protected static String removeComma(String input) {
         return input.replaceAll(",", "");
     }
-    
+
 }

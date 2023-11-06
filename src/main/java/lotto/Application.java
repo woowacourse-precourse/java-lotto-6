@@ -11,14 +11,23 @@ public class Application {
         Buyer buyer = new Buyer();
 //        int money = buyer.getLottoPurchaseAmount();
 //        int bonusNumber = buyer.getBonusNumber(lottoNumbers);
-        for (List<Integer> lottoNumber : buyer.generateLottoNumbers()) {
+        List<List<Integer>> lottoNumbers = buyer.generateLottoNumbers();
+        for (List<Integer> lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber);
         }
 
+        List<Integer> winningNumber = buyer.getWinningNumber();
+        int bonusNumber = buyer.getBonusNumber();
         System.out.println();
-        System.out.println(buyer.getWinningNumber());
+        System.out.println(winningNumber);
         System.out.println();
-        System.out.println(buyer.getBonusNumber());
+        System.out.println(bonusNumber);
+
+        for (List<Integer> lottoNumber : lottoNumbers) {
+            Lotto lotto = new Lotto(lottoNumber);
+            int result = lotto.LottoResults(winningNumber, bonusNumber);
+            System.out.println(result);
+        }
 
     }
 }

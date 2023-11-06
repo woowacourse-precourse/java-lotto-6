@@ -4,10 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public static void inputPurchasePrice() {
-        System.out.println(InputMessages.PURCHASE_MESSAGE.getMessage());
+    public static Integer inputPurchasePrice() {
+        String message = InputMessages.PURCHASE_MESSAGE.getMessage();
+        System.out.println(message);
         Integer price = Integer.parseInt(input());
-        System.out.println(price);
+        return price;
     }
 
     public static String input() {

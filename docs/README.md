@@ -13,10 +13,12 @@
 - [x] 입력된 숫자가 올바르지 않을 경우 에러 처리
 
 ### ResultLotto.class
-- [ ] 당첨 내역 출력 - #showDetail()
-- [ ] 일치하는 로또 번호 개수 - #countMatchingNumber()
-  - [ ] 당첨번호와 일치하는지 확인 - #matching()
+- [x] 당첨 내역 출력 - #showDetail()
+- [x] 당첨된 로또 등수 각각 몇개인지 확인 - #categorizeRank
+- [x] 구매한 로또 번호 6개씩 나눠서 각각 등수 확인 - #checkRank
+- [x] 로또 한 장이 몇 개의 당첨 번호와 일치하는지 매치 - #matchingNumber
+  - [x] 당첨 번호 일치 개수에 따른 등수 - #matchingPrize
+    - [x] 당첨 번호 5개가 일치할 때 보너스 번호 매치 - #matchingBonus
 
 ### Revenue.class
 - [ ] 수익률 출력(소수점 둘째 자리에서 반올림) - #rateOfRevenue()
-  - Prize.enum 이용

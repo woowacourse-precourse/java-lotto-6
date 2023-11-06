@@ -11,10 +11,10 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputNumber {
     private static List<Integer> inputWinningNumber;
     private static boolean isCorrectLottoNumber, isCorrectBonusNumber;
-    public static void inputWinningNumber() {
+    public static List<Integer> inputWinningNumber() {
         //당첨 번호 및 보너스 번호 입력
         while(!isCorrectLottoNumber){
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println("\n" + "당첨 번호를 입력해 주세요.");
             inputWinningNumber = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(readLine(), ",");
             while(st.hasMoreElements()){
@@ -23,6 +23,7 @@ public class InputNumber {
             }
             validateLottoError();
         }
+        return inputWinningNumber;
     }
 
     private static void validateLottoError() {
@@ -34,13 +35,15 @@ public class InputNumber {
         }
     }
 
-    public static void inputBonusNumber() {
+    public static int inputBonusNumber() {
+        int bonusNumber = 0;
         while(!isCorrectBonusNumber){
             System.out.println("보너스 번호를 입력해 주세요.");
-            int bonusNumber = Integer.valueOf(readLine());
+            bonusNumber = Integer.valueOf(readLine());
 
             validateBonusError(bonusNumber);
         }
+        return bonusNumber;
     }
 
     private static void  validateBonusError(int bonusNumber){

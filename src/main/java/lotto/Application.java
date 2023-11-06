@@ -48,11 +48,11 @@ public class Application {
         return myLottos;
     }
 
-/*    private static void printMyLottos(List<Lotto> myLottos, int purchaseNumber) {
+    private static void printMyLottos(List<Lotto> myLottos, int purchaseNumber) {
         for (int i = 0; i < purchaseNumber; i++) {
             myLottos.get(i).printLottoNumbers();
         }
-    }*/
+    }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -61,6 +61,6 @@ public class Application {
         int purchaseNumber = purchaseAmount / 1000;
         printPurchaseNumber(purchaseNumber);
         List<Lotto> myLottos = generateLottos(purchaseNumber);
-//        printMyLottos(myLottos, purchaseNumber);
+        printMyLottos(myLottos, purchaseNumber);
     }
 }

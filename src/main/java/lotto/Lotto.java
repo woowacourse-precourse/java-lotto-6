@@ -18,9 +18,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-/*    public void printLottoNumbers() {
+    public void printLottoNumbers() {
         System.out.println(this.numbers);
-    }*/
+    }
 
     private void isOneToFourtyfive(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {

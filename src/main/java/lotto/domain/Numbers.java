@@ -25,18 +25,18 @@ public class Numbers {
         return bonusNumber;
     }
 
-    void validateWinningNumber(List<Integer> numbers) {
+    private void validateWinningNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
-    void checkDuplicationWinningNumber(List<Integer> numbers) {
+    private void checkDuplicationWinningNumber(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException();
         }
     }
 
-    void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber) {
         if (this.winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER.getDescription());
         }

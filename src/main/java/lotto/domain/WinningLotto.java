@@ -2,8 +2,6 @@ package lotto.domain;
 
 public class WinningLotto {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 숫자만 가능합니다.";
     private static final String DUPLICATION_ERROR_MESSAGE = "[ERROR] 당첨 번호에 이미 존재하는 숫자입니다.";
 
@@ -22,13 +20,9 @@ public class WinningLotto {
     }
 
     private void validateNumberRange(final int bonusNumber) {
-        if (isOutOfRange(bonusNumber)) {
+        if (LottoNumbersRule.hasOutOfRangeNumber(bonusNumber)) {
             throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
         }
-    }
-
-    private boolean isOutOfRange(final int bonusNumber) {
-        return bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER;
     }
 
     private void validateDuplication(final int bonusNumber, final Lotto winningLotto) {

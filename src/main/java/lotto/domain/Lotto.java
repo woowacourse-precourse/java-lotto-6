@@ -6,9 +6,6 @@ import java.util.Objects;
 
 public class Lotto {
 
-    private static final int NUMBERS_LENGTH = 6;
-    private static final int MAX_NUMBER = 45;
-    private static final int MIN_NUMBER = 1;
     private static final String LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String DUPLICATION_ERROR_MESSAGE = "[ERROR] 로또 번호에 중복된 숫자가 존재할 수 없습니다.";
     private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 숫자만 가능합니다.";
@@ -27,7 +24,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(final List<Integer> numbers) {
-        if (numbers.size() != NUMBERS_LENGTH) {
+        if (LottoNumbersRule.isLottoNumbersSizeMismatched(numbers)) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
     }
@@ -39,20 +36,16 @@ public class Lotto {
     }
 
     private boolean hasDuplication(final List<Integer> numbers) {
-        return NUMBERS_LENGTH != numbers.stream()
+        return LottoNumbersRule.isLottoNumbersSizeMismatched(numbers.stream()
                 .distinct()
-                .count();
+                .toList());
     }
 
     private void validateNumberRange(final List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(this::hasOutOfRangeNumber)) {
+                .anyMatch(LottoNumbersRule::hasOutOfRangeNumber)) {
             throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
         }
-    }
-
-    private boolean hasOutOfRangeNumber(final int number) {
-        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
     public int compare(final Lotto lotto) {

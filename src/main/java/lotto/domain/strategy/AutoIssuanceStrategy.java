@@ -4,12 +4,9 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumbersRule;
 
 public class AutoIssuanceStrategy implements IssuableStrategy {
-
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int SIZE = 6;
 
     @Override
     public Lotto issue() {
@@ -17,7 +14,10 @@ public class AutoIssuanceStrategy implements IssuableStrategy {
     }
 
     private List<Integer> createSortedRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE)
+        int minNumber = LottoNumbersRule.MIN_NUMBER.value();
+        int maxNumber = LottoNumbersRule.MAX_NUMBER.value();
+        int lottoNumbersSize = LottoNumbersRule.LOTTO_NUMBERS_SIZE.value();
+        return Randoms.pickUniqueNumbersInRange(minNumber, maxNumber, lottoNumbersSize)
                 .stream()
                 .sorted()
                 .toList();

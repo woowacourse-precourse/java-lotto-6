@@ -17,7 +17,10 @@ public class Application {
         SystemIO.requestWinningNumber();
         List<Integer> winningNumbers = SystemIO.readWinningNumbers();
         Map<Long, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
+        SystemIO.requestBonusNumber();
+        int bonusNumber = SystemIO.readBonusNumber();
 
+        //추첨 진행
         Lotto lotto = new Lotto(winningNumbers);
         Map<String, Long> matchResult = lotto.matchUserNumberWithWinningNumbers(lotteryNumbers);
 

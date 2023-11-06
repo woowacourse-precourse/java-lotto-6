@@ -54,17 +54,19 @@ public class BuyLotto {
         int correct_number = 0;
         int bonus_number = 0;
         int result = 0;
-        for (int p = 0, a = 0; (p > 5 || a > 5); ) {
-            if (paper.get(p).equals(answer_number.get(a))) {
+        for (int p = 0, a = 0; (p < 6 || a < 6); ) {
+            if (paper.get(p) == answer_number.get(a)) {
                 correct_number++;
                 p++;
                 a++;
+                continue;
             }
             if (paper.get(p) == bonus) {
                 bonus_number++;
             }
             if (paper.get(p) < answer_number.get(a)) {
                 p++;
+                continue;
             }
             if (answer_number.get(a) < paper.get(p)) {
                 a++;

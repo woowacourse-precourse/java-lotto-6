@@ -59,4 +59,26 @@ class LottoServiceTest {
         assertThat(dto.getFifth()).isEqualTo(4);
     }
 
+    @DisplayName("로또 수익률 계산 테스트")
+    @Test
+    void calculateRateOfReturn() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(Arrays.asList(8, 21, 23, 41, 42, 43)));
+        lottos.add(new Lotto(Arrays.asList(3, 5, 11, 16, 32, 38)));
+        lottos.add(new Lotto(Arrays.asList(7, 11, 16, 35, 36, 44)));
+        lottos.add(new Lotto(Arrays.asList(1, 8, 11, 31, 41, 42)));
+        lottos.add(new Lotto(Arrays.asList(13, 14, 16, 38, 42, 45)));
+        lottos.add(new Lotto(Arrays.asList(7, 11, 30, 40, 42, 43)));
+        lottos.add(new Lotto(Arrays.asList(2, 13, 22, 32, 38, 45)));
+        lottos.add(new Lotto(Arrays.asList(1, 3, 5, 14, 22, 45)));
+
+        LottoList lottoList = new LottoList(lottos);
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        LottoService service = new LottoService(lottoList, winningNumbers, bonusNumber);
+        assertThat(service.calculateRateOfReturn()).isEqualTo(62.5d);
+    }
+
 }

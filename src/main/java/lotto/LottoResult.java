@@ -51,4 +51,16 @@ public enum LottoResult {
         throw new IllegalArgumentException("유효하지 않은 결과: " + matchCount);
     }
 
+    public int getMatch() {
+        return match;
+    }
+
+    public String getStringPrize() {
+        return stringPrice;
+    }
+
+    public boolean getBonusMatch() {
+        return matchBonus;
+    }
+
 }

@@ -35,8 +35,14 @@ public class LottoController {
             LottoTicketsDto lottoTicketsDto = lottoMachine.createLottoTickets();
             outputView.printTicketPurchasedCount(lottoTicketsDto);
 
-            WinningNumbersDto winningNumbersDto = inputView.readWinningNumbers();
-            LottoResultsDto results = lottoService.calculateResults(lottoTicketsDto, winningNumbersDto, money);
+            outputView.printEnterWinningNumbers();
+            WinningNumbersInputDto winningNumbersInputDto = inputView.readWinningNumbers();
+
+            outputView.printEnterBonusNumber();
+            BonusNumberInputDto bonusNumberInputDto = inputView.readBonusNumber();
+
+            WinningNumbersDto winningNumbersDto = createWinningNumbersDto(winningNumbersInputDto, bonusNumberInputDto);
+            LottoResultsDto results = lottoService.calculateResults(lottoTicketsDto, winningNumbersDto);
             outputView.printMatchResult(results);
             outputView.printTotalProfitRate(results);
         } catch (IllegalArgumentException e) {
@@ -50,5 +56,8 @@ public class LottoController {
         return purchaseAmount;
     }
 
+    private WinningNumbersDto createWinningNumbersDto(WinningNumbersInputDto winningNumbersInputDto,
+                                                      BonusNumberInputDto bonusNumberInputDto) {
+        return WinningNumbersDto.of(winningNumbersInputDto.getNumbers(), bonusNumberInputDto.getBonus());
     }
 }

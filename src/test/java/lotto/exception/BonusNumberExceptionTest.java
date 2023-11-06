@@ -48,7 +48,7 @@ class BonusNumberExceptionTest {
     @Test
     @DisplayName("보너스 숫자로 들어온 것이 당첨 숫자와 중복일 경우")
     void isDuplicateWithWinnerNumTest(){
-        int bonusNum = 3;
+        String bonusNum = "3";
         List<Integer> winnerNum = Arrays.asList(1,2,3);
         assertThatThrownBy(() -> new BonusNumberException().isDuplicateWithWinnerNum(bonusNum, winnerNum)).isInstanceOf(
                 IllegalArgumentException.class

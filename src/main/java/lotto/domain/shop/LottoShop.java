@@ -1,7 +1,6 @@
 package lotto.domain.shop;
 
 import java.util.List;
-import lotto.domain.lotto.Lotteries;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoGenerator;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
@@ -19,9 +18,8 @@ public class LottoShop {
         return cash / LOTTO_PRICE;
     }
 
-    public Lotteries purchaseMany(int count) {
-        List<Lotto> lotteries = lottoGenerator.generateByCount(count);
-        return new Lotteries(lotteries);
+    public List<Lotto> purchaseMany(int count) {
+        return lottoGenerator.generateByCount(count);
     }
 
     private void validateMaxPurchaseLimit(int cash) {

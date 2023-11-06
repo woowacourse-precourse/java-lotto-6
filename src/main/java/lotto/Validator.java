@@ -47,4 +47,10 @@ public class Validator {
         if (Arrays.asList(input.split(",")).size() != 6)
             throw new IllegalArgumentException("[ERROR]");
     }
+
+    // 입력값이 1이상 45이하인지 검증
+    public static void checkNumberIn(int start, int end, Integer number) {
+        if (number < start || number > end)
+            throw new IllegalArgumentException("[ERROR]");
+    }
 }

@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import lotto.domain.lotto.Lotto;
 
 public enum Rankings {
@@ -10,7 +10,7 @@ public enum Rankings {
     THIRD_PLACE(5, false, 1_500_000, "5개 일치 (1,500,000원) - "),
     FOURTH_PLACE(4, false, 50_000, "4개 일치 (50,000원) - "),
     FIFTH_PLACE(3, false, 5_000, "3개 일치 (5,000원) - "),
-    NONE(0, false, 0, "0개");
+    NONE(0, false, 0, "");
 
     private static final int FIVE_MATCHES = 5;
     private final int matchCount;
@@ -37,7 +37,7 @@ public enum Rankings {
     }
 
     private static Rankings setRankings(int matchCount, boolean hasBonusNumber) {
-        return Arrays.stream(values())
+        return Arrays.stream(Rankings.values())
                 .filter(rankings -> rankings.matchCount == matchCount)
                 .filter(rankings -> rankings.hasBonusNumber == hasBonusNumber)
                 .findAny()

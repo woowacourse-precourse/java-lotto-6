@@ -29,7 +29,7 @@ public class GameController {
 
     private boolean isInvalidPurchaseAmount(String input) {
         try {
-            numberService.createPurchaseAmount(input);
+            numberService.initPurchaseAmount(input);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return true;

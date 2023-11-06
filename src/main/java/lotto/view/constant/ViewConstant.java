@@ -5,7 +5,7 @@ public class ViewConstant {
         public static final String COMMA = ",";
         public static final String NUMBERS_FORMAT_REGEX = "([0-9]+,?)+";
         public static final String NUMBER_REGEX = "[0-9]+";
-        public static final long ONE_LOTTO_PRICE = 1000L;
+        public static final long LOTTO_PRICE = 1000L;
         public static final long ZERO = 0L;
         public static final int MIN_RANGE = 1;
         public static final int MAX_RANGE = 45;

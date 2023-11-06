@@ -6,7 +6,7 @@ import static lotto.view.constant.ViewConstant.InputViewConstant.MIN_RANGE;
 import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBERS_COUNT;
 import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBERS_FORMAT_REGEX;
 import static lotto.view.constant.ViewConstant.InputViewConstant.NUMBER_REGEX;
-import static lotto.view.constant.ViewConstant.InputViewConstant.ONE_LOTTO_PRICE;
+import static lotto.view.constant.ViewConstant.InputViewConstant.LOTTO_PRICE;
 import static lotto.view.constant.ViewConstant.InputViewConstant.ZERO;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.NOT_CONTAINS_ONLY_NUMBER;
@@ -37,10 +37,10 @@ public class InputView {
             throw new IllegalArgumentException(NOT_CONTAINS_ONLY_NUMBER.getErrorMessage());
         }
         final long amount = Long.parseLong(purchaseAmount);
-        if (amount < ONE_LOTTO_PRICE) {
+        if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
         }
-        if (amount % ONE_LOTTO_PRICE != ZERO) {
+        if (amount % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
     }

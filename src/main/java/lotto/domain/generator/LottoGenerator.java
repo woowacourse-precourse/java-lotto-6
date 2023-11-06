@@ -4,7 +4,7 @@ import static lotto.domain.constant.DomainConstant.COMMA;
 import static lotto.domain.constant.DomainConstant.MAX_RANGE;
 import static lotto.domain.constant.DomainConstant.MIN_RANGE;
 import static lotto.domain.constant.DomainConstant.NUMBERS_FORMAT_REGEX;
-import static lotto.domain.constant.DomainConstant.ONE_LOTTO_PRICE;
+import static lotto.domain.constant.DomainConstant.LOTTO_PRICE;
 import static lotto.domain.constant.DomainConstant.SIX;
 import static lotto.domain.constant.DomainConstant.ZERO;
 import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.DUPLICATED_BONUS_NUMBER;
@@ -80,15 +80,15 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
     public List<Lotto> createLottoByPrice(final Money price) {
         validatePrice(price);
 
-        final long lottoCount = price.amount() / ONE_LOTTO_PRICE;
+        final long lottoCount = price.amount() / LOTTO_PRICE;
         return createLottoByCount(lottoCount);
     }
 
     private void validatePrice(final Money price) {
-        if (price.isLessThan(new Money(ONE_LOTTO_PRICE))) {
+        if (price.isLessThan(new Money(LOTTO_PRICE))) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
         }
-        if (price.cantDividedBy(new Money(ONE_LOTTO_PRICE))) {
+        if (price.cantDividedBy(new Money(LOTTO_PRICE))) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
     }

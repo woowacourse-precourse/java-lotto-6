@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.domain.constant.DomainConstant.ONE_LOTTO_PRICE;
+import static lotto.domain.constant.DomainConstant.LOTTO_PRICE;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -27,7 +27,7 @@ public class LottoController {
 
     public void play() {
         final UserLotto userLotto = receiveUserLotto();
-        final Money purchaseAmount = new Money(userLotto.getLottoCount() * ONE_LOTTO_PRICE);
+        final Money purchaseAmount = new Money(userLotto.getLottoCount() * LOTTO_PRICE);
         displayUserLotto(userLotto);
 
         final WinningLotto winningLotto = receiveWinningLottoNumber();

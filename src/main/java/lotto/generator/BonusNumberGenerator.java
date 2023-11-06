@@ -12,7 +12,7 @@ public class BonusNumberGenerator {
 
         try {
             winningNumber.validateBonusNumber(bonusNumber);
-             BonusNumber validatedBonusNumber = new BonusNumber(bonusNumber);
+            BonusNumber validatedBonusNumber = new BonusNumber(bonusNumber);
 
             return validatedBonusNumber;
         } catch (IllegalArgumentException e) {

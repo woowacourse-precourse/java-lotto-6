@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    private List<Lotto> lottos=new ArrayList<>();
 
     public void addLotto (Lotto lotto){
-        lottos=new ArrayList<>();
         lottos.add(lotto);
     }
 

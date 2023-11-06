@@ -14,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -38,5 +39,15 @@ public class Lotto {
         if (number < MIN_RANGE && number > MAX_RANGE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchLottoNumber(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContain)
+                .count();
     }
 }

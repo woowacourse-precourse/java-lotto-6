@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User {
     private final List<Lotto> lottos;
-    private Money spendMoney;
+    private final Money spendMoney;
 
     public User(Money money) {
         lottos = new ArrayList<>();
@@ -40,19 +40,15 @@ public class User {
     }
 
     private double calculateStatistic() {
-        double earnedMoney = 0;
-        double earnedPercent;
+        double earnedMoney = lottos.stream()
+                .filter(lotto -> lotto.getResult() != null)
+                .mapToDouble(lotto -> lotto.getResult().getPrize())
+                .sum();
 
-        for (Lotto lotto : lottos) {
-            if(lotto.getResult() == null){
-                continue;
-            }
-            LottoResult result = lotto.getResult();
-            earnedMoney += result.getPrize();
-        }
+        return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
+    }
 
-        earnedPercent = earnedMoney * 100 / spendMoney.getMoney();
-
-        return Math.round(earnedPercent * 10) / 10.0;
+    private double calculateRateOfReturn(double earned, double spend) {
+        return earned * 100 / spend;
     }
 }

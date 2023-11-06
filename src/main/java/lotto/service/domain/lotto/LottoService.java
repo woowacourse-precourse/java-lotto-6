@@ -29,9 +29,8 @@ public class LottoService {
     }
     public Double yieldCalculation(Yield yieldAttribute){
         return
-          ((double)
-            yieldAttribute.getTotalPrize() - yieldAttribute.getInvestmen()
-          ) / yieldAttribute.getInvestmen() * 100;
+          (double)
+            yieldAttribute.getTotalPrize() / yieldAttribute.getInvestmen() * 100;
     }
     public LottoResultPrint ticketMatchUserPickNumber
       (List<SeasonLottoResultVO> autoLottoTicket,

@@ -10,11 +10,7 @@ public class LottoOutputPrint {
         System.out.println(num + "개를 구매했습니다.");
     }
     public void printLottoYield(double yield){
-        System.out.println("총 수익률은 " + String.format("%.2f",yield) + "%입니다.");
-    }
-    public void printStatistics(){
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println("총 수익률은 " + String.format("%.1f",yield) + "%"+"입니다.");
     }
     public void autoLottoTickMaker
       (int pick, List<SeasonLottoResultVO> Tickets)

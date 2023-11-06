@@ -4,7 +4,7 @@ import lotto.utils.Constants;
 import lotto.utils.ErrorMessage;
 
 public class Money {
-    private int money;
+    private final int money;
 
     public Money(int inputMoney) {
         validateInputMoney(inputMoney);
@@ -14,7 +14,7 @@ public class Money {
     private void validateInputMoney(int inputMoney) {
         validateMinAmount(inputMoney);
         validateMaxAmount(inputMoney);
-        validateDivisible(inputMoney);
+        validateDivisibility(inputMoney);
     }
 
     private void validateMinAmount(int inputMoney) {
@@ -29,7 +29,7 @@ public class Money {
         }
     }
 
-    private void validateDivisible(int inputMoney) {
+    private void validateDivisibility(int inputMoney) {
         if (inputMoney % Constants.DIVISION_UNIT_FOR_INPUT_MONEY != 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_NOT_DIVISIBLE_ERROR.getMessage());
         }

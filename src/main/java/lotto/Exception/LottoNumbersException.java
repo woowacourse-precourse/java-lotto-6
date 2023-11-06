@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class LottoNumbersException {
 
-    public static void validatLottoNumbers(List<Integer> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
         notSixNumbers(numbers);
         duplicateNumber(numbers);
         for (Integer number : numbers) {

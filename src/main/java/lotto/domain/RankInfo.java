@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.stream.Stream;
 
 public enum RankInfo {
+    NONE(0, 0L),
     FIFTH(3, 5_000L),
     FOURTH(4, 50_000L),
     THIRD(5, 1_500_000L),
@@ -12,14 +12,6 @@ public enum RankInfo {
 
     private final int matchNumberCnt;
     private final Long prizeMoney;
-
-    private static final Map<Integer, RankInfo> rankMap = new HashMap<>();
-
-    static {
-        for (RankInfo rankInfo : RankInfo.values()) {
-            rankMap.put(rankInfo.matchNumberCnt, rankInfo);
-        }
-    }
 
     RankInfo(int matchNumberCnt, Long prizeMoney) {
         this.matchNumberCnt = matchNumberCnt;
@@ -30,15 +22,15 @@ public enum RankInfo {
         if (checkBonusNumber(value, isBonusNumContained)) {
             return SECOND;
         }
-        return rankMap.get(value);
+
+        return Stream.of(values())
+                .filter(rankInfo -> rankInfo.matchNumberCnt == value)
+                .findFirst()
+                .orElse(NONE);
     }
 
     private static boolean checkBonusNumber(int value, boolean isBonusNumContained) {
         return value == SECOND.matchNumberCnt && isBonusNumContained;
-    }
-
-    public int getMatchNumberCnt() {
-        return matchNumberCnt;
     }
 
     public Long getPrizeMoney() {

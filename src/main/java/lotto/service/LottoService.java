@@ -5,6 +5,7 @@ import lotto.domain.RankInfo;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
+import lotto.dto.YieldResult;
 import lotto.util.RandomNumbersGenerator;
 
 import java.util.HashMap;
@@ -38,5 +39,16 @@ public class LottoService {
         }
 
         return new LottoGameResult(gameResult);
+    }
+
+    public YieldResult calcYield(int purchaseLottoAmount, LottoGameResult lottoGameResult) {
+        long totalWinningPrize = 0L;
+        for (RankInfo rankInfo : lottoGameResult.gameResult().keySet()) {
+            Integer countOfWinners = lottoGameResult.gameResult().get(rankInfo);
+            totalWinningPrize += rankInfo.getPrizeMoney() * countOfWinners;
+        }
+
+        double yield = (double) totalWinningPrize / (purchaseLottoAmount * 1000) * 100;
+        return new YieldResult(yield);
     }
 }

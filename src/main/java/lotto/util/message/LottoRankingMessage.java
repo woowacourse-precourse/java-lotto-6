@@ -28,6 +28,7 @@ public enum LottoRankingMessage {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+
     private static String getFormat(RankInfo lottoRanking, int numberOfWins, LottoRankingMessage utils) {
         String prizeFormat = NumberFormat.getInstance().format(lottoRanking.getPrizeMoney());
         return String.format(utils.message, prizeFormat, numberOfWins);

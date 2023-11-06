@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
+import lotto.dto.YieldResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -34,6 +35,8 @@ public class GameController {
 
         LottoGameResult lottoGameResult = lottoService.calcRank(lottoTickets.getTickets(), winningNumbers);
         outputView.printLottoGameResult(lottoGameResult);
+        YieldResult yieldResult = lottoService.calcYield(purchaseLottoAmount, lottoGameResult);
+
     }
 
 }

@@ -5,6 +5,7 @@ import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
 import lotto.util.message.LottoRankingMessage;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -28,11 +29,13 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for (RankInfo rankInfo : RankInfo.values()) {
-            int count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
-            String lottoRankingMessage = LottoRankingMessage.findLottoRankingMessage(rankInfo, count);
-            System.out.println(lottoRankingMessage);
-        }
+        Arrays.stream(RankInfo.values())
+                .filter(rankInfo -> rankInfo != RankInfo.NONE) // NONE인 경우 건너뛰기
+                .forEach(rankInfo -> {
+                    int count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
+                    String lottoRankingMessage = LottoRankingMessage.findLottoRankingMessage(rankInfo, count);
+                    System.out.println(lottoRankingMessage);
+                });
     }
 
 

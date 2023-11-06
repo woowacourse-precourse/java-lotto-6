@@ -34,6 +34,8 @@ public class InputView {
             validateInput = removeWhitespace(Console.readLine());
             inputValidator.validateNotNull(validateInput);
             inputValidator.validateNumber(validateInput);
+            inputValidator.validateMaxPrice(validateInput);
+            inputValidator.validatePurchasePrice(validateInput);
             return true;
         } catch (LottoApplicationException e) {
             e.getErrorMessage();

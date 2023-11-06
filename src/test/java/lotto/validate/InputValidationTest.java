@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidationTest {
@@ -24,7 +25,7 @@ class InputValidationTest {
     void isNumber(String input) {
         assertThatThrownBy(() -> inputValidation.isNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1-45 사이의 숫자만 입력하세요.");
+                .hasMessageContaining("[ERROR] 1-45 사이의 숫자만 입력하세요.");
     }
     @ParameterizedTest
     @DisplayName("숫자 사이의 공백, null 테스트")
@@ -32,7 +33,7 @@ class InputValidationTest {
     void isNullOrBlank(String input) {
         assertThatThrownBy(() -> inputValidation.isNullOrBlank(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("빈 값을 입력할 수 없습니다.");
+                .hasMessageContaining("[ERROR] 빈 값을 입력할 수 없습니다.");
     }
 
     @Test
@@ -41,6 +42,13 @@ class InputValidationTest {
         List.of(1,2,3);
         assertThatThrownBy(() -> inputValidation.isDuplicate(List.of(1,2,3,3)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복된 번호를 입력할 수 없습니다.");
+                .hasMessageContaining("[ERROR] 중복된 번호를 입력할 수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @DisplayName(", 이외의 값")
+    @CsvSource(value = {",:true", "?:false, 4:false"}, delimiter = ':')
+    void commaOnly(String input, boolean expect) {
+        assertEquals(inputValidation.commaOnly(input), expect);
     }
 }

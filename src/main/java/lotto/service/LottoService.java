@@ -25,6 +25,10 @@ public class LottoService {
         return winningNumbers;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     public List<Lotto> purchase (int purchaseQuantity) {
         for (int i = ZERO; i < purchaseQuantity; i++) {
             List<Integer> lottoNumbers = randomNumberGenerator.uniqueNumbers();

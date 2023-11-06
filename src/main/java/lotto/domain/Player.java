@@ -31,6 +31,10 @@ public class Player {
         }
     }
 
+    public int getPurchaseLottoCount() {
+        return purchaseAmount / Lotto.LOTTO_PRICE;
+    }
+
     public void setWinningNumbers(String input) {
         List<String> inputs = splitInputWinningNumbers(input);
         List<Integer> winningNumbers = toIntegerWinningNumbers(inputs);

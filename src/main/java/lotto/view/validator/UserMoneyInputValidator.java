@@ -1,7 +1,6 @@
 package lotto.view.validator;
 
 import lotto.domain.constant.LottoConstant;
-import lotto.view.constant.InputConstant;
 import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 

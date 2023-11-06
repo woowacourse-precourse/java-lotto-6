@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private int lottoNum;
+    private int numOfLotto;
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public void setLottoNum(int lottoNum) {
-        this.lottoNum = lottoNum;
+    public void setNumOfLotto(int lottoNum) {
+        this.numOfLotto = lottoNum;
     }
 
     public void setLottos() {
-        for (int i = 0; i < this.lottoNum; i++) {
+        for (int i = 0; i < this.numOfLotto; i++) {
             this.lottos.add(makeLottoNum());
         }
     }

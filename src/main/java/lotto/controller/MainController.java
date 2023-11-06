@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.util.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,7 +14,7 @@ public class MainController {
     }
 
     public void play() {
-        String lotttoMoney = inputView.readLottoMoney();
-
+        String lottoMoneyString = inputView.readLottoMoney();
+        int lottoMoney = Utils.parseInt(lottoMoneyString);
     }
 }

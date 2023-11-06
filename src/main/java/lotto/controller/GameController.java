@@ -10,8 +10,9 @@ public class GameController {
 
     public void start() {
         Purchase purchase = createPurchase();
-        Lotto lotto = createLotto();
-        Bonus bonus = createBonus(lotto);
+
+        Lotto winningLotto = createWinningLotto();
+        Bonus bonus = createBonus(winningLotto);
     }
 
     private Purchase createPurchase() {
@@ -29,10 +30,10 @@ public class GameController {
         return InputView.getPurchaseMoney();
     }
 
-    private Lotto createLotto() {
+    private Lotto createWinningLotto() {
         while (true) {
             try {
-                List<Integer> numbers = getLottoNumbers();
+                List<Integer> numbers = getWinningLottoNumbers();
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 InputView.printErrorMessage(e);
@@ -40,8 +41,8 @@ public class GameController {
         }
     }
 
-    private List<Integer> getLottoNumbers() {
-        return InputView.getLottoNumbers();
+    private List<Integer> getWinningLottoNumbers() {
+        return InputView.getWinningLottoNumbers();
     }
 
     private Bonus createBonus(Lotto lotto) {

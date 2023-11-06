@@ -17,7 +17,7 @@ public class StringConverter {
 
     private boolean validateList(List<String> numbers) {
         for (String number : numbers) {
-            if (validateNumber(number)) {
+            if (!validateNumber(number)) {
                 continue;
             }
             return false;

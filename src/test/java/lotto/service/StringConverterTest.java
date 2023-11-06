@@ -1,7 +1,6 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,9 +34,10 @@ class StringConverterTest {
         List<String> numbers = new ArrayList<>();
         numbers.addAll(List.of("1", "2", "3", "4", "5", "a"));
 
-        //when //then
-        assertThatThrownBy(() -> stringConverter.convertToIntegerList(numbers))
-                .isInstanceOf(NumberFormatException.class)
-                .hasMessage("[ERROR] 번호와 금액은 정수여야 합니다.");
+        //when
+        List<Integer> convertNumbers = stringConverter.convertToIntegerList(numbers);
+
+        //then
+        assertThat(convertNumbers).isEmpty();
     }
 }

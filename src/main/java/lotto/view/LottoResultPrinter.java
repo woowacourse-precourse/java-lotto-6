@@ -6,14 +6,14 @@ import lotto.domain.LottoRank;
 
 public class LottoResultPrinter {
     public static void printLottos(int count, List<Lotto> lottos) {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println("\n" + count + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
     }
 
     public static void presentResults(List<Integer> winsPerCategory, double rateOfReturn) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         System.out.printf("3개 일치 (5,000원) - %d개\n", winsPerCategory.get(LottoRank.FIFTH.ordinal()));
         System.out.printf("4개 일치 (50,000원) - %d개\n", winsPerCategory.get(LottoRank.FOURTH.ordinal()));
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", winsPerCategory.get(LottoRank.THIRD.ordinal()));

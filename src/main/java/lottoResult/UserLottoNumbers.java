@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserLottoNumbers {
-
     public void printUserLottoNumbers(int purchaseQuantity, List<List<Integer>> userLottoNumbers) {
         for (int index = 0; index < purchaseQuantity; index++) {
             System.out.println(userLottoNumbers.get(index));

@@ -27,7 +27,7 @@ public class LottoReferee {
     }
 
     private static void bonusMatch(Lotto lotto, WinningLotto winningLotto, Score score) {
-        if (lotto.getNumbers().contains(winningLotto)) {
+        if (lotto.getNumbers().contains(winningLotto.getBonusNumber())) {
             score.matchBonus();
         }
     }

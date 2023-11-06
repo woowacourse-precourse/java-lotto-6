@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,7 +52,7 @@ class LottoServiceTest {
     }
 
     @Test
-    @DisplayName("기능9 테스트 : generateLotto 메서드가 Lotto 객체를 예외를 발생시키지 않고 Lotto 객체를 생성한다.")
+    @DisplayName("기능09 테스트 : generateLotto 메서드가 Lotto 객체를 예외를 발생시키지 않고 Lotto 객체를 생성한다.")
     void generateLottoShouldReturnLottoInstanceWithOutException() {
         // when, then
         assertThatCode(() -> lottoService.generateLotto())
@@ -59,7 +60,7 @@ class LottoServiceTest {
     }
 
     @Test
-    @DisplayName("기능8 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
+    @DisplayName("기능08 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
     void generateLottoListMakeLottoAsManyAsCount() {
         // given
         int count = 5;
@@ -69,5 +70,95 @@ class LottoServiceTest {
 
         // then
         assertThat(lottoList).hasSize(count);
+    }
+
+    @Test
+    @DisplayName("기능12 테스트 : 2개의 숫자가 일치할 때 Ranking을 정확하게 반환한다.")
+    void calculateCorrectRankingWhenTargetHaveTwoMatchingNumber() {
+        // given
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answer = new Lotto(List.of(5, 6, 7, 8, 9, 10));
+        int bonusNumber = 45;
+
+        // when
+        Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(Ranking.SIXTH);
+    }
+
+    @Test
+    @DisplayName("기능12 테스트 : 3개의 숫자가 일치할 때 Ranking을 정확하게 반환한다.")
+    void calculateCorrectRankingWhenTargetHaveThreeMatchingNumber() {
+        // given
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answer = new Lotto(List.of(4, 5, 6, 7, 8, 9));
+        int bonusNumber = 45;
+
+        // when
+        Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(Ranking.FIFTH);
+    }
+
+    @Test
+    @DisplayName("기능12 테스트 : 4개의 숫자가 일치할 때 Ranking을 정확하게 반환한다.")
+    void calculateCorrectRankingWhenTargetHaveFourMatchingNumber() {
+        // given
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answer = new Lotto(List.of(3, 4, 5, 6, 7, 8));
+        int bonusNumber = 45;
+
+        // when
+        Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(Ranking.FORTH);
+    }
+
+    @Test
+    @DisplayName("기능12 테스트 : 5개의 숫자가 일치하고 보너스 번호를 맞추지 못했을 때 Ranking을 정확하게 반환한다.")
+    void calculateCorrectRankingWhenTargetHaveFiveMatchingNumberAndDoNotHaveBonusNumber() {
+        // given
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answer = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+        int bonusNumber = 45;
+
+        // when
+        Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(Ranking.THIRD);
+    }
+
+    @Test
+    @DisplayName("기능12 테스트 : 5개의 숫자가 일치하고 보너스 번호를 맞추었을 때 Ranking을 정확하게 반환한다.")
+    void calculateCorrectRankingWhenTargetHaveFiveMatchingNumberAndHaveBonusNumber() {
+        // given
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answer = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+        int bonusNumber = 1;
+
+        // when
+        Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(Ranking.SECOND);
+    }
+
+    @Test
+    @DisplayName("기능12 테스트 : 5개의 숫자가 일치하고 보너스 번호를 맞추었을 때 Ranking을 정확하게 반환한다.")
+    void calculateCorrectRankingWhenTargetHaveSixMatchingNumber() {
+        // given
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 45;
+
+        // when
+        Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(Ranking.FIRST);
     }
 }

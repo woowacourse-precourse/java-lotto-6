@@ -31,7 +31,7 @@ public class LottoController {
     }
 
     private void calculateAndDisplayDrawingResult() {
-        WinningCombinationDto winningCombination = inputView.inputWinningNumbers();
+        WinningCombinationDto winningCombination = inputView.inputWinningCombination();
         DrawingResultDto result = lottoService.calculateDrawingResult(winningCombination);
         outputView.printResult(result);
     }

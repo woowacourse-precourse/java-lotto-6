@@ -21,8 +21,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        occurExceptionIfOutOfRange(numbers);
         occurExceptionIfNotSix(numbers);
         occurExceptionIfDuplicated(numbers);
+    }
+
+    private void occurExceptionIfOutOfRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < 1 || 45 < number)) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45까지의 숫자 중에서 선택할 수 있습니다");
+        }
     }
 
     private void occurExceptionIfNotSix(List<Integer> numbers) {

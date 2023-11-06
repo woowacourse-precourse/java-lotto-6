@@ -40,8 +40,15 @@ public class LottoGameView {
     }
 
     private void validate(List<Integer> winningNumbers) {
+        winningNumbers.forEach(this::occurExceptionIfOutOfRange);
         occurExceptionIfNotSix(winningNumbers);
         occurExceptionIfDuplicated(winningNumbers);
+    }
+
+    private void occurExceptionIfOutOfRange(int bonusNumber) {
+        if (bonusNumber < 1 || 45 < bonusNumber) {
+            throw new IllegalArgumentException("번호는 1부터 45까지의 숫자 중에서 선택할 수 있습니다.");
+        }
     }
 
     private void occurExceptionIfNotSix(List<Integer> winningNumbers) {
@@ -60,7 +67,9 @@ public class LottoGameView {
         Output.consoleLine("보너스 번호를 입력해 주세요.");
         while (true) {
             try {
-                return Input.consoleNumber();
+                int bonusNumber = Input.consoleNumber();
+                occurExceptionIfOutOfRange(bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }

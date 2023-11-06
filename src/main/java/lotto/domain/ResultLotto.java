@@ -20,7 +20,7 @@ public class ResultLotto {
     }
 
     public void addResult(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
-        Prize prize = MatchLotto.calculate(lotto, winningNumbers, bonusNumber);
+        Prize prize = CompareLotto.calculate(lotto, winningNumbers, bonusNumber);
         result.putIfAbsent(prize, NUMBER_ZERO);
         result.put(prize, result.get(prize) + NUMBER_ONE);
     }

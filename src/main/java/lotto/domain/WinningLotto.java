@@ -62,7 +62,7 @@ public class WinningLotto {
     }
 
     private boolean isNumeric(String str) {
-        return str.matches("\\d+");
+        return str.matches(LottoConfig.IS_NUMBER);
     }
 
     private List<Integer> parseToInteger(String winnerNumbers) {

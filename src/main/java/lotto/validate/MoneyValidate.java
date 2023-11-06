@@ -10,7 +10,7 @@ public class MoneyValidate {
 
     private static void checkMoney(int money) {
         if (money < 0) {
-            throw ExceptionManager.BEGIN_ERROR.createIllegalArgumentException(
+            throw ExceptionManager.ERROR_MSG_PREFIX.createIllegalArgumentException(
                     "0원 이상 입력해야 합니다.");
         }
     }

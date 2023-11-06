@@ -38,7 +38,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw ExceptionManager.BEGIN_ERROR.createIllegalArgumentException("숫자를 입력해야 합니다.");
+            throw ExceptionManager.ERROR_MSG_PREFIX.createIllegalArgumentException("숫자를 입력해야 합니다.");
         }
     }
 

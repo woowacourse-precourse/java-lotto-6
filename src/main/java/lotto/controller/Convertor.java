@@ -10,12 +10,11 @@ public class Convertor {
     public static int convertMoney(String moneyString) {
         int money = 0;
         try {
-            money =  Integer.parseInt(moneyString);
-        } catch (Exception e){
+            money = Integer.parseInt(moneyString);
+        } catch (Exception e) {
             throw new IllegalArgumentException(Message.ERROR_MONEY);
         }
-
-        if(money % Constant.LOTTO_PRICE != 0){
+        if (money % Constant.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
 
@@ -29,13 +28,12 @@ public class Convertor {
             int num = checkNumberValid(numbers, n.trim());
             numbers.add(num);
         }
-
         checkValidSize(numbers);
 
         return numbers;
     }
 
-    public static void checkValidSize(List<Integer> numbers){
+    public static void checkValidSize(List<Integer> numbers) {
         if (numbers.size() != Constant.LOTTO_SELECT_NUMBER) {
             throw new IllegalArgumentException(Message.ERROR_WINNING_COUNT);
         }
@@ -49,11 +47,9 @@ public class Convertor {
         } catch (Exception e) {
             throw new IllegalArgumentException(Message.ERROR_WINNING_RANGE);
         }
-
         if (numbers.contains(num)) {
             throw new IllegalArgumentException(Message.ERROR_WINNING_DUPLICATE);
         }
-
         if (num < Constant.LOTTO_START_NUMBER || num > Constant.LOTTO_END_NUMBER) {
             throw new IllegalArgumentException(Message.ERROR_WINNING_RANGE);
         }
@@ -69,14 +65,13 @@ public class Convertor {
         } catch (Exception e) {
             throw new IllegalArgumentException(Message.ERROR_BONUS_RANGE);
         }
-
         checkBonusValid(bonus, winning);
 
         return bonus;
     }
 
     public static void checkBonusValid(int bonus, List<Integer> winning) {
-        if(winning.contains(bonus)) {
+        if (winning.contains(bonus)) {
             throw new IllegalArgumentException(Message.ERROR_BONUS_DUPLICATE);
         }
         if (bonus < Constant.LOTTO_START_NUMBER || bonus > Constant.LOTTO_END_NUMBER) {

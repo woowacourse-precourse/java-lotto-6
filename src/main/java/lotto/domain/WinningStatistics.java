@@ -11,7 +11,7 @@ public class WinningStatistics {
 
     private WinningStatistics(Lottos userLottos, WinningLotto winningLotto, Budget budget){
         setWinningStatistics(userLottos, winningLotto);
-        setRevenueRate(userLottos, winningLotto, budget);
+        setRevenueRate(budget);
     }
 
     public static WinningStatistics of(Lottos userLottos, WinningLotto winningLotto, Budget budget){
@@ -44,7 +44,7 @@ public class WinningStatistics {
         return userLottoNumbers.contains(bonus.getBonus());
     }
 
-    private void setRevenueRate(Lottos userLottos, WinningLotto winningLotto, Budget budget){
+    private void setRevenueRate(Budget budget){
         BigDecimal totalAmounts = getTotalAmounts();
         BigDecimal count = getBudget(budget);
         this.revenueRate = calculateRevenueRate(totalAmounts, count);

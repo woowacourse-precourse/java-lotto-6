@@ -1,8 +1,8 @@
 package lotto.dto;
 
-import lotto.domain.Lotto;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public class LottoIssueResultDTO {
     private final int ticketCount;

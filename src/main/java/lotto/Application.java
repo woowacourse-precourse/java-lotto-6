@@ -26,8 +26,7 @@ public class Application {
 
         InputParser<List<Integer>> winningNumberParser = new WinningNumbersParser();
         InputValidator<List<Integer>> winningNumbersValidator = new WinningNumbersValidator();
-        WinningNumbersInputController winningNumberInputController = new WinningNumbersInputController(
-                winningNumberParser, winningNumbersValidator);
+        WinningNumbersInputController winningNumberInputController = new WinningNumbersInputController(winningNumberParser, winningNumbersValidator);
         winningNumberInputController.inputValid();
     }
 }

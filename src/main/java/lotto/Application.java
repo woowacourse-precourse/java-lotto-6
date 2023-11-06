@@ -21,20 +21,28 @@ public class Application {
     static List<Integer> inputWinningLotto = new ArrayList<>();
     static List<List<Integer>> lottoTotal = new ArrayList<>();
     // myWinningLotto = {미당첨, 1등, 2등, 3등, 4등, 5등}
-    static List<Integer> myWinningLotto = new ArrayList<>();
-    
+    static List<Integer> myWinningLotto = new ArrayList<>();    
 
-    public static void CoinValidate(int inputCoin){
-        if (inputCoin % coinStandard != 0){
-            System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
+    public static void CoinValidate(String playerInput){
+        try{
+            inputCoin = Integer.parseInt(playerInput);
+
+            if (inputCoin % coinStandard != 0){
+                System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
+                throw new IllegalArgumentException();
+            }                        
+        }catch(Exception e){
+            System.out.println("[ERROR] 로또 구입 금액에는 숫자만 존재해야 합니다.");        
             throw new IllegalArgumentException();
-        }            
+        }
     }
 
     public static void GetCoin(){
         System.out.println("구입금액을 입력해 주세요.");
-        inputCoin = Integer.parseInt(Console.readLine());
-        CoinValidate(inputCoin);
+        String playerInput = Console.readLine();
+
+        CoinValidate(playerInput);
+        
         inputCoin = inputCoin / coinStandard;
         System.out.println();
     }

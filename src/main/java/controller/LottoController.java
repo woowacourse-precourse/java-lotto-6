@@ -17,6 +17,7 @@ public class LottoController {
 
         //createLottos
         Lottos lottos = MakeObjectService.lottos();
+        lottos.add(amount);
 
         //createWinningNumbers
         //compareLottoNumbers

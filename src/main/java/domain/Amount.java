@@ -7,6 +7,10 @@ public class Amount {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public void printAmount() {
         System.out.print(amount);
     }

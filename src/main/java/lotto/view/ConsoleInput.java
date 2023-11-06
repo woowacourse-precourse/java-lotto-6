@@ -13,6 +13,7 @@ public class ConsoleInput {
             System.out.print("구입금액을 입력해 주세요.\n");
             try {
                 int purchaseAmount = Integer.parseInt(scanner.nextLine());
+                System.out.print("\n");
                 if (purchaseAmount % 1000 != 0) {
                     System.out.println("[ERROR] 1,000원 단위로 입력해야 합니다.\n");
                 } else {
@@ -25,9 +26,11 @@ public class ConsoleInput {
     }
 
     public WinningNumbers getWinningNumbers() {
+        System.out.print("\n");
         System.out.print("당첨 번호를 입력해 주세요.\n");
         String input = scanner.nextLine();
         String[] numberStrings = input.split(",");
+        System.out.print("\n");
 
         if (numberStrings.length != 6) {
             System.out.println("[ERROR] 6개의 숫자를 입력하세요.");
@@ -66,6 +69,7 @@ public class ConsoleInput {
             try {
                 System.out.print("보너스 번호를 입력해 주세요.\n");
                 int bonusNumber = Integer.parseInt(scanner.nextLine());
+                System.out.print("\n");
 
                 if (bonusNumber < 1 || bonusNumber > 45) {
                     System.out.println("[ERROR] 숫자 범위는 1~45 사이여야 합니다.");

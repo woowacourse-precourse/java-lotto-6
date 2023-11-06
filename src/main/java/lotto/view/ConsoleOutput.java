@@ -9,7 +9,9 @@ public class ConsoleOutput {
     public void displayPurchasedLottos(List<Lotto> lottos) {
         int numberOfLottos = lottos.size();
         System.out.println(numberOfLottos + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void displayWinningStatistics(List<WinningResult> winningStatistics) {
@@ -39,7 +41,8 @@ public class ConsoleOutput {
     }
 
     public void displayTotalProfitRate(double totalProfitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", totalProfitRate);
+        System.out.print("\n");
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalProfitRate);
     }
 
     private String formatPrize(int prize) {

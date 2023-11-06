@@ -7,6 +7,7 @@ import static lotto.LottoConstance.LOTTO_SIZE;
 import static lotto.LottoConstance.MAX_NUMBER_LOTTO_RANGE;
 import static lotto.LottoConstance.MIN_NUMBER_LOTTO_RANGE;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumbers();
     }
 
     private void validate(List<Integer> numbers) {
@@ -42,6 +44,10 @@ public class Lotto {
 
     private void throwException(String errorMessage) {
         throw new IllegalArgumentException(errorMessage);
+    }
+
+    private void sortNumbers() {
+        Collections.sort(numbers);
     }
 
 }

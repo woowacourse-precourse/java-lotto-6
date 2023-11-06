@@ -10,8 +10,8 @@ public class Application {
 
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         List<Integer> numbers = new ArrayList<Integer>();
+        Lotto lt = new Lotto(numbers);
         System.out.println("구입금액을 입력해 주세요.");
         int buyLotto = Integer.parseInt(Console.readLine());
         // 1000원 단위 입력 확인(method로 추후 분리 예정)
@@ -29,7 +29,7 @@ public class Application {
         // 당첨 통계
 
 
-        Lotto lt = new Lotto(numbers);
+
 
 
     }

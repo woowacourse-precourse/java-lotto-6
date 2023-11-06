@@ -10,7 +10,7 @@ public class PurchasedLottoOutputView {
         System.out.printf(String.format(PURCHASED_COUNT, count));
     }
 
-    public static void outputPurchasedLottos(List<String> purchasedLottos) {
+    public static void outputPurchasedLottos(List<List<Integer>> purchasedLottos) {
         purchasedLottos.forEach(System.out::println);
     }
 }

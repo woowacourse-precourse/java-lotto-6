@@ -1,21 +1,23 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import lotto.constants.LottoConstants;
 import lotto.exception.LottoNumberRangeException;
 
 public class LottoNumber implements Comparable {
-    private static final int MIN_LIMIT = 1;
-    private static final int MAX_LIMIT = 45;
+
 
     private int number;
 
     private static Map<Integer, LottoNumber> lottoNumberStore = new HashMap<>();
 
     static {
-        IntStream.rangeClosed(MIN_LIMIT, MAX_LIMIT)
+        IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)
                 .forEach(number -> lottoNumberStore.put(number, new LottoNumber(number)));
     }
 
@@ -30,14 +32,13 @@ public class LottoNumber implements Comparable {
     }
 
     private static void checkRange(int number) {
-        if (number < MIN_LIMIT || number > MAX_LIMIT) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new LottoNumberRangeException();
         }
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(number);
+    public int showNumber() {
+        return number;
     }
 
     @Override

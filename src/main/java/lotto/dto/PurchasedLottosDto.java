@@ -5,17 +5,17 @@ import java.util.List;
 
 public class PurchasedLottosDto {
 
-    List<String> purchasedLottos;
+    List<List<Integer>> purchasedLottos;
 
-    private PurchasedLottosDto(List<String> lottos) {
+    private PurchasedLottosDto(List<List<Integer>> lottos) {
         purchasedLottos = new ArrayList<>(lottos);
     }
 
-    public static PurchasedLottosDto from(List<String> lottos) {
+    public static PurchasedLottosDto from(List< List<Integer>> lottos) {
         return new PurchasedLottosDto(lottos);
     }
 
-    public List<String> show() {
+    public List<List<Integer>>  show() {
         return purchasedLottos;
     }
 

@@ -1,13 +1,16 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.*;
+
 import java.util.List;
+import lotto.constants.LottoConstants;
 import lotto.exception.BonusNumberDuplicationException;
 import lotto.exception.WinningLottoNumbersDuplicationException;
 import lotto.exception.WrongLottoLengthException;
 
 public class WinningLotto {
 
-    private static final int LENGTH = 6;
+
 
     List<LottoNumber> winningLotto;
     LottoNumber bonusNumber;

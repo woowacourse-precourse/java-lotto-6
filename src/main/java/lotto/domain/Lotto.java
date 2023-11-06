@@ -1,12 +1,15 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.constants.LottoConstants;
 
 public class Lotto  {
 
-    private static final int LENGTH = 6;
+
 
     private final List<LottoNumber> numbers;
 
@@ -24,17 +27,18 @@ public class Lotto  {
         }
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
     public Stream<LottoNumber> stream() {
         return numbers.stream();
     }
 
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
+    }
+
+    public List<Integer> showNumbersByIntegers() {
+        return numbers.stream()
+                .map(LottoNumber::showNumber)
+                .toList();
     }
 
     // TODO: 추가 기능 구현

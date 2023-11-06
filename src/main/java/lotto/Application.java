@@ -29,6 +29,6 @@ public class Application {
         double winningRate = lottoController.calculateWinningRate(lottoAmount, winningResults);
         String formattedRate = String.format("%.1f", winningRate);
 
-
+        OutputView.showFinalResult(winningResults, formattedRate);
     }
 }

@@ -114,11 +114,11 @@ public class LottoController {
             prizeSum = eachLottoPrizeAmount * WinningPrize.FIFTH.getPrizeAmount();
         } else if (grade.equals(WinningPrize.FOURTH.getMatchCount())) {
             prizeSum = eachLottoPrizeAmount * WinningPrize.FOURTH.getPrizeAmount();
-        }else if (grade.equals(WinningPrize.THIRD.getMatchCount())) {
+        } else if (grade.equals(WinningPrize.THIRD.getMatchCount())) {
             prizeSum = eachLottoPrizeAmount * WinningPrize.THIRD.getPrizeAmount();
-        }else if (grade.equals(WinningPrize.SECOND.getMatchCount())) {
+        } else if (grade.equals(WinningPrize.SECOND.getMatchCount())) {
             prizeSum = eachLottoPrizeAmount * WinningPrize.SECOND.getPrizeAmount();
-        }else if (grade.equals(WinningPrize.FIRST.getMatchCount())) {
+        } else if (grade.equals(WinningPrize.FIRST.getMatchCount())) {
             prizeSum = eachLottoPrizeAmount * WinningPrize.FIRST.getPrizeAmount();
         }
         return prizeSum;

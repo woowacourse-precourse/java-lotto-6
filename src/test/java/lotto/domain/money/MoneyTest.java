@@ -13,9 +13,9 @@ class MoneyTest {
     @DisplayName("금액을 컴마로 구분하고, 원을 붙인 문자열로 정확하게 변환하는지 확인")
     @ParameterizedTest
     @MethodSource("argumentsProvider")
-    void parseToWonWithComma(long amount, String expectedResult) {
+    void toString(long amount, String expectedResult) {
         Money money = new Money(amount);
-        assertThat(money.parseToWonWithComma()).isEqualTo(expectedResult);
+        assertThat(money.toString()).isEqualTo(expectedResult);
     }
 
     static Stream<Arguments> argumentsProvider() {

@@ -26,7 +26,6 @@ public class Lotto {
         validateIsNumberDuplicate(numbers);
         validateEachLottoNumber(numbers);
 
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

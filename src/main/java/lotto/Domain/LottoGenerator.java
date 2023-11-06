@@ -12,9 +12,6 @@ public class LottoGenerator {
     private static final int MAX_LOTTO_NUMBER = 45;
 
     public List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
-        Collections.sort(lottoNumbers);
-
-        return lottoNumbers;
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_LOTTO_NUMBER);
     }
 }

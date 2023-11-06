@@ -19,4 +19,12 @@ public class WinningNumbers {
     private boolean hasDuplicateNumber(WinningNumber winningNumber, BonusNumber bonusNumber) {
         return winningNumber.getNumbers().contains(bonusNumber.getNumber());
     }
+
+    public WinningNumber getWinningNumber() {
+        return winningNumber;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

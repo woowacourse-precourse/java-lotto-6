@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.configuration.IntegerConstants.MAX_NUMBER_RANGE;
 import static lotto.configuration.IntegerConstants.MIN_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -78,4 +79,27 @@ public class LottoNumberTest {
                 .hasMessageContaining("1부터 45사이의 값이 필요합니다.");
     }
 
+    @Test
+    public void 로또번호_값이동일하면_true() {
+        // Given
+        LottoNumber lottoNumber = LottoNumber.create(10);
+
+        // When
+        boolean result = lottoNumber.isSameAmount(10);
+
+        // Then
+        assertTrue(result);
+    }
+
+    @Test
+    public void 로또번호_값이다르면_false() {
+        // Given
+        LottoNumber lottoNumber = LottoNumber.create(10);
+
+        // When
+        boolean result = lottoNumber.isSameAmount(20);
+
+        // Then
+        assertFalse(result);
+    }
 }

@@ -15,7 +15,8 @@ public class PurchaseController {
                 PurchaseAmount purchaseAmount = new PurchaseAmount(purchaseNum);
                 break;
             }catch(IllegalArgumentException e){
-                e.printStackTrace();
+                System.out.println(e.getMessage());
+                // e.printStackTrace();
             }
         }
     }

@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import static lotto.configuration.IntegerConstants.COST_OF_LOTTO;
 import static lotto.messages.ErrorMessages.INVALID_MULTIPLE_OF_1000_MESSAGE;
 
 import lotto.util.ExceptionUtil;
 import lotto.util.IntegerUtil;
+import lotto.util.StringUtil;
 import lotto.validation.IntegerValidator;
 
 public class Money {
@@ -11,7 +13,7 @@ public class Money {
     int amount;
 
     private Money(int amount) {
-        validateMultipleOf1000(amount);
+        IntegerValidator.validateMultipleOf(amount,COST_OF_LOTTO.getValue());
         this.amount = amount;
     }
 
@@ -20,7 +22,7 @@ public class Money {
     }
 
     public static Money create(String input) {
-        return new Money(processStringToInt(input));
+        return new Money(IntegerUtil.trimAndParseInt(input));
     }
 
     public Money plus(Money money) {
@@ -33,19 +35,6 @@ public class Money {
 
     @Override
     public String toString() {
-        return IntegerUtil.formatByThousandSeparator(amount);
-    }
-
-    private static int processStringToInt(String input) {
-        input = input.trim();
-        IntegerValidator.validateInteger(input);
-
-        return Integer.parseInt(input);
-    }
-
-    private void validateMultipleOf1000(int amount) {
-        if (amount % 1000 != 0) {
-            ExceptionUtil.throwInvalidValueException(INVALID_MULTIPLE_OF_1000_MESSAGE.getMessage());
-        }
+        return StringUtil.formatByThousandSeparator(amount);
     }
 }

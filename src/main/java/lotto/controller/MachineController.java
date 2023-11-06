@@ -10,10 +10,7 @@ import lotto.view.OutputView;
 import lotto.view.PurchaseView;
 import lotto.view.WinningLottoView;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MachineController {
     private Human human;
@@ -26,6 +23,7 @@ public class MachineController {
         OutputView.displayPurchaseList(lottos);
         initWinningLotto();
         OutputView.displayLottoCompareResult(compare());
+        OutputView.displayProfit(calcProfit());
     }
 
     public void initAmount() {
@@ -46,6 +44,25 @@ public class MachineController {
             tempLottos.add(new Lotto(Random.generate()));
         }
         lottos = new Lottos(tempLottos);
+    }
+
+    public float calcProfit() {
+        float winningAmount = 0;
+        for(int prize : calcPrize()) {
+            winningAmount += prize;
+        }
+        return (winningAmount / human.getMoney()) * 100;
+    }
+
+    public List<Integer> calcPrize() {
+        List<LottoCompare> lottoCompares = compare();
+        return List.of(
+                Collections.frequency(lottoCompares, LottoCompare.FIFTH) * LottoCompare.FIFTH.getPrize(),
+                Collections.frequency(lottoCompares, LottoCompare.FOURTH) * LottoCompare.FOURTH.getPrize(),
+                Collections.frequency(lottoCompares, LottoCompare.THIRD) * LottoCompare.THIRD.getPrize(),
+                Collections.frequency(lottoCompares, LottoCompare.SECOND) * LottoCompare.SECOND.getPrize(),
+                Collections.frequency(lottoCompares, LottoCompare.FIRST) * LottoCompare.FIRST.getPrize()
+        );
     }
 
     public List<LottoCompare> compare() {

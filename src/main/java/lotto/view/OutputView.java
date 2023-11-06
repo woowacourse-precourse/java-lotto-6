@@ -24,6 +24,11 @@ public class OutputView {
         System.out.println(LottoCompare.FOURTH.getLabel() + MachineMessage.MACHINE_MESSAGE_DASH.getMessage() + Collections.frequency(lottoCompares, LottoCompare.FOURTH) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());
         System.out.println(LottoCompare.THIRD.getLabel() + MachineMessage.MACHINE_MESSAGE_DASH.getMessage() + Collections.frequency(lottoCompares, LottoCompare.THIRD) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());
         System.out.println(LottoCompare.SECOND.getLabel() +MachineMessage.MACHINE_MESSAGE_DASH.getMessage()+ Collections.frequency(lottoCompares, LottoCompare.SECOND) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());
-        System.out.println(LottoCompare.FIRST.getLabel() + MachineMessage.MACHINE_MESSAGE_DASH.getMessage() + Collections.frequency(lottoCompares, LottoCompare.FIRST) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());
+        System.out.print(LottoCompare.FIRST.getLabel() + MachineMessage.MACHINE_MESSAGE_DASH.getMessage() + Collections.frequency(lottoCompares, LottoCompare.FIRST) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());
+    }
+
+    public static void displayProfit(float profit) {
+        System.out.println();
+        System.out.format(MachineMessage.MACHINE_MESSAGE_LOTTO_PROFIT.getMessage(), profit);
     }
 }

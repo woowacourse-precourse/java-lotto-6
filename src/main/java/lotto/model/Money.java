@@ -4,22 +4,22 @@ import java.util.Objects;
 import lotto.util.ErrorCode;
 
 public class Money {
-    private static final int UNIT = 1000;
-    private final int money;
+    private static final Integer UNIT = 1000;
+    private final Integer money;
 
-    public Money(int money) {
+    public Money(Integer money) {
         validatePositive(money);
         validateDivisible(money);
         this.money = money;
     }
 
-    private static void validatePositive(int money) {
+    private static void validatePositive(Integer money) {
         if (money <= 0) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_NOT_POSITIVE.getMessage());
         }
     }
 
-    private static void validateDivisible(int money) {
+    private static void validateDivisible(Integer money) {
         if (money % UNIT != 0) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_NOT_DIVISIBLE.getMessage());
         }
@@ -37,7 +37,7 @@ public class Money {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        return this.money == ((Money) o).money;
+        return Objects.equals(this.money, ((Money) o).money);
     }
 
     @Override

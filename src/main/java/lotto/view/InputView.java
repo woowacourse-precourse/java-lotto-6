@@ -14,7 +14,7 @@ public class InputView {
     }
 
 
-    public int requestInteger() {
+    public Integer requestInteger() {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {

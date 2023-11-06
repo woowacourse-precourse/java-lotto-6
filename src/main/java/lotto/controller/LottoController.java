@@ -35,8 +35,15 @@ public class LottoController {
         }
     }
 
-    private static void extractEarningRate(PurchasePrice purchasePrice, List<ResultResponseDto> dtos) {
-        double earningRate = purchasePrice.calculatePriceRate(dtos);
+    private int getLottoCount(PurchasePrice purchasePrice) {
+        int lottoCount = purchasePrice.getLottoCount();
+        OutputView.printPurchaseLotto(lottoCount);
+        return lottoCount;
+    }
+
+    private static void extractEarningRate(PurchasePrice purchasePrice,
+            List<ResultResponseDto> resultResponseDtos) {
+        double earningRate = purchasePrice.calculatePriceRate(resultResponseDtos);
         OutputView.printEarningRate(earningRate);
     }
 

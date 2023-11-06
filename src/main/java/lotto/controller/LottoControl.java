@@ -14,7 +14,8 @@ public class LottoControl {
     PurchasePrice purchasePrice;
     GenerateLottoNumbers generateLottoNumbers;
     LottoWinNumbers lottoWinNumbers;
-    private String PRICE_FROM_USER;
+    BonusNumber bonusNumber;
+    MatchedNumbers matchedNumbers;
     private int PIECE_OF_LOTTO;
     private ArrayList<List<String>> ALL_LOTTOS;
     private ArrayList<String> WIN_NUMBERS;
@@ -23,22 +24,17 @@ public class LottoControl {
 
 
     public LottoControl(){
-        setPurchasePrice();
+        getPurchasePrice();
+        printPieceOfLottos();
 
-
-
-        printLottoAmount();
-
-        generateLottoNumbers = new GenerateLottoNumbers(PIECE_OF_LOTTO);
+        generateLottos();
         printAllLottos();
 
-        lottoWinNumbers = new LottoWinNumbers(InputView.getWinNumberFromUserInput());
-        WIN_NUMBERS = lottoWinNumbers.getLottoWinNumbers();
+        getLottoWinNumbers();
 
-        BonusNumber bonusNumber = new BonusNumber(InputView.getBonusNumberFromUserInput());
-        BONUS_NUMBER = bonusNumber.getBonusNumber();
+        getBonusNumber();
 
-        MatchedNumbers matchedNumbers = new MatchedNumbers(ALL_LOTTOS,WIN_NUMBERS);
+        numberMatching();
         mappingMatchedLottos();
         fiveWithBonusFinder(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
         OutputView.printLottoStates(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
@@ -47,10 +43,6 @@ public class LottoControl {
 
 
     }
-    private void setLottoWinNumbers(){
-
-    }
-
     private void mappingMatchedLottos(){
         BONUS_FLAG = new boolean[PIECE_OF_LOTTO];
         for(int index = 0; index < ALL_LOTTOS.size(); index++){
@@ -66,23 +58,52 @@ public class LottoControl {
             }
         }
     }
-
-    private void setPurchasePrice(){
+    private void numberMatching(){
+        matchedNumbers = new MatchedNumbers(generateLottoNumbers.getAllLottos(),lottoWinNumbers.getLottoWinNumbers());
+    }
+    private void getBonusNumber(){
         try{
-            getPriceFromUser();
+            bonusNumber = new BonusNumber(getBonusNumberFromUser());
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            setPurchasePrice();
+            getBonusNumber();
+        }
+        BONUS_NUMBER = bonusNumber.getBonusNumber();
+    }
+    private String getBonusNumberFromUser(){
+        return InputView.getBonusNumberFromUserInput();
+    }
+    private void getLottoWinNumbers(){
+        try{
+            lottoWinNumbers = new LottoWinNumbers(getLottoWinNumbersFromUser());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            getLottoWinNumbers();
         }
     }
-    private void getPriceFromUser(){
-        PRICE_FROM_USER = InputView.getPriceFromUserInput();
+    private String getLottoWinNumbersFromUser(){
+        return InputView.getWinNumberFromUserInput();
+    }
+
+    private void generateLottos(){
+        generateLottoNumbers = new GenerateLottoNumbers(PIECE_OF_LOTTO);
+    }
+    private void getPurchasePrice(){
+        try{
+            purchasePrice = new PurchasePrice(getPriceFromUser());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            getPurchasePrice();
+        }
+    }
+    private String getPriceFromUser(){
+        return InputView.getPriceFromUserInput();
     }
     private void setPieceOfLotto(){
         PIECE_OF_LOTTO = purchasePrice.getCountPieceOfLotto();
     }
 
-    private void printLottoAmount(){
+    private void printPieceOfLottos(){
         setPieceOfLotto();
         OutputView.printPieceOfLottoAmount(PIECE_OF_LOTTO);
     }

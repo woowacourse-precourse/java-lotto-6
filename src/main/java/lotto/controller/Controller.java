@@ -23,7 +23,6 @@ public class Controller {
     }
 
     public void run() {
-        outputView.printMoneyRequestMessage();
         Money money = getMoney();
         Lottos lottos = getLottos(money.getMoney());
         showPurchasedLottos(lottos);
@@ -40,6 +39,7 @@ public class Controller {
 
     private Money getMoney() {
         try {
+            outputView.printMoneyRequestMessage();
             String money = inputView.readLine();
             return Money.createWith(money);
         } catch (IllegalArgumentException exception) {

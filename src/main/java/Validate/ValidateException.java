@@ -79,4 +79,10 @@ public class ValidateException {
         }
     }
 
+    public static boolean isMultipleOf1000(int amount) {
+        if (amount % 1000 == 0) {
+            return true;
+        }
+        throw new IllegalArgumentException("[ERROR] 돈은 1000원 단위 입니다.");
+    }
 }

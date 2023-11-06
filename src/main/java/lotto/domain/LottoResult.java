@@ -1,23 +1,15 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.Map;
 import lotto.enums.Rank;
 
 public class LottoResult {
     private final Map<Rank, Integer> result;
+    private final int lottoCount;
 
-    private LottoResult(Map<Rank, Integer> result) {
+    public LottoResult(Map<Rank, Integer> result, int lottoCount) {
         this.result = result;
-    }
-
-    public static LottoResult of(WinningNumber winningNumber, BonusNumber bonusNumber, LottoTicket lottoTicket) {
-        Map<Rank, Integer> result = new HashMap<>();
-        for (Lotto lotto : lottoTicket.getLottoTicket()) {
-            Rank rank = Rank.findRank(winningNumber, bonusNumber, lotto);
-            result.put(rank, result.getOrDefault(rank, 0) + 1);
-        }
-        return new LottoResult(result);
+        this.lottoCount = lottoCount;
     }
 
     public int findMatchCountFor(Rank rank) {
@@ -39,5 +31,9 @@ public class LottoResult {
         Rank rank = resultDetail.getKey();
         int winningCount = resultDetail.getValue();
         return rank.getPrize() * winningCount;
+    }
+
+    public int getPurchasePrice() {
+        return lottoCount * 1000;
     }
 }

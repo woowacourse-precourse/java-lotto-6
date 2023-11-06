@@ -70,7 +70,7 @@ public class InputUtils {
         }
     }
 
-    private static void validateInputBonusNumber(String number, List<Integer> winningNumbers) {
+    public static void validateInputBonusNumber(String number, List<Integer> winningNumbers) {
         if (isEmpty(number)) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }

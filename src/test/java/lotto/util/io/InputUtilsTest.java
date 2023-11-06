@@ -77,4 +77,44 @@ public class InputUtilsTest {
             assertEquals("[ERROR] 당첨 번호는 중복된 숫자가 없어야 합니다.", e.getMessage());
         }
     }
+
+    @Test
+    void 보너스_번호_입력값_없을_시_예외_처리() {
+        try {
+            InputUtils.validateInputBonusNumber(null, List.of(1, 2, 3, 4, 5, 6));
+            fail("테스트에 실패하였습니다.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("[ERROR] 입력값이 없습니다.", e.getMessage());
+        }
+    }
+
+    @Test
+    void 보너스_번호_숫자_입력_아닐_시_예외_처리() {
+        try {
+            InputUtils.validateInputBonusNumber("hello", List.of(1, 2, 3, 4, 5, 6));
+            fail("테스트에 실패하였습니다.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.", e.getMessage());
+        }
+    }
+
+    @Test
+    void 보너스_번호_1부터_45사이_숫자_입력_아닐_시_예외_처리() {
+        try {
+            InputUtils.validateInputBonusNumber("400", List.of(1, 2, 3, 4, 5, 6));
+            fail("테스트에 실패하였습니다.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.", e.getMessage());
+        }
+    }
+
+    @Test
+    void 보너스_번호_당첨_번호와_중복_시_예외_처리() {
+        try {
+            InputUtils.validateInputBonusNumber("1", List.of(1, 2, 3, 4, 5, 6));
+            fail("테스트에 실패하였습니다.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("[ERROR] 보너스 번호는 당첨 번호에 없는 숫자여야 합니다.", e.getMessage());
+        }
+    }
 }

@@ -4,9 +4,11 @@ import java.util.List;
 import lotto.domain.cash.Cash;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumbersGenerator;
+import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
 import lotto.domain.shop.LottoShop;
+import lotto.domain.win.WinStatesCounter;
 import lotto.dto.LottoNumbersDTO;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,6 +25,7 @@ public class LottoController {
 
     private Cash purchaseCash;
     private int lotteriesCount;
+    private WinningLottoNumbers winningLottoNumbers;
     private List<Lotto> lotteries;
 
     public LottoController(InputView inputView, OutputView outputView) {
@@ -33,6 +36,7 @@ public class LottoController {
     public void run() {
         inputPurchaseCash();
         generateLotteries();
+        inputWinningLottoNumbers();
     }
 
     private void inputPurchaseCash() {
@@ -54,6 +58,30 @@ public class LottoController {
                 .map(Lotto::new)
                 .toList();
         // 발행번호들 출력
+    }
+
+    private void inputWinningLottoNumbers() {
+        winningLottoNumbers = new WinningLottoNumbers(inputWinningNumbers(), inputBonusNumber());
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        // 당첨 번호를 입력해 주세요.
+        try {
+            return inputView.inputNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    private int inputBonusNumber() {
+        // 보너스 번호를 입력해 주세요.
+        try {
+            return inputView.inputNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 
 }

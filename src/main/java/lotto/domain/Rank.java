@@ -29,6 +29,10 @@ public enum Rank {
                 .orElse(Rank.NONE);
     }
 
+    public Integer getMatchingNumbers() {
+        return matchingNumbers;
+    }
+
     public Integer getPrizeAmount() {
         return prizeAmount;
     }

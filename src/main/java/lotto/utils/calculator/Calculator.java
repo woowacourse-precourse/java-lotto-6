@@ -17,10 +17,4 @@ public class Calculator {
         }
         return totalAmount;
     }
-
-    public static int calculateLottoCount(Map<LottoResults, Integer> result) {
-        return result.values()
-                .stream()
-                .reduce(0, Integer::sum);
-    }
 }

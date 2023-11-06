@@ -21,6 +21,7 @@ public class LottoController {
     private final NumberGenerator lottoNumberGenerator;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
+    private BuyAmount buyAmount;
 
     public LottoController(NumberGenerator generator) {
         this.lottoNumberGenerator = generator;
@@ -33,7 +34,7 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        BuyAmount buyAmount = InputView.getBuyAmountFromInput();
+        buyAmount = InputView.getBuyAmountFromInput();
         lottos = createLottosFromAmount(buyAmount);
         LottosDTO lottosDTO = lottos.toLottosDTO();
         OutputView.displayAllLottos(lottosDTO);
@@ -57,7 +58,7 @@ public class LottoController {
         for (LottoResults result : lottoResults) {
             lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
         }
-        return new LottoResultsDTO(lottoStatistics);
+        return new LottoResultsDTO(lottoStatistics, buyAmount.getAbleToBuyCount());
     }
 
     private Lottos createLottosFromAmount(BuyAmount buyAmount) {

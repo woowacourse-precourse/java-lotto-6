@@ -1,38 +1,65 @@
 package lotto.data;
 
 public enum Rewards {
-    FIRST(6, 0, 2000000000, "2,000,000,000"),
-    SECOND(5, 1, 30000000, "30,000,000"),
-    THIRD(5, 0, 1500000, "1,500,000"),
-    FOURTH(4, 0, 50000, "50,000"),
-    FIFTH(3, 0, 5000, "5,000");
+    FIRST(
+            6,
+            false,
+            2000000000,
+            "6개 일치"
+    ),
+    SECOND(
+            5,
+            true,
+            30000000,
+            "5개 일치, 보너스 볼 일치"
+    ),
+    THIRD(
+            5,
+            false,
+            1500000,
+            "5개 일치"
+    ),
+    FOURTH(
+            4,
+            false,
+            50000,
+            "4개 일치"
+    ),
+    FIFTH(
+            3,
+            false,
+            5000,
+            "3개 일치"
+    );
 
     private final int correctLottos;
-    private final int correctBonus;
+    private final boolean correctBonus;
     private final int money;
-    private final String notifyMoney;
+    private final String notifyMessege;
 
-    private Rewards(int correctLottos, int correctBonus, int money, String notifyMoney) {
+    Rewards(int correctLottos, boolean correctBonus, int money, String notifyMessege) {
         this.correctLottos = correctLottos;
         this.correctBonus = correctBonus;
         this.money = money;
-        this.notifyMoney = notifyMoney;
+        this.notifyMessege = notifyMessege;
+
     }
 
-    public int getCorrectLottos() {
+
+    public int correctLottos() {
         return correctLottos;
     }
 
-    public int getCorrectBonus() {
+    public boolean correctBonus() {
         return correctBonus;
     }
 
-    public int getMoney() {
+    public int money() {
         return money;
     }
 
-    public String getNotifyMoney() {
-        return notifyMoney;
+    public String getNotifyMessege() {
+        return notifyMessege;
     }
 
 

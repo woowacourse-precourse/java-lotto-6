@@ -24,6 +24,10 @@ public class Winner {
     public Map<Integer, Integer> countTotalLottoPrizes(){
         return lottoResult.getWinningCount();
     }
+    public double totalProfitMargin() {
+        return lottoResult.getProfitMargin();
+    }
+
     private int changeInteger(String lottoWinningBonus) {
         return Integer.parseInt(lottoWinningBonus);
     }

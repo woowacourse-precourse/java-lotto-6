@@ -18,7 +18,7 @@ public class LottoController {
     public void startLotto() {
         List<Lotto> lottos = createLottoList();
         List<Integer> winningNum = createWinningNum();
-
+        Integer bonusNum = createBonusNum(winningNum);
     }
 
     /**
@@ -52,5 +52,14 @@ public class LottoController {
     private List<Integer> createWinningNum() {
         outputView.printWinningNum();
         return inputView.chooseWinningNum();
+    }
+
+    /**
+     * 보너스 번호를 입력 받음
+     * ex) 7
+     */
+    private Integer createBonusNum(List<Integer> winningNum) {
+        outputView.printBonusNum();
+        return inputView.chooseBonusNum(winningNum);
     }
 }

@@ -32,4 +32,15 @@ public class InputView {
         }
         return inputService.getStringToList(line);
     }
+
+
+    public Integer chooseBonusNum(List<Integer> winningNum) {
+        String line;
+        while (true) {
+            line = Console.readLine();
+
+            if (!lottoException.checkBonusNum(line, winningNum)) break;
+        }
+        return inputService.getBonusNum(line);
+    }
 }

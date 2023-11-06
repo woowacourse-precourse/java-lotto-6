@@ -21,6 +21,10 @@ public class LottoException {
         return checkGap(line) || checkStringList(line) || check6Num(line) || check1To45(line) || checkDuplicated(line);
     }
 
+    public boolean checkBonusNum(String line, List<Integer> winningNum) {
+        return checkGap(line) || checkString(line) || check1To45(line) || checkDuplicatedBonus(line, winningNum);
+    }
+
 
     private boolean checkGap(String line) {
         try {
@@ -102,6 +106,19 @@ public class LottoException {
             }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 중복된 숫자를 입력 받았습니다. 다시 입력 해 주세요");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkDuplicatedBonus(String line, List<Integer> winningNum) {
+        try {
+            Integer bonusNum = inputService.getBonusNum(line);
+            if (winningNum.contains(bonusNum)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 기존 당첨 번호와 중복된 숫자를 입력 받았습니다. 다시 입력 해 주세요.");
             return true;
         }
         return false;

@@ -29,4 +29,8 @@ public class InputService {
     public boolean is1To45(List<Integer> winningNum) {
         return winningNum.stream().anyMatch(num -> num < 1 || num > 45);
     }
+
+    public Integer getBonusNum(String line) {
+        return Integer.parseInt(line);
+    }
 }

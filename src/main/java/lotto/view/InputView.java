@@ -19,11 +19,17 @@ public class InputView {
     public static final String NO_PERMIT_INPUT_LESS_ZERO = "[ERROR] 0 이하의 값은 입력받을 수 없습니다.";
     public static final String INDEX_OUT_OF_INPUT_LENGTH = "[ERROR] index 가 문자열의 범위를 벗어났습니다.";
 
-    public int askPrice() {
-        printHowManyPurchase();
-        String input = Console.readLine();
-        validateBlankAndEmptyInteger(input);
-        return validateNegativeIntegerAndZero(validateInteger(input));
+    public Integer askPrice() {
+        try {
+            printHowManyPurchase();
+            String input = Console.readLine();
+            validateBlankAndEmptyInteger(input);
+            return validateNegativeIntegerAndZero(validateInteger(input));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            askPrice();
+        }
+        return null;
     }
 
     public Lotto askWinningNumber() {

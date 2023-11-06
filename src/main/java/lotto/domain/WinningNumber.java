@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.LottoConstant;
 
 public class WinningNumber {
     private List<Integer> numbers;
@@ -19,7 +20,7 @@ public class WinningNumber {
     }
 
     private void lengthValidate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstant.LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
@@ -36,7 +37,7 @@ public class WinningNumber {
 
     private void rangeValidate(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LottoConstant.LOTTO_MIN_NUMBER || number > LottoConstant.LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException();
             }
         }

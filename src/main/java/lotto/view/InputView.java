@@ -21,7 +21,6 @@ public class InputView {
     }
 
     public List<Integer> getNumbers() {
-        List<Integer> numbers = new ArrayList<>();
         List<String> inputNumbers = Arrays.asList(Console.readLine().split(","));
         for (int i = 0; i < inputNumbers.size(); i++) {
             inputValidator.validateNumber(inputNumbers.get(i));

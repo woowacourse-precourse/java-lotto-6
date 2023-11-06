@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.constant.LottoConstant;
 
 public class BonusNumber {
-    int number;
+    private int number;
 
     public BonusNumber(int number, WinningNumber winningNumber) {
         rangeValidate(number);
@@ -16,7 +16,7 @@ public class BonusNumber {
     }
 
     private void rangeValidate(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoConstant.LOTTO_MIN_NUMBER || number > LottoConstant.LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

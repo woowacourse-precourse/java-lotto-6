@@ -22,7 +22,7 @@ public class LottoService {
 
     public float getRevenue(LottoResult lottoResult) {
         float revenue = 0;
-        for (int rank = 1; rank <= LottoConstant.LAST_RANK; rank++) {
+        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.LAST_RANK; rank++) {
             if (lottoResult.contains(rank)) {
                 int rankCount = lottoResult.get(rank);
                 revenue += calculateRevenue(rank) * rankCount;

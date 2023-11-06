@@ -28,5 +28,11 @@ public class WinningNumberValidator {
         }
     }
 
+    private static void validateSixNumbers(Set<Integer> numbers) {
+        if (numbers.size() != WINNING_NUMBERS_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 정확히 6개의 숫자를 입력해야 합니다.");
+        }
+    }
+
 
 }

@@ -25,10 +25,11 @@ public class WinningTierTest {
         userCorrectWinningsCount.add(6L);
         userCorrectBonuses.add(false);
 
-        WinningTier.estimate(userCorrectWinningsCount, userCorrectBonuses);
-        HashMap<Integer, Integer> winningTier = WinningTier.getWinningTier();
+        WinningTier winningTier = new WinningTier();
+        winningTier.estimate(userCorrectWinningsCount, userCorrectBonuses);
+        HashMap<Integer, Integer> winningTierResult = winningTier.getWinningTier();
 
-        Assertions.assertThat(winningTier.get(1)).isEqualTo(2);
-        Assertions.assertThat(winningTier.get(2)).isEqualTo(1);
+        Assertions.assertThat(winningTierResult.get(1)).isEqualTo(2);
+        Assertions.assertThat(winningTierResult.get(2)).isEqualTo(1);
     }
 }

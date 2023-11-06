@@ -2,16 +2,19 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WinningTier {
 
     private static final int DEFAULT_VALUE = 0;
     private static final int PLUS_UNIT = 1;
 
-    private static HashMap<Integer, Integer> winningTier = new HashMap<>();
+    private HashMap<Integer, Integer> winningTier;
 
-    public static void estimate(List<Long> correctWinningsCount, List<Boolean> correctBonuses) {
+    public WinningTier() {
+        this.winningTier = new HashMap<>();
+    }
+
+    public void estimate(List<Long> correctWinningsCount, List<Boolean> correctBonuses) {
         HashMap<Integer, Integer> tempWinningTier = new HashMap<>();
 
         for (int i = 0; i < correctWinningsCount.size(); i++) {
@@ -27,7 +30,7 @@ public class WinningTier {
                 (rank, count) -> winningTier.merge(rank, count, Integer::sum));
     }
 
-    public static HashMap<Integer, Integer> getWinningTier() {
-        return winningTier;
+    public HashMap<Integer, Integer> getWinningTier() {
+        return this.winningTier;
     }
 }

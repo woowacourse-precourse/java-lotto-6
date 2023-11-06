@@ -10,25 +10,33 @@ public class LottoGame {
     private static InsertLottoNumber insertLottoNumber;
     private static BonusNumber bonusNumber;
     private static Lotto lotto;
+    private static ResultLotto resultLotto;
     private static Input input;
     private static Money money;
     private static final int WON = 1000;
 
     public void Game() {
         input = new Input();
+        startGame();
+    }
+
+    private void startGame() {
         loop();
+        resultLotto = new ResultLotto(lotto.lottoNumber(), bonusNumber.bonusNumber());
+        resultLotto.printResult(randomLotto);
+        System.out.print("총 수익률은 " + rateOfReturn(resultLotto.resultOfMoney()) + "%입니다.");
     }
 
     private void loop() {
         loopInsertMoney();
-        createRandomLotto(money.currentMoney()/WON);
+        createRandomLotto(money.currentMoney() / WON);
         printRandomLotto();
         loopInsertNumber();
         loopInsertBonusNumber();
     }
 
     private void loopInsertNumber() {
-        while(true) {
+        while (true) {
             try {
                 insertLottoNumber = new InsertLottoNumber(input.inputLottoNumber());
                 lotto = new Lotto(insertLottoNumber.sendLottoNumber());
@@ -41,7 +49,7 @@ public class LottoGame {
     }
 
     private void loopInsertBonusNumber() {
-        while(true) {
+        while (true) {
             try {
                 bonusNumber = new BonusNumber(lotto.lottoNumber(), input.inputBonusNumber());
                 input.lineBreaking();
@@ -53,12 +61,12 @@ public class LottoGame {
     }
 
     private void loopInsertMoney() {
-        while(true) {
+        while (true) {
             try {
                 money = new Money(input.inputBuyMoney());
                 input.lineBreaking();
                 break;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -66,9 +74,9 @@ public class LottoGame {
 
     private void createRandomLotto(int size) {
         input.buyLotto(size);
-        randomLotto = new ArrayList<List<Integer>>();
+        randomLotto = new ArrayList<>();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             RandomLotto createLottoNumbers = new RandomLotto();
             randomLotto.add(createLottoNumbers.randomLotto());
         }
@@ -80,5 +88,9 @@ public class LottoGame {
         }
 
         input.lineBreaking();
+    }
+
+    private double rateOfReturn(long earnMoney) {
+        return Math.round(((double) earnMoney / money.currentMoney()) * 1000.0) / 10.0;
     }
 }

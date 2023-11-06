@@ -21,4 +21,16 @@ public class Judge {
 
         return result;
     }
+
+    public static Boolean isBonusMatch(Lotto lotto, Integer bonusNumber) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        for (Integer number : numbers) {
+            if (number == bonusNumber) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

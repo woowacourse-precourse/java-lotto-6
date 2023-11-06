@@ -13,43 +13,43 @@ public class InputValidator {
 
     private static final Pattern pattern = Pattern.compile(PATTERN_FOR_FINDING_SPECIAL_SIGN.getPattern());
 
-    public static void validateNumber(String input) {
+    public static void validateNumber(final String input) {
         for (char token : input.toCharArray()) {
             isNumberToken(token);
         }
     }
 
-    private static void isNumberToken(Character token) {
+    private static void isNumberToken(final Character token) {
         if (!(Character.isDigit(token))) {
             throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
-    public static void validateBlank(String input) {
+    public static void validateBlank(final String input) {
         if (input.isBlank() || input == null) {
             throw new IllegalStateException(NO_LINE_FOUND.getMessage());
         }
 
     }
 
-    public static void validateInputNumbersFormat(List<String> numbers) {
+    public static void validateInputNumbersFormat(final List<String> numbers) {
         validateSpecialSign(numbers);
         validateNumbers(numbers);
     }
 
-    private static void validateNumbers(List<String> numbers) {
+    private static void validateNumbers(final List<String> numbers) {
         for (String number : numbers) {
             validateNumber(number);
         }
     }
 
-    private static void validateSpecialSign(List<String> numbers) {
+    private static void validateSpecialSign(final List<String> numbers) {
         for (String number : numbers) {
             isSpecialSignToken(number);
         }
     }
 
-    private static void isSpecialSignToken(String number) {
+    private static void isSpecialSignToken(final String number) {
         if (pattern.matcher(number)
                 .find()) {
             throw new IllegalArgumentException(FOUND_SPECIAL_SIGN.getMessage());

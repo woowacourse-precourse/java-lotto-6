@@ -42,6 +42,7 @@
 - 주어진 번호로 생성되어야 한다.
 - 주어진 번호의 갯수가 로또 숫자 갯수와 다르면 IllegalArgumentException 을 발생 시킨다.
 - 주어진 번호들이 로또 게임의 범위 숫자가 아니라면 IllegalArgumentException 을 발생 시킨다.
+- 주어진 번호에 중복이 있다면 IllegalArgumentException 을 발생 시킨다
 - 로또가 원하는 번호를 가지고 있는지 확인한다.
 
 > 구입한 로또 티켓 목록 기능 정리

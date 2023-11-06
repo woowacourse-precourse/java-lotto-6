@@ -18,7 +18,7 @@ public class User {
     }
 
     public void getRandomLotto(){
-        System.out.println("\n" + Message.LOTTO_RANDOM_PRINT);
+        System.out.println("\n" + ticketCount + Message.LOTTO_RANDOM_PRINT);
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lotto.printNumbers();

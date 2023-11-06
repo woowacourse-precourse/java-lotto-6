@@ -29,13 +29,15 @@ public class LotteryController {
         outputView = new OutputView();
         judgeWinningTickets = new JudgeWinningTickets();
         revenue = new Revenue();
-
+        System.out.println("구입금액을 입력해 주세요.");
         payment = inputView.askPayment();
         ticketCount = payment / 1000;
         List<List<Integer>> lotteryTickets = issueLottery.issueTickets(ticketCount);
         outputView.printLotteryTickets(ticketCount, lotteryTickets);
         System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningTicketNumbers = inputView.askWinningTicketNumbers();
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = inputView.askBonusNumber();
         winningTicketsCount = judgeWinningTickets.countWinningTickets(ticketCount, lotteryTickets, winningTicketNumbers, bonusNumber);
         outputView.printWinningLotteryTickets(winningTicketsCount);

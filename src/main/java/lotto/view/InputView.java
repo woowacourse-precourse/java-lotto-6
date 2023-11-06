@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +11,22 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
+    private boolean validation = true;
+    private String input;
     public int askPayment() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = readLine();
-        System.out.println();
-        validatePayment(input);
+        boolean isValidatePayment = true;
+        while(isValidatePayment) {
+            input = Console.readLine();
+            isValidatePayment = validatePayment(input);
+        }
         int payment = Integer.parseInt(input);
+        System.out.println();
         return payment;
     }
 
     public List<Integer> askWinningTicketNumbers() {
         List<Integer> winningTicketNumbers = new ArrayList<Integer>();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = readLine().replaceAll("\\p{Z}", "");
+        String input = Console.readLine().replaceAll("\\p{Z}", "");
         String[] temp = input.split(",");
         validateWinningTicketNumbers(temp);
         List<Integer> tmp = new ArrayList<Integer>();
@@ -38,7 +42,6 @@ public class InputView {
 
     public int askBonusNumber() {
         int bonusNumber = 0;
-        System.out.println("보너스 번호를 입력해 주세요.");
         String input = readLine();
         validateBonusNumber(input);
         bonusNumber = Integer.parseInt(input);
@@ -46,15 +49,37 @@ public class InputView {
         return bonusNumber;
     }
 
-    private void validatePayment(String input) {
+    private boolean validateNumber(String input) {
+        boolean isNumber = true;
         try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+            if(!input.matches("\\d+"))
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+        } catch (IllegalArgumentException e) {
+            isNumber = false;
+            System.out.println(e.getMessage());
         }
+        return isNumber;
+    }
+
+    private boolean validateMultipleOf1000(String input) {
+        boolean isMultipleOf1000 = true;
         int number = Integer.parseInt(input);
-        if (!((number % 1000) == 0))
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000 단위로 입력해야 합니다.");
+        try {
+            if (!((number % 1000) == 0))
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000 단위로 입력해야 합니다.");
+        } catch (IllegalArgumentException e) {
+            isMultipleOf1000 = false;
+            System.out.println(e.getMessage());
+        }
+        return isMultipleOf1000;
+    }
+
+    private boolean validatePayment(String input) {
+        boolean isValidatePayment = true;
+        if(validateNumber(input)) {
+            isValidatePayment = validateMultipleOf1000(input);
+        }
+        return isValidatePayment;
     }
 
     private void validateBonusNumber(String input) {

@@ -11,6 +11,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public boolean hasNumber(int number) {
         return numbers.contains(number);
     }

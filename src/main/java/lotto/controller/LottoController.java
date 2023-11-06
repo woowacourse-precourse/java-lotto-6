@@ -20,12 +20,18 @@ public class LottoController {
 
     public void run() {
         initBuyer();
+        showPurchaseStatus();
     }
 
     private void initBuyer() {
         int purchaseAmount = getPurchaseAmount();
         ArrayList<Lotto> lottoTickets = purchaseLottoTickets(purchaseAmount);
         buyer = new Buyer(purchaseAmount, lottoTickets);
+    }
+
+    public void showPurchaseStatus() {
+        printPurchasedTicketCount();
+        printLottoTicketNumbers();
     }
 
     /* 구입금액 입력 */
@@ -68,9 +74,16 @@ public class LottoController {
         return numbers;
     }
 
+    /* 로또 구매 개수 출력 */
+    public void printPurchasedTicketCount() {
+        int number = buyer.getLottoTicketCount();
+        PurchaseView.printPurchasedTicketCount(number);
+    }
 
-    public void purchaseLotto() {
-        //TODO: 로또 구매 내용 출력
+    /* 로또 6자리 숫자 출력 */
+    public void printLottoTicketNumbers() {
+        for(List<Integer> numbers : buyer.getLottoTicketNumbers())
+            System.out.println(numbers);
     }
 
     public void getInputWinningNumbers() {

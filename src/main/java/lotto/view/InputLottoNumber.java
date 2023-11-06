@@ -1,11 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.DuplicateException;
 import lotto.exception.RangeException;
 import lotto.exception.SizeException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 
@@ -25,6 +28,7 @@ public class InputLottoNumber {
         List<Integer> lottoNumb = split(lottoNumbs);
         validateSize(lottoNumb);
         validateLottoNumber(lottoNumb);
+        validateDuplicate(lottoNumb);
         return lottoNumb;
     }
 
@@ -52,6 +56,13 @@ public class InputLottoNumber {
     private void validateSize(List<Integer> lottoNumbs) {
         if (lottoNumbs.size() != SIZE) {
             throw new SizeException();
+        }
+    }
+
+    private void validateDuplicate(List<Integer> lottoNumbs) {
+        Set<Integer> lottoNumb = new HashSet<>(lottoNumbs);
+        if (lottoNumb.size() != SIZE) {
+            throw new DuplicateException();
         }
     }
 

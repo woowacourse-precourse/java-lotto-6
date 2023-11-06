@@ -28,7 +28,7 @@ public class InputBuyLotto {
 
     private int getTicket(int money) {
         validateZero(money);
-        validateDivideThousand(money);증
+        validateDivideThousand(money);
 
         return money / THOUSAND;
     }

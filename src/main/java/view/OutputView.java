@@ -1,5 +1,7 @@
 package view;
 
+import domain.Rank;
+
 import java.util.List;
 
 public class OutputView {
@@ -19,23 +21,28 @@ public class OutputView {
     }
 
     public static void printThreeCorrect(int three) {
-        System.out.println("3개 일치 (5,000원) - " + three + "개");
+        Rank rank = Rank.FIFTH;
+        System.out.println(rank.getMatch() + three + "개");
     }
 
     public static void printFourCorrect(int four) {
-        System.out.println("4개 일치 (50,000원) - " + four+ "개");
+        Rank rank = Rank.FOURTH;
+        System.out.println(rank.getMatch() + four+ "개");
     }
 
     public static void printFiveCorrect(int five) {
-        System.out.println("5개 일치 (1,500,000원) - " + five+ "개");
+        Rank rank = Rank.THIRD;
+        System.out.println(rank.getMatch() + five+ "개");
     }
 
     public static void printFiveBonusCorrect(int five_bonus) {
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + five_bonus+ "개");
+        Rank rank = Rank.SECOND;
+        System.out.println(rank.getMatch() + five_bonus+ "개");
     }
 
     public static void printSixCorrect(int six) {
-        System.out.println("6개 일치 (2,000,000,000원) - " + six+ "개");
+        Rank rank = Rank.FIRST;
+        System.out.println(rank.getMatch() + six+ "개");
     }
 
     public static void printRevenue(int[] lotto, int money) {

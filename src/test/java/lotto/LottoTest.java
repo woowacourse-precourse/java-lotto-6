@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.domain.Amount;
+import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.constant.LottoErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
+import static lotto.constant.LottoErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -37,5 +39,21 @@ class LottoTest {
         assertThatThrownBy(() -> new Amount(8800))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PURCHASE_AMOUNT_ERROR_MESSAGE);
+    }
+
+    @Test
+    void 당첨번호_입력테스트() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(List.of(1, 2, 3, 4, 5, 6)).isEqualTo(winningNumber.getWinningNumber());
+    }
+
+    @Test
+    void 당첨번호_예외처리_테스트() {
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_LENGTH_ERROR_MESSAGE);
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 55, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE);
     }
 }

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.view.OutputLottos.printLottos;
+import static lotto.view.OutputLottosView.printLottos;
 import static lotto.view.OutputResultView.printResult;
 import static lotto.view.OutputView.printBuyLotto;
 

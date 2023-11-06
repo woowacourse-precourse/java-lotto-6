@@ -68,7 +68,7 @@ public class InputView {
         return bonusNumber.getBonusNumber();
     }
 
-    private List<Integer> inputWinningNumbers(String numbers) {
+    private List<Integer> inputWinningNumbers(String numbers) throws IllegalArgumentException{
         String[] split = numbers.split(",");
         Arrays.stream(split).forEach(this::validateNumber);
         if (split.length != 6) {
@@ -79,7 +79,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private void validateNumber(String input) {
+    private void validateNumber(String input) throws IllegalArgumentException{
         if (input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_BLANK_NUMBER.getMessage());
         }

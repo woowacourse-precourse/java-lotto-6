@@ -14,13 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.LACK_NUMBER_COUNT.getMessage());
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> numbers) {
+    private void validateDuplicatedNumber(List<Integer> numbers) throws IllegalArgumentException {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DUPLICATED.getMessage());

@@ -6,11 +6,13 @@ import static io.IOMessages.LOTTO_PURCHASE_AMOUNT_MESSAGE;
 
 public class IOHandler {
 
+    private final InputValidator validator = new InputValidator();
+
     public int inputLottoPurchaseAmount() {
         System.out.println(LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage());
 
         String input = Console.readLine();
-        // TODO: 입력값 검증
+        validator.validateLottoPurchaseAmount(input);
 
         return Integer.parseInt(input);
     }

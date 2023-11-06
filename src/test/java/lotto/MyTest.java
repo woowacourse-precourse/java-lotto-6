@@ -108,6 +108,17 @@ public class MyTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
     }
 
+    @DisplayName("로또의 보너스 번호가 서로 중복되지 않은 값이여야한다.")
+    @Test
+    public void checkLottoBonusNumberError1() {
+        assertThatThrownBy(() -> {
+            List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+            Lotto lotto = new Lotto(input);
+            lotto.checkDuplicateForBonusNumber(1);
+        })
+                .isInstanceOf(IllegalArgumentException.class); // 예외 유형을 확인
+    }
+
     public void runMain() {
         Application.main(new String[]{});
     }

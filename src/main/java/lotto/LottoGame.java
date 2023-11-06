@@ -42,32 +42,39 @@ public class LottoGame {
         return bonus;
     }
 
-    // 당첨 조회
-    public int[] winningResult(List<Lotto> draws, Lotto win, int bonus) {
-        int[] winningList = new int[5];
-        int count;
-
-        for(int i = 0; i < draws.size(); i++) {
-            Lotto draw = draws.get(i);
-            count = numberComparison(draw, win);
-            if (count > 2) {
-                winningList[count-3]++;
-            }
-        }
-        return winningList;
-    }
-
+    // 당첨 번호 비교
     public int numberComparison(Lotto draw, Lotto win) {
         int count = 0;
         for(Integer number : win.getNumbers()){
             if (draw.contains(number)) {
-               count++;
+                count++;
             }
         }
         return count;
     }
 
-    // 보너스 카운트
+    // 보너스 비교
+    public boolean bonusComparison(Lotto draw, int bonus) {
+        return draw.contains(bonus);
+    }
+
+    // 당첨 현황
+    public int[] winningResult(List<Lotto> draws, Lotto win, int bonus) {
+        int[] winningList = new int[5];
+        for (Lotto draw : draws){
+            int count = numberComparison(draw, win);
+            if (count > 2) {
+                winningList[count-3]++;
+            }
+            if (count == 5 && bonusComparison(draw, bonus)) {
+                winningList[2]--;
+                winningList[3]++;
+            }
+        }
+        return winningList;
+    }
+
+
     // 수익률 출력
     // 예외 상황 출력
 }

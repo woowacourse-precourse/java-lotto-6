@@ -21,6 +21,11 @@ public class LottoResultCalculator {
         prizeMap.put(6, 2_000_000_000);
     }
 
+    public static String getPrizeAmount(int matchCount) {
+        Integer prizeAmount = prizeMap.getOrDefault(matchCount, 0);
+        return formatNumber(prizeAmount);
+    }
+
     private static String formatNumber(int number){
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
         return numberFormat.format(number);

@@ -30,7 +30,6 @@ public class Controller {
         }
 
         List<Lotto> lottos = model.buyLotto(payment);
-
         outputView.printAllLottoNumbers(lottos);
 
         // 당첨 번호 입력 받고, 분리, 정수형 리스트로 변환 및 검증. 에러 발생 시 다시 입력 받기.
@@ -68,9 +67,8 @@ public class Controller {
 
         outputView.printTotalResult(totalResult);
 
-        long totalPrize = model.getProfit(totalResult);
+        long totalPrize = model.getTotalPrize(totalResult);
         double returnRate = utility.getReturnRate(payment, totalPrize);
-
         outputView.printReturnRate(returnRate);
     }
 }

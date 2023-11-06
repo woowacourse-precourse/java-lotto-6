@@ -64,7 +64,7 @@ public class Model {
         }
    }
 
-    public long getProfit(int[][] totalResult) {
+    public long getTotalPrize(int[][] totalResult) {
         long sum = MATCH_PRIZE_3 * totalResult[3][0] + MATCH_PRIZE_4 * totalResult[4][0] + MATCH_PRIZE_5 * totalResult[5][0] + MATCH_PRIZE_5_AND_BONUS * totalResult[5][1] + MATCH_PRIZE_6 * totalResult[6][0];
         return sum;
     }

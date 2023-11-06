@@ -3,6 +3,7 @@ package lotto.enums;
 import java.util.Comparator;
 
 public enum LottoRank implements Comparable<LottoRank>{
+    NONE(0, null),
     THIRD(5000, "3개 일치 (5,000원)"),
     FOURTH(50000, "4개 일치 (50,000원)"),
     FIFTH_WITHOUT_BONUS(1500000, "5개 일치 (1,500,000원)"),
@@ -14,11 +15,5 @@ public enum LottoRank implements Comparable<LottoRank>{
     LottoRank(int prize, String prizeMsg) {
         this.prize = prize;
         this.prizeMsg = prizeMsg;
-    }
-
-
-    @Override
-    public int compareTo(LottoRank lottoRank) {
-        return 0;
     }
 }

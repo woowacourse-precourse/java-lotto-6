@@ -17,9 +17,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int countMatches(List<Integer> winnerNumbers) {
+    public int countMatches(WinningLotto winningLotto) {
         return (int) numbers.stream()
-                .filter(winnerNumbers::contains)
+                .filter(winningLotto::contains)
                 .count();
     }
 

@@ -17,11 +17,10 @@ public class LottoController {
         List<Lotto> lottos = generateLottos(lottoCount);
 
         WinningLotto winningLotto = getWinningLotto();
-        List<Integer> winnerNumber = winningLotto.getWinnerNumber();
 
         int bonusNumber = getBonusNumber(winningLotto);
 
-        printMatchAndProfitRate(lottos, winnerNumber, bonusNumber, lottoCount);
+        printMatchAndProfitRate(lottos, winningLotto, bonusNumber, lottoCount);
     }
 
     private PurchaseLotto getPurChaseAmount() {
@@ -68,16 +67,16 @@ public class LottoController {
         }
     }
 
-    private void printMatchAndProfitRate(List<Lotto> lottos, List<Integer> winnerNumber, int bonusNumber, int lottoCount) {
-        ResultLotto resultLotto = getResultLotto(lottos, winnerNumber, bonusNumber);
+    private void printMatchAndProfitRate(List<Lotto> lottos, WinningLotto winningLotto, int bonusNumber, int lottoCount) {
+        ResultLotto resultLotto = getResultLotto(lottos, winningLotto, bonusNumber);
         printMatchLotto(resultLotto);
         printProfitRate(resultLotto, lottoCount * LottoConfig.PURCHASE_AMOUNT_UNIT);
     }
 
-    private ResultLotto getResultLotto(List<Lotto> lottos, List<Integer> winnerNumber, int bonusNumber) {
+    private ResultLotto getResultLotto(List<Lotto> lottos, WinningLotto winningLotto, int bonusNumber) {
         ResultLotto resultLotto = new ResultLotto();
         for (Lotto lotto : lottos) {
-            resultLotto.addResult(lotto, winnerNumber, bonusNumber);
+            resultLotto.addResult(lotto, winningLotto, bonusNumber);
         }
         return resultLotto;
     }

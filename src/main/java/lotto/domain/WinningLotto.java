@@ -18,8 +18,8 @@ public class WinningLotto {
         this.winnerNumber = winningNumbers;
     }
 
-    public List<Integer> getWinnerNumber() {
-        return this.winnerNumber;
+    public boolean contains(int number) {
+        return winnerNumber.contains(number);
     }
 
     private void validate(List<Integer> winnerNumber) {

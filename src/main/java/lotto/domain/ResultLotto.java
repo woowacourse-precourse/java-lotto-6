@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class ResultLotto {
@@ -19,8 +18,8 @@ public class ResultLotto {
         }
     }
 
-    public void addResult(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
-        Prize prize = CompareLotto.calculate(lotto, winningNumbers, bonusNumber);
+    public void addResult(Lotto lotto, WinningLotto winningLotto, int bonusNumber) {
+        Prize prize = CompareLotto.calculate(lotto, winningLotto, bonusNumber);
         result.putIfAbsent(prize, NUMBER_ZERO);
         result.put(prize, result.get(prize) + NUMBER_ONE);
     }

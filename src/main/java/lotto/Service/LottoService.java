@@ -3,9 +3,12 @@ package lotto.Service;
 import static lotto.Util.Constants.LOTTO_PRICE_UNIT;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Domain.BonusNumber;
 import lotto.Domain.Lotto;
+import lotto.Domain.Rank;
 import lotto.Domain.User;
 import lotto.Domain.WinningLotto;
 import lotto.Util.LottoNumGenerator;
@@ -13,18 +16,29 @@ import lotto.Util.LottoNumGenerator;
 public class LottoService {
     private User user;
     private WinningLotto winningLotto;
+
     public List<Lotto> purchaseLotto(int money) {
         int count = countNumberOfPurchase(money);
         List<Lotto> lottos = publishLotto(count);
-        user = new User(money,lottos);
+        user = new User(money, lottos);
         return lottos;
     }
 
     public void createWinningLotto(List<Integer> winningNumbers, int bonusNum) {
         Lotto winningLotto = new Lotto(winningNumbers);
         BonusNumber bonusNumber = new BonusNumber(bonusNum);
-        this.winningLotto = new WinningLotto(winningLotto,bonusNumber);
+        this.winningLotto = new WinningLotto(winningLotto, bonusNumber);
     }
+
+    public Map<Rank, Integer> createResult() {
+        Map<Rank,Integer> result = new HashMap<>();
+        for (Lotto lotto : user.getLottos()) {
+            Rank rank = winningLotto.getRankOf(lotto);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+        return result;
+    }
+
 
     private int countNumberOfPurchase(int money) {
         return money / LOTTO_PRICE_UNIT;

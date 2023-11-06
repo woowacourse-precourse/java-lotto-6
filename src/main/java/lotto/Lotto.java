@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Lotto {
         validateSixNumberCount(numbers);
         validateOverlapNumber(numbers);
         validateNumberRange(numbers);
-        this.numbers = numbers;
+        this.numbers = sortingAscendingNumbers(numbers);
     }
 
     public static void validateSingleNumberRange(Integer number) {
@@ -41,9 +42,10 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public List<Integer> sortingAscendingNumbers() {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+    private List<Integer> sortingAscendingNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return sortedNumbers;
     }
 
     private void validateSixNumberCount(List<Integer> numbers) {

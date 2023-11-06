@@ -68,13 +68,13 @@ class LottoTest {
 
     @DisplayName("숫자를 오름차순으로 정렬합니다.")
     @Test
-    void sortingAscending() {
-        Lotto desendingLottoNumbers = new Lotto(Arrays.asList(6, 5, 4, 3, 2, 1));
-        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+    void createUnsortingNumbers() {
+        Lotto lotto = new Lotto(Arrays.asList(6, 5, 4, 3, 2, 1));
 
-        List<Integer> result = desendingLottoNumbers.sortingAscendingNumbers();
+        String expected = List.of(1, 2, 3, 4, 5, 6).toString();
+        String result = lotto.toString();
 
-        assertEquals(result, expected);
+        assertEquals(expected, result);
     }
 
 

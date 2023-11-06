@@ -1,8 +1,10 @@
 package lotto.util;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import lotto.Amount;
+import lotto.manager.Exception;
 
 public class Util {
     public static boolean isNumber(String number) {
@@ -34,5 +36,18 @@ public class Util {
             return true;
         }
         return false;
+    }
+
+    public static List<Integer> splitAndParseToIntList(String string) {
+        String[] split = string.split(",", -1);
+
+        for (String number : split) {
+            if (!Util.isNumber(number)) {
+                Exception.NOT_NUMBER.throwing();
+            }
+        }
+        return Arrays.stream(split)
+                .map(Integer::parseInt)
+                .toList();
     }
 }

@@ -3,7 +3,7 @@ package lotto.validator;
 import java.util.List;
 import lotto.Amount;
 import lotto.manager.Exception;
-import lotto.policy.LottoNumberGenerator;
+import lotto.policy.LottoNumbersGenerator;
 import lotto.util.Util;
 
 public class Validator {
@@ -17,14 +17,19 @@ public class Validator {
     }
 
     public static void validateLottoNumber(List<Integer> numbers) {
-        if (numbers.size() != LottoNumberGenerator.NUMBER_COUNT) {
+        if (numbers.size() != LottoNumbersGenerator.NUMBER_COUNT) {
             Exception.LOTTO_NUMBERS_COUNT_OUT_OF_RANGE.throwing();
         }
-        if (!Util.isWithinRange(numbers, LottoNumberGenerator.MIN_NUMBER, LottoNumberGenerator.MAX_NUMBER)) {
+        if (!Util.isWithinRange(numbers, LottoNumbersGenerator.MIN_NUMBER, LottoNumbersGenerator.MAX_NUMBER)) {
             Exception.LOTTO_NUMBER_OUT_OF_RANGE.throwing();
         }
         if (Util.hasDuplicates(numbers)) {
             Exception.LOTTO_NUMBER_HAS_DUPLICATES.throwing();
         }
+    }
+
+    public static void validateWinningLottoNumbers(String numbers) {
+        List<Integer> winningNumbers = Util.splitAndParseToIntList(numbers);
+        validateLottoNumber(winningNumbers);
     }
 }

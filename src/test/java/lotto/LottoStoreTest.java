@@ -2,7 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.policy.LottoNumberGenerator;
+import lotto.policy.LottoNumbersGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,9 +18,9 @@ public class LottoStoreTest {
         Amount amount = new Amount(purchaseAmount);
         LottoStore lottoStore = new LottoStore(() ->
                 Randoms.pickUniqueNumbersInRange(
-                        LottoNumberGenerator.MIN_NUMBER,
-                        LottoNumberGenerator.MAX_NUMBER,
-                        LottoNumberGenerator.NUMBER_COUNT));
+                        LottoNumbersGenerator.MIN_NUMBER,
+                        LottoNumbersGenerator.MAX_NUMBER,
+                        LottoNumbersGenerator.NUMBER_COUNT));
         int ticketCount = Integer.parseInt(purchaseAmount) / 1000;
 
         SoldLotto soldLotto = lottoStore.sell(amount);

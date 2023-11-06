@@ -3,13 +3,13 @@ package lotto;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.policy.LottoNumberGenerator;
+import lotto.policy.LottoNumbersGenerator;
 
 public class LottoStore {
-    private final LottoNumberGenerator lottoNumberGenerator;
+    private final LottoNumbersGenerator lottoNumbersGenerator;
 
-    public LottoStore(LottoNumberGenerator lottoNumberGenerator) {
-        this.lottoNumberGenerator = lottoNumberGenerator;
+    public LottoStore(LottoNumbersGenerator lottoNumbersGenerator) {
+        this.lottoNumbersGenerator = lottoNumbersGenerator;
     }
 
     public SoldLotto sell(Amount purchaseAmount) {
@@ -26,7 +26,7 @@ public class LottoStore {
     }
 
     private Lotto generateLotto() {
-        List<Integer> lottoNumber = lottoNumberGenerator.generate();
-        return new Lotto(lottoNumber);
+        List<Integer> lottoNumbers = lottoNumbersGenerator.generate();
+        return new Lotto(lottoNumbers);
     }
 }

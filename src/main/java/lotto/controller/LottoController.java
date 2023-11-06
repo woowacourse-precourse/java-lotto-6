@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.WinLotto;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.service.LottoService;
@@ -19,12 +20,18 @@ public class LottoController {
     }
 
     public void run() {
-        purchase();
+        Money money = getMoney();
+        List<Lotto> lottos = lottoService.generateWith(money);
+        outputView.print(lottos);
+
+        WinLotto winLotto = getWinLotto();
     }
 
-    private void purchase() {
-        Money money = Money.from(inputView.getMoneyInput());
-        List<Lotto> lottoTickets = lottoService.generateWith(money);
-        outputView.print(lottoTickets);
+    private Money getMoney() {
+        return Money.from(inputView.getMoneyInput());
+    }
+
+    private WinLotto getWinLotto() {
+        return lottoService.createWinLottoWith(inputView.getWinLottoNumber(), inputView.getBonusBall());
     }
 }

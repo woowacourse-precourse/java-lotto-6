@@ -27,8 +27,4 @@ public class Parser {
     public static List<Integer> parseStringToIntList(String text){
         return Arrays.stream(text.split(",")).map(Parser::parseStringToInt).toList();
     }
-
-    public static boolean isUnique(List<Integer> integerList){
-        return new HashSet<>(integerList).size() == integerList.size();
-    }
 }

@@ -46,10 +46,9 @@ public class Lotto {
     }
 
     public int getSameCount(Lotto otherLotto) {
-        return lottoNumbers.stream()
-                .filter(otherLotto.lottoNumbers::contains)
-                .toList()
-                .size();
+        Set<LottoNumber> intersection = new HashSet<>(lottoNumbers);
+        intersection.retainAll(new HashSet<>(otherLotto.lottoNumbers));
+        return intersection.size();
     }
 
     @Override

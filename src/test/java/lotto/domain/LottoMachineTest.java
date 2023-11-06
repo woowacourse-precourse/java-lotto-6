@@ -73,7 +73,7 @@ class LottoMachineTest {
         // when
         lottoMachine.addWinningLotto(lottoNumbers, bonusNumber);
         WinningLotto winningLotto = lottoRepository.findWinningLotto().get();
-        LottoRewardCondition result = winningLotto.getCompareResult(lotto);
+        LottoRewardCondition result = winningLotto.findCompareResult(lotto);
 
         // then
         assertThat(result).isEqualTo(LottoRewardCondition.SECOND_WINNER);

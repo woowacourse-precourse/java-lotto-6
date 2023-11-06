@@ -18,7 +18,7 @@ class WinningLottoTest {
         Lotto lotto = Lotto.createFrom(numbers);
 
         // when
-        LottoRewardCondition result = winningLotto.getCompareResult(lotto);
+        LottoRewardCondition result = winningLotto.findCompareResult(lotto);
 
         // then
         assertThat(result).isEqualTo(LottoRewardCondition.FIRST_WINNER);

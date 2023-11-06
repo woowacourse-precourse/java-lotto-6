@@ -19,7 +19,7 @@ public class WinningLotto {
         return new WinningLotto(lotto, bonusNumber);
     }
 
-    public LottoRewardCondition getCompareResult(final Lotto compareLotto) {
+    public LottoRewardCondition findCompareResult(final Lotto compareLotto) {
         int sameNumberCount = lotto.extractSameCount(compareLotto);
         boolean hasBonusNumber = compareLotto.contains(bonusNumber);
         return LottoRewardCondition.findLottoReward(sameNumberCount, hasBonusNumber);

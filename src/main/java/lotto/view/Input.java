@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Input {
     public int getPurchaseAmount() {
-        Output.printPurchaseAmountMessage();
         return Integer.parseInt(Console.readLine());
     }
 

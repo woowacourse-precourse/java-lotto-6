@@ -17,19 +17,19 @@ public class ProcessLotto {
         InputValidate inputValidate = new InputValidate();
         AmountProcessing amountProcessing = new AmountProcessing();
         Generator generator = new Generator();
-        LottoCalculator lottoCalculator = new LottoCalculator();
+        CalculateLotto calculateLotto = new CalculateLotto();
         outputView.askPurchaseAmount();
-        int cost = inputValidate.validateNumber(inputView.getLine());
+        int cost = 0;
         boolean success = false;
         while (!success){
             try{
+                cost = inputValidate.validateNumber(inputView.getLine());
                 amountProcessing.isDivided(cost);
                 success = true;
             }
             catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
                 outputView.askPurchaseAmount();
-                cost = inputValidate.validateNumber(inputView.getLine());
             }
         }
 
@@ -45,14 +45,16 @@ public class ProcessLotto {
             lottos.add(lotto);
         }
         success = false;
-        List<Integer> winningNums = new ArrayList<>();
         outputView.askWinningNums();
+        List<Integer> winningNums = new ArrayList<>();
         while (!success){
             try{
                 winningNums = inputValidate.validateWinningNums(inputView.getLine());
+                new Lotto(winningNums);
                 success = true;
             }
             catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
                 outputView.askWinningNums();
             }
         }
@@ -83,11 +85,11 @@ public class ProcessLotto {
         // TODO: 클래스 만들기
         int cnt = 0;
         for (Lotto nums: lottos){
-            if (lottoCalculator.checkBonus(nums.getNumbers(), winningNums, bonusNum)){
+            if (calculateLotto.checkBonus(nums.getNumbers(), winningNums, bonusNum)){
                 countMap.put(55, countMap.get(55)+1);
                 continue;
             }
-            cnt = lottoCalculator.checkMatch(nums.getNumbers(), winningNums);
+            cnt = calculateLotto.checkMatch(nums.getNumbers(), winningNums);
             if (cnt > 2){
                 countMap.put(cnt, countMap.get(cnt)+1);
             }
@@ -99,8 +101,8 @@ public class ProcessLotto {
         outputView.print5Matchs(countMap.get(5));
         outputView.print5MatchsWithBonus(countMap.get(55));
         outputView.print6Matchs(countMap.get(6));
-        int profit = lottoCalculator.getProfit(countMap);
-        double profitRate = lottoCalculator.roi(profit, cost);
+        int profit = calculateLotto.getProfit(countMap);
+        double profitRate = calculateLotto.roi(profit, cost);
         outputView.printProfit(profitRate);
 
     }

@@ -3,9 +3,8 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class LottoCalculator {
+public class CalculateLotto {
     public int checkMatch(List<Integer> generatedNums, List<Integer> inputNums){
         return (int)generatedNums.stream().filter(o -> inputNums.stream().anyMatch(Predicate.isEqual(o))).count();
     }

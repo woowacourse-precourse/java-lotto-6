@@ -9,10 +9,10 @@ import java.util.List;
 
 public class Prompt {
     private final Reader reader;
-    private final Parser parser;
+    private final PromptParser parser;
     private final Message message;
 
-    public Prompt(Reader reader, Parser parser, Message message) {
+    public Prompt(Reader reader, PromptParser parser, Message message) {
         this.reader = reader;
         this.parser = parser;
         this.message = message;

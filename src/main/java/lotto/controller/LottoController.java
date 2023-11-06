@@ -19,6 +19,6 @@ public class LottoController {
 
     private void setUp() {
         LottoTicket lottoTicket = LottoTicket.create(inputView.inputBudget());
-
+        outputView.printTicket(lottoTicket);
     }
 }

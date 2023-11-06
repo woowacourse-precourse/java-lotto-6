@@ -1,11 +1,13 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +26,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호는 오름차순 정렬로 되어있다.")
+    @Test
+    void createLottoSortedASC() {
+        LottoMachine lottoMachine = new LottoMachine(1000);
+        Lotto lotto = new Lotto(lottoMachine.generateLotto());
+
+        assertThat(lotto.getNumbers()).isSorted();
+    }
 }

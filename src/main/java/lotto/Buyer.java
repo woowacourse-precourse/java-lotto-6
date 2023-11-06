@@ -18,10 +18,10 @@ public class Buyer {
     }
 
     public double calculateReturnRate(long prizeSum) {
-        double seedMoney = 1000 * purchaseAmount;
-        return (double) Math.round((prizeSum / seedMoney) * 1000) / 10;
+        double seedMoney = Lotto.LOTTO_PRICE * purchaseAmount;
+        return (double) Math.round((prizeSum / seedMoney) * Lotto.LOTTO_PRICE) / 10;
     }
-    
+
     public List<Lotto> getMyLotteries() {
         if (myLotteries == null) {
             throw new IllegalStateException("구매한 복권 정보가 없습니다.");
@@ -29,4 +29,11 @@ public class Buyer {
         return myLotteries;
     }
 
+    public int calculateLottoTicketCount(int money) {
+        return money / Lotto.LOTTO_PRICE;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

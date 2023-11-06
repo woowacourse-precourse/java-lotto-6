@@ -13,15 +13,19 @@ public class Lotto {
     }
 
     public Integer getMatchingNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
-        Integer matchingNumbers = (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
+        Integer matchingNumbers = calculateMatchingNumberWithWinningNumbers(winningNumbers);
 
         if (isMatchingWithBonusNumber(bonusNumber)) {
             matchingNumbers += 1;
         }
 
         return matchingNumbers;
+    }
+
+    private Integer calculateMatchingNumberWithWinningNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     public boolean isMatchingWithBonusNumber(Integer bonusNumber) {

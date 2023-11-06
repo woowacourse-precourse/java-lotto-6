@@ -15,4 +15,9 @@ public class InputView {
         String input = Console.readLine();
         return IntegerListConverter.convert(input);
     }
+
+    public Integer readBonusNumber() {
+        String input = Console.readLine();
+        return IntegerConverter.convert(input);
+    }
 }

@@ -22,6 +22,8 @@ public class UserIoManager {
     public WinningNumbers readWinningNumbersWithBonusNumber() {
         outputView.printWinningNumbersGuide();
         List<Integer> numbers = inputView.readWinningNumbers();
-        return new WinningNumbers(numbers, 0);
+        outputView.printBonusNumberGuide();
+        Integer bonusNumber = inputView.readBonusNumber();
+        return new WinningNumbers(numbers, bonusNumber);
     }
 }

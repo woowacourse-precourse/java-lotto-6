@@ -1,24 +1,30 @@
 package lotto;
 
-import java.util.List;
-import lotto.domain.Lotto;
+
+import lotto.domain.Cost;
 import lotto.domain.MyLotto;
-import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 
 public class Application {
+    static boolean isValid;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         StringConverter stringConverter = new StringConverter();
 
-        MyLotto myLotto = new MyLotto(inputView.inputBuyingCost());
+        int quantity = payMoney(inputView);
+
+        MyLotto myLotto = new MyLotto(quantity);
         myLotto.printGenerateLottoResult();
 
-        List<Integer> winningNumbers = stringConverter.convertToIntegerList(inputView.inputWinningNumbers());
-        int bonusNumber = inputView.inputBonusNumber();
+    }
 
-        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-        myLotto.checkResult(winningLotto);
+    private static int payMoney(InputView inputView) {
+        Cost cost;
+        do {
+            cost = new Cost(inputView.inputBuyingCost());
+        } while (!cost.isValid());
+
+        return cost.getQuantity();
     }
 }

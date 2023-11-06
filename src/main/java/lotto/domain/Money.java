@@ -23,5 +23,8 @@ public class Money {
         return new Money(processStringToInt(input));
     }
 
+    public Money plus(Money money) {
+        return new Money(this.amount + money.amount);
+    }
 
 }

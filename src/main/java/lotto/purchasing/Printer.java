@@ -1,12 +1,11 @@
 package lotto.purchasing;
 
-import static lotto.Settings.MINIMUM;
 import static lotto.Settings.MAXIMUM;
+import static lotto.Settings.MINIMUM;
 import static lotto.Settings.SIZE;
 
 import java.util.List;
 import lotto.Lotto;
-import lotto.purchasing.Generator;
 
 public class Printer {
     private static final String purchaseCountMessage = "개를 구매했습니다.";

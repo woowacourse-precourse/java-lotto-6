@@ -13,7 +13,7 @@ import lotto.validator.InputValidator;
 public class User {
     private int lottoCount;
     private List<Lotto> lotties = new ArrayList<>();
-    InputValidator inputValidator = new InputValidator();
+    InputValidator validator = new InputValidator();
     WinningNumber winningNumber = new WinningNumber();
     Result result = new Result();
 
@@ -28,9 +28,19 @@ public class User {
     }
 
     private void inputLottoAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String lottoAmountInput = Console.readLine();
-        //validate
+        String lottoAmountInput;
+        while(true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            lottoAmountInput = Console.readLine();
+            try {
+                validator.checkAmount(lottoAmountInput);
+                break;
+            }
+            catch(IllegalArgumentException e) {
+
+            }
+
+        }
         lottoCount = Integer.parseInt(lottoAmountInput) / 1000;
     }
 

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.view.SystemInput;
+
 public class LottoController {
     // 금액을 입력받는다
     // 금액을 통해 게임 개수를 구한다
@@ -10,4 +12,18 @@ public class LottoController {
     // 발행된 로또와 유저가 입력한 로또에서 같은 번호를 찾는다
     // rank를 출력한다
     // rate을 출력한다
+    public void run() {
+        try {
+            start();
+        }
+        catch(IllegalArgumentException e) {
+
+        }
+    }
+
+    public void start() {
+        String purchaseAmount = SystemInput.readMoney();
+        int money = Integer.parseInt(purchaseAmount);
+        int gameAmount = money / 1000;
+    }
 }

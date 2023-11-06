@@ -9,14 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoApplication {
-    private static int LOTTO_PRICE = 1000;
+    private final static int LOTTO_PRICE = 1000;
 
     void execute() {
         try {
             int receivedAmount = getReceivedAmount();
 
             List<Lotto> createdLottos = new ArrayList<>();
-            for (int i = 0; i < getNumberOfLotto(receivedAmount); i++) {
+            final int NUMBER_OF_LOTTO_TO_DRAW = getNumberOfLotto(receivedAmount);
+            for (int i = 0; i < NUMBER_OF_LOTTO_TO_DRAW; i++) {
                 createdLottos.add(drawLotto());
             }
             Output.printCreatedLottos(createdLottos);

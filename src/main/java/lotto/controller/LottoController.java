@@ -51,7 +51,7 @@ public class LottoController {
             String money = inputView.inputMessage();
             validator.validateMoney(money);
             return stringToInt(money);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
             return getPurchaseAmount();
         }
@@ -63,7 +63,7 @@ public class LottoController {
             String winningNumber = inputView.inputMessage();
             validator.validateWinningNumber(winningNumber);
             return stringToIntegerSortedList(winningNumber);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
             return getWinningNumber();
         }
@@ -75,7 +75,7 @@ public class LottoController {
             String bonusNumber = inputView.inputMessage();
             validator.validateBonusNumber(winningNumber, bonusNumber);
             return stringToInt(bonusNumber);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
             return getBonusNumber(winningNumber);
         }

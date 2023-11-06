@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,5 +35,14 @@ public class MoneyTest {
     void createValidMoney() {
         assertThatCode(() -> new Money("5000"))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("로또 개수가 정상적으로 생성되는지 확인한다.")
+    @Test
+    void createLottoCount() {
+        Money money = new Money("8000");
+        long expectedLottoCount = money.getMoney() / 1000;
+
+        assertThat(money.getLottoCount()).isEqualTo(expectedLottoCount);
     }
 }

@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -40,12 +42,14 @@ public class LottoPlay implements Play{
     private List<Lotto> getMyLottoNumber(int purchaseQuantity) {
         List<Lotto> myLotto = new ArrayList<>();
         List<Integer> numbers;
+        List<Integer> sortedNumbers;
 
         System.out.println();
         System.out.print(view.getPrintPurchaseAmount(purchaseQuantity));
         for (int i = 0; i < purchaseQuantity; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            myLotto.add(new Lotto(numbers));
+            sortedNumbers = sortedByAsc(numbers);
+            myLotto.add(new Lotto(sortedNumbers));
 
             System.out.print(view.getPrintPurchaseNumber(myLotto.get(i)));
         }
@@ -118,7 +122,7 @@ public class LottoPlay implements Play{
         for (Rank rank : ranks) {
             sum += rank.getPrize() * (double)rank.getMatchCount();
         }
-        yieldRate = sum / (double)purchaseQuantity;
+        yieldRate = sum / ((double)purchaseQuantity * 10);
         System.out.print(view.getPrintYieldRate(yieldRate));
     }
 
@@ -142,5 +146,9 @@ public class LottoPlay implements Play{
 
     private boolean getMatchBonusNumber(Lotto winningLotto, int bonusNumber) {
         return winningLotto.getLottoNumber().contains(bonusNumber);
+    }
+
+    private List<Integer> sortedByAsc(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 }

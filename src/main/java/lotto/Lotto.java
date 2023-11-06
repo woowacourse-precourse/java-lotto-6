@@ -9,7 +9,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicate(numbers);
-        sortedByAsc(numbers);
         this.numbers = numbers;
     }
 
@@ -24,10 +23,6 @@ public class Lotto {
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void sortedByAsc(List<Integer> numbers) {
-        Collections.sort(numbers);
     }
 
     public List<Integer> getLottoNumber() {

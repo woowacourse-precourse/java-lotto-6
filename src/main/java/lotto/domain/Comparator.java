@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Comparator {
-    public static List<LottoResult> compare(List<Lotto> playerLottos, Lotto winningLotto, int bonus) {
+    public static List<LottoResult> compare(List<Lotto> playerLottos, Lotto winningLotto, Bonus bonus) {
         List<LottoResult> lottoResults = new ArrayList<>();
 
         for (Lotto playerLotto : playerLottos) {
             int lottoCount = compareLotto(playerLotto, winningLotto);
-            boolean isBonus = compareBonus(playerLotto, bonus);
+            boolean isBonus = compareBonus(playerLotto, bonus.getNum());
 
             LottoResult lottoResult = new LottoResult(lottoCount, isBonus);
             lottoResults.add(lottoResult);

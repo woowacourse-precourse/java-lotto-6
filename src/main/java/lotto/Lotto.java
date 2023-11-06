@@ -16,6 +16,17 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int countMatchingNumbers(Lotto winningNumbers) {
+        return (int) winningNumbers.numbers
+                .stream()
+                .filter(this::contains)
+                .count();
+    }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (isSizeDifferent(numbers)) {
             throw new IllegalArgumentException();

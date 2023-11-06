@@ -5,15 +5,15 @@
 <img width="755" alt="로또" src="https://github.com/zbqmgldjfh/ServletEx/assets/60593969/8b2a87d2-5952-41ee-a34b-8e4542774b63">
 
 ## 구현 기능 목록
-- [ ] Input
+- [x] Input
     - [x] 로또 구입 금액을 입력받는다. 1,000원 단위로 입력받으며 1,000원으로 나누어 떨어지지 않는 경우 IllegalArgumentException을 던진다
     - [x] 당첨 번호와 보너스 번호를 입력받는다.
       - [x] 1부터 45사이의 숫자가 아닌 경우, IllegalArgumentException을 던진다
       - [x] 중복된 숫자를 입력한 경우, IllegalArgumentException을 던진다
       - [x] 당첨번호는 6자리를 입력 받는다, 아닐시 IllegalArgumentException을 던진다
       - [x] 보너스번호는 1자리를 입력 받는다, 아닐시 IllegalArgumentException을 던진다
-    - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-      - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+    - [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+      - [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 - [ ] Core
     - [ ] 진행 조건
       - [x] 입력받은 로또 번호들을 Value Object로 만든다
@@ -23,8 +23,10 @@
     - [ ] 종료 조건
       - [ ] 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다
 - [ ] Output
-    - [ ] 게임 시작 문구 출력
-    - [ ] 시도할 횟수 문구 출력
+    - [x] 구입 금액 문구 출력
+    - [x] 구매한 로또의 수 출력
+    - [x] 당첨번호 입력 문구 출력
+    - [x] 보너스번호 입력 문구 출력
     - [ ] 당첨 통계 출력
     - [ ] 총 수익률 출력
 - [ ] 추가사항

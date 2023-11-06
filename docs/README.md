@@ -37,7 +37,7 @@
 
 - 사용 예시
 ```java
-List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+ List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);.
 ```
 
 

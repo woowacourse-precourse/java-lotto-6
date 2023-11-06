@@ -6,14 +6,17 @@ import lotto.model.LottoStore;
 import lotto.model.Money;
 import lotto.model.Player;
 import lotto.model.RandomNumberGenerator;
+import lotto.view.ErrorView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
 
     private OutputView outputView;
+    private ErrorView errorView;
 
-    public LottoGameController(OutputView outputView) {
+    public LottoGameController(OutputView outputView, ErrorView errorView) {
         this.outputView = outputView;
+        this.errorView = errorView;
     }
 
     public void run() {
@@ -31,7 +34,7 @@ public class LottoGameController {
             PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
             outputView.printPurchaseHistory(dto);
         } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            errorView.printErrorMessage(e.getMessage());
             buyLotto();
         }
     }

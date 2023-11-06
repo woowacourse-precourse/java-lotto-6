@@ -16,7 +16,7 @@ public class LottoGameView {
         System.out.println(INPUT_PURCHASE_AMOUNT);
         String input = Console.readLine();
         validatePurchaseAmount(input);
-        return Integer.parseInt(input) / 1000;
+        return Integer.parseInt(input);
     }
 
     private void validatePurchaseAmount(String input) {
@@ -55,19 +55,19 @@ public class LottoGameView {
         int first = Collections.frequency(result, Prize.First);
 
         System.out.println(WINNING_RESULT);
-        System.out.printf("3개 일치 (%d원) - %d개", Prize.Fifth.getMoney(), fifth);
+        System.out.printf("3개 일치 (%s) - %d개", Prize.Fifth.getMoneyString(), fifth);
         System.out.println();
-        System.out.printf("4개 일치 (%d원) - %d개", Prize.Forth.getMoney(), forth);
+        System.out.printf("4개 일치 (%s) - %d개", Prize.Forth.getMoneyString(), forth);
         System.out.println();
-        System.out.printf("5개 일치 (%d원) - %d개", Prize.Third.getMoney(), third);
+        System.out.printf("5개 일치 (%s) - %d개", Prize.Third.getMoneyString(), third);
         System.out.println();
-        System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개", Prize.Second.getMoney(), second);
+        System.out.printf("5개 일치, 보너스 볼 일치 (%s) - %d개", Prize.Second.getMoneyString(), second);
         System.out.println();
-        System.out.printf("6개 일치 (%d원) - %d개", Prize.First.getMoney(), first);
+        System.out.printf("6개 일치 (%s) - %d개", Prize.First.getMoneyString(), first);
         System.out.println();
     }
 
     public void printRateReturn(double rateReturn) {
-        System.out.printf("총 수익률은 %f%입니다.", rateReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateReturn);
     }
 }

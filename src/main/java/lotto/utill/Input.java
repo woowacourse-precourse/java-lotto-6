@@ -32,7 +32,7 @@ public class Input {
         ValidateException.includeBlank(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
         ValidateException.negative(inputStringLine);
-//        ValidateException.zeroNum(inputStringLine);
+        ValidateException.zeroNum(inputStringLine);
 
         return Utii.parseInteger(inputStringLine);
     }

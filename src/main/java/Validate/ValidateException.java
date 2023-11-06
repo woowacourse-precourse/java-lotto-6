@@ -91,13 +91,13 @@ public class ValidateException {
         }
     }
 
-//    public static void zeroNum(String strLine) {
-//        Integer inputNum = Integer.valueOf(strLine);
-//
-//        if (inputNum == ZERO_NUM) {
-//            throw new NumberFormatException("[ERROR] 0은 입력할수 없습니다.");
-//        }
-//    }
+    public static void zeroNum(String strLine) {
+        Integer inputNum = Integer.valueOf(strLine);
+
+        if (inputNum == ZERO_NUM) {
+            throw new NumberFormatException("[ERROR] 0은 입력할수 없습니다.");
+        }
+    }
 
     // TODO: 11/6/23 추가.
     public static boolean containsNonNumericCharacter(String input) {

@@ -83,4 +83,34 @@ public class Function {
 		return check;
 	}
 	
+	protected int bonusNumber() {
+		System.out.println("보너스 번호를 입력해 주세요.");
+		boolean check= true;
+		String bonusNumber= "";
+		while(check){
+			try {
+				bonusNumber= Console.readLine();
+				check= validateBonusNumber(bonusNumber);
+				break;
+			}catch(IllegalArgumentException e) {
+				System.out.print(e.getMessage());
+			}
+			
+		}
+		return Integer.parseInt(bonusNumber);
+	}
+
+	private boolean validateBonusNumber(String bonusNumber) {
+		boolean check= false;
+		String RECEX="[0-9]+";
+		if(!bonusNumber.matches(RECEX)) {
+			check= true;
+			throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+		}
+		if(Integer.parseInt(bonusNumber)>45 || Integer.parseInt(bonusNumber)<0) {
+			check= true;
+			throw new IllegalArgumentException("[ERROR] 1에서 45사이의 숫자를 입력해 주세요.");
+		}
+		return check;
+	}
 }

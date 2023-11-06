@@ -1,16 +1,15 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.wrapper.BonusNumber;
 import lotto.domain.wrapper.LottoNumber;
 import lotto.utils.LottoConstant;
 import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -33,7 +32,7 @@ class PrizeCheckerTest {
                 .toList();
         Lotto playerLotto = new Lotto(numbers);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber bonusNumber = new LottoNumber(7);
+        BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
         PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         // when
         Prize prize = prizeChecker.calculatePrize(playerLotto);

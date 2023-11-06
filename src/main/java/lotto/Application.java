@@ -51,13 +51,17 @@ public class Application {
 
         //당첨여부
         int[] rank = new int[6];
+        int includedBonus = 0;
         for (int i = 0; i < lottoTickets; i++) {
+            if (allTickets[i].contains(bonus)) {
+                includedBonus = 1;
+            }
             allTickets[i].retainAll(numbers);
             if (allTickets[i].size() == 3) {
                 rank[5] += 1;
             } else if (allTickets[i].size() == 4) {
                 rank[4] += 1;
-            } else if (allTickets[i].size() == 5 && allTickets[i].contains(bonus)) {
+            } else if (allTickets[i].size() == 5 && includedBonus == 1) {
                 rank[2] += 1;
             } else if (allTickets[i].size() == 5) {
                 rank[3] += 1;

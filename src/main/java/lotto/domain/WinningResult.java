@@ -28,13 +28,13 @@ public final class WinningResult {
     }
 
     private double calculateTotalPrize() {
-        double firstPrize = rank1 * FIRST_PRIZE;
-        double secondPrize = rank2 * SECOND_PRIZE;
-        double thirdPrize = rank3 * THIRD_PRIZE;
-        double fourthPrize = rank4 * FOURTH_PRIZE;
-        double fifthPrize = rank5 * FIFTH_PRIZE;
+        double totalFirstPrize = rank1 * FIRST_PRIZE;
+        double totalSecondPrize = rank2 * SECOND_PRIZE;
+        double totalThirdPrize = rank3 * THIRD_PRIZE;
+        double totalFourthPrize = rank4 * FOURTH_PRIZE;
+        double totalFifthPrize = rank5 * FIFTH_PRIZE;
 
-        return firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize;
+        return totalFirstPrize + totalSecondPrize + totalThirdPrize + totalFourthPrize + totalFifthPrize;
     }
 
     private void winRank1(final int correctAmount) {

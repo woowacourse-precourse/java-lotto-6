@@ -62,10 +62,7 @@ public class LottoController {
          * 뽑은 로또의 숫자들을 하나씩 win로또 배열에 비교하는 함수 -> true 리턴
          */
 
-
         for (int i = 0; i < lottoNum; i++) {
-
-//            System.out.println(lotto.get(i).getRank());
 
             switch (lotto.get(i).getRank()) {
                 case FIRST:
@@ -86,6 +83,15 @@ public class LottoController {
             }
 
         }
+
+        List<Integer> rates = new ArrayList<>();
+        rates.add(first);
+        rates.add(second);
+        rates.add(second);
+        rates.add(fourth);
+        rates.add(fifth);
+
+        long rateOfProfit = getRateOfProfit(purchasePrice, rates);
 
 
     }
@@ -194,5 +200,38 @@ public class LottoController {
                 lotto.setRank(LOOSE);
                 break;
         }
+    }
+
+    private long getRateOfProfit(int purchasePrice, List<Integer> rates) {
+        return getTotalAmount(rates) / purchasePrice;
+    }
+
+    private int getTotalAmount(List<Integer> rates) {
+        int total = 0;
+
+        for (int i = 0; i < 5; i++) {
+            total += getRatePrice(i + 1, rates.get(i));
+        }
+
+        return total;
+    }
+
+    private int getRatePrice(int rate, int rateNum) {
+
+        switch (rate) {
+            case 5:
+                return 5000 * rateNum;
+            case 4:
+                return 50000 * rateNum;
+            case 3:
+                return 1500000 * rateNum;
+            case 2:
+                return 30000000 * rateNum;
+            case 1:
+                return 2000000000 * rateNum;
+        }
+
+        return 0;
+
     }
 }

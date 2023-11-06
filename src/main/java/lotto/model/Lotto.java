@@ -43,6 +43,11 @@ public class Lotto {
         }
     }
 
+    public boolean contains(int compareNumber) {
+        return numbers.stream()
+                .anyMatch(number -> number == compareNumber);
+    }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

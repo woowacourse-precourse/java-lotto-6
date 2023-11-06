@@ -59,4 +59,12 @@ public class LottoCollection {
         rankingCount.put(rank, rankingCount.getOrDefault(rank, 0) + 1);
     }
 
+    private LottoRank getLottoRankByNumber(int number) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.ordinal() + 1 == number) {
+                return rank;
+            }
+        }
+        return null;
+    }
 }

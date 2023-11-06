@@ -44,7 +44,7 @@
 - [ ] 커밋 메시지 컨벤션 가이드를 참고해 커밋 메시지를 작성한다.
 - [ ] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 - [ ] camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현해야 한다.
-- [ ] Java Enum을 적용한다
+- [o] Java Enum을 적용한다
 - [ ] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다
 - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 - [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.

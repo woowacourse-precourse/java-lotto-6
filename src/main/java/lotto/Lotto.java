@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -19,6 +17,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+        // 기능4. 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고,
+        // "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException("로또 번호에 중복이 있습니다.");
+        }
+        if (!isInRange(numbers)) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -43,8 +49,8 @@ public class Lotto {
         }
 
         private static Lotto getLotto() {
-                List<Integer> numbers = new ArrayList<>();
-                numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+                Collections.sort(numbers);
                 return new Lotto(numbers);
         }
 
@@ -62,4 +68,14 @@ public class Lotto {
             return numbers.contains(bonusNumber);
         }
 
+        // 기능4. 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고,
+        // "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+        private boolean hasDuplicate(List<Integer> numbers) {
+            Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+            return uniqueNumbers.size() != numbers.size();
+        }
+
+        private boolean isInRange(List<Integer> numbers) {
+            return numbers.stream().allMatch(number -> number >= 1 && number <= 45);
+        }
 }

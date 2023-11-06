@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.Price;
+
 import java.util.*;
 
 import static lotto.controller.InputConverter.*;
@@ -16,7 +18,7 @@ import static lotto.view.Print.*;
 
 public class Play {
 
-    private static int price;
+    private static Price price;
     private static int count;
     private static HashMap<Rank, Integer> result;
     private static List<Lotto> lottery;
@@ -30,8 +32,8 @@ public class Play {
     }
 
     public static void boughtLotto() {
-        price = createPrice();
-        count = calLottoCount(price);
+        createPrice();
+        count = calLottoCount(price.getPrice());
         printBoughtLottoCount(count);
         lottery = rotateLotteryCount(count);
         printLottoRotate(lottery);
@@ -48,12 +50,13 @@ public class Play {
         calResultPlay();
     }
 
-    public static int createPrice() {
+    public static void createPrice() {
         while(true) {
             messageAboutPrice();
             String tmpPrice = inputPrice();
             try {
-                return convertPrice(tmpPrice);
+                price = new Price(convertPrice(tmpPrice));
+                break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
             }
@@ -88,7 +91,7 @@ public class Play {
     public static void calResultPlay() {
         printResultRank(result);
         int sumPrize = calSumPrize(result);
-        double rateMean = calRate(sumPrize, price);
+        double rateMean = calRate(sumPrize, price.getPrice());
         printMean(rateMean);
     }
 

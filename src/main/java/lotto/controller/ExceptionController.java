@@ -16,7 +16,6 @@ public class ExceptionController {
 
     public static int checkExceptionPrice(String inputPrice) {
         int price = checkDigit(inputPrice);
-        checkZeroPrice(price);
         return price;
     }
     public static List<Integer> checkExceptionWinningNumber(String tmpWinningNumbers) throws IllegalArgumentException {
@@ -56,13 +55,6 @@ public class ExceptionController {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.contains(bonus)) {
             duplicatedBonusNumber();
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkZeroPrice(int price) throws IllegalArgumentException{
-        if (price < minPrice) {
-            priceZeroException();
             throw new IllegalArgumentException();
         }
     }

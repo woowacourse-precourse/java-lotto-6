@@ -4,10 +4,7 @@ public enum PrintMessage {
     BUY_LOTTO_COUNT("개를 구매했습니다."),
     WINNING_STATISTICS("당첨 통계"),
     DASH("-"),
-    COUNT("개"),
-    OPENING_BRACKET("["),
-    CLOSING_BRACKET("]"),
-    REST(",");
+    COUNT("개");
 
 
     private final String message;
@@ -16,7 +13,8 @@ public enum PrintMessage {
         this.message = message;
     }
 
-    public void printBuyLottoCountMessage() {
-        System.out.println(message);
+    public void printMessage(Long count) {
+        System.out.println();
+        System.out.println(count.toString() + message);
     }
 }

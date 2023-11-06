@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.exception.DuplicateNumberException;
+import lotto.exception.InvalidSizeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new InvalidSizeException();
         }
 
         if (numbers.size() != numbers.stream().distinct().count()) {

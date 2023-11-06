@@ -38,5 +38,7 @@ public class LottoController {
         for (String userpick : userPickLottoSplit) {
             userPickNumber.add(Integer.parseInt(userpick));
         }
+        String userBonus = SystemInput.readBonusNumber();
+        int userBonusNumber = Integer.parseInt(userBonus);
     }
 }

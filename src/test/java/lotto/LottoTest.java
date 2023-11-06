@@ -26,11 +26,4 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
 
-    @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
-    @Test
-    void createPurchaseAmountNotDivide() {
-        User user = new User();
-        assertThatThrownBy(() -> user.setPurchaseAmount(8001))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

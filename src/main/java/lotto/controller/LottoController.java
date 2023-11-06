@@ -23,7 +23,7 @@ public class LottoController {
         int quantity = amount();
         Lottos buyLottos = buyLotto(quantity);
         outputView.showLottoList(buyLottos);
-        Lotto lotto = askWinningLotto();
+        WinningLotto winningLotto = initWinningLotto();
     }
 
     public int amount() {
@@ -43,14 +43,29 @@ public class LottoController {
         return Lottos.from(quantity);
     }
 
-    public Lotto askWinningLotto() {
+    public Lotto askWinningNumbers() {
         outputView.askWinningNum();
-        String winningNumber = inputView.read();
-        return createWinning(winningNumber);
+        String inputWinningNumber = inputView.read();
+        return createWinningNumberList(inputWinningNumber);
     }
 
-    public Lotto createWinning(String userInput) {
+    public Lotto createWinningNumberList(String userInput) {
         return Lotto.from(userInput);
     }
 
+    public Number askWinningBonusNumber() {
+        outputView.askBonusNum();
+        String inputBonusNumber = inputView.read();
+        return createWinningBonusNumber(inputBonusNumber);
+    }
+
+    public Number createWinningBonusNumber(String userInput) {
+        return Number.from(userInput);
+    }
+
+    public WinningLotto initWinningLotto() {
+        Lotto lotto = askWinningNumbers();
+        Number number = askWinningBonusNumber();
+        return new WinningLotto(lotto, number);
+    }
 }

@@ -10,7 +10,8 @@ public class Number {
         this.value = value;
     }
 
-    public static Number from(final int value) {
+    public static Number from(final String userInput) {
+        int value = validateDigit(userInput);
         return new Number(value);
     }
 
@@ -22,4 +23,14 @@ public class Number {
     public String toString() {
         return String.valueOf(value);
     }
+
+    private static int validateDigit(String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다!");
+        }
+    }
+
+
 }

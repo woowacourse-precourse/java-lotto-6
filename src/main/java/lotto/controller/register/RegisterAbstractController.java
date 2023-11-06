@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.register;
 
 import lotto.io.ConsoleWriter;
 import lotto.view.ErrorView;

@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.register;
 
 import lotto.domain.Lotto;
 import lotto.dto.input.UserLottoDTO;

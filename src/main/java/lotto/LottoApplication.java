@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.controller.DisplayLottoController;
-import lotto.controller.RegisterBonusController;
-import lotto.controller.RegisterLottoController;
-import lotto.controller.RegisterUserMoneyController;
+import lotto.controller.display.DisplayLottoController;
+import lotto.controller.register.RegisterBonusController;
+import lotto.controller.register.RegisterLottoController;
+import lotto.controller.register.RegisterUserMoneyController;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.UserMoney;

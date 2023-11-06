@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.display;
 
 import lotto.domain.UserMoney;
 import lotto.repository.LottoRepository;

@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoGrade {
-    FIRST("6", 2_000_000_000),
-    SECOND("5+", 30_000_000),
-    THIRD("5", 1_500_000),
+    FIFTH("3", 5_000),
     FOURTH("4", 50_000),
-    FIFTH("3", 5_000);
+    THIRD("5", 1_500_000),
+    SECOND("5+", 30_000_000),
+    FIRST("6", 2_000_000_000);
 
     private static final Map<String, String> GRADE = Collections.unmodifiableMap(
             Stream.of(values()).collect(Collectors.toMap(LottoGrade::getCorrect, LottoGrade::name)));

@@ -54,7 +54,8 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
         if (duplicated.size() != LottoConstants.LENGTH.getConstants()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 입니다.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] %d개로 로또를 생성하려 했습니다. 로또의 번호는 6개 입니다", duplicated.size()));
         }
         return winnings;
     }
@@ -77,7 +78,7 @@ public class InputValidator {
 
     public static String validateInt(String input) {
         if (!IsInPattern(input, NUMBER)) {
-            throw new NumberFormatException("[ERROR] 정수만 입력해주세요");
+            throw new NumberFormatException("[ERROR] 양의 정수만 입력해주세요");
         }
         if (!IsBoundary(input)) {
             throw new IllegalArgumentException("[ERROR] 최소 1원 이상, 1억원 미만으로 입력해주세요");
@@ -91,6 +92,11 @@ public class InputValidator {
     }
 
     private static boolean IsBoundary(String input) {
+        try {
+            int isInt = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] int의 범위를 벗어났습니다.");
+        }
         return MIN_MONEY < Integer.parseInt(input) && Integer.parseInt(input) < MAX_MONEY;
     }
 

@@ -24,7 +24,8 @@ public class LottoController {
         InputView.readLine();
 
         // 보너스 번호 입력
-
+        OutputView.printRequestBonusNumber();
+        InputView.readLine();
 
         // 당첨 통계 출력
     }

@@ -16,6 +16,10 @@ public class OutputView {
         System.out.println(RequestMessage.WINNING_NUMBER.getMessage());
     }
 
+    public static void printRequestBonusNumber() {
+        System.out.println(RequestMessage.BONUS_NUMBER.getMessage());
+    }
+
     public static void printResponsePurchaseAmount(final int amount) {
         String formattedMessage = String.format(ResponseMessage.PURCHASE_AMOUNT.getMessage(), amount);
         System.out.println(formattedMessage);

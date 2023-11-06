@@ -21,6 +21,10 @@ public class Result {
 		return String.format("%.2f", rateOfReturn);
 	}
 
+	public int getCount(Rank rank) {
+		return matchCount.get(rank);
+	}
+
 	private static int calculateRateOfReturn(int purchaseAmount, Map<Rank, Integer> matchCount) {
 		int total = matchCount.keySet().stream()
 			.mapToInt(

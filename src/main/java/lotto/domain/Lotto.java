@@ -16,6 +16,10 @@ public class Lotto {
 		lotto.add(lottoNumber);
 	}
 
+	public LottoNumber get(int i) {
+		return lotto.get(i);
+	}
+
 	private void validate(LottoNumber lottoNumber) {
 		if (isDuplicate(lottoNumber)) {
 			throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_MESSAGE);

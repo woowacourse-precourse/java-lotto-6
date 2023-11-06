@@ -1,18 +1,9 @@
 package lotto.view;
-import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputMaker {
-    private static Console console;
-
-    public static String userInput(){
-        String userInput = console.readLine();
-        console.close();
-        return userInput;
-    }
 
     public int inputNum(String userInput) {
         try {
@@ -23,13 +14,12 @@ public class InputMaker {
         }
     }
 
-    public Lotto inputWinningNumber(String userInput) {
+    public List<Integer> inputWinningNumber(String userInput) {
+        List<Integer> result = new ArrayList<>();
         String[] inputNumber = userInput.split(",");
-        List<Integer> winningNum= new ArrayList<>();
         for (int i = 0; i<inputNumber.length; i++) {
-            winningNum.set(i,inputNum((inputNumber[i])));
+            result.add(inputNum(inputNumber[i]));
         }
-        Lotto winnerNumber = new Lotto(winningNum);
-        return winnerNumber;
+        return result;
     }
 }

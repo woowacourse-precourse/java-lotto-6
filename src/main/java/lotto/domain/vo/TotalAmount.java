@@ -1,7 +1,6 @@
 package lotto.domain.vo;
 
 import lotto.constant.LottoConstants;
-import lotto.util.validator.InputValidator;
 
 public class TotalAmount {
     private final int amount;
@@ -10,8 +9,7 @@ public class TotalAmount {
         this.amount = amount;
     }
 
-    public static TotalAmount of(int amount, InputValidator<Integer> validator) {
-        validator.validate(amount);
+    public static TotalAmount from(int amount) {
         return new TotalAmount(amount);
     }
 

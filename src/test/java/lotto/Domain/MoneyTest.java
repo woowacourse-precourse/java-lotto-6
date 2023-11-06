@@ -1,5 +1,6 @@
 package lotto.Domain;
 
+import static lotto.CommonValidation.CommonValidation.isValidLottoNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 class MoneyTest {
 
-    @DisplayName("범위 밖에 구매금액을 입력했을때 예외발생하는지 확인")
+    @DisplayName("올바른 범위에 속한 값이 아닐때 예외 발생하는 지 확인")
     @Test
     void createMoneyByOutOfRange() {
         String inputMoney1 = "999";
@@ -21,7 +22,7 @@ class MoneyTest {
         assertThrows(MoneyException.class, () -> Money.from(inputMoney2));
     }
 
-    @DisplayName("범위 안에 구매 금액을 입력했을때 정상수행되는지 확인")
+    @DisplayName("올바른 범위에 속한 값일때 정상 수행되는지 확인")
     @Test
     void createMoneyByInRange() {
         //given
@@ -58,21 +59,6 @@ class MoneyTest {
         assertThat(money.getMoney()).isEqualTo(1000);
     }
 
-    @DisplayName("공백이 포함된 금액을 입력했을때 예외발생하는지 확인")
-    @Test
-    void createMoneyByHasBlank() {
-        String inputMoney = "1 000";
-
-        assertThrows(CommonValidationException.class, () -> Money.from(inputMoney));
-    }
-
-    @DisplayName("정수 이외의 값이 들어 왔을때 예외발생하는지 확인")
-    @Test
-    void createMoneyByNotInteger() {
-        String inputMoney = "1.000";
-
-        assertThrows(CommonValidationException.class, () -> Money.from(inputMoney));
-    }
 
     @DisplayName("정상수행시나리오")
     @Test

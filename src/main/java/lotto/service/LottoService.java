@@ -58,7 +58,7 @@ public interface LottoService {
      * @param winningStatistics : 당첨 통계
      * @return : 수익
      */
-    int computeEarnings(Map<MatchType, Integer> winningStatistics);
+    int calculateEarnings(Map<MatchType, Integer> winningStatistics);
 
     /**
      * 수익률 계산하기

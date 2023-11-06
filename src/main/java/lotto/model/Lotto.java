@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicate(numbers);
+        isInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +19,23 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void checkDuplicate(List<Integer> numbers){
+        HashMap<Integer, Integer> numberOfEach = new HashMap<>();
+        for (int num : numbers){
+            int repeats = numberOfEach.getOrDefault(num, 0);
+            if (repeats >= 1){
+                throw new IllegalArgumentException("중복되는 숫자는 입력할 수 없습니다.");
+            }
+            numberOfEach.put(num, repeats + 1);
+        }
+    }
+
+
+    private void isInRange(List<Integer> numbers){
+        numbers.forEach(num ->{
+            if (num > 45 || num < 1){
+                throw new IllegalArgumentException("숫자는 1과 45사이의 수여야 합니다.");
+            }
+        });
+    }
 }

@@ -1,8 +1,6 @@
 package lotto.config;
 
 import java.util.Arrays;
-import lotto.exception.LottoGameException;
-import lotto.exception.RankException;
 
 public enum Rank {
 
@@ -10,7 +8,8 @@ public enum Rank {
     FOURTH(4, false, 50_000),
     THIRD(5, false, 1_500_000),
     SECOND(5, true, 30_000_000),
-    FIRST(6, false, 2_000_000_000);
+    FIRST(6, false, 2_000_000_000),
+    NO_RANK(0, false, 0);
 
     public final int matchedCount;
     public final boolean matchesBonusNumber;
@@ -28,6 +27,6 @@ public enum Rank {
                         rank.matchedCount == matchedCount
                                 && rank.matchesBonusNumber == matchesBonusNumber)
                 .findAny()
-                .orElseThrow(() -> new LottoGameException(RankException.INVALID_CONDITION));
+                .orElse(NO_RANK);
     }
 }

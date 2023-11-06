@@ -4,10 +4,10 @@ import java.util.List;
 
 public class NumberHandler {
 
-    public List<Integer> numberMatches(List<Integer> numbers1, List<Integer> numbers2){
-        return numbers1.stream()
+    public List<Integer> numberMatches(List<Integer> firstNumbers, List<Integer> secondNumbers){
+        return firstNumbers.stream()
                 .distinct()
-                .filter(numbers2::contains)
+                .filter(secondNumbers::contains)
                 .toList();
     }
 }

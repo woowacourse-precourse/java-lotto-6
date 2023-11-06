@@ -56,5 +56,22 @@ class LottoValidatorTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 중복을 허용하지 않습니다.");
     }
 
+    @DisplayName("입력된 보너스 번호가 유효한 범위 바깥일 경우 예외가 발생한다.")
+    @Test
+    public void throwExceptionForInvalidBonusNumber() {
+        int bonusNumber = 6;
+        assertThatThrownBy(() -> LottoValidator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("입력된 보너스 번호가 로또 번호와 중복될 경우 예외가 발생한다.")
+    @Test
+    public void throwExceptionForDuplicateBonusNumber() {
+        int bonusNumber = 6;
+        assertThatThrownBy(() -> LottoValidator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 로또 번호와의 중복이 허용되지 않습니다.");
+    }
 
 }

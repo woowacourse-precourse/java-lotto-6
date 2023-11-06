@@ -22,6 +22,9 @@ public class UserMoney {
     }
 
     public float calculateTotalReturn(int calculateReturn) {
+        if (calculateReturn == 0) {
+            return 0;
+        }
         return (float) calculateReturn / userMoneyValue * 100;
     }
 

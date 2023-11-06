@@ -11,7 +11,7 @@ public abstract class RegisterAbstractController<E> implements RegisterControlle
         try {
             return doProcess();
         } catch (Exception e) {
-            errorView.showErrorMessage(e.getMessage());// Writer 주입해야 한다
+            errorView.showErrorMessage(e.getMessage());
             return process();
         }
     }

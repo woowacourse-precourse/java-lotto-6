@@ -21,7 +21,7 @@ public class LottoFinalResult {
     public int calculateReturn() {
         return finalResultMap.entrySet()
                 .stream()
-                .mapToInt((set) -> set.getKey().getWinningAmount() + set.getValue())
+                .mapToInt((set) -> set.getKey().getWinningAmount() * set.getValue())
                 .sum();
     }
 

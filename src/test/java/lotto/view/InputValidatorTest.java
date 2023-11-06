@@ -40,6 +40,6 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> InputValidator.verifyNumericString(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자 문자열만 입력해주세요.");
+                .hasMessage("숫자만 입력해주세요.");
     }
 }

@@ -9,8 +9,8 @@ public class Parser {
     private static final int MAX_STRING_LENGTH = 11;
     private static final String DEFAULT_SEPARATOR = ",";
 
-    public static List<Integer> parseIntListOrThrow(String intListString) {
-        List<String> split = Arrays.stream(intListString.split(DEFAULT_SEPARATOR)).toList();
+    public static List<Integer> parseIntListOrThrow(String numericSequence) {
+        List<String> split = Arrays.stream(numericSequence.split(DEFAULT_SEPARATOR)).toList();
         return split.stream().map(Parser::parseIntOrThrow).toList();
     }
 

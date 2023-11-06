@@ -2,6 +2,9 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.LottoOption;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -15,8 +18,9 @@ public class MainController {
     public static void run() {
         Lottos purchasedLotto = initLottos();
         OutputView.printLottos(purchasedLotto);
-        WinningLotto answerLotto = initAnswerLotto();
-        OutputView.printResult(answerLotto, purchasedLotto);
+        WinningLotto winningLotto = initAnswerLotto();
+        Map<Rank, Integer> resultSheet = winningLotto.calculateResult(purchasedLotto.getLottoItems());
+        OutputView.printResult(resultSheet, purchasedLotto.getCount());
     }
 
     private static Lottos initLottos() {
@@ -48,9 +52,9 @@ public class MainController {
     private static Lotto initLotto() {
         try {
             String lottoNumberString = InputView.readString(ViewMessage.INPUT_ANSWER_LOTTO);
-            List<String> strings = Utils.splitStringToList(lottoNumberString, ",");
-            Lotto answerLotto = new Lotto(Utils.convertListStringToListInteger(strings));
-            return answerLotto;
+            List<Integer> lottoNumbers = Utils.convertStringToIntegerList(lottoNumberString,
+                    LottoOption.LOTTO_NUMBER_DELIMITER);
+            return new Lotto(lottoNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return initLotto();
@@ -59,12 +63,11 @@ public class MainController {
 
     private static BonusNumber initBonus() {
         try {
-            return new BonusNumber(InputView.readInteger(ViewMessage.INPUT_BONUS_NUMBER));
+            int bonus = InputView.readInteger(ViewMessage.INPUT_BONUS_NUMBER);
+            return new BonusNumber(bonus);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return initBonus();
         }
     }
-
-
 }

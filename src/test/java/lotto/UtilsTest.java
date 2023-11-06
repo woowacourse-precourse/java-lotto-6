@@ -11,36 +11,22 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class UtilsTest {
 
 
-    @DisplayName("문자열을 구분자로 분리한다.")
+    @DisplayName("문자열을 구분자로 분리해 숫자 리스트를 반환한다.")
     @ParameterizedTest
-    @MethodSource("splitByDelimiterProvider")
-    public void splitByDelimiterTest(String source, String delimiter, List<String> expected) {
-        List<String> actual = Utils.splitStringToList(source, delimiter);
+    @MethodSource("convertStringToIntegerListSuccessProvider")
+    public void convertStringToIntegerListSuccessTest(String source, String delimiter, List<Integer> expected) {
+        List<Integer> actual = Utils.convertStringToIntegerList(source, delimiter);
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
-    static Stream<Arguments> splitByDelimiterProvider() {
+    static Stream<Arguments> convertStringToIntegerListSuccessProvider() {
         return Stream.of(
-                Arguments.of("1,2,3", ",", List.of("1", "2", "3")),
-                Arguments.of("1 2 3", " ", List.of("1", "2", "3")),
-                Arguments.of("1, 2 3", " ", List.of("1,", "2", "3"))
+                Arguments.of("1,2,3", ",", List.of(1, 2, 3)),
+                Arguments.of("1 2 3", " ", List.of(1, 2, 3)),
+                Arguments.of("48, 132, 0235", ", ", List.of(45, 132, 235))
         );
     }
 
-    @DisplayName("문자열을 구분자로 분리한다.")
-    @ParameterizedTest
-    @MethodSource("convertListStringToListIntegerProvider")
-    public void convertListStringToListIntegerTest(List<String> source, List<Integer> expected) {
-        List<Integer> actual = Utils.convertListStringToListInteger(source);
-        Assertions.assertThat(actual).isEqualTo(expected);
-    }
 
-    static Stream<Arguments> convertListStringToListIntegerProvider() {
-        return Stream.of(
-                Arguments.of(List.of("1", "2", "3"), List.of(1, 2, 3)),
-                Arguments.of(List.of("1", "2", "3", "4"), List.of(1, 2, 3, 4)),
-                Arguments.of(List.of("1", "2", "3", "4", "5"), List.of(1, 2, 3, 4, 5))
-        );
-    }
 
 }

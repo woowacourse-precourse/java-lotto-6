@@ -22,15 +22,14 @@ public class OutputView {
         System.out.println("[ERROR] : " + e.getMessage());
     }
 
-    public static void printResult(WinningLotto answerLotto, Lottos lottoInfo) {
+    public static void printResult(Map<Rank, Integer> resultSheet, int count) {
         printResultHeader();
-        Map<Rank, Integer> rankIntegerMap = answerLotto.calculateResult(lottoInfo.getLottoItems());
-        printByRank(Rank.FIFTH, rankIntegerMap.get(Rank.FIFTH));
-        printByRank(Rank.FOURTH, rankIntegerMap.get(Rank.FOURTH));
-        printByRank(Rank.THIRD, rankIntegerMap.get(Rank.THIRD));
-        printByRank(Rank.SECOND, rankIntegerMap.get(Rank.SECOND));
-        printByRank(Rank.FIRST, rankIntegerMap.get(Rank.FIRST));
-        printProfitRate(rankIntegerMap, lottoInfo.getCount());
+        printByRank(Rank.FIFTH, resultSheet.get(Rank.FIFTH));
+        printByRank(Rank.FOURTH, resultSheet.get(Rank.FOURTH));
+        printByRank(Rank.THIRD, resultSheet.get(Rank.THIRD));
+        printByRank(Rank.SECOND, resultSheet.get(Rank.SECOND));
+        printByRank(Rank.FIRST, resultSheet.get(Rank.FIRST));
+        printProfitRate(resultSheet, count);
     }
 
     private static void printResultHeader() {
@@ -41,7 +40,7 @@ public class OutputView {
         System.out.printf("%s - %d개\n", rank.getMessage(), count);
     }
 
-    private static void printProfitRate( Map<Rank, Integer> rankIntegerMap, int count) {
+    private static void printProfitRate(Map<Rank, Integer> rankIntegerMap, int count) {
         int purchaseCost = LottoOption.LOTTO_PRICE * count;
         int totalPrize = (int) rankIntegerMap.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())

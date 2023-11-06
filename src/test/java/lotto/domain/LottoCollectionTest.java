@@ -22,11 +22,14 @@ public class LottoCollectionTest {
                 .allSatisfy(lotto -> assertThat(lotto).isInstanceOf(Lotto.class));
     }
 
-//    @Test
-//    void check_getResultGroup() {
-//        LottoCollection lottoCollection = LottoCollection.from(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12));
-//        Lotto winningLotto = new Lotto(List.of(1, 2, 7, 41, 42, 43));
-//        int bonusNumber = 8;
-//        List<LottoResult> resultGroup = lottoCollection.getResultGroup(winningLotto, bonusNumber);
-//    }
+    @DisplayName("getResultGroup은 각 로또별 비교 결과를 받아서 리스트로 담는다")
+    @Test
+    void check_getResultGroup() {
+        LottoCollection lottoCollection = LottoCollection.from(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 7, 41, 42, 43));
+        int bonusNumber = 8;
+        List<LottoResult> resultGroup = lottoCollection.getResultGroup(winningLotto, bonusNumber);
+        assertThat(resultGroup).containsExactly(LottoResult.of(2, false)
+                , LottoResult.of(1, true));
+    }
 }

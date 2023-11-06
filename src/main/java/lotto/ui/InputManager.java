@@ -1,24 +1,20 @@
 package lotto.ui;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputManager {
     public int requestAmount() {
-        int amount = 0;
-        boolean isValidAmount = false;
-
-        while (!isValidAmount) {
+        while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             try {
-                amount = validateAmount(readLine());
-                isValidAmount = true;
+                return validateAmount(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return amount;
     }
-
 
     private int validateAmount(String input) {
         if (!input.matches("^[0-9]+$")) throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");

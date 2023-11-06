@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.dto.PurchaseDTO;
+import lotto.domain.dto.Purchase;
 
 final class LottoStore {
 
@@ -10,8 +10,8 @@ final class LottoStore {
         this.factory = factory;
     }
 
-    PurchaseDTO sellLottos(Money money) {
+    Purchase sellLottos(Money money) {
         Integer numberOfLotto = money.money() / Constraint.LOTTO_PRICE.getValue();
-        return new PurchaseDTO(numberOfLotto, factory.createLottos(numberOfLotto));
+        return new Purchase(numberOfLotto, factory.createLottos(numberOfLotto));
     }
 }

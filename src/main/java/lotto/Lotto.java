@@ -29,7 +29,8 @@ public class Lotto {
         System.out.println("---");
         ArrayList<Integer> lottoResult = matchNumbers(lottoNumbers, bonus);
         printResult(lottoResult);
-        System.out.println("총 수익률은 " + calTotalProfit(lottoResult) / money + "입니다.");
+        String profit = String.format("%.2f", calTotalProfit(lottoResult).doubleValue() / money);
+        System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 
     private ArrayList<Integer> matchNumbers(List<List<Integer>> lottoNumbers, int bonus) {

@@ -18,21 +18,21 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        /*
+
         // 로또 당첨 금액 ENUM
-        enum LottoAmount {
+        enum LottoResult {
             FIFTH(5000), FOURTH(50000), THIRD(1500000), SECOND(30000000), FIRST(2000000000);
 
             private final int value;
-            LottoAmount(int value) { this.value = value; }
+            LottoResult(int value) { this.value = value; }
             public int getValue() { return value; }
         }
-         */
+
 
 
         // 출력 메시지 열거형
         enum Message {
-            GetPurchasePrice("구입금액을 입력해 주세요."), GetWinningNumber("당첨 번호를 입력해 주세요."), GetBonusNumber("보너스 번호를 입력해 주세요.");
+            GetPurchasePrice("구입금액을 입력해 주세요."), GetWinningNumber("당첨 번호를 입력해 주세요."), GetBonusNumber("보너스 번호를 입력해 주세요."), WinningStatus("당첨 통계"), Bar("---");
             private final String value;
 
             Message(String value) {
@@ -114,7 +114,7 @@ public class Application {
 
         //게임 3. 당첨번호, 보너스번호와 구매한 로또번호 비교
         int correctCount = 0; // 일치하는 숫자 개수
-        List<Integer> correctCounts = new ArrayList<>();
+        List<String> correctEnums = new ArrayList<>();
 
         // 당첨번호와 비교
         for(Lotto l:lottos){
@@ -124,23 +124,39 @@ public class Application {
                     correctCount += 1;
                 }
             }
-            correctCounts.add(correctCount);
+
+            //보너스 체크
+            if(correctCount == 5 && lottosTemp.contains(bonusNumber)){
+                correctCount = 55;
+            }
+
+            switch (correctCount){
+                case 3:
+                    correctEnums.add("FIFTH");
+                    break;
+                case 4:
+                    correctEnums.add("FOURTH");
+                    break;
+                case 5:
+                    correctEnums.add("THIRD");
+                    break;
+                case 55:
+                    correctEnums.add("SECOND");
+                    break;
+                case 6:
+                    correctEnums.add("FIRST");
+                    break;
+                default:
+                    break;
+            }
             correctCount = 0;
         }
 
-        //보너스 번호와 비교
-        List<Boolean> correctBonus = new ArrayList<>();
 
-        for(Lotto l:lottos){
-            List<Integer> lottosTemp = new ArrayList<Integer>(l.getter());
+        // 출력 1. 발행한 로또 수량 및 번호 출력
+        System.out.println(Message.WinningStatus.getValue() + "\n" + Message.Bar.getValue());
 
-            if (lottosTemp.contains(bonusNumber)) {
-                correctBonus.add(true);
-            }
-            else{
-                correctBonus.add(false);
-            }
-        }
+
 
 
 

@@ -1,11 +1,11 @@
 package lotto.util.validator;
 
-import static lotto.exception.ExceptionMessage.INPUT_BLANK_ERROR_MESSAGE;
+import static lotto.common.ExceptionMessage.INPUT_BLANK_ERROR;
 
 public class BlankValidator {
     public static void validate(String input) {
         if (isBlank(input)) {
-            throw new IllegalArgumentException(INPUT_BLANK_ERROR_MESSAGE);
+            throw new IllegalArgumentException(INPUT_BLANK_ERROR);
         }
     }
 

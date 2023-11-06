@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.exception.ExceptionMessage.INPUT_NOT_MULTIPLE_OF_THOUSAND_ERROR_MESSAGE;
+import static lotto.common.ExceptionMessage.INPUT_NOT_MULTIPLE_OF_THOUSAND_ERROR;
 
 public class PurchaseAmount {
     private final int purchaseAmount;
@@ -20,11 +20,15 @@ public class PurchaseAmount {
 
     private void validateThousandMultiple(int amount) {
         if (!isMultipleOfThousand(amount)) {
-            throw new IllegalArgumentException(INPUT_NOT_MULTIPLE_OF_THOUSAND_ERROR_MESSAGE);
+            throw new IllegalArgumentException(INPUT_NOT_MULTIPLE_OF_THOUSAND_ERROR);
         }
     }
 
     private boolean isMultipleOfThousand(int amount) {
         return amount % 1000 == 0;
+    }
+
+    public int calculateLottoCount() {
+        return purchaseAmount / 1000;
     }
 }

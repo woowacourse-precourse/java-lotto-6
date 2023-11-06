@@ -1,6 +1,6 @@
 package lotto.util.validator;
 
-import static lotto.exception.ExceptionMessage.INPUT_INVALID_INTEGER_ERROR_MESSAGE;
+import static lotto.common.ExceptionMessage.INPUT_INVALID_INTEGER_ERROR;
 
 import java.util.regex.Pattern;
 
@@ -9,7 +9,7 @@ public class NumericValidator {
 
     public static void validateInteger(String input) {
         if (!isValidInteger(input)) {
-            throw new IllegalArgumentException(INPUT_INVALID_INTEGER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(INPUT_INVALID_INTEGER_ERROR);
         }
     }
 

@@ -20,7 +20,7 @@ public class Lotto {
 
     public int sameNumberCounter(WinningNumbers winningNumbers) {
         return (int) numbers.stream()
-                .filter(winningNumbers::hasNumber)
+                .filter(winningNumbers::hasNumberInWinningNumbers)
                 .count();
     }
 

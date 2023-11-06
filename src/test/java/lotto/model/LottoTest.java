@@ -57,7 +57,7 @@ class LottoTest {
     void sameNumberCounterTest() {
         // given
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumbers winningNumbers = WinningNumbers.from(Lotto.from(List.of(1, 2, 3, 4, 10, 20)), 40);
+        WinningNumbers winningNumbers = WinningNumbers.of(Lotto.from(List.of(1, 2, 3, 4, 10, 20)), 40);
         // when
         int count = lotto.sameNumberCounter(winningNumbers);
         // then

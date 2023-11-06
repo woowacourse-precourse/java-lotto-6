@@ -35,7 +35,7 @@ public class LottoController {
 
     private WinningNumbers winningNumbers(Lotto winningNumber, Integer bonusNumber) {
         try {
-            return WinningNumbers.from(winningNumber, bonusNumber);
+            return WinningNumbers.of(winningNumber, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return winningNumbers(winningNumber, inputBonusNumber());

@@ -17,7 +17,7 @@ class LottoResultTest {
         LottoStorage lottoStorage = LottoStorage.from(List.of(lotto1, lotto2));
         List<Integer> winningNumbers = List.of(1, 2, 3, 40, 41, 42);
         Integer bonusNumber = 43;
-        WinningNumbers winningNumber = WinningNumbers.from(Lotto.from(winningNumbers), bonusNumber);
+        WinningNumbers winningNumber = WinningNumbers.of(Lotto.from(winningNumbers), bonusNumber);
         // when
         LottoResult lottoResult = LottoResult.of(lottoStorage, winningNumber);
         long price = lottoResult.calculatePrice();
@@ -34,7 +34,7 @@ class LottoResultTest {
         LottoStorage lottoStorage = LottoStorage.from(List.of(lotto1, lotto2));
         List<Integer> winningNumbers = List.of(1, 2, 3, 40, 41, 42);
         Integer bonusNumber = 43;
-        WinningNumbers winningNumber = WinningNumbers.from(Lotto.from(winningNumbers), bonusNumber);
+        WinningNumbers winningNumber = WinningNumbers.of(Lotto.from(winningNumbers), bonusNumber);
         // when
         LottoResult lottoResult = LottoResult.of(lottoStorage, winningNumber);
         int count = lottoResult.getRankCount(PriceMoney.FIFTH);

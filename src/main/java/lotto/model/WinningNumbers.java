@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public class WinningNumbers {
 
     private Lotto winningNumbers;
@@ -9,16 +7,16 @@ public class WinningNumbers {
 
     private WinningNumbers(Lotto lotto, Integer bonusNumber) {
         validateNumberRange(bonusNumber);
-        validateDuplicateNumber(lotto, bonusNumber);
+        validateDuplicateWithWinningNumbers(lotto, bonusNumber);
         this.winningNumbers = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers from(Lotto lotto, Integer bonusNumber) {
+    public static WinningNumbers of(Lotto lotto, Integer bonusNumber) {
         return new WinningNumbers(lotto, bonusNumber);
     }
 
-    public boolean hasNumber(Integer number) {
+    public boolean hasNumberInWinningNumbers(Integer number) {
         return winningNumbers.hasNumber(number);
     }
 
@@ -26,7 +24,7 @@ public class WinningNumbers {
         return this.bonusNumber;
     }
 
-    private void validateDuplicateNumber(Lotto lotto, Integer bonusNumber) {
+    private void validateDuplicateWithWinningNumbers(Lotto lotto, Integer bonusNumber) {
         if (lotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호의 숫자는 입력할 수 없습니다.");
         }

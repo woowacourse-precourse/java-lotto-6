@@ -8,14 +8,14 @@ import lotto.view.OutputView;
 
 import java.util.List;
 
-import static lotto.validator.LottoValidator.*;
-import static lotto.validator.PurchaseAmountValidator.*;
+import static lotto.domain.WinningNumbers.*;
+import static lotto.util.Constant.*;
+import static lotto.validator.PurchaseAmountValidator.validateMoney;
 import static lotto.view.InputView.*;
 
 public class LottoService {
 
     private static final int DIVIDER_MONEY_TO_EXCHANGE_AMOUNT = 1000;
-    private static final String DELIMITER = ",";
 
     public static int enterPurchaseAmount() {
         noticeToGetPurchaseAmount();
@@ -50,12 +50,11 @@ public class LottoService {
         String bonusNumber = Console.readLine();
         //보너스 번호가 당첨 번호랑 중복되는지 여부 확인
         try{
-            validateBonusNumber(lotto, bonusNumber);
+            return validateBonusNumber(lotto, bonusNumber);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return enterBonusNumber(lotto);
         }
-        return Integer.parseInt(bonusNumber);
     }
 
     public static void matchLottoNumbers(WinningNumbers winningNumbers, List<Lotto> lottos){

@@ -16,6 +16,7 @@ public class LottoPurchase {
 
     private boolean isCorrectAmount(String input) {
         try {
+            lottoNumberException.checkBlank(input);           //빈칸 입력
             lottoNumberException.checkEmptySpace(input);        //공백
             lottoNumberException.checkPositiveInteger(input);   //자연수
             lottoNumberException.checkOutOfIntegerRange(input); //정수 범위

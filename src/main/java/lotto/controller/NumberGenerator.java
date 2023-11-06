@@ -12,7 +12,7 @@ public class NumberGenerator {
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_COUNT = 6;
 
-    private List<Integer> createLottoNumbers() {
+    private List<Integer> createUniqueNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
     }
@@ -23,7 +23,7 @@ public class NumberGenerator {
 
         while (true) {
             try {
-                lottoNumber = createLottoNumbers();
+                lottoNumber = createUniqueNumbers();
                 lotto = new Lotto(lottoNumber);
             } catch (IllegalArgumentException exception) {
                 continue;

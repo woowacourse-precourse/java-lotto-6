@@ -2,7 +2,6 @@ package View;
 
 import static util.ProgressMessage.INPUT_AMOUNT;
 
-
 public class InputView {
 
     public static void buyMessage() {

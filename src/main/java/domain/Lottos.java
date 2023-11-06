@@ -8,9 +8,9 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(Amount amount){
+    public Lottos(Amount amount) {
         lottos = new ArrayList<>();
-        for(int i = 0; i < amount.getAmount(); i++){
+        for (int i = 0; i < amount.getAmount(); i++) {
             lottos.add(MakeObjectService.lotto());
         }
     }
@@ -19,7 +19,7 @@ public class Lottos {
     public String toString() {
         StringBuilder message = new StringBuilder();
 
-        for(Lotto lotto : lottos){
+        for (Lotto lotto : lottos) {
             message.append(lotto);
             message.append("\n");
         }

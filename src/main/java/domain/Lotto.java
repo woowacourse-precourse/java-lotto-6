@@ -26,7 +26,7 @@ public class Lotto {
         return numbers.toString();
     }
 
-    private List<Integer> makeLottoNumbers(){
+    private List<Integer> makeLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

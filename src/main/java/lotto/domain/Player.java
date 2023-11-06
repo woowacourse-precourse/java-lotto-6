@@ -4,7 +4,7 @@ package lotto.domain;
 import lotto.view.OutputView;
 
 public class Player {
-    private int money;
+    private final int money;
     private int ticket;
 
     public Player(String input) {
@@ -13,7 +13,7 @@ public class Player {
 
     public void divideMoneyByThousand() {
         OutputView outputView = new OutputView();
-        ticket = money / ConstantValue.THOUSAND;
+        this.ticket = money / ConstantValue.THOUSAND;
         outputView.displayLottoNumbers(ticket);
     }
 }

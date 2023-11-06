@@ -3,6 +3,7 @@ package lotto.generator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -25,6 +26,19 @@ class RandomLottoGeneratorTest {
         for (int i = 1; i < numbers.size(); ++i) {
             assertThat(numbers.get(i)).isGreaterThan(numbers.get(i - 1));
         }
+
+    }
+
+    @Test
+    public void 로또_번호는_6개이다() throws Exception {
+        // given
+        Lotto lotto = lottoGenerator.generate();
+
+        // when
+        List<Integer> numbers = lotto.getNumbers();
+
+        //then
+        assertThat(numbers.size()).isEqualTo(LottoConstant.LOTTO_NUMBER_COUNT);
 
     }
 

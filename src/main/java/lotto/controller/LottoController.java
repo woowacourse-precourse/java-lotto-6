@@ -3,22 +3,31 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Statistics;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
+
     public static void run() {
-        InputView.inputMoney();
-        OutputView.printAmountOfLottoTickets();
+        OutputView.printInputMoneyMsg();
+        InputController inputController = new InputController();
+        inputController.inputMoney();
+        OutputView.printNextLine();
+        int amountOfLottoTickets = LottoService.getAmountOfLottoTickets();
+        OutputView.printAmountOfLottoTickets(amountOfLottoTickets);
         List<Lotto> lottoTickets = LottoService.makeLottoTickets();
         OutputView.printLottoTickets(lottoTickets);
-        InputView.inputWinningNumbers();
-        InputView.inputBonusNumber();
+        OutputView.printNextLine();
+        OutputView.printInputWinningNumbersMsg();
+        inputController.inputWinningNumbers();
+        OutputView.printNextLine();
+        OutputView.printInputBonusNumberMsg();
+        inputController.inputBonusNumber();
+        OutputView.printNextLine();
         List<Statistics> lottoStatistics = LottoService.makeStatistics(LottoService.countCorrectNumbers(lottoTickets));
         OutputView.printStatistics(lottoStatistics);
-        OutputView.printEarningRate(LottoService.getEarningRate(lottoStatistics));
+        double earningRate = LottoService.getEarningRate(lottoStatistics);
+        OutputView.printEarningRate(earningRate);
     }
 }

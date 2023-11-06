@@ -1,28 +1,27 @@
-package lotto.view;
-
-import camp.nextstep.edu.missionutils.Console;
+package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class InputView {
-
+public class InputController {
     public static int money;
     public static List<Integer> winningNumbers;
     public static int bonusNumber;
 
-    public static void inputMoney() {
-        OutputView.printInputMoneyMsg();
+    public InputController() {
+        money = 0;
+        winningNumbers = new ArrayList<>();
+        bonusNumber = 0;
+    }
 
+    public static void inputMoney() {
         String stringMoney = readLine();
         money = Integer.parseInt(stringMoney);
     }
     public static void inputWinningNumbers() {
-        OutputView.printInputWinningNumbersMsg();
-
+        winningNumbers = new ArrayList<>();
         String[] numberStrings = readLine().split(",", -1);
         // [예외처리] 입력한 당첨 번호 중에 공백이 있는 경우
         // [예외처리] 중복된 숫자를 입력한 경우
@@ -32,8 +31,6 @@ public class InputView {
         }
     }
     public static void inputBonusNumber() {
-        OutputView.printInputBonusNumberMsg();
-
         String userInputBonusNumbers = readLine();
         bonusNumber = Integer.parseInt(userInputBonusNumbers);
     }

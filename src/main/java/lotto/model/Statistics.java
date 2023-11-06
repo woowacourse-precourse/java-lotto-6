@@ -3,7 +3,7 @@ package lotto.model;
 public class Statistics {
     private final String value;
     private final int valueNumber;
-    private int amountOfTickets;
+    private final int amountOfTickets;
 
     public Statistics(String value, int valueNumber, int amountOfTickets) {
         this.value = value;
@@ -19,8 +19,5 @@ public class Statistics {
     }
     public int getAmountOfTickets() {
         return amountOfTickets;
-    }
-    public void setAmountOfTickets(int amountOfTickets) {
-        this.amountOfTickets = amountOfTickets;
     }
 }

@@ -3,11 +3,10 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.Statistics;
-import lotto.view.InputView;
 
 import java.util.*;
 
-import static lotto.view.InputView.*;
+import static lotto.controller.InputController.*;
 
 public class LottoService {
 
@@ -15,7 +14,6 @@ public class LottoService {
         int amountOfLottoTickets = money / 1000;
 
         // [예외처리] 1000원으로 나누어 떨어지지 않는 경우
-
         return amountOfLottoTickets;
     }
     public static List<Lotto> makeLottoTickets() {
@@ -50,6 +48,7 @@ public class LottoService {
         for (Lotto lottoTicket : lottoTickets) {
             amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket));
         }
+        System.out.println(amountOfCorrectNumbers.toString());
         return amountOfCorrectNumbers;
     }
     public static int compareWithBonusNumber(List<Integer> lottoNumbers) {
@@ -71,7 +70,6 @@ public class LottoService {
     }
     public static List<Statistics> makeStatistics(List<Integer> amountOfCorrectNumbers) {
         List<Statistics> lottoStatistics = new ArrayList<>();
-        countCorrespondingTickets(3, amountOfCorrectNumbers);
         lottoStatistics.add(new Statistics("3개 일치 (5,000원)",5000, countCorrespondingTickets(3, amountOfCorrectNumbers)));
         lottoStatistics.add(new Statistics("4개 일치 (50,000원)",50000, countCorrespondingTickets(4, amountOfCorrectNumbers)));
         lottoStatistics.add(new Statistics("5개 일치 (1,500,000원)",1500000, countCorrespondingTickets(5, amountOfCorrectNumbers)));
@@ -85,7 +83,7 @@ public class LottoService {
         for (Statistics statistics : lottoStatistics) {
             earningRate += statistics.getValueNumber()*statistics.getAmountOfTickets();
         }
-        earningRate *= 100;
+        earningRate = earningRate / money * 100;
         return earningRate;
     }
 }

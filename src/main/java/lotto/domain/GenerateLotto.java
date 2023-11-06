@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateLotto {
+    private static final Integer START_LOTTO_NUMBER = 1;
+    private static final Integer END_LOTTO_NUMBER = 45;
+    private static final Integer PICK_NUMBERS = 6;
+
     public List<Lotto> getLottoNumbers(int count) {
         List<Lotto> lottos = new ArrayList<>();
 
@@ -16,7 +20,7 @@ public class GenerateLotto {
 
     }
     private List<Integer> generateLottoNumbers() {
-         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+         return Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, PICK_NUMBERS);
     }
 
     private Lotto generateLotto() {

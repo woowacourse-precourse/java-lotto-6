@@ -7,6 +7,7 @@ import java.util.List;
 
 public class TotalResult {
     private final int SIX = 6;
+    private final double HUNDRED = 100.0;
     private int third = 0;
     private int fourth = 0;
     private int fifth = 0;
@@ -17,11 +18,11 @@ public class TotalResult {
     public void print(int initMoney, List<Lotto> totalLotto, WinningNumbers winningNumbers, int bonusNumber) {
         outputView.startResult();
         compare(totalLotto, winningNumbers, bonusNumber);
-        int sum = result();
+        double sum = result();
         totalRate(initMoney, sum);
     }
 
-    private int result() {
+    private double result() {
         outputView.printResult(LottoWin.THREE.getPrize(), LottoWin.THREE.getMatchingNumbers(), third);
         outputView.printResult(LottoWin.FOUR.getPrize(), LottoWin.FOUR.getMatchingNumbers(), fourth);
         outputView.printResult(LottoWin.FIVE.getPrize(), LottoWin.FIVE.getMatchingNumbers(), fifth);
@@ -31,8 +32,8 @@ public class TotalResult {
         return totalMoney();
     }
 
-    private int totalMoney() {
-        int sum = 0;
+    private double totalMoney() {
+        double sum = 0;
 
         sum += LottoWin.THREE.getPrize() * third;
         sum += LottoWin.FOUR.getPrize() * fourth;
@@ -44,9 +45,9 @@ public class TotalResult {
     }
 
 
-    private void totalRate(int initMoney, int sum) {
-        double result = (double)sum / initMoney;
-        result = Math.round(result * 100.0) / 100.0;
+    private void totalRate(int initMoney, double sum) {
+        double result = (sum * HUNDRED) / initMoney;
+        result = Math.round(result * HUNDRED) / HUNDRED;
 
         outputView.printRate(result);
     }

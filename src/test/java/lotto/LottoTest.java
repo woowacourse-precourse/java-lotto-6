@@ -91,9 +91,18 @@ class LottoTest {
     void createBonusByCorrectRange() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 67;
-        
+
         assertThatThrownBy(() -> lotto.setBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호에 공백을 입력하면 예외가 발생한다.")
+    @Test
+    void createBonusByCorrentBlank() {
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> {
+            Lotto lotto = new Lotto(lottoNumbers);
+            lotto.setBonusNumber(Integer.parseInt(" "));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

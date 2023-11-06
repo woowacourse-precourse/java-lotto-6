@@ -6,12 +6,13 @@ import static lotto.constants.ErrorMessages.*;
 
 public class BuyMoneyValidate {
 
-    public static void validateBuyMoney(String buyMoney) {
+    public static int validateBuyMoney(String buyMoney) {
         validateBuyMoneyIsEmpty(buyMoney);
         validateBuyMoneyIsNotNumber(buyMoney);
         int money = Integer.parseInt(buyMoney);
         validateBuyMoneyIsMinus(money);
         validateBuyMoneyIsNotThousand(money);
+        return money;
     }
 
     public static void validateBuyMoneyIsEmpty(String buyMoney) {

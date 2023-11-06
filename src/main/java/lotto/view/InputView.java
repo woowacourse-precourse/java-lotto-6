@@ -7,10 +7,9 @@ import lotto.validate.WinNumberValidate;
 
 public class InputView {
 
-    public static String getBuyMoney() {
+    public static int getBuyMoney() {
         String buyMoney = Console.readLine();
-        BuyMoneyValidate.validateBuyMoney(buyMoney);
-        return buyMoney;
+        return BuyMoneyValidate.validateBuyMoney(buyMoney);
     }
 
     public static int[] getWinNumber() {

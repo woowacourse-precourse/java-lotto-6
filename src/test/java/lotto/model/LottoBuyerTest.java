@@ -4,11 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import lotto.dto.LottoResultDto;
 
 class LottoBuyerTest {
     private static LottoManager lottoManager;
@@ -42,10 +43,15 @@ class LottoBuyerTest {
         final LottoResult lottoResult = new LottoResult(winningNumbers, 45, lottoManager);
 
         // when
-        final Map<LottoGrade, Integer> result = lottoBuyer.calculateResult(lottoResult);
+        final List<LottoResultDto> result = lottoBuyer.calculateResult(lottoResult);
 
         // then
-        assertThat(result.values()).containsExactly(0, 0, 0, 0, 8);
+        assertThat(result).hasSize(5);
+        assertThat(result.get(0).winningCount()).isZero();
+        assertThat(result.get(1).winningCount()).isZero();
+        assertThat(result.get(2).winningCount()).isZero();
+        assertThat(result.get(3).winningCount()).isZero();
+        assertThat(result.get(4).winningCount()).isEqualTo(8);
     }
 
     @Test
@@ -81,6 +87,6 @@ class LottoBuyerTest {
         final double returnOnInvestment = lottoBuyer.returnOnInvestment();
 
         // then
-        assertThat(returnOnInvestment).isEqualTo(0);
+        assertThat(returnOnInvestment).isZero();
     }
 }

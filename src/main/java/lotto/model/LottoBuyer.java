@@ -2,10 +2,12 @@ package lotto.model;
 
 import static lotto.model.LottoManager.AMOUNT_UNIT;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+
+import lotto.dto.LottoDto;
+import lotto.dto.LottoResultDto;
 
 public class LottoBuyer {
     private final List<Lotto> lottos;
@@ -22,14 +24,17 @@ public class LottoBuyer {
         }
     }
 
-    public Map<LottoGrade, Integer> calculateResult(final LottoResult lottoResult) {
+    public List<LottoResultDto> calculateResult(final LottoResult lottoResult) {
         for (final Lotto lotto : lottos) {
             final LottoGrade lottoGrade = lottoResult.calculateGrade(lotto);
             if (lottoGrade != null) {
                 result.put(lottoGrade, result.get(lottoGrade) + 1);
             }
         }
-        return Collections.unmodifiableMap(result);
+        return result.keySet()
+                .stream()
+                .map(grade -> new LottoResultDto(grade, grade.getCorrect(), grade.getAmount(), result.get(grade)))
+                .toList();
     }
 
     public double returnOnInvestment() {
@@ -48,5 +53,11 @@ public class LottoBuyer {
             return amount;
         }
         return (amount / (lottos.size() * AMOUNT_UNIT)) * 100;
+    }
+
+    public List<LottoDto> getLottos() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
     }
 }

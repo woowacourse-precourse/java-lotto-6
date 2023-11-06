@@ -20,4 +20,12 @@ public class Calculation {
         Collections.sort(lotto_number);
         return lotto_number;
     }
+
+    public void generate_all_lotto_numbers(List<List<Integer>> all_numbers, int count) {
+        List<Integer> user_lotto = new ArrayList<>();
+        for(int i=0;i<count;i++) {
+            user_lotto = generate_lotto();
+            all_numbers.add(user_lotto);
+        }
+    }
 }

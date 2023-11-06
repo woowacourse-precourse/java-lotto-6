@@ -32,8 +32,9 @@ public class Input_function {
 
             for(String str: str_numbers) {
                 number = Integer.parseInt(str);
-                lotto_numbers.add(number);
                 validate_lotto_number(number, lotto_numbers);
+                lotto_numbers.add(number);
+                
             }
             return lotto_numbers;
         }

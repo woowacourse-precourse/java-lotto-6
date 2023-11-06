@@ -10,19 +10,21 @@ public class Start_game {
     private Input_function input_function = new Input_function();
     private Calculation calculation = new Calculation();
     private List<Integer> user_lottos = new ArrayList<>();
+    private List<List<Integer>> all_lotto_numbers = new ArrayList<>();
     
     public void run() {
         money = input_function.get_money();
         game_count = calculation.get_game_count(money);
         Lotto lotto_number = new Lotto(input_function.get_lotto_number());
         bonus_number = input_function.get_bonus_number(lotto_number.get_lotto_numbers());
-
-        for(int i=0;i<10;i++) {
-            user_lottos = calculation.generate_lotto();
-            System.out.println(user_lottos);
-        }
+        calculation.generate_all_lotto_numbers(all_lotto_numbers, game_count);
+        
 
         System.out.println(lotto_number.get_lotto_numbers().toString());
         System.out.println(bonus_number);
+
+        for(List<Integer> user_lotto_number:all_lotto_numbers) {
+            System.out.println(user_lotto_number.toString());
+        }
     }
 }

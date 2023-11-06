@@ -16,5 +16,17 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public String lottoFormat() {
+        StringBuilder result = new StringBuilder();
+
+        for (Integer number : numbers) {
+            if (!result.isEmpty()) {
+                result.append(", ");
+            }
+            result.append(number);
+        }
+
+        return "[" + result.toString() + "]";
+    }
+
 }

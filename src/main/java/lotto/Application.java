@@ -46,9 +46,8 @@ public class Application {
 
     private static void buyLotto(Customer customer, Integer buyCount) {
         PrintService.informPurchaseCount(buyCount);
-        for (int i = 0; i < buyCount; i++) {
-            customer.putLottoNumber(i, AutomaticLottoNumbers.create());
-        }
+        Map<Integer, List<Integer>> createLottoNumbers = LottoMachine.create(buyCount);
+        customer.putLottoNumber(createLottoNumbers);
         PrintService.buyLottoNumbers(customer.getLottoNumbers());
     }
 

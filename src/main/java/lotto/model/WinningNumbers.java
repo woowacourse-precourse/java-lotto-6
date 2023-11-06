@@ -36,5 +36,3 @@ public class WinningNumbers {
         return bonusNumber;
     }
 }
-
-

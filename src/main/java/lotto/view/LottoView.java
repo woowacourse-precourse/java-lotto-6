@@ -2,22 +2,17 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Console;
+import java.util.Collections;
 import java.util.stream.Collectors;
 import lotto.model.WinningResult;
 import lotto.model.LottoNumberGenerator;
 import lotto.Lotto;
 
 public class LottoView {
-    private final Scanner scanner;
-
-    public LottoView() {
-        this.scanner = new Scanner(System.in);
-    }
-
     public int getPurchaseAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
-        return scanner.nextInt();
+        return Integer.parseInt(Console.readLine());
     }
 
     public void printNumberOfPurchasedTickets(int count) {
@@ -26,6 +21,7 @@ public class LottoView {
             System.out.println("구매한 로또 번호는 다음과 같습니다:");
             for (int i = 0; i < count; i++) {
                 List<Integer> lottoNumbers = LottoNumberGenerator.generateRandomLottoNumbers();
+                Collections.sort(lottoNumbers);
                 System.out.println(lottoNumbers);
             }
         }
@@ -33,7 +29,7 @@ public class LottoView {
 
     public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = scanner.next();
+        String input = Console.readLine();
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -41,7 +37,7 @@ public class LottoView {
 
     public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return scanner.nextInt();
+        return Integer.parseInt(Console.readLine());
     }
 
     public void printWinningResults(List<WinningResult> results) {

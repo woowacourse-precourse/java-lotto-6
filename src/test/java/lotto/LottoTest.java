@@ -33,4 +33,19 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 67)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호에 문자를 입력하면 예외가 발생한다.")
+    @Test
+    void createLottoByCorrentNumber() {
+        assertThatThrownBy(() -> new Lotto(
+                List.of(1, 2, 3, 4, "e").stream()
+                        .map(o -> {
+                            if (o instanceof String) {
+                                return Integer.parseInt((String) o);
+                            }
+                            return (Integer) o;
+                        })
+                        .collect(Collectors.toList())
+        )).isInstanceOf(IllegalArgumentException.class);
+    }
 }

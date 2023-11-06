@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import lotto.controller.dto.LottoResult;
 import lotto.controller.dto.WinningResult;
@@ -30,7 +33,13 @@ public class OutputView {
     }
 
     public void printLotto(final LottoResult lotto) {
-        System.out.println(lotto.getLotto());
+        System.out.println(getSortedNumbers(lotto.getLotto()));
+    }
+
+    private List<Integer> getSortedNumbers(final List<Integer> lotto) {
+        List<Integer> purchasedLotto = new ArrayList<>(lotto);
+        Collections.sort(purchasedLotto);
+        return purchasedLotto;
     }
 
     public void printWinningNumbers() {

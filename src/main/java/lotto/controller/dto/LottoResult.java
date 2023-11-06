@@ -15,7 +15,6 @@ public class LottoResult {
     public static LottoResult from(final List<Number> numbers) {
         List<Integer> lotto = numbers.stream()
                 .map(Number::getValue)
-                .sorted()
                 .toList();
 
         return new LottoResult(lotto);

@@ -6,13 +6,8 @@ import static lotto.view.LottoGameMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.view.LottoGameMessage.REQUEST_WINNING_LOTTO_NUMBERS;
 import static lotto.view.LottoGameMessage.WINNING_STATISTICS;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-import lotto.dto.LottoNumbersResult;
+import lotto.dto.LottoNumbersDTO;
 import lotto.dto.LottoRankResultDTO;
-import lotto.model.LottoRankResult;
-import lotto.model.LottoRank;
 
 public class ConsoleOutputView {
     public void requestPurchaseAmount() {
@@ -25,8 +20,8 @@ public class ConsoleOutputView {
         printBlankLine();
     }
 
-    public void printLottoNumbers(LottoNumbersResult lottoNumbers) {
-        System.out.println(lottoNumbers.getFormattedLottoNumbers());
+    public void printLottoNumbers(LottoNumbersDTO lottoNumbersDTO) {
+        System.out.println(lottoNumbersDTO.getFormattedLottoNumbers());
     }
 
     public void requestWinningLottoNumbers() {
@@ -44,8 +39,8 @@ public class ConsoleOutputView {
         System.out.println(WINNING_STATISTICS.getMessage());
     }
 
-    public void printWinningNumberCount(LottoRankResultDTO result) {
-        System.out.printf(result.getRankMessage(), result.getCount());
+    public void printWinningNumberCount(LottoRankResultDTO lottoRankResultDTO) {
+        System.out.printf(lottoRankResultDTO.getRankMessage(), lottoRankResultDTO.getCount());
         printBlankLine();
     }
 

@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.dto.LottoNumbersResult;
+import lotto.dto.LottoNumbersDTO;
 import lotto.dto.LottoRankResultDTO;
 import lotto.model.LottoRank;
 import lotto.model.LottoRankResult;
@@ -42,7 +42,8 @@ public class LottoGameService {
 
     public void printLottoNumbersByCount(final Lottos lottos) {
         for (int i = 0; i < lottos.size(); i++) {
-            LottoNumbersResult lottoNumbers = new LottoNumbersResult(lottos.findLottoByIndex(i));
+            Lotto lotto = lottos.findLottoByIndex(i);
+            LottoNumbersDTO lottoNumbers = new LottoNumbersDTO(lotto.getLotto());
             outputView.printLottoNumbers(lottoNumbers);
         }
     }

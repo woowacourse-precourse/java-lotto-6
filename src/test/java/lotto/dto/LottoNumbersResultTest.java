@@ -13,7 +13,7 @@ public class LottoNumbersResultTest {
     void testLottoNumbersFormat() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumbersResult lottoNumbers = new LottoNumbersResult(lotto);
+        LottoNumbersDTO lottoNumbers = new LottoNumbersDTO(lotto.getLotto());
         String formattedNumbers = "[1, 2, 3, 4, 5, 6]";
 
         //when

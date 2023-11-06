@@ -1,6 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.domain.winningNumber.BonusNumber;
+import lotto.domain.winningNumber.FinalWinningNumber;
+import lotto.domain.winningNumber.WinningNumber;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -35,7 +39,7 @@ public class LottoController {
     private void printAllLottoNumbers(Lottos lottos) {
         outputView.outputPurchaseNumber(lottos.getNumberOfLottos());
         for (List<Integer> lotto : lottos.getAllLottoNumbers()) {
-            outputView.outputLottoNumber(lotto);
+            outputView.outputLottoNumber(LottoService.sort(lotto));
         }
     }
 

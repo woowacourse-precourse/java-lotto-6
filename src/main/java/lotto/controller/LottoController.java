@@ -43,9 +43,7 @@ public class LottoController {
         EnumSet.allOf(Rank.class).forEach(grade -> rank.put(grade, 0));
         for (int count : matchCount) {
             Rank currentRank = Rank.findRankByMatchCount(count);
-            if (currentRank != null) {
-                rank.put(currentRank, rank.get(currentRank) + 1);
-            }
+            rank.put(currentRank, rank.get(currentRank) + 1);
         }
         return rank;
     }

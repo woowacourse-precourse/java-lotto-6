@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_RIGHT_RANGE;
+import static lotto.constant.ErrorMessage.MONEY_NO_NEGATIVE;
 import static lotto.constant.ErrorMessage.MONEY_ONLY_NUMBER;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,6 +44,16 @@ class InputMoneyServiceTest {
         Assertions.assertThatThrownBy(() -> validator.validateInputMoneyIsNumber(inputMoney))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(MONEY_ONLY_NUMBER.getMessage());
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(longs = {-1, 0})
+    @DisplayName("입력 금액 범위가 0이하인 경우!")
+    void validateNumberNegativeOrZero(long inputMoney) {
+        Assertions.assertThatThrownBy(() -> validator.validateNumberNegativeOrZero(inputMoney))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(MONEY_NO_NEGATIVE.getMessage());
     }
 
 

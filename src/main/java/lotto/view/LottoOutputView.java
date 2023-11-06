@@ -8,6 +8,15 @@ public final class LottoOutputView {
     private final static String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
     private final static String WINNING_LOTTO_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private final static String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요";
+    private final static String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
+    private final static String[] RANK_MESSAGE = {
+            "3개 일치 (5,000원) - %d개",
+            "4개 일치 (50,000원) - %d개",
+            "5개 일치 (1,500,000원) - %d개",
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개",
+            "6개 일치 (2,000,000,000원) - %d개"
+    };
+    private final static String GAIN_RATIO_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private LottoOutputView() {
     }
@@ -34,6 +43,24 @@ public final class LottoOutputView {
 
     public static void printBonusNumberMessage() {
         System.out.println(BONUS_NUMBER_MESSAGE);
+    }
+
+    public static void printWinningStatistics(List<Long> countByRank, double gainRatio) {
+        System.out.println(WINNING_STATISTICS_MESSAGE);
+        printRankResult(countByRank);
+        printGainRatio(gainRatio);
+    }
+
+    private static void printRankResult(List<Long> countByRank) {
+        for (int i = 0; i < countByRank.size(); i++) {
+            String rankMessage = String.format(RANK_MESSAGE[i], countByRank.get(i));
+            System.out.println(rankMessage);
+        }
+    }
+
+    private static void printGainRatio(double gainRatio) {
+        String gainRatioMessage = String.format(GAIN_RATIO_MESSAGE, gainRatio);
+        System.out.println(gainRatioMessage);
     }
 
 }

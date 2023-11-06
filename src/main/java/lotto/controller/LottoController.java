@@ -6,6 +6,7 @@ import lotto.domain.Lottos;
 import lotto.domain.MoneyManagement;
 import lotto.domain.Number;
 import lotto.domain.WinningLotto;
+import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -49,8 +50,11 @@ public class LottoController {
         return createWinningNumberList(inputWinningNumber);
     }
 
-    public Lotto createWinningNumberList(String userInput) {
-        return Lotto.from(userInput);
+    public Lotto createWinningNumberList(String inputList) {
+        List<String> stringList = InputValidator.toStringList(inputList);
+        InputValidator.validateDigit(stringList);
+        List<Integer> integerList = InputValidator.toIntegerList(stringList);
+        return new Lotto(integerList);
     }
 
     public Number askWinningBonusNumber() {
@@ -60,7 +64,8 @@ public class LottoController {
     }
 
     public Number createWinningBonusNumber(String userInput) {
-        return Number.from(userInput);
+        int userNumber = InputValidator.toInt(userInput);
+        return Number.from(userNumber);
     }
 
     public WinningLotto initWinningLotto() {

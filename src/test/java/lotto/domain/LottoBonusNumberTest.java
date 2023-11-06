@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 import lotto.constant.LottoConstant;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -18,7 +21,7 @@ class LottoBonusNumberTest {
 
         // when
         // then
-        Assertions.assertThatCode(() -> {
+        assertThatCode(() -> {
             new LottoBonusNumber(lottoWinningNumber, bonusNumber);
         }).doesNotThrowAnyException();
     }
@@ -31,7 +34,7 @@ class LottoBonusNumberTest {
 
         // when
         // then
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             new LottoBonusNumber(lottoWinningNumber, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
@@ -44,7 +47,7 @@ class LottoBonusNumberTest {
 
         // when
         // then
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             new LottoBonusNumber(lottoWinningNumber, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
@@ -57,8 +60,37 @@ class LottoBonusNumberTest {
 
         // when
         // then
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             new LottoBonusNumber(lottoWinningNumber, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void matches_호출_시_보너스_번호가_일치_하면_true_를_반환한다() throws Exception {
+        // given
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(new LottoWinningNumber(List.of(1, 2, 3, 4, 5, 6)),
+                7);
+
+        // when
+        boolean matches = lottoBonusNumber.matches(7);
+
+        //then
+        assertThat(matches).isEqualTo(true);
+
+    }
+
+
+    @Test
+    public void matches_호출_시_보너스_번호가_일치_하지_않으면_false_를_반환한다() throws Exception {
+        // given
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(new LottoWinningNumber(List.of(1, 2, 3, 4, 5, 6)),
+                7);
+
+        // when
+        boolean matches = lottoBonusNumber.matches(8);
+
+        //then
+        assertThat(matches).isEqualTo(false);
+
     }
 }

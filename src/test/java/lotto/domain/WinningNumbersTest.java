@@ -24,7 +24,7 @@ class WinningNumbersTest {
 
     @ParameterizedTest(name = "[{index}] 당첨번호가 ''{0}'' 이면 예외가 발생한다.")
     @ValueSource(strings = {"", " ", ",1", "1,", ",,,", "1,2,3,4,5,6,", "1.2.3.4.5.6", "1,2,3 ,4",
-                            "1,1,2,3,4,5", "-1,4,5,6,7,8", "1,46,3,4,5,6"})
+            "1,1,2,3,4,5", "-1,4,5,6,7,8", "1,46,3,4,5,6"})
     void cannotCreateWinningLottos(String input) {
         assertThatThrownBy(() -> WinningNumbers.create(input))
                 .isInstanceOf(IllegalArgumentException.class);

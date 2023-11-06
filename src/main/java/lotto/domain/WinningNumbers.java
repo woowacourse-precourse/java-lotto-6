@@ -21,10 +21,6 @@ public class WinningNumbers extends Lotto {
         return new WinningNumbers(validInput);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private static List<Integer> validate(String input) {
         validateBlank(input);
         validateStartsOrEndsWithDelimiter(input);
@@ -57,5 +53,9 @@ public class WinningNumbers extends Lotto {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

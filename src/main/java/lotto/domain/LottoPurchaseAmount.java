@@ -18,10 +18,6 @@ public class LottoPurchaseAmount {
         return new LottoPurchaseAmount(purchaseAmount);
     }
 
-    public long getAmount() {
-        return amount;
-    }
-
     private static void validatePurchaseAmount(long money) {
         validatePositive(money);
         validateDividedByLottoPrice(money);
@@ -37,5 +33,9 @@ public class LottoPurchaseAmount {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
         }
+    }
+
+    public long getAmount() {
+        return amount;
     }
 }

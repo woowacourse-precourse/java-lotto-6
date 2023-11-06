@@ -1,24 +1,26 @@
 package lotto.domain;
 
-import lotto.constants.LottoConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ArgumentConversionException;
-import org.junit.jupiter.params.converter.ConvertWith;
-import org.junit.jupiter.params.converter.SimpleArgumentConverter;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
+    static Stream<Arguments> provideDataForTesting() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3)),
+                Arguments.of(List.of(57, 1, 2, 3, 4, 5)),
+                Arguments.of(List.of(-1, 1, 2, 3, 4, 5),
+                        Arguments.of(List.of(0, 1, 2, 3, 4, 5))));
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -38,14 +40,6 @@ class LottoTest {
     void cannotCreateLotto(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    static Stream<Arguments> provideDataForTesting() {
-        return Stream.of(
-                Arguments.of(List.of(1, 2, 3)),
-                Arguments.of(List.of(57, 1,2,3,4,5)),
-                Arguments.of(List.of(-1, 1, 2, 3, 4, 5),
-                Arguments.of(List.of(0, 1, 2, 3, 4, 5))));
     }
 
     @DisplayName("로또 넘버 비교하기 (5개 번호가 같고, 보너스 번호가 다르면 3등이다.)")

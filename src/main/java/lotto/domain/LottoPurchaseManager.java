@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.utils.LottoGenerator;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
 
 public class LottoPurchaseManager {
     private final LottoPurchaseAmount purchaseAmount;

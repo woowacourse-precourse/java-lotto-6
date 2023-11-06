@@ -15,29 +15,8 @@ public class OutputView {
     private static final String FIRST_PRIZE_RESULT_MESSAGE_FORMAT = "6개 일치 (2,000,000,000원) - %d개";
     private static final String PROFIT_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
-    public void printLottos(Lottos lottos) {
-        System.out.println();
-        printLottoQuantity(lottos);
-        System.out.println(lottos);
-    }
-
-    public void printResult(Map<PrizeCondition, Long> prizeResult, double profit) {
-        printStartResult();
-        printPrizeResult(prizeResult);
-        printProfit(profit);
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println(message);
-    }
-
     private static void printLottoQuantity(Lottos lottos) {
         System.out.printf((LOTTO_QUANTITY_MESSAGE_FORMAT) + "%n", lottos.getLottos().size());
-    }
-
-    private void printStartResult() {
-        System.out.println();
-        System.out.println(START_RESULT_MESSAGE);
     }
 
     private static void printPrizeResult(Map<PrizeCondition, Long> prizeResult) {
@@ -76,5 +55,26 @@ public class OutputView {
     private static void printProfit(double profit) {
         String profitMessage = String.format(PROFIT_MESSAGE_FORMAT, profit);
         System.out.println(profitMessage);
+    }
+
+    public void printLottos(Lottos lottos) {
+        System.out.println();
+        printLottoQuantity(lottos);
+        System.out.println(lottos);
+    }
+
+    public void printResult(Map<PrizeCondition, Long> prizeResult, double profit) {
+        printStartResult();
+        printPrizeResult(prizeResult);
+        printProfit(profit);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
+    private void printStartResult() {
+        System.out.println();
+        System.out.println(START_RESULT_MESSAGE);
     }
 }

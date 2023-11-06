@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoConstants.MAXIMUM_RANGE;
+import static lotto.constants.LottoConstants.MINIMUM_RANGE;
 
 public class LottoValidator {
     public static void validateRange(int number) {

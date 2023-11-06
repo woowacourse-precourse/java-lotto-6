@@ -1,15 +1,16 @@
 package lotto.controller;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 import lotto.constant.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.dto.LottoPlayInfo;
-import lotto.domain.dto.LottoResult;
+import lotto.dto.LottoPlayInfo;
+import lotto.dto.LottoResult;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.List;
 
 public final class LottoController {
     private final LottoPurchaseService lottoPurchaseService;
@@ -26,17 +27,51 @@ public final class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = inputView.inputPurchaseAmount();
-        List<Lotto> lottos = lottoPurchaseService.buyLottos(purchaseAmount);
-        outputView.displayLottos(lottos);
-
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusNumber();
-        LottoResult lottoResult = lottoResultService.getLottoResult(lottos,
-            new LottoPlayInfo(winningNumbers, bonusNumber, purchaseAmount));
+        int purchaseAmount = getInputSafely(this::tryInputPurchaseAmount);
+        List<Lotto> lottos = purchaseLotto(purchaseAmount);
+        LottoResult lottoResult = getInputSafely(() -> tryInputLottoResult(lottos, purchaseAmount));
 
         List<Rank> ranks = lottoResult.matchedCounts();
         double roi = lottoResult.roi();
         outputView.displayResults(ranks, roi);
     }
+
+    private List<Lotto> purchaseLotto(int purchaseAmount) {
+        List<Lotto> lottos = lottoPurchaseService.buyLottos(purchaseAmount);
+        outputView.displayLottos(lottos);
+        return lottos;
+    }
+
+
+    private <T> T getInputSafely(Supplier<Optional<T>> inputSupplier) {
+        Optional<T> result;
+        do {
+            result = inputSupplier.get();
+        } while (result.isEmpty());
+        return result.get();
+    }
+
+    private Optional<Integer> tryInputPurchaseAmount() {
+        try {
+            return Optional.of(inputView.inputPurchaseAmount());
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    private Optional<LottoResult> tryInputLottoResult(List<Lotto> lottos, int purchaseAmount) {
+        try {
+            List<Integer> winningNumbers = inputView.inputWinningNumbers();
+            int bonusNumber = inputView.inputBonusNumber();
+            return Optional.of(lottoResultService.getLottoResult(lottos,
+                new LottoPlayInfo(winningNumbers, bonusNumber, purchaseAmount)));
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+
+
 }

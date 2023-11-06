@@ -1,10 +1,11 @@
 package lotto.controller;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.constant.GameConstant;
 import lotto.domain.Lotto;
-import lotto.util.RandomNumberGenerator;
+import lotto.domain.LottoGenerator;
+import lotto.domain.Lottos;
+import lotto.dto.LottosResponse;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,12 +14,22 @@ public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     Validator validator = new Validator();
-    RandomNumberGenerator generator = new RandomNumberGenerator();
+
+    LottoGenerator generator = new LottoGenerator();
     public void play() {
         int payment = getPayment();
-        buy(payment/GameConstant.PAYMENT_UNIT);
+        Lottos lottos = buy(payment);
+
         List<Integer> numbers = getNumbers();
         getBonusNumber(numbers);
+    }
+
+    private Lottos buy(int payment) {
+        int count = payment/GameConstant.PAYMENT_UNIT;
+        outputView.printBuyMessage(count);
+        List<Lotto> lottos = generator.makeLotto(count);
+        outputView.printLottos(new LottosResponse(lottos));
+        return new Lottos(lottos);
     }
 
     private int getBonusNumber(List<Integer> numbers) {
@@ -45,15 +56,6 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             System.out.println(e + "\n");
             return getPayment();
-        }
-    }
-    public void buy(int count){
-        outputView.printBuyMessage(count);
-        for (int i = 0; i < count; i++) {
-            List<Integer> lotto = generator.generateRandomNumbers();
-            Collections.sort(lotto);
-            new Lotto(lotto);
-            outputView.printLottos(lotto);
         }
     }
 }

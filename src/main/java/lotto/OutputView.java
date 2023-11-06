@@ -49,7 +49,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - "+cnt+"개");
     }
 
-    public void printProfit(float profit){
+    public void printProfit(double profit){
         System.out.println("총 수익률은 "+profit+"%입니다.");
     }
 

@@ -63,7 +63,9 @@ public class ProcessLotto {
         outputView.print5Matchs(countMap.get(5));
         outputView.print5MatchsWithBonus(countMap.get(55));
         outputView.print6Matchs(countMap.get(6));
-
+        int profit = lottoCalculator.getProfit(countMap);
+        double profitRate = lottoCalculator.roi(profit, cost);
+        outputView.printProfit(profitRate);
 
     }
 

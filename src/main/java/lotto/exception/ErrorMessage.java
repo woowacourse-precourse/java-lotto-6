@@ -16,7 +16,12 @@ public enum ErrorMessage {
     LOTTO_NUMBER_HAS_NOT_NUMBER_FORMAT("로또 번호 중 수가 아닌 값이 존재합니다."),
     LOTTO_NUMBER_HAS_OUT_OF_BOUND_NUMBER("범위를 벗어난 로또 번호가 존재합니다."),
     LOTTO_NUMBER_HAS_DUPLICATED_NUMBER("로또 번호 중 중복된 값이 존재합니다."),
-    LOTTO_SIZE_IS_NOT_VALID(String.format("총 로또 번호의 개수가 %d가 아닙니다.", TOTAL_NUMBERS_OF_LOTTO.getValue()));
+    LOTTO_SIZE_IS_NOT_VALID(String.format("총 로또 번호의 개수가 %d가 아닙니다.", TOTAL_NUMBERS_OF_LOTTO.getValue())),
+
+    BONUS_NUMBER_HAS_MORE_THAN_ONE_VALUE("보너스 번호가 두 개 이상 입력되었습니다."),
+    BONUS_NUMBER_IS_NOT_NUMBER("보너스 번호가 수가 아닙니다."),
+    BONUS_NUMBER_IS_OUT_OF_RANGE("보너스 번호가 범위를 벗어난 값입니다."),
+    BONUS_NUMBER_IS_ALREADY_IN_LOTTO_NUMBERS("입력한 값이 이미 당첨 번호에 존재합니다.");
 
     private static final String ERROR_HEAD = "[ERROR] ";
     private final String errorMessage;

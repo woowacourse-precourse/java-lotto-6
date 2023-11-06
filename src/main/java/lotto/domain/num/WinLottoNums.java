@@ -22,7 +22,7 @@ public class WinLottoNums {
         return false;
     }
 
-    private boolean isSame(Integer num, int valueOfIndexSpecial) {
+    private boolean isSame(Integer num, Integer valueOfIndexSpecial) {
         return Utii.isSameInt(num, valueOfIndexSpecial);
     }
 }

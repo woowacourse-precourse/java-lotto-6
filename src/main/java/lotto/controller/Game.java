@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    Game() {
+    public Game() {
 
     }
 
-    void play() {
+    public void play() {
         System.out.println("구입금액을 입력해 주세요.");
         double purchaseAmount = Double.parseDouble(readLine());
 

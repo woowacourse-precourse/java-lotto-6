@@ -1,8 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class Application {
     public static void main(String[] args) {
-        InputView.print(Message.PAYMENT_REQUEST);
+        OutputView.print(Message.PAYMENT_REQUEST);
+        OutputView.print(Message.LINE_BREAK);
 
     }
 
@@ -10,11 +13,13 @@ public class Application {
 
 }
 
-class InputView {
-    public static void print(String message) {
+class OutputView {
+    public static void print(String message){
         System.out.print(message);
     }
 }
+
+
 
 
 class Message {
@@ -34,4 +39,5 @@ class Message {
     public static String TOTAL_RETURN = "총 수익률은";
     public static String PERCENT_SIGN = "%";
     public static String END_EXPLAINE = "입니다.";
+    public static String LINE_BREAK = "\n";
 }

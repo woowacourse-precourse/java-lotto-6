@@ -23,4 +23,8 @@ public class OutputView {
         lottoesDto.lottoDtos()
                 .forEach(dto -> System.out.println(dto.numbers()));
     }
+
+    public void beforeInputWinNumbers() {
+        System.out.println(PreviewSentence.INPUT_WIN_LOTTO_NUMBERS.getMessage());
+    }
 }

@@ -13,7 +13,11 @@ public class InputException {
         return inputException;
     }
 
-    public void is_blank() {
+    public void isBlank() {
         throw new IllegalArgumentException(Error.IS_BRANK.getMessage());
+    }
+
+    public void isNotNaturalNumber() {
+        throw new IllegalArgumentException(Error.ABLE_NATURAL_NUMBER.getMessage());
     }
 }

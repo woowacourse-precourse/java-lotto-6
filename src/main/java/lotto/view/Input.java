@@ -18,17 +18,29 @@ public class Input {
     }
 
     public String inputFromUser() {
-        return checkBlank();
+        String input = checkBlank();
+        validNaturalNumber(input);
+
+        return input;
     }
 
     private String checkBlank() {
         String value = readLine();
 
         if (value == null) {
-            inputException.is_blank();
+            inputException.isBlank();
         }
 
         return value;
+    }
+
+    private void validNaturalNumber(String input) {
+        boolean isNatural = input.chars()
+                .allMatch(Character::isDigit);
+
+        if (!isNatural) {
+            inputException.isNotNaturalNumber();
+        }
     }
 
 }

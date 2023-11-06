@@ -47,7 +47,7 @@ class AmountInputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1000", "3000", "14000"})
-    @DisplayName("구입 금액 입력에 대해 모든 검증을 하여 예외가 발생하지 않아야 하는 테스트")
+    @DisplayName("구입 금액 입력에 대해 모든 검증을 하여 정상 입력이면 예외가 발생하지 않아야 하는 테스트")
     void testValidateAttemptInput(String input) {
         AmountInputValidator inputValidation = new AmountInputValidator();
 

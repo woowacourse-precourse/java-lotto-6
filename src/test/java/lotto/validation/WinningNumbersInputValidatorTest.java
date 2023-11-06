@@ -59,7 +59,7 @@ class WinningNumbersInputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6", "1,10,15,27,34,45"})
-    @DisplayName("당첨 번호 입력에 대해 모든 검증을 하여 예외가 발생하지 않아야 하는 테스트")
+    @DisplayName("당첨 번호 입력에 대해 모든 검증을 하여 정상 입력이면 예외가 발생하지 않아야 하는 테스트")
     void testValidateWinningNumbers(String input) {
         WinningNumbersInputValidator inputValidation = new WinningNumbersInputValidator();
 

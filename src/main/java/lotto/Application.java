@@ -8,6 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
+
+    public static void printLottoNumbers(int ticketNumber, List<Integer> numbers){
+        for (int i = 0; i < ticketNumber; i++) {
+            System.out.println(numbers);
+        }
+    }
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -16,6 +22,6 @@ public class Application {
         Lotto lotto = new Lotto(numbers);
         Collections.sort(numbers);
 
-       
+        printLottoNumbers(1,numbers);
     }
 }

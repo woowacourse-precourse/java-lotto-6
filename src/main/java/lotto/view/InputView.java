@@ -25,11 +25,11 @@ public class InputView {
         return lotto;
     }
 
-    public static Bonus inputBonus() {
+    public static Bonus inputBonus(Lotto winningLotto) {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        Bonus bonus = new Bonus(Integer.parseInt(input));
+        Bonus bonus = new Bonus(Integer.parseInt(input), winningLotto);
 
         return bonus;
     }

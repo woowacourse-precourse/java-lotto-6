@@ -15,7 +15,7 @@ public class Lotto {
     private Lotto(List<Integer> numbers) {
         validateNumbersDuplicated(numbers);
         validateNumbersAmount(numbers);
-        validateIsNumberInCorrectRange(numbers);
+        validateNumberInWrongRange(numbers);
         this.numbers = applySort(numbers);
     }
 
@@ -38,7 +38,7 @@ public class Lotto {
         }
     }
 
-    private void validateIsNumberInCorrectRange(List<Integer> numbers) {
+    private void validateNumberInWrongRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (isNumberInCorrectRange(number)) {
                 throw new IllegalArgumentException(NOT_IN_RANGE_LOTTO_NUMBER.toString());
@@ -55,6 +55,16 @@ public class Lotto {
         return numbers.stream()
                 .sorted()
                 .toList();
+    }
+
+    public boolean isLottoContainsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public int calculateSameNumbers(Lotto other) {
+        return (int) this.numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
     }
 
     @Override

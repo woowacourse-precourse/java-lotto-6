@@ -5,6 +5,8 @@ import static lotto.constant.ErrorMessage.NOT_IN_RANGE_LOTTO_NUMBER;
 import static lotto.constant.LottoGameConfig.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoGameConfig.MIN_LOTTO_NUMBER;
 
+import lotto.constant.LottoRanking;
+
 public class WinningLotto {
     private final Lotto winningNumbers;
     private final int bonusNumber;
@@ -35,5 +37,12 @@ public class WinningLotto {
     private boolean isBonusNumberInWrongRange(int bonusNumber) {
         return bonusNumber < MIN_LOTTO_NUMBER.getValue()
                 || bonusNumber > MAX_LOTTO_NUMBER.getValue();
+    }
+
+    public LottoRanking calculateLottoRanking(Lotto onwerLotto) {
+        return LottoRanking.convertLottoIntoLottoRanking(
+                onwerLotto.calculateSameNumbers(winningNumbers),
+                onwerLotto.isLottoContainsNumber(bonusNumber)
+        );
     }
 }

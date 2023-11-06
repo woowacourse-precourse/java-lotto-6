@@ -22,4 +22,11 @@ public class Lotto {
         return numbers;
     }
 
+    public static Lotto createLotto(String inputLottoNumbers) {
+        List<Integer> lottoNumbers = Util.stringToArrayList(inputLottoNumbers);
+        Lotto lotto = new Lotto(lottoNumbers);
+        return lotto;
+    }
+
+
 }

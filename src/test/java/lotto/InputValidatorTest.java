@@ -2,18 +2,18 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.view.input.AmountInputView;
+import lotto.view.input.AmountView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputValidatorTest {
-    public static AmountInputView<Integer> amount;
+    public static AmountView<Integer> amount;
 
     @BeforeEach
     public void setUp() {
-        amount = new AmountInputView<>(Integer::parseInt);
+        amount = new AmountView<>(Integer::parseInt);
     }
 
     @DisplayName("입력한 구매 금액이 숫자가 아니면 예외가 발생한다.")

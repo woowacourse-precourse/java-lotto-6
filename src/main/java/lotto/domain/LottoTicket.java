@@ -11,13 +11,8 @@ public class LottoTicket {
         this.lottoTicket = new ArrayList<>();
     }
 
-    public void createLottoTicket(int amount) {
-        int lottoTicketCount = calculateLottoTicket(amount);
-        addLotto(lottoTicketCount);
-    }
-
-    private int calculateLottoTicket(int amount) {
-        return (amount / DomainConstants.LOTTO_PRICE.getInt());
+    public void createLottoTicket(int lottoCount) {
+        addLotto(lottoCount);
     }
 
     private void addLotto(int ticketCount) {
@@ -40,5 +35,12 @@ public class LottoTicket {
 
     public List<Lotto> getLottoTicket() {
         return new ArrayList<>(this.lottoTicket);
+    }
+
+    @Override
+    public String toString() {
+        return "LottoTicket{" +
+                "lottoTicket=" + lottoTicket +
+                '}';
     }
 }

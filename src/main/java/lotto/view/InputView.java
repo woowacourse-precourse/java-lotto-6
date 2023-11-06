@@ -10,7 +10,13 @@ import lotto.domain.Payment;
 public class InputView {
     public Payment inputPayment() {
         System.out.println(PAYMENT_INPUT_MESSAGE.getMessage());
-        int payment = parseInt(Console.readLine());
-        return new Payment(payment);
+        while (true) {
+            try {
+                Payment payment = new Payment(parseInt(Console.readLine()));
+                return payment;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

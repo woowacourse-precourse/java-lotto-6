@@ -12,6 +12,15 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos.stream()
+                .map(Lottos::getLotto)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static Lotto getLotto(Lotto lotto) {
+        return new Lotto(
+                lotto.getNumbers().stream()
+                        .map(LottoNumber::getNumber)
+                        .collect(Collectors.toUnmodifiableList())
+        );
     }
 }

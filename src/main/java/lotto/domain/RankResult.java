@@ -23,8 +23,12 @@ public class RankResult {
 
     private double getTotalAmount() {
         return Arrays.stream(RankPrize.values())
-                .mapToDouble(rankPrize -> rankPrize.getPrizeAmount() * this.getWinCounts(rankPrize))
+                .mapToDouble(this::calculatePrizeAmount)
                 .sum();
+    }
+
+    private int calculatePrizeAmount(RankPrize rankPrize) {
+        return rankPrize.getPrizeAmount() * this.getWinCounts(rankPrize);
     }
 
     private int getWinCounts(RankPrize rankPrize) {

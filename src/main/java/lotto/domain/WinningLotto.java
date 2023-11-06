@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 import static lotto.domain.NumberConstant.INITIAL_VALUE;
 import static lotto.domain.NumberConstant.ONE_COUNT;
 import static lotto.domain.RankPrize.values;

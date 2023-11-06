@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.exception.ExceptionMessage.PREFIX;
 import static lotto.view.PromptMessage.INPUT_BONUS_NUMBER;
 import static lotto.view.PromptMessage.INPUT_LOTTO_NUMBER;
 import static lotto.view.PromptMessage.INPUT_PURCHASE_AMOUNT;
@@ -17,7 +16,7 @@ import lotto.dto.RankResultDto;
 public class OutputView {
 
     public void printExceptionMessage(String message) {
-        System.out.println(PREFIX.getMessage() + message);
+        System.out.println(message);
     }
 
     public void printPurchaseAmount() {
@@ -37,7 +36,7 @@ public class OutputView {
     private void printPurchasedLottoNumbers(LottosDto lottosDto) {
         lottosDto.lottos().forEach(lottoDto -> {
             List<Integer> lottoNumbers = lottoDto.lottoNumbers().stream()
-                    .map(LottoNumberDto::getNumber)
+                    .map(LottoNumberDto::number)
                     .collect(Collectors.toUnmodifiableList());
             System.out.println(lottoNumbers);
         });

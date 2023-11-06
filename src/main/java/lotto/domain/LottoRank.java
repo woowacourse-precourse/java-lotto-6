@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
@@ -19,5 +20,12 @@ public enum LottoRank {
         this.count = count;
         this.winningAmount = winningAmount;
         this.checkWin = checkWin;
+    }
+
+    public static LottoRank of(int matchCount, boolean isBonus) {
+        return Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank.checkWin.test(matchCount, isBonus))
+                .findFirst()
+                .orElse(ZERO);
     }
 }

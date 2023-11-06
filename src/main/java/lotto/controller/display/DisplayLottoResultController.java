@@ -30,11 +30,6 @@ public class DisplayLottoResultController implements DisplayController {
                                 LottoService.compareLottoWithBonus(lottoWithBonus, lotto))
                 );
         lottoScreen.displayLottoResult(lottoFinalResult);
-        lottoScreen.displayRateOfReturn(calculateRateOfReturn(lottoFinalResult, userMoney));
-    }
-
-    // 위치 다시 생각해보기
-    private float calculateRateOfReturn(LottoFinalResult lottoFinalResult, UserMoney userMoney) {
-        return userMoney.calculateTotalReturn(lottoFinalResult.calculateReturn());
+        lottoScreen.displayRateOfReturn(LottoService.calculateRateOfReturn(lottoFinalResult, userMoney));
     }
 }

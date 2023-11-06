@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
+import lotto.domain.LottoFinalResult;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWithBonus;
 import lotto.domain.UserMoney;
@@ -33,6 +34,10 @@ public class LottoService {
             sameNumberCount = SPECIAL_RESULT;
         }
         return LottoResult.findLottoResultBySameNumberCount(sameNumberCount);
+    }
+
+    public static float calculateRateOfReturn(LottoFinalResult lottoFinalResult, UserMoney userMoney) {
+        return userMoney.calculateTotalReturn(lottoFinalResult.calculateReturn());
     }
 
     private static int compareEachLotto(LottoWithBonus userLotto, Lotto generatedRandomLotto) {

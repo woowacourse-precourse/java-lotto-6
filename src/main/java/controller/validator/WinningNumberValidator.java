@@ -60,6 +60,13 @@ public class WinningNumberValidator {
         return List.of(input.split(ConstantOfLotto.DELIMITER));
     }
 
+    private void checkInputStartWithComma(String input) {
+        if(input.charAt(0) == ',') {
+            System.out.println(ErrorMessage.INCORRECT_WINNING_NUMBER_FORMAT.getErrorMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void checkInputEndWithComma(String input) {
         if(input.charAt(input.length()-1) ==  ',') {
             System.out.println(ErrorMessage.INCORRECT_WINNING_NUMBER_FORMAT.getErrorMessage());
@@ -78,6 +85,7 @@ public class WinningNumberValidator {
 
     private void checkInputFormatIsCorrect(String input) {
         findConsecutiveCommas(input);
+        checkInputStartWithComma(input);
         checkInputEndWithComma(input);
     }
 }

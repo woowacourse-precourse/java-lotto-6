@@ -13,7 +13,7 @@ public class Customer {
         return lottos.size();
     }
 
-    public String getLottos(){
+    public String getLottosString(){
         StringBuilder sb = new StringBuilder();
         lottos.forEach((lotto)->sb.append(lotto.toString()).append("\n"));
         return sb.toString();

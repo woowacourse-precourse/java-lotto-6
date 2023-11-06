@@ -19,7 +19,7 @@ public class LottoManager {
         Customer customer = new Customer();
         customer.buyLotto(receiveMoney());
         OutPutView.printLottoCount(customer.getLottoCount());
-        OutPutView.printLottos(customer.getLottos());
+        OutPutView.printLottos(customer.getLottosString());
         WinLotto winLotto = issueWinLotto();
 
     }

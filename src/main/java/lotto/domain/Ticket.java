@@ -4,10 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoTicket {
+public class Ticket {
     private ArrayList<ArrayList<Integer>> lottoTicket = new ArrayList<>();
 
-    public LottoTicket(int buyTicketCount) {
+    public Ticket(int buyTicketCount) {
         this.lottoTicket = lottoTicket(buyTicketCount);
     }
 

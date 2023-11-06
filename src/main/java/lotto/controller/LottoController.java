@@ -6,7 +6,7 @@ import lotto.common.validate.Validate;
 import lotto.domain.Bonus;
 import lotto.domain.Buy;
 import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
+import lotto.domain.Ticket;
 import lotto.view.View;
 
 public class LottoController {
@@ -25,9 +25,7 @@ public class LottoController {
     private void buyLotto() {
         view.buyPriceMessage();
         buyPriceValidate();
-        System.out.println();
-        buyLottoPrice(buy);
-        lottoTicket(buy);
+        ticketInformation();
     }
 
     private void chooseHitLottoNumber() {
@@ -37,25 +35,31 @@ public class LottoController {
         bonusHitNumberValidate();
     }
 
-    private void buyPriceValidate() {
-        try {
-            buy = new Buy(view.inputConsole());
-        } catch (IllegalArgumentException e) {
-            buyPriceValidate();
-        }
+    private void ticketInformation() {
+        buyTicketCount();
+        lottoTicket();
     }
 
-    private void buyLottoPrice(Buy buy) {
+    private void buyTicketCount() {
         view.buyTicketCountMessage(buy.getBuyTicketCount());
     }
 
-    private void lottoTicket(Buy buy) {
-        LottoTicket lottoTicketCount = new LottoTicket(buy.getBuyTicketCount());
+    private void lottoTicket() {
+        Ticket lottoTicketCount = new Ticket(buy.getBuyTicketCount());
         lottoTicketNumbers(lottoTicketCount);
     }
 
-    private void lottoTicketNumbers(LottoTicket lottoTicketCount) {
+    private void lottoTicketNumbers(Ticket lottoTicketCount) {
         view.lottoTicketInformation(lottoTicketCount.getLottoTicket());
+    }
+
+    private void buyPriceValidate() {
+        try {
+            buy = new Buy(view.inputConsole());
+            System.out.println();
+        } catch (IllegalArgumentException e) {
+            buyPriceValidate();
+        }
     }
 
     private void sixHitNumberValidate() {
@@ -75,7 +79,7 @@ public class LottoController {
     private void bonusHitNumberValidate() {
         try {
             bonus = new Bonus(inputBonusHitNumber());
-            compareLottoAndBonusNumber();
+            compareLottoAndBonusNumberValidate();
         } catch (IllegalArgumentException e) {
             bonusHitNumberValidate();
         }
@@ -87,7 +91,7 @@ public class LottoController {
         return Integer.parseInt(inputBonusNumber);
     }
 
-    private void compareLottoAndBonusNumber() {
+    private void compareLottoAndBonusNumberValidate() {
         Validate.compareLottoAndBonusNumberValidate(lotto.getNumbers(), bonus.getNumber());
     }
 }

@@ -41,20 +41,20 @@ public class Purchase {
     }
 
     public int getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public List<Lotto> getPurchasedLotto() {
-        return purchasedLotto;
+        return this.purchasedLotto;
     }
 
     public void printPurchasedLotto() {
-        for (int i = 0; i < purchasedLotto.size(); i++) {
-            purchasedLotto.get(i).printLottoNumber();
+        for (Lotto lotto : this.purchasedLotto) {
+            lotto.printLottoNumber();
         }
     }
 
-    private void validate(String amount) {
+    private void validate(final String amount) {
         InputException.blankInput(amount);
         InputException.notNumber(amount);
         InputException.underThousand(amount);

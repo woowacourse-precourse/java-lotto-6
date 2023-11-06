@@ -22,8 +22,8 @@ public class Statistics {
     }
 
     private double totalRevenue() {
-        int totalRevenue = sumRevenue();
-        double revenue = (double) totalRevenue / (purchasedLotto.getAmount() * 10);
+        final int totalRevenue = sumRevenue();
+        final double revenue = (double) totalRevenue / (purchasedLotto.getAmount() * 10);
 
         return Math.round(revenue * 100.0) / 100.0;
     }

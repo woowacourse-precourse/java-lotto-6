@@ -18,8 +18,8 @@ public class WinningLotto {
     }
 
     private List<Integer> initializeWinningNumbers() {
-        List<Integer> inputNumbers;
-        String input = Console.readLine();
+        final List<Integer> inputNumbers;
+        final String input = Console.readLine();
 
         try {
             stringInputValidate(input);
@@ -32,8 +32,8 @@ public class WinningLotto {
         return inputNumbers;
     }
 
-    private List<Integer> parseNumbers(String input) {
-        List<Integer> numbers = new ArrayList<>();
+    private List<Integer> parseNumbers(final String input) {
+        final List<Integer> numbers = new ArrayList<>();
 
         for (String number : input.split(",")) {
             numbers.add(Integer.parseInt(number));
@@ -44,7 +44,7 @@ public class WinningLotto {
     }
 
     private int initializeBonusNumber() {
-        String input = Console.readLine();
+        final String input = Console.readLine();
 
         try {
             bonusNumberValidate(input, this.winningNumbers);
@@ -64,19 +64,19 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    private void stringInputValidate(String input) {
+    private void stringInputValidate(final String input) {
         InputException.blankInput(input);
         InputException.onlyComma(input);
         InputException.cannotParseToInt(input);
     }
 
-    private void listValidate(List<Integer> input) {
+    private void listValidate(final List<Integer> input) {
         InputException.notSixNumberInput(input);
         InputException.wrongNumberRange(input);
         InputException.numberDuplicate(input);
     }
 
-    private void bonusNumberValidate(String input, List<Integer> winningNumbers) {
+    private void bonusNumberValidate(final String input, final List<Integer> winningNumbers) {
         InputException.blankInput(input);
         InputException.notNumber(input);
         InputException.wrongNumberRange(input);

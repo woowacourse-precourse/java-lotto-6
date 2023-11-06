@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputException {
+public final class InputException {
     public static void blankInput(final String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] Blank Input");
@@ -47,13 +47,13 @@ public class InputException {
         }
     }
 
-    public static void notSixNumberInput(List<Integer> input) {
+    public static void notSixNumberInput(final List<Integer> input) {
         if (input.size() != 6) {
             throw new IllegalArgumentException("[ERROR] Not 6 input count provided");
         }
     }
 
-    public static void wrongNumberRange(List<Integer> input) {
+    public static void wrongNumberRange(final List<Integer> input) {
         for (int number : input) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] Numbers should be between 1 and 45");
@@ -61,24 +61,24 @@ public class InputException {
         }
     }
 
-    public static void numberDuplicate(List<Integer> input) {
-        Set<Integer> uniqueNumbers = new HashSet<>(input);
+    public static void numberDuplicate(final List<Integer> input) {
+        final Set<Integer> uniqueNumbers = new HashSet<>(input);
 
         if (uniqueNumbers.size() < input.size()) {
             throw new IllegalArgumentException("[ERROR] Duplicate numbers are not allowed");
         }
     }
 
-    public static void wrongNumberRange(String input) {
+    public static void wrongNumberRange(final String input) {
 
-        int number = Integer.parseInt(input);
+        final int number = Integer.parseInt(input);
 
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] Numbers should be between 1 and 45");
         }
     }
 
-    public static void isDuplicatedWithWinningNumbers(String input, List<Integer> winningNumbers) {
+    public static void isDuplicatedWithWinningNumbers(final String input, final List<Integer> winningNumbers) {
         if (winningNumbers.contains(Integer.parseInt(input))) {
             throw new IllegalArgumentException("[ERROR] Duplicated with Winning Numbers are not Allowed");
         }

@@ -6,21 +6,21 @@ import lotto.validation.InputException;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         InputException.notSixNumberInput(numbers);
         InputException.numberDuplicate(numbers);
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return this.numbers;
     }
 
     public void printLottoNumber() {
-        System.out.println(numbers);
+        System.out.println(this.numbers);
     }
 }

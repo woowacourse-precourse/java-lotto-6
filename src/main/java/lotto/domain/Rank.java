@@ -8,17 +8,17 @@ public enum Rank {
     MATCH_6(6, 2_000_000_000, 0);
 
     private final int countOfMatch;
-    private final int prize;
+    private final int prizeMoney;
     private final int countOfWin;
     private final boolean matchBonus;
 
-    Rank(int countOfMatch, int prize, int countOfWin) {
-        this(countOfMatch, prize, countOfWin, false);
+    Rank(int countOfMatch, int prizeMoney, int countOfWin) {
+        this(countOfMatch, prizeMoney, countOfWin, false);
     }
 
-    Rank(int countOfMatch, int prize, int countOfWin, boolean matchBonus) {
+    Rank(int countOfMatch, int prizeMoney, int countOfWin, boolean matchBonus) {
         this.countOfMatch = countOfMatch;
-        this.prize = prize;
+        this.prizeMoney = prizeMoney;
         this.countOfWin = countOfWin;
         this.matchBonus = matchBonus;
     }
@@ -36,8 +36,8 @@ public enum Rank {
         return countOfMatch;
     }
 
-    public int getPrize() {
-        return prize;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 
     public int getCountOfWin() {

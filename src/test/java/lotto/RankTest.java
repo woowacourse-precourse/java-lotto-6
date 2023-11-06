@@ -26,10 +26,10 @@ public class RankTest {
     @Test
     void getPrize_테스트() {
         Rank rank = Rank.MATCH_3;
-        Assertions.assertEquals(5000, rank.getPrize());
+        Assertions.assertEquals(5000, rank.getPrizeMoney());
 
         rank = Rank.MATCH_5;
-        Assertions.assertEquals(1_500_000, rank.getPrize());
+        Assertions.assertEquals(1_500_000, rank.getPrizeMoney());
     }
 
     @Test

@@ -26,6 +26,14 @@ public final class Money {
         return money / price;
     }
 
+    public Money multiply(int multiplier) {
+        return new Money(money * multiplier);
+    }
+
+    public Money add(Money otherMoney) {
+        return new Money(money + otherMoney.money);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

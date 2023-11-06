@@ -30,4 +30,8 @@ public enum WinningResult {
     public boolean matches(int matchCount, boolean bonusMatch) {
         return matchCount == this.matchCount && needBonusMatch.matches(bonusMatch);
     }
+
+    public Money getWinningMoney() {
+        return winningMoney;
+    }
 }

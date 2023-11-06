@@ -40,9 +40,20 @@ public class WinningStatisticsTest {
     @MethodSource("provideWinningNumbersAndLottos")
     void 당첨_통계를_구할_수_있다(WinningNumbers winningNumbers, Lottos lottos, Map<WinningResult, Integer> expected) {
         // when
-        WinningStatistics actual = WinningStatistics.of(winningNumbers, lottos);
+        WinningStatistics statistics = WinningStatistics.of(winningNumbers, lottos);
 
         // then
-        assertThat(actual).extracting("winningStatistics").isEqualTo(expected);
+        assertThat(statistics).extracting("statistics").isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideWinningNumbersAndLottos")
+    void 총_로또_당첨_금액을_구할_수_있다(WinningNumbers winningNumbers, Lottos lottos) {
+        // when
+        WinningStatistics statistics = WinningStatistics.of(winningNumbers, lottos);
+
+        // then
+        assertThat(statistics.getTotalWinningMoney())
+                .isEqualTo(new Money(2_000_000_000 + 30_000_000 + 1_500_000 + 5_000 * 2));
     }
 }

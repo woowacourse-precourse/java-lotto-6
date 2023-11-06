@@ -5,27 +5,39 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public final class WinningStatistics {
-    private final Map<WinningResult, Integer> winningStatistics;
+    private final Map<WinningResult, Integer> statistics;
 
-    private WinningStatistics(Map<WinningResult, Integer> winningStatistics) {
-        this.winningStatistics = new EnumMap<>(winningStatistics);
+    private WinningStatistics(Map<WinningResult, Integer> statistics) {
+        this.statistics = new EnumMap<>(statistics);
     }
 
     public static WinningStatistics of(WinningNumbers winningNumbers, Lottos lottos) {
-        Map<WinningResult, Integer> winningStatistics = initWinningStatistics();
+        Map<WinningResult, Integer> statistics = initStatistics();
 
         lottos.getWinningResults(winningNumbers)
-                .forEach(winningResult ->
-                        winningStatistics.put(winningResult, winningStatistics.get(winningResult) + 1));
+                .forEach(result -> statistics.put(result, statistics.get(result) + 1));
 
-        return new WinningStatistics(winningStatistics);
+        return new WinningStatistics(statistics);
     }
 
-    private static Map<WinningResult, Integer> initWinningStatistics() {
-        Map<WinningResult, Integer> winningStatistics = new EnumMap<>(WinningResult.class);
+    private static Map<WinningResult, Integer> initStatistics() {
+        Map<WinningResult, Integer> statistics = new EnumMap<>(WinningResult.class);
         Arrays.stream(WinningResult.values())
-                .forEach(winningResult -> winningStatistics.put(winningResult, 0));
+                .forEach(result -> statistics.put(result, 0));
 
-        return winningStatistics;
+        return statistics;
+    }
+
+    public Money getTotalWinningMoney() {
+        return statistics.entrySet().stream()
+                .map(this::calculateWinningMoney)
+                .reduce(new Money(0), Money::add);
+    }
+
+    private Money calculateWinningMoney(Map.Entry<WinningResult, Integer> entry) {
+        Money winningMoney = entry.getKey().getWinningMoney();
+        int winningCount = entry.getValue();
+
+        return winningMoney.multiply(winningCount);
     }
 }

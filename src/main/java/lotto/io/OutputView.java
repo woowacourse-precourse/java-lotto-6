@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.model.Rank;
+import lotto.model.PrizeRank;
 
 public class OutputView {
 
@@ -19,15 +19,15 @@ public class OutputView {
         }
     }
 
-    public void displayWinningResult(Map<Rank, Integer> result) {
+    public void displayWinningResult(Map<PrizeRank, Integer> result) {
         displayEmptyLine();
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (Entry<Rank, Integer> entry : result.entrySet()) {
-            if (entry.getKey().equals(Rank.NOPE)) {
+        for (Entry<PrizeRank, Integer> entry : result.entrySet()) {
+            if (entry.getKey().equals(PrizeRank.NOPE)) {
                 continue;
             }
-            System.out.println(Rank.getMsg(entry.getKey()) + " - " + entry.getValue() + "개");
+            System.out.println(PrizeRank.getMsg(entry.getKey()) + " - " + entry.getValue() + "개");
         }
     }
 

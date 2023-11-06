@@ -12,7 +12,7 @@ public class WinningCalculator {
 
     private final Lottos lottos;
     private final WinningLottoWithBonus winningLottoWithBonus;
-    private final Map<Rank, Integer> result = new LinkedHashMap<>();
+    private final Map<PrizeRank, Integer> result = new LinkedHashMap<>();
 
     public WinningCalculator(Lottos lottos, WinningLottoWithBonus winningLottoWithBonus) {
         init();
@@ -21,12 +21,12 @@ public class WinningCalculator {
     }
 
     private void init() {
-        for (Rank rank : Rank.values()) {
-            result.put(rank, 0);
+        for (PrizeRank prizeRank : PrizeRank.values()) {
+            result.put(prizeRank, 0);
         }
     }
 
-    public Map<Rank, Integer> getResult() {
+    public Map<PrizeRank, Integer> getResult() {
         for (Lotto lotto : lottos.getLottos()) {
             resultCalculate(lotto);
         }
@@ -43,24 +43,24 @@ public class WinningCalculator {
 
     private BigDecimal getTotalPrize() {
         BigDecimal totalPrize = BigDecimal.ZERO;
-        for (Entry<Rank, Integer> entry : result.entrySet()) {
-            totalPrize = totalPrize.add(BigDecimal.valueOf(Rank.getReward(entry.getKey()))
+        for (Entry<PrizeRank, Integer> entry : result.entrySet()) {
+            totalPrize = totalPrize.add(BigDecimal.valueOf(PrizeRank.getReward(entry.getKey()))
                     .multiply(BigDecimal.valueOf(entry.getValue())));
         }
         return totalPrize;
     }
 
     private void resultCalculate(Lotto lotto) {
-        Rank rank = getRank(lotto);
-        result.put(rank, result.get(rank) + 1);
+        PrizeRank prizeRank = getRank(lotto);
+        result.put(prizeRank, result.get(prizeRank) + 1);
     }
 
-    private Rank getRank(Lotto lotto) {
+    private PrizeRank getRank(Lotto lotto) {
         int rankNum = getRankNum(lotto);
         if (rankNum == 5) {
             return isBonus(lotto, winningLottoWithBonus);
         }
-        return Rank.get(rankNum);
+        return PrizeRank.get(rankNum);
     }
 
     private int getRankNum(Lotto lotto) {
@@ -68,11 +68,11 @@ public class WinningCalculator {
                 .filter(winningLottoWithBonus.getLotto().getNumbers()::contains).count();
     }
 
-    private Rank isBonus(Lotto lotto, WinningLottoWithBonus winningLottoWithBonus) {
+    private PrizeRank isBonus(Lotto lotto, WinningLottoWithBonus winningLottoWithBonus) {
         if (lotto.getNumbers().contains(winningLottoWithBonus.getBonus())) {
-            return Rank.BONUS;
+            return PrizeRank.BONUS;
         }
-        return Rank.FIVE;
+        return PrizeRank.FIVE;
     }
 
 }

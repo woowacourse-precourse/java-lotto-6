@@ -16,11 +16,16 @@ public class Lottos {
     }
 
     public static Lottos from(int buyAmount) {
-        List<Lotto> lottoValues = IntStream.range(0, buyAmount / 1000)
+        return new Lottos(createLottos(buyAmount));
+    }
+
+    public static List<Lotto> createLottos(int buyAmount) {
+        List<Lotto> lottos = IntStream.range(0, buyAmount / 1000)
                 .mapToObj(i -> new Lotto(Generator.createNumbers())).collect(
                         Collectors.toList());
-        return new Lottos(lottoValues);
+        return lottos;
     }
+
 
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);

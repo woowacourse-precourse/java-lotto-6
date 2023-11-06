@@ -32,4 +32,11 @@ class LottoTest {
         assertThat(lotto.containLottoNumber(new LottoNumber(1)))
                 .isTrue();
     }
+
+    @DisplayName("로또 번호 출력")
+    @Test
+    void printLotto(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

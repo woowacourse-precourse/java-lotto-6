@@ -1,21 +1,23 @@
 package lotto.domain;
 
 
+import java.util.function.BiPredicate;
+
 public enum LottoRank {
-    ZERO(0, false, 0),
-    THREE(3, false, 5000),
-    FOUR(4, false, 50000),
-    FIVE(5, false, 150000),
-    FIVE_BONUS(5, true, 30000000),
-    SIX(6, false, 2000000000);
+    ZERO(0, 0, (matchCount, isBonus) -> matchCount < 3),
+    THREE(3, 5000, (matchCount, isBonus) -> matchCount == 3),
+    FOUR(4, 50000, (matchCount, isBonus) -> matchCount == 4),
+    FIVE(5, 150000, (matchCount, isBonus) -> matchCount == 5 && !isBonus),
+    FIVE_BONUS(5, 30000000, (matchCount, isBonus) -> matchCount == 5 && isBonus),
+    SIX(6, 2000000000, (matchCount, isBonus) -> matchCount == 6);
 
     private final int count;
-    private final boolean checkBonus;
     private final int winningAmount;
+    private final BiPredicate<Integer, Boolean> checkWin;
 
-    LottoRank(int count, boolean checkBonus, int winningAmount) {
+    LottoRank(int count, int winningAmount, BiPredicate<Integer, Boolean> checkWin) {
         this.count = count;
-        this.checkBonus = checkBonus;
         this.winningAmount = winningAmount;
+        this.checkWin = checkWin;
     }
 }

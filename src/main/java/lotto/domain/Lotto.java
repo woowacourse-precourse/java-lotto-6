@@ -29,7 +29,7 @@ public class Lotto {
 
     public int getMatchedNumbersCount(WinningNumbers winningNumbers) {
         return (int) numbers.stream()
-                .filter(winningNumbers::isMatchedWithWinningNumbers)
+                .filter(winningNumbers::hasNumber)
                 .count();
     }
 

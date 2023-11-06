@@ -2,6 +2,7 @@ package lotto.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class PurchasedLottosDto {
 
@@ -11,8 +12,11 @@ public class PurchasedLottosDto {
         purchasedLottos = new ArrayList<>(lottos);
     }
 
-    public static PurchasedLottosDto from(List<List<Integer>> lottos) {
-        return new PurchasedLottosDto(lottos);
+    public static PurchasedLottosDto from(List<Lotto> lottos) {
+        List<List<Integer>> purchasedLottos = lottos.stream()
+                                                    .map(Lotto::showNumbersByIntegers)
+                                                    .toList();
+        return new PurchasedLottosDto(purchasedLottos);
     }
 
     public List<List<Integer>> show() {

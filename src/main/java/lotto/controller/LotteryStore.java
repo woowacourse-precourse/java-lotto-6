@@ -24,12 +24,10 @@ public class LotteryStore {
     }
 
     public PurchasedLottosDto showPurchasedLottos() {
-        List<Lotto> purchasedLottos = lottoRepository.showAllLottos();
-        List<List<Integer>> Lottos = purchasedLottos.stream()
-                                                    .map(Lotto::showNumbersByIntegers)
-                                                    .toList();
 
-        return PurchasedLottosDto.from(Lottos);
+        List<Lotto> purchasedLottos = lottoRepository.showAllLottos();
+
+        return PurchasedLottosDto.from(purchasedLottos);
     }
 
     public WinningStatistics calculateStatistics() {

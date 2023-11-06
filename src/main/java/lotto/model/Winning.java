@@ -8,7 +8,6 @@ public enum Winning {
     FORTH(50000),
     FIFTH(5000);
 
-
     private final int money;
 
     Winning(int money) {

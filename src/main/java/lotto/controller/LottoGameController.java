@@ -36,7 +36,7 @@ public class LottoGameController {
             setWinNumber();
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
-            buyLotto();
+            setWinNumber();
         }
     }
 

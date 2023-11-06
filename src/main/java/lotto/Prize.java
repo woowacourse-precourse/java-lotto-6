@@ -31,8 +31,11 @@ public enum Prize {
         return 0;
     }
 
-    public static void bonusNumber(int matchBonusNumber) {
-
+    public static int bonusNumber(int matchBonusNumber) {
+        if (matchBonusNumber > 0) {
+            return Prize.BONUS.amount;
+        }
+        return Prize.FIVE.amount;
     }
 }
 

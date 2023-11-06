@@ -7,4 +7,18 @@ public class InputParam {
         int i = Integer.parseInt(readLine());
         return i/1000;
     }
+
+    public int[] inputLottoNumbers(){
+        String[] split = readLine().split(",");
+        int[] inputNumbers=new int[split.length];
+        for (int i = 0; i < split.length; i++) {
+            inputNumbers[i] = Integer.parseInt(split[i]);
+        }
+        return inputNumbers;
+    }
+
+    public int inputBonusNumber(){
+        int n = Integer.parseInt(readLine());
+        return n;
+    }
 }

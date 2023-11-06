@@ -44,14 +44,14 @@ public class UnifiedController {
         waitForValidInput(systemMessage);
     }
 
-    public void waitForValidInput(SystemMessage systemMessage) {
+    private void waitForValidInput(SystemMessage systemMessage) {
         boolean valid = false;
         while (!valid) {
             valid = checkNoException(systemMessage);
         }
     }
 
-    public boolean checkNoException(SystemMessage systemMessage) {
+    private boolean checkNoException(SystemMessage systemMessage) {
         try {
             storeDataInRegister(systemMessage);
             return true;
@@ -61,28 +61,34 @@ public class UnifiedController {
         }
     }
 
-    public void storeDataInRegister(SystemMessage systemMessage) {
+    private void storeDataInRegister(SystemMessage systemMessage) {
         if (systemMessage == ASK_MONEY) {
             Register.money = new Money(Long.parseLong(InputView.inputData(LONG)));
         }
         if (systemMessage == ASK_WINNING_NUMBERS) {
-            Register.firstPrizeLotto = createLotto();
+            Register.firstPrizeLotto = createLotto(convertElementStringToInteger(InputView.inputData(INTEGER_LIST)));
         }
         if (systemMessage == ASK_BONUS) {
-            Register.bonus = createBonus();
+            Register.bonus = createBonus(Integer.parseInt(InputView.inputData(INTEGER)));
         }
     }
 
-    public Lotto createLotto() {
-        List<Integer> lottoNumbers = convertElementStringToInteger(InputView.inputData(INTEGER_LIST));
+    public List<Integer> convertElementStringToInteger(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String element : input.split(",")) {
+            numbers.add(Integer.parseInt(element));
+        }
+        return numbers;
+    }
+
+    private Lotto createLotto(List<Integer> lottoNumbers) {
         if (Register.bonus != null) {
             compareBonusAndWinningNumbers(new HashSet<>(lottoNumbers), Register.bonus.getNumber());
         }
         return new Lotto(lottoNumbers);
     }
 
-    public Bonus createBonus() {
-        int number = Integer.parseInt(InputView.inputData(INTEGER));
+    private Bonus createBonus(int number) {
         if (Register.firstPrizeLotto != null) {
             compareBonusAndWinningNumbers(new HashSet<>(Register.firstPrizeLotto.getNumbers()), number);
         }
@@ -95,21 +101,16 @@ public class UnifiedController {
         }
     }
 
-    public List<Integer> convertElementStringToInteger(String input) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String element : input.split(",")) {
-            numbers.add(Integer.parseInt(element));
-        }
-        return numbers;
-    }
-
-    public void printLottoTicketsInfo() {
+    public void createAndStoreLottoTickets() {
         long numOfTickets = Register.money.getAmount() / 1000;
-        printNumOfTickets(numOfTickets);
         for (int i = 0; i < numOfTickets; i++) {
             Register.lottoTickets.add(
                     new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUM_OF_NUMBERS)));
         }
+    }
+
+    public void displayLottoTicketsInfo() {
+        printNumOfTickets(Register.lottoTickets.size());
         for (Lotto lotto : Register.lottoTickets) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             lottoNumbers.sort(Comparator.naturalOrder());
@@ -117,32 +118,36 @@ public class UnifiedController {
         }
     }
 
-    public void printResult() {
-        Map<Rank, Long> winningLottos = new HashMap<>();
-        for (Rank rank : Rank.values()) {
-            winningLottos.put(rank, 0L);
-        }
-        for (Lotto lotto : Register.lottoTickets) {
-            int match = lotto.compareLotto(Register.firstPrizeLotto);
-            if (match >= NUM_OF_NUMBERS - 3) {
-                winningLottos.put(checkRank(match, lotto), winningLottos.get(checkRank(match, lotto)) + 1);
-            }
-        }
+    public void displayResult() {
         OutputView.printSystemMessage(WINNING_RESULT);
-        for (Rank rank : Rank.values()) {
-            OutputView.printWinningLottosInfo(rank, winningLottos.get(rank));
-        }
-        long totalPrizeAmount = 0;
-        for (Rank rank : Rank.values()) {
-            totalPrizeAmount += winningLottos.get(rank) * rank.getPrizeMoney();
-        }
-        double gainPercentage = Math.round(
-                ((double) totalPrizeAmount / Register.money.getAmount() * 100 * 10)) / 10.0;
+        Map<Rank, Long> winningCountByRank = getWinningCountsByRank();
+        displayWinningLottoInfoByRank(winningCountByRank);
+        long totalPrizeAmount = calcTotalPrizeAmount(winningCountByRank);
+        double gainPercentage = calcGainPercentage(totalPrizeAmount);
         OutputView.printGainPercentage(gainPercentage);
 
     }
 
-    public Rank checkRank(int match, Lotto lotto) {
+    private Map<Rank, Long> getWinningCountsByRank() {
+        Map<Rank, Long> winningCountByRank = initializeWinningCountsByRank();
+        for (Lotto lotto : Register.lottoTickets) {
+            int match = lotto.compareLotto(Register.firstPrizeLotto);
+            if (match >= NUM_OF_NUMBERS - 3) {
+                winningCountByRank.put(checkRank(match, lotto), winningCountByRank.get(checkRank(match, lotto)) + 1);
+            }
+        }
+        return winningCountByRank;
+    }
+
+    private Map<Rank, Long> initializeWinningCountsByRank() {
+        Map<Rank, Long> winningCountByRank = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            winningCountByRank.put(rank, 0L);
+        }
+        return winningCountByRank;
+    }
+
+    private Rank checkRank(int match, Lotto lotto) {
         if (match == NUM_OF_NUMBERS) {
             return FIRST;
         }
@@ -155,10 +160,29 @@ public class UnifiedController {
         return FIFTH;
     }
 
-    public Rank resultSecondAndThird(Lotto lotto) {
+    private Rank resultSecondAndThird(Lotto lotto) {
         if (lotto.compareBonus(Register.bonus.getNumber())) {
             return SECOND;
         }
         return THIRD;
     }
+
+    private void displayWinningLottoInfoByRank(Map<Rank, Long> winningCountByRank) {
+        for (Rank rank : Rank.values()) {
+            OutputView.printWinningLottosInfo(rank, winningCountByRank.get(rank));
+        }
+    }
+
+    private long calcTotalPrizeAmount(Map<Rank, Long> winningCountByRank) {
+        long totalPrizeAmount = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrizeAmount += winningCountByRank.get(rank) * rank.getPrizeMoney();
+        }
+        return totalPrizeAmount;
+    }
+
+    private double calcGainPercentage(long totalPrizeAmount) {
+        return Math.round(((double) totalPrizeAmount / Register.money.getAmount() * 100 * 10)) / 10.0;
+    }
+
 }

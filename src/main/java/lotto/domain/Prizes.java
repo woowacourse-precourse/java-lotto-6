@@ -16,7 +16,7 @@ public class Prizes {
     private static final Integer INIT_PRIZE_COUNT = 0;
     private final Map<Prize, Integer> prizes;
 
-    public Prizes(List<Prize> prizes) {
+    public Prizes(final List<Prize> prizes) {
         this.prizes = new HashMap<>();
         initPrizes();
         updatePrizes(prizes);
@@ -31,7 +31,8 @@ public class Prizes {
     private void updatePrizes(List<Prize> prizes) {
         for (Prize prize : prizes) {
             Integer currentCount = this.prizes.get(prize);
-            this.prizes.put(prize, currentCount++);
+            currentCount++;
+            this.prizes.put(prize, currentCount);
         }
     }
 
@@ -50,14 +51,25 @@ public class Prizes {
         return totalReward;
     }
 
-    public Double getTotalBenefit(Integer totalSpendAmount) {
+    public Double getRoundedTotalBenefit(Integer totalSpendAmount) {
+        Double totalBenefit = calculateTotalBenefit(totalSpendAmount);
+        Double roundedTotalBenefit = roundOffTotalBenefit(totalBenefit);
+        return roundedTotalBenefit;
+    }
+
+    private Double calculateTotalBenefit(Integer totalSpendAmount) {
         Double totalReward = getTotalReward();
         if (totalReward == INIT_REWARD.getSetting()) {
             return NO_BENEFIT.getSetting();
         }
 
-        Double totalBenefit = (totalReward / totalSpendAmount) * PERCENTAGE_INDICATOR.getSetting();
-        return Math.round(totalBenefit * ROUND_INDICATOR.getSetting()) / ROUND_INDICATOR.getSetting();
+        return (totalReward / totalSpendAmount) * PERCENTAGE_INDICATOR.getSetting();
+    }
+
+
+    private Double roundOffTotalBenefit(Double totalBenefit) {
+        return Math.round(totalBenefit * ROUND_INDICATOR.getSetting())
+                / ROUND_INDICATOR.getSetting();
     }
 
 }

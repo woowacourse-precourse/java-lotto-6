@@ -20,7 +20,7 @@ class PrizesTest {
     @ParameterizedTest()
     @MethodSource("calculateBenefitSuccessDummy")
     void calculateBenefitSuccessTest(Prizes prizes, Integer totalSpendAmount, Double expected) {
-        Double result = prizes.getTotalBenefit(totalSpendAmount);
+        Double result = prizes.getRoundedTotalBenefit(totalSpendAmount);
         assertEquals(expected, result);
     }
 

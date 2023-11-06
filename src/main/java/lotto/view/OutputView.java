@@ -43,7 +43,7 @@ public class OutputView {
         }
 
 
-        String prefix = String.format("총 수익률은 %.1f", prizes.getTotalBenefit(
+        String prefix = String.format("총 수익률은 %.1f", prizes.getRoundedTotalBenefit(
                 cash.getDepositAmount()));
 
         System.out.println(prefix + "%입니다.");

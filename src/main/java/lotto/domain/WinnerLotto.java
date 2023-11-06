@@ -13,6 +13,7 @@ public class WinnerLotto {
         this.bonusNumber = bonusNumber;
     }
 
+
     public List<Integer> getWinnerNumbers() {
         return Collections.unmodifiableList(winnerNumbers);
     }
@@ -20,4 +21,6 @@ public class WinnerLotto {
     public Integer getBonusNumber() {
         return bonusNumber;
     }
+
+
 }

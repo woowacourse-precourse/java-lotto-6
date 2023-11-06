@@ -33,9 +33,7 @@ public class LottoGameController {
 
     private void printLottoWinningStatistics() {
         LottoWinningResult lottoWinningResult = lottoGameService.calculateLottoWinningResult();
-        lottoGameView.printWinningStatistics(new LottoWinningStatistics(
-                lottoWinningResult.calculateRewardRatio(),
-                lottoWinningResult.getTable()));
+        lottoGameView.printWinningStatistics(LottoWinningStatistics.from(lottoWinningResult));
     }
 
     private void createLottoBonusNumber() {

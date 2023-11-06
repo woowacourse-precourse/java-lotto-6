@@ -2,6 +2,7 @@ package lotto.dto;
 
 import java.util.Map;
 import lotto.domain.LottoPrize;
+import lotto.domain.LottoWinningResult;
 
 public class LottoWinningStatistics {
 
@@ -19,5 +20,11 @@ public class LottoWinningStatistics {
 
     public int getCountLottoPrize(LottoPrize lottoPrize) {
         return prizeCountMap.getOrDefault(lottoPrize, 0);
+    }
+
+    public static LottoWinningStatistics from(LottoWinningResult lottoWinningResult) {
+        return new LottoWinningStatistics(
+                lottoWinningResult.calculateRewardRatio(),
+                lottoWinningResult.getTable());
     }
 }

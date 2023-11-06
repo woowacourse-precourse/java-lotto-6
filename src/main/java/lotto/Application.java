@@ -16,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
         LottoController lottoController = new LottoController();
 
-        Price purchasePrice = new Price(InputView.purchasePrice());
+        Price purchasePrice = getPurchasePrice();
         List<Lotto> lottery = lottoController.buyLottery(purchasePrice);
 
         OutputView.printPurchaseResult(purchasePrice.numberLotteryAvailablePurchase());
@@ -34,6 +34,27 @@ public class Application {
 
         OutputView.printLotteryResult(ranks.lotteryRankStatus());
         OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);
+    }
+
+    private static Price getPurchasePrice() {
+        String purchasePrice = InputView.purchasePrice();
+        return toPrice(purchasePrice);
+    }
+
+    private static Price toPrice(String purchasePrice) {
+        boolean isRestart = true;
+        Price price = null;
+        try {
+            price = new Price(purchasePrice);
+            isRestart = false;
+        } catch (IllegalArgumentException e) {
+            OutputView.printCustomMessage(e.getMessage());
+        }
+
+        if (isRestart) {
+            getPurchasePrice();
+        }
+        return price;
     }
 
     private static String getWinningNumber() {

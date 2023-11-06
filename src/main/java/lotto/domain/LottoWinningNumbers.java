@@ -10,6 +10,10 @@ public class LottoWinningNumbers {
         this.winningNumbers = winningNumbers;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumbersSize(winningNumbers);
         validateWinningNumberRange(winningNumbers);
@@ -33,5 +37,4 @@ public class LottoWinningNumbers {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 될 수 없습니다.");
         }
     }
-
 }

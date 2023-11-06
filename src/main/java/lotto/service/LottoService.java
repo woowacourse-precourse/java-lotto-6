@@ -10,6 +10,7 @@ import lotto.domain.PurchasedLottoNumbers;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
+    private static PurchasedLottoNumbers purchasedLottoNumbers;
 
     public static List<Lotto> lottoGenerator(int purchaseAmount) {
         int pickCount = purchaseAmount / 1000;
@@ -20,6 +21,7 @@ public class LottoService {
             Lotto lotto = new Lotto(purchasedOneLotto);
             purchasedLotto.add(lotto);
         }
+        purchasedLottoNumbers = new PurchasedLottoNumbers(purchasedLotto);
         return purchasedLotto;
     }
 
@@ -28,7 +30,6 @@ public class LottoService {
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < purchasedLottoCount; i++) {
             purchasedLotto.add(purchasedLottoNumbers.getPurchasedLotto().get(i));
-
         }
         return new PurchasedLottoDTO(purchasedLotto);
     }

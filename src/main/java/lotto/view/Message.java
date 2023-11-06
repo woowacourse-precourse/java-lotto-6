@@ -17,7 +17,7 @@ public class Message {
     public static final String OUTPUT_STATICS_FOURTH = String.format("4개 일치 (%,d원) - ", Constant.FOURTH_REWARD);
     public static final String OUTPUT_STATICS_FIFTH = String.format("3개 일치 (%,d원) - ", Constant.FIFTH_REWARD);
     public static final String OUTPUT_STATICS_BACK = "개";
-    public static final String OUTPUT_STATICS_RATE_FRONT = "총 수익률은";
+    public static final String OUTPUT_STATICS_RATE_FRONT = "총 수익률은 ";
     public static final String OUTPUT_STATICS_RATE_BACK = "%입니다.";
 
     /* Messages for UserError */

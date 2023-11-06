@@ -24,8 +24,8 @@ public class LottoGameController {
             try {
                 OutputView.printPurchasePriceInputText();
                 int bonusNumberInput = InputView.getPaidMoneyInput();
-                int ticketNumber = lottoOwner.purchaseLotto(bonusNumberInput);
-                OutputView.printTicketNumber(ticketNumber);
+                LottoTicket lottoTicket = lottoOwner.purchaseLotto(bonusNumberInput);
+                OutputView.printTicketNumber(lottoTicket);
                 OutputView.printLottoNumbers(lottoOwner.getLottos());
                 return;
             } catch (IllegalArgumentException e) {

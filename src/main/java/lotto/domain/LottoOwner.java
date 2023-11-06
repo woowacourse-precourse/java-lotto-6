@@ -9,11 +9,11 @@ public class LottoOwner {
     private int spendMoney;
     private long gainMoney;
 
-    public int purchaseLotto(int money) {
+    public LottoTicket purchaseLotto(int money) {
         spendMoney = money;
         LottoTicket lottoTicket = new LottoTicket(money);
         lottos = lottoTicket.generateLottos();
-        return lottoTicket.getTicketNumber();
+        return lottoTicket;
     }
 
     public List<Lotto> getLottos() {

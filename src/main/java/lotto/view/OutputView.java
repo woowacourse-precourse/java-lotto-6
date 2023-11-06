@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.Lotto;
+import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.YieldRate;
 
@@ -37,9 +38,10 @@ public class OutputView {
         System.out.print(PURCHASE_PRICE_INPUT_TEXT);
     }
 
-    public static void printTicketNumber (int ticketNumber) {
+    public static void printTicketNumber (LottoTicket lottoTicket) {
         System.out.println();
-        System.out.printf(TICKET_NUMBER_TEXT, ticketNumber);
+        System.out.printf(TICKET_NUMBER_TEXT, lottoTicket.getTicketNumber()
+        );
     }
 
     public static void printLottoNumbersInputText() {

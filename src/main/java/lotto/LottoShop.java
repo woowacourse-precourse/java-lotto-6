@@ -1,6 +1,8 @@
 package lotto;
 
+import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputMoney;
+import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.println;
 
 import java.util.List;
@@ -26,5 +28,9 @@ public class LottoShop {
 
     private void notifyLottoList(List<Lotto> lottoList) {
         OutputView.printLottoList(lottoList);
+    }
+
+    private WinningNumbers drawWinningNumbers() {
+        return new WinningNumbers(inputWinningNumbers(), inputBonusNumber());
     }
 }

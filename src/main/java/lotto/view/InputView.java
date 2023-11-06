@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    private final String WINNING_NUMBERS_DELIMITER = ",";
+    private static final String WINNING_NUMBERS_DELIMITER = ",";
 
     public static int inputMoney() {
         try {
@@ -19,21 +19,21 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         String input = readLine();
         String[] numbers = splitWinningNumbers(removeSpace(input));
         return convertToIntegers(numbers);
     }
 
-    private String removeSpace(String input) {
+    private static String removeSpace(String input) {
         return input.replace(" ", "");
     }
 
-    private String[] splitWinningNumbers(String input) {
+    private static String[] splitWinningNumbers(String input) {
         return input.split(WINNING_NUMBERS_DELIMITER);
     }
 
-    private List<Integer> convertToIntegers(String[] numbers) {
+    private static List<Integer> convertToIntegers(String[] numbers) {
         try {
             return Arrays.stream(numbers)
                     .map(Integer::parseInt)
@@ -43,7 +43,7 @@ public class InputView {
         }
     }
 
-    public int inputBonusNumber() {
+    public static int inputBonusNumber() {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -28,7 +29,9 @@ public class LottoGame {
         WinningNumbers winningNumbers = repeatUntilValidWinningNumbersCreated();
         repeatUntilValidBonusNumberAssigned(winningNumbers);
 
-        LottoPrizeBreakdown lottoPrizeBreakdown = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
+        LottoPrizeBreakdown result = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
+        BigDecimal rateOfReturn = result.getRateOfReturn(money);
+        outputView.showWinningStatistics(result, rateOfReturn);
     }
 
     private List<Lotto> issueLottoTickets(Money money) {
@@ -86,7 +89,9 @@ public class LottoGame {
     }
 
     private String inputWithMessage(LottoGuideMessage lottoGuideMessage) {
-        outputView.showMessage(lottoGuideMessage.getMessage());
-        return inputView.getUserInput();
+        outputView.showMessage(lottoGuideMessage);
+        String userInput = inputView.getUserInput();
+        outputView.showSeperateLine();
+        return userInput;
     }
 }

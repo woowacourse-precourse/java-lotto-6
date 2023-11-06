@@ -3,6 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.StringUtil;
 
+import java.util.List;
+
 public class InputView {
 
     public int insertPurchaseAmount() {
@@ -13,6 +15,17 @@ public class InputView {
         } catch (IllegalArgumentException purchaseAmountError) {
             System.out.println(purchaseAmountError.getMessage());
             return insertPurchaseAmount();
+        }
+    }
+
+    public List<Integer> insertWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+
+        try {
+            return StringUtil.StringToList(Console.readLine().trim());
+        } catch (IllegalArgumentException winningNumberError) {
+            System.out.println(winningNumberError.getMessage());
+            return insertWinningNumber();
         }
     }
 }

@@ -5,9 +5,6 @@ import java.util.StringTokenizer;
 
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.LottoRange;
-import lotto.utils.LottoValidator;
-import lotto.utils.ParserFromString;
-import lotto.utils.ParserFromStringImpl;
 
 public class LottoValidatorImpl implements LottoValidator {
 

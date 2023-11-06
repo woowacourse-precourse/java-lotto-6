@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Budget;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
+import lotto.domain.strategy.LottoGenerateStrategy;
 import lotto.domain.strategy.UserLottoGenerateStrategy;
 import lotto.domain.WinningLotto;
 import lotto.domain.strategy.WinningLottoGenerateStrategy;
@@ -14,7 +15,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private Budget budget;
-    private LottoGenerator lottoGenerator;
+    private LottoGenerator lottoGenerator = new LottoGenerator();
 
     public void runMachine(){
         Lottos userLottos = buyLotto();
@@ -26,7 +27,7 @@ public class LottoController {
     private Lottos buyLotto(){
         try {
             budget = Budget.from(InputView.getBudgetInput());
-            lottoGenerator.setLottoGenerateStrategy(new UserLottoGenerateStrategy());
+            setLottoGeneratorStrategy(new UserLottoGenerateStrategy());
             Lottos userMultipleLottos = lottoGenerator.generateLottosByBudget(budget);
             OutputView.printUserLottos(userMultipleLottos, budget);
             return userMultipleLottos;
@@ -50,7 +51,7 @@ public class LottoController {
     private Lotto getWinningLotto(){
         try {
             InputView.printRequireWinningNumbersMessage();
-            lottoGenerator.setLottoGenerateStrategy(new WinningLottoGenerateStrategy());
+            setLottoGeneratorStrategy(new WinningLottoGenerateStrategy());
             return lottoGenerator.generateLotto();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -69,5 +70,9 @@ public class LottoController {
 
     private WinningStatistics makeStatistics(Lottos userLottos, WinningLotto winningLotto){
         return WinningStatistics.of(userLottos, winningLotto, budget);
+    }
+
+    public void setLottoGeneratorStrategy(LottoGenerateStrategy lottoGenerateStrategy) {
+        this.lottoGenerator.setLottoGenerateStrategy(lottoGenerateStrategy);
     }
 }

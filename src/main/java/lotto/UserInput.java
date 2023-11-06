@@ -73,11 +73,22 @@ public class UserInput {
 
     public static int getBonusNumber() {
         while (true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String input = Console.readLine();
-            input = input.trim();
-            int bonusNumber = Integer.parseInt(input);
-            return bonusNumber;
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                input = input.trim();
+                int bonusNumber = Integer.parseInt(input);
+                validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

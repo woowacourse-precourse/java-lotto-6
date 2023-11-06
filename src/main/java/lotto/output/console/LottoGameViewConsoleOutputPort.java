@@ -1,6 +1,6 @@
 package lotto.output.console;
 
-import lotto.common.LottoException;
+import lotto.domain.Lotto;
 import lotto.domain.LottoGrade;
 import lotto.domain.LottoTicket;
 import lotto.output.LottoGameViewOutputPort;
@@ -9,14 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoGameViewConsoleOutputPort implements LottoGameViewOutputPort {
-    @Override
-    public void printExceptionMessage(LottoException e) {
-        System.out.println(e.getMessage());
-    }
 
     @Override
-    public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+    public void printLottoCount(int lottoBoughtPrice) {
+        System.out.println(lottoBoughtPrice / Lotto.LOTTO_PRICE + "개를 구매했습니다.");
     }
 
     @Override

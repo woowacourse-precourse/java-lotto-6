@@ -17,7 +17,6 @@ public class LottoFactory {
                 Lotto.LOTTO_NUMBER_SIZE
         );
 
-        generatedNumbers.sort(Integer::compareTo);
         return new Lotto(generatedNumbers);
     }
 }

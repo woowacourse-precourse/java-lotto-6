@@ -11,7 +11,10 @@ public class LottoTicket {
         this.lottos = lottos;
     }
 
-    public Map<LottoGrade, Integer> getLottoStatistics(List<Integer> winningNumbers, int bonusNumber) {
+    public Map<LottoGrade, Integer> getLottoStatistics(LottoAnswer lottoAnswer) {
+        List<Integer> winningNumbers = lottoAnswer.lottoNumbers();
+        int bonusNumber = lottoAnswer.lottoBonusNumber();
+
         List<LottoMatchResult> matchResults = getMatchResults(winningNumbers, bonusNumber);
         return getStatistics(matchResults);
     }

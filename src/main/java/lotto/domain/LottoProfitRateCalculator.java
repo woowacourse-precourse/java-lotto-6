@@ -1,31 +1,45 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.Map;
 
 public class LottoProfitRateCalculator {
     private static final int PERCENT = 100;
 
-    public LottoProfitRate calculate(List<LottoGrade> lottoGrades) {
-        if (lottoGrades.isEmpty()) {
+    public LottoProfitRate calculate(Map<LottoGrade, Integer> statistics) {
+        if (isEmpty(statistics)) {
             return new LottoProfitRate(0);
         }
 
-        int totalWinningMoney = getTotalWinningMoney(lottoGrades);
-        int lottoBoughtPrice = getLottoBoughtPrice(lottoGrades);
+        int totalWinningMoney = getTotalWinningMoney(statistics);
+        int lottoBoughtPrice = getLottoBoughtPrice(statistics);
 
         return new LottoProfitRate(
                 getProfitRate(totalWinningMoney, lottoBoughtPrice)
         );
     }
 
-    private int getTotalWinningMoney(List<LottoGrade> lottoGrades) {
-        return lottoGrades.stream()
-                .mapToInt(LottoGrade::getWinningMoney)
+    private boolean isEmpty(Map<LottoGrade, Integer> statistics) {
+        if (statistics.isEmpty()) {
+            return true;
+        }
+
+        return statistics.keySet().stream()
+                .mapToInt(statistics::get)
+                .sum() == 0;
+    }
+
+    private int getTotalWinningMoney(Map<LottoGrade, Integer> statistics) {
+        return statistics.keySet()
+                .stream()
+                .mapToInt(lottoGrade -> lottoGrade.getWinningMoney() * statistics.get(lottoGrade))
                 .sum();
     }
 
-    private int getLottoBoughtPrice(List<LottoGrade> lottoGrades) {
-        return lottoGrades.size() * Lotto.LOTTO_PRICE;
+    private int getLottoBoughtPrice(Map<LottoGrade, Integer> statistics) {
+        return statistics.keySet()
+                .stream()
+                .mapToInt(lottoGrade -> Lotto.LOTTO_PRICE * statistics.get(lottoGrade))
+                .sum();
     }
 
     private double getProfitRate(int totalWinningMoney, int lottoBoughtPrice) {

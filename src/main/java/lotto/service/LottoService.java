@@ -50,4 +50,8 @@ public class LottoService {
     public List<String> getWinningStatistics() {
         return ResultWinning.makeResult(dto.getWinningStatistics());
     }
+
+    public String calculateEarningRate() {
+        return MakeEarningResult.calRate(dto.calculateEarningRate(), dto.getMoney());
+    }
 }

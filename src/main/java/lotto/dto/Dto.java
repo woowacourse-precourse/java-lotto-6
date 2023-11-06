@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import java.util.List;
+import lotto.domain.EarningRate;
 import lotto.domain.LottoTickets;
 import lotto.domain.LuckyNumbers;
 import lotto.domain.WinningStatistics;
@@ -9,6 +10,7 @@ public class Dto {
     private LuckyNumbers luckyNumbers;
     private LottoTickets lottoTickets;
     private WinningStatistics winningStatistics = new WinningStatistics();
+    private EarningRate earningRate = new EarningRate();
     private List<Integer> numbers;
     private int bonus;
 
@@ -18,6 +20,10 @@ public class Dto {
 
     public LottoTickets getLottoTickets() {
         return lottoTickets;
+    }
+
+    public int getMoney() {
+        return lottoTickets.getMoney();
     }
 
     public void setMoney(int money) {
@@ -42,5 +48,9 @@ public class Dto {
 
     public List<Integer> getWinningStatistics() {
         return winningStatistics.getWinningStatistics();
+    }
+
+    public long calculateEarningRate() {
+        return earningRate.calculateEarningRate(winningStatistics.getWinningStatistics());
     }
 }

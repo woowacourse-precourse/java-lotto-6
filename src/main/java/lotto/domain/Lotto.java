@@ -21,6 +21,10 @@ public class Lotto {
         lottoValidator.checkDuplicateWinningNumbers(numbers);
     }
 
+    public List<Integer> getLotto() {
+        return numbers;
+    }
+
     public int matchSameNumberNum(Lotto lotto) {
         int sameNumberNum = (int) numbers.stream()
                 .filter(number -> lotto.hasSameNumber(number))

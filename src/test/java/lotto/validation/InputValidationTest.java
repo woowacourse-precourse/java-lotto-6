@@ -112,4 +112,52 @@ public class InputValidationTest {
         }
     }
 
+    @Nested
+    class 보너스번호_입력_예외_테스트{
+
+        public String bonusNumber;
+
+        @Test
+        void 보너스번호_빈_입력_예외_확인() {
+            bonusNumber = "";
+            assertThatThrownBy(
+                () -> inputValidation.validateBonusNumberInput(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("값을 입력하세요.");
+        }
+
+        @Test
+        void 보너스번호_문자_입력_예외_확인() {
+            bonusNumber = "abc";
+            assertThatThrownBy(() -> inputValidation.validateBonusNumberInput(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("입력값은 정수여야 합니다.");
+        }
+
+        @Test
+        void 보너스번호_숫자_범위_초과_예외_확인() {
+            bonusNumber = "50";
+            assertThatThrownBy(() -> inputValidation.validateBonusNumberInput(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("입력값은 1에서 45 사이의 정수여야 합니다.");
+        }
+
+        @Test
+        void 보너스번호_숫자_범위_미만_예외_확인() {
+            bonusNumber = "0";
+            assertThatThrownBy(() -> inputValidation.validateBonusNumberInput(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("입력값은 1에서 45 사이의 정수여야 합니다.");
+        }
+
+        @Test
+        void 보너스번호_중복_예외_확인() {
+            bonusNumber = "5";
+            assertThatThrownBy(() -> inputValidation.validateBonusNumberInput(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 숫자는 선택한 로또 번호와 중복될 수 없습니다.");
+        }
+
+    }
 }
+

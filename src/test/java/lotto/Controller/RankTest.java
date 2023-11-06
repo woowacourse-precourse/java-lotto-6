@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Controller;
 
 import lotto.controller.Rank;
 import org.assertj.core.api.Assertions;

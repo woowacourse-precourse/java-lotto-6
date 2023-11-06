@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Controller;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

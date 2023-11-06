@@ -15,6 +15,7 @@ public class OutputView {
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }
+
     private static void printNumberOfPurchasedLottoTickets(int numberOfTickets) {
         System.out.printf("%d개를 구매했습니다.%n", numberOfTickets);
     }
@@ -28,9 +29,10 @@ public class OutputView {
     public static void printWinningResults(WinningResult winningResult) {
         // TODO : 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
         DecimalFormat formatter = new DecimalFormat("###,###");
-        for(Rank rank : Rank.values()) {
+
+        for (Rank rank : Rank.valuesByReverseOrder()) {
             System.out.printf("%s개 일치", rank.getMatchedCount());
-            if(rank.containsBonus()) {
+            if (rank.containsBonus()) {
                 System.out.print(", 보너스 볼 일치");
             }
             System.out.printf(" (%s원)", formatter.format(rank.getWinningAmount()));

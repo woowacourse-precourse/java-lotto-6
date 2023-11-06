@@ -3,7 +3,7 @@ package lotto.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class LottoGame {
     private Long id;
     private List<Lotto> lottos = new ArrayList<>();
 

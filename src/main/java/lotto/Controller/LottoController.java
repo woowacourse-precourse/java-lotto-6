@@ -19,8 +19,8 @@ public class LottoController {
 
     public int requestLottoPurchaseAmount() {
         System.out.printf(REQUEST_LOTTO_PURCHASE_AMOUNT, SEPARATED_LOTTO_PRICE);
-        String userInputAmount = Console.readLine();
-        int purchaseAmount = Integer.parseInt(userInputAmount);
+        String userInput = Console.readLine();
+
 
     }
 }

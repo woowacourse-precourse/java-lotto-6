@@ -1,9 +1,6 @@
 package lotto.utils;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.Lottos;
-import lotto.domain.Player;
+import lotto.domain.*;
 import lotto.enums.Ranking;
 
 import java.math.BigDecimal;

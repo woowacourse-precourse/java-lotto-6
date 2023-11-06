@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.utils.Reader;
-import lotto.utils.Writer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,44 +8,49 @@ import java.util.List;
 public class Prompter {
     private static final String REGEX = ",";
     private static final int NO_LIMIT = -1;
+    private final Messenger messenger;
+
+    public Prompter(Messenger messenger) {
+        this.messenger = messenger;
+    }
 
     public Money promptMoney() {
         try {
-            Writer.promptMoney();
+            messenger.promptMoney();
             Money money = new Money(readInteger());
-            Writer.newLine();
+            messenger.newLine();
             return money;
         } catch (IllegalArgumentException e) {
-            Writer.invalidMoneyError();
-            Writer.newLine();
+            messenger.invalidMoneyError();
+            messenger.newLine();
             return promptMoney();
         }
     }
 
     public WinningLotto promptWinningLotto() {
         try {
-            Writer.promptWinningNumbers();
+            messenger.promptWinningNumbers();
             List<Integer> winningNumbers = readIntegerList(REGEX, NO_LIMIT);
             Lotto lotto = new Lotto(winningNumbers);
-            Writer.newLine();
+            messenger.newLine();
             return promptBonusNumber(lotto);
         } catch (IllegalArgumentException e) {
-            Writer.invalidWinningNumbersError();
-            Writer.newLine();
+            messenger.invalidWinningNumbersError();
+            messenger.newLine();
             return promptWinningLotto();
         }
     }
 
     private WinningLotto promptBonusNumber(Lotto lotto) {
         try {
-            Writer.promptBonusNumber();
+            messenger.promptBonusNumber();
             int bonusNumber = readInteger();
             WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-            Writer.newLine();
+            messenger.newLine();
             return winningLotto;
         } catch (IllegalArgumentException e) {
-            Writer.invalidBonusNumberError();
-            Writer.newLine();
+            messenger.invalidBonusNumberError();
+            messenger.newLine();
             return promptBonusNumber(lotto);
         }
     }

@@ -1,30 +1,33 @@
 package lotto.domain;
 
 import lotto.enums.Ranking;
-import lotto.utils.MessageBuilder;
 import lotto.utils.StateChecker;
-import lotto.utils.Writer;
 
 import java.util.Map;
 
 public class Game {
     private final Prompter prompter;
     private final LottoMachine lottoMachine;
+    private final Messenger messenger;
     private Player player;
     private WinningLotto winningLotto;
+    private LottoResult lottoResult;
 
-    public Game(Prompter prompter, LottoMachine lottoMachine) {
+    public Game(Prompter prompter, LottoMachine lottoMachine, Messenger messenger) {
         this.prompter = prompter;
         this.lottoMachine = lottoMachine;
+        this.messenger = messenger;
     }
 
     public void joinPlayer() {
         Money money = prompter.promptMoney();
         Lottos lottos = lottoMachine.issueLottos(money);
-
         player = new Player(money, lottos);
+    }
 
-        Writer.print(MessageBuilder.build(player));
+    public void printIssuedLottos() {
+        StateChecker.checkNullState(player);
+        messenger.print(player);
     }
 
     public void generateWinningLotto() {
@@ -35,8 +38,12 @@ public class Game {
     public void calculateResult() {
         StateChecker.checkNullState(player, winningLotto);
 
-        Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player.getLottos(), winningLotto);
-        LottoResult lottoResult = new LottoResult(rankingCounts);
-        Writer.print(MessageBuilder.build(player, lottoResult));
+        Map<Ranking, Integer> rankingCounts = lottoMachine.rank(player, winningLotto);
+        lottoResult = new LottoResult(rankingCounts);
+    }
+
+    public void printResult() {
+        StateChecker.checkNullState(player, winningLotto, lottoResult);
+        messenger.print(player, lottoResult);
     }
 }

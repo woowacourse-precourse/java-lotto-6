@@ -21,14 +21,14 @@ public class LottoMachine {
         return new Lottos(List.copyOf(lottos));
     }
 
-    public Map<Ranking, Integer> rank(Lottos lottos, WinningLotto winningLotto) {
+    public Map<Ranking, Integer> rank(Player player, WinningLotto winningLotto) {
         Map<Ranking, Integer> rankingCounts = new EnumMap<>(Ranking.class);
         Arrays.stream(Ranking.values()).forEach(key -> rankingCounts.put(key, 0));
 
         Lotto winningNumbers = winningLotto.getLotto();
         int bonusNumber = winningLotto.getBonusNumber();
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : player.getLottos()) {
             int corrects = lotto.findCorrects(winningNumbers);
             boolean bonus = lotto.contains(bonusNumber);
             Ranking ranking = Ranking.findRanking(corrects, bonus);

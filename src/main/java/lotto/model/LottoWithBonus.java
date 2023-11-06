@@ -11,8 +11,12 @@ public class LottoWithBonus {
         this.bonus = bonus;
     }
 
-    public boolean bonusMatches(Integer number) {
-        return bonus.equals(number);
+    public Boolean checkBonusNumberOf(Lotto another) {
+        return another.containsNumber(bonus);
+    }
+
+    public Long countSameNumbers(Lotto another) {
+        return another.countSameNumbers(this.lotto);
     }
 
     @Override

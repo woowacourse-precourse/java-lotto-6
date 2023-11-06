@@ -1,10 +1,14 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
+import lotto.model.LottoComparator;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoResult;
 import lotto.model.LottoWithBonus;
 import lotto.model.Money;
 import lotto.util.Message;
@@ -30,7 +34,8 @@ public class LottoController {
         List<Lotto> randomLotto = makeRandomLotto(money);
         printGeneratedLotto(randomLotto);
         Lotto winningLotto = requestWinningLotto();
-        LottoWithBonus bonusNumber = requestBonusNumberOf(winningLotto);
+        LottoWithBonus winningLottoWithBonus = requestBonusNumberOf(winningLotto);
+        Map<LottoResult, Integer> allResult = compareLotto(winningLottoWithBonus, randomLotto);
     }
 
     Money requestMoney() {
@@ -81,5 +86,17 @@ public class LottoController {
                 outputView.printError(e.getMessage());
             }
         }
+    }
+
+    Map<LottoResult, Integer> compareLotto(LottoWithBonus answer, List<Lotto> randomLotto) {
+        Map<LottoResult, Integer> allResult = new LinkedHashMap<>();
+        for (LottoResult init : LottoResult.values()) {
+            allResult.put(init, 0);
+        }
+        for (Lotto lotto : randomLotto) {
+            LottoResult result = LottoComparator.getPlace(answer, lotto);
+            allResult.put(result, allResult.get(result) + 1);
+        }
+        return allResult;
     }
 }

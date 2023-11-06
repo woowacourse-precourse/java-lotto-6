@@ -22,7 +22,7 @@ public class LottoValidationTest {
     void createValueByUnderThousand() {
         int input = 900;
 
-        assertThatThrownBy(() -> LottoValidation.validateOverThousandUnit(input))
+        assertThatThrownBy(() -> LottoValidation.validateOverStandardUnit(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 최소 1000원입니다.");
     }
@@ -32,7 +32,7 @@ public class LottoValidationTest {
     void createValueByInDivisible() {
         int input = 4400;
 
-        assertThatThrownBy(() -> LottoValidation.validateIsThousandUnit(input))
+        assertThatThrownBy(() -> LottoValidation.validateIsStandardUnit(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }

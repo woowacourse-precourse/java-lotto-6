@@ -83,10 +83,10 @@
 
 ### View
 1. InputView
-  - [] 예외발생시 오류 출력 및 재입력
+  - [x] 예외발생시 오류 출력 및 재입력
     - [x] 구입금액 입력 메시지
     - [x] 당첨번호 입력 메시지
-    - [] 보너스번호 입력 메시지
+    - [x] 보너스번호 입력 메시지
 
 2. OutputView
    - [x] 로또 구매 수 메시지
@@ -97,7 +97,7 @@
 ### Controller
 1. LottoController
    - [x] 로또 게임시작
-   - [] 게임 종료
+   - [x] 게임 종료
 
 ### Validation
 1. InputValidation

@@ -1,21 +1,10 @@
 package lotto.service;
 
 import lotto.model.LottoCondition;
-import lotto.model.Lottos;
+public class PaymentService {
+    private final int lottoPrice = LottoCondition.LOTTO_PRICE.getNumber();
 
-public class Payment {
-    private Lottos lottos;
-    private final int price;
-    private int lottoCount;
-
-    public Payment(int price) {
-        this.price = price;
+    public int getLottoCount(int totalPrice) {
+        return totalPrice / lottoPrice;
     }
-
-    private void payment(int price) {
-        lottoCount = price / LottoCondition.UNIT.getNumber();
-        this.lottos = new Lottos(lottoCount);
-    }
-
-
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.DisplayLottoController;
 import lotto.controller.RegisterBonusController;
 import lotto.controller.RegisterLottoController;
 import lotto.controller.RegisterUserMoneyController;
@@ -21,13 +22,17 @@ public class LottoApplication {
     void run() {
         // Controller 에서 원하는 객체를 반환하는 구간이다
         UserMoney userMoney = registerUserMoney();
+        displayGeneratedLotto(userMoney);
         Lotto lotto = registerUserLotto();
-
 
     }
 
     private UserMoney registerUserMoney() {
         return new RegisterUserMoneyController(lottoRepository, lottoScreen).process();
+    }
+
+    private void displayGeneratedLotto(UserMoney userMoney) {
+        new DisplayLottoController(userMoney, lottoRepository, lottoScreen);
     }
 
     private Lotto registerUserLotto() {

@@ -43,7 +43,7 @@ class LottoTest {
     	
     }
     
-    @DisplayName("1000단위당 한개씩 있는 로또 객체 리스트 생성 테스트")
+    @DisplayName("1000단위당 한개씩 있는 로또 객체 리스트 생성 메소드 테스트")
     @Test
     void shouldCreateOneLottoPerThousandUnits() {
     	int testThousand = 6100;

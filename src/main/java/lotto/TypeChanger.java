@@ -17,6 +17,7 @@ public class TypeChanger {
 
 
     public List<String> stringToListWithComma(String numbers) {
+        numbers = numbers.replace(" ", "");
         return List.of(numbers.split(","));
     }
 

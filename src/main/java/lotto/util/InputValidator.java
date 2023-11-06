@@ -8,6 +8,9 @@ import lotto.exception.ErrorMessage;
 
 public class InputValidator {
 
+    private InputValidator() {
+    }
+
     public static void validateNumberType(String number) {
         try {
             Integer.parseInt(number);

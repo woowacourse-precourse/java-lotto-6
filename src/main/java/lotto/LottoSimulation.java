@@ -42,6 +42,9 @@ public class LottoSimulation {
                 if (e.getMessage().equals(LOTTO_NUMBER_ERROR_MESSAGE)) {
                     outputView.printMessage(LOTTO_NUMBER_ERROR_MESSAGE);
                 }
+                if (e.getMessage().equals(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE)) {
+                    outputView.printMessage(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+                }
             }
         }
     }

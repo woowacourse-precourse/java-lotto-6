@@ -1,6 +1,8 @@
 package lotto.io.views;
 
 import java.util.List;
+import java.util.Map;
+import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.Lotto;
 import lotto.io.Input;
 import lotto.io.Output;
@@ -20,7 +22,7 @@ public class LottoGameView {
         }
     }
 
-    public void showPurchaseLottos(List<Lotto> purchaseLottos) {
+    public void announcePurchaseLottos(List<Lotto> purchaseLottos) {
         Output.consoleLine();
         Output.consoleLine(purchaseLottos.size() + "개를 구매했습니다.");
         for (Lotto purchaseLotto : purchaseLottos) {
@@ -78,6 +80,24 @@ public class LottoGameView {
                 System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
         }
+    }
+
+    public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<Lotto>> prizeListMap) {
+        Output.consoleLine();
+        Output.consoleLine("당첨 통계");
+        Output.consoleLine("---");
+        long totalPrizeMoney = 0L;
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.LOST) {
+                continue;
+            }
+            List<Lotto> prizeLottos = prizeListMap.getOrDefault(prize, List.of());
+            System.out.println(prize.message() + " - " + prizeLottos.size() + "개");
+            totalPrizeMoney += prize.money() * prizeLottos.size();
+        }
+
+        double result = (double) Math.round(((double) totalPrizeMoney / purchaseAmount) * 1_000) / 10;
+        Output.consoleLine("총 수익률은 " + result + "%입니다.");
     }
 
 }

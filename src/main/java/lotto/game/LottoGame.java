@@ -4,17 +4,17 @@ import java.util.List;
 import lotto.collaboration.lottos.Lotto;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
-import lotto.io.lottos.LottosRandoms;
+import lotto.io.Randoms;
 import lotto.io.views.LottoGameView;
 
 public class LottoGame {
 
     private final LottoGameView lottoGameView;
-    private final LottosRandoms lottosRandoms;
+    private final Randoms randoms;
 
-    public LottoGame(LottoGameView lottoGameView, LottosRandoms lottosRandoms) {
+    public LottoGame(LottoGameView lottoGameView, Randoms randoms) {
         this.lottoGameView = lottoGameView;
-        this.lottosRandoms = lottosRandoms;
+        this.randoms = randoms;
     }
 
     public void run() {
@@ -31,8 +31,8 @@ public class LottoGame {
             }
         }
 
-        List<Lotto> buyLottos = lottos.make(lottosRandoms);
-        lottoGameView.showPurchaseLottos(buyLottos);
+        List<Lotto> buyLottos = lottos.make(randoms);
+        lottoGameView.announcePurchaseLottos(buyLottos);
 
         // TODO : winningNumbers와 bonusNumber는 아무리 봐도 하나의 타입이다.. 두 행동을 하나로 묶는 리팩토링을 수행하면 좋겠다.
         List<Integer> winningNumbers;
@@ -50,7 +50,8 @@ public class LottoGame {
             }
         }
 
-        winningLotto.match(buyLottos);
+        lottoGameView.announceWinningStatistics(purchaseAmount,
+                winningLotto.matchNumbers(buyLottos));
     }
 
 }

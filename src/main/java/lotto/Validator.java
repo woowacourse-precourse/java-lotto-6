@@ -59,7 +59,7 @@ public class Validator {
         }
     }
 
-    private static void validateNumberInRange(int number){
+    public static void validateNumberInRange(int number){
         if(number < minimumLottoNumber || number > maximumLottoNumber){
             throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER);
         }

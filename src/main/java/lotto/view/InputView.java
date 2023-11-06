@@ -3,15 +3,15 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Message;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
-import static lotto.Message.WinningNumbersMessage;
-import static lotto.Message.purchaseAmountMessage;
+import static lotto.Message.*;
 import static lotto.Validator.*;
 
 public class InputView {
 
-    public int enterPurchaseAmount(){
+    public int inputPurchaseAmount(){
         System.out.println(purchaseAmountMessage);
         String input = Console.readLine();
 
@@ -23,7 +23,7 @@ public class InputView {
         return amount;
     }
 
-    public List<Integer> enterWinningNumber(){
+    public List<Integer> inputWinningNumber(){
         System.out.println(WinningNumbersMessage);
         String input = Console.readLine();
 
@@ -34,7 +34,18 @@ public class InputView {
         return numbers;
     }
 
+    public void inputBonusNumber(List<Integer> winningNumbers){
+        System.out.println(BonusNumberMessage);
+        String input = Console.readLine();
 
+        validateNotEmptyInput(input);
+        int bonusNumber = validateInputIsNumeric(input);
+        validatePositiveNumber(bonusNumber);
+        validateNumberInRange(bonusNumber);
+        winningNumbers.add(bonusNumber);
+        validateComposedOfUniqueNumbers(winningNumbers);
+
+    }
 
 
 

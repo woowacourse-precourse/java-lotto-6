@@ -1,9 +1,10 @@
 package lotto;
 
-import static lotto.Output.PurchaseOutputHandler.purchase;
+import lotto.Output.PurchaseResultHandler;
 
 public class Application {
     public static void main(String[] args) {
-        purchase();
+//        int userPurchase = PurchaseResultHandler.purchaseRequest();
+//        System.out.println(userPurchase);
     }
 }

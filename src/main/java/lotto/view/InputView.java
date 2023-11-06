@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Payment;
 
@@ -34,9 +35,22 @@ public class InputView {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 return new Lotto(winningNumbers);
-            }  catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println(IS_LOTTO_NUMBER_DIGIT.getMessage());
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public BonusNumber inputBonusNumber() {
+        System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+        while (true) {
+            try {
+                return new BonusNumber(parseInt(Console.readLine()));
+            } catch (NumberFormatException e) {
+                System.out.println(IS_LOTTO_NUMBER_DIGIT.getMessage());
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import static lotto.constant.LottoNumber.LOTTO_NUMBER_LENGTH;
-
 import java.util.List;
 import lotto.util.Util;
 
-public class Lotto {
+public class Lotto extends Validation {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,20 +12,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        checkLottoLength(numbers);
-        checkDuplicateNumber(numbers);
-    }
-
-    private void checkLottoLength(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_LENGTH.getNumber()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkDuplicateNumber(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != LOTTO_NUMBER_LENGTH.getNumber()) {
-            throw new IllegalArgumentException();
-        }
+        checkNumbersLength(numbers);
+        checkNumbersDuplicate(numbers);
     }
 
     public int countMatchingNumbers(Lotto winningLotto) {

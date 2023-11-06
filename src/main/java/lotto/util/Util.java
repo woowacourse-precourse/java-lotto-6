@@ -13,7 +13,7 @@ public final class Util {
     }
 
     public static float calculateYield(float beforeMoney, float totalMoney){
-        return (totalMoney) / beforeMoney * 100;
+        return (totalMoney) / beforeMoney * 100-100;
     }
 
     public static String makeFloatFormattedYield(float target, int precision){

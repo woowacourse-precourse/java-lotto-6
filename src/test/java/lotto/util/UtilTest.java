@@ -20,7 +20,7 @@ class UtilTest {
                 "1500000, 1500000, 100"
         })
         void 수익률을_잘_계산하는지_테스트(float before, float after, float expected){
-            Assertions.assertThat(Util.calculateYield(before, after)).isEqualTo(expected);
+            Assertions.assertThat(Util.calculateYield(before, before+after)).isEqualTo(expected);
         }
     }
 

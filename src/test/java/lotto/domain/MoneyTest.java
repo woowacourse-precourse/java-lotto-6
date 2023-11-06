@@ -78,5 +78,28 @@ public class MoneyTest {
                 .hasMessageContaining("1000의 배수인 숫자가 필요합니다.");
     }
 
+    @Test
+    public void 금액_값이동일하면_true() {
+        // Given
+        Money money1 = Money.create(1000);
+
+        // When
+        boolean result = money1.isSameAmount(1000);
+
+        // Then
+        assertTrue(result);
+    }
+
+    @Test
+    public void 금액_값이다르면_false() {
+        // Given
+        Money money1 = Money.create(1000);
+
+        // When
+        boolean result = money1.isSameAmount(2000);
+
+        // Then
+        assertFalse(result);
+    }
 
 }

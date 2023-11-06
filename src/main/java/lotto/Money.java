@@ -13,4 +13,8 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 이루어져야 합니다.");
         }
     }
+
+    public Integer getLottoCount() {
+        return money / 1000;
+    }
 }

@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         Money money = inputMoney();
+        int count = money.getLottoCount();
+
         Lotto input_lotto = inputLotto();
         BonusLotto bonus_lotto = inputBonusLotto(input_lotto);
     }

@@ -18,4 +18,8 @@ public enum SystemConstant {
     public int getValue() {
         return value;
     }
+
+    public long getValueToLong() {
+        return value;
+    }
 }

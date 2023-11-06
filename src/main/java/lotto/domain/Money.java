@@ -65,6 +65,6 @@ public class Money {
     private long getProfit(WinningStats winningStats) {
         return winningStats.stream()
                 .map(WinningStat::getProfit)
-                .reduce(0L, Long::sum);
+                .reduce(SystemConstant.NOTHING.getValueToLong(), Long::sum);
     }
 }

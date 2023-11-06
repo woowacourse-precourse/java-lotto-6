@@ -33,9 +33,6 @@ public class LottoStore {
     public WinningLotto issueWinningLotto(final List<Integer> numbers, final int bonusNumber) {
         Lotto lotto = lottoMachine.createLotto(numbers);
         LottoNumber bonus = lottoMachine.createLottoNumber(bonusNumber);
-        if (lotto.contains(bonus)) {
-            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMassage());
-        }
         return new WinningLotto(lotto, bonus);
     }
 }

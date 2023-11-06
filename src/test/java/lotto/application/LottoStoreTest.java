@@ -55,20 +55,4 @@ class LottoStoreTest {
         assertThat(winningLotto.lotto()).isEqualTo(lottoFixture);
         assertThat(winningLotto.bonus()).isEqualTo(bonusFixture);
     }
-
-    @Test
-    void 당첨_로또_번호와_보너스_번호가_중복될_경우_예외가_발생한다() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lottoFixture = lottoFixture(numbers);
-        doReturn(lottoFixture).when(lottoMachine).createLotto(any());
-        int bonusNumber = 6;
-        LottoNumber bonusFixture = lottoNumberFixture(bonusNumber);
-        doReturn(bonusFixture).when(lottoMachine).createLottoNumber(anyInt());
-
-        // when & then
-        assertThatThrownBy(() -> lottoStore.issueWinningLotto(numbers, bonusNumber))
-                .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessage(DUPLICATE_BONUS_NUMBER.getMassage());
-    }
 }

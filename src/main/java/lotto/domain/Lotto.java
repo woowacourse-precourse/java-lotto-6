@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        isNotDuplicated(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +19,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void isNotDuplicated(List<Integer> numbers) {
+        HashMap<Integer, Boolean> duplication = new HashMap<>();
+
+        for (Integer number : numbers) {
+            if (duplication.containsKey(number)) {
+                throw new IllegalArgumentException();
+            }
+
+            duplication.put(number, true);
+        }
+    }
 }

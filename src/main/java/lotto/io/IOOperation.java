@@ -20,10 +20,8 @@ public class IOOperation {
                 System.out.println(e.getMessage());
                 continue;
             }
-
             break;
         }
-
         return price;
     }
 
@@ -34,17 +32,12 @@ public class IOOperation {
         while (true) {
             try {
                 String input = Console.readLine();
-                Arrays.asList(input.split(","))
-                        .forEach((value) -> {
-                            winningNumbers.add(Integer.parseInt(value));
-                        });
-
+                Arrays.asList(input.split(",")).forEach((value) -> {winningNumbers.add(Integer.parseInt(value));});
                 Checker.winningSix(winningNumbers);
                 Checker.winningInRange(winningNumbers);
                 Checker.winningNotDuplicated(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-
                 continue;
             }
             break;
@@ -63,12 +56,10 @@ public class IOOperation {
                 Checker.winningAndBonusNotDuplicated(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-
                 continue;
             }
             break;
         }
-
         return bonusNumber;
     }
 }

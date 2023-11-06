@@ -12,6 +12,15 @@ public class RankDeterminer {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<LottoRank> determineAllRank(List<Lotto> userLottos) {
+        List<LottoRank> rankResult = new ArrayList<>();
+        for (Lotto lotto : userLottos) {
+            rankResult.add(determineEachRank(lotto));
+        }
+
+        return rankResult;
+    }
+
     private LottoRank determineEachRank(Lotto lotto) {
         int matchingCount = lotto.countMatchingNumbers(winningLotto);
         boolean isSameBonus = lotto.isContainBonusNumber(bonusNumber.getBonusNumber());

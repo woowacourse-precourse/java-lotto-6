@@ -4,19 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Checker {
-    private static final Integer WINNING_COUNT = 6;
-    private static final Integer UNIT = 1000;
-    private static final Integer MINIMUM_RANGE = 1;
-    private static final Integer MAXIMUM_RANGE = 45;
-
     public static void priceCorrect(Integer price) {
-        if (price % UNIT != 0) {
+        if (price % LottoInfo.PRICE_UNIT.number() != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
         }
     }
 
     public static void winningSix(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != WINNING_COUNT) {
+        if (winningNumbers.size() != LottoInfo.NUMBER_COUNT.number()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
@@ -42,7 +37,7 @@ public class Checker {
     }
 
     private static Boolean inRange(Integer number) {
-        if (MINIMUM_RANGE <= number && number <= MAXIMUM_RANGE) {
+        if (LottoInfo.MIN_NUMBER.number() <= number && number <= LottoInfo.MAX_NUMBER.number()) {
             return true;
         }
 

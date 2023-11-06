@@ -24,7 +24,6 @@ public class LottoController {
     }
 
     private PurchaseAmount createPurchaseAmount() {
-        View.requestPurchaseAmount();
         return PurchaseAmount.from(InputService.number());
     }
 

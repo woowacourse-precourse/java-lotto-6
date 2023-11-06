@@ -37,7 +37,7 @@ public class LottoService {
     }
 
     public WinningLottoRepository createWinningNumber(){
-        View.requestWinningNumber();
+
         Lotto lotto = new Lotto(InputService.winningNumbers());
 
         View.requestBonusNumber();

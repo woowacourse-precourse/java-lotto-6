@@ -15,7 +15,7 @@ public class Lotto {
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
-
+    // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> numbers) {
         int uniqueSize = numbers.stream().distinct().toList().size();
         if(numbers.size() != uniqueSize){
@@ -71,5 +71,7 @@ public class Lotto {
         return 0;
     }
 
-    // TODO: 추가 기능 구현
+    public boolean has(int bonusNum){
+        return numbers.contains(bonusNum);
+    }
 }

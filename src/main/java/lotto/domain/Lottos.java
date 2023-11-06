@@ -20,6 +20,6 @@ public class Lottos {
     }
 
     public List<Integer> purchaseLottoNumber(){
-        return lotto.getNumbers();
+        return lotto.lottoNumbers();
     }
 }

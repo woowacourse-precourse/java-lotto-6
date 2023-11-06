@@ -18,7 +18,7 @@ public class Bonus {
 
     private int drawBonusNumber(Lotto lotto) {
         while (true) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> lottoNumbers = lotto.lottoNumbers();
             int number = Randoms.pickUniqueNumbersInRange(1, 45, 1).get(0);
             if (!lottoNumbers.contains(number)) {
                 return number;

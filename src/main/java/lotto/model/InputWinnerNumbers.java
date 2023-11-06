@@ -43,9 +43,9 @@ public class InputWinnerNumbers extends InputList<Integer> {
     private boolean notLottoNumbers() {
         for (Integer number:list) {
             if (number < 1 || number > 45) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

@@ -42,7 +42,10 @@ public class InputValidation {
     public boolean isNumberAndCommaOnly(String numbers) {
         return numbers.matches(COMMA_REG_EXP);
     }
-
+    // 6자리 인지
+    public boolean isNumbersLength(List<Integer> numbers) {
+        return numbers.size() == 6;
+    }
     // 중복된 숫자 검사
     public void isDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {

@@ -30,6 +30,19 @@ public class LottoController {
             }
         }
     }
+    private int getValidPurchaseAmount() {
+        int purchaseAmount;
+        while (true) {
+            try {
+                purchaseAmount = lottoView.inputMoney();
+                validatePurchaseAmount(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchaseAmount;
+    }
 
     public void runMachine(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;

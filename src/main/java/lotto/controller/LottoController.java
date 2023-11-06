@@ -60,6 +60,15 @@ public class LottoController {
         return new LottoResultsDTO(lottoStatistics, winningAmount, lottoResults.size());
     }
 
+    private Lottos createLottosFromAmount() {
+        List<Lotto> lottoNumbers = new ArrayList<>();
+        for (int i = 0; i < buyAmount.getAbleToBuyCount(); i++) {
+            Lotto lotto = new Lotto(lottoNumberGenerator.generateNumber());
+            lottoNumbers.add(lotto);
+        }
+        return new Lottos(lottoNumbers);
+    }
+
     private long calculateTotalWinningAmount(Map<LottoResults, Integer> lottoStatistics) {
         long totalAmount = 0;
         for (LottoResults lottoResults : LottoResults.values()) {
@@ -68,14 +77,5 @@ public class LottoController {
             totalAmount += winningAmount * rankCount;
         }
         return totalAmount;
-    }
-
-    private Lottos createLottosFromAmount() {
-        List<Lotto> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < buyAmount.getAbleToBuyCount(); i++) {
-            Lotto lotto = new Lotto(lottoNumberGenerator.generateNumber());
-            lottoNumbers.add(lotto);
-        }
-        return new Lottos(lottoNumbers);
     }
 }

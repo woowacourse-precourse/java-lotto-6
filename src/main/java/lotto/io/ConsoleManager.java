@@ -12,23 +12,16 @@ public class ConsoleManager {
         System.out.println(e.getMessage());
     }
 
-    public long inputPurchasePrice() {
-        System.out.println("구입금액을 입력해 주세요.");
+    public Price inputPurchasePrice() {
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String inputPrice = Console.readLine();
 
-        String inputPrice = Console.readLine();
-
-        try {
-            long price = Long.parseLong(inputPrice);
-
-            if (price < 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 음수일 수 없습니다.");
-            } else if (price % 1_000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 천 단위여야 합니다.");
+            try {
+                return new Price(inputPrice);
+            } catch (IllegalArgumentException e) {
+                this.printError(e);
             }
-
-            return price;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }
     }
 

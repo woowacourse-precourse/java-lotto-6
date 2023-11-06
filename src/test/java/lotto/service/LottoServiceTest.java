@@ -1,15 +1,20 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.utils.RandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -81,6 +86,59 @@ class LottoServiceTest {
             lottoService.initBonusNumber(7);
             int bonusNumber = lottoService.getBonusNumber();
             assertThat(bonusNumber).isEqualTo(7);
+        }
+    }
+
+    @Nested
+    @DisplayName("LottoService.checkLottoResult 테스트")
+    class checkLottoResultTest {
+        @DisplayName("보너스 번호 유무와 맞힌 번호 개수로 당첨내역에 저장되었는지 검증한다.")
+        @ParameterizedTest
+        @CsvSource(value = {
+                "1,2,3,4,5,6:7:FIRST",
+                "1,2,3,4,5,8:6:SECOND",
+                "1,2,3,4,5,8:9:THIRD",
+                "1,2,3,4,7,8:9:FOURTH",
+                "1,2,3,7,8,9:10:FIFTH"
+        },delimiter = ':')
+        void 로또_순위_확인_테스트(String inputWinningNumbers,int inputBonusNumber,String expectedRank) {
+            // @CsvSource로 받은 값으로 당첨번호 초기화
+            String[] winningNumbers = inputWinningNumbers.split(",");
+            lottoService.initWinningNumbers(winningNumbers);
+
+            // @CsvSource로 받은 값으로 보너스번호 초기화
+            lottoService.initBonusNumber(inputBonusNumber);
+
+            // 1,2,3,4,5,6 으로 구성된 로또 1장 구매
+            when(randomNumberGenerator.uniqueNumbers()).thenReturn(List.of(1,2,3,4,5,6));
+            lottoService.purchase(1);
+
+            // 각 테스트 케이스 별로 등수가 맞는지 검증
+            HashMap<LottoRank, Integer> winningRankCount = lottoService.checkLottoResult();
+            Set<LottoRank> lottoRanks = winningRankCount.keySet();
+            lottoRanks.forEach(rank->assertThat(rank.name()).isEqualTo(expectedRank));
+        }
+
+        @DisplayName("당첨이 여러 번 됐을 때 당첨내역의 횟수가 증가하는지 검증한다.")
+        @ParameterizedTest
+        @CsvSource(value = {
+                "1,2,3,4,5,6:45",
+        },delimiter = ':')
+        void 여러번_당첨될경우_당첨횟수_검증 (String inputWinningNumbers,int inputBonusNumber) {
+            // @CsvSource로 받은 값으로 당첨번호 초기화
+            String[] winningNumbers = inputWinningNumbers.split(",");
+            lottoService.initWinningNumbers(winningNumbers);
+
+            // @CsvSource로 받은 값으로 보너스번호 초기화
+            lottoService.initBonusNumber(inputBonusNumber);
+
+            // 1등 당첨 번호로 로또를 5장 구매
+            when(randomNumberGenerator.uniqueNumbers()).thenReturn(List.of(1,2,3,4,5,6));
+            lottoService.purchase(5);
+
+            // 1등 당첨 횟수 검증
+            HashMap<LottoRank, Integer> winningRankCount = lottoService.checkLottoResult();
+            assertThat(winningRankCount.get(LottoRank.FIRST)).isEqualTo(5);
         }
     }
 }

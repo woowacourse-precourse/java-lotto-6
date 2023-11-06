@@ -25,7 +25,11 @@ public class OutputView {
 
     public static void printWinStatistics(double profit, EnumMap<Ranking, Integer> results) {
         System.out.println(WIN_ALARM_MESSAGE);
-        results.forEach((rank, count) -> System.out.println(formatRank(rank, count)));
+        System.out.println(formatRank(Ranking.FIFTH, results.get(Ranking.FIFTH)));
+        System.out.println(formatRank(Ranking.FOURTH, results.get(Ranking.FOURTH)));
+        System.out.println(formatRank(Ranking.THIRD, results.get(Ranking.THIRD)));
+        System.out.println(formatRank(Ranking.SECOND, results.get(Ranking.SECOND)));
+        System.out.println(formatRank(Ranking.FIRST, results.get(Ranking.FIRST)));
         System.out.println(MessageFormat.format(TOTAL_PROFIT_MESSAGE, String.format("%.1f", profit)));
     }
 

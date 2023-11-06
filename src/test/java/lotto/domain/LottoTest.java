@@ -53,7 +53,7 @@ class LottoTest {
 
     @DisplayName("로또 당첨결과 확인")
     @ParameterizedTest
-    @MethodSource("LottoAndResult")
+    @MethodSource("lottoAndResult")
     void compareLottoWithAnswer(Lotto target, WinningPrize result) {
         Lotto answerNumbers = new Lotto(List.of(17, 12, 9, 24, 36, 7));
         assertThat(target.compareWithAnswer(answerNumbers, 32)).isEqualTo(result);
@@ -74,7 +74,7 @@ class LottoTest {
         );
     }
 
-    static Stream<Arguments> LottoAndResult() {
+    static Stream<Arguments> lottoAndResult() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(13, 11, 8, 26, 3, 2)), null), // 0개
                 Arguments.of(new Lotto(List.of(13, 12, 8, 26, 3, 2)), null), // 1개

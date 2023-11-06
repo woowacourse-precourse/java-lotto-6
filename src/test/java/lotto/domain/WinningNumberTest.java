@@ -34,14 +34,14 @@ public class WinningNumberTest {
 
     @DisplayName("로또 당첨결과 확인")
     @ParameterizedTest
-    @MethodSource("LottoAndResult")
+    @MethodSource("lottoAndResult")
     void compareLottoWithAnswer(Lotto target, WinningPrize result) {
         Lotto answerNumbers = new Lotto(List.of(17, 12, 9, 24, 36, 7));
         WinningNumber answer = new WinningNumber(answerNumbers, 32);
         assertThat(answer.compareWithLotto(target)).isEqualTo(result);
     }
 
-    static Stream<Arguments> LottoAndResult() {
+    static Stream<Arguments> lottoAndResult() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(13, 11, 8, 26, 3, 2)), null), // 0개
                 Arguments.of(new Lotto(List.of(13, 12, 8, 26, 3, 2)), null), // 1개

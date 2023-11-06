@@ -13,7 +13,7 @@ public class Application {
     private static int isValidPurchaseAmount(int purchaseAmount) {
         try {
             if (purchaseAmount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액 단위를 1,000원(천원)단위로 입력하여 주세요!");
+                throw new IllegalArgumentException("[ERROR] 구입 금액 단위를 1,000원(천원)단위로 입력하여 주세요!!");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

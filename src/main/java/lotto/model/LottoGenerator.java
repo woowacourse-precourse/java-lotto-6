@@ -24,10 +24,21 @@ public class LottoGenerator {
         return new Lotto(numbers.stream().sorted().toList());
     }
 
+    public static LottoWithBonus generateLottoWithBonus(Lotto lotto, Integer bonus) {
+        validateRange(bonus);
+        validateDuplicate(lotto, bonus);
+        return new LottoWithBonus(lotto, bonus);
+    }
 
     private static void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().anyMatch(i -> Collections.frequency(numbers, i) > ONCE)) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_DUPLICATED.getMessage());
+        }
+    }
+
+    private static void validateDuplicate(Lotto lotto, Integer bonus) {
+        if (lotto.containsNumber(bonus)) {
+            throw new IllegalArgumentException(ErrorCode.BONUS_DUPLICATED.getMessage());
         }
     }
 
@@ -40,6 +51,12 @@ public class LottoGenerator {
     private static void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(i -> i < MIN || i > MAX)) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_ILLEGAL_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateRange(Integer bonus) {
+        if (bonus < MIN || bonus > MAX) {
+            throw new IllegalArgumentException(ErrorCode.BONUS_ILLEGAL_NUMBER.getMessage());
         }
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoWithBonus;
 import lotto.model.Money;
 import lotto.util.Message;
 import lotto.view.InputView;
@@ -19,19 +20,17 @@ public class LottoController {
         this.outputView = outputView;
     }
 
+    /*
+    TODO
+    결과계산하기();
+    출력하기(outputView);
+     */
     public void start() {
         Money money = requestMoney();
         List<Lotto> randomLotto = makeRandomLotto(money);
         printGeneratedLotto(randomLotto);
         Lotto winningLotto = requestWinningLotto();
-        /*
-        구입금액_입력받기(); --> inputView에서 받고, dto로 전달
-        로또번호추출();
-        당첨번호_입력받기();
-        보너스번호_입력받기();
-        결과계산하기(); --> 서비스 계층
-        출력하기(outputView);
-         */
+        LottoWithBonus bonusNumber = requestBonusNumberOf(winningLotto);
     }
 
     Money requestMoney() {
@@ -67,6 +66,17 @@ public class LottoController {
         while (true) {
             try {
                 return LottoGenerator.generateAnswerLotto(inputView.requestIntegers());
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    LottoWithBonus requestBonusNumberOf(Lotto winningLotto) {
+        outputView.printMessage(Message.REQUEST_BONUS_NUMBER);
+        while (true) {
+            try {
+                return LottoGenerator.generateLottoWithBonus(winningLotto, inputView.requestInteger());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

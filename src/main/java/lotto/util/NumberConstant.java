@@ -3,6 +3,7 @@ package lotto.util;
 public class NumberConstant {
     public static final Integer MONEY_STANDARD = 1000;
     public static final Integer MONEY_MAX = 100_000;
+
     public static final Integer MULTIPLY_STANDARD = 1000;
     public static final Double DIVIDE_STANDARD = 10.0;
 
@@ -23,6 +24,12 @@ public class NumberConstant {
     public static final Integer SECOND_NUMBER_NUM = 10;
     public static final Integer FIRST_NUMBER_NUM = 6;
     public static final Integer LOSE_NUMBER_NUM = 0;
+
+    public static final Integer FIFTH_NUM_KEY = 0;
+    public static final Integer FOURTH_NUM_KEY = 1;
+    public static final Integer THIRD_NUM_KEY = 2;
+    public static final Integer SECOND_NUM_KEY = 3;
+    public static final Integer FIRST_NUM_KEY = 4;
 
     private NumberConstant() {
     }

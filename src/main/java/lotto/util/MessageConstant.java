@@ -13,7 +13,7 @@ public class MessageConstant {
     public static final String SECOND_OUTPUT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n";
     public static final String FIRST_OUTPUT = "6개 일치 (2,000,000,000원) - %d개%n";
 
-    public static final String REVENUE_RATIO_OUTPUT = "총 수익률은 %f%%입니다.%n";
+    public static final String REVENUE_RATIO_OUTPUT = "총 수익률은 %f%%입니다.";
 
     public static final String DELIMITER = "---";
 

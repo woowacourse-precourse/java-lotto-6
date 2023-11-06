@@ -25,8 +25,14 @@ class Output {
         System.out.println(String.format(NUMBER_OF_LOTTOS, numberOfLottoes));
     }
 
-    static void printLottoSixNumbers(Lotto lotto) {
+    static void printLottoSixNumber(Lotto lotto) {
         System.out.println(lotto.getSixLottoNumbers());
+    }
+
+    static void printLottoSixNumbers(List<Lotto> lottos){
+        for (Lotto lotto : lottos) {
+            Output.printLottoSixNumber(lotto);
+        }
     }
 
     static void printLottoNumbersMessage() {

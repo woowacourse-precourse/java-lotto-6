@@ -1,7 +1,5 @@
 package lotto.domain.player;
 
-import static java.lang.Integer.parseInt;
-
 public class PurchaseAmount {
 
     private Integer purchaseAmount;
@@ -25,7 +23,7 @@ public class PurchaseAmount {
         }
     }
 
-    public int getLottoCount() {
+    public int getPurchasedLottoCount() {
         return this.purchaseAmount / 1000;
     }
 

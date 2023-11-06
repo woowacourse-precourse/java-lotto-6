@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static lotto.model.constant.LottoConfig.*;
@@ -15,24 +14,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int sameNumberCounter(Lotto lotto) {
-        return lotto.calculateSameNumberCount(numbers);
-    }
-
-    public boolean hasNumber(Integer number) {
-        return numbers.stream()
-                .anyMatch(num -> num.equals(number));
-    }
-
-    private int calculateSameNumberCount(List<Integer> numbers) {
+    public int sameNumberCounter(WinningNumbers winningNumbers) {
         return (int) numbers.stream()
-                .filter(this.numbers::contains)
+                .filter(winningNumbers::hasNumber)
                 .count();
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public boolean hasNumber(Integer number) {
+        return this.numbers.contains(number);
     }
 
     private void validateNumbersSizeIs6(List<Integer> numbers) {
@@ -64,5 +53,10 @@ public class Lotto {
     private static boolean isValidRange(List<Integer> numbers) {
         return numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER
         );
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

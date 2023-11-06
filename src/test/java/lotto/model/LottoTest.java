@@ -57,9 +57,9 @@ class LottoTest {
     void sameNumberCounterTest() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 40, 41));
+        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 10, 20), 40);
         // when
-        int count = lotto.sameNumberCounter(lotto1);
+        int count = lotto.sameNumberCounter(winningNumbers);
         // then
         Assertions.assertThat(count).isEqualTo(4);
 

@@ -20,12 +20,12 @@ public class GameController {
         buyer = Buyer.from(getInputPurchaseAmount());
         Service.buyLotteries(buyer);
         showPurchasedLotteries(buyer.getPurchasedLotto());
-        gameNumbers = GameNumbers.of(getInputWinningNumbers(), 0);
+        gameNumbers = GameNumbers.of(getInputWinningNumbers(), getInputBonusNumbers());
     }
 
     private int getInputPurchaseAmount() {
         InputMessage.inputPurchaseAmount();
-        return Integer.parseInt(Console.readLine());
+        return Util.stringToInt(Console.readLine());
     }
 
     private void showPurchasedLotteries(List<Lotto> lotteries) {
@@ -36,5 +36,10 @@ public class GameController {
     private List<Integer> getInputWinningNumbers() {
         InputMessage.inputWinningNumbers();
         return Util.splitInputNumbers(Console.readLine());
+    }
+
+    private int getInputBonusNumbers() {
+        InputMessage.inputBonusNumber();
+        return Util.stringToInt(Console.readLine());
     }
 }

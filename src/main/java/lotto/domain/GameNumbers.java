@@ -19,6 +19,7 @@ public class GameNumbers {
     public static GameNumbers of(List<Integer> winningNumbers, int bonusNumber) {
         validateListSize(winningNumbers);
         validateListDuplication(winningNumbers);
+        validateNumberInList(winningNumbers, bonusNumber);
         return new GameNumbers(winningNumbers, bonusNumber);
     }
 
@@ -41,6 +42,13 @@ public class GameNumbers {
         Set<Integer> set = new HashSet<>(winningNumbers);
         if (winningNumbers.size() != set.size()) {
             ErrorMessage.listDuplicationError();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateNumberInList(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            ErrorMessage.numberInListError(bonusNumber);
             throw new IllegalArgumentException();
         }
     }

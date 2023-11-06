@@ -1,9 +1,6 @@
 package controller;
 
-import domain.BonusNumber;
-import domain.Lotto;
-import domain.PurchaseAmount;
-import domain.PurchaseLottos;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -25,6 +22,7 @@ public class LottoController {
     private static int amount;
     private static List<Lotto> lotto;
     private static Lotto winningNumbers;
+    private static BonusNumber bonusNumber;
     public void playLotto(){
         try {
             purchaseLotto();
@@ -48,7 +46,7 @@ public class LottoController {
 
     private void setWinningAndBonus(){
         winningNumbers = setWinningNumbers();
-        setBonusNumber(winningNumbers);
+        bonusNumber = setBonusNumber(winningNumbers);
     }
 
     private Lotto setWinningNumbers(){
@@ -73,6 +71,7 @@ public class LottoController {
     }
 
     private void printWinngingStatics(){
-
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        profitCalculator.calculateProfit(lotto, winningNumbers, bonusNumber.getBonusNumber());
     }
 }

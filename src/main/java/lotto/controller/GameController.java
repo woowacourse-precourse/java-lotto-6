@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
 import lotto.view.InputView;
@@ -10,6 +11,7 @@ public class GameController {
     public void start() {
         Purchase purchase = createPurchase();
         Lotto lotto = createLotto();
+        Bonus bonus = createBonus(lotto);
     }
 
     private Purchase createPurchase() {
@@ -40,5 +42,20 @@ public class GameController {
 
     private List<Integer> getLottoNumbers() {
         return InputView.getLottoNumbers();
+    }
+
+    private Bonus createBonus(Lotto lotto) {
+        while (true) {
+            try {
+                int bonusNumber = getBonusNumber();
+                return new Bonus(bonusNumber, lotto);
+            } catch (IllegalArgumentException e) {
+                InputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    private int getBonusNumber() {
+        return InputView.getBonusNumber();
     }
 }

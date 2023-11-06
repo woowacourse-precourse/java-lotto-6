@@ -11,6 +11,10 @@ public class LottoResult {
         this.lottoResult = drawLotto(lottoTicket, lottoWinningNumber);
     }
 
+    public Map<Rank, Integer> getLottoResult() {
+        return this.lottoResult;
+    }
+
     private static Map<Rank, Integer> drawLotto(LottoTicket lottoTicket, LottoWinningNumber lottoWinningNumber) {
         Map<Rank, Integer> lottoResult = new HashMap<>();
         int winningNumberAmount;

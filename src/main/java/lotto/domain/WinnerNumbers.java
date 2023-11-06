@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constant.ExceptionMessage.*;
 import static lotto.constant.LottoConstant.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,25 +18,25 @@ public class WinnerNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Integer> numbers, int bonusNumber) {
+    public static void validateNumbers(List<Integer> numbers) {
         validateNumberSize(numbers);
         validDuplicateNumber(numbers);
-        validateBonusNumberInNumbers(numbers, bonusNumber);
-
-        List<Integer> allNumbers = new ArrayList<>();
-        allNumbers.addAll(numbers);
-        allNumbers.add(bonusNumber);
-
-        validateNumberRange(allNumbers);
+        validateNumbersRange(numbers);
     }
 
-    private void validateNumberSize(List<Integer> numbers) {
+    private void validate(List<Integer> numbers, int bonusNumber) {
+        validateNumbers(numbers);
+        validateNumberRange(bonusNumber);
+        validateBonusNumberInNumbers(numbers, bonusNumber);
+    }
+
+    private static void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR_NOT_NUMBERS_SIZE);
         }
     }
 
-    private void validDuplicateNumber(List<Integer> numbers) {
+    private static void validDuplicateNumber(List<Integer> numbers) {
 
         Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
 
@@ -52,11 +51,15 @@ public class WinnerNumbers {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
+    private static void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
-                throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
-            }
+            validateNumberRange(number);
+        }
+    }
+
+    private static void validateNumberRange(int number) {
+        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
         }
     }
 }

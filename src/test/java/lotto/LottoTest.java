@@ -32,7 +32,7 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
     @DisplayName("로또 객체의 numbers 인스터스 변수에 Randoms배열을 할당할 떄, 중복이 있는지.")
     @Test
-    void createLottoView() {
+    void checkLottoNumbersUniqueSix() {
     	List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     	Lotto lotto = new Lotto(numbers);
     	int uniqueCount = (int) numbers.stream().distinct().count();
@@ -40,5 +40,6 @@ class LottoTest {
     	
     }
     
+
     
 }

@@ -1,17 +1,32 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.input.InputParam;
+import lotto.print.PrintOutput;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Application {
+    static InputParam inputParam = new InputParam();
+    static PrintOutput printOutput = new PrintOutput();
     public static void main(String[] args) {
-
-
+        game();
     }
-
+    public static void game(){
+        printOutput.printMoneyQuestion();
+        int money = inputParam.inputMoney();
+        printOutput.printPurchasedLottoNumber(money);
+        List<Lotto> randomLottos = makeRandomLotto(money / 1000);
+        printOutput.printRandomLottosNumbers(randomLottos);
+        printOutput.printLottoNumberQuestion();
+        int[] inputLottoNumbers = inputParam.inputLottoNumbers();
+        int bonusNumber = inputParam.inputBonusNumber();
+        int[] stats = compareRandomLottosAndInputLotto(randomLottos, inputLottoNumbers, bonusNumber);
+        double profit = calculateProfit(money, stats);
+        printOutput.printStats(stats, profit);
+    }
     public static List<Lotto> makeRandomLotto(int number){
         List<Lotto> randomLottos = new ArrayList<>();
         for (int i = 0; i < number; i++) {

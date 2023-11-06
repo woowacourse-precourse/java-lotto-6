@@ -5,7 +5,7 @@ import java.util.Objects;
 import lotto.util.Validator;
 
 public class LottoGameController {
-    private View view = new View();
+    private final View view = new View();
 
     public BuyCash inputBuyCash() {
         return new BuyCash(view.inputBuyCashFromUser());
@@ -15,6 +15,10 @@ public class LottoGameController {
         List<Lotto> lottos = LottoGenerator.INSTANCE.generate(buyCash.getLottoAmount());
 
         return new Lottos(lottos);
+    }
+
+    public void printBuyLottosInformation(Lottos lottos) {
+        view.printUserLottos(lottos.getAllLottoNumbersMessage(), lottos.getLottoAmount());
     }
 
     public Lotto generateWinningLotto(List<Integer> winningNumbers) {

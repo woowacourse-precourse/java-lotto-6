@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Winner {
 
-    LottoResult lottoResult = new LottoResult();
     private Lotto lotto;
     private int bonus;
+    private LottoResult lottoResult;
 
     public Winner(String lottoNumbers) {
         lotto = new Lotto(lottoNumbers);
@@ -25,6 +25,7 @@ public class Winner {
     }
 
     public void compareWithUserLottoAndWinningLotto(User user) {
+        lottoResult = new LottoResult();
         List<Lotto> userLottos = user.getLottos();
         for (Lotto userLotto : userLottos) {
             int sameNumberCount = checkUserLottoNumberCount(userLotto);

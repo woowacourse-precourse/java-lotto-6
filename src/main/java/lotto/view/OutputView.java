@@ -2,8 +2,10 @@ package lotto.view;
 
 import lotto.domain.Constants;
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -14,5 +16,10 @@ public class OutputView {
 
         System.out.printf((Constants.PRINT_LOTTO_LIST) + "\n", lottos.size());
         System.out.println(lottoList);
+    }
+
+    public void printWinningStatic(String winningStatic) {
+        System.out.println(Constants.PRINT_WINNING_STATIC);
+        System.out.println(winningStatic);
     }
 }

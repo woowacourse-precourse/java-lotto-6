@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.Ranking;
 import lotto.service.LottoService;
 import lotto.domain.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LottoController {
     private final InputView inputView;
@@ -25,5 +27,8 @@ public class LottoController {
 
         Lotto winningNumber = inputView.getWinningNumber();
         Integer bonusNumber = inputView.getBonusNumber(winningNumber);
+
+        String winningStatic = lottoService.getWinningStatic(lottos, winningNumber, bonusNumber);
+        outputView.printWinningStatic(winningStatic);
     }
 }

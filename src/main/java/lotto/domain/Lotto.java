@@ -22,6 +22,10 @@ public class Lotto {
         return matchingNumbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private Integer calculateMatchingNumberWithWinningNumbers(List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)

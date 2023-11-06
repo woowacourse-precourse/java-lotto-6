@@ -47,6 +47,7 @@
 ## 기능 요구 사항
 
 ### 정상 상황
+
 - [x] 로또 번호를 **발행**하는 기능 - pickUniqueNumbersInRange() < 제공 라이브러리 >
 
 - [x] 로또 구입 금액을 **입력**하는 기능 - domain ~ Purchase
@@ -93,31 +94,34 @@
 
 ### 예외 상황 - "[ERROR]"로 에러 메시지 시작
 
-- 로또 구입 금액 입력 시,
+- validation ~ InputException
 
-  - [x] 입력이 없는가
+- 로또 구입 금액 입력 시, Purchase#validate();
 
-  - [x] 숫자로 변환 가능한 입력인가
+  - [x] 입력이 없는가 - InputException#blankInput();
 
-  - [x] 천원 이하의 입력인가
+  - [x] 숫자로 변환 가능한 입력인가 - InputException#notNumber();
 
-  - [x] 천원 단위로 나누어지지 떨어지는가
+  - [x] 천원 이하의 입력인가 - InputException#underThousand();
 
-- 당첨 번호 입력 시,
+  - [x] 천원 단위로 나누어지지 떨어지는가 - InputException#notMultipleOfThousand();
 
-  - [ ] 입력이 없는가
+- 당첨 번호 입력 시, - WinningLotto#stringInputValidate();, WinningLotto#listValidate();
 
-  - [ ] 숫자로 변환 가능한 입력인가
+  - [x] 입력이 없는가 - InputException#blankInput();
+ 
+  - [x] 쉼표(,)와 관련된 입력이 정상인가 - InputException#onlyComma();
 
-  - [ ] 번호의 개수가 6개를 넘는가
+    - [x] , 전 후 공백 입력
 
-  - [ ] 1부터 45 사이의 입력인가
+  - [x] 숫자로 변환 가능한 입력인가 - InputException#cannotParseToInt();
 
-  - [ ] 번호가 중복 되는가
+  - [x] 번호의 개수가 6개를 넘는가 - InputException#notSixNumberInput();
 
-  - [ ] 쉼표(,)와 관련된 입력이 정상인가
+  - [x] 1부터 45 사이의 입력인가 - InputException#wrongNumberRange();
 
-    - [ ] , 전 후 공백 입력
+  - [x] 번호가 중복 되는가 - InputException#numberDuplicat();
+
 
 - [ ] 보너스 번호 입력 시,
 

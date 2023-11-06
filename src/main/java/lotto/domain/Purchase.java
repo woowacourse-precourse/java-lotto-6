@@ -55,7 +55,7 @@ public class Purchase {
     }
 
     private void validate(String amount) {
-        InputException.blank(amount);
+        InputException.blankInput(amount);
         InputException.notNumber(amount);
         InputException.underThousand(amount);
         InputException.notMultipleOfThousand(amount);

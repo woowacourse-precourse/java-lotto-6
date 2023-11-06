@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.Constant;
+import lotto.validation.InputException;
 
 public class WinningLotto {
 
@@ -16,13 +17,29 @@ public class WinningLotto {
     }
 
     private List<Integer> initializeWinningNumbers() {
-        List<Integer> inputNumbers = new ArrayList<>();
+        List<Integer> inputNumbers;
+        String input = Console.readLine();
 
-        for (String number : Console.readLine().split(",")) {
-            inputNumbers.add(Integer.parseInt(number));
+        try {
+            stringInputValidate(input);
+            inputNumbers = parseNumbers(input);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.err.println(illegalArgumentException.getMessage());
+            return initializeWinningNumbers();
         }
 
         return inputNumbers;
+    }
+
+    private List<Integer> parseNumbers(String input) {
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String number : input.split(",")) {
+            numbers.add(Integer.parseInt(number));
+        }
+        listValidate(numbers);
+
+        return numbers;
     }
 
     private int initializeBonusNumber() {
@@ -36,5 +53,17 @@ public class WinningLotto {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    private void stringInputValidate(String input) {
+        InputException.blankInput(input);
+        InputException.onlyComma(input);
+        InputException.cannotParseToInt(input);
+    }
+
+    private void listValidate(List<Integer> input) {
+        InputException.notSixNumberInput(input);
+        InputException.wrongNumberRange(input);
+        InputException.numberDuplicate(input);
     }
 }

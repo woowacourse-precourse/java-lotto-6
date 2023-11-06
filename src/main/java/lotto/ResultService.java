@@ -1,11 +1,18 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ResultService {
+
+    public static final int WINNING_CASE_NUMBER = 5;
+    public static final int THREE_CASE_NUMBER = 3;
+    public static final int FOUR_CASE_NUMBER = 4;
+    public static final int FIVE_CASE_NUMBER = 5;
+    public static final int FIVE_AND_BONUS_CASE_NUMBER = 7;
+    public static final int SIX_CASE_NUMBER = 6;
+
     public static int calculateNumberOfLottoTickets(int purchaseAmount) {
         return purchaseAmount / InputService.AMOUNT_UNIT;
     }
@@ -27,8 +34,8 @@ public class ResultService {
         return resultsOfLottoIssuance;
     }
 
-    public static void printResultsOfLottoIssuance(List<Lotto> resultOfLottoIssuance) {
-        for (Lotto result : resultOfLottoIssuance) {
+    public static void printResultsOfLottoIssuance(List<Lotto> resultsOfLottoIssuance) {
+        for (Lotto result : resultsOfLottoIssuance) {
             printSortResult(result);
         }
     }
@@ -38,5 +45,37 @@ public class ResultService {
         System.out.println(sortedResult);
     }
 
+    public static HashMap<Integer, Integer> saveWinningResult(
+            Lotto lotto, int bonusNumber, Lotto resultOfLottoIssuance, HashMap<Integer, Integer> winningResults) {
+        int duplicationNumbers = resultOfLottoIssuance.getDuplicationNumbers(lotto, resultOfLottoIssuance);
+        boolean bonusCheck = resultOfLottoIssuance.IsBonusNumberIncluded(resultOfLottoIssuance, bonusNumber);
+        return saveMatches(duplicationNumbers, winningResults, bonusCheck);
+    }
+
+    private static HashMap<Integer, Integer> saveMatches(int duplicationNumbers,
+                                                         HashMap<Integer, Integer> winningResults,
+                                                         boolean bonusCheck) {
+        if (isBonusCase(duplicationNumbers, bonusCheck)) {
+            winningResults.put(FIVE_AND_BONUS_CASE_NUMBER, winningResults.get(FIVE_AND_BONUS_CASE_NUMBER) + 1);
+            return winningResults;
+        }
+        winningResults.put(duplicationNumbers, winningResults.get(duplicationNumbers) + 1);
+        return winningResults;
+    }
+
+    private static boolean isBonusCase(int duplicationNumbers, boolean bonusCheck) {
+        return bonusCheck && duplicationNumbers == FIVE_CASE_NUMBER;
+    }
+
+
+    private static void makeInitialSettings(HashMap<Integer, Integer> winningResults) {
+        for (int i = 1; i <= WINNING_CASE_NUMBER; i++) {
+            winningResults.put(THREE_CASE_NUMBER, 0);
+            winningResults.put(FOUR_CASE_NUMBER, 0);
+            winningResults.put(FIVE_CASE_NUMBER, 0);
+            winningResults.put(FIVE_AND_BONUS_CASE_NUMBER, 0);
+            winningResults.put(SIX_CASE_NUMBER, 0);
+        }
+    }
 
 }

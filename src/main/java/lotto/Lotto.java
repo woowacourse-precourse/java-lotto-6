@@ -52,4 +52,17 @@ public class Lotto {
         return lottoIncludeBonusNumber;
     }
 
+    public boolean IsBonusNumberIncluded(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers(lotto).contains(bonusNumber);
+    }
+
+    public int getDuplicationNumbers(Lotto lotto, Lotto resultOfLottoIssuance) {
+        List<Integer> realLotto = lotto.getNumbers(lotto);
+        List<Integer> boughtLotto = resultOfLottoIssuance.getNumbers(resultOfLottoIssuance);
+        boughtLotto.retainAll(realLotto);
+        if (boughtLotto.isEmpty()) {
+            return 0;
+        }
+        return boughtLotto.size();
+    }
 }

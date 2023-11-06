@@ -12,17 +12,23 @@ public class LottoResult {
     }
 
     public void calculateResult(WinningLotto winningLotto) {
+        int matchCount = calculateMatchCount(winningLotto);
+        boolean isBonusMatch = resolveBonusMatch(winningLotto);
+        winningType = WinningType.findByMatchCount(matchCount, isBonusMatch);
+    }
+
+    private int calculateMatchCount(WinningLotto winningLotto) {
         int matchCount = 0;
-        boolean isBonusMatch = false;
         for (Integer number : lottoNumbers.getNumbers()) {
             if (isContainsNumber(winningLotto, number)) {
                 matchCount++;
             }
         }
-        if (lottoNumbers.getNumbers().contains(winningLotto.getBonusNumber())) {
-            isBonusMatch = true;
-        }
-        winningType = WinningType.findByMatchCount(matchCount, isBonusMatch);
+        return matchCount;
+    }
+
+    private boolean resolveBonusMatch(WinningLotto winningLotto) {
+        return lottoNumbers.getNumbers().contains(winningLotto.getBonusNumber());
     }
 
     private boolean isContainsNumber(WinningLotto winningLotto, Integer number) {

@@ -40,11 +40,15 @@ public class LottoTargetNumResults {
      * @return
      */
     public Boolean isSameBonusNum(Integer targetNum, Integer indexOfSpecial) {
-        if (Utii.isSameInt(indexOfSpecial, BONUS_INDEX_NUM)) {
+        if (isSameBonusNumber(indexOfSpecial)) {
             return bonusLottoNum.isSame(targetNum);
         }
 
         return false;
+    }
+
+    private boolean isSameBonusNumber(Integer indexOfSpecial) {
+        return Utii.isSameInt(indexOfSpecial, BONUS_INDEX_NUM);
     }
 
     private boolean isContainScopeOfWinNums(Integer indexOfSpecial) {

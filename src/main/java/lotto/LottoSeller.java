@@ -24,4 +24,8 @@ public class LottoSeller {
     private void printLottoCount(Money money) {
         outputView.printLottoCount(money);
     }
+
+    private List<Lotto> getLottos(int lottoCount) {
+        return lottoMachine.createLottos(lottoCount);
+    }
 }

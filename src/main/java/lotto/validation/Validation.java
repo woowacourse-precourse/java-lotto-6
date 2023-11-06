@@ -60,5 +60,11 @@ public class Validation {
 			throw new IllegalArgumentException();
 		}
 	}
+	
+	public static void validateLottoSize (List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
 
 }

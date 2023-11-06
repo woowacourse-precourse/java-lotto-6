@@ -31,5 +31,14 @@ public class Service {
 		Validation.validateBuyableAmount(paid, BUYABLE_MAX_AMOUNT);
 		return paid;
 	}
+	
+	public Lotto getWinningNumbers() {
+		InputView.inputWinningNumbers();
+		String input = Console.readLine().trim();
+		Validation.validateInputFormat(input);
+		List<Integer> numbers = Utils.stringToIntegerList(input);
+		Validation.validateListNumbersInRange(numbers, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
+		return new Lotto(numbers);
+	}
 
 }

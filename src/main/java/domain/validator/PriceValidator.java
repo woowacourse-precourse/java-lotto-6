@@ -7,7 +7,7 @@ public class PriceValidator {
 
     private final int STARNDARD_UNIT = ConstantOfLotto.priceOfLotto;
 
-    public void checkPriceUnit(int price) {
+    public void checkPriceValidation(int price) {
         isPricePositive(price);
         isPriceInStandardUnit(price, STARNDARD_UNIT);
     }

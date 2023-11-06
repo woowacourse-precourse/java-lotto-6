@@ -58,29 +58,29 @@ class LottoTest {
 
 
     @Test
-    @DisplayName("기능06 테스트 : isBonusNumberIn 메서드는 보너스 숫자가 해당 로또 조합에 있으면 true를 반환한다.")
-    void isBonusNumberInShouldReturnTrueWhenBonusNumberInThisLotto() {
+    @DisplayName("기능06 테스트 : isNumberIn 메서드는 보너스 숫자가 해당 로또 조합에 있으면 true를 반환한다.")
+    void isNumberInShouldReturnTrueWhenBonusNumberInThisLotto() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        int bonusNumber = 6;
+        int number = 6;
 
         // when
-        boolean result = lotto.isBonusNumberIn(bonusNumber);
+        boolean result = lotto.isNumberIn(number);
 
         // then
         assertThat(result).isEqualTo(true);
     }
 
     @Test
-    @DisplayName("기능06 테스트 : isBonusNumberIn 메서드는 보너스 숫자가 해당 로또 조합에 있지 않으면 false를 반환한다.")
-    void isBonusNumberInShouldReturnTrueWhenBonusNumberNotInThisLotto() {
+    @DisplayName("기능06 테스트 : isNumberIn 메서드는 보너스 숫자가 해당 로또 조합에 있지 않으면 false를 반환한다.")
+    void isNumberInShouldReturnTrueWhenBonusNumberNotInThisLotto() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
+        int number = 7;
 
         // when
-        boolean result = lotto.isBonusNumberIn(bonusNumber);
+        boolean result = lotto.isNumberIn(number);
 
         // then
         assertThat(result).isEqualTo(false);

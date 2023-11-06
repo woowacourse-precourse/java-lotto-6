@@ -30,9 +30,8 @@ public class Lotto {
         }
     }
 
-    public boolean isBonusNumberIn(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean isNumberIn(int number) {
+        return numbers.contains(number);
     }
-
 
 }

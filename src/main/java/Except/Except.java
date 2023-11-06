@@ -91,6 +91,7 @@ public class Except {
             if (checking < 0) {
                 break;
             }
+            result.add(checking);
         }
         return result;
     }

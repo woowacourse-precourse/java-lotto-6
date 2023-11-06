@@ -18,10 +18,12 @@ public class Output {
     }
 
     public void answerNumberAsk() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public void bonusNumberAsk() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
@@ -48,6 +50,5 @@ public class Output {
             String paper = lottoBuyPaperPrint(lotto.get(i).getLotto());
             System.out.println(paper);
         }
-        System.out.println();
     }
 }

@@ -10,11 +10,13 @@ public class LottoController {
     private final PurchaseController purchaseController = new PurchaseController();
     private final LottoPrintController lottoPrintController = new LottoPrintController();
     private final LottoTicketCreator ticketCreator = new LottoTicketCreator();
+    private final WinningNumberController winningNumberController = new WinningNumberController();
+
 
     public void start() {
         int purchaseAmount = purchaseController.getPurchaseAmount();
         List<Lotto> lotto = ticketCreator.createLottoTickets(purchaseAmount);
-
         lottoPrintController.handleLottoDisplay(lotto);
+        List<Integer> winningNumbers = winningNumberController.getWinningNumbers();
     }
 }

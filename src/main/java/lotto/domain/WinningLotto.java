@@ -28,4 +28,12 @@ public class WinningLotto {
                     + INCLUSIVE_END + " 사이의 숫자여야 합니다.");
         }
     }
+
+    public List<Integer> getLottoNumbers() {
+        return lotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

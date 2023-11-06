@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.domain.Seller;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -69,5 +70,24 @@ public class LottoService {
             System.out.println(e.getMessage());
             return getBonusNumber();
         }
+    }
+
+    public WinningResult getLottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        WinningResult result = new WinningResult();
+        for (Lotto lotto : lottos) {
+            result.add(getSingleLottoResult(lotto, winningLotto));
+        }
+        return result;
+    }
+
+    private WinningResult getSingleLottoResult(Lotto lotto, WinningLotto winningLotto) {
+        int matchingCount = 0;
+        for (int winningNumber : winningLotto.getLottoNumbers()) {
+            if (lotto.hasNumber(winningNumber)) {
+                matchingCount++;
+            }
+        }
+        boolean bonusMatching = lotto.hasNumber(winningLotto.getBonusNumber());
+        return new WinningResult(matchingCount, bonusMatching);
     }
 }

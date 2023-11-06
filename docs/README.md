@@ -14,6 +14,7 @@
   - [x] 보너스 번호를 입력받는다. - InputView#requestBonusNumber()
 - [x] 발행한 로또 수량 및 번호를 출력한다. - OutputView#printPurchasedLottos()
   - 로또 번호는 오름차순으로 정렬해 보여준다.
+- [x] 당첨 결과를 얻는다. - LottoService#getLottoResult()
 - [ ] 당첨 통계를 출력한다.
   - [ ] 당첨 내역을 출력한다.
   - [ ] 수익률을 출력한다.

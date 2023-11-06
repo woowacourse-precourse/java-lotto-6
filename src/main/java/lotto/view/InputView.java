@@ -14,8 +14,14 @@ public class InputView {
     }
 
     public static List<Integer> inputDrawingNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.printf("%n당첨 번호를 입력해 주세요.%n");
 
         return NumberUtil.toListInteger(NumberUtil.split(readLine()));
+    }
+
+    public static int inputBonusNumber() {
+        System.out.printf("%n보너스 번호를 입력해주세요.%n");
+
+        return NumberUtil.toInt(readLine());
     }
 }

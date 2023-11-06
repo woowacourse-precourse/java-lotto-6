@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.util.NumberUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,6 +19,7 @@ public class LottoGame {
         OutputView.showPlayerLotto(player, lottoMachine.calculatePurchaseCount());
 
         winningNumber = new Lotto(InputView.inputDrawingNumber());
+        int bonusNumber = InputView.inputBonusNumber();
     }
 
     private Player purchaseLotto(int inputMoney) {

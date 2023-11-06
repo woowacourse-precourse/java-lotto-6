@@ -6,6 +6,10 @@ import static lotto.utils.constant.IOConstant.GET_WINNING_NUMBERS;
 
 public class ConsoleOutputView implements OutputView {
 
+    @Override
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 
     @Override
     public void printGetLottoMoney() {

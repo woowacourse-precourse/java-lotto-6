@@ -97,6 +97,11 @@
 - 넘버도 1~45 가 들어와야하고 String type이 들어왔을때 int 타입으로 계속 변경해줘야 하는데 validate 를 하는 것 보다
 - 인자로 받을 때를 LottoNumber 와 같은 객체 만들어서 받고 객체 내부에서 유효성 체크하는 것으로 바꿀까 생각중
 
+- [ ] 기존 WinningLotto 에서 분기 치면 15줄 이상으로 나오던 것을 Rank enum 에서 처리하도록 하는데
+- stream() 으로 표현하려니 초급자인 내게 상당히 어렵고 매칭된 수가 5개일 때 만 나눈는 것은 Rank의 규칙이 바꾸었을 때
+- 대처하지 못할 거 같아서 enum 의 활용 사롕들을 보며 공부중
+- 참고
+- [우아한 기술 블로그 enum 활용 정리](https://techblog.woowahan.com/2527/)
 ## 그 외 공부할 것
 - [x] `IllegalArgumentException`, `IllegalStateException`의 차이점
 - IllegalArgumentException

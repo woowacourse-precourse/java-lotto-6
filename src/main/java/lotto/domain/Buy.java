@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.common.constants.LottoRule;
+import lotto.common.constants.LottoDefaultRule;
 import lotto.common.validate.Validate;
 
 public class Buy {
@@ -9,7 +9,7 @@ public class Buy {
 
     public Buy(String price) {
         this.buyPrice = validate(price);
-        this.buyTicketCount = buyPrice / LottoRule.ONE_LOTTO_TICKET_PRICE.getRule();
+        this.buyTicketCount = buyPrice / LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule();
     }
 
     public int getBuyTicketCount() {

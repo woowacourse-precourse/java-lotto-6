@@ -2,13 +2,15 @@ package lotto.common.validate;
 
 import java.util.List;
 import lotto.common.constants.ErrorMessage;
-import lotto.common.constants.LottoRule;
+import lotto.common.constants.LottoDefaultRule;
 import lotto.common.constants.Symbol;
 
 public class Validate {
     private static final int ZERO = 0;
 
-    // 프로그램 내에서 직접 사용하는 메서드
+
+    // 프로그램 내에서 직접 사용하는 에러처리 메서드
+
     public static void consoleBlank(String input) {
         inBlank(input);
     }
@@ -41,7 +43,9 @@ public class Validate {
         beforeOverlapInput(lottoNumbers, bonusNumber);
     }
 
+
     // 기능별 예외처리 메서드
+
     private static void inBlank(String inputString) {
         if (inputString.isBlank()) {
             System.out.println(ErrorMessage.ERROR_BLANK.getMessage());
@@ -63,21 +67,21 @@ public class Validate {
     }
 
     private static void underThousand(String inputString) {
-        if (Integer.parseInt(inputString) < LottoRule.ONE_LOTTO_TICKET_PRICE.getRule()) {
+        if (Integer.parseInt(inputString) < LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule()) {
             System.out.println(ErrorMessage.ERROR_UNDER_THOUSAND.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private static void notThousandUnit(String inputString) {
-        if (Integer.parseInt(inputString) % LottoRule.ONE_LOTTO_TICKET_PRICE.getRule() != ZERO) {
+        if (Integer.parseInt(inputString) % LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule() != ZERO) {
             System.out.println(ErrorMessage.ERROR_NOT_THOUSAND_UNITS.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private static void overInput(List<Integer> input) {
-        if (input.size() != LottoRule.PICK_HIT_NUMBER_TOTAL.getRule()) {
+        if (input.size() != LottoDefaultRule.PICK_HIT_NUMBER_TOTAL.getRule()) {
             System.out.println(ErrorMessage.ERROR_NOT_SIX_LOTTO_NUMBER.getMessage());
             throw new IllegalArgumentException();
         }
@@ -90,7 +94,7 @@ public class Validate {
     }
 
     private static void outOfNumber(int inputNumber) {
-        if (inputNumber < LottoRule.PICK_MIN_NUMBER.getRule() || inputNumber > LottoRule.PICK_MAX_NUMBER.getRule()) {
+        if (inputNumber < LottoDefaultRule.PICK_MIN_NUMBER.getRule() || inputNumber > LottoDefaultRule.PICK_MAX_NUMBER.getRule()) {
             System.out.println(ErrorMessage.ERROR_NOT_LOTTO_RANGE.getMessage());
             throw new IllegalArgumentException();
         }

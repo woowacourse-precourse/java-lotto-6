@@ -2,8 +2,7 @@ package lotto.common.constants;
 
 public enum Unit {
     KOREA_MONEY("원"),
-    PERCENT("%"),
-    TOTAL_NUMBER("개");
+    PERCENT("%");
 
     private final String unit;
 

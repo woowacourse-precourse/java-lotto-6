@@ -7,7 +7,7 @@ import java.util.List;
 public class Ticket {
     private ArrayList<ArrayList<Integer>> lottoTicket = new ArrayList<>();
 
-    public Ticket(int buyTicketCount) {
+    public void setLottoTicket(int buyTicketCount) {
         this.lottoTicket = lottoTicket(buyTicketCount);
     }
 

@@ -30,18 +30,23 @@ public class BonusNumber extends Numbers implements Askable<Integer> {
         boolean isIncorret = false;
 
         try {
-            if (!isCorrectRange.test(convertedInput)) {
-                throw new IllegalArgumentException(numberRangeError);
-            }
-            if (!isCorrectAmount.test(convertedInput)) {
-                throw new IllegalArgumentException(BonusNumberAmountError);
-            }
+            checkValidity(convertedInput);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             isIncorret = true;
         }
 
         return isIncorret;
+    }
+
+    private void checkValidity(List<Integer> convertedInput) {
+        if (!isCorrectRange.test(convertedInput)) {
+            throw new IllegalArgumentException(numberRangeError);
+        }
+        if (!isCorrectAmount.test(convertedInput)) {
+            throw new IllegalArgumentException(BonusNumberAmountError);
+        }
     }
 
     private final Predicate<List<Integer>> isCorrectAmount =

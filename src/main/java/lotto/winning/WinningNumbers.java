@@ -30,21 +30,26 @@ public class WinningNumbers extends Numbers implements Askable<List<Integer>> {
         boolean isIncorret = false;
 
         try {
-            if (!isCorrectRange.test(convertedInput)) {
-                throw new IllegalArgumentException(numberRangeError);
-            }
-            if (!isNoDuplicate.test(convertedInput)) {
-                throw new IllegalArgumentException(duplicateNumbersError);
-            }
-            if (!isCorrectAmount.test(convertedInput)) {
-                throw new IllegalArgumentException(WinningNumberAmountError);
-            }
+            checkValidity(convertedInput);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             isIncorret = true;
         }
 
         return isIncorret;
+    }
+
+    private void checkValidity(List<Integer> convertedInput) {
+        if (!isCorrectRange.test(convertedInput)) {
+            throw new IllegalArgumentException(numberRangeError);
+        }
+        if (!isNoDuplicate.test(convertedInput)) {
+            throw new IllegalArgumentException(duplicateNumbersError);
+        }
+        if (!isCorrectAmount.test(convertedInput)) {
+            throw new IllegalArgumentException(WinningNumberAmountError);
+        }
     }
 
     private final Predicate<List<Integer>> isNoDuplicate = input ->

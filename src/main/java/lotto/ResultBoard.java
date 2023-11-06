@@ -38,11 +38,7 @@ public class ResultBoard implements Showable {
 
     @Override
     public void show() {
-        List<Lotto> lottos = printer.print();
-
-        HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes = analyst.updatePrizes(
-                prizeRankChecker.computeMatchedNumberCounts(lottos, winningNumbers.ask()),
-                prizeRankChecker.computeMatchedNumberCounts(lottos, List.of(bonusNumber.ask())));
+        HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes = proceedLottoGame();
 
         double returnRatio = analyst.calculateReturnRatio(updatedPrizes, Integer.parseInt(purchaseAmount.getInput()));
 
@@ -54,5 +50,13 @@ public class ResultBoard implements Showable {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + updatedPrizes.get(SECOND).get(COUNT) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + updatedPrizes.get(FIRST).get(COUNT) + "개");
         System.out.println("총 수익률은 " + returnRatio + "%입니다.");
+    }
+
+    private HashMap<Prize, HashMap<Tally, Integer>> proceedLottoGame() {
+        List<Lotto> lottos = printer.print();
+
+        return analyst.updatePrizes(
+                prizeRankChecker.computeMatchedNumberCounts(lottos, winningNumbers.ask()),
+                prizeRankChecker.computeMatchedNumberCounts(lottos, List.of(bonusNumber.ask())));
     }
 }

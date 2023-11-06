@@ -53,7 +53,7 @@ public class User {
     public StringBuilder giveRateResult() {
         totalWinMoney = statistic.getTotalWinMoney();
 
-        return rateResult.showRate(useMoney, totalWinMoney);
+        return rateResult.giveRateResult(useMoney, totalWinMoney);
     }
 
     private Integer inputMoney() {

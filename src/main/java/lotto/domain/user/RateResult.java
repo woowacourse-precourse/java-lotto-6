@@ -17,7 +17,7 @@ public class RateResult {
         return roundTwoDecimalPlaces(rate);
     }
 
-    public StringBuilder showRate(Integer useMoney, Integer totalWinMoney) {
+    public StringBuilder giveRateResult(Integer useMoney, Integer totalWinMoney) {
         StringBuilder result = new StringBuilder();
         Double rate = calculateRate(useMoney, totalWinMoney);
 

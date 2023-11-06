@@ -15,7 +15,7 @@ public class Util {
     }
 
     public static List<Integer> stringToArrayList(String inputNumbers) {
-        List<Integer> numbers = Arrays.asList(inputNumbers.split(",")).stream().map(Util::toNumeric)
+        List<Integer> numbers = Arrays.stream(inputNumbers.split(",")).map(Util::toNumeric)
                 .collect(Collectors.toList());
         return numbers;
     }

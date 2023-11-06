@@ -15,7 +15,7 @@ import lotto.dto.LottoTicket;
 public class LottoService {
 
     private List<Lotto> lottos;
-    private WinningNumbers winningNumbers;
+    private WinningNumbers winningNumbers = new WinningNumbers();
 
     public void init(int size) {
         this.lottos = new ArrayList<>();
@@ -24,8 +24,12 @@ public class LottoService {
         }
     }
 
-    public void initWinningNumbers(List<Integer> mainNumbers, int bonus) {
-        this.winningNumbers = new WinningNumbers(mainNumbers, bonus);
+    public void initMainNumbers(List<Integer> mainNumbers) {
+        winningNumbers.setMainNumbers(mainNumbers);
+    }
+
+    public void initBonusNumber(int bonus) {
+        winningNumbers.setBonusNumber(bonus);
     }
 
     public List<LottoTicket> tickets() {

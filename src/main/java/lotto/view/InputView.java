@@ -9,4 +9,8 @@ public class InputView {
         System.out.println(LottoMsg.LOTTO_BUY_PRICE.getMsg());
         return Integer.parseInt(Console.readLine());
     }
+
+    public String commonInput() {
+        return Console.readLine();
+    }
 }

@@ -2,7 +2,9 @@ package lotto.domain;
 
 import lotto.constant.Message;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbers {
 
@@ -13,6 +15,8 @@ public class WinningNumbers {
 
         validateSize(numbers);
         validateRange(numbers);
+        validateDuplication(numbers);
+
         this.numbers = numbers;
     }
 
@@ -32,13 +36,22 @@ public class WinningNumbers {
 
     private void validateRange(List<Integer> numbers) {
 
-        int cnt = (int) numbers.stream()
-                .filter(e -> e < 1 && e > 45)
-                .count();
+        for(int number : numbers){
 
-        if(cnt != 0) {
+            if(number < 1 || number > 45) {
 
-            throw new IllegalArgumentException(Message.WINNING_NUMBERS_OVER_RANGE_ERROR_MESSAGE.name());
+                throw new IllegalArgumentException(Message.WINNING_NUMBERS_OVER_RANGE_ERROR_MESSAGE.name());
+            }
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+
+        Set<Integer> set = new HashSet<>(numbers);
+
+        if(set.size() != 6) {
+
+            throw new IllegalArgumentException(Message.WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE.name());
         }
     }
 

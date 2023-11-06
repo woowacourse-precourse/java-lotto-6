@@ -87,6 +87,38 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 당첨_번호_6개_아닌_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_중복_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_범위_45초과_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_범위_1미만_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
     void 보너스_번호_숫자_아닌_문자_예외_처리() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6","a");

@@ -11,6 +11,7 @@ import java.util.List;
 
 public class LottoService {
 
+    public static final Integer MIN_ANSWER_COUNT = 3;
     public static final Integer ANSWER_COUNT_THREE = 3;
     public static final Integer ANSWER_COUNT_FOUR = 4;
     public static final Integer ANSWER_COUNT_FIVE = 5;
@@ -35,7 +36,7 @@ public class LottoService {
 
         HashMap<Integer, Integer> result = new HashMap<>();
 
-        for (int i = 3; i <8 ; i++) {
+        for (int i = MIN_ANSWER_COUNT; i < 8 ; i++) {
             result.put(i,0);
         }
 
@@ -51,11 +52,11 @@ public class LottoService {
 
     private void initResult(Integer count, boolean containBonusNumber, HashMap<Integer, Integer> result) {
 
-        if (count < 3) {
+        if (count < MIN_ANSWER_COUNT) {
             return;
         }
 
-        if (count == 5 && containBonusNumber) {
+        if (count.equals(ANSWER_COUNT_FIVE) && containBonusNumber) {
             result.put(7, result.get(7) + 1);
             return;
         }
@@ -72,6 +73,7 @@ public class LottoService {
         totalPrize += result.get(ANSWER_COUNT_FIVE) * MATCHING.MATCH_FIVE.getPrize();
         totalPrize += result.get(ANSWER_COUNT_FIVE_BONUS) * MATCHING.MATCH_FIVE_BONUS.getPrize();
         totalPrize += result.get(ANSWER_COUNT_SIX) * MATCHING.MATCH_SIX.getPrize();
+
         return (double) totalPrize/purchaseMoney;
     }
 }

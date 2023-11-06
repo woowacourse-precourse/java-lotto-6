@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.constant.GameConfig;
 import lotto.validation.PurchaseAmountValidator;
 
 public class PurchaseAmount {
@@ -11,21 +10,16 @@ public class PurchaseAmount {
         validate(amount);
     }
 
-    public int calculateLottoCount() {
-        GameConfig lottoPrice = GameConfig.LOTTO_PRICE;
-        return amount / lottoPrice.getValue();
-    }
-
-    public boolean buyLotto(int lottoCount) {
-        GameConfig lottoPrice = GameConfig.LOTTO_PRICE;
-        int totalPrice = lottoPrice.getValue() * lottoCount;
-
-        if (amount < totalPrice) {
-            return false;
-        }
+    public int buyLotto(int lottoPrice) {
+        int lottoCount = calculateLottoCount(lottoPrice);
+        int totalPrice = lottoPrice * lottoCount;
 
         amount -= totalPrice;
-        return true;
+        return lottoCount;
+    }
+
+    private int calculateLottoCount(int lottoPrice) {
+        return amount / lottoPrice;
     }
 
     private void validate(int amount) {

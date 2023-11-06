@@ -10,8 +10,8 @@ public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Lottos(PurchaseAmount purchaseAmount) {
-        generateLottos(purchaseAmount);
-        purchaseAmount.buyLotto(purchaseAmount.calculateLottoCount());
+        int count = purchaseAmount.buyLotto(GameConfig.LOTTO_PRICE.getValue());
+        generateLottos(count);
     }
 
     public WinningResult calculateWinningResult(WinningLotto winningLotto) {
@@ -25,10 +25,8 @@ public class Lottos {
         return winningResult;
     }
 
-    private void generateLottos(PurchaseAmount purchaseAmount) {
-        int lottoCount = purchaseAmount.calculateLottoCount();
-
-        for (int i = 0; i < lottoCount; i++) {
+    private void generateLottos(int count) {
+        for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(generateLottoNumbers()));
         }
     }

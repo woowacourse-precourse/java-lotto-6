@@ -6,7 +6,7 @@ public class LottoSeller {
     private final LottoSellingPolicy lottoSellingPolicy = new LottoSellingPolicy();
     private final LottosGenerator lottosGenerator = new LottosGenerator();
 
-    public Lottos sell(BigDecimal purchasingMoney) {
+    public Lottos sell(Money purchasingMoney) {
         int countLottos = lottoSellingPolicy.calcuateLottoCount(purchasingMoney);
         return lottosGenerator.generate(countLottos);
     }

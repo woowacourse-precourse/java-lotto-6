@@ -3,10 +3,10 @@ package lotto.model;
 import java.math.BigDecimal;
 
 public class LottoSellingPolicy {
-    public static final BigDecimal LOTTO_PRICE = new BigDecimal(1000);
+    public static final Money LOTTO_PRICE = new Money(1000);
 
-    public int calcuateLottoCount(final BigDecimal purchasingMoney) {
-        BigDecimal left = purchasingMoney.divide(LOTTO_PRICE);
+    public int calcuateLottoCount(final Money purchasingMoney) {
+        BigDecimal left = purchasingMoney.divideBy(LOTTO_PRICE);
         return left.intValue();
     }
 }

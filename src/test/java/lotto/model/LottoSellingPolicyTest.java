@@ -14,8 +14,8 @@ class LottoSellingPolicyTest {
     @ParameterizedTest(name = "투입 금액 : {0} , 구입 갯수 : {1}")
     @CsvSource(value = {"1000,1", "10000,10","15000,15"})
     void calcuateLottoCount(int money, int expectCountLotto) {
-        BigDecimal purchasingMoney = new BigDecimal(money);
-        int countLotto = lottoSellingPolicy.calcuateLottoCount(purchasingMoney);
+        Money inputMoney = new Money(money);
+        int countLotto = lottoSellingPolicy.calcuateLottoCount(inputMoney);
 
         assertThat(countLotto).isEqualTo(expectCountLotto);
     }

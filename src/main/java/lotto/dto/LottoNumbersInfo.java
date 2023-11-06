@@ -27,7 +27,7 @@ public class LottoNumbersInfo {
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCountWith(winningNumbers);
             LottoResult lottoResult = LottoResult.of(matchCount, lotto.contains(bonusNumber));
-            BigDecimal count = result.get(lottoResult).add(new BigDecimal(1));
+            BigDecimal count = result.get(lottoResult).add(BigDecimal.ONE);
             result.put(lottoResult, count);
         }
         return result;

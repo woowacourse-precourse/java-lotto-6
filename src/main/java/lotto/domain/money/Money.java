@@ -20,16 +20,17 @@ public record Money(long amount) {
         return new Money(amount * count);
     }
 
-    public String parseToWonWithComma() {
-        DecimalFormat formatter = new DecimalFormat(DECIMAL_FORMAT);
-        return formatter.format(amount) + WON;
-    }
-
     public boolean isLessThan(Money other) {
         return amount < other.amount();
     }
 
     public boolean cantDividedBy(Money other) {
         return amount % other.amount() != DomainConstant.ZERO;
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat formatter = new DecimalFormat(DECIMAL_FORMAT);
+        return formatter.format(amount) + WON;
     }
 }

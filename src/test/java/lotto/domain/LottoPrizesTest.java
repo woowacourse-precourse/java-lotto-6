@@ -19,7 +19,7 @@ class LottoPrizesTest {
             String testMessage,
             LottoPrizes lottoPrizes,
             String expectedOutput) {
-        assertThat(lottoPrizes.getParsedWinningAmount()).isEqualTo(expectedOutput);
+        assertThat(lottoPrizes.winningAmountToString()).isEqualTo(expectedOutput);
     }
 
     static Stream<Arguments> argumentsProvider() {

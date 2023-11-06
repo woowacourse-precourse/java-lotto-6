@@ -29,8 +29,8 @@ public enum LottoPrizes {
         return winningAmount;
     }
 
-    public String getParsedWinningAmount() {
-        return winningAmount.parseToWonWithComma();
+    public String winningAmountToString() {
+        return winningAmount.toString();
     }
 
     public static Map<LottoPrizes, Long> getPrizesCountMap() {

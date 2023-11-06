@@ -26,7 +26,7 @@ public record LottoResult(Map<LottoPrizes, Long> result) {
         return lottoPrizes.getTerm()
                 + SPACE
                 + LEFT_PARENTHESIS
-                + lottoPrizes.getParsedWinningAmount()
+                + lottoPrizes.winningAmountToString()
                 + RIGHT_PARENTHESIS
                 + DASH_WITH_SPACE
                 + winCount

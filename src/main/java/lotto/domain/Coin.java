@@ -27,4 +27,8 @@ public class Coin {
             throw new ThousandCheckException();
         }
     }
+
+    public int getCoin() {
+        return coin;
+    }
 }

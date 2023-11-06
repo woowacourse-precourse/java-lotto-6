@@ -33,7 +33,7 @@ public enum Rank {
         this.isMatch = isMatch;
     }
 
-    public static Rank getPrize(final int matchLottoNumber, final boolean containBonusNumber) {
+    public static Rank getRank(final int matchLottoNumber, final boolean containBonusNumber) {
         return Arrays.stream(Rank.values())
                 .filter(prize -> prize.isMatch.test(matchLottoNumber, containBonusNumber))
                 .findAny()

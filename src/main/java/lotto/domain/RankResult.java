@@ -14,19 +14,19 @@ public class RankResult {
                 .forEach(prize -> rankResult.put(prize, 0));
     }
 
-    public void calcPrizeResult(WonLotto wonLotto, List<Lotto> numbers) {
+    public void calculateRankResult(WonLotto wonLotto, List<Lotto> numbers) {
         for (Lotto lotto : numbers) {
-            Rank prize = Rank.getPrize(lotto.numbersMatchWonLottoNumber(wonLotto),
+            Rank rank = Rank.getRank(lotto.numbersMatchWonLottoNumber(wonLotto),
                     lotto.isContain(wonLotto.getBonusNumber()));
-            updatePrizeCount(prize);
+            updateRankCount(rank);
         }
     }
 
-    private void updatePrizeCount(Rank prize) {
-        rankResult.put(prize, rankResult.get(prize) + 1);
+    private void updateRankCount(Rank rank) {
+        rankResult.put(rank, rankResult.get(rank) + 1);
     }
 
-    public Integer getPrizeCount(Rank prize) {
-        return rankResult.get(prize);
+    public Integer getRankCount(Rank rank) {
+        return rankResult.get(rank);
     }
 }

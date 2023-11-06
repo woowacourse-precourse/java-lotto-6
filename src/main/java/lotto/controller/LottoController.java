@@ -1,10 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.PublishLotto;
-import lotto.view.InputCoin;
-import lotto.view.OutputCoin;
-import lotto.view.OutputLottoKinds;
+import lotto.domain.*;
+import lotto.view.*;
 
 import java.util.List;
 
@@ -35,8 +32,23 @@ public class LottoController {
         return publishLotto.LottoNumberGenerate(lottoCount);
     }
 
+    private WonLotto getWinningLotto(String checkedInput) {
+        InputLottoNumber inputLottoNumber = new InputLottoNumber();
+        InputBonusLottoNumber inputBonusLottoNumber = new InputBonusLottoNumber();
 
+        List<Integer> wonLotto = inputLottoNumber.numberConvert(checkedInput);
+        Integer bonusNumber = inputBonusLottoNumber.buyBonusLotto();
 
+        return new WonLotto(wonLotto, bonusNumber);
+    }
+
+    private void calcLottoResult(RankResult rankResult, WonLotto WonLotto, List<Lotto> lottos) {
+        rankResult.calculateRankResult(WonLotto, lottos);
+    }
+
+    private Rate getRate(Coin coin, RankResult rankResult) {
+        return new Rate(coin, rankResult);
+    }
 
 
 

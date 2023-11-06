@@ -6,6 +6,7 @@ import lotto.config.Message;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoWinningResult;
 import lotto.domain.RandomLottoMachine;
 import lotto.domain.WinningLotto;
 import lotto.exception.BelowMinimumPurchasePriceException;
@@ -28,7 +29,18 @@ public class Application {
         int lottoCount = application.calculateLottoPurchaseCount();
         List<Lotto> lottos = application.generateLottos(lottoCount);
         application.printPurchasedLottos(lottos);
+
         WinningLotto winningLotto = application.getWinningLottoWithBonusNumber();
+        LottoWinningResult lottoWinningResult = application.calculateLottoWinningResult(lottos, winningLotto);
+        application.printWinningResult(lottoWinningResult);
+    }
+
+    private void printWinningResult(LottoWinningResult lottoWinningResult) {
+        System.out.println("당첨 통계\n---");
+    }
+
+    private LottoWinningResult calculateLottoWinningResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        return null;
     }
 
     private WinningLotto getWinningLottoWithBonusNumber() {

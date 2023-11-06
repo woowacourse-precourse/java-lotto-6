@@ -5,24 +5,23 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class WinningTicketCountsTest {
+class WinningCountsTest {
 
-    private WinningTicketCounts winningTicketCounts;
+    private WinningCounts winningCounts;
 
     @BeforeEach
     void setUp() {
-        winningTicketCounts = new WinningTicketCounts();
+        winningCounts = new WinningCounts();
     }
 
     @DisplayName("1등의 count가 증가한다.")
     @Test
     void incrementCount() {
         //when
-        winningTicketCounts.incrementCount(WinningRank.FIRST);
+        winningCounts.incrementCount(WinningRank.FIRST);
         //then
-        assertThat(winningTicketCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
+        assertThat(winningCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
     }
 
 }

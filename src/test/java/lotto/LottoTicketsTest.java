@@ -22,11 +22,11 @@ class LottoTicketsTest {
         LottoTickets lottoTickets = new LottoTickets(List.of(lotto1, lotto2, lotto3));
 
         //when
-        WinningTicketCounts winningTicketCounts = lottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
+        WinningCounts winningCounts = lottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
 
         //then
-        assertThat(winningTicketCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
-        assertThat(winningTicketCounts.getCount(WinningRank.SECOND)).isEqualTo(1);
-        assertThat(winningTicketCounts.getCount(WinningRank.THIRD)).isEqualTo(1);
+        assertThat(winningCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
+        assertThat(winningCounts.getCount(WinningRank.SECOND)).isEqualTo(1);
+        assertThat(winningCounts.getCount(WinningRank.THIRD)).isEqualTo(1);
     }
 }

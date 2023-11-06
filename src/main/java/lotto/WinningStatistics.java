@@ -4,10 +4,10 @@ package lotto;
 import java.util.Arrays;
 
 public class WinningStatistics {
-    private final WinningTicketCounts winningCounts;
+    private final WinningCounts winningCounts;
     private final PaidAmount paidAmount;
 
-    public WinningStatistics(final WinningTicketCounts winningCounts, final PaidAmount paidAmount) {
+    public WinningStatistics(final WinningCounts winningCounts, final PaidAmount paidAmount) {
         this.winningCounts = winningCounts;
         this.paidAmount = paidAmount;
     }

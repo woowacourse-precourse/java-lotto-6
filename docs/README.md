@@ -48,8 +48,9 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
 
 ✅ 출력 기능
 
-- [ ] 발행한 로또 수량 출력 기능
+- [x] 로또 구입 수량 출력 기능
 - [ ] 발행한 로또 번호 출력 기능
+- [x] 당첨 통계 출력 기능
 - [ ] 당첨 내역 출력 기능
 - [ ] 총 수익률 출력 기능
 

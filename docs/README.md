@@ -70,3 +70,7 @@ Outputview클래스 repeatGenerateRandomLotto메소드
 ``````````````````````````
 Outputview클래스 askWinningNumbers메소드
 ```````````````````````````````
+9. 입력한 당첨숫자들을 리스트에 ","을 기준으로 저장하는 기능 추가
+``````````````````````````
+Inputview클래스 getWinningNumbers메소드
+```````````````````````````````

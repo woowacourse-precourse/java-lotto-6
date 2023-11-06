@@ -11,5 +11,6 @@ public class Application {
         OutputView.askAmountForLotto();
         OutputView.repeatGenerateRandomLotto();
         OutputView.askWinningNumbers();
+        InputView.getWinningNumbers();
     }
 }

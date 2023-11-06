@@ -20,6 +20,11 @@ public class InputView {
         return scanInput();
     }
 
+    public String scanBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return scanInput();
+    }
+
     private String scanInput() {
         String input = Console.readLine();
         inputValidator.validate(input);

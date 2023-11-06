@@ -102,4 +102,20 @@ public class MoneyTest {
         assertFalse(result);
     }
 
+    @Test
+    public void 금액_더하기는_새로운Money객체_반환() {
+        // Given
+        Money money1 = Money.create(1000);
+        Money money2 = Money.create(2000);
+
+        // When
+        Money result = money1.plus(money2);
+
+        // Then
+        assertThat(result).isNotSameAs(money1);
+        assertThat(result).isNotSameAs(money2);
+        assertTrue(result.isSameAmount(3000));
+    }
+
+
 }

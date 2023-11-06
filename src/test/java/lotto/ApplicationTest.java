@@ -13,7 +13,7 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 기능_테스트() {
+    void 기능_테스트1() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -45,11 +45,38 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
+    @Test
+    void 동작_테스트1() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("10000", "1,2,3,4,5,6", "7");
+
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7)
+
+        );
+    }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트1() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException(" ");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

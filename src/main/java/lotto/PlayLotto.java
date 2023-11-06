@@ -63,4 +63,15 @@ public class PlayLotto {
         }
         return Bonus;
     }
+    public int CheckWinningAndBonus(List<Integer> a, int Bonus ){
+        ExceptionCases exceptionCases = new ExceptionCases();
+        try{
+            exceptionCases.CheckSameWinAndBonus(a, Bonus);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            Bonus = getBonusNumber();
+            CheckWinningAndBonus(Bonus);
+        }
+        return Bonus;
+    }
 }

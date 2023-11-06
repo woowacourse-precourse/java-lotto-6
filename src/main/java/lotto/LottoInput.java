@@ -8,7 +8,22 @@ public class LottoInput {
 
     ExceptionCases exceptionCases = new ExceptionCases();
     PrintInput printInput = new PrintInput();
+    private Console console; // Console 객체를 멤버 변수로 추가
+
+    public void setConsole(Console console) {
+        this.console = console;
+    }
     public int getLottoPrice() {
+        PrintInput printInput = new PrintInput();
+        printInput.printLottoMoney();
+        String s;
+        do {
+            s = Console.readLine();
+        } while (exceptionCases.LottoPriceCheck(s));
+        System.out.println();
+        return Integer.parseInt(s);
+    }
+    public int getLottoPrice(String[] args) {
         PrintInput printInput = new PrintInput();
         printInput.printLottoMoney();
         String s;
@@ -34,7 +49,35 @@ public class LottoInput {
         }
         return CheckError(WinningNumbers,s);
     }
+    public List<Integer> getWinningNum(String[] args){
+        List<Integer> WinningNumbers = new ArrayList<>();
+        String s = Console.readLine();
+        String[] tempS = s.split((","));
+        for (String temp : tempS) {
+            try {
+                WinningNumbers.add(Integer.parseInt(temp));
+            }catch (NumberFormatException e){
+                exceptionCases.CheckFormat2();
+                printInput.printWinningLotto();
+                return getWinningNum();
+            }
+        }
+        return CheckError(WinningNumbers,s);
+    }
+
     public int getBonusNum(){
+        String s = Console.readLine();
+        int i;
+        try {
+            i = Integer.parseInt(s);
+        }catch (NumberFormatException e){
+            exceptionCases.CheckFormat2();
+            printInput.printBonusLotto();
+            return getBonusNum();
+        }
+        return CheckBonusError(i);
+    }
+    public int getBonusNum(String[] args){
         String s = Console.readLine();
         int i;
         try {

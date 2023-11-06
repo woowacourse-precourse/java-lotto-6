@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class LottoResult {
     private final HashMap<Rank, Integer> result = new HashMap<>();
 
-    public void calculateWinningResult(Lottos lottos, List<Integer> winningNumber, int bonusNumber) {
+    public void calculateWinningResult(Lottos lottos, String inputWinningNumber, int bonusNumber) {
         for (Lotto lotto : lottos.getLottos()) {
-            Rank rank = checkRank(lotto, winningNumber, bonusNumber);
+            Rank rank = checkRank(lotto, inputWinningNumber, bonusNumber);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
     }
@@ -28,9 +29,13 @@ public class LottoResult {
         return String.format("%.1f", profitRate);
     }
 
-    private Rank checkRank(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
+    private Rank checkRank(Lotto lotto, String inputWinningNumber, int bonusNumber) {
+        List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
         int matchCount = (int) lotto.getNumbers().stream()
-                .filter(winningNumber::contains)
+                .filter(winningNumbers::contains)
                 .count();
 
         boolean matchBonus = lotto.getNumbers().contains(bonusNumber);

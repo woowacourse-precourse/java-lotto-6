@@ -26,7 +26,6 @@ public class LottoController {
             OutputView.printLottosValue(responseDtos);
             // 당첨 번호를 입력해 주세요.
             Lotto userLotto = getUserLottoNumber();
-
             // 보너스 번호를 입력해 주세요.
             int userBonusNumber = getUserBonusNumber();
 

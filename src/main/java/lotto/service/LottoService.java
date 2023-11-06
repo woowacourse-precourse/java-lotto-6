@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.util.LottoGenerator;
+import java.util.stream.Stream;
 import lotto.controller.dto.ResultResponseDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.util.LottoGenerator;
 
 public class LottoService {
 
@@ -21,19 +22,20 @@ public class LottoService {
     }
 
     public List<ResultResponseDto> convertToDto(List<LottoResult> lottoResults) {
-        List<ResultResponseDto> dtos = new ArrayList<>();
-        List<LottoResult> results = List.of(LottoResult.FIFTH, LottoResult.FOURTH,
-                LottoResult.THIRD, LottoResult.SECOND, LottoResult.FIRST);
-
-        for (LottoResult result : results) {
-            int count = (int) lottoResults.stream().filter(temp -> temp == result)
-                    .count();
-            ResultResponseDto dto = result.toResponseDto(count);
-            dtos.add(dto);
-        }
-
-        return dtos;
+        return Stream.of(LottoResult.FIFTH, LottoResult.FOURTH,
+                        LottoResult.THIRD, LottoResult.SECOND, LottoResult.FIRST)
+                .map(resultRank -> {
+                    int count = getLottoResultCount(lottoResults, resultRank);
+                    return resultRank.toResponseDto(count);
+                })
+                .collect(Collectors.toList());
     }
+
+    private int getLottoResultCount(List<LottoResult> lottoResults, LottoResult result) {
+        return (int) lottoResults.stream().filter(temp -> temp == result)
+                .count();
+    }
+
 
     public List<LottoResult> returnLottoResult(Lotto userLotto, Lottos generatedLottos,
             int bonusNumber) {
@@ -47,10 +49,10 @@ public class LottoService {
         return lottoResults;
     }
 
-    private boolean isHasBonus(int bonusNumber, int count, Lotto tempLotto) {
+    private boolean isHasBonus(int bonusNumber, int count, Lotto lotto) {
         boolean hasBonus = false;
         if (count == 5) {
-            hasBonus = tempLotto.isContain(bonusNumber);
+            hasBonus = lotto.isContain(bonusNumber);
         }
         return hasBonus;
     }

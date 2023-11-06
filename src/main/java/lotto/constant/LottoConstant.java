@@ -1,6 +1,8 @@
 package lotto.constant;
 
 public class LottoConstant {
+    private LottoConstant() {
+    }
     public static int LOTTO_PRICE = 1000;
     public static int LOTTO_LENGTH = 6;
     public static int LOTTO_MIN_NUMBER = 1;
@@ -11,5 +13,4 @@ public class LottoConstant {
     public static int FOURTH_PRIZE = 50000;
     public static int FIFTH_PRIZE = 5000;
     public static int LAST_RANK = 5;
-
 }

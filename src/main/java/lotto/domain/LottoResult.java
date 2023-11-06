@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.constant.LottoConstant;
 
 public class LottoResult {
     private Map<Integer, Integer> ranks;

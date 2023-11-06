@@ -1,8 +1,6 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.constant.LottoConstant;
-import lotto.domain.Lotto;
 import lotto.error.ErrorMessage;
 
 public class OutputView {
@@ -17,7 +15,7 @@ public class OutputView {
     private static String THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - %d개";
     private static String FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - %d개";
     private static String FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - %d개";
-    private static String REVENUE_MESSAGE  = "총 수익률은 %.1f%%입니다.";
+    private static String REVENUE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printPurchaseInputMessage() {
         System.out.println(LOTTO_PURCHASE_AMOUNT_INPUT_MESSAGE);
@@ -50,7 +48,7 @@ public class OutputView {
         for (int i = 0; i < numbers.size() - 1; i++) {
             stringBuilder.append(numbers.get(i) + ", ");
         }
-        stringBuilder.append(numbers.get(numbers.size()-1) + "]");
+        stringBuilder.append(numbers.get(numbers.size() - 1) + "]");
         System.out.println(stringBuilder.toString());
     }
 

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.Prize;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -87,5 +88,57 @@ class LottoServiceTest {
         // then
         assertThat(matching).isEqualTo(true);
         assertThat(notMatching).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("당첨 등수와 당첨금 구하기")
+    void getPrize() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        List<Integer> sixMatches = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> fiveMatchesAndBonusMatches = List.of(2, 3, 4, 5, 6, 7);
+        List<Integer> fiveMatches = List.of(2, 3, 4, 5, 6, 8);
+        List<Integer> fourMatches = List.of(3, 4, 5, 6, 7, 8);
+        List<Integer> threeMatches = List.of(4, 5, 6, 7, 8, 9);
+        List<Integer> twoMatches = List.of(5, 6, 7, 8, 9, 10);
+        List<Integer> oneMatches = List.of(6, 7, 8, 9, 10, 11);
+        List<Integer> notMatches = List.of(7, 8, 9, 10, 11, 12);
+
+        // when
+        Prize firstPlace = lottoService.getPrize(sixMatches, winningNumbers, bonusNumber);
+        Prize secondPlace = lottoService.getPrize(fiveMatchesAndBonusMatches, winningNumbers, bonusNumber);
+        Prize thirdPlace = lottoService.getPrize(fiveMatches, winningNumbers, bonusNumber);
+        Prize fourthPlace = lottoService.getPrize(fourMatches, winningNumbers, bonusNumber);
+        Prize fifthPlace = lottoService.getPrize(threeMatches, winningNumbers, bonusNumber);
+        Prize unrankedPlace1 = lottoService.getPrize(twoMatches, winningNumbers, bonusNumber);
+        Prize unrankedPlace2 = lottoService.getPrize(oneMatches, winningNumbers, bonusNumber);
+        Prize unrankedPlace3 = lottoService.getPrize(notMatches, winningNumbers, bonusNumber);
+
+        // then
+        assertThat(firstPlace).isEqualTo(Prize.FIRST_PLACE);
+        assertThat(firstPlace.getMoney()).isEqualTo(2_000_000_000);
+
+        assertThat(secondPlace).isEqualTo(Prize.SECOND_PLACE);
+        assertThat(secondPlace.getMoney()).isEqualTo(30_000_000);
+
+        assertThat(thirdPlace).isEqualTo(Prize.THIRD_PLACE);
+        assertThat(thirdPlace.getMoney()).isEqualTo(1_500_000);
+
+        assertThat(fourthPlace).isEqualTo(Prize.FOURTH_PLACE);
+        assertThat(fourthPlace.getMoney()).isEqualTo(50_000);
+
+        assertThat(fifthPlace).isEqualTo(Prize.FIFTH_PLACE);
+        assertThat(fifthPlace.getMoney()).isEqualTo(5_000);
+
+        assertThat(unrankedPlace1).isEqualTo(Prize.UNRANKED);
+        assertThat(unrankedPlace1.getMoney()).isEqualTo(0);
+
+        assertThat(unrankedPlace2).isEqualTo(Prize.UNRANKED);
+        assertThat(unrankedPlace2.getMoney()).isEqualTo(0);
+
+        assertThat(unrankedPlace3).isEqualTo(Prize.UNRANKED);
+        assertThat(unrankedPlace3.getMoney()).isEqualTo(0);
     }
 }

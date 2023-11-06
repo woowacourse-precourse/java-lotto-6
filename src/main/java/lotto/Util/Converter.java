@@ -12,7 +12,7 @@ public class Converter {
     private static final String NULL = "";
     private static final String KOMA = ",";
 
-    public int convertAmount(String value){
+    public int convertNumber(String value){
         value = value.replaceAll(SPACE, NULL);
         checkEmpty(value);
         checkType(value);
@@ -29,14 +29,6 @@ public class Converter {
             checkValueOverflow(lotto);
         }
         return stringToLotto(toLotto);
-    }
-
-    public int convertBonusNumber(String value){
-        value = value.replaceAll(SPACE, NULL);
-        checkEmpty(value);
-        checkType(value);
-        checkValueOverflow(value);
-        return Integer.parseInt(value);
     }
 
     private void checkEmpty(String amount){

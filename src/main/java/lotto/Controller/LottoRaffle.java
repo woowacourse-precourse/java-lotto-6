@@ -40,7 +40,7 @@ public class LottoRaffle {
     }
     private void inputBuyAmount(){
         try {
-            amount = lottoAmount.initLottoAmount(converter.convertAmount(inputView.printLottoAmount()));
+            amount = lottoAmount.initLottoAmount(converter.convertNumber(inputView.printLottoAmount()));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             inputBuyAmount();
@@ -66,7 +66,7 @@ public class LottoRaffle {
 
     private void inputBonusNumber(){
         try {
-            bonusNumber = new BonusNumber(converter.convertBonusNumber(inputView.printInputBonusNumber())
+            bonusNumber = new BonusNumber(converter.convertNumber(inputView.printInputBonusNumber())
                     , lotto.getNumbers());
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

@@ -6,9 +6,9 @@ import lotto.constant.ExceptionMessage;
 
 public class Converter {
 
-    public static int pay(String paymentPrice) throws IllegalArgumentException {
+    public static long pay(String paymentPrice) throws IllegalArgumentException {
         try {
-            return Integer.parseInt(paymentPrice);
+            return Long.parseLong(paymentPrice);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER);
         }

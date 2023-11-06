@@ -9,6 +9,13 @@ import java.util.List;
 public class BuyLotto {
     private static List<Lotto> lotto = new ArrayList<>();
 
+    public List<Lotto> buyAllLotto(int money){
+        for(int i=0;i<money;i++){
+            Lotto paper = new Lotto(pickNumber());
+            lotto.add(paper);
+        }
+        return lotto;
+    }
     public List<Integer> pickNumber(){
         List<Integer> paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(paper);

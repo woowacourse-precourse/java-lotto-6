@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.*;
 
 public class Lotto_Number{
 	
-	private List<Integer> Lotto_Number; 
+	private List<Integer> Lotto_Number = new ArrayList<Integer>(); 
 	private static final int Len_Number = 6;
 	private static final int Min_Number = 1;
 	private static final int Max_Number = 45;	

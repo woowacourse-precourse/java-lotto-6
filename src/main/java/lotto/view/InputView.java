@@ -8,4 +8,8 @@ public class InputView {
         System.out.println(inputMoneyPhrase);
     }
 
+    public static void printInputLottoNumberPhrase() {
+        System.out.println(inputLottoNumberPhrase);
+    }
+
 }

@@ -5,8 +5,8 @@ import java.util.List;
 
 import lotto.Input.InputNumber;
 import lotto.Input.InputNumberImpl;
-import lotto.validator.LottoValidator;
-import lotto.validator.LottoValidatorImpl;
+import lotto.utils.LottoValidator;
+import lotto.utils.LottoValidatorImpl;
 
 public class LottoProcessImpl implements LottoProcess {
 

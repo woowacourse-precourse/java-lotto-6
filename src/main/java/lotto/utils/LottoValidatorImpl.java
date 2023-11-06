@@ -1,10 +1,11 @@
-package lotto.validator;
+package lotto.utils;
 
 import java.util.List;
 import java.util.StringTokenizer;
 
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.LottoRange;
+import lotto.utils.LottoValidator;
 import lotto.utils.ParserFromString;
 import lotto.utils.ParserFromStringImpl;
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.LottoValidator;
+import lotto.utils.LottoValidator;
 
 public class InputNumberImpl implements InputNumber {
 

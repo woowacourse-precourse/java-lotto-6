@@ -13,11 +13,11 @@ public class WinningNumber {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
-    public WinningNumber(String userValue) {
-        validateNullValue(userValue);
+    public WinningNumber(String userInput) {
+        validateNullValue(userInput);
         try {
             this.winningNumber = Arrays
-                    .stream(userValue.split(DELIMITER))
+                    .stream(userInput.split(DELIMITER))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         }

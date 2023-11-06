@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,6 +10,7 @@ public class GameController {
     private final int coin;
     private final LottoMachine lottoMachine;
     private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
     public GameController() {
         this.lottoMachine = new LottoMachine();
@@ -28,5 +26,6 @@ public class GameController {
         }
 
         winningNumber = new WinningNumber(InputView.inputWinningNumber());
+        bonusNumber = new BonusNumber(InputView.inputBonusNumber());
     }
 }

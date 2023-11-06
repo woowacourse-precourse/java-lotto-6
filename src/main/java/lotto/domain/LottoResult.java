@@ -30,4 +30,12 @@ public enum LottoResult {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
 }

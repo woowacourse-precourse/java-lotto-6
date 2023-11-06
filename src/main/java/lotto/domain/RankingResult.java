@@ -23,6 +23,7 @@ public class RankingResult {
     public List<String> receiveRankingResultInfo() {
         return rankingResult.keySet().stream()
                 .map(this::receiveRankingMessage)
+                .sorted()
                 .toList();
     }
 

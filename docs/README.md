@@ -77,5 +77,7 @@
   - 당첨 내역 정보를 인수로 받아 출력한다.
 
 ## 수익률 출력 기능
+- [ ] `LottoController::calculateTotalPrize` 메서드
+  - 당첨 결과를 인수로 받아 총 상금을 반환한다.
 - [x] `LottoOutputView::printProfit` 메서드
   - 구입 금액, 당첨 금액을 인수로 받아 수익률을 출력한다.

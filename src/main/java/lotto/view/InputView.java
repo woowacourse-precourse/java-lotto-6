@@ -12,7 +12,7 @@ public class InputView {
             try {
                 return Integer.parseInt(stringPurchaseAmount);
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 올바른 입력이 아닙니다. 구입금액을 입력해 주세요.");
+                System.err.print("[ERROR] 올바른 입력이 아닙니다. ");
             }
         }
     }

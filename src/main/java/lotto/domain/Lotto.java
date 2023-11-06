@@ -36,6 +36,16 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public int matchNumber(Lotto lottoToCompare) {
+        return (int) this.numbers.stream()
+                .filter(lottoToCompare::containsNumber)
+                .count();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -15,10 +15,10 @@ public class Input {
     private static final String USER_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String COMMA_SEPARATOR = ",";
-    private static final String INVALID_NATURAL_NUMBER_ERROR = "[ERROR] 입력값은 자연수여야 합니다.";
-    private static final String INVALID_LOTTO_NUMBER_ERROR = "[ERROR] 유효하지 않는 로또 번호입니다.";
-    private static final String INVALID_LOTTO_SIZE_ERROR = "[ERROR] 유효하지 않는 로또 번호 개수입니다.";
-    private static final String INVALID_PRICE_UNIT_ERROR = "[ERROR] 1,000원 단위로 입력해야 합니다.";
+    private static final String INVALID_NATURAL_NUMBER_ERROR = "입력값은 자연수여야 합니다.";
+    private static final String INVALID_LOTTO_NUMBER_ERROR = "유효하지 않는 로또 번호입니다.";
+    private static final String INVALID_LOTTO_SIZE_ERROR = "유효하지 않는 로또 번호 개수입니다.";
+    private static final String INVALID_PRICE_UNIT_ERROR = "1,000원 단위로 입력해야 합니다.";
     private static final int ZERO = 0;
 
     public static int getPurchasePrice() {

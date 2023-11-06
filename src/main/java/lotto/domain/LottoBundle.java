@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class LottoBundle {
@@ -13,6 +15,21 @@ public class LottoBundle {
 
     public List<Lotto> getLottoBundle() {
         return lottoBundle;
+    }
+
+    public Score checkResult(Result result) {
+        final Map<LottoRank, Integer> lottoResult = new HashMap<>();
+        for (Lotto lotto : this.lottoBundle) {
+            LottoRank lottoRank = checkSingleLottoRank(lotto, result);
+            lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
+        }
+        return new Score(lottoResult);
+    }
+
+    private LottoRank checkSingleLottoRank(Lotto lotto, Result result) {
+        final int matchNumberResult = result.matchWinningLotto(lotto);
+        final boolean matchBonusBallResult = result.matchBonusBall(lotto);
+        return LottoRank.findLottoRank(matchNumberResult, matchBonusBallResult);
     }
 
     @Override

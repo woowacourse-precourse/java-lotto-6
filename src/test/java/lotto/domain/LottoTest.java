@@ -76,4 +76,15 @@ class LottoTest {
         // when&then
         assertNotEquals(lotto1.hashCode(), lotto2.hashCode());
     }
+
+    @Test
+    @DisplayName("Lotto 내에 숫자가 포함되는 메서드를 검증한다.")
+    public void testContainsNumber() {
+        // given
+        int number = 6;
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        // when&then
+        assertTrue(lotto.containsNumber(number));
+    }
 }

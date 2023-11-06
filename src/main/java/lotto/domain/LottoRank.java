@@ -12,8 +12,8 @@ public enum LottoRank {
     FIRST(6, 2_000_000_000, false);
 
 
-    private static final String GENERAL_RANK_MESSAGE = "%d개 일치 (%s원) - %d개";
-    private static final String RANK_MESSAGE_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String GENERAL_RANK_MESSAGE = "%d개 일치 (%s원) - %d개\n";
+    private static final String RANK_MESSAGE_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
 
     private final int matchCount;
     private final int winPrice;
@@ -27,6 +27,9 @@ public enum LottoRank {
     }
 
     public String getLottoRankMessage(int rankCount) {
+        if (this == MISS) {
+            return "";
+        }
         if (this == SECOND) {
             return getFormattedMessage(RANK_MESSAGE_WITH_BONUS, rankCount);
         }

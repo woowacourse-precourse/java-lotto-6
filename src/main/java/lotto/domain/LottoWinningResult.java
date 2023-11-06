@@ -3,8 +3,6 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
-import lotto.config.Message;
 
 public class LottoWinningResult {
 
@@ -23,9 +21,6 @@ public class LottoWinningResult {
         Map<LottoRank, Integer> lottoRankCounts = new HashMap<>();
         for (Lotto lotto : lottos) {
             LottoRank lottoRank = getLottoRank(winningLotto, lotto);
-            if (lottoRank == LottoRank.MISS) {
-                continue;
-            }
             lottoRankCounts.put(lottoRank, lottoRankCounts.getOrDefault(lottoRank, 0) + 1);
         }
         return lottoRankCounts;
@@ -38,12 +33,12 @@ public class LottoWinningResult {
     }
 
     public String getLottoRankMessages() {
-        StringJoiner lottoRankMessageMaker = new StringJoiner(Message.NEW_LINE);
+        StringBuilder lottoRankMessages = new StringBuilder();
         for (LottoRank lottoRank : LottoRank.values()) {
             String lottoRankMessage = getLottoRankMessage(lottoRank);
-            lottoRankMessageMaker.add(lottoRankMessage);
+            lottoRankMessages.append(lottoRankMessage);
         }
-        return lottoRankMessageMaker.toString();
+        return lottoRankMessages.toString();
     }
 
     private String getLottoRankMessage(LottoRank lottoRank) {

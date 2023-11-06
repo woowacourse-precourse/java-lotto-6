@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.InputValidator;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumbers;
+import lotto.domain.*;
+import lotto.utils.Validator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -12,36 +12,50 @@ import static constant.MessageList.PRICE_OF_ONE_LOTTO;
 public class LottoGame {
     private final LottoNumbers lottoNumbers;
     private Lotto lotto;
-    private InputValidator inputValidator;
+    private Validator validator;
+    private LottoWinningResult lottoWinningResult;
+    private LottoAmount lottoAmount;
+    private List<Integer> lottoNumber;
+    private int purchaseQuantity;
     private int purchaseAmount;
-    private List<Integer> winningNumber;
+    private List<Integer> numberFromPlayer;
     private int bonusNumber;
 
     public LottoGame() {
         lottoNumbers = new LottoNumbers();
-        lotto = new Lotto(lottoNumbers.numbers);
-        inputValidator = new InputValidator();
+        validator = new Validator();
+        lottoAmount = new LottoAmount();
+
     }
 
     public void start() {
         this.purchaseAmount = setPurchaseAmount();
-        //8개를 구입했습니다. 로또 번호 출력
-        this.winningNumber = setWinningNumber();
+        this.purchaseQuantity = lottoAmount.getPurchaseQuantityOfLotto(purchaseAmount);
+        OutputView.printPurchaseQuantityMessage(purchaseQuantity);
+        makeLottoList();
+        this.numberFromPlayer = setWinningNumber();
+        lotto = new Lotto(numberFromPlayer);
         this.bonusNumber = setBonusNumber();
+        printWinningResult();
     }
 
     public int setPurchaseAmount() {
         try {
-            return inputValidator.validatePurchaseAmount(InputView.getPurchaseAmountInputFromPlayer());
+            return lottoAmount.validatePurchaseAmount(InputView.getPurchaseAmountInputFromPlayer());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setPurchaseAmount();
         }
     }
+    public void makeLottoList(){
+        for (int i = 0; i < purchaseQuantity; i++) {
+            OutputView.printLottoNumbers(lottoNumbers.generateLottoNumbers());
+        }
+    }
 
     public List<Integer> setWinningNumber() {
         try {
-            return inputValidator.validateWinningNumbers(InputView.getWinningNumberInputFromPlayer());
+            return validator.validateInput(InputView.getWinningNumberInputFromPlayer());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setWinningNumber();
@@ -50,14 +64,15 @@ public class LottoGame {
 
     public int setBonusNumber() {
         try {
-            return inputValidator.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(), winningNumber);
+            return lotto.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(),numberFromPlayer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setBonusNumber();
         }
     }
 
-    public int getPurchaseQuantityOfLotto(int purchaseAmount) {
-        return purchaseAmount / PRICE_OF_ONE_LOTTO;
+    public void printWinningResult() {
+        lottoWinningResult = new LottoWinningResult(numberFromPlayer, bonusNumber, lottoNumbers.getLottoNumbers());
+        OutputView.printWinningStatistics(lottoWinningResult.getWinningResult());
     }
 }

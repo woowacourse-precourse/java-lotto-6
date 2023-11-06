@@ -18,7 +18,7 @@ public class OutputViewTest {
     @Test
     @DisplayName("당첨내역을 출력한다.")
     void printWinningStatistics() {
-        OutputView.printWinningStatistics(new ArrayList<>(Arrays.asList(1, 0, 0, 0, 0, 0)));
+        OutputView.printWinningStatistics(new int[]{1, 0, 0, 0, 0});
     }
 
     @Test

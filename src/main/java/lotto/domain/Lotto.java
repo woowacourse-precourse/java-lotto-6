@@ -1,28 +1,57 @@
 package lotto.domain;
 
+import lotto.utils.Validator;
+
 import java.util.HashSet;
 import java.util.List;
+
+import static constant.MessageList.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
         validateDuplicatedNumbers(numbers);
+        for (int number : numbers) {
+            validateRangeOfNumber(number);
+        }
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_INPUT_HAS_NOT_PROPER_SIZE);
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateDuplicatedNumbers(List<Integer> numbers) {
         HashSet<Integer> lottoNumbersSet = new HashSet<>(numbers);
         if (lottoNumbersSet.size() < numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되면 안됩니다.");
+            throw new IllegalArgumentException(ERROR_INPUT_HAS_DUPLICATED_NUMBER);
+        }
+    }
+
+    private void validateRangeOfNumber(int number) {
+        if (!(number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_IN_PROPER_RANGE);
+        }
+    }
+
+    // 보너스 번호에 대한 검증
+    public int validateBonusNumber(String bonus, List<Integer> numbers) {
+        Validator validator = new Validator();
+        int bonusNumber = validator.validateNumber(bonus);
+        validateRangeOfNumber(bonusNumber);
+        validateDuplicateOfWinningNumber(bonusNumber, numbers);
+        return bonusNumber;
+    }
+
+    private void validateDuplicateOfWinningNumber(int bonusNumber, List<Integer> winningNumber) {
+        for (int i = 0; i < winningNumber.size(); i++) {
+            if (bonusNumber == winningNumber.get(i)) {
+                throw new IllegalArgumentException(ERROR_DUPLICATE_OF_WINNING_NUMBER);
+            }
         }
     }
 }

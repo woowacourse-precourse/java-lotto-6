@@ -51,5 +51,6 @@ class LottoTest {
     	assertEquals(6, lotto_list.size(),"6100을 넣고, 1000단위이기 떄문에 list의 사이즈는 6이어야 합니다.");
     }
 
+   
     
 }

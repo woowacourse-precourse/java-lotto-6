@@ -12,4 +12,10 @@ public class OutputView {
         int lottosCount = playersLottos.size();
         System.out.println(lottosCount + "개를 구매했습니다.");
     }
+    
+    public static void printPlayerLottos(List<Lotto> playersLottos) {
+    	for(Lotto lotto : playersLottos) {
+    		System.out.println(lotto.getNumbers().toString());
+    	}
+    }
 }

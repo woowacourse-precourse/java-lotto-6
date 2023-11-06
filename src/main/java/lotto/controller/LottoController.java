@@ -8,9 +8,10 @@ import lotto.view.OutputView;
 
 public class LottoController {
 	void playerBuyLotto() {
-		OutputView.informationBuyMessage();
+		OutputView.printBuyInstruction();
 		int playerFinance = InputData.playerFinance();
 		List<Lotto> playerLottos = LottoService.createObjectPerThousandUnits(playerFinance);
+		OutputView.printNumberOfLottosPurchased(playerLottos);
 	}
 	
 	

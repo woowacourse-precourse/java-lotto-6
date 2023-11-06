@@ -4,13 +4,12 @@ import lotto.dto.LottoDto;
 import lotto.dto.LottoesDto;
 import lotto.dto.MoneyDto;
 import lotto.repository.LottoRepository;
+import lotto.util.Consts;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
-    private static final int SINGLE_LOTTO_PRICE = 1000;
-
     private final LottoRepository lottoRepository = new LottoRepository();
 
     public LottoesDto purchaseLottoes(MoneyDto moneyDto) {
@@ -20,7 +19,7 @@ public class LottoService {
     }
 
     private int calculateLottoCount(int money) {
-        return money / SINGLE_LOTTO_PRICE;
+        return money / Consts.SINGLE_LOTTO_PRICE.getValue();
     }
 
     private List<LottoDto> generateLottoes(int lottoesCount) {

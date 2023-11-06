@@ -12,14 +12,14 @@ public enum LottoWinningValue {
     FIFTH_PLACE(5, 3, 0, "3개 일치 (5,000원)");
 
     private int rank;
-    private int winningNumberCnt;
-    private int bonusNumberCnt;
+    private int winningNumMatchCnt;
+    private int bonusNumMatchCnt;
     private String winnings;
 
-    LottoWinningValue(int rank, int winningNumberCnt, int bonusNumberCnt, String winnings) {
+    LottoWinningValue(int rank, int winningNumMatchCnt, int bonusNumMatchCnt, String winnings) {
         this.rank = rank;
-        this.winningNumberCnt = winningNumberCnt;
-        this.bonusNumberCnt = bonusNumberCnt;
+        this.winningNumMatchCnt = winningNumMatchCnt;
+        this.bonusNumMatchCnt = bonusNumMatchCnt;
         this.winnings = winnings;
     }
 
@@ -32,16 +32,23 @@ public enum LottoWinningValue {
         return BY_RANK.get(rank);
     }
 
+    private static final Map<Integer, LottoWinningValue> BY_WINNING_NUM_MATCH_CNT =
+            Stream.of(values()).collect(Collectors.toMap(LottoWinningValue::getWinningNumMatchCnt, e -> e));
+
+    public static LottoWinningValue valueOfWinningNumMatchCnt(int winningNumMatchCnt) {
+        return BY_WINNING_NUM_MATCH_CNT.get(winningNumMatchCnt);
+    }
+
     public int getRank() {
         return rank;
     }
 
-    public int getWinningNumberCnt() {
-        return winningNumberCnt;
+    public int getWinningNumMatchCnt() {
+        return winningNumMatchCnt;
     }
 
-    public int getBonusNumberCnt() {
-        return bonusNumberCnt;
+    public int getBonusNumMatchCnt() {
+        return bonusNumMatchCnt;
     }
 
     public String getWinnings() {

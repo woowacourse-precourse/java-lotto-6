@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.service.LottoNumberGenerator;
 
 // 이거 출력하는 건 view로 옮겨야 되겠는데?
@@ -16,11 +17,13 @@ public class PurchaseListPrinter {
         LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
         int numberOfTickets = purchaseAmount / 1000;
 
-        for (int i = 0; i < numberOfTickets; i++) {
-            List<Integer> prize = numberGenerator.generateNumbers();
-            purchaseList.add(prize);
-            System.out.println(prize);
-        }
+        IntStream.range(0, numberOfTickets)
+                .mapToObj(i -> numberGenerator.generateNumbers())
+                .forEach(prize -> {
+                    purchaseList.add(prize);
+                    System.out.println(prize);
+                });
+
         System.out.println();
     }
 }

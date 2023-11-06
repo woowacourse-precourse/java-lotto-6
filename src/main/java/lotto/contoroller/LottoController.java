@@ -67,7 +67,6 @@ public class LottoController {
 
     // 보너스 번호 입력
     private int getInputBonus() {
-//        int inputNumber;
         while (true) {
             try {
                 String input = InputValue.inputBonusNumber();
@@ -81,22 +80,4 @@ public class LottoController {
             }
         }
     }
-
-//    private void isValidBonusNumber(int inputNumber) {
-//        if (LottoBonusComparer.compare(lotto, inputNumber)) {
-//            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
-//        }
-//    }
-
-
-    // 당첨 번호 입력값들이랑 중복되지 않았는지
-//    private int validateDuplicate(List<Integer> numbers, int number) {
-//        while (LottoBonusComparer.compare(numbers, number)) {
-//            System.out.println(LottoErrorMessage.DUPLICATE_LIST_ERROR.getMessage());
-//            int input = getInputBonus(); // 재입력 받음
-//            number = input;
-//        }
-//        return number;
-//    }
-
 }

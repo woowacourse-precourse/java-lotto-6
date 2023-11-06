@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import lotto.Lotto;
+import lotto.data.Lotto;
 import lotto.data.Rewards;
 
 import java.util.*;
 
 public class OutputUI {
-
-    private Rewards rewards;
 
     public void rate(String winningRate) {
         System.out.println("총 수익률은 " + winningRate + "%입니다.");
@@ -28,9 +26,10 @@ public class OutputUI {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
+
         for (Rewards reward : rewards) {
-            System.out.printf("%s %s - %d개\n",reward.getNotifyMessege(),moneyEdit(reward)
-                    ,resultAll.get(reward));
+            System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), moneyEdit(reward)
+                    , resultAll.get(reward));
         }
     }
 
@@ -45,7 +44,7 @@ public class OutputUI {
             }
             formatted.append(reversedEdit.charAt(i));
         }
-        String result = "("+formatted.reverse().toString()+"원)";
+        String result = "(" + formatted.reverse().toString() + "원)";
         return result;
     }
 

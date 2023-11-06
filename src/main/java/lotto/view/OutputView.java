@@ -9,9 +9,4 @@ public class OutputView {
     public static void printBuyLotto(Money money) {
         System.out.printf((OUTPUT_BUY_MESSAGE) + "%n", money.getTicket());
     }
-
-    public static void printLottos(Lottos lottos) {
-        lottos.getLottos().forEach(System.out::println);
-        System.out.println();
-    }
 }

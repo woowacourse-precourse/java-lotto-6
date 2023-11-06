@@ -16,7 +16,7 @@ public class Application {
     private static int purchasePieces;
     private static List<Integer> lottoNum;
     private static List<Integer> winNum;
-    private static List<Integer> bonusNum;
+    private static int bonusNum;
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final RandomLotto random = new RandomLotto();
@@ -49,6 +49,7 @@ public class Application {
 
     public static void winLottoNum(List<Integer> numbers) {
         try {
+            winNum = numbers;
             Lotto lotto = new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             outputView.errorMessage(e.getMessage());
@@ -57,13 +58,14 @@ public class Application {
         }
     }
 
-    public static void bonusNum(List<Integer> numbers) {
+    public static void bonusNum(List<Integer> numbers, int bonusNumber) {
         try {
-            Bonus bonus = new Bonus(numbers);
+            bonusNum = bonusNumber;
+            Bonus bonus = new Bonus(numbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.errorMessage(e.getMessage());
-            bonusNum = convertNum(inputView.bonusNum());
-            bonusNum(bonusNum);
+            bonusNum = Integer.parseInt(inputView.bonusNum());
+            bonusNum(winNum, bonusNum);
         }
     }
 
@@ -71,9 +73,7 @@ public class Application {
         purchaseCount(inputView.purchaseAmount());
         outputView.purchasePieces(purchasePieces);
         randomRepeat();
-        winNum = convertNum(inputView.winNum());
-        winLottoNum(winNum);
-        bonusNum = convertNum(inputView.bonusNum());
-        bonusNum(bonusNum);
+        winLottoNum(convertNum(inputView.winNum()));
+        bonusNum(winNum, Integer.parseInt(inputView.bonusNum()));
     }
 }

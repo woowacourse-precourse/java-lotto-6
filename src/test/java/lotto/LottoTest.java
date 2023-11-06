@@ -33,5 +33,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    
+    @DisplayName("checkMultiple1000 테스트.")
+    @Test
+    void checkMultiple1000_TEST() {
+        assertThatThrownBy(() -> Application.checkMultiple1000(2200))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

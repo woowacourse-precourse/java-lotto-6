@@ -15,7 +15,7 @@ class ControllerTest extends NsTest {
     void 발행한_로또번호_출력() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("4000");
+                    runException("4000");
                     assertThat(output()).contains(
                             "4개를 구매했습니다.",
                             "[1, 2, 3, 4, 5, 6]",
@@ -46,7 +46,7 @@ class ControllerTest extends NsTest {
     void 발행한_로또번호_오름차순으로_출력() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("2000");
+                    runException("2000");
                     assertThat(output()).contains(
                             "2개를 구매했습니다.",
                             "[1, 2, 3, 4, 5, 6]",

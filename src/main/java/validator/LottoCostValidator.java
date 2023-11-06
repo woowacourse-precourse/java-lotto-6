@@ -1,5 +1,6 @@
 package validator;
 
+import constant.LottoConfig;
 import dto.LottoCostRequst;
 import view.Output;
 
@@ -25,7 +26,7 @@ public class LottoCostValidator {
     }
 
     public boolean validFitLottoCost(String data){
-        if(Integer.parseInt(data) % LottoCostRequst.LOTTOT_COST != 0){
+        if(Integer.parseInt(data) % LottoConfig.COST.getValue() != 0){
             Output.printErrorFitLottoCostMessage();
             return false;
         }

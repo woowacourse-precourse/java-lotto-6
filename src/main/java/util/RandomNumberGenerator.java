@@ -12,11 +12,16 @@ public class RandomNumberGenerator {
         List<Integer> nums;
         while(true){
             nums = Randoms.pickUniqueNumbersInRange(start, end, count);
-            List<Integer> copyNums = new ArrayList<>();
-
-            if(nums.stream().allMatch(num-> !copyNums.contains(num) && copyNums.add(num)))
+            if(validate(nums))
                 break;
         }
        return nums;
+    }
+
+    private static boolean validate(List<Integer> nums){
+        List<Integer> copyNums = new ArrayList<>();
+        if(nums.stream().allMatch(num-> !copyNums.contains(num) && copyNums.add(num)))
+            return true;
+        return false;
     }
 }

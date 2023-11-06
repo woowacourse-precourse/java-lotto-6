@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Handling;
 
-
 public class LottoGenerator {
     public static List<Lotto> createLottos(Integer lottoCount) {
         List<Lotto> lottos = new ArrayList<>();

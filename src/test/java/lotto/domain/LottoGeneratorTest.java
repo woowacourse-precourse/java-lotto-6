@@ -48,7 +48,7 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 당첨 번호앞에 0이 있을 때, 예외 처리")
+    @DisplayName("입력된 당첨 번호 앞에 0이 있을 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"01,2,3,4,5,6", "010", "1,2,03,04,005,00006"})
     void createWinningLottoByFirstNumberZero(String lottoNumber) {
@@ -56,6 +56,16 @@ class LottoGeneratorTest {
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력된 당첨 번호 개수가 6개가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"1","1,2,3,4,5","1,2,3,4,5,6,7"})
+    void createWinningLottoByNotEqualSize(String lottoNumber) {
+
+        assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @DisplayName("보너스 번호를 입력 받아 보너스 번호 생성")
     @Test

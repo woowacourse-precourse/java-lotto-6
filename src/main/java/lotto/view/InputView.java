@@ -34,7 +34,7 @@ public class InputView {
         String[] parts = input.split(",");
         for (String part : parts) {
             if (!isInteger(part.trim())) {
-                throw new IllegalArgumentException("입력값은 모두 정수여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_NOT_INTEGER_ERROR.getMessage());
             }
         }
     }
@@ -67,7 +67,7 @@ public class InputView {
 
     private static void validateIntegerForInputBonusNumber(String input) {
         if (!isInteger(input)) {
-            throw new IllegalArgumentException("보너스 번호는 오로지 정수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NOT_INTEGER_ERROR.getMessage());
         }
     }
 }

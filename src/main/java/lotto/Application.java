@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.view.Coin;
+import lotto.view.InputCoin;
 
 public class Application {
     public static void main(String[] args) {
-        Coin coin = new Coin();
-        coin.inputCoin();
+        InputCoin coin = new InputCoin();
+        coin.insertCoin();
     }
 }

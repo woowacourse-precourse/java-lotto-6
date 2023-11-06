@@ -12,32 +12,17 @@ public class Input {
 
 	public static int purchaseAmount() {
 		System.out.println("구입금액을 입력해 주세요.");
-		try {
-			return toInteger(Console.readLine());
-		} catch (Exception e) {
-			Output.exception(e);
-		}
-		return purchaseAmount();
+		return toInteger(Console.readLine());
 	}
 
 	public static List<Integer> winningNumbers() {
 		System.out.println("당첨 번호를 입력해 주세요.");
-		try {
-			return toIntegerList(Console.readLine());
-		} catch (Exception e) {
-			Output.exception(e);
-		}
-		return winningNumbers();
+		return toIntegerList(Console.readLine());
 	}
 
 	public static int bonusNumber() {
 		System.out.println("보너스 번호를 입력해 주세요.");
-		try {
-			return toInteger(Console.readLine());
-		} catch (IllegalArgumentException e) {
-			Output.exception(e);
-		}
-		return bonusNumber();
+		return toInteger(Console.readLine());
 	}
 
 	private static List<Integer> toIntegerList(String str) {

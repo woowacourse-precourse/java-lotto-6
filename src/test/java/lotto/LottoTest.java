@@ -44,4 +44,12 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         Assertions.assertThat(lotto.toString()).isEqualTo("1, 2, 3, 4, 5, 6");
     }
+
+    @DisplayName("로또가 입력으로 주어진 보너스 값을 포함하고 있다면 참을 반환한다.")
+    @Test
+    void isContainsBonusNumber(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonusNumber = 6;
+        org.junit.jupiter.api.Assertions.assertTrue(lotto.isContain(bonusNumber));
+    }
 }

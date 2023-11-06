@@ -10,5 +10,5 @@ public class Money {
         validator.money(inputMoney);
         this.money = inputMoney;
     }
-
+    
 }

@@ -1,7 +1,7 @@
 package lotto.util;
 
 public class Validator {
-    private static final double MAX_MONEY = 2E9;
+    private static final long MAX_MONEY = (long) 2E9;
     private static final int MIN_SIZE = 4;
     private static final int MAX_SIZE = 10;
     private static final int ZERO_INDEX = 0;
@@ -11,7 +11,7 @@ public class Validator {
     public void money(String inputMoney) {
         checkSize(inputMoney);
         checkNum(inputMoney);
-        checkRange(Double.valueOf(inputMoney));
+        checkRange(Long.valueOf(inputMoney));
         checkDividable(Integer.valueOf(inputMoney));
     }
 
@@ -30,7 +30,7 @@ public class Validator {
         }
     }
 
-    private void checkRange(double money) {
+    private void checkRange(long money) {
         if (money >= MAX_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
         }

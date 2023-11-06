@@ -31,6 +31,13 @@ public class LottoRepository {
             return;
         lottos.add(lotto);
     }
+    public void addLotto(List<Lotto> lottos){
+        for(int i=0;i<lottos.size();i++){
+            if(calculateRank(lottos.get(i)))
+                return;
+            lottos.add(lottos.get(i));
+        }
+    }
     private boolean calculateRank(Lotto lotto){
         int rank = lottoRank.isRank(lotto, winningLotto, bonusNum);
         if(rank==-1){

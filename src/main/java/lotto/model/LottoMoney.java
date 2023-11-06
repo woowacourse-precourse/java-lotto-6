@@ -3,7 +3,6 @@ package lotto.model;
 import static lotto.model.constant.ErrorMessage.MONEY_INVALID_AMOUNT_UNIT;
 import static lotto.model.constant.ErrorMessage.MONEY_INVALID_MINIMUM_AMOUNT;
 import static lotto.model.constant.LottoConfig.LOTTO_AMOUNT;
-import static lotto.model.constant.LottoConfig.ZERO;
 
 public class LottoMoney {
 
@@ -30,7 +29,7 @@ public class LottoMoney {
     }
 
     private void validateWonUnit(int money) {
-        if (money % LOTTO_AMOUNT != ZERO) {
+        if (money % LOTTO_AMOUNT != 0) {
             throw new IllegalArgumentException(MONEY_INVALID_AMOUNT_UNIT);
         }
     }

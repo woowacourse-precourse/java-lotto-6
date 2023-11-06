@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.model.constant.ErrorMessage.NUMBER_DUPLICATED;
 import static lotto.model.constant.ErrorMessage.NUMBER_INVALID_RANGE;
+import static lotto.model.constant.LottoConfig.MAXIMUM_LOTTO_NUMBER;
+import static lotto.model.constant.LottoConfig.MINIMUM_LOTTO_NUMBER;
 
 public class WinningNumbers {
 
@@ -34,7 +36,7 @@ public class WinningNumbers {
     }
 
     private void validateNumberRange(Integer bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException(NUMBER_INVALID_RANGE);
         }
     }

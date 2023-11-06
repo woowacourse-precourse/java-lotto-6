@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.UI.*;
+import java.util.List;
 import static lotto.Constant.*;
 
 public class Validation {
@@ -20,5 +20,9 @@ public class Validation {
         if (money % 1000 != 0){
             throw new IllegalArgumentException(INPUT_NOT_DIVIDE_EXCEPTION_MSG);
         }
+    }
+
+    public static List<Integer> validateWinningNumber(String input){
+        return null;
     }
 }

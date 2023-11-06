@@ -28,7 +28,16 @@ public class UI {
     }
 
     public static List<Integer> getWinningNumber(){
-        return null;
+        System.out.println();
+        while (true) {
+            try{
+                System.out.println(GET_WINNING_NUMBER_MSG);
+                String input = Console.readLine();
+                return validateWinningNumber(input);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int getBonusNumber(){

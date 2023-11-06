@@ -46,4 +46,37 @@ class LottoValidationTest {
         });
     }
 
+    @DisplayName("로또 당첨 번호에 연속된 콤마로 공백이 있을 경우 예외 발생")
+    @Test
+    void createLottoWinningNotVacuum() {
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
+        String isVacuum = "2,5,8,16,,25";
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinningNumber.lottoWinningNumber(isVacuum);
+        });
+    }
+
+    @DisplayName("보너스 당첨 번호에 숫자가 아닌 문자가 있을 경우 예외 발생")
+    @Test
+    void createLottoBonusNotNumber() {
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
+        String notNumber = "25l";
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> lottoWinningNumber.lottoBonusNumber(notNumber, lottoNumbers))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @DisplayName("보너스 당첨 번호와 로또 당첨 번호가 중복될 경우 예외 발생")
+    @Test
+    void createLottoBonusDistinct() {
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
+        String bonusNumber = "2";
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> lottoWinningNumber.lottoBonusNumber(bonusNumber, lottoNumbers))
+                .isInstanceOf(RuntimeException.class);
+    }
+
 }

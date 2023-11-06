@@ -4,12 +4,27 @@ import java.util.ArrayList;
 import lotto.Model.Lotto;
 import lotto.Model.Prize;
 import lotto.Service.LottoMachine;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 public class LottoMachineTest {
+
+    @BeforeEach
+    public void beforeEach(){
+        // enum 카운트 개수 초기화
+        Prize.SIX.setCount(0);
+        Prize.FIVE_BONUS.setCount(0);
+        Prize.FIVE.setCount(0);
+        Prize.FOUR.setCount(0);
+        Prize.THREE.setCount(0);
+    }
+
+
+
+
     @DisplayName("구입금액에 따른 로또 갯수 체크")
     @Test
     void checkLottoCount() {
@@ -70,6 +85,8 @@ public class LottoMachineTest {
         winningNumbers.add(6);
         Integer bonusNumber = 7;
         Integer price = 1000;
+        LottoMachine.countStatistics(lottos , winningNumbers , bonusNumber);
+
         // 수익률을 계산하면
         double profit = LottoMachine.calculateProfit(price);
         assertThat(profit).isEqualTo(500);

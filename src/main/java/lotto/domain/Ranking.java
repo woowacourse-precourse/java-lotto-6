@@ -81,7 +81,7 @@ public class Ranking {
         return Rank.ELSE;
     }
 
-    public void printRankStatus() {
-        System.out.println(rankStatus);
+    public Map<Rank, Integer> getRankStatus() {
+        return rankStatus;
     }
 }

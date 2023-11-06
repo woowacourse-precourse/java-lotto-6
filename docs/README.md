@@ -61,7 +61,7 @@
 
   - [ ] 로또 구입 금액이 올바른지 **판단**하는 기능
 
-- [x] 당첨 번호를 **입력**하는 기능 - WinningLotto
+- [x] 당첨 번호를 **입력**하는 기능 - lotto ~ WinningLotto
 
   - [ ] 당첨 번호가 올바른지 **판단**하는 기능
 
@@ -69,9 +69,9 @@
 
   - [ ] 보너스 번호가 올바른지 **판단**하는 기능
 
-- [x] 당첨 등수와 상금을 표현하는 Enum 생성 constant ~ Rank
+- [x] 당첨 등수와 상금을 표현하는 Enum 생성 - constant ~ Rank
 
-- [x] 당첨 등수를 **계산**하는 기능 domain ~ Ranking
+- [x] 당첨 등수를 **계산**하는 기능 - domain ~ Ranking
 
   - [x] 몇 등인지 **계산**하는 기능 + 보너스 볼 - Ranking#matchLotto();
 
@@ -83,11 +83,13 @@
 
   - [x] 당첨된 로또의 개수를 **증가**하는 기능 - Ranking#updateRankCounts(); 
 
-- [x] 당첨 통계를 **출력**하는 기능
+- [x] 당첨 통계 기능 - domain ~ Statistics
 
-- [x] 수익률을 **계산**하는 기능
+  - [x] 당첨 통계를 **출력**하는 기능 - Ranking#getRank(); Ranking#printRanking();
 
-- [x] 수익률을 **출력**하는 기능
+  - [x] 수익률을 **계산**하는 기능 - Ranking#sumRevenue();, Ranking#totalRevenue();
+
+  - [x] 수익률을 **출력**하는 기능 - Ranking#printRevenue();
 
 ### 예외 상황 - "[ERROR]"로 에러 메시지 시작
 

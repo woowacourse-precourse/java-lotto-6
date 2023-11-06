@@ -3,7 +3,7 @@ package lotto;
 import lotto.constant.Constant;
 import lotto.domain.Purchase;
 import lotto.domain.Ranking;
-// import lotto.domain.Statistics;
+import lotto.domain.Statistics;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,15 +17,10 @@ public class Application {
         WinningLotto winningLotto = new WinningLotto();
 
         Ranking ranking = new Ranking(purchasedLotto, winningLotto);
-
         ranking.matchLotto();
-        ranking.printRankStatus();
 
-//        Statistics statistics = new Statistics(purchase, winningLotto);
-//        statistics.matchLotto();
-//
-//        System.out.println(Constant.result);
-//        statistics.getRank();
-//        statistics.getRevenue();
+        Statistics statistics = new Statistics(ranking,purchasedLotto);
+        statistics.printRank();
+        statistics.printRevenue();
     }
 }

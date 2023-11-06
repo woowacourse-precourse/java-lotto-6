@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.EnumMap;
 
-import lotto.domain.Payment;
 import lotto.domain.Rank;
 import lotto.dto.LottoNumbersDto;
 import lotto.util.NumberFormatConverter;
@@ -30,8 +29,8 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public static void printPurchasedLottoCount(Payment payment) {
-        System.out.printf(addLineSeparator(PURCHASED_LOTTO_COUNT_GUIDE), payment.calculatePurchasedLottoCount());
+    public static void printPurchasedLottoCount(final int purchasedCount) {
+        System.out.printf(addLineSeparator(PURCHASED_LOTTO_COUNT_GUIDE), purchasedCount);
     }
 
     public static void printIssuedLottosNumbers(final LottoNumbersDto lottoNumbersDto) {

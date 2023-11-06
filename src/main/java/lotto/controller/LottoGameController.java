@@ -44,7 +44,7 @@ public class LottoGameController {
     }
 
     private void printPurchaseHistory(final Payment payment, final Lottos lottos) {
-        OutputView.printPurchasedLottoCount(payment);
+        OutputView.printPurchasedLottoCount(payment.calculatePurchasedLottoCount());
         OutputView.printIssuedLottosNumbers(lottos.getLottoNumbersDto());
     }
 

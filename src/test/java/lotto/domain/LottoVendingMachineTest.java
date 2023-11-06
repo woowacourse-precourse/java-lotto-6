@@ -25,4 +25,12 @@ class LottoVendingMachineTest {
             assertThat(randomNumber).isBetween(1, 45);
         }
     }
+
+    @Test
+    @DisplayName("무작위 값 갯수 크기 6 반환 테스트")
+    void randomValueCountOfSize6Test() {
+        List<Integer> randomNumbers = lottoVendingMachine.getRandomNumbers();
+
+        assertThat(randomNumbers.size()).isEqualTo(6);
+    }
 }

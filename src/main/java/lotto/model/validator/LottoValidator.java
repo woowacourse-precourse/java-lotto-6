@@ -29,9 +29,16 @@ public class LottoValidator implements ModelValidator {
     }
 
     public void validate(Lotto lotto) {
+        validateNull(lotto);
         validateLottoTicketSize(lotto.getNumbers());
         lotto.getNumbers().forEach(this::validateNumberInRange);
         validateDuplication(lotto.getNumbers());
+    }
+
+    private void validateNull(Lotto lotto) {
+        if (lotto == null) {
+            throw new IllegalArgumentException(ErrorMessage.IS_NULL.getMessage());
+        }
     }
 
     private void validateNumberInRange(int number) {

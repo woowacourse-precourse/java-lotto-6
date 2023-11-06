@@ -29,10 +29,17 @@ public class WinningLottoValidator implements ModelValidator {
     }
 
     public void validate(WinningLotto winningLotto) {
+        validateNull(winningLotto);
         validateNumberInRange(winningLotto.getBonusNumber());
         validateDuplication(winningLotto.getLotto(), winningLotto.getBonusNumber());
     }
-    
+
+    private void validateNull(WinningLotto winningLotto) {
+        if (winningLotto == null) {
+            throw new IllegalArgumentException(ErrorMessage.IS_NULL.getMessage());
+        }
+    }
+
     private void validateNumberInRange(int number) {
         if (number < LottoConstants.LOTTO_NUMBER_MIN || number > LottoConstants.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_IN_RANGE.getMessage());

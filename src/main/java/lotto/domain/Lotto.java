@@ -17,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);
-        validateNumberRange(numbers);
+        validateNumbersRange(numbers);
         validateNumbersForDuplicates(numbers);
     }
 
@@ -27,11 +27,15 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
+    private void validateNumbersRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("로또 번호는 1부터 45사이의 숫자여야 합니다.");
-            }
+            validateSingleNumberRange(number);
+        }
+    }
+
+    protected void validateSingleNumberRange(Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45사이의 숫자여야 합니다.");
         }
     }
 

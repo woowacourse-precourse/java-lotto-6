@@ -23,4 +23,9 @@ class OutputViewTest {
         List<List<Integer>> ex = lotteries.getNumbersOfLotteries();
         outputView.printLottoNumbers(ex);
     }
+
+    @Test
+    void printPurchaseAmount() {
+        outputView.printPurchaseAmount(3);
+    }
 }

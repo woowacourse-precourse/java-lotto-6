@@ -7,7 +7,7 @@ import lotto.constant.PriceConstant;
 
 public class LottoResult {
 
-    Map<Integer, Integer> resultMap = new ConcurrentHashMap<>();
+    Map<Integer, Integer> resultMap;
     private int winningCount;
 
     private LottoResult() {
@@ -19,6 +19,7 @@ public class LottoResult {
     }
 
     private Map<Integer, Integer> generateResultMap() {
+        resultMap = new ConcurrentHashMap<>();
         resultMap.put(PriceConstant.FIFTH_PLACE.getCount(), 0);
         resultMap.put(PriceConstant.FOURTH_PLACE.getCount(), 0);
         resultMap.put(PriceConstant.THIRD_PLACE.getCount(), 0);
@@ -53,5 +54,9 @@ public class LottoResult {
             resultMap.put(PriceConstant.THIRD_PLACE.getCount(),
                     resultMap.get(PriceConstant.THIRD_PLACE.getCount()) - 1);
         }
+    }
+
+    public Map<Integer, Integer> getResultMap() {
+        return resultMap;
     }
 }

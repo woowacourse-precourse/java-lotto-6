@@ -1,23 +1,19 @@
 package lotto.service;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
-import lotto.util.RandomNumberGenerator;
 
 public class GameService {
-
-    private final RandomNumberGenerator randomNumberGenerator;
 
     private PurchaseAmount purchaseAmount;
     private WinningLotto winningLotto;
     private Lotteries lotteries;
-
-    public GameService(RandomNumberGenerator randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
-    }
+    private LottoResult lottoResult;
 
     public void createPurchaseAmount(String userInput) {
         purchaseAmount = PurchaseAmount.from(userInput);
@@ -31,11 +27,20 @@ public class GameService {
         lotteries = Lotteries.from(purchaseAmount.calculateAmountOfLotteries());
     }
 
+    public void createLottoResult() {
+        lottoResult = LottoResult.from();
+        lottoResult.countWinningCase(lotteries.getLotteries(), winningLotto);
+    }
+
     public List<List<Integer>> printLottoNumbers() {
         return lotteries.getNumbersOfLotteries();
     }
 
     public int printPurchaseAmount() {
         return purchaseAmount.calculateAmountOfLotteries();
+    }
+
+    public Map<Integer, Integer> printGameResult() {
+        return lottoResult.getResultMap();
     }
 }

@@ -34,9 +34,10 @@ public class GameMainController {
         String winningNumber = inputView.inputWinningNumber();
         String bonusNumber = inputView.inputBonusNumber();
         gameService.createWinningLotto(winningNumber, bonusNumber);
+        gameService.createLottoResult();
     }
 
     private void stopGame() {
-
+        outputView.printGameResult(gameService.printGameResult());
     }
 }

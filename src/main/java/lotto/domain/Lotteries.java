@@ -47,4 +47,8 @@ public class Lotteries {
         }
         return lotteriesNumbers;
     }
+
+    public List<Lotto> getLotteries() {
+        return lotteries;
+    }
 }

@@ -11,7 +11,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             GameMainController gameMainController = new GameMainController
-                    (new GameService(new RandomNumberGenerator()), new InputView(new InputValidator()), new OutputView());
+                    (new GameService(), new InputView(new InputValidator()), new OutputView());
 
             gameMainController.run();
         } catch (IllegalStateException e) {

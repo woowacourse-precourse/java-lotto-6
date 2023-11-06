@@ -3,7 +3,6 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.constant.NumberConstant;
-import lotto.domain.Lotto;
 
 public class RandomNumberGenerator {
 

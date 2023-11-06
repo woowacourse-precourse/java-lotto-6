@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.enums.Constant;
+import lotto.enums.ErrorMessage;
 
 public class Bonus {
     private final Integer bonusNumber;
@@ -13,8 +14,12 @@ public class Bonus {
 
     private void validateRange(Integer number) {
         if (number < Constant.START_RANGE_OF_NUMBER.getValue()
-                || Constant.END_RANGE_OF_NUMBER.getValue() < number) { // 상수 enum 추가
-            throw new IllegalArgumentException(); // 에러문 추가
+                || Constant.END_RANGE_OF_NUMBER.getValue() < number) {
+            throw new IllegalArgumentException(String.format(
+                    ErrorMessage.LOTTO_NUMBERS_HAS_RANGE.getMessage(),
+                    Constant.START_RANGE_OF_NUMBER.getValue(),
+                    Constant.END_RANGE_OF_NUMBER.getValue()
+            ));
         }
     }
 

@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import lotto.enums.Constant;
+import lotto.enums.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,13 +17,13 @@ public class Lotto {
 
     private void validateCount(List<Integer> numbers) {
         if (numbers.size() != Constant.COUNT_OF_LOTTO_NUMBERS.getValue()) {
-            throw new IllegalArgumentException(); // 에러문 추가
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_OF_LOTTO_NUMBERS_IS_6.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != Constant.COUNT_OF_LOTTO_NUMBERS.getValue()) {
-            throw new IllegalArgumentException(); // 에러문 추가
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_HAS_NO_DUPLICATE.getMessage());
         }
     }
 
@@ -30,7 +31,11 @@ public class Lotto {
         for (Integer number : numbers) {
             if (number < Constant.START_RANGE_OF_NUMBER.getValue()
                     || Constant.END_RANGE_OF_NUMBER.getValue() < number) {
-                throw new IllegalArgumentException(); // 에러문 추가
+                throw new IllegalArgumentException(String.format(
+                        ErrorMessage.LOTTO_NUMBERS_HAS_RANGE.getMessage(),
+                        Constant.START_RANGE_OF_NUMBER.getValue(),
+                        Constant.END_RANGE_OF_NUMBER.getValue()
+                ));
             }
         }
     }

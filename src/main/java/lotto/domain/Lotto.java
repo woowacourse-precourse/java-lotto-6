@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.InvalidDuplicatedNumberException;
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -22,7 +26,9 @@ public class Lotto {
         return numbers;
     }
 
-    private void sort(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new InvalidDuplicatedNumberException();
+        }
     }
 }

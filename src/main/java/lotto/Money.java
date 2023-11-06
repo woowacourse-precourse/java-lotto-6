@@ -16,4 +16,9 @@ public class Money {
     public int purchase() {
         return num / LOTTO_PRICE;
     }
+
+    public int purchaseMoney() {
+        int purchase = purchase();
+        return purchase * LOTTO_PRICE;
+    }
 }

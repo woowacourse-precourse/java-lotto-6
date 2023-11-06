@@ -19,4 +19,15 @@ class ResultTest {
         assertThat(Result.from(1, false)).isEqualTo(Result.NO_PRIZE);
         assertThat(Result.from(0, false)).isEqualTo(Result.NO_PRIZE);
     }
+
+    @DisplayName("결과에 맞는 상금을 반환한다.")
+    @Test
+    void getPrize() {
+        assertEquals(Result.FIRST_PRIZE.prize(), 2_000_000_000);
+        assertEquals(Result.SECOND_PRIZE.prize(), 30_000_000);
+        assertEquals(Result.THIRD_PRIZE.prize(), 1_500_000);
+        assertEquals(Result.FOURTH_PRIZE.prize(), 50_000);
+        assertEquals(Result.FIFTH_PRIZE.prize(), 5_000);
+        assertEquals(Result.NO_PRIZE.prize(), 0);
+    }
 }

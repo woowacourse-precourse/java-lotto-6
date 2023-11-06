@@ -20,4 +20,11 @@ public class Converter {
             throw ExceptionMessage.INPUT_TYPE.throwexception();
         }
     }
+
+    private void checkValueOverflow(String amount){
+        long max = Long.parseLong(amount);
+        if (max > MAX_VALUE){
+            throw ExceptionMessage.NUMBER_OVERFLOW.throwexception();
+        }
+    }
 }

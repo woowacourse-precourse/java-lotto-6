@@ -26,9 +26,10 @@ public class InputView implements Input{
     }
 
     @Override
-    public GetBonusNumberDto getBonusNumber() {
+    public GetBonusNumberDto getBonusNumber(GetWinningNumberDto getWinningNumberDto) {
         return new GetBonusNumberDto(
                 Validator.checkBonusNumber(
+                        getWinningNumberDto,
                         getBonusNumberReadline()
                 )
         );

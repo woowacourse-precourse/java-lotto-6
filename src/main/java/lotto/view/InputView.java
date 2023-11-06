@@ -19,6 +19,11 @@ public class InputView {
         return convertInputToList(input);
     }
 
+    public static int readBonusNumber() {
+        String input = Console.readLine();
+        return Integer.parseInt(input);
+    }
+
     private static List<Integer> convertInputToList(String input) {
         String[] extractNumbers = input.split(",");
         List<Integer> winningNumbers = new ArrayList<>();

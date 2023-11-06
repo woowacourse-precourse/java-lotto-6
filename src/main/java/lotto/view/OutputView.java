@@ -10,6 +10,7 @@ public class OutputView {
     private static final String CLOSE_BRACKET = "]";
     private static final String COMMA = ", ";
     private static final String TYPE_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String TYPE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public static void printPurchaseAmount() {
         System.out.println(TYPE_PURCHASE_AMOUNT);
     }
@@ -31,7 +32,13 @@ public class OutputView {
 
     public static void printWinningNumbers() {
         blankSpace();
+        blankSpace();
         System.out.println(TYPE_WINNING_NUMBERS);
+    }
+
+    public static void printBonusNumber() {
+        blankSpace();
+        System.out.println(TYPE_BONUS_NUMBER);
     }
 
     private static void blankSpace() {

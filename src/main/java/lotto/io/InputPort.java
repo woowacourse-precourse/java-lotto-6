@@ -3,7 +3,7 @@ package lotto.io;
 import java.util.List;
 
 public interface InputPort {
-    Integer receiveMoney();
+    int receiveMoney();
     List<Integer> receiveLottos();
-    Integer receiveBonus();
+    int receiveBonus();
 }

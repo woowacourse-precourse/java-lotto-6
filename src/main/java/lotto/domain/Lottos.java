@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public final class Lottos {
 
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
 
     void addLotto(List<Integer> lotto) {
         lottos.add(new Lotto(lotto));

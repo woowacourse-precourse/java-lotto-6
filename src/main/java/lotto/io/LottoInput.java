@@ -11,7 +11,7 @@ public final class LottoInput implements InputPort{
     private static final String delimiter = ",";
 
     @Override
-    public Integer receiveMoney() {
+    public int receiveMoney() {
         String input = Console.readLine();
         return mapToInt(input);
     }
@@ -25,12 +25,12 @@ public final class LottoInput implements InputPort{
     }
 
     @Override
-    public Integer receiveBonus() {
+    public int receiveBonus() {
         String input = Console.readLine();
         return mapToInt(input);
     }
 
-    private Integer mapToInt(String target) {
+    private int mapToInt(String target) {
         try {
             return Integer.parseInt(target);
         } catch (NumberFormatException e) {

@@ -39,7 +39,7 @@ public class LottoController {
         outputView.printBonusNumber();
         BonusNumber bonusNumber = ioManager.inputBonusNumber(lotto);
 
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.of(lotto, bonusNumber);
         lottoService.saveWinningLotto(winningLotto);
     }
 

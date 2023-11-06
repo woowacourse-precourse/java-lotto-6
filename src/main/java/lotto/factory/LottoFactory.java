@@ -15,6 +15,10 @@ public class LottoFactory {
     private LottoFactory() {
     }
 
+    private static class LottoFactoryHelper {
+        private static final LottoFactory INSTANCE = new LottoFactory();
+    }
+
     public static LottoFactory getInstance() {
         return LottoFactoryHelper.INSTANCE;
     }
@@ -53,9 +57,5 @@ public class LottoFactory {
 
     private LottoStatistics lottoStatistics() {
         return new LottoStatistics();
-    }
-
-    private static class LottoFactoryHelper {
-        private static final LottoFactory INSTANCE = new LottoFactory();
     }
 }

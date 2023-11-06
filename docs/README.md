@@ -78,3 +78,15 @@
     -[x] 필드를 추가하지 않는다
 -[ ] 도메인 로직에 단위 테스트를 구현한다 : `test/java/lotto/LottoTest`를 참고하여 테스트를 구현한다
 
+---
+
+### 개발 중 정리하는 리팩토링 목록
+
+-[x] WinningLotto
+    -[x] Map을 순회하는 로직을 좀 더 가독성 있게 바꾸기
+    -[x] WinningResult의 updateResult()에서 WinningResult를 너무 많이 아는 것 같으므로 변경하기
+-[x] 상수로 관리할 수 있는 값들을 모두 찾아서 enum으로 빼내기
+-[ ] LottoService
+    -[ ] LottoService에 너무 많은 domain이 연관되어 있어 결합도가 너무 높음! 해결하기 -> 연관성 있는 것은 클래스로 따로 빼는 방법도..
+-[ ] 의존성 주입을 담당하는 클래스를 따로 빼서 객체들을 관리하기
+- 

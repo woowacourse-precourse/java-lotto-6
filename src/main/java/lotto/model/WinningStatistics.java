@@ -1,7 +1,7 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import lotto.utils.WinningRank;
 
@@ -19,9 +19,10 @@ public class WinningStatistics {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public void calculateStatistics(WinningNumbers winningNumbers, ArrayList<Lotto> lottos) {
+    public void calculateStatistics(WinningNumbers winningNumbers, Iterator<Lotto> lottoIterator) {
         RankEvaluator rankEvaluator = new RankEvaluator(winningNumbers);
-        for (Lotto lotto : lottos) {
+        while (lottoIterator.hasNext()) {
+            Lotto lotto = lottoIterator.next();
             WinningRank winningRank = rankEvaluator.getRank(lotto.getIterator());
             updateWinningCount(winningRank);
             calculateTotalAmount(winningRank.getWinningAmount());
@@ -43,7 +44,7 @@ public class WinningStatistics {
         this.totalWinningAmount += additionalAmount;
     }
 
-    
+
     @Override
     public String toString() {
         return winningRecordsToString() + profitRateToString();

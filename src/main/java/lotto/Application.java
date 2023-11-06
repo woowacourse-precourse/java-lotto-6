@@ -13,6 +13,7 @@ public class Application {
 	public static void main(String[] args) {
 		setMoney();
 		setWinningNumberList();
+		setBonusNumber();
 	}
 
 	private static void setMoney() {
@@ -37,6 +38,16 @@ public class Application {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setWinningNumberList();
+		}
+	}
+
+	public static void setBonusNumber() {
+		try {
+			System.out.println("보너스 번호를 입력해 주세요.");
+			bonusNumber = readNumber();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			setBonusNumber();
 		}
 	}
 

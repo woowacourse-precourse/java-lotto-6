@@ -81,9 +81,9 @@ class ApplicationTest extends NsTest {
         int test1 = 0;
         int test2 = -100;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.moneyIsOver0(test1));
+                () -> {money_for_lotto.moneyIsOver0(test1);});
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.moneyIsOver0(test2));
+                () -> {money_for_lotto.moneyIsOver0(test2);});
     }
 
     @Override

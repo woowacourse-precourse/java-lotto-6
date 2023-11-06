@@ -1,15 +1,15 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Round;
 import lotto.global.util.InputManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -68,5 +68,33 @@ class LottoTest {
         String nonNumericValue = "12dksd@la";
         assertThatThrownBy(() -> InputManager.validatePayment(nonNumericValue))
         .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호와 사용자로부터 입력 받은 당첨 번호를 비교하여 일치하는 개수를 구한다.")
+    @Test
+    void judgeOfWinningCnt() {
+        int totalCnt = 5;
+        List<Integer> winningNum = Arrays.asList(1, 10, 12, 13, 34, 42);
+
+        Round round = new Round();
+        round.extractor(totalCnt);
+        Lotto lotto = new Lotto(winningNum);
+        round.judge(lotto);
+
+        assertThat(round.getWinCnts().size()).isEqualTo(totalCnt);
+    }
+
+    @DisplayName("로또 번호가 일치하는 개수를 당첨금 별로 출력한다.")
+    @Test
+    void showResultOfJudgement() {
+        int totalCnt = 5;
+        List<Integer> winningNum = Arrays.asList(11, 21, 31, 41, 44, 45);
+
+        Round round = new Round();
+        round.extractor(totalCnt);
+        Lotto lotto = new Lotto(winningNum);
+        round.judge(lotto);
+
+        round.showResult();
     }
 }

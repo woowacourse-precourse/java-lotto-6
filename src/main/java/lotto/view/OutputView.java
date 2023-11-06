@@ -27,4 +27,8 @@ public class OutputView {
     public void beforeInputWinNumbers() {
         System.out.println(PreviewSentence.INPUT_WIN_LOTTO_NUMBERS.getMessage());
     }
+
+    public void beforeInputBonusNumber() {
+        System.out.println(PreviewSentence.INPUT_BONUS_NUMBER.getMessage());
+    }
 }

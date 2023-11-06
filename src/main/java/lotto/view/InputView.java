@@ -17,4 +17,9 @@ public class InputView {
         String inputtedNumbers = Console.readLine().trim();
         return validator.parseValidatedNumbers(inputtedNumbers);
     }
+
+    public int inputBonusNumber() {
+        String inputtedBonusNumber = Console.readLine().trim();
+        return validator.parseValidatedInt(inputtedBonusNumber);
+    }
 }

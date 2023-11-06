@@ -21,13 +21,18 @@ public class LottoController {
 
     private WinNumbersDto createWinNumbers() {
         List<Integer> winNumbers = inputWinNumbers();
-        int bonusNumber = 0;
+        int bonusNumber = inputBonusNumber();
         return new WinNumbersDto(winNumbers, bonusNumber);
     }
 
     private List<Integer> inputWinNumbers() {
         outputView.beforeInputWinNumbers();
         return inputView.inputNumbers();
+    }
+
+    private int inputBonusNumber() {
+        outputView.beforeInputBonusNumber();
+        return inputView.inputBonusNumber();
     }
 
     private void purchaseLottoes() {

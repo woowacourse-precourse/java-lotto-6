@@ -12,8 +12,9 @@ public class LottoMachine {
 
     private static final Money LOTTO_PRICE = Money.from(1000);
     private static final String UNKNOWN_FACTORY_MESSAGE = "알 수 없는 로또 생성기로 로또 기계를 생성할 수 없습니다.";
-    private static final String INVALID_MONEY_MESSAGE =
-            "금액을 " + LOTTO_PRICE.getValue() + Money.CURRENCY + " 단위로 입력해주세요.";
+    private static final String LOTTO_PRICE_MESSAGE = LOTTO_PRICE.getValue() + Money.CURRENCY;
+    private static final String INVALID_MONEY_RANGE_MESSAGE = "최소 " + LOTTO_PRICE_MESSAGE + " 이상의 금액을 입력해주세요.";
+    private static final String INVALID_MONEY_UNIT_MESSAGE = "금액을 " + LOTTO_PRICE_MESSAGE + " 단위로 입력해주세요.";
 
     private final LottoFactory factory;
 
@@ -34,14 +35,21 @@ public class LottoMachine {
     }
 
     public List<Lotto> issueWith(Money money) {
+        checkMoneyRange(money);
         checkHasRemainderWith(money);
 
         return issue((int) money.divide(LOTTO_PRICE));
     }
 
+    private void checkMoneyRange(Money money) {
+        if (money.isLessThan(LOTTO_PRICE)) {
+            throw new IllegalArgumentException(INVALID_MONEY_RANGE_MESSAGE);
+        }
+    }
+
     private void checkHasRemainderWith(Money money) {
         if (money.hasRemainderWith(LOTTO_PRICE)) {
-            throw new IllegalArgumentException(INVALID_MONEY_MESSAGE);
+            throw new IllegalArgumentException(INVALID_MONEY_UNIT_MESSAGE);
         }
     }
 

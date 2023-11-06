@@ -44,4 +44,14 @@ class LottoMachineTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("금액을 1000원 단위로 입력해주세요.");
     }
+
+    @DisplayName("주어진 돈으로 한장도 구입할 수 없는 경우, 신규 로또를 발행할 수 없다.")
+    @Test
+    void issueWithLessThan1000() {
+        LottoMachine machine = LottoMachine.from(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 6)));
+
+        assertThatThrownBy(() -> machine.issueWith(Money.from(999)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최소 1000원 이상의 금액을 입력해주세요.");
+    }
 }

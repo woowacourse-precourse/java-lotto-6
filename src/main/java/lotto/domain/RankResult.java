@@ -15,7 +15,13 @@ public class RankResult {
 
     public void calculateRankResult(WinningNumber winningNumber, Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            Rank rank = Rank.calculate(lotto.getMatchLottoNumber(winningNumber), lotto.isContain(winningNumber.getBonusNumber()));
+            Rank rank = Rank.calculate(lotto.getMatchLottoNumber(winningNumber),
+                    lotto.isContain(winningNumber.getBonusNumber()));
+            updateRankCount(rank);
         }
+    }
+
+    private void updateRankCount(Rank rank) {
+        rankResult.put(rank, rankResult.get(rank) + 1);
     }
 }

@@ -8,8 +8,6 @@ import java.util.List;
 
 public class UserInput {
 
-    private static final int price = 1000;
-
     public static int getUserMoney() {
         String input = readLine();
         validateUserMoney(input);
@@ -105,11 +103,11 @@ public class UserInput {
     }
 
     private static boolean isNumberOverThanPrice(int input) {
-        return input >= price;
+        return input >= Lotto.getPrice();
     }
 
     private static boolean isNumberMultipleOfPrice(int input) {
-        return input % price == 0;
+        return input % Lotto.getPrice() == 0;
     }
 
     private static boolean isNumberInCorrectRange(int input) {

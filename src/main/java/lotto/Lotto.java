@@ -8,6 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
     private static final String OPEN_SQUARE_BRACKETS = "[";
     private static final String CLOSE_SQUARE_BRACKETS = "]";
+    private static final int PRICE = 1000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -33,5 +34,9 @@ public class Lotto {
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public static int getPrice() {
+        return PRICE;
     }
 }

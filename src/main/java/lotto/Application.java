@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private static final int price = 1000;
 
     public static void main(String[] args) {
 
@@ -15,7 +14,7 @@ public class Application {
         int money = UserInput.getUserMoney();
 
         // 로또 구입 수 계산
-        int lottoCount = money / price;
+        int lottoCount = money / Lotto.getPrice();
 
         // 구입 수만큼 로또 발행
         List<Lotto> lotto = new ArrayList<>();

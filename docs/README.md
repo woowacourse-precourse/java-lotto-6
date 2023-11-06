@@ -64,6 +64,8 @@ private final Integer money;
 
 - 로또 컬렉션에 대해서 일괄적 판별 로직 가져주기
 
+### 예상 이미지
+![이미지](https://velog.velcdn.com/images/calaf/post/4d8ea921-7aa7-4b11-830a-a78ff40ecc2c/image.png)
 
 ---
 

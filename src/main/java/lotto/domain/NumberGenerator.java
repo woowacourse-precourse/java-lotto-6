@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NumberGenerator {
@@ -14,6 +15,7 @@ public class NumberGenerator {
         List<Integer> numbers = new ArrayList<>();
 
         addUniqueRandomNumbers(numbers, NUMBERS_COUNT);
+        Collections.sort(numbers);
 
         return numbers;
     }

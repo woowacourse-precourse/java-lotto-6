@@ -6,12 +6,7 @@ import java.util.*;
 public class LottoView {
 
     private static LottoController lottoController;
-
-    private static final String STARTTEXT = "구입금액을 입력해 주세요.";
-    private static final String SHOWTEXT = "개를 구매했습니다.";
-    private static final String INPUTNUMBERTEXT = "당첨 번호를 입력해 주세요.";
-    private static final String INPUTBONUSTEXT = "보너스 번호를 입력해 주세요.";
-    private static final String RATETEXT = "총 수익률은 ";
+    private Text text;
 
     LottoView(){
     }
@@ -22,12 +17,12 @@ public class LottoView {
         purchaceLotto();
         checkWinningNumber();
         checkBonusNumber();
-        double rewardRate = lottoController.showLottoReward();
-        System.out.println(RATETEXT+rewardRate+"%입니다.");
+        double rewardRate = showReward();
+        System.out.println(text.RATE1.getText()+rewardRate+text.RATE2.getText());
     }
     private void checkMoney(){
         try {
-            System.out.println(STARTTEXT);
+            System.out.println(text.START);
             String pMoney = Console.readLine();
             lottoController.setpMoney(Integer.parseInt(pMoney));
             System.out.println();
@@ -41,7 +36,7 @@ public class LottoView {
     }
     private void purchaceLotto(){
         try{
-            System.out.println(lottoController.getMaxRound() + SHOWTEXT);
+            System.out.println(lottoController.getMaxRound() + text.SHOW.getText());
             lottoController.startLotto();
             lottoController.showLottos();
             System.out.println();
@@ -52,7 +47,7 @@ public class LottoView {
     }
     private void checkWinningNumber(){
         try{
-            System.out.println(INPUTNUMBERTEXT);
+            System.out.println(text.INPUTNUMBER);
             String numbers = Console.readLine();
             lottoController.setLotto(getNumbers(numbers));
             System.out.println();
@@ -66,7 +61,7 @@ public class LottoView {
     }
     private void checkBonusNumber(){
         try{
-            System.out.println(INPUTBONUSTEXT);
+            System.out.println(text.INPUTBONUS);
             String bonus = Console.readLine();
             lottoController.setLotto(Integer.parseInt(bonus));
             System.out.println();
@@ -93,5 +88,11 @@ public class LottoView {
             throw new IllegalArgumentException("보너스번호는 당첨번호와 다른 숫자여야 합니다.");
         if(number<=0||number>45)
             throw new IllegalArgumentException("보너스번호는 1이상 45이하의 숫자여야 합니다.");
+    }
+
+    private double showReward(){
+        System.out.println(text.SHOWRESULT);
+        System.out.println(text.DIVIDER);
+        return lottoController.showLottoReward();
     }
 }

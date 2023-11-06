@@ -19,8 +19,10 @@ public class LottoPurchase {
 
     private boolean isCorrectAmount(String input) {
         try {
-            lottoNumberException.validatePositiveInteger(input);
-            lottoNumberException.isOutOfIntegerRange(input);
+            lottoNumberException.checkEmptySpace(input);        //공백
+            lottoNumberException.checkPositiveInteger(input);   //자연수
+            lottoNumberException.checkOutOfIntegerRange(input); //정수 범위
+            lottoNumberException.checkLessThanMaxAmount(input); //구매금액의 최댓값
         } catch (IllegalArgumentException exception) {
             inputView.showInputErrorMessage(exception.getMessage());
             return false;
@@ -34,7 +36,7 @@ public class LottoPurchase {
 
         while (true) {
             inputView.showAmountInputForm();
-            input = readLine();
+            input = readLine().trim();
 
             if (isCorrectAmount(input)) {
                 break;

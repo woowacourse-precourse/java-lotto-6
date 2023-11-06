@@ -6,6 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputValidatorTest {
@@ -29,6 +32,14 @@ public class InputValidatorTest {
     @ValueSource(strings = {"1,2,3,4,5,50", "1,2,3,4,5", "1,2,3,4,5,5", "1.2,3,4,5,6"})
     void createInvalidWinningNumber(String winningNumberFromPlayer) {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbers(winningNumberFromPlayer))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호의 입력이 올바르지 않을 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"50", "1", "1.2", "1,2", "", " ", "-2"})
+    void createInvalidBonusNumber(String bonusNumberFromPlayer) {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumber(bonusNumberFromPlayer, new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

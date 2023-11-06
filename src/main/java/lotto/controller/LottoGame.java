@@ -15,6 +15,7 @@ public class LottoGame {
     private InputValidator inputValidator;
     private int purchaseAmount;
     private List<Integer> winningNumber;
+    private int bonusNumber;
 
     public LottoGame() {
         lottoNumbers = new LottoNumbers();
@@ -26,6 +27,7 @@ public class LottoGame {
         this.purchaseAmount = setPurchaseAmount();
         //8개를 구입했습니다. 로또 번호 출력
         this.winningNumber = setWinningNumber();
+        this.bonusNumber = setBonusNumber();
     }
 
     public int setPurchaseAmount() {
@@ -43,6 +45,15 @@ public class LottoGame {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setWinningNumber();
+        }
+    }
+
+    public int setBonusNumber() {
+        try {
+            return inputValidator.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(), winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setBonusNumber();
         }
     }
 

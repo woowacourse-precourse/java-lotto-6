@@ -23,5 +23,6 @@ public class MessageList {
     public static final String ERROR_INPUT_IS_NOT_IN_PROPER_RANGE = "[ERROR] 1부터 45 사이의 숫자를 입력해 주세요.";
     public static final String ERROR_INPUT_HAS_NOT_PROPER_SIZE = "[ERROR] 쉼표(,)를 기준으로 6개의 당첨 번호를 입력해 주세요.";
     public static final String ERROR_INPUT_HAS_DUPLICATED_NUMBER = "[ERROR] 쉼표(,)를 기준으로 중복되지 않은 6개의 당첨 번호를 입력해 주세요.";
+    public static final String ERROR_DUPLICATE_OF_WINNING_NUMBER = "[ERROR] 입력하신 당첨 번호와 중복되지 않는 숫자를 입력해 주세요.";
 
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -43,7 +44,9 @@ public class InputValidator {
     // 당첨 번호에 대한 검증
     public List<Integer> validateWinningNumbers(String winningNumberFromPlayer) {
         List<Integer> winningNumber = validateInput(winningNumberFromPlayer);
-        validateRangeOfNumber(winningNumber);
+        for (int number : winningNumber) {
+            validateRangeOfNumber(number);
+        }
         validateSizeOfNumber(winningNumber);
         validateDuplicate(winningNumber);
         return winningNumber;
@@ -61,11 +64,9 @@ public class InputValidator {
         }
     }
 
-    private void validateRangeOfNumber(List<Integer> winningNumber) {
-        for (int number : winningNumber) {
-            if (!(number >= 1 && number <= 45)) {
-                throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_IN_PROPER_RANGE);
-            }
+    private void validateRangeOfNumber(int number) {
+        if (!(number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_IN_PROPER_RANGE);
         }
     }
 
@@ -83,4 +84,19 @@ public class InputValidator {
     }
 
     // 보너스 번호에 대한 검증
+    public int validateBonusNumber(String bonusNumberFromPlayer, List<Integer> winningNumber) {
+        int bonusNumber = validateNumber(bonusNumberFromPlayer);
+        validatePositiveNumber(bonusNumber);
+        validateRangeOfNumber(bonusNumber);
+        validateDuplicateOfWinningNumber(bonusNumber, winningNumber);
+        return bonusNumber;
+    }
+
+    private void validateDuplicateOfWinningNumber(int bonusNumber, List<Integer> winningNumber) {
+        for (int i = 0; i < winningNumber.size(); i++) {
+            if (bonusNumber == winningNumber.get(i)) {
+                throw new IllegalArgumentException(ERROR_DUPLICATE_OF_WINNING_NUMBER);
+            }
+        }
+    }
 }

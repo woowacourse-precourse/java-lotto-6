@@ -1,18 +1,14 @@
 package lotto.Decorator;
 
 import lotto.Controller.LottoController;
-import lotto.DiContainer.DiContainer;
 import lotto.Domain.Money;
 import lotto.Domain.WinningLotto.WinningLotto;
 import lotto.Exception.CommonValidationException;
 import lotto.Exception.LottoException;
 import lotto.Exception.MoneyException;
-import lotto.VIew.InputView;
 
 public class LottoControllerDecorator extends LottoController {
 
-    private DiContainer diContainer = DiContainer.of();
-    private InputView inputView = diContainer.getInputView();
 
     private LottoControllerDecorator() {
         super();
@@ -37,10 +33,10 @@ public class LottoControllerDecorator extends LottoController {
     }
 
     @Override
-    public void createWinningLotto(WinningLotto winningLotto) {
+    public void createWinningLottoNumber(WinningLotto winningLotto) {
         do {
             try {
-                super.createWinningLotto(winningLotto);
+                super.createWinningLottoNumber(winningLotto);
             } catch (CommonValidationException | LottoException e) {
                 System.out.println(e.getMessage());
             }

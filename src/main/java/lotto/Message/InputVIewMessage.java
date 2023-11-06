@@ -5,7 +5,7 @@ public enum InputVIewMessage {
     INPUT_WINNING_NUMBER_PROMPT("\n당첨 번호를 입력해 주세요."),
     INPUT_BONUS_NUMBER_PROMPT("\n보너스 번호를 입력해 주세요.");
 
-    private String message;
+    private final String message;
 
     InputVIewMessage(String message) {
         this.message = message;

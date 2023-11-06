@@ -7,7 +7,7 @@ public enum OutputViewMessage {
     RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     EARNING_RATE("총 수익률은 %.1f%%입니다.");
 
-    private String message;
+    private final String message;
 
     OutputViewMessage(String message) {
         this.message = message;

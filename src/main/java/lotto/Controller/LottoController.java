@@ -10,15 +10,9 @@ import lotto.VIew.OutputView;
 
 public class LottoController {
 
-    private final DiContainer diContainer;
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public LottoController() {
-        diContainer = DiContainer.of();
-        inputView = diContainer.getInputView();
-        outputView = diContainer.getOutputView();
-    }
+    private final DiContainer diContainer = DiContainer.of();
+    private final InputView inputView = diContainer.getInputView();
+    private final OutputView outputView = diContainer.getOutputView();
 
     public static LottoController of() {
         return new LottoController();
@@ -40,9 +34,16 @@ public class LottoController {
         return Money.from(inputMoney);
     }
 
+    private LottoGroup getLottoGroup(Money money) {
+        LottoGroup lottoGroup = LottoGroup.from(money);
+        outputView.printLottoCount(lottoGroup.findLottoNumbersSize());
+        outputView.printOrderedLottos(lottoGroup);
+        return lottoGroup;
+    }
+
     private WinningLotto getWinningLotto() {
         WinningLotto winningLotto = WinningLotto.of();
-        createWinningLotto(winningLotto);
+        createWinningLottoNumber(winningLotto);
         createWinningBonusNumber(winningLotto);
         return winningLotto;
     }
@@ -52,16 +53,9 @@ public class LottoController {
         winningLotto.setBonusNumber(inputBonusNumber);
     }
 
-    protected void createWinningLotto(WinningLotto winningLotto) {
+    protected void createWinningLottoNumber(WinningLotto winningLotto) {
         String inputWinningNumber = inputView.inputWinningNumber();
         winningLotto.setLotto(inputWinningNumber);
-    }
-
-    private LottoGroup getLottoGroup(Money money) {
-        LottoGroup lottoGroup = LottoGroup.from(money);
-        outputView.printLottoCount(lottoGroup.findLottoNumbersSize());
-        outputView.printOrderedLottos(lottoGroup);
-        return lottoGroup;
     }
 
 }

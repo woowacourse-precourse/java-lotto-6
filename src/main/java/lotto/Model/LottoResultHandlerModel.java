@@ -12,9 +12,9 @@ import lotto.Domain.WinningLotto.WinningLotto;
 
 public class LottoResultHandlerModel {
 
-    private LottoResult lottoResult;
-    private WinningLotto winningLotto;
-    private LottoGroup lottoGroup;
+    private final LottoResult lottoResult;
+    private final WinningLotto winningLotto;
+    private final LottoGroup lottoGroup;
 
     private LottoResultHandlerModel(WinningLotto winningLotto, LottoGroup lottoGroup) {
         lottoResult = LottoResult.from();

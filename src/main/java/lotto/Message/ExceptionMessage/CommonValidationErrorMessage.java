@@ -5,7 +5,7 @@ public enum CommonValidationErrorMessage {
     BLANK_VALUE_ERROR_MESSAGE("공백은 입력할 수 없습니다.\n"),
     INTEGER_VALUE_ERROR_MESSAGE("정수만 입력할 수 있습니다.\n 입력값 : %s\n");
 
-    private String message;
+    private final String message;
 
     CommonValidationErrorMessage(String message) {
         this.message = PrefixMessage.ERROR_MESSAGE.getMessage() + message;

@@ -80,6 +80,22 @@ class ReaderForBonusTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 로또 번호 중 하나와 동일한 번호를 입력한 경우")
+    @ParameterizedTest(name = "{index} 번째 검사값 = {0}")
+    @ValueSource(strings = {
+            "1", "2", "3", "4", "5", "6"
+    })
+    void Is_Expected_Validation_About_Alredy_Exist_In_Winning_Number(String invalidBonusNumberInput) {
+        assertSimpleTest(() -> {
+            runException(
+                    AVAILABLE_AMOUNT_INPUT,
+                    AVAILABLE_WINNING_LOTTO_NUMBERS_INPUT,
+                    invalidBonusNumberInput
+            );
+            assertThat(output()).contains(GlobalError.ALREADY_EXIST_IN_WINNING_NUMBERS.getErrorMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

@@ -17,6 +17,11 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException();
         }
+        for (Integer num : numbers) {
+            if (num < Constant.LOTTO_START_NUMBER || num > Constant.LOTTO_END_NUMBER) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     // TODO: 추가 기능 구현

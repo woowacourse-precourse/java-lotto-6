@@ -17,7 +17,7 @@ public abstract class InputView {
 
     protected void getInputStatus(Prompt message) {
         try {
-            OutputView.printMessage(message);
+            OutputView.printMessage(message.getMessage());
             Validation(Console.readLine());
             status = Status.GOT_MESSAGE;
         } catch (IllegalArgumentException e) {

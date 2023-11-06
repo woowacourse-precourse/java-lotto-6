@@ -3,6 +3,7 @@ package domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import util.PrizeMoney;
 
 public class Calculator {
     PrizeDescribe prizeDescribe = PrizeDescribe.getInstance();
@@ -42,9 +43,11 @@ public class Calculator {
     }
 
     public String calculateEarningRate(int purchaseAmount) {
-        double totalPrize = (5000.0 * prizeDescribe.getFifthPrize()) + (50000.0 * prizeDescribe.getFourthPrize())
-                + (1500000.0 * prizeDescribe.getThirdPrize()) + (30000000.0 * prizeDescribe.getSecondPrize())
-                + (2000000000.0 * prizeDescribe.getFirstPrize());
+        double totalPrize = (PrizeMoney.PRIZE_MONEY_5TH.getPrizeMoney() * prizeDescribe.getFifthPrize())
+                + (PrizeMoney.PRIZE_MONEY_4TH.getPrizeMoney() * prizeDescribe.getFourthPrize())
+                + (PrizeMoney.PRIZE_MONEY_3RD.getPrizeMoney() * prizeDescribe.getThirdPrize())
+                + (PrizeMoney.PRIZE_MONEY_2ND.getPrizeMoney() * prizeDescribe.getSecondPrize())
+                + (PrizeMoney.PRIZE_MONEY_1ST.getPrizeMoney() * prizeDescribe.getFirstPrize());
 
         double earningRate = totalPrize / purchaseAmount * 100;
 

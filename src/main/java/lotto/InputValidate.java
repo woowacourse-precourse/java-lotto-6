@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import util.ErrorMessage;
 
 public class InputValidate {
     PurchaseAmount purchaseAmount = PurchaseAmount.getInstance();

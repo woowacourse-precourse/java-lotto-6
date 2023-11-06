@@ -1,4 +1,4 @@
-package lotto;
+package util;
 
 public enum ErrorMessage {
     PURCHASE_AMOUNT_CAN_ONLY_NUMBER("[ERROR] 구입 금액은 숫자로만 구성됩니다."),

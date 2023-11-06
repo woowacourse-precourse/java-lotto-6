@@ -5,10 +5,7 @@ import lotto.exception.LottoException;
 import lotto.vo.BonusNumber;
 import lotto.vo.LottoNumber;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -40,6 +37,24 @@ public class Lotto {
 
     public boolean containsBonusNumber(BonusNumber bonusNumber) {
         return lottoNumbers.contains(bonusNumber.value());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lotto lotto = (Lotto) o;
+
+        return Objects.equals(lottoNumbers, lotto.lottoNumbers);
+    }
+
+    @Override
+    public int hashCode() {
+        if (lottoNumbers == null) {
+            return 0;
+        }
+        return lottoNumbers.hashCode();
     }
 
     @Override

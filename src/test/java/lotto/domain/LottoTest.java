@@ -98,7 +98,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호를 출력하면 [1, 2, 3, 4, 5, 6] 형태로 출력해야 한다.")
     void toStringTest() {
-        Assertions.assertThat(lotto.toString()).isEqualTo("""
+        Assertions.assertThat(lotto.toString()).hasToString("""
                 [1, 2, 3, 4, 5, 6]""");
     }
 }

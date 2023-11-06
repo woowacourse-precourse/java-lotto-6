@@ -6,6 +6,9 @@ public class InputView {
     public String inputMoney() {
         return input();
     }
+    public String inputWinningLotto() {
+        return input();
+    }
     private static String input() {
         return readLine();
     }

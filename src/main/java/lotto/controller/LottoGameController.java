@@ -21,6 +21,12 @@ public class LottoGameController {
         makeLotto(lottoCount);
     }
 
+    private void enterWinningLotto() {
+        printMessage(Message.ASK_WINNING_LOTTO.toString());
+        String winningLotto = inputView.inputWinningLotto();
+        lottoGameService.makeWinningLotto(winningLotto);
+    }
+
     private void makeLotto(String lottoCount) {
         printMessage("\n" + lottoCount + Message.LOTTO_COUNT);
         String lotto = lottoGameService.makeLotto();

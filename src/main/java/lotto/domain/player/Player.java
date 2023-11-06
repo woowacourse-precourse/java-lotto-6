@@ -15,4 +15,16 @@ public class Player {
         this.bonusNumber = bonusNumber;
         this.purchaseAmount = purchaseAmount;
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber.getLottoNumber();
+    }
+
+    public Integer getPurchaseAmount() {
+        return purchaseAmount.getPurchaseAmount();
+    }
 }

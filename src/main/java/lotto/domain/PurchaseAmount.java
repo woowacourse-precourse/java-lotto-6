@@ -6,12 +6,18 @@ public class PurchaseAmount {
 
     private Integer purchaseAmount;
 
-    private PurchaseAmount(Integer purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
+    private PurchaseAmount(String purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
+        this.purchaseAmount = parseInt(purchaseAmount);
     }
 
     public static PurchaseAmount create(String purchaseAmount) {
+        return new PurchaseAmount(purchaseAmount);
+    }
 
+    private static void validatePurchaseAmount(String purchaseAmount) {
+        validatePurchaseAmountDigit(purchaseAmount);
+        validatePurchaseUnit(purchaseAmount);
     }
 
     private static void validatePurchaseAmountDigit(String purchaseAmount) {

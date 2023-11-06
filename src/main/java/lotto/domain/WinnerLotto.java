@@ -4,8 +4,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.constant.LottoConstant.*;
-import static lotto.exception.WinnerExceptionMessage.*;
+import static lotto.constant.LottoConstant.LOTTO_LENGTH;
+import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
+import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
+import static lotto.exception.WinnerExceptionMessage.WRONG_WINNER_LOTTO_LENGTH;
+import static lotto.exception.WinnerExceptionMessage.WRONG_WINNER_LOTTO_NUMBER_RANGE;
+import static lotto.exception.WinnerExceptionMessage.DUPLICATED_WINNER_NUMBER;
+import static lotto.exception.WinnerExceptionMessage.WRONG_BONUS_NUMBER_RANGE;
+import static lotto.exception.WinnerExceptionMessage.DUPLICATED_NUMBER_BETWEEN_WINNER_NUMBER_AND_BONUS_NUMBER;
+
 
 public class WinnerLotto {
 

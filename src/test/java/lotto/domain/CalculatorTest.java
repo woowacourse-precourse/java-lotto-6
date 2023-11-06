@@ -21,6 +21,7 @@ class CalculatorTest {
     }
 
 
+    @DisplayName("수익률 계산")
     @Test
     void calculatePricePrizeRatio() {
         Double pricePrizeRatio = Calculator.calculatePricePrizeRatio(16000, 8000);
@@ -28,6 +29,7 @@ class CalculatorTest {
         Assertions.assertThat(pricePrizeRatio).isEqualTo(200.0);
     }
 
+    @DisplayName("로또 구입 개수 산출")
     @Test
     void calculateLotteryCount() {
         Integer budget = 12000;

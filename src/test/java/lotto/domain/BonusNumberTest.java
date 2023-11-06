@@ -39,4 +39,11 @@ class BonusNumberTest {
         assertDoesNotThrow(() -> new BonusNumber(target, lotto));
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {10, 11, 12, 13, 14, 15})
+    void 보너스_번호가_당첨_번호와_중복된다면_예외를_반환한다(int target) {
+        assertThatThrownBy(() -> new BonusNumber(target, lotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainException.ERROR.getMessage());
+    }
 }

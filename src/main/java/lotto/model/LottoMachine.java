@@ -28,7 +28,7 @@ public class LottoMachine {
                 .mapToObj(i -> createLottoTicket())
                 .collect(Collectors.toList());
         Lottos lottos = Lottos.from(lottoTickets);
-        return LottoTicketsDto.from(lottos);
+        return LottoTicketsDto.of(lottos, money);
     }
 
     private Lotto createLottoTicket() {

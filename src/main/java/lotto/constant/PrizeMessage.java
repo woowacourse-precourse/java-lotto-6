@@ -23,7 +23,7 @@ public enum PrizeMessage {
             + PrizeMoney.FIFTH.getValueWithDelimiter()
             + "원) - ");
 
-    final String message;
+    private final String message;
 
     PrizeMessage(String message) {
         this.message = message;

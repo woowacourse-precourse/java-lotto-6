@@ -9,7 +9,7 @@ public enum PrizeMoney {
     FOURTH(50000),
     FIFTH(5000);
 
-    final long value;
+    private final long value;
 
     PrizeMoney(long value) {
         this.value = value;

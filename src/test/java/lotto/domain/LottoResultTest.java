@@ -16,12 +16,12 @@ class LottoResultTest {
     @BeforeEach
     public void setUp() {
         statistics = new LinkedHashMap<>();
-        statistics.put(WinningStatistics.FIRST, 1);
-        statistics.put(WinningStatistics.SECOND, 2);
-        statistics.put(WinningStatistics.THIRD, 3);
-        statistics.put(WinningStatistics.FOURTH, 4);
-        statistics.put(WinningStatistics.FIFTH, 5);
-        statistics.put(WinningStatistics.MISS, 0);
+        statistics.put(WinningStatistics.FIRST, 0);
+        statistics.put(WinningStatistics.SECOND, 0);
+        statistics.put(WinningStatistics.THIRD, 0);
+        statistics.put(WinningStatistics.FOURTH, 0);
+        statistics.put(WinningStatistics.FIFTH, 1);
+        statistics.put(WinningStatistics.MISS, 7);
 
         lottoResult = new LottoResult(statistics);
     }
@@ -52,5 +52,13 @@ class LottoResultTest {
             assertEquals(statistic, expectedOrder[index]);
             index++;
         }
+    }
+
+    @Test
+    @DisplayName("calculateProfitPercent 메서드가 올바른 수익률을 계산하는지 테스트")
+    void calculateProfitPercent_ShouldReturnCorrectValue() {
+        double profitPercent = lottoResult.calculateProfitPercent();
+
+        assertEquals(profitPercent, 62.5, 0.01);
     }
 }

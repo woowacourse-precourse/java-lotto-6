@@ -36,8 +36,12 @@ public class OutputManager {
         System.out.println("3개 일치 (5,000원) - " + matchedNumberCount.get(3) + "개");
         System.out.println("4개 일치 (50,000원) - " + matchedNumberCount.get(4) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchedNumberCount.get(5) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedNumberCount.get(7) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedNumberCount.get(2) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchedNumberCount.get(6) + "개");
+    }
 
+    public void printProfitRate(double profitRate){
+        String formatProfitRate = String.format("%.1f%%", profitRate);
+        System.out.println("총 수익률은 " + formatProfitRate + "입니다.");
     }
 }

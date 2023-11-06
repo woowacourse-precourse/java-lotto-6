@@ -7,11 +7,13 @@ public class Purchase {
 
     public static final int ZERO = 0;
 
+    private final int purchaseMoney;
     private final int lottoAmount;
 
     public Purchase(int purchaseMoney) {
         validate(purchaseMoney);
 
+        this.purchaseMoney = purchaseMoney;
         this.lottoAmount = purchaseMoney / LottoConstant.LOTTO_PRICE.get();
     }
 
@@ -30,6 +32,10 @@ public class Purchase {
         if (purchaseMoney % LottoConstant.LOTTO_PRICE.get() != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_MONEY_NOT_MULTIPLE_OF_1000.get());
         }
+    }
+
+    public int getPurchaseMoney() {
+        return purchaseMoney;
     }
 
     public int getLottoAmount() {

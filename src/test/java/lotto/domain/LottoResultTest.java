@@ -8,6 +8,23 @@ import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
 
+    @DisplayName("로또 결과 초기화 값 확인")
+    @Test
+    void initializeLottoResult(){
+
+        // when
+        LottoResult lottoResult = new LottoResult();
+
+        // then
+        // key - Prize
+        for (Prize prize : Prize.values()) {
+            assertThat(lottoResult.state.containsKey(prize)).isTrue();
+        }
+        // value - 0
+        for (Prize prize : lottoResult.state.keySet()) {
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
+    }
     @DisplayName("수익률 계산")
     @Test
     void calculateEarningsRate() {

@@ -3,6 +3,7 @@ package lotto.validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.game.ErrorMessage;
 
 public class LottoNumberValidator extends Validator{
     private final static int LOTTO_NUMBER_COUNT = 6;
@@ -11,13 +12,17 @@ public class LottoNumberValidator extends Validator{
     public static boolean hasDuplicateNumbers(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
-        return uniqueNumbers.size()==LOTTO_NUMBER_COUNT;
+        if (uniqueNumbers.size()!=LOTTO_NUMBER_COUNT){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_MESSAGE.getMessage());
+        }
+
+        return true;
     }
 
     public static boolean validateLottoNumbersRange(List<Integer> numbers){
         for (Integer number : numbers){
             if(!validateNumberRange(number, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)){
-                return false;
+                throw new IllegalArgumentException(ErrorMessage.LOTTONUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
             }
         }
         return true;

@@ -59,6 +59,11 @@ public class LotteryTracker {
 
     public double calculateTotalRevenue() {
         int totalRevenue =0;
+        int[] ranks = {0,FIRST.getIntPrize(),SECOND.getIntPrize(),THIRD.getIntPrize(),FOURTH.getIntPrize(),FIFTH.getIntPrize()};
+        for(int rank=5; rank>0;rank--){
+            totalRevenue += numberPerRank.get(rank) * ranks[rank];
+        }
+
         for(int rank=5; rank>0;rank--){
             if(rank==5){
                 totalRevenue += numberPerRank.get(rank) * FIFTH.getIntPrize();

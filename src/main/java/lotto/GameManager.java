@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.LottoWinningNumbers;
 import lotto.view.InputView;
@@ -39,11 +38,24 @@ public class GameManager {
     }
 
     private void generateLottoWinningNumbers() {
-        String inputString = inputView.readWinningNumbers();
-        List<String> splitInputString = Arrays.asList(inputString.split(","));
-        List<Integer> winningNumbers = splitInputString.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        lottoWinningNumbers = new LottoWinningNumbers(winningNumbers);
+        try {
+            String inputString = inputView.readWinningNumbers();
+            List<String> splitInputString = Arrays.asList(inputString.split(","));
+            List<Integer> winningNumbers = parseToIntegerList(splitInputString);
+            lottoWinningNumbers = new LottoWinningNumbers(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateLottoWinningNumbers();
+        }
+    }
+
+    private List<Integer> parseToIntegerList(List<String> strings) {
+        try {
+            return strings.stream()
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
+        }
     }
 }

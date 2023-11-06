@@ -1,10 +1,10 @@
 package lotto.model;
 
-public class Statistics {
+public class CompareResult {
     private final int matchCount;
     private final boolean isMatchBonus;
 
-    public Statistics(int matchCount, boolean isMatchBonus) {
+    public CompareResult(int matchCount, boolean isMatchBonus) {
         this.matchCount = matchCount;
         this.isMatchBonus = isMatchBonus;
     }
@@ -26,7 +26,7 @@ public class Statistics {
             return false;
         }
 
-        Statistics that = (Statistics) o;
+        CompareResult that = (CompareResult) o;
 
         if (getMatchCount() != that.getMatchCount()) {
             return false;

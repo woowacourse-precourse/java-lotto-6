@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import lotto.dto.LottoResults;
 import lotto.dto.WinnerAndBonusNumber;
 import lotto.model.BonusNumber;
+import lotto.model.CompareResult;
 import lotto.model.Lotto;
-import lotto.model.Statistics;
 import lotto.model.WinnerNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,11 +33,11 @@ class CompareServiceTest {
         LottoResults lottoResults = new LottoResults(lottos);
 
         //when
-        List<Statistics> statistics = compareService.calculateMatching(lottoResults.getLottos(),
+        List<CompareResult> statistics = compareService.calculateMatching(lottoResults.getLottos(),
                 winnerAndBonusNumber.getWinnerNumber(), winnerAndBonusNumber.getBonusNumber());
 
         //then
-        List<Statistics> collect = statistics.stream().filter(st -> st.getMatchCount() == 3)
+        List<CompareResult> collect = statistics.stream().filter(st -> st.getMatchCount() == 3)
                 .collect(Collectors.toList());
         assertEquals(collect.size(), 1);
         assertEquals(collect.get(0).isMatchBonus(), false);

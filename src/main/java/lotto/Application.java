@@ -13,8 +13,8 @@ import lotto.controller.InputPurchasePriceController;
 import lotto.controller.StatisticsController;
 import lotto.dto.LottoResults;
 import lotto.dto.WinnerAndBonusNumber;
+import lotto.model.CompareResult;
 import lotto.model.PurchasePrice;
-import lotto.model.Statistics;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.PurchasePriceValidator;
 import lotto.validation.WinnerNumberValidator;
@@ -59,7 +59,7 @@ public class Application {
         // 당첨 번호 & 보너스 번호 입력
         WinnerAndBonusNumber winnerAndBonusNumber = inputNumberController.inputNumber();
         // 당첨 & 보너스 번호 vs 로또 번호 비교
-        List<Statistics> result = compareController.compareNumber(lottoResults, winnerAndBonusNumber);
+        List<CompareResult> result = compareController.compareNumber(lottoResults, winnerAndBonusNumber);
         // 당첨 통계 출력
         statisticsController.getStatics(result, purchasePrice);
     }

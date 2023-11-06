@@ -39,7 +39,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         long count = numbers.stream()
-                .filter((number) -> number >= 1 && number <= 45)
+                .filter((number) -> number >= LottoUtil.MIN_NUMBER && number <= LottoUtil.MAX_NUMBER)
                 .distinct()
                 .count();
 

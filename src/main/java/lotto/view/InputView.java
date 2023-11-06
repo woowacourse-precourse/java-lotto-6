@@ -20,8 +20,7 @@ public class InputView {
         System.out.println(INPUT_LOTTO_WINNING);
         try {
             return numberList(Console.readLine());
-        } catch (Exception e) {
-            // numberList 함수에서 에러가 여러개 나올 수 있기 때문에 Exception으로 catch
+        } catch (IllegalArgumentException e) {
             return inputLottoWinningNum();
         }
     }

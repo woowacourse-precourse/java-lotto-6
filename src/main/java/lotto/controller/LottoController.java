@@ -11,7 +11,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private static final int LOTTO_PRICE = 1000;
     private static List<Lotto> lottoList;
     private static LottoTarget lottoTarget;
 
@@ -22,7 +21,7 @@ public class LottoController {
         try {
             start();
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -32,7 +31,7 @@ public class LottoController {
 
         lottoList = makeLottoList(ticketCount);
         lottoTarget = makeLottoTarget();
-        lottoResult(ticketCount * LOTTO_PRICE);
+        lottoResult(ticketCount * LottoUtil.LOTTO_PRICE);
     }
 
     private int inputPlayerAmount() {
@@ -63,8 +62,7 @@ public class LottoController {
     private static int makeBonusNumber() {
         try {
             return InputView.inputBonusNumber();
-        } catch (Exception e) {
-            // InputView.inputBonusNumber 함수에서 에러가 여러개 나올 수 있기 때문에 Exception으로 catch
+        } catch (IllegalArgumentException e) {
             return makeBonusNumber();
         }
     }

@@ -5,7 +5,7 @@ import lotto.view.ErrorMessage;
 public class PlayerLottoAmount {
 
     private static final int LOTTO_MIN_AMOUNT = 1000;
-    private int amount;
+    private final int amount;
 
     public PlayerLottoAmount(String amount) {
         try {

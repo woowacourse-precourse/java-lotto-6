@@ -10,13 +10,16 @@ import lotto.view.ErrorMessage;
 import lotto.view.OutputView;
 
 public class LottoUtil {
-
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
+    public static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_PRICE = 1000;
 
     public static List<Lotto> createLottoList(int lottoCount) {
         List<Lotto> lottoList = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
             System.out.println(numbers);
             lottoList.add(new Lotto(numbers));
         }
@@ -25,7 +28,7 @@ public class LottoUtil {
     }
 
     public static void validateAmount(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             ErrorMessage.divisibleException();
             throw new IllegalArgumentException();
         }

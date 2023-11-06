@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ResultCalculator {
@@ -14,8 +13,8 @@ public class ResultCalculator {
         this.result = result;
     }
     private PrizeGrade compare(Lotto lotto, Lotto winningLotto, Bonus bonus) {
-        int matches = countMatchingNumbers(lotto.getNumbers(), winningLotto.getNumbers());
-        boolean bonusMatch = matchWithBonus(lotto.getNumbers(), bonus.getNumber());
+        int matches = countMatchingNumbers(lotto, winningLotto);
+        boolean bonusMatch = matchWithBonus(lotto, bonus.getNumber();
 
         if (matches == PrizeGrade.FIRST.getMatchCount()) {
             return PrizeGrade.FIRST;

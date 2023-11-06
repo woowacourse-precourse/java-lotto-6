@@ -29,5 +29,4 @@ public class UserAmountValidator {
             throw new IllegalArgumentException(Constants.DIVISIBLE_BY_THOUSAND_MESSAGE);
         }
     }
-
 }

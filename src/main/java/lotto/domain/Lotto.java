@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +19,7 @@ public class Lotto {
 
     private void validateNumbers(List<Integer> numbers) {
         validateNumbersSize(numbers);
-        validateNumbersValue(numbers);
+        validateNumbersDuplicate(numbers);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
@@ -26,11 +28,11 @@ public class Lotto {
         }
     }
 
-    private void validateNumbersValue(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (numbers.contains(number)) {
-                throw new IllegalArgumentException();
-            }
+    private void validateNumbersDuplicate(List<Integer> numbers) {
+        Set<Integer> tmpNumbers = new HashSet<>(numbers);
+
+        if (tmpNumbers.size() != Lotto.NUMBERS_SIZE) {
+            throw new IllegalArgumentException();
         }
     }
 

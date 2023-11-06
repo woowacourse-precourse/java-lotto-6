@@ -34,5 +34,20 @@ public class LottoResult {
         return results.getOrDefault(ranking, DEFAULT_VALUE);
     }
 
+    public Double calculateEarningRatio(Money money) {
+        long totalPrizeAmount = getTotalPrizeAmount();
+        double earningRatio = (totalPrizeAmount / (double) money.getAmount()) * 100;
+        return earningRatio;
+    }
 
+    private long getTotalPrizeAmount() {
+        return results.entrySet().stream()
+                .filter(entry -> entry.getKey() != null)
+                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+    }
+
+    public Map<Ranking, Integer> getResults() {
+        return results;
+    }
 }

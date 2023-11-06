@@ -2,12 +2,13 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
     private static final Player player = new Player();
-    private static final List<Lotto> lottos = new ArrayList<>();
+    private static final Map<Lotto, Integer> lottos = new HashMap<Lotto, Integer>();
 
     public static void play() {
         inputLottoPurchaseAmount();
@@ -35,7 +36,7 @@ public class Game {
         int lottoCount = player.getPurchaseLottoCount();
 
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(getRandomNumbers()));
+            lottos.put(new Lotto(getRandomNumbers()), 0);
         }
     }
 
@@ -46,7 +47,7 @@ public class Game {
     private static void printLottos() {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottos.keySet()) {
             System.out.println(lotto.getNumbers());
         }
     }

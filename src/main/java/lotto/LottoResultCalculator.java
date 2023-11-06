@@ -21,6 +21,10 @@ public class LottoResultCalculator {
         prizeMap.put(6, 2_000_000_000);
     }
 
+    private static String formatNumber(int number){
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
+        return numberFormat.format(number);
+    }
 
     private int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         return (int) lottoNumbers.stream().filter(winningNumbers::contains).count();

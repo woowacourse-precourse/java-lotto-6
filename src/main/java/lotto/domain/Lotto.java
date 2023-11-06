@@ -1,16 +1,15 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.constants.CommonLetter;
+import lotto.util.Parser;
 import lotto.validator.impl.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validate(flatten(numbers));
         this.numbers = numbers;
     }
 
@@ -27,18 +26,16 @@ public class Lotto {
         System.out.println(numbers);
     }
 
-    List<Integer> toNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(CommonLetter.SEPARATOR.getLetter()))
-            .map(Integer::parseInt)
-            .collect(Collectors.toList());
+    private List<Integer> toNumbers(String winningNumbers) {
+        return Parser.parseToIntegerList(winningNumbers);
     }
 
     public BitSet toBitSet() {
-        BitSet bitSet = new BitSet();
-        for (int number : numbers) {
-            bitSet.set(number);
-        }
-        return bitSet;
+        return Parser.parseToBitSet(numbers);
+    }
+
+    public String flatten(List<Integer> numbers) {
+        return Parser.parseToString(numbers);
     }
 
     public int getWinningCount(BitSet winningNumberBitSet) {

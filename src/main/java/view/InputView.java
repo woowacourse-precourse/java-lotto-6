@@ -13,14 +13,15 @@ public class InputView {
     }
 
     private static int validateIsNumber(){
-        int amount = 0;
-        try{
-            amount = Integer.parseInt(getInput());
-        }catch(IllegalArgumentException e){
-            System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
-            amount = validateIsNumber();
+        while(true) {
+            int amount = 0;
+            try {
+                amount = Integer.parseInt(getInput());
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
+            }
         }
-        return amount;
     }
 
     private static String getInput() {

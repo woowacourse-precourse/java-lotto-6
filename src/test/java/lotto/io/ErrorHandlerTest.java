@@ -2,6 +2,7 @@ package lotto.io;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ErrorHandlerTest {
@@ -21,4 +22,12 @@ class ErrorHandlerTest {
     void checkThousands() {
         assertThrows(IllegalArgumentException.class, () -> errorHandler.checkThousands("1001"));
     }
+    @Test
+    void validateRepeat() {
+        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRepeat(List.of(1,2,3,4,5,6,6)));
+    }@Test
+    void validateRange() {
+        assertThrows(IllegalArgumentException.class, () -> errorHandler.validateRange(List.of(1,2,3,4,5,6,56)));
+    }
+
 }

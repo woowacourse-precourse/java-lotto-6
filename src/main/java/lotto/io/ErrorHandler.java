@@ -31,4 +31,12 @@ public class ErrorHandler {
             }
         }
     }
+
+    public static void validateRange(List<Integer> numbers) {
+        for (Integer i : numbers) {
+            if (i < 1 || i > 45) {
+                throw new IllegalArgumentException("Error! 각 로또번호는 1~45사이 여야 합니다.");
+            }
+        }
+    }
 }

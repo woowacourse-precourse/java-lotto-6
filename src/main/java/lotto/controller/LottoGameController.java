@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -8,9 +9,16 @@ public class LottoGameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private int ticket;
+    private LottoTickets lottoTickets;
 
     public void run(){
         getTicket();
+        createLottoTickets(ticket);
+    }
+
+    private void createLottoTickets(int ticket){
+        lottoTickets = new LottoTickets(ticket);
+        outputView.printLottoTickets(lottoTickets.getLottoTickets());
     }
 
     private void getTicket(){

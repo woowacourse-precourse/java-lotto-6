@@ -2,11 +2,14 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.Lottos;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import view.constant.ConstantMessage;
 
 public class LottoView {
+    private static int LOTTO_FIRST_NUMBER = 1;
+    private static int LOTTO_LAST_NUMBER = 45;
     // InputView
     public static void printAskInputMoney(){
         printlnConstantMessage(ConstantMessage.ASK_MONEY);
@@ -26,9 +29,18 @@ public class LottoView {
     }
     public static void printLottoList(Lottos lottos){
         for(int i=0; i<lottos.getLottos().size(); i++){
-            System.out.println(lottos.getLotto(i));
+            printSortedLotto(lottos.getLotto(i));
         }
         printNewLine();
+    }
+    private static void printSortedLotto(List<Integer> numbers){
+        List<Integer> sortedNumbers = new ArrayList<>();
+        for(int i=LOTTO_FIRST_NUMBER; i<=LOTTO_LAST_NUMBER; i++){
+            if (numbers.contains(i)) {
+                sortedNumbers.add(i);
+            }
+        }
+        System.out.println(sortedNumbers);
     }
     public static void printWinningResult(){
         printlnConstantMessage(ConstantMessage.WINNING_RESULT);

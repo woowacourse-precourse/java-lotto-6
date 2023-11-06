@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
+import static lotto.enums.LottoConfig.LOTTO_PRICE;
 
 public class LottoAmount {
     private int amount;
@@ -23,5 +23,9 @@ public class LottoAmount {
         if (amount % LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMassage());
         }
+    }
+
+    public int getLottoQuantity() {
+        return amount / LOTTO_PRICE.getValue();
     }
 }

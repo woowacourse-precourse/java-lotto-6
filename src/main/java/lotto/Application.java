@@ -3,6 +3,7 @@ package lotto;
 import controller.LottoGenerator;
 import controller.PrizeChecker;
 import controller.UserInput;
+import controller.YieldCalculator;
 import model.*;
 
 public class Application {
@@ -17,7 +18,6 @@ public class Application {
         PrizeNumber prizeNumber = new PrizeNumber();
         PrizeChecker prizeChecker = new PrizeChecker();
         Ranking ranking = new Ranking();
-
 
         purchase.Number(UserInput.purchasePrice());
         System.out.println(purchase.getPurchaseCount());
@@ -36,6 +36,8 @@ public class Application {
 
         ranking = prizeChecker.checkRank(lottos,prizeNumber);
         System.out.println(ranking.getWinningDetails());
+
+        System.out.println(YieldCalculator.totalPrize(ranking));
 
     }
 

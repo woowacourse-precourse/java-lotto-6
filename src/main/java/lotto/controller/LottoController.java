@@ -72,10 +72,13 @@ public class LottoController {
 
     private int generateBonusNumber(WinningNumbers winningNumbers) {
         int bonusNumber;
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
         System.out.println();
         try {
             output.printInputBonusNumberMessage();
-            bonusNumber = input.getBonusNumber();
+            String userInput = input.getBonusNumber();
+            bonusNumberValidator.validateBonusNumber(userInput);
+            bonusNumber = Integer.parseInt(userInput);
             winningNumbers.validateDuplication(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

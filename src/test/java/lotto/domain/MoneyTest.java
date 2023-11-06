@@ -23,11 +23,6 @@ public class MoneyTest {
         money = new Money(1000);
     }
 
-    @AfterEach
-    void consoleClose() {
-        Console.close();
-    }
-
     @Test
     @DisplayName("money를 반환한다.")
     void getMoneyTest() {

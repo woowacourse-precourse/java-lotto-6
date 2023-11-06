@@ -5,11 +5,8 @@ import lotto.domain.Constants;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Input {
-
-    private final InputValidator inputValidator = new InputValidator();
 
     public String getUserAmount() {
         return Console.readLine();
@@ -19,9 +16,7 @@ public class Input {
         return Arrays.asList(Console.readLine().split(Constants.COMMA));
     }
 
-    public int getBonusNumber() {
-        String userInput = Console.readLine();
-        inputValidator.validateBonusNumber(userInput);
-        return Integer.parseInt(userInput);
+    public String getBonusNumber() {
+        return Console.readLine();
     }
 }

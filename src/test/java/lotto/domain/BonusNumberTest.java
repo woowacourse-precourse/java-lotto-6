@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.BonusNumberValidator;
 import lotto.io.Input;
 
 import org.junit.jupiter.api.AfterEach;
@@ -19,16 +20,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
 
-    Input input;
+    BonusNumberValidator bonusNumberValidator;
 
     @BeforeEach
     void setUp() {
-        input = new Input();
-    }
-
-    @AfterEach
-    void consoleClose() {
-        Console.close();
+        bonusNumberValidator = new BonusNumberValidator();
     }
 
     @Test
@@ -53,12 +49,12 @@ class BonusNumberTest {
     @ValueSource(strings = {"-1","1a","a1","aa"," 1","1 "})
     void onlyOneNumbertest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
 
         //when
 
         //then
-        assertThatThrownBy(() -> input.getBonusNumber()).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bonusNumberValidator.validateBonusNumber(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -66,16 +62,11 @@ class BonusNumberTest {
     @ValueSource(strings = {"0","46"})
     void bonusNumberRangertest(String userInput) {
         //given
-        System.setIn(makeUserInput(userInput));
 
         //when
 
         //then
-        assertThatThrownBy(() -> input.getBonusNumber()).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("입력값을 생성하는 메소드")
-    private InputStream makeUserInput(String userInput) {
-        return new ByteArrayInputStream(userInput.getBytes());
+        assertThatThrownBy(() -> bonusNumberValidator.validateBonusNumber(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

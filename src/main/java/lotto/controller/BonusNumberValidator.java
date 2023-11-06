@@ -1,10 +1,8 @@
-package lotto.io;
+package lotto.controller;
 
 import lotto.domain.Constants;
 
-import java.util.List;
-
-public class InputValidator {
+public class BonusNumberValidator {
 
     public void validateBonusNumber(String userInput) {
         validateOnlyOneNumber(userInput);

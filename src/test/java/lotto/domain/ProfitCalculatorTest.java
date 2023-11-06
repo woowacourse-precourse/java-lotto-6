@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -15,5 +17,13 @@ public class ProfitCalculatorTest {
         String profit = ProfitCalculator.calculate(priceSum, lottoCount);
 
         assertThat(profit).isEqualTo(expected);
+    }
+
+    @DisplayName("로또 구입 갯수가 0이면 예외를 발생시킨다.")
+    @Test
+    void calculateProfitByZeroLottoCount() {
+        assertThatThrownBy(() -> ProfitCalculator.calculate(10000, 0))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("[ERROR] 로또를 구매해야 수익률을 계산할 수 있습니다.");
     }
 }

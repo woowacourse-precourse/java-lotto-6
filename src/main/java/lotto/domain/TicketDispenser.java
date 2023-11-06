@@ -1,6 +1,8 @@
 package lotto.domain;
 
-public interface TicketDispenser {
+import java.util.List;
 
-    PurchasedTickets buyAutoCreatedTicket(int cost);
+public interface TicketDispenser<T> {
+
+    List<T> buyAutoCreatedTicket(int cost);
 }

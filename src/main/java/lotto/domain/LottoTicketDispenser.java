@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class LottoTicketDispenser implements TicketDispenser {
+public class LottoTicketDispenser implements TicketDispenser<Lotto> {
 
     private final LottoNumberGenerateStrategy lottoNumberGenerator;
 
@@ -12,10 +12,10 @@ public class LottoTicketDispenser implements TicketDispenser {
     }
 
     @Override
-    public PurchasedTickets buyAutoCreatedTicket(int cost) {
+    public List<Lotto> buyAutoCreatedTicket(int cost) {
         validateCost(cost);
         int amountOfTickets = cost / Lotto.PRICE;
-        return new PurchasedLottoTickets(createAutoLottoTickets(amountOfTickets));
+        return createAutoLottoTickets(amountOfTickets);
     }
 
     private void validateCost(int cost) {

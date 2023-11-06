@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class LottoTicketDispenserTest {
         // given
         int cost = 3_000;
         // when
-        PurchasedTickets purchasedLottoTickets = lottoTicketDispenser.buyAutoCreatedTicket(cost);
+        List<Lotto> purchasedLottoTickets = lottoTicketDispenser.buyAutoCreatedTicket(cost);
         // then
         assertThat(purchasedLottoTickets.size()).isEqualTo(3);
     }

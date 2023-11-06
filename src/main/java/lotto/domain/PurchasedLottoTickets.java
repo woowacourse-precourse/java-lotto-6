@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class PurchasedLottoTickets implements PurchasedTickets {
+public class PurchasedLottoTickets {
 
     private final List<Lotto> lottoTickets;
 
@@ -15,7 +15,6 @@ public class PurchasedLottoTickets implements PurchasedTickets {
         return String.join("", lottoTickets.toString());
     }
 
-    @Override
     public int size() {
         return lottoTickets.size();
     }

@@ -1,6 +1,8 @@
 package lotto.application;
 
 import static lotto.enums.LottoConfig.LOTTO_COUNT;
+import static lotto.enums.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.enums.LottoConfig.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -32,5 +34,19 @@ public class RandomNumberGeneratorTest {
 
         // then
         assertThat(numbers).doesNotHaveDuplicates();
+    }
+
+    @Test
+    void 랜덤으로_생성된_숫자는_로또_숫자_범위를_가진다() {
+        // given
+        final int count = LOTTO_COUNT.getValue();
+
+        // when
+        List<Integer> numbers = numberGenerator.generateNumbers(count);
+
+        // then
+        assertThat(numbers).allMatch(
+                number -> MIN_LOTTO_NUMBER.getValue() <= number && number <= MAX_LOTTO_NUMBER.getValue()
+        );
     }
 }

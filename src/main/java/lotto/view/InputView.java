@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.validator.Validator.validateNumeric;
 import static lotto.validator.Validator.validateWinningNumbersInput;
+import static lotto.view.ViewConstant.ASK_BONUS_NUMBER_MESSAGE;
 import static lotto.view.ViewConstant.ASK_PAYMENT_MESSAGE;
 import static lotto.view.ViewConstant.ASK_WINNING_NUMBER_MESSAGE;
 import static lotto.view.ViewConstant.WINNING_NUMBER_DELIMITER;
@@ -28,10 +29,16 @@ public class InputView {
         return toIntegerList(numbers);
     }
 
+    public static int readBonusNumber() {
+        System.out.println(ASK_BONUS_NUMBER_MESSAGE);
+        String bonus = Console.readLine();
+        validateNumeric(bonus);
+        return Integer.parseInt(bonus);
+    }
+
     private static List<Integer> toIntegerList(String numbers) {
         return Arrays.stream(numbers.split(WINNING_NUMBER_DELIMITER.value()))
                 .map(Integer::parseInt)
                 .toList();
     }
-
 }

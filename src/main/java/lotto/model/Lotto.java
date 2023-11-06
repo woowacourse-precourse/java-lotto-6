@@ -51,7 +51,7 @@ public class Lotto {
     public boolean hasBonusNumber(final LottoNumber bonusNumber) {
 
         return numbers.stream()
-                .anyMatch(number -> number == bonusNumber);
+                .anyMatch(number -> number.equals(bonusNumber));
     }
 
     public List<Number> getNumbers() {

@@ -71,4 +71,21 @@ class LottoServiceTest {
         assertThat(one).isEqualTo(1);
         assertThat(zero).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("보너스 숫자 일치 여부 구하기")
+    void isMatchingBonusNumber() {
+        // given
+        int bonusNumber = 7;
+        List<Integer> containBonusNumber = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> notContainBonusNumber = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        boolean matching = lottoService.isMatchingBonusNumber(containBonusNumber, bonusNumber);
+        boolean notMatching = lottoService.isMatchingBonusNumber(notContainBonusNumber, bonusNumber);
+
+        // then
+        assertThat(matching).isEqualTo(true);
+        assertThat(notMatching).isEqualTo(false);
+    }
 }

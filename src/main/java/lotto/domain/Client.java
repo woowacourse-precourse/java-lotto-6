@@ -37,36 +37,20 @@ public class Client {
     }
 
     public Lotto getCilentLotto() {
-        System.out.println("구매할 로또를 입력해주세요.");
-        String[] tmp;
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] clientInput;
         while (true) {
-            tmp = Console.readLine().split(",");
+            clientInput = Console.readLine().split(",");
             try {
-                validate(tmp);
-                break;
-            } catch (IllegalArgumentException e) {
-                getCilentLotto();
+                return new Lotto(Arrays.stream(clientInput)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList()));
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 숫자만 입력해주세요.");
             }
-        }
-        return new Lotto(Arrays.stream(tmp).map(Integer::parseInt).collect(Collectors.toList()));
-    }
-
-    private void validate(String[] clientInput) {
-        if (clientInput.length != 6) {
-            System.out.println("[ERROR] 로또 번호는 6개만 입력해주세요.");
-            throw new IllegalArgumentException();
-        } else if (Arrays.stream(clientInput).distinct().count() != 6) {
-            System.out.println("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
-            throw new IllegalArgumentException();
-        }
-        try{
-            if(Arrays.stream(clientInput).anyMatch(x -> Integer.parseInt(x) < 1 || Integer.parseInt(x) > 45)){
-                System.out.println("[ERROR] 1~45 사이의 숫자만 입력해주세요.");
-                throw new IllegalArgumentException();
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-        } catch (NumberFormatException e){
-            System.out.println("[ERROR] 숫자만 입력해주세요.");
-            throw new IllegalArgumentException();
         }
     }
 
@@ -75,15 +59,12 @@ public class Client {
         try{
             Integer.parseInt(tmp);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자만 입력해주세요.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
         if (Integer.parseInt(tmp) < 1 || Integer.parseInt(tmp) > 45) {
-            System.out.println("[ERROR] 1~45 사이의 숫자만 입력해주세요.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력해주세요.");
         } else if (this.lotto.getNumbers().contains(Integer.parseInt(tmp))) {
-            System.out.println("[ERROR] 로또 번호와 중복된 숫자는 입력할 수 없습니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호와 중복된 숫자는 입력할 수 없습니다.");
         }
     }
 }

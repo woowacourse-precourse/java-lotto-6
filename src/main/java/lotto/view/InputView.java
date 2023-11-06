@@ -1,13 +1,20 @@
 package lotto.view;
 
+import static lotto.exception.InvalidInputException.InvalidInputError.INPUT_NOT_BLANK;
+import static lotto.exception.InvalidInputException.InvalidInputError.INVALID_AMOUNT;
+import static lotto.exception.InvalidInputException.InvalidInputError.NUMBER_NEED;
+import static lotto.exception.InvalidInputException.InvalidInputError.POSITIVE_NUMBER_NEED;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.InvalidInputException;
 import org.junit.platform.commons.util.StringUtils;
 
 public class InputView {
     private static final String DELIMITER = ",";
 
+    private static final int DIVIDE_NUMBER = 1000;
     private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -39,7 +46,7 @@ public class InputView {
 
     private void validateBlank(String input) {
         if (StringUtils.isBlank(input)) {
-            throw new IllegalArgumentException("공백 입력은 안됩니다.");
+            throw new InvalidInputException(INPUT_NOT_BLANK);
         }
     }
 
@@ -47,20 +54,25 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("문자가 아닌 숫자 입력 해주세요.");
+            throw new InvalidInputException(NUMBER_NEED);
         }
     }
 
     private void validatePositiveNumber(String input) {
         if (Integer.parseInt(input) <= 0) {
-            throw new IllegalArgumentException("양의 자연수를 입력 해주세요.");
+            throw new InvalidInputException(POSITIVE_NUMBER_NEED);
         }
     }
 
     private void validateAmount(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000으로 나누어떨어져야 합니다.");
+        if (amount % DIVIDE_NUMBER != 0) {
+            throw new InvalidInputException(INVALID_AMOUNT);
         }
+    }
+
+    public Integer inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        return inputPositiveNumber();
     }
 
     public List<Integer> inputWinningNumbers() {
@@ -77,10 +89,5 @@ public class InputView {
         Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .forEach(this::validateNumberInput);
-    }
-
-    public Integer inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return inputPositiveNumber();
     }
 }

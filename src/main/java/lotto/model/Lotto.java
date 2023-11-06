@@ -1,10 +1,14 @@
 package lotto.model;
 
+import static lotto.exception.InvalidLottoException.InvalidLottoError.DUPLICATE_LOTTO;
+import static lotto.exception.InvalidLottoException.InvalidLottoError.INVALID_LOTTO_COUNT;
+import static lotto.exception.InvalidLottoException.InvalidLottoError.INVALID_LOTTO_RANGE;
 import static lotto.model.WinningLotto.BONUS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.InvalidLottoException;
 import lotto.generator.NumberGenerator;
 
 public class Lotto {
@@ -30,14 +34,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 크기는 6개 입니다.");
+            throw new InvalidLottoException(INVALID_LOTTO_COUNT);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < LOTTO_MIN_NUMBER || LOTTO_MAX_NUMBER < number) {
-                throw new IllegalArgumentException("로또 숫자의 범위는 1~45입니다.");
+                throw new InvalidLottoException(INVALID_LOTTO_RANGE);
             }
         }
     }
@@ -45,7 +49,7 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
+            throw new InvalidLottoException(DUPLICATE_LOTTO);
         }
     }
 

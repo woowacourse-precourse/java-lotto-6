@@ -1,7 +1,11 @@
 package lotto.model;
 
+import static lotto.exception.InvalidLottoException.InvalidLottoError.DUPLICATE_LOTTO;
+import static lotto.exception.InvalidLottoException.InvalidLottoError.INVALID_LOTTO_RANGE;
 import static lotto.model.Lotto.LOTTO_MAX_NUMBER;
 import static lotto.model.Lotto.LOTTO_MIN_NUMBER;
+
+import lotto.exception.InvalidLottoException;
 
 public class User {
     private final Lotto lotto;
@@ -16,13 +20,13 @@ public class User {
 
     private void validateRange(int bonusNumber) {
         if (bonusNumber < LOTTO_MIN_NUMBER || LOTTO_MAX_NUMBER < bonusNumber) {
-            throw new IllegalArgumentException("로또 숫자의 범위는 1~45입니다.");
+            throw new InvalidLottoException(INVALID_LOTTO_RANGE);
         }
     }
 
     private void validateDuplicate(Lotto lotto, int bonusNumber) {
         if (lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
+            throw new InvalidLottoException(DUPLICATE_LOTTO);
         }
     }
 

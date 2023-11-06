@@ -12,7 +12,7 @@ public class LottoProcedure {
     private final int LOTTO_SIZE = 6;
     private final List<Double> reward = new ArrayList<>();
     User user;
-    Lotto lotto;
+    Lotto winningNumber;
     BonusNumber bonusNumber;
 
     public LottoProcedure() {
@@ -28,8 +28,8 @@ public class LottoProcedure {
     public void lottoProgress() {
         user = Setting.getPayment();
         Output.printAboutPurchase(user);
-        lotto = Setting.getLotto();
-        bonusNumber = Setting.getBonusNumber(lotto);
+        winningNumber = Setting.getLotto();
+        bonusNumber = Setting.getBonusNumber(winningNumber);
         produceStatistics();
         Output.printStatistics(user.rankCount(), calculateResult(), user.payment());
     }
@@ -48,7 +48,7 @@ public class LottoProcedure {
         double count = 0;
 
         for (int j = 0; j < LOTTO_SIZE; j++) {
-            if (user.getPurchasedLottoNumbers(index).contains(lotto.number(j))) {
+            if (user.getPurchasedLottoNumbers(index).contains(winningNumber.number(j))) {
                 count += 1;
             }
         }

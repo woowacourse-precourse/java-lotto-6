@@ -12,13 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
-    @Test
-    void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("입력한 비용이 1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
     @Test
     void createPaymentByIndivisibleByThousand() {

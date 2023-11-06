@@ -12,10 +12,20 @@ import static lotto.constant.LottoConfig.PURCHASE_PRICE;
 import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
 
 public class LottoStore {
-    public static int publishLotto(int money) {
-        Lottos lottos = new Lottos();
+    public static Lottos publishLotto(int money) {
         int ticketNumber = money / PURCHASE_PRICE.getValue();
+        Lottos lottos = pickLottosNumbers(ticketNumber);
 
-        return ticketNumber;
+        return lottos;
+    }
+
+    private static Lottos pickLottosNumbers(int ticketNumber) {
+        Lottos lottos = new Lottos();
+
+        for (int i = 0; i < ticketNumber; i++) {
+            Lotto lotto = new Lotto(pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue(), TOTAL_CHOICE_NUMBER.getValue()));
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 }

@@ -39,14 +39,14 @@ public class WinningNumbers {
         setBonusNumber(bonusNumber);
     }
 
-    private void setBonusNumber(String bonusNumber) {
-        this.bonusNumber = Integer.parseInt(bonusNumber);
-    }
-
-    public void checkBonusNumberDuplicateWinningNumbers(String bonusNumber) {
+    private void checkBonusNumberDuplicateWinningNumbers(String bonusNumber) {
         if (winningNumbers.contains(Integer.parseInt(bonusNumber))) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATES_WINNING_NUMBER_ERROR.message());
         }
+    }
+
+    private void setBonusNumber(String bonusNumber) {
+        this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
     public List<Integer> calculateLottosResult(List<Lotto> lottos) {

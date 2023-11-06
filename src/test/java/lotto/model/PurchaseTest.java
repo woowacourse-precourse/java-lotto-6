@@ -12,7 +12,7 @@ public class PurchaseTest {
     @Test
     void 구입_금액_입력이_비어있는지_검증_실패_테스트() {
         String input = "";
-        String expectedErrorMessage = InputValidator.ERROR_EMPTY_INPUT_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.INPUT_EMPTY.get();
 
         assertThatThrownBy(() -> InputValidator.validateEmpty(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -32,7 +32,7 @@ public class PurchaseTest {
     @Test
     void 구입_금액_입력이_숫자인지_검증_실패_테스트() {
         String input = "asdf";
-        String expectedErrorMessage = InputValidator.ERROR_NOT_NUMBER_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.INPUT_NOT_NUMBER.get();
 
         assertThatThrownBy(() -> InputValidator.validateNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)

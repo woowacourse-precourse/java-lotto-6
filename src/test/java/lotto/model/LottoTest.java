@@ -31,7 +31,7 @@ class LottoTest {
     @Test
     void 당첨_번호_숫자_공백_실패_테스트() {
         String input = "1,2,,3,4,5";
-        String expectedErrorMessage = InputValidator.ERROR_EMPTY_INPUT_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.INPUT_EMPTY.get();
 
         assertThatThrownBy(() -> createLottoNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -41,7 +41,7 @@ class LottoTest {
     @Test
     void 당첨_번호_숫자_아님_실패_테스트() {
         String input = "2,3,a,5,-,1";
-        String expectedErrorMessage = InputValidator.ERROR_NOT_NUMBER_MESSAGE;
+        String expectedErrorMessage = ErrorMessage.INPUT_NOT_NUMBER.get();
 
         assertThatThrownBy(() -> createLottoNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)

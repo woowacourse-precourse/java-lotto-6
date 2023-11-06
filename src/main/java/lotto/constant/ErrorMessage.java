@@ -7,7 +7,9 @@ public enum ErrorMessage {
     LOTTO_NUMBER_DUPLICATE("[ERROR] 당첨 번호는 중복되지 않은 여섯개의 숫자여야 합니다."),
     BONUS_DUPLICATE_WITH_LOTTO("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     PURCHASE_MONEY_NOT_BIGGER_THAN_ZERO("[ERROR] 구입금액은 0보다 큰 숫자여야 합니다."),
-    PURCHASE_MONEY_NOT_MULTIPLE_OF_1000("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다.");
+    PURCHASE_MONEY_NOT_MULTIPLE_OF_1000("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다."),
+    INPUT_EMPTY("[ERROR] 입력값이 비어있습니다."),
+    INPUT_NOT_NUMBER("[ERROR] 숫자가 아닌 입력이 존재합니다.");
 
     private final String message;
 

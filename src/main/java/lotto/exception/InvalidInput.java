@@ -6,34 +6,54 @@ import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MIN_NUMBER;
 
+import java.sql.Struct;
 import java.util.Collections;
 import java.util.List;
+import lotto.view.InputView;
 
 public class InvalidInput {
     private static String message;
-
-    public void duplicateNumberException(List<Integer> numbers) {
+    public boolean duplicateNumberException(List<Integer> numbers) {
         message = ExceptionMessage.DUPLICATE_NUMBER.getMessage();
 
-        for (Integer number : numbers) {
-            isDuplicate(numbers, number);
+        try {
+            for (Integer number : numbers) {
+                isDuplicate(numbers, number);
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(message);
+            return false;
         }
+        return true;
     }
 
-    public void duplicateNumberException(List<Integer> numbers, int bonusNumber) {
+    public boolean duplicateNumberException(List<Integer> numbers, int bonusNumber) {
         message = ExceptionMessage.DUPLICATE_BONUSE_NUMBER.getMessage();
 
-        if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(message);
+        try {
+            if (numbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(message);
+            return false;
         }
+        return true;
     }
 
-    public void outOfRangeException(List<Integer> numbers) {
+    public boolean outOfRangeException(List<Integer> numbers) {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
 
-        for (Integer number : numbers) {
-            isBetweenInRange(number);
+        try{
+            for (Integer number : numbers) {
+                isBetweenInRange(number);
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(message);
+            return false;
         }
+
+        return true;
     }
     public boolean notIntegerValueException(String number) {
         message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
@@ -47,31 +67,35 @@ public class InvalidInput {
         }
     }
 
-    public void sizeExceededException(List<Integer> numbers) {
+    public boolean sizeExceededException(List<Integer> numbers) {
         message = ExceptionMessage.EXCEEDED_LOTTO_SIZE.getMessage();
 
         if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException(message);
+            System.out.println(message);
+            return false;
         }
+        return true;
     }
 
-    public void notThousandUnitException(int cost) {
+    public boolean notThousandUnitException(int cost) {
         message = ExceptionMessage.NOT_THOUSAND_UNIT.getMessage();
 
         if (cost % UNIT.getValue() != 0) {
-            throw new IllegalArgumentException(message);
+            System.out.println(message);
+            return false;
         }
+        return true;
     }
 
     private static void isDuplicate(List<Integer> numbers, int number) {
         if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException();
         }
     }
 
     private static void isBetweenInRange(int number) {
         if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException();
         }
     }
 }

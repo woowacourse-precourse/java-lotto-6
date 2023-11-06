@@ -1,23 +1,32 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.InvalidInput;
 
 public class StringConverter {
 
     public List<Integer> convertToIntegerList(List<String> numbers) {
-        validateList(numbers);
-        return numbers.stream()
-                .map(Integer::parseInt)
-                .toList();
+        if(validateList(numbers)){
+            return numbers.stream()
+                    .map(Integer::parseInt)
+                    .toList();
+        }
+        return Collections.emptyList();
     }
 
-    private void validateList(List<String> numbers) {
-        numbers.forEach(this::validateNumber);
+    private boolean validateList(List<String> numbers) {
+        for (String number : numbers) {
+            if (validateNumber(number)) {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
 
-    private void validateNumber(String number){
+    private boolean validateNumber(String number) {
         InvalidInput invalidInput = new InvalidInput();
-        invalidInput.notIntegerValueException(number);
+        return invalidInput.notIntegerValueException(number);
     }
 }

@@ -6,7 +6,7 @@ public enum ExceptionMessage {
     NOT_INTEGER_VALUE(" 번호와 금액은 정수여야 합니다."),
     EXCEEDED_LOTTO_SIZE(" 로또는 6개의 숫자여야 합니다."),
     NOT_THOUSAND_UNIT(" 구입 금액은 1000 단위여야 한다."),
-    DUPLICATE_BONUSE_NUMBER(" 보너스 번호는 당첨번호와 중복도지 않아야 한다.");
+    DUPLICATE_BONUSE_NUMBER(" 보너스 번호는 당첨번호와 중복도l지 않아야 한다.");
     private final String message;
     private static final String PREFIX = "[ERROR]";
 

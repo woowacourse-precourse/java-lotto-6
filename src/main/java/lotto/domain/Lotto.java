@@ -5,10 +5,15 @@ import lotto.exception.InvalidInput;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static boolean isValid = false;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean isValid() {
+        return isValid;
     }
 
     public List<Integer> getNumbers() {
@@ -37,10 +42,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         InvalidInput invalidInput = new InvalidInput();
+        isValid = true;
 
-        invalidInput.sizeExceededException(numbers);
-        invalidInput.duplicateNumberException(numbers);
-        invalidInput.outOfRangeException(numbers);
+        if (!invalidInput.sizeExceededException(numbers)) {
+            isValid = false;
+        } else if (!invalidInput.duplicateNumberException(numbers)) {
+            isValid = false;
+        } else if (!invalidInput.outOfRangeException(numbers)) {
+            isValid = false;
+        }
     }
-
 }

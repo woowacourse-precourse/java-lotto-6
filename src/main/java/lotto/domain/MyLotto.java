@@ -11,7 +11,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.exception.InvalidInput;
 import lotto.view.OutputView;
 
 public class MyLotto {
@@ -20,14 +19,12 @@ public class MyLotto {
 
     private final int quantity;
     private final List<Lotto> myLottos;
-    public MyLotto(int cost) {
-        validate(cost);
-        this.quantity = getQuantity(cost);
+    public MyLotto(int quantity) {
+        this.quantity = quantity;
         this.myLottos = IntStream.range(START, quantity)
                 .mapToObj(q -> generateMyLotto())
                 .toList();
     }
-
     public void printGenerateLottoResult() {
         OutputView outputView = new OutputView();
         outputView.printLotto(quantity, getMyLottoNumbers());
@@ -59,11 +56,6 @@ public class MyLotto {
         }
 
         return statistics;
-    }
-
-    private void validate(int cost){
-        InvalidInput invalidInput = new InvalidInput();
-        invalidInput.notThousandUnitException(cost);
     }
 
     private int getQuantity(int cost) {

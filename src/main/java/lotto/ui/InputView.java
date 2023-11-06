@@ -16,4 +16,11 @@ public class InputView {
         inputValidator.validate(input);
         return input;
     }
+
+    public String scanWinningLottoNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        inputValidator.validate(input);
+        return input;
+    }
 }

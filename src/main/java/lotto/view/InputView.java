@@ -1,15 +1,18 @@
 package lotto.view;
 
+import static lotto.constant.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_NUMBER_FORMAT;
+import static lotto.constant.LottoConstants.LOTTO_PRICE;
+import static lotto.constant.LottoConstants.LOTTO_SIZE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_NUMBERS_COUNT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_RANGE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_MAXIMUM;
-import static lotto.message.InputErrorMessage.INVALID_INPUT_NEGATIVE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_UNIT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
@@ -22,13 +25,6 @@ public class InputView {
     private static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private static final String INPUT_LOTTO_NUMBER_SPLITTER = ",";
-
-    private static final int LOTTO_NUMBER_MIN_VALUE = 1;
-    private static final int LOTTO_NUMBER_MAX_VALUE = 45;
-
-    private static final int LOTTO_NUMBERS_SIZE = 6;
-
-    public static final String LOTTO_NUMBER_FORMAT = "숫자";
 
     int requestLottoPurchaseAmount() {
         System.out.println(PURCHASE_MESSAGE);
@@ -70,7 +66,7 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_INPUT_MAXIMUM);
         }
 
-        int reminder = lottoPurchaseAmount % 1000;
+        int reminder = lottoPurchaseAmount % LOTTO_PRICE;
         if (reminder > 0) {
             throw new IllegalArgumentException(INVALID_INPUT_UNIT);
         }
@@ -86,15 +82,15 @@ public class InputView {
             validateLottoNumberRange(number);
             numbers.add(number);
         }
-        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
         }
     }
 
     private void validateLottoNumberRange(int number) {
         if (
-            LOTTO_NUMBER_MIN_VALUE > number ||
-            LOTTO_NUMBER_MAX_VALUE < number
+            LOTTO_MIN_NUMBER > number ||
+            LOTTO_MAX_NUMBER < number
         ) {
             throw new IllegalArgumentException(INVALID_INPUT_LOTTO_RANGE);
         }

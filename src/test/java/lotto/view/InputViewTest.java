@@ -1,10 +1,10 @@
 package lotto.view;
 
+import static lotto.constant.LottoConstants.LOTTO_NUMBER_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_NUMBERS_COUNT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_RANGE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_UNIT;
-import static lotto.view.InputView.LOTTO_NUMBER_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

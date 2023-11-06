@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +16,7 @@ public class LottoGenerator {
     }
 
     private static List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
     }
 
     private static void sortByAsc(List<Integer> randomNumbers) {

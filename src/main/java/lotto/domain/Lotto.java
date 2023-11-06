@@ -46,4 +46,8 @@ public class Lotto {
     public boolean contains(int number) {
         return this.numbers.contains(number);
     }
+
+    public int matchCount(Lotto winningLotto) {
+        return (int) this.numbers.stream().filter(winningLotto::contains).count();
+    }
 }

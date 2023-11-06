@@ -17,7 +17,7 @@ public class LottoController {
         NumberCandidateStrings numberCandidateStrings = NumberCandidateStrings.valueOf(winningNumber.split(","));
         Lotto lotto = new Lotto(numberCandidateStrings.toNumberList());
 
-        String bonusNumber = InputView.receiveBonusNumber();
+        NumberCandidateString bonusNumber = new NumberCandidateString(InputView.receiveBonusNumber());
     }
 
     private LottoService initLottoService() {

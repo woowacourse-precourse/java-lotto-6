@@ -20,8 +20,22 @@ public class BuyLotto {
     }
 
     public List<Integer> pickNumber() {
-        List<Integer> paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> paper;
+        do {
+            paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        } while ();
         return paper;
+    }
+
+    public boolean pickNumberDuplicate(List<Integer> paper) {
+        boolean result = false;
+        Collections.sort(paper);
+        for (int i = 1; i < paper.size(); i++) {
+            if (paper.get(i) == paper.get(i - 1)) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     public boolean checkSameNumber(List<Integer> paper, int number) {

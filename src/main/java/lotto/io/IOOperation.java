@@ -1,5 +1,7 @@
 package lotto.io;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class IOOperation {
     private static final Integer MINIMUM_RANGE = 1;
     private static final Integer MAXIMUM_RANGE = 45;
 
+    // features
     public static void priceCorrect(Integer price) {
         if (price % UNIT != 0) {
             throw new IllegalArgumentException();
@@ -56,5 +59,25 @@ public class IOOperation {
         if (!inRange(bonusNumber)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    // exception UI
+    public static Integer getPrice() {
+        System.out.println("구입금액을 입력해 주세요.");
+        Integer price;
+
+        while (true) {
+            try {
+                price = Integer.parseInt(Console.readLine());
+                priceCorrect(price);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 구입금액은 1000원 단위여야 합니다.");
+                continue;
+            }
+
+            break;
+        }
+
+        return price;
     }
 }

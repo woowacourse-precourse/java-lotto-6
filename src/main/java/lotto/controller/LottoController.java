@@ -39,21 +39,12 @@ public class LottoController {
     private DrawingResultDto drawLotto(final LottosDto lottosDto) {
         WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
         BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
-        validateBonusNumberDuplicate(winningLottoDto, bonusNumberDto);
+        BonusNumberValidator.validateBonusNumberDuplicate(winningLottoDto, bonusNumberDto);
 
         DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
         outputView.printDrawingResult(drawingResultDto);
 
         return drawingResultDto;
-    }
-
-    private void validateBonusNumberDuplicate(final WinningLottoDto winningLottoDto,
-                                              final BonusNumberDto bonusNumberDto) {
-        boolean isDuplicate = winningLottoDto.numbers().contains(bonusNumberDto.number());
-
-        if (isDuplicate) {
-            throw new IllegalArgumentException(BonusNumberValidator.DUPLICATE_NUMBER_MESSAGE);
-        }
     }
 
     public void profitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {

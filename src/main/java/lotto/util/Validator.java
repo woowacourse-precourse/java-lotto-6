@@ -7,16 +7,18 @@ import java.util.regex.Pattern;
 
 public class Validator {
     public static int isValidPurchaseAmount(String input) {
-        isEmpty(input);
-        isNumeric(input);
-        isThousandUnit(input);
-        return Integer.parseInt(input);
+        String purchaseAmount = removeSpace(input);
+        isEmpty(purchaseAmount);
+        isNumeric(purchaseAmount);
+        isThousandUnit(purchaseAmount);
+        return Integer.parseInt(purchaseAmount);
     }
 
     public static List<Integer> isValidWinningNumbers(String input) {
-        isEmpty(input);
-        isValidCommaSeparator(input);
-        String[] numbers = input.split(Constants.COMMA);
+        String winningNumbers = removeSpace(input);
+        isEmpty(winningNumbers);
+        isValidCommaSeparator(winningNumbers);
+        String[] numbers = winningNumbers.split(Constants.COMMA);
         isSixItems(numbers);
         isDuplicateWinNumber(numbers);
         for (String number : numbers) {
@@ -27,10 +29,15 @@ public class Validator {
     }
 
     public static int isValidBonusNumber(String input) {
-        isEmpty(input);
-        isNumeric(input);
-        isNumberInRange(input);
-        return Integer.parseInt(input);
+        String bonusNumber = removeSpace(input);
+        isEmpty(bonusNumber);
+        isNumeric(bonusNumber);
+        isNumberInRange(bonusNumber);
+        return Integer.parseInt(bonusNumber);
+    }
+
+    public static String removeSpace(String input) {
+        return input.replaceAll(Constants.SPACE, Constants.EMPTY);
     }
 
 

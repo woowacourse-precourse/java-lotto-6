@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.List;
 
 import static lotto.Constants.LOTTO_COUNT;
+import static lotto.Utils.convertIntegerListToLottoNumberList;
+import static lotto.Utils.convertStringArrayToIntegerList;
 import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
 
@@ -12,10 +14,11 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream()
-                .sorted()
-                .map(LottoNumber::new)
-                .toList();
+        this.numbers = convertIntegerListToLottoNumberList(numbers);
+    }
+
+    public Lotto(String input){
+        this(convertStringArrayToIntegerList(input.split(" ")));
     }
 
     public boolean contains(LottoNumber number){

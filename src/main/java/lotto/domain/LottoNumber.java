@@ -16,9 +16,7 @@ public class LottoNumber {
     }
 
     public LottoNumber(String input) {
-        int inputNumber = Utils.convertStringToInt(input);
-        validate(inputNumber);
-        this.number = inputNumber;
+        this(Utils.convertStringToInt(input));
     }
 
     public int getNumber(){

@@ -19,10 +19,10 @@ class LottoManagerTest {
         lottos.add(new Lotto(List.of(5, 1, 2, 3, 4, 6)));
 
         // when
-        List<Lotto> sortedlottos = LottoManager.sortLottos(lottos);
+        List<Lotto> sortedLottos = LottoManager.sortLottos(lottos);
 
         // then
-        for (Lotto sortedlotto : sortedlottos) {
+        for (Lotto sortedlotto : sortedLottos) {
             assertThat(sortedlotto.getNumbers())
                     .isEqualTo(List.of(1, 2, 3, 4, 5, 6))
                     .isNotEqualTo(List.of(6, 5, 4, 3, 2, 1));

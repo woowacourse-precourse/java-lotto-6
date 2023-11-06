@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.enums.Constants.*;
+import static lotto.utils.NumberUtil.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,14 +9,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.enums.ExceptionMessages;
-import lotto.utils.RemoveSpace;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(String numbers) {
-        numbers = RemoveSpace.getValue(numbers);
+        numbers = removeSpace(numbers);
         validate(numbers);
         this.numbers = makeNumbers(numbers);
     }
@@ -47,7 +47,7 @@ public class Lotto {
     }
 
     private List<Integer> makeNumbers(final String numbers){
-        return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+        return Arrays.stream(splitComma(numbers)).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
 
     private boolean isEmpty(final String numbers){
@@ -55,21 +55,21 @@ public class Lotto {
     }
 
     private boolean isDigit(final String numbers){
-        return Arrays.stream(numbers.split(",")).allMatch(number -> Character.isDigit(number.charAt(0)));
+        return Arrays.stream(splitComma(numbers)).allMatch(number -> Character.isDigit(number.charAt(0)));
     }
 
     private boolean isSixNumbers(final String numbers){
-        return numbers.split(",").length == LOTTO_NUMBER_SIZE.getValue();
+        return splitComma(numbers).length == LOTTO_NUMBER_SIZE.getValue();
     }
 
     private boolean isBetweenOneAndFortyFive(final String numbers){
-        return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).allMatch(number -> number >= MIN_INCLUSIVE.getValue() && number <= MAX_INCLUSIVE.getValue());
+        return Arrays.stream(splitComma(numbers)).mapToInt(Integer::parseInt).allMatch(number -> number >= MIN_INCLUSIVE.getValue() && number <= MAX_INCLUSIVE.getValue());
     }
 
     private boolean isDuplicatedNumber(final String numbers){
 
-        Set<String> set = new HashSet<>(List.of(numbers.split(",")));
+        Set<String> set = new HashSet<>(List.of(splitComma(numbers)));
 
-        return set.size() != numbers.split(",").length;
+        return set.size() != splitComma(numbers).length;
     }
 }

@@ -1,15 +1,16 @@
 package lotto.domain;
 
 import static lotto.enums.Constants.*;
+import static lotto.utils.NumberUtil.removeSpace;
+
 import lotto.enums.ExceptionMessages;
-import lotto.utils.RemoveSpace;
 
 public class BonusNumber {
 
     private final int value;
 
     public BonusNumber(String number, final Lotto lotto){
-        number = RemoveSpace.getValue(number);
+        number = removeSpace(number);
         validate(number,lotto);
         value = Integer.parseInt(number);
     }

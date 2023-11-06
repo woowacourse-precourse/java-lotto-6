@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class YieldServiceTest {
@@ -16,7 +17,8 @@ class YieldServiceTest {
     }
 
     @Test
-    void calculateYield() {
+    @DisplayName("수익률 계산 로직 테스트!")
+    void calculateYieldTest() {
         //given
         Long result=5000L;
         Long money=8000L;

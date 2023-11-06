@@ -21,6 +21,22 @@ public class Application {
         getLotto(lotto, lottoNum);
         printLotto(lotto,lottoNum);
 
+        System.out.println("당첨 번호를 입려해 주세요.");
+        String[] input = readLine().split(",");
+        List<Integer> userLotto = new ArrayList<>();
+        for(String list : input){
+            userLotto.add(Integer.valueOf(list));
+        }
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        //예외
+        userLotto.add(Integer.valueOf(readLine()));
+
+        System.out.println(userLotto);
+        System.out.println(lotto);
+        System.out.println(lotto.get(0));
+        System.out.println(lotto.get(0).get(1));
+        winLotto(lotto, userLotto, lottoNum);
     }
     public static List<List<Integer>> getLotto(List<List<Integer>> lotto, int lottoNum){
         for(int i=0; i<lottoNum; i++){
@@ -36,5 +52,26 @@ public class Application {
             Collections.sort(lotto.get(i));
             System.out.println(lotto.get(i));
         }
+    }
+    public static void winLotto(List<List<Integer>> lotto,List<Integer> userLotto,int lottoNum){
+        List<Integer> reward = new ArrayList<>();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int total;
+        for(int i=0; i<lottoNum; i++){
+            winPrice(lotto.get(i)); // indent depth 1
+            int idx=0;
+            for(int j=0; j<6; j++) {
+                if (lotto.get(i).contains(userLotto.get(j))) { // indent depth 2
+                    idx += 1;  // indent depth 3
+                }
+            }
+            System.out.println(idx);
+            reward.add(idx);
+            }
+        System.out.println(reward);
+    }
+    public static void winPrice(List<Integer> lotto){
+
     }
 }

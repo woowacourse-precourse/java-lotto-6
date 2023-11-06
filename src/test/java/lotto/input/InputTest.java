@@ -3,6 +3,7 @@ package lotto.input;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static lotto.exception.ExceptionMessage.DIFFERENT_FORMAT_EXCEPTION_MESSAGE;
+import static lotto.exception.ExceptionMessage.MAX_PRICE_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_NUMBER_EXCEPTION_MESSAGE;
 import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
 
@@ -53,6 +54,16 @@ public class InputTest {
         assertThatThrownBy(() -> inputValidator.validatePurchasePrice(input))
                 .isInstanceOf(LottoApplicationException.class)
                 .hasMessageContaining(DIFFERENT_FORMAT_EXCEPTION_MESSAGE.getMessage());
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"10000000000000000000","2100000001"})
+    @DisplayName("설정한 최대 금액보다 초과할 경우 예외 테스트")
+    public void 최대_금액_테스트(String input) {
+        assertThatThrownBy(() -> inputValidator.validateMaxPrice(input))
+                .isInstanceOf(LottoApplicationException.class)
+                .hasMessageContaining(MAX_PRICE_MESSAGE.getMessage());
     }
 
 

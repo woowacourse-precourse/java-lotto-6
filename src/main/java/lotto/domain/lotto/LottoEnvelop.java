@@ -21,12 +21,12 @@ public class LottoEnvelop {
     public StringBuilder giveInformation() {
         int sizeLottoEnvelop = lottoEnvelops.size();
 
-        StringBuilder information = getInformation(sizeLottoEnvelop);
+        StringBuilder information = getInformationEnvelop(sizeLottoEnvelop);
 
         return information;
     }
 
-    private StringBuilder getInformation(int sizeLottoEnvelop) {
+    private StringBuilder getInformationEnvelop(int sizeLottoEnvelop) {
         Lotto lotto;
         StringBuilder lottoInformation;
         StringBuilder information = new StringBuilder();

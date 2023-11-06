@@ -29,8 +29,8 @@ public class Lotto {
         return count;
     }
 
-    public Boolean isContainBonus(Integer bonusNumber){
-        return numbers.contains(bonusNumber);
+    public Boolean isContainBonus(Bonus bonus){
+        return numbers.contains(bonus.getNumber());
     }
 
     private void validateNumbersLength(List<Integer> numbers) {

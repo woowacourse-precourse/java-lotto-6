@@ -13,6 +13,10 @@ public class Bonus {
         this.number = number;
     }
 
+    public Integer getNumber() {
+        return number;
+    }
+
     private void isNotOverlapBonusValidator(List<Integer> numbers, Integer bonusNumber){
         if(numbers.contains(bonusNumber)){
             throw new IllegalArgumentException(IS_NOT_OVERLAP_BONUS_VALIDATOR_ERROR_MESSAGE);

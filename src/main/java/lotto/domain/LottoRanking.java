@@ -35,7 +35,7 @@ public enum LottoRanking {
         return winningLotto.countMatchedOtherLotto(playerLotto);
     }
 
-    public Boolean getIsMatchBonus
+    public Boolean getIsMatchBonus(Lotto winningLotto, )
     public LottoRanking getRanking(Integer countAboutLotto, Boolean isMatchBonus){
         if(countAboutLotto < MINIMUM_WINNING_COUNT){
             return OTHER;

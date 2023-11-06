@@ -31,7 +31,7 @@ public enum LottoRank {
         }
 
         if (matchCount < LottoRank.FIFTH.matchCount) {
-            return null;
+            return LottoRank.NONE;
         }
 
         return Arrays.stream(LottoRank.values()).filter(rank -> rank.matchCount == matchCount).findAny()

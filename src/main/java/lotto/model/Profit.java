@@ -1,33 +1,24 @@
 package lotto.model;
 
+import java.util.Map;
+
 public class Profit {
 
-    public float calculateProfitRate(float buyAmount, int[] result) {
-        float winningPrice = calculateWinningPrice(result);
+    public float calculateProfitRate(float buyAmount, Map<LottoRank, Integer> lottoRankInfo) {
+        float winningPrice = calculateWinningPrice(lottoRankInfo);
 
         return (winningPrice / buyAmount) * 100;
     }
 
 
-    public float calculateWinningPrice(int[] result) {
+    public float calculateWinningPrice(Map<LottoRank, Integer> lottoRankInfo) {
         float profit = 0;
-        for (int i = 1; i <= 5; i++) {
-            if (i == 1 && result[i] != 0) {
-                profit += 5000 * result[i];
-            }
-            if (i == 2 && result[i] != 0) {
-                profit += 50000 * result[i];
-            }
-            if (i == 3 && result[i] != 0) {
-                profit += 1500000 * result[i];
-            }
-            if (i == 4 && result[i] != 0) {
-                profit += 30000000 * result[i];
-            }
-            if (i == 5 && result[i] != 0) {
-                profit += 2000000000 * result[i];
-            }
-        }
+
+        profit += lottoRankInfo.get(LottoRank.FIFTH) * 5000;
+        profit += lottoRankInfo.get(LottoRank.SECOND) * 50000;
+        profit += lottoRankInfo.get(LottoRank.THIRD) * 150000;
+        profit += lottoRankInfo.get(LottoRank.SECOND) * 30000000;
+        profit += lottoRankInfo.get(LottoRank.FIRST) * 2000000000;
 
         return profit;
     }

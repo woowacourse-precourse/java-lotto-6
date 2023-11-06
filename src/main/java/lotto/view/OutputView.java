@@ -1,7 +1,9 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.model.Lottos;
 
 public class OutputView {
@@ -32,13 +34,12 @@ public class OutputView {
     }
 
 
-    public static void printWinningResult(int[] result) {
-
-        System.out.println(3 + "개 일치 (5,000원) - " + result[1] + "개");
-        System.out.println(4 + "개 일치 (50,000원) - " + result[2] + "개");
-        System.out.println(5 + "개 일치 (1,500,000원) - " + result[3] + "개");
-        System.out.println(5 + "개 일치, 보너스 볼 일치 (30,000,000원) - " + result[4] + "개");
-        System.out.println(6 + "개 일치 (2,000,000,000원) - " + result[5] + "개");
+    public static void printWinningResult(Map<LottoRank, Integer> lottoRankInfo) {
+        System.out.println(3 + "개 일치 (5,000원) - " + lottoRankInfo.get(LottoRank.FIFTH) + "개");
+        System.out.println(4 + "개 일치 (50,000원) - " + lottoRankInfo.get(LottoRank.FOURTH) + "개");
+        System.out.println(5 + "개 일치 (1,500,000원) - " + lottoRankInfo.get(LottoRank.THIRD) + "개");
+        System.out.println(5 + "개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoRankInfo.get(LottoRank.SECOND) + "개");
+        System.out.println(6 + "개 일치 (2,000,000,000원) - " + lottoRankInfo.get(LottoRank.FIRST) + "개");
 
     }
 

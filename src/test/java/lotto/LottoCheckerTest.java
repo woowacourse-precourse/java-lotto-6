@@ -8,6 +8,7 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoChecker;
 import lotto.model.LottoRank;
+import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.Test;
 
@@ -27,18 +28,10 @@ public class LottoCheckerTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 8);
         int bonusNumber = 7;
 
-        List<LottoRank> lottoRanks = lottoChecker.createEnumMapResult(lottos, winningNumbers, bonusNumber);
-
-        Map<LottoRank, Integer> map = new EnumMap(LottoRank.class);
-
-        Arrays.stream(LottoRank.values()).forEach(lottoRank -> {
-            map.put(lottoRank, 0);
-        });
-
-        lottoRanks.stream().forEach(lottoRank -> map.put(lottoRank, map.get(lottoRank) + 1));
-
-        assertThat(map.get(LottoRank.THIRD)).isEqualTo(1);
-        assertThat(lottoRanks.size()).isEqualTo(1);
+        LottoRankInfo lottoRankInfo = lottoChecker.createResult(lottos, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> lottoRank = lottoRankInfo.getLottoRankInfo();
+        assertThat(lottoRank.get(LottoRank.THIRD)).isEqualTo(1);
+        assertThat(lottoRank.size()).isEqualTo(6);
 
 
     }

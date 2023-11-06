@@ -3,10 +3,14 @@ package lotto;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Game;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
@@ -43,7 +47,7 @@ public class OutputViewTest {
     void printBuyCount_Different_ExceptionThrow(int buyAmount) {
         ByteArrayOutputStream output = captureOutputValues();
         OutputView.printBuyCount(buyAmount);
-        assertThat(output.toString()).isEqualTo("\n" + buyAmount/1000 + "개를 구매했습니다.\n");
+        assertThat(output.toString()).isEqualTo("\n" + buyAmount / 1000 + "개를 구매했습니다.\n");
     }
 
 
@@ -81,8 +85,13 @@ public class OutputViewTest {
     @Test
     void printWinningResult_EqaulMessage_Success() {
         ByteArrayOutputStream output = captureOutputValues();
-        int[] result = {0, 1, 2, 3, 4, 5};
-        OutputView.printWinningResult(result);
+        Map<LottoRank, Integer> lottoRankInfo = new EnumMap(LottoRank.class);
+        lottoRankInfo.put(LottoRank.FIFTH, 1);
+        lottoRankInfo.put(LottoRank.FOURTH, 2);
+        lottoRankInfo.put(LottoRank.THIRD, 3);
+        lottoRankInfo.put(LottoRank.SECOND, 4);
+        lottoRankInfo.put(LottoRank.FIRST, 5);
+        OutputView.printWinningResult(lottoRankInfo);
         assertThat(output.toString()).isEqualTo("3개 일치 (5,000원) - 1개\n"
                 + "4개 일치 (50,000원) - 2개\n"
                 + "5개 일치 (1,500,000원) - 3개\n"
@@ -96,10 +105,14 @@ public class OutputViewTest {
     void printProfitRate_EqualMessage_Success() {
         ByteArrayOutputStream output = captureOutputValues();
         Game game = new Game();
-        float buyAmount = 8000;
-        int[] result = new int[]{0, 1, 0, 0, 0, 0};
+        Map<LottoRank, Integer> lottoRankInfo = new EnumMap(LottoRank.class);
+        lottoRankInfo.put(LottoRank.FIRST,0);
+        lottoRankInfo.put(LottoRank.SECOND,0);
+        lottoRankInfo.put(LottoRank.THIRD,0);
+        lottoRankInfo.put(LottoRank.FOURTH,0);
+        lottoRankInfo.put(LottoRank.FIFTH,1);
 
-        float profitRate = game.createProfit(8000, result);
+        float profitRate = game.createProfit(8000, lottoRankInfo);
 
         OutputView.printProfitRate(profitRate);
         assertThat(output.toString()).isEqualTo("총 수익률은 62.5%입니다.");

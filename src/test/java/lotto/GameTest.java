@@ -1,9 +1,13 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Game;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,9 +51,9 @@ public class GameTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
         int bonusNumber = 6;
 
-        int[] result = new int[6];
-        result = game.createResult(lottos, winningNumbers, bonusNumber);
-        assertThat(result[4]).isEqualTo(1);
+        LottoRankInfo lottoRankInfo = game.createResult(lottos, winningNumbers, bonusNumber);
+
+        assertThat(lottoRankInfo.getLottoRankInfo().size()).isEqualTo(6);
 
     }
 
@@ -58,13 +62,17 @@ public class GameTest {
     void calculateProfit_EqualResult_Success() {
         Game game = new Game();
 
-        int[] result = new int[]{0, 1, 0, 0, 0, 1};
-
+        Map<LottoRank, Integer> lottoRankInfo = new EnumMap(LottoRank.class);
+        lottoRankInfo.put(LottoRank.FIRST,1);
+        lottoRankInfo.put(LottoRank.SECOND,0);
+        lottoRankInfo.put(LottoRank.THIRD,0);
+        lottoRankInfo.put(LottoRank.FOURTH,0);
+        lottoRankInfo.put(LottoRank.FIFTH,0);
         float buyAmount = 8000;
 
-        int profitRate = Math.round(game.createProfit(buyAmount, result));
+        int profitRate = Math.round(game.createProfit(buyAmount, lottoRankInfo));
 
-        assertThat(profitRate).isEqualTo(25000062);
+        assertThat(profitRate).isEqualTo(25000000);
 
     }
 

@@ -14,15 +14,15 @@ public class Game {
         return Lottos.from(buyAmount);
     }
 
-    public Map<LottoRank, Integer> createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public LottoRankInfo createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
         LottoChecker lottoChecker = new LottoChecker();
         return lottoChecker.createResult(lottos, winningNumbers, bonusNumber);
     }
 
 
-    public float createProfit(float buyAmount, int[] result) {
+    public float createProfit(float buyAmount, Map<LottoRank, Integer> lottoRankInfo) {
         Profit profit = new Profit();
-        return profit.calculateProfitRate(buyAmount, result);
+        return profit.calculateProfitRate(buyAmount, lottoRankInfo);
     }
 
 

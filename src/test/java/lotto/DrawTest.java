@@ -9,9 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DrawTest {
-
-    Draw draw = new Draw();
+public class DrawTest extends Draw{
 
     @Test
     void 문자열_분리_테스트() {
@@ -28,7 +26,7 @@ public class DrawTest {
 
     @Test
     void 입력값이_숫자가_아니면_예외_발생() {
-        assertThatThrownBy(() -> draw.isInt("a"))
+        assertThatThrownBy(() -> isInt("a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 숫자여야 합니다.");
     }
@@ -36,7 +34,7 @@ public class DrawTest {
     @Test
     void 입력값이_숫자면_예외_발생_X() {
         assertThatNoException()
-                .isThrownBy(() -> draw.isInt("45"));
+                .isThrownBy(() -> isInt("45"));
     }
 
     @Test
@@ -46,7 +44,7 @@ public class DrawTest {
         String num = "45";
 
         //when
-        int result = draw.toInt(num);
+        int result = toInt(num);
 
         //then
         assertThat(result).isEqualTo(45);
@@ -59,7 +57,7 @@ public class DrawTest {
         String[] strings = {"1", "3", "15", "11", "33", "42"};
 
         //when
-        List<Integer> result = draw.toIntList(strings);
+        List<Integer> result = toIntList(strings);
 
         //then
         assertThat(result).isInstanceOf(List.class);
@@ -73,7 +71,7 @@ public class DrawTest {
         int lottoNum = 14;
 
         //when
-        List<Lotto> lottos = draw.issueLottos(lottoNum);
+        List<Lotto> lottos = issueLottos(lottoNum);
 
         //then
         assertThat(lottos.size()).isEqualTo(14);

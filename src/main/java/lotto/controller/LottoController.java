@@ -33,12 +33,12 @@ public class LottoController {
     }
 
     private Money requestMoney() {
-        Money money = loop(this::getMoney);
+        Money money = repeat(this::getMoney);
         outputView.newline();
         return money;
     }
 
-    private <T> T loop(Supplier<T> function) {
+    private <T> T repeat(Supplier<T> function) {
         while (true) {
             try {
                 return function.get();
@@ -67,9 +67,11 @@ public class LottoController {
     }
 
     private Result getResult() {
-        WinningNumbers winningNumbers = loop(this::getWinningNumbers);
+        WinningNumbers winningNumbers = repeat(this::getWinningNumbers);
         outputView.newline();
-        return loop(() -> new Result(winningNumbers, loop(this::getBonusNumber)));
+        return repeat(
+                () -> new Result(winningNumbers, repeat(this::getBonusNumber))
+        );
     }
 
     private WinningNumbers getWinningNumbers() {

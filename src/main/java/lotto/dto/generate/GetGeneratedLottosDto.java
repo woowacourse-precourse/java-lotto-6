@@ -1,4 +1,4 @@
-package lotto.dto.lottogenerator;
+package lotto.dto.generate;
 
 import java.util.List;
 import lotto.domain.Lotto;

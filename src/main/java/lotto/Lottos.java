@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    Lottos(int quantity) {
+    private Lottos(int quantity) {
         lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             lottos.add(new Lotto(randomNumbers()));
@@ -25,6 +24,10 @@ public class Lottos {
         );
         numbers.sort(Comparator.naturalOrder());
         return numbers;
+    }
+
+    public static Lottos purchaseLottos(int quantity) {
+        return new Lottos(quantity);
     }
 
     public List<Lotto> getLottos() {

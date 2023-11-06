@@ -1,10 +1,11 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
     public static void start() {
         Lottos lottos = purchaseLotto();
+        List<Integer> winningNumbers = setWinningNumbers();
     }
 
     private static Lottos purchaseLotto() {
@@ -12,11 +13,19 @@ public class LottoController {
         String requestPurchasePrice = LottoView.requestPurchasePrice();
         int purchasePrice = LottoParser.readLineToNumber(requestPurchasePrice);
         LottoInputValidator.purchasePriceIsValid(purchasePrice);
-        Lottos lottos = new Lottos(purchasePrice / LottoConstants.LOTTO_PRICE.getConstant());
+        Lottos lottos = Lottos.purchaseLottos(purchasePrice / LottoConstants.LOTTO_PRICE.getConstant());
 
 
         /* 로또 구매갯수 및 번호들 출력*/
         LottoView.printPurchasedLottos(lottos);
         return lottos;
     }
+
+    private static List<Integer> setWinningNumbers() {
+        String requestWinningNumbers = LottoView.requestWinningNumbers();
+        List<Integer> winningNumbers = LottoParser.readLineToNumbers(requestWinningNumbers);
+        LottoInputValidator.WinningNumbersIsValid(winningNumbers);
+        return winningNumbers;
+    }
+
 }

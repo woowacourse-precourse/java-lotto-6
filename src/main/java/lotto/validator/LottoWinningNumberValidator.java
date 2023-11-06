@@ -11,24 +11,17 @@ public class LottoWinningNumberValidator {
 
   public static void isValueInRange(List<String> WinningNumbers) {
     for (String number : WinningNumbers) {
-      try {
         int num = Integer.parseInt(number);
         if (num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER) {
           throw new IllegalArgumentException(VALUE_OUT_OF_RANGE_MESSAGE);
         }
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-        InputView.inputBonusNumber();
-      }
     }
   }
 
   public static void isAllIntegersValid(List<String> WinningNumbers) {
     for (String number : WinningNumbers) {
       if (!isInteger(number)) {
-        System.out.println(LOTTO_NUMBER_NOT_NUMBER_MESSAGE);
-        InputView.inputBonusNumber();
-        return;
+        throw new IllegalArgumentException(LOTTO_NUMBER_NOT_NUMBER_MESSAGE);
       }
     }
   }

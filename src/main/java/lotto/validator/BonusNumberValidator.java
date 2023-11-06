@@ -13,33 +13,26 @@ public class BonusNumberValidator {
 
   public static void isValueInRange(String input) {
     if(Integer.parseInt(input) < MIN_LOTTO_NUMBER || Integer.parseInt(input) > MAX_LOTTO_NUMBER ){
-      System.out.println(VALUE_OUT_OF_RANGE_MESSAGE);
-      InputView.inputBonusNumber();
+      throw new IllegalArgumentException(VALUE_OUT_OF_RANGE_MESSAGE);
     }
   }
 
   public static void isAllIntegersValid(String input) {
     if (!input.matches("^[0-9\\s]+$")) {
-      System.out.println(BONUS_NUMBER_NOT_NUMBER_MESSAGE);
-      InputView.inputBonusNumber();
+      throw new IllegalArgumentException(BONUS_NUMBER_NOT_NUMBER_MESSAGE);
     }
   }
 
   public static void isEmptyString(String input) {
     if(input.isEmpty()) {
-      System.out.println(EMPTY_BONUS_NUMBER_MESSAGE);
-      InputView.inputBonusNumber();
+      throw new IllegalArgumentException(EMPTY_BONUS_NUMBER_MESSAGE);
     }
   }
 
-  public static void isDuplicate(List<String> winningNumberSet ,int input) {
-    try {
-      if (winningNumberSet.contains(input)) {
+  public static void isDuplicate(List<Integer> winningNumberSet ,int input) {
+      Integer inputInteger = input;
+      if (winningNumberSet.contains(inputInteger)) {
         throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_MESSAGE);
       }
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      InputView.inputBonusNumber();
-    }
   }
 }

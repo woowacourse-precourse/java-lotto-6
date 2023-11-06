@@ -11,8 +11,7 @@ public class InputLottoWinningNumbersValidator {
   public static void isEmptyString(List<String> WinningNumbers) throws IllegalArgumentException {
     for (String element : WinningNumbers) {
       if (element != null && element.trim().isEmpty()) {
-        System.out.println(EMPTY_WINNING_NUMBER_MESSAGE);
-        InputView.inputWinningNumber();
+        throw new IllegalArgumentException (EMPTY_WINNING_NUMBER_MESSAGE);
       }
     }
   }

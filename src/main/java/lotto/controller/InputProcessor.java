@@ -3,11 +3,13 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validator.InputLottoWinningNumbersValidator;
 import lotto.validator.LottoWinningNumberValidator;
 import lotto.validator.LottoWinningNumbersValidator;
+import lotto.view.InputView;
 
 public class InputProcessor {
     private static final int LOTTO_PRICE = 1000;
@@ -20,12 +22,17 @@ public class InputProcessor {
   public static List<String> splitWinningNumbers(String input) {
     String[] numberStrings = input.split(",");
     List<String> WinningNumbers = Arrays.asList(numberStrings);
-    LottoWinningNumbersValidator.isNoDuplicateLottoNumbers(WinningNumbers);
-    LottoWinningNumbersValidator.isLottoNumbersLengthValid(WinningNumbers);
-    InputLottoWinningNumbersValidator.isEmptyString(WinningNumbers);
-    LottoWinningNumberValidator.isAllIntegersValid(WinningNumbers);
-    LottoWinningNumberValidator.isValueInRange(WinningNumbers);
-    return WinningNumbers;
+    try {
+      LottoWinningNumbersValidator.isNoDuplicateLottoNumbers(WinningNumbers);
+      LottoWinningNumbersValidator.isLottoNumbersLengthValid(WinningNumbers);
+      InputLottoWinningNumbersValidator.isEmptyString(WinningNumbers);
+      LottoWinningNumberValidator.isAllIntegersValid(WinningNumbers);
+      LottoWinningNumberValidator.isValueInRange(WinningNumbers);
+      return WinningNumbers;
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      return splitWinningNumbers(InputView.inputWinningNumber());
+    }
   }
 
   public static List<Integer> convertToIntegerList(List<String> numberStrings) {

@@ -10,27 +10,17 @@ public class LottoWinningNumbersValidator {
   public static final String DUPLICATE_LOTTO_NUMBERS_MESSAGE= "[ERROR] 중복된 번호가 있습니다.";
 
   public static void isLottoNumbersLengthValid (List<String> winningNumbers) {
-    try {
       if (winningNumbers.size() != 6) {
         throw new IllegalArgumentException(LOTTO_NUMBERS_LENGTH_INVALID_MESSAGE);
       }
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      InputView.inputWinningNumber();
-    }
   }
 
   public static void isNoDuplicateLottoNumbers (List<String> winningNumbers) throws IllegalArgumentException {
-    try {
       Set<String> uniqueNumbers = new HashSet<>();
       for (String winningNumber : winningNumbers) {
         if (!uniqueNumbers.add(winningNumber)) {
           throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_MESSAGE);
         }
       }
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      InputView.inputWinningNumber();
-    }
   }
 }

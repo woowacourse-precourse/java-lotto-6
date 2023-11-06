@@ -22,35 +22,7 @@ public class LottoResult {
         if (lottoNumbers.getNumbers().contains(winningLotto.getBonusNumber())) {
             isBonusMatch = true;
         }
-        calculateWinningByMatchCountAndBonus(matchCount, isBonusMatch);
-    }
-
-    private void calculateWinningByMatchCountAndBonus(int matchCount, boolean isBonusMatch) {
-        if (matchCount == 6) {
-            winningType = WinningType.FIRST;
-            return;
-        }
-        if (matchCount == 5) {
-            checkBonusMatch(isBonusMatch);
-            return;
-        }
-        if (matchCount == 4) {
-            winningType = WinningType.FOURTH;
-            return;
-        }
-        if (matchCount == 3) {
-            winningType = WinningType.FIFTH;
-            return;
-        }
-        winningType = WinningType.OTHER;
-    }
-
-    private void checkBonusMatch(boolean isBonusMatch) {
-        if (isBonusMatch) {
-            winningType = WinningType.SECOND;
-            return;
-        }
-        winningType = WinningType.THIRD;
+        winningType = WinningType.findByMatchCount(matchCount, isBonusMatch);
     }
 
     private boolean isContainsNumber(WinningLotto winningLotto, Integer number) {

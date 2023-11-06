@@ -44,6 +44,6 @@ class LottoTest {
     void hasNotLottoSameNumber(int number) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThat(lotto.hasSameNumber(number)).isTrue();
+        assertThat(lotto.hasSameNumber(number)).isFalse();
     }
 }

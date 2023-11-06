@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class Utils {
     public static final Pattern NUMBER_CHECK_PATTERN = Pattern.compile("^[0-9]+$");
     public static final NumberFormat NUMBER_FORMAT_US = NumberFormat.getNumberInstance(Locale.US);
-    public static final String SECOND_DECIMAL_PLACE_FORMAT = "%.2f";
+    public static final String SECOND_DECIMAL_PLACE_FORMAT = "%.1f";
 
     public static void checkNumber(String input) {
         if (!NUMBER_CHECK_PATTERN.matcher(input).matches()) {

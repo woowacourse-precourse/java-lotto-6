@@ -12,7 +12,6 @@ public class ExceptionHandler {
             return input(supplier);
         }
     }
-
     public static <T,R> R process(Function<T, R> function, T t){
         try {
             return function.apply(t);

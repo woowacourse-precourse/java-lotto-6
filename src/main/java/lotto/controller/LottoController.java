@@ -34,7 +34,7 @@ public class LottoController {
         outputView.rewardRatioRecord(rewardRatio);
     }
 
-    private User createUser(){
+    private User createUser() {
         CreateUserDto createUserDto = checkUser();
         createUserDto.setPublishedLotto(lottoService.publish(createUserDto.getQuantity()));
         return User.create(createUserDto);

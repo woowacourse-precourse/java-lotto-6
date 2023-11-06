@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class OutputView {
     private static final String NUMBER_OF_PURCHASE = "\n%d개를 구매했습니다.\n";
-    private static final String WINNING_STATISTICS = "당첨 통계\n---";
+    private static final String WINNING_STATISTICS = "\n당첨 통계\n---";
     private static final String WINNING_RESULT = "%s - %d개\n";
     private static final String RATE_OF_RETURN = "총 수익률은 %d%%입니다.";
 

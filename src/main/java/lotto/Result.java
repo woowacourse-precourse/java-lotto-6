@@ -26,4 +26,8 @@ public enum Result {
                 .findFirst()
                 .orElse(NO_PRIZE);
     }
+
+    public int getMatchingNumbers() {
+        return matchingNumbers;
+    }
 }

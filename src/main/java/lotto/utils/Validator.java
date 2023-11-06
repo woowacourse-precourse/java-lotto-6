@@ -19,10 +19,19 @@ public class Validator {
 
     public static void checkWinningNumber(List<Integer> winningNumber){
         checkWinningNumberSize(winningNumber);
+        checkLottoNumberRange(winningNumber);
     }
     private static void checkWinningNumberSize(List<Integer> winningNumber){
         if(winningNumber.size() != 6){
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6개가 아닙니다.");
+        }
+    }
+
+    private static void checkLottoNumberRange(List<Integer> lottoNumber){
+        for(Integer number : lottoNumber){
+            if(number < 1 || number > 45){
+                throw new IllegalArgumentException("[ERROR] 각 로또 번호는 1과 45 사이의 값이어야 합니다.");
+            }
         }
     }
 

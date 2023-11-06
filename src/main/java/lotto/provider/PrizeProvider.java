@@ -1,4 +1,9 @@
-package lotto;
+package lotto.provider;
+
+import lotto.data.Lotto;
+import lotto.data.LottoResult;
+import lotto.data.WinningNumber;
+import lotto.data.Winnings;
 
 import java.util.ArrayList;
 import java.util.List;

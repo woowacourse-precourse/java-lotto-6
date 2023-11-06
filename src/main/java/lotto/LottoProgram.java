@@ -1,6 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.data.Lotto;
+import lotto.data.LottoResult;
+import lotto.data.WinningNumber;
+import lotto.provider.BonusProvider;
+import lotto.provider.LottoProvider;
+import lotto.provider.PrizeProvider;
+import lotto.provider.WinningNumberProvider;
 import lotto.utils.PrintUtil;
 
 import java.util.List;

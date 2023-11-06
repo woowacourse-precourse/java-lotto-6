@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.data.Lotto;
+import lotto.data.WinningNumber;
+
 import java.util.List;
 
 public class Application {

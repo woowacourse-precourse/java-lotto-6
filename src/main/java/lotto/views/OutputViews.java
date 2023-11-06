@@ -18,4 +18,8 @@ public class OutputViews {
             System.out.println(lotto);
         }
     }
+
+    public static void wrtieResultStatistic(String mess, int numOfMatches) {
+        System.out.println(mess + numOfMatches);
+    }
 }

@@ -20,6 +20,13 @@ public class LottoView {
     }
 
     public static String requestWinningNumbers() {
+        printConstantMessage(LottoViewConstantMessages.WINNING_NUMBERS_REQUEST_MESSAGE);
+        String readLine = readLine();
+        System.out.println();
+        return readLine;
+    }
+
+    public static String requestBonusNumber() {
         printConstantMessage(LottoViewConstantMessages.BONUS_NUMBER_REQUEST_MESSAGE);
         String readLine = readLine();
         System.out.println();

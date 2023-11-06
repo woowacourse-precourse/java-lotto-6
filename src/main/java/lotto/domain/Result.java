@@ -21,6 +21,10 @@ public enum Result {
         this.bonus = isBonus;
     }
 
+    public void init(){
+        this.resultCount =0;
+    }
+
     public int getSameCount() {
         return sameCount;
     }

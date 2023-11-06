@@ -9,6 +9,8 @@ import lotto.View.OutputView;
 
 import java.util.*;
 
+import static lotto.Enum.constants.*;
+
 public class LottoController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -16,7 +18,7 @@ public class LottoController {
     List<Lotto> lottos = new ArrayList<>();
     String lottoAmount;
     static Lotto winNumber;
-    public static int bonus;
+    static int bonus;
     public static Map<Prize, Integer> winResult;
 
 
@@ -30,7 +32,6 @@ public class LottoController {
 
         createWinNumber();
         createBonus();
-
         LottoResult();
     }
 
@@ -40,16 +41,17 @@ public class LottoController {
         }
         int winAmount = lottoService.prizeAmount(winResult);
         outputView.LottoGameResult(winResult);
-        outputView.totalRating(lottoService.rateOfReturn(Integer.parseInt(lottoAmount),winAmount));
+        outputView.totalRating(lottoService.rateOfReturn(Integer.parseInt(lottoAmount), winAmount));
     }
 
     private void createBonus() {
         boolean validateInput = false;
-        while (!validateInput){
+        while (!validateInput) {
             try {
                 bonus = Integer.parseInt(inputView.bonusNumber());
+                lottoService.ValidateBonus(bonus, winNumber);
                 validateInput = true;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -58,7 +60,7 @@ public class LottoController {
 
     private void createWinNumber() {
         boolean validateInput = false;
-        while (!validateInput){
+        while (!validateInput) {
             List<Integer> numbers = splitNumber();
             validateInput = insertNumberToLotto(numbers);
         }
@@ -78,7 +80,7 @@ public class LottoController {
     private List<Integer> splitNumber() {
         List<String> inputSplit = Arrays.stream(inputView.winLottoNumber().split(",")).toList();
         List<Integer> numbers = new ArrayList<>();
-        for(String number : inputSplit){
+        for (String number : inputSplit) {
             try {
                 int value = Integer.parseInt(number);
                 numbers.add(value);
@@ -97,14 +99,15 @@ public class LottoController {
     }
 
     private int lottoPurchase() {
-        boolean validInput =  false;
-        int count =0;
-        while(!validInput){
+        boolean validInput = false;
+        int count = 0;
+        while (!validInput) {
             try {
                 lottoAmount = inputView.purchaseLotto();
-                count = lottoService.countingLottoByAmount(Integer.parseInt(lottoAmount));
+                int amount = Integer.parseInt(lottoAmount);
+                count = lottoService.countingLottoByAmount(amount);
                 validInput = true;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.err.println(LottoError.AmountFormat.getErrorMessage());
             }
         }
@@ -115,33 +118,24 @@ public class LottoController {
 
     public void insertResult(Lotto lotto, Lotto winNumbers) {
         ResultInit();
-        int count = lottoService.sameNumberCount(lotto, winNumbers);
-        if (count == 3) {
-            winResult.put(Prize.THREE_CORRECT, winResult.get(Prize.THREE_CORRECT) + 1);
-        }
-        if (count == 4) {
-            winResult.put(Prize.FOUR_CORRECT, winResult.get(Prize.FOUR_CORRECT) + 1);
-        }
-        if (count == 5) {
-            if (lottoService.isSameBonusNumber(lotto, bonus)) {
-                winResult.put(Prize.FIVE_CORRECT_MATCH_BONUS, winResult.get(Prize.FIVE_CORRECT_MATCH_BONUS) + 1);
+        int CorrectCount = lottoService.sameNumberCount(lotto, winNumbers);
+        if(CorrectCount >= MIN_PRIZE_CORRECT_COUNT.getNumber()){
+            String prizeCount = String.valueOf(CorrectCount);
+            if (CorrectCount == 5 && lottoService.isSameBonusNumber(lotto, bonus)) {
+                prizeCount += "+1";
             }
-            if (!lottoService.isSameBonusNumber(lotto, bonus)) {
-                winResult.put(Prize.FIVE_CORRECT_NOT_BONUS, winResult.get(Prize.FIVE_CORRECT_NOT_BONUS) + 1);
-            }
-        }
-        if (count == 6) {
-            winResult.put(Prize.SIX_CORRECT, winResult.get(Prize.SIX_CORRECT) + 1);
+            Prize prize = Prize.fromCount(prizeCount);
+            winResult.put(prize, winResult.get(prize) + 1);
         }
     }
 
     private void ResultInit() {
         winResult = new HashMap<>();
-        winResult.put(Prize.THREE_CORRECT,0);
-        winResult.put(Prize.FOUR_CORRECT,0);
-        winResult.put(Prize.FIVE_CORRECT_NOT_BONUS,0);
-        winResult.put(Prize.FIVE_CORRECT_MATCH_BONUS,0);
-        winResult.put(Prize.SIX_CORRECT,0);
+        winResult.put(Prize.THREE_CORRECT, 0);
+        winResult.put(Prize.FOUR_CORRECT, 0);
+        winResult.put(Prize.FIVE_CORRECT_NOT_BONUS, 0);
+        winResult.put(Prize.FIVE_CORRECT_MATCH_BONUS, 0);
+        winResult.put(Prize.SIX_CORRECT, 0);
     }
 
 

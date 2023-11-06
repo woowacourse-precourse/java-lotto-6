@@ -11,10 +11,10 @@ public class Input {
         String[] arr = null;
         String inputStringLine = Console.readLine().trim();
 
-        ValidateException.includeString(inputStringLine);
+        // TODO: 11/6/23
+        ValidateException.includeStringExceptionComma(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
-        ValidateException.includeSpecialString(inputStringLine);
         ValidateException.commaStartAndEnd(inputStringLine);
         ValidateException.hasConsecutiveEmptyValues(inputStringLine);
 
@@ -26,12 +26,11 @@ public class Input {
 
     public static Integer InputNumber() {
         String inputStringLine = Console.readLine().trim();
-
-        ValidateException.blankCheck(inputStringLine);
+// TODO: 11/6/23
+        ValidateException.containsNonNumericCharacter(inputStringLine);
         ValidateException.includeBlank(inputStringLine);
+        ValidateException.blankCheck(inputStringLine);
         ValidateException.negative(inputStringLine);
-        ValidateException.includeString(inputStringLine);
-        ValidateException.includeSpecialString(inputStringLine);
         ValidateException.zeroNum(inputStringLine);
 
         return Utii.parseInteger(inputStringLine);

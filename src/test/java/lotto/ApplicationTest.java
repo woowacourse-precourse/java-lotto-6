@@ -54,6 +54,174 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_유저의_돈입력_문자포함_검사() {
+        assertSimpleTest(() -> {
+            runException("j1000", "100j0", "!100", "1#00", "300$");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_유저의_돈입력_공백포함_검사() {
+        assertSimpleTest(() -> {
+            runException("100 0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_유저의_돈입력_안하는_검사() {
+        assertSimpleTest(() -> {
+            runException("\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_유저의_돈입력_음수_검사() {
+        assertSimpleTest(() -> {
+            runException("-1", "-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_유저의_돈입력_0_검사() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호_문자포함_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "!!", "j11", "1j1", "11j", "1(", "&1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호_공백포함_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "1 1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호_입력_안하는지_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호_양수_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호_0_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호_입력_범위_초과_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "46", "100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_보너스번호이_당첨번호중_같은_것이있는지_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_중복_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,2,4,5,6", "1,1,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_크기_6인지_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6,8", "1,2,3,4,5,6,7,8,9");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_범위_1_45_내외_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,51,5", "100,44,2,3,55,66");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_입력에_COMMA_제외_문제입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,q,4,5,6", "q,2,3,4,5,l", "!,2,3,4,5,6", "1,2,3,(),5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_공백_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_공백_포함_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2, ,4, ,6", "1, ,3, ,5,6", "1,2,3, , ,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_COMMA_사이에_빈칸_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,,3,4,5,6", "1,2,,4,5,6", "1,,3,4,5,6", "1,,,,,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_양끝에_COMMA_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", ",2,3,4,5,", ",2,3,4,5,6", "1,2,3,4,5,");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_양수_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "-1,2,3,4,5,6", "1,2,-3,-4,5,6", "1,2,3,4,5,-6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

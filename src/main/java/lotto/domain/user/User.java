@@ -1,12 +1,10 @@
 package lotto.domain.user;
 
 import Validate.ValidateException;
-import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Config;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Input;
-import lotto.utill.Utii;
 
 /**
  * 사용자 클래스
@@ -38,10 +36,10 @@ public class User {
      */
     public Integer payMoney() {
         // TODO: 11/6/23 예외 처리.
-        useMoney = Input.InputNumber();
+        useMoney = inputMoney();
 
         ValidateException.isMultipleOf1000(useMoney);
-        
+
         return useMoney;
     }
 
@@ -86,4 +84,10 @@ public class User {
 
         return rateResult.showRate(useMoney, totalWinMoney);
     }
+
+    private Integer inputMoney() {
+        return Input.InputNumber();
+    }
+
+
 }

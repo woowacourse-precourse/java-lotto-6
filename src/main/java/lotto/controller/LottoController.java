@@ -1,64 +1,103 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import lotto.model.Judgement;
 import lotto.model.Lottos;
-import lotto.util.Quicksort;
-import lotto.model.Lotto;
-import lotto.view.LottoView;
+import lotto.model.Money;
+import lotto.model.WinningLotto;
+import lotto.util.WinningLottoGenerator;
+import lotto.validator.NumberValidator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
-    private final LottoView lottoView;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final Judgement judgement;
 
-    public LottoController(LottoView lottoView) {
-        this.lottoView = lottoView;
+    public LottoController(InputView inputView, OutputView outputView, Judgement judgement) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.judgement = judgement;
     }
 
     public void run() {
-        int tryNumber = lottoView.requestMoney();
-        Lottos lottos = new Lottos(tryNumber);
-        lottoView.printLottos(lottos.getLottos(), tryNumber);
-        List<Integer> winning_number = lottoView.requestWinningLOTTO();
-        winning_number.add(lottoView.requestBonusNumber());
-        for(Lotto lotto: lottos.getLottos()){
-            lottos.checkRank(winning_number,lotto);
-        }
-        lottoView.printLottoRank(lottos);
-        lottoView.printRevenue(tryNumber,lottos);
+        Money money = getMoneyFromUser();
+        Lottos lottos = new Lottos(money.getTryNumber());
+        displayBuyLottos(lottos, money.getTryNumber());
+        WinningLotto winningLotto = getWinningLottoNumber();
+        addBonusNumber(winningLotto, getBonusNumber());
+        judgement.checkLottoNumber(lottos, winningLotto);
+        displayWinningCount(lottos, money);
     }
 
-//    public List<Lotto> makeLottoNumber(int tryNumber) {
-//        List<Lotto> Lottos = new ArrayList<>();
-//        for (int i = 0; i < tryNumber; i++) {
-//            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//            Lottos.add(new Lotto(sortNumber(numbers)));
-//        }
-//        return Lottos;
-//    }
-//
-//    private List<Integer> sortNumber(List<Integer> numbers) {
-//        Quicksort quicksort = new Quicksort();
-//        quicksort.sort(numbers);
-//        return numbers;
-//    }
+    private Money getMoneyFromUser() {
+        try {
+            String input = requestMoneyFromUser();
+            return new Money(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getMoneyFromUser();
+        }
+    }
 
-//    public List<Integer> checkWinningCount(List<Lotto> Lottos, List<Integer> winning_numbers){
-//        List<Integer> winning_count = Arrays.asList(0, 0, 0, 0, 0);
-//        for (Lotto lotto : Lottos) {
-//            int count = 0;
-//            count = compareNumber(lotto, winning_numbers);
-//        }
-//    }
-//
-//    public int compareNumber(Lotto lotto, List<Integer> winning_numbers) {
-//        int count = 0;
-//        for (int number : lotto.getNumbers()) {
-//            if (winning_numbers.contains(number)) {
-//                count++;
-//            }
-//        }
-//        return count;
-//    }
+    private String requestMoneyFromUser() {
+        outputView.displayRequestMoney();
+        return inputView.requestMoneyFromUser();
+    }
+
+    private void displayBuyLottos(Lottos lottos, int tryNumber) {
+        outputView.displayBuyLottoCount(lottos, tryNumber);
+        System.out.println();
+    }
+
+    private WinningLotto getWinningLottoNumber() {
+        try {
+            String WinningNumberFromUser = requestWinningNumberFromUser();
+            return new WinningLotto(WinningLottoGenerator.generateLottoNumber(WinningNumberFromUser));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningLottoNumber();
+        }
+
+    }
+
+    private String requestWinningNumberFromUser() {
+        outputView.displayRequestWinningNumber();
+        return inputView.requestWinningLottoFromUser();
+    }
+
+    private void addBonusNumber(WinningLotto winningLotto, int bonus_number) {
+        try {
+            winningLotto.addBonusNumber(bonus_number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winningLotto.removeBonusNumber();
+            addBonusNumber(winningLotto, getBonusNumber());
+        }
+    }
+
+    private int getBonusNumber() {
+        try {
+            String BonusNumberFromUser = requestBonusNumberFromUser();
+            return NumberValidator.validate(BonusNumberFromUser);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
+    private String requestBonusNumberFromUser() {
+        outputView.displayRequestBonusNumber();
+        return inputView.requestBonusNumberFromUser();
+    }
+
+    private void displayWinningCount(Lottos lottos, Money money) {
+        outputView.displayResult();
+        List<Integer> ranks = judgement.judgeAllLottoRank(lottos);
+        outputView.displayWinningLotto(ranks);
+        float earningRate = judgement.calculateEarningRate(ranks, money);
+        outputView.displayEarningRate(earningRate);
+    }
+
 }

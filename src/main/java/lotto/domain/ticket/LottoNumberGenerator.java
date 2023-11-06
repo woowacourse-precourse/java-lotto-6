@@ -1,8 +1,8 @@
-package lotto.domain.lotto;
+package lotto.domain.ticket;
 
-import static lotto.domain.lotto.LottoNumberConfig.MINIMUM_RANGE;
-import static lotto.domain.lotto.LottoNumberConfig.MAXIMUM_RANGE;
-import static lotto.domain.lotto.LottoNumberConfig.NUMBER_COUNT;
+import static lotto.domain.ticket.LottoNumberConfig.MINIMUM_RANGE;
+import static lotto.domain.ticket.LottoNumberConfig.MAXIMUM_RANGE;
+import static lotto.domain.ticket.LottoNumberConfig.NUMBER_COUNT;
 
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;

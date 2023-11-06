@@ -1,14 +1,14 @@
 package lotto;
 
-import static lotto.domain.lotto.LottoErrorMessage.DUPLICATION_ERROR;
-import static lotto.domain.lotto.LottoErrorMessage.INVALID_RANGE_ERROR;
-import static lotto.domain.lotto.LottoErrorMessage.SIZE_ERROR;
+import static lotto.domain.ticket.LottoErrorMessage.DUPLICATION_ERROR;
+import static lotto.domain.ticket.LottoErrorMessage.INVALID_RANGE_ERROR;
+import static lotto.domain.ticket.LottoErrorMessage.SIZE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoNumberGenerator;
+import lotto.domain.ticket.Lotto;
+import lotto.domain.ticket.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

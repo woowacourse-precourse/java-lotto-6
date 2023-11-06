@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.ticket;
 
 public enum LottoNumberConfig {
     MINIMUM_RANGE(1),

@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.ticket;
 
 public enum LottoErrorMessage {
     SIZE_ERROR("[ERROR] 로또 번호는 6개의 숫자여야 합니다."),

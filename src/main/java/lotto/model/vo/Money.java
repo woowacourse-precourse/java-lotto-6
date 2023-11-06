@@ -6,16 +6,9 @@ public class Money {
     private int won;
 
     public Money(String input) {
-        isBlank(input);
         isNumeric(input);
         int money = parseInt(input);
         this.won = money;
-    }
-
-    private void isBlank(String money) {
-        if (money.isBlank()) {
-            throw new IllegalArgumentException("빈 값을 입력하면 안됩니다.");
-        }
     }
 
     private void isNumeric(String money) {

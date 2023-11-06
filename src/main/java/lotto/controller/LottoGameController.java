@@ -27,7 +27,7 @@ public class LottoGameController {
         try {
             // 구입 금액 입력
             outputView.printPurchaseInput();
-            Money money = new Money(Console.readLine());
+            Money money = new Money(input());
             Player player = Player.of(money);
             // 로또 구매
             player.buyLotto(LottoStore.of(new RandomNumberGenerateStrategy()));
@@ -38,5 +38,13 @@ public class LottoGameController {
             errorView.printErrorMessage(e.getMessage());
             buyLotto();
         }
+    }
+
+    private String input() {
+        String input = Console.readLine();
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("빈 값을 입력하면 안됩니다.");
+        }
+        return input;
     }
 }

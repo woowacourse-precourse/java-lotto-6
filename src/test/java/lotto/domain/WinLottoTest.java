@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_CONTAINS_BONUS;
 import static lotto.constants.TestGlobalConstant.ERROR_PREFIX_TEXT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,8 +26,8 @@ class WinLottoTest {
 
     static Stream<Arguments> errorWitLottoData() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(15, 2, 23, 43, 5, 6)), 23, "보너스 번호가 당첨 로또 번호에 중복됩니다."),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6, "보너스 번호가 당첨 로또 번호에 중복됩니다.")
+                Arguments.of(new Lotto(List.of(15, 2, 23, 43, 5, 6)), 23, ERROR_LOTTO_CONTAINS_BONUS.getMessage()),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6, ERROR_LOTTO_CONTAINS_BONUS.getMessage())
         );
     }
 

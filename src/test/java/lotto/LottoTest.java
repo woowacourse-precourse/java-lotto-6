@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_DUPLICATE;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_RANGE_OVER;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_SIZE;
+import static lotto.constants.TestGlobalConstant.ERROR_PREFIX_TEXT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -15,14 +19,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
 
-    private final String ERROR_PREFIX_TEXT = "[ERROR]";
-
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "로또 번호가 6자리가 아닙니다.");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_LOTTO_NUMBER_SIZE.getMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -30,7 +32,7 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "중복된 로또 번호가 존재합니다.");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_LOTTO_NUMBER_DUPLICATE.getMessage());
     }
 
     // 아래에 추가 테스트 작성 가능
@@ -41,7 +43,7 @@ class LottoTest {
     void createLottoByOverRangeNumber(List<Integer> lottoNumber) {
         assertThatThrownBy(() -> new Lotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "로또 번호의 범위를 벗어났습니다. ( 1 ~ 45 )");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_LOTTO_NUMBER_RANGE_OVER.getMessage());
     }
 
     static Stream<Arguments> errorLottoData() {

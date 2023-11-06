@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.ERROR_DIVIDE_BY_AMOUNT;
+import static lotto.constants.ErrorMessage.ERROR_GREATER_THAN_MAX_AMOUNT;
+import static lotto.constants.ErrorMessage.ERROR_LESS_THAN_MIN_AMOUNT;
+import static lotto.constants.ErrorMessage.ERROR_QUANTITY_NON_EQUALS;
 import static lotto.constants.TestGlobalConstant.ERROR_PREFIX_TEXT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,9 +31,9 @@ class ConsumerTest {
 
     static Stream<Arguments> errorAmountData() {
         return Stream.of(
-                Arguments.of(900, ERROR_PREFIX_TEXT, "구매 금액이 최소 구매 금액(1,000원)보다 미만입니다."),
-                Arguments.of(101000, ERROR_PREFIX_TEXT, "구매 금액이 최대 구매 금액(100,000원)보다 초과 되었습니다."),
-                Arguments.of(1250, ERROR_PREFIX_TEXT, "구매 금액이 1,000원으로 나누어 떨어지지 않습니다.")
+                Arguments.of(900, ERROR_PREFIX_TEXT, ERROR_LESS_THAN_MIN_AMOUNT.getMessage()),
+                Arguments.of(101000, ERROR_PREFIX_TEXT, ERROR_GREATER_THAN_MAX_AMOUNT.getMessage()),
+                Arguments.of(1250, ERROR_PREFIX_TEXT, ERROR_DIVIDE_BY_AMOUNT.getMessage())
         );
     }
 
@@ -66,7 +70,7 @@ class ConsumerTest {
 
         assertThatThrownBy(() -> consumer.receiveLottoes(Arrays.asList(new Lotto(List.of(1, 2, 3, 4, 5, 6)))))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "구매 요청 수량이 구매 수량과 일치하지 않습니다.");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_QUANTITY_NON_EQUALS.getMessage());
     }
 
     @ParameterizedTest

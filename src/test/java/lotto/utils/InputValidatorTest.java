@@ -1,5 +1,10 @@
 package lotto.utils;
 
+import static lotto.constants.ErrorMessage.ERROR_BLANK_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_CONTAINS_BONUS;
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_NUMBER_FORMAT;
+import static lotto.constants.ErrorMessage.ERROR_NON_NUMBER_TYPE_INPUT;
+import static lotto.constants.ErrorMessage.ERROR_NULL_INPUT;
 import static lotto.constants.TestGlobalConstant.ERROR_PREFIX_TEXT;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,7 +30,7 @@ class InputValidatorTest {
     void nullTest() {
         assertThatThrownBy(() -> InputValidator.nullCheck(NULL_TEXT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "NULL 값이 입력 되었습니다.");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_NULL_INPUT.getMessage());
     }
 
     @ParameterizedTest
@@ -39,8 +44,8 @@ class InputValidatorTest {
 
     static Stream<Arguments> whiteSpaceBlankData() {
         return Stream.of(
-                Arguments.of(WHITE_SPACE_TEXT, ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다."),
-                Arguments.of(BLANK_TEXT, ERROR_PREFIX_TEXT, "공백,빈 값이 입력 되었습니다.")
+                Arguments.of(WHITE_SPACE_TEXT, ERROR_PREFIX_TEXT, ERROR_BLANK_INPUT.getMessage()),
+                Arguments.of(BLANK_TEXT, ERROR_PREFIX_TEXT, ERROR_BLANK_INPUT.getMessage())
         );
     }
 
@@ -49,7 +54,7 @@ class InputValidatorTest {
     void nonNumberTypeTest() {
         assertThatThrownBy(() -> InputValidator.numberTypeCheck(NOT_NUMBER_TEXT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "숫자 타입의 값이 입력되지 않았습니다.");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_NON_NUMBER_TYPE_INPUT.getMessage());
     }
 
     @Test
@@ -64,7 +69,7 @@ class InputValidatorTest {
     void NumberAndCommaExceptionTest(String inputValue) {
         assertThatThrownBy(() -> InputValidator.lottoFormatCheck(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "입력 한 형식이 로또 번호 형식이 아닙니다.\n 입력 예) 1,2,3,4,5,6");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_LOTTO_NUMBER_FORMAT.getMessage());
     }
 
     @ParameterizedTest
@@ -80,7 +85,7 @@ class InputValidatorTest {
     void numberRangeTest(String inputValue) {
         assertThatThrownBy(() -> InputValidator.lottoNumberRangeCheck(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX_TEXT, "로또 번호의 범위를 벗어났습니다. ( 1 ~ 45 )");
+                .hasMessageContaining(ERROR_PREFIX_TEXT, ERROR_LOTTO_CONTAINS_BONUS.getMessage());
     }
 
 

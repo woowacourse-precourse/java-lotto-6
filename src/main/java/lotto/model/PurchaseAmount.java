@@ -15,4 +15,8 @@ public class PurchaseAmount {
     public Integer exchangeAmount() {
         return this.amount / THOUSAND;
     }
+
+    public Integer exchangePurchase() {
+        return exchangeAmount() * THOUSAND;
+    }
 }

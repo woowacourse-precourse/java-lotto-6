@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoNumbers {
 
@@ -16,7 +15,18 @@ public class LottoNumbers {
         numbers.add(number);
     }
 
-    public List<LottoNumber> getNumbers() {
-        return numbers;
+    public List<Integer> convertToIntegerList() {
+        return numbers.stream()
+                .map(LottoNumber::getNum)
+                .toList();
+    }
+
+    public int size() {
+        return numbers.size();
+    }
+
+    public boolean contains(int num) {
+        return numbers.stream()
+                .anyMatch(n -> n.getNum() == num);
     }
 }

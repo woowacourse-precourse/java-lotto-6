@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.exception.LottoNumberOutOfRangeException;
+
 public class LottoNumber {
     private final int num;
 

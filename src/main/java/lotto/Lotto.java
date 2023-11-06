@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.exception.DuplicateNumberException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,9 +12,7 @@ public class Lotto {
     }
 
     public Lotto(LottoNumbers lottoNumbers) {
-        List<Integer> numbers = lottoNumbers.getNumbers().stream()
-                .map(LottoNumber::getNum)
-                .toList();
+        List<Integer> numbers = lottoNumbers.convertToIntegerList();
         validate(numbers);
         this.numbers = numbers;
     }

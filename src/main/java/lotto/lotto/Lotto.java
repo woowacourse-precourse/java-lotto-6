@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.ErrorMessage.*;
+import static lotto.error.ErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;

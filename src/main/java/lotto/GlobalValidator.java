@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-import static lotto.ErrorMessage.*;
+import static lotto.error.ErrorMessage.*;
 
 public class GlobalValidator {
 

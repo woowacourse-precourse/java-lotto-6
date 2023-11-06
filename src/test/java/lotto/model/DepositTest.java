@@ -29,7 +29,8 @@ public class DepositTest {
                 Arguments.arguments("입력 값이 너무 큰 경우", "101000"),
                 Arguments.arguments("입력 값이 1,000원 미만인 경우", "900"),
                 Arguments.arguments("음수인 경우", "-1000"),
-                Arguments.arguments("공백인 경우", "")
+                Arguments.arguments("공백인 경우", ""),
+                Arguments.arguments("Int 범위 밖의 숫자인 경우", "2147483648")
         );
     }
 

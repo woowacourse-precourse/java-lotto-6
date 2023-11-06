@@ -1,16 +1,22 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.assertj.core.api.InputStreamAssert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private InputHandler inputHandler = new InputHandler();
 
     @Test
     void 기능_테스트() {
@@ -52,6 +58,22 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+    
+    @Test
+    @DisplayName("가격 입력이 잘못된 경우")
+    void inputTest() {
+        String input = "2145g";
+        toStream(input);
+        assertThatThrownBy(() -> {
+            inputHandler.readCost();
+                }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
+    
+    void toStream(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
     }
 
     @Override

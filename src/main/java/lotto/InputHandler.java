@@ -10,7 +10,7 @@ public class InputHandler {
                 String input = Console.readLine();
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.", e);
             }
         }
     }

@@ -29,6 +29,7 @@ public class LottoController {
         try {
             purchaseLotto();
             setWinningAndBonus();
+            printWinngingStatics();
         } catch(NumberFormatException e){
 
         } catch(IllegalArgumentException e){
@@ -69,5 +70,9 @@ public class LottoController {
     private void printInfo(List<Lotto> lotto, int numberOfLottosPurchased){
         OutputView.printNumberOfLottosPurchased(numberOfLottosPurchased);
         OutputView.printLottos(lotto);
+    }
+
+    private void printWinngingStatics(){
+
     }
 }

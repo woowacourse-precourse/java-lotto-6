@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.money.Money;
 
-public record LottoResult(Map<LottoPrizes, Long> result) {
+public record LottoResult(Map<LottoPrizes, Long> prizesAndWinCount) {
     public Money getTotalRevenue() {
         return Arrays.stream(LottoPrizes.values())
                 .map(this::getRevenue)
@@ -14,12 +14,13 @@ public record LottoResult(Map<LottoPrizes, Long> result) {
     }
 
     private Money getRevenue(final LottoPrizes lottoPrizes) {
-        final long winCount = result.get(lottoPrizes);
+        final long winCount = prizesAndWinCount.get(lottoPrizes);
         final Money winAmount = lottoPrizes.getWinningAmount();
+
         return winAmount.multiplyByCount(winCount);
     }
 
     public List<Long> getWinCountOfEachPrize() {
-        return new ArrayList<>(result.values());
+        return new ArrayList<>(prizesAndWinCount.values());
     }
 }

@@ -91,7 +91,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트_숫자가_아닌_당첨_번호() {
         assertSimpleTest(() -> {
-            runException("1000", "2j,4");
+            runException("1000", "2j,4,8,9,10,16");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

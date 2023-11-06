@@ -1,6 +1,9 @@
-package lotto;
+package lotto.controller;
 
+import lotto.Lotto;
 import lotto.domain.Amount;
+import lotto.domain.Checker;
+import lotto.domain.Result;
 import lotto.domain.WinningNumber;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
@@ -9,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constant.LottoConstant.LOTTO_NUMBER_SEPARATER;
+import static lotto.constant.LottoConstant.*;
 import static lotto.constant.LottoErrorMessage.*;
 
 public class LottoSimulation {
@@ -19,9 +22,12 @@ public class LottoSimulation {
     public void execute() {
         Amount amount = readPurchaseAmount();
         int count = amount.getCount();
-        outputView.printLottoNumbers(count, makeLottoList(count));
+        List<Lotto> lottos = makeLottoList(count);
+        outputView.printLottoNumbers(count, lottos);
         WinningNumber winningNumber = readWinningNumber();
         readBonusNumber(winningNumber);
+        Result result = new Result(makeCheckerList(lottos, winningNumber));
+        outputView.printWinningStatistics(result);
     }
 
     private Amount readPurchaseAmount() {
@@ -35,11 +41,11 @@ public class LottoSimulation {
     }
 
     private List<Lotto> makeLottoList(int count) {
-        List<Lotto> lotto = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lotto.add(Lotto.make());
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = ZERO; i < count; i++) {
+            lottos.add(Lotto.make());
         }
-        return lotto;
+        return lottos;
     }
 
     private WinningNumber readWinningNumber() {
@@ -69,6 +75,14 @@ public class LottoSimulation {
                 outputView.printMessage(LOTTO_NUMBER_ERROR_MESSAGE);
             }
         }
+    }
+
+    private List<Checker> makeCheckerList(List<Lotto> lottos, WinningNumber winningNumber) {
+        List<Checker> checkers = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            checkers.add(new Checker(lotto, winningNumber));
+        }
+        return checkers;
     }
 
     private List<Integer> stringToNumberList(String input) {

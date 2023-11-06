@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constant.LottoConstant.LOTTO_LENGTH;
+import static lotto.constant.LottoConstant.*;
 import static lotto.constant.LottoErrorMessage.LOTTO_LENGTH_ERROR_MESSAGE;
 import static lotto.constant.LottoErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE;
 
@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     public static Lotto make() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_LENGTH));
     }
 
     private void validate(List<Integer> numbers) {

@@ -1,7 +1,16 @@
 HELP.md
+### Gradle ###
 .gradle
-build/
 !gradle/wrapper/gradle-wrapper.jar
+build/
+bin/
+
+### Java ###
+# Compiled class file
+*.class
+# Log file
+*.log
+
 !**/src/main/**
 !**/src/test/**
 

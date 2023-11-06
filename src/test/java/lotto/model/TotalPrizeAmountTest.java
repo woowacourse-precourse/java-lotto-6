@@ -5,7 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class TotalPrizeAmountTest {
 
@@ -22,14 +26,14 @@ class TotalPrizeAmountTest {
         );
     }
 
-    @Test
-    void 총_당첨금을_구매금액으로_나누면_수익률을_구할_수_있다() {
-        TotalPrizeAmount totalPrizeAmount = TotalPrizeAmount.from(5_000);
-        int money = 1000;
+    @ParameterizedTest
+    @MethodSource("provideTotalPrizeAndInvestmentForROI")
+    void 총_당첨금을_구매금액으로_나누면_수익률을_구할_수_있다(long totalPrize, int investment,
+                                        BigDecimal expectedReturnOnInvestmentRatio) {
+        TotalPrizeAmount totalPrizeAmount = TotalPrizeAmount.from(totalPrize);
 
-        BigDecimal actualReturnOnInvestmentRatio = totalPrizeAmount.calculatePrizeToInvestmentRatio(money);
+        BigDecimal actualReturnOnInvestmentRatio = totalPrizeAmount.calculatePrizeToInvestmentRatio(investment);
 
-        BigDecimal expectedReturnOnInvestmentRatio = BigDecimal.valueOf(5);
         assertThat(actualReturnOnInvestmentRatio).isEqualTo(expectedReturnOnInvestmentRatio);
     }
 
@@ -55,5 +59,14 @@ class TotalPrizeAmountTest {
         TotalPrizeAmount anotherTotalPrizeAmount = TotalPrizeAmount.from(5_000);
 
         assertThat(totalPrizeAmount).hasSameHashCodeAs(anotherTotalPrizeAmount);
+    }
+
+    private static Stream<Arguments> provideTotalPrizeAndInvestmentForROI() {
+        return Stream.of(
+                Arguments.of(5_000L, 1_000, BigDecimal.valueOf(5)),
+                Arguments.of(1_000L, 1_000, BigDecimal.valueOf(1)),
+                Arguments.of(50L, 100, BigDecimal.valueOf(0.5)),
+                Arguments.of(0L, 1_000, BigDecimal.valueOf(0))
+        );
     }
 }

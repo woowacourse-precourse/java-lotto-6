@@ -1,18 +1,24 @@
 package lotto.Controller;
 
 public class Validator {
+    final static String NULL_ERROR_MESSAGE = "[ERROR] 입력 값은 널값이 될 수 없습니다.";
+    final static String NUMBER_ERROR_MESSAGE = "[ERROR] 입력 값은 숫자여야 합니다.";
+    final static String AMOUNT_ERROR_MESSAGE = "[ERROR] 입력 값은 널값이 될 수 없습니다.";
 
     public static int validatePurchaseAmount(String input) {
         if (Validator.validateInputIsNull(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 널값이 될 수 없습니다.");
+            System.out.println(NULL_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NULL_ERROR_MESSAGE);
         }
 
         if (!Validator.validateInputIsNumeric(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야 합니다.");
+            System.out.println(NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
         }
 
         if (!Validator.validateInputPurchaseAmount(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 양수거나 1,000원 단위여야 합니다.");
+            System.out.println(AMOUNT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(AMOUNT_ERROR_MESSAGE);
         }
 
         return Integer.parseInt(input);

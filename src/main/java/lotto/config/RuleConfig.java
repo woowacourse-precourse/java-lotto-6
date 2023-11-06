@@ -8,4 +8,5 @@ public class RuleConfig {
     public static final int MAX_LOTTO_NUM = 45;
 
     public static final int NUMBERS_PER_LOTTO = 6;
+    public static final String DELIMETER = ",";
 }

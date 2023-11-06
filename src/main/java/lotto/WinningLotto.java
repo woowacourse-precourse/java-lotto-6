@@ -8,62 +8,69 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
-    private static Lotto winningLotto;
-    private static int bonusNumber;
-
-    public static void createWinningLotto(String numbersBeforeValidated){
-        List<String> answer = Arrays.stream(numbersBeforeValidated.split(DELIMETER)).map(String::trim).toList();
-        validateWinningNumber(answer);
-        winningLotto = new Lotto(answer.stream().map(Integer::parseInt).toList());
+    private static WinningLotto instance;
+    private Lotto winningLotto;
+    private int bonusNumber;
+    public static WinningLotto getInstance() {
+        if (instance == null) {
+            instance = new WinningLotto();
+        }
+        return instance;
     }
-    public static void createBonusNumber(String bonusNumberBeforeValidated){
-        validateBonusNum(bonusNumberBeforeValidated.trim());
+
+    public void createWinningLotto(String numbersBeforeValidated){
+        List<String> winningNumbersBeforeValidated = Arrays.stream(numbersBeforeValidated.split(DELIMETER))
+                                                    .map(String::trim).toList();
+        validateWinningNumber(winningNumbersBeforeValidated);
+        winningLotto = new Lotto(winningNumbersBeforeValidated.stream().map(Integer::parseInt).toList());
+    }
+    public void createBonusNumber(String bonusNumberBeforeValidated){
+        validateBonusNumber(bonusNumberBeforeValidated.trim());
         bonusNumber = Integer.parseInt(bonusNumberBeforeValidated);
     }
-    public static Lotto getWinningLotto(){
+    public Lotto getWinningLotto(){
         return winningLotto;
     }
-    public static int getBonusNumber(){
+    public int getBonusNumber(){
         return bonusNumber;
     }
-    public static void validateWinningNumber(List<String> pickedNum){
-        for(String num : pickedNum){
-            if(containsLetter(num)){
+    private void validateWinningNumber(List<String> winningNumbersBeforeValidated){
+        for(String number : winningNumbersBeforeValidated){
+            if(containsLetter(number)){
                 throw new IllegalArgumentException(ErrorMessages.NOT_INTEGER.toString());
             }
-            if(containsUnderMinNum(num) || containsUpperMaxNum(num)){
+            if(containsUnderMinNum(number) || containsUpperMaxNum(number)){
                 throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE.toString());
             }
         }
-
     }
-    public static void validateBonusNum(String bonusNum){
-        if(containsLetter(bonusNum)){
+    private void validateBonusNumber(String bonusNumber){
+        if(containsLetter(bonusNumber)){
             throw new IllegalArgumentException(ErrorMessages.NOT_INTEGER.toString());
         }
-        if(containsUnderMinNum(bonusNum) || containsUpperMaxNum(bonusNum)){
+        if(containsUnderMinNum(bonusNumber) || containsUpperMaxNum(bonusNumber)){
             throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE.toString());
         }
-        if(hasAlreadyPicked(bonusNum)){
+        if(hasAlreadyPicked(bonusNumber)){
             throw new IllegalStateException(ErrorMessages.ALREADY_HAVE.toString());
         }
     }
-    public static boolean containsLetter(String pickedNum){
+    private boolean containsLetter(String pickedNum){
         try {
             Integer.parseInt(pickedNum);
             return false;
-        } catch (NumberFormatException ex) {
+        } catch (NumberFormatException e) {
             return true;
         }
     }
 
-    public static boolean containsUnderMinNum(String pickedNum){
+    private boolean containsUnderMinNum(String pickedNum){
         return Integer.parseInt(pickedNum) < MIN_LOTTO_NUM;
     }
-    public static boolean containsUpperMaxNum(String pickedNum){
+    private boolean containsUpperMaxNum(String pickedNum){
         return Integer.parseInt(pickedNum) > MAX_LOTTO_NUM;
     }
-    public static boolean hasAlreadyPicked(String pickedNum){
-        return winningLotto.getLotto().contains(Integer.parseInt(pickedNum));
+    private boolean hasAlreadyPicked(String bonusNumber){
+        return winningLotto.getLotto().contains(Integer.parseInt(bonusNumber));
     }
 }

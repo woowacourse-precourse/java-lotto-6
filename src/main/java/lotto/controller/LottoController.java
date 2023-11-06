@@ -93,6 +93,59 @@ public class LottoController {
 
         long rateOfProfit = getRateOfProfit(purchasePrice, rates);
 
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        StringBuilder result = new StringBuilder();
+
+        result.append("3개 일치 (5,000원) - ");
+        result.append(fifth);
+        result.append("개\n");
+
+        result.append("4개 일치 (50,000원) - ");
+        result.append(fourth);
+        result.append("개\n");
+
+        result.append("5개 일치 (1,500,000원) - ");
+        result.append(third);
+        result.append("개\n");
+
+        result.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+        result.append(second);
+        result.append("개\n");
+
+        result.append("6개 일치 (2,000,000,000원) - ");
+        result.append(first);
+        result.append("개\n");
+
+//        result.append(FIRST);
+//        result.append(first);
+//        result.append("개\n");
+//
+//        result.append(SECOND);
+//        result.append(second);
+//        result.append("개\n");
+//
+//        result.append(THIRD);
+//        result.append(third);
+//        result.append("개\n");
+//
+//        result.append(FOURTH);
+//        result.append(fourth);
+//        result.append("개\n");
+//
+//        result.append(FIFTH);
+//        result.append(fifth);
+//        result.append("개\n");
+
+//        getRateOfProfit(purchasePrice, rates);
+
+        result.append("총 수익률은 ");
+        result.append(String.format("%.2f", rateOfProfit));
+        result.append("%입니다.");
+
+        System.out.println(result);
+
 
     }
 

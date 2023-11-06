@@ -8,6 +8,14 @@ import java.util.Set;
 
 public class InputException {
 
+    private InputException() {
+    }
+
+    public static void validatePurchaseAmount(String input) {
+        isDigit(input);
+        isThousandUnit(Integer.parseInt(input));
+    }
+
     public static void isDigit(String input) {
         for (char c : input.toCharArray()) {
             if (c < '0' || c > '9') {

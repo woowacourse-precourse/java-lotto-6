@@ -11,6 +11,7 @@ public enum ErrorMessage {
     INPUT_NOT_IN_RANGE("[ERROR] 당첨 번호가 1-45 사이의 숫자가 아닙니다."),
     INPUT_OUT_OF_SIZE("[ERROR] 당첨 번호의 개수가 6개가 아닙니다."),
     INPUT_DUPLICATE_NUMBER("[ERROR] 당첨 번호가 중복됩니다."),
+    INPUT_BONUS_DUPLICATE("[ERROR] 보너스 번호가 당첨 번호가 중복됩니다."),
     ;
 
     private final String message;

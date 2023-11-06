@@ -4,6 +4,7 @@ import static lotto.domain.LottoRule.MAXIMUM;
 import static lotto.domain.LottoRule.MINIMUM;
 import static lotto.domain.LottoRule.PRICE;
 import static lotto.domain.LottoRule.SIZE;
+import static lotto.util.ErrorMessage.INPUT_BONUS_DUPLICATE;
 import static lotto.util.ErrorMessage.INPUT_DUPLICATE_NUMBER;
 import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
 import static lotto.util.ErrorMessage.INPUT_NOT_NUMBER;
@@ -12,6 +13,7 @@ import static lotto.util.ErrorMessage.INPUT_OUT_OF_SIZE;
 import static lotto.util.ErrorMessage.INPUT_TOO_MUCH_MONEY;
 
 import java.util.Arrays;
+import lotto.domain.Lotto;
 
 public class Validator {
 
@@ -48,16 +50,9 @@ public class Validator {
     }
 
     private void validateOneNumber(final String number) {
-//        validateNull(number);
         validateNumber(number);
         validateNumberInRange(Integer.parseInt(number));
     }
-
-//    private void validateNull(final String number) {
-//        if (number == null) {
-//            throw new IllegalArgumentException(INPUT_NULL.getMessage());
-//        }
-//    }
 
     private void validateNumberInRange(final int number) {
         if (number < MINIMUM.getValue() || number > MAXIMUM.getValue()) {
@@ -74,6 +69,18 @@ public class Validator {
     private void validateDuplicate(String[] lotto) {
         if (Arrays.stream(lotto).distinct().count() != lotto.length) {
             throw new IllegalArgumentException(INPUT_DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
+    public void validateBonusNumber(Lotto lotto, String number) {
+        validateNumber(number);
+        validateNumberInRange(Integer.parseInt(number));
+        validateBonusDuplicate(lotto, Integer.parseInt(number));
+    }
+
+    private void validateBonusDuplicate(Lotto lotto, int number) {
+        if (lotto.getNumbers().contains(number)) {
+            throw new IllegalArgumentException(INPUT_BONUS_DUPLICATE.getMessage());
         }
     }
 }

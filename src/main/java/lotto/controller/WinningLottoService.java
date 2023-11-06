@@ -17,7 +17,6 @@ public class WinningLottoService {
                 OutputView.printMessage(e.getMessage());
             }
         } while (true);
-
     }
 
 

@@ -61,4 +61,8 @@ public class Lotto {
     public List<Integer> getLotto() {
         return numbers;
     }
+
+    public boolean doesContain(int number) {
+        return numbers.contains(number);
+    }
 }

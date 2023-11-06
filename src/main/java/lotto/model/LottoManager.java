@@ -2,16 +2,18 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoManager {
     private final int money;
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos;
     private WinningLotto winningLotto;
 
     public LottoManager(final int money) {
         this.money = money;
-        this.lottos = createLottos();
+        this.lottos = new ArrayList<>();
+        createLottos();
     }
 
     public List<Lotto> getLottos() {
@@ -26,13 +28,11 @@ public class LottoManager {
         this.winningLotto = winningLotto;
     }
 
-    public List<Lotto> createLottos() {
+    public void createLottos() {
         for (int i = 0; i < money / 1000; i++) {
-            List<Integer> numbers = generateLottoNumbers();
-            Lotto newLotto = new Lotto(numbers);
-            lottos.add(newLotto);
+            final Lotto lotto = new Lotto(generateLottoNumbers());
+            lottos.add(lotto);
         }
-        return lottos;
     }
 
     private List<Integer> generateLottoNumbers() {

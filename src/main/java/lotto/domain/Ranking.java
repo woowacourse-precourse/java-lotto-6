@@ -6,7 +6,7 @@ public enum Ranking {
     FOURTH(4, "4개 일치 (50,000원)", 0, 50000),
 
     THIRD(5, "5개 일치 (1,500,000원)", 0, 1500000),
-    SECOND(-1, "5개 일치, 보너스 볼 일치 (30,000,000)원", 0, 30000000),
+    SECOND(-1, "5개 일치, 보너스 볼 일치 (30,000,000원)", 0, 30000000),
 
     FIRST(6, "6개 일치 (2,000,000,000원)", 0, 2000000000);
 
@@ -31,7 +31,7 @@ public enum Ranking {
     }
 
     public static int getTotalPrizeMoney() {
-        int sum = Unit.ZERO.getValue();
+        int sum = 0;
         for (Ranking ranking : Ranking.values()) {
             sum += ranking.money * ranking.count;
         }

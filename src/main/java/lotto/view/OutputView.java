@@ -30,6 +30,6 @@ public class OutputView {
         }
     }
     public void showPayOff(double payOff){
-        System.out.println("총 수익률은 " + payOff + "입니다.");
+        System.out.println("총 수익률은 " + payOff + "%입니다.");
     }
 }

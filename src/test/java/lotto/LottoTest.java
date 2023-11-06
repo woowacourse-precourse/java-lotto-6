@@ -32,7 +32,7 @@ class LottoTest {
 
         // then
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
-                .isMatch(List.of(1, 2, 3, 4, 5, 6))
-        ).isTrue();
+                .countMatch(List.of(1, 2, 3, 4, 5, 6))
+        ).isEqualTo(6);
     }
 }

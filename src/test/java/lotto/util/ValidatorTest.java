@@ -188,6 +188,50 @@ class ValidatorTest {
     }
 
     @Test
+    void testCheckIfNoDuplicateInWinningNumbers_aPairOfDuplicate() {
+        List<List<Integer>> testCases = Arrays.asList(
+                Arrays.asList(1, 1, 3, 4, 5, 6),
+                Arrays.asList(1, 3, 3, 30, 40, 50),
+                Arrays.asList(5, 10, 15, 20, 25, 25)
+        );
+
+        for (List<Integer> testCase : testCases) {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.checkIfNoDuplicateInWinningNumbers(testCase))
+                    .withMessageContaining(ErrorMessages.WINNING_NUMBERS_HAS_DUPLICATE.get());
+        }
+    }
+
+    @Test
+    void testCheckIfNoDuplicateInWinningNumbers_allAreDuplicate() {
+        List<List<Integer>> testCases = Arrays.asList(
+                Arrays.asList(1, 1, 1, 1, 1, 1),
+                Arrays.asList(3, 3, 3, 3, 3, 3),
+                Arrays.asList(45, 45, 45, 45, 45, 45)
+        );
+
+        for (List<Integer> testCase : testCases) {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.checkIfNoDuplicateInWinningNumbers(testCase))
+                    .withMessageContaining(ErrorMessages.WINNING_NUMBERS_HAS_DUPLICATE.get());
+        }
+    }
+
+    @Test
+    void testCheckIfNoDuplicateInWinningNumbers_allAreDuplicate_noDuplicate_noException() {
+        List<List<Integer>> testCases = Arrays.asList(
+                Arrays.asList(1, 2, 3, 4, 5, 6),
+                Arrays.asList(1, 3, 4, 30, 40, 50),
+                Arrays.asList(5, 10, 15, 20, 25, 30)
+        );
+
+        for (List<Integer> testCase : testCases) {
+            assertThatNoException()
+                    .isThrownBy(() -> Validator.checkIfNoDuplicateInWinningNumbers(testCase));
+        }
+    }
+
+    @Test
     void testCheckRangeOfEachWinningNumber_oneViolation() {
         List<List<Integer>> testCases = Arrays.asList(
                 Arrays.asList(0, 13, 25, 26, 38, 40),

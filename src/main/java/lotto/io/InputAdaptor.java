@@ -57,6 +57,7 @@ public class InputAdaptor {
 
     private static void validateParsedWinningNumbers(List<Integer> parsedWinningNumbers) {
         Validator.checkRangeOfEachWinningNumber(parsedWinningNumbers);
+        Validator.checkIfNoDuplicateInWinningNumbers(parsedWinningNumbers);
         Validator.checkIfWinningNumbersAreSix(parsedWinningNumbers);
     }
 

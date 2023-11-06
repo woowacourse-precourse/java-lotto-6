@@ -5,7 +5,9 @@ import lotto.configure.DomainConfiguration;
 import lotto.configure.ErrorMessages;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 값을 검증하는 클래스.
@@ -75,6 +77,20 @@ public class Validator {
     public static void checkIfWinningNumbersAreSix(List<Integer> winningNumbers) throws IllegalArgumentException {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_ARE_NOT_SIX.get());
+        }
+    }
+
+    /**
+     * 당첨 번호에 중복이 없는지 검증한다.
+     * @param winningNumbers 당첨 번호가 담긴 리스트.
+     * @throws IllegalArgumentException 중복된 번호가 있을 경우 발생한다.
+     */
+    public static void checkIfNoDuplicateInWinningNumbers(List<Integer> winningNumbers)
+            throws IllegalArgumentException {
+        int numOfElements = winningNumbers.size();
+        Set<Integer> notAllowDuplicate = new HashSet<>(winningNumbers);
+        if (numOfElements > notAllowDuplicate.size()) {
+            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_HAS_DUPLICATE.get());
         }
     }
 

@@ -22,7 +22,8 @@ public class InputView {
     public static String readBonusNumber() {
         LottoMessage message = LottoMessage.BONUS_NUMBER_INPUT_MESSAGE;
         System.out.println(message.getMessage());
-        return Console.readLine();
+
+        return validateNumericInput(Console.readLine());
     }
 
     private static String validateNumericInput(String input) {

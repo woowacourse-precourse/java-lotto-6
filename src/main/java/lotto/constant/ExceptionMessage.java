@@ -11,7 +11,6 @@ public enum ExceptionMessage {
     DUPLICATE_NUMBER_EXCEPTION("로또 번호는 중복될 수 없습니다."),
     WINNING_NUMBERS_COUNT_EXCEPTION("로또 번호는 6개여야 합니다."),
     DUPLICATE_BONUS_NUMBER_EXCEPTION("보너스 번호는 중복될 수 없습니다."),
-    BONUS_NUMBER_COUNT_EXCEPTION("보너스 번호는 1개여야 합니다."),
     ERROR_TAG("[ERROR] ");
 
     private final String message;

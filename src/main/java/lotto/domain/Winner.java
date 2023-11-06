@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Winner {
 
+    LottoResult lottoResult = new LottoResult();
     private Lotto lotto;
     private int bonus;
 
@@ -27,6 +28,8 @@ public class Winner {
         List<Lotto> userLottos = user.getLottos();
         for (Lotto userLotto : userLottos) {
             int sameNumberCount = checkUserLottoNumberCount(userLotto);
+
+            lottoResult.addWinningCount(sameNumberCount);
         }
     }
 

@@ -28,6 +28,12 @@ public class LottoResult {
         return totalWinningMoney;
     }
 
+    public void addWinningCount(int number) {
+        if(checkLottoWinner(number)){
+            winningCount.put(number, winningCount.get(number) + 1);
+        }
+    }
+
     private boolean checkLottoWinner(int number) {
         return winningCount.containsKey(number);
     }

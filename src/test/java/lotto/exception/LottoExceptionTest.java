@@ -5,12 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 
 class LottoExceptionTest {
 
@@ -20,7 +17,7 @@ class LottoExceptionTest {
         //given
         List<Integer> input = Arrays.asList(1,1,3);
         //then
-        assertThatThrownBy(() -> new LottoException().isDuplicate(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
     @Test
@@ -29,7 +26,7 @@ class LottoExceptionTest {
         //given
         List<Integer> input = Arrays.asList(1,2,3,4,5,6,7);
         //then
-        assertThatThrownBy(() -> new LottoException().isSize(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
     @Test
@@ -38,7 +35,7 @@ class LottoExceptionTest {
         //given
         List<Integer> input = Arrays.asList(0,30,8);
         //then
-        assertThatThrownBy(() -> new LottoException().isRightRange(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
     @Test
@@ -50,8 +47,10 @@ class LottoExceptionTest {
         input.add(3);
         input.add(4);
         input.add(2);
+        input.add(5);
+        input.add(6);
         //then
-        assertThatThrownBy(() -> new LottoException().isAscending(input)).isInstanceOf(
+        assertThatThrownBy(() -> new LottoException(input)).isInstanceOf(
                 IllegalStateException.class);
     }
 

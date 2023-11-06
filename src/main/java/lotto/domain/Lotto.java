@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utility.validation.LottoNumberChecker;
 import lotto.utility.vo.LottoResponse;
 
 public class Lotto {
@@ -16,7 +17,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
-        validateRange(numbers);
+        validateNumber(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -27,12 +28,9 @@ public class Lotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
-        for(Integer number: numbers) {
-            if(number.compareTo(MINIMUM_VALUE) < 0 || number.compareTo(MAXIMUM_VALUE) > 0) {
-                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
-            }
-        }
+    private void validateNumber(List<Integer> numbers) {
+        numbers.stream()
+            .forEach(number -> LottoNumberChecker.validate(number));
     }
 
     private void validateDuplicate(List<Integer> numbers) {

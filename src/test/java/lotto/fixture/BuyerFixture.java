@@ -19,4 +19,8 @@ public enum BuyerFixture {
     public Buyer toEntity() {
         return Buyer.from(paymentInput);
     }
+
+    public String getPaymentInput() {
+        return paymentInput;
+    }
 }

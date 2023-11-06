@@ -7,6 +7,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static lotto.domain.lottery.constants.LottoConstraint.*;
 
@@ -22,7 +23,7 @@ public class LottoService {
     public static List<Integer> generateOrderedLottoNumbers() {
         List<Integer> randomNumbers = generateLottoNumber();
         List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
-        
+
         Collections.sort(sortedNumbers);
         return randomNumbers;
     }
@@ -47,5 +48,20 @@ public class LottoService {
                 .divide(castedPayment,
                         DECIMAL_PLACES,
                         RoundingMode.HALF_UP);
+    }
+
+    public static List<Lotto> generateLottos(final int ticketCount) {
+        List<List<Integer>> generatedLottoNumbers = generateRandomNumbers(ticketCount);
+
+        return generatedLottoNumbers
+                .stream()
+                .map(Lotto::new)
+                .toList();
+    }
+
+    public static List<List<Integer>> generateRandomNumbers(final int ticketCount) {
+        return Stream.generate(LottoService::generateOrderedLottoNumbers)
+                .limit(ticketCount)
+                .toList();
     }
 }

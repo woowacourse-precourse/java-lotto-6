@@ -2,10 +2,7 @@ package lotto.controller;
 
 import lotto.domain.lottery.Buyer;
 import lotto.domain.lottery.Lottos;
-import lotto.domain.prize.FinalResults;
-import lotto.domain.prize.Prize;
-import lotto.domain.prize.PrizeRank;
-import lotto.domain.prize.Revenue;
+import lotto.domain.prize.*;
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
 
@@ -19,9 +16,11 @@ public class FinalResultController {
             final Lottos lottos,
             final Prize prize
     ) {
-        PrizeRank matchingResults = lottos.generatePrizeResult(prize);
-        List<PrizeGrade> prizeRanks = matchingResults.findPrizeRanks();
-        return FinalResults.from(prizeRanks);
+        List<MatchingResult> matchingResultList = lottos.generateMatchingResultList(prize);
+        MatchingResults matchingResults = MatchingResults.from(matchingResultList);
+
+        List<PrizeGrade> prizeGrades = matchingResults.findPrizeGrade();
+        return FinalResults.from(prizeGrades);
     }
 
     public static FinalResultResponse responseFinalResult(

@@ -11,7 +11,7 @@ public class PurchaseController {
     }
 
     public static Lottos purchase(final Buyer buyer) {
-        Lottos lottos = Lottos.form(buyer);
+        Lottos lottos = Lottos.from(buyer);
 
         LottoNumberResponses lottoResponses =
                 LottoNumberResponses.build(buyer, lottos);

@@ -4,21 +4,21 @@ import lotto.domain.prize.constants.PrizeGrade;
 
 import java.util.List;
 
-public class PrizeRank {
+public class MatchingResults {
     private final List<MatchingResult> matchingResults;
 
     // Constructor
-    private PrizeRank(final List<MatchingResult> matchingResults) {
+    private MatchingResults(final List<MatchingResult> matchingResults) {
         this.matchingResults = matchingResults;
     }
 
     // Static Factory Method
-    public static PrizeRank from(final List<MatchingResult> matchingCounts) {
-        return new PrizeRank(matchingCounts);
+    public static MatchingResults from(final List<MatchingResult> matchingCounts) {
+        return new MatchingResults(matchingCounts);
     }
 
     // Utility Method
-    public List<PrizeGrade> findPrizeRanks() {
+    public List<PrizeGrade> findPrizeGrade() {
         return matchingResults.stream()
                 .map(PrizeGrade::findPrizeRank)
                 .toList();

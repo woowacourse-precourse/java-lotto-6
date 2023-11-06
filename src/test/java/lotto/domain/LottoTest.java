@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LottoTest {
 
     @Nested
-    @DisplayName("[from] 정적 팩토리 메소드 / 생성자 테스트")
+    @DisplayName("[new] 정적 팩토리 메소드 / 생성자 테스트")
     class constructor_new {
 
         /**

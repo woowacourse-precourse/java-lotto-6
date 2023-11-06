@@ -1,6 +1,7 @@
 package lotto.model.converter;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static lotto.model.util.ExceptionMessage.INVALID_LONG_TYPE;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,9 @@ class LongConverterTest {
     void notNumberFailTest(String input) {
         // given
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(() -> longConverter.toType(input));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> longConverter.toType(input))
+                .withMessage(INVALID_LONG_TYPE.getMessage());
     }
 
     @ParameterizedTest
@@ -40,6 +43,8 @@ class LongConverterTest {
     void biggerThanLongMaxFailTest(String input) {
         // given
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(() -> longConverter.toType(input));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> longConverter.toType(input))
+                .withMessage(INVALID_LONG_TYPE.getMessage());
     }
 }

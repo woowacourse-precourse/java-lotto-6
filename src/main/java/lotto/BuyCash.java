@@ -27,7 +27,7 @@ public class BuyCash {
     }
 
     private boolean isNotPositive(long buyCash) {
-        return buyCash < 0;
+        return buyCash <= 0;
     }
 
     public long getLottoAmount() {

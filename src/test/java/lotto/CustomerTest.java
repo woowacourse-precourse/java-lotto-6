@@ -11,8 +11,16 @@ class CustomerTest {
     @DisplayName("숫자로만 이루어진 문자열이 아닐 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1000j", "12t"})
-    void occurNotMadeNumberException(String arg0) {
-        assertThatThrownBy(() -> Customer.create(arg0)).isInstanceOf(
+    void occurNotMadeNumberException(String buyPrice) {
+        assertThatThrownBy(() -> Customer.create(buyPrice)).isInstanceOf(
             NumberFormatException.class);
     }
+    @DisplayName("입력한 금액이 1000원 미만일경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"900", "999"})
+    void occur1000LessThanException(String buyPrice) {
+        assertThatThrownBy(() -> Customer.create(buyPrice)).isInstanceOf(
+            IllegalArgumentException.class);
+    }
+
 }

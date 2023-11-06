@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.constants.ErrorConstants.*;
 import static lotto.constants.MessageConstant.BUYMESSAGE;
 import static lotto.constants.NumConstant.PRICE;
 
@@ -44,14 +45,14 @@ public class Wallet {
         checkChar(input);
         int money = Integer.parseInt(input);
         if (money % PRICE.getValue() != 0)
-            throw new IllegalArgumentException("[ERROR] " + PRICE.getValue() + "원 단위로 입력해주세요");
-        if (money == 0) throw new IllegalArgumentException("[ERROR] 금액을 입력해 주세요");
+            throw new IllegalArgumentException(ENTERUNITERROR.toString());
+        if (money == 0) throw new IllegalArgumentException(ENTERNULLERROR.toString());
     }
 
     public void checkChar(String input) {
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) < '0' || input.charAt(i) > '9')
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요");
+                throw new IllegalArgumentException(NOTNUMBERERROR.toString());
         }
     }
 }

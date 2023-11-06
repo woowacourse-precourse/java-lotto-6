@@ -7,6 +7,7 @@ public class User {
     private int amountLotto;
 
     public User(int purchaseAmount) {
+        validateMoneyInput(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
         this.amountLotto = this.purchaseAmount/1000;
     }
@@ -25,5 +26,15 @@ public class User {
 
     public void addWinningAmount(int winningAmount) {
         this.totalWinningAmount += winningAmount;
+    }
+
+    void validateMoneyInput(int inputMoney) {
+
+        String moneyInputErrorWarning = "[ERROR]로또 구입 금액으로 1000원 단위 이하는 입력 불가.";
+
+        if(inputMoney%1000!=0) {
+            throw new IllegalArgumentException(moneyInputErrorWarning);
+        }
+
     }
 }

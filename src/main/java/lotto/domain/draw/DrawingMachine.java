@@ -9,6 +9,10 @@ import lotto.domain.lotto.WinningCombination;
 
 public class DrawingMachine {
 
+    public DrawingMachine() {
+
+    }
+
     public DrawingResult draw(WinningCombination winningCombination, Lottos totalLottoTickets) {
         EnumMap<LottoRank, Integer> drawingResult = evaluateDrawingResult(winningCombination, totalLottoTickets);
         return new DrawingResult(drawingResult);

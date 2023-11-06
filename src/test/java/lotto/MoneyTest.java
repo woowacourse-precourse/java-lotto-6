@@ -67,7 +67,7 @@ public class MoneyTest {
         assertThat(exception.getMessage()).isEqualTo(ZERO_NUMBER.getMessage());
     }
 
-    @DisplayName("돈이 숫자 형태가 아니면 예외가 발생한다.")
+    @DisplayName("[Error] 돈이 숫자 형태가 아니면 예외가 발생한다.")
     @Test
     void receiveMoneyByNotNumber() {
         // given

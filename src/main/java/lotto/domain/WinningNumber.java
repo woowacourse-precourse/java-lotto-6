@@ -7,9 +7,10 @@ import lotto.config.WinningPrize;
 public class WinningNumber {
     private static final int RANGE_START = LottoConfig.RANGE_START.value();
     private static final int RANGE_END = LottoConfig.RANGE_END.value();
+    private static final int DEFAULT_BONUS = 0;
 
     private Lotto numbers;
-    private int bonus;
+    private int bonus = DEFAULT_BONUS;
 
     public WinningNumber() {
         // 기본 생성자
@@ -32,7 +33,7 @@ public class WinningNumber {
     }
 
     public WinningPrize compareWithLotto(Lotto target) {
-        if (numbers == null || bonus == 0) {
+        if (numbers == null || bonus == DEFAULT_BONUS) {
             return null;
         }
         return target.compareWithAnswer(numbers, bonus);

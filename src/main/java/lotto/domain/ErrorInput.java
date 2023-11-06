@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class ErrorInput {
     static public List<Integer> win_range(String[] input) {
-        if(input.length != 6) throw new IllegalArgumentException("[ERROR]");
+        if (input.length != 6) throw new IllegalArgumentException("[ERROR]");
         for (int i = 0; i < input.length; i++) {
             range(input[i]);
             if (Integer.parseInt(input[i]) < 1 || Integer.parseInt(input[i]) > 45)
@@ -17,10 +17,15 @@ public class ErrorInput {
         return winnum;
     }
 
+    static public int bonus_range(int number, List<Integer> win) {
+        if (win.contains(number)) throw new IllegalArgumentException("[ERROR]");
+        return number;
+    }
+
     static public int range(String number) {
-        if(number.length() < 1 || number.length() > 2) throw new IllegalArgumentException("[ERROR]");
-        for(int i=0;i<number.length();i++)
-            if(number.charAt(i) < '0' || number.charAt(i) > '9' ) throw new IllegalArgumentException("[ERROR]");
+        if (number.length() < 1 || number.length() > 2) throw new IllegalArgumentException("[ERROR]");
+        for (int i = 0; i < number.length(); i++)
+            if (number.charAt(i) < '0' || number.charAt(i) > '9') throw new IllegalArgumentException("[ERROR]");
         int intnum = Integer.parseInt(number);
         if (intnum < 1 || intnum > 45) throw new IllegalArgumentException("[ERROR]");
         return intnum;

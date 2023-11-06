@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserNumber {
-    static public List<Integer> lottonumber (List<Integer> user){
+    static public List<Integer> lottonumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;

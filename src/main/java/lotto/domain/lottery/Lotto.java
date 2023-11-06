@@ -1,6 +1,5 @@
 package lotto.domain.lottery;
 
-import lotto.domain.checker.NumberChecker;
 import lotto.domain.prize.Prize;
 import lotto.exception.LottoException;
 

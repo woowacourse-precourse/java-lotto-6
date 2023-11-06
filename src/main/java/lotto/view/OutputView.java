@@ -1,10 +1,14 @@
 package lotto.view;
 
+import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
 import lotto.dto.LottoNumberResponse;
 import lotto.dto.LottoNumberResponses;
 import lotto.view.constants.PrintMessage;
 
+import java.util.EnumMap;
+
+import static lotto.domain.prize.constants.PrizeGrade.HIT_THREE;
 import static lotto.view.constants.PrintMessage.*;
 
 public class OutputView {
@@ -39,7 +43,19 @@ public class OutputView {
         printMessage(RESPONSE_PRIZE_STATISTICS);
         printMessage(RESPONSE_SEPARATOR);
 
-        String formattedYieldMessage = String.format(RESPONSE_YIELD.getMessage(), response.convertYieldToString());
+        String formattedYieldMessage = String.format(
+                RESPONSE_YIELD.getMessage(), response.getFormattedYield());
+        printEachMatcingResult(response);
         println(formattedYieldMessage);
+    }
+
+    private static void printEachMatcingResult(FinalResultResponse response) {
+        EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.prizeResultCount();
+
+        if (prizeGradeIntegerEnumMap.containsKey(HIT_THREE)) {
+            String format = RESPONSE_MATCHING.getMessage();
+            String formattedMessage = String.format(format, HIT_THREE.getPrizeMatchingCount(), HIT_THREE.getPrizeAmount(), prizeGradeIntegerEnumMap.get(HIT_THREE));
+            OutputView.println(formattedMessage);
+        }
     }
 }

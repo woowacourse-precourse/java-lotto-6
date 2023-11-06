@@ -9,7 +9,6 @@ public enum LottoConstraint {
     NUMBER_UPPER_BOUND(45),
 
     BONUS_COUNT(1);
-
     private final int value;
 
     LottoConstraint(int value) {

@@ -49,7 +49,16 @@ public enum PrizeGrade {
     private static Predicate<PrizeGrade> findMatchingCase(MatchingResult matchingResult) {
         return rank -> rank.matchingBonus.apply(matchingResult.getMatchingBonus());
     }
-    
+
+    public boolean hasPositivePrizeAmount() {
+        final int NO_PRIZE_AMOUNT = 0;
+        return prizeAmount > NO_PRIZE_AMOUNT;
+    }
+
+    public int getPrizeMatchingCount() {
+        return prizeMatchingCount.getCount();
+    }
+
     public int getPrizeAmount() {
         return prizeAmount;
     }

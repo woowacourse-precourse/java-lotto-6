@@ -16,7 +16,8 @@ public enum PrintMessage {
     RESPONSE_LOTTO_RESULT("[%s]"),
     RESPONSE_PRIZE_STATISTICS("당첨 통계"),
     RESPONSE_SEPARATOR("---"),
-    RESPONSE_YIELD("총 수익률은 %s%%입니다.");
+    RESPONSE_YIELD("총 수익률은 %s%%입니다."),
+    RESPONSE_MATCHING("%d개 일치(%d원) - %d개");
 
     private final String message;
 

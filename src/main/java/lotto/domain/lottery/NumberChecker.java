@@ -1,4 +1,4 @@
-package lotto.domain.checker;
+package lotto.domain.lottery;
 
 import lotto.exception.LottoException;
 

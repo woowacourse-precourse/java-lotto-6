@@ -28,7 +28,11 @@ public class FinalResults {
 
     public EnumMap<PrizeGrade, Integer> getPrizeGradeCount() {
         EnumMap<PrizeGrade, Integer> gradeCount = new EnumMap<>(PrizeGrade.class);
-        finalResults.forEach((key, value) -> gradeCount.merge(key, value, Integer::sum));
+        finalResults.forEach((key, value) -> {
+            if (key.hasPositivePrizeAmount()) {
+                gradeCount.merge(key, value, Integer::sum);
+            }
+        });
         return gradeCount;
     }
 }

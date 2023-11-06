@@ -12,21 +12,20 @@ import java.util.List;
 
 // 사용자로부터 값을 입력받고, 이를 출력하기 위한 클래스
 public class GameController {
-    private final InputView inputView;
     private final OutputView outputView;
+    private final InputView inputView;
     private final NumberFactory numberFactory;
     private final GameService gameService;
 
-    public GameController(InputView inputView, OutputView outputView, NumberFactory numberFactory, GameService gameService) {
-        this.inputView = inputView;
+    public GameController(OutputView outputView, InputView inputView, NumberFactory numberFactory, GameService gameService) {
         this.outputView = outputView;
+        this.inputView = inputView;
         this.numberFactory = numberFactory;
         this.gameService = gameService;
     }
 
     public void startGame() {
-        outputView.printCostMessage();
-        String cost = inputView.getCost();
+        int cost = inputView.getCost();
 
         Player player = new Player(cost);
         Game game = new Game(cost);
@@ -38,24 +37,17 @@ public class GameController {
             outputView.printLotto(generatedLotto);
         }
 
-        outputView.printWinnerNumberMessage();
-
-        List<String> winnerNumber = inputView.getWinnerNumber();
-
-        outputView.printBonusNumberMessage();
-
-        String bonusNumber = inputView.getBonusNumber();
-
-        List<Integer> list = winnerNumber.stream().map(Integer::parseInt).toList();
+        List<Integer> winnerNumber = inputView.getWinnerNumber();
+        int bonusNumber = inputView.getBonusNumber(winnerNumber);
 
         for(Lotto lotto : player.getLotto()) {
-            int count = gameService.getMatchedLottoNumber(lotto, list);
-            boolean bonusResult = gameService.getBonusResult(lotto, Integer.parseInt(bonusNumber));
+            int count = gameService.getMatchedLottoNumber(lotto, winnerNumber);
+            boolean bonusResult = gameService.getBonusResult(lotto, bonusNumber);
 
             game.addPrize(count, bonusResult);
         }
 
         outputView.printGameResult(game);
-        outputView.printGameInterestRate(game.getPrize() / Integer.parseInt(cost));
+        outputView.printGameInterestRate(game.getPrize() / cost * 100);
     }
 }

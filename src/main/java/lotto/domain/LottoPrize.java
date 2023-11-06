@@ -1,11 +1,13 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
+import lotto.constant.NumberUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoPrize {
+    private int bonusKey = NumberUtil.BONUS_KEY_FIVE.getNumber();
     LottoRank lottoRank;
 
     public Map<Integer, Map<String, Integer>> initLottoPrize() {
@@ -14,10 +16,10 @@ public class LottoPrize {
         for (LottoRank lottoRank : LottoRank.values()) {
             int winCount = lottoRank.getWinningCount();
 
-            if(winCount == 5) continue;
+            if(winCount == bonusKey) continue;
             lottoPrize.put(winCount, bonusValue(winCount, lottoRank.getBonus()));
         }
-        lottoPrize.put(5, doubleValue());
+        lottoPrize.put(bonusKey, doubleValue());
         return lottoPrize;
     }
 
@@ -32,7 +34,7 @@ public class LottoPrize {
     public Map<String, Integer> bonusValue(int winCount, String checkBonus) {
         Map<String, Integer> bonus = new HashMap<>();
         String bonusKey = winCount + checkBonus;
-        bonus.put(bonusKey, 0);
+        bonus.put(bonusKey, NumberUtil.DEFAULT_VALUE.getNumber());
         return bonus;
     }
 }

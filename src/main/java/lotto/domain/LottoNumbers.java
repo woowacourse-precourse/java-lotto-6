@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.NumberUtil;
 import lotto.service.PrintUtil;
 import lotto.validation.LottoNumberValidation;
 
@@ -19,7 +20,7 @@ public class LottoNumbers {
     PrintUtil printUtil = new PrintUtil();
 
     public Lotto[] pickLottoNumbers(int purchaseAmount) {
-        int numberOfLotto = purchaseAmount / 1000;
+        int numberOfLotto = purchaseAmount / NumberUtil.LOTTO_PRICE.getNumber();
         printUtil.printNumberOfLotto(numberOfLotto);
 
         Lotto[] lottos = IntStream.range(0, numberOfLotto)
@@ -34,7 +35,10 @@ public class LottoNumbers {
     public Lotto pickRandomLottoNumbers() {
         Lotto lottoNumbers;
         do {
-            lottoNumbers = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoNumbers = new Lotto(Randoms.pickUniqueNumbersInRange(
+                    NumberUtil.START_NUMBER.getNumber(),
+                    NumberUtil.END_NUMBER.getNumber(),
+                    NumberUtil.LOTTO_COUNT_LIMIT.getNumber()));
         } while (isDuplicateLottoNumbers(lottoNumbers));
 
         return lottoNumbers;

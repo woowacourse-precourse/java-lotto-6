@@ -1,19 +1,23 @@
 package lotto.domain;
 
 import lotto.constant.BonusString;
+import lotto.constant.NumberUtil;
 
 import java.util.List;
 import java.util.Map;
 
 public class LottoStatistics {
 
+    private int lottoPrice = NumberUtil.LOTTO_PRICE.getNumber();
+    private int profitPercent = NumberUtil.PROFIT_PERCENT.getNumber();
+
     public int compareLottoNumbersWithWinnerNumbers(Lotto lottoNumbers, Lotto winnerNumbers) {
 
         List<Integer> numbers = lottoNumbers.getLottoNumbers();
         List<Integer> winNumbers = winnerNumbers.getLottoNumbers();
         int winCount = 0;
-        for (int i = 0; i < winNumbers.size(); i++) {
-            if (numbers.contains(winNumbers.get(i))) {
+        for (int index = 0; index < winNumbers.size(); index++) {
+            if (numbers.contains(winNumbers.get(index))) {
                 winCount++;
             }
         }
@@ -28,7 +32,11 @@ public class LottoStatistics {
         return BonusString.NOBONUS.getBonus();
     }
 
-    public String calculateTotalProfit(Map<String, Integer> summary, List<String> lottoPlacePrize, int lottoPurchaseAmount) {
+    public String calculateTotalProfit(
+            Map<String, Integer> summary,
+            List<String> lottoPlacePrize,
+            int lottoPurchaseAmount)
+    {
         double profit = 0;
 
         int lottoPlacePrizeIdx = 0;
@@ -37,11 +45,10 @@ public class LottoStatistics {
             profit += entry.getValue() * lottoPrize;
             lottoPlacePrizeIdx++;
         }
-
-        return String.format("%.1f", calculateProfit(profit,lottoPurchaseAmount));
+        return String.format("%.1f", calculateProfit(profit, lottoPurchaseAmount));
     }
 
     public double calculateProfit(double profit, int lottoPurchaseAmount) {
-        return profit/(lottoPurchaseAmount*1000/100);
+        return profit / (lottoPurchaseAmount * lottoPrice / profitPercent);
     }
 }

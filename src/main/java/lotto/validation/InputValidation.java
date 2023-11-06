@@ -1,12 +1,17 @@
 package lotto.validation;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.NumberUtil;
 import lotto.domain.Lotto;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class InputValidation {
+
+    private int minNumber = NumberUtil.MIN_NUMBER.getNumber();
+    private int startNumber = NumberUtil.START_NUMBER.getNumber();
+    private int endNumber = NumberUtil.END_NUMBER.getNumber();
     ErrorMessage error;
     public int validatePurchaseAmount(String input) {
         validateInputIsNumeric(input);
@@ -57,19 +62,19 @@ public class InputValidation {
     }
 
     public void validatePurchaseAmountOutOfRange(int purchaseAmount) {
-        if (purchaseAmount > 2100000000) {
+        if (purchaseAmount > NumberUtil.MAX_NUMBER.getNumber()) {
             throw new IllegalArgumentException(error.PURCHASE_AMOUNT_LIMIT_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validatePurchaseAmountIsPositive(int purchaseAmount) {
-        if (purchaseAmount < 0) {
+        if (purchaseAmount < minNumber) {
             throw new IllegalArgumentException(error.POSITIVE_PURCHASE_AMOUNT_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validatePurchaseAmountUnit(int purchaseAmount) {
-        if (purchaseAmount == 0 || purchaseAmount % 1000 != 0) {
+        if (purchaseAmount == 0 || purchaseAmount % NumberUtil.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(error.PURCHASE_AMOUNT_UNITS_CONSTRAINT_ERROR_MESSAGE.getMessage());
         }
     }
@@ -107,7 +112,7 @@ public class InputValidation {
 
         validateCheckRangeOfWinnerNumberInput(winnerNumbers);
         for (String number : winnerNumbers) {
-            if (Integer.parseInt(number) < 0) {
+            if (Integer.parseInt(number) < minNumber) {
                 throw new IllegalArgumentException(error.POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());
             }
         }
@@ -115,7 +120,7 @@ public class InputValidation {
 
     public void validateWinnerNumbersOutOfRange(List<Integer> winnerNumbers) {
         for (Integer number : winnerNumbers) {
-            if (number < 1 || number > 45) {
+            if (number < startNumber || number > endNumber) {
                 throw new IllegalArgumentException(error.WINNING_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
             }
         }
@@ -142,13 +147,13 @@ public class InputValidation {
     }
 
     public void validateBonusNumberIsPositive(int bonusNumber) {
-        if (bonusNumber < 0) {
+        if (bonusNumber < minNumber) {
             throw new IllegalArgumentException(error.POSITIVE_BONUS_NUMBER_CONSTRAINT_MESSAGE.getMessage());
         }
     }
 
     public void validateBonusNumberOutOfRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < startNumber || bonusNumber > endNumber) {
             throw new IllegalArgumentException(error.BONUS_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
         }
     }

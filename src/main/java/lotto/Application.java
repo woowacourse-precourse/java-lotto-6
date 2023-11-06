@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.controller.LottoGameController;
 import lotto.service.LottoGeneratorService;
-import lotto.service.LottoNumberGeneratorService;
 import lotto.service.LottoRankCalculatorService;
 import lotto.service.LottoStoreService;
 import lotto.view.InputReader;
@@ -16,8 +15,7 @@ public class Application {
         InputView inputView = new InputView(new InputReader());
         OutputView outputView = new OutputView(new MessageResolver());
         LottoRankCalculatorService lottoRankCalculatorService = new LottoRankCalculatorService();
-        LottoNumberGeneratorService lottoNumberGeneratorService = new LottoNumberGeneratorService();
-        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService(lottoNumberGeneratorService);
+        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService();
         LottoStoreService lottoStoreService = new LottoStoreService(lottoGeneratorService);
 
         LottoGameController lottoGameController = new LottoGameController(inputView, outputView, lottoStoreService,

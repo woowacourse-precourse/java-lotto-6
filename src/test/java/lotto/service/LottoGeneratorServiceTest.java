@@ -10,7 +10,7 @@ class LottoGeneratorServiceTest {
     @DisplayName("생성된 로또는 검증 요구사항을 통과한다")
     @RepeatedTest(50)
     void testGeneratedLottoIsValid() {
-        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService(new LottoNumberGeneratorService());
+        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService();
         Assertions.assertThatNoException().isThrownBy(lottoGeneratorService::generateLotto);
     }
 }

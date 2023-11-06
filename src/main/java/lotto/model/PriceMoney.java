@@ -11,25 +11,25 @@ public enum PriceMoney {
     FOURTH(4, 50000),
     FIFTH(3, 5000);
 
-    private final Integer count;
-    private final Integer price;
+    private final int count;
+    private final int price;
 
     PriceMoney(Integer count, Integer price) {
         this.count = count;
         this.price = price;
     }
 
-    public static Integer getPrice(PriceMoney priceMoney) {
-        return priceMoney.price;
-    }
-
-    public static PriceMoney getRank(Integer count, boolean hasbonusNumber) {
-        if (count.equals(5) && hasbonusNumber == true) {
+    public static PriceMoney of(int count, boolean hasbonusNumber) {
+        if (count == 5 && hasbonusNumber == true) {
             return SECOND;
         }
         return Arrays.stream(PriceMoney.values())
-                .filter(rank -> rank.count.equals(count))
+                .filter(rank -> rank.count == count)
                 .findAny()
                 .orElse(NOTHING);
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

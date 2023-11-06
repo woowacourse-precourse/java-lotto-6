@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.domain.constants.LottoConstraint.LOTTO_PRICE;
+import static lotto.domain.validation.ExceptionMessage.EXCEPTION_MESSAGE_PREFIX;
+import static lotto.domain.validation.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
 public class LotteryGameController {
 
@@ -44,7 +46,14 @@ public class LotteryGameController {
     }
 
     private int amountOfLottos() {
-        return Integer.parseInt(inputView.returnInput());
+        String input = inputView.returnInput();
+        try {
+            int purchaseAmount = Integer.parseInt(input);
+            return purchaseAmount;
+        } catch (NumberFormatException e) {
+            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
+            return amountOfLottos();
+        }
     }
 
     private void returnLotteryResult(int purchaseAmount) {

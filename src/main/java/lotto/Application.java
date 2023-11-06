@@ -14,4 +14,16 @@ public class Application {
         }
     }
 
+    static List<Integer> numbersSeparator(String numberString) {
+        List<String> separatedNumbersInString = List.of(numberString.split(","));
+
+        List<Integer> separatedNumbers = new ArrayList<Integer>();
+        for (String number : separatedNumbersInString) {
+            separatedNumbers.add(Integer.parseInt(number));
+        }
+
+        return separatedNumbers;
+    }
+
+
 }

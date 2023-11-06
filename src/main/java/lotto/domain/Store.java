@@ -22,8 +22,8 @@ public class Store {
         List<Integer> numbers = new ArrayList<>();
 
         while (numbers.size() != Lotto.VALID_SIZE_OF_NUMBERS) {
-            int number = Randoms.pickNumberInRange(Lotto.UPPER_BOUND_OF_NUMBER, Lotto.LOWER_BOUND_OF_NUMBER);
-            if (isDuplicateNumber(numbers, number)) {
+            int number = Randoms.pickNumberInRange(Lotto.LOWER_BOUND_OF_NUMBER, Lotto.UPPER_BOUND_OF_NUMBER);
+            if (!isDuplicateNumber(numbers, number)) {
                 numbers.add(number);
             }
         }

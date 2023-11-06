@@ -1,15 +1,20 @@
 package lotto.validator;
 
+import lotto.game.ErrorMessage;
+
 public class PriceValidator extends Validator{
     private final static int PURCHASE_COST = 1000;
     private final static int MAX_PURCHASE_COST = 100000;
 
     public static boolean validateCost(int cost){
-        return validateNumberRange(cost, PURCHASE_COST, MAX_PURCHASE_COST);
+        if(!validateNumberRange(cost, PURCHASE_COST, MAX_PURCHASE_COST)) {
+            throw new IllegalArgumentException(ErrorMessage.PRICE_OUT_OF_RANGE_MESSAGE.getMessage());
+        }
+        return true;
     }
     public static boolean validateThousand(int cost){
         if(cost%PURCHASE_COST!=0){
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_MESSAGE.getMessage());
         }
         return true;
     }

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WinningNumbersValidator {
+public class WinningNumbersValidator implements Validator {
     public void validate(String winningNumbers) {
         isBlank(winningNumbers);
         isNotValidWinningNumbersPattern(winningNumbers);
@@ -16,12 +16,6 @@ public class WinningNumbersValidator {
         isInvalidSizeWinningNumbers(splitWinningNumbers);
         containsInvalidRangeNumberInWinningNumbers(splitWinningNumbers);
         hasDuplicatesInWinningNumbers(splitWinningNumbers);
-    }
-
-    private void isBlank(String winningNumbers) {
-        if (winningNumbers == null || winningNumbers.isBlank()) {
-            throw new IllegalArgumentException(BLANK_ERROR.message());
-        }
     }
 
     private void isNotValidWinningNumbersPattern(String winningNumbers) {

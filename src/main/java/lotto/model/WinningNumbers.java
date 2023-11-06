@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.constans.WinningPrize;
 import lotto.validator.BonusNumberValidator;
+import lotto.validator.Validator;
 import lotto.validator.WinningNumbersValidator;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
     private int bonusNumber;
-    private static final WinningNumbersValidator WINNING_NUMBERS_VALIDATOR = new WinningNumbersValidator();
-    private static final BonusNumberValidator BONUS_NUMBER_VALIDATOR = new BonusNumberValidator();
+    private static final Validator WINNING_NUMBERS_VALIDATOR = new WinningNumbersValidator();
+    private static final Validator BONUS_NUMBER_VALIDATOR = new BonusNumberValidator();
 
     private WinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;

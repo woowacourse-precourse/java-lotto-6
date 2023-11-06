@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PayAmountValidatorTest {
-    PayAmountValidator payAmountValidator = new PayAmountValidator();
+    Validator payAmountValidator = new PayAmountValidator();
 
     @DisplayName("구매 금액으로 Null 및 공백 입력 시 예외가 발생한다.")
     @ParameterizedTest

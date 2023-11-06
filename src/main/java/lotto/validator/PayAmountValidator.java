@@ -4,19 +4,13 @@ import static lotto.validator.constants.Criteria.*;
 import static lotto.validator.constants.ExceptionMessage.*;
 import static lotto.validator.constants.Pattern.*;
 
-public class PayAmountValidator {
+public class PayAmountValidator implements Validator {
     public void validate(String payAmount) {
         isBlank(payAmount);
         isNotNumeric(payAmount);
         isInvalidDigits(payAmount);
         isInvalidRange(payAmount);
         cannotDivideOneThousand(payAmount);
-    }
-
-    private void isBlank(String payAmount) {
-        if (payAmount == null || payAmount.isBlank()) {
-            throw new IllegalArgumentException(BLANK_ERROR.message());
-        }
     }
 
     private void isNotNumeric(String payAmount) {

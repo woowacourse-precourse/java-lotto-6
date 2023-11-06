@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusNumberValidatorTest {
-    BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+    Validator bonusNumberValidator = new BonusNumberValidator();
     @DisplayName("보너스 번호로 Null 및 공백 입력 시 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource

@@ -4,21 +4,11 @@ import static lotto.validator.constants.ExceptionMessage.*;
 
 import lotto.model.constans.LottoSetting;
 
-public class BonusNumberValidator {
+public class BonusNumberValidator implements Validator {
     public void validate(String bonusNumber) {
-        checkBlank(bonusNumber);
+        isBlank(bonusNumber);
         checkDigit(bonusNumber);
         checkValidRangeNumber(bonusNumber);
-    }
-
-    private void checkBlank(String bonusNumber) {
-        if (isBlank(bonusNumber)) {
-            throw new IllegalArgumentException(BLANK_ERROR.message());
-        }
-    }
-
-    private boolean isBlank(String bonusNumber) {
-        return bonusNumber == null || bonusNumber.isBlank();
     }
 
     private void checkDigit(String bonusNumber) {

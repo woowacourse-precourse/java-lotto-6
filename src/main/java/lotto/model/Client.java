@@ -5,11 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.constans.WinningPrize;
 import lotto.validator.PayAmountValidator;
+import lotto.validator.Validator;
 
 public class Client {
     private final int payAmount;
     private List<Lotto> lottos = new ArrayList<>();
-    private static final PayAmountValidator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
+    private static final Validator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
 
     private Client(int payAmount) {
         this.payAmount = payAmount;

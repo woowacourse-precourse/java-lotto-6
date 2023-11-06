@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningNumbersValidatorTest {
-    WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
+    Validator winningNumbersValidator = new WinningNumbersValidator();
 
     @DisplayName("당첨 번호로 Null 및 공백 입력 시 예외가 발생한다.")
     @ParameterizedTest

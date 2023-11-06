@@ -25,6 +25,10 @@ public class Lottos {
         return winningResult;
     }
 
+    public void displayLottos() {
+        lottos.forEach(Lotto::displayLottoNumbers);
+    }
+
     private void generateLottos(int count) {
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(generateLottoNumbers()));

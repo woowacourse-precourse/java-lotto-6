@@ -16,9 +16,9 @@ public class LottoPublisherTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 발행한_로또_갯수_확인() {
-        String money = "7000";
+    @ParameterizedTest
+    @ValueSource(strings = {"2000", "100000"})
+    void 발행한_로또_갯수_확인(String money) {
         LottoPublisher lottoPublisher = new LottoPublisher(money);
 
         int expectedLottoAmount = Integer.parseInt(money) / PURCHASE_UNIT.getNumber();

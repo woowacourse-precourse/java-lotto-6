@@ -3,8 +3,11 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.IssuedLottos;
 import lotto.service.LottoService;
+import lotto.utility.vo.BonusNumberRequest;
 import lotto.utility.vo.LottoResponse;
 import lotto.utility.vo.PurchaseAmountRequest;
+import lotto.utility.vo.WinningNumberRequest;
+import lotto.utility.vo.WinningResponse;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,7 +23,8 @@ public class LottoController {
     }
 
     public void run() {
-        buyLottoTickets();
+        IssuedLottos issuedLottos = buyLottoTickets();
+        determineWinning(issuedLottos);
     }
 
     private IssuedLottos buyLottoTickets() {
@@ -31,5 +35,15 @@ public class LottoController {
         outputView.informIssuedLottos(lottoResponses);
 
         return lottos;
+    }
+
+    private void determineWinning(IssuedLottos issuedLottos) {
+        WinningNumberRequest winningNumberRequest = inputView.getWinningNumber();
+        BonusNumberRequest bonusNumberRequest = inputView.getBonusNumber();
+
+        WinningResponse winningResponse = lottoService.determineWinning(
+            issuedLottos, bonusNumberRequest, winningNumberRequest);
+
+        outputView.informWinningResult(winningResponse);
     }
 }

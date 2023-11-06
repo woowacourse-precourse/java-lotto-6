@@ -14,5 +14,4 @@ public class Constant {
     public static final int LOTTO_END_NUMBER = 45;
     public static final int LOTTO_SELECT_NUMBER = 6;
     public static final int LOTTO_PRICE = 1_000;
-    public static final int BONUS_NUMBER = 1;
 }

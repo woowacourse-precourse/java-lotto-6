@@ -20,10 +20,14 @@ public class ProfitRate {
     public static Double calculateRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
         double reward = result.keySet()
                 .stream()
-                .mapToDouble(lottoRank -> (lottoRank.getPrizeMoney() * result.get(lottoRank)))
+                .mapToDouble(lottoRank -> getEachRankReward(result, lottoRank))
                 .sum();
 
         return (reward / (double) buyAmount.amount()) * PERCENTAGE;
+    }
+
+    private static Long getEachRankReward(Map<LottoRank, Integer> result, LottoRank lottoRank) {
+        return lottoRank.getPrizeMoney() * result.get(lottoRank);
     }
 
     public Double getRate() {

@@ -1,8 +1,11 @@
 package lotto.collaboration.lottos;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import lotto.io.lottos.SuccessLottosRandoms;
 import org.junit.jupiter.api.Test;
 
 class LottosTest {
@@ -33,6 +36,18 @@ class LottosTest {
         assertThatThrownBy(() ->
                 new Lottos().purchase(100001))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 정상지불후_로또를만들면_로또번호가반환됨() {
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+
+        Lottos lottos = new Lottos();
+        lottos.purchase(1000);
+        List<Lotto> actual = lottos.make(new SuccessLottosRandoms());
+
+        assertThat(actual.size()).isEqualTo(1);
+        assertThat(actual.get(0).toString()).isEqualTo(expected.toString());
     }
 
 }

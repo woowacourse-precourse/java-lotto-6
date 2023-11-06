@@ -2,7 +2,7 @@ package lotto.collaboration.lottos;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.io.lottos.LottosRandoms;
+import lotto.io.Randoms;
 
 public class Lottos {
 
@@ -13,6 +13,7 @@ public class Lottos {
 
     public void purchase(int purchaseAmount) {
         validate(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
     }
 
     private void validate(int purchaseAmount) {
@@ -34,16 +35,18 @@ public class Lottos {
         }
     }
 
-    public void make(LottosRandoms lottosRandoms) {
+    public List<Lotto> make(Randoms lottosRandoms) {
         int ticketAmount = getTicketAmount();
 
         purchaseLottos = IntStream.range(0, ticketAmount)
                 .mapToObj(i -> Lotto.make(lottosRandoms))
                 .toList();
+
+        return List.copyOf(purchaseLottos);
     }
 
     private int getTicketAmount() {
-        return purchaseAmount / 1000;
+        return purchaseAmount / MIN_PURCHASE_AMOUNT;
     }
 
 }

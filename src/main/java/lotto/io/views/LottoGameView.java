@@ -1,5 +1,7 @@
 package lotto.io.views;
 
+import java.util.List;
+import lotto.collaboration.lottos.Lotto;
 import lotto.io.Input;
 import lotto.io.Output;
 
@@ -15,6 +17,12 @@ public class LottoGameView {
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
+        }
+    }
+
+    public void showPurchaseLottos(List<Lotto> purchaseLottos) {
+        for (Lotto purchaseLotto : purchaseLottos) {
+            Output.consoleLine(purchaseLotto);
         }
     }
 

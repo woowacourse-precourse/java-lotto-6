@@ -43,4 +43,9 @@ public class Lotto {
         return new Lotto(randoms.getSixNumbers());
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

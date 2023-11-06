@@ -28,7 +28,7 @@ public class LottoGame {
             }
         }
 
-        lottos.make(lottosRandoms);
+        lottoGameView.showPurchaseLottos(lottos.make(lottosRandoms));
     }
 
 }

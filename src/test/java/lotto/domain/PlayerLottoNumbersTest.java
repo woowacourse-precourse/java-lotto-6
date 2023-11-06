@@ -10,20 +10,20 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.mock;
 
 @DisplayName("로또들 객체에 대해")
-class LottosTest {
+class PlayerLottoNumbersTest {
 
     private final PurchasePrice purchasePrice = mock(PurchasePrice.class);
 
     @Test
     @DisplayName("로또 구입 금액에 따라 로또들을 저장한다.")
-    void Given_LottoAmountReturn2_When_SaveLottos_Then_hasSize2 () {
+    void Given_LottoAmountReturn2_When_SaveLottos_Then_hasSize2() {
         //given
-        Lottos lottos = new Lottos();
+        PlayerLottoNumbers playerLottoNumbers = new PlayerLottoNumbers();
         given(purchasePrice.getLottosAmount()).willReturn(2);
 
         //when
-        lottos.saveLottos(purchasePrice);
-        List<Numbers> lottoValues = lottos.getLottoValues();
+        playerLottoNumbers.saveLottos(purchasePrice);
+        List<Numbers> lottoValues = playerLottoNumbers.getLottoValues();
 
         //then
         assertThat(lottoValues).hasSize(2);

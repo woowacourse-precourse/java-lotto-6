@@ -1,30 +1,30 @@
 package lotto.service;
 
-import lotto.domain.PurchasePrice;
 import lotto.domain.LottoStatistics;
-import lotto.domain.Lottos;
+import lotto.domain.PlayerLottoNumbers;
+import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoResultFormatter;
 import lotto.dto.LottoStatisticsResultFormatter;
 
 public class LottoService {
 
-    private final Lottos lottos;
+    private final PlayerLottoNumbers playerLottoNumbers;
     private final LottoStatistics lottoStatistics;
     private WinningLotto winningLotto;
 
 
-    public LottoService(Lottos lottos, LottoStatistics lottoStatistics) {
-        this.lottos = lottos;
+    public LottoService(PlayerLottoNumbers playerLottoNumbers, LottoStatistics lottoStatistics) {
+        this.playerLottoNumbers = playerLottoNumbers;
         this.lottoStatistics = lottoStatistics;
     }
 
     public void saveLottos(PurchasePrice lottoPurchasePrice) {
-        lottos.saveLottos(lottoPurchasePrice);
+        playerLottoNumbers.saveLottos(lottoPurchasePrice);
     }
 
-    public LottoResultFormatter getLottos() {
-        return new LottoResultFormatter(lottos.getLottoValues());
+    public LottoResultFormatter getPlayerLottoNumbers() {
+        return new LottoResultFormatter(playerLottoNumbers.getLottoValues());
     }
 
     public void saveWinningLotto(WinningLotto winningLotto) {
@@ -32,11 +32,11 @@ public class LottoService {
     }
 
     public void calculateWinningStatistics() {
-        lottoStatistics.calculateLottoMatch(lottos, winningLotto);
+        lottoStatistics.calculateLottoMatch(playerLottoNumbers, winningLotto);
     }
 
     public void calculateTotalRate() {
-        lottoStatistics.calculateTotalRate(lottos);
+        lottoStatistics.calculateTotalRate(playerLottoNumbers);
     }
 
     public LottoStatisticsResultFormatter getStatistics() {

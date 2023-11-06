@@ -18,8 +18,8 @@ public class LottoStatistics {
         }
     }
 
-    public void calculateLottoMatch(Lottos lottos, WinningLotto winningLotto) {
-        for (Numbers numbers : lottos.getLottoValues()) {
+    public void calculateLottoMatch(PlayerLottoNumbers playerLottoNumbers, WinningLotto winningLotto) {
+        for (Numbers numbers : playerLottoNumbers.getLottoValues()) {
             Integer matchCount = numbers.getMatchCount(winningLotto.getLotto()).intValue();
             Boolean isMatchBonusNumber = numbers.isMatchBonusNumber(winningLotto.getBonusNumber());
             upWinningFactorValue(matchCount, isMatchBonusNumber);
@@ -39,8 +39,8 @@ public class LottoStatistics {
         return totalRate;
     }
 
-    public void calculateTotalRate(Lottos lottos) {
-        Integer lottosPrice = lottos.getLottosPrice();
+    public void calculateTotalRate(PlayerLottoNumbers playerLottoNumbers) {
+        Integer lottosPrice = playerLottoNumbers.getLottosPrice();
         Integer sum = calculateWinningPrice();
 
         double rate = (double) sum / lottosPrice * 100.0;

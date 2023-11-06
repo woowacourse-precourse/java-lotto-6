@@ -2,7 +2,7 @@ package lotto.factory;
 
 import lotto.controller.LottoController;
 import lotto.domain.LottoStatistics;
-import lotto.domain.Lottos;
+import lotto.domain.PlayerLottoNumbers;
 import lotto.io.InputMapper;
 import lotto.io.InputView;
 import lotto.io.IoManager;
@@ -13,10 +13,6 @@ import lotto.validator.InputValidator;
 public class LottoFactory {
 
     private LottoFactory() {
-    }
-
-    private static class LottoFactoryHelper {
-        private static final LottoFactory INSTANCE = new LottoFactory();
     }
 
     public static LottoFactory getInstance() {
@@ -48,14 +44,18 @@ public class LottoFactory {
     }
 
     private LottoService lottoService() {
-        return new LottoService(lottos(), lottoStatistics());
+        return new LottoService(playerLottoNumbers(), lottoStatistics());
     }
 
-    private Lottos lottos() {
-        return new Lottos();
+    private PlayerLottoNumbers playerLottoNumbers() {
+        return new PlayerLottoNumbers();
     }
 
     private LottoStatistics lottoStatistics() {
         return new LottoStatistics();
+    }
+
+    private static class LottoFactoryHelper {
+        private static final LottoFactory INSTANCE = new LottoFactory();
     }
 }

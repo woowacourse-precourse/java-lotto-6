@@ -2,8 +2,6 @@ package lotto.collaboration.lottos;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.io.Input;
-import lotto.io.Output;
 import lotto.io.lottos.LottosRandoms;
 
 public class Lottos {
@@ -13,24 +11,22 @@ public class Lottos {
     private int purchaseAmount;
     private List<Lotto> purchaseLottos;
 
-    public void purchase() {
-        Output.consoleLine("구입금액을 입력해 주세요.");
-        purchaseAmount = Input.consoleNumber();
-        validatePurchaseAmount();
+    public void purchase(int purchaseAmount) {
+        validate(purchaseAmount);
     }
 
-    public void validatePurchaseAmount() {
-        occurExceptionIfIndivisible();
-        occurExceptionIfOutsideTheRange();
+    private void validate(int purchaseAmount) {
+        occurExceptionIfIndivisibleOf(purchaseAmount);
+        occurExceptionIfOutsideTheRangeOf(purchaseAmount);
     }
 
-    private void occurExceptionIfIndivisible() {
+    private void occurExceptionIfIndivisibleOf(int purchaseAmount) {
         if (purchaseAmount % MIN_PURCHASE_AMOUNT != 0) {
             throw new IllegalArgumentException(MIN_PURCHASE_AMOUNT + "원 단위로 입력해 주세요");
         }
     }
 
-    private void occurExceptionIfOutsideTheRange() {
+    private void occurExceptionIfOutsideTheRangeOf(int purchaseAmount) {
         if (purchaseAmount < MIN_PURCHASE_AMOUNT ||
                 MAX_PURCHASE_AMOUNT < purchaseAmount) {
             throw new IllegalArgumentException(

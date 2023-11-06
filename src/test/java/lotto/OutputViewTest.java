@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -30,6 +29,12 @@ public class OutputViewTest extends NsTest{
                 "[3, 5, 11, 16, 32, 38]",
                 "[7, 11, 16, 35, 36, 44]",
                 "[1, 8, 11, 31, 41, 42]");
+    }
+
+    @Test
+    void 수익률_출력_테스트() {
+        view.printProfitRate(15.63f);
+        assertThat(output()).isEqualTo("총 수익률은 15.6%입니다.");
     }
 
     @Override

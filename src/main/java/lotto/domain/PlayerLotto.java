@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.utils.RandomUtil;
 
 public class PlayerLotto {
     private final List<Lotto> playerLottos;
@@ -15,7 +16,14 @@ public class PlayerLotto {
     }
 
     private List<Lotto> createPlayerLottos() {
-        return null;
+        List<Lotto> lotto = new ArrayList<>();
+
+        for (int i = 0; i < lottoAmount; i++) {
+            List<Integer> numbers = RandomUtil.createLottoNumber();
+            lotto.add(new Lotto(numbers));
+        }
+
+        return lotto;
     }
 
     public List<Lotto> getPlayerLottos() {

@@ -13,8 +13,9 @@ public class LottoService {
 
     private final RandomNumberGenerator randomNumberGenerator;
     private final List<Lotto> userLottos = new ArrayList<>();
+    private final HashMap<LottoRank, Integer> winningRankCount = new HashMap<>();
     private List<Integer> winningNumbers = new ArrayList<>();
-    private HashMap<LottoRank, Integer> winningRankCount = new HashMap<>();
+    private long totalPrizeAmount = ZERO;
     private int bonusNumber;
 
     public LottoService(RandomNumberGenerator randomNumberGenerator) {
@@ -27,6 +28,10 @@ public class LottoService {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public long getTotalPrizeAmount() {
+        return totalPrizeAmount;
     }
 
     public List<Lotto> purchase (int purchaseQuantity) {
@@ -60,9 +65,9 @@ public class LottoService {
     }
 
     public double calculateProfitRate() {
-        long totalPrizeAmount = calculateTotalPrizeAmount();
+        calculateTotalPrizeAmount();
         int  purchaseQuantity = getPurchaseQuantity();
-        double profitRate = getProfitRate((double) totalPrizeAmount, purchaseQuantity);
+        double profitRate = getProfitRate(purchaseQuantity);
         return calculateRoundedProfitRate(profitRate);
     }
 
@@ -88,21 +93,18 @@ public class LottoService {
         winningRankCount.put(lottoRank, winningRankCount.getOrDefault(lottoRank, ZERO) + ONE);
     }
 
-    private long calculateTotalPrizeAmount() {
-        long totalPrizeAmount = ZERO;
-
+    private void calculateTotalPrizeAmount() {
         for (LottoRank lottoRank: winningRankCount.keySet()) {
-            totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
+            this.totalPrizeAmount += lottoRank.getPrizeMoney() * winningRankCount.get(lottoRank);
         }
-        return totalPrizeAmount;
     }
 
     private int getPurchaseQuantity() {
         return userLottos.size();
     }
 
-    private double getProfitRate(double totalPrizeAmount, int purchaseQuantity) {
-        return (totalPrizeAmount / (purchaseQuantity * LOTTO_PRICE)) * PERCENTAGE;
+    private double getProfitRate(int purchaseQuantity) {
+        return ((double) totalPrizeAmount / (purchaseQuantity * LOTTO_PRICE)) * PERCENTAGE;
     }
 
     /**

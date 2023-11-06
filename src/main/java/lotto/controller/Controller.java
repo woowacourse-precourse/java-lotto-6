@@ -24,6 +24,7 @@ public class Controller {
             try{
                 String paymentInput = inputView.getPayment();
                 payment = utility.parseInt(paymentInput);
+
                 validation.validateUnit(payment);
                 break;
             } catch (IllegalArgumentException e) {}
@@ -39,6 +40,7 @@ public class Controller {
                 String winningInput = inputView.getWinningNumbers();
                 String[] splitResult = utility.splitInput(winningInput);
                 winningNumbers = utility.getIntList(splitResult);
+
                 validation.validateSize(winningNumbers);
                 validation.validateRange(winningNumbers);
                 validation.validateDuplication(winningNumbers);

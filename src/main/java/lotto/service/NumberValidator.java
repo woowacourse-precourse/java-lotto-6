@@ -9,12 +9,6 @@ public class NumberValidator {
 
     private static final String NUMBER = "^[0-9]+$";
 
-    public void validatePurchasePriceIsNumber(String purchasePrice){
-        if (!Pattern.matches(NUMBER, purchasePrice)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
-        }
-    }
-
     public void validateInputDataIsNumber(String inputData) {
         if (!Pattern.matches(NUMBER, inputData)) {
             throw new IllegalArgumentException("로또 번호는 숫자만 입력 가능합니다.");

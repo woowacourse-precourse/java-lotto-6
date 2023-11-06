@@ -34,7 +34,7 @@ public class InputController {
     }
 
     private int convertInputData(String purchasePrice) {
-        numberValidator.validatePurchasePriceIsNumber(purchasePrice);
+        numberValidator.validateInputDataIsNumber(purchasePrice);
         int price = Integer.parseInt(purchasePrice);
         numberValidator.validatePurchasePrice(price);
         return price;

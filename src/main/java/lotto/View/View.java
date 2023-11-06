@@ -3,6 +3,7 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.RankOfLotto;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,11 +18,11 @@ public class View {
         String money = Console.readLine();
         try{
             stringToList(money);
+            return Integer.parseInt(money);
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] " + e.getMessage());
-            buyMoney();
         }
-        return Integer.parseInt(money);
+        return buyMoney();
     }
     public int buyLotto(int buyMoney){
         return buyMoney / 1000;
@@ -52,14 +53,14 @@ public class View {
 
     public String bonusNum(List correctLotto){
         System.out.println("보너스 번호를 입력해 주세요.");
-        String k = Console.readLine();
+        String bonus = Console.readLine();
         try{
-            bonusNumException(correctLotto, k);
+            bonusNumException(correctLotto, bonus);
+            return bonus;
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] " + e.getMessage());
-            bonusNum(correctLotto);
         }
-        return k;
+        return bonusNum(correctLotto);
     }
 
     public static void lottoResult(List countRank, int myMoney){
@@ -77,8 +78,9 @@ public class View {
                 (Collections.frequency(countRank, 7) * 30000000) +
                 (Collections.frequency(countRank, 6) * 2000000000);
 
+        DecimalFormat df = new DecimalFormat("#,###.#");
         float percent = (percentLotto / myMoney) * 100;
-        System.out.println("총 수익률은 " + String.format("%.1f", percent) + "%입니다.");
+        System.out.println("총 수익률은 " + df.format(percent) + "%입니다.");
     }
     private void bonusNumException(List correctLotto, String bonus){
         if(correctLotto.contains(Integer.parseInt(bonus))){

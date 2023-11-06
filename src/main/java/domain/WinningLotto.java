@@ -1,6 +1,7 @@
 package domain;
 
-import util.LottoRandomUtil;
+import constant.ConstantNumber;
+import constant.ExceptionMessage;
 
 import java.util.List;
 
@@ -13,8 +14,16 @@ public class WinningLotto {
     }
 
     WinningLotto(List<Integer> numbers, int bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.lotto = new Lotto(numbers);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber > ConstantNumber.MAXIMUM_WINNING_NUMBER.get() ||
+                bonusNumber < ConstantNumber.MINIMUM_WINNING_NUMBER.get()) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.get());
+        }
     }
 
     public boolean contains(int number) {
@@ -26,6 +35,7 @@ public class WinningLotto {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        vaildateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

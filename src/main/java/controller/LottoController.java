@@ -17,16 +17,40 @@ public class LottoController {
 
     public void buyTickets() {
         outputView.inputPurchaseAmount();
-        int ticketCount = lottoMapper.buyTickets(inputView.purchaseAmount());
-        outputView.buyLottoes(ticketCount);
-        outputView.lottoTickets(lottoMapper.getTickets());
+        int ticketCount;
+        try {
+            ticketCount = lottoMapper.buyTickets(inputView.purchaseAmount());
+            outputView.buyLottoes(ticketCount);
+            outputView.lottoTickets(lottoMapper.getTickets());
+        } catch (Exception e) {
+            outputView.exceptionMessage(e.getMessage());
+            buyTickets();
+        }
     }
 
     public void drawLotto() {
-        outputView.inputWinningNumber();
-        lottoMapper.setWinningNumber(inputView.winningNumbers());
-        outputView.inputBonusNumber();
-        lottoMapper.setBonusNumber(inputView.bonusNumber());
+        inputWinningNumbers();
+        inputBonusNumber();
+    }
+
+    private void inputWinningNumbers() {
+        try {
+            outputView.inputWinningNumber();
+            lottoMapper.setWinningNumber(inputView.winningNumbers());
+        } catch (Exception e) {
+            outputView.exceptionMessage(e.getMessage());
+            inputWinningNumbers();
+        }
+    }
+
+    private void inputBonusNumber() {
+        try {
+            outputView.inputBonusNumber();
+            lottoMapper.setBonusNumber(inputView.bonusNumber());
+        } catch (Exception e) {
+            outputView.exceptionMessage(e.getMessage());
+            inputBonusNumber();
+        }
     }
 
     public void printWinningStatistics() {

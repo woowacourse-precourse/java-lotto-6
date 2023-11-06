@@ -60,4 +60,8 @@ public class OutputView {
     private void printTotalRateOfReturn(GameResultDto gameResultDto) {
         System.out.print(TOTAL_RATE_OF_RETURN.get(gameResultDto.getRateOfReturn()));
     }
+
+    public void exceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }

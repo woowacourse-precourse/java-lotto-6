@@ -30,6 +30,12 @@ public class Lotto {
         if (uniqueNumberSize != numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_WINNING_NUMBERS.get());
         }
+        for (int number : numbers) {
+            if (number > ConstantNumber.MAXIMUM_WINNING_NUMBER.get() ||
+                    number < ConstantNumber.MINIMUM_WINNING_NUMBER.get()) {
+                throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.get());
+            }
+        }
     }
 
     public boolean contains(int number) {

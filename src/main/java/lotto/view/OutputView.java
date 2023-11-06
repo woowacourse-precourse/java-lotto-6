@@ -1,7 +1,9 @@
-package lotto;
+package lotto.view;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoData;
 
 public class OutputView {
     private static final String OUTPUT_LOTTO_PERCHASED_COUNT = "%d개를 구매했습니다.";

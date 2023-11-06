@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.io.Flushable;
 import java.util.List;

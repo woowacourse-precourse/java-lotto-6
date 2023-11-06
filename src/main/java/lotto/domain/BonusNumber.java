@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class BonusNumber {
     private static final String BONUS_OUT_OF_RANGE = "[ERROR] 1~45 사이의 값을 입력해야 합니다.";

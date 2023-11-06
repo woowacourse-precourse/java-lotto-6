@@ -24,4 +24,8 @@ public class LottoBonusNumber {
         }
     }
 
+    public boolean matches(int bonusNumber) {
+        return this.bonusNumber == bonusNumber;
+    }
+
 }

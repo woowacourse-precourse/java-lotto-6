@@ -9,6 +9,7 @@ import lotto.utils.LottoIssuer;
 import lotto.utils.WinningJudge;
 import lotto.validator.LottoValidator;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,7 @@ public class LottoSystem {
         Map<WinningType, Integer> winningTypeCount = extractWinningTypeCount();
         Set<WinningType> winningTypes = winningTypeCount.keySet();
         return winningTypes.stream()
+                .sorted(Comparator.comparingInt(WinningType::getReward))
                 .map(winningType -> new WinningStatus(winningType, winningTypeCount.get(winningType)))
                 .toList();
     }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.dto.LottoNumbers;
 import lotto.dto.PurchasedLotto;
+import lotto.dto.WinningResult;
 
 import java.util.List;
 
@@ -17,8 +18,23 @@ public class OutputView {
         printLineSeparator();
 
         List<LottoNumbers> lottos = purchasedLotto.lottos();
-        lottos.forEach(lottoNumbers -> System.out.println(DisplayFormatter.formatLottoNumbers(lottoNumbers)));
+        lottos.stream()
+                .map(DisplayFormatter::formatLottoNumbers)
+                .forEach(System.out::println);
         printLineSeparator();
+    }
+
+    public static void printWinningResult(WinningResult winningResult) {
+        printLineSeparator();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        winningResult.winningStatuses().stream()
+                .map(DisplayFormatter::formatWinningStatus)
+                .forEach(System.out::println);
+
+        double returnRate = winningResult.returnRate();
+        System.out.printf("총 수익률은 %.1f%%입니다.", returnRate);
     }
 
     private static void printLineSeparator() {

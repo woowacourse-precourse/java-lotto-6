@@ -58,5 +58,6 @@ public class LottoController {
 
     private void printWinningStatistics() {
         WinningResult winningResult = lottoSystem.getWinningResult();
+        OutputView.printWinningResult(winningResult);
     }
 }

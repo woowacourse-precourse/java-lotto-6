@@ -22,7 +22,7 @@ public enum WinningType {
 
     public static WinningType of(int count, boolean isBonusMatch) {
         return Arrays.stream(WinningType.values())
-                .filter(winningType -> isBonusMatch)
+                .filter(winningType -> winningType.isBonus == isBonusMatch)
                 .filter(winningType -> winningType.matchesNumber == count)
                 .findAny()
                 .orElse(null);
@@ -30,6 +30,10 @@ public enum WinningType {
 
     public int getMatchesCount() {
         return matchesNumber;
+    }
+
+    public boolean isBonus() {
+        return isBonus;
     }
 
     public int getReward() {

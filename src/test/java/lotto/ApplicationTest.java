@@ -198,6 +198,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_로또_진행자_당첨번호_COMMA_사이에_빈칸_입력_검사() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,,3,4,5,6", "1,2,,4,5,6", "1,,3,4,5,6", "1,,,,,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {

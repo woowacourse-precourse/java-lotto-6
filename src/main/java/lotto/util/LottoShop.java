@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.constants.LottoRule;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.message.ErrorMessage;
@@ -8,7 +9,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoShop {
-
 
     private LottoShop() {
     }

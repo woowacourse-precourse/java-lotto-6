@@ -1,7 +1,7 @@
 package lotto.view.input.validator;
 
 import lotto.message.ErrorMessage;
-import lotto.util.LottoRule;
+import lotto.constants.LottoRule;
 
 import java.util.*;
 

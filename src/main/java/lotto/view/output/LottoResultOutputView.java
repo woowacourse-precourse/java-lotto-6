@@ -1,24 +1,21 @@
 package lotto.view.output;
 
 import lotto.domain.lotto.LottoRank;
+import lotto.view.output.message.LottoOutputMessage;
 
 import java.io.PrintStream;
 import java.util.Map;
 import java.util.Set;
 
 public class LottoResultOutputView {
-
-    private static final String WINNING_STATISTICS = "당첨 통계";
-    private static final String DASH_LINE = "---";
-    private static final String TOTAL_PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final double PERCENTAGE = 100.0;
 
     public void printWinningStatisticsStartMessage() {
-        System.out.println(WINNING_STATISTICS);
+        System.out.println(LottoOutputMessage.WINNING_STATISTICS.getMessage());
     }
 
     public void printDashLine() {
-        System.out.println(DASH_LINE);
+        System.out.println(LottoOutputMessage.DASH_LINE.getMessage());
     }
 
     public void printLottoAllMatch(Map<LottoRank, Long> lottoRankCountMap) {
@@ -41,7 +38,8 @@ public class LottoResultOutputView {
                 .mapToLong(lottoRank -> lottoRank.calculatePrize(getRankCount(lottoRankCountMap, lottoRank)))
                 .sum();
 
-        System.out.printf(TOTAL_PROFIT_FORMAT, calculatePercentage(amount, totalAmount));
+        System.out.printf(LottoOutputMessage.TOTAL_PROFIT_FORMAT.getMessage(),
+                calculatePercentage(amount, totalAmount));
     }
 
     private double calculatePercentage(long amount, long totalAmount) {

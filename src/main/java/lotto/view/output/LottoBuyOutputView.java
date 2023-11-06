@@ -2,6 +2,7 @@ package lotto.view.output;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.view.output.message.LottoOutputMessage;
 
 import java.util.List;
 
@@ -9,10 +10,9 @@ import static java.util.stream.Collectors.joining;
 
 public class LottoBuyOutputView {
 
-    private final String PURCHASED_LOTTO_COUNT_MESSAGE_FORMAT = "%s개를 구매했습니다.";
-
     public void printPurchaseLottoCountMessage(Lottos lottos) {
-        System.out.println(String.format(PURCHASED_LOTTO_COUNT_MESSAGE_FORMAT, lottos.size()));
+        System.out.println(String.format(
+                LottoOutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE_FORMAT.getMessage(), lottos.size()));
     }
 
     public void printAllLottoNumbers(Lottos lottos) {

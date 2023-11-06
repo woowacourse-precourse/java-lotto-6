@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.util.Validator;
 
 public class LottoGameController {
     private final View view = new View();
@@ -27,17 +26,6 @@ public class LottoGameController {
 
     public Lotto generateWinningLotto(List<Integer> winningNumbers) {
         return new Lotto(winningNumbers);
-    }
-
-    public void validateBonusNumber(Lotto winningLotto, long inputBonusNumber) {
-        Validator validator = Validator.INSTANCE;
-        if (validator.isOutOfRange(inputBonusNumber)) {
-            throw new IllegalArgumentException();
-        }
-
-        if (winningLotto.isContains((int) inputBonusNumber)) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public Result getResult(Lottos lottos, WinningLotto winningLotto) {

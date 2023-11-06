@@ -62,4 +62,29 @@ public class LottoValidatorTest {
                 Arguments.of(List.of(1, 2, 23, 44, 45, 46))
         );
     }
+
+    @Test
+    void checNotkDuplicateWinningNumbers() {
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatCode(() -> lottoValidator.checkDuplicateWinningNumbers(numbers))
+                .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @MethodSource("numbersProviderForDuplicate")
+    void checkDuplicateWinningNumbers(List<Integer> numbers) {
+        assertThatThrownBy(() -> lottoValidator.checkDuplicateWinningNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContainingAll("[ERROR] 당첨 번호 입력에 중복된 숫자를 넣지마세요.");
+    }
+
+    private static Stream<Arguments> numbersProviderForDuplicate() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 23, 44, 44, 24)),
+                Arguments.of(List.of(1, 1, 3, 4, 5, 6)),
+                Arguments.of(List.of(1, 2, 23, 44, 45, 45))
+        );
+    }
+
 }

@@ -5,6 +5,7 @@ import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_SIZE;
 import static lotto.config.LottoConfig.LOTTO_SIZE;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.util.NumberUtil;
 
@@ -53,5 +54,14 @@ public class Lotto {
 		long count = numbers.stream().distinct().count();
 
 		return count == numbers.size();
+	}
+
+	public static Lotto convertToLotto(String numbers) {
+		List<Integer> winningNumbers = Arrays.stream(numbers.split(","))
+			.map(String::trim)
+			.map(Integer::parseInt)
+			.toList();
+
+		return new Lotto(winningNumbers);
 	}
 }

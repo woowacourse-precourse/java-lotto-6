@@ -12,7 +12,7 @@ class LottoTest {
 
     @BeforeEach
     void setUp() {
-        validLottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        validLottoNumbers = Arrays.asList(2, 1, 3, 4, 5, 6);
         invalidLottoNumbers = Arrays.asList(1, 2, 3, 4, 5);
     }
 

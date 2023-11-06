@@ -12,6 +12,7 @@
   - [LotteryGame 클래스가 사용하는 객체를 어떻게 주입할 것인가?](#lotterygame-클래스가-사용하는-객체를-어떻게-주입할-것인가)
   - [상수 관련 클래스를 어느 곳에 위치시킬 것인가?](#상수-관련-클래스를-어느곳에-위치시켜야하는가)
   - [점검 메서드의 중복된 로직](#점검-메서드의-중복된-로직)
+  - [어떻게 `else` 키워드에서 탈출할 수 있는가?](#어떻게-else-키워드에서-탈출할-수-있는가)
 
 ---
 
@@ -96,3 +97,30 @@ Application클래스에서 LotteryGame 클래스를 생성할 때 이 두가지 
 불편함으로 다가왔다.
 
 그래서 검증 로직이 중복된다고 해도 검사를 하고, 예외가 발생한 클래스만 보고도 어느 부분에서 문제가 발생했는지 알수 있도록 구현하였다.
+
+### 어떻게 `else` 키워드에서 탈출할 수 있는가?
+`if-else` 구문을 사용해서 경우를 구분하고 분기문을 사용하는 경우에는 미래에 고려해야하는 경우의 값이 많아지게 되면 `if-else` 키워드를 사용한 분기문또한 끝없이 길어지는 문제가 있다. 이때는 한정된 값들을 담은 `Enum`을 정의하고 연관된 값들을 필드로 가지게 함으로써 해결할 수 있다. 그러면 나중에 추가되는 사항이 있을 때 이 Enum만 수정하면 되고, 원하는 데이터를 찾아오는 것은 메서드에 찾고자하는 대상을 파라미터로 넘겨주는 것만으로 가능하다.
+
+이번 미션에서 유저가 가지고 있는 복권의 번호와 당첨 복권의 숫자가 일치하는 갯수와 보너스 번호가 일치하는 갯수로 복권결과의 상태를 구분했다. 
+
+- 일치하는 당첨번호가 6개, 보너스번호가 0개이면 1등
+- 일치하는 당첨번호가 3개, 보너스번호가 0개이면 5등
+
+이러한 방식이다.
+
+그래서 LotteryResult라는 열거형을 정의하고, 그곳에서 일치한 당첨번호의 개수, 보너스 번호의 개수를 연관값으로 가지도록 하였다. 그리고 이 정보를 이용해서 일치하는 상태값을 반환받을 수 있도록 메서드를 정의했다.
+```java
+public static LotteryResult getWinnerMoneyOf(int count, int bonus) throws IllegalStateException {
+    Optional<LotteryResult> lotteryResult = Arrays.stream(LotteryResult.values())
+        .filter(result -> result.count == count && result.bonus == bonus)
+        .findAny();
+
+    if (!lotteryResult.isPresent()) {
+        return NOTHING;
+    }
+
+    return lotteryResult.orElseThrow(
+        () -> new IllegalStateException("존재하지 않는 결과입니다. 당첨번호, 보너스 번호 갯수를 다시 확인해주세요.")
+    );
+}
+```

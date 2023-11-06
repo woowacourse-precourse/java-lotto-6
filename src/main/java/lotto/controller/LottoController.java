@@ -1,20 +1,21 @@
-package lotto;
+package lotto.controller;
 
-import static lotto.LottoConfig.MAX_NUMBER;
-import static lotto.LottoConfig.MIN_NUMBER;
-import static lotto.LottoConfig.NUMBER_OF_NUMBERS;
-import static lotto.LottoConfig.PRICE;
 import static lotto.SystemMessage.OUTPUT_PURCHASE_AMOUNT;
+import static lotto.config.LottoConfig.MAX_NUMBER;
+import static lotto.config.LottoConfig.MIN_NUMBER;
+import static lotto.config.LottoConfig.NUMBER_OF_NUMBERS;
+import static lotto.config.LottoConfig.PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
-public class LottoGenerator {
+public class LottoController {
     private final List<Lotto> lottos;
     private final int lottoAmount;
 
-    public LottoGenerator(int purchaseAmount) {
+    public LottoController(int purchaseAmount) {
         this.lottoAmount = getLottoAmount(purchaseAmount);
         this.lottos = makeLottos();
     }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.config;
 
 public enum LottoConfig {
     PRICE(1000),

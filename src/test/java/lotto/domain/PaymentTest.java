@@ -13,6 +13,17 @@ import org.junit.jupiter.params.provider.ValueSource;
 class PaymentTest {
 
     @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"1000,", " 1000", "1000 "})
+    @DisplayName("구입 금액 예외 처리: 구입 금액에 숫자외 다른 문자가 있는 경우")
+    void givenNonPositiveNumber_whenCreatePayment_thenThrowException(String amount) {
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Payment(amount))
+                .withMessageStartingWith("[ERROR]")
+                .withMessageContaining("구입 금액은 숫자만 입력할 수 있습니다.");
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(strings = {"0", "100", "999"})
     @DisplayName("구입 금액 예외 처리: 최소 금액 1,000원 미만인 경우")
     void givenUnderThousand_whenCreatePayment_thenThrowException(String amount) {

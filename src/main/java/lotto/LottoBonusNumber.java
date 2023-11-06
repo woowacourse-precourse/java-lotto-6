@@ -1,10 +1,10 @@
 package lotto;
 
-public class LottoBonusNumberCreate {
+public class LottoBonusNumber {
 
     private int bonusNumber;
 
-    public LottoBonusNumberCreate(LottoWinningNumberCreate lottoWinningNumberCreate, int bonusNumber) {
+    public LottoBonusNumber(LottoWinningNumberCreate lottoWinningNumberCreate, int bonusNumber) {
         validateDuplicate(lottoWinningNumberCreate, bonusNumber);
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;

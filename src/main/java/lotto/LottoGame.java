@@ -43,11 +43,11 @@ public class LottoGame {
             }
         }
 
-        LottoBonusNumberCreate lottoBonusNumberCreate = null;
+        LottoBonusNumber lottoBonusNumber = null;
         while (true) {
             try {
                 LottoBonusNumberCreateRequest lottoBonusNumberCreateRequest = lottoGameView.inputLottoBonusNumberCreateRequest();
-                lottoBonusNumberCreate = new LottoBonusNumberCreate(lottoWinningNumberCreate,
+                lottoBonusNumber = new LottoBonusNumber(lottoWinningNumberCreate,
                         lottoBonusNumberCreateRequest.getBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class LottoBonusNumberCreateTest {
+class LottoBonusNumberTest {
 
     @Test
     public void LottoBonusNumberCreate_를_생성할_수_있다() throws Exception {
@@ -18,7 +18,7 @@ class LottoBonusNumberCreateTest {
         // when
         // then
         Assertions.assertThatCode(() -> {
-            new LottoBonusNumberCreate(lottoWinningNumberCreate, bonusNumber);
+            new LottoBonusNumber(lottoWinningNumberCreate, bonusNumber);
         }).doesNotThrowAnyException();
     }
 
@@ -31,7 +31,7 @@ class LottoBonusNumberCreateTest {
         // when
         // then
         Assertions.assertThatThrownBy(() -> {
-            new LottoBonusNumberCreate(lottoWinningNumberCreate, bonusNumber);
+            new LottoBonusNumber(lottoWinningNumberCreate, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +44,7 @@ class LottoBonusNumberCreateTest {
         // when
         // then
         Assertions.assertThatThrownBy(() -> {
-            new LottoBonusNumberCreate(lottoWinningNumberCreate, bonusNumber);
+            new LottoBonusNumber(lottoWinningNumberCreate, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -57,7 +57,7 @@ class LottoBonusNumberCreateTest {
         // when
         // then
         Assertions.assertThatThrownBy(() -> {
-            new LottoBonusNumberCreate(lottoWinningNumberCreate, bonusNumber);
+            new LottoBonusNumber(lottoWinningNumberCreate, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

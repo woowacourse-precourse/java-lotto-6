@@ -1,7 +1,7 @@
 package lotto.Message;
 
 public enum OutputViewMessage {
-    PURCHASED_LOTTO_COUNT("\n%d를 구매하셨습니다."),
+    PURCHASED_LOTTO_COUNT("\n%d개를 구매하셨습니다."),
     WINNING_STATS("\n당첨 통계\n---"),
     RESULT_WITHOUT_BONUS("%d개 일치 (%,d원) - %d개"),
     RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),

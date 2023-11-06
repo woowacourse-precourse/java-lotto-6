@@ -1,5 +1,6 @@
 # 기능 명세
 ## 기능 목록
+### 로또 기계(LottoMachine)
 - 로또 구입 금액을 입력받을 수 있다. inputPurchasePrice()
     - 구입 금액에 해당하는 만큼 로또를 발행할 수 있다.
     - 로도 `1`장의 가격은 `1,000`원이다.
@@ -12,6 +13,7 @@
         - 발행된 로또 번호를 차례로 출력할 수 있다. printLottos()
             - 발행된 로또 번호를 출력할 수 있다. printLottoNumbers()
                 - 하나의 로또에서는 오름차순으로 정렬되어야 한다. sortNumbers()
+### 구매자(Buyer)
 - 당첨 번호를 추첨할 수 있다. drawNumber()
     - 추첨 시 `6`개의 중복되지 않는 숫자와 `1`개의 보너스 번호를 뽑을 수 있다.
     - `6`개의 번호와 보너스 번호는 별도로 저장되어야 한다.
@@ -20,6 +22,7 @@
             - 입력받은 값의 중복을 검사할 수 있다. checkDuplicationFromNumbers()
         - `1`개의 보너스 번호를 뽑을 수 있다. inputBonusNumber()
             - 앞에서 입력한 `6`개의 숫자와 중복되면 안된다. checkDuplicationWithPrev()
+### 결과 판독기(LottoResultChecker)
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교할 수 있다.
     - 당첨 내역을 출력할 수 있다. printTotalPrize()
         - `3`개 일치 (`5,000`원) - `1`개

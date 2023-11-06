@@ -93,11 +93,23 @@ class LottoTest {
     }
 
     @Test
-    void 로또_결과가_보너스번호를_포함한_5개_일치인_경우_해당하는_Result를_반환한다() {
+    void 보너스번호와_5개_로또번호가_일치하는_경우_해당하는_Result를_반환한다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto compareLotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
         BonusNumber bonusNumber = new BonusNumber(6, compareLotto);
         Result expected = Result.FIVE_MATCH_WITH_BONUS;
+
+        Result actual = lotto.countMatch(compareLotto, bonusNumber);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void 보너스번호와_4개_로또번호가_일치하는_경우_해당하는_Result를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto compareLotto = new Lotto(List.of(1, 2, 3, 4, 44, 45));
+        BonusNumber bonusNumber = new BonusNumber(5, compareLotto);
+        Result expected = Result.FOUR_MATCH;
 
         Result actual = lotto.countMatch(compareLotto, bonusNumber);
 

@@ -20,7 +20,7 @@ public class OutputView {
         }
     }
 
-    private String joinNumbers(CharSequence delimiter, List<Integer> numbers) {
+    String joinNumbers(CharSequence delimiter, List<Integer> numbers) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer number : numbers) {
             stringBuilder.append(number);
@@ -45,7 +45,7 @@ public class OutputView {
         System.out.println(outputBuilder.toString());
     }
 
-    public String joinPrize(Prize prize, int count){
+    String joinPrize(Prize prize, int count){
         StringBuilder outputBuilder = new StringBuilder();
         int matchCount = prize.getMatchCount();
         String reward = Utils.NUMBER_FORMAT_US.format(prize.getReward());
@@ -61,7 +61,7 @@ public class OutputView {
         return outputBuilder.toString();
     }
 
-    private String checkSecondPrize(Prize prize) {
+    String checkSecondPrize(Prize prize) {
         StringBuilder stringBuilder = new StringBuilder();
         if (Prize.SECOND_REWARD.equals(prize)) {
             stringBuilder.append(", 보너스 볼 일치");

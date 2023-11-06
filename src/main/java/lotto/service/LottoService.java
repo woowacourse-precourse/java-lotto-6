@@ -51,7 +51,7 @@ public class LottoService {
         return Utils.roundNumberBySecondDecimalPlace(rewardRatio);
     }
 
-    public Map<Prize, Integer> initializeRewardCount() {
+    Map<Prize, Integer> initializeRewardCount() {
         Map<Prize, Integer> rewardCount = new LinkedHashMap<>();
         rewardCount.put(Prize.FIFTH_REWARD, 0);
         rewardCount.put(Prize.FOURTH_REWARD, 0);
@@ -61,7 +61,7 @@ public class LottoService {
         return rewardCount;
     }
 
-    public int countLottoByWinningNumbers(Lotto lotto, Set<Integer> winningNumbers) {
+    int countLottoByWinningNumbers(Lotto lotto, Set<Integer> winningNumbers) {
         List<Integer> userPickNumbers = lotto.getNumbers();
         int count = 0;
         for (Integer userPickNumber : userPickNumbers) {
@@ -72,11 +72,11 @@ public class LottoService {
         return count;
     }
 
-    public boolean checkNumber(Set<Integer> winningNumbers, int targetNumber) {
+    boolean checkNumber(Set<Integer> winningNumbers, int targetNumber) {
         return winningNumbers.contains(targetNumber);
     }
 
-    public Prize getPrize(int count, boolean isExistBonusNumber) {
+    Prize getPrize(int count, boolean isExistBonusNumber) {
         if (count == 6) {
             return Prize.FIRST_REWARD;
         }
@@ -92,7 +92,7 @@ public class LottoService {
         return null;
     }
 
-    public Prize compareSecondAndThird(boolean isExistBonusNumber) {
+    Prize compareSecondAndThird(boolean isExistBonusNumber) {
         if (isExistBonusNumber) {
             return Prize.SECOND_REWARD;
         }

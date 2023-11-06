@@ -47,7 +47,7 @@ public class InputView {
         return bonusNumber;
     }
 
-    private void validateWinningNumbers(Set<Integer> originalWinningNumbers){
+    void validateWinningNumbers(Set<Integer> originalWinningNumbers){
         if(originalWinningNumbers.size() != 6){
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }
@@ -56,14 +56,14 @@ public class InputView {
         }
     }
 
-    private void validateBonusNumber(Set<Integer> originalWinningNumbers, int bonusNumber) {
+    void validateBonusNumber(Set<Integer> originalWinningNumbers, int bonusNumber) {
         validateLottoRange(bonusNumber);
         if (originalWinningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_CONTAINS_BONUS_NUMBER_IN_WINNING_NUMBERS.getMessage());
         }
     }
 
-    private void validateLottoRange(int number) {
+    void validateLottoRange(int number) {
         if (!(1 <= number && number <= 45)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_RANGE.getMessage());
         }

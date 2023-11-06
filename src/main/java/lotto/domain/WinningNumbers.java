@@ -13,7 +13,7 @@ public class WinningNumbers {
         this.originalWinningNumbers = originalWinningNumbers;
     }
 
-    private void validate(Set<Integer> originalWinningNumbers, int bonusNumber) {
+    void validate(Set<Integer> originalWinningNumbers, int bonusNumber) {
         if (originalWinningNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }
@@ -26,7 +26,7 @@ public class WinningNumbers {
         }
     }
 
-    private void validateLottoRange(int number) {
+    void validateLottoRange(int number) {
         if (!(1 <= number && number <= 45)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_RANGE.getMessage());
         }

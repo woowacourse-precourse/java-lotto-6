@@ -15,7 +15,7 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
-    private void validate(List<Integer> numbers) {
+    void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MET_LOTTO_NUMBERS_LENGTH.getMessage());
         }

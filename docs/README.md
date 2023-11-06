@@ -69,7 +69,7 @@
   - 정답과 일치하는 번호의 개수를 반환한다.
 - [x] `LottoController::calculateLottoRank` 메서드
   - 정답 로또, 검사 로또를 인수로 받아 등수를 반환한다.
-- [ ] `LottoController::calculateLottoResult` 메서드
+- [x] `LottoController::calculateLottoResult` 메서드
   - 정답 로또, 검사 로또 리스트를 인수로 받아 순위 통계를 반환한다.
 
 ## 당첨 내역 출력 기능

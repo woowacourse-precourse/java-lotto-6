@@ -42,7 +42,7 @@ class InputValidatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         InputValidator inputValidator = new InputValidator();
 
-        inputValidator.validateWinningNumbers(winningNumbers);
+        inputValidator.validateDrawNumbers(winningNumbers);
     }
 
     @Test
@@ -51,7 +51,7 @@ class InputValidatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5);
         InputValidator inputValidator = new InputValidator();
 
-        Assertions.assertThatThrownBy(() -> inputValidator.validateWinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> inputValidator.validateDrawNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -61,7 +61,7 @@ class InputValidatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
         InputValidator inputValidator = new InputValidator();
 
-        Assertions.assertThatThrownBy(() -> inputValidator.validateWinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> inputValidator.validateDrawNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -71,7 +71,7 @@ class InputValidatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 4, 6);
         InputValidator inputValidator = new InputValidator();
 
-        Assertions.assertThatThrownBy(() -> inputValidator.validateWinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> inputValidator.validateDrawNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -81,7 +81,7 @@ class InputValidatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 4, 46);
         InputValidator inputValidator = new InputValidator();
 
-        Assertions.assertThatThrownBy(() -> inputValidator.validateWinningNumbers(winningNumbers))
+        Assertions.assertThatThrownBy(() -> inputValidator.validateDrawNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

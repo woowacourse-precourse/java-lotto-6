@@ -28,6 +28,6 @@ public class Lotto {
         if (this.numbers.contains(bonusNumber)){
             count += 1;
         }
-        return Long.valueOf(count).intValue();
+        return Math.toIntExact(count);
     }
 }

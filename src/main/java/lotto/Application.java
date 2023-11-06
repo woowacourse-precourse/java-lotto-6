@@ -17,7 +17,8 @@ public class Application {
         }
         
         // 로또 추출 및 출력
-//        gameManager.generageLotto(money);
+        gameManager.generateLotto(money);
+        
         // 당첨 숫자, 보너스 번호 입력
         // 당첨 통계 처리 및 출력
     }

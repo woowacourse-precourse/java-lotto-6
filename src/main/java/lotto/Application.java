@@ -7,87 +7,197 @@ import java.util.stream.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.ConstantMessage;
+
+import static lotto.constant.ConstantMessage.*;
+import static lotto.exception.ErrorMessage.*;
 
 public class Application {
+
     public static void main(String[] args) {
 
-        int lottoPrice = 1000;
-        int parseMoney = 0;
-        System.out.println("구입금액을 입력해 주세요.");
-        String money = Console.readLine();
+        final int LOTTO_PRICE = 1000;
+
+        String money = inputBuyMoney();
 
         System.out.println();
 
-        if (money.isBlank()) {
-            throw new IllegalStateException("[ERROR] 아무 것도 입력되지 않았습니다.");
-        }
+        validateEmpty(money);
 
+        validateNumberFormat(money);
+
+        int parseMoney = parseInteger(money);
+
+        validateStartNumber(money);
+
+        validateUnit(parseMoney);
+
+        int buyLottoCount = buyLottoTicket(parseMoney, LOTTO_PRICE);
+
+        printLottoTicketCount(buyLottoCount);
+
+        List<Lotto> lotties = collectLotto(buyLottoCount);
+
+        printLotto(lotties);
+
+        System.out.println();
+
+        String winNumber = inputWinNumber();
+
+        System.out.println();
+
+        validateEmpty(winNumber);
+
+        validateWinNumberFormat(winNumber);
+
+        int[] winNumbers = parseIntArray(winNumber);
+
+        List<Integer> parseWinNumbers = parseIntList(winNumbers);
+
+        validateSixNumber(parseWinNumbers);
+
+        String bonusNumber = inputBonusNumber();
+
+        validateEmpty(bonusNumber);
+
+        validateNumberFormat(bonusNumber);
+
+        int parseBounusNumber = parseInteger(bonusNumber);
+
+        validateNumberRange(parseBounusNumber);
+
+        validateDuplicateNumber(parseWinNumbers, parseBounusNumber);
+
+        getWinNumberCount(lotties, parseWinNumbers, parseBounusNumber, parseMoney);
+    }
+
+    public static List<Integer> makeLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers;
+    }
+
+    public static void printConstantMessage(ConstantMessage ConstantMessage) {
+        System.out.print(ConstantMessage.getMessage());
+    }
+
+    public static String inputBuyMoney() {
+        printConstantMessage(INPUT_BUY_MONEY);
+        return Console.readLine();
+    }
+
+    //try catch로 묶기
+    public static void validateEmpty(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(EMPTY.getErrorMessage());
+        }
+    }
+
+    public static int parseInteger(String input) {
+        return Integer.parseInt(input);
+    }
+
+    public static void validateNumberFormat(String input) {
         try {
-            parseMoney = Integer.parseInt(money);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println("[ERROR] 숫자 형식이 아닙니다.");
+            parseInteger(input);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(INCORRECT_NUMBER_FORMAT.getErrorMessage());
         }
+    }
 
-        if (money.charAt(0) == '0') {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 숫자입니다.");
+    public static void validateStartNumber(String input) {
+        final int START_NUMBER = 0;
+        final char CHECK_CHARACTER = '0';
+        if (input.charAt(START_NUMBER) == CHECK_CHARACTER) {
+            throw new IllegalArgumentException(START_LETTER_ZERO.getErrorMessage());
         }
+    }
 
-        if (parseMoney % 1000 != 0) {
+    public static void validateUnit(int input) {
+        final int UNIT = 1000;
+        final int REST_NUMBER = 0;
+        if (input % UNIT != REST_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
         }
+    }
 
-        int buyLottoCount = parseMoney / lottoPrice;
+    public static int buyLottoTicket(int money, int lottoPrice) {
+        return money / lottoPrice;
+    }
 
-        System.out.println(buyLottoCount + "개를 구매했습니다.");
+    public static void printLottoTicketCount(int lottoTicketCount) {
+        System.out.print(lottoTicketCount);
+        printConstantMessage(BUY_LOTTO_TICKET);
+    }
 
-        ArrayList<Lotto> lotties = new ArrayList<>();
-        for (int i = 0; i < buyLottoCount; i++) {
+    public static List<Lotto> collectLotto(int lottoTicketCount) {
+        List<Lotto> lotties = new ArrayList<>();
+        for (int i = 0; i < lottoTicketCount; i++) {
             Lotto lotto = new Lotto(makeLotto());
             lotties.add(lotto);
+        }
+        return lotties;
+    }
+
+    public static void printLotto(List<Lotto> lotties) {
+        for (Lotto lotto : lotties) {
             System.out.println(lotto.getLotto().toString());
         }
+    }
 
-        System.out.println();
+    public static String inputWinNumber() {
+        printConstantMessage(INPUT_WIN_NUMBER);
+        return Console.readLine();
+    }
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winNumber = Console.readLine();
-
-        System.out.println();
-
-        if (winNumber.isBlank()) {
-            throw new IllegalStateException("[ERROR] 아무 것도 입력되지 않았습니다.");
+    public static void validateWinNumberFormat(String winNumber) {
+        final int START_NUMBER = 0;
+        final int LAST_NUMBER = winNumber.length() - 1;
+        final char CHECK_CHARACTER = ',';
+        if (winNumber.charAt(START_NUMBER) == CHECK_CHARACTER || winNumber.charAt(LAST_NUMBER) == CHECK_CHARACTER) {
+            throw new IllegalArgumentException(INCORRECT_WIN_NUMBER_FORMAT.getErrorMessage());
         }
+    }
 
-        if (winNumber.charAt(0) == ',' || winNumber.charAt(winNumber.length() - 1) == ',') {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 숫자입니다.");
+    public static String[] splitString(String winNumber) {
+        return winNumber.split(",");
+    }
+
+    public static int[] parseIntArray(String winNumber) {
+        return Stream.of(splitString(winNumber)).mapToInt(Integer::parseInt).toArray();
+    }
+
+    public static List<Integer> parseIntList(int[] winNumbers) {
+        return Arrays.stream(winNumbers).boxed().collect(Collectors.toList());
+    }
+
+    public static void validateSixNumber(List<Integer> parseWinNumbers) {
+        final int TARGET_NUMBER_COUNT = 6;
+        if (parseWinNumbers.size() != TARGET_NUMBER_COUNT) {
+            throw new IllegalArgumentException(NOT_SIX_NUMBER.getErrorMessage());
         }
+    }
 
-        int[] winNumbers = Stream.of(winNumber.split(",")).mapToInt(Integer::parseInt).toArray();
+    public static String inputBonusNumber() {
+        printConstantMessage(INPUT_BONUS_NUMBER);
+        return Console.readLine();
+    }
 
-        List<Integer> parseWinNumbers = Arrays.stream(winNumbers).boxed().collect(Collectors.toList());
-
-        if (winNumbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+    public static void validateNumberRange(int parseBounusNumber) {
+        final int MIN_RAGNE = 1;
+        final int MAX_RANGE = 45;
+        if (parseBounusNumber < MIN_RAGNE || parseBounusNumber > MAX_RANGE) {
+            throw new IllegalArgumentException(NOT_IN_INPUT_RANGE.getErrorMessage());
         }
+    }
 
-        System.out.println("보너스 번호를 입력해주세요.");
-        String bonusNumber = Console.readLine();
-        int parseBounusNumber = Integer.parseInt(bonusNumber);
-
-        System.out.println();
-
-        if (bonusNumber.isBlank()) {
-            throw new IllegalStateException("[ERROR] 아무 것도 입력되지 않았습니다.");
-        }
-
-        if (parseBounusNumber < 1 || parseBounusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
-        }
-
+    public static void validateDuplicateNumber(List<Integer> parseWinNumbers, int parseBounusNumber) {
         if (parseWinNumbers.contains(parseBounusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 다른 번호를 입력해주세요.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getErrorMessage());
         }
+    }
 
+    public static void getWinNumberCount(List<Lotto> lotties, List<Integer> parseWinNumbers, int parseBonusNumber,
+            int parseMoney) {
         int threeCorrect = 0;
         int fourCorrect = 0;
         int fiveCorrect = 0;
@@ -98,16 +208,8 @@ public class Application {
         for (int i = 0; i < lotties.size(); i++) {
             int correctCount = 0;
             Lotto lotto = lotties.get(i);
-            for (int j = 0; j < lotto.getLotto().size(); j++) {
-                if (lotto.getLotto().indexOf(parseWinNumbers.get(j)) != -1) {
-                    correctCount++;
-                }
-
-                if (lotto.getLotto().contains(parseBounusNumber)) {
-                    hasBonusNumber = true;
-                }
-            }
-
+            correctCount = checkWinNumber(lotto, correctCount, parseWinNumbers);
+            hasBonusNumber = checkBonusNumber(lotto, parseBonusNumber);
             if (correctCount == 3) {
                 threeCorrect++;
                 earnMoney += 5000;
@@ -145,10 +247,29 @@ public class Application {
         double parseEarnMoney = (double) earnMoney;
         double rateOfReturn = parseEarnMoney / parseMoney * 100;
         System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+
     }
 
-    public static List<Integer> makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+    public static int checkWinNumber(Lotto lotto, int correctCount, List<Integer> parseWinNumbers) {
+        final int INCORRECT_NUMBER = -1;
+        for (int j = 0; j < lotto.getLotto().size(); j++) {
+            if (lotto.getLotto().indexOf(parseWinNumbers.get(j)) != INCORRECT_NUMBER) {
+                correctCount++;
+            }
+        }
+        return correctCount;
     }
+
+    public static boolean checkBonusNumber(Lotto lotto, int parseBounusNumber) {
+        if (lotto.getLotto().contains(parseBounusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void getResult(int correctCount, boolean hasBonusNumber, int earnMoney, int threeCorrect,
+            int fourCorrect, int fiveCorrect, int fiveBonusCorrect, int sixCorrect) {
+
+    }
+
 }

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.view.OutputView.printLottoList;
 import static lotto.view.OutputView.printLottoQuantity;
+import static lotto.view.OutputView.printRate;
 import static lotto.view.OutputView.printResult;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class LottoController {
 
         Map<Rank, Integer> result = lottoResult.compareLotto(lottos, winningLotto, bonusNumber);
         printResult(result);
+        printRate(result, money);
     }
 
 

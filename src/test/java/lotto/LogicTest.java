@@ -3,13 +3,12 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.logic.LottoLogic;
 import lotto.view.ConsoleView;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoLogicTest extends NsTest {
+public class LogicTest extends NsTest {
 
     @Override
     protected void runMain() {

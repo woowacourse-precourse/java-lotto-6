@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.utils.StringUtils;
+import lotto.utils.constant.Constant;
 import lotto.utils.constant.LottoConstant;
 import lotto.utils.message.ErrorMessage;
 import lotto.validation.AmountValidation;
@@ -16,5 +17,9 @@ public class Amount {
 
     public int getLottoCount() {
         return money / LottoConstant.LOTTO_AMOUNT;
+    }
+
+    public double calculateYield(int prize) {
+        return Constant.PERCENT * prize / money;
     }
 }

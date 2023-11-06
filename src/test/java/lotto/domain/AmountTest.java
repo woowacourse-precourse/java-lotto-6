@@ -60,4 +60,19 @@ class AmountTest {
         // then
         assertThat(lottoCount).isEqualTo(8);
     }
+
+    @Test
+    @DisplayName("수익률을 계산한다.")
+    public void calculateYield() {
+        // given
+        String money = "8000";
+        Amount amount = new Amount(money);
+        int prize = Ranking.FIFTH.getPrice();
+
+        // when
+        double yield = amount.calculateYield(prize);
+
+        // then
+        assertThat(yield).isEqualTo(62.5);
+    }
 }

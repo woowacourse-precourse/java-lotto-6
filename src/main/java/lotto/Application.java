@@ -1,13 +1,17 @@
 package lotto;
 
+import static lotto.Enum.InputMessage.BUY_HOW_MANY;
 import static lotto.Enum.InputMessage.INPUT_PURCHASE_AMOUNT;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         String input;
         int money;
+        int countLotto;
+        List<Lotto> lottos;
 
         while (true) {
             try {
@@ -21,5 +25,11 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+        countLotto = money / 1000;
+        System.out.println("\n" + countLotto + BUY_HOW_MANY.getMessage());
+        lottos = LottoProcess.publishLotto(countLotto);
+        LottoProcess.printLotto(lottos, countLotto);
+
     }
 }

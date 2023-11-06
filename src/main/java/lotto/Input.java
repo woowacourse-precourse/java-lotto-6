@@ -49,15 +49,15 @@ public class Input {
 
     private void purchaseAmountValidate(String inputStr){
         if (inputStr.isEmpty()){
-            throw new IllegalArgumentException(ErrorMessage.NULLSTRING.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
         }
         for (int i = 0; i < inputStr.length(); i++) {
             if (Utils.isNumeric(inputStr.charAt(i)) == false) {
-                throw new IllegalArgumentException(ErrorMessage.NONNUMERICCHAR.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_CHAR.getMessage());
             }
         }
         if (Integer.parseInt(inputStr) % 1000 != 0){
-            throw new IllegalArgumentException(ErrorMessage.NOTDIVIED1000.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIED_1000.getMessage());
         }
     }
 

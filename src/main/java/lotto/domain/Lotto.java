@@ -9,16 +9,16 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    private Lotto(List<Integer> numbers) {
+    private Lotto(final List<Integer> numbers) {
         this.numbers = new ArrayList<>(numbers);
     }
 
-    public static Lotto from(List<Integer> numbers) {
+    public static Lotto from(final List<Integer> numbers) {
         validate(numbers);
         return new Lotto(numbers);
     }
 
-    private static void validate(List<Integer> numbers) {
+    private static void validate(final List<Integer> numbers) {
         if (isSameLength(numbers)) {
             throw new IllegalArgumentException(
                     String.format("[ERROR] %d개로 로또를 생성하려 했습니다. 로또의 번호는 6개 입니다", numbers.size()));
@@ -33,33 +33,33 @@ public class Lotto {
         }
     }
 
-    private static boolean isBoundary(List<Integer> numbers) {
+    private static boolean isBoundary(final List<Integer> numbers) {
         return numbers.stream().allMatch(number -> IsRangeNumber(number));
     }
 
-    private static boolean IsRangeNumber(int number) {
+    private static boolean IsRangeNumber(final int number) {
         return LottoConstants.MIN_NUMBER.getConstants() <= number && number <= LottoConstants.MAX_NUMBER.getConstants();
 
     }
 
-    private static boolean isDupplicated(List<Integer> numbers) {
+    private static boolean isDupplicated(final List<Integer> numbers) {
         List<Integer> duplicated = numbers.stream().distinct().toList();
         return duplicated.size() == numbers.size();
     }
 
-    private static boolean isSameLength(List<Integer> numbers) {
+    private static boolean isSameLength(final List<Integer> numbers) {
         return numbers.size() != LottoConstants.LENGTH.getConstants();
     }
 
-    public static Lotto createAutoLottoNumbers(Generator generator) {
+    public static Lotto createAutoLottoNumbers(final Generator generator) {
         return new Lotto(generator.generate());
     }
 
-    public static int matchCount(Lotto given, List<Integer> winnings) {
+    public static int matchCount(final Lotto given, final List<Integer> winnings) {
         return (int) given.getLotto().stream().filter(n -> isInWinning(n, winnings)).count();
     }
 
-    private static boolean isInWinning(int number, List<Integer> winnings) {
+    private static boolean isInWinning(final int number, final List<Integer> winnings) {
         return winnings.stream().anyMatch(n -> n == number);
     }
 

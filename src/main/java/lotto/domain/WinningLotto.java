@@ -6,11 +6,11 @@ public class WinningLotto {
 
     private final Lotto winningLotto;
 
-    public WinningLotto(List<Integer> winnings) {
+    public WinningLotto(final List<Integer> winnings) {
         this.winningLotto = Lotto.from(winnings);
     }
 
-    public static WinningLotto createWinningLottos(List<Integer> winnings) {
+    public static WinningLotto createWinningLottos(final List<Integer> winnings) {
         return new WinningLotto(winnings);
     }
 

@@ -37,4 +37,11 @@ class LottoTest {
         Lotto winningLotto = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
         assertEquals(3, userLotto.matchCount(winningLotto));
     }
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있으면 true를 반환한다.")
+    @Test
+    public void testContains() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertTrue(lotto.contains(6));
+    }
+    
 }

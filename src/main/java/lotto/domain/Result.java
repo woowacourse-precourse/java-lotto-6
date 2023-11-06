@@ -10,7 +10,7 @@ public class Result {
     private double income = 0;
 
     public Result() {
-        ranks = new ArrayList<Integer>();
+        ranks = new ArrayList<>();
         for (int i = 0; i < RANK_NUMBER; i++) {
             ranks.add(0);
         }

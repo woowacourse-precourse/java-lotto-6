@@ -9,7 +9,7 @@ public class GameController {
     private final LottoMachine lottoMachine;
     private final Calculator calculator;
     private final Lottos lottos;
-    private Payment payment;
+
     private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
 
@@ -18,16 +18,16 @@ public class GameController {
     public GameController() {
         this.lottoMachine = new LottoMachine();
         this.lottos = new Lottos();
-        this.payment = new Payment();
         this.calculator = new Calculator(payment);
-        coin = Parser.parseAmountToCoin(payment);
+
         OutputView.printNumberOfLottoPurchase(coin);
 
     }
 
     public void run() {
-        String UserInput = InputView.inputPayment();
-
+        String inputPayment = InputView.inputPayment();
+        Payment payment = Payment.create(inputPayment);
+        int coin = Parser.parseAmountToCoin(payment);
 
         for (int i = 0; i < coin; i++) {
             Lotto lotto = lottoMachine.createLotto();

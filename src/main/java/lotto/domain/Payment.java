@@ -3,12 +3,12 @@ package lotto.domain;
 import lotto.utils.Parser;
 
 public class Payment {
-    private int amount;
+    private int payment;
 
-    public Payment(String inputValue){
+    private Payment(String inputValue){
         validateNullValue(inputValue);
-        this.amount = Parser.parseStringToInt(inputValue);
-        validateNoRemainderValue(this.amount);
+        validateNoRemainderValue(this.payment);
+        this.payment = Parser.parseStringToInt(inputValue);
     }
 
     void validateNullValue(String value) {
@@ -19,7 +19,11 @@ public class Payment {
         if (value % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
     }
 
-    public int getAmount() {
-        return amount;
+    public static Payment create(String inputValue) {
+        return new Payment(inputValue);
+    }
+
+    public int getPayment(){
+        return this.payment;
     }
 }

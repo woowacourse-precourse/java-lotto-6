@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.configuration.BonusCount;
-import lotto.configuration.WinningLevel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +23,7 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public List<List<Integer>> generateRandomLottoNumbers(Integer length) {
+    public List<List<Integer>> generateRandomLottoNumbers(Long length) {
 
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
@@ -52,7 +51,7 @@ public class LottoService {
 
         Lotto lotto = new Lotto(convertToLottoIntegerList("1,2,3,4,5,6"));
         List<Integer> winningLotto = lotto.getLotto();
-        List<List<Integer>> myLotto = generateRandomLottoNumbers(8);
+        List<List<Integer>> myLotto = generateRandomLottoNumbers(8L);
 
         for (int i = 0; i < 8; i++) {
             countMatchingWinningNumbers(winningLotto, myLotto.get(i));
@@ -66,4 +65,5 @@ public class LottoService {
         }
         return BonusCount.PLUS_ZERO.getWeight();
     }
+
 }

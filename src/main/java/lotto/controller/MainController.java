@@ -41,8 +41,13 @@ public class MainController {
         // 수익률 출력
     }
 
-    public void generateLotto() {
+    private void generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Lotto lotto = new Lotto(numbers);
+        printLotto(lotto.getLottoNumber());
+    }
+
+    private void printLotto(List<Integer> numbers) {
+        outputView.printLottoNumber(numbers);
     }
 }

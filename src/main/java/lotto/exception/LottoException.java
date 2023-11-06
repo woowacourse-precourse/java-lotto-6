@@ -28,4 +28,12 @@ public class LottoException {
             throw new IllegalArgumentException(Constants.ERROR + "로또 번호는 6개이어야 합니다");
         }
     }
+
+    public void validateNumbersPermittedRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number > Constants.MAX_RANGE_NUMBER || number < Constants.MIN_RANGE_NUMBER) {
+                throw new IllegalArgumentException(Constants.ERROR + "로또 번호의 범위는 1~45 사이여야 합니다");
+            }
+        }
+    }
 }

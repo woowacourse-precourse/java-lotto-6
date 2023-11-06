@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.Test;
 
-public class UserInputTest {
+public class UserInputMoneyTest {
 
     @Test
     void 금액_입력_테스트() {

@@ -1,6 +1,6 @@
 package domain;
 
-import domain.validator.LottoNumberValidator;
+import domain.validator.LottoValidator;
 
 import java.util.Comparator;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumberValidator.checkLottoValidation(numbers);
+        LottoValidator.checkLottoValidation(numbers);
         this.numbers = sortLottoNumberByAscendingOrder(numbers);
     }
 

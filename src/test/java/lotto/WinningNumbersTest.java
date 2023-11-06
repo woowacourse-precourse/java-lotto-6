@@ -39,4 +39,16 @@ class WinningNumbersTest {
                     .hasMessage(DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
+
+    @Nested
+    class 보너스번호_테스트 {
+        @Test
+        void 보너스번호가_당첨_번호와_중복된_경우_예외() {
+            int sameNumber = 20;
+
+            assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 10, sameNumber), sameNumber))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+    }
 }

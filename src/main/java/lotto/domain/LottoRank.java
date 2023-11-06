@@ -30,9 +30,7 @@ public enum LottoRank {
             }
             return THIRD;
         }
-
-        LottoRank matchingRank  = findRankByMatchingCount(matchingCount);
-        return matchingRank;
+        return findRankByMatchingCount(matchingCount);
     }
 
     public int getRankMatchCount() {

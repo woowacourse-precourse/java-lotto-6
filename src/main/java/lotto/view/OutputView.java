@@ -44,11 +44,25 @@ public class OutputView {
     private static void printWinningStatistics(HashMap<LottoRank, Integer> winningRankCount) {
         for (LottoRank lottoRank : LottoRank.values()) {
             if (lottoRank.equals(LottoRank.SECOND)) {
-                System.out.printf(SECOND_WINNING_FORMAT,lottoRank.getRankMatchCount(),lottoRank.getPrizeAsString(), winningRankCount.getOrDefault(lottoRank, ZERO));
+                printSecondRankInfo(winningRankCount, lottoRank);
                 continue;
             }
-            System.out.printf(WINNING_RESULT_FORMAT,lottoRank.getRankMatchCount(),lottoRank.getPrizeAsString(), winningRankCount.getOrDefault(lottoRank,ZERO));
+            printWinningRankInfo(winningRankCount, lottoRank);
         }
+    }
+
+    private static void printSecondRankInfo(HashMap<LottoRank, Integer> winningRankCount, LottoRank lottoRank) {
+        System.out.printf(SECOND_WINNING_FORMAT,
+                lottoRank.getRankMatchCount(),
+                lottoRank.getPrizeAsString(),
+                winningRankCount.getOrDefault(lottoRank, ZERO));
+    }
+
+    private static void printWinningRankInfo(HashMap<LottoRank, Integer> winningRankCount, LottoRank lottoRank) {
+        System.out.printf(WINNING_RESULT_FORMAT,
+                lottoRank.getRankMatchCount(),
+                lottoRank.getPrizeAsString(),
+                winningRankCount.getOrDefault(lottoRank,ZERO));
     }
 
     private static void printProfitRate(double profitRate) {

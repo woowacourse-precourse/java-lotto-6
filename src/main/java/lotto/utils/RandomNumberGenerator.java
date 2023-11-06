@@ -9,6 +9,9 @@ import static lotto.constants.LottoConstants.*;
 public class RandomNumberGenerator {
 
     public List<Integer> uniqueNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(
+                LOTTO_NUMBER_MIN,
+                LOTTO_NUMBER_MAX,
+                LOTTO_NUMBER_COUNT);
     }
 }

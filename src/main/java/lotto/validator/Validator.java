@@ -61,7 +61,6 @@ public class Validator {
         if (isNotInteger(input)) {
             throw new IllegalArgumentException(NOT_INTEGER_NUMBER);
         }
-
         return Integer.parseInt(input);
     }
 

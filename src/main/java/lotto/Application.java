@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoGameController;
-import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.utils.RandomNumberGenerator;
 

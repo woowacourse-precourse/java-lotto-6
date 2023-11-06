@@ -10,8 +10,14 @@ import lotto.execption.InputMoneyParseIntException;
 import lotto.execption.LottoNumberRangeException;
 
 public class InputView {
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final String PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
     public Money inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT);
         String input = Console.readLine();
         return parseMoney(input);
     }
@@ -26,7 +32,7 @@ public class InputView {
     }
 
     public List<Integer> inputLottoWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요");
+        System.out.println(WINNING_NUMBERS);
         String numbers = Console.readLine();
 
         return Stream.of(numbers.split(","))
@@ -36,7 +42,7 @@ public class InputView {
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER);
         int number = Integer.parseInt(Console.readLine());
         validateRange(number);
         validateDuplicate(winningNumbers, number);
@@ -49,11 +55,9 @@ public class InputView {
         }
     }
 
-
     private void validateRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new LottoNumberRangeException();
         }
     }
-
 }

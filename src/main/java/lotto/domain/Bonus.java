@@ -26,7 +26,15 @@ public class Bonus {
     }
 
     private boolean isLottoRange(int number) {
-        return LottoConstant.LOTTO_START_NUMBER > number || LottoConstant.LOTTO_END_NUMBER < number;
+        return isHight(number) || isLower(number);
+    }
+
+    private static boolean isHight(Integer number) {
+        return LottoConstant.LOTTO_END_NUMBER < number;
+    }
+
+    private static boolean isLower(Integer number) {
+        return LottoConstant.LOTTO_START_NUMBER > number;
     }
 
     public int sameTicket(List<Integer> ticket) {

@@ -64,6 +64,10 @@ public class LottoService {
         return (profit.doubleValue() / consumption) * 100;
     }
 
+    public List<Lotto> getLottoStorage() {
+        return lottoStorage;
+    }
+
     private void buyOneLotto() {
         Lotto lotto = new Lotto(NumberGenerator.generateLottoNumber());
         lottoStorage.add(lotto);

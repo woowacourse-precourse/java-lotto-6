@@ -50,7 +50,8 @@ public class Lotto {
 
         for (Lotto autoLottoTicket : autoLottoTickets) {
             int count = countMatchingLottoNumbers(autoLottoTicket);
-            boolean bonusMatch = bonusNumber.lottoNumbersContainBonusNumber(autoLottoTicket.numbers);
+            int number = bonusNumber.getBonusNumber();
+            boolean bonusMatch = autoLottoTicket.lottoContainNumber(number);
             LottoPrize lottoPrize = LottoPrize.valueOf(count, bonusMatch);
             lottoPrizes.add(lottoPrize);
         }
@@ -58,15 +59,18 @@ public class Lotto {
     }
 
     public int countMatchingLottoNumbers(Lotto autoLottoTicket) {
-        List<Integer> autoLottoNumbers = autoLottoTicket.numbers;
         int count = 0;
 
         for (Integer number : numbers) {
-            if (autoLottoNumbers.contains(number)) {
+            if (autoLottoTicket.lottoContainNumber(number)) {
                 count += 1;
             }
         }
         return count;
+    }
+
+    public boolean lottoContainNumber(int number) {
+        return numbers.contains(number);
     }
 
     @Override

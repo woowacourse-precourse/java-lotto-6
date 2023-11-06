@@ -1,26 +1,23 @@
 package lotto.domain;
 
+import lotto.utils.ValidateUtils;
+
 import java.util.List;
 
 public class BonusNumber {
     private final int BONUS_SIZE = 1;
     private final int bonusNumber;
+    private ValidateUtils validateUtils = new ValidateUtils();
 
-    public BonusNumber(WinningNumbers winningNumbers) {
-        List<Integer> bonusNumber  = winningNumbers.getWinningNumbers();
-        validateBonus(bonusNumber);
-
-        this.bonusNumber = bonusNumber.get(BONUS_SIZE-1);
+    public BonusNumber(int bonusNumber, Lotto lotto) {
+        lotto.lottoContainNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonus(List<Integer> bonusNumber) {
-        if (bonusNumber.size() != BONUS_SIZE) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
+    public static BonusNumber from(String inputString, Lotto lotto) {
+        ValidateUtils.validateNumeric(inputString);
 
-    public boolean lottoNumbersContainBonusNumber(List<Integer> lottoNumbers) {
-        return lottoNumbers.contains(bonusNumber);
+        return new BonusNumber(Integer.parseInt(inputString), lotto);
     }
 
     public int getBonusNumber() {

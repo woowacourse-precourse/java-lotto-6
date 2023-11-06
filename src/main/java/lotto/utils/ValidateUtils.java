@@ -21,15 +21,15 @@ public class ValidateUtils {
         }
     }
 
-    public static void validateNumeric(String purchaseAmount) {
-        if (!purchaseAmount.chars()
+    public static void validateNumeric(String inputString) {
+        if (!inputString.chars()
                 .allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }
 
-    public void validateMinimum(int purchaseAmount, int minPrice) {
-        if (purchaseAmount < minPrice) {
+    public void validateMinimum(int price, int minPrice) {
+        if (price < minPrice) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }

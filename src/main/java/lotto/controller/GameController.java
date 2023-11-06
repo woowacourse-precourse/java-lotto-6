@@ -51,8 +51,8 @@ public class GameController {
     public BonusNumber getBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                WinningNumbers bonusNumber = WinningNumbers.from(inputView.readBonusNumber());
-                return new BonusNumber(bonusNumber);
+                BonusNumber bonusNumber = BonusNumber.from(inputView.readBonusNumber(), winningLotto);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();

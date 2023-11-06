@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ class LottoResultGeneratorTest {
     WinningNumbers winningNumbers;
     BonusNumber bonusNumber;
     WinningLotto winningLotto;
-    long inputMoney = 10000;
+    LottoPurchaseAmount purchaseAmount = LottoPurchaseAmount.create("10000");
 
     @DisplayName("당첨번호에 보너스넘버가 중복되지 않으면 정상 처리된다.")
     @Test
@@ -24,7 +23,7 @@ class LottoResultGeneratorTest {
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
 
         // when
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, inputMoney);
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, purchaseAmount);
 
         // then
         assertThat(lottoResultGenerator).isNotNull();
@@ -53,7 +52,7 @@ class LottoResultGeneratorTest {
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
         bonusNumber = BonusNumber.create("7");
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, inputMoney);
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, purchaseAmount);
         List<Lotto> lottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
 
         // when, then
@@ -77,7 +76,7 @@ class LottoResultGeneratorTest {
         winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
         bonusNumber = BonusNumber.create("7");
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
-        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, inputMoney);
+        LottoResultGenerator lottoResultGenerator = LottoResultGenerator.create(winningLotto, purchaseAmount);
 
         // when, then
         lottoResultGenerator.generatePrizeResult(Lottos.create(lottos));

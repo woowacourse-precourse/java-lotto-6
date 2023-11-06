@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.util.exception.ErrorMessage;
+import lotto.util.message.exception.ErrorMessage;
 
 import static lotto.util.Constants.DIVISION_VALUE;
 import static lotto.util.Constants.REMAINDER;

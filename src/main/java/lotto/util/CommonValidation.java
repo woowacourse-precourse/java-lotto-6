@@ -3,9 +3,9 @@ package lotto.util;
 import static lotto.util.Constants.INITIAL_VALUE;
 import static lotto.util.Constants.NUMBER_REGEXP;
 import static lotto.util.Constants.BLANK;
-import static lotto.util.exception.ErrorMessage.INVALID_ZERO_NUMBER;
-import static lotto.util.exception.ErrorMessage.INVALID_STRING;
-import static lotto.util.exception.ErrorMessage.INVALID_BLANK;
+import static lotto.util.message.exception.ErrorMessage.INVALID_ZERO_NUMBER;
+import static lotto.util.message.exception.ErrorMessage.INVALID_STRING;
+import static lotto.util.message.exception.ErrorMessage.INVALID_BLANK;
 
 public class CommonValidation {
     private CommonValidation(){}

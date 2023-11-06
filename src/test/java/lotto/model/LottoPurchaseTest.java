@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.service.LottoService;
+import lotto.service.LottoPurchaseService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +20,8 @@ class LottoPurchaseTest {
     @Test
     @DisplayName("로또를 2개 발행한다.")
     void createUserLottery() {
-        List<Integer> randomNumbers1 = LottoService.createRandomNumbers();
-        List<Integer> randomNumbers2 = LottoService.createRandomNumbers();
+        List<Integer> randomNumbers1 = LottoPurchaseService.createRandomNumbers();
+        List<Integer> randomNumbers2 = LottoPurchaseService.createRandomNumbers();
         List<LottoPurchase> userLottery = new ArrayList<>();
 
         userLottery.add(LottoPurchase.createUserLottery(randomNumbers1));

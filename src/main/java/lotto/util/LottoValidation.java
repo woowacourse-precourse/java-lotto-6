@@ -7,9 +7,9 @@ import java.util.Set;
 import static lotto.util.Constants.MIN_RANGE;
 import static lotto.util.Constants.MAX_RANGE;
 import static lotto.util.Constants.LOTTO_MAX_SIZE;
-import static lotto.util.exception.ErrorMessage.INVALID_RANGE;
-import static lotto.util.exception.ErrorMessage.INVALID_LOTTO_COUNT;
-import static lotto.util.exception.ErrorMessage.INVALID_DUPLICATE_NUMBER;
+import static lotto.util.message.exception.ErrorMessage.INVALID_RANGE;
+import static lotto.util.message.exception.ErrorMessage.INVALID_LOTTO_COUNT;
+import static lotto.util.message.exception.ErrorMessage.INVALID_DUPLICATE_NUMBER;
 
 public class LottoValidation {
     private LottoValidation(){}

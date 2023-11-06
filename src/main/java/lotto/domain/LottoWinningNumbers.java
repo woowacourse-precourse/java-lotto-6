@@ -16,12 +16,12 @@ public class LottoWinningNumbers {
     private List<Integer> winningNumber;
 
     public LottoWinningNumbers getWinningNumbersInfo() {
-        this.winningNumber = getWinningNumbers();
-        this.bonusNumber = getBonusNumbers();
+        this.winningNumber = inputWinningNumbers();
+        this.bonusNumber = inputBonusNumbers();
         return this;
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> inputWinningNumbers() {
         messageService.inputWinningNumberMessage();
         while (true) {
             try {
@@ -48,7 +48,7 @@ public class LottoWinningNumbers {
         return winningNumber;
     }
 
-    public int getBonusNumbers() {
+    public int inputBonusNumbers() {
         messageService.inputBonusNumberMessage();
         while (true) {
             try {

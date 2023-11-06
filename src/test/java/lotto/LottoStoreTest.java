@@ -1,14 +1,14 @@
 package lotto;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.model.LottoStore;
 import lotto.model.vo.Lotto;
 import lotto.model.vo.Money;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class LottoStoreTest {
     
@@ -24,7 +24,7 @@ public class LottoStoreTest {
     void should_throwException_when_notDivisibleBy1000() {
         Money money = new Money("13400");
 
-        Assertions.assertThatThrownBy(() -> lottoStore.sellLotto(money))
+        assertThatThrownBy(() -> lottoStore.sellLotto(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("1000 단위의 금액이 아닙니다.");
     }
@@ -36,7 +36,7 @@ public class LottoStoreTest {
 
         Lotto lotto = lottoStore.sellLotto(money).get(0);
 
-        Assertions.assertThat(lotto.getNumbers())
+        assertThat(lotto.getNumbers())
                 .isEqualTo(Arrays.asList(10, 12, 28, 30, 44, 45));
     }
 }

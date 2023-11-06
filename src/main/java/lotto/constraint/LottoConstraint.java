@@ -2,7 +2,6 @@ package lotto.constraint;
 
 public enum LottoConstraint {
     TOTAL_NUMBERS_OF_LOTTO(6),
-    TOTAL_NUMBERS_OF_BONUS_NUMBER(1),
     LOTTO_MINIMUM_BOUND(1),
     LOTTO_MAXIMUM_BOUND(45);
 

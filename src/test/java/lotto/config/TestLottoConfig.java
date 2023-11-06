@@ -30,6 +30,6 @@ public class TestLottoConfig implements LottoConfig {
 
     @Override
     public RandomNumberGenerator randomNumberGenerator() {
-        return (min, max, count) -> TestConstant.normalNumbers;
+        return (min, max, count) -> TestConstant.NORMAL_NUMBERS;
     }
 }

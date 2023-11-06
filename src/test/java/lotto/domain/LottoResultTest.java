@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.TestConstant;
 import lotto.constant.LottoConstraint;
 import lotto.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +26,7 @@ class LottoResultTest {
     @DisplayName("수익률을 계산한다.")
     @Test
     void calculateProfitRate() {
-        Payment payment = new Payment(TestConstant.minPaymentAmount);
+        Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
         lottoResult.increaseLottoRankCount(LottoRank.THREE_MATCH);
         double profitRate = lottoResult.calculateProfitRate(payment);
 

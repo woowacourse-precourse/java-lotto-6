@@ -12,6 +12,7 @@ class OutputView {
     private static final String PRINT_ISSUANCE_RESULT_SIZE_FORMAT = "%n%d개를 구매했습니다.%n";
     private static final String PRINT_EACH_PRIZE_RESULT_FORMAT = "%s (%s) - %d개%n";
     private static final String PRINT_EARNING_RATE_FORMAT = "총 수익률은 %s%%입니다.";
+    private static final String PRINT_ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
     private static final String PRINT_STATISTICS_HEADER = "당첨 통계";
     private static final String PRINT_STATISTICS_HEADER_DIVIDER = "---";
 
@@ -67,5 +68,9 @@ class OutputView {
 
     public static void printEarningRate(double earningRate) {
         System.out.format(PRINT_EARNING_RATE_FORMAT, earningRate);
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.format(PRINT_ERROR_MESSAGE_FORMAT, message);
     }
 }

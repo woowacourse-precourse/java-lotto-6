@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum ExceptionStatus {
     // 공통 사용자 입력 예외
@@ -11,7 +11,9 @@ public enum ExceptionStatus {
 
     //    로또 번호 공통
     LOTTO_COMMON_OUT_OF_RANGE("로또의 번호는 1~45 사이 숫자여야 합니다."),
+    LOTTO_COMMON_INVALID_SIZE("로또는 6자리 입력만 가능합니다."),
     LOTTO_COMMON_DUPLICATE("로또 번호는 중복될 수 없습니다."),
+    LOTTO_COMMON_EMPTY("로또 번호가 없습니다."),
 
     //  당첨번호 예외
     WINNING_NUMBER_EMPTY("당첨 번호가 입력되지 않았습니다."),

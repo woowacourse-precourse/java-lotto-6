@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,16 @@ public class LottoGameController {
     public void start() {
         game = new Game();
         OutputView.printRequestBuyAmount();
-        int buyAmount = Integer.parseInt(InputView.readBuyAmount());
+        int buyAmount = 0;
+        while (true) {
+            try {
+                buyAmount = Integer.parseInt(InputView.readBuyAmount());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+            }
+        }
+
         OutputView.printBuyCount(buyAmount);
         lottos = game.createLottos(buyAmount);
         OutputView.printCreatedLottos(lottos);

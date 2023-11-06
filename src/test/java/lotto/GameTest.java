@@ -26,7 +26,7 @@ public class GameTest {
     @Test
     void createLottos_CountEqual_Succes() {
         Game game = new Game();
-        Lottos lottos = game.createLottos(6);
+        Lottos lottos = game.createLottos(6000);
 
         assertThat(lottos.getLottos().size()).isEqualTo(6);
 
@@ -36,7 +36,7 @@ public class GameTest {
     @Test
     void CreatedLottos_EqualLottoCount_Success() {
         Game game = new Game();
-        Lottos lottos = game.createLottos(6);
+        Lottos lottos = game.createLottos(6000);
         assertThat(lottos.getLottos().size()).isEqualTo(6);
     }
 

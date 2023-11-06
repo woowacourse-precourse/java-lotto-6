@@ -23,7 +23,21 @@ class LottoModelTest {
     private final int CHECK_BONUS = 999;
     private final int BONUS_NUM = 40;
 
+    static Stream<Arguments> parameterProviderPublishTicket() {
+        return Stream.of(
+                arguments(Arrays.asList(5, 7, 9, 3, 1), "[1, 3, 5, 7, 9]")
+        );
+    }
+
     private LottoModel lottoModel;
+
+    class MockLotto extends Lotto {
+        private List<Integer> numbers;
+
+        MockLotto(List<Integer> numbers) {
+            super(numbers);
+        }
+    }
 
     @BeforeEach
     void setUp() {
@@ -126,21 +140,6 @@ class LottoModelTest {
         expect.put(Rewards.FIFTH, expect5);
         assertThat(lottoModel.makeWinningTable(result, bonus))
                 .isEqualTo(expect);
-    }
-
-    static Stream<Arguments> parameterProviderPublishTicket() {
-        return Stream.of(
-                arguments(Arrays.asList(5, 7, 9, 3, 1), "[1, 3, 5, 7, 9]")
-        );
-    }
-
-
-    class MockLotto extends Lotto {
-        private List<Integer> numbers;
-
-        MockLotto(List<Integer> numbers) {
-            super(numbers);
-        }
     }
 
 }

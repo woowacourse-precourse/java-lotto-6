@@ -1,4 +1,4 @@
-package lotto;
+package lotto.View;
 
 import java.math.BigDecimal;
 import java.util.List;

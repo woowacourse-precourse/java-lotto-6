@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.HashMap;
+
 public enum MatchNums {
     THREE(3, 5_000),
     FOUR(4, 50_000),
@@ -22,5 +24,4 @@ public enum MatchNums {
     public int getCost(){
         return cost;
     }
-
 }

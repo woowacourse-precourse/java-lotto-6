@@ -1,10 +1,11 @@
-package lotto;
+package lotto.Controller;
 
 import static java.lang.Integer.parseInt;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Controller.ValidateTools;
 
 public class InputValidate {
     private static final String SEPERATE = ",";

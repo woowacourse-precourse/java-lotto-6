@@ -1,7 +1,8 @@
-package lotto;
+package lotto.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Controller.ValidateTools;
 
 public class Lotto {
     private final List<Integer> numbers;

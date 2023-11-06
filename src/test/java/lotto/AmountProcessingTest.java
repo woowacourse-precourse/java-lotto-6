@@ -3,6 +3,8 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.Controller.AmountProcessing;
+import lotto.Controller.ValidateTools;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

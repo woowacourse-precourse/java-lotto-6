@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Controller;
 
 import static java.lang.Integer.parseInt;
 

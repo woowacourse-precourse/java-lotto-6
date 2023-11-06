@@ -1,9 +1,11 @@
-package lotto;
+package lotto.Model;
 
 import static lotto.MatchNums.*;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.Controller.CalculateLotto;
+import lotto.View.OutputView;
 
 public class StaisticsResult {
     private static final int COUNT_MIN = 3;

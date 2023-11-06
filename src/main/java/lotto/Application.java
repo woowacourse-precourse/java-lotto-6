@@ -1,5 +1,10 @@
 package lotto;
 
+import lotto.Controller.ProcessLotto;
+import lotto.Controller.ValidateTools;
+import lotto.View.InputView;
+import lotto.View.OutputView;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현

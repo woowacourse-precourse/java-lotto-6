@@ -15,6 +15,12 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s" + NEWLINE;
     private static final String RATE_OF_RETURN_FORMAT_PATTERN = "###,###.0";
 
+    private final MessageGenerator messageGenerator;
+
+    public OutputView(MessageGenerator messageGenerator) {
+        this.messageGenerator = messageGenerator;
+    }
+
     public void printLottos(List<LottoDto> lottos) {
         newLine();
         printLottoCount(lottos.size());
@@ -48,7 +54,7 @@ public class OutputView {
     private void printWinningStatistics(LottoResultDto lottoResult) {
         newLine();
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        System.out.println(MessageGenerator.generateStatisticsMessage(lottoResult.result()));
+        System.out.println(messageGenerator.generateStatisticsMessage(lottoResult.result()));
     }
 
     private void printRateOfReturn(double rateOfReturn) {

@@ -45,7 +45,7 @@ public class MessageGenerator {
         return decimalFormat.format(lottoRanking.getPrizeMoney());
     }
 
-    public static String generateStatisticsMessage(Map<LottoRanking, Integer> result) {
+    public String generateStatisticsMessage(Map<LottoRanking, Integer> result) {
         List<LottoRanking> outputOrder = LottoRanking.findOrder();
 
         return outputOrder.stream()
@@ -53,7 +53,7 @@ public class MessageGenerator {
                 .collect(Collectors.joining(OutputView.NEWLINE));
     }
 
-    private static String generateMessage(Map<LottoRanking, Integer> result, LottoRanking lottoRanking) {
+    private String generateMessage(Map<LottoRanking, Integer> result, LottoRanking lottoRanking) {
         int count = result.getOrDefault(lottoRanking, INITIAL_COUNT);
 
         return generator.get(lottoRanking).apply(count);

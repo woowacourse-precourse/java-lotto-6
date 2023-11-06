@@ -3,6 +3,7 @@ package lotto;
 import lotto.repository.PrizeMoneyRepository;
 import lotto.service.StatisticsService;
 import lotto.view.InputView;
+import lotto.view.MessageGenerator;
 import lotto.view.OutputView;
 
 public class ApplicationConfiguration {
@@ -12,7 +13,11 @@ public class ApplicationConfiguration {
     }
 
     public OutputView outputView() {
-        return new OutputView();
+        return new OutputView(messageGenerator());
+    }
+
+    private MessageGenerator messageGenerator() {
+        return new MessageGenerator();
     }
 
     public StatisticsService statisticsService() {

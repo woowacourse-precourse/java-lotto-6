@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -34,9 +36,29 @@ public class Lotto {
                 int numberOfLottos = amount / 1000;
                 List<Lotto> lottos = new ArrayList<>();
                 for (int i = 0; i < numberOfLottos; i++) {
-
-
+                    lottos.add(getLotto());
                 }
                 return lottos;
         }
+
+        private static Lotto getLotto() {
+                List<Integer> numbers = new ArrayList<>();
+                numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                return new Lotto(numbers);
+        }
+
+        public int numOfMatches(List<Integer> winningNumbers) {
+                int matches = 0;
+                for (int number : numbers) {
+                        if(winningNumbers.contains(number)) {
+                                matches++;
+                        }
+                }
+                return matches;
+        }
+
+        public boolean hasBonusNumber(int bonusNumber) {
+            return numbers.contains(bonusNumber);
+        }
+
 }

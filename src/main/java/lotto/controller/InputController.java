@@ -12,7 +12,6 @@ public class InputController {
     private static final String COMMA_DELIMITER = ",";
 
     private final NumberValidator numberValidator;
-
     private final InputView inputView;
 
     public InputController() {
@@ -21,14 +20,13 @@ public class InputController {
     }
 
     public int inputPurchasePrice() {
-        boolean isValidInput = false;
         int price = 0;
-        while (!isValidInput) {
+        while (true) {
             inputView.showPurchasePriceMessage();
             try {
                 price = convertInputData(Console.readLine());
                 price = Unit.calculateLottoTicketCanPurchase(price);
-                isValidInput = true;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -49,13 +47,12 @@ public class InputController {
     }
 
     public int checkBonusNumber(List<Integer> winningNumbers) {
-        boolean isValidInput = false;
-        int bonusNumber = 0;
-        while (!isValidInput) {
+        int bonusNumber;
+        while (true) {
             inputView.showInputBonusNumberMessage();
             try {
-                inputBonusNumber(winningNumbers);
-                isValidInput = true;
+                bonusNumber = inputBonusNumber(winningNumbers);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

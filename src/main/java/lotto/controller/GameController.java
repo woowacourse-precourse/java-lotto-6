@@ -26,7 +26,7 @@ public class GameController {
 
     public void play() {
         int purchasePrice = inputController.inputPurchasePrice();
-        List<Lotto> playerNumbers = purchaseLotto(purchasePrice);
+        List<Lotto> playerNumbers = generateLottoNumbers(purchasePrice);
         WinningLotto winningLotto = generateWinningLotto();
 
         ComparatorRequest comparatorRequest = new ComparatorRequest(winningLotto, playerNumbers);
@@ -35,24 +35,23 @@ public class GameController {
         outputView.showPayOff(lottoCalculator.calculatePayOff(purchasePrice));
     }
 
-    private List<Lotto> purchaseLotto(int purchasePrice) {
-        int buyingCount = Unit.getPurchaseNumber(purchasePrice);
-        outputView.showPurchaseMessage(buyingCount);
+    private List<Lotto> generateLottoNumbers(int purchasePrice) {
+        outputView.showPurchaseMessage(purchasePrice);
 
         PlayerLotto playerLotto = new PlayerLotto();
-        List<Lotto> playerNumbers = playerLotto.generatePlayerNumbers(buyingCount);
+        List<Lotto> playerNumbers = playerLotto.generatePlayerNumbers(purchasePrice);
         outputView.showPurchasedLottoNumbers(playerNumbers);
         return playerNumbers;
     }
 
-    private WinningLotto generateWinningLotto(){
-        boolean isTrue = false;
-        Lotto lotto = null;
-        while (!isTrue) {
-            inputView.showInputWinningNumberMessage();
+    private WinningLotto generateWinningLotto() {
+        Lotto lotto;
+        inputView.showInputWinningNumberMessage();
+        while (true) {
             try {
-                lotto = new Lotto(inputController.inputLottoNumbers());
-                isTrue = true;
+                List<Integer> numbers = inputController.inputLottoNumbers();
+                lotto = new Lotto(numbers);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

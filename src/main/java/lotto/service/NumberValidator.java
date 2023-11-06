@@ -3,7 +3,6 @@ package lotto.service;
 import java.util.List;
 import java.util.regex.Pattern;
 import lotto.domain.LottoNumbers;
-import lotto.domain.Unit;
 
 public class NumberValidator {
 

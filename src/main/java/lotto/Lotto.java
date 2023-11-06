@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -27,6 +28,7 @@ public class Lotto {
         for(Integer copyNum : copyNumbers){
             copyNumbers.add(copyNum);
         }
+        Collections.sort(copyNumbers);
         return copyNumbers;
     }
 }

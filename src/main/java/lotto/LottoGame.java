@@ -1,7 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,14 +17,30 @@ public class LottoGame {
 
     // 당첨 번호 추첨
     public Lotto drawLotto(){
-        // [8, 21, 23, 41, 42, 43]
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         System.out.println(numbers);
+
         return new Lotto(numbers);
     }
 
-    // 당첨 번호 + 보너스 번호 입력
+    // 당첨 번호
+    public Lotto inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        List<Integer> numbers = Arrays.stream((input.split(","))).map(Integer::valueOf).toList();
+        Lotto lotto = new Lotto(numbers);
+
+        return lotto;
+    }
+
+    // 보너스 번호 입력
+    public int inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonus = Integer.parseInt(Console.readLine());
+
+        return bonus;
+    }
     // 당첨 내역 출력
     // 수익률 출력
     // 예외 상황 출력

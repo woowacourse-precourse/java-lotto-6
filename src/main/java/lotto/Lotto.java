@@ -3,6 +3,8 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.io.ErrorHandler.validateRepeat;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -19,11 +21,5 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public static void validateRepeat(List<Integer> numbers) {
-        for (Integer i : numbers) {
-            if (Collections.frequency(numbers, i) > 1) {
-                throw new IllegalArgumentException("Error! 각 로또번호는 unique 해야 합니다");
-            }
-        }
-    }
+
 }

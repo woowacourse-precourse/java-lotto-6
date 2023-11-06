@@ -9,7 +9,7 @@ public class Application {
     public static void main(String[] args) {
         BuyPrice buyPrice = new BuyPrice();
         int buy = buyPrice.buylotto();
-        System.out.printf("%d개를 구매했습니다.\n", buy / 1000);
+        System.out.printf("\n%d개를 구매했습니다.\n", buy / 1000);
         List<List<Integer>> usernumber = new ArrayList<>();
         UserNumber userNumber = new UserNumber();
         for (int i = 0; i < buy / 1000; i++) {

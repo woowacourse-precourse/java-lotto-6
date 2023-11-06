@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class WinNumber {
@@ -16,7 +18,6 @@ public class WinNumber {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
     }
 }

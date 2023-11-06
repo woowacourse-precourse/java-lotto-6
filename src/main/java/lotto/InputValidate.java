@@ -2,13 +2,12 @@ package lotto;
 
 import static java.lang.Integer.parseInt;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputValidate {
-    public String isThereGap(String input) {
+    public String validateNumber(String input) {
         try {
             parseInt(input);
         } catch (NumberFormatException e) {
@@ -22,8 +21,14 @@ public class InputValidate {
     }
 
     public List<String> changeList(String input){
-        String[] splitNums = input.split(",");
-        return Arrays.stream(splitNums).collect(Collectors.toList());
+        List<String> splitNums = Arrays.asList(input.split(","));
+        isThereGap(splitNums);
+        return splitNums;
+    }
+
+    private boolean isThereGap(List<String> nums){
+        nums.stream().map(this::validateNumber);
+        return true;
     }
 
 

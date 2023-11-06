@@ -4,9 +4,9 @@ import lotto.view.console.ExceptionView;
 import lotto.view.console.InputView;
 import lotto.view.console.OutputView;
 
-public class AmountViewFacade {
+public class WinningNumbersViewFacade {
     public static String ask() {
-        OutputView.printInputAmount();
+        OutputView.printInputWinningNumbers();
         return InputView.readInput();
     }
 
@@ -14,4 +14,5 @@ public class AmountViewFacade {
         ExceptionView.printError(errorMessage);
         return ask();
     }
+
 }

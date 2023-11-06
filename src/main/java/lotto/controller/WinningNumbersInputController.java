@@ -4,8 +4,7 @@ import java.util.List;
 import lotto.domain.vo.WinningNumbers;
 import lotto.util.parser.InputParser;
 import lotto.util.validator.InputValidator;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.facade.WinningNumbersViewFacade;
 
 public class WinningNumbersInputController implements InputController<WinningNumbers> {
     private final InputParser<List<Integer>> parser;
@@ -18,35 +17,14 @@ public class WinningNumbersInputController implements InputController<WinningNum
 
     @Override
     public WinningNumbers inputValid() {
+        String input = WinningNumbersViewFacade.ask();
         while (true) {
             try {
-                String input = readInput();
-                List<Integer> numbers = parseInput(input);
-                validateNumbers(numbers);
-                return createWinningNumbers(numbers);
+                List<Integer> numbers = parser.parse(input);
+                return WinningNumbers.of(numbers, validator);
             } catch (IllegalArgumentException e) {
-                displayError(e.getMessage());
+                input = WinningNumbersViewFacade.errorAndAsk(e.getMessage());
             }
         }
-    }
-
-    private String readInput() {
-        return InputView.readWinningNumbers();
-    }
-
-    private List<Integer> parseInput(String input) {
-        return parser.parse(input);
-    }
-
-    private void validateNumbers(List<Integer> numbers) {
-        validator.validate(numbers);
-    }
-
-    private WinningNumbers createWinningNumbers(List<Integer> numbers) {
-        return WinningNumbers.from(numbers);
-    }
-
-    private void displayError(String message) {
-        OutputView.printError(message);
     }
 }

@@ -45,6 +45,9 @@ public class Lotto {
     }
 
     public int compare(Lotto lotto){
-        return (int) numbers.stream().map(lotto::contains).count();
+        return (int) numbers.stream()
+                .map(lotto::contains)
+                .filter(isMatch -> isMatch)
+                .count();
     }
 }

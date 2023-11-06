@@ -6,7 +6,7 @@ import lotto.model.WinningLotto;
 
 public class WinningLottoFixture {
 
-    public static WinningLotto createWinningLotto(final String lotto, final String bonus) {
+    public static WinningLotto create(final String lotto, final String bonus) {
         return new WinningLotto(Lotto.fromInput(lotto), Number.from(bonus));
     }
 }

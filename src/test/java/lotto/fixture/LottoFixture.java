@@ -5,11 +5,11 @@ import lotto.model.Lotto;
 
 public class LottoFixture {
 
-    public static Lotto createLotto(final List<Integer> lotto) {
+    public static Lotto create(final List<Integer> lotto) {
         return Lotto.fromNumbers(lotto);
     }
 
-    public static Lotto createLotto(final String lottoNumbers){
+    public static Lotto create(final String lottoNumbers){
         return Lotto.fromInput(lottoNumbers);
     }
 }

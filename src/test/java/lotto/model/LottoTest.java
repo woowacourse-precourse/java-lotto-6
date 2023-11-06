@@ -37,8 +37,8 @@ class LottoTest {
     @ParameterizedTest
     void 해당_넘버가_로또에_포함되어_있는지_여부를_반환한다(int num, boolean expected) {
         // given
-        Number number = NumberFixture.createNumber(num);
-        Lotto lotto = LottoFixture.createLotto(List.of(1, 2, 3, 4, 5, 6));
+        Number number = NumberFixture.create(num);
+        Lotto lotto = LottoFixture.create(List.of(1, 2, 3, 4, 5, 6));
 
         // when
         boolean result = lotto.contains(number);
@@ -51,8 +51,8 @@ class LottoTest {
     @ParameterizedTest()
     void 해당_로또와_몇개의_수가_일치하는지_개수를_반환한다(String lottoNumber, String winningLottoNumber, int expected) {
         // given
-        Lotto lotto = LottoFixture.createLotto(lottoNumber);
-        Lotto winningLotto = LottoFixture.createLotto(winningLottoNumber);
+        Lotto lotto = LottoFixture.create(lottoNumber);
+        Lotto winningLotto = LottoFixture.create(winningLottoNumber);
         List<Number> lottoNumbers = winningLotto.getLottoNumbers();
 
         // when

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.fixture.LottosFixture;
 import lotto.fixture.WinningLottoFixture;
+import lotto.fixture.WinningResultCalculatorFixture;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
@@ -17,9 +18,9 @@ class WinningResultCalculatorTest {
     @Test
     void 당첨_결과를_계산한다() {
         // given
-        WinningResultCalculator calculator = new WinningResultCalculator();
-        WinningLotto winningLotto = WinningLottoFixture.createWinningLotto("1,2,3,4,5,6", "7");
-        Lottos lottos = LottosFixture.createLottos(1, List.of(1, 2, 3, 4, 5, 6));
+        WinningResultCalculator calculator = WinningResultCalculatorFixture.create();
+        WinningLotto winningLotto = WinningLottoFixture.create("1,2,3,4,5,6", "7");
+        Lottos lottos = LottosFixture.create(1, List.of(1, 2, 3, 4, 5, 6));
 
         // when
         Map<Rank, Integer> winningStatus = calculator.calculateWinningStatus(winningLotto, lottos);
@@ -31,9 +32,9 @@ class WinningResultCalculatorTest {
     @Test
     void 수익률을_계산한다() {
         // given
-        WinningResultCalculator calculator = new WinningResultCalculator();
-        WinningLotto winningLotto = WinningLottoFixture.createWinningLotto("1,2,3,4,5,6", "7");
-        Lottos lottos = LottosFixture.createLottos(1, List.of(1, 2, 3, 4, 5, 10));
+        WinningResultCalculator calculator = WinningResultCalculatorFixture.create();
+        WinningLotto winningLotto = WinningLottoFixture.create("1,2,3,4,5,6", "7");
+        Lottos lottos = LottosFixture.create(1, List.of(1, 2, 3, 4, 5, 10));
         Money money = Money.from("1000");
         Map<Rank, Integer> winningStatus = calculator.calculateWinningStatus(winningLotto, lottos);
 

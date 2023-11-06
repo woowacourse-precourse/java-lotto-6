@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.InvalidMoneyRangeException;
 import lotto.exception.NonPositiveIntException;
+import lotto.fixture.MoneyFixture;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class MoneyTest {
     @Test
     void 로또_구매_가능한_개수를_반환한다() {
         // given
-        Money money = Money.from("5000");
+        Money money = MoneyFixture.create("5000");
 
         // when
         long buyLottoCount = money.buyLotto();
@@ -46,7 +47,7 @@ class MoneyTest {
     @Test
     void 수익률을_계산해서_반환한다() {
         // given
-        Money money = Money.from("5000");
+        Money money = MoneyFixture.create("5000");
         long sumOfPrice = 10000;
 
         // when

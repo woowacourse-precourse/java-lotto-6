@@ -7,7 +7,7 @@ import lotto.util.NumberGenerator;
 
 public class LottosFixture {
 
-    public static Lottos createLottos(final int count, List<Integer> lotto) {
+    public static Lottos create(final int count, final List<Integer> lotto) {
         NumberGenerator numberGenerator = new StubNumberGenerator(lotto);
         return Lottos.of(count, numberGenerator);
     }

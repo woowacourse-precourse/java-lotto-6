@@ -60,7 +60,7 @@ class WinningLottoTest {
         Lotto lotto = Lotto.fromNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
         Number bonusNumber = Number.from(7);
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-        Lotto purchasedLotto = LottoFixture.createLotto("1,2,3,4,5,6");
+        Lotto purchasedLotto = LottoFixture.create("1,2,3,4,5,6");
 
         // when
         int result = winningLotto.countMatchingNumbers(purchasedLotto.getLottoNumbers());

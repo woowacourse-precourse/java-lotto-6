@@ -18,16 +18,16 @@ public class GameController {
     }
 
     public void purchaseLotto() {
-        String purchaseAmount;
+        String input;
         do {
             outputView.printPurchaseAmountMessage();
-            purchaseAmount = inputView.scanPurchaseAmount();
-        } while (isInvalidPurchaseAmount(purchaseAmount));
+            input = inputView.scanPurchaseAmount();
+        } while (isInvalidPurchaseAmount(input));
     }
 
-    private boolean isInvalidPurchaseAmount(String purchaseAmount) {
+    private boolean isInvalidPurchaseAmount(String input) {
         try {
-            ValidationUtils.validatePurchaseAmount(purchaseAmount);
+            ValidationUtils.validatePurchaseAmount(input);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return true;

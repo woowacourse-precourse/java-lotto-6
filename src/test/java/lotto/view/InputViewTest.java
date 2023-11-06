@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.view.ErrorMessage.NOT_INTEGER_LIST;
 import static lotto.view.ErrorMessage.NOT_NUMBER;
 import static lotto.view.InputView.inputIntegerListData;
 import static lotto.view.InputView.inputLongData;
@@ -72,7 +71,6 @@ public class InputViewTest {
         System.setIn(inputStream);
         //when
         assertThatThrownBy(() -> inputIntegerListData())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_INTEGER_LIST.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

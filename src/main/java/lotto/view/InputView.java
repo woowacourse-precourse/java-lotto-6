@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.view.ErrorMessage.NOT_INTEGER_LIST;
+import static lotto.view.ErrorMessage.NOT_LIST;
 import static lotto.view.ErrorMessage.NOT_NUMBER;
 
 public class InputView {
@@ -34,7 +34,7 @@ public class InputView {
 
     private static void validateFormat(String input) {
         if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',') {
-            throw new IllegalArgumentException(NOT_INTEGER_LIST.getMessage());
+            throw new IllegalArgumentException(NOT_LIST.getMessage());
         }
 
     }
@@ -44,7 +44,7 @@ public class InputView {
             try {
                 Integer.parseInt(element);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(NOT_INTEGER_LIST.getMessage());
+                throw new IllegalArgumentException(NOT_LIST.getMessage());
             }
         }
     }

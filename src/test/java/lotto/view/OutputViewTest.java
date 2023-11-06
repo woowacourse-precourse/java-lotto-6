@@ -4,7 +4,7 @@ import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 import static lotto.view.ErrorMessage.LESS_MONEY;
 import static lotto.view.ErrorMessage.NOT_DIVISIBLE_MONEY;
 import static lotto.view.ErrorMessage.NOT_EQUAL_NUM_OF_NUMBERS;
-import static lotto.view.ErrorMessage.NOT_INTEGER_LIST;
+import static lotto.view.ErrorMessage.NOT_LIST;
 import static lotto.view.ErrorMessage.NOT_NUMBER;
 import static lotto.view.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
 import static lotto.view.OutputView.printErrorMessage;
@@ -86,7 +86,7 @@ public class OutputViewTest {
                 Arguments.of(NOT_NUMBER),
                 Arguments.of(LESS_MONEY),
                 Arguments.of(NOT_DIVISIBLE_MONEY),
-                Arguments.of(NOT_INTEGER_LIST),
+                Arguments.of(NOT_LIST),
                 Arguments.of(NOT_EQUAL_NUM_OF_NUMBERS),
                 Arguments.of(OUT_OF_RANGE_LOTTO_NUMBERS),
                 Arguments.of(DUPLICATED_NUMBER)

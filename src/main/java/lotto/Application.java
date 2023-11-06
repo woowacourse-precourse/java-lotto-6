@@ -70,9 +70,17 @@ public class Application {
                 throw new IllegalArgumentException();
             }
         }
+
         if (winningNumbers.size() != 6) {
             printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT);
             throw new IllegalArgumentException();
+        }
+
+        for (int number: winningNumbers) {
+            if (number < 1 || number > 45) {
+                printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE);
+                throw new IllegalArgumentException();
+            }
         }
     }
 

@@ -31,7 +31,7 @@ public class LottoController {
         output.printBoughtLottos(lottos);
         Lotto winningNumbers = parseListToLotto();
 
-        BonusNumber bonusNumber = parseIntToBonusNumber();
+        BonusNumber bonusNumber = parseIntToBonusNumber(winningNumbers);
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
         LottoResult result = LottoResult.of(lottos, winningLotto);
         output.printResult(result);
@@ -64,8 +64,17 @@ public class LottoController {
         return parsedLotto;
     }
 
-    private BonusNumber parseIntToBonusNumber() {
-        return new BonusNumber(input.printAskingBonusNumber());
+    private BonusNumber parseIntToBonusNumber(Lotto winningNumbers) {
+        BonusNumber parsedBonusNumber;
+        while (true) {
+            try {
+                parsedBonusNumber = new BonusNumber(input.printAskingBonusNumber(), winningNumbers);
+                break;
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return parsedBonusNumber;
     }
 
 }

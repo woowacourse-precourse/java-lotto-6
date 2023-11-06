@@ -61,11 +61,4 @@ public class UserLotto {
         return numbers;
     }
 
-    public void printNumbers(){
-        Iterator<Integer> it = numbers.iterator();
-        while(it.hasNext()){
-            System.out.print(it.next() + " ");
-        }
-    }
-
 }

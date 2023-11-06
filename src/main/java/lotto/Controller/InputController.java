@@ -56,18 +56,16 @@ public class InputController {
             lotto = new UserLotto(numbers);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 당첨번호는 중복된 번호가 없어야 합니다.");
+            return inputNumbers();
         }
-        try{
-            lotto.addBonusNumber(inputBonusNumber());
-        }catch(IllegalArgumentException e){
-            System.out.println("ERROR] 보너스번호는 당첨번호와 중복되지 않아야 합니다.");
-        }
+
+        lotto = inputBonusNumber(lotto);
 
 
         return lotto;
     }
 
-    public int inputBonusNumber(){
+    public UserLotto inputBonusNumber(UserLotto lotto){
         view.inputBonusNumberPrint();
         String bonus_number = Console.readLine();
         System.out.println("");
@@ -75,12 +73,19 @@ public class InputController {
             exceptionController.bonusNumberException(bonus_number);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 보너스 번호는 숫자이어야 합니다.");
-            return inputBonusNumber();
+            return inputBonusNumber(lotto);
         }catch(IllegalStateException e){
             System.out.println("[ERROR] 보너스 번호는 1에서 45사이의 숫자이어야 합니다.");
-            return inputBonusNumber();
+            return inputBonusNumber(lotto);
         }
 
-        return Integer.parseInt(bonus_number);
+        try{
+            lotto.addBonusNumber(Integer.parseInt(bonus_number));
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 보너스번호는 당첨번호와 중복이 불가능합니다.");
+            return inputBonusNumber(lotto);
+        }
+
+        return lotto;
     }
 }

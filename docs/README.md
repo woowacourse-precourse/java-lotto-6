@@ -38,8 +38,10 @@ Lotto Game Program
   
     **Lotto Class**// 로또 하나의 클래스
     ```agsl
-    - getNumbers    // 로또의 번호들을 반환받는다.
-    - validate      // 로또 발급 번호의 유효성 검사
+    - getNumbers        // 로또의 번호들을 반환받는다.
+    - validate          // 로또 발급 번호의 유효성 검사
+    - duplicationCheck  // 유효성 체크를 위한 로또번호의 중복체크
+    - getNumbers        // 로또번호들을 List형태로 반환
     ```
   
     **UserLotto Class** // 사용자가 입력한 로또 번호 및 보너스 번호까지 저장하는 클래스

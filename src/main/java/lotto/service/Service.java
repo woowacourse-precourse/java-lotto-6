@@ -40,5 +40,15 @@ public class Service {
 		Validation.validateListNumbersInRange(numbers, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
 		return new Lotto(numbers);
 	}
+	
+	public int getBonusNumber(List<Integer> winningNumbers) {
+		InputView.inputBonusNumber();
+		String input = Console.readLine().trim();
+		Validation.validateNaturalNumber(input);
+		int bonusNumber = Integer.valueOf(input);
+		Validation.validateNumberInRange(bonusNumber, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
+		Validation.validateNumberNotInList(winningNumbers, bonusNumber);
+		return bonusNumber;
+	}
 
 }

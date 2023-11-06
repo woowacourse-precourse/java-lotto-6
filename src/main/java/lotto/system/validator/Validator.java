@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 public class Validator {
     private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]?$");
+    private static final int MINIMUM_UNIT = 1000;
+    private static final int ZERO = 0;
 
     private enum ExceptionMessage {
         EMPTY_VALUE_NOT_ALLOWED("[ERROR] 빈 값을 입력할 수 없습니다."),
@@ -29,7 +31,7 @@ public class Validator {
     }
 
     public void validateDivisibleBy1000(String input) {
-        if (Integer.parseInt(input) % 1000 != 0) {
+        if (Integer.parseInt(input) % MINIMUM_UNIT != ZERO) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_BY_1000.message);
         }
     }

@@ -18,5 +18,8 @@ public class LottoController {
         for (Lotto lotto : lottos) {
             lotto.printLottoNumbers();
         }
+
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        System.out.println(winningNumbers);
     }
 }

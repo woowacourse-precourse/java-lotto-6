@@ -78,6 +78,14 @@ public class LottoGameService {
         User.getLottoList().forEach(lotto -> checkWinningLotto(winningResult, lotto));
 
         OutputView.notifyWinningResult(winningResult);
+
+        int totalReceivedMoney = winningResult.prizes()
+                .entrySet()
+                .stream()
+                .mapToInt(i -> i.getKey().getReward() * i.getValue())
+                .sum();
+
+        User.receiveMoney(totalReceivedMoney);
     }
 
     private static void checkWinningLotto(WinningResult winningResult, Lotto lotto) {
@@ -86,8 +94,6 @@ public class LottoGameService {
 
         winningResult.prizes().forEach((prize, i) -> {
             if (prize.getWinningHit() == winningHit && prize.getBonusHit().contains(bonusHit)) {
-                System.out.println(prize);
-                System.out.println(i);
                 winningResult.prizes().replace(prize, i + 1);
             }
         });

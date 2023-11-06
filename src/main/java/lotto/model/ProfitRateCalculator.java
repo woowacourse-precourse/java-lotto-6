@@ -5,19 +5,18 @@ import java.util.List;
 public class ProfitRateCalculator {
     private final int totalPurchasePrice;
     private final List<WinningResult> winningResults;
-    private double profitRate;
 
     public ProfitRateCalculator(int totalPurchasePrice, List<WinningResult> winningResults) {
         this.totalPurchasePrice = totalPurchasePrice;
         this.winningResults = winningResults;
     }
 
-    public void calculateProfitRate() {
+    public double calculateProfitRate() {
         int totalWinningAmount = winningResults.stream()
                 .mapToInt(this::calculateWinningAmount)
                 .sum();
 
-        profitRate = (double) totalWinningAmount / totalPurchasePrice;
+        return (double) totalWinningAmount / totalPurchasePrice;
     }
 
     private int calculateWinningAmount(WinningResult winningResult) {
@@ -28,9 +27,5 @@ public class ProfitRateCalculator {
             case 3 -> 5_000;
             default -> 0;
         };
-    }
-
-    public double getProfitRate() {
-        return profitRate;
     }
 }

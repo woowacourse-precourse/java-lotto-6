@@ -21,9 +21,9 @@ public enum Price {
 
     public static Price findByScore(int score) {
         return Arrays.stream(Price.values())
-                .filter( type -> type.getScore() == score)
-                .findFirst()
-                .orElse(null);
+            .filter(type -> type.getScore() == score)
+            .findFirst()
+            .orElse(null);
     }
 
     public String getGuideline() {

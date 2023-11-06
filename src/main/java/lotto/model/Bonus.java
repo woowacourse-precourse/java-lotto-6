@@ -16,7 +16,7 @@ public class Bonus {
     }
 
     private void validate(String number, List<Integer> answerLotto) {
-        if(!number.matches("\\d+")) {
+        if (!number.matches("\\d+")) {
             throw new IllegalArgumentException("보너스 번호는 숫자만 입력해주세요.");
         }
         if (Integer.parseInt(number) > 45 || Integer.parseInt(number) < 1) {

@@ -22,18 +22,18 @@ public class Lottos {
     public Map<Price, Integer> calculateScore(Lotto answer, Bonus bonus) {
         Map<Price, Integer> scores = initializeScores();
         lottos.stream()
-                .filter(lotto -> lotto.calculateScore(answer) >= 3)
-                .forEach(lotto ->
-                        scores.put(checkPrice(lotto.calculateScore(answer), lotto, bonus)
-                                , scores.get(checkPrice(lotto.calculateScore(answer), lotto, bonus)) + 1));
+            .filter(lotto -> lotto.calculateScore(answer) >= 3)
+            .forEach(lotto ->
+                scores.put(checkPrice(lotto.calculateScore(answer), lotto, bonus)
+                    , scores.get(checkPrice(lotto.calculateScore(answer), lotto, bonus)) + 1));
         return scores;
     }
 
     public Float calculateProfit(Map<Price, Integer> scores, int money) {
         long profit = scores.entrySet().stream()
-                .mapToLong(score ->
-                        (long) score.getKey().getReward() * score.getValue())
-                .sum();
+            .mapToLong(score ->
+                (long) score.getKey().getReward() * score.getValue())
+            .sum();
         return (float) profit / money * PERCENT;
     }
 

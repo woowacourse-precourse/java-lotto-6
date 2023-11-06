@@ -39,9 +39,9 @@ public class StateController {
 
     private void purchaseLotto() {
         lottos = new Lottos(IntStream
-                .range(0, money.lottoCount())
-                .mapToObj(i -> new Lotto(LottoGenerator()))
-                .toList());
+            .range(0, money.lottoCount())
+            .mapToObj(i -> new Lotto(LottoGenerator()))
+            .toList());
         printLottoCount(money.lottoCount());
 
         for (Lotto lotto : lottos.getLottos()) {
@@ -51,9 +51,9 @@ public class StateController {
 
     private void enterAnswer() {
         List<Integer> answerLotto = Stream
-                .of(readAnswer().trim().split(","))
-                .map(Integer::parseInt)
-                .toList();
+            .of(readAnswer().trim().split(","))
+            .map(Integer::parseInt)
+            .toList();
 
         try {
             this.answerLotto = new Lotto(answerLotto);
@@ -77,8 +77,8 @@ public class StateController {
         printResult();
         for (Map.Entry<Price, Integer> score : scores.entrySet()) {
             printPrice(score.getKey().getGuideline()
-                    , NumberFormat.getInstance().format(score.getKey().getReward())
-                    , score.getValue());
+                , NumberFormat.getInstance().format(score.getKey().getReward())
+                , score.getValue());
         }
         printProfit(lottos.calculateProfit(scores, money.getMoney()));
     }

@@ -17,14 +17,14 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
+            .sorted()
+            .collect(Collectors.toList());
     }
 
     public int calculateScore(Lotto answer) {
         int count = (int) answer.getNumbers().stream()
-                .filter(numbers::contains)
-                .count();
+            .filter(numbers::contains)
+            .count();
         if (count >= MIN_SCORE) {
             return count;
         }

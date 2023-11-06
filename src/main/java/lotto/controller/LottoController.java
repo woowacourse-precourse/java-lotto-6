@@ -31,5 +31,6 @@ public class LottoController {
 
     private void setPlayerVariableValue(String input) {
         Player player = new Player(input);
+        player.divideMoneyByThousand();
     }
 }

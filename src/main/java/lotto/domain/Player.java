@@ -7,4 +7,9 @@ public class Player {
     public Player(String input) {
         this.money = Integer.parseInt(input);
     }
+
+    public void divideMoneyByThousand() {
+        int tickets = money / THOUSAND;
+        System.out.println(tickets);
+    }
 }

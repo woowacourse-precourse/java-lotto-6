@@ -11,6 +11,11 @@ public class WinningLotto extends Lotto{
         this.bonusNumber = bonusNumber;
     }
 
+    public Rank calculateRank(Lotto purchaseLotto) {
+        int count = super.getDuplicatedNumberCount(purchaseLotto);
+        return Rank.getRank(count, super.hasNumber(bonusNumber));
+    }
+
     private void validate(int bonusNumber) {
         validateDuplicateBonusNumber(bonusNumber);
         validateSingleNumberRange(bonusNumber);

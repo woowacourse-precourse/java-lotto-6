@@ -25,4 +25,14 @@ public class ParserTest {
         Assertions.assertThat(output).containsExactly(1, 2, 3, 4, 5);
     }
 
+    @Test
+    void 문자를_리스트로_변경한다() {
+        //given
+        String input = "한, 글, 1, 2, 3";
+        //when
+        List<String> output = Parser.parseToStrings(input);
+        //then
+        Assertions.assertThat(output).containsExactly("한", "글", "1", "2", "3");
+    }
+
 }

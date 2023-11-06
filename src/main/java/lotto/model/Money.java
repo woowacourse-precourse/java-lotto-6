@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Objects;
+
 public class Money {
     private int won;
 
@@ -34,5 +36,22 @@ public class Money {
         if (won % 1000 != 0) {
             throw new IllegalArgumentException("1000 단위의 금액이 아닙니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Money money = (Money) o;
+        return won == money.won;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(won);
     }
 }

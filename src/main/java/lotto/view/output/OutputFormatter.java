@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OutputFormatter {
+public final class OutputFormatter {
     private static final String FIVE_MATCH_WITH_BONUS_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String MATCH_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String TOTAL_EARNINGS_MESSAGE = "총 수익률은 ";

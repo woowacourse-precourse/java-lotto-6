@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StringParser {
+public final class StringParser {
 
     private StringParser() {
     }

@@ -3,7 +3,7 @@ package lotto.view.input;
 import lotto.controller.LottoController;
 import java.util.regex.Pattern;
 
-public class InputValidator {
+public final class InputValidator {
 
     private InputValidator() {
     }

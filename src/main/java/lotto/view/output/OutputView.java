@@ -4,7 +4,7 @@ import lotto.dto.LottoDto;
 import lotto.model.LottoResult;
 import java.util.List;
 
-public class OutputView {
+public final class OutputView {
 
     private OutputView() {
     }

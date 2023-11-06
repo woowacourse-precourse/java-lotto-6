@@ -3,7 +3,7 @@ package lotto.view.input;
 import lotto.util.StringParser;
 import java.util.List;
 
-public class InputView {
+public final class InputView {
     private static final LottoInputView lottoInputView = new ConsoleLottoInputView();
 
     private InputView() {

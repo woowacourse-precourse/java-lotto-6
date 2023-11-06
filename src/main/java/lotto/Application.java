@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Application {
     public static void main(String[] args) {
@@ -68,16 +70,22 @@ public class Application {
         return new LottoGameResult(matchCounts);
     }
 
-    private static int countMatchingNumbers(Lotto userLotto, Lotto winningLotto) {
-        List<Integer> userNumbers = userLotto.getNumbers();
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int matchCount = 0;
+    private static int countMatchingNumbers(Lotto userLotto, WinningNumbers winningNumbers) {
+        Set<Integer> userNumbers = new HashSet<>(userLotto.getNumbers());
+        Set<Integer> winningNumbersSet = new HashSet<>(winningNumbers.getWinningLotto().getNumbers());
+
+        userNumbers.retainAll(winningNumbersSet);
 
         for (int number : userNumbers) {
             if (winningNumbers.contains(number)) {
                 matchCount++;
             }
         }
+        int matchCount = userNumbers.size();
+        if (matchCount == 5 && userNumbers.contains(winningNumbers.getBonusNumber())) {
+            matchCount = 6;
+        }
+
         return matchCount;
     }
 

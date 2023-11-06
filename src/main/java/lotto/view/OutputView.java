@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.service.LottoService;
+
 public class OutputView {
 
     private static final String INPUT_PURCHASE_PRICE_SENTENCE = "구입금액을 입력해 주세요.";
@@ -9,6 +11,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS = "당첨 통계" + "\n" + "---";
 
     InputView inputView = new InputView();
+    LottoService lottoService = new LottoService();
 
     public void outputPurchasePrice() {
         System.out.println(INPUT_PURCHASE_PRICE_SENTENCE);
@@ -17,7 +20,8 @@ public class OutputView {
     }
 
     public void outputIssuingLotteryTicket() {
-
+        int lotteryTicketCount = lottoService.getLotteryTicketCount();
+        System.out.println(lotteryTicketCount + OUTPUT_PURCHASE_COUNT_SENTENCE);
     }
 
     public void outputWinningNumbers() {

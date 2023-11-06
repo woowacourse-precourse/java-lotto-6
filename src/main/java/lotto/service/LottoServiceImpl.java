@@ -1,9 +1,12 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
@@ -63,7 +66,7 @@ public class LottoServiceImpl implements LottoService {
                 String inputText = Console.readLine();
                 List<Integer> winningNumbers = convertStringToNumbers(inputText);
 
-                validateNumberCount(winningNumbers);
+                validateDistinctNumbers(winningNumbers);
                 validateEachNumber(winningNumbers);
 
                 return winningNumbers;
@@ -79,13 +82,14 @@ public class LottoServiceImpl implements LottoService {
      * @return : 보너스 번호
      */
     @Override
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
 
         while (true) {
             try {
                 String inputText = Console.readLine();
                 int bonusNumber = stringToInt(inputText);
 
+                validateBonusExclusion(bonusNumber, winningNumbers);
                 validateBonusNumber(bonusNumber);
 
                 return bonusNumber;
@@ -98,12 +102,28 @@ public class LottoServiceImpl implements LottoService {
     /**
      * 당첨 통계 계산하기
      *
-     * @param lottoNumbers : 로또값 배열
+     * @param lottos : Lotto 리스트
      * @return : 당첨 통계
      */
     @Override
-    public Map<MatchType, Integer> calculateWinningStatistics(List<Integer>[] lottoNumbers) {
+    public Map<MatchType, Integer> calculateWinningStatistics(List<Lotto> lottos,
+                                                              List<Integer> winningNumbers,
+                                                              int bonusNumber) {
+
+        int[] result = new int[8];
+
+        for (Lotto lotto : lottos) {
+            List<Integer> myLottoNumbers = lotto.getNumbers();
+            int sameNumbersCount = countSameNumbers(myLottoNumbers, winningNumbers);
+
+        }
+
         return null;
+    }
+
+    @Override
+    public int computeEarnings(Map<MatchType, Integer> winningStatistics) {
+        return 0;
     }
 
     /**
@@ -178,11 +198,17 @@ public class LottoServiceImpl implements LottoService {
         return text.replaceAll(" ", "");
     }
 
-    private void validateNumberCount(List<Integer> numbers) {
+    private void validateDistinctNumbers(List<Integer> numbers) {
 
-        if (numbers.size() != LottoVO.getLottoNumberCount()) {
+        Set<Integer> distinctNumbers = convertListToSet(numbers);
+
+        if (distinctNumbers.size() != LottoVO.getLottoNumberCount()) {
             throw new IllegalArgumentException(UiVO.getWinningNumberCountException());
         }
+    }
+
+    private Set<Integer> convertListToSet(List<Integer> list) {
+        return new HashSet<>(list);
     }
 
     private void validateEachNumber(List<Integer> numbers) {
@@ -198,9 +224,23 @@ public class LottoServiceImpl implements LottoService {
         return (number >= LottoVO.getLottoMinValue()) && (number <= LottoVO.getLottoMaxValue());
     }
 
+    private void validateBonusExclusion(int bonusNumber, List<Integer> winningNumbers) {
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(UiVO.getBonusNumberExistsInWinningNumbersException());
+        }
+    }
+
     private void validateBonusNumber(int number) {
+
         if (!isInRange(number)) {
             throw new IllegalArgumentException(UiVO.getLottoNumberException());
         }
+    }
+
+    private int countSameNumbers(List<Integer> myLottoNumbers, List<Integer> winningNumbers) {
+        List<Integer> tmp = new ArrayList<>(myLottoNumbers);
+        tmp.retainAll(winningNumbers);
+        return tmp.size();
     }
 }

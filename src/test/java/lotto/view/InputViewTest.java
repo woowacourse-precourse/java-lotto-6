@@ -85,6 +85,22 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("보너스 번호는 한 개의 정수만 입력할 수 있다.")
+    void getBonusNumbersWithInvalidInput() {
+        setInput("1,2");
+        assertThatThrownBy(() -> InputView.getBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("양의 정수만 입력할 수 있다.")
+    void getBonusNumbersWithNegativeInteger() {
+        setInput("-12");
+        assertThatThrownBy(() -> InputView.getBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private void setInput(String input) {
         final byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));

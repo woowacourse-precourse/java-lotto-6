@@ -8,6 +8,7 @@ public record ResultDto(
         int reward,
         Long count
 ) {
+
     public static ResultDto of(final Rank rank, final Long count) {
         return new ResultDto(rank.getSameNumberCount(),
                 rank.isNeedBonus(),

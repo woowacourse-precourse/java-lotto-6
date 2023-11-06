@@ -9,6 +9,7 @@ import lotto.exception.InvalidTypeException;
 public final class Convertor {
 
     private static final String SPLIT_SIGNAL = ",";
+
     private Convertor() {
     }
 

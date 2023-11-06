@@ -20,8 +20,7 @@ public class LottoFactory {
         return new LottoFactory(createLottos(numberGenerator, money));
     }
 
-    private static List<Lotto> createLottos(final NumberGenerator numberGenerator,
-            final Money money) {
+    private static List<Lotto> createLottos(final NumberGenerator numberGenerator, final Money money) {
         return Stream.generate(numberGenerator::generate)
                 .limit(money.calculateLottoCount())
                 .map(Lotto::new)

@@ -47,17 +47,15 @@ public class LottoController {
         return winningLotto;
     }
 
-    private void createWinningBonusNumber(WinningLotto winningLotto) {
+    protected void createWinningBonusNumber(WinningLotto winningLotto) {
         String inputBonusNumber = inputView.inputBonusNumber();
         winningLotto.setBonusNumber(inputBonusNumber);
     }
 
-    private void createWinningLotto(WinningLotto winningLotto) {
+    protected void createWinningLotto(WinningLotto winningLotto) {
         String inputWinningNumber = inputView.inputWinningNumber();
         winningLotto.setLotto(inputWinningNumber);
     }
-
-
 
     private LottoGroup getLottoGroup(Money money) {
         LottoGroup lottoGroup = LottoGroup.from(money);

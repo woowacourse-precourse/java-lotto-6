@@ -28,8 +28,6 @@ public class InputViewImpl implements InputView {
     @Override
     public String inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_PROMPT.getMessage());
-        String bonusNumber = Console.readLine();
-        Console.close();
-        return bonusNumber;
+        return Console.readLine();
     }
 }

@@ -3,20 +3,26 @@ package lotto;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
-    FOURTH(4, 50_000),
-    FIFTH(3, 5_000),
+    FIRST("6개 일치", 6, 2_000_000_000),
+    SECOND("5개 일치, 보너스 볼 일치", 5, 30_000_000),
+    THIRD("5개 일치", 5, 1_500_000),
+    FOURTH("4개 일치", 4, 50_000),
+    FIFTH("3개 일치", 3, 5_000),
     BLANK;
 
+    private String description;
     private int matches;
     private int amount;
 
     Rank() {}
-    Rank(int matches, int amount) {
+    Rank(String description, int matches, int amount) {
+        this.description = description;
         this.matches = matches;
         this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public static Rank from(int matches, boolean bonusMatched) {

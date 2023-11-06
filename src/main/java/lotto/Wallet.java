@@ -1,11 +1,17 @@
 package lotto;
 
+import static lotto.LottoNumbersMaker.getLottoNumbers;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Wallet {
 
-    private static final int MIN_AMOUNT_OF_LOTTO = LottoConstant.MIN_AMOUNT_OF_LOTTO.getPrice();
-    private static final int MAX_AMOUNT_OF_LOTTO = LottoConstant.MAX_AMOUNT_OF_LOTTO.getPrice();
+    private static final int MIN_AMOUNT_OF_LOTTO = LottoConstant.MIN_AMOUNT_OF_LOTTO.getValue();
+    private static final int MAX_AMOUNT_OF_LOTTO = LottoConstant.MAX_AMOUNT_OF_LOTTO.getValue();
 
     private int balance = 0;
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public int getBalance() {
         return balance;
@@ -15,6 +21,18 @@ public class Wallet {
         validateNumber(money);
         this.balance = money;
     }
+
+    void buyLotto() {
+
+        while (this.balance > 0) {
+            List<Integer> numbers = getLottoNumbers();
+            Lotto lotto = new Lotto(numbers);
+
+            this.lottos.add(lotto);
+            this.balance -= MIN_AMOUNT_OF_LOTTO;
+        }
+    }
+
 
     private void validateNumber(int number) {
         validateNumberByMultiplesOfThousand(number);

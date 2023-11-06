@@ -9,15 +9,16 @@ public class Application {
     public static void main(String[] args) {
         Money money = inputMoney();
         int count = money.getLottoCount();
-        //count 만큼 로또 생성
+
         LottoNumbers lottoNumbers = new LottoNumbers();
         LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(count));
         lottoList.printLottoList();
 
         Lotto input_lotto = inputLotto();
-        //count 만큼 로또 비교
+        List<Integer> compare_lotto = lottoList.compareLotto(input_lotto);
+
         BonusLotto bonus_lotto = inputBonusLotto(input_lotto);
-        //count 만큼 로또 비교
+        List<Boolean> compare_bonus_lotto = lottoList.compareBonusLotto(bonus_lotto);
     }
 
     public static Money inputMoney() {

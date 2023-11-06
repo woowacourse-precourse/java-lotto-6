@@ -8,6 +8,10 @@ public class BonusLotto{
         this.bonus = bonus;
     }
 
+    public Integer getBonus() {
+        return bonus;
+    }
+
     private void validate(int bonus) {
         if (validateBonusRange(bonus)) {
             throw new IllegalArgumentException("[ERROR] 보너스 로또는 1에서 45 사이 정수여야 합니다.");

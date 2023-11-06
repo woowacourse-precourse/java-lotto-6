@@ -25,6 +25,10 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
+    public int checkLotto(Lotto lotto) {
+        return winningNumbers.compareNumbers(lotto);
+    }
+
     private int calculateLottoCount(int lottoPurchaseAmount) {
         return lottoPurchaseAmount / LOTTO_PRICE;
     }

@@ -10,10 +10,13 @@ public class JackpotNumberException {
     static final String NUMBER_DUPLICATED = "[ERROR] 로또 번호는 모두 중복되지 않은 수여야 합니다.";
     static final String NUMBER_SIX_VALUES = "[ERROR] 로또 번호는 6개여야 합니다.";
 
+    static final String BONUS_NUMBER_REPEATED = "[ERROR] 보너스 넘버와 로또 번호가 중복되지 않아야합니다.";
+
     public static void isJackpotValid(JackpotNumber jackpotNumber) {
         isJackpotSixValue(jackpotNumber);
         isJackpotDuplicated(jackpotNumber);
         isJackpotRange(jackpotNumber);
+        isBounusNumberRepeated(jackpotNumber);
     }
     public static void isJackpotSixValue(JackpotNumber jackpotNumber) {
         List<Integer> numbers = jackpotNumber.getJackpot().getNumbers();
@@ -39,6 +42,10 @@ public class JackpotNumberException {
             throw new IllegalArgumentException(NUMBER_IN_RANGE);
         }
     }
-
+    public static void isBounusNumberRepeated(JackpotNumber jackpotNumber) {
+        if (jackpotNumber.getJackpot().getNumbers().contains(jackpotNumber.getBonusNumber())) {
+            throw new IllegalArgumentException(BONUS_NUMBER_REPEATED);
+        }
+    }
 
 }

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.Money;
 import lotto.configuration.InputMessage;
@@ -41,8 +43,14 @@ public class LottoController {
     }
 
     private List<Integer> inputWinningLottoNumber(Long money) {
-        OutputView.inputWinningNumber();
+        OutputView.inputViewWinningNumber();
         Lotto lotto = new Lotto(lottoService.convertToLottoIntegerList(InputView.input()));
         return lotto.getLotto();
+    }
+
+    private Integer inputBonusNumber() {
+        OutputView.inputViewBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(InputView.input()));
+        return bonusNumber.getBonusNumber();
     }
 }

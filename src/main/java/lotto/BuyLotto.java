@@ -53,7 +53,7 @@ public class BuyLotto {
     public int paperRank(List<Integer> paper, List<Integer> answer_number, int bonus) {
         int correct_number = 0;
         int bonus_number = 0;
-        int result=0;
+        int result = 0;
         for (int p = 0, a = 0; p < 6 || a < 6; ) {
             if (paper.get(p) == answer_number.get(a)) {
                 correct_number++;
@@ -70,7 +70,19 @@ public class BuyLotto {
                 a++;
             }
         }
-        result = calculateRank(correct_number,bonus_number);
+        result = calculateRank(correct_number, bonus_number);
         return result;
+    }
+
+    public List<Integer> lottoRankInit() {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            result.add(0);
+        }
+        return result;
+    }
+
+    public List<Integer> lottoRank(List<Integer> answer_number, int bonus) {
+
     }
 }

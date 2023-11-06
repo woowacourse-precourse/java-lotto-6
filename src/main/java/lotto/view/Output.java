@@ -6,6 +6,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 
 public class Output {
+
+	public static final String ERROR_TITLE = "[ERROR] ";
+
 	public static void purchaseLottoNumbers(List<Lotto> purchasedLottoList) {
 		System.out.println(purchasedLottoList.size() + "개를 구매했습니다.");
 		purchasedLottoList
@@ -20,5 +23,9 @@ public class Output {
 
 	public static void newLine() {
 		System.out.println();
+	}
+
+	public static void exception(Exception e) {
+		System.out.println(ERROR_TITLE + e.getMessage());
 	}
 }

@@ -7,7 +7,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
-        
+        List<Integer> lottoNum = getLotto();
+    }
+    
+    public static List<Integer> getLotto() {
+    	return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
     
     public static void printResult(List<Integer> lottoNum) {

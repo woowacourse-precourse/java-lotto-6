@@ -16,4 +16,20 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.PURCHASE_AMOUNT_IS_NOT_NUMBER.getValue());
         }
     }
+
+    public static void validateLottoNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.LOTTO_IS_NOT_NUMBER.getValue());
+        }
+    }
+
+    public static void validateBonusNumber(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BONUS_IS_NOT_NUMBER.getValue());
+        }
+    }
 }

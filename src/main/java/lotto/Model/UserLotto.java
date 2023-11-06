@@ -8,12 +8,13 @@ import java.util.List;
 
 
 public class UserLotto {
+    List<Lotto> userLottos = new ArrayList<>();
+
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
 
     public List<Lotto> userLottosCreate(int amount) {
-        List<Lotto> userLottos = new ArrayList<>();
 
         while (userLottos.size() < amount) {
             List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE));

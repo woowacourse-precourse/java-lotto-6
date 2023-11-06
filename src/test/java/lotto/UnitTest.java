@@ -17,7 +17,7 @@ class UnitTest extends NsTest {
             run("1900", "a", "2000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(
                     "[ERROR] 입력 금액은 1000의 배수로 입력해주세요.",
-                    "[ERROR] 숫자를 입력해 주세요",
+                    "[ERROR] 숫자를 입력해주세요",
                     "2개를 구매했습니다.");
         });
     }

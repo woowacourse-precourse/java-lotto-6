@@ -7,7 +7,7 @@ import lotto.View.PrintOutput;
 import java.util.List;
 
 public class PlayGame {
-    Setting setting = new Setting();
+    InputData setting = new InputData();
     UserLotto userLottos = new UserLotto();
     Result winningData = new Result();
     Lotto winningNumbers;
@@ -24,16 +24,14 @@ public class PlayGame {
         winningNumbers = setting.getWinningNumbers();
 
         System.out.println("\n" + PrintInput.BONUS_NUMBER);
-        matchResult(randomLottoNumbers, setting.getBonusNumber());
+        int bonusBall = setting.getBonusNumber();
+
+        for (Lotto userLottoNumbers : randomLottoNumbers) {
+            int matchNumber = winningNumbers.matchNumber(userLottoNumbers);
+
+            winningData.winningResult(matchNumber, userLottoNumbers.checkBonusBall(bonusBall));
+        }
 
         winningData.printResult(lottoAmount * 1000);
-    }
-
-    private void matchResult(List<Lotto> randomLottoNumbers, int bonusNumber) {
-        for (Lotto userLottoNumbers : randomLottoNumbers) {
-            int[] matchNumber = winningNumbers.matchNumber(userLottoNumbers, bonusNumber);
-
-            winningData.winningResult(matchNumber[0], matchNumber[1]);
-        }
     }
 }

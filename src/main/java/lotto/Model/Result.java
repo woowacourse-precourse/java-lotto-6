@@ -13,7 +13,7 @@ public class Result {
                 .forEach(value -> result.put(value, 0));
     }
 
-    public void winningResult(int match, int bonusBall) {
+    public void winningResult(int match, boolean bonusBall) {
         Winning winning = Winning.result(match, bonusBall);
         result.put(winning, result.get(winning) + 1);
     }
@@ -38,11 +38,9 @@ public class Result {
                 result.get(winning));
 
         if (winning != Winning.No_Match) {
-            System.out.println(message);
-        }
-
-        if (winning == Winning.SECOND) {
-            message = message.replace("일치", "일치, 보너스 볼 일치");
+            if (winning == Winning.SECOND) {
+                message = message.replace("일치", "일치, 보너스 볼 일치");
+            }
             System.out.println(message);
         }
 

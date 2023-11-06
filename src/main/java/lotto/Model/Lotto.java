@@ -41,29 +41,26 @@ public class Lotto {
         }
     }
 
-    public void check_bonusNumber(int bonusNumber){
-        if (numbers.contains(bonusNumber)){
+    public void check_bonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             System.out.println("\n[ERROR] 당첨 번호인 " + numbers + "를 제외한 번호를 입력해주세요.");
             throw new IllegalArgumentException();
         }
     }
 
-    public int[] matchNumber(Lotto lottoNumbers, int bonusBall){
-        int[] matchResult = new int[]{0,0};
+    public int matchNumber(Lotto lottoNumbers) {
 
-        matchResult[0] = (int) lottoNumbers.numbers.stream()
+        return (int) lottoNumbers.numbers.stream()
                 .filter(numbers::contains)
                 .count();
+    }
 
-        if (lottoNumbers.numbers.contains(bonusBall)){
-            matchResult[1] = 1;
-        }
-
-        return matchResult;
+    public boolean checkBonusBall(int bonusBall){
+        return numbers.contains(bonusBall);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Controller {
 
     private final Service service;
+    static int bonusNum;
 
     public Controller() {
         this.service = new Service();
@@ -22,5 +23,13 @@ public class Controller {
         for (List<Integer> num : lottoNum) {
             System.out.println("[" + num.stream().map(Object::toString).collect(Collectors.joining(", ")) + "]");
         }
+    }
+
+    public Lotto drawLottoWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] split = Console.readLine().split(",");
+        System.out.println("보너스 번호를 입력해 주세요");
+        bonusNum = Integer.parseInt(Console.readLine());
+        return service.saveWinningNumbers(split);
     }
 }

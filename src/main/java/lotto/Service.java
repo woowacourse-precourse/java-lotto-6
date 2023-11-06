@@ -2,9 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Service {
 
@@ -22,4 +24,12 @@ public class Service {
         }
         return repository.getLottoNum();
     }
+
+    public Lotto saveWinningNumbers(String[] split) {
+        List<Integer> lottoNum = Arrays.stream(split)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return new Lotto(lottoNum);
+    }
+
 }

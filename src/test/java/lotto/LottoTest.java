@@ -54,7 +54,15 @@ class LottoTest {
     @Test
     void answerNotNumber() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.isAnswerNumeric("1a"))
+        assertThatThrownBy(() -> validator.validateAnswer("1a", 1, 45))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호가 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void answerOutOfRange() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.validateAnswer("46", 1, 45))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

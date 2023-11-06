@@ -96,6 +96,47 @@ public class LottoGameService {
 
         return lottoWinningResult;
     }
+
+    public boolean inputWinningNumberValidation(String inputWinningNumber){
+        try {
+            String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
+            isWinningNumberDigit(inputWinningNumberSplit);
+
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean inputBonusNumberValidation(List<Integer> winningNumber, String inputBonusNumber){
+        try {
+            isDigit(inputBonusNumber);
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+            isRange(bonusNumber,1,45);
+
+            isDuplicationNumber(winningNumber,bonusNumber);
+
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public int lottoQuantity(int lottoPurchaseAmount){
+        int lottoQuantity = lottoPurchaseAmount / 1000;
+        return lottoQuantity;
+    }
+
+    private boolean isDuplicationNumber(List<Integer> winningNumber, int bonusNumber){
+        if(winningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException(LottoException.INPUT_DUPLICATION_NUMBER.getMessage());
+        }
+        return true;
+    }
+
     private int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
         int matchCount = 0;
         for(int i = 0 ; i < winningNumber.size() ; i++){
@@ -120,35 +161,6 @@ public class LottoGameService {
             return 200000000;
         }
         return 0;
-    }
-
-    public boolean inputWinningNumberValidation(String inputWinningNumber){
-        try {
-            String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
-            isWinningNumberDigit(inputWinningNumberSplit);
-
-            return true;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean inputBonusNumberValidation(String inputBonusNumber){
-        try {
-            isDigit(inputBonusNumber);
-            int bonusNumber = Integer.parseInt(inputBonusNumber);
-            isRange(bonusNumber,1,45);
-            return true;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
-    public int lottoQuantity(int lottoPurchaseAmount){
-        int lottoQuantity = lottoPurchaseAmount / 1000;
-        return lottoQuantity;
     }
 
     private boolean isDigit(String input){

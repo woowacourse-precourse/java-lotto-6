@@ -28,12 +28,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void print() {
+    public void print() {
         System.out.println(numbers.toString());
     }
 
     // 입력한 숫자가 로또에 들어 있는지 확인
-    private boolean numberInLotto(int number) {
+    public boolean numberInLotto(int number) {
         if (numbers.contains(number)) {
             return true;
         }
@@ -41,7 +41,7 @@ public class Lotto {
     }
 
     // 당첨 번호와 일치하는 갯수 반환
-    private int calculateCorrectCount(Lotto winningNumbers) {
+    public int calculateCorrectCount(Lotto winningNumbers) {
         int count = 0;
 
         for (int number: numbers) {

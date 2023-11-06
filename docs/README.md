@@ -22,14 +22,14 @@
 - LotteryPurchaseController : 로또 구매 진행
 
 - LotteryCountService : 티켓 개수 처리
-- CashDTO : 금액에 DTO
 - CashValidator : 금액에 대한 검증
-- TicketCountCalculator : 티켓 가격에 따른 티켓 개수 계산
+- CashMapper : 금액에 대해 매핑
+- LottoCountCalculator : 티켓 가격에 따른 티켓 개수 계산
 
 - LotteryIssueService : 로또 발행 처리
-- TicketIssuer : 로또 번호 생성자
-- TicketSizePolicy : 로또 번호 개수 정책
-- TicketNumberRangePolicy : 로또 번호 범위 정책
+- LottoIssuer : 로또 번호 생성자
+- LottoSizePolicy : 로또 번호 개수 정책
+- LottoNumberRangePolicy : 로또 번호 범위 정책
   
 - LotteryAnswerController : 로또 당첨 진행
 
@@ -37,6 +37,7 @@
 - LotteryAnswerNumber : {여러개의 로또 당첨번호},{보너스번호}를 가지고 있는 일급 컬렉션 객체
 - LotteryAnswerNumberDTO : 로또 당첨번호 / 보너스번호 DTO
 - LotteryAnswerNumberValidator : 로또 당첨번호 / 보너스번호 검증
+- LotteryAnswerNumberMapper : 로또 당첨번호 / 보너스번호 매핑
 
 - LotteryAnswerCheckService : 로또 당첨 판단
 - WinningPolicy : 당첨 정책
@@ -50,10 +51,11 @@
 
 # 기능구현 리스트
 > (선행)테스트케이스에 대한 (후행)구현에 대한 검증 이후 체크한다.  
-- [ ] 구입금액 입력뷰를 출력한다. 
-- [ ] 구입금액 입력을 받는다.
-- [ ] 구입금액 입력에 대한 예외 검증을 처리한다.
-- [ ] 구입금액에 따라 티켓 개수를 계산한다.
+- [x] 구입금액 입력뷰를 출력한다. 
+- [x] 구입금액 입력을 받는다.
+- [x] 구입금액 입력에 대한 예외 검증을 처리한다.
+- [x] 구입금액 입력에 대한 매핑 처리한다.
+- [x] 구입금액에 따라 티켓 개수를 계산한다.
 - [ ] 티켓 개수에 따라 티켓을 발행한다.
 - [ ] 아래 조건에 따라 티켓을 발행한다.
    - [ ] 중복되지 않는 6개의 숫자
@@ -118,6 +120,8 @@
 
 ## 시도사항
 - [ ]  너무 MVC에 종속되어 생각하지 말기
+- [ ]  정적 팩토리 메서드를 사용할 때와 사용하지 않을 때를 구분지었다 :: 너무 무분별하게 사용하지 않도록 함
+- [ ]  최대한 매직넘버는 ENUM으로 따로 추출하였다.
 - [ ]  대신, 최대한 객체지향적 관점으로 유연하게 설계하려고 노력하자
 - [ ]  InputView, OutputView 나누기
 - [ ]  시퀀스다이어그램과 유스케이스를 통해 명확한 도메인 분석 프로세스를 거칠 것

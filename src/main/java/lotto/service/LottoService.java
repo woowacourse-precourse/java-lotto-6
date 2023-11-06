@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.model.Lotto;
-import lotto.model.LottoTicket;
+import lotto.model.LottoTicketCount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoService {
 
-    private LottoTicket lottoTicket;
+    private LottoTicketCount lottoTicket;
     private final List<Lotto> lottos;
 
     public LottoService() {
@@ -18,7 +18,7 @@ public class LottoService {
     }
 
     public void createLottoTicket(String moneyInput) {
-        this.lottoTicket = new LottoTicket(moneyInput);
+        this.lottoTicket = new LottoTicketCount(moneyInput);
     }
 
     public int getTicketCount() {

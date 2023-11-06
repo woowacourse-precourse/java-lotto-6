@@ -25,7 +25,19 @@ public class Validation {
 	}
 	
 	public static void validateNaturalNumber(String input) {
-		if (input.matches("\\d+")) {
+		if (!input.matches("\\d+")) {
+			throw new IllegalArgumentException();
+		}
+	}
+	
+	public static void validateNaturalNumberList(List<String> inputStirng) {
+		for (String value : inputStirng) {
+			validateNaturalNumber(value);
+		}
+	}
+	
+	public static void validateNumberNotInList(List<Integer> list, int number) {
+		if (list.contains(number)) {
 			throw new IllegalArgumentException();
 		}
 	}

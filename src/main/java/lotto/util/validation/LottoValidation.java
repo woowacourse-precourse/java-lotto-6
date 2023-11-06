@@ -31,7 +31,7 @@ public class LottoValidation {
 
     public void validatorWinningNumberCheck(String winningNumber) {
 
-        if (!winningNumber.matches("^\\d+[,|\\d]*\\d$")) {
+        if (!winningNumber.matches("^([0-9]+(,[0-9]+)+)$")) {
             ErrorThrower.throwIllegalArgumentException(WINNING_NUMBER_ONLY_NUMBER_ERROR.getMessage());
         }
 

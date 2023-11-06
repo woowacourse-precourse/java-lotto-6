@@ -21,6 +21,7 @@ public class LottoController {
     public void run() {
         int count = getAmount();
         LottoResponseDtos lottosDto = createLottos(count);
+        WinningNumber winningNumber = getWinningNumber();
     }
 
     private int getAmount() {
@@ -37,9 +38,10 @@ public class LottoController {
         return lottosDto;
     }
 
-    private void getWinningNumber() {
+    private WinningNumber getWinningNumber() {
         String numbers = inputView.getWinningNumber();
         String bonusNumber = inputView.getBonusNumber();
         WinningNumber winningNumber = new WinningNumber(numbers, bonusNumber);
+        return winningNumber;
     }
 }

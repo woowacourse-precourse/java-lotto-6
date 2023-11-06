@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import lotto.utils.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -105,5 +106,40 @@ class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber(win, bonus))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ErrorMessage.DUPLICATED_BONUS_NUMBER);
+    }
+
+    /*
+    당첨 계산 기능
+     */
+    @Test
+    @DisplayName("로또 번호와 당첨 번호가 몇 개 일치하는지 계산한다.")
+    public void countWinningNumber() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        String win = "1,3,6,8,15,45";
+        String bonus = "5";
+        WinningNumber winningNumber = new WinningNumber(win, bonus);
+
+        // when
+        int winningCount = winningNumber.countWinningNumber(lottoNumbers);
+
+        // then
+        assertThat(winningCount).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있는지 확인한다.")
+    public void checkBonusNumber() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        String win = "1,3,6,8,15,45";
+        String bonus = "5";
+        WinningNumber winningNumber = new WinningNumber(win, bonus);
+
+        // when
+        boolean checkBonus = winningNumber.checkBonusNumber(lottoNumbers);
+
+        // then
+        assertThat(checkBonus).isTrue();
     }
 }

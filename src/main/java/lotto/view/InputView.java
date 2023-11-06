@@ -7,8 +7,6 @@ import lotto.view.contants.InputMessage;
 import lotto.view.validation.InputValidator;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
 
 public class InputView {
 

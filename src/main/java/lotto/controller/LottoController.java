@@ -5,7 +5,6 @@ import lotto.message.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoController {

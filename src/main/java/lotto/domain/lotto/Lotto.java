@@ -28,9 +28,6 @@ public class Lotto {
         }
     }
 
-    /**
-     * 로또를 오른 차순으로 정리
-     */
     public List<Integer> organizeLotto() {
         List<Integer> organizeLotto = new ArrayList<>(this.numbers);
 

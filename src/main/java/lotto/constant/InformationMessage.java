@@ -10,7 +10,8 @@ public enum InformationMessage {
 
     WINNING_STATISTICS("당첨 통계"),
     SEPARATOR_LINE("---"),
-    WINNING_RESULT_FORMAT("%d개 일치 (%,d원) - %d개"),
+    RANK_RESULT_FORMAT("%d개 일치 (%,d원) - %d개"),
+    SECOND_RANK_RESULT_FORMAT("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     PROFIT_RATE_FORMAT("총 수익률은 %,.1f%% 입니다."),
     ;
 

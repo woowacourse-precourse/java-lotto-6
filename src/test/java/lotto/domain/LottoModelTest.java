@@ -108,67 +108,25 @@ class LottoModelTest {
                 .isEqualTo(expect);
     }
 
-
-    @Test
-    void makeWinningTable_당첨여부_판단_1등() {
+    @ParameterizedTest
+    @CsvSource({
+            "1,0,0,0,0,6,false",
+            "0,1,0,0,0,5,true",
+            "0,0,1,0,0,5,false",
+            "0,0,0,1,0,4,false",
+            "0,0,0,0,1,3,false"
+    })
+    void makeWinningTable_당첨여부_판단(int expect1, int expect2, int expect3, int expect4,
+                                  int expect5, int result, boolean bonus) {
         HashMap<Rewards, Integer> expect = new HashMap<>();
-        expect.put(Rewards.FIRST, 1);
-        expect.put(Rewards.SECOND, 0);
-        expect.put(Rewards.THIRD, 0);
-        expect.put(Rewards.FOURTH, 0);
-        expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(6, false))
+        expect.put(Rewards.FIRST, expect1);
+        expect.put(Rewards.SECOND, expect2);
+        expect.put(Rewards.THIRD, expect3);
+        expect.put(Rewards.FOURTH, expect4);
+        expect.put(Rewards.FIFTH, expect5);
+        assertThat(lottoModel.makeWinningTable(result, bonus))
                 .isEqualTo(expect);
     }
-
-    @Test
-    void makeWinningTable_당첨여부_판단_2등() {
-        HashMap<Rewards, Integer> expect = new HashMap<>();
-        expect.put(Rewards.FIRST, 0);
-        expect.put(Rewards.SECOND, 1);
-        expect.put(Rewards.THIRD, 0);
-        expect.put(Rewards.FOURTH, 0);
-        expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(5, true))
-                .isEqualTo(expect);
-    }
-
-    @Test
-    void makeWinningTable_당첨여부_판단_3등() {
-        HashMap<Rewards, Integer> expect = new HashMap<>();
-        expect.put(Rewards.FIRST, 0);
-        expect.put(Rewards.SECOND, 0);
-        expect.put(Rewards.THIRD, 1);
-        expect.put(Rewards.FOURTH, 0);
-        expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(5, false))
-                .isEqualTo(expect);
-    }
-
-    @Test
-    void makeWinningTable_당첨여부_판단_4등() {
-        HashMap<Rewards, Integer> expect = new HashMap<>();
-        expect.put(Rewards.FIRST, 0);
-        expect.put(Rewards.SECOND, 0);
-        expect.put(Rewards.THIRD, 0);
-        expect.put(Rewards.FOURTH, 1);
-        expect.put(Rewards.FIFTH, 0);
-        assertThat(lottoModel.makeWinningTable(4, false))
-                .isEqualTo(expect);
-    }
-
-    @Test
-    void makeWinningTable_당첨여부_판단_5등() {
-        HashMap<Rewards, Integer> expect = new HashMap<>();
-        expect.put(Rewards.FIRST, 0);
-        expect.put(Rewards.SECOND, 0);
-        expect.put(Rewards.THIRD, 0);
-        expect.put(Rewards.FOURTH, 0);
-        expect.put(Rewards.FIFTH, 1);
-        assertThat(lottoModel.makeWinningTable(3, false))
-                .isEqualTo(expect);
-    }
-
 
     static Stream<Arguments> parameterProviderPublishTicket() {
         return Stream.of(

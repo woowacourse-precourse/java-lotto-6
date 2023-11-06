@@ -10,6 +10,11 @@ import lotto.domain.Lotto;
 
 public class Handling {
 
+    public static List<String> split(String lotto) {
+        Validator.checkComma(lotto);
+        return Arrays.asList(lotto.split(COMMA.getMessage()));
+    }
+
     public static List<Integer> parseNumbers(List<String> lotto) {
         List<Integer> inputNumber = new ArrayList<>();
 
@@ -21,8 +26,5 @@ public class Handling {
         return inputNumber;
     }
 
-    public static List<String> split(String lotto) {
-        Validator.checkComma(lotto);
-        return Arrays.asList(lotto.split(COMMA.getMessage()));
-    }
+
 }

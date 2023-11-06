@@ -6,7 +6,7 @@
 
 ---
 ![Generic badge](https://img.shields.io/badge/precourse-week3-green.svg)
-![Generic badge](https://img.shields.io/badge/test-0_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/test-1_passed-blue.svg)
 ![Generic badge](https://img.shields.io/badge/version-1.0.1-brightgreen.svg)
 
 > 우아한테크코스 6기 프리코스 3주차 미션 <로또>를 구현한 저장소입니다.

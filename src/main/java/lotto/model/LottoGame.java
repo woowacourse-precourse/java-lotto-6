@@ -35,8 +35,7 @@ public class LottoGame {
     public List<Lotto> issuanceLotto(Integer amount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < amount / 1000; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(numbers));
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
         return lottos;
     }

@@ -18,4 +18,8 @@ public class LottoBonus {
         }
     }
 
+    public int getNumber() {
+        return number;
+    }
+
 }

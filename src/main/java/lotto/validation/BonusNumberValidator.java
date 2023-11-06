@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import java.util.List;
+
 public class BonusNumberValidator {
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 45;
@@ -18,6 +20,11 @@ public class BonusNumberValidator {
         }
     }
 
+    private static void validateNotInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 다른 번호여야 합니다: " + bonusNumber);
+        }
+    }
 
 
 }

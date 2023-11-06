@@ -1,5 +1,6 @@
 package lotto.exception;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public class LottoExceptionTest {
 
     LottoException lottoException = new LottoException();
 
+    // TEST lotto numbers
     @Test
     void 로또번호_양식_어긋난_경우() {
         String numbers = "1,2,3,4,5.6";
@@ -30,5 +32,12 @@ public class LottoExceptionTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 60);
         assertThrows(IllegalArgumentException.class, () ->
                 lottoException.validateNumbersPermittedRange(numbers), "[ERROR] 로또 번호의 범위는 1~45 사이여야 합니다");
+    }
+
+    @Test
+    void 로또_번호_중복_입력() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+        assertThrows(IllegalArgumentException.class, () ->
+                lottoException.validateDuplicatedNumbers(numbers), "[ERROR] 번호가 중복 되었습니다");
     }
 }

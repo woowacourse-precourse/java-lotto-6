@@ -23,5 +23,6 @@ public class Application {
         System.out.println(bonusNumber);
 
         Statistics statistics = new Statistics(lottoNumbers, winningNumbers, bonusNumber);
+        statistics.compareNumber();
     }
 }

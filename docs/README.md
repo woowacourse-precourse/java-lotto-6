@@ -67,7 +67,7 @@ GameEngine
 - [x] 로또들을 반환한다
 - [x] 당첨번호와 보너스번호로 값을 받는다.
 - [x] LottoScore에 맞게 리스트를 반환한다.
-- [ ] 수익률을 반환한다.
+- [x] 수익률을 반환한다.
 
 GameEngineValidator
 

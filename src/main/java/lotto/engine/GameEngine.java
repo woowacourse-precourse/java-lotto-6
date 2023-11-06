@@ -1,5 +1,6 @@
 package lotto.engine;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +15,7 @@ public class GameEngine {
     public static final int LOTTO_NUMBER_SIZE = 6;
     public static final int LOTTO_PRICE = 1000;
     public static final String ANSWER_LOTTO_NUMBERS_DELMITER = ",";
+    public static final int MAKE_PERCENT = 100;
     private final GameEngineValidator gameEngineValidator;
     private final NumberGenerator numberGenerator;
     private List<Lotto> lottos;
@@ -64,6 +66,21 @@ public class GameEngine {
             lottoScores.add(LottoScore.getMatchLottoScore(matchLottoNumberCount, matchBonusLottoNumberCount));
         }
         return lottoScores;
+    }
+
+    public double getEarningPercent() {
+        BigDecimal originalPrice = new BigDecimal(lottos.size() * LOTTO_PRICE);
+        BigDecimal earningPrice = new BigDecimal(getEarningPrice());
+        return earningPrice.subtract(originalPrice)
+                .divide(originalPrice)
+                .multiply(new BigDecimal(MAKE_PERCENT))
+                .doubleValue();
+    }
+
+    private long getEarningPrice() {
+        return getCalculateScore().stream()
+                .mapToLong(LottoScore::getReward)
+                .sum();
     }
 
     private long getMatchLottoNumberCount(Lotto lotto) {

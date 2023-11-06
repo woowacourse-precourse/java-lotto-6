@@ -29,6 +29,10 @@ public enum LottoScore {
                 .min(Comparator.comparing(lottoScore -> lottoScore.place))
                 .orElse(NOTHING_PLACE);
     }
+
+    public long getReward() {
+        return reward;
+    }
 }
 /*
 - 1등: 6개 번호 일치 / 2,000,000,000원

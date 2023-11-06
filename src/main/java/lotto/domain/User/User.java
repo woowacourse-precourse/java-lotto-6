@@ -16,6 +16,7 @@ public class User {
 
     public User() {
         inputLottoAmount();
+        createLotties();
     }
 
     private void inputLottoAmount() {
@@ -25,4 +26,16 @@ public class User {
         lottoCount = Integer.parseInt(lottoAmountInput) / 1000;
     }
 
+    public void createLotties() {
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> lottoNumber = createLottoNumber();
+            Lotto lotto = new Lotto(lottoNumber);
+            lotties.add(lotto);
+        }
+    }
+
+    private List<Integer> createLottoNumber() {
+        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return lottoNumber;
+    }
 }

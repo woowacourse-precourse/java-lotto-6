@@ -31,14 +31,13 @@ public class Application {
 
         System.out.println("당첨 통계\n---");
 
-        // TODO 구매한 로또 번호 일치 확인, 출력, 수익률 계산
         lottoGame.checkNumber(lottos);
 
     }
 
     public static void main(String[] args) {
         User user = new User();
-        LottoGame lottoGame = new LottoGame(user);
+        LottoGame lottoGame = new LottoGame();
         Application app = new Application(user, lottoGame);
 
         app.run();

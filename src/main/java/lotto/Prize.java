@@ -1,17 +1,17 @@
 package lotto;
 
 public enum Prize {
-    SIX(6, "2,000,000,000"),
-    BONUS(5, "30,000,000"),
-    FIVE(5, "1,500,000"),
-    FOUR(4, "50,000"),
-    THREE(3, "5,000"),
-    NONE(0, "0");
+    NONE(0, 0),
+    THREE(3, 5_000),
+    FOUR(4, 50_000),
+    FIVE(5, 1_500_000),
+    BONUS(5, 30_000_000),
+    SIX(6, 2_000_000_000);
 
     private final int count;
-    private final String prize;
+    private final int prize;
 
-    Prize(int count, String prize) {
+    Prize(int count, int prize) {
         this.count = count;
         this.prize = prize;
     }
@@ -20,7 +20,7 @@ public enum Prize {
         return count;
     }
 
-    public String getPrize() {
+    public int getPrize() {
         return prize;
     }
 

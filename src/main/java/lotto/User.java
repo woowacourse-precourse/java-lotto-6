@@ -12,13 +12,18 @@ public class User {
 
     // 구입 금액 입력 및 로또 갯수 반환
     public int inputAmount() {
-        int allLottoPay = Integer.parseInt(Console.readLine());
+        try {
+            int allLottoPay = Integer.parseInt(Console.readLine());
 
-        if(allLottoPay % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[Error] 로또 구입 금액이 맞지 않습니다.");
+            if(allLottoPay % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException("[Error] 로또 구입 금액이 맞지 않습니다.");
+            }
+            haveSeveralLotto = allLottoPay/LOTTO_PRICE;
+            return haveSeveralLotto;
+        } catch(NumberFormatException e) {
+            throw new NumberFormatException("[Error] 올바른 금액을 입력하세요." + e);
         }
-        haveSeveralLotto = allLottoPay/LOTTO_PRICE;
-        return haveSeveralLotto;
+
     }
 
     public List<Lotto> saveLottos() {

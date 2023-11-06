@@ -14,7 +14,7 @@ public enum NumberConstant {
     private int number;
 
     NumberConstant(int number) {
-        this.number=number;
+        this.number = number;
     }
 
 

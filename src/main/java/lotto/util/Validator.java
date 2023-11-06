@@ -43,7 +43,8 @@ public class Validator {
 
     public void validateRightCommaCount(String inputWinnerNumbers,
         List<String> splitedInputWinnerNumbers) {
-        long count = inputWinnerNumbers.chars().filter(number -> number == COMMA.getDelimiter().charAt(0)).count();
+        long count = inputWinnerNumbers.chars()
+            .filter(number -> number == COMMA.getDelimiter().charAt(0)).count();
         if (count != splitedInputWinnerNumbers.size() - 1) {
             throw new IllegalArgumentException(WINNUMBER_COMMA_DELIMITER.getMessage());
         }
@@ -56,7 +57,6 @@ public class Validator {
             throw new IllegalArgumentException(WINNUMBER_ONLY_NUMBER.getMessage());
         }
     }
-
 
 
     public void validateConvertedWinnerNumber(List<Integer> winnerNumbers) {

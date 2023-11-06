@@ -28,7 +28,8 @@ public class LottoGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generateNumberList() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER.getNumber(), LAST_LOTTO_NUMBER.getNumber(), NUMBERS_LENGTH.getNumber());
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER.getNumber(),
+            LAST_LOTTO_NUMBER.getNumber(), NUMBERS_LENGTH.getNumber());
         return numbers.stream().sorted().toList();
     }
 }

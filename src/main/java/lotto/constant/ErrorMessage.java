@@ -24,7 +24,6 @@ public enum ErrorMessage {
     BONUS_NUMBER_NOT_NUPLICATED_WINNUMBER("[ERROR] 보너스 번호가 당첨 번호와 중복이 되는 숫자로 와서는 안됩니다!");
 
 
-
     private String message;
 
 

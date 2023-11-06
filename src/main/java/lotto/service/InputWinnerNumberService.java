@@ -12,7 +12,8 @@ public class InputWinnerNumberService {
     private List<Integer> winnerNumbers;
 
     public void checkRightWinnerNumbers(Validator validator, String inputWinnerNumbers) {
-        List<String> splitedInputWinnerNumbers = List.of(inputWinnerNumbers.split(COMMA.getDelimiter()));
+        List<String> splitedInputWinnerNumbers = List.of(
+            inputWinnerNumbers.split(COMMA.getDelimiter()));
         validator.validateRightCommaCount(inputWinnerNumbers, splitedInputWinnerNumbers);
         validator.validateWinnumberOnlyNumber(splitedInputWinnerNumbers);
         winnerNumbers = splitedInputWinnerNumbers.stream().map(Integer::parseInt)

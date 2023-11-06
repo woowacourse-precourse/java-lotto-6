@@ -11,7 +11,7 @@ import lotto.domain.Result;
 public class LottoService {
 
 
-    private RecordService recordService = new RecordService();
+    private final RecordService recordService = new RecordService();
 
     public Long calculateMoney(List<LottoTicket> lottoTickets, List<Integer> lottoWinNumbers,
         Integer bonusNumber) {

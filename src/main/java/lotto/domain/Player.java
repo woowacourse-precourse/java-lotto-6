@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -10,6 +11,15 @@ public class Player {
     public Player(int cash) {
         validate(cash);
         this.cash = cash;
+        this.attempt = cash / 1000;
+        this.lottos = new ArrayList<>();
+    }
+
+    public void lottoDraw() {
+        for (int i = 0; i < attempt; i++) {
+            Lotto lotto = LottoGenerator.generate();
+            lottos.add(lotto);
+        }
     }
 
     private void validate(int cash) {

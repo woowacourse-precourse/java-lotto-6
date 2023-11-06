@@ -75,4 +75,14 @@ class LottoTest {
 
         assertThat(lotto.getLottoNumbers()).isEqualTo(getNumbers);
     }
+
+    @DisplayName("보너스 번호에 이미 로또 번호에 입력한 숫자가 있으면 중복 예외가 발생한다.")
+    @Test
+    void createLottoByDuplicatedBonusNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 1;
+
+        assertThatThrownBy(() -> lotto.setBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

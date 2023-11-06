@@ -25,6 +25,7 @@ public class Judgment {
                 countSameWinNum = countSameWinNum + COUNT_NUMBER;
             }
         }
+
         return countSameWinNum;
     }
 

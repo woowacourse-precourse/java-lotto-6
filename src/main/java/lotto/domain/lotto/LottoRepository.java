@@ -9,7 +9,7 @@ public class LottoRepository {
     private final Map<LottoType, Object> stores = new EnumMap<>(LottoType.class);
 
     public void saveUserLottos(final Lottos lottos) {
-        stores.put(LottoType.USER_LOTTO, lottos);
+        stores.put(LottoType.BUYING_LOTTOS, lottos);
     }
 
     public void saveWinningLotto(final WinningLotto winningLotto) {
@@ -17,7 +17,7 @@ public class LottoRepository {
     }
 
     public Optional<Lottos> findUserLottos() {
-        return Optional.ofNullable((Lottos) stores.get(LottoType.USER_LOTTO));
+        return Optional.ofNullable((Lottos) stores.get(LottoType.BUYING_LOTTOS));
     }
 
     public Optional<WinningLotto> findWinningLotto() {

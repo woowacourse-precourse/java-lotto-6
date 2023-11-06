@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
 public enum LottoType {
-    USER_LOTTO,
+    BUYING_LOTTOS,
     WINNING_LOTTO
 }

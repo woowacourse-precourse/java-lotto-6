@@ -20,4 +20,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE_INVALID_ERROR.getMessage());
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

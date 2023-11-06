@@ -1,9 +1,11 @@
 package lotto.view;
 
+import lotto.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.YieldRate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String ERROR_MESSAGE_TEXT = "[ERROR] %s\n";
@@ -19,8 +21,13 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLottoNumbers(List<String> lottos) {
-        lottos.forEach((lotto) -> System.out.printf(LOTTO_NUMBERS_TEXT, lotto));
+    public static void printLottoNumbers(List<Lotto> lottos) {
+        lottos.forEach((lotto) -> {
+            String lottoNumbers = lotto.getNumbers().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", "));
+            System.out.printf(LOTTO_NUMBERS_TEXT, lottoNumbers);
+        });
         System.out.println();
     }
     public static void printErrorMessage(String errorMessage) {

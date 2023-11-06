@@ -26,7 +26,7 @@ public class LottoGameController {
                 int bonusNumberInput = InputView.getPaidMoneyInput();
                 int ticketNumber = lottoOwner.purchaseLotto(bonusNumberInput);
                 OutputView.printTicketNumber(ticketNumber);
-                OutputView.printLottoNumbers(lottoOwner.getLottoNumbers());
+                OutputView.printLottoNumbers(lottoOwner.getLottos());
                 return;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

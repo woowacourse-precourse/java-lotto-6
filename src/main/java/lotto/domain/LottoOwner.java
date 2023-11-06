@@ -16,10 +16,8 @@ public class LottoOwner {
         return lottoTicket.getTicketNumber();
     }
 
-    public List<String> getLottoNumbers() {
-        return lottos.stream()
-                .map(Lotto::toString)
-                .toList();
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     public void calculateResult(WinningNumber winningNumber) {

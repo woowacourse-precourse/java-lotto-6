@@ -15,7 +15,7 @@ public class OutputView {
     private static final String MSG_THIRD_PLACE = "5개 일치 (1,500,000원)";
     private static final String MSG_FOURTH_PLACE = "4개 일치 (50,000원)";
     private static final String MSG_FIFTH_PLACE = "3개 일치 (5,000원)";
-    private static final String MSG_PROFIT = "총 수익률은 %.1f입니다.";
+    private static final String MSG_PROFIT = "총 수익률은 %.1f%%입니다.";
 
     private static final String COUNT_NOUN = "개";
     private static final String NEW_LINE = "\n";

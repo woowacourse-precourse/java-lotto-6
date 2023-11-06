@@ -26,14 +26,10 @@ public class LottoController {
     public void run() {
         Quantity totalLotteries = Quantity.of(parseIntToMoney(), LottoConfig.PRICE);
         output.printQuantityOfLotteries(totalLotteries);
-        //TODO: 랜덤숫자생성
         Lottos lottos = Lottos.of(totalLotteries, generator);
-        //TODO: 로또들 출력
         output.printBoughtLottos(lottos);
         Lotto winningNumbers = parseListToLotto();
-
         BonusNumber bonusNumber = parseIntToBonusNumber();
-
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
         LottoResult result = LottoResult.of(lottos, winningLotto);
         output.printResult(result);

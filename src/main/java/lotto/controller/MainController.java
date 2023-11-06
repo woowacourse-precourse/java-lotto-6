@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoMoneyValidator;
 import lotto.util.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,7 +15,7 @@ public class MainController {
     }
 
     public void play() {
-        String lottoMoneyString = inputView.readLottoMoney();
-        int lottoMoney = Utils.parseInt(lottoMoneyString);
+        String inputMoney = inputView.readLottoMoney();
+        int lottoMoney = LottoMoneyValidator.validateMoneyIsValid(inputMoney);
     }
 }

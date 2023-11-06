@@ -11,12 +11,12 @@ public class ControllerTest {
 
     @Test
     void validateMoneyIsPositive_구입금액_음수면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyIsPositive("-10000")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyIsPositive(-10000)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void validateMoneyDivideBy1000_구입금액_1000으로_안나눠지면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyDivideBy1000("13555")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LottoMoneyValidator.validateMoneyDivideBy1000(13555)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -26,17 +26,17 @@ public class ControllerTest {
 
     @Test
     void readLottoMoney_숫자_아니면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateInputString("abc")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Utils.validateStringIsNumber("abc")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void readLottoMoney_공백_이면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateHasInput(" ")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Utils.validateHasInput(" ")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void readLottoMoney_null_이면_예외반환() {
-        assertThatThrownBy(() -> LottoMoneyValidator.validateHasInput(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Utils.validateHasInput(null)).isInstanceOf(IllegalArgumentException.class);
     }
 }
 

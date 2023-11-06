@@ -7,7 +7,7 @@ public class BonusLotto {
     private final int bonusNumber;
 
     public BonusLotto(int bonusNumber) {
-        BonusValidator.validate(Integer.toString(bonusNumber));
+        BonusValidator.validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 }

@@ -52,9 +52,8 @@
 - revenueRate
 # BuyLotto
     구매한 번호, 당첨번호 관리하는 클래스
-- checkAllSameNumber
-- pickNumber
-- checkSameNumber
+- *checkAllSameNumber
+- *pickNumber
 # Calculate
     당첨 통계를 계산해주는 클래스
 - calculateRevenueRate

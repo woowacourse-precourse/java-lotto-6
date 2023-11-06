@@ -11,6 +11,7 @@ public class InputView {
 
     public static final String INPUT_MONEY_MSG = "구입금액을 입력해 주세요.";
     public static final String INPUT_LOTTO_MSG = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_MSG = "보너스 번호를 입력해 주세요.";
 
     public int inputMoney() {
         System.out.println(INPUT_MONEY_MSG);
@@ -25,5 +26,10 @@ public class InputView {
         return Arrays.stream(lottoNumbers.split(MessageConst.DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_MSG);
+        return Integer.parseInt(Console.readLine());
     }
 }

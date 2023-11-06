@@ -10,23 +10,31 @@ public class LottoAnswerValidator {
     public static List<Integer> checkIsValidLottoNumbers(String userInput) {
         //숫자인지 확인
         List<Integer> numbers;
-        numbers = convertToNumber(userInput);
+        numbers = convertStringToNumber(userInput);
         checkIsCorrectNumber(numbers);
         checkLengthIsSix(numbers);
         return numbers;
     }
 
-    private static List<Integer> convertToNumber(String userInput) {
+    public static List<Integer> convertStringToNumber(String userInput) {
         List<Integer> numbers = new ArrayList<>();
+
+        String[] splitedUserInput = userInput.split(",");
+        for (String unParsedNumber : splitedUserInput) {
+            numbers.add(convertToNumber(unParsedNumber));
+        }
+        return numbers;
+    }
+
+    private static int convertToNumber(String unParsedNumber) {
+        int number;
         try {
-            String[] splitedUserInput = userInput.split(",");
-            for (String unParsedNumber : splitedUserInput) {
-                numbers.add(Integer.parseInt(unParsedNumber));
-            }
+            number = Integer.parseInt(unParsedNumber);
+            //TODO 정확한 에러 캐치
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessages.CAN_NOT_CONVERT_TO_NUMBER.getMessage());
         }
-        return numbers;
+        return number;
     }
 
     private static void checkLengthIsSix(List<Integer> numbers) {

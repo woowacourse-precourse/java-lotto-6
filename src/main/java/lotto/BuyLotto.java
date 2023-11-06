@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
+import java.util.List;
 
 public class BuyLotto {
     public int buy() {
@@ -28,6 +31,12 @@ public class BuyLotto {
         if (buy % 1000 != 0 || buy < 1000) {
             throw new IllegalArgumentException("[Error] 로또는 1000원 단위로 구매 할 수 있습니다.");
         }
+    }
+
+    public Lotto generateLotto() {
+        List<Integer> balls = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(balls);
+        return new Lotto(balls);
     }
 
 }

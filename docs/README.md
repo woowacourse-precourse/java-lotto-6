@@ -1,6 +1,6 @@
 # 3주차 과제 기능 명세
 
-## 시작
+## 구입 금액 입력
 ### void start()
 - 구입 금액을 사용자가 입력할 수 있도록 출력문을 출력한다.
 - isCorrectInput(int) 반환값이 true일 때까지 inputMoney()를 호출한다.
@@ -19,10 +19,11 @@
 - 1000원 단위라면 isCorrectMoney의 값을 true로 변경하고 메서드를 종료한다.
 - 1000원 단위가 아닐 경우 IllegalArgumentException를 던진다.
 
-## 게임 실행
+## 메인 동작 구현
 ### void run()
 - createLotto()를 호출한다.
 
+## 로또 생성 및 출력
 ### void createLotto()
 - 반복문을 사용자가 구매한 로또 개수만큼 돌면서 makeNumbers()를 호출한다.
 - 반복문이 끝나면 printNumbers()를 호출한다.
@@ -46,3 +47,5 @@
 - 이를 위해 ArrayList<String>을 생성하고 lst에 저장된 값들을 String으로 변환하여 삽입한다.
 - String.join()을 이용하여 출력 조건을 충족하는 문자열을 만든다.
 - 만들어진 문자열을 반환한다.
+
+## 당첨 번호 및 보너스 번호 입력

@@ -19,6 +19,13 @@ public class LottoGameController {
     public void run() {
         String lottoCount = enterMoney();
         makeLotto(lottoCount);
+        enterWinningLotto();
+        enterBonusNumber();
+    }
+    private void enterBonusNumber() {
+        printMessage(Message.ASK_BONUS_NUMBER.toString());
+        String bonusNumber = inputView.inputWinningLotto();
+        lottoGameService.makeBonusNumber(bonusNumber);
     }
 
     private void enterWinningLotto() {

@@ -8,8 +8,8 @@ import lotto.model.WinningLotto;
 public class LottoGameService {
     private LottoFactory lottoFactory;
     private UserLotto userLotto;
-    private Money money;
     private int lottoCount;
+    private Lotto winningLottoNumber;
     private WinningLotto winningLotto;
 
     public LottoGameService() {
@@ -17,7 +17,7 @@ public class LottoGameService {
     }
 
     public String buyLotto(String inputMoney) {
-        money = new Money(inputMoney);
+        Money money = new Money(inputMoney);
         lottoCount = money.calculateLottoCount();
         return String.valueOf(lottoCount);
     }
@@ -28,6 +28,11 @@ public class LottoGameService {
     }
 
     public void makeWinningLotto(String winningLotto) {
-        Lotto loto = lottoFactory.makeWinningLotto(winningLotto);
+        winningLottoNumber = lottoFactory.makeWinningLotto(winningLotto);
+    }
+
+    public void makeBonusNumber(String inputBonusNumber) {
+        int bonusNumber = lottoFactory.makeBonusNumber(winningLottoNumber, inputBonusNumber);
+        winningLotto = lottoFactory.makeWinningLottoWithBonusNumber(winningLottoNumber, bonusNumber);
     }
 }

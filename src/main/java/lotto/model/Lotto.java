@@ -29,4 +29,8 @@ public class Lotto {
         });
         return sb.toString();
     }
+
+    public boolean isContain(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

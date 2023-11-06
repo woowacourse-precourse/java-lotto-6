@@ -13,7 +13,7 @@ public class WinningLottoValidator {
 
     }
 
-    public static void doValidate(List<Integer> numbers, int bonusNum) {
+    public static void validateWinningNumbers(List<Integer> numbers) {
         if (!isLottoNumLength(numbers)) {
             throw new IllegalArgumentException(
                     ExceptionMessageFormatter.makeMessage(LottoGameException.NOT_LOTTO_LENGTH.getMessage()));
@@ -26,6 +26,9 @@ public class WinningLottoValidator {
             throw new IllegalArgumentException(ExceptionMessageFormatter.makeMessage(
                     LottoGameException.CONTAIN_DUPLICATE_NUMBER_IN_WINNING_NUMBER.getMessage()));
         }
+    }
+
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNum) {
         if (!isInBoundary(bonusNum)) {
             throw new IllegalArgumentException(
                     ExceptionMessageFormatter.makeMessage(LottoGameException.WRONG_BOUNDARY_BONUS_NUMBER.getMessage()));

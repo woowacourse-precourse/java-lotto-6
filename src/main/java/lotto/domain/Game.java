@@ -14,6 +14,7 @@ public class Game {
         issueLottos();
         printLottos();
         inputLottoWinningNumbers();
+        inputLottoBonusNumber();
     }
 
     private static void inputLottoPurchaseAmount() {
@@ -51,15 +52,31 @@ public class Game {
     }
 
     private static void inputLottoWinningNumbers() {
+        System.out.println();
         while (true) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
+            System.out.println("당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
 
             try {
                 player.setWinningNumbers(input);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println("[ERROR] 로또 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.");
+            }
+        }
+    }
+
+    private static void inputLottoBonusNumber() {
+        System.out.println();
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+
+            try {
+                player.setBonusNumber(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 보너스 번호는 1부터 45 사이의 숫자이며, 당첨 번호에 포함되지 않아야 합니다.");
             }
         }
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Controller {
 
-    static final Integer LOTTERY_PRICE = 1_000;
+
 
     public static void sortNumbers(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());

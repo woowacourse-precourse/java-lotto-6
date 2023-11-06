@@ -10,6 +10,8 @@ public class GameStatistics {
     private List<Integer> matchingNumberCountList;
     private List<Rank> rankList;
 
+    public static final Integer LOTTERY_PRICE = 1_000;
+
     public void generateMatchingNumberCountList() {
         this.matchingNumberCountList = new ArrayList<>();
     }

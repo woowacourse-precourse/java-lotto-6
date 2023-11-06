@@ -8,6 +8,7 @@ public class GameData {
     private Integer bonusNumber;
     private List<Lotto> lottoList;
 
+
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }

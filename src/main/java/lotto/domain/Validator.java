@@ -5,7 +5,8 @@ import lotto.constants.ErrorMessages;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.domain.Controller.LOTTERY_PRICE;
+import static lotto.model.GameStatistics.LOTTERY_PRICE;
+
 
 public class Validator {
 

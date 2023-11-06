@@ -8,7 +8,7 @@ public class RandomLottoNumberGenerator {
     public static final int LOTTO_UPPER_BOUND = 45;
     private static final int LOTTO_NUMBER_SIZE = 6;
 
-    private RandomLottoNumberGenerator(){
+    private RandomLottoNumberGenerator() {
 
     }
 

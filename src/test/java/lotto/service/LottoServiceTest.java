@@ -4,11 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.domain.Lotto;
-import lotto.domain.LottoSet;
+import lotto.domain.LottoList;
 import lotto.domain.dto.LottoPrizeDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,7 @@ class LottoServiceTest {
     @DisplayName("로또 집계 테스트")
     @Test
     void test1() {
-        Set<Lotto> lottos = new HashSet<>();
+        List<Lotto> lottos = new ArrayList<>();
         // 1등
         lottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
@@ -47,11 +45,11 @@ class LottoServiceTest {
         lottos.add(new Lotto(Arrays.asList(33, 34, 43, 42, 41, 40)));
         lottos.add(new Lotto(Arrays.asList(12, 11, 43, 42, 41, 40)));
 
-        LottoSet lottoSet = new LottoSet(lottos);
+        LottoList lottoList = new LottoList(lottos);
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
 
-        LottoService lottoService = new LottoService(lottoSet, winningNumbers, bonusNumber);
+        LottoService lottoService = new LottoService(lottoList, winningNumbers, bonusNumber);
         LottoPrizeDto dto = lottoService.compareLottos();
 
         assertThat(dto.getFirst()).isEqualTo(2);

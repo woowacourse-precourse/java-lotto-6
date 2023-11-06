@@ -1,7 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.LottoSet;
+import lotto.domain.Lotto;
+import lotto.domain.LottoList;
 import lotto.domain.Money;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
@@ -14,15 +15,20 @@ public class LottoController {
 
     public LottoController() {
         Money money = lottoView.getLottoPurchase();
-        LottoSet lottoSet = LottoSet.generateRandomLottoSetSizeWith(money.getLottoCount());
+        LottoList lottoList = LottoList.generateRandomLottoSetSizeWith(money.getLottoCount());
+        printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
         List<Integer> winningNumbers = lottoView.getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        lottoService = new LottoService(lottoSet, winningNumbers, bonusNumber);
+        lottoService = new LottoService(lottoList, winningNumbers, bonusNumber);
     }
 
     public void printStatistics() {
         lottoView.printWinningStatistics(lottoService.compareLottos());
+    }
+
+    public void printPublishedLottos(int lottoCount, List<Lotto> lottos) {
+        lottoView.printPublishedLottos(lottoCount, lottos);
     }
 
     public void printRateOfReturn() {

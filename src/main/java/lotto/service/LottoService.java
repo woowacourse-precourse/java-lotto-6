@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.constant.PrizeCondition;
 import lotto.constant.PrizeMoney;
 import lotto.domain.Lotto;
-import lotto.domain.LottoSet;
+import lotto.domain.LottoList;
 import lotto.domain.Money;
 import lotto.domain.dto.LottoPrizeDto;
 
@@ -12,19 +12,19 @@ public class LottoService {
     private static final int THOUSAND = 1000;
     private static final double TEN = 10.0;
 
-    private final LottoSet lottoSet;
+    private final LottoList lottoList;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public LottoService(LottoSet lottoSet, List<Integer> winningNumbers, int bonusNumber) {
-        this.lottoSet = lottoSet;
+    public LottoService(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
+        this.lottoList = lottoList;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
     public LottoPrizeDto compareLottos() {
         LottoPrizeDto lottoPrizeDto = new LottoPrizeDto();
-        for (Lotto lotto : lottoSet.getLottos()) {
+        for (Lotto lotto : lottoList.getLottos()) {
             if (compareOneLotto(lotto) == PrizeCondition.FIRST) {
                 lottoPrizeDto.countFirst();
             }
@@ -52,7 +52,7 @@ public class LottoService {
                 + dto.getFourth() * PrizeMoney.FOURTH.getValue()
                 + dto.getFifth() * PrizeMoney.FIFTH.getValue();
 
-        int purchase = lottoSet.getLottos().size() * Money.EACH_LOTTO;
+        int purchase = lottoList.getLottos().size() * Money.EACH_LOTTO;
 
         return Math.round(THOUSAND * totalPrizeMoney / (double) purchase) / TEN;
     }

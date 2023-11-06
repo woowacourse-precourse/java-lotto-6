@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.dto.LottoPrizeDto;
 
@@ -17,6 +18,10 @@ public class LottoView {
         } while (money == null);
 
         return money;
+    }
+
+    public void printPublishedLottos(int lottoCount, List<Lotto> lottos) {
+        outputView.printPublishedLottos(lottoCount, lottos);
     }
 
     public List<Integer> getWinningNumbers() {

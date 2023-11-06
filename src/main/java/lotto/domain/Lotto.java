@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.util.RandomLottoNumberGenerator.LOTTO_LOWER_BOUND;
 import static lotto.util.RandomLottoNumberGenerator.LOTTO_UPPER_BOUND;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.util.RandomLottoNumberGenerator;
 
@@ -16,7 +15,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -25,15 +23,11 @@ public class Lotto {
     }
 
     public void printItself() {
-        System.out.println(numbers);
+        System.out.println(numbers.stream().sorted().toList());
     }
 
     public boolean contains(int number) {
         return numbers.contains(number);
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     private void validate(List<Integer> numbers) {

@@ -27,4 +27,6 @@ public class MainController {
 
         return lottos;
     }
+
+
 }

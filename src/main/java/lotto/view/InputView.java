@@ -12,7 +12,7 @@ public class InputView {
     }
 
     public static int readPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        printInputGuideMessage("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         try {
             return Integer.parseInt(input);
@@ -22,24 +22,32 @@ public class InputView {
     }
 
     public static List<Integer> readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        printInputGuideMessage("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         try {
-            return Arrays.stream(input.split(","))
-                    .map(Integer::parseInt)
-                    .toList();
+            return toList(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
         }
     }
 
     public static int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        printInputGuideMessage("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INTEGER_INPUT);
         }
+    }
+
+    private static void printInputGuideMessage(String message) {
+        System.out.println(message);
+    }
+
+    private static List<Integer> toList(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 }

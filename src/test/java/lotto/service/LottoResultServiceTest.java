@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.constant.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.dto.LottoPlayInfo;
-import lotto.domain.dto.LottoResult;
+import lotto.dto.LottoPlayInfo;
+import lotto.dto.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

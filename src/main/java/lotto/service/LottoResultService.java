@@ -7,8 +7,8 @@ import lotto.domain.LottoMatcher;
 import lotto.domain.PrizeCalculator;
 import lotto.domain.ROICalculator;
 import lotto.domain.WinningNumbers;
-import lotto.domain.dto.LottoPlayInfo;
-import lotto.domain.dto.LottoResult;
+import lotto.dto.LottoPlayInfo;
+import lotto.dto.LottoResult;
 
 public class LottoResultService {
     private final PrizeCalculator prizeCalculator;

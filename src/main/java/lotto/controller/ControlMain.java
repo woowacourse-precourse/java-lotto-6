@@ -34,12 +34,12 @@ public class ControlMain {
     }
 
     public void bonusNumAdd(List<Integer> numbers, Player player) {
-        System.out.println("보너스 번호를 입력해주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumTry(numbers, player);
     }
 
     public List<Integer> setChoiceLottoNum() {
-        System.out.println("당첨 번호를 입력해주세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
         return choiceLottoNumTry();
     }
 

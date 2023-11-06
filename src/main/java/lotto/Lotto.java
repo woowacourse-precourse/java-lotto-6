@@ -20,4 +20,9 @@ public class Lotto {
     private void sort() {
         numbers.sort(Integer::compareTo);
     }
+
+    public List<Integer> getSortedNumbers() {
+        sort();
+        return numbers;
+    }
 }

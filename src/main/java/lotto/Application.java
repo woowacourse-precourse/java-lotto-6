@@ -24,7 +24,7 @@ public class Application {
 
         Lottos lottos = new Lottos();
         lottos.buy(money);
-        //outputView.printUserLottoNumbers(lottos.getLottos());
+        outputView.printUserLottoNumbers(lottos.getLottos());
 
     }
 }

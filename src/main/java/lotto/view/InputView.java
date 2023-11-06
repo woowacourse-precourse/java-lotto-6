@@ -66,4 +66,34 @@ public class InputView {
             }
         }
     }
+
+    public Integer getBonusNumber(Lotto winningNumber) {
+        while (true) {
+            System.out.println(Constants.GET_BONUS_NUMBER_MESSAGE);
+            String bonusNumber = Console.readLine();
+
+            try {
+                validateBonusNumberInput(bonusNumber, winningNumber);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumberInput(String bonusNumber, Lotto winningNumber) {
+        try {
+            Integer parseNumber = Integer.parseInt(bonusNumber);
+
+            if (parseNumber < Constants.MIN_LOTTO_NUM || parseNumber > Constants.MAX_LOTTO_NUM) {
+                throw new IllegalArgumentException(Constants.LOTTO_NUMBER_RANGE_ERROR);
+            }
+
+            if (winningNumber.getNumbers().contains(parseNumber)) {
+                throw new IllegalArgumentException(Constants.DUPLICATE_NUMBER_ERROR);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Constants.NOT_INT_NUMBER_ERROR);
+        }
+    }
 }

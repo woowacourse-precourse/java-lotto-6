@@ -33,6 +33,8 @@ public class OutputView {
     }
 
     public static void printResult(Result result){
+        System.out.println("당첨 통계");
+        System.out.println("---");
         Set<Rank> ranks = result.getResult().keySet();
         for(Rank rank : ranks){
             if(rank.getCount() > 0){

@@ -3,6 +3,7 @@ package util;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RandomNumberGenerator {
@@ -11,8 +12,12 @@ public class RandomNumberGenerator {
         List<Integer> nums;
         while(true){
             nums = Randoms.pickUniqueNumbersInRange(start, end, count);
-            if(!nums.stream().anyMatch(nums::contains))
+            List<Integer> copyNums = new ArrayList<>();
+            if(nums.stream().allMatch(num->
+                !copyNums.contains(num) && copyNums.add(num)
+            ))
                 break;
+
         }
        return nums;
     }

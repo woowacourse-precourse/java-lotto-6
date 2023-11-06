@@ -12,7 +12,7 @@ public enum ErrorHandler {
     private final String errorMessage;
 
     ErrorHandler(String message) {
-        this.errorMessage = "[Error] " + message;
+        this.errorMessage = "[ERROR] " + message;
     }
 
     public RuntimeException getException() {

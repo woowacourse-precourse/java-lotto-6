@@ -35,10 +35,16 @@ public class LottoController {
     }
 
     private Money loadTicket() {
-        outputHandler.printInputMoneyMessage();
-        String money = inputHandler.inputValue();
+        while (true) {
+            try {
+                outputHandler.printInputMoneyMessage();
+                String money = inputHandler.inputValue();
 
-        return Money.create(money);
+                return Money.create(money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private BuyLottos buyLotto(Money money) {
@@ -49,18 +55,30 @@ public class LottoController {
     }
 
     private Lotto loadWinningLotto() {
-        outputHandler.printInputWinningLottoMessage();
-        String winningLotto = inputHandler.inputValue();
+        while (true) {
+            try {
+                outputHandler.printInputWinningLottoMessage();
+                String winningLotto = inputHandler.inputValue();
 
-        return Lotto.from(winningLotto);
+                return Lotto.from(winningLotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private WinLottoWithBonus loadBonusNumber(Lotto winningLotto) {
-        outputHandler.printInputBonusLottoMessage();
-        List<Integer> sortedNumbers = winningLotto.sortLottoNumbers();
-        String bonusNumber = inputHandler.inputValue();
+        while (true) {
+            try {
+                outputHandler.printInputBonusLottoMessage();
+                List<Integer> sortedNumbers = winningLotto.sortLottoNumbers();
+                String bonusNumber = inputHandler.inputValue();
 
-        return WinLottoWithBonus.create(sortedNumbers, bonusNumber);
+                return WinLottoWithBonus.create(sortedNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private LottoResult LottoStatistics(BuyLottos buyLottos, WinLottoWithBonus winLottoWithBonus) {

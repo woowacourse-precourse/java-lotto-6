@@ -1,21 +1,21 @@
-package lotto.processor;
+package lotto.util.handler;
 
 import lotto.util.parser.InputParser;
 import lotto.util.validator.InputValidator;
 import lotto.view.facade.ViewFacade;
 
-public class InputProcessor<T> {
+public class InputHandler<T> {
     private final InputParser<T> parser;
     private final InputValidator<T> validator;
     private final ViewFacade viewFacade;
 
-    public InputProcessor(InputParser<T> parser, InputValidator<T> validator,ViewFacade viewFacade) {
+    public InputHandler(InputParser<T> parser, InputValidator<T> validator, ViewFacade viewFacade) {
         this.parser = parser;
         this.validator = validator;
         this.viewFacade = viewFacade;
     }
 
-    public T process() {
+    public T processInput() {
         String input = viewFacade.ask();
         while (true) {
             try {

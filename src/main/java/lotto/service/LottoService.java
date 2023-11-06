@@ -35,17 +35,17 @@ public class LottoService {
     private int getAmount() {
         OutputViewService.outputAmount();
         try {
-            return InputViewService.inputAmount(LOTTO_PRICE);
+            return InputViewService.inputLottoAmount(LOTTO_PRICE);
         } catch (IllegalArgumentException e) {
             OutputViewService.outPutErrorMessage(e);
             return getAmount();
         }
     }
 
-    private List<Lotto> issueLottoTicket(int amount) {
+        private List<Lotto> issueLottoTicket(int amount) {
         LottoMachine lottoMachine = new LottoMachine(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT);
         List<Lotto> lottoList = lottoMachine.getLottoList(LOTTO_PRICE, amount);
-        OutputViewService.outputEa(lottoList.size());
+        OutputViewService.outputLottoEa(lottoList.size());
         OutputViewService.outputLottoList(lottoList);
         return lottoList;
     }

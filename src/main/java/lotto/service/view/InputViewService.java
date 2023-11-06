@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import static lotto.common.ErrorMessageType.*;
 
 /**
- * @Class : 로또 관리 UI 입력 클래스
+ * @Class : UI 입력 클래스
  */
 public class InputViewService {
 
-    public static int inputAmount(int lottoPrice) {
+    public static int inputLottoAmount(int lottoPrice) {
         int amount = ConvertStringToInt(getInputData());
         if (!Validator.isMultipleOfNumber(amount, lottoPrice)) {
             throw new IllegalArgumentException(ERROR_MIN_LOTTO_AMOUNT_UNIT.getLottoMessage());

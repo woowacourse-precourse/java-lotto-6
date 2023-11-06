@@ -9,7 +9,7 @@ import java.util.List;
 import static lotto.common.MessageType.*;
 
 /**
- * @Class : 로또 관리 UI 출력 클래스
+ * @Class : UI 출력 클래스
  */
 public class OutputViewService {
 
@@ -19,7 +19,7 @@ public class OutputViewService {
         System.out.println(ASK_PURCHASE_AMOUNT.getMessage());
     }
 
-    public static void outputEa(int ea) {
+    public static void outputLottoEa(int ea) {
         System.out.println(getEaMessage(ea));
     }
 

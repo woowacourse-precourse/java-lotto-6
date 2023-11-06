@@ -22,7 +22,8 @@ public class StartLottoTest {
         assertThatThrownBy(() -> {
             String input = "10dkfk";
             test.checkPurchasePrice(input);
-        }).isInstanceOf(NumberFormatException.class);
+        }).isInstanceOf(NumberFormatException.class)
+                .hasMessageContaining("올바른 숫자 형식이 아닙니다. 숫자를 입력해주세요.");
     }
 
     @DisplayName("구입 금액이 1000원 단위가 아니라면 예외가 발생한다.")
@@ -31,7 +32,8 @@ public class StartLottoTest {
         assertThatThrownBy(() -> {
             String input = "101";
             test.checkPurchasePrice(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("구입금액은 1000원 단위입니다. 다시 입력해주세요.");
     }
 
     @DisplayName("당첨 번호는 쉼표로 구분된다.")
@@ -49,7 +51,8 @@ public class StartLottoTest {
         assertThatThrownBy(() -> {
             String input = "ten";
             test.checkBonusNumber(input);
-        }).isInstanceOf(NumberFormatException.class);
+        }).isInstanceOf(NumberFormatException.class)
+                .hasMessageContaining("올바른 숫자 형식이 아닙니다. 숫자를 입력해주세요.");
     }
 
     @DisplayName("보너스 번호가 1 ~ 45 사이의 숫자가 아니라면 예외가 발생한다.")
@@ -58,7 +61,8 @@ public class StartLottoTest {
         assertThatThrownBy(() -> {
             String input = "-20";
             test.checkBonusNumber(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호는 1 ~ 45 사이의 값을 가집니다.");
     }
 
     @DisplayName("보너스 번호와 당첨 번호 사이에 중복된 숫자가 있으면 예외가 발생한다.")

@@ -18,8 +18,7 @@ public class LottoController {
 
     private MoneyDto getMoneyFromClient() {
         outputView.beforeInputMoney();
-        MoneyDto moneyDto = new MoneyDto(inputView.inputMoney());
-        return moneyDto;
+        return new MoneyDto(inputView.inputMoney());
     }
 
     private void createLottoes(MoneyDto moneyDto) {

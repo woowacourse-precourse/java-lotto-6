@@ -33,6 +33,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또의 번호가 1과 45 사이에 없으면 예외 발생")
+    @Test
+    void validateNumberInRange() {
+        //when, then
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 77)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 존재하는 값을 주면 true를 반환한다.")
     @ParameterizedTest
     @ValueSource(ints = {5, 7, 11, 4, 1, 36})

@@ -72,4 +72,13 @@ class ValidatorTest {
             assertThatThrownBy(() -> Validator.checkValidSize(testCase));
         }
     }
+
+    @Test
+    @DisplayName("입력값이 1이상 45이하가 아닐 경우 예외 발생")
+    void checkNumberInTest() {
+        numberTestCases = Arrays.asList(new Integer[]{0, 46, 47, 48, 49, 1000000});
+        for (Integer testCase : numberTestCases) {
+            assertThatThrownBy(() -> Validator.checkNumberIn(1, 45, testCase));
+        }
+    }
 }

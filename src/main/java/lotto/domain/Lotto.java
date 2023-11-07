@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,11 +38,13 @@ record Lotto(List<Integer> numbers) {
         }
     }
 
-    public List<Integer> numbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int countMatchedNumber(Lotto values) {
+        List<Integer> target = new ArrayList<>(numbers);
+        target.retainAll(values.numbers);
+        return target.size();
     }
 }

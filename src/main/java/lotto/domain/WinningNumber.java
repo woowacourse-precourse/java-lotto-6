@@ -10,11 +10,6 @@ public class WinningNumber {
         this.values = new Lotto(values);
     }
 
-    public void setBonusNumber(int bonusNumber) {
-        validateAlreadyPickedNumber(bonusNumber);
-        this.bonusNumber = new BonusNumber(bonusNumber);
-    }
-
     private void validateAlreadyPickedNumber(int bonusNumber) {
         if (values.contains(bonusNumber)) {
             throw new IllegalArgumentException();
@@ -23,5 +18,14 @@ public class WinningNumber {
 
     public Lotto getValues() {
         return values;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.value();
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateAlreadyPickedNumber(bonusNumber);
+        this.bonusNumber = new BonusNumber(bonusNumber);
     }
 }

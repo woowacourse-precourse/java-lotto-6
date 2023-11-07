@@ -5,7 +5,7 @@ import lotto.domain.RandomNumberGenerator;
 
 import java.util.List;
 
-public class NumberGeneratorOutput {
+public class RandomNumberGeneratorOutput {
     public void printLotteryNumbers(RandomNumberGenerator numbers, int numOfLotto) {
         numbers.lottoNumbers(numOfLotto);
         List<Lotto> lotteries = numbers.getLotteries();

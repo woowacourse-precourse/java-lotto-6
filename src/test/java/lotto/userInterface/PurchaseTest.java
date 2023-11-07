@@ -1,6 +1,7 @@
-package lotto;
+package lotto.userInterface;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;

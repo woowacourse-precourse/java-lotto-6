@@ -1,6 +1,7 @@
-package lotto;
+package lotto.userInterface;
 
 import lotto.input.WinningNumbers;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -48,8 +49,7 @@ public class WinningNumbersTest extends WinningNumbers {
     }
 
     private void validateInput(String[] inputNumbers) {
-        Set<Integer> winningNumbers = new HashSet<>();
+        Set<Integer>winningNumbers = new HashSet<>();
         WinningNumbers.validateInput(inputNumbers, winningNumbers);
     }
-
 }

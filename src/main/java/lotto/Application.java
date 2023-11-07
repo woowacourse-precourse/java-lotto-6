@@ -1,7 +1,8 @@
 package lotto;
 
 import lotto.domain.RandomNumberGenerator;
-import lotto.output.NumberGeneratorOutput;
+import lotto.input.BonusNumber;
+import lotto.output.RandomNumberGeneratorOutput;
 import lotto.output.PurchaseResultHandler;
 
 import java.util.Set;
@@ -13,11 +14,12 @@ public class Application {
         int numberOfLotto = PurchaseResultHandler.purchaseRequest();
 
         RandomNumberGenerator numbers = new RandomNumberGenerator();
-        NumberGeneratorOutput numbersOutput = new NumberGeneratorOutput();
+        RandomNumberGeneratorOutput numbersOutput = new RandomNumberGeneratorOutput();
         numbersOutput.printLotteryNumbers(numbers, numberOfLotto);
 
         Set<Integer> winningNumbers = getWinningNumbers();
-        System.out.println(winningNumbers);
+
+        BonusNumber.bonusInput(winningNumbers);
 
     }
 }

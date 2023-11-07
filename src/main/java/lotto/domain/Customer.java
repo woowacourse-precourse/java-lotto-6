@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import static lotto.constant.CustomerConst.*;
 
 public class Customer {

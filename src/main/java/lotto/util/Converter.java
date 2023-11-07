@@ -1,7 +1,6 @@
 package lotto.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +24,9 @@ public class Converter {
     }
 
     public static String from(List<Integer> numbers) {
-        String numberString = numbers.stream().map(String::valueOf)
-                .collect(Collectors.joining(","));
 
-        return numberString;
+        return numbers.stream().map(String::valueOf)
+                .collect(Collectors.joining(","));
     }
 
 }

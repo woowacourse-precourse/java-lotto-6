@@ -2,8 +2,6 @@ package lotto.support;
 
 import lotto.domain.Lotto;
 
-import java.util.List;
-
 public class LottoComparator {
 
     private Lotto winning;

@@ -40,8 +40,7 @@ public class WinningLotto {
 
     private int validateBonus(String number) {
         try {
-            int intNumber = Integer.parseInt(number);
-            return intNumber;
+            return Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(IS_NOT_NUMBER);
         }

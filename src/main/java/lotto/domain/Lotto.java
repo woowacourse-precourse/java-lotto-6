@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return this.numbers;
     }
 
     public int countMatch(WinnerLotto winnerLotto) {
@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     public boolean countBonusMatch(WinnerLotto winnerLotto) {
-        return numbers.stream()
+        return this.numbers.stream()
                 .anyMatch(winnerLotto::matchesBonusNumber);
     }
 
@@ -44,17 +44,19 @@ public class Lotto {
             throw new InvalidSizeException();
         }
     }
+
     private void validateDuplicateNumber(List<Integer> numbers) {
         if (countDistinctNumber(numbers) != LOTTO_SIZE) {
             throw new DuplicateNumberException();
         }
     }
+
     private void validateRange(List<Integer> numbers) {
-        // TODO: 한 줄에 모든 로직을 작성하지 않고, 분리해서 작성할까?
         if (numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
             throw new NumberOutOfRangeException();
         }
     }
+
     private Long countDistinctNumber(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()

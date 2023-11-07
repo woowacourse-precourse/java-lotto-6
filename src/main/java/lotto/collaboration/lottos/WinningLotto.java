@@ -1,6 +1,7 @@
 package lotto.collaboration.lottos;
 
 import static java.util.stream.Collectors.groupingBy;
+import static lotto.collaboration.lottos.enums.WinningLottoMessage.EXCEPTION_DUPLICATED;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class WinningLotto {
 
     private static void occurExceptionIfDuplicatedBoth(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(EXCEPTION_DUPLICATED.get());
         }
     }
 

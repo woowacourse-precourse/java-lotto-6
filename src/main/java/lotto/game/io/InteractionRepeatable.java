@@ -6,7 +6,7 @@ import lotto.io.ConsoleOutput;
 
 public interface InteractionRepeatable {
 
-    Output output = new ConsoleOutput(); // 아..... 얘때문에 다시 의존성 잡히네
+    Output output = new ConsoleOutput(); // TODO : 아..... 얘때문에 다시 의존성 잡히네
 
     default void runInteraction(final Runnable runnable) {
         while (true) {

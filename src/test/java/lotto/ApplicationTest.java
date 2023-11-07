@@ -58,12 +58,21 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 나누어_떨어지지_않는_수() {
+    void 구매금액_나누어_떨어지지_않는_수() {
         assertSimpleTest(() -> {
             runException("10001");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 구매금액_0일때() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Test
     void 당첨번호_정수가_아닌값_입력() {

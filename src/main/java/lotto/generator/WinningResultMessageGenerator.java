@@ -23,12 +23,7 @@ public class WinningResultMessageGenerator {
     }
 
     public static String generate(final WinningResults winningResults) {
-        List<Integer> winningCounts = winningResults.calculateWinningCounts();
-        return createResultMessage(winningResults, winningCounts);
-    }
-
-    private static String createResultMessage(final WinningResults winningResults, final List<Integer> winningCounts) {
-        String winningCountMessage = createWinningCountMessage(winningCounts);
+        String winningCountMessage = createWinningCountMessage(winningResults);
         String prizePercentageMessage = createProfitRatioMessage(winningResults);
         return String.format(MESSAGE_SUMMING_FORMAT, winningCountMessage, prizePercentageMessage);
     }
@@ -38,7 +33,8 @@ public class WinningResultMessageGenerator {
         return String.format(PROFIT_RATIO_FORMAT, DECIMAL_FORMAT.format(profitRatio));
     }
 
-    private static String createWinningCountMessage(final List<Integer> winningCounts) {
+    private static String createWinningCountMessage(final WinningResults winningResults) {
+        List<Integer> winningCounts = winningResults.calculateWinningCounts();
         return IntStream.range(0, winningCounts.size())
                 .mapToObj(i -> String.format(WINNING_COUNT_FORMATS.get(i), winningCounts.get(i)))
                 .collect(Collectors.joining());

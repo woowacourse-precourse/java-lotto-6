@@ -1,12 +1,20 @@
 package lotto;
 
+
 public class LottoAmount {
-    private final int amount;
+    private int amount;
 
     public LottoAmount(String amount) {
-        int amountNum = validateNumber(amount);
-        validateAmount(amountNum);
-        this.amount = amountNum;
+        if (validateNumber(amount)) {
+            int amountNum = Integer.parseInt(amount);
+            validateAmount(amountNum);
+            this.amount = amountNum;
+        }else{
+            System.out.println("[ERROR] 숫자가 아닌 값을 입력했습니다.");
+            Controller Controller = new Controller();
+            Controller.start();
+            throw new IllegalArgumentException();
+        }
     }
 
     public int LottoCount() {
@@ -18,20 +26,24 @@ public class LottoAmount {
         validateDivisible(amount);
     }
 
-    private static int validateNumber(String amount) throws IllegalArgumentException {
+    private static Boolean validateNumber(String amount) {
         try {
-            return Integer.parseInt(amount);
+            Integer.parseInt(amount);
+            return true;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자가 아닌 값을 입력했습니다.");
-            throw new IllegalArgumentException();
+            return false;
         }
     }
 
 
     private void validateDivisible(int amount) {
         if (amount % 1000 != 0) {
+
             System.out.println("[ERROR] 금액이 1000원으로 나누어 떨어지지 않습니다.");
+            Controller Controller = new Controller();
+            Controller.start();
             throw new IllegalArgumentException();
+
         }
     }
 }

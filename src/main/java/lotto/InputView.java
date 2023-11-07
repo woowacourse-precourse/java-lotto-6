@@ -5,27 +5,33 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 public class InputView {
-    private static final String INPUT_LOTTO_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String INPUT_LOTTO_WINNING = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     private static List<Integer> winningNumberList;
 
     public static String inputPlayerAmount() {
-        System.out.println(INPUT_LOTTO_AMOUNT);
+        System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }
 
     public static List<Integer> inputLottoWinningNum() {
         System.out.print("\n");
-        System.out.println(INPUT_LOTTO_WINNING);
+        System.out.println("당첨 번호를 입력해 주세요.");
         return numberList(Console.readLine());
     }
 
     public static int inputBonusNumber() {
         System.out.print("\n");
-        System.out.println(INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        System.out.println("보너스 번호를 입력해 주세요.");
+        try{
+            String t = Console.readLine();
+            return Integer.parseInt(t);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            Controller controller = new Controller();
+            controller.validateBonus();
+            throw new IllegalArgumentException();
+        }
+        //return Integer.parseInt(Console.readLine());
     }
 
     public static List<Integer> numberList(String winningNumber) {
@@ -42,6 +48,8 @@ public class InputView {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            Controller controller = new Controller();
+            controller.validateBonus();
             throw new IllegalArgumentException();
         }
     }

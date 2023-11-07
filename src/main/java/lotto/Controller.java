@@ -49,8 +49,8 @@ public class Controller {
         int ball = InputView.inputBonusNumber();
         lotto.validateBonusNumber(checknum, ball);
         checkresult = new Check(new Lotto(checknum), ball);
-
         return checkresult;
+
     }
 
 

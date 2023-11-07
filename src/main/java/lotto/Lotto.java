@@ -32,12 +32,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+
             System.out.println("[ERROR] 로또 당첨 번호 6개를 입력 해야합니다.");
+            Controller controller = new Controller();
+            controller.validateBonus();
             throw new IllegalArgumentException();
         }
         Set<Integer> numSet = new HashSet<>(numbers);
         if(numSet.size()!= numbers.size()){
-            throw new IllegalArgumentException("입력한 값에 중복된 숫자가 있음");
+            System.out.println("[ERROR] 중복된 숫자가 포함되어 있습니다.");
+            Controller controller = new Controller();
+            controller.validateBonus();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -45,16 +51,23 @@ public class Lotto {
         for (int winningNumber = 0; winningNumber < numbers.size(); winningNumber++) {
             if (numbers.get(winningNumber) < 1 || numbers.get(winningNumber) > 45) {
                 System.out.println("[ERROR] 숫자는 1 ~ 45 사이의 숫자여야 합니다.");
+                Controller controller = new Controller();
+                controller.validateBonus();
                 throw new IllegalArgumentException();
             }
 
         }
     }
 
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    public void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+
         if (numbers.contains(bonusNumber)) {
+
             System.out.println("[ERROR] 중복된 숫자를 입력했습니다.");
+            Controller controller = new Controller();
+            controller.validateBonus();
             throw new IllegalArgumentException();
         }
+
     }
 }

@@ -21,5 +21,8 @@ public class LottoRepository {
     public int size(){
         return lottoList.size();
     }
+    public void clear(){
+        lottoList.clear();
+    }
 
 }

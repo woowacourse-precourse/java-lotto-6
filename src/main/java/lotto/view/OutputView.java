@@ -6,12 +6,16 @@ import static lotto.message.OutputMessage.*;
 
 public class OutputView {
 
+    public void outputNewLine() {
+        System.out.println();
+    }
+
     public void outputNumberOfPurchases(int numberOfPurchases) {
         System.out.println(NUMBER_OF_PURCHASES.getMessage(numberOfPurchases));
     }
 
     public void outputLotto(Lotto lotto) {
-        System.out.println(lotto.toString());
+        System.out.print(lotto.toString());
     }
 
     public void outputWinningStatistics() {

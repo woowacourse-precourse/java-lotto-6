@@ -12,7 +12,8 @@ public enum LottoWinResults {
     LOTTO_4SAME("4개 일치"),
     LOTTO_5SAME("5개 일치"),
     LOTTO_5SAME_BONUS("5개 일치, 보너스 볼"),
-    LOTTO_6SAME("6개 일치");
+    LOTTO_6SAME("6개 일치"),
+    LOTTO_NOTHING("nothing");
 
     private final String lottoResult;
 

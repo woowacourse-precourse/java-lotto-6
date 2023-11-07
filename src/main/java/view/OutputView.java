@@ -7,7 +7,7 @@
  */
 package view;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import model.enums.LottoWinResults;
 
@@ -34,7 +34,7 @@ public class OutputView {
      *
      * @Method : printLottoNums()
      */
-    public void printLottoNums(ArrayList<Integer> LottoNums){
+    public void printLottoNums(List<Integer> LottoNums){
         System.out.println(LottoNums);
     }
     /**
@@ -122,6 +122,15 @@ public class OutputView {
      */
     public void printTotalProfit(int Profit){
         System.out.print(OutputMessage.TOTAL_PROFIT_1.getMessage() + Profit + OutputMessage.TOTAL_PROFIT_2.getMessage());
+    }
+
+    /**
+     * Description : 줄바꿈 출력
+     *
+     * @Method : printWinStatistic6()
+     */
+    public void printNextLine(){
+        System.out.print(OutputMessage.NEXT_LINE.getMessage());
     }
 
 }

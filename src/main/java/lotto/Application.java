@@ -1,7 +1,22 @@
+/**
+ * @Package_name   : model
+ * @Class_name     : Application
+ * <p>
+ * Create Date : 2023-11-08
+ * Create User : 정은채
+ */
 package lotto;
 
+import controller.LottoController;
+
 public class Application {
+    /**
+     * Description : 메인
+     *
+     * @Method : main(String[] args)
+     */
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoController lottoController = new LottoController();
+        lottoController.controlLotto();
     }
 }

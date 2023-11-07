@@ -38,8 +38,10 @@ public class LottoNumberComparater { //LottoResultJudger
             return LottoWinResults.LOTTO_5SAME.getMessage();
         }else if (countCorrectNum == 5 ){
             return LottoWinResults.LOTTO_5SAME_BONUS.getMessage();
+        }else if (countCorrectNum == 6 ){
+            return LottoWinResults.LOTTO_6SAME.getMessage();
         }
-        return LottoWinResults.LOTTO_6SAME.getMessage();
+        return LottoWinResults.LOTTO_NOTHING.getMessage();
     }
 
     /**

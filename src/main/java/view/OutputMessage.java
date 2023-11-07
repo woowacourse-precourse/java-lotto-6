@@ -23,6 +23,7 @@ public enum OutputMessage {
     WIN_STATISTIC_COUNT("개\n"),
     TOTAL_PROFIT_1("총 수익률은 "),
     TOTAL_PROFIT_2("%입니다."),
+    NEXT_LINE("\n"),
     Error("[ERROR]");
 
     private final String message;

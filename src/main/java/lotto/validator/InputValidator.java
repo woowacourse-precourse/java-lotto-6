@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.exception.ExceptionMessage;
+import java.util.Arrays;
 import lotto.exception.input.HasSpaceException;
 import lotto.exception.input.NotIntegerException;
 import lotto.exception.input.NullInputException;
@@ -8,10 +8,23 @@ import lotto.exception.input.NullInputException;
 public class InputValidator {
     private static final String SPACE = " ";
 
-    public static void validateInput(String input){
+    public static void validateInputPrice(String input){
         validateNull(input);
         validateHasNoSpace(input);
         validateInteger(input);
+    }
+
+    public static void validateInputNumbers(String input){
+        validateNull(input);
+        validateHasNoSpace(input);
+        validateIntegerNumbers(input);
+    }
+
+    private static void validateIntegerNumbers(String input){
+        boolean allIntegers = allIntegers(input);
+        if (!allIntegers) {
+            throw new NotIntegerException();
+        }
     }
 
     private static void validateInteger(String input) {
@@ -30,5 +43,17 @@ public class InputValidator {
         if (input.contains(SPACE)) {
             throw new HasSpaceException();
         }
+    }
+
+    private static boolean allIntegers(String input){
+        return Arrays.stream(input.split(","))
+                .allMatch(part -> {
+                    try {
+                        Integer.parseInt(part);
+                        return true;
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
+                });
     }
 }

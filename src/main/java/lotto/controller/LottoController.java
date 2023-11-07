@@ -15,6 +15,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final int DIVIDE_NUMBER = 1000;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
@@ -38,7 +40,7 @@ public class LottoController {
     }
 
     private int getLottoCount(int amounts) {
-        return amounts / 1000;
+        return amounts / DIVIDE_NUMBER;
     }
 
     private Lottos generateLottos(int lottoCount) {

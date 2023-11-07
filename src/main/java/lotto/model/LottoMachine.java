@@ -15,7 +15,7 @@ public class LottoMachine {
         this.lottoCompares = initCompares(count);
     }
 
-    public List<LottoCompare> initCompares(int count) {
+    private List<LottoCompare> initCompares(int count) {
         List<LottoCompare> lottoCompareResults = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {

@@ -15,22 +15,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumbersSize(numbers);
+        validateDuplicateNumber(numbers);
+    }
+
+    private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_6_REQUIRED);
         }
-
-        if (hasDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_NOT_ALLOWED);
-        }
     }
 
-    private boolean hasDuplicateNumber(List<Integer> numbers) {
+    private void validateDuplicateNumber(List<Integer> numbers) {
         long removeDuplicatedSize = numbers.stream().distinct().count();
         if (numbers.size() != removeDuplicatedSize) {
-            return true;
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_NOT_ALLOWED);
         }
-
-        return false;
     }
 
     public String getNumbers() {

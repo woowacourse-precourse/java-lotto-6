@@ -19,4 +19,12 @@ public class OutputView {
     private static final String WINNING_STATISTICS_OUTPUT_MESSAGE = "\n당첨 통계\n---";
     private static final String LOTTO_RESULT_MESSAGE = "%s%d개\n";
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
+
+    public static void printMoneyInputMessage() {
+        printMessage(MONEY_INPUT_MESSAGE);
+    }
+
+    private static void printMessage(String message) {
+        System.out.println(message);
+    }
 }

@@ -1,6 +1,8 @@
 package lotto.model;
 
 import static lotto.util.Constant.LOTTO_PER_PRICE;
+import static lotto.util.ErrorMessage.ERROR_MINIMUM_PRICE;
+import static lotto.util.ErrorMessage.ERROR_NUMERIC_TYPE;
 
 import java.util.regex.Pattern;
 
@@ -11,7 +13,13 @@ public class LottoPurchase {
 
     public static void validateInputTypeNumeric(String inputNumber) {
         if (!REGEX_NUMERIC.matcher(inputNumber).matches()) {
-            throw new IllegalArgumentException("ERROR_NUMERIC_TYPE");
+            throw new IllegalArgumentException(ERROR_NUMERIC_TYPE);
+        }
+    }
+
+    public static void validateMinimunPrice(int totalPrice) {
+        if (totalPrice < LOTTO_PER_PRICE) {
+            throw new IllegalArgumentException(ERROR_MINIMUM_PRICE);
         }
     }
 

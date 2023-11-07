@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.validator.InputValidator;
+import lotto.validator.NumberValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.stream.Collectors;
 
 public class InputController {
     private final InputValidator inputValidator;
+    private final NumberValidator numberValidator;
 
-    public InputController(InputValidator inputValidator) {
+    public InputController(InputValidator inputValidator, NumberValidator numberValidator) {
         this.inputValidator = inputValidator;
+        this.numberValidator = numberValidator;
     }
 
     // Input : 1090 / Result : [ERROR] 출력 이후 다시 데이터 받음
@@ -35,9 +38,9 @@ public class InputController {
         List<Integer> lottoNumbers = Arrays.stream(input.split(","))
                 .map(s -> Integer.parseInt(s)).collect(Collectors.toList());
         try {
-            inputValidator.validateLottoNumberRange(lottoNumbers);
-            inputValidator.validateLength(lottoNumbers);
-            inputValidator.validateLottoDuplication(lottoNumbers);
+            numberValidator.validateLottoNumberRange(lottoNumbers);
+            numberValidator.validateLength(lottoNumbers);
+            numberValidator.validateLottoDuplication(lottoNumbers);
         } catch (IllegalArgumentException e) {
             inputLottoNumber();
         }
@@ -49,7 +52,7 @@ public class InputController {
         try {
             inputValidator.validateInputType(input);
             List<Integer> inputBonus = Arrays.asList(Integer.parseInt(input));
-            inputValidator.validateLottoNumberRange(inputBonus);
+            numberValidator.validateLottoNumberRange(inputBonus);
         } catch (IllegalArgumentException e) {
             inputLottoBonusNumber();
         }

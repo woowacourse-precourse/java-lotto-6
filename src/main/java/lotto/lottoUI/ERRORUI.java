@@ -5,10 +5,6 @@ public class ERRORUI {
         System.out.println("[ERROR] 숫자를 입력하세요.");
     }
 
-    public static String InputDecimalPointNumberError() {
-        return "[ERROR] 정수를 입력하세요.";
-    }
-
     public static String InputNegativeError() {
         return "[ERROR] 양의 정수를 입력하세요.";
     }

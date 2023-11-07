@@ -3,15 +3,17 @@ package lotto;
 import java.util.List;
 
 public class Discriminator {
+    private Info info;
     private List<Integer> correctNumbers;
     private int bonus;
 
     public Discriminator(List<Integer> correctNumbers, int bonus) {
         this.correctNumbers = correctNumbers;
         this.bonus = bonus;
+        this.info = new Info();
     }
 
-    public Grade discriminate(List<Integer> lotto) {
+    public void discriminate(List<Integer> lotto) {
         int cnt = 0;
 
         for (int n : lotto) {
@@ -20,6 +22,6 @@ public class Discriminator {
             }
         }
 
-        return GradeUtil.gradeMapper(cnt, lotto.contains(bonus));
+        info.addStatistic(GradeUtil.gradeMapper(cnt, lotto.contains(bonus)));
     }
 }

@@ -3,20 +3,21 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.ErrorCheck.validateRandomLottoSize;
+
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoSize(numbers);
         this.numbers = numbers;
         Collections.sort(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_LOTTO_NUMBER.getMessage());
-        }
+    private void validateLottoSize(List<Integer> numbers) {
+        validateRandomLottoSize(numbers);
     }
+
     public void printLottoPaper(Lotto lotto) {
         System.out.println(lotto.numbers);
     }

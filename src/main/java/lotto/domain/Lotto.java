@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constant.Number.LOTTO_LENGTH;
+import static lotto.constant.Number.*;
 import static lotto.constant.message.ErrorMessage.*;
 public class Lotto {
     private final List<Integer> lotto;
@@ -19,6 +19,7 @@ public class Lotto {
     private void validate(List<Integer> lotto) {
         isLengthSix(lotto);
         isDistinct(lotto);
+        isInRange(lotto);
     }
 
     private void isLengthSix(List<Integer> lotto) throws IllegalArgumentException{
@@ -33,6 +34,15 @@ public class Lotto {
         if (lotto.size() != tempLotto.size()) {
             System.out.println(IS_NOT_DISTINCT);
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void isInRange(List<Integer> lotto) throws IllegalArgumentException{
+        for (Integer i : lotto) {
+            if (i < MIN_NUMBER || i > MAX_NUMBER) {
+                System.out.println(IS_NOT_IN_RANGE);
+                throw new IllegalArgumentException();
+            }
         }
     }
 

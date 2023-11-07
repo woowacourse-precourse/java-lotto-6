@@ -22,6 +22,9 @@ public class Game {
     private InputView inputView;
     private OutputView outputView;
     private int CHECK_PRIZE;
+    private final String ERROR_MESSAGE_1000 = "[ERROR] 1,000단위로 입력해주세요.";
+    private final String ERROR_MESSAGE_NUMBER = "[ERROR] 숫자를 입력해주세요.";
+    private String ERROR_MESSAGE;
 
     public Game() {
         inputView = new InputView();
@@ -57,9 +60,34 @@ public class Game {
     }
 
     public int purchaseAmountInput(){
-        //예외 처리 추가해야 함
+        int input;
+        while(true) {
+            try{
+                input = validate_Number();  //숫자를 입력하지 않는 경우 예외 처리
+                validate_1000(input);   //1,000원이 아닌 경우 예외 처리
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(ERROR_MESSAGE);
+            }
+        }
+        return input;
+    }
 
-        return Integer.parseInt(Console.readLine());
+    private int validate_Number(){
+        try {
+            return Integer.parseInt(Console.readLine());
+
+        }catch (IllegalArgumentException e){
+            ERROR_MESSAGE = ERROR_MESSAGE_NUMBER;
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validate_1000(int input){
+            if (input % 1000 != 0) {
+                ERROR_MESSAGE = ERROR_MESSAGE_1000;
+                throw new IllegalArgumentException();
+            }
     }
 
     public int countLotto(int AMOUNT){

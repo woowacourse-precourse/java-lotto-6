@@ -1,31 +1,37 @@
-#기능 구현 목록
+**기능 구현 목록**
 
-1. lottoPlayer
+1. LottoPlayer
 
-   1-1. generateLottos(int) : 정해진 개수만큼 로또를 생성한다
+   1-1. buyLottos(int) : 정해진 개수만큼 로또를 구입하여 player가 보관한다.
 
-   1-2. removeLottos : 보유중인 로또 제거
+   1-2. printRateOfProfit(int) : 수익률을 출력한다. (상금 / 구입 금액)
 
-   1-3. addMoney(int) : 당첨금 추가
+   1-3. addMoney(int) : player의 소지금을 추가한다.
 
-   
-
-2. lottoAdmin
-
-   2-1. lottoAdmin : 당첨번호 및 보너스 번호 입력받아 저장(생성자)
-
-   2-2. checkLottos(Player) : player가 보유한 로또 확인 후 등수 return (lottoRank) 
-
-   2-3. payPrizeMoney(Player) : player에게 당첨금 지급
+   1-4. getter : lottos, money
 
    
 
-3. lottoRank(enum)
+2. LottoAdmin
 
-   3-1. 로또 등수 표기 및 당첨금 확인
+   2-1. checkLottos(Player) : player가 보유한 로또 확인 후 등수를 반환한다. (LottoRank) 
+
+   2-2. payPrizeMoney(Player) : player가 보유한 lotto를 확인해 당첨금을 지급한다.
+
+   2-3. printPrize : player가 보유한 lotto를 확인해 당첨 통계를 출력한다.
+
+   2-4. getter : winningNumber
+
+   2-5. setter : winningNumber, bonusNumber
 
    
 
-4. lottoApp
+3. LottoRank(enum)
 
-   4-1. playGame : 전체 게임 진행
+   3-1. getter : value(당첨금), message(당첨 문구)
+
+   
+
+4. LottoApp
+
+   4-1. playGame : 전체 게임을 진행한다.

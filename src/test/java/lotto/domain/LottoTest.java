@@ -48,9 +48,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복값이 없을 때 예외처리 테스트")
+    @DisplayName("로또 번호가 정해진 범위의 숫자가 아닐 때 예외처리 테스트")
     @Test
-    void validateDuplicationDoesNotThrowExceptionTest() {
-        
+    void validateNumberRange() {
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,79);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

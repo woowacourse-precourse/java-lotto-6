@@ -1,5 +1,6 @@
 package lotto.controller.inputController;
 
+import lotto.model.validator.LottoBonusWinningNumberValidator;
 import lotto.model.validator.LottoWinningNumberValidator;
 import lotto.view.inputView.LottoBonusWinningNumberInput;
 import lotto.view.inputView.LottoWinningNumberInput;
@@ -27,7 +28,14 @@ public class LottoWinningNumberController {
         }
     }
 
-    public int getBonusNumber() {
-        return bonusNumberInput.requestBonusNumber();
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String inputString = bonusNumberInput.requestBonusNumber();
+                return LottoBonusWinningNumberValidator.validateBonusNumber(inputString, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

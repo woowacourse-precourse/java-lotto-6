@@ -11,7 +11,6 @@ import lotto.model.lottoResultChecker.LottoMatchingData;
 import lotto.model.lottoResultChecker.LottoRank;
 import lotto.model.lottoResultChecker.LottoRankChecker;
 import lotto.model.lottoResultChecker.LottoReturnsCalculator;
-import lotto.view.inputView.LottoBonusWinningNumberInput;
 import lotto.view.outputView.LottoReturnsOutput;
 
 
@@ -26,7 +25,6 @@ public class LottoController {
     private final LottoWinningNumberController winningNumberController = new LottoWinningNumberController();
     private final LottoMatchingData matchingData = new LottoMatchingData();
 
-    private final LottoBonusWinningNumberInput bonusNumberInput = new LottoBonusWinningNumberInput();
     private final LottoRankChecker rankChecker = new LottoRankChecker();
     private final LottoWinningStatisticsController statisticsController = new LottoWinningStatisticsController();
     private final LottoReturnsCalculator returnsCalculator = new LottoReturnsCalculator(1000);  // 로또 티켓 가격이 1000으로 가정
@@ -39,7 +37,7 @@ public class LottoController {
         List<Lotto> lotto = ticketCreator.createLottoTickets(purchaseAmount);
         lottoPrintController.handleLottoDisplay(lotto);
         List<Integer> winningNumbers = winningNumberController.getWinningNumbers();
-        int bonusNumber = bonusNumberInput.requestBonusNumber();
+        int bonusNumber = winningNumberController.getBonusNumber(winningNumbers);
         matchingData.matchLottoToWinningNumbers(lotto, winningNumbers, bonusNumber);
     }
 

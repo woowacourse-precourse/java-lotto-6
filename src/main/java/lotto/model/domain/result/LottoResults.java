@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class LottoResults {
     private final Map<LottoResult, Integer> map;
@@ -24,11 +23,12 @@ public class LottoResults {
         map.put(result, map.get(result) + 1);
     }
 
-    public List<Entry<LottoResult, Integer>> getResults() {
+    public List<LottoResultAndCount> getResults() {
         return Collections.unmodifiableList(
                 map.entrySet()
                         .stream()
                         .sorted((a, b) -> b.getKey().ordinal() - a.getKey().ordinal())
+                        .map(entry -> new LottoResultAndCount(entry.getKey(), entry.getValue()))
                         .toList()
         );
     }

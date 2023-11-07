@@ -24,7 +24,7 @@ public class LottoAnswer extends Lotto {
     public LottoCompareResult compareLotto(Lotto lotto) {
         int collectNumber = collectNumber(lotto);
         boolean collectBonus = false;
-        if (collectNumber == GameConst.BONUS_CHECK_NECESSARY) {
+        if (collectNumber == GameConst.BONUS_CHECK_NECESSARY_NUMBER) {
             collectBonus = isCollectBonus(lotto);
         }
         return new LottoCompareResult(collectNumber, collectBonus);

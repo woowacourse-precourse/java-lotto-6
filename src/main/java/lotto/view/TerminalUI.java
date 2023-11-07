@@ -4,14 +4,13 @@ import static lotto.model.domain.result.LottoResult.SECOND;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 import lotto.constance.GameConst;
 import lotto.constance.PrintConst;
 import lotto.model.domain.Revenue;
 import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.result.LottoResult;
+import lotto.model.domain.result.LottoResultAndCount;
 import lotto.view.io.Reader;
 import lotto.view.io.Writer;
 
@@ -27,7 +26,7 @@ public class TerminalUI {
     }
 
     public void printException(IllegalArgumentException e) {
-        Writer.printMessage(PrintConst.EXCEPTION_PREFIX + e.getMessage());
+        Writer.printMessage(PrintConst.PREFIX_EXCEPTION + e.getMessage());
     }
 
     public int getMoney() {
@@ -36,7 +35,7 @@ public class TerminalUI {
     }
 
     public void printPurchasedLottos(List<Lotto> lottosDTO) {
-        Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_SIZE, lottosDTO.size());
+        Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_PURCHASE, lottosDTO.size());
         for (Lotto lotto : lottosDTO) {
             Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_NUMBERS, lotto.getNumbers().toArray());
         }
@@ -58,13 +57,13 @@ public class TerminalUI {
         return Reader.getOneNumber();
     }
 
-    public void printResult(List<Entry<LottoResult, Integer>> results) {
+    public void printResult(List<LottoResultAndCount> results) {
         Writer.printMessage(PrintConst.TITLE_RESULTS);
 
-        for (Map.Entry<LottoResult, Integer> result : results) {
-            LottoResult lottoResult = result.getKey();
-            int count = result.getValue();
-            Writer.printUsingFormat(PrintConst.FORMAT_RESULT, buildLottoResultString(lottoResult), count);
+        for (LottoResultAndCount result : results) {
+            LottoResult lottoResult = result.getLottoResult();
+            int count = result.getCount();
+            Writer.printUsingFormat(PrintConst.FORMAT_RESULT_AND_COUNT, buildLottoResultString(lottoResult), count);
         }
     }
 

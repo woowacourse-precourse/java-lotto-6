@@ -9,6 +9,7 @@ import lotto.model.domain.lotto.Lotto;
 import lotto.model.domain.lotto.LottoAnswer;
 import lotto.model.domain.lotto.Lottos;
 import lotto.model.domain.lotto.lottogenerator.AnswerGenerator;
+import lotto.model.domain.result.LottoResultAndCount;
 import lotto.model.domain.result.LottoResultFactory;
 import lotto.model.domain.result.LottoResults;
 import lotto.view.TerminalUI;
@@ -17,15 +18,14 @@ public class LottoController {
 
     final private ExceptionHandler handler;
     final private LottoStore store;
-    final private TerminalUI ui;
 
-    LottoResultFactory factory = new LottoResultFactory();
+    LottoResultFactory resultFactory = new LottoResultFactory();
     LottoResults lottoResults = new LottoResults();
+    TerminalUI ui = new TerminalUI();
 
     public LottoController(ExceptionHandler handler, LottoStore store) {
         this.handler = handler;
         this.store = store;
-        this.ui = new TerminalUI();
     }
 
     public void run() {
@@ -58,7 +58,7 @@ public class LottoController {
         lottos.getLottos()
                 .stream()
                 .map(answer::compareLotto)
-                .map(factory::getLottoResult)
+                .map(resultFactory::getLottoResult)
                 .forEach(lottoResults::addResult);
         ui.printResult(lottoResults.getResults());
         return lottoResults;
@@ -67,7 +67,7 @@ public class LottoController {
     private void computeRevenue(Money money, LottoResults lottoResults) {
         long prize = lottoResults.getResults()
                 .stream()
-                .mapToLong(result -> (long) result.getKey().getPrize() * result.getValue())
+                .mapToLong(LottoResultAndCount::calculateTotalPrize)
                 .sum();
         Revenue revenue = new Revenue(prize, money);
         ui.printRevenue(revenue);

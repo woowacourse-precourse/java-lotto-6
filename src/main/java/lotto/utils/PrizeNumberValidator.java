@@ -25,5 +25,9 @@ public class PrizeNumberValidator {
         }
     }
 
-   
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_DUPLICATED_ERROR);
+        }
+    }
 }

@@ -99,7 +99,7 @@ class User {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
-    
+
     public List<Lotto> getLottoAsMuchAsVolume(int volume) {
         List<Lotto> allLotto = new ArrayList<>();
         for (int i = 0; i < volume; i++) {

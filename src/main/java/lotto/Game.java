@@ -12,8 +12,8 @@ public class Game {
         int issueCnt = price / 1000;
         List<Lotto> issuedLottos = issueLottos(issueCnt);
         Display.showIssuedLottos(issuedLottos);
-        Display.readWinningNumbers();
-        Display.readBonusNumber();
+        Lotto winningNumbers = Display.readWinningNumbers();
+        int bonusNumber = Display.readBonusNumber();
     }
 
     public List<Lotto> issueLottos(int issueCnt) {

@@ -22,13 +22,13 @@ public class Display {
         }
     }
 
-    static List<Integer> readWinningNumbers() {
+    static Lotto readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = readLine();
         try {
             String[] tokens = input.split(",");
-            return Arrays.stream(tokens).map(Integer::parseInt)
-                    .collect(Collectors.toList());
+            return new Lotto(Arrays.stream(tokens).map(Integer::parseInt)
+                    .collect(Collectors.toList()));
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }

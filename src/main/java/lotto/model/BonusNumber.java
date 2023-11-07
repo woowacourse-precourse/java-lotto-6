@@ -22,6 +22,7 @@ public class BonusNumber {
     private void isInRange(int bonusNumber) {
         if (!(bonusNumber >= NumberRange.LOWEST_NUMBER.getRangeNumber()
                 && bonusNumber <= NumberRange.HIGHEST_NUMBER.getRangeNumber())) {
+            System.out.println(ErrorMessage.RANGE_ERROR_MESSAGE.getErrorMessage());
             throw new IllegalArgumentException(ErrorMessage.RANGE_ERROR_MESSAGE.getErrorMessage());
         }
     }

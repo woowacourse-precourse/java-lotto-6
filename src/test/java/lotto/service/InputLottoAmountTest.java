@@ -33,4 +33,37 @@ class InputLottoAmountTest {
         }).doesNotThrowAnyException();
     }
 
+    @Test
+    void 영원_일때() {
+        int amount = 0;
+        assertThatThrownBy(() -> {
+            InputLottoAmount.checkZero(amount);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NOT_ZERRO);
+    }
+
+    @Test
+    void 영원이_아닐때() {
+        int amount = 1000;
+        assertThatCode(() -> {
+            InputLottoAmount.checkZero(amount);
+        }).doesNotThrowAnyException();
+    }
+
+    @Test
+    void 천원단위가_아닐때() {
+        int amount = 1100;
+        assertThatThrownBy(() -> {
+            InputLottoAmount.checkTicket(amount);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NOT_TICKET_COUNT);
+    }
+
+    @Test
+    void 천원단위가_일때() {
+        int amount = 1000;
+        assertThatCode(() -> {
+            InputLottoAmount.checkTicket(amount);
+        }).doesNotThrowAnyException();
+    }
 }

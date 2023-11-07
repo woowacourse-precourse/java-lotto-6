@@ -36,13 +36,13 @@ public class InputLottoAmount {
     }
 
 
-    private static void checkZero(int amount) {
+    static void checkZero(int amount) {
         if (amount == 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ZERRO);
         }
     }
 
-    private static void checkTicket(int amount) {
+    static void checkTicket(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_TICKET_COUNT);
         }

@@ -17,9 +17,12 @@ public class Application {
         String str = Console.readLine();
 
         if (!isDigit(str)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
-        return Integer.parseInt(str);
+
+        int input = Integer.parseInt(str);
+        inputValidate(input);
+        return input;
     }
 
     private static boolean isDigit(String str) {
@@ -35,9 +38,15 @@ public class Application {
         return isNumeric;
     }
 
-    private static List<Integer> lottoNumber(){
+    private static List<Integer> lottoNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
+    }
+
+    private static void inputValidate(int input) {
+        if (input % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
+        }
     }
 }

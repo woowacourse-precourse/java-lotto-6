@@ -3,10 +3,17 @@ package lotto.domain;
 import lotto.constants.ResultConfig;
 import lotto.constants.StaticMessage;
 
+import java.util.List;
+
 public class OutputHandler {
     public void printMessage(int count) {
         // TODO : "%d개 구매했습니다."
         System.out.println(count + StaticMessage.PRINT_LOTTO_COUNT.getMessage());
+    }
+
+    public static void printNumbersOfLottos(List<List<Integer>> lottos) {
+        System.out.println("%n%d개를 구매했습니다.".formatted(lottos.size()));
+        lottos.forEach(System.out::println);
     }
 
     public static void printResultHistory() {

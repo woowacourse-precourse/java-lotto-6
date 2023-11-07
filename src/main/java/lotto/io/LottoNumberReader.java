@@ -3,17 +3,19 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.entity.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.exception.LottoNumberException.LottoNumberException;
 
 public class LottoNumberReader {
+    public List<Integer> lottonumbers=new ArrayList<>();
     public List<Integer> lotto_reader() {
         try {
             String input = Console.readLine();
-            List<Integer> lottonumbers = LottoNumberException(input);
+            lottonumbers = LottoNumberException(input);
             Lotto lotto = new Lotto(lottonumbers);
-            System.out.println("로또 번호 : "+lottonumbers);
+            //System.out.println("로또 번호 : "+lottonumbers);
             return lottonumbers;
         }catch (NumberFormatException e) {
             System.out.println(e.getMessage());

@@ -10,7 +10,6 @@ public class BonusNumberReader {
     public static int bonusnumber() {
         try {
             String bonusnumber = Console.readLine();
-            System.out.println("보너스 번호 : " + bonusnumber);
             ValueException.validateNumber(bonusnumber);
             int number = Integer.parseInt(bonusnumber);
             LottoNumberRangeException.NumberRangeException(number);

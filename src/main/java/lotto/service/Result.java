@@ -1,2 +1,5 @@
-package lotto.service;public class Result {
+package lotto.service;
+
+public class Result {
+
 }

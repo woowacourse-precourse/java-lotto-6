@@ -40,6 +40,7 @@ public class LottoMachine {
         for (Lotto lotto : lottoBundle) {
             System.out.println(lotto.lottoPrintFormat());
         }
+        System.out.println();
 
         return lottoBundle;
     }

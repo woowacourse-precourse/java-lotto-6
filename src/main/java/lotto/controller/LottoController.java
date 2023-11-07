@@ -1,8 +1,10 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Calculator;
 import lotto.domain.Lotto;
@@ -17,108 +19,65 @@ public class LottoController {
     private final NumberGenerator numberGenerator;
     private final Calculator calculator;
 
-    public LottoController() {
-        this.numberGenerator = new NumberGenerator();
-        this.calculator = new Calculator();
+    public LottoController(NumberGenerator numberGenerator, Calculator calculator) {
+        this.numberGenerator = numberGenerator;
+        this.calculator = calculator;
     }
 
     public void start() {
-        Money money = getMoneyInputAndPrintTicketCount();
-        List<Lotto> userLottos = createLottosAndPrintThem(money);
-        WinningNumbers winningNumbers = getValidWinningNumbersInput();
-        BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
-        Map<Rank, Integer> rankCount = calculateRankCount(userLottos, winningNumbers, bonusNumber);
-        printRankCountAndEarningRate(rankCount, money);
-    }
-
-    private Money getMoneyInputAndPrintTicketCount() {
         Money money = getValidMoneyInput();
         int ticketCount = money.calculateTicketCount();
         OutputView.printTicketCount(ticketCount);
-        return money;
-    }
-
-    private List<Lotto> createLottosAndPrintThem(Money money) {
-        int ticketCount = money.calculateTicketCount();
-        List<Lotto> userLottos = createLottos(ticketCount);
+        List<Lotto> userLottos = generateUserLottos(ticketCount);
         OutputView.printUserLottos(userLottos);
-        return userLottos;
+        WinningNumbers winningNumbers = getValidWinningNumbersInput();
+        BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
+        Map<Rank, Integer> rankCount = calculator.calculateRankCount(userLottos, winningNumbers, bonusNumber);
+        printRankCount(rankCount);
+        printRateOfReturn(rankCount, money);
     }
 
-    private WinningNumbers getValidWinningNumbersInput() {
-        WinningNumbers winningNumbers;
+    private <T> T getValidInput(Supplier<T> inputSupplier) {
         while (true) {
             try {
-                List<Integer> numbers = InputView.getWinningNumbersInput();
-                winningNumbers = new WinningNumbers(numbers);
-                break;
+                return inputSupplier.get();
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e);
             }
         }
-        return winningNumbers;
-    }
-
-    private BonusNumber getValidBonusNumberInput(WinningNumbers winningNumbers) {
-        BonusNumber bonusNumber;
-        while (true) {
-            try {
-                int number = InputView.getBonusNumberInput();
-                bonusNumber = new BonusNumber(number, winningNumbers.getWinningNumbers());
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
-        return bonusNumber;
-    }
-
-    private Map<Rank, Integer> calculateRankCount(List<Lotto> userLottos, WinningNumbers winningNumbers,
-                                                  BonusNumber bonusNumber) {
-        return calculator.calculateRankCount(userLottos, winningNumbers, bonusNumber);
-    }
-
-    private void printRankCountAndEarningRate(Map<Rank, Integer> rankCount, Money money) {
-        OutputView.printRankCount(rankCount);
-        int totalPrize = calculator.calculateTotalPrize(rankCount);
-        double earningRate = calculator.calculateEarningRate(totalPrize, money);
-        OutputView.printEarningRate(earningRate);
     }
 
     private Money getValidMoneyInput() {
-        Money money;
-        while (true) {
-            try {
-                int amount = InputView.getMoneyInput();
-                money = new Money(amount);
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
-        return money;
+        return getValidInput(() -> new Money(InputView.getMoneyInput()));
     }
 
-    private List<Lotto> createLottos(int ticketCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < ticketCount; i++) {
-            Lotto lotto = createValidLotto();
-            lottos.add(lotto);
-        }
-        return lottos;
+    private List<Lotto> generateUserLottos(int ticketCount) {
+        return IntStream.range(0, ticketCount)
+                .mapToObj(i -> generateValidLotto())
+                .collect(Collectors.toList());
     }
 
-    private Lotto createValidLotto() {
-        Lotto lotto;
-        while (true) {
-            try {
-                List<Integer> lottoNumbers = numberGenerator.createRandomLottoNumbers();
-                lotto = new Lotto(lottoNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
-        return lotto;
+
+    private Lotto generateValidLotto() {
+        return getValidInput(() -> new Lotto(numberGenerator.createRandomLottoNumbers()));
+    }
+
+    private WinningNumbers getValidWinningNumbersInput() {
+        return getValidInput(() -> new WinningNumbers(InputView.getWinningNumbersInput()));
+    }
+
+    private BonusNumber getValidBonusNumberInput(WinningNumbers winningNumbers) {
+        return getValidInput(
+                () -> new BonusNumber(InputView.getBonusNumberInput(), winningNumbers.getWinningNumbers()));
+    }
+
+    private void printRankCount(Map<Rank, Integer> rankCount) {
+        OutputView.printRankCount(rankCount);
+    }
+
+    private void printRateOfReturn(Map<Rank, Integer> rankCount, Money money) {
+        int totalPrize = calculator.calculateTotalPrize(rankCount);
+        double earningRate = calculator.calculateRateOfReturn(totalPrize, money);
+        OutputView.printEarningRate(earningRate);
     }
 }

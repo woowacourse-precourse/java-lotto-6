@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.model;
 
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LottoController {
+public class LottoUtil {
 
     public Lotto lottoCreate(List<Integer> randomNumbers) {
         List<Integer> lottoNumbers = randomNumbers.stream().sorted().collect(Collectors.toList());

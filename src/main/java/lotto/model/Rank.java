@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.model;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.LottoConstants;
@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputController {
+public class Input {
     private final InputValidator inputValidator;
     private final NumberValidator numberValidator;
 
-    public InputController(InputValidator inputValidator, NumberValidator numberValidator) {
+    public Input(InputValidator inputValidator, NumberValidator numberValidator) {
         this.inputValidator = inputValidator;
         this.numberValidator = numberValidator;
     }

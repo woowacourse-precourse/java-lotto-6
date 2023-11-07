@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.model;
 
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -11,11 +11,11 @@ import java.util.Map;
 
 class LottoControllerTest {
 
-    LottoController lottoController;
+    LottoUtil lottoController;
 
     @BeforeEach
     void set() {
-        lottoController = new LottoController();
+        lottoController = new LottoUtil();
     }
 
     @Test

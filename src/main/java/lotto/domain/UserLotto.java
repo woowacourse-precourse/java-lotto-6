@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import lotto.controller.InputController;
 import lotto.system.Constants;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class UserLotto {
 
     private final LottoRepository userLottoRepository = new LottoRepository();
+
     public UserLotto() {
         buyLotto();
         printAllLottoInfo();
@@ -19,6 +20,7 @@ public class UserLotto {
     public Lotto get(int index) {
         return userLottoRepository.get(index);
     }
+
     private void buyLotto() {
         long count = inputAmount() / Constants.MONEY_UNIT.getConstants();
         registerLotto(count);
@@ -35,7 +37,7 @@ public class UserLotto {
     }
 
     private long inputAmount() {
-        return InputView.inputPurchaseAmount();
+        return InputController.inputAmountUntilSuccess();
     }
 
 

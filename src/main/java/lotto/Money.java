@@ -31,6 +31,11 @@ public class Money {
         return this.value % target == 0;
     }
 
+    public int divide(int target) {
+        validateTargetPositive(target);
+        return this.value / target;
+    }
+
     private void validateTargetPositive(int target) {
         if (!hasGreaterZeroValue(target)) {
             throw new NonPositiveTargetException();

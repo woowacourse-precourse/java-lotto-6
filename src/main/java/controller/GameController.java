@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.Lotto;
 import lotto.LottoMoney;
 import view.InputView;
 import view.OutputView;
@@ -22,7 +23,7 @@ public class GameController {
         outputView.printLottoTicketMessage(lottoMoney);
         randomUtility.generateRandomLottoNumbers();
         saveRandomLottoNumbers(lottoMoney);
-        inputView.enterLottoNumber();
+        saveLuckeyNumbers();
     }
 
     private void saveLottoMoney() {
@@ -42,6 +43,19 @@ public class GameController {
             List<Integer> numbers = randomUtility.generateRandomLottoNumbers();
             outputView.printLottoNumber(numbers);
             lottoNumbers.add(numbers);
+        }
+    }
+
+    private void saveLuckeyNumbers() {
+        restart = true;
+        while (restart) {
+            try {
+                String luckeyNumber = inputView.enterLottoNumber();
+                System.out.println(luckeyNumber);
+                restart = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

@@ -84,7 +84,7 @@
        - [x] 발행된 로또 번호 출력 함수 호출
        - [x] 로또 개수만큼 로또 발행하여 변수(lottoNumbers)에 저장
      - saveLuckeyNumbers()
-       - [ ] 로또 당첨 번호 입력받는 함수 호출
+       - [x] 로또 당첨 번호 입력받는 함수 호출
        - deleteWhiteSpace()
          - [ ] 입력한 로또 당첨 번호 공백 제거 후 저장
        - convertStringToStringList()

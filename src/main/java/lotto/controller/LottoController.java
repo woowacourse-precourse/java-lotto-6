@@ -19,8 +19,9 @@ public class LottoController {
 
     public void start() {
         int lottoTicketCount = inputLottoAmount();
-        outputView.printlottoTicketCount(lottoTicketCount);
+        outputView.printLottoTicketCount(lottoTicketCount);
         lottos = new Lottos(lottoTicketCount);
+        outputView.printLottos(lottos);
     }
 
     public int inputLottoAmount() {

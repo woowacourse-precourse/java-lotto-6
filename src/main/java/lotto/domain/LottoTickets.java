@@ -18,6 +18,10 @@ public class LottoTickets {
         }
     }
 
+    public int getNumberOfLottoTickets() {
+        return numberOfLottoTickets;
+    }
+
     public List<LottoRank> getWiningRanks(WinningLottoNumbers winningLottoNumbers) {
         return IntStream.range(0, numberOfLottoTickets)
                 .mapToObj(i -> getWiningRank(winningLottoNumbers, i))

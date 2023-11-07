@@ -1,5 +1,6 @@
-package lotto.UI;
+package lotto.ui;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 import lotto.domain.ViewProcessor;
@@ -7,8 +8,19 @@ import lotto.domain.ViewProcessor;
 import java.util.*;
 
 public class UserView {
-    private final ViewProcessor viewProcessor = new ViewProcessor();
+    private static final ViewProcessor viewProcessor = new ViewProcessor();
+    private final boolean STATE_SUCESS = false;
+    private final boolean STATE_FAILDURE = true;
+    private final boolean STATE_INIT = true;
 
+    public void purchase() {
+        boolean state = STATE_INIT;
+        while (state == STATE_SUCESS) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String tempCost = Console.readLine();
+            state = viewProcessor.purchase(tempCost);
+        }
+    }
 
     public void purchaseLog(int num, List<Lotto> publishedLottos) {
         System.out.println();

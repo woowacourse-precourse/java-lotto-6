@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,7 +19,6 @@ public class GameController {
     private GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-
         lottoGenerator = new LottoGenerator();
     }
 
@@ -36,5 +36,8 @@ public class GameController {
         ArrayList<Lotto> lottoBundle = lottoGenerator.generateLottoBundle(amount);
         outputView.printAmount(lottoBundle.size());
         outputView.printLottoNumbers(lottoBundle);
+
+        WinningNumber winningNumber = inputView.readWinningNumber();
+
     }
 }

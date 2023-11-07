@@ -30,6 +30,5 @@ public class Lotto {
         sb.append("]");
         return sb.toString();
     }
-
     // TODO: 추가 기능 구현
 }

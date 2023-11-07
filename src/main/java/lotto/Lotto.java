@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("로또 번호는 %d개여야 합니다.", NUMBER_LENGTH));
         }
     }
 

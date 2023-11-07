@@ -1,24 +1,32 @@
 package lotto.view;
 
+import lotto.config.Prize;
+import lotto.dto.response.PrizeResponse;
+import lotto.view.constant.PrizeMessage;
+
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Objects;
+
 public class OutputView {
 
     private OutputView() {
 
     }
 
-    protected void printReadPurchaseAmountMessage() {
+    protected static void printReadPurchaseAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    protected void printPurchaseLottoCountMessage(int purchaseLottoCount) {
+    protected static void printPurchaseLottoCountMessage(int purchaseLottoCount) {
         System.out.printf("%d개를 구매했습니다.%n", purchaseLottoCount);
     }
 
-    protected void printReadLottoNumberMessage() {
+    protected static void printReadLottoNumberMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    protected void printReadBonusNumberMessage() {
+    protected static void printReadBonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 

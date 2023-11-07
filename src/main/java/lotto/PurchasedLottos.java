@@ -34,7 +34,7 @@ public class PurchasedLottos {
 
     public List<LottoRank> matchLottos(WinningLotto winningLotto) {
         return purchasedLottos.stream()
-                .map(purchasedLotto -> winningLotto.matcheLotto(purchasedLotto))
+                .map(purchasedLotto -> winningLotto.matchLotto(purchasedLotto))
                 .collect(Collectors.toList());
     }
 

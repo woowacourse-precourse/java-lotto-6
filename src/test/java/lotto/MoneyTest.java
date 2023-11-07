@@ -15,7 +15,7 @@ class MoneyTest {
     @DisplayName("로또 구입 금액은 1000원 단위의 숫자일때 통과한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1000", "2000", "1000000"})
-    void moneyIsDigit(String money) {
+    void money(String money) {
         assertThatCode(() -> new Money(money)).doesNotThrowAnyException();
     }
 

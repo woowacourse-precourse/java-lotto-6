@@ -33,7 +33,7 @@ public class WinningLotto {
         }
     }
 
-    public LottoRank matcheLotto(Lotto lotto) {
+    public LottoRank matchLotto(Lotto lotto) {
         int matchingNumbers = lotto.matchNumbers(winningLotto);
         boolean isContainBonusBall = lotto.contains(bonusBall);
 

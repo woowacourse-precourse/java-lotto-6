@@ -24,7 +24,6 @@ public class LottoNumberGenerationService {
 
         for (int i = 0; i < lottoTicketsCount; i++) {
             List<Integer> lottoNumbers = lottoNumbersProvider.provideLottoNumbers();
-            Collections.sort(lottoNumbers);
             allLottoNumbers.add(lottoNumbers);
             outputPort.printLine(lottoNumbers);
         }

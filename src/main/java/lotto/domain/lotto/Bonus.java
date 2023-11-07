@@ -1,4 +1,4 @@
-package lotto.domain.lotteryresult;
+package lotto.domain.lotto;
 
 public class Bonus{
 

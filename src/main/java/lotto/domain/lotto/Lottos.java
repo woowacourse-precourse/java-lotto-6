@@ -1,10 +1,8 @@
 package lotto.domain.lotto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.WinningResult;
-import lotto.domain.lotteryresult.LotteryResult;
-import lotto.domain.lotto.Lotto;
+import lotto.domain.LotteryResult;
 
 public class Lottos{
 

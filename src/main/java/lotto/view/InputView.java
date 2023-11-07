@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Amount;
-import lotto.domain.lotteryresult.Bonus;
-import lotto.domain.lotteryresult.WinningNumbers;
+import lotto.domain.lotto.Bonus;
+import lotto.domain.lotto.Lotto;
 
 public class InputView{
 
@@ -25,7 +25,7 @@ public class InputView{
         return new Amount(amount);
     }
 
-    public static WinningNumbers inputWinningNumbers(){
+    public static Lotto inputWinningNumbers(){
         System.out.println(WINNING_NUMBERS_INPUT.message());
         List<Integer> numbers = new ArrayList<>();
         try{
@@ -33,7 +33,7 @@ public class InputView{
         } catch (NumberFormatException NPE){
             throw new IllegalArgumentException(NOT_NUMBER_FORMAT.message());
         }
-        return new WinningNumbers(numbers);
+        return new Lotto(numbers);
     }
 
     public static Bonus inputBonusNumber(){

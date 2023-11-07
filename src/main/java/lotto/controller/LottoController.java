@@ -71,7 +71,6 @@ public class LottoController {
             winningLotto.addBonusNumber(bonus_number);
         } catch (IllegalArgumentException e) {
             outputView.displayERRORMESSAGE(e.getMessage());
-            winningLotto.removeBonusNumber();
             addBonusNumber(winningLotto, getBonusNumber());
         }
     }

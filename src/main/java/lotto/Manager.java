@@ -28,4 +28,8 @@ public class Manager {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, NUMBER_OF_LOTTO_NUMBER);
         return new Lotto(numbers);
     }
+
+    public void printLottoTickets(List<Lotto> tickets) {
+        output.printPurchasedLottoTickets(tickets);
+    }
 }

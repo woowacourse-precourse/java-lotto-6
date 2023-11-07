@@ -52,14 +52,7 @@ public class LottoSeller {
     }
 
     private double calculateRate(Money money, List<Rank> ranks) {
-        double prizeSum = 0;
-        double cost = (double) money.getAmount();
-
-        for (Rank rank : ranks) {
-            prizeSum += (double) rank.getPrize();
-        }
-
-        return prizeSum / cost * 100;
+        return lottoMachine.calculateRate(money, ranks);
     }
 
     private void printRank(List<Rank> ranks) {

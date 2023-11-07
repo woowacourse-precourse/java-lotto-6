@@ -3,12 +3,12 @@ package lotto;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST("6개 일치", 6, 2_000_000_000),
-    SECOND("5개 일치, 보너스 볼 일치", 5, 30_000_000),
-    THIRD("5개 일치", 5, 1_500_000),
-    FOURTH("4개 일치", 4, 50_000),
+    BLANK,
     FIFTH("3개 일치", 3, 5_000),
-    BLANK;
+    FOURTH("4개 일치", 4, 50_000),
+    THIRD("5개 일치", 5, 1_500_000),
+    SECOND("5개 일치, 보너스 볼 일치", 5, 30_000_000),
+    FIRST("6개 일치", 6, 2_000_000_000);
 
     private String description;
     private int matches;

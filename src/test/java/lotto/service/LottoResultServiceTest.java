@@ -25,7 +25,7 @@ public class LottoResultServiceTest {
         EnumMap<Rank, Integer> result = lottoResultService.rank(lottos);
 
         //then
-        assertThat(result.values()).containsExactly(1, 1, 1, 1, 1, 3);
+        assertThat(result.values()).containsExactly(3, 1, 1, 1, 1, 1);
     }
 
     @DisplayName("수익률을 구한다.")

@@ -24,7 +24,7 @@ public class Application {
         LottoController.setPrizeNumberInput();
 //        LottoController.setBonusNumberInput();
 //        lottoController.setRandomNumber(lottoView.askPrice());
-
+        LottoController.winningStatstic();
 
     }
 

@@ -1,13 +1,16 @@
 package lotto.controller;
 
-import lotto.Application;
 import lotto.model.Lotto;
+import lotto.model.LottoPrize;
 import lotto.model.RandomIntGenerator;
 import lotto.view.LottoView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Arrays.asList;
+import static lotto.model.LottoPrize.*;
 
 public class LottoController {
     private static LottoView lottoView = new LottoView();
@@ -31,13 +34,19 @@ public class LottoController {
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
         Lotto lotto = new Lotto(newList);
-        lotto.checkPrize(lottoView.bonusNumberInput(),randomIntGenerator.getLottoNumber());
+        lotto.checkSame(lottoView.bonusNumberInput(),randomIntGenerator.getLottoNumber());
 
         System.out.println();
     }
 
-//    public static void setBonusNumberInput() {
-//
+    public static void winningStatstic() {
+        List<LottoPrize> LottoPrizelist= asList(FIRST_PRIZE,SECOND_PRIZE,THIRD_PRIZE,FOURTH_PRIZE,FIFTH_PRIZE);
+
+        lottoView.seeWinningStatstic(LottoPrizelist);
+    }
+
+//    public static Integer setBonusNumberInput() {
+//        return lottoView.bonusNumberInput();
 //    }
 
     public void setRandomNumber(Integer Price) {

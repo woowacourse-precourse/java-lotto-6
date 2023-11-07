@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.LottoPrize;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,5 +34,18 @@ public class LottoView {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         return Integer.parseInt(input);
+    }
+
+
+
+
+
+    public void seeWinningStatstic(List<LottoPrize> lottoPrizelist) {
+        System.out.println();
+        System.out.println("당첨통계");
+        System.out.println("---");
+        for(LottoPrize lottoPrize: lottoPrizelist){
+            System.out.println(lottoPrize.getText()+lottoPrize.getWinCount()+lottoPrize.getUnit());
+        }
     }
 }

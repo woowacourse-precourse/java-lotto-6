@@ -2,29 +2,10 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        OutputView outputView = new OutputView();
-
-        outputView.moneyInput();
-        MoneyInputView moneyInputView = new MoneyInputView();
-        outputView.issueNotice(moneyInputView.getIssueCount());
-
-        LottoTable lottoTable = new LottoTable(moneyInputView.getIssueCount());
-        outputView.getIssues(lottoTable.getLottoTable());
-
-        outputView.numbersInput();
-        NumberInputView numberInputView = new NumberInputView();
-
-        outputView.luckyInput();
-        LuckyNumberInputView luckyNumberInputView = new LuckyNumberInputView(numberInputView.getValidNumbers());
-
-        Lotto lotto = new Lotto(numberInputView.getValidNumbers());
-        LottoDispatcher lottoDispatcher = new LottoDispatcher(
-                lotto,
-                lottoTable,
-                luckyNumberInputView.getLuckyNumber()
-        );
+        LottoViewResolver lottoViewResolver = new LottoViewResolver();
+        LottoDispatcher lottoDispatcher = lottoViewResolver.getLottoDispatcher();
         Board board = new Board(lottoDispatcher);
-        outputView.staticsResult(board.getGainStatics());
-        outputView.earningResult(board.getCalculatedProfit());
+        lottoViewResolver.staticsResult(board);
+        lottoViewResolver.earningResult(board);
     }
 }

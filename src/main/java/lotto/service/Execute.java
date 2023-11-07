@@ -2,27 +2,21 @@ package lotto.service;
 
 import lotto.console.Input;
 import lotto.console.Output;
-import lotto.domain.Asset;
-import lotto.domain.Lotto;
-import lotto.domain.State;
+import lotto.domain.*;
+
 import java.util.List;
 
 public class Execute {
-    public static State state = new State();
-    public static Asset asset;
     public static void start(){
-        asset = Input.askMoney();
 
-        Lotto winningNum = Input.askWinningNum();
+        Player player = new Player(Input.askMoney());
 
-        Integer bonusNum = Input.askBonusNum();
+        LottoGame lottoGame = new LottoGame(Input.askWinningNum(), Input.askBonusNum());
 
-        List<Lotto> lottoTickets = LottoMachine.buyLotto(asset.getMoney());
+        LottoMachine.judgeGrade(lottoGame, player);
 
-        lottoTickets.forEach(tickets -> LottoMachine.judgeGrade(winningNum, bonusNum, tickets));
+        Output.printResult(player.getState());
 
-        Output.printResult(state.getGradeState());
-
-        Output.printRate(asset);
+        Output.printRate(player.getAsset());
     }
 }

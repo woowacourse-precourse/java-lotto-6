@@ -3,10 +3,13 @@ package lotto.service;
 import lotto.console.Output;
 import lotto.domain.Grade;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.domain.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 public class LottoMachine {
     public static List<Lotto> buyLotto(Float price){
@@ -21,15 +24,23 @@ public class LottoMachine {
         return lottoTickets;
     }
 
-    public static void judgeGrade(Lotto winningNumbers, int bonusNum, Lotto LottoTicket) {
-        int matchCnt = winningNumbers.matchNumbers(LottoTicket);
-        boolean bonusMatch = LottoTicket.matchBonusNum(bonusNum);
+    public static void judgeGrade(LottoGame lottoGame, Player player) {
+        Lotto winningNum = lottoGame.getWinningNum();
+        Integer bonusNum = lottoGame.getBonusNum();
 
-        Grade grade = Grade.judge(matchCnt, bonusMatch);
+        List<Lotto> lottoTickets = player.getLottoTickets();
 
-        if(grade != Grade.NOTHING){
-            Execute.state.setGradeState(grade);
-            Execute.asset.increaseIncome(grade);
-        }
+        List<Grade> grades = lottoTickets.stream().map(
+                ticket -> Grade.judge(winningNum.matchNumbers(ticket), ticket.matchBonusNum(bonusNum))
+        ).toList();
+
+        System.out.println(grades);
+
+        grades.stream()
+                .filter(grade -> grade != Grade.NOTHING)
+                .forEach( grade -> {
+                    player.setState(grade);
+                    player.setAsset(grade);
+                });
     }
 }

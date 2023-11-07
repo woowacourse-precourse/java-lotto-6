@@ -1,10 +1,7 @@
 package lotto.console;
 
-import lotto.domain.Asset;
-import lotto.domain.Grade;
-import lotto.domain.Lotto;
+import lotto.domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -16,7 +13,8 @@ public class Output {
         ticketBuffer.forEach( it -> System.out.println(it.getNumbers()));
     }
 
-    public static void printResult( Map<Grade, Integer> states ){
+    public static void printResult(State state){
+        Map<Grade, Integer> states = state.getGradeState();
         states.forEach((grade, value) -> System.out.println(grade.getMessage() + " - " + value + "개"));
     }
 

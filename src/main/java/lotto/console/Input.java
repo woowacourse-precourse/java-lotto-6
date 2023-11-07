@@ -3,6 +3,7 @@ package lotto.console;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Asset;
 import lotto.domain.Lotto;
+import lotto.service.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Input {
     public static Asset askMoney(){
         try{
             System.out.println("구입금액을 입력해 주세요.");
-            Float money = Float.valueOf(Console.readLine());
+            Float money = Utils.convertInput(Console.readLine());
             return new Asset(money);
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] :" + e.getMessage());

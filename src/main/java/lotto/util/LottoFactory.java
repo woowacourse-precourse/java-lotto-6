@@ -3,7 +3,6 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.LottoRule;
 import lotto.domain.lotto.Lotto;
-import lotto.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +15,7 @@ public class LottoFactory {
 
     public static Lotto createLotto(){
         List<Integer> lottoNumbers = getLottoNumbers();
-        return new Lotto(sortedAscending(lottoNumbers));
+        return new Lotto(getSortedNumber(lottoNumbers));
     }
 
     private static List<Integer> getLottoNumbers(){
@@ -26,18 +25,7 @@ public class LottoFactory {
                 LottoRule.STANDARD.getLottoSize());
     }
 
-    private static List<Integer> sortedAscending(List<Integer> numbers) {
-        List<Integer> sortedNumber = getSortedNumber(numbers);
-        if (isNotSort(numbers, sortedNumber)) {
-            return sortedNumber;
-        }
-        return numbers;
-    }
-
-    private static boolean isNotSort(List<Integer> numbers, List<Integer> sortedNumber) {
-        return !sortedNumber.equals(numbers);
-    }
-
+    //정렬되어 있는지 확인하는건 Lotto 클래스 역활이라고 생각한다. Collections.sort()만 사용해서 생성하면 우테코 test가 List.of()로 만들었기 때문에 예외가 발생함
     private static List<Integer> getSortedNumber(List<Integer> numbers) {
         List<Integer> sortedLotto = new ArrayList<>(numbers);
         Collections.sort(sortedLotto);
@@ -46,15 +34,7 @@ public class LottoFactory {
     }
 
     public static Lotto createLotto(List<Integer> numbers){
-        validateSortedAscending(numbers);
         return new Lotto(numbers);
-    }
-
-    private static void validateSortedAscending(List<Integer> numbers) {
-        List<Integer> sortedNumber = getSortedNumber(numbers);
-        if (isNotSort(numbers,sortedNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
-        }
     }
 
 }

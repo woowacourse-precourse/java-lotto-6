@@ -187,7 +187,7 @@ public class LottoGameInputViewTest {
         //given
         String input = "0";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 45, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         // when //then
         assertThatThrownBy(() -> lottoGameInputView.requestBonusLottoNumber(winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -200,7 +200,7 @@ public class LottoGameInputViewTest {
         //given
         String input = "45";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 45, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
         // when //then
         assertThatThrownBy(() -> lottoGameInputView.requestBonusLottoNumber(winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)

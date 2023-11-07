@@ -11,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicateNumbers(numbers);
+        validateSortedAscending(numbers);
         this.numbers = numbers;
     }
 
@@ -50,5 +51,23 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    private void validateSortedAscending(List<Integer> numbers) {
+        List<Integer> sortedNumber = getSortedNumber(numbers);
+        if (isNotSort(numbers,sortedNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
+        }
+    }
+
+    private List<Integer> getSortedNumber(List<Integer> numbers) {
+        List<Integer> sortedLotto = new ArrayList<>(numbers);
+        Collections.sort(sortedLotto);
+
+        return sortedLotto;
+    }
+
+    private boolean isNotSort(List<Integer> numbers, List<Integer> sortedNumber) {
+        return !sortedNumber.equals(numbers);
     }
 }

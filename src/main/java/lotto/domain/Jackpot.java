@@ -17,10 +17,14 @@ public class Jackpot extends Lotto {
         this.bonus = bonus;
     }
 
+    public int returnBonusValue() {
+        return bonus;
+    }
+
     private void manageException(List<Integer> numbers, int bonus) {
         try {
             validateDuplicationOfBonus(numbers, bonus);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             setting.pickbonus();
         }
     }

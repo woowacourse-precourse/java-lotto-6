@@ -25,5 +25,7 @@ public class GameService {
 
         judgement = new Judgement(lottos, jackpot);
         judgement.confirmJackpot();
+        judgement.printRate();
+        judgement.printRevenue(repetitions * 1000);
     }
 }

@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> returnFarsighted(){
+        return numbers;
+    }
+
     private void manageException(List<Integer> numbers) {
         try {
             validateSize(numbers);

@@ -24,22 +24,22 @@ public class LottoCalculator {
         }
         if (matchedNumbers == 5 && hasBonusNumber) {
             finalPrize += SECOND_PRIZE_AMOUNT;
-            finalMatchNumbers.set(0, finalMatchNumbers.get(1) + 1);
+            finalMatchNumbers.set(1, finalMatchNumbers.get(1) + 1);
             return finalPrize;
         }
         if (matchedNumbers == 5) {
             finalPrize += THIRD_PRIZE_AMOUNT;
-            finalMatchNumbers.set(0, finalMatchNumbers.get(2) + 1);
+            finalMatchNumbers.set(2, finalMatchNumbers.get(2) + 1);
             return finalPrize;
         }
         if (matchedNumbers == 4) {
             finalPrize += FOURTH_PRIZE_AMOUNT;
-            finalMatchNumbers.set(0, finalMatchNumbers.get(3) + 1);
+            finalMatchNumbers.set(3, finalMatchNumbers.get(3) + 1);
             return finalPrize;
         }
         if (matchedNumbers == 3) {
             finalPrize += FIFTH_PRIZE_AMOUNT;
-            finalMatchNumbers.set(0, finalMatchNumbers.get(4) + 1);
+            finalMatchNumbers.set(4, finalMatchNumbers.get(4) + 1);
             return finalPrize;
         }
 

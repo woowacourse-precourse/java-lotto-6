@@ -6,7 +6,7 @@ public class RateOfReturnCalculator {
             throw new ArithmeticException();
         }
 
-        double RateOfReturn = (double) finalPrize / userAmount;
-        return Math.round(RateOfReturn * 100.0) / 100.0;
+        double RateOfReturn = (double) finalPrize / userAmount * 100;
+        return Math.round(RateOfReturn * 10.0) / 10.0;
     }
 }

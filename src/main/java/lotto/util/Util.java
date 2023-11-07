@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Util {
     private static final Pattern REGEX_BLANK = Pattern.compile("\\s");
@@ -17,6 +18,14 @@ public class Util {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_FORMAT.getMessage());
         }
+    }
+
+    public static String convertIntegerListToString(List<Integer> inputs) {
+        return String.join(",",
+                inputs.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.toList())
+        );
     }
 
     public static List<Integer> splitNumberByComma(String numbers) {

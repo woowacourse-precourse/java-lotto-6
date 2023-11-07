@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import lotto.util.Util;
 import lotto.util.validator.LottoValidator;
 
 public class Lotto {
@@ -12,13 +12,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        String validate = String.join(",",
-                numbers.stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.toList())
-        );
-        new LottoValidator().validate(validate);
+    private void validate(List<Integer> numbers) throws IllegalArgumentException {
+        String convert = Util.convertIntegerListToString(numbers);
+        new LottoValidator().validate(convert);
     }
 
     // TODO: 추가 기능 구현

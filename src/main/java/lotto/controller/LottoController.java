@@ -17,7 +17,7 @@ public class LottoController {
         InputView.printPayAmountInputMessage();
         String lottoPayAmount = Console.readLine();
         // TODO : 로또 구매 기능 인풋 Validate
-        lottoService.processStart(Integer.parseInt(lottoPayAmount));
+        lottoService.publishLottos(Integer.parseInt(lottoPayAmount));
 
         InputView.printJackpotNumberInputMessage();
         String jackpotNumberInput = Console.readLine();
@@ -28,6 +28,9 @@ public class LottoController {
         InputView.printBonusNumberInputMessage();
         String bonusNumberInput = Console.readLine();
         // TODO : 보너스 번호 인풋 Validate
+
+        lottoService.announceWinningResult(jackpotNumbers, Integer.parseInt(bonusNumberInput));
+
 
     }
 

@@ -29,13 +29,18 @@ public class Lottos {
             }
             this.lottoResult = LottoResult.initiateLottoResult(size);
             addCount(lottoResult);
-            total += LottoResult.calculateRate(lottoResultWithCount, lottoResult);
+            this.total += lottoResult.getGrade();
         }
-        System.out.println(total);
     }
 
     private void addCount(LottoResult lottoResult) {
         lottoResultWithCount.put(lottoResult, lottoResultWithCount.getOrDefault(lottoResult, 0) + 1);
+    }
+
+    public double calculateTotalRate() {
+        System.out.println(this.total);
+        System.out.println(player.getAmount());
+        return Math.round(((double) this.total / player.getAmount()) * 10000) / 100.0;
     }
 
     private List<Integer> calculateMatchNumbers(int index) {

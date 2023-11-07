@@ -44,11 +44,8 @@ public class LottoManager {
 
         Prize[] prizes = Prize.values();
         for (Prize prize : prizes) {
-            int matchingCount = prize.getMatchingCount();
-            int prizeAmount = prize.getAmount();
-            int count = resultCounts[matchingCount];
-            int prizeTotal = count * prizeAmount;
-            totalPrize += prizeTotal;
+            int count = resultCounts[prize.getMatchingCount()];
+            totalPrize += count * prize.getAmount();
 
             System.out.printf("%s - %d개\n", prize.getDescription(), count);
         }

@@ -12,8 +12,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         if(validateNumbers(numbers)){
             this.numbers = numbers;
+            return;
         }
-        throw new IllegalArgumentException("[ERROR] 로또는 중복된 번호를 가지거나 6자리 여야합니다.");
+        throw new IllegalArgumentException("[ERROR] 로또는 중복된 번호를 가지지 않고 6자리 여야합니다.");
     }
 
     private boolean validateNumbers(List<Integer> numbers) {

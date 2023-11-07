@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.view.InputView;
+import lotto.io.InputHandler;
 
 public class LottoService {
     private final List<Lotto> lotteries = new ArrayList<>();
@@ -17,9 +17,9 @@ public class LottoService {
     }
 
     private void initService() {
-        setPublishingNumber(InputView.readInputNumber());
-        setMagicNumber(InputView.readInputTargetNumbers());
-        setBonusNumber(InputView.readInputNumber());
+        setPublishingNumber(InputHandler.readInputNumber());
+        setMagicNumber(InputHandler.readInputTargetNumbers());
+        setBonusNumber(InputHandler.readInputNumber());
     }
     private void runService() {
         for(int i = 0; i < publishingNumber; i++){
@@ -30,6 +30,19 @@ public class LottoService {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }
+
+    public List<Lotto> getLotteries() {
+        return lotteries;
+    }
+
+    public List<Integer> getMagicNumber() {
+        return magicNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
 
     public void setPublishingNumber(int amounts) {
         if (amounts % 1000 != 0) {

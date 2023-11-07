@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoGameException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +37,19 @@ public class InputView {
 
     private static void validatePurchaseAmountInput(String input) {
         if (isNotPositiveInteger(input)) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(ErrorMessage.NON_POSITIVE_INTEGER);
         }
     }
 
     private static void validateWinningNumbersInput(String input) {
-        if (endsWithComma(input) || hasNotPositiveInteger(split(input)) || isNotSixIntegers(split(input))) {
-            throw new IllegalArgumentException();
+        if (endsWithComma(input)) {
+            throw new LottoGameException(ErrorMessage.LAST_COMMA);
+        }
+        if (hasNotPositiveInteger(split(input))) {
+            throw new LottoGameException(ErrorMessage.NON_POSITIVE_INTEGER);
+        }
+        if (isNotSixIntegers(split(input))) {
+            throw new LottoGameException(ErrorMessage.INVALID_INTEGER_COUNT);
         }
     }
 

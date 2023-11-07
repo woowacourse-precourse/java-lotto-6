@@ -18,7 +18,7 @@ public class ExceptionMessage {
         System.out.println(EXCEEDED_NUMBER);
     }
 
-    public static void divisivleException() {
+    public static void divisibleException() {
         System.out.println(DIVISIBLE_NUMBER);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.InputView;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.ExceptionMessage;
 import lotto.service.validator.Validator;
 
 public class InputView {
@@ -12,8 +13,15 @@ public class InputView {
         validator.validateAmount(amount);
         return amount;
     }
+
     public static Integer getAmountFromUser() {
-        System.out.println(MONEY_INPUT_MESSAGE);
-        return Integer.valueOf(Console.readLine());
+            System.out.println(MONEY_INPUT_MESSAGE);
+            try {
+                return Integer.valueOf(Console.readLine());
+            } catch (NumberFormatException e) {
+                ExceptionMessage.typeException();
+                return getAmountFromUser();
+            }
+        }
     }
-}
+

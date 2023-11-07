@@ -9,11 +9,28 @@ public class Validator {
 
     public void validateAmount(int amount) {
         validateDivisible(amount);
+        validateNumberic(amount);
+    }
+
+    public void validateNumberic(int amount) {
+        if (!isNumeric(String.valueOf(amount))) {
+            ExceptionMessage.typeException();
+            throw new IllegalArgumentException();
+        }
     }
     public void validateDivisible(int amount) {
         if (amount % 1000 != 0) {
-            ExceptionMessage.divisivleException();
-            throw new IllegalArgumentException();
+            ExceptionMessage.divisibleException();
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
+
+    private boolean isNumeric(String strAmount) {
+        try {
+            Integer.parseInt(strAmount);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }

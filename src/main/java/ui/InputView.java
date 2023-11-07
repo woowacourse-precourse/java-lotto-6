@@ -1,11 +1,11 @@
 package ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import dto.BonusNumberDTO;
-import dto.CommonNumberDTO;
-import dto.MoneyDTO;
 import java.util.List;
 import java.util.stream.Stream;
+import ui.validator.BonusNumberValidator;
+import ui.validator.CommonNumberValidator;
+import ui.validator.MoneyValidator;
 
 class InputView {
     private InputView() {
@@ -14,12 +14,13 @@ class InputView {
     /**
      * @return 1000 단위로 끊어진 로또 구매 금액.
      */
-    public static MoneyDTO getMoney() {
+    public static int getMoney() {
         while (true) {
             try {
                 String input = Console.readLine();
                 int money = Integer.parseInt(input);
-                return new MoneyDTO(money);
+                MoneyValidator.verify(money);
+                return money;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
@@ -28,7 +29,7 @@ class InputView {
         }
     }
 
-    public static CommonNumberDTO getCommonNumbers() {
+    public static List<Integer> getCommonNumbers() {
         while (true) {
             try {
                 String input = Console.readLine();
@@ -36,7 +37,9 @@ class InputView {
 
                 List<Integer> integers = Stream.of(inputNumbers).map(Integer::parseInt).toList();
 
-                return new CommonNumberDTO(integers);
+                CommonNumberValidator.verify(integers);
+
+                return integers;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
@@ -45,12 +48,13 @@ class InputView {
         }
     }
 
-    public static BonusNumberDTO getBonusNumbers(CommonNumberDTO commonNumbers) {
+    public static int getBonusNumber(List<Integer> commonNumbers) {
         while (true) {
             try {
                 String input = Console.readLine();
                 int number = Integer.parseInt(input);
-                return new BonusNumberDTO(commonNumbers, number);
+                BonusNumberValidator.verify(commonNumbers, number);
+                return number;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {

@@ -1,14 +1,13 @@
 package lotto;
 
-import dto.MoneyDTO;
 import dto.WinningNumberDTO;
 import ui.IOView;
 
 public class Application {
     public static void main(String[] args) {
 
-        MoneyDTO money = IOView.getMoney();
-        LottoTickets lottoTickets = LottoTickets.buy(money.getMoney());
+        int money = IOView.getMoney();
+        LottoTickets lottoTickets = LottoTickets.buy(money);
         IOView.printLottoNumbers(lottoTickets);
 
         WinningNumberDTO winningNumbers = IOView.getWinningNumbers();

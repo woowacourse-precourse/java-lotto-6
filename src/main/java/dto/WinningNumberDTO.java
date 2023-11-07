@@ -4,18 +4,18 @@ import java.util.List;
 
 public class WinningNumberDTO {
     private List<Integer> commonNumbers;
-    private Integer bonusNumber;
+    private int bonusNumber;
 
-    public WinningNumberDTO(CommonNumberDTO commonNumbers, BonusNumberDTO bonusNumber) {
-        this.commonNumbers = commonNumbers.getNumbers();
-        this.bonusNumber = bonusNumber.getNumber();
+    public WinningNumberDTO(List<Integer> commonNumbers, int bonusNumber) {
+        this.commonNumbers = commonNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getCommonNumbers() {
         return commonNumbers;
     }
 
-    public Integer getBonusNumber() {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

@@ -1,18 +1,14 @@
-package dto;
+package ui.validator;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.LottoConfig;
 
-public class CommonNumberDTO {
-    private List<Integer> numbers;
-
-    public CommonNumberDTO(List<Integer> numbers) {
-        verify(numbers);
-        this.numbers = numbers;
+public class CommonNumberValidator {
+    private CommonNumberValidator() {
     }
 
-    private void verify(List<Integer> numbers) {
+    public static void verify(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number < LottoConfig.START_NUM || number > LottoConfig.END_NUM) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호로 적합하지 않은 숫자입니다.");
@@ -26,9 +22,5 @@ public class CommonNumberDTO {
             }
             uniqueNumbers.add(number);
         });
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

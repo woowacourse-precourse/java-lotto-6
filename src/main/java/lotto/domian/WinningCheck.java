@@ -32,7 +32,11 @@ public class WinningCheck {
                 rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
             }
 
-            if (winningTable.getCorrectNumberCount() == 0 && count == 1 || count == 2) {
+            if (winningTable.getCorrectNumberCount() == 0 && count == 1) {
+                rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
+            }
+
+            if (winningTable.getCorrectNumberCount() == 0 && count == 2) {
                 rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
             }
 

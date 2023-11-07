@@ -10,6 +10,7 @@ public class InputView {
     private static final String INPUT_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String ERROR_MESSAGE = "[ERROR]";
     private static List<Integer> intWinningNumber = new ArrayList<>();
     public static long inputAmount() {
         System.out.println(INPUT_AMOUNT);
@@ -47,7 +48,7 @@ public class InputView {
         try {
             Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 입력이 필요합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 숫자 입력이 필요합니다.");
         }
     }
 

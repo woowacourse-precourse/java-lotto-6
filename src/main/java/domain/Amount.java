@@ -47,4 +47,8 @@ public class Amount {
     public double calculatePercentByUnitAmount(Amount unitAmount) {
         return (double) this.amount / unitAmount.amount * 100;
     }
+
+    public boolean isOverLimitAmount(Amount limitAmount) {
+        return limitAmount.amount < this.amount;
+    }
 }

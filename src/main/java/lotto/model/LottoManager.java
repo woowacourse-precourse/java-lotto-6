@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.RandomLottoGenerator.pickNumbers;
+import static lotto.util.RandomNumberGenerator.pickNumbers;
 
 import java.util.ArrayList;
 import java.util.List;

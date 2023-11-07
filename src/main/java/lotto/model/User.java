@@ -3,17 +3,17 @@ package lotto.model;
 import lotto.Lotto;
 
 public class User {
-    private static int paymentAmount;
-    private static Lotto winningNumber;
-    private static int lottoTicketCount;
-    private static int bonusNumber;
+    private int paymentAmount;
+    private Lotto winningNumber;
+    private int lottoTicketCount;
+    private int bonusNumber;
 
     public int getPaymentAmount() {
         return paymentAmount;
     }
 
     public void setPaymentAmount(int paymentAmount) {
-        User.paymentAmount = paymentAmount;
+        this.paymentAmount = paymentAmount;
     }
 
     public Lotto getWinningNumber() {
@@ -21,7 +21,7 @@ public class User {
     }
 
     public void setWinningNumber(Lotto winningNumber) {
-        User.winningNumber = winningNumber;
+        this.winningNumber = winningNumber;
     }
 
     public int getLottoTicketCount() {
@@ -37,6 +37,6 @@ public class User {
     }
 
     public void setBonusNumber(int bonusNumber) {
-        User.bonusNumber = bonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 }

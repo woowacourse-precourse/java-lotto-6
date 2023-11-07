@@ -10,10 +10,8 @@ import lotto.model.Result;
 import lotto.model.User;
 
 public class OutputView {
-    User user = new User();
-    Result result = new Result();
 
-    public void printLottoNumber(List<Lotto> lottoNumbers) {
+    public void printLottoNumber(List<Lotto> lottoNumbers, User user) {
         System.out.print("\n" + user.getLottoTicketCount());
         Message.PURCHASE_LOTTO.getMessage();
         for (Lotto numbers : lottoNumbers) {
@@ -62,7 +60,7 @@ public class OutputView {
         return prize;
     }
 
-    public void printTotalProfit() {
+    public void printTotalProfit(Result result) {
         System.out.println("총 수익률은 " + result.getTotalProfit() + "입니다.");
     }
 }

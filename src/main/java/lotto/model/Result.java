@@ -6,10 +6,10 @@ import java.util.List;
 import lotto.Lotto;
 
 public class Result {
-    private static HashMap<Integer, Integer> winningCount = new HashMap<>();
-    private static List<Lotto> lottoTickets = new ArrayList<>();
-    private static int totalPrize;
-    private static String totalProfit;
+    private HashMap<Integer, Integer> winningCount = new HashMap<>();
+    private List<Lotto> lottoTickets = new ArrayList<>();
+    private int totalPrize;
+    private String totalProfit;
 
     public void addWinningCount(int rank) {
         if (winningCount.containsKey(rank)) {
@@ -23,16 +23,16 @@ public class Result {
         lottoTickets.add(lotto);
     }
 
-    public void addTotalPrize(int prize) {
-        totalPrize += prize;
-    }
-
     public HashMap<Integer, Integer> getWinningCount() {
         return winningCount;
     }
 
     public List<Lotto> getLottoTicket() {
         return lottoTickets;
+    }
+
+    public void setTotalPrize(int prize) {
+        this.totalPrize = prize;
     }
 
     public int getTotalPrize() {
@@ -44,6 +44,6 @@ public class Result {
     }
 
     public void setTotalProfit(String totalProfit) {
-        Result.totalProfit = totalProfit;
+        this.totalProfit = totalProfit;
     }
 }

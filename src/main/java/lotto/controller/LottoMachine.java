@@ -2,17 +2,14 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.Lotto;
-import lotto.enums.Message;
 import lotto.model.Result;
 import lotto.model.User;
-import lotto.util.Calculate;
 import lotto.view.OutputView;
 import lotto.util.Computer;
 import lotto.view.InputView;
 
 public class LottoMachine {
     Result result = new Result();
-    Calculate calculate = new Calculate();
     Computer computer = new Computer();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
@@ -26,34 +23,34 @@ public class LottoMachine {
     }
 
     public void buyLotto() {
-        inputView.inputPaymentAmount();
-        calculate.settingLottoTicketCount();
+        inputView.inputPaymentAmount(user);
+        computer.calculateLottoTicketCount(user);
     }
 
     public void drawLottoNumber() {
         for (int i = 0; i < user.getLottoTicketCount(); i++) {
-            computer.getLottoNumber();
+            computer.getLottoNumber(result);
         }
-        outputView.printLottoNumber(result.getLottoTicket());
+        outputView.printLottoNumber(result.getLottoTicket(), user);
     }
 
     public void drawWinningNumber() {
-        inputView.inputWinningNumber();
-        inputView.inputBonusNumber();
+        inputView.inputWinningNumber(user);
+        inputView.inputBonusNumber(user);
     }
 
     public void getWinningStatistics() {
         compareLottoTicket();
         outputView.printWinningStatistics(result.getWinningCount());
-        outputView.printTotalProfit();
+        outputView.printTotalProfit(result);
     }
 
     public void compareLottoTicket() {
         for (Lotto lotto : result.getLottoTicket()) {
             compareNumber(lotto.getNumbers(), user.getWinningNumber().getNumbers());
         }
-        calculate.settingTotalPrize();
-        calculate.settingTotalProfit();
+        computer.calculateTotalPrize(result);
+        computer.calculateTotalProfit(result, user);
     }
 
     public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {

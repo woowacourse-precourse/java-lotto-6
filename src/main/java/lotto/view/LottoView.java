@@ -8,8 +8,9 @@ public class LottoView {
         return Console.readLine();
     }
 
-    public void printError(ErrorMessage errorMessage) {
-        errorMessage.println();
+    public void printError(Exception e) {
+        String errorMessage = e.getMessage();
+        System.out.println(errorMessage);
     }
 
     public void printOutput(String output) {

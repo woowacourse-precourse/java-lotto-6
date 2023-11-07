@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.service.LottoService;
-import lotto.view.ErrorMessage;
 import lotto.view.InputRequestMessage;
 import lotto.view.LottoView;
 
@@ -28,7 +27,7 @@ public class LottoController {
             String resultOutput = lottoService.createPurchaseAmount(amountInput);
             lottoView.printOutput(resultOutput);
         } catch (IllegalArgumentException illegalArgumentException) {
-            lottoView.printError(ErrorMessage.PURCHASE_AMOUNT);
+            lottoView.printError(illegalArgumentException);
             setPurchaseAmount();
         }
     }

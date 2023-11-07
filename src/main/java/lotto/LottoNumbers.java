@@ -18,7 +18,7 @@ public class LottoNumbers {
     }
 
     private List<Integer> makeLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(Range.START.content(), Range.END.content(), Range.COUNT.content());
     }
 
     private List<Integer> sortLotto() {

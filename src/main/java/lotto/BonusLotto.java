@@ -19,7 +19,7 @@ public class BonusLotto {
     }
 
     private Boolean validateBonusRange(int bonus) {
-        if (bonus < 1 || bonus > 45) {
+        if (bonus < Range.START.content() || bonus > Range.END.content()) {
             return true;
         }
         return false;

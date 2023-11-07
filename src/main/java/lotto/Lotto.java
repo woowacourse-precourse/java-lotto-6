@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Range.COUNT.content()) {
             throw new IllegalArgumentException(ExceptionList.LOTTOCOUNTEXCETION.content());
         }
 
@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     private Boolean validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < Range.START.content() || number > Range.END.content()) {
             return true;
         }
         return false;

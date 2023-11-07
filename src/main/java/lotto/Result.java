@@ -15,17 +15,17 @@ public class Result {
     }
 
     private Integer count3Match() {
-        return Collections.frequency(countLotto, 3);
+        return Collections.frequency(countLotto, Range.THREE.content());
     }
 
     private Integer count4Match() {
-        return Collections.frequency(countLotto, 4);
+        return Collections.frequency(countLotto, Range.FOUR.content());
     }
 
     private Integer count5Match() {
         int count = 0;
         for (int i = 0; i < countLotto.size(); i++) {
-            if (countLotto.get(i) == 5 && !countBonusLotto.get(i)) {
+            if (countLotto.get(i) == Range.FIVE.content() && !countBonusLotto.get(i)) {
                 count++;
             }
         }
@@ -35,7 +35,7 @@ public class Result {
     private Integer count5MatchWithBonus() {
         int count = 0;
         for (int i = 0; i < countLotto.size(); i++) {
-            if (countLotto.get(i) == 5 && countBonusLotto.get(i)) {
+            if (countLotto.get(i) == Range.FIVE.content() && countBonusLotto.get(i)) {
                 count++;
             }
         }
@@ -43,15 +43,15 @@ public class Result {
     }
 
     private Integer count6Match() {
-        return Collections.frequency(countLotto, 6);
+        return Collections.frequency(countLotto, Range.SIX.content());
     }
 
     public void calculateRateOfReturn(int money) {
-        rateOfReturn += count3Match() * 5000;
-        rateOfReturn += count4Match() * 50000;
-        rateOfReturn += count5Match() * 1500000;
-        rateOfReturn += count5MatchWithBonus() * 30000000;
-        rateOfReturn += count6Match() * 2000000000;
+        rateOfReturn += count3Match() * Range.MATCH3PRICE.content();
+        rateOfReturn += count4Match() * Range.MATCH4PRICE.content();
+        rateOfReturn += count5Match() * Range.MATCH5PRICE.content();
+        rateOfReturn += count5MatchWithBonus() * Range.MATCH5WITHBONUSPRICE.content();
+        rateOfReturn += count6Match() * Range.MATCH6PRICE.content();
         rateOfReturn = (rateOfReturn / money) * 100;
     }
 

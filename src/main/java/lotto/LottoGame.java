@@ -27,7 +27,7 @@ public class LottoGame {
 
     public static Money inputMoney() {
         while (true) {
-            System.out.println("구입금액을 입력해 주세요");
+            System.out.println("\n구입금액을 입력해 주세요");
             String input = Console.readLine();
             try {
                 int input_money = Integer.parseInt(input);

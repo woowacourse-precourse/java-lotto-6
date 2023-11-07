@@ -1,43 +1,21 @@
 package lotto;
 
-import user.User;
-
 import java.util.List;
 
 public class LottoService {
     private final int LOTTO_PRICE = 1000;
-    private final User user = new User();
 
     public LottoService() {
     }
 
     public void run() {
-        Output.printGameStartMessage();
-        int userMoney = user.inputMoney();
-        int numberOfLottos = userMoney / LOTTO_PRICE;
+        User user = new User();
+        user.buyLotto(LOTTO_PRICE);
 
-        Output.printUserMoney(userMoney);
-        Output.printNumberOfLottos(numberOfLottos);
+        Computer computer = new Computer();
 
-        List<Lotto> lottos = LottoGenerator.generateLottos(numberOfLottos);
-        for (Lotto lotto : lottos) {
-            Output.printLottoSixNumbers(lotto);
-        }
-
-        Output.printLottoNumbersMessage();
-        List<String> sixLottoNumbers = user.inputSixLottoNumbers();
-        Output.printLottoNumbers(sixLottoNumbers);
-
-        Output.printBonusNumberMessage();
-        String bonusNumber = user.inputBonusNumber();
-        Output.printBonusNumber(bonusNumber);
-
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(lottos, sixLottoNumbers, bonusNumber);
-        lottoResultChecker.calculator();
-
-        ReturnCalculator returnCalculator = new ReturnCalculator(lottoResultChecker.lottoResult);
-        returnCalculator.calculrator();
-
-        Output.printReturn(returnCalculator.totalWinningAmount, userMoney);
+        Analyst analyst = new Analyst(user.lottos, computer.getSixLottoNumber(), computer.getBonusNumber());
+        analyst.calculate();
+        analyst.printLottoResult(user.getUserMoney());
     }
 }

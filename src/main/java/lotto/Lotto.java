@@ -20,14 +20,14 @@ public class Lotto {
     }
 
     public Lotto(List<Integer> numbers) {
-        isValidLottoNumbers(numbers);
+        validateLottoNumbers(numbers);
         List<Integer> sortableNumbers = new ArrayList<>(numbers);
         Collections.sort(sortableNumbers);
         this.numbers = Collections.unmodifiableList(sortableNumbers);
     }
 
 
-    private void isValidLottoNumbers(List<Integer> numbers) {
+    private void validateLottoNumbers(List<Integer> numbers) {
         if (numbers == null || numbers.size() != 6 || !numbers.stream().allMatch(num -> num >= 1 && num <= 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }

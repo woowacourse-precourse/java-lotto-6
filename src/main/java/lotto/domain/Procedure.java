@@ -5,11 +5,13 @@ import lotto.constant.Message;
 
 public enum Procedure {
 
-    PURCHASE_LOTTO(Message.PURCHASE_MONEY, List.of(ErrorType.NOT_A_NUMBER, ErrorType.NOT_IN_THOUSANDS)),
+    PURCHASE_LOTTO(Message.PURCHASE_MONEY,
+            List.of(ErrorType.NOT_ONE_NUMBER, ErrorType.NOT_A_NUMBER, ErrorType.MONEY_OUT_OF_RANGE,
+                    ErrorType.NOT_IN_THOUSANDS)),
     DRAW_WINNING_NUMBERS(Message.WINNING_NUMBERS,
-            List.of(ErrorType.LENGTH_NOT_MATCH, ErrorType.NOT_A_NUMBER, ErrorType.OUT_OF_RANGE,
+            List.of(ErrorType.NOT_SIX_WINNING_NUMBERS, ErrorType.NOT_A_NUMBER, ErrorType.NUMBER_OUT_OF_RANGE,
                     ErrorType.DUPLICATED_NUMBER)),
-    DRAW_BONUS_NUMBER(Message.BONUS_NUMBER, List.of(ErrorType.NOT_A_NUMBER, ErrorType.OUT_OF_RANGE));
+    DRAW_BONUS_NUMBER(Message.BONUS_NUMBER, List.of(ErrorType.NOT_A_NUMBER, ErrorType.NUMBER_OUT_OF_RANGE));
 
     private String domain;
 

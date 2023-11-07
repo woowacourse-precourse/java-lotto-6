@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.util.List;
+
 public enum LottoAnnouncer {
 
     LOTTO_LIST("[%s]\n"),
@@ -22,7 +24,12 @@ public enum LottoAnnouncer {
         return message;
     }
 
-    public String getFormat(int value) {
+    public String getIntFormat(int value) {
         return String.format(message, value);
     }
+
+    public String getListFormat(List<Integer> list) {
+        return String.format(message, list);
+    }
+
 }

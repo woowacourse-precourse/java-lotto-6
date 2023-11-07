@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constant.Announcer;
+import lotto.constant.LottoAnnouncer;
 import lotto.exception.PurchaseException;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -51,7 +52,10 @@ public class Setting {
     }
 
     public List<Integer> pickLotto() {
-        return providerRandomValue.provideLotto();
+        List<Integer> lotto = providerRandomValue.provideLotto();
+        output.printMessage(LottoAnnouncer.LOTTO_LIST.getListFormat(lotto));
+
+        return lotto;
     }
 
 }

@@ -8,13 +8,8 @@ public class Jackpot extends Lotto{
 
     public Jackpot(List<Integer> numbers, int bonus) {
         super(numbers);
-        this.bonus = bonus;
-    }
-
-    public Jackpot create(List<Integer> numbers, int bonus) {
         manageException(numbers, bonus);
-
-        return new Jackpot(numbers, bonus);
+        this.bonus = bonus;
     }
 
     private void manageException(List<Integer> numbers, int bonus) {

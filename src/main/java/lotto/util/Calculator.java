@@ -19,8 +19,7 @@ public class Calculator {
     }
 
     public String getLottoResult(Lotto winningLotto, int bonusNumber) {
-        String result = getResults(winningLotto, bonusNumber);
-        return result;
+        return getResults(winningLotto, bonusNumber);
     }
 
     public String getLottoProfit(Lotto winningLotto, int bonusNumber) {
@@ -37,13 +36,13 @@ public class Calculator {
             int winningCount = countWinningLotto(winning, winningLotto, bonusNumber);
             lottoReturn += winningCount * winning.prize();
         }
-        int amount = lottos.size() * UNIT;
+        int price = lottos.size() * UNIT;
 
-        return (lottoReturn / amount) * 1000;
+        return (double) lottoReturn / price;
     }
 
     public String formatProfitPercentage(double profit) {
-        double profitPercent = profit * 100.0;
+        double profitPercent = profit;
         DecimalFormat decimalFormat = new DecimalFormat("0.0%");
         return decimalFormat.format(profitPercent);
     }
@@ -56,11 +55,6 @@ public class Calculator {
             result += getResult(winning, winningLotto, bonusNumber) + "\n";
         }
         return result;
-    }
-
-    private String formatNumberWithPercent(double number) {
-        DecimalFormat decimalFormat = new DecimalFormat("0.0%");
-        return decimalFormat.format(number * 100.0);
     }
 
     public String getResult(Winning winning, Lotto winningLotto, Integer bonusNumber) {

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.controller.LottoController;
+import lotto.model.Lotto;
 import lotto.model.RandomIntGenerator;
 import lotto.view.LottoView;
 
@@ -20,7 +21,8 @@ public class Application {
         LottoController.setPrice();
         //구매한 로또번호 출력
         LottoController.setBuyLottoNumberPrint();
-
+        LottoController.setPrizeNumberInput();
+//        LottoController.setBonusNumberInput();
 //        lottoController.setRandomNumber(lottoView.askPrice());
 
 

@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import lotto.Application;
+import lotto.model.Lotto;
 import lotto.model.RandomIntGenerator;
 import lotto.view.LottoView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoController {
     private static LottoView lottoView = new LottoView();
@@ -23,6 +25,20 @@ public class LottoController {
     public static void setBuyLottoNumberPrint() {
         lottoView.buyLottoNumberPrint(randomIntGenerator.getLottoNumber());
     }
+
+    public static void setPrizeNumberInput() {
+        List<Integer> newList = lottoView.prizeNumberInput().stream()
+                .map(s -> Integer.parseInt(s))
+                .collect(Collectors.toList());
+        Lotto lotto = new Lotto(newList);
+        lotto.checkPrize(lottoView.bonusNumberInput(),randomIntGenerator.getLottoNumber());
+
+        System.out.println();
+    }
+
+//    public static void setBonusNumberInput() {
+//
+//    }
 
     public void setRandomNumber(Integer Price) {
 

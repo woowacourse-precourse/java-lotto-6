@@ -42,7 +42,7 @@ public class Discriminator {
     }
 
     public ProfitRateDTO getProfitRate(int won) {
-        double rate = ((info.getRewards() * 100L) / won) / 100.0;
+        double rate = (info.getRewards() * 100.0) / won;
 
         return new ProfitRateDTO(rate);
     }

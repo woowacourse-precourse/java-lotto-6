@@ -43,6 +43,17 @@ class LottoControllerTest {
     }
 
     @Test
+    public void 수익률_반올림() throws Exception{
+        //given
+        int totalPrice = 30;
+        int totalPrize = 100;
+        //when
+        double roundedYield = lottoController.getRoundedYield(totalPrice, totalPrize);
+        //then
+        assertThat(roundedYield).isEqualTo(333.3);
+    }
+
+    @Test
     public void 전체_결과_확인() {
         //given
         Lotto winning = new Lotto(Arrays.asList(11, 12, 13, 14, 15, 16));

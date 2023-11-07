@@ -48,12 +48,15 @@ public class Service {
         throw new IllegalArgumentException("잘못된 값이 들어감");
     }
 
-    public int calWinningsRank(int count) {
+    public int calWinningsRank(int count, boolean bonus) {
         if(count == 3) {
             return WinningRanks.FIFTH_RANK.getValue();
         } else if(count == 4) {
             return WinningRanks.FOURTH_RANK.getValue();
         } else if(count == 5) {
+            if(bonus) {
+                return Winnings.SECOND_PRIZE_MONEY.getValue();
+            }
             return WinningRanks.THIRD_RANK.getValue();
         } else if(count == 6) {
             return WinningRanks.FIRST_RANK.getValue();

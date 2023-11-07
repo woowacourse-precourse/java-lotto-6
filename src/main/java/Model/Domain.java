@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Domain {
     public static final int LOTTO_PRICE = 1000;
@@ -39,7 +40,12 @@ public class Domain {
         return Singleton.INSTANCE;
     }
 
-    public void setWinningRanking() {}
+    public void setWinningRanking() {
+        for (int i = 0; i < duplicatedNumberCount.size(); i++) {
+            int rank = SERVICE.calWinningsRank(duplicatedNumberCount.get(i), duplicatedBonusNumber.get(i));
+            winningRanking.add(rank);
+        }
+    }
 
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
@@ -78,8 +84,8 @@ public class Domain {
     }
 
     private boolean bonusNumberDuplicateCount(List<Integer> list) {
-        for(int number : list) {
-            if(number == bonusNumber){
+        for (int number : list) {
+            if (number == bonusNumber) {
                 return true;
             }
         }

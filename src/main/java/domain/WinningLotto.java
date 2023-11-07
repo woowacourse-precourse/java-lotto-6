@@ -37,14 +37,14 @@ public class WinningLotto {
     }
 
     private boolean validateRange(int bonusNumber) {
-            try {
-                if (!lottoPattern.matcher(Integer.toString(bonusNumber)).matches()) {
-                    throw new IllegalArgumentException();
-                }
-            }catch(IllegalArgumentException e){
-                System.out.println(LOTTO_NUMBER_RANGE.getErrorMessage());
-                return false;
+        try {
+            if (!lottoPattern.matcher(Integer.toString(bonusNumber)).matches()) {
+                throw new IllegalArgumentException();
             }
+        }catch(IllegalArgumentException e){
+            System.out.println(LOTTO_NUMBER_RANGE.getErrorMessage());
+            return false;
+        }
         return true;
     }
 

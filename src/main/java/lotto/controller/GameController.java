@@ -17,11 +17,15 @@ public class GameController {
     private int numberOfLottoPurchased;
     private List<Integer> winnerNumbers;
     private Lotto winnerLottoNumber;
+    private int bonusNumber;
 
     public void play() {
         getAmount();
         printNumberOfLottoPurcased();
         generateLottos(numberOfLottoPurchased);
+        getWinnerNumber();
+        getBonusNumber();
+
     }
 
     private void getAmount() {
@@ -43,6 +47,7 @@ public class GameController {
         }
 
         OutputView.printLottos(lottos);
+        System.out.println();
     }
 
     private void getWinnerNumber() {
@@ -50,7 +55,12 @@ public class GameController {
         String[] winnerNumberItems = winnerNumber.split(",");
         winnerNumbers = Arrays.stream(winnerNumberItems).map(Integer::parseInt).collect(Collectors.toList());
         winnerLottoNumber = new Lotto(winnerNumbers);
+        System.out.println();
     }
 
-
+    private void getBonusNumber() {
+        String bonusNumberItem = InputView.BONUMS_NUMBER.getInput();
+        bonusNumber = Integer.parseInt(bonusNumberItem);
+        System.out.println();
+    }
 }

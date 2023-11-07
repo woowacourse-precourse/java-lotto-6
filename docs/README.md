@@ -35,7 +35,7 @@
 
 - [ ] <<4.보너스 번호 입력>>
   - [x] 입력 요청 메시지 출력 InputView
-  - [ ] 숫자 하나 저장 Lotto
+  - [x] 숫자 하나 저장 Lotto
     - [ ] 당첨 번호와 중복되지 않는지 확인 Validator
     - [ ] 숫자인지 확인 Validator
     - [ ] 1 ~ 45 사이의 숫자인지 확인 Validator

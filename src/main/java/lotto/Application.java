@@ -25,22 +25,55 @@ public class Application {
     }
 
     public static void playLotto() {
+        printInputPurchaseAmountMessage();
         int purchaseAmount = inputPurchaseAmount();
-        System.out.println(purchaseAmount);
-
-        List<Integer> userLottoNumbers = inputLottoNumbers();
-        for (Integer lottoNumber : userLottoNumbers) {
-            System.out.print(lottoNumber + " ");
-        }
-        System.out.println();
-        int bonusNumber = inputBonusNumber(userLottoNumbers);
-        System.out.println(bonusNumber);
+        printPurchaseNumOfLotto(purchaseAmount);
 
         List<Lotto> lotties = createLotties(purchaseAmount);
+        printCreatedLotties(lotties);
+
+        printInputUserLottoNumbersMessage();
+        List<Integer> userLottoNumbers = inputLottoNumbers();
+
+        printInputBonusNumberMessage();
+        int bonusNumber = inputBonusNumber(userLottoNumbers);
+
         List<Integer> lottoMatchCounts = getLottoMatchCounts(lotties, userLottoNumbers, bonusNumber);
+        printStatisticsMessage();
         List<Integer> numOfRankings = getNumOfRankings(lottoMatchCounts);
         printLottoWinResult(numOfRankings);
         printYieldRate(purchaseAmount, numOfRankings);
+    }
+
+    public static void printStatisticsMessage() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+    public static void printInputBonusNumberMessage() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public static void printInputUserLottoNumbersMessage() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void printCreatedLotties(final List<Lotto> lotties) {
+        for (Lotto lotto : lotties) {
+            lotto.printLottoNumbers();
+        }
+    }
+
+    public static void printInputPurchaseAmountMessage() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public static void printPurchaseNumOfLotto(final int purchaseAmount) {
+        System.out.println();
+        System.out.println(String.format("%d개를 구매했습니다.", (int)(purchaseAmount/PURCHASE_AMOUNT_UNIT)));
     }
 
     public static void printYieldRate(final int purchaseAmount, final List<Integer> lottoMatchCounts) {
@@ -54,10 +87,8 @@ public class Application {
     public static int getTotalPrize(final List<Integer> lottoMatchCounts) {
         int totalPrize = 0;
         for (int i = 0; i < lottoMatchCounts.size(); i++) {
-            System.out.println("lottoMatchCounts " + lottoMatchCounts.get(i));
             totalPrize += Ranking.getPrizeMoney(i) * lottoMatchCounts.get(i);
         }
-        System.out.println("totalPrize " + totalPrize);
 
         return totalPrize;
     }

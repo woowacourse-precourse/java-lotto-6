@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int BONUS_USE_NUMBER = 5;
@@ -63,9 +64,13 @@ public class Lotto {
     }
 
     public void printLottoNumbers() {
-        for (Integer number : this.numbers) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
+        String joinLottoNumbers = String.join(",",
+                this.numbers
+                        .stream()
+                        .map(num -> Integer.toString(num))
+                        .collect(Collectors.toList())
+        );
+
+        System.out.println("[" + joinLottoNumbers + "]");
     }
 }

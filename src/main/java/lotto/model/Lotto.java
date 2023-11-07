@@ -10,6 +10,9 @@ import lotto.view.exception.InvalidLottoSizeException;
 import lotto.view.exception.InvalidNumberRangeException;
 
 public class Lotto {
+    private static final int MIN_NUMBER = 1;
+    private static final int SIZE = 6;
+    private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,7 +23,7 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE) {
             throw new InvalidLottoSizeException();
         }
     }
@@ -34,7 +37,7 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
                 throw new InvalidNumberRangeException();
             }
         }

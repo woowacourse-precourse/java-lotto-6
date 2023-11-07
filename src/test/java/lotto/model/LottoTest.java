@@ -80,6 +80,15 @@ class LottoTest {
                 .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());
     }
 
+    @DisplayName("입력받은 당첨 로또가 숫자가 아닌 값으로 이루어져 있다면 예외가 발생한다.")
+    @Test
+    void inputNotNumberLotto(){
+        String inputNumbers = "1, 2, 3, 4, HI, 5";
+        assertThatThrownBy(() -> new Lotto(inputNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());
+    }
+
     @DisplayName("입력받은 당첨 로또 숫자가 6개를 넘어간다면 예외가 발생한다.")
     @Test
     void inputLottoByOverSize() {

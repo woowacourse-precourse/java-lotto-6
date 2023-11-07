@@ -50,4 +50,28 @@ class LottoTest {
         // Assert
         Assertions.assertEquals(Constant.LOTTO_NUM_SIZE, lotto.getNumbers().size());
     }
+
+    @DisplayName("자동 로또 번호에 중복된 숫자는 존재 하지 않는다.")
+    @Test
+    void checkAutomaticLottoDuplicatedNumber() {
+        // Arrange
+        List<Integer> numbers = new Lotto().getNumbers();
+
+        // Act
+        List<Integer> distinctNumbers = numbers.stream().distinct().toList();
+
+        // Assert
+        Assertions.assertEquals(distinctNumbers.size(), numbers.size());
+    }
+
+    @DisplayName("자동 로또 번호는 1 ~ 45 사이의 수 이어야한다.")
+    @ParameterizedTest
+    void createAutomaticLottoByInvalidNumber() {
+        // Arrange
+        Lotto lotto = new Lotto();
+
+        // Act
+
+        // Assert
+    }
 }

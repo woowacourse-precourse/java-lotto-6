@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.calculation;
 
 import lotto.lottoenum.LottoRanking;
 

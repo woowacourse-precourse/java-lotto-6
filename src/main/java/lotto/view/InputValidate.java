@@ -14,7 +14,7 @@ public class InputValidate {
         try {
             return validateCount(amount);
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 로또 구매 금액 형식이 맞지 않습니다.");
+            System.out.println(e.getMessage());
         }
         return 0;
     }
@@ -27,7 +27,7 @@ public class InputValidate {
                 answerLotto.add(isLottoNumber(validateIsDigit(num)));
             }
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
+            System.out.println(e.getMessage());
             return new ArrayList<>();
         }
 
@@ -38,29 +38,33 @@ public class InputValidate {
         try{
             return checkBonusNumberInAnswer(isLottoNumber(validateIsDigit(bonusNum)));
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 로또 구매 금액 형식이 맞지 않습니다.");
+            System.out.println(e.getMessage());
         }
         return 0;
     }
     private int validateCount(String amount) throws IllegalArgumentException{
         int money = validateIsDigit(amount);
         if(money % 1000 != 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 구매 금액 형식이 1000원 단위가 아닙니다.");
         }
         return money/1000;
     }
-    private int validateIsDigit(String inputValue) throws IllegalArgumentException{
-        return Integer.parseInt(inputValue);
+    private int validateIsDigit(String inputValue){
+        try{
+            return Integer.parseInt(inputValue);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 로또 번호나 금액의 경우 숫자만 입력 해야 합니다.");
+        }
     }
     private int isLottoNumber(int value){
-        if(value <= 0 || value > 45)
-            throw new IllegalArgumentException();
+        if(value < 1 || value > 45)
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         return value;
     }
     private String[] getLottoByString(String lottoNum) {
         String[] splitLottoAnswer = lottoNum.split(",");
         if(splitLottoAnswer.length != 6){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 개수는 6개 입니다.");
         }
         return splitLottoAnswer;
     }
@@ -68,7 +72,7 @@ public class InputValidate {
     private int checkBonusNumberInAnswer(int bonus){
         List<Integer> lottoAnswer = repository.getAnswerLotto().getLottoDetail();
         if(lottoAnswer.contains(bonus)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 보너스 번호는 기본 번호 목록에 있으면 안됩니다.");
         }
         return bonus;
     }

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.controller.calculation.Calculation;
+import lotto.controller.calculation.profitMarginCalculation;
 import lotto.lottoenum.LottoRanking;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class profitMarginCalculationTest {
 

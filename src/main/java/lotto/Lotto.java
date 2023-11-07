@@ -9,17 +9,17 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException{
         validate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 개수는 6개 입니다.");
         }
         if(checkDuplicate(numbers)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또번호는 중복되면 안됩니다.");
         }
     }
 

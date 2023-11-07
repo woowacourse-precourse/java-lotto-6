@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.lottomaker;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

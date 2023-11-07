@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.controller.Calculation;
-import lotto.controller.LottoMaker;
-import lotto.controller.lottoMakerByRandom;
-import lotto.controller.profitMarginCalculation;
+import lotto.controller.calculation.Calculation;
+import lotto.controller.lottomaker.LottoMaker;
+import lotto.controller.lottomaker.lottoMakerByRandom;
+import lotto.controller.calculation.profitMarginCalculation;
 import lotto.repository.LottoRepository;
 import lotto.repository.Repository;
 import lotto.view.Input;

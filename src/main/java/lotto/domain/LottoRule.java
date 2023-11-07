@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
 public class LottoRule {
     public static final int LENGTH = 6;
@@ -8,6 +9,17 @@ public class LottoRule {
     public static final int MAX_RANGE = 45;
 
 
+    protected void validate(List<Integer> numbers) {
+        if (isMismatchLength(numbers)) {
+            ExceptionMessage.LOTTO_MISMATCH_LENGTH.throwException();
+        }
+        if (isDuplicate(numbers)) {
+            ExceptionMessage.LOTTO_DUPLICATE.throwException();
+        }
+        if (isOutOfRange(numbers)) {
+            ExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
+        }
+    }
 
     protected boolean isMismatchLength(List<Integer> numbers) {
         if (numbers.size() != LENGTH) {

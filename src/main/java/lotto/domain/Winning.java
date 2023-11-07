@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.exception.ExceptionMessage;
 
 public class Winning extends LottoRule{
     private List<Integer> numbers;
@@ -11,13 +10,8 @@ public class Winning extends LottoRule{
     }
 
     public void setNumbers(List<Integer> numbers) {
-        validateNumbers(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validateNumbers(List<Integer> numbers){
-        if(isMismatchLength(numbers)){
-            ExceptionMessage.LOTTO_MISMATCH_LENGTH.throwException();
-        }
-    }
 }

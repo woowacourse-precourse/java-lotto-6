@@ -13,7 +13,7 @@ class WinningTest {
     @Test
     void saveWinningNumbers() {
         //Given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Winning winning = new Winning();
         //When
         winning.setNumbers(numbers);
@@ -25,7 +25,7 @@ class WinningTest {
     @Test
     void saveWinningNumbersByOverCount() {
         Winning winning = new Winning();
-        assertThatThrownBy(() -> winning.setNumbers(List.of(1,2,3,4,5,6,7)))
+        assertThatThrownBy(() -> winning.setNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호의 길이는 6자리 입니다.");
     }
@@ -34,9 +34,18 @@ class WinningTest {
     @Test
     void saveWinningNumbersByUnderCount() {
         Winning winning = new Winning();
-        assertThatThrownBy(() -> winning.setNumbers(List.of(1,2,3,4,5)))
+        assertThatThrownBy(() -> winning.setNumbers(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호의 길이는 6자리 입니다.");
     }
 
+    @DisplayName("당첨 번호가 중복된다면 예외가 발생한다.")
+    @Test
+    void saveWinningNumbersByDuplicate() {
+        Winning winning = new Winning();
+
+        assertThatThrownBy(() -> winning.setNumbers(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    }
 }

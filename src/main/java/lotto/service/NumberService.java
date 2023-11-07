@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberService {
-    public static final int LOTTO_PRICE = 1000;
-    public static final int LOTTO_SIZE = 6;
-    public static final int LOTTO_RANGE_MIN = 1;
-    public static final int LOTTO_RANGE_MAX = 45;
     private PurchaseAmount purchaseAmount;
     private AllLottoNumbers allLottoNumbers;
     private final LottoGenerator lottoGenerator;
@@ -31,13 +27,9 @@ public class NumberService {
 
     private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < getLottoQuantity(); count++) {
-            lottos.add(new Lotto(lottoGenerator.create(LOTTO_SIZE)));
+        for (int count = 0; count < purchaseAmount.getLottoNumber(); count++) {
+            lottos.add(new Lotto(lottoGenerator.create(Lotto.LOTTO_SIZE)));
         }
         return lottos;
-    }
-
-    public int getLottoQuantity() {
-        return purchaseAmount.getAmount() / LOTTO_PRICE;
     }
 }

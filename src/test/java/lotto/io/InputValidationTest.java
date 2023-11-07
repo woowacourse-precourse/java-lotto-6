@@ -7,7 +7,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LottoInputTest {
+class InputValidationTest {
 
     @Test
     void 구입_금액을_입력받는다() {

@@ -22,4 +22,12 @@ class LottoWinningNumberTest {
                 .isEqualTo(new HashSet<>(winningNumbers));
     }
 
+    @Test
+    @DisplayName("당첨 번호가 null이면 예외를 발생시킨다")
+    void throwExceptionIfNumbersIsNull() {
+        assertThatThrownBy(() -> new LottoWinningNumber(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호를 입력해야 합니다.");
+    }
+
 }

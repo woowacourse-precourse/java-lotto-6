@@ -17,13 +17,16 @@ public class LottoDraw {
         this.inputView = inputView;
     }
 
-    private boolean isCorrectNumber(List<String> inputs) {
+    private boolean isCorrectNumber(String input) {
+        List<String> numbers = List.of(input.split(","));
         LottoNumberException lottoNumberException = new LottoNumberException();
 
         try {
-            lottoNumberException.checkSixInputs(inputs);   //6개 입력
-            lottoNumberException.checkSixNumbers(inputs);  //6개 숫자
-            lottoNumberException.checkDuplicate(inputs);   //중복 검사
+            lottoNumberException.checkBlank(input);         //빈값 입력
+            lottoNumberException.checkEndWithNumber(input); //[1,2,3,4,5,6,] 입력시 예외발생
+            lottoNumberException.checkSixInputs(numbers);    //6개 입력
+            lottoNumberException.checkSixNumbers(numbers);   //6개 숫자
+            lottoNumberException.checkDuplicate(numbers);    //중복 검사
         } catch (IllegalArgumentException exception) {
             inputView.showInputErrorMessage(exception.getMessage());
             return false;
@@ -33,18 +36,20 @@ public class LottoDraw {
     }
 
     private List<String> inputDrawNumbers() {
+        String input;
         List<String> numbers;
 
         while (true) {
             inputView.showWinningNumbersInputForm();
-            numbers = List.of(readLine().split(","));
+            input = readLine();
             inputView.endInput();
 
-            if (isCorrectNumber(numbers)) {
+            if (isCorrectNumber(input)) {
                 break;
             }
         }
 
+        numbers = List.of(input.split(","));
         return numbers;
     }
 

@@ -17,7 +17,9 @@ public class LottoMachine {
         lottos = numberGenerator.createLottos(count);
     }
 
-    private void purchase(LottoPurchase lottoPurchase, OutputView outputView) {
+    private void purchase(InputView inputView, OutputView outputView) {
+        LottoPurchase lottoPurchase = new LottoPurchase(inputView);
+
         lottoPurchase.purchase();
         createLottos(lottoPurchase.getCount());
 
@@ -33,9 +35,8 @@ public class LottoMachine {
     public void start() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        LottoPurchase lottoPurchase = new LottoPurchase(inputView);
 
-        purchase(lottoPurchase, outputView);
+        purchase(inputView, outputView);
         draw(inputView);
     }
 }

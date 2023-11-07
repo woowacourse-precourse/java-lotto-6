@@ -4,9 +4,26 @@ import java.util.List;
 
 public class LottoNumberException {
     private static final int SIX_INPUT = 6;
-    private static final String INSUFFICIENT_LOTTO_NUMBER = "당첨 번호는 6개입니다.";
-    private static final String NOT_NUMBER = "로또 번호는 1~45사이의 숫자만 가능합니다.";
-    private static final String DUPLICATE_NUMBER = "당첨 번호는 중복되지 않아야 합니다.";
+    private static final String BLANK = "빈 값은 입력할 수 없습니다.";
+    private static final String END_WITH_NUMBER = "6개의 숫자를 입력해 주세요.";
+    private static final String INSUFFICIENT_LOTTO_NUMBER = "당첨 번호 6개를 모두 입력해 주세요.";
+    private static final String NOT_NUMBER = "로또 번호는 1~45사이의 숫자만 가능 합니다.";
+    private static final String DUPLICATE_NUMBER = "당첨 번호는 중복 되지 않아야 합니다.";
+
+    public void checkBlank(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(BLANK);
+        }
+    }
+
+    public void checkEndWithNumber(String input) {
+        int length = input.length();
+        char lastNumber = input.charAt(length - 1);
+
+        if(lastNumber < '0' || lastNumber > '9') {
+            throw new IllegalArgumentException(END_WITH_NUMBER);
+        }
+    }
 
     public void checkSixInputs(List<String> inputs) {
         if (inputs.size() != SIX_INPUT) {

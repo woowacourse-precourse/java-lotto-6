@@ -45,6 +45,7 @@ public class LottoController {
             try {
                 String inputUserBonusNumber = consoleInputView.inputUserBonusNumber();
                 lottoService.userBonusNumberValidate(inputUserLottoNumbers, inputUserBonusNumber);
+                System.out.println();
                 return inputUserBonusNumber;
             } catch (IllegalArgumentException e) {
                 consoleOutputView.outputErrorMessage(e);
@@ -57,6 +58,7 @@ public class LottoController {
             try {
                 String inputUserLottoNumbers = consoleInputView.inputUserLottoNumbers();
                 lottoService.userLottoNumbersValidate(inputUserLottoNumbers);
+                System.out.println();
                 return inputUserLottoNumbers;
             } catch (IllegalArgumentException e) {
                 consoleOutputView.outputErrorMessage(e);

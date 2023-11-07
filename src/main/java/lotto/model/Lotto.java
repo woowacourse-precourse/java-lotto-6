@@ -20,6 +20,10 @@ public class Lotto {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_MESSAGE);
         }
+
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_MESSAGE);
+        }
     }
 
     public List<Integer> getNumbers() {

@@ -10,11 +10,9 @@ public class User { //유저의 돈
         return paper;
     }
 
-    public static int MoneyValidate(String input) {
-        int newInput;
+    public static void MoneyValidate(String input) {
         try {
-            newInput = Integer.parseInt(input);
-            return newInput;
+            Integer.parseInt(input);
         } catch (NumberFormatException nfe) {
             System.out.println("[ERROR] 숫자만 입력해주세요.");
             throw new IllegalArgumentException();

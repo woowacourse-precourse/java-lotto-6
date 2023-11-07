@@ -7,11 +7,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class Numbers {
+    public static int MIN_NUM = 1;
+    public static int MAX_NUM = 45;
+    public static int SIZE_NUM = 6;
 
     public static List<Integer> setRandomNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, SIZE_NUM);
+        List<Integer> copyLotto = new ArrayList<>(lottoNumbers);
+        Collections.sort(copyLotto);
+        return copyLotto;
     }
 
     public static List<Lotto> makeLottoTicket(Integer PaperNumber) { //로또 번호 만들기

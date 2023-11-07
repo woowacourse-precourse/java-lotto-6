@@ -41,7 +41,7 @@ public class LottoController {
             try {
                 PurchaseAmountRequest purchaseAmount = inputView.getPurchaseAmount();
                 return lottoService.generateLottos(purchaseAmount);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.informErrorMessage(e.getMessage());
             }
         }

@@ -1,5 +1,5 @@
 /**
- * @Package_name   : view
+ * @Package_name   : model.enums
  * @Enum_name     : LottoResults
  * <p>
  * Create Date : 2023-11-07

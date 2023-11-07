@@ -1,5 +1,5 @@
 /**
- * @Package_name   : view
+ * @Package_name   : model
  * @Class_name     : LottoController
  * <p>
  * Create Date : 2023-11-07
@@ -7,9 +7,12 @@
  */
 package controller;
 
+import java.util.ArrayList;
+
 import model.Lotto;
 import model.LottoNumberPicker;
 import model.LottoNumberSetHolder;
+import model.LottoResultJudger;
 import model.LottoTicketSeller;
 import view.InputView;
 import view.OutputView;
@@ -37,5 +40,12 @@ public class LottoController {
             lottoNumberSetHolder.lottoNumberSetAdd(lotto);
         }
 
+        outputView.printLottoNumRequest();
+        ArrayList<Integer> resultLottoNum = inputView.inputLottoNum();
+        outputView.printBonusNumRequest();
+        int resultBonusNum = inputView.inputBonusNum();
+        LottoResultJudger LottoResultJudger = new LottoResultJudger(resultLottoNum, resultBonusNum);
+
+        // lottoNumberSetHolder에 담긴 lotto들을 LottoResultJudger에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
     }
 }

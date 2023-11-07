@@ -9,7 +9,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class LottoNumberSetHolder { //LottoNumberSetAndResultHolder 로
+public class LottoNumberSetHolder {
     private ArrayList<Lotto> LottoNumberSet;
 
     public LottoNumberSetHolder(){

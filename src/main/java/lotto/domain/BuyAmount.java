@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.ExceptionMessage.DIVISION_ERROR_MESSAGE;
+import static lotto.constant.ExceptionMessage.UNIT_PRICE_ERROR_MESSAGE;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 public class BuyAmount {
@@ -9,6 +10,7 @@ public class BuyAmount {
 
     public BuyAmount(long buyAmount) {
         validateAbleToDivide(buyAmount);
+        validateGreaterThanUnitPrice(buyAmount);
         this.buyAmount = buyAmount;
     }
 
@@ -23,6 +25,12 @@ public class BuyAmount {
     private void validateAbleToDivide(long buyAmount) {
         if (buyAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(DIVISION_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateGreaterThanUnitPrice(long buyAmount) {
+        if (buyAmount / LOTTO_PRICE < 1) {
+            throw new IllegalArgumentException(UNIT_PRICE_ERROR_MESSAGE);
         }
     }
 }

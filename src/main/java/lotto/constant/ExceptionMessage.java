@@ -18,6 +18,8 @@ public class ExceptionMessage {
     public static final String ONLY_NUMBER_MESSAGE = ERROR_FORMAT_MESSAGE + "숫자만 입력할 수 있습니다.";
     public static final String LOTTO_LENGTH_ERROR_MESSAGE =
             ERROR_FORMAT_MESSAGE + LOTTO_LENGTH + "자리만 입력할 수 있습니다.";
+    public static final String UNIT_PRICE_ERROR_MESSAGE =
+            ERROR_FORMAT_MESSAGE + "1000원 단위로 입력 가능합니다.";
 
     private ExceptionMessage() {
     }

@@ -17,7 +17,7 @@ public class WinningNumber {
     }
 
     public void checkException(String winningNumbers) {
-        String[] splitedNumbers = winningNumbers.split(",");
+        String[] splitedNumbers = winningNumbers.split(PARTITION.getMessage());
         checkStringException(splitedNumbers);
 
         if (splitedNumbers.length != TOTAL_LOTTO_NUMBER.getValue()) {
@@ -26,10 +26,10 @@ public class WinningNumber {
     }
 
     private void checkStringException(String[] numbers) {
-        if (numbers[0].equals(",")) {
+        if (numbers[0].equals(PARTITION.getMessage())) {
             throw new IllegalArgumentException(NOT_CORRECT_FORM.getMessage());
         }
-        if (numbers[numbers.length - 1].equals(",")) {
+        if (numbers[numbers.length - 1].equals(PARTITION.getMessage())) {
             throw new IllegalArgumentException(NOT_CORRECT_FORM.getMessage());
         }
         if (numbers.length != TOTAL_LOTTO_NUMBER.getValue()) {
@@ -57,16 +57,12 @@ public class WinningNumber {
         numbers.add(tempNumber);
     }
 
-    public boolean checkDuplication(int o){
-        return numbers.contains(o);
+    public boolean checkDuplication(int num){
+        return numbers.contains(num);
     }
 
-    public CorrectNumber compareLotto(Lotto lotto) {
-        int count = 0;
-        List<Integer> lottoNumbers = lotto.getNumbers();
-        for (int i = 0; i < TOTAL_LOTTO_NUMBER.getValue(); i++) {
-            if (numbers.contains(lottoNumbers.get(i))) count++;
-        }
+    public CorrectNumber selectPlace(Lotto lotto) {
+        int count = lotto.countWinning(this.numbers);
 
         for(CorrectNumber c : CorrectNumber.values()){
             if(c.getValue() == count) return c;

@@ -29,7 +29,7 @@ public class InputValidationTest {
             winningNumbers.add("5");
             assertThatThrownBy(() -> inputValidation.validateWinningNumbersInput(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 중복되지 않는 6개의 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 중복되지 않는 6개의 숫자여야 합니다.");
         }
 
         @Test
@@ -38,7 +38,7 @@ public class InputValidationTest {
             assertThatThrownBy(
                 () -> inputValidation.validateWinningNumbersInput(tempWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("값을 입력하세요.");
+                .hasMessageContaining("[ERROR] 값을 입력하세요.");
         }
 
         @Test
@@ -46,7 +46,7 @@ public class InputValidationTest {
             winningNumbers.add("abc");
             assertThatThrownBy(() -> inputValidation.validateWinningNumbersInput(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 정수여야 합니다.");
         }
 
         @Test
@@ -54,7 +54,7 @@ public class InputValidationTest {
             winningNumbers.add("50");
             assertThatThrownBy(() -> inputValidation.validateWinningNumbersInput(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 1에서 45 사이의 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 1에서 45 사이의 정수여야 합니다.");
         }
 
         @Test
@@ -62,7 +62,7 @@ public class InputValidationTest {
             winningNumbers.add("0");
             assertThatThrownBy(() -> inputValidation.validateWinningNumbersInput(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 1에서 45 사이의 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 1에서 45 사이의 정수여야 합니다.");
         }
 
         @Test
@@ -71,14 +71,14 @@ public class InputValidationTest {
             winningNumbers.add("7");
             assertThatThrownBy(() -> inputValidation.validateWinningNumbersInput(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 6개의 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 6개의 정수여야 합니다.");
         }
 
         @Test
         void 당첨번호_개수_미만_예외_확인() {
             assertThatThrownBy(() -> inputValidation.validateWinningNumbersInput(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 6개의 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 6개의 정수여야 합니다.");
         }
     }
 
@@ -92,7 +92,7 @@ public class InputValidationTest {
             purchaseAmount = "12500";
             assertThatThrownBy(() -> inputValidation.validatePurchaseAmountInput(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
         }
 
         @Test
@@ -100,7 +100,7 @@ public class InputValidationTest {
             purchaseAmount = "";
             assertThatThrownBy(() -> inputValidation.validatePurchaseAmountInput(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("값을 입력하세요.");
+                .hasMessageContaining("[ERROR] 값을 입력하세요.");
         }
 
         @Test
@@ -108,7 +108,7 @@ public class InputValidationTest {
             purchaseAmount = "abc";
             assertThatThrownBy(() -> inputValidation.validatePurchaseAmountInput(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력값은 정수여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력값은 정수여야 합니다.");
         }
     }
 

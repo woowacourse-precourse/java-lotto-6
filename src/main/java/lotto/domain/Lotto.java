@@ -34,7 +34,7 @@ public class Lotto {
 
     private int getSizeInRange(List<Integer> lotto) {
         return lotto.stream()
-                .filter(integer -> integer >= MIN_RANGE && integer <= MAX_RANGE)
+                .filter(number -> number >= MIN_RANGE && number <= MAX_RANGE)
                 .toList().size();
     }
 
@@ -42,7 +42,8 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT);
     }
 
-    public List<Integer> getNumbers() {
+
+    List<Integer> getNumbers() {
         return numbers;
     }
 

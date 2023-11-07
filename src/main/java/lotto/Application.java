@@ -100,7 +100,7 @@ public class Application {
 
     public static String bonusNumberInput() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
+        String bonusNumber = Console.readLine().trim();
         // Todo : numbersInput에 대해 공백, 구분자, 숫자 외 입력에 대한 검증
         return bonusNumber;
     }

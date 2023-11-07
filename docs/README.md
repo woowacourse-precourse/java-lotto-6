@@ -34,9 +34,9 @@
 
     ✏️ 기능35. 로또 당첨 결과에 대한 출력문을 작성한다. ➡ makeWinningResultOuputStatement()
 
-        ✏️ 기능11. 로또 당첨 결과를 Map 형태로 반환한다. ➡ makeWinningResult() 
+        ✏️ 기능11. 로또 당첨 결과를 Map 형태의 자료구조에 담아둔다. ➡ makeWinningResult() 
 
-            ✏️ 기능36. 로또 결과 반환을 위한 Map을 초기화한다. ➡ ininWinningResult()
+            ✏️ 기능36. 로또 결과 반환을 위해 Map을 초기화한다. ➡ ininWinningResult()
     
             ✏️ 기능12. 로또 한 조합의 등수를 계산한다. ➡ calculateRanking()
 

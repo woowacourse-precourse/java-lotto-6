@@ -1,20 +1,20 @@
 package lotto.views;
 
-import java.util.List;
-import lotto.Lotto;
 import lotto.constants.StringConstants;
+import lotto.domain.LottoPurchase;
 
 public class LottoPurchaseResultView implements View<Void> {
-    private final List<Lotto> lottos;
+    private final LottoPurchase lottoPurchase;
 
-    public LottoPurchaseResultView(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public LottoPurchaseResultView(LottoPurchase lottoPurchase) {
+        this.lottoPurchase = lottoPurchase;
     }
 
     @Override
     public Void render() {
-        System.out.printf(StringConstants.BUY_FORMAT_MESSAGE + "\n", lottos.size());
-        for (var lotto : lottos) {
+        var purchasedLottos = lottoPurchase.getPurchasedLottos();
+        System.out.printf(StringConstants.BUY_FORMAT_MESSAGE + "\n", purchasedLottos.size());
+        for (var lotto : purchasedLottos) {
             System.out.println(lotto);
         }
         return null;

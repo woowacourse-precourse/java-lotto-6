@@ -11,6 +11,7 @@ public class LottoConstants {
     public static final int END = 7;
     public static final int FORMMATER_COUNT_BONUS = 5;
     public static final int FORMMATER_COUNT_SIX = 6;
+    public static final int FORMMATER_COUNT_SEVEN = 7;
     public static final String WINNING = "당첨";
     public static final String BONUS = "보너스";
     public static final String DIVIDER = "---";

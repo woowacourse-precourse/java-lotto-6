@@ -17,6 +17,11 @@ public enum LottoPrice {
         }
     }
 
+    public int calcLottoCount(int purchaseAmount){
+        return purchaseAmount / price;
+    }
+
+
     public int getPrice() {
         return price;
     }

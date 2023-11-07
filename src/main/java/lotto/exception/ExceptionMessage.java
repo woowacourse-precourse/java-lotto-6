@@ -8,7 +8,8 @@ public enum ExceptionMessage {
     LOTTO_DUPLICATE("로또 번호는 중복될 수 없습니다."),
     LOTTO_OUT_OF_RANGE("로또 번호는 " + LottoRule.MIN_RANGE +  "~" + LottoRule.MAX_RANGE + " 사이 숫자 입니다."),
 
-    PURCHASE_AMOUNT_NOT_DIVIDED("구매 금액은 " + LottoPrice.THOUSAND_WON.getPrice() + "원 단위로 입력해주세요.");
+    PURCHASE_AMOUNT_NOT_DIVIDED("구매 금액은 " + LottoPrice.THOUSAND_WON.getPrice() + "원 단위로 입력해주세요."),
+    LOTTOS_COUNT_MISMATCH_COUNT("로또의 개수가 구매한 개수와 일치하지 않습니다.");
 
     private static final String prefix = "[ERROR] ";
     private final String message;

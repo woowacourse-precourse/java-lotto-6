@@ -2,6 +2,7 @@ package lotto.domain;
 
 
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
 public class Consumer {
     private int purchaseAmount;
@@ -20,8 +21,14 @@ public class Consumer {
         this.purchaseAmount = purchaseAmount;
     }
 
-
     public void setLottos(List<Lotto> lottos) {
+        lottosCountValidate(lottos);
         this.lottos = lottos;
+    }
+
+    private void lottosCountValidate(List<Lotto> lottos){
+        if(LottoPrice.THOUSAND_WON.calcLottoCount(purchaseAmount) != lottos.size()){
+            ExceptionMessage.LOTTOS_COUNT_MISMATCH_COUNT.throwException();
+        }
     }
 }

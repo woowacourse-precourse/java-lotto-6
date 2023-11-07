@@ -44,4 +44,20 @@ public class ConsumerTest {
         //Then
         assertThat(consumer.getLottos()).isEqualTo(lottos);
     }
+
+    @DisplayName("저장할 로또의 개수가 구매 금액에 해당하는 로또 개수가 아니라면 예외가 발생한다. ")
+    @Test
+    void saveLottosByMismatchCount() {
+        //Given
+        Consumer consumer = new Consumer();
+        consumer.setPurchaseAmount(2000);
+
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1,2,3,4,5,6))
+        );
+        //When & Then
+        assertThatThrownBy(() -> consumer.setLottos(lottos))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또의 개수가 구매한 개수와 일치하지 않습니다.");
+    }
 }

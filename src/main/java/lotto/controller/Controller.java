@@ -2,13 +2,13 @@ package lotto.controller;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotties;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.Result;
+import lotto.domain.UserPrice;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,32 +17,42 @@ public class Controller {
     private int lottoCnt;
     private int userPrice;
 
+
     public void run() {
-        Map<Result,Integer> score = new HashMap<>();
+        Map<Result, Integer> score = new HashMap<>();
         int totalProfit = 0;
         int totalInvestment = 0;
-        part1();
+
+        init();
+
+        UserPrice userPrice = new UserPrice(InputView.inputUserPrice());
+
+
         Lotties lotties = part2();
         WinningNumber winningNumber = part3();
 
-        for(Lotto lotto : lotties.getLotties()){
-            Result result = findResult(lotto,winningNumber);
-            int resultCnt = score.getOrDefault(result,0);
-            score.put(result,resultCnt + 1);
+        for (Lotto lotto : lotties.getLotties()) {
+            Result result = getResult(lotto, winningNumber);
+            int resultCnt = score.getOrDefault(result, 0);
+            score.put(result, resultCnt + 1);
         }
-        totalInvestment = userPrice;
+
+
+        for (Result result : score.keySet()) {
+            totalProfit += result.getWinnings() * score.get(result);
+        }
+
         double profitPercentage = (totalProfit) / (double) totalInvestment * 100;
         DecimalFormat profitDecimal = new DecimalFormat("#0.0%");
         String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
         OutputView.printScore(score);
         OutputView.printProfit(formattedProfitPercentage);
-
     }
 
 
-    public void part1() {
+    public void init() {
         OutputView.printBuyInputPrice();
-        int userPrice = InputView.inputUserPrice();
+        userPrice = InputView.inputUserPrice();
         lottoCnt = userPrice / 1000;
         OutputView.printBuyLottoCount(lottoCnt);
     }
@@ -63,7 +73,7 @@ public class Controller {
         return new WinningNumber(new Lotto(numbers), bonusNumber);
     }
 
-    public Result findResult(Lotto lotto, WinningNumber winningNumber) {
+    private Result getResult(Lotto lotto, WinningNumber winningNumber) {
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> winningLottoNumbers = winningNumber.getLottoNumbers();
         int bonusNumber = winningNumber.getBonusNumber();
@@ -76,4 +86,5 @@ public class Controller {
         boolean isBonusMatched = numbers.contains(bonusNumber);
         return Result.find(matchCount, isBonusMatched);
     }
+
 }

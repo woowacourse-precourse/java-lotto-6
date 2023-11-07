@@ -33,7 +33,6 @@ public class LottoGame {
 
         Lotto validWinningLotto = makeValidWinningLotto();
         Integer validBonusNumber = makeValidBonusNumber(validWinningLotto);
-
         inputWinningLotto = new WinningLotto(validWinningLotto, validBonusNumber);
     }
 
@@ -59,7 +58,6 @@ public class LottoGame {
 
     private List<Lotto> getValidPurchaseLottos() {
         PurchaseLotto purchaseLotto = new PurchaseLotto();
-
         while (true) {
             try {
                 return purchaseLotto.purchase(getPurchaseAmount());
@@ -68,7 +66,6 @@ public class LottoGame {
             }
         }
     }
-
 
     private void play() {
         results = new ArrayList<>();

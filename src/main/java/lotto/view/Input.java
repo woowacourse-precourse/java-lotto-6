@@ -6,20 +6,20 @@ import java.util.*;
 public class Input {
 
     Output output;
-    int inputAmount() {
+    public int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
         validateAmount(amount);
         return amount;
     }
 
-    void validateAmount(int amount) {
+    private void validateAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("1000원 단위로 입력해주세요");
         }
     }
 
-    List<Integer> inputNumbers() {
+    public List<Integer> inputNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> lotto;
         while (true) {
@@ -33,7 +33,7 @@ public class Input {
         return lotto;
     }
 
-    List<Integer> splitNumbers(String str) {
+    private List<Integer> splitNumbers(String str) {
         List<Integer> numbers = new ArrayList<>();
         String[] numStrs = str.split(",");
         for (String numStr : numStrs) {
@@ -44,13 +44,13 @@ public class Input {
         return numbers;
     }
 
-    void validateNumber(int num) {
+    private void validateNumber(int num) {
         if ((num <= 0) || (num > 45)) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
-    int inputBonus() {
+    public int inputBonus() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }

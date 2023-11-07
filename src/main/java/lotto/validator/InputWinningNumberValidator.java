@@ -19,7 +19,7 @@ public class InputWinningNumberValidator {
             throw new IllegalArgumentException();
         }
         if (isNotLottoNumber(winningNumber)) {
-            System.out.println("[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
         if (incorrectLottoNumberSize(winningNumber)) {
@@ -38,8 +38,8 @@ public class InputWinningNumberValidator {
             System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
-        if (isNotLottoBonutNumber(bonusNumber)) {
-            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        if (isNotLottoBonusNumber(bonusNumber)) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -77,12 +77,11 @@ public class InputWinningNumberValidator {
         return !Pattern.compile(LOTTO_BONUS_NUMBER_REGEX).matcher(bonusNumber).matches();
     }
 
-    private static boolean isNotLottoBonutNumber(String bonusNumber) {
+    private static boolean isNotLottoBonusNumber(String bonusNumber) {
         int bonusNum = Integer.parseInt(bonusNumber);
         if (bonusNum < MIN_LOTTO_NUMBER || bonusNum > MAX_LOTTO_NUMBER) {
             return true;
         }
         return false;
     }
-
 }

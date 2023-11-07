@@ -18,6 +18,8 @@ public class LottoView {
     private static final String FIVE_MATCH_WITH_BONUS = "5개 일치, 보너스 볼 일치 (30000000원) - ";
     private static final String SIX_MATCH = "6개 일치 (2000000000원) - ";
     private static final String QUANTITY = "개";
+    private static final String PROFIT_RATE = "총 수익률은 ";
+    private static final String PERCENT = "%입니다.";
 
     public static void printPurchasePrompt() {
         System.out.println(PURCHASE_PRICE);
@@ -52,5 +54,9 @@ public class LottoView {
         System.out.println(FIVE_MATCH + lottoResult.getFiveMatchCount() + QUANTITY);
         System.out.println(FIVE_MATCH_WITH_BONUS + lottoResult.getFiveMatchWithBonusCount() + QUANTITY);
         System.out.println(SIX_MATCH + lottoResult.getSixMatchCount() + QUANTITY);
+    }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.println(PROFIT_RATE + profitRate + PERCENT);
     }
 }

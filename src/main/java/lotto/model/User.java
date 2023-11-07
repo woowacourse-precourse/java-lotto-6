@@ -35,4 +35,9 @@ public class User {
 
         }
     }
+
+    public double calculateProfit(int money) {
+        double totalPrice = (double) WinningResult.calculateTotalPrice();
+        return totalPrice / money * 100;
+    }
 }

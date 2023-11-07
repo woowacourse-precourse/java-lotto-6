@@ -5,7 +5,8 @@ public enum Message {
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     OUTPUT_TOTAL_PURCHASE_AMOUNT("개를 구매했습니다."),
     OUTPUT_WINNING_RESULT("당첨 통계"),
-    OUTPUT_SOLID_LINE("------");
+    OUTPUT_SOLID_LINE("------"),
+    LINE_BREAK("\n");
 
 
     private final String message;

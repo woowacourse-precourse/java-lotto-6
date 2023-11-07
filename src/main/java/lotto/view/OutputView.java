@@ -1,10 +1,11 @@
 package lotto.view;
 
-import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.enums.LottoRank;
+
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void showPurchaseCount(int purchaseCount) {

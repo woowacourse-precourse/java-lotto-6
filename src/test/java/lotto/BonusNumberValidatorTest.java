@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class BonusNumberValidatorTest {
     public static BonusNumberValidator bonusNumberValidator;
+
     private static Stream<Arguments> testStringForValidateNumeric() {
         return Stream.of(
                 arguments("    1"),
@@ -21,8 +22,11 @@ public class BonusNumberValidatorTest {
                 arguments("1a")
         );
     }
+
     @BeforeEach
-    public void setUp() {bonusNumberValidator= new BonusNumberValidator();}
+    public void setUp() {
+        bonusNumberValidator = new BonusNumberValidator();
+    }
 
     @DisplayName("입력한 보너스 번호가 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest

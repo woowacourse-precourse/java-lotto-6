@@ -1,5 +1,6 @@
 package lotto.view.output;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.util.constants.OutputConstants;
@@ -18,13 +19,21 @@ public class LottoView implements Output {
     }
 
     public void readLottoTicket(List<Lotto> lottoTicket) {
-        System.out.println(lottoTicket.size() + OutputConstants.LOTTO_COUNT_MESSAGE.getConstants());
+        int lottoCount = lottoTicket.size();
+        System.out.println(OutputConstants.LOTTO_COUNT_MESSAGE.format(lottoCount));
         for (Lotto lotto : lottoTicket){
             readLotto(lotto);
+
         }
     }
 
     public void readLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        sortLottoNumbers(lottoNumbers);
+        System.out.println(lottoNumbers);
+    }
+
+    private void sortLottoNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
     }
 }

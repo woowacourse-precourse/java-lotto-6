@@ -1,8 +1,9 @@
 package lotto.domain.convertor;
+
 public class BonusNumberConvertor implements Convertor<String, Integer> {
     @Override
-    public Integer convert(String value) {
-        return convertInputValue(value);
+    public Integer convert(String inputValue) {
+        return convertInputValue(inputValue);
     }
 
     public int convertInputValue(String inputValue) {

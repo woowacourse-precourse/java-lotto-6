@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
+import lotto.domain.JudgeCounter;
+import lotto.domain.LottoJudge;
 import lotto.domain.WinnerNumbers;
 import lotto.domain.LottoTicket;
 
@@ -9,6 +11,7 @@ import lotto.view.input.AmountView;
 import lotto.view.input.BonusNumberView;
 import lotto.view.input.Input;
 import lotto.view.input.WinnerNumberView;
+import lotto.view.output.LottoStatisticsView;
 import lotto.view.output.LottoView;
 import lotto.view.output.Output;
 
@@ -17,6 +20,7 @@ public class LottoController {
     private Amount amount;
     private BonusNumber bonusNumber;
     private WinnerNumbers winnerNumbers;
+    private JudgeCounter judgeCounter;
 
     public LottoController() {
     }
@@ -27,6 +31,8 @@ public class LottoController {
         displayMyLotto();
         manageWinnerNumber();
         manageBonusNumber();
+        createWinningResult();
+        displayLottoStatistics();
     }
 
     private void manageAmount() {
@@ -52,8 +58,12 @@ public class LottoController {
     }
 
     private void createLottoTicket() {
-        this.lottoTicket = new LottoTicket();
-        this.lottoTicket.addLotto(amount.getAmount());
+        try {
+            this.lottoTicket = new LottoTicket();
+            this.lottoTicket.addLotto(amount.getAmount());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void displayMyLotto() {
@@ -100,11 +110,22 @@ public class LottoController {
 
     private boolean attemptCreateBonusNumber(String inputBonusNumber) {
         try {
-            this.bonusNumber = new BonusNumber(inputBonusNumber);
+            this.bonusNumber = new BonusNumber(inputBonusNumber, this.winnerNumbers);
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
         }
+    }
+
+    private void createWinningResult() {
+        LottoJudge lottoJudge = new LottoJudge();
+        this.judgeCounter = lottoJudge.judgeLottoTicket(this.lottoTicket, this.winnerNumbers, this.bonusNumber);
+    }
+
+    private void displayLottoStatistics() {
+        Output statisticsView = new LottoStatisticsView(this.judgeCounter, this.amount);
+        statisticsView.println();
+        statisticsView.getOutput();
     }
 }

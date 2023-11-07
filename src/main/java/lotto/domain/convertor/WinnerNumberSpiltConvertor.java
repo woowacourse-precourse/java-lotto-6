@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 public class WinnerNumberSpiltConvertor implements Convertor<String, List<String>> {
     @Override
-    public List<String> convert(String value) {
-        return convertInputValue(value);
+    public List<String> convert(String inputValue) {
+        return convertInputValue(inputValue);
     }
 
     public List<String> convertInputValue(String inputValue) {

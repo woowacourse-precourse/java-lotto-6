@@ -10,7 +10,8 @@ public class LottoWinner {
         bonusLotto = bonus;
     }
 
-    public static void compareWithLotto(Lotto lotto) {
-        int correctCount = winningLotto.compareLottoWith(lotto);
+    public static int compare(Lotto lotto) {
+        return winningLotto.countSameNumbers(lotto)
+                + bonusLotto.countSameNumber(lotto);
     }
 }

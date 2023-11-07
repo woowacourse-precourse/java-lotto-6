@@ -45,13 +45,11 @@ class LottoResultTest {
     @DisplayName("수익률이 올바르게 계산 되는지 확인")
     @Test
     void calculateEarningRateIsCorrect() {
-        lottoResult.addResult(MatchCount.SIX_MATCH);
-        int purchaseAmount = 1000;
+        lottoResult.addResult(MatchCount.FIVE_MATCH);
+        lottoResult.addResult(MatchCount.FOUR_MATCH);
+        int purchaseAmount = 3;
 
-        double expectedEarningsRate = new BigDecimal(
-            (MatchCount.SIX_MATCH.getReward() * lottoResult.getMatchedTicketCount(
-                MatchCount.SIX_MATCH) * Constants.HUNDRED) / purchaseAmount
-        ).setScale(1, RoundingMode.HALF_UP).doubleValue();
+        double expectedEarningsRate = 154.9;
 
         assertThat(lottoResult.calculateEarningsRate(purchaseAmount)).isEqualTo(
             expectedEarningsRate);

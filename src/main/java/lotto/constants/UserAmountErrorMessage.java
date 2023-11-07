@@ -1,7 +1,8 @@
 package lotto.constants;
 
-public enum UserAmountErrorMessage implements ErrorMessage{
+public enum UserAmountErrorMessage implements ErrorMessage {
 
+    NUMERIC_INVALID("로또 구입 금액은 숫자여야 합니다."),
     EMPTY_INVALID("로또 구입 금액은 공백이 포함될 수 없습니다."),
     NOT_DIVIDE_STANDARD_INVALID("로또 구입 금액은 1000으로 나누어떨어져야 합니다."),
     NOT_ZERO_INVALID("구입 금액이 0원이 아닌 값을 입력해야 합니다."),

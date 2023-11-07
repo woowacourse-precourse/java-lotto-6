@@ -33,7 +33,7 @@ public class UserAmount {
         try {
             Integer.parseInt(userAmount);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(UserAmountErrorMessage.NUMERIC_INVALID.entireMessage());
         }
     }
 

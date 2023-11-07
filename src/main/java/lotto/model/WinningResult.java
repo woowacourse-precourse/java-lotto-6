@@ -40,10 +40,10 @@ public enum WinningResult {
         long totalEarning = Arrays.stream(WinningResult.values())
                 .mapToLong(values -> (long) values.money * values.winningCount)
                 .sum();
-
+        reset();
         return Math.round(((double) totalEarning / purchaseMoney * 1000.0)) / 10.0;
     }
-    
+
     public static void checkWinning(int bonus, List<Integer> winningNumber, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             compareLotto(bonus, winningNumber, lotto.getNumbers());
@@ -57,8 +57,11 @@ public enum WinningResult {
                 .count();
 
         if (lotto.contains(bonus)) {
-            isBonus = true;
             winningCount++;
+
+            if (winningCount == 6) {
+                isBonus = true;
+            }
         }
 
         resultWinning(winningCount, isBonus);
@@ -72,4 +75,9 @@ public enum WinningResult {
         }
     }
 
+    private static void reset() {
+        for (WinningResult value : WinningResult.values()) {
+            value.winningCount = 0;
+        }
+    }
 }

@@ -8,6 +8,9 @@ import lotto.utils.ErrorMessage;
 public class InputView {
     private static final int BONUS_NUMBER_MIN_RANGE = 1;
     private static final int BONUS_NUMBER_MAX_RANGE = 45;
+    private static final int WINNING_NUMBER_LENGTH = 6;
+    private static final int WINNING_NUMBER_MIN_RANGE = 1;
+    private static final int WINNING_NUMBER_MAX_RANGE = 45;
 
     private InputView() {
     }
@@ -54,12 +57,12 @@ public class InputView {
     private static void inputSplitWinningNumbers(String input, List<Integer> numbers) {
         String[] numberStrings = input.split(",");
         try {
-            if (numberStrings.length != 6) {
+            if (numberStrings.length != WINNING_NUMBER_LENGTH) {
                 throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_SIZE_ERROR.getMessage());
             }
             for (String s : numberStrings) {
                 int winningNumber = Integer.parseInt(s);
-                if (winningNumber < 1 || winningNumber > 45) {
+                if (winningNumber < WINNING_NUMBER_MIN_RANGE || winningNumber > WINNING_NUMBER_MAX_RANGE) {
                     throw new IllegalArgumentException(ErrorMessage.USER_INSERT_WINNING_NUMBER_IN_RANGE.getMessage());
                 }
                 numbers.add(winningNumber);

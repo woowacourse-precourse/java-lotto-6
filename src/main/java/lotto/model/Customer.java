@@ -47,13 +47,16 @@ public class Customer {
     }
 
     public void calcRateOfReturn() {
+
         // 수익금 / 구입 금액 * 100
         rateOfReturn = ((winningLottos.get(0) * THREE_WINNINGS.getLottoConstant())
                 + (winningLottos.get(1) * FOUR_WINNINGS.getLottoConstant())
                 + (winningLottos.get(2) * FIVE_WINNINGS.getLottoConstant())
                 + (winningLottos.get(3) * SIX_WINNINGS.getLottoConstant())
                 + (winningLottos.get(4) * FIVE_BONUS_WINNINGS.getLottoConstant())
-        ) / (double)money * 100 ;
+        ) / (double)money * 100;
+
+        rateOfReturn = Math.round((rateOfReturn * 10)) / 10.0;
     }
 
     public double getRateOrReturn() {

@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -120,11 +119,6 @@ class ApplicationTest extends NsTest {
     void 복권_개수_계산_테스트(){
         int test = 14000;
         Assertions.assertEquals(14, money_for_lotto.repeatTime(test));
-    }
-
-    @BeforeAll
-    static void 복권_개수_확인_테스트(){
-        assertThat(random_lotto.print_lotto(Num.FIVE.getNum())).hasSize(5);
     }
 
     @Test

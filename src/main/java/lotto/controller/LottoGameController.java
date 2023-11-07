@@ -52,4 +52,9 @@ public class LottoGameController {
     private Money calculateTotalWinningPrize(WinningStatistics winningStatistics) {
         return winningStatistics.calculateTotalWinningPrize();
     }
+
+    private void printRateOfReturn(Money lottoPurchaseMoney, Money totalWinningPrize) {
+        double rateOfReturn = lottoPurchaseMoney.calculateRateOfReturn(totalWinningPrize);
+        OutputView.printRateOfReturn(rateOfReturn);
+    }
 }

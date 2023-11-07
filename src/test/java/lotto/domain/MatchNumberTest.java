@@ -36,18 +36,21 @@ public class MatchNumberTest {
                 .hasMessage("[ERROR] ','를 구분자로 6개의 숫자를 입력해 주세요");
     }
 
+    @DisplayName("중복된 숫자가 있는 경우 예외 발생")
+    @Test
+    void createForDuplicateNumber(){
+        assertThatThrownBy(()->new MatchNumber("1,5,45,6,40,5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 리스트에 중복된 숫자가 있습니다.");
+    }
+
+
     @DisplayName("1에서 45사이의 숫자가 나오지 않으면 예외 발생")
     @Test
     void outBoundRangeLottoNumber(){
-        List<Integer> numbers = List.of(1,5,45,6,50,20);
-        assertRandomUniqueNumbersInRangeTest(
-                ()->{
-                    assertThatThrownBy(()->new Lottos(1))
-                            .isInstanceOf(IllegalArgumentException.class)
-                            .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                },
-                numbers
-        );
+        assertThatThrownBy(()->new MatchNumber("1,5,45,6,50,2"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
 }

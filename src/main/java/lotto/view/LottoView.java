@@ -10,8 +10,12 @@ public class LottoView {
     public static final String EACH_LOTTO = "[%s]";
     public static final String COMMA_DELIMITER = ", ";
     public static final String INPUT_MATCH_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.";
-    public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    public static final String MATCH_STATISTICS_MESSAGE = "당첨 통계";
+    public static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
+    public static final String MATCH_STATISTICS_MESSAGE = "\n당첨 통계\n---";
+    public static final String MATCH_RESULT_MESSAGE = "3개 일치 (5,000원) - %d개\n"
+            + "4개 일치 (50,000원) - %d개\n" + "5개 일치 (1,500,000원) - %d개"
+            + "5개 일치, 보내스 볼 일치 (30,000,000원) - %개"
+            + "6개 일치 (2,000,000,000원) - %개";
     public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %s입니다.";
 
     public void startMessage(){

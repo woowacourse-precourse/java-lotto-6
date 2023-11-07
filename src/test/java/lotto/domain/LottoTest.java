@@ -19,7 +19,8 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 리스트에 중복된 숫자가 있습니다.");
     }
 
     @DisplayName("1에서 45사이의 숫자가 나오지 않으면 예외 발생")

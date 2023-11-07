@@ -1,15 +1,17 @@
 package lotto.domain;
 
-import static lotto.domain.Grade.FIFTH;
-import static lotto.domain.Grade.FIRST;
-import static lotto.domain.Grade.FOURTH;
-import static lotto.domain.Grade.NONE;
-import static lotto.domain.Grade.SECOND;
-import static lotto.domain.Grade.THIRD;
+import static lotto.constant.Grade.FIFTH;
+import static lotto.constant.Grade.FIRST;
+import static lotto.constant.Grade.FOURTH;
+import static lotto.constant.Grade.NONE;
+import static lotto.constant.Grade.SECOND;
+import static lotto.constant.Grade.THIRD;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lotto.constant.Grade;
+import lotto.constant.Prize;
 
 public class Calculator {
     public static Grade checkWinning(Lotto lotto, LottoDrawResult lottoDrawResult) {
@@ -65,6 +67,8 @@ public class Calculator {
     }
 
     public static Double returnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+        final Integer PERCENTILE_UNIT = 100;
+
         Integer purchaseCnt = lottos.size();
         Integer purchaseMoney = purchaseCnt * Lotto.PRICE;
         Integer winningMoney = 0;
@@ -74,29 +78,29 @@ public class Calculator {
             winningMoney += obtainMoneyByGrade(grade);
         }
 
-        return Double.valueOf(winningMoney) * 100 / purchaseMoney;
+        return Double.valueOf(winningMoney) * PERCENTILE_UNIT / purchaseMoney;
     }
 
     private static Integer obtainMoneyByGrade(Grade grade) {
         if (grade == FIRST) {
-            return 2_000_000_000;
+            return Prize.FIRST;
         }
         if (grade == SECOND) {
-            return 30_000_000;
+            return Prize.SECOND;
         }
         if (grade == THIRD) {
-            return 1_500_000;
+            return Prize.THIRD;
         }
         return getThirdAfterPrice(grade);
     }
 
     private static int getThirdAfterPrice(Grade grade) {
         if (grade == FOURTH) {
-            return 50_000;
+            return Prize.FOURTH;
         }
         if (grade == FIFTH) {
-            return 5_000;
+            return Prize.FIFTH;
         }
-        return 0;
+        return Prize.NONE;
     }
 }

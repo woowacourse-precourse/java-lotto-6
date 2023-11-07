@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.constant.LottoErrorMessage;
 import lotto.domain.BroadCastingStation;
 import lotto.domain.Lotto;
 import org.assertj.core.api.Assertions;
@@ -17,6 +18,6 @@ class BroadCastingStationTest {
         Assertions.assertThatThrownBy(() -> {
                     broadCastingStation.drawLotto(lotto, bonus);
                 }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호와 보너스 번호가 중복됩니다.");
+                .hasMessageContaining(LottoErrorMessage.BONUS_DUPLICATED);
     }
 }

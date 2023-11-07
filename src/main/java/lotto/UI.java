@@ -10,8 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.constant.Grade;
+import lotto.constant.InputErrorMessage;
 import lotto.domain.Calculator;
-import lotto.domain.Grade;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
 
@@ -25,10 +26,10 @@ public class UI {
         try {
             payment = Integer.parseInt(line);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
         }
         if (payment <= 0) {
-            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
         }
         return payment;
     }
@@ -69,7 +70,7 @@ public class UI {
         try {
             numbers = Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(",문자 사이사이에 숫자를 입력하셔야 합니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NO_COMMA_STANDARD);
         }
         return numbers;
     }
@@ -83,10 +84,10 @@ public class UI {
         try {
             bonus = Integer.parseInt(line);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
         }
         if (bonus <= 0) {
-            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
         }
         return bonus;
     }

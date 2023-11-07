@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.LottoErrorMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Store;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +27,6 @@ class StoreTest {
         assertThatThrownBy(() -> {
             store.sellLottos(9500);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1000으로 가격이 나누어 떨어져야 합니다.");
+                .hasMessageContaining(LottoErrorMessage.THOUSAND_MULTIPLE_PRICE);
     }
 }

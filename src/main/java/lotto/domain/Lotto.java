@@ -2,10 +2,13 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.constant.LottoErrorMessage;
 
 public class Lotto {
     public static final Integer SIZE = 6;
     public static final Integer PRICE = 1000;
+    public static final Integer FIRST_NUMBER = 1;
+    public static final Integer LAST_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -21,22 +24,22 @@ public class Lotto {
     }
 
     private void validateSixNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또는 6개의 숫자여야 합니다.");
+        if (numbers.size() != Lotto.SIZE) {
+            throw new IllegalArgumentException(LottoErrorMessage.CNT);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> noDuplication = new HashSet<>(numbers);
         if (noDuplication.size() != numbers.size()) {
-            throw new IllegalArgumentException("번호가 중복 되었습니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATED);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!(1 <= number && number <= 45)) {
-                throw new IllegalArgumentException("번호는 1~45의 숫자여야 합니다.");
+            if (!(Lotto.FIRST_NUMBER <= number && number <= Lotto.LAST_NUMBER)) {
+                throw new IllegalArgumentException(LottoErrorMessage.RANGE);
             }
         }
     }

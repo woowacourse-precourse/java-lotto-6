@@ -1,12 +1,12 @@
 package lotto.service;
 
+import static lotto.validation.validation.isInvalidNumber;
+import static lotto.validation.validation.validateStringForSplit;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.PatternSyntaxException;
 import lotto.model.Lotto;
-import lotto.view.exception.InvalidNumberException;
-import lotto.view.exception.InvalidStringSplitException;
 
 public class Service {
     private static final int ZERO = 0;
@@ -32,23 +32,11 @@ public class Service {
         return validateNumbers(splitNumbers);
     }
 
-    private List<String> validateStringForSplit(String winningNumber) {
-        try {
-            return List.of(winningNumber.split(","));
-        } catch (PatternSyntaxException e) {
-            throw new InvalidStringSplitException();
-        }
-    }
 
     private List<Integer> validateNumbers(List<String> winningNumber) {
         List<Integer> validNumbers = new ArrayList<>();
         for (String numberString : winningNumber) {
-            try {
-                int number = Integer.parseInt(numberString);
-                validNumbers.add(number);
-            } catch (NumberFormatException e) {
-                throw new InvalidNumberException();
-            }
+            validNumbers.add(isInvalidNumber(numberString));
         }
         return validNumbers;
     }

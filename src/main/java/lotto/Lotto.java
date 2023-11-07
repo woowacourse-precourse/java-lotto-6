@@ -21,7 +21,7 @@ public class Lotto {
 
         // 1 ~ 45 사이의 숫자인지 검증
         for(int number: numbers){
-            validate.validateNumberInRange(number, 1, 45);
+            validate.validateNumberInRange(number, LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER);
         }
 
         // 중복된 값이 있는지 검증

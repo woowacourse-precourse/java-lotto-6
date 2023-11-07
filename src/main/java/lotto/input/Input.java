@@ -2,6 +2,7 @@ package lotto.input;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.LottoConstants;
 import lotto.generator.InputGenerator;
 import lotto.validate.Validate;
 
@@ -40,7 +41,7 @@ public class Input {
             validate.validatePositiveNumber(number);
 
             // 1 ~ 45 사이의 숫자인지 검증
-            validate.validateNumberInRange(number, 1, 45);
+            validate.validateNumberInRange(number, LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER);
 
             winningNumber.add(number);
         }
@@ -62,7 +63,7 @@ public class Input {
         validate.validatePositiveNumber(bonusNumber);
 
         // 1 ~ 45 사이의 숫자인지 검증
-        validate.validateNumberInRange(bonusNumber, 1, 45);
+        validate.validateNumberInRange(bonusNumber, LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER);
 
         return bonusNumber;
     }

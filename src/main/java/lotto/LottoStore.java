@@ -6,6 +6,8 @@ import java.util.stream.IntStream;
 import lotto.policy.LottoNumbersGenerator;
 
 public class LottoStore {
+    private static final int INITIAL_VALUE = 0;
+
     private final LottoNumbersGenerator lottoNumbersGenerator;
 
     public LottoStore(LottoNumbersGenerator lottoNumbersGenerator) {
@@ -14,7 +16,7 @@ public class LottoStore {
 
     public SoldLotto sell(Amount purchaseAmount) {
         int lottoTicketCount = getLottoTicketCount(purchaseAmount);
-        List<Lotto> lottoTickets = IntStream.range(0, lottoTicketCount)
+        List<Lotto> lottoTickets = IntStream.range(INITIAL_VALUE, lottoTicketCount)
                 .mapToObj(count -> generateLotto())
                 .toList();
         return new SoldLotto(lottoTickets);

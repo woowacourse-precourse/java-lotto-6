@@ -6,6 +6,10 @@ import lotto.Amount;
 import lotto.manager.LottoException;
 
 public class StringUtil {
+    public static final String EMPTY = "";
+    private static final String DEFAULT_SEPARATOR = ",";
+    private static final int SPLIT_ALL = -1;
+
     public static boolean isNumber(String number) {
         try {
             new Amount(number);
@@ -26,7 +30,7 @@ public class StringUtil {
     }
 
     public static List<Integer> splitAndParseToIntList(String string) {
-        String[] split = string.split(",", -1);
+        String[] split = string.split(DEFAULT_SEPARATOR, SPLIT_ALL);
 
         for (String number : split) {
             if (!StringUtil.isNumber(number)) {

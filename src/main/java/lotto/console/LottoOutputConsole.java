@@ -5,7 +5,7 @@ import lotto.LottoRanking;
 import lotto.SoldLotto;
 
 public class LottoOutputConsole {
-    private static final String MESSAGE_BUY_LOTTO = "개를 구매했습니다.";
+    private static final String MESSAGE_FOOTER_BUY_LOTTO = "개를 구매했습니다.";
     private static final String MESSAGE_HEADER_LOTTO_RESULTS = """
             
             당첨 통계
@@ -14,7 +14,7 @@ public class LottoOutputConsole {
     private static final String MESSAGE_FOOTER_RETURN_RATE = "%입니다.";
 
     public void printSoldLotto(SoldLotto soldLotto) {
-        System.out.println(System.lineSeparator() + soldLotto.getSoldLottoTicketsCount() + MESSAGE_BUY_LOTTO);
+        System.out.println(System.lineSeparator() + soldLotto.getSoldLottoTicketsCount() + MESSAGE_FOOTER_BUY_LOTTO);
         System.out.println(soldLotto);
     }
 

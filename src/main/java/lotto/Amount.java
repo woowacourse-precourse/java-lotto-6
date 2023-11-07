@@ -8,7 +8,7 @@ public class Amount extends BigInteger {
     public static final Amount DEFAULT_PURCHASE_AMOUNT = new Amount("1000");
     private static final int ZERO = 0;
     private static final BigDecimal HUNDRED = new BigDecimal(100);
-    private static final int SCALE_TWO = 2;
+    private static final int PRECISION_TWO = 2;
 
     public Amount(String val) {
         super(val);
@@ -19,7 +19,7 @@ public class Amount extends BigInteger {
         BigDecimal totalProfit = new BigDecimal(totalPrizeMoney);
 
         BigDecimal multiplied = totalProfit.multiply(HUNDRED);
-        BigDecimal returnRate = multiplied.divide(buyingPrice, SCALE_TWO, RoundingMode.HALF_UP);
+        BigDecimal returnRate = multiplied.divide(buyingPrice, PRECISION_TWO, RoundingMode.HALF_UP);
         return returnRate.doubleValue();
     }
 

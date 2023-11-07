@@ -4,7 +4,7 @@ public class InputValidation {
     public void check_money(String money) {
 
         if (Integer.parseInt(money) % 1000 != 0) {
-            System.out.println("[ERROR] 입력 금액은 1000의 배수로 입력해주세요.");
+            System.out.println("\n[ERROR] 입력 금액은 1000의 배수로 입력해주세요.");
             throw new IllegalArgumentException();
         }
 

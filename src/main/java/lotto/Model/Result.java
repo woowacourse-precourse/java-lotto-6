@@ -1,7 +1,6 @@
 package lotto.Model;
 
 import lotto.View.PrintOutput;
-
 import java.util.Arrays;
 import java.util.EnumMap;
 

@@ -7,29 +7,30 @@ import lotto.View.PrintOutput;
 import java.util.List;
 
 public class PlayGame {
-    InputData setting = new InputData();
+    InputData inputData = new InputData();
     UserLotto userLottos = new UserLotto();
     Result winningData = new Result();
     Lotto winningNumbers;
 
     public void play() {
         System.out.println(PrintInput.INPUT_MONEY);
-        int lottoAmount = setting.purchase_amount() / 1000;
+        int lottoAmount = inputData.purchase_amount() / 1000;
 
         PrintOutput.printAmount(lottoAmount);
         List<Lotto> randomLottoNumbers = userLottos.userLottosCreate(lottoAmount);
         PrintOutput.printUserLotto(randomLottoNumbers);
 
         System.out.println("\n" + PrintInput.WINNING_NUMBER);
-        winningNumbers = setting.getWinningNumbers();
+        winningNumbers = inputData.getWinningNumbers();
 
         System.out.println("\n" + PrintInput.BONUS_NUMBER);
-        int bonusBall = setting.getBonusNumber();
+        int bonusBall = inputData.getBonusNumber();
 
         for (Lotto userLottoNumbers : randomLottoNumbers) {
             int matchNumber = winningNumbers.matchNumber(userLottoNumbers);
+            boolean checkBonusBall = userLottoNumbers.checkBonusBall(bonusBall);
 
-            winningData.winningResult(matchNumber, userLottoNumbers.checkBonusBall(bonusBall));
+            winningData.winningResult(matchNumber, checkBonusBall);
         }
 
         winningData.printResult(lottoAmount * 1000);

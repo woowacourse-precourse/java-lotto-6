@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusValidatorTest {
-    @DisplayName("범위를 벗어나는 값을 입력했을 때 오류를 던진다.")
+    @DisplayName("범위를 벗어나는 값을 입력했을 때 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
     void overRangeNumberThrowException(int number) {

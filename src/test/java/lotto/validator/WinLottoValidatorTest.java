@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class WinLottoValidatorTest {
     @Test
-    @DisplayName("중복된 로또 번호들을 입력했을 때 오류를 던진다.")
+    @DisplayName("중복된 로또 번호들을 입력했을 때 예외가 발생한다.")
     void ifDuplicationThrowException() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Bonus bonus = new Bonus(1);

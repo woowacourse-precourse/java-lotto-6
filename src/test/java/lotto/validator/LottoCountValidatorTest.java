@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoCountValidatorTest {
-    @DisplayName("음수를 입력했을 때 오류를 던진다.")
+    @DisplayName("음수를 입력했을 때 예외가 발생한다.")
     @Test
     void NotPositiveNumberThrowException() {
         assertThatThrownBy(() -> LottoCountValidator.go(-1))
@@ -17,7 +17,7 @@ public class LottoCountValidatorTest {
                 .hasMessage(NOT_NEGATIVE_NUMBER.getErrorMessage());
     }
 
-    @DisplayName("0을 입력했을 때 오류를 던진다.")
+    @DisplayName("0을 입력했을 때 예외가 발생한다.")
     @Test
     void ZeroNumberThrowException() {
         assertThatThrownBy(() -> LottoCountValidator.go(0))
@@ -25,7 +25,7 @@ public class LottoCountValidatorTest {
                 .hasMessage(NOT_ZERO.getErrorMessage());
     }
 
-    @DisplayName("1000으로 나누어 떨어지지 않는 값을 입력했을 때 오류를 던진다.")
+    @DisplayName("1000으로 나누어 떨어지지 않는 값을 입력했을 때 예외가 발생한다.")
     @Test
     void NotDivisionNumberThrowException() {
         assertThatThrownBy(() -> LottoCountValidator.go(8888))

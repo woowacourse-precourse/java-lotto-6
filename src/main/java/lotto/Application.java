@@ -16,6 +16,8 @@ public class Application {
         showLottoTickets();
         System.out.println("당첨번호를 입력해 주세요.");
         getWinningNumbers(Console.readLine());
+        System.out.println("보너스 번호를 입력해주세요.");
+        getBonusNumber(Console.readLine());
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -50,5 +52,8 @@ public class Application {
         for (String winningNumber : inputWinningNumbers.split(",")) {
             winningNumbers.add(Integer.valueOf(winningNumber));
         }
+    }
+    public static void getBonusNumber(String inputBonusNumber) {
+        Integer bonusNumber = Integer.valueOf(inputBonusNumber);
     }
 }

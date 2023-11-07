@@ -15,14 +15,15 @@ public class BonusExceptionTest {
     void checkBonusNumberExceptionTest() {
         List<Integer> numbers = new ArrayList<>(List.of(1,2,3,4,5,6));
         int wrongBonusNumber1 = 1;
-        //String wrongBonusNumber2 = "a";
-        int wrongBonusNumber3 = 0;
-        int wrongBonusNumber4 = 46;
+        int wrongBonusNumber2 = 0;
+        int wrongBonusNumber3 = 46;
 
-        Assertions.assertThatThrownBy(() -> bonusException(numbers, wrongBonusNumber1)).isInstanceOf(IllegalArgumentException.class);
-        //Assertions.assertThatThrownBy(() -> checkBonusNumberException(numbers, wrongBonusNumber2)).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> bonusException(numbers, wrongBonusNumber3)).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> bonusException(numbers, wrongBonusNumber4)).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> bonusException(numbers, wrongBonusNumber1))
+                .isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> bonusException(numbers, wrongBonusNumber2))
+                .isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> bonusException(numbers, wrongBonusNumber3))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("올바른 보너스 숫자 테스트")

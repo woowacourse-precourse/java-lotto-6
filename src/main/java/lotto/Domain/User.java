@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class User {
-    private static final int LOTTO_SIZE = 6;
     private final List<Lotto> userLottos;
     private final int lottoQuantity;
 

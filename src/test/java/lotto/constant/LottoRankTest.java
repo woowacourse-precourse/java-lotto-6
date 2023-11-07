@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class LottoRankTest {
     @DisplayName("RANK_ONE VALUES 테스트")
     @Test
-    public void testRankOneValues() {
+    public void rankOneValues() {
         LottoRank rank = LottoRank.RANK_ONE;
         assertThat(rank.getMatchedNormalNum()).isEqualTo(6);
         assertThat(rank.getMatchedBonusNum()).isEqualTo(0);
@@ -17,7 +17,7 @@ class LottoRankTest {
 
     @DisplayName("RANK_TWO VALUES 테스트")
     @Test
-    public void testRankTwoValues() {
+    public void rankTwoValues() {
         LottoRank rank = LottoRank.RANK_TWO;
         assertThat(rank.getMatchedNormalNum()).isEqualTo(5);
         assertThat(rank.getMatchedBonusNum()).isEqualTo(1);
@@ -26,7 +26,7 @@ class LottoRankTest {
 
     @DisplayName("RANK_THREE VALUES 테스트")
     @Test
-    public void testRankThreeValues() {
+    public void rankThreeValues() {
         LottoRank rank = LottoRank.RANK_THREE;
         assertThat(rank.getMatchedNormalNum()).isEqualTo(5);
         assertThat(rank.getMatchedBonusNum()).isEqualTo(0);
@@ -35,7 +35,7 @@ class LottoRankTest {
 
     @DisplayName("RANK_FOUR VALUES 테스트")
     @Test
-    public void testRankFourValues() {
+    public void rankFourValues() {
         LottoRank rank = LottoRank.RANK_FOUR;
         assertThat(rank.getMatchedNormalNum()).isEqualTo(4);
         assertThat(rank.getMatchedBonusNum()).isEqualTo(0);
@@ -44,7 +44,7 @@ class LottoRankTest {
 
     @DisplayName("RANK_FIVE VALUES 테스트")
     @Test
-    public void testRankFiveValues() {
+    public void rankFiveValues() {
         LottoRank rank = LottoRank.RANK_FIVE;
         assertThat(rank.getMatchedNormalNum()).isEqualTo(3);
         assertThat(rank.getMatchedBonusNum()).isEqualTo(0);
@@ -53,7 +53,7 @@ class LottoRankTest {
 
     @DisplayName("RANK_OUTSIDE VALUES 테스트")
     @Test
-    public void testRankOutsideValues() {
+    public void rankOutsideValues() {
         LottoRank rank = LottoRank.RANK_OUTSIDE;
         assertThat(rank.getMatchedNormalNum()).isEqualTo(-1);
         assertThat(rank.getMatchedBonusNum()).isEqualTo(-1);

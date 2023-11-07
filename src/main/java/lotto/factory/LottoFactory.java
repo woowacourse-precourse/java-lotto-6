@@ -3,6 +3,7 @@ package lotto.factory;
 import lotto.controller.LottoController;
 import lotto.domain.LottoStatistics;
 import lotto.domain.PlayerLottoNumbers;
+import lotto.domain.TotalRate;
 import lotto.io.InputMapper;
 import lotto.io.InputView;
 import lotto.io.IoManager;
@@ -48,7 +49,7 @@ public class LottoFactory {
     }
 
     private LottoService lottoService() {
-        return new LottoService(playerLottoNumbers(), lottoStatistics());
+        return new LottoService(playerLottoNumbers(), lottoStatistics(), totalRate());
     }
 
     private PlayerLottoNumbers playerLottoNumbers() {
@@ -57,5 +58,9 @@ public class LottoFactory {
 
     private LottoStatistics lottoStatistics() {
         return new LottoStatistics();
+    }
+
+    private TotalRate totalRate() {
+        return new TotalRate();
     }
 }

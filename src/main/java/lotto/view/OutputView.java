@@ -32,28 +32,21 @@ public class OutputView {
     }
 
     private static String parseMapToString(Map<Integer, Integer> resultOfLottos) {
-        int firstPlaceCount = resultOfLottos.getOrDefault(1, 0);
-        int secondPlaceCount = resultOfLottos.getOrDefault(2, 0);
-        int thirdPlaceCount = resultOfLottos.getOrDefault(3, 0);
-        int fourthPlaceCount = resultOfLottos.getOrDefault(4, 0);
-        int fifthPlaceCount = resultOfLottos.getOrDefault(5, 0);
-
         return new StringBuilder()
-                .append(Reward.FIFTH_PLACE.getValue())
-                .append(String.format(HYPHEN_COUNT, fifthPlaceCount))
+                .append(Reward.FIFTH_PLACE.getValue()).append(getCountOfRankToString(resultOfLottos, 5))
                 .append(LINE_FEED)
-                .append(Reward.FOURTH_PLACE.getValue())
-                .append(String.format(HYPHEN_COUNT, fourthPlaceCount))
+                .append(Reward.FOURTH_PLACE.getValue()).append(getCountOfRankToString(resultOfLottos, 4))
                 .append(LINE_FEED)
-                .append(Reward.THIRD_PLACE.getValue())
-                .append(String.format(HYPHEN_COUNT, thirdPlaceCount))
+                .append(Reward.THIRD_PLACE.getValue()).append(getCountOfRankToString(resultOfLottos, 3))
                 .append(LINE_FEED)
-                .append(Reward.SECOND_PLACE.getValue())
-                .append(String.format(HYPHEN_COUNT, secondPlaceCount))
+                .append(Reward.SECOND_PLACE.getValue()).append(getCountOfRankToString(resultOfLottos, 2))
                 .append(LINE_FEED)
-                .append(Reward.FIRST_PLACE.getValue())
-                .append(String.format(HYPHEN_COUNT, firstPlaceCount))
+                .append(Reward.FIRST_PLACE.getValue()).append(getCountOfRankToString(resultOfLottos, 1))
                 .toString();
+    }
+
+    private static String getCountOfRankToString(Map<Integer, Integer> resultOfLottos, int rank) {
+        return String.format(HYPHEN_COUNT, resultOfLottos.getOrDefault(rank, 0));
     }
 
     private static String convertToString(double profitRate) {

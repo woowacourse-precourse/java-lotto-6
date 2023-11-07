@@ -10,6 +10,7 @@ import static lotto.ErrorMessage.WINNING_NUMBERS_INPUT_ERROR;
 public class InputView {
     private static final String PURCHASE_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBERS_INPUT_DELIMITER = ",";
 
     private final Supplier<String> reader;
 
@@ -38,11 +39,12 @@ public class InputView {
 
     public List<Integer> toWinningNumbers(String readLine) {
         try {
-            return Arrays.stream(readLine.split(","))
+            return Arrays.stream(readLine.split(WINNING_NUMBERS_INPUT_DELIMITER))
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(WINNING_NUMBERS_INPUT_ERROR.getMessage());
+            throw new IllegalArgumentException(
+                    String.format(WINNING_NUMBERS_INPUT_ERROR.getMessage(), WINNING_NUMBERS_INPUT_DELIMITER));
         }
     }
 }

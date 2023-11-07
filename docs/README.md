@@ -16,3 +16,9 @@
       - 1~45 사이의 숫자가 아니다.  
       - 문자나 공백이 입력 되었다. 
    
+## 📮클래스와 Method📮
+1. Base_Func 이름의 클래스를 만든다. 
+   
+   - Base_Func 클래스에는 Application.java에서 사용할 기본 함수 들의 모임이다.
+   1. Input_Purchase_Price() -> 로또 구입 금액을 입력 받아 정수로 변환후 리턴.
+   2. Purchase_Lotto_Number(int price) -> 로또 구입 금액이 1000으로 나눠 떨어지는지 확인하고 구매할 로또 갯수 리턴.

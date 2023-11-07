@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import java.util.Iterator;
+import java.util.stream.IntStream;
+
 import static lotto.constants.Constants.Integers.LOTTO_PRICE;
 
-public class PurchaseQuantity {
+public class PurchaseQuantity implements Iterable<Integer> {
 
     private final int purchaseQuantity;
 
@@ -12,6 +15,11 @@ public class PurchaseQuantity {
 
     public int getPurchaseQuantity() {
         return purchaseQuantity;
+    }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return IntStream.rangeClosed(1, purchaseQuantity).iterator();
     }
 
     @Override

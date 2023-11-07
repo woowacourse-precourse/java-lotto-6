@@ -5,6 +5,7 @@ import lotto.domain.LottoNumber;
 
 import java.util.List;
 
+import static java.util.Comparator.comparingInt;
 import static lotto.constants.Constants.Integers.*;
 
 public class LottoGenerator {
@@ -17,6 +18,7 @@ public class LottoGenerator {
                 )
                 .stream()
                 .map(LottoNumber::new)
+                .sorted(comparingInt(LottoNumber::getNumber))
                 .toList();
     }
 }

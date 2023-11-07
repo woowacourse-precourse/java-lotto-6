@@ -102,7 +102,7 @@ public class LottoResultNotifierTest {
         Lottos lottos = new Lottos(List.of(lotto1));
         LottoResultNotifier notifier = new LottoResultNotifier(lottos, lottoDraw);
 
-        assertThat(notifier.getRateOfReturn(1000))
+        assertThat(notifier.getRateOfReturn())
                 .isEqualTo("500.0");
     }
 

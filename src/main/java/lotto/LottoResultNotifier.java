@@ -29,6 +29,19 @@ public class LottoResultNotifier {
         return Collections.unmodifiableMap(totalWinningResult);
     }
 
+
+    public String getRateOfReturn() {
+        int purchaseAmount = lottos.getSize() * 1000;
+        long winningAmount = getTotalWinningAmount();
+        try {
+            double rateOfReturn = ((double) winningAmount / purchaseAmount) * 100.0;
+
+            return String.format("%.1f", rateOfReturn);
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("[ERROR] 로또는 최소 1개이상 구입해야 합니다.");
+        }
+    }
+
     public long getTotalWinningAmount() {
         long totalMoney = 0L;
         Set<LottoResult> keySet = totalWinningResult.keySet();
@@ -41,16 +54,11 @@ public class LottoResultNotifier {
 
     }
 
-    public String getRateOfReturn(int purchaseAmount) {
-        long winningAmount = getTotalWinningAmount();
-        try {
-            double rateOfReturn = ((double) winningAmount / purchaseAmount) * 100.0;
-            return String.format("%.1f", rateOfReturn);
-        } catch (ArithmeticException e) {
-            throw new IllegalArgumentException("로또는 최소 1개이상 구입해야 합니다.");
-        }
+    public List<Map.Entry<LottoResult, Integer>> sortByAscendingWinnings() {
+        return totalWinningResult.entrySet().stream()
+                .sorted((o1, o2) -> Math.toIntExact(o1.getKey().getAmount() - o2.getKey().getAmount()))
+                .toList();
     }
-
 
     private void init() {
         this.totalWinningResult = new EnumMap<>(LottoResult.class);
@@ -58,6 +66,8 @@ public class LottoResultNotifier {
         for (LottoResult lottoResult : lottoResults) {
             totalWinningResult.put(lottoResult, totalWinningResult.getOrDefault(lottoResult, 0));
         }
+
+
     }
 
     private void calculateResult(Lottos lottos, LottoDraw lottoDraw) {

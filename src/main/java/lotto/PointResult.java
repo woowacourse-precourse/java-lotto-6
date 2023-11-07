@@ -16,6 +16,13 @@ public class PointResult {
         return pointResult.get(grade.getPoint());
     }
 
+    public int calculateTotalPrizeMoney() {
+        return Grade.getAllGrades().stream()
+                .map((grade) -> getCountByGrade(grade) * grade.getPrizeMoney())
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
     private void initPointResult(List<Double> pointResult) {
         for(Grade grade : Grade.getAllGrades()) {
             int frequency = Collections.frequency(pointResult, grade.getPoint());

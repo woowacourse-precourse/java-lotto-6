@@ -8,7 +8,7 @@ public class Judgement {
     private static final int MIN_WINNING_NUMBER = 3;
     private static final int DEFAULT_COUNT = 0;
 
-    public static void checkLottoNumber(Lottos lottos, WinningLotto winningLotto) {
+    public void checkLottoNumber(Lottos lottos, WinningLotto winningLotto) {
         for (Lotto compare_lotto : lottos.getLottos()) {
             int count;
             count = checkWinningNumberCount(compare_lotto.getNumbers(), winningLotto.getWinning_number());
@@ -16,7 +16,7 @@ public class Judgement {
         }
     }
 
-    private static int checkWinningNumberCount(List<Integer> compare_lotto, List<Integer> winning_lotto) {
+    private int checkWinningNumberCount(List<Integer> compare_lotto, List<Integer> winning_lotto) {
         int count = DEFAULT_COUNT;
         for (int i = 0; i < winning_lotto.size(); i++) {
             count += compareNumber(winning_lotto.get(i), compare_lotto);
@@ -25,14 +25,14 @@ public class Judgement {
         return count;
     }
 
-    private static int checkFirstRank(int state, int count) {
+    private int checkFirstRank(int state, int count) {
         if (state == 5 && count == 6) {
             count++;
         }
         return count;
     }
 
-    private static int compareNumber(int number, List<Integer> compare_lotto) {
+    private int compareNumber(int number, List<Integer> compare_lotto) {
         int count = DEFAULT_COUNT;
         if (compare_lotto.contains(number)) {
             count++;
@@ -40,13 +40,13 @@ public class Judgement {
         return count;
     }
 
-    private static void checkAddLottoCount(Lottos lottos, int count) {
+    private void checkAddLottoCount(Lottos lottos, int count) {
         if (count >= MIN_WINNING_NUMBER) {
             lottos.addLottoRank(count);
         }
     }
 
-    public static List<Integer> judgeAllLottoRank(Lottos lottos) {
+    public List<Integer> judgeAllLottoRank(Lottos lottos) {
         List<Integer> counts = lottos.getWinningCounts();
         List<Integer> rank = Arrays.asList(0, 0, 0, 0, 0);
         for (int count : counts) {
@@ -55,7 +55,7 @@ public class Judgement {
         return rank;
     }
 
-    private static void judgeLottoRank(List<Integer> rank, int count) {
+    private void judgeLottoRank(List<Integer> rank, int count) {
         if (count > 6) {
             rank.set(4, rank.get(4) + 1);
         }
@@ -73,7 +73,7 @@ public class Judgement {
         }
     }
 
-    public static float calculateEarningRate(List<Integer> ranks, Money money) {
+    public float calculateEarningRate(List<Integer> ranks, Money money) {
         float earningRate = 0;
         for (int i = 0; i < 5; i++) {
             earningRate += RANK_MONEY[i] * ranks.get(i);

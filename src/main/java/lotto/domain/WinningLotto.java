@@ -2,8 +2,11 @@ package lotto.domain;
 
 import lotto.type.Prize;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.IntStream;
+
+import static lotto.impl.RandomNumberImpl.END_NUM;
+import static lotto.impl.RandomNumberImpl.START_NUM;
 
 
 public class WinningLotto {
@@ -19,9 +22,31 @@ public class WinningLotto {
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        if(winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+        if(winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자만 입력 할 수 있습니다.");
         }
+        if(isDuplicate(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 할 수 없습니다.");
+        }
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 할 수 없습니다.");
+        }
+        for(int num : winningNumbers) {
+            if(isInRange(num)) {
+                throw new IllegalArgumentException("[ERROR] 1~45 까지의 수를 입력해주세요");
+            }
+        }
+        if(isInRange(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 1~45 까지의 수를 입력해주세요");
+        }
+    }
+
+    private boolean isDuplicate(List<Integer> winningNumbers) {
+        return winningNumbers.stream().distinct().count() != 6;
+    }
+
+    private boolean isInRange(int number) {
+        return number >= START_NUM && number <= END_NUM;
     }
 
     public Prize matchLotto(Lotto inputLotto) {

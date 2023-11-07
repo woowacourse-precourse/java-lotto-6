@@ -38,6 +38,7 @@ public class InputView {
 
     public static WinningLotto readWinningLotto() {
         List<Integer> winningNumbers = readWinningNumber();
+
         return new WinningLotto(winningNumbers, readBonusNumber(winningNumbers));
     }
 

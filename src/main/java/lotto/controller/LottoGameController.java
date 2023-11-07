@@ -25,6 +25,15 @@ public class LottoGameController {
         this.lottoGameService = lottoGameService;
     }
 
+    public void gameStart() {
+        final int purchaseTotalCount = setPurchaseTotalCount();
+        final PlayerLotto playerLotto = purchasePlayerLotto(purchaseTotalCount);
+        final Lotto winningNumbers = openWinningNumbers();
+        final LottoNumber bonusNumber = openBonusNumber(winningNumbers);
+
+        publishWinningStatistics(playerLotto, winningNumbers, bonusNumber);
+    }
+
     private int setPurchaseTotalCount() {
         while (true) {
             try {

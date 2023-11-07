@@ -37,10 +37,14 @@
 
 ### 예외 convention
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시킨다.
-- [ ] "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시킨다.
+- "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 
 ### 예외 상황
+- [x] 입력한 구입 금액이 정수가 아닌 경우
+  - IllegalArgumentException를 발생
+  - "[ERROR] 구입 금액은 정수만 가능합니다." 출력
+  - 재입력
 - [ ] 입력한 구입 금액이 1,000으로 나누어 떨어지지 않는 경우 
   - IllegalArgumentException를 발생
   - "[ERROR] 구입 금액은 1,000으로 나누어 떨어져야 합니다." 출력

@@ -35,6 +35,11 @@ public class Inputter {
                 .boxed().collect(Collectors.toList()));
     }
 
+    public int bonus() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return validateLottoNumber(parseInt(Console.readLine()));
+    }
+
     private void validatePurchase(int won) {
         if (won % MONEY_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] "+ MONEY_UNIT + "원 단위로 입력해주세요.");

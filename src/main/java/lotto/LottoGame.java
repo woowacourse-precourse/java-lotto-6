@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +26,6 @@ public class LottoGame {
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
-
     }
 
     public void inputBonusNumber() {
@@ -50,30 +47,22 @@ public class LottoGame {
         }
 
         for (Lotto lotto : lottos) {
-            int count = 0;
-            boolean bonusMatch = false;
-
-            for (int number : lotto.getNumbers()) {
-                if(winningLottoNumbers.contains(number)) count++;
-                if(number == bonusNumber) bonusMatch = true;
-            }
-            Prize prize = Prize.valueOf(count, bonusMatch);
-            map.put(prize, map.get(prize) + 1);
+            saveMap(lotto, map);
         }
         PrizePrint(map, totalMoney);
     }
 
-//    private void saveMap(Lotto lotto, HashMap<Prize, Integer> map) {
-//        int count = 0;
-//        boolean bonusMatch = false;
-//
-//        for (int number : lotto.getNumbers()) {
-//            if(winningLottoNumbers.contains(number)) count++;
-//            if(number == bonusNumber) bonusMatch = true;
-//        }
-//        Prize prize = Prize.valueOf(count, bonusMatch);
-//        map.put(prize, map.get(prize) + 1);
-//    }
+    private void saveMap(Lotto lotto, HashMap<Prize, Integer> map) {
+        int count = 0;
+        boolean bonusMatch = false;
+
+        for (int number : lotto.getNumbers()) {
+            if(winningLottoNumbers.contains(number)) count++;
+            if(number == bonusNumber) bonusMatch = true;
+        }
+        Prize prize = Prize.valueOf(count, bonusMatch);
+        map.put(prize, map.get(prize) + 1);
+    }
 
     private void validateWinningNumberSize() {
         if(winningLottoNumbers.size() != 6)

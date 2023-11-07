@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Player;
 import lotto.dto.response.LottiesInfoDto;
 import lotto.domain.LottoShop;
@@ -21,7 +22,8 @@ public class LottoController {
 
     public void run() {
         String input = getUserInput();
-        setPlayerVariableValue(input);
+        Player player = setPlayerVariableValue(input);
+        getwinningNumbers();
     }
 
     private String getUserInput() {
@@ -46,10 +48,11 @@ public class LottoController {
         }
     }
 
-    private void setPlayerVariableValue(String input) {
+    private Player setPlayerVariableValue(String input) {
         Player player = new Player(input, lottoShop);
         LottiesInfoDto lottiesInfoDto = player.buyLotties();
         printLottiesNumberAndTicket(lottiesInfoDto);
+        return player;
     }
 
     private void printLottiesNumberAndTicket(LottiesInfoDto lottiesInfoDto) {
@@ -57,4 +60,9 @@ public class LottoController {
         outputView.displayticket(lottiesInfoDto.ticket());
         outputView.displayLottiesNumber(lottiesInfoDto.lottiesNumber());
     }
+
+    private void getwinningNumbers() {
+        ConsoleOutput.displayWinningNumberPrompt();
+    }
+
 }

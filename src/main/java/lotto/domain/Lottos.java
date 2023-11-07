@@ -16,7 +16,7 @@ public class Lottos {
         this.numberPicker = numberPicker;
     }
 
-    public List<Lotto> generate(int count) {
+    public void generate(int count) {
         while (count > 0) {
             Lotto newLotto = createLotto();
             if (!isDuplicated(newLotto)) {
@@ -24,8 +24,6 @@ public class Lottos {
                 count--;
             }
         }
-
-        return lottos;
     }
 
     public Map<Integer, Integer> countNumberOfWins(Lotto winningLotto, BonusNumber bonusNumber) {

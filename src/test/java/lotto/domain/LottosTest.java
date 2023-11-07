@@ -18,10 +18,10 @@ class LottosTest {
         Lottos lottos = new Lottos(new RandomNumbers());
 
         // when
-        List<Lotto> lottoList = lottos.generate(count);
+        lottos.generate(count);
 
         // then
-        assertThat(lottoList).hasSize(count);
+        assertThat(lottos.getOrderedList()).hasSize(count);
     }
 
     @DisplayName("각각의 등수에 당첨된 수를 계산한다.")

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,10 +29,6 @@ public class Lotto {
             }
         }
         return result;
-    }
-
-    public void lottoascending() {
-        Collections.sort(numbers);
     }
 
     public List<Integer> getLotto() {

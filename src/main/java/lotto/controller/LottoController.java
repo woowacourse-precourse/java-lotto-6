@@ -37,7 +37,7 @@ public class LottoController {
         Map<Integer, Integer> lottoFindWinner = lottoService.findWinners(lottoWinningNumbers,
                 lottoBonusNumber,
                 generateLottoNumbersDto);
-        outView.winnersMsg(lottoFindWinner);
+        outView.winnersMsg(lottoFindWinner, priceLotto);
     }
 
 

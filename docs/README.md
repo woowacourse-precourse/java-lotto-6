@@ -32,3 +32,18 @@
 - [x] 총 수익과 복권 구매 금액을 비교해 총 수익률을 구한다.
   - [x] 총 수익률의 소수점이 둘째 자리를 넘어가는 경우 둘째 자리에서 반올림한다.
 - [x] 산출된 통계를 보여준다.
+## 데이터의 흐름
+
+                   (purchasing)                   (winning)
+                  PurchaseAmount         WinningNumbers, BonusNumber
+                        |                             |
+                     Generator                 PrizeRankChecker
+                        |                             |                         
+                     Printer                       Analyst
+                        |                             |
+                        |                        ResultBoard
+                        |                             |
+                         -------------|---------------
+                                SequenceManager
+                                      |
+                                  Application

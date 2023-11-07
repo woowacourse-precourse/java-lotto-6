@@ -6,7 +6,7 @@ public class WinningNumbers {
     Lotto winningNumbers;
     BonusNumber bonusNumber;
 
-    WinningNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
+    public WinningNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
         isNotDuplicate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;

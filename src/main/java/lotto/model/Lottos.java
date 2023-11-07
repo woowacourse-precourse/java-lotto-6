@@ -6,7 +6,7 @@ import java.util.List;
 public class Lottos {
     private List<Lotto> lottos = new ArrayList<>();
 
-    Lottos(List<Lotto> lottos) {
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 

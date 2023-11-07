@@ -6,7 +6,7 @@ import lotto.constant.NumberRange;
 public class BonusNumber {
     private final int bonusNumber;
 
-    BonusNumber(int bonusNumber) {
+    private BonusNumber(int bonusNumber) {
         isInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }

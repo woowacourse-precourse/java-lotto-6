@@ -9,9 +9,9 @@ import lotto.controller.WinningCalculator;
 
 public class WinningRate {
     Map<Integer, Integer> winningCount = new HashMap<>();
-    int profit = 0;
+    long profit = 0;
 
-    WinningRate(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    private WinningRate(List<Lotto> lottos, WinningNumbers winningNumbers) {
         winningCount.put(Ranking.FIRST.getRanking(), 0);
         winningCount.put(Ranking.SECOND.getRanking(), 0);
         winningCount.put(Ranking.THIRD.getRanking(), 0);
@@ -30,7 +30,7 @@ public class WinningRate {
         return this.winningCount;
     }
 
-    public int getProfit() {
+    public long getProfit() {
         return this.profit;
     }
 
@@ -46,10 +46,10 @@ public class WinningRate {
     }
 
     private void calculateProfit() {
-        profit += winningCount.get(Ranking.FIRST.getRanking()) * WinningMoney.LOTTO_WIN.getWinningMoney();
-        profit += winningCount.get(Ranking.SECOND.getRanking()) * WinningMoney.SECOND_WIN.getWinningMoney();
-        profit += winningCount.get(Ranking.THIRD.getRanking()) * WinningMoney.THIRD_WIN.getWinningMoney();
-        profit += winningCount.get(Ranking.FOURTH.getRanking()) * WinningMoney.FOURTH_WIN.getWinningMoney();
-        profit += winningCount.get(Ranking.FIFTH.getRanking()) * WinningMoney.FIFTH_WIN.getWinningMoney();
+        profit += (long) winningCount.get(Ranking.FIRST.getRanking()) * WinningMoney.LOTTO_WIN.getWinningMoney();
+        profit += (long) winningCount.get(Ranking.SECOND.getRanking()) * WinningMoney.SECOND_WIN.getWinningMoney();
+        profit += (long) winningCount.get(Ranking.THIRD.getRanking()) * WinningMoney.THIRD_WIN.getWinningMoney();
+        profit += (long) winningCount.get(Ranking.FOURTH.getRanking()) * WinningMoney.FOURTH_WIN.getWinningMoney();
+        profit += (long) winningCount.get(Ranking.FIFTH.getRanking()) * WinningMoney.FIFTH_WIN.getWinningMoney();
     }
 }

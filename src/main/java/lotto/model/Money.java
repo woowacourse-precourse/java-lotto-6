@@ -5,7 +5,7 @@ import lotto.constant.ErrorMessage;
 public class Money {
     private final int money;
 
-    Money(int money) {
+    public Money(int money) {
         divideByThousand(money);
         isOverThousand(money);
         this.money = money;

@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final static int MIN_RANGE = 1;
-    private final static int MAX_RANGE = 45;
-    private final static int COUNT = 6;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
+    private static final int COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

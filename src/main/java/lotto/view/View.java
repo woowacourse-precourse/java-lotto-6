@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import static lotto.view.constant.Exception.*;
 
 public class View {
-    private final static String SPLIT_SYMBOL = ",";
+    private static final String SPLIT_SYMBOL = ",";
     public void output(String message) {
         System.out.println(message);
     }

@@ -3,7 +3,8 @@ package lotto.domain;
 import lotto.view.constant.Exception;
 
 public class Buyer {
-    private final static int price = 1000;
+    private static final int PRICE = 1000;
+    private static final int MOD = 0;
     private final int cost;
 
     public Buyer(int cost) {
@@ -16,11 +17,11 @@ public class Buyer {
     }
 
     public int getBuyCount() {
-        return this.cost / price;
+        return this.cost / PRICE;
     }
 
     private void validate(int cost) {
-        if (cost % price != 0) {
+        if (cost % PRICE != MOD) {
             throw new IllegalArgumentException(Exception.COST_MOD);
         }
     }

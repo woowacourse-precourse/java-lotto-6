@@ -9,6 +9,7 @@ import lotto.dto.response.LottoResultsDto;
 import lotto.dto.response.LottoTicketsDto;
 import lotto.util.NumberGenerator;
 import lotto.util.ProfitCalculator;
+import lotto.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,11 @@ public class LottoService {
     }
 
     public static LottoService getInstance() {
-        return new LottoService();
+        return LazyHolder.INSTANCE;
+    }
+
+    private static class LazyHolder {
+        private static final LottoService INSTANCE = new LottoService();
     }
 
     public LottoTicketsDto purchaseLottos(NumberGenerator numberGenerator, PurchaseAmountDto purchaseAmountDto) {

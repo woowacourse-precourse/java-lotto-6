@@ -1,7 +1,7 @@
 package lotto.purchase;
 
 import camp.nextstep.edu.missionutils.Console;
-public class purchase {
+public class Purchase {
 
     public static void main(String[] args) {
     }

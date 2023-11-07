@@ -32,4 +32,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .isInstanceOf(OutOfLottoNumberRangeException.class);
     }
+
+    @DisplayName("로또 번호에 음수가 포함되면 예외가 발생한다.")
+    @Test
+    void createLottoByContainingMinus() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(OutOfLottoNumberRangeException.class);
+    }
 }

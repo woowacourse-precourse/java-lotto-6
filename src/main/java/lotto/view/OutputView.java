@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.controller.InputProcessor;
 import lotto.model.Ranking;
 
 public class OutputView {
@@ -50,7 +49,7 @@ public class OutputView {
   }
 
   public static void printSuccessResult() {
-    System.out.print(WINNING_STATISTICS_MESSAGE);
+    System.out.println(WINNING_STATISTICS_MESSAGE);
   }
 
   public static void printRanking(List<Integer> rank) {

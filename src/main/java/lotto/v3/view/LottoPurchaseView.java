@@ -8,9 +8,9 @@ public class LottoPurchaseView {
         return parseAmount(Console.readLine());
     }
 
-    private int parseAmount(String input) {
+    private int parseAmount(String requestPurchaseAmount) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(requestPurchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액으로 숫자를 입력해야 합니다.");
         }

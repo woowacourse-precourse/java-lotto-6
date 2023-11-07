@@ -1,7 +1,16 @@
 package lotto;
 
+import lotto.io.UserInput;
+import lotto.io.UserOutput;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGame lottoGame = new LottoGame(
+                new UserInput(),
+                new UserOutput()
+        );
+
+        lottoGame.play();
     }
 }

@@ -18,7 +18,7 @@ public class NumericInputValidation {
 
     public void validateInputIsNull(String input) {
         if (input == null || input.equals("")) {
-            throw new NullPointerException(ErrorMessage
+            throw new IllegalArgumentException(ErrorMessage
                     .NULL_OR_EMPTY_INPUT_ERROR_MESSAGE
                     .getMessage());
         }

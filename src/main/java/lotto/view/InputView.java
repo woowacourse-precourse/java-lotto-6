@@ -9,9 +9,8 @@ import lotto.model.Lotto;
 public class InputView {
 
     private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_LENGTH = 6;
     private static final String ONLY_NUMBER = "^[0-9]+$";
-    private static final String SPLIT_WITH_COMMA = "^(\\d+,\\d+,\\d+,\\d+,\\d+,\\d+)$";
+    private static final String VALID_LOTTO_PATTERN = "^(?:[1-9]|[1-3][0-9]|4[0-5]),(?:[1-9]|[1-3][0-9]|4[0-5]),(?:[1-9]|[1-3][0-9]|4[0-5]),(?:[1-9]|[1-3][0-9]|4[0-5]),(?:[1-9]|[1-3][0-9]|4[0-5]),(?:[1-9]|[1-3][0-9]|4[0-5])$";
 
     public int receiveTotalPrice() {
         while (true) {
@@ -35,26 +34,13 @@ public class InputView {
     public Lotto receiveLottoWinning() {
         while (true){
             String input = Console.readLine();
-            System.out.println("input = " + input);
 
-            if(!input.matches(SPLIT_WITH_COMMA)){
+            if(!input.matches(VALID_LOTTO_PATTERN)){
                 System.out.println(InputExceptionMessage.INVALID_LOTTO_NUMBERS);
                 continue;
             }
 
-            String replacedInput = input.replace(",", "");
-
-            if (replacedInput.length() != LOTTO_LENGTH) {
-                System.out.println(InputExceptionMessage.INVALID_LOTTO_NUMBERS);
-                continue;
-            }
-
-            if(!replacedInput.matches(ONLY_NUMBER)){
-                System.out.println(InputExceptionMessage.INVALID_LOTTO_TYPE);
-                continue;
-            }
-
-            List<Integer> winningList = Arrays.stream(replacedInput.split(""))
+            List<Integer> winningList = Arrays.stream(input.split(","))
                     .map(Integer::parseInt)
                     .filter(n -> n >= 1 && n <= 45)
                     .sorted(Integer::compare)
@@ -67,11 +53,6 @@ public class InputView {
                 continue;
             }
 
-            if(winningList.size() != LOTTO_LENGTH){
-                System.out.println(InputExceptionMessage.INVALID_LOTTO_TYPE);
-                continue;
-            }
-
             return new Lotto(winningList);
         }
     }
@@ -80,13 +61,13 @@ public class InputView {
         while (true){
             String input = Console.readLine();
             if (!input.matches(ONLY_NUMBER)) {
-                System.out.println(InputExceptionMessage.INVALID_LOTTO_TYPE);
+                System.out.println(InputExceptionMessage.INVALID_BONUS_NUMBER);
                 continue;
             }
             int num = Integer.parseInt(input);
 
             if (num < 1 || num > 45) {
-                System.out.println(InputExceptionMessage.INVALID_LOTTO_TYPE);
+                System.out.println(InputExceptionMessage.INVALID_BONUS_NUMBER);
                 continue;
             }
 

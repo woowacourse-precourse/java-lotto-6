@@ -17,9 +17,8 @@ public class InputView {
         return Console.readLine().trim();
     }
 
-    //FIXME:오버플로우 발생시 NumberFormatException 발생... 처리?
     public int printAskingBudget() {
-        long budget;
+        int budget;
         System.out.println(MSG_ASKING_BUDGET);
         while (true) {
             try {
@@ -30,7 +29,7 @@ public class InputView {
                 System.out.println(formatException.getMessage());
             }
         }
-        return (int) budget;
+        return budget;
     }
 
     public List<Integer> printAskingWinningNumbers() {

@@ -61,7 +61,6 @@ src
   │      └─lotto
   │          ├─config
   │          │   └─LottoConfig
-  │          ├─constants
   │          ├─controller
   │          │   └─LottoController
   │          ├─domain
@@ -111,44 +110,6 @@ src
         - [x] 범위를 벗어난 숫자를 생성했을 경우
 
 ## 소감
-
-### 아쉬운 점
-
-enum을 이용해 if문을 없애지 못했다.  
-분기할 조건이 많아질수록 if문이 많아지므로 아래 같은 코드는 한계가 있다고 지난 회차 과제부터 느꼈다.
-
-```
-        if (numbers.size() != LottoConfig.MAX_BALLS) {
-            throw Errors.INVALID_SIZE.getLottoException();
-        }
-        if (hasDuplicatedNumbers(numbers)) {
-            throw Errors.INVALID_DUPLICATED.getLottoException();
-        }
-        if (hasNumberOutOfRange(numbers)) {
-            throw Errors.INVALID_RANGE.getLottoException();
-        }
-        if (isNotSorted(numbers)) {
-            throw Errors.INVALID_SORTING.getLottoException();
-        }
-    }
-```
-
-enum을 활용한다면 대략 아래같은 그림으로 예외를 처리할 수 있을것 같았다.
-
-``` 
-    // Lotto
-    private void validate(List<Integer> numbers) {
-        Errors.validate(numbers);
-    }
-    
-    // Errors
-    public static validate(List<Integer> numbers) {
-        doSomething();
-    }    
-```
-
-그런데 검색을 해봐도 사실 잘 모르겠더라, 그냥 enum조차도 이번 과제에서 처음써봐서 어렵다고 느꼈다.  
-기한은 지켜야 하기에 그냥 그대로 냈다.
 
 ### 캐싱
 
@@ -236,6 +197,142 @@ List.of를 통해 생성된 리스트는 불변객체인데, 이를 정렬하려
     - 비유하자면 금붕어를 A어항에서 B어항 옮기는거에 비유할 수 있겠다, 컬렉션을 복사하는 경우 유용하다.
 
 왜 방어적 복사라고 부르나? -> 추측컨대 데이터 무결성을 보호하기 위해 방어라는 워딩을 사용하지 않았나 싶다.
+
+### 아쉬운 점
+
+#### try catch문의 활용
+
+요구사항에는 에러가 발생하면 예외를 발생시키되 해당 부분부터 입력을 다시 받아야한다는 요구사항이 있었다.  
+그동안 예외가 발생하면 프로그램을 그냥 종료시키는 식으로만 구현했어서 꽤 생소했고 어려웠다.  
+어려웠다는 의미는 구현이 어려웠다는 뜻이 아니라 코드를 어떤식으로 리팩토링해야할지 감이 잡히지 않았다는 의미다.  
+코드는 거의 유사하나 다시 해당 메서드를 실행해야한다는 점이 발목을 잡았다.
+
+```
+    private Money parseIntToMoney() {
+        Money parsedMoney;
+        while (true) {
+            try {
+                parsedMoney = new Money(input.printAskingBudget());
+                break;
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return parsedMoney;
+    }
+    private Lotto parseListToLotto() {
+        Lotto parsedLotto;
+        while (true) {
+            try {
+                parsedLotto = new Lotto(input.printAskingWinningNumbers());
+                break;
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return parsedLotto;
+    }
+    private BonusNumber parseIntToBonusNumber(Lotto winningNumbers) {
+        BonusNumber parsedBonusNumber;
+        while (true) {
+            try {
+                parsedBonusNumber = new BonusNumber(input.printAskingBonusNumber(), winningNumbers);
+                break;
+            } catch (LottoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return parsedBonusNumber;
+    }
+```
+
+이번과제의 경우 view에도 예외처리를 했다.  
+저번 과제를 진행하고 view에도 유저로부터 들어온 입력값자체를 검증하는 책임정도는 부여하는 편이 좋다고 느꼈기 때문이다.
+
+```
+    public int printAskingBudget() {
+        int budget;
+        System.out.println(MSG_ASKING_BUDGET);
+        while (true) {
+            try {
+                budget = Integer.parseInt(getUserInput());
+                break;
+            } catch (NumberFormatException e) {
+                FormatException formatException = Errors.INVALID_NOT_NUMBER.getFormatException();
+                System.out.println(formatException.getMessage());
+            }
+        }
+        return budget;
+    }
+        public List<Integer> printAskingWinningNumbers() {
+        List<Integer> winningNumbers;
+        System.out.println(MSG_ASKING_WINNING_NUMBERS);
+        while (true) {
+            try {
+                winningNumbers = parseStringToList(getUserInput());
+                break;
+            } catch (NumberFormatException e) {
+                FormatException formatException = Errors.INVALID_NOT_NUMBER.getFormatException();
+                System.out.println(formatException.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+        public int printAskingBonusNumber() {
+        int bonusNumber;
+        System.out.println(MSG_ASKING_BONUS_NUMBER);
+        while (true) {
+            try {
+                bonusNumber = Integer.parseInt(getUserInput());
+                break;
+            } catch (NumberFormatException e) {
+                FormatException formatException = Errors.INVALID_NOT_NUMBER.getFormatException();
+                System.out.println(formatException.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+```
+
+이번 과제에서 가장 아쉽고 후회스러운 부분은 이 부분이 아닐까 싶다.
+
+#### enum을 이용한 if문 처리
+
+enum을 이용해 if문을 없애지 못했다.  
+분기할 조건이 많아질수록 if문이 많아지므로 아래 같은 코드는 한계가 있다고 지난 회차 과제부터 느꼈다.
+
+```
+        if (numbers.size() != LottoConfig.MAX_BALLS) {
+            throw Errors.INVALID_SIZE.getLottoException();
+        }
+        if (hasDuplicatedNumbers(numbers)) {
+            throw Errors.INVALID_DUPLICATED.getLottoException();
+        }
+        if (hasNumberOutOfRange(numbers)) {
+            throw Errors.INVALID_RANGE.getLottoException();
+        }
+        if (isNotSorted(numbers)) {
+            throw Errors.INVALID_SORTING.getLottoException();
+        }
+    }
+```
+
+enum을 활용한다면 대충 아래같은 그림으로 예외를 처리할 수 있는 느낌(?)이 들었었다.
+
+``` 
+    // Lotto
+    private void validate(List<Integer> numbers) {
+        Errors.validate(numbers);
+    }
+    
+    // Errors
+    public static validate(List<Integer> numbers) {
+        doSomething();
+    }    
+```
+
+그런데 검색을 해봐도 사실 잘 모르겠더라, 그냥 enum조차도 이번 과제에서 처음써봐서 어렵다고 느꼈다.  
+기한은 지켜야 하기에 그냥 그대로 냈다.
 
 ### 오버 엔지니어링에 대한 고찰
 

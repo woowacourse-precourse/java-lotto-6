@@ -30,6 +30,7 @@ public class LottoController {
         WinningLotto winningLotto = makeWinningLotto();
         LottoResult result = LottoResult.of(lottos, winningLotto);
         showResultAndProfit(result);
+        input.close();
     }
 
     private Quantity makeQuantities() {

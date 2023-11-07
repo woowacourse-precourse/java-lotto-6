@@ -1,8 +1,9 @@
-package lotto;
+package lotto.manager;
 
 import java.util.List;
 import lotto.domain.ResultLotto;
 import lotto.system.Constants;
+import lotto.util.Utils;
 
 public class YieldManager {
 
@@ -12,7 +13,6 @@ public class YieldManager {
         for (ResultLotto result : prize) {
             totalMoney += result.getResult(); // 5000 + 8000
         }
-
 
         return Utils.calculateYield(totalMoney, beforeMoney);
     }

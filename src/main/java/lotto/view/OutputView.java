@@ -2,10 +2,9 @@ package lotto.view;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.Utils;
+import lotto.util.Utils;
 import lotto.domain.ResultLotto;
 import lotto.system.Constants;
-import lotto.system.LottoMessage;
 
 public class OutputView {
     private OutputView() {

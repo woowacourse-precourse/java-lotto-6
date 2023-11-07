@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.Utils;
+import lotto.util.Utils;
 import lotto.validation.LottoValidation;
 import lotto.view.OutputView;
 

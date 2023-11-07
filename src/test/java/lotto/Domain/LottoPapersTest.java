@@ -41,4 +41,17 @@ class LottoPapersTest {
             assertEquals(6, lotto.getNumbers().size());
         }
     }
+
+    @Test
+    @DisplayName("로또 번호가 오름차순으로 정렬되어 있는지 확인")
+    void shouldGenerateLottoNumbersInAscendingOrder() {
+        int amount = 5;
+        LottoPapers lottoPapers = new LottoPapers(amount);
+
+        for (Lotto lotto : lottoPapers.getLottoPapers()) {
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            assertEquals(sortedNumbers, lotto.getNumbers());
+        }
+    }
 }

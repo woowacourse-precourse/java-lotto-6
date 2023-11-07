@@ -18,6 +18,7 @@ public class Lotto {
         }
 
         LottoNumberValidator.validateDuplicateNumbers(numbers);
+        LottoNumberValidator.validateNumberRange(numbers);
     }
 
     public List<Integer> getNumbers() {

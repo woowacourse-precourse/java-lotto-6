@@ -2,13 +2,22 @@ package lotto.validation;
 
 import java.util.List;
 
-import static lotto.message.ErrorMessage.DUPLICATE_NUMBER_EXCEPTION;
-import static lotto.message.ErrorMessage.NUMBER_INDICATION;
+import static lotto.configuration.RandomNumberConfig.END_INCLUSIVE;
+import static lotto.configuration.RandomNumberConfig.START_INCLUSIVE;
+import static lotto.message.ErrorMessage.*;
 
 public class LottoNumberValidator {
     public static void validateDuplicateNumbers(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             matchTwoNumbers(numbers, i);
+        }
+    }
+
+    public static void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE_EXCEPTION + number);
+            }
         }
     }
 

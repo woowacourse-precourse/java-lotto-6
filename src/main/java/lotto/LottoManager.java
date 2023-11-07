@@ -17,7 +17,6 @@ public class LottoManager {
     }
 
     public void purchaseLottos() {
-        Announcement.INPUT_AMOUNT.speak();
         int amount = getAmount();
         for (int i = 0; i < amount / 1000; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, Constraint.LOTTO_MAX_SIZE.getValue());
@@ -27,6 +26,7 @@ public class LottoManager {
     }
 
     private int getAmount() {
+        Announcement.INPUT_AMOUNT.speak();
         while (true) {
             try {
                 String input = Console.readLine();

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class OutputView {
     public static void requestMoney(){
@@ -8,11 +9,11 @@ public class OutputView {
     }
 
     public static void printAmountLotto(int amount){
-        System.out.printf("\n%d개를 구매했습니다.\n", amount);
+        System.out.printf("%d개를 구매했습니다.\n", amount);
     }
 
-    public static void printLottoList(List<List<Integer>> lottoNumbersList){
-        for(List<Integer> lottoNumbers : lottoNumbersList) {
+    public static void printLottoList(List<Lotto> lottoNumbersList){
+        for(Lotto lottoNumbers : lottoNumbersList) {
             System.out.println(lottoNumbers);
         }
         System.out.println();

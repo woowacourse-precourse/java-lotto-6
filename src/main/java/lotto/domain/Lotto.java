@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.util.Validator;
 
@@ -26,5 +26,9 @@ public class Lotto {
         numbers.forEach(Validator::validateInputRange);
         Validator.validateLottoCount(numbers);
         Validator.validateUniqueLottoNumbers(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

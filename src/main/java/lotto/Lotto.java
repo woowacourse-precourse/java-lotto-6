@@ -30,6 +30,11 @@ public class Lotto {
         return result;
     }
 
+    public List<Integer> lottoascending() {
+        Collections.sort(numbers);
+        return numbers;
+    }
+
     public List<Integer> getLotto() {
         return numbers;
     }

@@ -6,14 +6,18 @@ import java.util.List;
 
 public class LottoGenerator {
     private List<Lotto> lottos = new ArrayList<>();
-    final int LOTTO_COUNT;
-    final int LOTTO_PRICE_UNIT = 1000;
-    final int CHANGE = 0;
+    private final int lottoCount;
+    private static final int LOTTO_PRICE_UNIT = 1000;
+    private static final int CHANGE = 0;
+    private static final int ZERO_COUNT = 0;
+    private static final int MINIMUM_RANGE = 1;
+    private static final int MAXIMUM_RANGE = 45;
+    private static final int NUMBER_PICK_COUNT = 6;
 
     public LottoGenerator(int payment) {
-        LOTTO_COUNT = validatePayment(payment);
-        for(int lotto = 0; lotto < LOTTO_COUNT; lotto++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        this.lottoCount = validatePayment(payment);
+        for(int lotto = ZERO_COUNT; lotto < lottoCount; lotto++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MINIMUM_RANGE, MAXIMUM_RANGE, NUMBER_PICK_COUNT);
             this.lottos.add(new Lotto(numbers));
         }
     }

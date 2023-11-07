@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.service.Execute;
-import lotto.service.LottoMachine;
 
 public class Application {
     public static void main(String[] args) {

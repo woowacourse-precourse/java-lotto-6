@@ -1,29 +1,29 @@
-package lotto.service;
+package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.console.Output;
-import lotto.domain.Grade;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
-import lotto.domain.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.LongStream;
 
 
 public class LottoMachine {
-    public static List<Lotto> buyLotto(Float price){
+    public static List<Lotto> issuedLotto(Float price){
         long ticketNum = (long) (price / 1000);
 
-        List<Lotto> lottoTickets = Stream.generate(LottoGenerate::generate)
-                .limit(ticketNum)
+        List<Lotto> lottoTickets = LongStream.range(0, ticketNum)
+                .mapToObj(i -> generate())
                 .collect(Collectors.toList());
 
         Output.printTickets(lottoTickets, ticketNum);
 
         return lottoTickets;
     }
-
+    public static Lotto generate(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
     public static void judgeGrade(LottoGame lottoGame, Player player) {
         Lotto winningNum = lottoGame.getWinningNum();
         Integer bonusNum = lottoGame.getBonusNum();
@@ -33,8 +33,6 @@ public class LottoMachine {
         List<Grade> grades = lottoTickets.stream().map(
                 ticket -> Grade.judge(winningNum.matchNumbers(ticket), ticket.matchBonusNum(bonusNum))
         ).toList();
-
-        System.out.println(grades);
 
         grades.stream()
                 .filter(grade -> grade != Grade.NOTHING)

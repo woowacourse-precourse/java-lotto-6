@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import lotto.service.Execute;
-import lotto.service.LottoMachine;
-
 import java.util.List;
 
 public class Player {
@@ -13,7 +10,7 @@ public class Player {
     public Player(Asset asset){
         this.asset = asset;
         this.state = new State();
-        this.lottoTickets = LottoMachine.buyLotto(asset.getMoney());
+        this.lottoTickets = LottoMachine.issuedLotto(asset.getMoney());
     }
 
     public List<Lotto> getLottoTickets(){

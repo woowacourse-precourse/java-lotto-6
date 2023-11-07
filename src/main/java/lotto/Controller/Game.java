@@ -3,10 +3,10 @@ package lotto.Controller;
 import camp.nextstep.edu.missionutils.*;
 import java.util.List;
 import lotto.*;
-import lotto.Domain.Budget;
-import lotto.Domain.Ticket;
+//import lotto.Domain.Budget;
+//import lotto.Domain.Ticket;
 import lotto.Domain.*;
-import lotto.Domain.Lotto_Number;
+//import lotto.Domain.Lotto_Number;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -43,13 +43,16 @@ public class Game{
 		Lotto_Number lotto_number = new Lotto_Number();
 		OutputView.Print_Bonus_Input_Message();
 		lotto_number.Bonus_number();
+		//로또계산//
+		tickets.Win_Tickets(lotto_number.get_Lotto(), lotto_number.get_Bonus());
 		//총 통계//
+		Roe roe = new Roe(tickets.get_Wins(),tickets.get_Purchase_Number());
 		OutputView.Print_Stats_Message();
-		OutputView.Print_Three_Message(1);
-		OutputView.Print_Four_Message(1);
-		OutputView.Print_Five_Message(1);
-		OutputView.Print_Bonus_Message(1);
-		OutputView.Print_Six_Message(1);
+		OutputView.Print_RankFive_Message(1);
+		OutputView.Print_RankFour_Message(1);
+		OutputView.Print_RankThree_Message(1);
+		OutputView.Print_RankTwo_Message(1);
+		OutputView.Print_RankOne_Message(1);
 		OutputView.Print_Roe_Message(a);
 	}
 }

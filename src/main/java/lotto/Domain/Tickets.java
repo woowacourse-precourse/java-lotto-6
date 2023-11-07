@@ -32,4 +32,12 @@ public class Tickets{
 			Win_count.add(tickets.get(i).getWin());
 		}
 	}
+	
+	public List<Integer> get_Wins(){
+		return Win_count;
+	}
+	public Integer get_Purchase_Number(){
+		return Purchase_Number;
+	}
+	}
 }

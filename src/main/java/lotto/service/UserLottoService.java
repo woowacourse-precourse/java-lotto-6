@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LottoService {
+public class UserLottoService {
     public Lotto stringToLotto(String input) {
         String[] inputArray = input.split(",");
         List<Integer> lottoNums = new ArrayList<>();
-        for(String str : Arrays.asList(inputArray)) {
+        for (String str : Arrays.asList(inputArray)) {
             lottoNums.add(Integer.parseInt(str));
         }
 
-      return new Lotto(lottoNums);
+        return new Lotto(lottoNums);
     }
 }

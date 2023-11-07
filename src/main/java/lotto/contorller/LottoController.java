@@ -2,14 +2,14 @@ package lotto.contorller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.service.LottoService;
+import lotto.service.UserLottoService;
 
 public class LottoController {
 
     int amount;
     int bonusNum;
     Lotto lotto;
-    private final LottoService lottoService = new LottoService();
+    private final UserLottoService lottoService = new UserLottoService();
     public void getLottoInput() {
         String lottoInput = Console.readLine();
         lotto = lottoService.stringToLotto(lottoInput);
@@ -23,5 +23,9 @@ public class LottoController {
     public void getBonusNumInput() {
         String bonusNumInput = Console.readLine();
         bonusNum = Integer.parseInt(bonusNumInput);
+    }
+
+    public void start() {
+
     }
 }

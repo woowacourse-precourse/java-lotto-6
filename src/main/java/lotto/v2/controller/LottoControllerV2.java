@@ -9,12 +9,12 @@ import lotto.v1.view.LottoViewV1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoController {
+public class LottoControllerV2 {
     private static final int LOTTO_PRICE = 1000;
     private final LottoMachineV1 lottoMachine;
     private final LottoViewV1 lottoView;
 
-    public LottoController(LottoMachineV1 lottoMachine, LottoViewV1 lottoView) {
+    public LottoControllerV2(LottoMachineV1 lottoMachine, LottoViewV1 lottoView) {
         this.lottoMachine = lottoMachine;
         this.lottoView = lottoView;
     }

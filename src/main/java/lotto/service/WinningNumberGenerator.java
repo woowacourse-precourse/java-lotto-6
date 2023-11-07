@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.controller.InputController;
 import lotto.domain.WinningNumbers;
 import lotto.exception.NumberValidator;
-import lotto.util.ErrorMessage;
 
 public class WinningNumberGenerator {
 
@@ -18,7 +17,7 @@ public class WinningNumberGenerator {
         Integer bonusNumber;
         while(true){
             try{
-                bonusNumber = inputBonusNumber();
+                bonusNumber = InputController.inputBonusNumber();
                 NumberValidator.validate(bonusNumber, winningNumbers);
                 break;
             }catch(IllegalArgumentException e){}
@@ -30,35 +29,11 @@ public class WinningNumberGenerator {
         List<Integer> winningNumbers;
         while(true){
             try{
-                winningNumbers = inputWinningNumber();
+                winningNumbers = InputController.inputWinningNumber();
                 NumberValidator.validate(winningNumbers);
                 break;
             }catch(IllegalArgumentException e){}
         }
         return winningNumbers;
-    }
-
-    private List<Integer> inputWinningNumber() throws IllegalArgumentException {
-        List<Integer> winningNumber;
-
-        try {
-            winningNumber = InputController.inputWinningNumber();
-        } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.ERROR_INPUT_NOT_NUMBER_MESSAGE);
-            throw new IllegalArgumentException();
-        }
-        return winningNumber;
-    }
-
-    private Integer inputBonusNumber() throws IllegalArgumentException {
-        Integer bonusNumber;
-
-        try {
-            bonusNumber = InputController.inputBonusNumber();
-        } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.ERROR_INPUT_NOT_NUMBER_MESSAGE);
-            throw new IllegalArgumentException();
-        }
-        return bonusNumber;
     }
 }

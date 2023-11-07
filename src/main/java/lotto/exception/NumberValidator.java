@@ -48,7 +48,7 @@ public class NumberValidator {
         }
     }
 
-    private static void validateRange(int bonusNumber) {
+    private static void validateRange(int bonusNumber) throws IllegalArgumentException {
         if (isInRange(bonusNumber)) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_NUMBER_IN_RANGE_MESSAGE);
             throw new IllegalArgumentException();

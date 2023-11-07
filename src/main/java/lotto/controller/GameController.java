@@ -46,9 +46,13 @@ public class GameController {
     }
 
     private int parseLottoCount(int customerPrice) throws IllegalArgumentException{
-        if (customerPrice % LottoValues.LOTTO_PRICE != 0) {
+        if (canChangeCountByLottoPrice(customerPrice)) {
             throw new IllegalArgumentException();
         }
         return customerPrice / LottoValues.LOTTO_PRICE;
+    }
+
+    private static boolean canChangeCountByLottoPrice(int customerPrice) {
+        return (customerPrice % LottoValues.LOTTO_PRICE != 0) || (customerPrice == 0);
     }
 }

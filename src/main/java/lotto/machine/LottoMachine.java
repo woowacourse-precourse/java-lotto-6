@@ -1,0 +1,44 @@
+package lotto.machine;
+
+import lotto.constant.Prize;
+import lotto.lotto.controller.LottoController;
+import lotto.statistics.controller.StatisticsController;
+import lotto.view.controller.ViewController;
+
+import java.util.List;
+
+public class LottoMachine {
+
+    private final ViewController viewController;
+    private final LottoController lottoController;
+    private int purchaseAmount;
+    private List<Integer> winningNumbers;
+
+    public LottoMachine(ViewController viewController, LottoController lottoController) {
+        this.viewController = viewController;
+        this.lottoController = lottoController;
+        start();
+    }
+
+    public void start() {
+        // 구매 금액 입력
+        setPurchaseAmount(viewController.inputPurchaseAmount());
+        // 랜덤 로또 발행
+//        lottoController.createRandomLottos(getPurchaseAmount()/ Prize.UNIT.getPrize());
+        // 발행된 로또 출력
+//        viewController.printRandomLottos(lottoController.getRandomLottos());
+        // 당첨 번호 입력
+
+        // 보너스 번호 입력 및 저장
+
+        // 번호 비교
+
+        // 당첨 통계 생성
+
+        // 당첨 통계 출력
+    }
+
+    public void setPurchaseAmount(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
+}

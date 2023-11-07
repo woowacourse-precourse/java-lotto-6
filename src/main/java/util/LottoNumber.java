@@ -3,15 +3,15 @@ package util;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
-import lotto.LottoNumberBounds;
+import lotto.LottoPrinciples;
 
 public class LottoNumber {
 
     public static List<Integer> makeLottoNumbers() {
         List<Integer> lottoNumberList = Randoms.pickUniqueNumbersInRange(
-                LottoNumberBounds.MIN_NUMBER.getNumber(),
-                LottoNumberBounds.MAX_NUMBER.getNumber(),
-                LottoNumberBounds.LIMIT_NUMBER.getNumber()
+                LottoPrinciples.MIN_NUMBER.getNumber(),
+                LottoPrinciples.MAX_NUMBER.getNumber(),
+                LottoPrinciples.LIMIT_NUMBER.getNumber()
         );
         sortedLottoNumbers(lottoNumberList);
         return lottoNumberList;

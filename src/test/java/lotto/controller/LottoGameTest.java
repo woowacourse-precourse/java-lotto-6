@@ -8,10 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -33,30 +30,30 @@ class LottoGameTest {
     @Test
     @DisplayName("입력 금액에 맞는 수의 로또 티켓이 발행되는지 테스트")
     void checkCorrectNumberOfTicketsBasedOnPurchaseAmount() {
-        LottoGame lottoGame = new LottoGame();
-        int purchaseAmount = 5000;
-        List<Lotto> issuedLottos = lottoGame.purchaseLottos(purchaseAmount);
+        LottoGame lottoGame = new LottoGame(5000);
+        List<Lotto> issuedLottos = lottoGame.getRandomLottos(5);
         assertThat(issuedLottos.size()).isEqualTo(5);
-    }
 
+    }
     @ParameterizedTest
     @MethodSource("lottoMatchArguments")
     @DisplayName("올바른 당첨 결과가 나오는지 테스트")
     void returnCorrectRankForLottoMatches(Lotto userLotto, Rank expectedRank, int bonusNumber) {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoGame lottoGame = new LottoGame(1000);
 
-        Rank result = userLotto.calculateMatchRank(winningLotto, bonusNumber);
+        List<Rank> result = lottoGame.checkRanks(List.of(userLotto), winningLotto, bonusNumber);
 
-        assertEquals(expectedRank, result);
+        assertEquals(expectedRank, result.get(0));
     }
 
     @Test
     @DisplayName("수익률 계산이 올바르게 이루어지는지 테스트")
     void calculateEarningRateCorrectly() {
-        int purchaseAmount = 1000;
-        Rank prizeResult = Rank.THREE;
-        LottoGame lottoGame = new LottoGame();
-        double earningRate = lottoGame.calculateEarningRate(purchaseAmount, prizeResult);
-        assertThat(earningRate).isEqualTo(20.0);
+        int purchaseAmount = 8000;
+        List<Rank> rankResults = new ArrayList<>(Collections.singleton(Rank.THREE));
+        LottoGame lottoGame = new LottoGame(purchaseAmount);
+        double earningRate = lottoGame.calculateEarningRate(purchaseAmount, rankResults);
+        assertThat(earningRate).isEqualTo(62.5);
     }
 }

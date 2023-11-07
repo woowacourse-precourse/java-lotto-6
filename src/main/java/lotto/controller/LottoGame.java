@@ -23,6 +23,7 @@ public class LottoGame {
         LottoUI.printRandomLottos(lottos, lottoCnt);
         Lotto winningLotto = LottoUI.getWinningLotto();
         int bonusNum = LottoUI.getBonusNumber(winningLotto);
+        List<Rank> ranks = checkRanks(lottos, winningLotto, bonusNum);
     }
 
     public List<Lotto> getRandomLottos(int lottoCnt) {
@@ -31,5 +32,19 @@ public class LottoGame {
             lottos.add(Lotto.generateRandomLotto());
         }
         return lottos;
+    }
+
+    public List<Rank> checkRanks(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+        List<Rank> ranks = new ArrayList<>();
+        for(Lotto userLotto : userLottos){
+            int matchCount = getMatchCount(userLotto.getNumbers(), winningLotto.getNumbers());
+            boolean matchBonus = winningLotto.getNumbers().contains(bonusNumber);
+            ranks.add(Rank.valueOf(matchCount, matchBonus));
+        }
+        return ranks;
+    }
+
+    private int getMatchCount(List<Integer> userNumbers, List<Integer> winningNumbers) {
+        return (int) userNumbers.stream().filter(winningNumbers::contains).count();
     }
 }

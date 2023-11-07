@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +17,21 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public int matchCount(Lotto other) {
+        Set<Integer> matchNumbers = new HashSet<>(this.numbers);
+        matchNumbers.retainAll(other.numbers);
+        return matchNumbers.size();
+    }
+
+    public Set<Integer> getNumbers() {
+        return Collections.unmodifiableSet(new HashSet<>(numbers));
     }
 
     // TODO: 추가 기능 구현

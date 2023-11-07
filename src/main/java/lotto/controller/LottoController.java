@@ -22,18 +22,19 @@ public class LottoController {
     }
 
     public void playGame() {
-        UserMoney userMoney = lottoService.initUserMoney(inputUserMoney());
-        WinningLottoNumbers winningLottoNumbers = lottoService.initWinningLottoNumbers(inputWinningLottoNumbers());
-        BonusNumber bonusNumber = lottoService.initBonusNumber(winningLottoNumbers, inputBonusNumber());
+        UserMoney userMoney = initUserMoney();
+        WinningLottoNumbers winningLottoNumbers = initWinningLottoNumbers();
+        BonusNumber bonusNumber = initBonusNumber(winningLottoNumbers);
         endGame();
     }
 
-    private long inputUserMoney() {
+    private UserMoney initUserMoney() {
         try {
-            return askToInsertUserMoney();
+            long userMoney = askToInsertUserMoney();
+            return lottoService.initUserMoney(userMoney);
         } catch (LottoInputException e) {
             outputView.printErrorMessage(e.getMessage());
-            return inputUserMoney();
+            return initUserMoney();
         }
     }
 
@@ -42,12 +43,13 @@ public class LottoController {
         return inputView.getUserMoney();
     }
 
-    private List<Long> inputWinningLottoNumbers() {
+    private WinningLottoNumbers initWinningLottoNumbers() {
         try {
-            return askToInsertWinningLottoNumbers();
+            List<Long> winningLottoNumbers = askToInsertWinningLottoNumbers();
+            return lottoService.initWinningLottoNumbers(winningLottoNumbers);
         } catch (LottoInputException e) {
             outputView.printErrorMessage(e.getMessage());
-            return inputWinningLottoNumbers();
+            return initWinningLottoNumbers();
         }
     }
 
@@ -56,12 +58,13 @@ public class LottoController {
         return inputView.getWinningLottoNumbers();
     }
 
-    private long inputBonusNumber() {
+    private BonusNumber initBonusNumber(WinningLottoNumbers winningLottoNumbers) {
         try {
-            return askToInsertBonusNumber();
+            long bonusNumber = askToInsertBonusNumber();
+            return lottoService.initBonusNumber(winningLottoNumbers, bonusNumber);
         } catch (LottoInputException e) {
             outputView.printErrorMessage(e.getMessage());
-            return inputBonusNumber();
+            return initBonusNumber(winningLottoNumbers);
         }
     }
 

@@ -12,45 +12,29 @@ public class WinningLottoNumbers {
         this.winningLottoNumbers = winningLottoNumbers;
     }
 
-    public static WinningLottoNumbers from(final List<String> numbers) {
+    public static WinningLottoNumbers from(final List<Long> numbers) {
         validate(numbers);
-        return new WinningLottoNumbers(generateWinningLottoNumbers(numbers));
+        return new WinningLottoNumbers(makeWinningLottoNumbers(numbers));
     }
 
-    private static void validate(final List<String> numbers) {
-        isEachInputNumericType(numbers);
+    private static void validate(final List<Long> numbers) {
         isEachNumberUnique(numbers);
     }
 
-    private static void isEachInputNumericType(final List<String> numbers) {
-        for (String number : numbers) {
-            throwExceptionIfNotNumeric(number);
-        }
-    }
-
-    private static void throwExceptionIfNotNumeric(String number) {
-        try {
-            Long.parseLong(number);
-        } catch (NumberFormatException e) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBER_IS_NOT_NUMERIC_TYPE);
-        }
-    }
-
-    private static void isEachNumberUnique(final List<String> numbers) {
+    private static void isEachNumberUnique(final List<Long> numbers) {
         if (isSizeLessThanSix(numbers)) {
             throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_ARE_DUPLICATED);
         }
     }
 
-    private static boolean isSizeLessThanSix(final List<String> numbers) {
+    private static boolean isSizeLessThanSix(final List<Long> numbers) {
         return numbers.stream()
                 .distinct()
                 .count() < LottoConstant.LOTTO_ITEM_COUNT.getValue();
     }
 
-    private static List<LottoNumber> generateWinningLottoNumbers(final List<String> numbers) {
+    private static List<LottoNumber> makeWinningLottoNumbers(List<Long> numbers) {
         return numbers.stream()
-                .map(Long::valueOf)
                 .map(LottoNumber::from)
                 .toList();
     }
@@ -58,5 +42,4 @@ public class WinningLottoNumbers {
     public List<LottoNumber> getWinningLottoNumbers() {
         return this.winningLottoNumbers;
     }
-
 }

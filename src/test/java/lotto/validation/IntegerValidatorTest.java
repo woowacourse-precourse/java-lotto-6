@@ -129,4 +129,42 @@ public class IntegerValidatorTest {
 
     }
 
+    @Test
+    public void 두_정수의_합이_정수범위를_벗어나면_예외발생() {
+        // Given
+        int integer1 = 1200000000;
+        int integer2 = 1000000000;
+
+        // When && Then
+        assertThatThrownBy(() -> IntegerValidator.validatePlusRange(
+                integer1, integer2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정수 범위를 벗어난 값은 더할 수 없습니다.");
+    }
+
+    @Test
+    public void 두_정수의_합이_정수범위를_벗어나지_않으면_정상통과_양수값() {
+        // Given
+        int integer1 = 2147483646;
+        int integer2 = 1;
+
+        // When
+        IntegerValidator.validatePlusRange(integer1, integer2);
+
+        // Then
+
+    }
+
+    @Test
+    public void 두_정수의_합이_정수범위를_벗어나지_않으면_정상통과_음수값() {
+        // Given
+        int integer1 = -2147483647;
+        int integer2 = -1;
+
+        // When
+        IntegerValidator.validatePlusRange(integer1, integer2);
+
+        // Then
+
+    }
 }

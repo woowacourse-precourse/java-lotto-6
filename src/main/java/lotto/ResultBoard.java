@@ -17,6 +17,7 @@ import static lotto.winning.Prize.FOURTH;
 import static lotto.winning.Prize.FIFTH;
 import static lotto.winning.Tally.COUNT;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.HashMap;
 import java.util.List;
 import lotto.purchasing.Generator;
@@ -44,6 +45,7 @@ public class ResultBoard implements Showable {
         this.bonusNumber = new BonusNumber();
         this.prizeRankChecker = new PrizeRankChecker();
         this.analyst = new Analyst();
+        Console.close();
     }
 
     @Override

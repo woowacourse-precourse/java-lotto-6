@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.purchasing.PurchaseAmount;
 
 public class Application {
@@ -8,7 +7,5 @@ public class Application {
         ResultBoard resultBoard = new ResultBoard(new PurchaseAmount());
 
         resultBoard.show();
-
-        Console.close();
     }
 }

@@ -29,12 +29,13 @@ public class InputView {
         String input = Console.readLine();
         System.out.println();
         List<String> inputValue = parseWinningNumber(input);
+        return convertWinningNumber(inputValue);
 
         // refactor 통해 삭제 예정
-        return Stream.of(input.split(","))
-                .map(Integer::parseInt)
-                .peek(num -> validateNumeric(num.toString()))
-                .collect(Collectors.toList());
+//        return Stream.of(input.split(","))
+//                .map(Integer::parseInt)
+//                .peek(num -> validateNumeric(num.toString()))
+//                .collect(Collectors.toList());
     }
 
     public Integer getBonusNumber() {
@@ -47,6 +48,15 @@ public class InputView {
 
     private List<String> parseWinningNumber(String input) {
         return new ArrayList<>(Arrays.asList(input.split(SEPARATOR)));
+    }
+
+    private List<Integer> convertWinningNumber(List<String> inputValue) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String input : inputValue) {
+            int number = Integer.parseInt(input);
+            numbers.add(number);
+        }
+        return numbers;
     }
 
     private static void validateNumeric(String input) {

@@ -36,5 +36,13 @@ public class LottoServiceTest {
         }
     }
 
+    @DisplayName("입력받은 금액이 횟수로 정상적으로 변경되는가?")
+    @Test
+    void testInitMoneyToCount() {
+        int count = lottoService.initMoneyToCount("14000");
+
+        assertEquals(14, count);
+    }
+
 
 }

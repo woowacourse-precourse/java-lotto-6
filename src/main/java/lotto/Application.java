@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -67,6 +68,23 @@ public class Application {
         }
     }
 
+    private static boolean isDuplicated(List<Integer> numbers, Integer number){
+        try {
+            Set<Integer> setNumbers = new HashSet<>(numbers);
+            setNumbers.add(number);
+
+            if (setNumbers.size() != numbers.size() + 1) {
+                throw new IllegalArgumentException();
+            }
+            
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 번호가 중복되지 않도록 입력해주세요.");
+            return true;
+        }
+
+    }
+
     private static List<Integer> inputPlayerNumbers(){
         String[] sNumbers = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<Integer>();
@@ -91,13 +109,31 @@ public class Application {
 
     }
 
-    private static Integer inputPlayerBonusNumber(){
+    private static Integer inputPlayerBonusNumber(List<Integer> numbers){
         String sNumber = Console.readLine();
 
         if (isLottoNumber(sNumber)) {
-            return Integer.parseInt(sNumber);
+            Integer number = Integer.parseInt(sNumber);
+            if (!isDuplicated(numbers, number))
+                return number;
         }
+        
         return -1;
+    }
+
+    private static void printResult(int[] result, int tickets) {
+        double revenue = 0;
+        double price = tickets*1000;
+        revenue = 5000 * result[0] + 50000 * result[1] + 1500000 * result[2] + 30000000 * result[3] + 2000000000 * result[4];
+
+        System.out.printf("3개 일치 (5,000원) - %d개\n", result[0]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", result[1]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", result[2]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", result[3]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", result[4]);
+
+        System.out.printf("총 수익률은 %.1f", (revenue / price) * 100);
+        System.out.println("%입니다.");
     }
     public static void main(String[] args) {
         
@@ -125,30 +161,37 @@ public class Application {
         do{
             playerNumbers = inputPlayerNumbers();
         } while(playerNumbers.isEmpty());
+        Collections.sort(playerNumbers);
         
         System.out.println("\n보너스 번호를 입력해 주세요.");
         Integer playerBonusNumber;
         do {
-            playerBonusNumber = inputPlayerBonusNumber();
+            playerBonusNumber = inputPlayerBonusNumber(playerNumbers);
         } while(playerBonusNumber < 0);
 
         int[] result = {0, 0, 0, 0, 0};
         for (Lotto l : lottos) {
             int count = l.run(playerNumbers);
             
-            if (count == 5) {
-                result[count - 3 + l.runBonus(playerBonusNumber)] ++;
+            count -= 3;
+            if (count < 0) {
+                continue;
             }
-            else if (count == 6) {
-                result[count - 2] ++;
+
+            if (count == 2) {
+                result[count + l.runBonus(playerBonusNumber)] ++;
+            }
+            else if (count == 3) {
+                result[count + 1] ++;
             }
             else {
-                result[count - 3] ++;
+                result[count] ++;
             }
         }
 
-        
-
+        System.out.println("\n당첨 통계");        
+        System.out.println("---");
+        printResult(result, tickets);
 
     }
 }

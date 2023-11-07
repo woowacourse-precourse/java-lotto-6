@@ -32,7 +32,7 @@ public class Winning {
     }
 
     public void saveBonusNumber(String readLine) {
-        validateBonusNumber(readLine);
+        Integer bonusNumber = validateBonusNumber(readLine);
         this.bonusNumber = bonusNumber;
     }
 
@@ -72,11 +72,12 @@ public class Winning {
         }
     }
 
-    private void validateBonusNumber(String readLine) {
+    private Integer validateBonusNumber(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
         Integer bonusNumber = translateToNumber(noEmptyReadLine);
         checkBoundary(bonusNumber);
         checkExist(bonusNumber);
+        return bonusNumber;
     }
 
     private Integer translateToNumber(String readLine) {

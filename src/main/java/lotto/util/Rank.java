@@ -23,4 +23,9 @@ public enum Rank {
                 .findFirst()
                 .orElse(null);
     }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
 }

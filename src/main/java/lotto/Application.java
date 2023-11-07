@@ -3,6 +3,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -20,15 +21,41 @@ public class Application {
     }
 
     public static void playLotto() {
-        int purChaseAmount = inputPurchaseAmount();
-        System.out.println(purChaseAmount);
+        int purchaseAmount = inputPurchaseAmount();
+        System.out.println(purchaseAmount);
 
         List<Integer> lottoNumbers = inputLottoNumbers();
         for (Integer lottoNumber : lottoNumbers) {
             System.out.print(lottoNumber + " ");
         }
+        System.out.println();
         int bonusNumber = inputBonusNumber(lottoNumbers);
         System.out.println(bonusNumber);
+
+        List<Lotto> lotties = createLotties(purchaseAmount);
+
+        for (Lotto lotto : lotties) {
+            lotto.printLottoNumbers();
+        }
+    }
+
+    public static List<Lotto> createLotties(final int purchaseAmount) {
+        int numOfLotto = (int)(purchaseAmount / PURCHASE_AMOUNT_UNIT);
+
+        List<Lotto> lotties = new ArrayList<>();
+        for (int i = 0; i < numOfLotto; i++) {
+            lotties.add(new Lotto(getLottoNumbers()));
+        }
+
+        return lotties;
+    }
+
+    private static List<Integer> getLottoNumbers() {
+        return sortLottoNumbers(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+    private static List<Integer> sortLottoNumbers(final List<Integer> lottoNumbers) {
+        return lottoNumbers.stream().sorted().collect(Collectors.toList());
     }
 
     public static int inputPurchaseAmount() {

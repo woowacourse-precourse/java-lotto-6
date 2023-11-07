@@ -3,20 +3,21 @@ package lotto.model;
 import lotto.model.enums.Prize;
 import lotto.model.enums.Rank;
 
+import java.util.List;
+
 public class LottoPrizeManager {
-    private LottoRankResult rankResult;
     private LottoPrizeResult prizeResult;
 
-    public LottoPrizeManager(LottoRankResult rankResult, LottoPrizeResult prizeResult) {
-        this.rankResult = rankResult;
+    public LottoPrizeManager(LottoPrizeResult prizeResult) {
         this.prizeResult = prizeResult;
     }
 
-    public void calculateTotalPrize() {
-        for (int rank = Rank.RANK1.getRank(); rank <= Rank.RANK5.getRank(); rank++) {
+    public void calculateTotalPrize(List<Integer> rankResult) {
+        int rank = Rank.RANK1.getRank();
+        for (int count : rankResult) {
             long prize = getPrizeOfRank(rank);
-            int rankCount = rankResult.getCount(rank);
-            prizeResult.addTotalPrize(prize * rankCount);
+            prizeResult.addTotalPrize(prize * count);
+            rank++;
         }
     }
 

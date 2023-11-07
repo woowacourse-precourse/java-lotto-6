@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 import lotto.validation.LottoValidator;
 
-public class LottoWinningNumbers {
+public class WinningLotto {
 	private List<Integer> winningNumbers;
 
-	public LottoWinningNumbers(String input) {
+	public WinningLotto(String input) {
 		List<Integer> numbers = convertAndvalidateLottos(input);
 		this.winningNumbers = numbers;
 	}

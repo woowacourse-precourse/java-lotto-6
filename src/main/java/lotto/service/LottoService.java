@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.domain.LottoWinningNumbers;
+import lotto.domain.WinningLotto;
 import lotto.domain.Lottos;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
@@ -15,7 +15,7 @@ import lotto.view.OutputView;
 
 public class LottoService {
 	private Lottos lottos;
-	private LottoWinningNumbers lottoWinningNumbers;
+	private WinningLotto lottoWinningNumbers;
 	private Bonus bonus;
 
 	public void createLotto(int numbers) {
@@ -48,7 +48,7 @@ public class LottoService {
 	private void setUpWinningLotto() {
 		try {
 			InputView.askWinningNumbers();
-			lottoWinningNumbers = new LottoWinningNumbers(Console.readLine());
+			lottoWinningNumbers = new WinningLotto(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			setUpWinningLotto();

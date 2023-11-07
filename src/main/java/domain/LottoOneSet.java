@@ -34,7 +34,6 @@ public class LottoOneSet {
 
     private List<Integer> generateRandomNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_GAME_START_NUMBER, LOTTO_GAME_END_NUMBER, LOTTO_GAME_NUMBER_SIZE);
-        System.out.println(numbers);
         return numbers;
     }
 

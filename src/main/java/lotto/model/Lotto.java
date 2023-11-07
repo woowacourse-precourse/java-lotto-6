@@ -1,7 +1,5 @@
 package lotto.model;
 
-import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
-
 import java.util.List;
 import lotto.constant.LottoRank;
 import lotto.validators.LottoValidator;
@@ -15,9 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != TOTAL_CHOICE_NUMBER.getValue()) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator.validateNumbersLength(numbers);
+        LottoValidator.validateNumbersRange(numbers);
         LottoValidator.validateDuplicatedNumbers(numbers);
     }
 

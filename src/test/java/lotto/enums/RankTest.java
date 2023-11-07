@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RankTest {
 
@@ -76,6 +75,47 @@ class RankTest {
             }
         }
         assertThat(newRanks2.get(0)).isEqualTo(Rank.FIFTH);
+    }
+
+    private int matchCount;
+    private boolean containBonus;
+    @DisplayName("매칭 실험4 stream 적용")
+    @Test
+    void match4() {
+        matchCount = 5;
+        containBonus = true;
+
+        assertThat(Arrays.stream(Rank.values())
+                .filter(rank -> rank.getMatchedCount() == matchCount)
+                .filter(rank -> rank.containsBonus() == containBonus || !rank.containsBonus())
+                .findFirst()
+                .orElse(null))
+                .isEqualTo(Rank.SECOND);
+    }
+
+    @Test
+    void match5() {
+        matchCount = 5;
+        containBonus = false;
+
+        assertThat(Arrays.stream(Rank.values())
+                .filter(rank -> rank.getMatchedCount() == matchCount)
+                .filter(rank -> rank.containsBonus() == containBonus || !rank.containsBonus())
+                .findFirst()
+                .orElse(null))
+                .isEqualTo(Rank.THIRD);
+    }
+    @Test
+    void match6() {
+        matchCount = 4;
+        containBonus = true;
+
+        assertThat(Arrays.stream(Rank.values())
+                .filter(rank -> rank.getMatchedCount() == matchCount)
+                .filter(rank -> rank.containsBonus() == containBonus || !rank.containsBonus())
+                .findFirst()
+                .orElse(null))
+                .isEqualTo(Rank.FOURTH);
     }
 
     @DisplayName("순서 반대 실험")

@@ -62,9 +62,10 @@ public class LottoController {
     }
 
     private List<Lotto> generateUserLottos(int ticketCount) {
-        return IntStream.range(0, ticketCount)
+        List<Lotto> lottos = IntStream.range(0, ticketCount)
                 .mapToObj(i -> generateValidLotto())
                 .collect(Collectors.toList());
+        return List.copyOf(lottos);
     }
 
     private Lotto generateValidLotto() {

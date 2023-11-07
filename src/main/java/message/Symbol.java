@@ -9,7 +9,7 @@ public enum Symbol {
     OPEN_BRACKET("("),
     CLOSE_BRACKET(")"),
     DECIMAL_PATTERN("###,###"),
-    PERCENTAGE_PATTERN("###,###.0"),
+    PERCENTAGE_PATTERN("###,##0.0"),
     WON("원"),
     DASH("-"),
     COUNT("개");

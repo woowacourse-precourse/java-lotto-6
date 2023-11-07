@@ -4,7 +4,10 @@ import lotto.domain.LottoResultCalculation;
 import lotto.type.ResultType;
 import org.mockito.internal.matchers.Null;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class ResultController {
     LottoResultCalculation lottoResultCalculation;
@@ -24,21 +27,10 @@ public class ResultController {
     }
 
     public ResultType getRankResult(int sameNumber, boolean isBonus) {
-        if (sameNumber == 3) {
-            return ResultType.THIRD;
-        }
-        if (sameNumber == 4) {
-            return ResultType.FOURTH;
-        }
-        if (sameNumber == 5) {
-            if (isBonus) {
-                return ResultType.FIFTH_BONUS;
-            }
-        }
-        if (sameNumber == 6) {
-            return ResultType.ALL;
-        }
-        return null;
+        Optional<ResultType> resultType = Arrays.stream(ResultType.values())
+                .filter(result -> result.sameNumber() == sameNumber && result.isBonus() == isBonus)
+                .findFirst();
+        return resultType.orElse(null);
     }
 
     public ResultType getTotalResult(List<Integer> target, List<Integer> tryLotto, int bonus) {

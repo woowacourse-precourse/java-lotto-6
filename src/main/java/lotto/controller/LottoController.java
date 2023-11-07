@@ -1,11 +1,13 @@
 package lotto.controller;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.WinnerLotto;
 import lotto.repository.LottoRepository;
 import lotto.service.LottoBuyService;
+import lotto.service.LottoStatsService;
 import lotto.service.LottoWinnerService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,25 +16,30 @@ public class LottoController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LottoBuyService lottoService = new LottoBuyService();
+    private final LottoBuyService lottoBuyService = new LottoBuyService();
     private final LottoWinnerService lottoWinnerService = new LottoWinnerService();
-    private LottoRepository lottoRepository = LottoRepository.getInstance();
+    private final LottoStatsService lottoStatsService = new LottoStatsService();
+    private final LottoRepository lottoRepository = LottoRepository.getInstance();
     private WinnerLotto winnerLotto;
 
     public void buyLotto() {
         int price;
         int lottoAmount;
 
+        outputView.printRequestPurchasePrice();
         price = inputView.getLottoPrice();
-        lottoAmount = lottoService.getLottoAmount(price);
-        lottoRepository = lottoService.exchangeLotto(lottoAmount);
+        lottoAmount = lottoBuyService.getLottoAmount(price);
+        List<Lotto> lottoPaper = lottoBuyService.exchangeLotto(lottoAmount);
+        outputView.printTotalTicket(lottoAmount, lottoPaper);
     }
 
     public void setLottoWinner() {
         List<Integer> winnerNumber;
         int bonusNumber;
 
+        outputView.printRequestWinnerNumber();
         winnerNumber = inputView.getWinnerLotto();
+        outputView.printRequestBonusNumber();
         bonusNumber = inputView.getBonusNumber();
         winnerLotto = new WinnerLotto(winnerNumber, bonusNumber);
 
@@ -40,8 +47,11 @@ public class LottoController {
 
     public void endLotto() {
         List<LottoRank> rankResult = lottoWinnerService.checkRanking(winnerLotto);
-        HashMap<LottoRank, Integer> lottoResult = lottoWinnerService.setLottoResult(
-            rankResult);
+        Map<LottoRank, Integer> lottoResult = lottoWinnerService.setLottoResult(rankResult);
+        double returnRate = lottoStatsService.calculateReturnRate(lottoResult);
+        outputView.printLottoResult(lottoResult);
+        outputView.printReturnRate(returnRate);
+
 
     }
 }

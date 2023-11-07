@@ -28,7 +28,7 @@ public class InputValidator {
         try {
             userInputNumber = Integer.parseInt(userInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.REQUEST_NUMBER_RANGE.getErrorMessage());
         }
 
         return userInputNumber;
@@ -39,7 +39,8 @@ public class InputValidator {
             return price;
         }
         if (price < MINIMUM_PRICE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                ErrorMessage.REQUEST_MORE_THAN_MINIMUM_PRICE.getErrorMessage());
         }
 
         return price;
@@ -50,7 +51,8 @@ public class InputValidator {
             return price;
         }
         if (price % MINIMUM_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                ErrorMessage.REQUEST_PRICE_STANDARD.getErrorMessage());
         }
 
         return price;
@@ -69,7 +71,7 @@ public class InputValidator {
             return;
         }
         if (bonusNumber < LOTTO_RANGE_START || bonusNumber > LOTTO_RANGE_END) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.REQUEST_NUMBER_RANGE.getErrorMessage());
         }
     }
 
@@ -92,7 +94,7 @@ public class InputValidator {
             winnerLotto = Arrays.stream(inputWinner).boxed()
                 .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.REQUEST_INT_LIST.getErrorMessage());
         }
         return winnerLotto;
     }

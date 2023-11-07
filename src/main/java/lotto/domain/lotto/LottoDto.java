@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoDto {
 
-    private List<Integer> lottoNumbers;
+    private final List<Integer> lottoNumbers;
 
     public LottoDto(List<Integer> numbers) {
         Collections.sort(numbers);
@@ -13,7 +13,6 @@ public class LottoDto {
     }
 
     public List<Integer> getNumbers() {
-        lottoNumbers = Collections.unmodifiableList(lottoNumbers);
         return lottoNumbers;
     }
 }

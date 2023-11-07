@@ -43,7 +43,7 @@ public class Lotto {
     private void checkDuplicate(List<Integer> numbers) {
         List<Integer> nonDuplicate = numbers.stream().distinct().toList();
 
-        if (nonDuplicate != numbers) {
+        if (nonDuplicate.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

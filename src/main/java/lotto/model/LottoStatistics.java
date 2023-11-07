@@ -32,15 +32,15 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
         }
     }
 
+    private final int DEFAULT_VALUE = 0;
     private final HashMap<PrizeInformation, Integer> lottoStatistics;
     public final PrizeInformation[] winningInformation = PrizeInformation.values();
 
     public LottoStatistics() {
         this.lottoStatistics = new HashMap<>();
-        int defaultValue = 0;
 
         for (PrizeInformation rank : winningInformation) {
-            lottoStatistics.put(rank, defaultValue);
+            lottoStatistics.put(rank, DEFAULT_VALUE);
         }
     }
 
@@ -56,16 +56,17 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
 
 
     public double calculateLottoProfit(int purchaseAmount) {
+        final int percentageCoefficient = 100;
         int winningAmount = sumWinningAmount();
 
         double profit;
-        profit = winningAmount / purchaseAmount;
+        profit = winningAmount / purchaseAmount * percentageCoefficient;
 
         return profit;
     }
 
     private int sumWinningAmount() {
-        int sum = 0;
+        int sum = DEFAULT_VALUE;
         Set<Entry<PrizeInformation, Integer>> ranks = lottoStatistics.entrySet();
         for (Entry<PrizeInformation, Integer> singleRank : ranks) {
             int prizeAmount = singleRank.getKey().prizeAmount;

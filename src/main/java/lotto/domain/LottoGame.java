@@ -13,9 +13,9 @@ public class LottoGame {
 
     private final Lottos lottos;
     private final WinningLotto winningLotto;
-    private final Amount purchasePrice;
+    private final LottoAmount purchasePrice;
 
-    public LottoGame(Lottos lottos, WinningLotto winningLotto, Amount purchasePrice) {
+    public LottoGame(Lottos lottos, WinningLotto winningLotto, LottoAmount purchasePrice) {
         this.lottos = lottos;
         this.winningLotto = winningLotto;
         this.purchasePrice = purchasePrice;

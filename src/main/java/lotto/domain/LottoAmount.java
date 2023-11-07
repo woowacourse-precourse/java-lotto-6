@@ -2,14 +2,14 @@ package lotto.domain;
 
 import lotto.ErrorMessage;
 
-public class Amount {
+public class LottoAmount {
 
     private static final int MAX_PURCHASE = 1000000;
     public static final int LOTTO_PRICE = 1000;
 
     private final int amount;
 
-    public Amount(int amount) {
+    public LottoAmount(int amount) {
         this.validateAmount(amount);
         this.amount = amount;
     }

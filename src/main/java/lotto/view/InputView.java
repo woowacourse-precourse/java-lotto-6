@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorMessage;
-import lotto.domain.Amount;
+import lotto.domain.LottoAmount;
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.LottoNumbers;
 import lotto.domain.lotto.WinningLotto;
@@ -18,12 +18,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static Amount inputAmount() {
+    public static LottoAmount inputAmount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             int amount = toInteger(Console.readLine());
 
-            return new Amount(amount);
+            return new LottoAmount(amount);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return inputAmount();

@@ -26,12 +26,12 @@ public class LottoController {
     }
 
     private LottoGame generateLottoGame() {
-        Amount amount = InputView.inputAmount();
-        Lottos lottos = Lottos.generateByAmount(amount);
+        LottoAmount lottoAmount = InputView.inputAmount();
+        Lottos lottos = Lottos.generateByAmount(lottoAmount);
         OutputView.printPurchaseLottos(lottos.toDto());
 
         WinningLotto winningLotto = InputView.inputWinningLotto();
 
-        return new LottoGame(lottos, winningLotto, amount);
+        return new LottoGame(lottos, winningLotto, lottoAmount);
     }
 }

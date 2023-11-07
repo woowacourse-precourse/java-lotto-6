@@ -4,7 +4,7 @@ import lotto.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class AmountTest {
+class LottoAmountTest {
 
     @Test
     void 음수가_주어진_경우_예외를_발생한다() {
@@ -13,7 +13,7 @@ class AmountTest {
 
         // When
         // Then
-        Assertions.assertThatThrownBy(() -> new Amount(amount))
+        Assertions.assertThatThrownBy(() -> new LottoAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.AMOUNT_IS_NOT_POSITIVE.message());
     }
@@ -25,7 +25,7 @@ class AmountTest {
 
         // When
         // Then
-        Assertions.assertThatThrownBy(() -> new Amount(amount))
+        Assertions.assertThatThrownBy(() -> new LottoAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.AMOUNT_IS_NOT_POSITIVE.message());
     }
@@ -37,7 +37,7 @@ class AmountTest {
 
         // When
         // Then
-        Assertions.assertThatThrownBy(() -> new Amount(amount))
+        Assertions.assertThatThrownBy(() -> new LottoAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.AMOUNT_IS_NOT_DIVIDED_LOTTO_PRICE.message());
     }

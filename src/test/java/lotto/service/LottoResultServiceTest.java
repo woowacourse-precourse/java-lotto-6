@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -51,13 +52,8 @@ class LottoResultServiceTest {
         Map<LottoReward, Integer> rewardCount = lottoResultService.confirmRewardLottos(lottoResults);
 
         // then
-        assertThat(rewardCount).isNotNull();
-        assertThat(rewardCount.size()).isEqualTo(lottoResults.size());
-
-        for (Map.Entry<LottoReward, Integer> entry : rewardCount.entrySet()) {
-            assertThat(entry.getKey()).isInstanceOf(LottoReward.class);
-            assertThat(entry.getValue()).isInstanceOf(Integer.class);
-        }
+        Arrays.stream(LottoReward.values())
+                .forEach(reward -> assertThat(rewardCount.get(reward)).isEqualTo(1));
     }
 
     private List<LottoResult> createLottoResultsTestObject() {
@@ -68,6 +64,7 @@ class LottoResultServiceTest {
         lottoResults.add(new LottoResult(5, false));
         lottoResults.add(new LottoResult(4, false));
         lottoResults.add(new LottoResult(3, false));
+        lottoResults.add(new LottoResult(0, false));
 
         return lottoResults;
     }

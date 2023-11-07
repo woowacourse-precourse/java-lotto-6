@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.constant.LottoErrorMessage;
 import lotto.domain.BroadCastingStation;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
@@ -58,7 +59,19 @@ public class Program {
     }
 
     public void showResult() {
+        try {
+            validateShowState();
+        } catch (IllegalStateException e) {
+            UI.printExceptionCause(e);
+            return;
+        }
         LottoDrawResult drawResult = BroadCastingStation.drawLotto(winning, bonus);
         UI.printWinningStats(consumerLottos, drawResult);
+    }
+
+    private void validateShowState() {
+        if (consumerLottos == null || winning == null || bonus == null) {
+            throw new IllegalStateException(LottoErrorMessage.SETTING_SEQUENCE);
+        }
     }
 }

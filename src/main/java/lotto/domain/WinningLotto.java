@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.validator.LottoNumberValidator;
+import lotto.validator.NumberValidator;
 import lotto.vo.WinningLottoNumbers;
 
 public class WinningLotto {
@@ -16,9 +18,9 @@ public class WinningLotto {
     }
 
     public void addBonusNumber(String bonus_number){
-        this.lottoNumbers.add(bonus_number);
+        NumberValidator.validate(bonus_number);
+        getWinning_number().add(Integer.parseInt(bonus_number));
+        LottoNumberValidator.validate_MAX_SIZE(getWinning_number());
     }
-    public void removeBonusNumber(){
-        this.lottoNumbers.value().remove(DELETE_INDEX);
-    }
+
 }

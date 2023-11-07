@@ -29,10 +29,26 @@ public class LottoController {
     }
 
     public void startLottoGame() {
+        int purchaseAmount = getPurchaseAmount();
+        showLottoTicketNumbers(purchaseAmount);
+    }
+
+    private void showLottoTicketNumbers(int purchaseAmount) {
+        int numberOfLottoTicketsToBuy = lottoService.calculateNumberOfLottoTicketsToBuy(purchaseAmount);
+        List<Lotto> lottoList = lottoService.buyLottoTickets(purchaseAmount);
+        showLottoTickets(numberOfLottoTicketsToBuy, lottoList);
+    }
+
+    private void showLottoTickets(int numberOfLottoTicketsToBuy, List<Lotto> lottoList) {
+        outputView.showPurchasedLottoTicketsNumber(numberOfLottoTicketsToBuy);
+        outputView.showPurchasedLottoTickets(lottoList);
+    }
+
+    private int getPurchaseAmount() {
         outputView.askPurchaseAmount();
         int purchaseAmount = inputView.getPurchaseAmountFromUser();
         lottoService.validatePurchaseAmount(purchaseAmount);
-        List<Lotto> lottoList = lottoService.buyLottoTickets(purchaseAmount);
+        return purchaseAmount;
     }
 
 

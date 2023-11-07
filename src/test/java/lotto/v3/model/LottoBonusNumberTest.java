@@ -22,4 +22,17 @@ class LottoBonusNumberTest {
                 .doesNotThrowAnyException();
     }
 
+    @Test
+    @DisplayName("보너스 번호가 1보다 작을 때 예외를 던지는지 검증")
+    void testBonusNumberBelowRange() {
+        // Given
+        int invalidBonusNumber = 0;
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+
+        // When & Then
+        assertThatThrownBy(() -> new LottoBonusNumber(invalidBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 값이어야 합니다.");
+    }
+
 }

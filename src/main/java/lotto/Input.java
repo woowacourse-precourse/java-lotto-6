@@ -51,10 +51,8 @@ public class Input {
         if (inputStr.isEmpty()){
             throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
         }
-        for (int i = 0; i < inputStr.length(); i++) {
-            if (Utils.isNumeric(inputStr.charAt(i)) == false) {
-                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_CHAR.getMessage());
-            }
+        if (Utils.isNumeric(inputStr) == false) {
+            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_STR.getMessage());
         }
         if (Integer.parseInt(inputStr) % 1000 != 0){
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIED_1000.getMessage());
@@ -72,10 +70,8 @@ public class Input {
         if (inputStr.isEmpty()){
             throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
         }
-        for (int i = 0; i < inputStr.length(); i++) {
-            if (Utils.isNumeric(inputStr.charAt(i)) == false) {
-                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_CHAR.getMessage());
-            }
+        if (Utils.isNumeric(inputStr) == false){
+            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_STR.getMessage())
         }
         if (Integer.parseInt(inputStr) < 1 || 45 < Integer.parseInt(inputStr)){
             throw new IllegalArgumentException(ErrorMessage.NOT_IN_1_TO_45.getMessage());

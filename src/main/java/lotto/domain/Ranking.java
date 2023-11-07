@@ -3,12 +3,12 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Ranking {
-    FIRST(1, 6, false, "2,000,000,000"),
-    SECOND(2, 5, true, "30,000,000"),
-    THIRD(3, 5, false, "1,500,000"),
-    FOURTH(4, 4, false, "50,000"),
+    NOT_PRIZE(6, 2, false, "0"),
     FIFTH(5, 3, false, "5,000"),
-    NOT_PRIZE(6, 2, false, "0");
+    FOURTH(4, 4, false, "50,000"),
+    THIRD(3, 5, false, "1,500,000"),
+    SECOND(2, 5, true, "30,000,000"),
+    FIRST(1, 6, false, "2,000,000,000");
 
     private final Integer rank;
     private final Integer matchCount;

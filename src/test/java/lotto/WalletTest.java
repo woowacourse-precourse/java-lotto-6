@@ -4,15 +4,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Field;
-import lotto.model.Lotto;
 import lotto.model.Wallet;
-import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WalletTest {
@@ -50,9 +47,9 @@ public class WalletTest {
     @DisplayName("구입 금액이 최대금액을 넘는 경우 예외가 발생한다.")
     @Test
     void createWalletByNullMoney() {
-        Integer inputMoney = maximumPurchaseAmount + 1000;
+        int inputMoney = maximumPurchaseAmount + 1000;
 
-        assertThatThrownBy(() -> new Wallet(inputMoney.toString()))
+        assertThatThrownBy(() -> new Wallet(String.valueOf(inputMoney)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                         + maximumPurchaseAmount + "원.");

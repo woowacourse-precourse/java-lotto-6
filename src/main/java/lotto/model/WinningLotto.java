@@ -26,7 +26,8 @@ public class WinningLotto extends Lotto{
 
     private void validateNotNullBonusNumber(String bonusNumber) {
         if (bonusNumber == null) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
+                    + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
         }
     }
 

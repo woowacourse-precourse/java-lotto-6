@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningLottoTest {
@@ -60,17 +60,18 @@ public class WinningLottoTest {
 
     @DisplayName("보너스 번호가 null인 경우 예외가 발생한다.")
     @ParameterizedTest
-    @NullSource
+    @NullAndEmptySource
     void createWinningLottoByNullOrEmptyBonusNumber(String bonusNumber) {
         assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호를 입력해주세요.");
+                .hasMessageContaining("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
+                        + minLottoNumber + "~" + maxLottoNumber);
     }
 
     @DisplayName("보너스번호가 정상적으로 들어온 경우.")
     @ParameterizedTest
     @ValueSource(strings = {"1", "45"})
-    void createLottoByNormal(String bonusNumber) throws NoSuchFieldException, IllegalAccessException {
+    void createWinningLottoByNormal(String bonusNumber) throws NoSuchFieldException, IllegalAccessException {
         Lotto winningLotto = new WinningLotto("2,3,4,5,6,7", bonusNumber);
 
         Field privateField = WinningLotto.class.getDeclaredField("bonusNumber");

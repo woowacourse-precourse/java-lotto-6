@@ -89,7 +89,7 @@ public class Lotto {
         try {
             convertNumbers = Integer.parseInt(numbers);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+            throw new IllegalArgumentException("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                     + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
         }
         return convertNumbers;

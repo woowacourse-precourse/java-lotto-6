@@ -14,6 +14,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
 
     private static final String WINNING_RATE_MESSAGE = "총 수익률은 ";
+    private static final String WINNING_RATE_DECIMAL_PLACE = "%.1f";
 
     private void printWithNewLine(String s) {
         System.out.println(s);
@@ -58,6 +59,6 @@ public class OutputView {
     }
 
     public void printWinningRate(double winningRate) {
-        printWithNewLine(WINNING_RATE_MESSAGE + winningRate + "%" + UIConstant.SENTENCE_ENDING);
+        printWithNewLine(WINNING_RATE_MESSAGE + String.format(WINNING_RATE_DECIMAL_PLACE, winningRate) + "%" + UIConstant.SENTENCE_ENDING);
     }
 }

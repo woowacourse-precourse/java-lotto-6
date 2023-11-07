@@ -15,12 +15,19 @@ public class RandomNumberGenerator {
         if (list.size() <= 1) {
             return list;
         }
+        Divide dividedList = getLeftAndRight(list);
+        return merge(mergeSort(dividedList.left()), mergeSort(dividedList.right()));
+    }
 
+    private Divide getLeftAndRight(List<Integer> list) {
         int mid = list.size() / 2;
         List<Integer> left = new ArrayList<>(list.subList(0, mid));
         List<Integer> right = new ArrayList<>(list.subList(mid, list.size()));
+        Divide divideList = new Divide(left, right);
+        return divideList;
+    }
 
-        return merge(mergeSort(left), mergeSort(right));
+    private record Divide(List<Integer> left, List<Integer> right) {
     }
 
     private List<Integer> merge(List<Integer> left, List<Integer> right) {
@@ -35,14 +42,15 @@ public class RandomNumberGenerator {
             merged.add(right.get(rightIndex++));
         }
 
-        while (leftIndex < left.size()) {
-            merged.add(left.get(leftIndex++));
-        }
-
-        while (rightIndex < right.size()) {
-            merged.add(right.get(rightIndex++));
-        }
+        addRemainingValues(left, merged, leftIndex);
+        addRemainingValues(right, merged, rightIndex);
 
         return merged;
+    }
+
+    private void addRemainingValues(List<Integer> leftOrRight, List<Integer> merged, int index) {
+        while (index < leftOrRight.size()) {
+            merged.add(leftOrRight.get(index++));
+        }
     }
 }

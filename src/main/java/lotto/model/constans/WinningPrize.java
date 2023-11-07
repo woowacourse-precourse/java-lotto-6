@@ -3,55 +3,39 @@ package lotto.model.constans;
 import java.text.DecimalFormat;
 
 public enum WinningPrize {
-    FIRST_PRIZE(1, 6, 2_000_000_000),
-    SECOND_PRIZE(2, 5, 30_000_000),
-    THIRD_PRIZE(3, 5, 1_500_000),
-    FORTH_PRIZE(4, 4, 50_000),
-    FIFTH_PRIZE(5, 3, 5_000),
-    NO_PRIZE(0, 0, 0);
+    FIFTH_PRIZE(3, 5_000),
+    FORTH_PRIZE(4, 50_000),
+    THIRD_PRIZE(5, 1_500_000),
+    SECOND_PRIZE(5, 30_000_000),
+    FIRST_PRIZE(6, 2_000_000_000),
+    NO_PRIZE(0, 0);
 
 
-    private final int rank;
     private final int matchingNumbersCount;
     private final long prize;
 
-    WinningPrize(int rank, int matchingNumbersCount, long prize) {
-        this.rank = rank;
+    WinningPrize(int matchingNumbersCount, long prize) {
         this.matchingNumbersCount = matchingNumbersCount;
         this.prize = prize;
     }
 
-    public static int getRankByResult(int matchingNumbersCount, boolean matchBonusNumber) {
+    public static WinningPrize getWinningPrizeByResult(int matchingNumbersCount, boolean matchBonusNumber) {
         if (matchingNumbersCount == 5) {
             if (matchBonusNumber) {
-                return SECOND_PRIZE.rank;
+                return SECOND_PRIZE;
             }
-            return THIRD_PRIZE.rank;
+            return THIRD_PRIZE;
         }
         for (WinningPrize prize : values()) {
             if (prize.matchingNumbersCount == matchingNumbersCount) {
-                return prize.rank;
+                return prize;
             }
         }
-        return NO_PRIZE.rank;
+        return NO_PRIZE;
     }
 
-    public static long getPrizeByRank(int rank) {
-        for (WinningPrize winningPrize : values()) {
-            if (winningPrize.rank == rank) {
-                return winningPrize.prize;
-            }
-        }
-        throw new IllegalArgumentException("존재하지 않는 등수입니다.");
-    }
-
-    public static WinningPrize getWinningPrizeByRank(int rank) {
-        for (WinningPrize winningPrize : values()) {
-            if (winningPrize.rank == rank) {
-                return winningPrize;
-            }
-        }
-        throw new IllegalArgumentException("존재하지 않는 등수입니다.");
+    public long getPrize() {
+        return this.prize;
     }
 
     @Override

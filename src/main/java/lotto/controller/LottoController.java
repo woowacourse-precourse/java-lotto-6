@@ -1,8 +1,9 @@
 package lotto.controller;
 
-import java.util.List;
+import java.util.Map.Entry;
 import lotto.model.Client;
 import lotto.model.Lotto;
+import lotto.model.LottosResult;
 import lotto.model.WinningNumbers;
 import lotto.model.LottoStore;
 import lotto.model.constans.WinningPrize;
@@ -73,12 +74,19 @@ public class LottoController {
     }
 
     private void announceLottoResults(Client client, WinningNumbers winningNumbers) {
-        List<Integer> lottoResults = winningNumbers.calculateLottosResult(client.getLottos());
+        LottosResult lottoResults = winningNumbers.calculateLottosResult(client.getLottos());
         view.printLottoResultMessage();
-        for (int i = 5; i >= 1; i--) {
-            view.printLottoResult(WinningPrize.getWinningPrizeByRank(i).toString(), lottoResults.get(i));
-        }
+        printLottoResult(lottoResults);
         double rateOfReturn = client.calculateRateOfReturn(lottoResults);
         view.printRateOfReturn(rateOfReturn);
+    }
+
+    private void printLottoResult(LottosResult lottosResult) {
+        for(Entry<WinningPrize, Integer> entry: lottosResult.entrySet()) {
+            if (entry.getKey().equals(WinningPrize.NO_PRIZE)) {
+                continue;
+            }
+            view.printLottoResult(entry.getKey().toString(), entry.getValue());
+        }
     }
 }

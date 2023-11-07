@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map.Entry;
 import lotto.model.constans.WinningPrize;
 import lotto.validator.PayAmountValidator;
 import lotto.validator.Validator;
@@ -34,15 +35,15 @@ public class Client {
         return Collections.unmodifiableList(clonedLottos);
     }
 
-    private long calculateWinningPrize(List<Integer> lottoResults) {
+    private long calculateWinningPrize(LottosResult lottosResult) {
         long winningPrize = 0;
-        for (int rank = 0; rank < lottoResults.size(); rank++) {
-            winningPrize += lottoResults.get(rank) * WinningPrize.getPrizeByRank(rank);
+        for (Entry<WinningPrize, Integer> entry: lottosResult.entrySet()) {
+            winningPrize += entry.getKey().getPrize() * entry.getValue();
         }
         return winningPrize;
     }
 
-    public double calculateRateOfReturn(List<Integer> lottoResults) {
+    public double calculateRateOfReturn(LottosResult lottoResults) {
         double rateOfReturn = (double) calculateWinningPrize(lottoResults) / payAmount;
         rateOfReturn = Math.round(rateOfReturn * 1000) / 10.0;
         return rateOfReturn;

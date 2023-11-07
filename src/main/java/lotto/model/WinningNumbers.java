@@ -3,9 +3,7 @@ package lotto.model;
 import static lotto.validator.constants.ExceptionMessage.*;
 import static lotto.validator.constants.Pattern.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.constans.WinningPrize;
@@ -50,20 +48,18 @@ public class WinningNumbers {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    public List<Integer> calculateLottosResult(List<Lotto> lottos) {
-        List<Integer> lottoResults = new ArrayList<>(Collections.nCopies(WinningPrize.values().length, 0));
+    public LottosResult calculateLottosResult(List<Lotto> lottos) {
+        LottosResult lottosResult = LottosResult.create();
         for (Lotto lotto : lottos) {
-            int prizeRank = calculatePrizeRank(lotto);
-            int currentValue = lottoResults.get(prizeRank);
-            lottoResults.set(prizeRank, currentValue + 1);
+            lottosResult.updateResult(calculatePrizeRank(lotto));
         }
-        return lottoResults;
+        return lottosResult;
     }
 
-    private int calculatePrizeRank(Lotto lotto) {
+    private WinningPrize calculatePrizeRank(Lotto lotto) {
         int matchingNumberCount = countMatchingNumbers(lotto);
         boolean matchBonusNumber = matchBonusNumber(lotto);
-        return WinningPrize.getRankByResult(matchingNumberCount, matchBonusNumber);
+        return WinningPrize.getWinningPrizeByResult(matchingNumberCount, matchBonusNumber);
     }
 
     private int countMatchingNumbers(Lotto lotto) {

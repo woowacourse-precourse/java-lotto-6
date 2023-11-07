@@ -3,6 +3,8 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Map;
+import lotto.model.constans.WinningPrize;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,18 +31,38 @@ public class WinningNumbersTest {
 
     @DisplayName("로또가 주어지면 일치한 당첨 번호 갯수에 맞춰서 정해진 등수의 결과를 나타낸다.")
     @Test
-    void testShowLottoResults() {
+    void testCreateLottoResults() {
+        Client client = createClientForTest();
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
+        winningNumbers.createBonusNumber("16");
+        LottosResult expectedLottosResult = createLottosResultForTest();
+
+        LottosResult lottosResult = winningNumbers.calculateLottosResult(client.getLottos());
+
+        for (Map.Entry<WinningPrize, Integer> entry : lottosResult.entrySet()) {
+            WinningPrize winningPrize = entry.getKey();
+            int expectedCount = expectedLottosResult.get(winningPrize);
+            assertThat(entry.getValue()).isEqualTo(expectedCount);
+        }
+    }
+
+    private Client createClientForTest() {
         Client client = Client.from("5000");
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 10, 15, 20)));
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 10, 35)));
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 5, 16)));
         client.receiveLotto(new Lotto(List.of(11, 12, 13, 14, 15, 16)));
-        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
-        winningNumbers.createBonusNumber("16");
+        return  client;
+    }
 
-        List<Integer> result = winningNumbers.calculateLottosResult(client.getLottos());
-
-        assertThat(result).isEqualTo(List.of(1, 1, 1, 0, 1, 1));
+    private LottosResult createLottosResultForTest() {
+        LottosResult lottosResult = LottosResult.create();
+        lottosResult.updateResult(WinningPrize.FIRST_PRIZE);
+        lottosResult.updateResult(WinningPrize.FIFTH_PRIZE);
+        lottosResult.updateResult(WinningPrize.FORTH_PRIZE);
+        lottosResult.updateResult(WinningPrize.SECOND_PRIZE);
+        lottosResult.updateResult(WinningPrize.NO_PRIZE);
+        return lottosResult;
     }
 }

@@ -19,7 +19,7 @@ public enum Rank {
     }
 
     public static Rank find(final int matchingCount, final boolean bonusNumberExistence) {
-        if (isSecond(matchingCount, bonusNumberExistence)) {
+        if (isMatchedSecondRankCondition(matchingCount, bonusNumberExistence)) {
             return SECOND;
         }
         if (isThird(matchingCount, bonusNumberExistence)) {
@@ -28,7 +28,7 @@ public enum Rank {
         return findByMatchingCount(matchingCount);
     }
 
-    private static boolean isSecond(final int matchingCount, final boolean bonusNumberExistence) {
+    private static boolean isMatchedSecondRankCondition(final int matchingCount, final boolean bonusNumberExistence) {
         return matchingCount == SECOND.matchingCount && bonusNumberExistence;
     }
 

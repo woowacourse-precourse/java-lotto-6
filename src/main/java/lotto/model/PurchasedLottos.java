@@ -3,14 +3,14 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lottos {
+public class PurchasedLottos {
     private final List<Lotto> lottos;
 
-    private Lottos(List<Lotto> lottos) {
+    private PurchasedLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos of(final int numberOfLottos, final LottoGenerator lottoGenerator) {
+    public static PurchasedLottos of(final int numberOfLottos, final LottoGenerator lottoGenerator) {
         final List<Lotto> purchasedLottos = new ArrayList<>(numberOfLottos);
 
         for (int i = 0; i < numberOfLottos; i++) {
@@ -18,7 +18,7 @@ public class Lottos {
             purchasedLottos.add(newLotto);
         }
 
-        return new Lottos(purchasedLottos);
+        return new PurchasedLottos(purchasedLottos);
     }
 
     public List<WinningInfo> getWinnningInfos(WinningLotto winningLotto) {

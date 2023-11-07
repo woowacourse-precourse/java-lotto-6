@@ -5,6 +5,8 @@ import static lotto.util.OutputEnum.FIFTH_OUTPUT;
 import static lotto.util.OutputEnum.FIRST_OUTPUT;
 import static lotto.util.OutputEnum.FOURTH_OUTPUT;
 import static lotto.util.OutputEnum.PUBLISHED_LOTTO_COUNT_OUTPUT;
+import static lotto.util.OutputEnum.ROI_OUTPUT_PREFIX;
+import static lotto.util.OutputEnum.ROI_OUTPUT_SUFFIX;
 import static lotto.util.OutputEnum.SECOND_OUTPUT;
 import static lotto.util.OutputEnum.THIRD_OUTPUT;
 
@@ -37,8 +39,8 @@ public class OutputView {
         return outputEnum.message() + lottoCount + COUNT_UNIT.message();
     }
 
-    public void printEarningRate() {
-
+    public void printROI(String roi) {
+        System.out.println(ROI_OUTPUT_PREFIX.message()+roi+ROI_OUTPUT_SUFFIX.message());
     }
 
 }

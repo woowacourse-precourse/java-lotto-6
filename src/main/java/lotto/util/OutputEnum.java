@@ -8,7 +8,9 @@ public enum OutputEnum {
     THIRD_OUTPUT("5개 일치 (1,500,000원) - "),
     FOURTH_OUTPUT("4개 일치 (50,000원) - "),
     FIFTH_OUTPUT("3개 일치 (5,000원) - "),
-    COUNT_UNIT("개");
+    COUNT_UNIT("개"),
+    ROI_OUTPUT_PREFIX("총 수익률은 "),
+    ROI_OUTPUT_SUFFIX("%입니다.");
 
     private String message;
 

@@ -49,7 +49,7 @@
   - [x] 상금 계산 - WinningResult#getTotalLotteryPrize()
   - 소수점 둘째 자리에서 반올림
   
-- [ ] 수익률 출력 - OutputView#printEarningRate()
+- [ ] 수익률 출력 - OutputView#printROI()
   - [ ] "총 수익률은 00.0%입니다." 
 
 

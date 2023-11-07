@@ -3,9 +3,9 @@ package lotto.validation;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-import static lotto.constant.LottoConstant.RANGE_END;
-import static lotto.constant.LottoConstant.RANGE_START;
+import static lotto.constant.LottoConstant.*;
 
 public class Validator {
     public static boolean checkIsNotNumber(String pay) {
@@ -61,6 +61,14 @@ public class Validator {
             return true;
         }
 
+        return false;
+    }
+
+    public static boolean checkDuplicateValue(List<Integer> _lotto) {
+        _lotto = _lotto.stream().distinct().collect(Collectors.toList());
+        if (_lotto.size() != LOTTO_SIZE.getNumber()) {
+            return true;
+        }
         return false;
     }
 

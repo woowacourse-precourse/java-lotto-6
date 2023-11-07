@@ -68,10 +68,7 @@ public class UI {
 		}
 	}
 
-	private void showWinningStatistics(
-			List<Lotto> computerLottos,
-			Lotto user,
-			int bonusNumber) {
+	private void showWinningStatistics(List<Lotto> computerLottos, Lotto user, int bonusNumber) {
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		List<Integer> winningResult =

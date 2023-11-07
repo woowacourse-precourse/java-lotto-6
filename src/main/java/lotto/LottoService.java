@@ -69,10 +69,7 @@ public class LottoService {
 		return Integer.parseInt(inputBonusNumber);
 	}
 
-	public List<Integer> getWinningResult(
-			List<Lotto> computerLottos,
-			Lotto user,
-			int bonusNumber) {
+	public List<Integer> getWinningResult(List<Lotto> computerLottos, Lotto user, int bonusNumber) {
 		List<Integer> userNumbers = user.getNumbers();
 		int[] checkRank = new int[countOfLotto];
 

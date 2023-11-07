@@ -22,4 +22,12 @@ public class OutputView {
     public void printLottos(Lottos lottos){
         System.out.println(lottos);
     }
+
+    public void printResult(String result){
+        System.out.println(result);
+    }
+
+    public void printError(Exception e){
+        System.out.println(e.getMessage());
+    }
 }

@@ -7,8 +7,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Application {
+    private static final int UnitCost = 1000;
 
-    public static List<Integer> strArrTointList(String [] tempStr){
+    public static List<Integer> convert(String [] tempStr){
         int[] tempInt = Stream.of(tempStr).mapToInt(Integer::parseInt).toArray();
         List<Integer> templist = Arrays.stream(tempInt).boxed().collect(Collectors.toList());
 
@@ -16,7 +17,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-
         // 로또 당첨 금액 ENUM
         enum LottoResult {
             FIFTH(3, 5000, "3개 일치 (5,000원) - "), FOURTH(4, 50000, "4개 일치 (50,000원) - "), THIRD(5, 1500000, "5개 일치 (1,500,000원) - "), SECOND(55, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "), FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - ");
@@ -37,29 +37,27 @@ public class Application {
 
 
         // 입력 1. 로또 구입 금액 1000원 단위로 입력 받기
-        Print.message(0);
-        int purchasePrice = Get.purchaseNumber();
+        int purchasePrice = 0;
 
-        /* *********입력기능1 입력받고 예외처리 할떄 pp값 받은걸 while밖에서 사용 못함, 반복 언제까지 해야할지 판단 문제
         while (true) {
+            Print.message(0);
+            purchasePrice = Get.purchaseNumber();
 
-            // -1000원으로 안 나누어지면 예외처리(+ 메시지 출력, 다시 입력받기)
-            try {
+            try{
                 if (purchasePrice % 1000 != 0) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위만 가능합니다.");
+                }
+                else{
+                    break;
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-
-                System.out.println(Message.GetPurchasePrice.getValue());
-                purchasePrice = GetPurchaseNumber();
             }
         }
-        */
 
 
         // 게임 1. 구입금액에 따른 로또 구매 개수 구하기
-        int lottoCount = purchasePrice / 1000;
+        int lottoCount = purchasePrice / UnitCost;
 
         // 게임 2. 1~45까지의 중복 되지 않는 랜덤 숫자 6개를 구매 개수에 맞게 뽑기
         // 모든 로또 티켓 저장된 리스트
@@ -84,8 +82,7 @@ public class Application {
 
         // 입력 2. 쉼표 기준으로 구분해서 당첨 번호 입력 받기
         Print.message(2);
-        String[] tempStr = readLine().split(",");
-        List<Integer> winningNumber = strArrTointList(tempStr);
+        List<Integer> winningNumber = convert(Get.winningNumber());
 
         try {
             //중복있거나 6자리 수 아니면 예외처리(, 체크는 나중에 추가)
@@ -100,7 +97,7 @@ public class Application {
 
         //입력 3. 보너스 번호 입력 받기
         Print.message(3);
-        int bonusNumber = Integer.parseInt(readLine());
+        int bonusNumber = Get.bonusNumber();
 
 
         //게임 3. 당첨번호, 보너스번호와 구매한 로또번호 비교

@@ -19,15 +19,22 @@ public enum LottoRank {
     }
 
     public static LottoRank whichRank(int match, boolean bonus){
+
+        if (match == FIFTH.match) {
+            return FIFTH;
+        }
+        if (match == FOURTH.match) {
+            return FOURTH;
+        }
+        if ((match == THIRD.match) && (bonus == THIRD.bonus)) {
+            return THIRD;
+        }
         if ((match == SECOND.match) && (bonus == SECOND.bonus)) {
             return SECOND;
         }
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank.match == match) {
-                return rank;
-            }
+        if (match == FIRST.match) {
+            return FIRST;
         }
         return LOSE;
     }
-
 }

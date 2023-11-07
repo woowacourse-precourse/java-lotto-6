@@ -3,6 +3,7 @@ package lotto.validation;
 public class LottoNumberValidator implements InputValidator {
     private final static int END_INCLUSIVE = 45;
 
+    @Override
     public void validate(String input) {
         if (!isNumeric(input)) {
             Error error = Error.INTEGER_ERROR;

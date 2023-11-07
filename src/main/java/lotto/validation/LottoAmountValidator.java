@@ -3,6 +3,7 @@ package lotto.validation;
 public class LottoAmountValidator implements InputValidator {
     private final static int UNIT = 1000;
 
+    @Override
     public void validate(String input) {
         if (!isNumeric(input)) {
             Error error = Error.INTEGER_ERROR;

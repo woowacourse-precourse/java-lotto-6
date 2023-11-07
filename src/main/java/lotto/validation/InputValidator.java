@@ -8,4 +8,6 @@ public interface InputValidator {
     default boolean isPositive(int input) {
         return input > 0;
     }
+
+    void validate(String input);
 }

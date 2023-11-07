@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
-    private static int buyTickets(){
+    private static int getTickets(){
         try {
             Integer N = Integer.parseInt(Console.readLine());
             if (N % 1000 != 0) {
@@ -105,9 +105,9 @@ public class Application {
 
         int tickets;
         do {
-            tickets = buyTickets();
+            tickets = getTickets();
         } while(tickets < 0);
-        
+
         List<Integer> playerNumbers;
         do{
             playerNumbers = inputPlayerNumbers();

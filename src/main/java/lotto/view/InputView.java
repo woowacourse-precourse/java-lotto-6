@@ -13,15 +13,9 @@ public class InputView {
     private static BonusValidation bonusValidation = new BonusValidation();
     public static int inputPurchaseAmount() {
         OutputView.printMessage(LottoMessage.INPUT_PURCHASE_AMOUNT_MESSAGE);
-        while (true){
-            try {
-                String amount = Console.readLine();
-                amountValidation.check(amount);
-                return Integer.parseInt(amount);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String amount = Console.readLine();
+        amountValidation.check(amount);
+        return Integer.parseInt(amount);
     }
 
     public static List<Integer> inputLotto() {

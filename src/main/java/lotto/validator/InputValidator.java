@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import java.math.BigInteger;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,10 +9,12 @@ public final class InputValidator {
 
     private static final String INPUT_FORMAT = "^\\d+(?:,\\d+)*$";
     private static final String WRONG_NUMBER_FORMAT = "^0\\d+";
+    private static final String NUMBER_FORMAT = "^\\d+$";
     private static final String NULL_ERROR_MESSAGE = "[ERROR] 입력 값이 null 입니다.";
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 값을 입력해 주세요.";
     private static final String FORMAT_ERROR_MESSAGE = "[ERROR] 숫자와 구분자 쉼표(,)로 구분한 숫자들만 입력할 수 있습니다.";
     private static final String WRONG_NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자는 0으로 시작할 수 없습니다.";
+    private static final String INTEGER_RANGE_ERROR_MESSAGE = "[ERROR] int 범위를 넘어가는 숫자는 입력할 수 없습니다.";
 
     private InputValidator() {
     }
@@ -21,6 +24,7 @@ public final class InputValidator {
         validateEmptyOrWhitespaces(input);
         validateInputFormat(input);
         validateWrongNumberFormat(input);
+        validateIntegerRange(input);
     }
 
     private static void validateNull(final String input) {
@@ -49,6 +53,19 @@ public final class InputValidator {
         if (matcher.find()) {
             throw new IllegalArgumentException(WRONG_NUMBER_FORMAT_ERROR_MESSAGE);
         }
+    }
+
+    private static void validateIntegerRange(final String input) {
+        Pattern pattern = Pattern.compile(NUMBER_FORMAT);
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find() && isOutOfIntegerRange(input)) {
+            throw new IllegalArgumentException(INTEGER_RANGE_ERROR_MESSAGE);
+        }
+    }
+
+    private static boolean isOutOfIntegerRange(final String input) {
+        BigInteger bigInteger = new BigInteger(input);
+        return bigInteger.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0;
     }
 
 }

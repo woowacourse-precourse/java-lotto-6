@@ -57,6 +57,17 @@ class InputValidatorTest {
     }
 
     @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"2147483648", "20000000000000000"})
+    @DisplayName("입력 공통 예외 처리: int 범위를 넘어가는 숫자를 입력한 경우")
+    void givenOutOfIntegerRangeNumber_whenValidate_thenThrowException(String input) {
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputValidator.validate(input))
+                .withMessageStartingWith(Constants.ERROR_MESSAGE)
+                .withMessageContaining("int 범위를 넘어가는 숫자는 입력할 수 없습니다.");
+    }
+
+    @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(strings = {"8000", "10000", "1,2,3,4,5,6", "7"})
     @DisplayName("입력 공통 예외 처리 통과")
     void givenInput_whenValidate_thenNoException(String input) {

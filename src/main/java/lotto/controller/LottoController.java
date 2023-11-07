@@ -24,8 +24,6 @@ public class LottoController {
         List<Lotto> userPurchasedLotto =lottoService.generateMultipleLotto(lottoAmount);
 
 
-        System.out.println(lottoAmount);
-
 
     }
 

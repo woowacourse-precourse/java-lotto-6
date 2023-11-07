@@ -11,7 +11,7 @@ public class InputView {
         System.out.println(GET_PURCHASE_AMOUNT_MESSAGE);
         String input = Console.readLine();
 
-        return Integer.parseInt(input);
+        return Integer.parseInt(input)/1000;
     }
 
 }

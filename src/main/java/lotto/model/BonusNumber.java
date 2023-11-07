@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class BonusNumber {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;

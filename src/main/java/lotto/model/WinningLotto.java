@@ -1,14 +1,13 @@
 package lotto.model;
 
-import lotto.constant.ErrorMessage;
 import lotto.validator.BonusNumberValidator;
 
 import java.util.Collections;
 import java.util.List;
 
 public class WinningLotto {
-    private List<Integer> winningNumbers;
-    private BonusNumber bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final BonusNumber bonusNumber;
 
     private WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         BonusNumberValidator.validateContainBonusNumInWinningLotto(winningNumbers, bonusNumber);

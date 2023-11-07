@@ -1,12 +1,11 @@
 package lotto.model;
 
 import lotto.constant.LottoNumConstant;
-import lotto.constant.LottoRateConstant;
 
 public class ClientInform {
     // 사용자의 구매 금액과 로또 수익금 저장객체
-    private PurchaseAmount purchaseAmount;
-    private LottoWinningReward lottoWinningReward;
+    private final PurchaseAmount purchaseAmount;
+    private final LottoWinningReward lottoWinningReward;
 
     private ClientInform(int purchaseAmount) {
         this.purchaseAmount = PurchaseAmount.getInstance(purchaseAmount);

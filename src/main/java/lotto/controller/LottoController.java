@@ -5,9 +5,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private LottoService lottoService;
-    private InputView inputView;
-    private OutputView outputView;
+    private final LottoService lottoService;
+    private final InputView inputView;
+    private final OutputView outputView;
     private static LottoController instance;
 
     private LottoController() {

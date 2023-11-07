@@ -8,7 +8,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class RankStatus {
-    private Map<Ranking, Integer> rankings;
+    private final Map<Ranking, Integer> rankings;
 
     private RankStatus() {
         rankings = new EnumMap<Ranking, Integer>(Ranking.class);
@@ -29,12 +29,9 @@ public class RankStatus {
         return rankings.get(ranking);
     }
 
-    public Map<Ranking, Integer> getRankings() {
-        return rankings;
-    }
     public String makeLottoRate() {
-        StringBuilder sb = new StringBuilder();
-        sb
+        StringBuilder lottoRate = new StringBuilder();
+        lottoRate
                 .append(LottoRateConstant.FIFTH_LOTTO_MESSAGE.getMessage(getRankNum(Ranking.FIFTH)))
                 .append(Constant.NEW_LINE.getMessage())
                 .append(LottoRateConstant.FOURTH_LOTTO_MESSAGE.getMessage(getRankNum(Ranking.FOURTH)))
@@ -44,6 +41,6 @@ public class RankStatus {
                 .append(LottoRateConstant.SECOND_LOTTO_MESSAGE.getMessage(getRankNum(Ranking.SECOND)))
                 .append(Constant.NEW_LINE.getMessage())
                 .append(LottoRateConstant.FIRST_LOTTO_MESSAGE.getMessage(getRankNum(Ranking.FIRST)));
-        return sb.toString();
+        return lottoRate.toString();
     }
 }

@@ -9,7 +9,7 @@ public enum LottoRateConstant {
     FIRST_LOTTO_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
     TOTAL_RETURN_MESSAGE("총 수익률은 %.1f%%입니다.");
 
-    private String message;
+    private final String message;
 
     LottoRateConstant(String message) {
         this.message = message;

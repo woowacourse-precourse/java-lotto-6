@@ -1,10 +1,8 @@
 package lotto.handler;
 
 import lotto.model.Lotto;
-import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 
-import java.util.List;
 
 public class LottoMatchingHandler {
     private static LottoMatchingHandler instance;

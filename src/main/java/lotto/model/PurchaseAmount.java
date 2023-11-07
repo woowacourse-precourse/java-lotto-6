@@ -5,7 +5,7 @@ import lotto.constant.LottoNumConstant;
 import lotto.validator.PurchaseAmountValidator;
 
 public class PurchaseAmount {
-    private int purchaseAmount;
+    private final int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) {
         if(!PurchaseAmountValidator.isOverMinPurchaseAmount(purchaseAmount)) {

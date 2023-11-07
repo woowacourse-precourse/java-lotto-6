@@ -12,8 +12,8 @@ public enum Ranking {
     SEVENTH(1, 0),
     MISS(0, 0);
 
-    private int matchNumCount;
-    private int reward;
+    private final int matchNumCount;
+    private final int reward;
 
     Ranking(int matchNumCount, int reward) {
         this.matchNumCount = matchNumCount;
@@ -33,10 +33,6 @@ public enum Ranking {
                 .filter(ranking -> ranking.matchNumCount == matchNumCount)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NO_MATCH_RANKING_ERROR.getMessage()));
-    }
-
-    public int getMatchNumCount() {
-        return matchNumCount;
     }
 
     public int getReward() {

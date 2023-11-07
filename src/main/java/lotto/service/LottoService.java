@@ -13,9 +13,9 @@ import java.util.stream.IntStream;
 public class LottoService {
     private Lottos lottos;
     private WinningLotto winningLotto;
-    private RankStatus rankStatus;
-    private LottoNumberGenerator lottoNumberGenerator;
-    private LottoMatchingHandler lottoMatchingHandler;
+    private final RankStatus rankStatus;
+    private final LottoNumberGenerator lottoNumberGenerator;
+    private final LottoMatchingHandler lottoMatchingHandler;
     private ClientInform clientInform;
     private static LottoService instance;
 

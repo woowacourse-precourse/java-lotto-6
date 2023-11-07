@@ -1,10 +1,11 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
@@ -21,6 +22,6 @@ public class Lottos {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 }

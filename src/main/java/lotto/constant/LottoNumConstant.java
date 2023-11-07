@@ -7,7 +7,7 @@ public enum LottoNumConstant {
     LOTTO_AMOUNT_UNIT(1000),
     VALID_LOTTO_NUMBER_NUM(6);
 
-    private int value;
+    private final int value;
 
     LottoNumConstant(int value) {
         this.value = value;

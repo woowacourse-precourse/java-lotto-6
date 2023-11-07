@@ -5,16 +5,15 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.domain.NumValidator.*;
+
 public class InputView {
     private static final String INPUT_LOTTO_AMOUNT ="구입금액을 입력해 주세요.";
-    private static final String TYPE_ERROR ="[ERROR] 숫자가 아닌 값을 입력하셨습니다.";
-    private static final String NUMBER_OF_INPUT_CNT_ERROR ="[ERROR] 로또 숫자만큼 다시 입력해주세요!";
-
     private static final String INPUT_WINNING_NUMBERS ="당첨 번호를 입력해주세요.";
     private static final String INPUT_BONUS_NUMBER ="보너스 번호를 입력해주세요.";
 
     private static List<Integer> winningNumbers;
-    private static final String RANGE_ERROR="[ERROR] 옳지 않은 범위의 숫자를 입력하셨습니다.";
+
     private static final int MAX_LOTTO_NUM=45;
     private static final int LOTTO_NUM=6;
 
@@ -44,31 +43,10 @@ public class InputView {
             checkRange(num);
             winningNumbers.add(num);
         }
-        checkCntNumber();
+        checkCntNumber(winningNumbers);
         return winningNumbers;
     }
 
-    private static int checkNumber(String num){
-        try{
-            return Integer.parseInt(num);
-        }
-        catch(NumberFormatException e){
-            throw new IllegalArgumentException(TYPE_ERROR);
-        }
-    }
-
-    private static int checkRange(int num){
-        if(num<=0 || num>MAX_LOTTO_NUM){
-            throw new IllegalArgumentException(RANGE_ERROR);
-        }
-        return num;
-    }
-
-    private static void checkCntNumber(){
-        if(winningNumbers.size()!= LOTTO_NUM){
-            throw new IllegalArgumentException(NUMBER_OF_INPUT_CNT_ERROR);
-        }
-    }
 
     public static int inputBonusNumber(){
         System.out.println(INPUT_BONUS_NUMBER);

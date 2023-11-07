@@ -8,10 +8,12 @@ import java.util.*;
 
 public class Application {
 
+    private static final int NUMBER_OF_WINNING_CASE = 6;
+    private static final int FIFTH_NUMBER_OF_SAME = 3;
     private static int purchasePieces;
     private static List<Integer> winNum;
-    private static final List<Set> lottoNum = new ArrayList<>();
     private static int bonusNum;
+    private static final List<Set> lottoNum = new ArrayList<>();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final RandomLotto random = new RandomLotto();
@@ -70,18 +72,18 @@ public class Application {
     }
 
     public static void initialize() {
-        for (int i = 0; i < 6; i++) {
+        for (int i = FIFTH_NUMBER_OF_SAME; i < NUMBER_OF_WINNING_CASE+FIFTH_NUMBER_OF_SAME; i++) {
             result.put(i,0);
         }
     }
 
     public static void intersectionNum() {
-        List<Integer> intersectionCheck  = intersection.checkBonusNumber(bonusNum, lottoNum);
+        List<Boolean> bonusNumContainCheck  = intersection.checkBonusNumber(bonusNum, lottoNum);
         List<Integer> intersectionCount = intersection.countMatchingNumbers(winNum, lottoNum);
         initialize();
         new LottoResult(result);
         for (int i = 0; i<intersectionCount.size(); i++) {
-           result = LottoResult.statistics(intersectionCount.get(i), intersectionCheck.get(i));
+           result = LottoResult.statistics(intersectionCount.get(i), bonusNumContainCheck.get(i));
         }
     }
 

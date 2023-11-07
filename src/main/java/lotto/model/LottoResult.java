@@ -4,13 +4,24 @@ import java.util.HashMap;
 
 public class LottoResult {
 
+    private static final int FIRST_MONEY = 2000000000;
+    private static final int SECOND_MONEY = 30000000;
+    private static final int THIRD_MONEY = 1500000;
+    private static final int FOURTH_MONEY = 50000;
+    private static final int FIFTH_MONEY = 5000;
+    private static final int FIRST_NUMBER_OF_SAME = 6;
+    private static final int SECOND_NUMBER_OF_SAME = 5;
+    private static final int THIRD_NUMBER_OF_SAME = 5;
+    private static final int FORUTH_NUMBER_OF_SAME = 4;
+    private static final int FIFTH_NUMBER_OF_SAME = 3;
+
     private static HashMap<Integer, Integer> result = new HashMap<>();
     public LottoResult(HashMap result) {
         this.result = result;
     }
 
     public enum PrizeMoney {
-        FIFTH(5000), FOURTH(50000), THIRD(1500000), SECOND(30000000), FIRST(2000000000);
+        FIRST(FIRST_MONEY), SECOND(SECOND_MONEY), THIRD(THIRD_MONEY), FOURTH(FOURTH_MONEY), FIFTH(FIFTH_MONEY);
 
         private final int money;
 
@@ -23,31 +34,31 @@ public class LottoResult {
         }
     }
 
-    public static HashMap statistics(int count, int choice) {
-        if (count == 3) {
-            int num = result.get(4);
+    public static HashMap statistics(int sameCount, Boolean bonusCheck) {
+        if (sameCount == FIFTH_NUMBER_OF_SAME) {
+            int num = result.get(FIFTH_NUMBER_OF_SAME);
             num++;
-            result.put(4,num);
+            result.put(FIFTH_NUMBER_OF_SAME,num);
         }
-        if (count == 4) {
-            int num = result.get(3);
+        if (sameCount == FORUTH_NUMBER_OF_SAME) {
+            int num = result.get(FORUTH_NUMBER_OF_SAME);
             num++;
-            result.put(3,num);
+            result.put(FORUTH_NUMBER_OF_SAME,num);
         }
-        if (count == 5 && choice == 1) {
-            int num = result.get(1);
+        if (sameCount == THIRD_NUMBER_OF_SAME && bonusCheck) {
+            int num = result.get(THIRD_NUMBER_OF_SAME);
             num++;
-            result.put(1,num);
+            result.put(THIRD_NUMBER_OF_SAME,num);
         }
-        if (count == 5 && choice == 0) {
-            int num = result.get(2);
+        if (sameCount == SECOND_NUMBER_OF_SAME && bonusCheck) {
+            int num = result.get(SECOND_NUMBER_OF_SAME + 1);
             num++;
-            result.put(2,num);
+            result.put(SECOND_NUMBER_OF_SAME + 1,num);
         }
-        if (count == 6) {
-            int num = result.get(0);
+        if (sameCount == FIRST_NUMBER_OF_SAME) {
+            int num = result.get(FIRST_NUMBER_OF_SAME + 1);
             num++;
-            result.put(0,num);
+            result.put(FIRST_NUMBER_OF_SAME + 1,num);
         }
         return result;
     }
@@ -55,7 +66,7 @@ public class LottoResult {
     public static double calculateProfit(int purchase) {
         double allMoney = 0;
         for (PrizeMoney p : PrizeMoney.values()) {
-            allMoney += p.calculateFare(result.get(4 - p.ordinal()));
+            allMoney += p.calculateFare(result.get(7 - p.ordinal()));
         }
         return allMoney / (purchase * 10);
     }

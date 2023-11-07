@@ -22,7 +22,7 @@ class LottoOrderTest {
         // when & then
         assertThatThrownBy(() -> new LottoOrder(purchasePrice, mockPurchaseLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_PURCHASE_PRICE.getDesc());
+                .hasMessage(ExceptionMessage.INVALID_PURCHASE_PRICE_UNIT.getDesc());
     }
 
     @DisplayName("구입 가격이 0원일 경우 예외가 발생한다.")
@@ -35,7 +35,7 @@ class LottoOrderTest {
         // when & then
         assertThatThrownBy(() -> new LottoOrder(purchasePrice, mockPurchaseLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_PURCHASE_PRICE.getDesc());
+                .hasMessage(ExceptionMessage.INVALID_PURCHASE_PRICE_UNIT.getDesc());
     }
 
     @DisplayName("구입 가격과 총 당첨 금액을 이용해 수익률을 계산한다.")

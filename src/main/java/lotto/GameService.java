@@ -1,5 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+
 public class GameService {
     static final int ERROR = -1;
 
@@ -17,5 +21,17 @@ public class GameService {
             System.out.println("[ERROR] 1000원 단위, 1000원 이상의 로또 구입 금액을 입력해주세요.");
             return ERROR;
         }
+    }
+
+    public void generateNumber(){
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        while (numbers.size() < 6){
+            int randomNumber = Randoms.pickNumberInRange(1, 45);
+            if (!numbers.contains(randomNumber)){
+                numbers.add(randomNumber);
+            }
+        }
+        //todo: GameRepository.saveNumber(numbers)
     }
 }

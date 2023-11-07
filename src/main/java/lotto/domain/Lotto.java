@@ -16,6 +16,9 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public boolean hasNumber(int number){
+        return numbers.contains(number);
+    }
     private void validate(List<Integer> numbers) throws IllegalArgumentException{
         validateNumberBoundary(numbers);
         validateSize(numbers);

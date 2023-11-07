@@ -8,26 +8,51 @@ import static lotto.util.Parser.stringToInt;
 import static lotto.util.Parser.stringToList;
 
 public class WinningNumbers {
-    Lotto lotto;
+    Lotto winningLotto;
     int bonusNumber;
 
-    public WinningNumbers(Lotto lotto, int bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        validateDuplication(lotto, bonusNumber);
-        this.lotto = lotto;
+    public WinningNumbers(Lotto lotto, int bonusNumber) throws IllegalArgumentException {
+        validateBonusNumber(lotto,bonusNumber);
+        this.winningLotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber){
+    public Rank compareLotto(Lotto userLotto) {
+        return Rank.of(checkCollectCount(userLotto), checkBonusNumber(userLotto));
+    }
+
+    private void validateBonusNumber(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
+        validateNumberBoundry(bonusNumber);
+        validateDuplication(lotto, bonusNumber);
+    }
+
+    private void validateNumberBoundry(int bonusNumber) throws IllegalArgumentException{
         if(bonusNumber<1 || bonusNumber>45)
             throw new IllegalArgumentException();
     }
 
-    private void validateDuplication(Lotto lotto, int bonusNumber) {
+    private void validateDuplication(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
         if(lotto.getNumbers().contains(bonusNumber))
             throw new IllegalArgumentException();
     }
 
+    private int checkCollectCount(Lotto userLotto) {
+        return (int)winningLotto.getNumbers().stream()
+                .filter(userLotto::hasNumber)
+                .count();
+    }
+
+    private boolean checkBonusNumber(Lotto userLotto) {
+        return userLotto.hasNumber(bonusNumber);
+    }
+
+    private boolean checkBonusNumber(List<Integer> userNumber, int bonusNumber) {
+        return userNumber.contains(bonusNumber);
+    }
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
 
 
 }

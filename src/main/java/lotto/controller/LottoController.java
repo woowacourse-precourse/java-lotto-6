@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,6 +17,7 @@ public class LottoController {
         Lottos lottos = buyLottos(count);
         printBuyResult(lottos, count);
         WinningNumbers winningNumbers = makeWinningNumbers();
+
     }
 
     private Money askMoney() {
@@ -41,12 +39,18 @@ public class LottoController {
 
     private WinningNumbers makeWinningNumbers() {
         Lotto lotto;
+        int bonusNum;
         try{
             lotto = new Lotto(inputView.requestWinningNumbers());
         }catch (IllegalArgumentException e) {
             lotto = new Lotto(inputView.requestWinningNumbers());
         }
-        int bonusNum = inputView.requestBonusNumber();
-        return new WinningNumbers(lotto, bonusNum);
+        bonusNum = inputView.requestBonusNumber();
+        try {
+            return new WinningNumbers(lotto, bonusNum);
+        } catch (IllegalArgumentException e){
+            bonusNum = inputView.requestBonusNumber();
+            return new WinningNumbers(lotto, bonusNum);
+        }
     }
 }

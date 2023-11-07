@@ -42,6 +42,12 @@ public class LottoChecker {
         if (hit == LottoConfig.LOTTO_SIZE - 1) {
             return LottoPrize.THIRD;
         }
+        if (hit == LottoConfig.LOTTO_SIZE - 2) {
+            return LottoPrize.FOURTH;
+        }
+        if (hit == LottoConfig.LOTTO_SIZE - 3) {
+            return LottoPrize.FIFTH;
+        }
         return LottoPrize.NONE;
     }
 

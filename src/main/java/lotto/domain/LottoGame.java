@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.InputChecker.readLottoPrice;
+import static lotto.domain.LottoProfit.getReturnRate;
 import static lotto.domain.Lottos.generateLottos;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -23,21 +24,17 @@ public class LottoGame {
         // 로또(들) 생성
         Lottos purchasedLottos = generateLottos(lottoCount);
 
-        purchasedLottos.printLottos(); // #
-
+        // 당첨,보너스 번호 입력
         List<Integer> winningNumbers = inputChecker.readWinningNumbers();
-        System.out.println("winningNumbers = " + winningNumbers); // #
-
         Integer bonusNumber = inputChecker.readBonusNumber();
 
-        System.out.println("bonusNumber = " + bonusNumber); // #
-
-        // 통계
+        // 통계 출력
         lottoResult.printRewardStatistics(purchasedLottos,winningNumbers,bonusNumber);
 
-        // 수익률
-
-
+        // 수익률 계산
+        long totalReward = lottoResult.getTotalReward();
+        double returnRate = getReturnRate(purchasedLottos.count(),totalReward);
+        System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate * 100) + "입니다.");
     }
 
 }

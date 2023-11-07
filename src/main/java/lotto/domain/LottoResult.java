@@ -6,6 +6,7 @@ import java.util.List;
 
 public class LottoResult {
 
+    private int totalReward = 0;
 
     public long lottoNumbersPurchased(long userLottoPrice) {
         return userLottoPrice / 1000;
@@ -18,16 +19,13 @@ public class LottoResult {
         int[] reward = {5000,50000,1500000,30000000,2000000000};
         int [] rewardMatch = countMatchNumbers(purchasedLottos,winningNumbers,bonusNumber);
 
-        int totalReward = 0;
+        this.totalReward = 0;
 
         for (int i = 0; i < rewardMatch.length; i++) {
             int prize = reward[i] * rewardMatch[i];
             totalReward += prize;
             System.out.println(rewardNames[i] + " 일치 (" + String.format("%,d원", reward[i]) + ") - " + rewardMatch[i] + "개");
         }
-
-        double returnRate = getReturnRate(purchasedLottos.count(),totalReward);
-        System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate * 100) + "입니다.");
     }
 
     /*
@@ -57,5 +55,9 @@ public class LottoResult {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    public int getTotalReward() {
+        return totalReward;
     }
 }

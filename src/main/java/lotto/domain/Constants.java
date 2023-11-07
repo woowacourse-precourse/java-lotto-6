@@ -19,7 +19,7 @@ public class Constants {
 
     /** 에러 메시지 */
     private static final String ERROR_PREFIX = "[ERROR]";
-    public static final String NOT_UNIT_PRICE_ERROR = ERROR_PREFIX + " 금액은 1000원 단위로 입력해야 합니다.";
+    public static final String NOT_UNIT_PRICE_ERROR = ERROR_PREFIX + " 금액은 음수가 아닌 1000원 단위로 입력해야 합니다.";
     public static final String LOTTO_LENGTH_ERROR = ERROR_PREFIX + " 당첨 번호의 길이는 6자리여야 합니다.";
     public static final String NOT_INT_NUMBER_ERROR = ERROR_PREFIX + " 숫자로만 이루어진 값을 입력해야 합니다.";
     public static final String DUPLICATE_NUMBER_ERROR = ERROR_PREFIX + " 로또 번호는 중복되지 않아야 합니다.";

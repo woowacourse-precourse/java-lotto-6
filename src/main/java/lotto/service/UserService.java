@@ -29,7 +29,7 @@ public class UserService {
     }
 
     private void validatePriceInput(String price) {
-        if (Integer.parseInt(price) % Constants.PRICE_UNIT != 0) {
+        if (Integer.parseInt(price) < 0 || Integer.parseInt(price) % Constants.PRICE_UNIT != 0) {
             throw new IllegalArgumentException(Constants.NOT_UNIT_PRICE_ERROR);
         }
     }

@@ -13,6 +13,11 @@ public class NumberParser {
         return parse(inputValue, PurchaseAmount::from);
     }
 
+    public static BonusNumber parseBonusNumber(final String inputValue) {
+        validateEmpty(inputValue);
+        return parse(inputValue, BonusNumber::from);
+    }
+
     private static void validateEmpty(final String inputValue) {
         if (StringUtils.isBlank(inputValue)) {
             throw new IllegalArgumentException(INPUT_BLANK_EXCEPTION);

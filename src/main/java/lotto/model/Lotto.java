@@ -13,19 +13,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUnique(numbers);
         this.numbers = numbers;
     }
 
     public Lotto(String numberCommand) {
         List<String> commaSeparatedNumbers = List.of(numberCommand.split(","));
+        validateNumber(commaSeparatedNumbers);
         List<Integer> shiftedNumbers = new ArrayList<>();
-        for (String numberLiteral: commaSeparatedNumbers) {
-            try {
-                shiftedNumbers.add(Integer.parseInt(numberLiteral));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(WRONG_NUMBER_FORMAT);
-            }
-        }
+        for (String number: commaSeparatedNumbers)
+            shiftedNumbers.add(Integer.parseInt(number));
         validate(shiftedNumbers);
         this.numbers = shiftedNumbers;
     }
@@ -34,7 +31,16 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(NOT_SIX_NUMBERS);
         }
-        validateUnique(numbers);
+    }
+
+    public void validateNumber(List<String> splitNumbers) {
+        for (String numberLiteral : splitNumbers) {
+            try {
+                Integer.parseInt(numberLiteral);
+            } catch (NumberFormatException numberFormatException) {
+                throw new IllegalArgumentException(WRONG_NUMBER_FORMAT);
+            }
+        }
     }
 
     private void validateUnique(List<Integer> numbers) {
@@ -56,5 +62,7 @@ public class Lotto {
     }
 
     @Override
-    public String toString() {return numbers.toString();}
+    public String toString() {
+        return numbers.toString();
+    }
 }

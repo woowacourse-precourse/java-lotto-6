@@ -8,28 +8,19 @@ public class PriceValidator {
     }
 
     public static void validatePrice(Integer price) {
-        if (isUnder1000(price)) {
-            throw new IllegalArgumentException(MIN_PRICE_1000_MESSAGE);
-        }
+        validateIsUnder1000(price);
+        validateIsDividedBy1000(price);
+    }
 
-        if (isDividedBy1000(price) == false) {
+    private static void validateIsDividedBy1000(int price) {
+        if (price % 1000 != 0) {
             throw new IllegalArgumentException(UNIT_OF_1000_REQUIRED_MESSAGE);
         }
     }
 
-    private static boolean isDividedBy1000(int price) {
-        if (price % 1000 == 0) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private static boolean isUnder1000(int price) {
+    private static void validateIsUnder1000(int price) {
         if (price < 1000) {
-            return true;
+            throw new IllegalArgumentException(MIN_PRICE_1000_MESSAGE);
         }
-
-        return false;
     }
 }

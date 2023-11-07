@@ -68,15 +68,15 @@ class LottoMachineTest {
         resultMap.put(WinningGrade.SECOND_PRIZE,0);
         resultMap.put(WinningGrade.THIRD_PRIZE,0);
         resultMap.put(WinningGrade.FOURTH_PRIZE,0);
-        resultMap.put(WinningGrade.FIFTH_PRIZE,10);
-        int wantBuyAmount = 100;
+        resultMap.put(WinningGrade.FIFTH_PRIZE,1);
+        int wantBuyAmount = 8000;
         String expected = """
-                3개 일치 (5,000원) - 10개
+                3개 일치 (5,000원) - 1개
                 4개 일치 (50,000원) - 0개
                 5개 일치 (1,500,000원) - 0개
                 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
                 6개 일치 (2,000,000,000원) - 0개
-                총 수익률은 50000.0%입니다.
+                총 수익률은 62.5%입니다.
                 """;
 
 

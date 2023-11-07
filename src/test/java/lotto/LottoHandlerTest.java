@@ -261,7 +261,7 @@ class LottoHandlerTest {
         int bonusNumber = 45;
 
         //when
-        Map<WinningKind, Integer> winningKinds = lottoHandler.calculateResult(lottos, winningLotto, bonusNumber);
+        Map<WinningKind, Integer> winningKinds = lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
 
         //then
         assertThat(winningKinds.get(WinningKind.FIRST)).isEqualTo(1);

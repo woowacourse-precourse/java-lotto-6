@@ -1,34 +1,30 @@
 package lotto.domain.model;
 
-import static lotto.utils.LottoEnum.LOTTO_BONUS_NUMBER_COUNT;
+import lotto.domain.StaticsEnum;
 
 public class ResultTable {
-    private int numberOfMatched; // 매칭된 번호의 개수
-    private long prize; // 당첨 금액
-    private int count; // 당첨된 로또의 개수
+    private int numberOfMatched;
+    private long prize;
+    private int count = 0; // 당첨된 로또의 개수
+    private boolean isBonusMatched = false;
 
-    public ResultTable(int matchCount, long prize) {
-        this.numberOfMatched = matchCount;
-        this.prize = prize;
-        this.count = 0;
+    public ResultTable(StaticsEnum staticsEnum) {
+        this.prize = staticsEnum.getPrize();
+        this.numberOfMatched = staticsEnum.getCount();
+
+        if (staticsEnum == StaticsEnum.MATCHED_FIVE_WITH_BONUS) {
+            this.isBonusMatched = true;
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("%d개 일치 (%s원) - %d개", numberOfMatched,
-                String.format("%,d", prize), count);
-    }
-
-    public String getFinalResult() {
-        if (numberOfMatched == LOTTO_BONUS_NUMBER_COUNT.getValue()) {
-            return String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개",
+        if (isBonusMatched) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", numberOfMatched,
                     String.format("%,d", prize), count);
         }
-        return toString();
-    }
-
-    public int getNumberOfMatched() {
-        return numberOfMatched;
+        return String.format("%d개 일치 (%s원) - %d개", numberOfMatched,
+                String.format("%,d", prize), count);
     }
 
     public long getTotalPrize() {
@@ -37,6 +33,10 @@ public class ResultTable {
 
     public void incrementCount() {
         this.count++;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
 

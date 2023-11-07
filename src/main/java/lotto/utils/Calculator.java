@@ -1,8 +1,9 @@
 package lotto.utils;
 
-import static lotto.utils.LottoEnum.*;
+import static lotto.domain.LottoEnum.LOTTO_PRICE;
 
-import java.util.List;
+import java.util.Map;
+import lotto.domain.StaticsEnum;
 import lotto.domain.model.ResultTable;
 
 public class Calculator {
@@ -15,8 +16,8 @@ public class Calculator {
         return 100 * (double) totalPrice / amountMoney;
     }
 
-    public static long evaluateTotalPrice(List<ResultTable> statistics) {
-        return statistics.stream()
+    public static long evaluateTotalPrice(Map<StaticsEnum, ResultTable> statistics) {
+        return statistics.values().stream()
                 .mapToLong(ResultTable::getTotalPrize).sum();
     }
 }

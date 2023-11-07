@@ -40,7 +40,7 @@ class LottoTest {
     @DisplayName("로또 번호가 1부터 45사이에 숫자가 아닌 경우 예외가 발생하다")
     @ParameterizedTest
     @MethodSource("getInvalidRangeLottoNumber")
-    public void createLottoByRangeNumber(List<Integer> invalidRangeNumbers) {
+    void createLottoByRangeNumber(List<Integer> invalidRangeNumbers) {
         assertThatThrownBy(() -> new Lotto(invalidRangeNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }

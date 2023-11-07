@@ -14,10 +14,10 @@ public class LottoNumbers {
 
     }
 
-    private static final int CNT_LOTTO_NUMBER = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
+    public static final int CNT_LOTTO_NUMBER = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
 
-    private static final int MAX_LOTTO_NUMBER = 45;
+    public  static final int MAX_LOTTO_NUMBER = 45;
 
 
 

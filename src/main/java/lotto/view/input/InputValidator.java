@@ -1,6 +1,5 @@
 package lotto.view.input;
 
-import lotto.controller.LottoController;
 import java.util.regex.Pattern;
 
 public final class InputValidator {

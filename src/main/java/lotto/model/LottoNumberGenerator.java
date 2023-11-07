@@ -3,7 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class LottoNumberGenerator implements NumberGenerator{
+public class LottoNumberGenerator implements NumberGenerator {
 
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;

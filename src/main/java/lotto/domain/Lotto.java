@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utility.enums.ExceptionMessages;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,9 +14,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessages.NOT_SIX_NUMBERS.getMessage());
+        }
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(ExceptionMessages.IS_NUMBERS_DUPLICATION.getMessage());
         }
     }
-
-    // TODO: 추가 기능 구현
 }

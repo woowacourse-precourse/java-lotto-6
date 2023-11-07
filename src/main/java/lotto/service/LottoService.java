@@ -28,10 +28,12 @@ public class LottoService {
         lottoRepository.save(myLotto);
     }
 
-    public void saveWinningNumbers(List<Integer> winningNumbers, int bonusNumber){
-        LottoWinning lottoWinning = new LottoWinning(new Lotto(winningNumbers), bonusNumber);
+    public void saveWinningNumbers(List<Integer> winningNumbers){
+        lottoWinningRepository.saveWinningNumbers(winningNumbers);
+    }
 
-        lottoWinningRepository.save(lottoWinning);
+    public void saveBonusNumber(int bonusNumber) {
+        lottoWinningRepository.saveBonusNumber(bonusNumber);
     }
 
     public LottoStatistics calcLotto(){
@@ -79,7 +81,7 @@ public class LottoService {
     }
 
     private double getReturnRate(int winningAmount, int originalAmount){
-        return winningAmount / originalAmount * 100.0;
+        return (double) winningAmount / originalAmount * 100.0;
     }
 
     private int getSameCount(Lotto lotto, LottoWinning lottoWinning){

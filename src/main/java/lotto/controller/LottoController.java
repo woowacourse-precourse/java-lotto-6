@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoFactory;
 import lotto.model.Lottos;
+import lotto.model.RankCounter;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,5 +30,13 @@ public class LottoController {
         outputView.printInputBonusNumberSentence();
         Integer bonusNumber = inputView.inputNumber();
         return lottoFactory.createWinningLotto(winningNumbers, bonusNumber);
+    }
+
+    public void getLottosResult(Lottos lottos, WinningLotto winningLotto) {
+        outputView.printOutputWinningStatisticsSentence();
+        outputView.printOutputContour();
+        RankCounter rankCounter = lottos.getResults(winningLotto);
+        outputView.print(rankCounter.toString());
+        outputView.printOutputEarningRate(rankCounter.computeBenefit(lottos.size()));
     }
 }

@@ -67,9 +67,6 @@ public class Application {
 
     public static List<Integer> lottoNums(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//        List<Integer> numbers = List.of(1,2,3,4,5,7);
-        //오름차순 정렬
-        // List.of()로 생성된 리스트를 수정할 수 없으므로 새로운 ArrayList에 복사합니다.
         List<Integer> sortedList = new ArrayList<>(numbers);
 
         // 리스트를 오름차순으로 정렬합니다.
@@ -80,7 +77,7 @@ public class Application {
 
 
     public static int bonusNum() {
-//        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusStr = readLine();
         int bonus = Integer.parseInt(bonusStr);
 
@@ -111,15 +108,16 @@ public class Application {
     }
 
     // 결과 통계 확인 메서드
-    public static String checkResults(List<Integer> results, int num) {
-//        System.out.println("당첨 통계");
-//        System.out.println("---");
+    public static String checkResults(List<Integer> results, List<Boolean> hasBonus, int num) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         StringBuilder resultBuilder = new StringBuilder();
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
         double totalPrize = 0;
         for (Prize prize : Prize.values()) {
             int count = 0;
+            int bonusCnt = 0;
             int matNums = prize.getMatNums();
             int prizeAmount = prize.getPrizeMoney();
             boolean bonus = prize.isBonus();
@@ -127,17 +125,24 @@ public class Application {
 
             // 숫자 포맷을 정의
             String formattedNum = decimalFormat.format(prizeAmount);
-            if (results.contains(matNums)) {
+            if (results.contains(matNums) && matNums != 5) {
                 count++;
             }
-            totalPrize += prizeAmount * count;
 
             String result = resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
 
-            if (bonus) {
-                result = result.replaceFirst("보너스 볼 일치", "보너스 볼 일치");
-            }
             result += " - " + count + "개";
+
+            //보너스 볼 통계
+            if (results.contains(5) && bonus && hasBonus.contains(true)) {
+                count = 0;
+                bonusCnt++;
+                result = resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
+                result += " - " + bonusCnt + "개";
+                totalPrize += prizeAmount * bonusCnt;
+            }
+
+            totalPrize += prizeAmount * count;
 
             resultBuilder.append(result).append("\n");
         }
@@ -175,13 +180,13 @@ public class Application {
         List<Integer> winNums = winLottoNum(num);
         int bonus = bonusNum();
         List<Integer> results = new ArrayList<>();
-        List<Boolean> bonusResults = new ArrayList<>();
+        List<Boolean> hasBonus = new ArrayList<>();
         for (int ticket = 0; ticket < num; ticket++) {
             List lottoNumbers = lottoNums();
             int matchedNums = cntLottoNums(lottoNumbers, winNums);
             boolean hasBonusNum = matchingBonus(lottoNumbers, bonus);
             results.add(matchedNums);
-            bonusResults.add(hasBonusNum);
+            hasBonus.add(hasBonusNum);
 //            System.out.println(matchedNums + "개 일치");
 //            System.out.println(hasBonusNum + "보너스?");
             System.out.println(lottoNumbers.toString());
@@ -190,7 +195,7 @@ public class Application {
 //        System.out.println(results.toString());
 //        System.out.println(bonusResults.toString());
 //        System.out.println(checkResults(results, bonusResults));
-        System.out.println(checkResults(results, num));
+        System.out.println(checkResults(results, hasBonus, num));
 
 
     }

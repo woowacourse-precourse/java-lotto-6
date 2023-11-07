@@ -27,4 +27,12 @@ public class BonusNumberTest {
         .isInstanceOf(IllegalArgumentException.class);
   }
 
+  @DisplayName("보너스 번호 정수 확인")
+  @Test
+  void isEmpty() {
+    String input = "";
+
+    assertThatThrownBy(() -> BonusNumberValidator.isEmptyString(input))
+        .isInstanceOf(IllegalArgumentException.class);
+  }
 }

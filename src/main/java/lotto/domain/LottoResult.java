@@ -49,16 +49,19 @@ public class LottoResult {
         return totalPrize;
     }
 
-    public float calculateProfitPercentage(){
-        float profit = (float) calculateProfit();
-        return Math.round((profit * 100) / lottoPurchasePrice);
+    public double calculateProfitPercentage() {
+//        double profit = calculateProfit();
+        double profit = calculateTotalPrize();
+        double percentage = (profit / lottoPurchasePrice ) * 100;
+        return Math.round(percentage * 100.0) / 100.0;
     }
 
     public int calculateProfit(){
         int totalPrize = calculateTotalPrize();
         int profit = totalPrize - lottoPurchasePrice;
+        System.out.println(profit);
         if(profit < NONE){
-            return NONE;
+            return profit * -1;
         }
         return profit;
     }

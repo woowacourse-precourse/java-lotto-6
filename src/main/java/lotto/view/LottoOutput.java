@@ -47,7 +47,7 @@ public class LottoOutput {
         stringBuffer.append(printThirdRank(totalRanks.get(LottoRankAndPrize.THIRD_RANK))+"\n");
         stringBuffer.append(printSecondRank(totalRanks.get(LottoRankAndPrize.SECOND_RANK))+"\n");
         stringBuffer.append(printFirstRank(totalRanks.get(LottoRankAndPrize.FIRST_RANK))+"\n");
-        stringBuffer.append(String.format("총 수익률은 %.1f%%입니다", lottoResult.calculateProfitPercentage()));
+        stringBuffer.append(String.format("총 수익률은 %.1f%%입니다.", lottoResult.calculateProfitPercentage()));
         String result = stringBuffer.toString();
         System.out.println(result);
         return result;

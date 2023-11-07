@@ -39,4 +39,8 @@ public class View {
 
         printMessage(statistics);
     }
+
+    public void printProfit(double profit) {
+        printMessage("총 수익률은 " + profit + "%입니다.");
+    }
 }

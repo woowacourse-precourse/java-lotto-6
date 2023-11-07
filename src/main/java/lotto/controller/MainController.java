@@ -28,5 +28,6 @@ public class MainController {
     private void calculateStatistics(WinningNumber winningNumber, BonusNumber bonusNumber) {
         LottoResults results = lottoTickets.calculateResult(winningNumber, bonusNumber);
         view.printStatistics(results.showResults());
+        view.printProfit(payedMoney.calculateProfit(results));
     }
 }

@@ -52,10 +52,8 @@ public class Game {
         checkPrize(lottos, prizes); //당첨 개수 확인
 
         outputView.winningStatistics(checkCount); //당첨 통계 출력
-        //수익률 구현해야 함
 
-        //outputView.yieldRateOfReturn();
-
+        outputView.yieldRateOfReturn(AMOUNT);
     }
 
     public int purchaseAmountInput(){

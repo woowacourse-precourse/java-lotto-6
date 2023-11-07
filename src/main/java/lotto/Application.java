@@ -149,10 +149,24 @@ public class Application {
 		return !(n >= 1 && n <= 45);
 	}
 	
-	private void isDuplicated(String[]s) {
+	private void isDuplicated(String s[])throws IllegalArgumentException{
+		int i;
+		boolean duplicate = false;
+		for (i = 0; i<s.length && duplicate == false; i++) {
+			int n = Integer.parseInt(s[i]);
+			duplicate = arrayListAdd(n);
+		}
 		
+		if (duplicate == true)
+			throw new IllegalArgumentException();
+		
+		if (i < s.length) 
+			throw new IllegalArgumentException();
 	}
-
+	
+	private boolean arrayListAdd(int n) {
+		return false;
+	}
 	
 	private void bonusNumber() {
 		

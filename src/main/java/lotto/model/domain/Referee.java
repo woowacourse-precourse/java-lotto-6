@@ -12,10 +12,19 @@ public class Referee {
     private Double lottoBenefit;
 
     public Referee(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
+        this.winningNumbers = new ArrayList<>(winningNumbers);
         Collections.sort(this.winningNumbers);
         this.bonusNumber = bonusNumber;
-        this.lottoRank = new ArrayList<>();
+        this.lottoRank = new ArrayList<>(initLottoRank());
+    }
+
+    public List<Integer> initLottoRank() {
+        List<Integer> lottoRank = new ArrayList<>();
+        for (int i = 0; i <= 5; i++) {
+            lottoRank.add(0);
+        }
+
+        return lottoRank;
     }
 
     public void increaseCountForRank(int rank) {
@@ -31,7 +40,7 @@ public class Referee {
         int fifth = lottoRank.get(5) * 5_000;
 
         int sum = first + second + third + fourth + fifth;
-        this.lottoBenefit = (double) (sum / lottoAmount);
+        this.lottoBenefit = (double) (sum * 100 / (double) lottoAmount);
     }
 
     public List<Integer> getWinningNumbers() {

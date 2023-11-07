@@ -16,12 +16,12 @@ public class InputView {
 
     private static final String SPECIAL_CHARACTER_REGEX = ".*[!@#\\$%^&*()_+\\[\\]{};':\"\\\\<>./?`~\\-=|\\s].*";
     private static final String SEPARATOR_REGEX = ",";
-    private static final String NUMERIC_REGEX = "^[0-9]*$";
+    private static final String POSITIVE_INTEGER_REGEX = "^[1-9]\\d*$";
 
     public int inputPrice() {
         String line = Console.readLine();
 
-        validateInputPrice(line);
+        validateInputPricePositiveInteger(line);
 
         return Integer.parseInt(line);
     }
@@ -45,8 +45,8 @@ public class InputView {
     }
 
     // 가격 입력값 검증
-    private void validateInputPrice(String line) {
-        if(!line.matches(NUMERIC_REGEX)) {
+    private void validateInputPricePositiveInteger(String line) {
+        if (!line.matches(POSITIVE_INTEGER_REGEX)) {
             throw new InputPriceNotPositiveIntegerException();
         }
     }
@@ -54,8 +54,8 @@ public class InputView {
     // 로또 당첨 번호 입력값 검증
     private void validateInputLotto(String line) {
         String[] split = line.split(SEPARATOR_REGEX);
-        for(String s : split) {
-            if(!s.matches(NUMERIC_REGEX)) {
+        for (String s : split) {
+            if (!s.matches(POSITIVE_INTEGER_REGEX)) {
                 throw new InputLottoNotNumericException(); //
             }
         }
@@ -65,14 +65,14 @@ public class InputView {
         Pattern pattern = Pattern.compile(SPECIAL_CHARACTER_REGEX);
         Matcher matcher = pattern.matcher(line);
 
-        if(matcher.find()) {
+        if (matcher.find()) {
             throw new InputLottoSeparateRegexException();
         }
     }
 
     // 로또 당첨 보너스 번호 입력값 검증
     private void validateInputBonus(String line) {
-        if(!line.matches(NUMERIC_REGEX)) {
+        if (!line.matches(POSITIVE_INTEGER_REGEX)) {
             throw new InputBonusNotNumericException();
         }
     }

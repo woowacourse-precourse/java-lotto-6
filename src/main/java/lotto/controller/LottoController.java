@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.common.Lotto;
 import lotto.domain.common.Rank;
 import lotto.domain.consumer.Consumer;

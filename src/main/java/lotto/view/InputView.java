@@ -16,13 +16,6 @@ public class InputView {
     private static final String SPACE = " ";
     private static final String DELIMITER = ",";
 
-    public static String getLine() {
-        String input = read().trim();
-        validateNullOrEmpty(input);
-
-        return input;
-    }
-
     public static long getPurchaseCost() {
         System.out.println(PURCHASE_COST_MESSAGE);
         String input = getLine();
@@ -44,9 +37,12 @@ public class InputView {
 
         return toInt(input);
     }
+    
+    private static String getLine() {
+        String input = Console.readLine().trim();
+        validateNullOrEmpty(input);
 
-    private static String read() {
-        return Console.readLine();
+        return input;
     }
 
     private static void validateNullOrEmpty(String input) {

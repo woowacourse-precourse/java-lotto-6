@@ -29,7 +29,6 @@ public class GameController {
             Cash cash = depositCash();
             Lottos lottos = purchaseLotto(cash);
             WinnerLotto winnerLotto = getWinnerLotto();
-            outputView.printStaticResult(prizes, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
         }

@@ -5,8 +5,6 @@ import lotto.constant.WinPriceMessage;
 
 public class WinPriceView {
 
-    private WinPriceMessage winPriceMessage;
-
     public void printAllWinPrices(List<Integer> winCounts) {
         for (WinPriceMessage winPrice : WinPriceMessage.values()) {
             int index = winPrice.ordinal();

@@ -49,8 +49,4 @@ public class BonusNumberView {
         return num;
     }
 
-    private void printSpace() {
-        System.out.println();
-    }
-
 }

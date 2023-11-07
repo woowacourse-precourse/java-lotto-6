@@ -23,7 +23,6 @@ public class LottoGenerator {
     }
 
     private List<Integer> sortRandomNumbers(List<Integer> randomNumbers) {
-        Collections.sort(randomNumbers);
-        return randomNumbers;
+        return randomNumbers.stream().sorted().toList();
     }
 }

@@ -11,6 +11,7 @@ public class InputView {
         String money = readLine();
         isDigit(money);
         canDivideByKilo(money);
+        isMoneyOverKilo(money);
         return Integer.parseInt(money);
     }
 
@@ -36,6 +37,12 @@ public class InputView {
     private static void canDivideByKilo(String money) {
         if (Integer.parseInt(money) % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException("[ERROR] 천 원단위로 입력해 주세요.");
+        }
+    }
+
+    private static void isMoneyOverKilo(String money) {
+        if (Integer.parseInt(money) < 1000) {
+            throw new IllegalArgumentException("[ERROR] 한 장도 구입할 수 없습니다.");
         }
     }
 }

@@ -7,7 +7,6 @@ import lotto.vo.WinningLottoNumbers;
 
 public class WinningLotto {
     private final WinningLottoNumbers lottoNumbers;
-    private final static int DELETE_INDEX = 6;
 
     public WinningLotto(List<Integer> lottoNumbers){
         this.lottoNumbers = new WinningLottoNumbers(lottoNumbers);

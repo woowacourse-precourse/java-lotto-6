@@ -4,10 +4,11 @@ import lotto.exception.DuplicateNumbersLottoException;
 
 public class Evaluator {
     private Lotto winningLotto;
-    private BonusNumber bonus;
+    private Integer bonus;
     private Prize result;
 
-    public Evaluator(Lotto winningLotto, BonusNumber bonusNumber) {
+    public Evaluator(Lotto winningLotto, Integer bonusNumber) {
+
         validateDuplicate(winningLotto, bonusNumber);
 
         this.winningLotto = winningLotto;
@@ -16,9 +17,13 @@ public class Evaluator {
     }
 
     public void judgeLottoTicket(LottoTicket lottoTicket) {
+
         for (Lotto candidate : lottoTicket.getLottos()) {
+
             PrizeRankConstants rank = judgeLotto(candidate);
+
             result.increaseCountOf(rank);
+
         }
     }
 
@@ -28,11 +33,14 @@ public class Evaluator {
 
 
     private PrizeRankConstants judgeLotto(Lotto candidate) {
+
         Integer numberOfMatched = countHowManyMatch(candidate);
-        boolean isBonusContained = candidate.contains(bonus.getNumber());
+        boolean isBonusContained = candidate.contains(bonus);
+
         if (isBonusContained) {
             numberOfMatched++;
         }
+
         return PrizeRankConstants.getRankConstant(numberOfMatched, isBonusContained);
     }
 
@@ -43,12 +51,13 @@ public class Evaluator {
                 .count();
     }
 
-    private void validateDuplicate(Lotto winningLotto, BonusNumber bonusNumber) {
-        boolean isDuplicated = winningLotto.contains(bonusNumber.getNumber());
+    private void validateDuplicate(Lotto winningLotto, Integer bonusNumber) {
+        boolean isDuplicated = winningLotto.contains(bonusNumber);
 
         if (isDuplicated) {
             throw new DuplicateNumbersLottoException();
         }
+
     }
 
 }

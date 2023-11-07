@@ -10,25 +10,29 @@ public enum Prize {
     FIFTH(3, false, 5000),
     MISS(0, false, 0);
 
-    private final int matchedNumber;
-    private final boolean matchedBonus;
-    private final int winningMoney;
+    private final int matchNum;
+    private final boolean matchBonus;
+    private final int prizeMoney;
 
-    Prize(int matchedNumber, boolean matchedBonus, int winningMoney) {
-        this.matchedNumber = matchedNumber;
-        this.matchedBonus = matchedBonus;
-        this.winningMoney = winningMoney;
+    Prize(int matchNum, boolean matchBonus, int prizeMoney) {
+        this.matchNum = matchNum;
+        this.matchBonus = matchBonus;
+        this.prizeMoney = prizeMoney;
     }
 
     public static Prize getRank(int number, boolean bonusNumber) {
         return Arrays.stream(values())
-                .filter(o -> o.matchedNumber == number
-                        && o.matchedBonus == bonusNumber)
+                .filter(o -> o.matchNum == number
+                        && o.matchBonus == bonusNumber)
                 .findAny()
                 .orElse(MISS);
     }
 
-    public int getWinningMoney() {
-        return winningMoney;
+    public int getMatchNum() {
+        return matchNum;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

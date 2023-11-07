@@ -58,7 +58,7 @@ public class MainController {
 
     public double getTotalReturn(List<Prize> prizes) {
         return prizes.stream()
-                .mapToDouble(Prize::getWinningMoney)
+                .mapToDouble(Prize::getPrizeMoney)
                 .sum();
     }
 }

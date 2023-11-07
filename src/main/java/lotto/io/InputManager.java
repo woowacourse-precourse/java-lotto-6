@@ -8,4 +8,8 @@ public abstract class InputManager<T>  {
     protected void setConsoleAdapter(ConsoleAdapter consoleAdapter){
         this.consoleAdapter=consoleAdapter;
     };
+
+    public static void validateNumberRange(Integer number) {
+        if (number > 45 || number < 1) throw new IndexOutOfBoundsException();
+    }
 }

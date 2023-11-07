@@ -20,7 +20,7 @@ public class LottoServiceTest {
     @DisplayName("구입 금액만큼 로또가 생성되는지 검사한다.")
     public void 로또_구매() throws Exception {
         //given
-        User user = new User("10000");
+        User user = new User(10000);
 
         //when
         PurchasedLottoNumbers purchasedLottoNumbers = lottoGenerator(user.getAmount());

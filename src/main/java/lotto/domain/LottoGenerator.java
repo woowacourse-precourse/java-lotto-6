@@ -5,43 +5,32 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constants.messages.Error;
+import lotto.constant.constants.Config;
+import lotto.constant.messages.Error;
 
 public class LottoGenerator {
 
-    private Integer money;
-    private int numberOfTickets;
+    private int numberOfLotto;
 
-    public LottoGenerator() {
-        money = numberOfTickets = 0;
-    }
-
-//    public LottoGenerator(String input) {
-//        checkInputFormat(input);
-//        int money = Integer.parseInt(input);
-//        this.money = money;
-//        this.numberOfTickets = money / 1000;
-//    }
 
     public void configMoney(String input) {
         checkInputFormat(input);
-        int money = Integer.parseInt(input);
-        this.money = money;
-        this.numberOfTickets = money / 1000;
+        this.numberOfLotto = Integer.parseInt(input) / Config.LOTTO_PRICE.getConfig();
     }
 
 
     private List<Integer> generateLottoNumber() {
         Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < 6) {
-            numbers.add(Randoms.pickNumberInRange(1, 45));
+        while (numbers.size() < Config.LOTTO_SIZE.getConfig()) {
+            numbers.add(Randoms.pickNumberInRange(Config.LOTTO_MIN_NUMBER.getConfig(),
+                    Config.LOTTO_MAX_NUMBER.getConfig()));
         }
         return new ArrayList<>(numbers.stream().toList());
     }
 
     public Lottos generateMyLottos() {
         Lottos lottos = new Lottos();
-        for (int i = 0; i < numberOfTickets; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             lottos.add(new Lotto(generateLottoNumber()));
         }
         return lottos;
@@ -56,13 +45,13 @@ public class LottoGenerator {
     }
 
     private void isLessThanLowerBound(String input) {
-        if (Integer.parseInt(input) < 1000) {
+        if (Integer.parseInt(input) < Config.LOTTO_PRICE.getConfig()) {
             throw new IllegalArgumentException(Error.MONEY_TOO_SMALL.getMessage());
         }
     }
 
     private void isDividable(String input) {
-        if (Integer.parseInt(input) % 1000 > 0) {
+        if (Integer.parseInt(input) % Config.LOTTO_PRICE.getConfig() > 0) {
             throw new IllegalArgumentException(Error.NOT_DIVIDABLE.getMessage());
         }
 

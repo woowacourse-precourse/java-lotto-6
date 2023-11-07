@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.util.constant.GameRule.TICKET_PRICE;
+import static lotto.util.rule.GameRule.TICKET_PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;

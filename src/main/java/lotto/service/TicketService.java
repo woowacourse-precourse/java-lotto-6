@@ -2,7 +2,7 @@ package lotto.service;
 
 import static lotto.util.Censor.validatePurchaseUnit;
 import static lotto.util.Censor.validateAnnouncementNumber;
-import static lotto.util.constant.GameRule.TICKET_PRICE;
+import static lotto.util.rule.GameRule.TICKET_PRICE;
 
 import java.util.Arrays;
 import java.util.List;

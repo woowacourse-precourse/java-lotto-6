@@ -1,4 +1,4 @@
-package lotto.util.constant;
+package lotto.util.rule;
 
 public enum GameRule {
 

@@ -1,9 +1,9 @@
 package lotto.util;
 
-import static lotto.util.constant.GameRule.LOTTO_SIZE;
-import static lotto.util.constant.GameRule.MAX_LOTTO_RANGE;
-import static lotto.util.constant.GameRule.MIN_LOTTO_RANGE;
-import static lotto.util.constant.GameRule.TICKET_PRICE;
+import static lotto.util.rule.GameRule.LOTTO_SIZE;
+import static lotto.util.rule.GameRule.MAX_LOTTO_RANGE;
+import static lotto.util.rule.GameRule.MIN_LOTTO_RANGE;
+import static lotto.util.rule.GameRule.TICKET_PRICE;
 import static lotto.util.content.ErrorMessage.INPUT_COMMA_ERROR;
 import static lotto.util.content.ErrorMessage.INPUT_NUMERIC_ERROR;
 import static lotto.util.content.ErrorMessage.INPUT_SPACE_ERROR;
@@ -15,7 +15,6 @@ import static lotto.util.content.ErrorMessage.UNIQUE_NUMBER_ERROR;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.domain.Lotto;
 
 public class Censor {

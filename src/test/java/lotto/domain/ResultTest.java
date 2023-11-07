@@ -66,4 +66,13 @@ class ResultTest {
 
         assertEquals(expected, Result.sumOfRewards(results));
     }
+
+    @Test
+    void 로또가_전부_일치하지_않은경우_0원을_계산한다() {
+        List<Result> results = List.of();
+
+        Long expected = 0L;
+
+        assertEquals(expected, Result.sumOfRewards(results));
+    }
 }

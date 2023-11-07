@@ -52,4 +52,64 @@ class AnswerLottoTest {
         );
     }
 
+    @Test
+    void _3개의_번호가_일치하면_5등이다() {
+        final var matchResult = createMatchResult(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 7, 8, 9),
+                4
+        );
+
+        assertThat(LottoMatchingTable.of(matchResult)).isEqualTo(LottoMatchingTable.FIFTH);
+    }
+
+    @Test
+    void _4개의_번호가_일치하면_4등이다() {
+        final var matchResult = createMatchResult(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 7, 8),
+                5
+        );
+
+        assertThat(LottoMatchingTable.of(matchResult)).isEqualTo(LottoMatchingTable.FOURTH);
+    }
+
+    @Test
+    void _5개의_번호가_일치하면_3등이다() {
+        final var matchResult = createMatchResult(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                8
+        );
+        assertThat(LottoMatchingTable.of(matchResult)).isEqualTo(LottoMatchingTable.THIRD);
+    }
+
+    @Test
+    void _5개의_번호와_보너스번호가_일치하면_2등이다() {
+        final var matchResult = createMatchResult(
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 6),
+                7
+        );
+        System.out.println(LottoMatchingTable.of(matchResult));
+        assertThat(LottoMatchingTable.of(matchResult)).isEqualTo(LottoMatchingTable.SECOND);
+    }
+
+    @Test
+    void _6개의_번호가_일치하면_1등이다() {
+        final var matchResult = createMatchResult(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                7
+        );
+        System.out.println(LottoMatchingTable.of(matchResult));
+        assertThat(LottoMatchingTable.of(matchResult)).isEqualTo(LottoMatchingTable.FIRST);
+    }
+
+    private MatchResult createMatchResult(List<Integer> numbers, List<Integer> answerLottoNumber, int bonusNumber) {
+        final var answerLotto = AnswerLotto.of(answerLottoNumber)
+                .registerBonusNumber(bonusNumber);
+        return answerLotto.match(new Lotto(numbers));
+
+    }
 }

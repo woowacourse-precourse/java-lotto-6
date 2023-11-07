@@ -7,6 +7,13 @@ public class Validation {
 
     private static final String COMMAS = ",";
 
+    public static void verifyEmptyInputMoney(String string) {
+        if (string.length() == 0) {
+            ErrorMessage.verificationViewEmptyInputMoney();
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void verifyRangeInputMoney(long myMoney) {
         if (myMoney / 1000 < 1 || myMoney % 1000 != 0) {
             ErrorMessage.verificationViewRangeInputMoney();

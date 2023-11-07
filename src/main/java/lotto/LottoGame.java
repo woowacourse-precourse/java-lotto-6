@@ -35,4 +35,17 @@ public class LottoGame {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+    private static void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(formatLottoNumbers(lotto.getNumbers()));
+        }
+    }
+
+    private static String formatLottoNumbers(List<Integer> numbers) {
+        return "[" + numbers.stream()
+                            .map(String::valueOf)
+                            .collect(Collectors.joining(", ")) + "]";
+    }
 }

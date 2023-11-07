@@ -3,11 +3,13 @@ package lotto.services;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Rank;
+import lotto.utils.Constants;
 
 public class PrizeManager {
     // Fields
     private List<Integer> prizes = new ArrayList<>();
-    private final int TICKET_PRICE = 1000;
+    private final int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
+    private final int NOT_VALUE = Constants.NOT_VALUE.getValue();
 
 
     // Features
@@ -52,9 +54,10 @@ public class PrizeManager {
         List<Integer> indexes = getIndexOfAllPrizes();
 
         for (int index : indexes) {
-            if (index != -1) {
-                int want = counts.get(index) + 1;
-                counts.set(index, want);
+            if (index != NOT_VALUE) {
+                int from = counts.get(index);
+                int to = ++from;
+                counts.set(index, to);
             }
         }
     }

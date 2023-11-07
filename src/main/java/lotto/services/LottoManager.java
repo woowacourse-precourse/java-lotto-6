@@ -5,13 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Tickets;
+import lotto.utils.Constants;
 import lotto.utils.validation.Validator;
 
 public class LottoManager {
     // Fields
     private Validator validator = new Validator();
     private Tickets tickets = new Tickets();
-    private int TICKET_PRICE = 1000;
+    private final int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
 
 
     // Features

@@ -1,8 +1,12 @@
 package lotto.model;
 
+import lotto.utils.Constants;
+
 public class LottoNumber {
     // Fields, Constructors
     private final int number;
+    private final int RANGE_MIN = Constants.RANGE_MIN.getValue();
+    private final int RANGE_MAX = Constants.RANGE_MAX.getValue();
 
     public LottoNumber(String string) {
         int number = parseToNumber(string);
@@ -41,7 +45,7 @@ public class LottoNumber {
     }
 
     private void validateRange(int number) {
-        if (number <= 0 || number > 45) {
+        if (number < RANGE_MIN || number > RANGE_MAX) {
             throw new IllegalArgumentException();
         }
     }

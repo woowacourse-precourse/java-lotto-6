@@ -5,10 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.utils.Constants;
 
 public class ValidatorNumber extends Validator {
     // Fields
     protected Set<Integer> winningNumbers;
+    private final int LOTTO_NUMBER_LENGTH = Constants.LOTTO_NUMBER_LENGTH.getValue();
+    private final int RANGE_MIN = Constants.RANGE_MIN.getValue();
+    private final int RANGE_MAX = Constants.RANGE_MAX.getValue();
 
 
     // Features
@@ -45,13 +49,13 @@ public class ValidatorNumber extends Validator {
     }
 
     private void validateWinningNumberLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateWinningNumberRange(int number) {
-        if (number <= 0 || number > 45) {
+        if (number < RANGE_MIN || number > RANGE_MAX) {
             throw new IllegalArgumentException();
         }
     }

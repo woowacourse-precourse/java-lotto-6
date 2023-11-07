@@ -3,10 +3,14 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.Constants;
 
 public class Tickets {
     // Fields
     private final List<Lotto> lottos = new ArrayList<>();
+    private final int LOTTO_NUMBER_LENGTH = Constants.LOTTO_NUMBER_LENGTH.getValue();
+    private final int RANGE_MIN = Constants.RANGE_MIN.getValue();
+    private final int RANGE_MAX = Constants.RANGE_MAX.getValue();
 
 
     // Features
@@ -38,7 +42,7 @@ public class Tickets {
 
     // Internal Implements
     private List<Integer> generateRandomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANGE_MIN, RANGE_MAX, LOTTO_NUMBER_LENGTH);
 
         return numbers;
     }

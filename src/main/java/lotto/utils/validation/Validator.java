@@ -1,6 +1,10 @@
 package lotto.utils.validation;
 
+import lotto.utils.Constants;
+
 public class Validator {
+    private int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
+
     // Features
     public int validateMoney(String string) {
         int money = validateisNumber(string);
@@ -31,7 +35,7 @@ public class Validator {
     }
 
     private boolean isCorrectAmount(int money) {
-        return money <= 0 || money % 1000 != 0;
+        return money <= 0 || money % TICKET_PRICE != 0;
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Money;
 import lotto.execption.DuplicateBonusNumberException;
-import lotto.execption.InputMoneyParseIntException;
+import lotto.execption.InputParseIntException;
 import lotto.execption.LottoNumberRangeException;
 
 public class InputView {
@@ -17,15 +17,14 @@ public class InputView {
     public static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public Money inputMoney() {
         String input = Console.readLine();
-        return parseMoney(input);
+        return new Money(converter(input));
     }
 
-    private Money parseMoney(String input) {
+    private int converter(String input) {
         try {
-            int money = Integer.parseInt(input);
-            return new Money(money);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InputMoneyParseIntException();
+            throw new InputParseIntException();
         }
     }
 
@@ -40,7 +39,7 @@ public class InputView {
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
-        int number = Integer.parseInt(Console.readLine());
+        int number = converter(Console.readLine());
         validateRange(number);
         validateDuplicate(winningNumbers, number);
         return number;

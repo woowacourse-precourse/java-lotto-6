@@ -47,8 +47,7 @@
 - 수익률을 계산하여 출력합니다.
 
 ## 🔧 클래스 다이어그램
-![img.png](img.png)
-
+![class-diagram.png](class-diagram.png)
 ## 💻 구현 진행도
 📍로또 구매
 

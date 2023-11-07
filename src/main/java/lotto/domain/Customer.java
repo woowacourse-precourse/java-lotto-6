@@ -34,6 +34,10 @@ public class Customer {
         return result;
     }
 
+    public void setLotteryTicket(List<Lotto> tickets) {
+        this.lotteryTicket = tickets;
+    }
+
     public int getMoney() {
         return money;
     }

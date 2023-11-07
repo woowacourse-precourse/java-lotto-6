@@ -14,9 +14,6 @@ import java.util.stream.Stream;
 
 public class BonusNumberTest {
 
-    // 보너스 숫자는 숫자여야 하고
-    // 보너스 숫자는 1~46 사이여야 하고
-    // 보너스 숫자는 당첨 번호와 중복되면 안된다.
     List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
     @ParameterizedTest
@@ -26,7 +23,7 @@ public class BonusNumberTest {
         Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, lottoNumbers))
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("[ERROR]")
-                .hasMessageContaining("보너스 숫자는 아라비아 숫자이어야 합니다.")
+                .hasMessageContaining("보너스 숫자는 아라비아 숫자이어야 합니다.");
     }
 
     @ParameterizedTest
@@ -36,7 +33,7 @@ public class BonusNumberTest {
         Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]")
-                .hasMessageContaining("보너스 숫자는 1과 45사이 이어야 합니다.";
+                .hasMessageContaining("보너스 숫자는 1과 45사이 이어야 합니다.");
     }
 
     @ParameterizedTest
@@ -46,7 +43,7 @@ public class BonusNumberTest {
         Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, exisLottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]")
-                .hasMessageContaining("보너스 숫자는 이전 당첨 번호와 중복되면 안됩니다.";
+                .hasMessageContaining("보너스 숫자는 이전 당첨 번호와 중복되면 안됩니다.");
     }
 
     static Stream<Arguments> generateDuplicateBonusNumber() {

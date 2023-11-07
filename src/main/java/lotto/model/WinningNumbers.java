@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class WinningNumbers {
     private static final String ERROR_NULL_WINNING_NUMBER = "당첨번호를 입력하세요.";
-    private static final String ERROR_EMPTY_WINNING_NUMBER = "6개의 번호가 입력되었는지 확인하세요.";
+    private static final String ERROR_EMPTY_WINNING_NUMBER = "6개의 입력값 중 공백이 포함 되었는지 확인하세요.";
     private static final String ERROR_INVALID_INPUT_TYPE = "유효하지 않은 타입입니다. 숫자로 입력해주세요.";
     private static final String ERROR_LESS_OR_OVER_COUNT_OF_NUMBER = "당첨 번호는 6개로 구성해 주세요.";
     private static final String ERROR_INVALID_DUPLICATED_NUMBER = "서로 다른 번호를 입력해 주세요.";

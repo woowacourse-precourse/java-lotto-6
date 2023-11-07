@@ -1,20 +1,44 @@
 package lotto.controller;
 
-import lotto.domain.Seller;
+import static lotto.view.WinningNumbersInput.winningNumbers;
+
+import java.util.List;
+
+import lotto.domain.Deposit;
+import lotto.domain.Lotto;
+import lotto.domain.ProfitRate;
+import lotto.domain.RankCount;
+import lotto.domain.WinningNumbers;
+
 import lotto.view.DepositInput;
-import lotto.view.LottoOutPut;
+import lotto.view.LottoOutput;
+import lotto.view.ProfitRateOutput;
+import lotto.view.WinningResultOutput;
 
 public class LottoController {
-    public void lotto() {
-        LottoOutPut.depositMessage();
 
-        Seller seller = seller();
-        LottoOutPut.lottoTicketsCountMessage(seller.getLottoTickets());
+    public static final int TICKET_PRICE = 1000;
 
-    }
+    public void run() {
+        LottoOutput.deposit();
 
-    private Seller seller() {
-        int deposit = DepositInput.deposit();
-        return new Seller(deposit);
+        Deposit deposit = DepositInput.deposit();
+        LottoOutput.ticketsCount(deposit.getLottoTicketsCount());
+
+        List<Lotto> tickets = LottoTicketFactory.lottoTickets(deposit.getLottoTicketsCount());
+        LottoOutput.lottoTickets(tickets);
+
+        WinningNumbers winningNumber = winningNumbers();
+
+        RankCount rankCount = new RankCount(tickets, winningNumber);
+        int totalWinnings = rankCount.calculateTotalWinnings();
+
+        WinningResultOutput.winningResult(rankCount);
+
+        ProfitRate profitRate = new ProfitRate(totalWinnings, deposit.getDeposit());
+        ProfitRateOutput.profitRate(profitRate.getProfitRate());
+        System.out.printf("로또 1등의 수익률: %.1f%%\n", profitRate.getProfitRate());
     }
 }
+
+

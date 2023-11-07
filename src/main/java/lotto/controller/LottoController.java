@@ -36,6 +36,7 @@ public class LottoController {
             outputView.printNewLine();
 
             List<LottoPaper> lotto = machine.publishLottoPaper(coin);
+            outputView.printLottoPapers(lotto);
 
         } catch (IllegalArgumentException e) {
             outputView.printError(e);

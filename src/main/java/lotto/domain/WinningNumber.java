@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.validator.LottoValidator;
-
 public class WinningNumber {
     private final Lotto winningNumbers;
     private final int bonusNumber;

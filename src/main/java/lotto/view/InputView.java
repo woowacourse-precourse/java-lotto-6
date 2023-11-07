@@ -14,4 +14,10 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 금액을 잘못 입력했습니다.");
         }
     }
+
+    protected void beDividedThousandValidate(String result) {
+        if (!(Integer.parseInt(result) % 1000 == 0)) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
+        }
+    }
 }

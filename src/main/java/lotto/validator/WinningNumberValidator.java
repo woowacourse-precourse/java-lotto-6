@@ -12,11 +12,11 @@ public class WinningNumberValidator {
     }
 
     public static void validateDuplicate(List<String> input) throws IllegalArgumentException {
-        List<String> disticedNumbers = input.stream()
+        List<String> distinctNumbers = input.stream()
                 .distinct()
                 .toList();
 
-        if (disticedNumbers.size() != input.size()) {
+        if (distinctNumbers.size() != input.size()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 끼리는 서로 중복되면 안됩니다.");
         }
     }

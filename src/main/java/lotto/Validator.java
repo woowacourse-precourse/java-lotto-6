@@ -47,18 +47,28 @@ public class Validator {
     }
 
     private static int checkEachNumber(Set<Integer> winningNumbers, String[] splittedNumbers, int i) {
-        int num = 0;
+        String oneNum = splittedNumbers[i];
+
+        validateNumberFormat(oneNum);
+        int num = Integer.parseInt(oneNum);
+        validateNumberScope(num);
+        if (winningNumbers.contains(num)) {
+            throw new IllegalArgumentException(prefix + "중복된 값을 포함하고 있습니다.");
+        }
+        return num;
+    }
+
+    private static void validateNumberScope(int num) {
+        if (num < 1 || num > 45) {
+            throw new IllegalArgumentException(prefix + "1~45 사이의 값이 아닙니다.");
+        }
+    }
+
+    private static void validateNumberFormat(String input) {
         try {
-            num = Integer.parseInt(splittedNumbers[i]);
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException(prefix + "1~45 사이의 값이 아닙니다.");
-            }
-            if (winningNumbers.contains(num)) {
-                throw new IllegalArgumentException(prefix + "중복된 값을 포함하고 있습니다.");
-            }
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(prefix + "숫자가 아닙니다.");
         }
-        return num;
     }
 }

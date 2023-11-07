@@ -50,12 +50,4 @@ public class IntegerValidator {
         return false;
     }
 
-    public static void checkWinnigNumbersValue(String value)throws IllegalArgumentException{
-        return;
-    }
-
-    public static void checkBonusNumberValue(String value)throws IllegalArgumentException{
-        return;
-    }
-
 }

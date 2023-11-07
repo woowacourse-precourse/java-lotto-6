@@ -1,7 +1,6 @@
 package lotto;
 
 import Converter.Converter;
-import Validator.IntegerValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class GameInput {
@@ -33,12 +32,11 @@ public class GameInput {
     public static Integer insertBonusNumber(){
         String number = Console.readLine();
         try {
-            IntegerValidator.checkBonusNumberValue(number);
+            return Converter.convertStringToBonusBall(number);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return null;
         }
-        return Integer.valueOf(number);
     }
 
 }

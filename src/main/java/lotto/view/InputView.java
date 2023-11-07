@@ -23,4 +23,8 @@ public class InputView {
         return result;
 
     }
+
+    public int getBonusNumberFromUser() {
+        return Integer.parseInt(Console.readLine());
+    }
 }

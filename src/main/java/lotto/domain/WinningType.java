@@ -33,7 +33,7 @@ public enum WinningType {
         this.standard = standard;
     }
 
-    public WinningType findWinningType(final int winningCount, final boolean hasBonusNumber) {
+    public static WinningType findWinningType(final int winningCount, final boolean hasBonusNumber) {
         return Arrays.stream(WinningType.values())
                 .filter(winning -> standard.test(winningCount, hasBonusNumber))
                 .findFirst()

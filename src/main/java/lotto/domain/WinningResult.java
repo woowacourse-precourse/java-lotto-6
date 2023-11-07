@@ -18,6 +18,9 @@ public class WinningResult {
     private void generateWinningResult(Lottos lottos, DrawnNumbers drawnNumbers) {
         for (Lotto lotto : lottos.getLottos()) {
             LottoResultDto lottoResultDto = drawnNumbers.compare(lotto);
+            WinningType winningType = WinningType.findWinningType(
+                    lottoResultDto.getWinningCount(),
+                    lottoResultDto.hasBonusNumber());
         }
     }
 }

@@ -4,16 +4,24 @@ import java.util.Map;
 import static model.LottoRepository.*;
 
 public class LottoResultOutputView {
+    public static final String WINNING_RESULT_HEADER = "당첨 통계\n---";
+    public static final String MATCH_THREE_PRIZE = "3개 일치 (5,000원) - ";
+    public static final String MATCH_FOUR_PRIZE = "4개 일치 (50,000원) - ";
+    public static final String MATCH_FIVE_PRIZE = "5개 일치 (1,500,000원) - ";
+    public static final String MATCH_FIVE_WITH_BONUS_PRIZE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    public static final String MATCH_SIX_PRIZE = "6개 일치 (2,000,000,000원) - ";
+    public static final String LOTTO_PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
+
     public void showWinningResult(Map<Integer, Integer> lottoWinningStatistics) {
-        System.out.println("당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + lottoWinningStatistics.get(RANK_FIFTH) + "개");
-        System.out.println("4개 일치 (50,000원) - " + lottoWinningStatistics.get(RANK_FOURTH) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + lottoWinningStatistics.get(RANK_THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoWinningStatistics.get(RANK_SECOND) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + lottoWinningStatistics.get(RANK_FIRST) + "개");
+        System.out.println(WINNING_RESULT_HEADER);
+        System.out.println(MATCH_THREE_PRIZE + lottoWinningStatistics.get(RANK_FIFTH) + "개");
+        System.out.println(MATCH_FOUR_PRIZE + lottoWinningStatistics.get(RANK_FOURTH) + "개");
+        System.out.println(MATCH_FIVE_PRIZE + lottoWinningStatistics.get(RANK_THIRD) + "개");
+        System.out.println(MATCH_FIVE_WITH_BONUS_PRIZE + lottoWinningStatistics.get(RANK_SECOND) + "개");
+        System.out.println(MATCH_SIX_PRIZE + lottoWinningStatistics.get(RANK_FIRST) + "개");
     }
 
     public void showLottoProfit(double profit) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+        System.out.printf(LOTTO_PROFIT_FORMAT, profit);
     }
 }

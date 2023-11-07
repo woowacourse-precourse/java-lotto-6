@@ -8,10 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoWinningNumberInputView {
+    final String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
+
     WinnerNumberGeneratorValidator winnerNumberGeneratorValidator = new WinnerNumberGeneratorValidator();
 
     public List<Integer> readLottoWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_PROMPT);
         String winnnigLottoNumber = Console.readLine();
         List<Integer> winningNumbers = commaSeparatedStringToIntList(winnnigLottoNumber);
         return winningNumbers;

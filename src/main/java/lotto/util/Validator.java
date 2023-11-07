@@ -51,7 +51,12 @@ public class Validator {
         isDuplicated(numbers);
     }
 
+    public static int validateSingleNumber(String inputNum) {
+        int number = isNumber(inputNum);
+        isSmallAndBig(number);
 
+        return number;
+    }
 
 
 }

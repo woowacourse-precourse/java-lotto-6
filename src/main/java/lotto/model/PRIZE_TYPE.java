@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum PRIZE_TYPE {
     NONE(0),

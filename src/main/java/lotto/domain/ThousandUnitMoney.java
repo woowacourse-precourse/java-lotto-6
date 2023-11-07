@@ -28,6 +28,7 @@ public class ThousandUnitMoney {
     }
 
     public int plus(ThousandUnitMoney money) {
+        IntegerValidator.validatePlusRange(this.amount, money.amount);
         return this.amount + money.amount;
     }
 

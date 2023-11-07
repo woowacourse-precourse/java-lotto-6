@@ -33,7 +33,9 @@ public class LottoResultCalculator {
         return Collections.unmodifiableMap(lottoResult);
     }
 
-    public Map<LottoRankInfo, Integer> getLottoResult() {
-        return Collections.unmodifiableMap(lottoResult);
+    public long calculateTotalPrizeMoney() {
+        return lottoResult.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
     }
 }

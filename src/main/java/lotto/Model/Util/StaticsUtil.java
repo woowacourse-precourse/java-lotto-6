@@ -39,7 +39,7 @@ public class StaticsUtil {
     }
 
     public float calculateRevenue(int purchaseMoney, int totalPrize) {
-        return ((float) (totalPrize - purchaseMoney) / purchaseMoney)*100;
+        return ((float) (totalPrize) / purchaseMoney)*100;
     }
 
     public void setGradeResult(int drawResult, boolean bonusResult) {

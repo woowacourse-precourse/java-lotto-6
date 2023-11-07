@@ -112,8 +112,13 @@ public class Draw {
         Map<Rank, Integer> drawResult = initDrawResult();
         for (Lotto lotto : lottos) {
             int matchCount = calculateMatchCount(winning, lotto);
+            boolean bonus = hasBonus(lotto, bonusNum);
         }
         return drawResult;
+    }
+
+    boolean hasBonus(Lotto lotto, int bonusNum) {
+        return lotto.getNumbers().contains(bonusNum);
     }
 
     int calculateMatchCount(Lotto winning, Lotto lotto) {

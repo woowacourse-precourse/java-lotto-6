@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.util.enumerator.LottoRank;
 
 public class OutputView {
@@ -29,18 +30,17 @@ public class OutputView {
                 .collect(Collectors.joining(DIGIT_COMMA_WITH_BLANK));
     }
 
-    public void outputLottoResults(List<LottoRank> rankResults) {
+    public void outputLottoResults(LottoResult result) {
         System.out.printf(Message.OUTPUT_LOTTO_RESULTS.message);
 
-        printRankCount(rankResults, LottoRank.FIFTH);
-        printRankCount(rankResults, LottoRank.FOURTH);
-        printRankCount(rankResults, LottoRank.THIRD);
-        printRankCount(rankResults, LottoRank.SECOND);
-        printRankCount(rankResults, LottoRank.FIRST);
+        for (int i = LottoRank.values().length - 2; i >= 0; i--) {
+            LottoRank rank = LottoRank.values()[i];
+            printRankCount(result, rank);
+        }
     }
 
-    private static void printRankCount(List<LottoRank> rankResults, LottoRank rank) {
-        int count = Collections.frequency(rankResults, rank);
+    private void printRankCount(LottoResult result, LottoRank rank) {
+        int count = Collections.frequency(result.getRankResults(), rank);
         System.out.printf(rank.getContent()
                 + Message.OUTPUT_LOTTO_RESULT_COUNT.message, count);
     }
@@ -53,6 +53,10 @@ public class OutputView {
     private String thousandFormatter(double profitRate) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
         return decimalFormat.format(profitRate);
+    }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 
     private enum Message {

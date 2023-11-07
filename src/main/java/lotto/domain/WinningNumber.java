@@ -4,10 +4,10 @@ import java.util.List;
 import lotto.util.Util;
 import lotto.util.validator.LottoValidator;
 
-public class Lotto {
+public class WinningNumber {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public WinningNumber(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -17,7 +17,6 @@ public class Lotto {
         new LottoValidator().validate(convert);
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }

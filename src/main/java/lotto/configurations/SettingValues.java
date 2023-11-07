@@ -5,8 +5,9 @@ public enum SettingValues {
     MIN_OF_RANGE(1),
     MAX_OF_RANGE(45),
     MIN_WINNING_RANKING(5),
-    NUMBER_SIZE(6),
+    SIZE_OF_LOTTO(6),
     PRICE_OF_LOTTO(1000),
+
     // values about rankings
     FIRST(1),
     POINT_OF_FIRST(6),
@@ -23,11 +24,9 @@ public enum SettingValues {
     FIFTH(5),
     POINT_OF_FIFTH(3),
     REWARD_OF_FIFTH(5000),
-
-    EXTRA_POINT(1),
-    CALCULATOR(8),
     FAIL(0),
-    ZERO(0);
+    REWARD_OF_FAIL(0),
+    POINT_OF_FAIL(0);
 
     private final int value;
 

@@ -9,6 +9,8 @@ import java.util.List;
 public class GameManager {
     
     private List<Lotto> lottos = new ArrayList<>();
+    private List<Integer> winningNumbers = new ArrayList<>();
+    private Integer bonusNumber;
     public void generateLotto(Integer money) {
         Integer iterNum = money / 1000;
         for(int i = 0; i < iterNum; i++) {
@@ -20,6 +22,14 @@ public class GameManager {
     }
     public Integer getGameSize() {
         return this.lottos.size();
+    }
+    
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+    
+    public void setBonusNumber(Integer bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
     
     public void printLottos() {

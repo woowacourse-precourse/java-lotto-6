@@ -3,6 +3,8 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,6 +21,89 @@ class InputHandlerTest {
             inputHandler.readCost(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
+    }
+    
+    @Test
+    @DisplayName("당첨 숫자 잘못 입력: ")
+    void readWinningNumberTest1_1() {
+        String input = "";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 숫자만을 입력해야 합니다.");
+    }
+    @Test
+    @DisplayName("당첨 숫자 잘못 입력: 32,45,12,7,34,ㄷ")
+    void readWinningNumberTest1_2() {
+        String input = "32,45,12,7,34,ㄷ";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 숫자만을 입력해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 숫자 잘못 입력: 45 보다 큰 숫자를 입력한 경우")
+    void readWinningNumberTest2() {
+        String input = "12,45,34,11,56,33";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 1~45 사이의 숫자를 입력해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 숫자 잘못 입력: 6 개 이상의 숫자를 입력한 경우")
+    void readWinningNumberTest3() {
+        String input = "12,45,34,11,33,1,7";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 더 많은 숫자를 입력하였습니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 숫자 잘못 입력: 2 개 이상의 숫자를 입력한 경우")
+    void readBonusNumberTest1() {
+        String input = "12,45";
+        List<Integer> input2 = List.of(3, 5, 11, 16, 32, 38);
+        assertThatThrownBy(() -> {
+            inputHandler.readBonusNumber(input, input2);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 하나의 숫자만을 입력해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 숫자 잘못 입력: 중복된 숫자를 입력한 경우")
+    void readBonusNumberTest2() {
+        String input = "11";
+        List<Integer> input2 = List.of(3, 5, 11, 16, 32, 38);
+        assertThatThrownBy(() -> {
+            inputHandler.readBonusNumber(input, input2);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 이미 입력한 당첨 번호와 중복됩니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 숫자 잘못 입력: 범위 밖의 숫자를 입력한 경우")
+    void readBonusNumberTest3() {
+        String input = "54";
+        List<Integer> input2 = List.of(3, 5, 11, 16, 32, 38);
+        assertThatThrownBy(() -> {
+            inputHandler.readBonusNumber(input, input2);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 1~45 사이의 숫자를해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 숫자 잘못 입력: 숫자가 아닌 것을 입력한 경우")
+    void readBonusNumberTest4() {
+        String input = "ㅎ";
+        List<Integer> input2 = List.of(3, 5, 11, 16, 32, 38);
+        assertThatThrownBy(() -> {
+            inputHandler.readBonusNumber(input, input2);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 하나의 숫자만을 입력해야 합니다.");
     }
     
     @Test

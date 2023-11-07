@@ -11,14 +11,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class ValidateAmountTest {
+public class ValidatePurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 10000, 20000, 50000})
     @DisplayName("구입_금액_검증_통과")
     void 구입_금액_검증_통과(int purchaseAmount) {
-        User user = new User(new Amount(purchaseAmount));
-        assertThatCode(() -> Validation.validatePurchaseAmount(user.getPurchaseAmount().amount()))
+        assertThatCode(() -> Validation.validatePurchaseAmount(purchaseAmount))
                 .doesNotThrowAnyException();
     }
 
@@ -27,7 +26,7 @@ public class ValidateAmountTest {
     @DisplayName("구입_금액_검증_실패_1000원_단위")
     void 구입_금액_검증_실패_1000원_단위(int purchaseAmount) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new User(new Amount(purchaseAmount)))
+                .isThrownBy(() -> Validation.validatePurchaseAmount(purchaseAmount))
                 .withMessageContaining(ExceptionMessages.INPUT_MULTIPLE_NUMBER.getMessage(1_000));
     }
 
@@ -36,7 +35,7 @@ public class ValidateAmountTest {
     @DisplayName("구입_금액_검증_실패_음수")
     void 구입_금액_검증_실패_음수(int purchaseAmount) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new User(new Amount(purchaseAmount)))
+                .isThrownBy(() -> Validation.validatePurchaseAmount(purchaseAmount))
                 .withMessageContaining(ExceptionMessages.NUMBER_IN_RANGE.getMessage(1_000, 100_000));
     }
 
@@ -45,7 +44,7 @@ public class ValidateAmountTest {
     @DisplayName("구입_금액_검증_실패_1000원_미만")
     void 구입_금액_검증_실패_1000원_미만(int purchaseAmount) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new User(new Amount(purchaseAmount)))
+                .isThrownBy(() -> Validation.validatePurchaseAmount(purchaseAmount))
                 .withMessageContaining(ExceptionMessages.NUMBER_IN_RANGE.getMessage(1_000, 100_000));
     }
 
@@ -54,7 +53,7 @@ public class ValidateAmountTest {
     @DisplayName("구입_금액_검증_실패_100000원_초과")
     void 구입_금액_검증_실패_100000원_초과(int purchaseAmount) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new User(new Amount(purchaseAmount)))
+                .isThrownBy(() -> Validation.validatePurchaseAmount(purchaseAmount))
                 .withMessageContaining(ExceptionMessages.NUMBER_IN_RANGE.getMessage(1_000, 100_000));
     }
 }

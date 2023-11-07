@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.util.LottoGenerator;
 
@@ -22,13 +21,17 @@ public class LottoTickets {
         return numberOfLottoTickets;
     }
 
-    public List<LottoRank> getWiningRanks(WinningLottoNumbers winningLottoNumbers) {
-        return IntStream.range(0, numberOfLottoTickets)
-                .mapToObj(i -> getWiningRank(winningLottoNumbers, i))
-                .collect(Collectors.toList());
+    public List<LottoRank> getWinningRanks(WinningLottoNumbers winningLottoNumbers) {
+        List<LottoRank> ranks = new ArrayList<>();
+
+        for (int i = 0; i < numberOfLottoTickets; i++) {
+            ranks.add(getWinningRank(winningLottoNumbers, i));
+        }
+
+        return ranks;
     }
 
-    private LottoRank getWiningRank(WinningLottoNumbers winningLottoNumbers, int index) {
+    private LottoRank getWinningRank(WinningLottoNumbers winningLottoNumbers, int index) {
         return LottoRank.get(winningLottoNumbers, lottoTickets.get(index));
     }
 
@@ -40,6 +43,6 @@ public class LottoTickets {
     public String toString() {
         return String.join("\n", IntStream.range(0, numberOfLottoTickets)
                 .mapToObj(i -> lottoTickets.get(i).toString())
-                .collect(Collectors.toList()));
+                .toList());
     }
 }

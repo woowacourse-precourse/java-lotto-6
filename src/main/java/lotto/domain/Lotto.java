@@ -30,8 +30,8 @@ public class Lotto {
         });
     }
 
-    public void contains(BounsNumber bounsNumber) {
-        if (numbers.contains(bounsNumber.getBounsNumber())) {
+    public void contains(int num) {
+        if (numbers.contains(num)) {
             throw new IllegalArgumentException("이미 당첨번호에 포함된 숫자입니다.");
         }
     }

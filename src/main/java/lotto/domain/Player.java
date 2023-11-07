@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.utils.Prints;
 import lotto.utils.Utils;
 
 public class Player {
@@ -14,6 +15,7 @@ public class Player {
     private static LottoAmount lottoAmount;
     private static LottoCount lottoCount;
     private static List<Lotto> lottos = new ArrayList<>();
+    private static WinLotto winLotto = new WinLotto();
 
     public void createLotto() {
         IntStream.rangeClosed(1, lottoCount.getLottoCount())
@@ -29,6 +31,7 @@ public class Player {
     }
 
     public void setLottoAmount() {
+        Prints.print_input_amount_message();
         this.lottoAmount = new LottoAmount(Utils.parseIntValidate(Console.readLine()));
     }
 
@@ -36,7 +39,15 @@ public class Player {
         this.lottoCount = new LottoCount(lottoAmount.getLottoAmount());
     }
 
-    public int getLottoCount() {
-        return lottoCount.getLottoCount();
+    public void resultCalculate(WinLotto winLotto) {
+    }
+
+    public void createWinLotto() {
+        winLotto.createLotto();
+        winLotto.createBonusNumber();
+    }
+
+    public void showLottoCount() {
+        Prints.print_lottoCount(lottoCount.getLottoCount());
     }
 }

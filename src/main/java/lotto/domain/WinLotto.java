@@ -4,21 +4,24 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.utils.Prints;
 
 public class WinLotto {
     private static Lotto lotto;
     private static BounsNumber bounsNumber;
 
     public void createLotto() {
+        Prints.print_input_winLotto();
         lotto = new Lotto(inputWinNumber());
         lotto.lottoByDuplicateNumber();
         lotto.lottoByRange();
     }
 
     public void createBonusNumber() {
+        Prints.print_input_bonusnumber();
         bounsNumber = new BounsNumber(inputBonusNumber());
         bounsNumber.bonusnumNyRange();
-        lotto.contains(bounsNumber);
+        lotto.contains(bounsNumber.getBounsNumber());
     }
 
     private List<Integer> inputWinNumber() {

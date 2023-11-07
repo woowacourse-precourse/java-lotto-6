@@ -15,9 +15,9 @@ public class LottoResult {
         return new LottoResult(winningCount, bonusNumberMatching);
     }
 
-    public void setResult() {
+    public void recordMatchingCaseResults() {
         for (MatchingCase matchingCase : MatchingCase.values()) {
-            matchingCase.increaseMatchingCaseCount(winningCount, bonusNumberMatching);
+            matchingCase.recordResult(winningCount, bonusNumberMatching);
         }
     }
 

@@ -55,7 +55,7 @@ public class LottoController {
         MatchingCase.NEW_GAME.initMatchingCase();
         Lotto winningLotto = readWinningLotto();
         int bonusNumber = readBonusNumber(winningLotto);
-        lottoCollection.setResultGroup(winningLotto, bonusNumber);
+        lottoCollection.applyResults(winningLotto, bonusNumber);
         return MatchingCase.NEW_GAME.getResult();
     }
 

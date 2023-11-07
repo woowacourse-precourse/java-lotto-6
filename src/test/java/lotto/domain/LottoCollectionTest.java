@@ -55,7 +55,7 @@ public class LottoCollectionTest {
     void check_setResultGroup(List<Lotto> lottos, MatchingCase matchingCase, int winningCount) {
         LottoCollection lottoCollection = LottoCollection.from(lottos);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lottoCollection.setResultGroup(winningLotto, BONUS_NUMBER_45);
+        lottoCollection.applyResults(winningLotto, BONUS_NUMBER_45);
         assertThat(matchingCase.getWinningCount()).isEqualTo(winningCount);
     }
 }

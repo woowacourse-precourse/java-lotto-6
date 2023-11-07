@@ -51,7 +51,7 @@ public class OutputViewTest {
         LottoCollection lottoCollection = LottoCollection.from(
                 List.of(LOTTO_1_TO_5_WITH_45, LOTTO_1_TO_6, LOTTO_3_TO_8));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lottoCollection.setResultGroup(winningLotto, BONUS_NUMBER_45);
+        lottoCollection.applyResults(winningLotto, BONUS_NUMBER_45);
         OutputView.printResult(NEW_GAME.getResult());
         assertThat(outputStream.toString())
                 .hasToString("당첨 통계\n"
@@ -67,9 +67,9 @@ public class OutputViewTest {
     void check_profit() {
         NEW_GAME.initMatchingCase();
         LottoResult lottoResult_1500000 = LottoResult.of(5, false);
-        lottoResult_1500000.setResult();
+        lottoResult_1500000.recordMatchingCaseResults();
         LottoResult lottoResult_30000000 = LottoResult.of(5, true);
-        lottoResult_30000000.setResult();
+        lottoResult_30000000.recordMatchingCaseResults();
         Profit profit = Profit.from(100000);
 
         OutputView.printProfit(profit.getProfit());

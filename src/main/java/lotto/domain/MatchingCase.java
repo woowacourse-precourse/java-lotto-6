@@ -27,7 +27,7 @@ public enum MatchingCase {
         }
     }
 
-    public void increaseMatchingCaseCount(int matchingCount, boolean bonusNumberMatching) {
+    public void recordResult(int matchingCount, boolean bonusNumberMatching) {
         if (matchesFiveWithBonus(matchingCount, bonusNumberMatching)) {
             winningCount++;
         }

@@ -19,10 +19,10 @@ public class LottoCollection {
                 .toList();
     }
 
-    public void setResultGroup(Lotto winningLotto, int bonusNumber) {
+    public void applyResults(Lotto winningLotto, int bonusNumber) {
         List<LottoResult> resultGroup = getResultGroup(winningLotto, bonusNumber);
-        for (LottoResult lottoResult:resultGroup) {
-            lottoResult.setResult();
+        for (LottoResult lottoResult : resultGroup) {
+            lottoResult.recordMatchingCaseResults();
         }
     }
 

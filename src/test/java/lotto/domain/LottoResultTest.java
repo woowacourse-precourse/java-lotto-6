@@ -14,7 +14,7 @@ public class LottoResultTest {
     void check_setResult(int winningCount, boolean bonusMatching, MatchingCase matchingCase) {
         NEW_GAME.initMatchingCase();
         LottoResult lottoResult = LottoResult.of(winningCount, bonusMatching);
-        lottoResult.setResult();
+        lottoResult.recordMatchingCaseResults();
         assertThat(matchingCase.getWinningCount()).isEqualTo(1);
     }
 }

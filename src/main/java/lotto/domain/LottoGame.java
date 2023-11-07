@@ -13,9 +13,20 @@ public interface LottoGame {
         OutputUtil.println(purchaseAmount + LottoGameMessage.PURCHASE_COMPLETED_MESSAGE);
         List<Lotto> lottoNumbers = createLottoNumbers(purchaseAmount);
         Lotto winningNumber = inputLottoNumber();
-
+        OutputUtil.println(LottoGameMessage.REQUEST_BONUS_NUMBERS);
+        int bonusNumber = inputBonusNumber();
     }
 
+    static int inputBonusNumber() {
+        String bonusNumber = InputUtil.EMPTY;
+        try {
+            bonusNumber = InputUtil.readLineByNumber();
+        } catch (IllegalArgumentException e) {
+            OutputUtil.println(e.getMessage());
+            inputBonusNumber();
+        }
+        return InputUtil.convert(bonusNumber);
+    }
     static Lotto inputLottoNumber() {
         OutputUtil.println(LottoGameMessage.REQUEST_WINNING_NUMBERS);
         String winningNumber = InputUtil.EMPTY;

@@ -22,6 +22,7 @@ public class LottoGame {
         List<Lotto> lottos = getRandomLottos(lottoCnt);
         LottoUI.printRandomLottos(lottos, lottoCnt);
         Lotto winningLotto = LottoUI.getWinningLotto();
+        int bonusNum = LottoUI.getBonusNumber(winningLotto);
     }
 
     public List<Lotto> getRandomLottos(int lottoCnt) {

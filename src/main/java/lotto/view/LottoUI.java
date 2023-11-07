@@ -48,6 +48,22 @@ public class LottoUI {
         }
     }
 
+    public static int getBonusNumber(Lotto winningLotto) {
+        while(true){
+            try{
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                LottoValidator.validateBonusNumber(winningLotto.getNumbers(), bonusNumber);
+                System.out.println();
+                return bonusNumber;
+            }catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자로 입력되어야 합니다.");
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private static List<Integer> convertStringToIntegerList(String input) {
         List<Integer> numbers = new ArrayList<>();
         String[] numberStrings = input.split(",");

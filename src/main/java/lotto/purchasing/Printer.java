@@ -22,8 +22,11 @@ public class Printer {
         List<Lotto> lottos =
                 generator.issue(issueAmount, MINIMUM.getNumber(), MAXIMUM.getNumber(), SIZE.getNumber());
 
+        StringBuilder lottoList = new StringBuilder();
+        lottos.forEach(lotto -> lottoList.append(lotto.getNumbers()).append("\n"));
+
         System.out.println(issueAmount + PURCHASE_COUNT.getMessage());
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        System.out.println(lottoList);
 
         System.out.println();
 

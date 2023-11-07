@@ -54,14 +54,7 @@ public class ResultBoard implements Showable {
 
         double returnRatio = analyst.calculateReturnRatio(updatedPrizes, Integer.parseInt(purchaseAmount.getInput()));
 
-        System.out.println(STATISTICS_TITLE.getMessage());
-        System.out.println(DIVIDER_LINE.getMessage());
-        System.out.println(FIFTH_PRIZE.getMessage() + updatedPrizes.get(FIFTH).get(COUNT) + COUNT_UNIT.getMessage());
-        System.out.println(FOURTH_PRIZE.getMessage() + updatedPrizes.get(FOURTH).get(COUNT) + COUNT_UNIT.getMessage());
-        System.out.println(THIRD_PRIZE.getMessage() + updatedPrizes.get(THIRD).get(COUNT) + COUNT_UNIT.getMessage());
-        System.out.println(SECOND_PRIZE.getMessage() + updatedPrizes.get(SECOND).get(COUNT) + COUNT_UNIT.getMessage());
-        System.out.println(FIRST_PRIZE.getMessage() + updatedPrizes.get(FIRST).get(COUNT) + COUNT_UNIT.getMessage());
-        System.out.println(RETURN_RATIO_HEAD.getMessage() + returnRatio + RETURN_RATIO_TAIL.getMessage());
+        System.out.println(formatResult(updatedPrizes, returnRatio));
     }
 
     private HashMap<Prize, HashMap<Tally, Integer>> proceedLottoGame() {
@@ -70,5 +63,16 @@ public class ResultBoard implements Showable {
         return analyst.updatePrizes(
                 prizeRankChecker.computeMatchedNumberCounts(lottos, winningNumbers.ask()),
                 prizeRankChecker.computeMatchedNumberCounts(lottos, List.of(bonusNumber.ask())));
+    }
+
+    private String formatResult(HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes, double returnRatio) {
+        return STATISTICS_TITLE.getMessage() + "\n"
+                + DIVIDER_LINE.getMessage() + "\n"
+                + FIFTH_PRIZE.getMessage() + updatedPrizes.get(FIFTH).get(COUNT) + COUNT_UNIT.getMessage() + "\n"
+                + FOURTH_PRIZE.getMessage() + updatedPrizes.get(FOURTH).get(COUNT) + COUNT_UNIT.getMessage() + "\n"
+                + THIRD_PRIZE.getMessage() + updatedPrizes.get(THIRD).get(COUNT) + COUNT_UNIT.getMessage() + "\n"
+                + SECOND_PRIZE.getMessage() + updatedPrizes.get(SECOND).get(COUNT) + COUNT_UNIT.getMessage() + "\n"
+                + FIRST_PRIZE.getMessage() + updatedPrizes.get(FIRST).get(COUNT) + COUNT_UNIT.getMessage() + "\n"
+                + RETURN_RATIO_HEAD.getMessage() + returnRatio + RETURN_RATIO_TAIL.getMessage();
     }
 }

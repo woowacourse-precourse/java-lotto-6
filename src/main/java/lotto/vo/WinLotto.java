@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.validator.WinLottoValidator;
 
 public class WinLotto {
-
     private List<Integer> numbers;
     private int bonusNum;
 

@@ -3,6 +3,7 @@ package lotto.validator;
 import java.util.List;
 
 public class ValidationUtil {
+    
     public static boolean isNumber(String input) {
         if (input.isEmpty()) {
             return false;

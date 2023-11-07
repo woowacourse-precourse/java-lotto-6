@@ -3,7 +3,6 @@ package lotto.validator;
 import java.math.BigDecimal;
 
 public class LottoPriceValidator {
-
     private static final int LOTTO_ONE_PRICE = 1000;
 
     public static void validate(String input) {

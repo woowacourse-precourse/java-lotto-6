@@ -70,6 +70,7 @@ public class InputView {
             checkDuplicateNumber(lottoWinningNumbers, checkedInput);
             lottoWinningNumbers.add(checkedInput);
         }
+        checkWinningNumberSize(lottoWinningNumbers);
         return lottoWinningNumbers;
     }
 
@@ -102,6 +103,12 @@ public class InputView {
     public static void checkRange(int number){
         if(number < 1 || number > 45){
             throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력학세요.");
+        }
+    }
+
+    private static void checkWinningNumberSize(List<Integer> lottoWinningNumbers) {
+        if(lottoWinningNumbers.size() != 6){
+            throw new IllegalArgumentException("[ERROR] 당첨번호가 6개가 아닙니다.");
         }
     }
 

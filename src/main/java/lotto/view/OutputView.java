@@ -30,14 +30,18 @@ public class OutputView {
     public void showLottoStatistics(Lottos lottos, User user, Money money) {
         LottoResult lottoResult = new LottoResult(lottos, user);
         System.out.println(STAT_MESSAGE);
-        Arrays.stream(Rank.values())
-                .filter(rank -> !rank.equals(Rank.ECT))
-                .forEach(rank -> System.out.println(getLottoStatistics(lottoResult, rank)));
+        printLottoStatistics(lottoResult);
         printEarningRate(lottoResult.calEarningRate(money.getMoney()));
     }
 
     private void printEarningRate(double earningRate) {
         System.out.printf(EARNING_RATE, String.format(EARNING_FORMAT.format(earningRate)));
+    }
+
+    private void printLottoStatistics(LottoResult lottoResult) {
+        Arrays.stream(Rank.values())
+                .filter(rank -> !rank.equals(Rank.ECT))
+                .forEach(rank -> System.out.println(getLottoStatistics(lottoResult, rank)));
     }
 
     private String getLottoStatistics(LottoResult lottoResult, Rank rank) {

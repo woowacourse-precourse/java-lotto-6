@@ -13,14 +13,24 @@ public class MoneyTest {
     @ParameterizedTest
     @ValueSource(strings = {"500", "1250", "15200"})
     void createMoneyByInvalidFormat(String money) {
-        assertThatThrownBy(() -> new Money(money)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Money(money))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력한 금액이 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"a", "가", "."})
     void createMoneyByString(String money) {
-        assertThatThrownBy(() -> new Money(money)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Money(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력한 금액이 공백이면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void createMoneyByBlank(String money) {
+        assertThatThrownBy(() -> new Money(money))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

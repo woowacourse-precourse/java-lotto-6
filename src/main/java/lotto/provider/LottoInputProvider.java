@@ -9,13 +9,13 @@ import lotto.domain.Lotto;
 
 public class LottoInputProvider {
 
-	public int getInputPrice() {
-		System.out.println("구입금액을 입력해 주세요.");
+	public int getInputPrice(String question) {
+		System.out.println(question);
 		return Integer.parseInt(Console.readLine());
 	}
 
-	public Lotto getInputWinningNumber() {
-		System.out.println("당첨 번호를 입력해 주세요.");
+	public Lotto getInputWinningNumber(String question) {
+		System.out.println(question);
 		List<Integer> numbers = Arrays.stream(Console.readLine().split(","))
 			.map(num -> Integer.parseInt(num))
 			.collect(Collectors.toList());
@@ -23,8 +23,8 @@ public class LottoInputProvider {
 		return new Lotto(numbers);
 	}
 
-	public int getInputBonusNumber() {
-		System.out.println("보너스 번호를 입력해 주세요.");
+	public int getInputBonusNumber(String question) {
+		System.out.println(question);
 		return Integer.parseInt(Console.readLine());
 	}
 }

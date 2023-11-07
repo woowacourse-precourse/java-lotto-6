@@ -7,7 +7,7 @@ import lotto.utils.LottoNumberGenerator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoTicketMachine {
+public class LottoTicketIssuer {
     public static LottoTicket issue(Integer amount) {
         return new LottoTicket(
                 IntStream.range(0, amount)

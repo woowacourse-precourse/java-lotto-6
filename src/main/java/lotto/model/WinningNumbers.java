@@ -8,7 +8,9 @@ public class WinningNumbers {
 
     public WinningNumbers(String winningNumbers) {
         validate();
-        this.winningNumbers = Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).toList();
+        this.winningNumbers = Arrays.stream(winningNumbers.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private void validate() {

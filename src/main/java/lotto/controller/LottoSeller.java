@@ -22,7 +22,7 @@ public class LottoSeller {
         Integer purchaseAmount = deposit.calculateBuyableLottoAmount();
         printPurchaseAmount(purchaseAmount);
 
-        LottoTicket lottoTicket = LottoTicketMachine.issue(purchaseAmount);
+        LottoTicket lottoTicket = LottoTicketIssuer.issue(purchaseAmount);
         printLottoTicket(lottoTicket.toString());
 
         return lottoTicket;

@@ -31,6 +31,8 @@ public class InputView {
 
         List<Integer> lotto = new ArrayList<>();
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+
 
         String[] strLotto = readLine().split(",");
 

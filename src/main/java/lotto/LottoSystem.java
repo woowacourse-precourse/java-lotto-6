@@ -18,6 +18,9 @@ public class LottoSystem {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumber = getWinningNumbers(Console.readLine());
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = getBonusNumber(Console.readLine());
     }
 
     public int buyLottoTicket(String money) throws IllegalArgumentException {
@@ -61,5 +64,13 @@ public class LottoSystem {
             winningNumbers.add(winNumber);
         }
         return winningNumbers;
+    }
+
+    public int getBonusNumber(String bonusNumber){
+        try{
+            return Integer.parseInt(bonusNumber);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("입력받은 보너스의 값이 잘못되었습니다.");
+        }
     }
 }

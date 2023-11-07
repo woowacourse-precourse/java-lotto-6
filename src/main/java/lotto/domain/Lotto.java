@@ -34,4 +34,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        List<String> lottoNumbers = this.numbers.stream()
+                .map(String::valueOf)
+                .toList();
+        return '[' + String.join(", ", lottoNumbers) + ']';
+    }
 }

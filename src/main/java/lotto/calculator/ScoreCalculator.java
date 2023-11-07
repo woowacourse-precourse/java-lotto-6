@@ -31,7 +31,10 @@ public class ScoreCalculator {
         if (count == 4) {
             return "4등";
         }
-        return "5등";
+        if (count == 3) {
+            return "5등";
+        }
+        return "꽝";
     }
 
 

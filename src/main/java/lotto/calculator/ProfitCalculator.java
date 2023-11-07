@@ -32,7 +32,10 @@ public class ProfitCalculator {
         if (key.equals("4등")) {
             return FOUR_PRIZE.getValue();
         }
-        return FIVE_PRIZE.getValue();
+        if (key.equals("5등")) {
+            return FIVE_PRIZE.getValue();
+        }
+        return 0;
     }
 
 }

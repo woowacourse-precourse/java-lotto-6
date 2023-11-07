@@ -25,7 +25,7 @@ public class Player {
     }
 
     protected void updateResult(int grade) {
-        this.results.get(grade - 1).addCount();
+        this.results.get(CONSTANT_GRADE_LENGTH.getConstant() - grade).addCount();
     }
 
     protected List<Integer> getResults() {
@@ -35,7 +35,7 @@ public class Player {
     private List<Result> initResults() {
         List<Result> result = new ArrayList<>();
 
-        for(int index = CONSTANT_INITIAL_VALUE.getConstant(); index < CONSTANT_GRADE_LENGTH.getConstant(); index++) {
+        for(int index = 0; index < CONSTANT_GRADE_LENGTH.getConstant(); index++) {
             result.add(new Result());
         }
 

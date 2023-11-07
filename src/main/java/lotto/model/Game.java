@@ -6,6 +6,7 @@ import java.util.List;
 
 // 전체적인 게임 정보를 관리하기 위한 클래스
 public class Game {
+    private final int MINIMUM_CONDITION = 3;
     private Profit profit;
     private Player player;
 
@@ -15,7 +16,7 @@ public class Game {
     }
 
     public void winTheGame(int grade) {
-        if(grade < 3) return;
+        if(grade < MINIMUM_CONDITION) return;
         this.addPrize(grade);
         this.updateInfo(grade);
     }

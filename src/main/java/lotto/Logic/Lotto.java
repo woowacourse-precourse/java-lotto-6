@@ -1,6 +1,7 @@
 package lotto.Logic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -41,14 +42,16 @@ public class Lotto {
 
     @Override
     public String toString() {
+        List<Integer> sortNumbers=new ArrayList<>();
+        sortNumbers.addAll(this.numbers);
+        Collections.sort(sortNumbers);
+
         StringBuilder output = new StringBuilder("[");
+        for (int i = 0; i < sortNumbers.size(); i++) {
+            output.append(sortNumbers.get(i));
 
-        for (int i = 0; i < numbers.size(); i++) {
-            output.append(numbers.get(i));
-
-            if (i != numbers.size() - 1)
+            if (i != sortNumbers.size() - 1)
                 output.append(", ");
-
         }
         output.append("]");
 

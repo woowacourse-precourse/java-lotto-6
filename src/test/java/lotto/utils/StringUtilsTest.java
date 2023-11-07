@@ -1,6 +1,9 @@
 package lotto.utils;
 
+import static lotto.view.ErrorMessage.NOT_A_NUMBER;
+import static lotto.utils.StringUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +17,7 @@ class StringUtilsTest {
 
         String targetSTring = "A";
 
-        int result = StringUtils.countOccurrences(testString, targetSTring);
+        int result = countOccurrences(testString, targetSTring);
 
         assertThat(result).isEqualTo(3);
     }
@@ -26,7 +29,7 @@ class StringUtilsTest {
 
         String targetSTring = "AB";
 
-        int result = StringUtils.countOccurrences(testString, targetSTring);
+        int result = countOccurrences(testString, targetSTring);
 
         assertThat(result).isEqualTo(2);
     }
@@ -38,7 +41,7 @@ class StringUtilsTest {
 
         String targetSTring = "ABC";
 
-        int result = StringUtils.countOccurrences(testString, targetSTring);
+        int result = countOccurrences(testString, targetSTring);
 
         assertThat(result).isEqualTo(1);
     }
@@ -50,8 +53,45 @@ class StringUtilsTest {
 
         String targetSTring = "D";
 
-        int result = StringUtils.countOccurrences(testString, targetSTring);
+        int result = countOccurrences(testString, targetSTring);
 
         assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("기능37 테스트 : parseInt 메서드에 정수 형태의 문자열을 입력한 경우 int로 변환한다.")
+    void parseIntShouldTransformIntStringToInt() {
+        // given
+        String target = "1";
+
+        // when
+        int result = parseInt(target);
+
+        // then
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("기능37 테스트 : parseInt 메서드에 소수 형태의 문자열을 입력한 경우 예외가 발생한다.")
+    void parseIntShouldThrowExceptionWhenReceiveDoubleString() {
+        // given
+        String target = "1.1";
+
+        // when, then
+        assertThatThrownBy(() -> parseInt(target))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_A_NUMBER.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("기능37 테스트 : parseInt 메서드에 정수형태가 아닌 문자열을 입력한 경우 예외가 발생한다.")
+    void parseIntShouldThrowExceptionWhenReceiveNotNumberString() {
+        // given
+        String target = "A";
+
+        // when, then
+        assertThatThrownBy(() -> parseInt(target))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_A_NUMBER.getErrorMessage());
     }
 }

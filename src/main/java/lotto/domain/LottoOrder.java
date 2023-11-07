@@ -44,8 +44,8 @@ public class LottoOrder {
         return this.purchaseLotto.getAllLottoNumber();
     }
 
-    public int getLottoCount() {
-        return this.purchaseLotto.getAmount();
+    public int getOrderCount() {
+        return this.purchaseLotto.getPurchaseCount();
     }
 
     private void validatePrice(Long purchasePrice) {

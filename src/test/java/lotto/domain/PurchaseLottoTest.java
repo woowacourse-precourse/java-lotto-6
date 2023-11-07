@@ -21,7 +21,7 @@ class PurchaseLottoTest {
         PurchaseLotto purchaseLotto = PurchaseLotto.purchaseAutoLotto(lottoCount);
 
         //then
-        assertThat(purchaseLotto.getAmount()).isEqualTo(lottoCount);
+        assertThat(purchaseLotto.getPurchaseCount()).isEqualTo(lottoCount);
     }
 
     @DisplayName("구매한 로또들의 총 당첨 상금을 계산한다.")

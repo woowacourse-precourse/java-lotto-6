@@ -17,7 +17,7 @@ public class PurchaseLotto {
         return new PurchaseLotto(autoLottos);
     }
 
-    public int getAmount() {
+    public int getPurchaseCount() {
         return this.lottos.size();
     }
 

@@ -26,7 +26,7 @@ public class LottoController {
     }
 
     public void readBoughtLotto() {
-        int lottoCount = lottoOrder.getLottoCount();
+        int lottoCount = lottoOrder.getOrderCount();
         LottoOutputView.printLottoCount(lottoCount);
 
         List<List<Integer>> lottoNumbers = lottoOrder.getLottoNumbers();

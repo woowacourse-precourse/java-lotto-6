@@ -8,8 +8,12 @@ public class PurchasePrice {
         this.purchasePrice = purchasePrice;
     }
 
-    public int getPurchaseCount() {
+    public int getTotalLottoTickets() {
         return purchasePrice / 1000;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
     }
 
     private void validate(int price) {

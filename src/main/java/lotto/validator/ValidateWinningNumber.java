@@ -55,15 +55,15 @@ public class ValidateWinningNumber {
     }
 
     private static void validateEmpty(String buyerInput) {
-        if(!buyerInput.isBlank()){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력헤주세요.")
+        if(buyerInput.isBlank()){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력헤주세요.");
         }
     }
 
     private static void validateNumberRange(StringTokenizer tokenizer){
         while(tokenizer.hasMoreTokens()){
             int number = Integer.parseInt(tokenizer.nextToken());
-            if(!isOutOfRange(number))
+            if(isOutOfRange(number))
                 throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45 입니다.");
         }
     }

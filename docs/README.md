@@ -18,6 +18,8 @@
 ```agsl
 - input : `winning_numbers`
 - output: 일치 개수
+- 예외 처리
+- `IllegalStateException` : 일치 개수가 0-6 사이 값이 아닌 경우
 ```
 - `compare_bonus_number()` : `numbers` 중 `bonus_number`가 포함되어있는지
 ```agsl
@@ -27,7 +29,7 @@
 - `check_winnings()` : 로또 결과
 ```agsl
 - input : `winning_numbers`, `bonus_number`
-- output: 등수 (1-5등) or -1(당첨 X)
+- output: 등수 (1-5등) or 0(당첨 X)
 ```
 - `print_lottery_numbers()` : 로또 번호 출력
 
@@ -42,29 +44,33 @@
 
 
 ### 함수
+- `is_numeric_only()` : 입력된 값이 숫자로만 구성되어있는지 확인
+```agsl
+- `IllegalArgumentException` : 문자가 포함된 경우
+```
+- `is_valid_number()` : 입력된 숫자가 1-45 사이의 숫자인지 확인
+```agsl
+- `IllegalArgumentException` : 숫자가 1~45 사이의 정수가 아닌 경우, 문자 포함 등
+```
 - `get_order_price()` : `order_price` 입력 받은 후, `order_numbers` 계산
-```agsl
-- 예외 처리
-- `IllegalArgumentException` : 입력 받은 값이 1000으로 나누어 떨어지지 않는 경우
-```
+- `validate_order_price()` : `order_price` 예외 처리
 - `get_winning_numbers()` : `winning_numbers` 입력 받기
-```agsl
-- 예외 처리
-- `IllegalArgumentException` : 숫자가 1~45 사이의 정수가 아닌 경우, 문자 포함 등
-```
+- `validate_winning_numbers()` : `winning_numbers` 예외 처리 후 값 저장
 - `get_bonus_number()` : `bonus_number` 입력 받기
-```agsl
-- 예외 처리
-- `IllegalArgumentException` : 숫자가 1~45 사이의 정수가 아닌 경우, 문자 포함 등
-```
+- `validate_bonus_number()` : `bonus_number` 예외 처리
+
 - `purchase()` : `order_price`만큼 로또 구매 실행
-- `show_result()` : 로또 구매 결과 계산 및 프린트
+- `get_lottery_numbers()` : 중복되지 않는 6개의 수 랜덤 추출
+- `get_result()` : 로또 구매 결과 계산
+- `validate_result()` : 로또 구매 결과 예외 처리
+```agsl
+- 'IllegalStateException` : sum(my_result) != `order_numbers` 인 경우
+```
+- `show_result()` : 로또 구매 결과 프린트
 ```agsl
 - `my_result` : 로또 구매 결과 리스트
 - 만약, `order_numbers`가 5라면,
   my_result는 초기에 [0, 0, 0, 0, 0, 0] 으로 선언됨
 - my_result[0] : 꽝 개수
 - my_result[i] : i등 개수
-
-- 'IllegalStateException` : sum(my_result) != `order_numbers` 인 경우
 ```

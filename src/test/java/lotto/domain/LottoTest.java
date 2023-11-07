@@ -23,14 +23,14 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() ->Lotto.create(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.create(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ class LottoTest {
     @MethodSource("numbersOverSizeDummy")
     void createLottoByOverSizeTest(List<Integer> numbersOverSize) {
         assertThrows(IllegalArgumentException.class,
-                () -> new Lotto(numbersOverSize));
+                () -> Lotto.create(numbersOverSize));
 
     }
 
@@ -48,7 +48,7 @@ class LottoTest {
     @MethodSource("numbersSmallSizeDummy")
     void createLottoBySmallSizeTest(List<Integer> numbersSmallSize) {
         assertThrows(IllegalArgumentException.class,
-                () -> new Lotto(numbersSmallSize));
+                () -> Lotto.create(numbersSmallSize));
 
     }
 
@@ -57,7 +57,7 @@ class LottoTest {
     @MethodSource("duplicatedNumbersDummy")
     void createLottoByDuplicatedNumbersTest(List<Integer> duplicatedNumbers) {
         assertThrows(IllegalArgumentException.class,
-                () -> new Lotto(duplicatedNumbers));
+                () -> Lotto.create(duplicatedNumbers));
     }
 
     @DisplayName("로또 번호에 허용 범위를 벗어난 숫자가 있으면 예외 발생")
@@ -65,7 +65,7 @@ class LottoTest {
     @MethodSource("overRangeNumbersDummy")
     void createLottoByOverRangeNumbersTest(List<Integer> overRangeNumbers) {
         assertThrows(IllegalArgumentException.class,
-                () -> new Lotto(overRangeNumbers));
+                () -> Lotto.create(overRangeNumbers));
     }
 
 
@@ -73,7 +73,7 @@ class LottoTest {
     @ParameterizedTest()
     @MethodSource("lottoNumbersDummy")
     void createLottoSuccessTest(List<Integer> lottoNumbers) {
-        assertDoesNotThrow(() -> new Lotto(lottoNumbers));
+        assertDoesNotThrow(() -> Lotto.create(lottoNumbers));
     }
 
     @DisplayName("당첨 로또와 비교 기능 테스트")
@@ -137,21 +137,21 @@ class LottoTest {
 
     static Stream<Arguments> compareWinnerLottoSuccessDummy() {
         return Stream.of(
-                Arguments.arguments(new Lotto(
+                Arguments.arguments(Lotto.create(
                                 List.of(1, 2, 3, 4, 5, 6)
                         ),
                         List.of(1, 2, 3, 8, 9, 10),
                         7,
                         Prize.of(3, false)
                 ),
-                Arguments.arguments(new Lotto(
+                Arguments.arguments(Lotto.create(
                                 List.of(1, 2, 3, 4, 5, 6)
                         ),
                         List.of(1, 2, 15, 8, 9, 10),
                         3,
                         Prize.of(2, true)
                 ),
-                Arguments.arguments(new Lotto(
+                Arguments.arguments(Lotto.create(
                                 List.of(1, 2, 3, 4, 5, 8)
                         ),
                         List.of(1, 2, 5, 8, 9, 10),
@@ -164,15 +164,15 @@ class LottoTest {
     static Stream<Arguments> toStringSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(
-                        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                        Lotto.create(List.of(1, 2, 3, 4, 5, 6)),
                         "[1, 2, 3, 4, 5, 6]"
                 ),
                 Arguments.arguments(
-                        new Lotto(List.of(1, 2, 3, 7, 5, 6)),
+                        Lotto.create(List.of(1, 2, 3, 7, 5, 6)),
                         "[1, 2, 3, 7, 5, 6]"
                 ),
                 Arguments.arguments(
-                        new Lotto(List.of(1, 2, 3, 4, 15, 6)),
+                        Lotto.create(List.of(1, 2, 3, 4, 15, 6)),
                         "[1, 2, 3, 4, 15, 6]"
                 )
         );

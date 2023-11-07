@@ -1,9 +1,9 @@
 package lotto;
 
 import constants.Constants;
-import exception.lottoException.DuplicateNumberException;
-import exception.lottoException.InvalidLengthException;
-import exception.lottoException.OutOfRangeException;
+import exception.lottoException.DuplicateLottoNumberException;
+import exception.lottoException.InvalidLottoLengthException;
+import exception.lottoException.OutOfLottoNumberRangeException;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_LENGTH) {
-            throw new InvalidLengthException();
+            throw new InvalidLottoLengthException();
         }
     }
 
@@ -29,14 +29,14 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctNumberCount != numbers.size()) {
-            throw new DuplicateNumberException();
+            throw new DuplicateLottoNumberException();
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < Constants.LOTTO_RANGE_START || number > Constants.LOTTO_RANGE_END) {
-                throw new OutOfRangeException();
+                throw new OutOfLottoNumberRangeException();
             }
         }
     }

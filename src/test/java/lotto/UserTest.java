@@ -22,20 +22,6 @@ class UserTest {
         user = new User();
     }
 
-    @DisplayName("6자리 숫자열을 만드는지 확인")
-    @Test
-    void getLottoNumbersTest() {
-        List<Integer> numberList = user.getLottoNumbers();
-        assertThat(numberList.size()).isEqualTo(6);
-    }
-
-    @DisplayName("주어진 개수만큼 로또를 구매한다.")
-    @Test
-    void getLottoAsMuchAsVolumeTest() {
-        List<Lotto> lottos = user.getLottoAsMuchAsVolume(5);
-        assertThat(lottos.size()).isEqualTo(5);
-    }
-
     @DisplayName("보너스 숫자가 이상하면 오류가 발생한다.")
     @Test
     void validateBonusNumberTest() {

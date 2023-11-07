@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static lotto.constant.Number.*;
@@ -19,9 +20,10 @@ public class BonusNumber {
     }
 
     private void isDistinct(int bonusNumber, Lotto winningNumber) throws IllegalArgumentException{
-        Set<Integer> tempLotto = new HashSet<>(winningNumber.getLottoNumber());
+        List<Integer> tempWinningNumber = winningNumber.getLottoNumber();
+        Set<Integer> tempLotto = new HashSet<>(tempWinningNumber);
         tempLotto.add(bonusNumber);
-        if (winningNumber.getLottoNumber().size() != tempLotto.size()) {
+        if (tempWinningNumber.size() == tempLotto.size()) {
             System.out.println(IS_NOT_DISTINCT);
             throw new IllegalArgumentException();
         }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.utils.Validator;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != TOTAL_LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR_INPUT_HAS_NOT_PROPER_SIZE);
         }
     }
@@ -34,7 +33,7 @@ public class Lotto {
     }
 
     private void validateRangeOfNumber(int number) {
-        if (!(number >= 1 && number <= 45)) {
+        if (!(number >= MINIMUM_RANGE_OF_NUMBER && number <= MAXIMUM_RANGE_OF_NUMBER)) {
             throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_IN_PROPER_RANGE);
         }
     }

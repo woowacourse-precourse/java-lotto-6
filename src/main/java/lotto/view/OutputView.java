@@ -2,10 +2,8 @@ package lotto.view;
 
 import lotto.domain.Rank;
 import lotto.utils.SortingList;
-import lotto.utils.Validator;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static constant.MessageList.*;
 

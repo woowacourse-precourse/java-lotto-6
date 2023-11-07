@@ -11,7 +11,12 @@ public class MessageList {
     public static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 ";
     public static final String FINISH_MESSAGE = "%입니다.";
     public static final int PRICE_OF_ONE_LOTTO = 1000;
-    public static final int TOTAL_LOTTO_NUMBER_IN_LIST = 6;
+    public static final int TOTAL_LOTTO_SIZE = 6;
+    public static final int MINIMUM_RANGE_OF_NUMBER = 1;
+    public static final int MAXIMUM_RANGE_OF_NUMBER = 45;
+    public static final int ZERO = 0;
+    public static final int PERCENTAGE = 100;
+    public static final int COUNT = 1;
 
     // 에러 메시지
     public static final String ERROR_INPUT_IS_NOT_NUMBER = "[ERROR] 숫자만 입력해 주세요.";

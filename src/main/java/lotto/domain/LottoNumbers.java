@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static constant.MessageList.PRICE_OF_ONE_LOTTO;
+import static constant.MessageList.*;
 
 public class LottoNumbers {
 
@@ -14,6 +13,6 @@ public class LottoNumbers {
 
 
     public List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_RANGE_OF_NUMBER, MAXIMUM_RANGE_OF_NUMBER, TOTAL_LOTTO_SIZE);
     }
 }

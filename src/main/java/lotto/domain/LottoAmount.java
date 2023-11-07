@@ -21,13 +21,13 @@ public class LottoAmount {
     }
 
     private void validatePositiveNumber(int number) {
-        if (number <= 0) {
+        if (number <= ZERO) {
             throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_POSITIVE_NUMBER);
         }
     }
 
     private void validateDivisible(int purchaseAmount) {
-        if (purchaseAmount / PRICE_OF_ONE_LOTTO == 0) {
+        if (purchaseAmount / PRICE_OF_ONE_LOTTO == ZERO) {
             throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_DIVISIBLE);
         }
     }

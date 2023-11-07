@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.controller.LottoGame;
 import lotto.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

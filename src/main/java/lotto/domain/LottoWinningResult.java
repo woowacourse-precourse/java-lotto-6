@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static constant.MessageList.TOTAL_LOTTO_NUMBER_IN_LIST;
+import static constant.MessageList.*;
 
 public class LottoWinningResult {
     private Map<Rank, Integer> prizeCount;
@@ -25,7 +25,7 @@ public class LottoWinningResult {
     private Map<Rank, Integer> setPrizeCount() {
         prizeCount = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
-            prizeCount.put(rank, 0);
+            prizeCount.put(rank, ZERO);
         }
         return prizeCount;
     }
@@ -35,31 +35,31 @@ public class LottoWinningResult {
     }
 
     private void compareLotto(List<Integer> numberFromPlayer, List<Integer> lotto) {
-        correctCount = 0;
+        correctCount = ZERO;
         List<Integer> match = lotto.stream().filter(o -> numberFromPlayer.stream().anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
         for (int number : match) {
             correctCount++;
         }
 
         if (correctCount == Rank.FIRST.correctCount) {
-            prizeCount.put(Rank.FIRST, prizeCount.get(Rank.FIRST) + 1);
+            prizeCount.put(Rank.FIRST, prizeCount.get(Rank.FIRST) + COUNT);
         }
         if (correctCount == Rank.SECOND.correctCount && isSecondPlace(lotto)) {
-            prizeCount.put(Rank.SECOND, prizeCount.get(Rank.SECOND) + 1);
+            prizeCount.put(Rank.SECOND, prizeCount.get(Rank.SECOND) + COUNT);
         }
         if (correctCount == Rank.SECOND.correctCount && !isSecondPlace(lotto)) {
-            prizeCount.put(Rank.THIRD, prizeCount.get(Rank.THIRD) + 1);
+            prizeCount.put(Rank.THIRD, prizeCount.get(Rank.THIRD) + COUNT);
         }
         if (correctCount == Rank.FOURTH.correctCount) {
-            prizeCount.put(Rank.FOURTH, prizeCount.get(Rank.FOURTH) + 1);
+            prizeCount.put(Rank.FOURTH, prizeCount.get(Rank.FOURTH) + COUNT);
         }
         if (correctCount == Rank.FIFTH.correctCount) {
-            prizeCount.put(Rank.FIFTH, prizeCount.get(Rank.FIFTH) + 1);
+            prizeCount.put(Rank.FIFTH, prizeCount.get(Rank.FIFTH) + COUNT);
         }
     }
 
     private boolean isSecondPlace(List<Integer> lotto) {
-        for (int i = 0; i < TOTAL_LOTTO_NUMBER_IN_LIST; i++) {
+        for (int i = 0; i < TOTAL_LOTTO_SIZE; i++) {
             if (lotto.get(i) == bonusNumber) {
                 return true;
             }
@@ -80,6 +80,6 @@ public class LottoWinningResult {
         prizeMoney += prizeCount.get(Rank.FOURTH) * Rank.FOURTH.prizeMoney;
         prizeMoney += prizeCount.get(Rank.FIFTH) * Rank.FIFTH.prizeMoney;
 
-        return (double) prizeMoney / (double) purchaseAmount * 100;
+        return (double) prizeMoney / (double) purchaseAmount * PERCENTAGE;
     }
 }

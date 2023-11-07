@@ -6,12 +6,10 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static constant.MessageList.PRICE_OF_ONE_LOTTO;
+import static constant.MessageList.ZERO;
 
 public class LottoGame {
 
@@ -35,7 +33,7 @@ public class LottoGame {
         lottoNumbers = new LottoNumbers();
         validator = new Validator();
         lottoAmount = new LottoAmount();
-        prizeMoney = 0;
+        prizeMoney = ZERO;
         numberFromPlayer = new ArrayList<>();
         lottoNumber = new ArrayList<>();
         quantityOfLotto = new ArrayList<>();

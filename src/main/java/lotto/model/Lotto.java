@@ -24,4 +24,11 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> duplicatedCheck = new HashSet<>(numbers);
+        if (duplicatedCheck.size() != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_DUPLICATED_ERROR);
+        }
+    }
+    
 }

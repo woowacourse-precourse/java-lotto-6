@@ -52,3 +52,113 @@
 | 출력   | O-02(Output)     | 당첨 내역 출력    | 당첨 내역을 출력한다. <br> ”당첨 통계 <br> --- <br> 3개 일치 (5,000원) - a개 <br> 4개 일치 (50,000원) - b개 <br> 5개 일치 (1,500,000원) - c개 <br> 5개 일치, 보너스 볼 일치 (30,000,000원) - d개 <br> 6개 일치 (2,000,000,000원) - e개”                                                                                                     |
 | 출력   | O-03(Output)     | 수익률 출력      | 총 수익률을 출력한다. 수익률은 소수점 두 자리에서 반올림한다. <br> ”총 수익률은 x%입니다.”                                                                                                                                                                                                                                        |
 | 출력   | O-04(Output)     | 입력 안내 문구 출력 | 1. 구입금액 입력 - “구입금액을 입력해 주세요.” <br> 2. 당첨번호 입력 - “당첨 번호를 입력해 주세요.” <br> 3. 보너스 번호 입력 - “보너스 번호를 입력해 주세요.”                                                                                                                                                                                        |
+
+## usecase diagram
+```mermaid
+flowchart LR
+	user[사용자] --> feature1([로또 구매]) 
+	feature1 -.-> feature2([검증])
+	user --> feature3
+	feature3([당첨 번호 입력]) -.-> feature2
+	user --> feature4([보상금 수령])
+	user --> feature5([결과 출력])
+```
+
+## class Diagram
+```mermaid
+classDiagram
+	User ..> Machine
+	Lotto --* Machine
+	Lotto --* User
+	Machine -- Prize
+	GameManager *-- User
+	GameManager *-- Machine
+	GameManager *-- GameView
+	GameView *-- OutputView
+	GameView *-- InputView
+	Application *-- GameManager
+	Lotto -- ComparisionScore
+	ComparisionScore -- Prize
+	class Application{
+		+main()$
+	}
+	class User{
+		-money: int
+		-prize: HashMap<Prize, int>
+		-lotteries: List<Lotto>
+		User()
+		+setMoney(money: int)
+		+getPrize() HashMap<Prize, int>
+		+getRateOfAmount() double
+		+buyLotteries(machine: Machine)
+		+collectPrize(machine: Machine)
+		-validateMoney(number: int)
+	}
+	class Machine{
+		-numbers: List<int>
+		-bonus: int
+		Machine()
+		+setNumbers(numbers: List<int>, bonus: int)
+		+payPrize(lotteries: List<Lotto>) Prize
+		+newLottery() Lotto
+		-validateNumbers(numbers: List<int>)
+	}
+
+	class Lotto{
+		-numbers: List<int>
+		Lotto(numbers: List)
+		-validate(numbers: List)
+		+getComparisionScore(lottery: Lotto)
+		+toString()
+	}
+	class Prize{
+		<<Enumeration>>
+		FIFTH(THIRD, 5000)
+		FOURTH(FOURTH, 50000)
+		THIRD(FIFTH, 1500000)
+		SECOND(BONUS, 30000000)
+		FIRST(SIXTH, 2000000000)
+		-score: int
+		-prize: int
+		Prize(score: ComparisionScore, moeny: int)
+		+getPrize() int
+	}
+	class GameManager{
+		-user: User
+		-macine: Macine
+		-gameView: GameView
+		GameManager()
+		-play()
+	}
+	class OutputView{
+		+printGetPurchaseAmount()
+		+printLotteries(lotteries: List<Lotto>)
+		+printGetWinningNumber()
+		+printGetBonusNumber()
+		+printPrizes(prizes: HashMap<Prize, int>)
+		+printRateOfAmount(user: User)
+	}
+	class InputView{
+		+readPurchaseAmount() int
+		+readWinningNumber() List<int>
+		+readBonusNumber() int
+	}
+	class GameView{
+		-inputView: InputView
+		-outputView: OutputView
+		GameView()
+		+puchaseAmountView() int
+		+lotteriesView(lotteries: List<Lotto>)
+		+winningNumberView() list<int>
+		+bonusNumberView() int
+		+resultView(user: User)
+	}
+	class ComparisonScore{
+		<<Enumeration>>
+		THIRD
+		FOURTH
+		FIFTH
+		BONUS
+		SIXTH
+	}
+```

@@ -15,6 +15,7 @@ public class AmountToBuyLotto {
         input = input.trim();
         validateNumberFormat(input);
         validateRange(input);
+        validateDivisibilityByThousand(input);
         isZero(input);
         this.amount = Integer.parseInt(input);
 
@@ -57,6 +58,12 @@ public class AmountToBuyLotto {
         }
     }
 
+    private void validateDivisibilityByThousand(String amount) {
+        int money = Integer.parseInt(amount);
+        if (money % LOTTO_PRICE != ZERO) {
+            throw new IllegalArgumentException(ERROR_INPUT_UNIT_OF_THOUSAND);
+        }
+    }
 
     private void validateNumberFormat(String amount) {
         if (!amount.matches(DIGIT_REGEX)) {

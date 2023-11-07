@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.model.Constants.INVALID_MONEY_FORMAT;
+import static lotto.model.Constants.*;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -19,7 +19,7 @@ public class InputView {
 
     public Integer getPurchaseAmount() throws NumberFormatException{
         System.out.println();
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_AMOUNT);
 
         int result;
 
@@ -34,14 +34,14 @@ public class InputView {
 
     public List<Integer> getInputNumbers(){
         System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_GOAL_NUMBER);
 
         return stringToIntegerList(Console.readLine());
     }
 
     public Integer getInputBonusNumber(){
         System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER);
 
         return Integer.parseInt(Console.readLine());
     }

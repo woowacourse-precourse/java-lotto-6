@@ -1,7 +1,7 @@
 package lotto.constant;
 
 public enum ExceptionMessages {
-    EXCEPTION_MESSAGE("");
+    PURCHASE_AMOUNT_FORMAT_EXCEPTION_MESSAGE("구입금액은 양의 정수여야 합니다.");
 
     private String value;
 
@@ -9,7 +9,8 @@ public enum ExceptionMessages {
         this.value = value;
     }
 
-    public String getValue() {
+    @Override
+    public String toString() {
         return value;
     }
 }

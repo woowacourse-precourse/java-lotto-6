@@ -9,8 +9,9 @@ import lotto.utils.Constants;
 public class LottoGenerator {
 
     public static List<Integer> generateNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_NUM_MIN, Constants.LOTTO_NUM_MAX,
-                Constants.LOTTO_NUM_COUNT);
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(Constants.LOTTO_NUM_MIN, Constants.LOTTO_NUM_MAX,
+                        Constants.LOTTO_NUM_COUNT));
         Collections.sort(numbers);
         return numbers;
     }

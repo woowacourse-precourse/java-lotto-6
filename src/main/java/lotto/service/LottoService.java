@@ -11,12 +11,6 @@ public class LottoService {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000원 단위로 입력 받아야합니다.");
-        }
-    }
-
     public List<Lotto> buyLottoTickets(int purchaseAmount) {
         int numberOfLottoTicketsToBuy = calculateNumberOfLottoTicketsToBuy(purchaseAmount);
         return generateLottoTickets(numberOfLottoTicketsToBuy);

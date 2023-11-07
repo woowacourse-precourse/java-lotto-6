@@ -47,7 +47,15 @@ public class LottoManager {
         this.winnningNumbersAndBonusNumber = winnningNumbers;
     }
 
+    private static void validateBonusNumberRange(int bonusNumber) {
+        boolean isOutOfRange = bonusNumber < 1 || bonusNumber > 45;
+        if (isOutOfRange) {
+            throw new IllegalArgumentException("보너스 번호는 1에서 45 사이여야 합니다.");
+        }
+    }
+
     public void addBonusNumber(int bonusNumber) {
+        validateBonusNumberRange(bonusNumber);
         validateNoDuplicateBonusNumber(bonusNumber);
     }
 }

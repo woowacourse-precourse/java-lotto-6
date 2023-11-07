@@ -3,10 +3,8 @@ package lotto.domain;
 import lotto.config.Constant;
 import lotto.util.validator.WinningNumbersValidator;
 
-import javax.xml.validation.Validator;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
@@ -20,7 +18,7 @@ public class WinningNumbers {
         return Arrays.stream(numbers.split(Constant.NUMBER_DELIMITER))
                 .mapToInt(Integer::valueOf)
                 .boxed()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Integer> getWinningNumbers() {

@@ -1,9 +1,13 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+
+    Generator generator = new Generator();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -11,10 +15,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        Set<Integer> compareLotto = new HashSet<>(numbers);
+
+        if (!(compareLotto.size() == numbers.size())) {
+            throw new IllegalArgumentException();
+        }
+
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

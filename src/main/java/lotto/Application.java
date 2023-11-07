@@ -14,7 +14,8 @@ public class Application {
 
         int lottoPurchaseMoney = purchaseLotto(user);
         issueLottos(global, lottoPurchaseMoney);
-        getWinningLotto(user);
+        List<Integer> winningLotto = getWinningLotto(user);
+        getLottoRanking(global, winningLotto);
     }
 
     private static int purchaseLotto(User user) {
@@ -28,11 +29,17 @@ public class Application {
         global.printIssuedLottoCountAndNumbers();
     }
 
-    private static void getWinningLotto(User user) {
+    private static List<Integer> getWinningLotto(User user) {
         String winningNumber = user.input("\n당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = convertStringToIntegerList(winningNumber);
         String bonusNumber = user.input("\n보너스 번호를 입력해 주세요.");
         int bonusLotto = convertStringToInteger(bonusNumber);
+        winningNumbers.add(bonusLotto);
+        return winningNumbers;
+    }
+
+    private static void getLottoRanking(Global global, List<Integer> winningLotto) {
+        global.calculateRanking(winningLotto);
     }
 
     private static List<Integer> convertStringToIntegerList(String input) {

@@ -88,7 +88,6 @@
 ### publishLotto
 - Lotto를 발행해준다.
 
-
 ### matchLotto
 - 각 Lotto들이 몇개를 맞췄는지 반환해준다.
 - 보너스 번호가 있기 때문에 단순이 개수로 리턴하면 안된다.
@@ -97,7 +96,6 @@
 
 ### enum
 - 등수와 상금을 저장하는 enum을 만든다.
-
 
 
 ### OutputManager

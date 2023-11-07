@@ -24,7 +24,7 @@ public class Customer {
     }
 
     private void validateDigit(Long money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INDIVISIBLE);
         }
 

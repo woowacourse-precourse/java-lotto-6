@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.HashSet;
 import lotto.exception.CustomIllegalArgumentException;
 import lotto.exception.ErrorCode;
 
@@ -13,6 +14,12 @@ public class WinningNumbers {
         validate(mainNumbers, bonusNumber);
         this.mainNumbers = mainNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public HashSet<Integer> assembleWinningNumbers() {
+        HashSet<Integer> winningNumbers = new HashSet<>(mainNumbers.getNumbers());
+        winningNumbers.add(bonusNumber);
+        return winningNumbers;
     }
 
     private void validate(Lotto mainNumbers, int bonusNumber) {

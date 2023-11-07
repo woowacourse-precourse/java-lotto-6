@@ -7,11 +7,12 @@ import lotto.view.Output;
 public class OrderController {
     Output output;
     int lottoNumber;
-
     int wastedMoney;
 
+    private final static int DUMMY_VALUE = -1;
+
     public OrderController() {
-        lottoNumber = -1;
+        lottoNumber = DUMMY_VALUE;
         output = new Output();
         getMoney();
         output.printPurchasedResult(lottoNumber);
@@ -20,7 +21,7 @@ public class OrderController {
     private void getMoney() {
         Input input = new Input();
 
-        while (lottoNumber == -1) {
+        while (lottoNumber == DUMMY_VALUE) {
             output.printMoneyPrompt();
             String money = input.get();
             try {

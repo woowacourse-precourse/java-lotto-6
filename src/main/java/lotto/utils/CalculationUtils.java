@@ -19,4 +19,9 @@ public class CalculationUtils {
         return target % divisor == 0;
     }
 
+    public static double roundToDecimalPlace(double number, int location) {
+        double multipleNum = Math.pow(10, location);
+        return Math.round(number * multipleNum) / multipleNum;
+    }
+
 }

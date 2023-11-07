@@ -42,12 +42,13 @@
 
 기능 목록
 -------
-1. 사용자로부터 로또 구입 금액을 입력 받아 구매 수량을 얻는다.
-2. 당첨 번호를 입력받는다. 쉼표를 기준으로 구분.
-3. 보너스 번호를 입력받는다. 
-4. 입력값이 옳은지 판별하고, 이상할경우 예외 처리
-4. 로또 번호 6자리를 무작위로 뽑는다.
-5. 구매 수량만큼 로또를 발행한다.
-5. 해당 로또 번호가 당첨 번호와 얼마나 일치하는지 구한다.
-6. 총 수익금을 구한다.
-7. 총 수익률을 구한다.
+1. [X] 사용자로부터 로또 구입 금액을 입력 받아 구매 수량을 얻는다. - getMoney
+2. [X] 당첨 번호를 입력받는다. 쉼표를 기준으로 구분. - getWinningLotto
+3. [X] 보너스 번호를 입력받는다. - getBonusNumber
+4. [X] 입력값이 옳은지 판별하고, 이상할경우 예외 처리 - validateBonusNumber, validateMoney, Lotto.validate
+4. [X] 로또 번호 6자리를 무작위로 뽑는다. - getLottoNumber
+5. [X] 구매 수량만큼 로또를 발행한다. - getLottoAsMuchAsVolume
+5. [X] 해당 로또 번호가 당첨 번호와 얼마나 일치하는지 구한다. - countSingleLottoMatchingNumbers, findByMatchCount
+6. [X] 로또 전체의 최종 결과를 구한다. - countAllLottoMatchingNumbers, getLottoResultAsMap
+6. [X] 총 수익금을 구한다. - getProfitMoney
+7. [X] 총 수익률을 구한다. - getProfitPercentage

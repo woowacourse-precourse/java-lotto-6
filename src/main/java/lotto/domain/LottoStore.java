@@ -32,5 +32,7 @@ public class LottoStore {
         return new WinningNumbers(numbers);
     }
 
-
+    public BonusNumber drawBonusNumber(int number, WinningNumbers winningNumbers) {
+        return new BonusNumber(number, winningNumbers);
+    }
 }

@@ -2,20 +2,22 @@ package lotto.domain;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto {
+
+    private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        super(winningNumbers);
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
     public LottoRanking calculateRanking(Lotto lotto) {
-        int correctCount = (int) lotto.numbers.stream()
-                .filter(numbers::contains)
+        int correctCount = (int) winningNumbers.stream()
+                .filter(lotto::contains)
                 .count();
 
-        boolean isCorrectBonusNumber = lotto.numbers.contains(bonusNumber);
+        boolean isCorrectBonusNumber = lotto.contains(bonusNumber);
 
 
         return LottoRanking.findByCondition(correctCount, isCorrectBonusNumber);

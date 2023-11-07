@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.RequestLotto;
+import lotto.dto.RequestLottos;
 import lotto.util.NumberGenerator;
 import lotto.util.UniqueRandomNumbersGenerator;
 import org.assertj.core.api.Assertions;
@@ -32,12 +34,9 @@ class LottoMachineTest {
     void purchaseLottosSuccessTest() {
         Lotto expected = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
-        Lottos lottos = lottoMachine.purchaseLottos();
-        Lotto result = lottos
-                        .getLottos()
-                        .get(0);
-
-        assertThat(result
+        RequestLottos requestLottos = lottoMachine.purchaseLottos();
+        List<Lotto> lottoDummy = requestLottos.createLottoDummy();
+        assertThat(lottoDummy.get(0)
                 .equals(expected))
                 .isTrue();
     }

@@ -28,12 +28,9 @@
 
 - 예외 상황을 출력한다.
   - 예외는 항상 `[ERROR]`를 앞에 붙여 출력한다.
+  - 예외 상황 발생 시 입력을 다시 받는다.
 
 # 구현 특이사항
-### GlobalExceptionHandler 사용
-ExceptionHandler를 설정해서, 예외를 출력하게 하였습니다.
-* 장점 : 보일러플레이트 코드를 줄일 수 있다.
-* 단점 : 가려진 구현 사항으로 남아 side-effect가 생길 수 있다. 
 ### I/O 통합
 Input과 Output을 pacakge-private 으로 캡슐화 한 후, 통합 처리했습니다.
 * 장점 : I/O 관련된 책임을 완전 넘길 수 있다.

@@ -15,7 +15,7 @@ public record LottoNumber(
     }
 
     private void validateRange(final int number) {
-        if (number < LottoConsts.LOTTO_NUMBER_MIN.getValue() || number > LottoConsts.LOTTO_NUMBER_MIN.getValue()) {
+        if (number < LottoConsts.LOTTO_NUMBER_MIN.getValue() || number > LottoConsts.LOTTO_NUMBER_MAX.getValue()) {
             throw new IllegalArgumentException(ErrorConsts.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

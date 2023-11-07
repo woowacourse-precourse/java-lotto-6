@@ -59,6 +59,7 @@ public class LottoController {
     private PurchaseAmount getPurchaseAmountFromInput() {
         try {
             String input = inputView.requestPurchaseAmount();
+            System.out.println();
             return PurchaseAmount.create(Parser.parsePurchaseAmount(input));
         } catch (IllegalArgumentException e) {
             outputView.displayErrorMessage(e);
@@ -69,7 +70,9 @@ public class LottoController {
     private WinningLotto getWinningLottoFromInput() {
         try {
             Lotto winningLotto = getWinningNumbersFromInput();
+            System.out.println();
             BonusNumber bonusNumber = getBonusNumberFromInput();
+            System.out.println();
             validateDuplication(winningLotto, bonusNumber);
             return WinningLotto.create(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {

@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Player;
-import lotto.dto.response.LottiesInfoDto;
+import lotto.dto.response.LottosInfoDto;
 import lotto.domain.LottoShop;
 import lotto.service.LottoService;
 import lotto.validation.InputValidator;
@@ -55,15 +55,15 @@ public class LottoController {
 
     private Player setPlayerVariableValue(String input) {
         Player player = new Player(input, lottoShop);
-        LottiesInfoDto lottiesInfoDto = player.buyLotties();
-        printLottiesNumberAndTicket(lottiesInfoDto);
+        LottosInfoDto lottosInfoDto = player.buyLottos();
+        printLottosNumberAndTicket(lottosInfoDto);
         return player;
     }
 
-    private void printLottiesNumberAndTicket(LottiesInfoDto lottiesInfoDto) {
+    private void printLottosNumberAndTicket(LottosInfoDto lottosInfoDto) {
         ConsoleOutput.printNewLine();
-        outputView.displayticket(lottiesInfoDto.ticket());
-        outputView.displayLottiesNumber(lottiesInfoDto.lottiesNumber());
+        outputView.displayticket(lottosInfoDto.ticket());
+        outputView.displayLottosNumber(lottosInfoDto.lottosNumbers());
     }
 
     private List<Integer> getwinningNumbers() {
@@ -124,5 +124,7 @@ public class LottoController {
     private void calculateWinningStatistics(Player player, List<Integer> winningNumber) {
         ConsoleOutput.printNewLine();
         ConsoleOutput.displayWinningStatistics();
+
+        player.compareWinningAndLottoNumbers(winningNumber);
     }
 }

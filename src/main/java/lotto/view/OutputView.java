@@ -7,8 +7,8 @@ public class OutputView {
         System.out.println(ticket + "개를 구매했습니다.");
     }
 
-    public void displayLottiesNumber(List<List<Integer>> lottiesNumber) {
-        for (List<Integer> numbers : lottiesNumber) {
+    public void displayLottosNumber(List<List<Integer>> lottosNumber) {
+        for (List<Integer> numbers : lottosNumber) {
             System.out.println(numbers);
         }
     }

@@ -6,13 +6,16 @@ import java.util.List;
 public class Lotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {

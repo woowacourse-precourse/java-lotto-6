@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Amount;
-import lotto.domain.LottoBonus;
-import lotto.domain.Lotto;
-import lotto.domain.LottosPurchased;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,12 +13,14 @@ public class GameController {
     private LottosPurchased lottosPurchased;
     private Lotto winningLotto;
     private LottoBonus lottoBonus;
+    private LottoStatistics lottoStatistics;
 
     public void playGame() {
         repeatInputAmount();
         purchaseLottos();
         repeatInputWinningNumbers();
         repeatInputBonusNumber();
+        printLottoStatistics();
     }
 
     private void repeatInputAmount() {
@@ -72,7 +71,9 @@ public class GameController {
         System.out.println();
     }
 
-    private void getAndPrintResults() {
-        //
+    private void printLottoStatistics() {
+        lottoStatistics = new LottoStatistics(lottosPurchased, winningLotto, lottoBonus, amount);
+
+        outputView.printStatistics(lottoStatistics);
     }
 }

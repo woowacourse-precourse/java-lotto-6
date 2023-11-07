@@ -15,9 +15,13 @@ public class LottoStatistics {
         rateOfReturn = calculateRateOfReturn(amount);
     }
 
+    public int getCountOf(LottoRank lottoRank) {
+        return rankCounter.get(lottoRank);
+    }
+
     private void initRankCounter() {
-        for (LottoRank lottoPrize : LottoRank.values()) {
-            rankCounter.put(lottoPrize, 0);
+        for (LottoRank lottoRank : LottoRank.values()) {
+            rankCounter.put(lottoRank, 0);
         }
     }
 

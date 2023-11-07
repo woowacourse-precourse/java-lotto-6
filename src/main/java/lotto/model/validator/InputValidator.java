@@ -1,5 +1,7 @@
 package lotto.model.validator;
 
+import lotto.model.WinningNumber;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -24,6 +26,12 @@ public class InputValidator {
         long inputNumberCount = inputNumbers.stream().distinct().count();
         if (inputNumbers.size() != inputNumberCount) {
             illegalArgument(LOTTO_INCLUDES_UNIQUE_NUMBERS.getMessage());
+        }
+    }
+
+    public static void lottoMustBeUniqueNumber(WinningNumber winningNumber, Integer bonusNumber) {
+        if (winningNumber.compareWinningNumberAndBonusNumber(bonusNumber)) {
+            illegalArgument(BONUS_NUMBER_MUST_UNIQUE_WITH_WINNING_NUMBER.getMessage());
         }
     }
 

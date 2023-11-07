@@ -28,6 +28,12 @@ public class Lotto {
         }
         return count;
     }
+
+    public boolean isBonusNumberDuplicatedWithWinningNumber(int bonusNumber){
+        return IntStream.range(0, numbers.size())
+                .anyMatch(i -> numbers.get(i) == bonusNumber);
+    }
+
     @Override
     public boolean equals(Object obj){
         Lotto lotto = (Lotto) obj;

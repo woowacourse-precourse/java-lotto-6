@@ -16,6 +16,10 @@ public class WinningNumber {
         answer = new Lotto(lotto);
     }
 
+    public boolean compareWinningNumberAndBonusNumber(int bonusNumber){
+        return answer.isBonusNumberDuplicatedWithWinningNumber(bonusNumber);
+    }
+
     @Override
     public boolean equals(Object expectedNumbers){
         return answer.equals(expectedNumbers);

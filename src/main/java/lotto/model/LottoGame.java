@@ -11,10 +11,14 @@ import lotto.model.Winning;
 public class LottoGame implements Game {
     private static final int lottoNumbers = 6;
     private static final int lottoPirce = 1000;
+
     private final int lottoPurchaseAmount;
+
     private final Lotto winningLotto;
     private final int bonusNumber;
+
     private final List<Lotto> purchasedLottos = new ArrayList<>();
+
     private final List<Integer> winningLottos = new ArrayList<>();
     private double returnOnInvestment;
 
@@ -72,5 +76,13 @@ public class LottoGame implements Game {
         }
 
         return bonusNumber;
+    }
+
+    public int getLottoPurchaseAmount() {
+        return lottoPurchaseAmount;
+    }
+
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
     }
 }

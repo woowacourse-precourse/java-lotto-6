@@ -44,4 +44,8 @@ public class Lotto {
 
         return Winning.LOSE;
     }
+
+    public String getNumbers() {
+        return numbers.toString();
+    }
 }

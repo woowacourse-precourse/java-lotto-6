@@ -35,6 +35,4 @@ public class ModelHandler {
     public void setInputBonusNumber() {
         DOMAIN.setBonusNumber(INPUT_VIEW.inputBonusNumber());
     }
-
-
 }

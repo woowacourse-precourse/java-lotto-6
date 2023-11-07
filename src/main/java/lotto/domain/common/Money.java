@@ -33,10 +33,14 @@ public class Money {
     }
 
     public long divide(Money target) {
-        checkMoneyNonNull(target);
-        checkMoneyZero(target);
+        validate(target);
 
         return this.value / target.value;
+    }
+
+    private void validate(Money target) {
+        checkMoneyNonNull(target);
+        checkMoneyZero(target);
     }
 
     private void checkMoneyZero(Money target) {

@@ -7,7 +7,7 @@ import lotto.view.Output;
 
 import java.util.*;
 
-import static lotto.util.Repeater.untilNotException;
+import static lotto.util.Repeater.tryOnceMoreIfException;
 import static lotto.util.Validator.validateBonusNumberDuplicate;
 import static lotto.util.Validator.validateRangeOfNumbers;
 
@@ -18,7 +18,7 @@ public class LottoManager {
 
     public List<Lotto> purchaseLottoTickets() {
         output.printEnteringAmountPrompt();
-        int purchasedAmount = untilNotException(Input::readTotalPurchasedAmount);
+        int purchasedAmount = tryOnceMoreIfException(Input::readTotalPurchasedAmount);
         int purchasedQuantity = purchasedAmount / THOUSAND;
 
         List<Lotto> lottoTickets = new ArrayList<>();
@@ -54,12 +54,12 @@ public class LottoManager {
 
     private List<Integer> getWinningNumbers() {
         output.printLottoWinningNumbersPrompt();
-        return untilNotException(Input::readWinningNumbers);
+        return tryOnceMoreIfException(Input::readWinningNumbers);
     }
 
     public int getBonusNumber() {
         output.printLottoBonusNumberPrompt();
-        return untilNotException(Input::readBonusNumber);
+        return tryOnceMoreIfException(Input::readBonusNumber);
     }
 
     public WinningCondition checkWinningResult(Lotto myLotto, List<Integer> winningNumbers, int bonusNumber) {

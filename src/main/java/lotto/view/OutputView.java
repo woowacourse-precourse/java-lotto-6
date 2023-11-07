@@ -12,13 +12,13 @@ public class OutputView {
 
     private final List<Integer> lottoResult;
 
-    private final List<Integer> totalProfit;
+    private final double rateOfReturn;
 
-    public OutputView(int lottoPurchase, List<List<Integer>> randomNumbers, List<Integer> lottoResult, List<Integer> totalProfit) {
+    public OutputView(int lottoPurchase, List<List<Integer>> randomNumbers, List<Integer> lottoResult, List<Integer> totalProfit, double rateOfReturn) {
         this.lottoPurchase = lottoPurchase;
         this.randomNumbers = randomNumbers;
         this.lottoResult = lottoResult;
-        this.totalProfit = totalProfit;
+        this.rateOfReturn = rateOfReturn;
     }
 
     public void showRandomNumbers() {
@@ -39,6 +39,12 @@ public class OutputView {
         System.out.println("4개 일치 (50,000원) - " + fourMatch + "개" );
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveMatch + "개" );
         System.out.println("6개 일치 (2,000,000,000원) - " + sixMatch + "개" );
+    }
+
+    public void showRateOfReturn() {
+
+        String rof = String.format("%.2f", rateOfReturn);
+        System.out.println("총 수익률은 " + rof + "입니다.");
     }
 
 }

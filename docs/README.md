@@ -33,8 +33,8 @@
 - [x] 번호가 1~45 사이의 숫자가 아닌 경우 - InputValidation#checkRange()
 - [x] 로또 번호가 중복되는 경우 - Lotto#checkOverlap()
 - [x] 입력받은 문자열이 숫자가 아닌 경우 - InputValidation#validateNumber()
-- [x] 구매금액이 1000원으로 나누어 떨어지지 않는 경우 - InputValidation#checkDivisible()
-- [x] 구매금액이 부족한 경우 - InputValidation#checkSufficient()
+- [x] 구매 금액이 1000원으로 나누어 떨어지지 않는 경우 - InputValidation#checkDivisible()
+- [x] 구매 금액이 부족한 경우 - InputValidation#checkSufficient()
 - [x] 당첨 번호가 쉼표(,)를 기준으로 구분되어 있지 않는 경우 -InputValidation#checkDelimiter()
 - [x] 보너스 번호가 당첨 번호랑 중복되는 경우 - InputValidation#checkOverlap()
 
@@ -51,4 +51,4 @@
 - [x] 메시지 출력 - Output#printMessage()
 - [x] 발행한 로또 수량및 번호 출력(번호는 오름차순으로 정렬) - Output#printLotteries()
 - [x] 당첨 결과를 출력 - Output#printResult()
-- [x] 수익률 출력 - Output#printEarnings()
+- [x] 소수점 둘쨰 자리에서 반올림한 수익률 출력 - Output#printEarnings()

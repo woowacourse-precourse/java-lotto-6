@@ -8,7 +8,7 @@ import lotto.domain.Lotto;
 public class Output {
     private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String RESULT_MESSAGE = "\n당첨 통계\n---";
-    private static final String EARNINGS_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
+    private static final String EARNINGS_MESSAGE = "총 수익률은 %,.1f%%입니다.\n";
 
     public static void printMessage(String message) {
         System.out.println(message);

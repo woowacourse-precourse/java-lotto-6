@@ -7,6 +7,8 @@ import lotto.model.Money;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoMachineTest {
 
@@ -25,10 +27,11 @@ class LottoMachineTest {
     }
 
     @DisplayName("돈 에외 테스트.")
-    @Test
-    void buyLottosByWrongMoney() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 999, 5005})
+    void buyLottosByWrongMoney(int input) {
         LottoMachine lottoMachine = new LottoMachine();
-        org.assertj.core.api.Assertions.assertThatThrownBy(() -> lottoMachine.buyLottos(new Money(5005)))
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> lottoMachine.buyLottos(new Money(input)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -83,7 +83,7 @@ public class LottoDraw {
             }
             sumUpResultsHasBonus(lottoRank, index, message);
         }
-        System.out.println(result);
+        printUtil.printLottoStatisticsResults(result);
     }
 
     public void sumUpResultsHasBonus(LottoRank lottoRank, int prizeIdx, String message) {

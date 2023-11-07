@@ -29,8 +29,11 @@ public class PrintUtil {
         System.out.print(DrawMessage.WINNING_STATISTICS_MESSAGE.getMessage());
     }
 
+    public void printLottoStatisticsResults(StringBuilder result){
+        System.out.println(result);
+    }
+
     public void printProfit(String totalProfit) {
-        totalProfit += "%";
-        System.out.printf(DrawMessage.TOTAL_PROFIT_MESSAGE.getMessage(), totalProfit);
+        System.out.printf(DrawMessage.TOTAL_PROFIT_MESSAGE.getMessage(), totalProfit + "%");
     }
 }

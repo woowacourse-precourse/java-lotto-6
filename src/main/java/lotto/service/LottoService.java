@@ -8,22 +8,28 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoService {
-	private Lottos lottos;
+	private List<Lotto> lottos;
 	private WinningLotto winningLotto;
 
-	public void createLotto(int amount) {
-		lottos = new Lottos(createLottos(amount));
+	public void createLottos(int amount) {
+		try {
+			lottos = Stream.generate(Lotto::createLotto)
+				.limit(amount)
+				.collect(Collectors.toList());
+		} catch(LottoException e) {
+			System.out.println(e.getMessage());
+			createLottos(amount);
+		}
 	}
 
 	public void printLottos(int amount) {
-		OutputView.printLottos(amount, lottos.getLotts());
+		OutputView.printLottos(amount, lottos);
 		System.out.println();
 	}
 
@@ -35,18 +41,7 @@ public class LottoService {
 	}
 
 	public void calculateResult() {
-		winningLotto.calculateResult(lottos.getLotts());
-	}
-
-	private List<Lotto> createLottos(int amount) {
-		try {
-			return Stream.generate(Lotto::createLotto)
-				.limit(amount)
-				.collect(Collectors.toList());
-		} catch(LottoException e) {
-			System.out.println(e.getMessage());
-			return createLottos(amount);
-		}
+		winningLotto.calculateResult(lottos);
 	}
 
 	private WinningNumbers setUpWinningNumbers() {

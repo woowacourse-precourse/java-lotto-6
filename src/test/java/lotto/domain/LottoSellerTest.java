@@ -26,18 +26,4 @@ class LottoSellerTest {
 
         assertThat(lottoAmount).isEqualTo(expectedAmount);
     }
-    
-//    @DisplayName("수익률 계산 테스트")
-//    @Test
-//    void calculateProfitRate() {
-//        int money = 8_000;
-//        WinningDetails winningDetails = WinningDetails.createWinningDetails();
-//        winningDetails.increasePrizeAmount(Prize.FIFTH_PLACE);
-//        int totalPrize = winningDetails.calculateTotalPrize();
-//        double expectedRate = 62.5;
-//
-//        double profitRate = lottoSeller.calculateProfitRate(money, totalPrize);
-//
-//        assertThat(profitRate).isEqualTo(expectedRate);
-//    }
 }

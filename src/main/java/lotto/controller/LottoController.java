@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.prize.WinningDetails;
 import lotto.service.LottoService;
 import lotto.util.InputConverter;
+import lotto.util.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,7 +32,7 @@ public class LottoController {
 
     private void performLottosPurchaseProcess() {
         try {
-            int purchaseAmount = InputPurchaseAmount();
+            int purchaseAmount = InputValue(inputView.askPurchaseAmount());
             List<String> issuedLottosNumbers = lottoService.buyLotto(purchaseAmount);
             outputView.showIssuedLottoResult(issuedLottosNumbers);
         } catch (IllegalArgumentException e) {
@@ -43,7 +44,7 @@ public class LottoController {
     private void performDrawWinningLottoProcess() {
         try {
             final List<Integer> winningNumbers = InputWinnigNumbers();
-            final int bonusNumber = InputBonusNumber();
+            final int bonusNumber = InputValue(inputView.askBonusNumber());
             lottoService.drawWinningLotto(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
@@ -61,21 +62,15 @@ public class LottoController {
         outputView.showLottoResult(winningDetails);
     }
 
-    private int InputPurchaseAmount() {
-        String purchaseAmount = inputView.askPurchaseAmount();
+    private int InputValue(String input) {
+        InputValidator.validateInput(input);
 
-        return InputConverter.convertStringToInt(purchaseAmount);
+        return InputConverter.convertStringToInt(input);
     }
 
     private List<Integer> InputWinnigNumbers() {
         String winningNumbers = inputView.askWinnigNumbers();
 
         return InputConverter.convertToList(winningNumbers);
-    }
-
-    private int InputBonusNumber() {
-        String bonusNumber = inputView.askBonusNumber();
-
-        return InputConverter.convertStringToInt(bonusNumber);
     }
 }

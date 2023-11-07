@@ -16,8 +16,8 @@ public class LottoService {
         lottoBuyer = new LottoBuyer(lottos, money);
     }
 
-    public List<Lotto> findBoughtLottos() {
-        return lottoBuyer.getLottos();
+    public List<List<Integer>> findBoughtLottos() {
+        return lottoBuyer.getLottos().stream().map(Lotto::getSortedNumbers).toList();
     }
 
     public void setWiningNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber) {

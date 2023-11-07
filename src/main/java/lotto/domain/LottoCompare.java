@@ -17,8 +17,8 @@ public class LottoCompare {
                 .forEach(value -> winningMap.put(value, 0));
     }
 
-    public void compareAllLottoToWinning(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        lottos.forEach(lotto -> compareLottoToWinning(lotto.getNumbers(), winningNumbers));
+    public void compareAllLottoToWinning(List<List<Integer>> lottos, WinningNumbers winningNumbers) {
+        lottos.forEach(lotto -> compareLottoToWinning(lotto, winningNumbers));
     }
 
     public Map<WinningGrade, Integer> getWinningResult() {

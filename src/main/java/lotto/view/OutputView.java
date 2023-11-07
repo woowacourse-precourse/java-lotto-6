@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
 import lotto.domain.WinningGrade;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +14,9 @@ public class OutputView {
         System.out.printf(String.format("%d개를 구매했습니다.", numberOfLottoBought));
     }
 
-    public void printLottos(List<Lotto> lottos) {
+    public void printLottos(List<List<Integer>> lottoNumbers) {
         printNewLine();
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        lottoNumbers.forEach(System.out::println);
     }
 
     public void printInputWinningNumbersMessage() {
@@ -48,5 +47,9 @@ public class OutputView {
 
     public void printLottoYield(double v) {
         System.out.printf("총 수익률은 %.1f%%입니다.", v);
+    }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }

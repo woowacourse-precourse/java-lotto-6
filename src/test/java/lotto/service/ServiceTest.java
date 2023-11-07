@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,14 @@ class ServiceTest {
 
             assertEquals(expectedLottoCount, actualLottoCount);
         }
+    }
+
+    @DisplayName("Lotto list가 잘 생성되는지 테스트")
+    @Test
+    void 로또_리스트_생성_테스트() {
+        int lottoCount = 10;
+
+        List<Lotto> lottoList = gameService.createLotto(lottoCount);
+        assertEquals(lottoCount, lottoList.size());
     }
 }

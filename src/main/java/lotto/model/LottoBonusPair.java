@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.util.constants.Numbers.BONUS_INCLUDED_START_RANK;
 import static lotto.util.constants.Numbers.BONUS_NOT_INCLUDED_START_RANK;
 import static lotto.util.constants.Numbers.FIRST_PRIZE_MATCH_COUNT;
+import static lotto.util.constants.Strings.LOTTO_BONUS_PAIR_STRING_FORMAT;
+import static lotto.util.constants.Strings.NEXT_LINE;
 import static lotto.util.exception.ErrorMessage.WINNER_NUMBER_CONTAINS_BONUS;
 
 import java.util.List;
@@ -28,6 +30,11 @@ public class LottoBonusPair {
                 .stream()
                 .map(this::checkRank)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return LOTTO_BONUS_PAIR_STRING_FORMAT.getFormat(winnerNumbers, bonusNumber);
     }
 
     private Integer checkRank(Lotto lotto) {

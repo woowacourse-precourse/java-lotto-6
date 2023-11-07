@@ -3,18 +3,18 @@ package lotto.Domain;
 import lotto.Domain.Validator.BonusNumberValidator;
 
 public class BonusNumber {
-    private final int bounusNum;
+    private final int bonusNum;
 
-    public BonusNumber(int bounusNum) {
-        validate(bounusNum);
-        this.bounusNum = bounusNum;
+    public BonusNumber(int bonusNum) {
+        validate(bonusNum);
+        this.bonusNum = bonusNum;
     }
 
     private void validate(int number) {
         BonusNumberValidator.doValidate(number);
     }
 
-    public int getBounusNum() {
-        return bounusNum;
+    public int getBonusNum() {
+        return bonusNum;
     }
 }

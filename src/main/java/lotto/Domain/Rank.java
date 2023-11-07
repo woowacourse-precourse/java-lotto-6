@@ -27,20 +27,21 @@ public enum Rank {
     }
 
     public boolean hit(int hitCount, boolean isHitBonus) {
-       return this.expression.apply(hitCount, isHitBonus);
+        return this.expression.apply(hitCount, isHitBonus);
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
     @Override
     public String toString() {
         StringBuilder message = new StringBuilder();
-        message.append(String.format("%d개 일치",hitCount));
-        if(isHitBonus) {
+        message.append(String.format("%d개 일치", hitCount));
+        if (isHitBonus) {
             message.append(", 보너스 볼 일치");
         }
-        message.append(String.format(" (%,d원)",prizeMoney));
+        message.append(String.format(" (%,d원)", prizeMoney));
         return message.toString();
     }
 }

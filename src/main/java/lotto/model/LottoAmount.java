@@ -36,11 +36,6 @@ public class LottoAmount {
         }
     }
 
-
-    public int getAmount() {
-        return amount;
-    }
-
     public int getlottoTicketCount() {
         return (amount / THOUSAND);
     }

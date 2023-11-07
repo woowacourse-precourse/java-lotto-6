@@ -24,9 +24,9 @@ class MatchingResultsTest {
             
             WinningLotto winningLotto = WinningLotto.of(lotto, bonusNumber);
             
-            MatchingResults matchingResults = lotteries.generateGameResult(winningLotto);
+            MatchingResults matchingResults = lotteries.generateMatchingResults(winningLotto);
             
-            assertThatNoException().isThrownBy(matchingResults::receiveLottoRanks);
+            assertThatNoException().isThrownBy(matchingResults::receiveWinningGrades);
         }
     }
 }

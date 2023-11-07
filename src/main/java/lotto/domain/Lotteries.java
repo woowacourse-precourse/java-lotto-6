@@ -15,11 +15,11 @@ public class Lotteries {
     }
 
     public static Lotteries from(final Payment payment) {
-        final List<Lotto> result = createLotteries(payment);
+        final List<Lotto> result = generateLotteries(payment);
         return new Lotteries(result);
     }
 
-    private static List<Lotto> createLotteries(final Payment payment) {
+    private static List<Lotto> generateLotteries(final Payment payment) {
         return IntStream.range(ZERO, payment.receiveIssuedLottoCount())
                 .mapToObj(index -> new Lotto(pickUniqueNumbersInRange()))
                 .toList();
@@ -31,7 +31,7 @@ public class Lotteries {
                 .toList();
     }
 
-    public MatchingResults generateGameResult(final WinningLotto winningLotto) {
+    public MatchingResults generateMatchingResults(final WinningLotto winningLotto) {
         final List<MatchingResult> results = lotteries.stream()
                 .map(lotto -> MatchingResult.of(lotto, winningLotto))
                 .toList();

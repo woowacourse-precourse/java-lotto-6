@@ -15,7 +15,7 @@ public class MatchingResults {
         return new MatchingResults(results);
     }
 
-    public List<WinningGrade> receiveLottoRanks() {
+    public List<WinningGrade> receiveWinningGrades() {
         return results.stream()
                 .map(WinningGrade::receiveLottoRank)
                 .toList();

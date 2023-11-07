@@ -56,7 +56,7 @@ class LotteriesTest {
             
             WinningLotto winningLotto = WinningLotto.of(lotto, bonusNumber);
             
-            assertThat(lotteries.generateGameResult(winningLotto))
+            assertThat(lotteries.generateMatchingResults(winningLotto))
                     .isInstanceOf(MatchingResults.class);
         }
     }

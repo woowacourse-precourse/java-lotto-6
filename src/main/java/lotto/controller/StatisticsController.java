@@ -18,8 +18,8 @@ public class StatisticsController {
     public void receiveGameResult(
             final Payment payment, final Lotteries lotteries, final WinningLotto winningLotto) {
         
-        final MatchingResults gameResults = lotteries.generateGameResult(winningLotto);
-        final List<WinningGrade> winningGrades = gameResults.receiveLottoRanks();
+        final MatchingResults matchingResults = lotteries.generateMatchingResults(winningLotto);
+        final List<WinningGrade> winningGrades = matchingResults.receiveWinningGrades();
         final LottoRanks lottoRanks = LottoRanks.from(winningGrades);
         final RankingResult rankingResult = lottoRanks.generateLottoRanksResult();
 

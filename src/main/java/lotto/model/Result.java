@@ -29,12 +29,12 @@ public class Result {
 
     public void updateResult(int count, Lotto lotto, WinningNumber winningNumber) {
         if (isCountFive(count) && DoBonusPointsMatch(lotto, winningNumber)) {
-            increaseCount(Matching.of("5-1"));
+            increaseCount(Matching.FIVE_BONUS);
             return;
         }
 
         if (isCountThreeOrMore(count)) {
-            increaseCount(Matching.of(String.valueOf(count)));
+            increaseCount(Matching.of(count));
         }
     }
 

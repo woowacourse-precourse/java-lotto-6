@@ -36,4 +36,17 @@ public class WinningResultTest {
         assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(1);
         assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(1);
     }
+
+    @DisplayName("총합 로또 당첨금을 계산해서 반환한다.")
+    @Test
+    void calculateTotalPrizeMoney() {
+        // given
+        WinningResult winningResult = new WinningResult();
+        // when
+        winningResult.addResult(Rank.THIRD);
+        winningResult.addResult(Rank.FOURTH);
+        winningResult.addResult(Rank.FIFTH);
+        // then
+        assertThat(winningResult.calculateTotalPrizeMoney()).isEqualTo(1_555_000);
+    }
 }

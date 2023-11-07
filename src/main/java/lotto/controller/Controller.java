@@ -11,5 +11,9 @@ public class Controller {
 		service.buyLotteries();
 		service.showBuyingResult();
 	}
+	
+	public void gamePlay() {
+		service.goLottoGame();
+	}
 
 }

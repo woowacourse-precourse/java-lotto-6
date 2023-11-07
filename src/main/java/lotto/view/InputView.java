@@ -18,11 +18,11 @@ public class InputView {
         this.inputValidator = new InputValidator();
     }
 
-    public int readPurchaseAccount() {
+    public int readPurchaseAmount() {
         try {
-            int purchaseAccount = Integer.parseInt(readLine().trim());
-            accountValidator(purchaseAccount);
-            return purchaseAccount;
+            int purchaseAmount = Integer.parseInt(readLine().trim());
+            accountValidator(purchaseAmount);
+            return purchaseAmount;
         } catch (NumberFormatException e) {
             System.out.println(NUMBER_FORMAT_ERROR.getMessage());
         } catch (IllegalArgumentException e) {
@@ -55,10 +55,10 @@ public class InputView {
         return bonusNumber;
     }
 
-    public void accountValidator(int purchaseAccount) throws IllegalArgumentException {
-        inputValidator.validateNegativeNum(purchaseAccount);
-        inputValidator.validateLessAccount(purchaseAccount);
-        inputValidator.validatePurchaseAccountUnit(purchaseAccount);
+    public void accountValidator(int purchaseAmount) throws IllegalArgumentException {
+        inputValidator.validateNegativeNum(purchaseAmount);
+        inputValidator.validateLessAccount(purchaseAmount);
+        inputValidator.validatePurchaseAmountUnit(purchaseAmount);
     }
 
     /**

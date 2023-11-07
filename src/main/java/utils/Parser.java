@@ -18,7 +18,7 @@ public class Parser {
     }
 
     public static List<Integer> convertWinningNumberInput(String input) {
-        if (!input.matches("^(\\d{6},){5}\\d{6}$")) {
+        if (!input.matches("^(\\d{1,2},){5}\\d{1,2}$")) {
             throw new IllegalArgumentException(ErrorType.INVALID_WINNING_NUMBER_INPUT.getText());
         }
         return Arrays.stream(input.split(COMMA))

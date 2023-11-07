@@ -7,16 +7,47 @@ import static lotto.view.InputView.inputWinningNumbers;
 
 import common.exception.InvalidArgumentException;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import lotto.domain.strategy.LottoNumberStrategy;
+import lotto.domain.strategy.RandomNumberStrategy;
 
 public class Game {
 
+    public static final int START_INCLUSIVE = 0;
     private final LottoPurchaseAmount amount;
+    private final List<Lotto> lottoes;
     private final WinningNumbers winningNumbers;
 
-    public Game() {
+    public Game(LottoNumberStrategy strategy) {
+        strategy = settingStrategy(strategy);
         this.amount = createAmount();
+        this.lottoes = createLottoes(strategy, amount.getNumberOfLotto());
         this.winningNumbers = createWinningNumbers();
         addBonusNumber();
+    }
+
+    private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {
+        if(strategy == null) {
+            return new RandomNumberStrategy();
+        }
+        return strategy;
+    }
+
+    private List<Lotto> createLottoes(LottoNumberStrategy strategy, int number) {
+        return IntStream.range(START_INCLUSIVE, number)
+                .mapToObj(i -> createLotto(strategy))
+                .collect(Collectors.toList());
+    }
+
+    private Lotto createLotto(LottoNumberStrategy strategy) {
+        try {
+            List<Integer> numbers = strategy.createNumber();
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createLotto(strategy);
+        }
     }
 
     private void addBonusNumber() {

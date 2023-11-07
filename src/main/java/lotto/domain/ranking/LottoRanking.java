@@ -1,6 +1,7 @@
 package lotto.domain.ranking;
 
 import static lotto.domain.constant.LottoConstant.*;
+import static lotto.domain.constant.RankingConstant.*;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;

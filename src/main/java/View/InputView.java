@@ -24,7 +24,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public void inputBonusNumber() {
-
+    public int inputBonusNumber() {
+        return Integer.parseInt(Console.readLine());
     }
 }

@@ -31,4 +31,8 @@ public class ModelHandler {
     public void setInputWinningNumber() {
         DOMAIN.setLottoWinningNumber(SERVICE.makeLotto(INPUT_VIEW.inputWinningNumber()));
     }
+
+    public void setInputBonusNumber() {
+        DOMAIN.setBonusNumber(INPUT_VIEW.inputBonusNumber());
+    }
 }

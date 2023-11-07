@@ -1,25 +1,16 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoWinningRank;
-import lotto.domain.Lotto;
-import lotto.domain.LottoBonusNumber;
-import lotto.domain.LottoBuyPrice;
-import lotto.domain.LottoWinningNumber;
+import lotto.domain.*;
 import lotto.dto.LottoNumbers;
 import lotto.dto.LottoWinningResult;
 import lotto.repository.LottoRepository;
 import lotto.util.ReturnRateCountUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 public class LottoService {
-
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
 
     private final LottoRepository lottoRepository;
 
@@ -28,27 +19,16 @@ public class LottoService {
     }
 
     public List<LottoNumbers> buyLotto(LottoBuyPrice lottoBuyPrice) {
-        int availableLottoBuyCount = lottoBuyPrice.getAvailableLottoBuyCount();
-        List<Lotto> createdLottos = createAndSaveLotto(availableLottoBuyCount);
+        List<Lotto> createdLottos = createLotto(lottoBuyPrice);
 
         return convertLottoToLottoNumbers(createdLottos);
     }
 
-    private List<Lotto> createAndSaveLotto(int createCount) {
-        List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> createLotto(LottoBuyPrice lottoBuyPrice) {
+        List<Lotto> createdLottos = LottoFactory.createLotto(lottoBuyPrice);
+        lottoRepository.saveAll(createdLottos);
 
-        for (int i = 0; i < createCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                    LOTTO_START_NUMBER,
-                    LOTTO_END_NUMBER,
-                    LOTTO_NUMBER_COUNT
-            );
-            lottos.add(new Lotto(numbers));
-        }
-
-        lottoRepository.saveAll(lottos);
-
-        return lottos;
+        return createdLottos;
     }
 
     private List<LottoNumbers> convertLottoToLottoNumbers(List<Lotto> lottos) {

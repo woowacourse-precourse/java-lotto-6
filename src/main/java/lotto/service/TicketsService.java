@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
-import lotto.enumeration.NoticeType;
 import lotto.enumeration.WinningType;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -72,7 +72,7 @@ public class TicketsService {
 
     public BigDecimal calcProfitRate(int amount, Result result) {
         int totalPrize = getTotalPrize(result);
-        double profit = (totalPrize / amount) * 100;
+        double profit = ((double) totalPrize / amount) * 100;
 
         return roundDouble(profit);
     }
@@ -82,7 +82,6 @@ public class TicketsService {
         for (WinningType winningType : WinningType.values()) {
             totalPrize += result.getResult().get(winningType) * winningType.getPrize();
         }
-        System.out.println("totalPrize: " + totalPrize);
         return totalPrize;
     }
 
@@ -92,9 +91,26 @@ public class TicketsService {
 
     public void printWinningStat(Result result) {
         for(WinningType winningType : WinningType.values()) {
-            System.out.println(winningType.getMatchedCount() + "개 일치 (" +
-                    winningType.getPrize() + "원) - " +
-                    result.getResult().get(winningType) + "개");
+            if(winningType == WinningType.MISS) {
+                continue;
+            }
+            int matchedCount = winningType.getMatchedCount();
+            String prize = formatWithComma(winningType.getPrize());
+            int count = result.getResult().get(winningType);
+            if(winningType == WinningType.SECOND) {
+                System.out.println(
+                        matchedCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개"
+                );
+                continue;
+            }
+            System.out.println(
+                    matchedCount + "개 일치 (" + prize + "원) - " + count + "개"
+            );
         }
+    }
+
+    private String formatWithComma(int amount) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(amount);
     }
 }

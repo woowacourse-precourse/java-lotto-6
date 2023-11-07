@@ -8,9 +8,6 @@ public class WinningLotto {
         this.numbers = numbers;
         this.bonusNum = bonusNum;
     }
-    public void printNumbers() {
-        numbers.printNumbers();
-    }
 
     public Lotto getNumbers() {
         return numbers;

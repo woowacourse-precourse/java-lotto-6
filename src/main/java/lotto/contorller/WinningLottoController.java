@@ -52,10 +52,6 @@ public class WinningLottoController {
 
     public void getResult() {
         result = ticketsService.compare(tickets, winningLotto);
-        for (WinningType winningType : WinningType.values()) {
-            System.out.println(winningType.getMatchedCount() + " " +
-                    result.getResult().get(winningType));
-        }
     }
 
     public void run() {

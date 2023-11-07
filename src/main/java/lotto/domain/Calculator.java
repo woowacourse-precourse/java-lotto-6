@@ -10,7 +10,7 @@ public class Calculator {
     public Calculator() {
     }
 
-    public static int calculateTotalPrize(Map<Rank, Integer> rankCount) {
+    public int calculateTotalPrize(Map<Rank, Integer> rankCount) {
         int totalPrize = 0;
         for (Rank rank : Rank.values()) {
             totalPrize += rank.getPrizeMoney() * rankCount.getOrDefault(rank, 0);
@@ -37,7 +37,6 @@ public class Calculator {
                 .filter(winningNumbers::contains)
                 .count();
     }
-
 
     private boolean checkMatchBonus(Lotto lotto, BonusNumber bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber.getBonusNumber());

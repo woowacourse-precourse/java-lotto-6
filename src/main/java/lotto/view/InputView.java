@@ -10,21 +10,23 @@ import lotto.utils.Util;
 public class InputView {
     public static int getMoneyInput() {
         System.out.println(GameMessage.ENTER_PURCHASE_AMOUNT_MESSAGE.getMessage());
-        return getIntegerInput();
+        String input = Console.readLine();
+        return convertToInt(input);
     }
 
     public static List<Integer> getWinningNumbersInput() {
         System.out.println(GameMessage.ENTER_WINNING_NUMBERS_MESSAGE.getMessage());
-        return getIntegerListInput();
+        String winningNumbersInput = Console.readLine();
+        return convertToIntegerList(winningNumbersInput);
     }
 
     public static int getBonusNumberInput() {
         System.out.println(GameMessage.ENTER_BONUS_NUMBER_MESSAGE.getMessage());
-        return getIntegerInput();
+        String input = Console.readLine();
+        return convertToInt(input);
     }
 
-    private static int getIntegerInput() {
-        String input = Console.readLine();
+    private static int convertToInt(String input) {
         validateIntegerInput(input);
         return Integer.parseInt(input);
     }
@@ -35,13 +37,12 @@ public class InputView {
         }
     }
 
-    private static List<Integer> getIntegerListInput() {
-        String winningNumbersInput = Console.readLine();
-        validateIntegerListInput(winningNumbersInput);
+    private static List<Integer> convertToIntegerList(String winningNumbersInput) {
+        validateIntegerList(winningNumbersInput);
         return Util.convertStringToIntegerList(winningNumbersInput);
     }
 
-    private static void validateIntegerListInput(String input) {
+    private static void validateIntegerList(String input) {
         List<String> parts = Arrays.asList(input.split(","));
         if (!parts.stream().allMatch(Util::isInteger)) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_NOT_INTEGER_ERROR.getMessage());

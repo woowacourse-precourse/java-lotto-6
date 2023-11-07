@@ -49,6 +49,7 @@ public class IOController {
 
     private List<Integer> isAvailableWinNumber(String stringInputWinNumber) {
         inputIsNull(stringInputWinNumber);
+
         makeWinNumberList(stringInputWinNumber);
 
         List<Integer> winNumberList = makeWinNumberList(stringInputWinNumber);
@@ -77,7 +78,9 @@ public class IOController {
         String[] numbers = stringInputWinNumber.split(",");
         for (String number : numbers) {
             try {
-                winNumberList.add(Integer.parseInt(number.trim()));
+                int intInputNumber=Integer.parseInt(number.trim());
+                isOutOfArrange(intInputNumber);
+                winNumberList.add(intInputNumber);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_FORMAT.getMessageText());
             }

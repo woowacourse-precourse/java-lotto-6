@@ -28,4 +28,8 @@ public class OutputView {
         System.out.println(winningNumber + "개 일치" + bonusMessage
                 + REWARD[rewardIndex] + STICK + " " + lottoWinnerCount + "개");
     }
+
+    public void printRevenuePercentage(double revenuePercentage) {
+        System.out.println("총 수익률은 " + String.format("%.1f", revenuePercentage) + "%입니다.");
+    }
 }

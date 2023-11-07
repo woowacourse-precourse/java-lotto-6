@@ -31,7 +31,7 @@ public class LottoController {
         decideLottoWinner(lottonumbers);
         infoLottoWinner();
         double revenuePercentage = decideRevenuePercentage();
-        System.out.println(revenuePercentage);
+        outputView.printRevenuePercentage(revenuePercentage);
     }
 
     private void decideLottoWinner(List<List<Integer>> lottoNumbers) {

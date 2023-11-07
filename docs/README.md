@@ -41,17 +41,19 @@
 - [x] getter , setter
 
 - Prize (enum)
-- [ ] FIRST ~ FIFTH ("",count,hasBonus)
-- [ ] String hoho
-- [ ] int count
+- [x] FIRST ~ FIFTH (message,matchingCount,hasBonus,price)
+- [x] String message : ("3개 일치 (5,000원) - "...)
+- [x] int matchingCount
+- [x] boolean hasBonus (2등말고는 다 false)
+- [x] double price : (5등 = 5000)
 
 - Lottery
 - 변수
 - [x] userInput
 - [x] List<Lotto>
 - [x] Winning
-- [ ] List<Prize>
-- [ ] price, total
+- [x] HashMap<Prize>
+- [x] countOfLotto (로또 개수)
 - 매서드
 - [x] ready
   - [x] 각 변수들 초기화
@@ -61,17 +63,12 @@
   - [x] 생성된 로또들 출력
   - [x] 당첨 번호 입력 받기
   - [x] 보너스 번호 입력 받기
-- [ ] start
-  - [ ] 로또와 당첨번호를 비교
-  - [ ] 만약 5개가 일치하면 보너스도 비교
-  - [ ] count, bonus에 따라 Result를 생성
-- [ ] end
-  - [ ] 당첨 통계 출력
-  - [ ] "---"
-  - [ ] 5등 ~ 1등
-  - [ ] 총 수익률 출력
-- [ ] 당첨 번호와 비교하기
-- [ ] 보너스 번호 있는지 확인하기 
+- [x] start
+  - [x] 로또와 당첨번호를 비교
+  - [x] 일치 횟수와 보너스 점수를 비교해서 결과를 HashMap에 저장
+- [x] end
+  - [x] 5등 ~ 1등
+  - [x] 총 수익률 출력
 
 - 입력 (userInput)
 - [x] 로또 구입 금액 입력
@@ -84,7 +81,7 @@
 - [x] 보너스 번호를 입력해 주세요.
 - 발행한 로또 수량 및 번호 출력
 - [x] n개를 구매했습니다.
-- [ ] 로또 array
+- [x] 로또 array
 - 당첨 내역 출력
 - [x] 당첨 통계
 - [x] "---"

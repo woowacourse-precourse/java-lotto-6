@@ -5,6 +5,7 @@ import lotto.domain.Money;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputMoneyView;
 import lotto.view.OutputLottoCountView;
+import lotto.view.OutputLottosView;
 
 public class LottoController {
 
@@ -33,6 +34,8 @@ public class LottoController {
     }
 
     private void printLottos(Lottos lottos) {
+        OutputLottosView outputLottosView = new OutputLottosView();
+        outputLottosView.OutputLottos(lottos);
     }
 
     private void getNumber() {

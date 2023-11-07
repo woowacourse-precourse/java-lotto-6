@@ -1,20 +1,34 @@
 package lotto.domain;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class Lotto {
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+public class Lotto {
+    private final List<Integer> lotto;
+
+    public Lotto(List<Integer> lotto) {
+        validate(lotto);
+        sortLotto(lotto);
+        this.lotto = lotto;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validate(List<Integer> lotto) {
+        if (lotto.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void sortLotto(List<Integer> lotto) {
+        lotto.sort(Comparator.naturalOrder());
+    }
+
+    public String getLotto() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return lotto.toString();
+    }
 }

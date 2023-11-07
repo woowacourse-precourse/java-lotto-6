@@ -52,9 +52,7 @@ public class Lotto {
 
         for (int number : numbers) {
             if (hasNumber(checked, number, OFFSET)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 "
-                        + LottoSetting.NUMBER_RANGE_START.getValue() + "부터 "
-                        + LottoSetting.NUMBER_RANGE_END.getValue() + "사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 수를 가질 수 없습니다.");
             }
         }
     }

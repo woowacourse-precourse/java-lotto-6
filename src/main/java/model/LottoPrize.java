@@ -10,10 +10,19 @@ import java.util.Map.Entry;
 public class LottoPrize {
     private final static int COUNT = 1;
     HashMap<Prize, Integer> prizeRepository = new LinkedHashMap<>();
+    private int price;
 
     public LottoPrize(LottoWinningNumbers winningNumbers, List<Lotto> lottos) {
         judgePrize(winningNumbers, lottos);
-        calculateTotalPrice(prizeRepository);
+        price = calculateTotalPrice(prizeRepository);
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public HashMap getPrize() {
+        return prizeRepository;
     }
 
     public int calculateTotalPrice(HashMap prizeRepository) {
@@ -21,23 +30,19 @@ public class LottoPrize {
         Iterator<Entry<Prize, Integer>> iterator = prizeRepository.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<Prize, Integer> entry = iterator.next();
-            totalPrice = totalPrice + calculateOnePrize(entry.getKey(), entry.getValue());
+            totalPrice = totalPrice + calculateOnePrice(entry.getKey(), entry.getValue());
         }
         return totalPrice;
     }
 
-    public int calculateOnePrize(Prize key, int value) {
+    public int calculateOnePrice(Prize key, int value) {
         return key.getPrice() * value;
     }
 
-    public HashMap getPrize() {
-        return prizeRepository;
-    }
-
-    public void judgePrize(LottoWinningNumbers winningNumbers, List<Lotto> lottos) {
+    public void judgePrize(LottoWinningNumbers lottoWinningNumbers, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            int count = compareTo(winningNumbers, lotto);
-            boolean isBonus = hasBonusNumber(winningNumbers, lotto);
+            int count = compareTo(lottoWinningNumbers.getWinningNumbers(), lotto);
+            boolean isBonus = hasBonusNumber(lottoWinningNumbers, lotto);
             createOrSum(Prize.of(count, isBonus));
         }
     }
@@ -54,8 +59,8 @@ public class LottoPrize {
         prizeRepository.put(prize, COUNT);
     }
 
-    public int compareTo(LottoWinningNumbers winningNumbers, Lotto lotto) {
-        return winningNumbers.getWinningNumbers().stream().mapToInt(winNumber -> countSameNumber(winNumber, lotto))
+    public int compareTo(List<Integer> winningNumbers, Lotto lotto) {
+        return winningNumbers.stream().mapToInt(winNumber -> countSameNumber(winNumber, lotto))
                 .sum();
     }
 
@@ -63,8 +68,8 @@ public class LottoPrize {
         return (int) lotto.getNumbers().stream().filter(number -> number == winNumber).count();
     }
 
-    public boolean hasBonusNumber(LottoWinningNumbers winningNumbers, Lotto lotto) {
-        return lotto.getNumbers().stream().anyMatch(number -> number == winningNumbers.getBonusNumber());
+    public boolean hasBonusNumber(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
+        return lotto.getNumbers().stream().anyMatch(number -> number == lottoWinningNumbers.getBonusNumber());
     }
 
 }

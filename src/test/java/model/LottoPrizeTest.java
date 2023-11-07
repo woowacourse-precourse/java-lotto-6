@@ -23,7 +23,7 @@ public class LottoPrizeTest {
     @Test
     void compareWinningNumberAndOneLotto() {
         LottoPrize lottoPrize = new LottoPrize(lottoWinningNumbers, lottos);
-        assertThat(lottoPrize.compareTo(lottoWinningNumbers, lottos.get(0))).isEqualTo(5);
+        assertThat(lottoPrize.compareTo(lottoWinningNumbers.getWinningNumbers(), lottos.get(0))).isEqualTo(5);
     }
 
     @DisplayName("보너스 번호 당첨을 확인하는 테스트")
@@ -60,7 +60,7 @@ public class LottoPrizeTest {
     @Test
     void getPrizeByOneRank() {
         LottoPrize lottoPrize = new LottoPrize(lottoWinningNumbers, lottos);
-        assertThat(lottoPrize.calculateOnePrize(Prize.RD3, 2)).isEqualTo(3000000);
+        assertThat(lottoPrize.calculateOnePrice(Prize.RD3, 2)).isEqualTo(3000000);
     }
 
     @DisplayName("전체 로또 당첨금을 구하는 테스트")

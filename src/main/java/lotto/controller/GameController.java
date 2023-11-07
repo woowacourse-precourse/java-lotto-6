@@ -59,7 +59,7 @@ public class GameController {
         }
     }
 
-    public void gameSetting() {
+    public void playLottoGame() {
         int lottoCount = purchaseLotto();
         List<Lotto> lottoList = generateLotto(lottoCount);
         UserView.showLottoList(lottoList);

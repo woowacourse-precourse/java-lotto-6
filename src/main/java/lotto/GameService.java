@@ -37,4 +37,22 @@ public class GameService {
         // todo: GameRepository.saveNumber(numbers)
         return numbers.toString();
     }
+
+    // 번호 포맷팅에 대한 검증만 실행, 로또 번호 검증(중복 수, 수의 범위, 번호 개수 등) 로직 : Lotto 실행
+    public int validWinNumber(String rawInput) throws IllegalArgumentException {
+        try {
+            ArrayList<Integer> rawWinNumber = Arrays.stream(rawInput.split(","))
+                    .map(String::trim).map(Integer::parseInt)
+                    .collect(Collectors.toCollection(ArrayList::new));
+
+            gameRepository.saveWinLottoNumber(rawWinNumber);
+            return OKAY;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 로또 당첨 번호를 정확하게 입력해주세요. (쉼표 기준, 여섯 개)");
+            return ERROR;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return ERROR;
+        }
+    }
 }

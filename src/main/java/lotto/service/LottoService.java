@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,8 +41,8 @@ public class LottoService {
 		winningLotto = new WinningLotto(winningNumbers, bonus);
 	}
 
-	public void calculateResult() {
-		winningLotto.calculateResult(lottos);
+	public Map calculateAndGetResult() {
+		return winningLotto.calculateResult(lottos);
 	}
 
 	private WinningNumbers setUpWinningNumbers() {

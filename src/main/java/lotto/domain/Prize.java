@@ -15,6 +15,14 @@ public enum Prize {
 		this.prize = prize;
 	}
 
+	public int getMatchAmount() {
+		return this.matchAmount;
+	}
+
+	public int getPrize() {
+		return this.prize;
+	}
+
 	public static Prize createResult(int matchAmount, boolean bonus) {
 		if (matchAmount == FIVEANDBONUS.matchAmount && bonus) {
 			return FIVEANDBONUS;

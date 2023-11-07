@@ -11,8 +11,9 @@ public class LottoGenerator {
     public List<Integer> createRandomNumbersByAscending() {
         List<Integer> numbers =
                 Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER_SIZE);
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> copyNumbers = new ArrayList<>(numbers);
+        Collections.sort(copyNumbers);
+        return copyNumbers;
     }
 
     public Lotto createOnlyOneLotto(List<Integer> numbers) {

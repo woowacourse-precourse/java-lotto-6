@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.constant.ErrorMessages;
+
 public class LottoMoneyValidator {
     public static void validate(String lottoMoneyInput) {
         isNumeric(lottoMoneyInput);
@@ -11,7 +13,7 @@ public class LottoMoneyValidator {
         try {
             Integer.parseInt(lottoMoneyInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.NOT_NUMBER.getMessage());
         }
     }
 

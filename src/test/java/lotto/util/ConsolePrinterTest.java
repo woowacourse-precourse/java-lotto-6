@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ConsolePrinterTest extends TestDefault {
     @DisplayName("일반적인 문자열들이 정상적으로 출력 된다.")
@@ -113,6 +114,25 @@ class ConsolePrinterTest extends TestDefault {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Lotto lotto = new Lotto(List.of(1, 2, 3));
             ConsolePrinter.showLottoNumbers(lotto);
+        });
+    }
+
+    @DisplayName("총 수익률이 정상적으로 출력된다.")
+    @ParameterizedTest
+    @ValueSource(doubles = {5, 5.50, 5.53, 5.54, 5.55, 5.56, 0, -0.1, -1, -5.5})
+    void testShowTotalReturn(Double totalReturn) {
+        ConsolePrinter.showTotalReturn(totalReturn);
+
+        assertThat(getConsoleOuputMessage())
+                .isEqualTo(PrintMessages.TOTAL_RETURN.getMessageWithTotalReturn(totalReturn));
+    }
+
+    @DisplayName("총 수익률 출력시 수익률이 null일 경우 예외처리가 발생한다.")
+    @ParameterizedTest
+    @NullSource
+    void testShowTotalReturnNullExceptionCheck(Double totalReturn) {
+        assertThatNullPointerException().isThrownBy(() -> {
+            ConsolePrinter.showTotalReturn(totalReturn);
         });
     }
 }

@@ -14,7 +14,8 @@ public enum PrintMessages {
     THIRD_PLACE_MESSAGE("5개 일치 (1,500,000원) - %d개"),
     SECOND_PLACE_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     FIRST_PLACE_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
-    LOTTO_NUMBERS("[%d, %d, %d, %d, %d, %d]");
+    LOTTO_NUMBERS("[%d, %d, %d, %d, %d, %d]"),
+    TOTAL_RETURN("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 
@@ -44,5 +45,9 @@ public enum PrintMessages {
     public String getMessageWithLotto(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         return String.format(message, lottoNumbers.toArray());
+    }
+
+    public String getMessageWithTotalReturn(Double decimal) {
+        return String.format(message, decimal);
     }
 }

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoWinningTierTest {
     @Test
@@ -34,10 +33,21 @@ public class LottoWinningTierTest {
 
     @ParameterizedTest
     @DisplayName("일치한 로또 숫자 개수가 3 미만이면 빈 옵셔널 값을 반환한다.")
-    @ValueSource(ints = {0, 1, 2})
-    void calculateLottoWinningTierByLess3(int matchCount) {
-        Optional<LottoWinningTier> tierOptional = LottoWinningTier.calculateTier(matchCount, false);
+    @MethodSource("matchCountAndMatchBonus")
+    void calculateLottoWinningTierByLessMinMatchCount(int matchCount, boolean matchBonus) {
+        Optional<LottoWinningTier> tierOptional = LottoWinningTier.calculateTier(matchCount, matchBonus);
         assertThat(tierOptional).isEmpty();
+    }
+
+    public static Stream<Arguments> matchCountAndMatchBonus() {
+        return Stream.of(
+                Arguments.of(0, false),
+                Arguments.of(0, true),
+                Arguments.of(1, false),
+                Arguments.of(1, true),
+                Arguments.of(2, false),
+                Arguments.of(2, true)
+        );
     }
 
     @ParameterizedTest

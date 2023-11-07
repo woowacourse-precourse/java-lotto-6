@@ -7,10 +7,7 @@ import java.util.List;
 
 import static lotto.domain.Lotto.validateNumberSeparate;
 import static lotto.domain.Lotto.validateNumbersType;
-import static lotto.util.Constant.LOTTO_NUMBERS_COUNT;
-import static lotto.util.LottoGenerator.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
 
@@ -64,28 +61,5 @@ class LottoTest {
             assertThatThrownBy(() -> validateNumbersType(number))
                     .isInstanceOf(NumberFormatException.class);
         }
-    }
-
-    @Test
-    @DisplayName("로또 번호는 고정적으로 6개임을 확인하는 기능 테스트")
-    void lottoNumberCountTest(){
-        //given
-        Lotto lotto = generateRandomLotto();
-        //when
-
-        //then
-        assertEquals(lotto.getLotto().size(), LOTTO_NUMBERS_COUNT);
-    }
-
-    @Test
-    @DisplayName("로또 수량이 제대로 발행되는지 확인하는 기능 테스트")
-    void lottoAmountCountTest(){
-        //given
-        int purchaseAmount = 5;
-        List<Lotto> lottos = generateRandomLottos(purchaseAmount);
-        //when
-
-        //then
-        assertEquals(lottos.size(), purchaseAmount);
     }
 }

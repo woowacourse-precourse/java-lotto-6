@@ -66,7 +66,7 @@
 - [x] 쉼표(,)를 기준으로 구분하는 기능
 - [x] 당첨 번호를 입력받는 기능
   - [x] 당첨 번호가 1~45의 숫자가 아니면 `IllegalArgumentException` 예외처리
-  - [x] 당첨 번호와 보너스 번호가 일치하면 `IllegalArgumentException` 예외처리
+  - [x] 당첨 번호와 보너스 번호가 일치하면 `IllegalStateException` 예외처리
   - [x] 각 당첨 번호가 숫자가 아니면 `IllegalArgumentException` 예외처리
   - [x] 당첨 번호의 갯수가 총 6개가 아니면 `IllegalArgumentException` 예외처리
   - [x] 예외 발생 시 다시 입력받는 기능

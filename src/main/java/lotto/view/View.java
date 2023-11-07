@@ -67,7 +67,8 @@ public class View {
     }
 
     public void printRateOfReturn(double rate) {
-        System.out.println(Messages.RATE_OF_RETURN_HEAD.getMsg() + rate + Messages.RATE_OF_RETURN_TAIL.getMsg());
+        System.out.println(Messages.RATE_OF_RETURN_HEAD.getMsg() + String.format("%.1f", rate)
+                + Messages.RATE_OF_RETURN_TAIL.getMsg());
     }
 
     private void printEmptyLine() {

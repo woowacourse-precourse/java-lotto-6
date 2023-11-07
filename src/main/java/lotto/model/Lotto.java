@@ -33,7 +33,7 @@ public class Lotto {
         }
     }
 
-    public void validateNumber(List<String> splitNumbers) {
+    private void validateNumber(List<String> splitNumbers) {
         for (String numberLiteral : splitNumbers) {
             try {
                 Integer.parseInt(numberLiteral);

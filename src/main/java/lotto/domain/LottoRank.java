@@ -1,15 +1,17 @@
 package lotto.domain;
 
+import static lotto.LottoConstance.FIFTY_WINING_COUNT;
+import static lotto.LottoConstance.SECOND_AND_THIRD_WINING_COUNT;
+
 import java.util.Arrays;
 import java.util.List;
-import lotto.LottoConstance;
 
 public enum LottoRank {
-    FIRST("6개 일치 (2,000,000,000원) - ", 6, 2000000000L),
-    SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 5, 30000000L),
-    THIRD("5개 일치 (1,500,000원) - ", 5, 1500000L),
-    FOURTH("4개 일치 (50,000원) - ", 4, 50000L),
-    FIFTH("3개 일치 (5,000원) - ", 3, 5000L),
+    FIRST("6개 일치 (2,000,000,000원) - %d개", 6, 2000000000L),
+    SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", 5, 30000000L),
+    THIRD("5개 일치 (1,500,000원) - %d개", 5, 1500000L),
+    FOURTH("4개 일치 (50,000원) - %d개", 4, 50000L),
+    FIFTH("3개 일치 (5,000원) - %d개", 3, 5000L),
     NONE("낙첨", 0, 0);
 
     private final String message;
@@ -25,9 +27,12 @@ public enum LottoRank {
     public static LottoRank get(WinningLottoNumbers winningLottoNumbers, Lotto lotto) {
         int winingCount = winningLottoNumbers.countWining(lotto);
         boolean winingBonus = winningLottoNumbers.isWiningBonus(lotto);
+        if (winingCount < FIFTY_WINING_COUNT.get()) {
+            return NONE;
+        }
         List<LottoRank> lottoRanks = Arrays.stream(values())
                 .filter(lottoRank -> lottoRank.getMatchingCount() == winingCount).toList();
-        if (winingCount == LottoConstance.SECOND_AND_THIRD_WINING_COUNT.get()) {
+        if (winingCount == SECOND_AND_THIRD_WINING_COUNT.get()) {
             return getThirdOrSecond(winingBonus);
         }
         return lottoRanks.get(0);

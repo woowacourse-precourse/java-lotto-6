@@ -22,6 +22,7 @@ public class LottoMachineTest {
     private static final List<Integer> WINNING_LOTTO = List.of(1, 2, 3, 4, 5, 6);
     private static final int BONUS = 7;
     private static final int COUNT = 1;
+    private static final int money = 1000;
 
     @BeforeAll
     static void setup() {
@@ -49,5 +50,11 @@ public class LottoMachineTest {
     @Test
     void lottoMachine_취득상금_계산() {
         assertThat(lottoMachine.calcPrize()).isEqualTo(5000);
+    }
+
+    @DisplayName("수익률을 제대로 계산하는가?")
+    @Test
+    void lottoMachine_수익률_계산() {
+        assertThat(lottoMachine.calcProfit(money)).isEqualTo((float) 500);
     }
 }

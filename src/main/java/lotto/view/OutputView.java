@@ -3,6 +3,7 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Rank;
@@ -20,7 +21,7 @@ public class OutputView {
 
     public void showLottos(Lottos lottos, Money money) {
         System.out.printf(SHOW_LOTTO, money.calNumberOfLotto());
-        lottos.showLottos();
+        printLottos(lottos);
         printLine();
     }
 
@@ -31,9 +32,7 @@ public class OutputView {
                 .filter(rank -> !rank.equals(Rank.ECT))
                 .forEach(rank -> System.out.println(getLottoStatistics(rank, rankResult)));
 
-        double earnings = calEarnings(rankResult);
-        int cost = money.getMoney();
-        System.out.printf(EARNING_RATE, getEarningRate(earnings, cost));
+        System.out.printf(EARNING_RATE, getEarningRate(calEarnings(rankResult), money.getMoney()));
     }
 
     private double calEarnings(Map<Rank, Integer> rankResult) {
@@ -61,7 +60,13 @@ public class OutputView {
                 MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
     }
 
-    public void printLine() {
+    private void printLottos(Lottos lottos) {
+        for (Lotto lotto: lottos.getLottos()) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
+    private void printLine() {
         System.out.println();
     }
 

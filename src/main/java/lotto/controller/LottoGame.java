@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrizeBreakdown;
 import lotto.domain.LottoTicketMaker;
 import lotto.domain.Money;
+import lotto.domain.RateOfReturn;
 import lotto.domain.WinningNumbers;
 import lotto.util.LottoGuideMessage;
 import lotto.view.InputView;
@@ -33,9 +33,9 @@ public class LottoGame {
     }
 
     private void showWinningStatistics(WinningNumbers winningNumbers, List<Lotto> lottoTickets, Money money) {
-        LottoPrizeBreakdown result = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
-        BigDecimal rateOfReturn = result.getRateOfReturn(money);
-        outputView.showWinningStatistics(result, rateOfReturn);
+        LottoPrizeBreakdown prizeBreakdown = winningNumbers.createLottoPrizeBreakdown(lottoTickets);
+        RateOfReturn rateOfReturn = prizeBreakdown.getRateOfReturn(money);
+        outputView.showWinningStatistics(prizeBreakdown, rateOfReturn);
     }
 
     private List<Lotto> issueLottoTickets(Money money) {

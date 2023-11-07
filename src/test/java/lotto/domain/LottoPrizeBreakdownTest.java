@@ -28,10 +28,10 @@ class LottoPrizeBreakdownTest {
         LottoPrizeBreakdown result = new LottoPrizeBreakdown(prizeDetails);
 
         //when
-        BigDecimal rateOfReturn = result.getRateOfReturn(money);
+        RateOfReturn rateOfReturn = result.getRateOfReturn(money);
 
         //then
-        assertThat(rateOfReturn).isEqualTo(new BigDecimal(expectedRate));
+        assertThat(rateOfReturn.value()).isEqualTo(new BigDecimal(expectedRate));
     }
 
     private static Stream<Arguments> provideLottoRankWithRateOfReturn() {

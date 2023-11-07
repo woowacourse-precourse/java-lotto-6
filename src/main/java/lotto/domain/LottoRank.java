@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -23,20 +22,15 @@ public enum LottoRank {
         this.prizeMoney = prizeMoney;
     }
 
-    public String getMessage(int winCount) {
-        return String.format(description + " (" + addMoneyDelimiter(prizeMoney) + "원) - %d개", winCount);
-    }
-
-    private String addMoneyDelimiter(int money) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        return decimalFormat.format(money);
-    }
-
     public static Optional<LottoRank> find(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
                 .filter(lottoRank -> lottoRank.matchCount == matchCount)
                 .filter(lottoRank -> lottoRank.matchBonus == matchBonus)
                 .findFirst();
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getPrizeMoney() {

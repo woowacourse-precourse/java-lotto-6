@@ -23,7 +23,7 @@ public class LottoPrizeBreakdown {
      * @param money
      * @return (당첨 금액 / 구입 금액) * 100
      */
-    public BigDecimal getRateOfReturn(Money money) {
+    public RateOfReturn getRateOfReturn(Money money) {
         BigDecimal totalPrizeMoney = BigDecimal.ZERO;
         BigDecimal purchaseAmount = new BigDecimal(money.amount());
         BigDecimal hundred = new BigDecimal(100);
@@ -36,8 +36,10 @@ public class LottoPrizeBreakdown {
         }
 
         //수익률 계산
-        return totalPrizeMoney.divide(purchaseAmount, 3, RoundingMode.HALF_UP)
-                .multiply(hundred)
-                .setScale(1, RoundingMode.HALF_UP);
+        return new RateOfReturn(
+                totalPrizeMoney.divide(purchaseAmount, 3, RoundingMode.HALF_UP)
+                        .multiply(hundred)
+                        .setScale(1, RoundingMode.HALF_UP)
+        );
     }
 }

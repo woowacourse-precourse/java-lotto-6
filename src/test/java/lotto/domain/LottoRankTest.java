@@ -11,24 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoRankTest {
 
-    @DisplayName("각 등수별 정보를 가진 메시지를 생성한다.")
-    @ParameterizedTest
-    @MethodSource("provideWinCountsAndMessage")
-    void shouldCreateMessageWithEachLottoRank(LottoRank rank, String expectedMessage, int winCount) {
-        String message = rank.getMessage(winCount);
-        assertThat(message).isEqualTo(expectedMessage);
-    }
-
-    private static Stream<Arguments> provideWinCountsAndMessage() {
-        return Stream.of(
-                Arguments.of(LottoRank.FIRST_PRIZE, "6개 일치 (2,000,000,000원) - 1개", 1),
-                Arguments.of(LottoRank.SECOND_PRIZE, "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개", 2),
-                Arguments.of(LottoRank.THIRD_PRIZE, "5개 일치 (1,500,000원) - 3개", 3),
-                Arguments.of(LottoRank.FOURTH_PRIZE, "4개 일치 (50,000원) - 4개", 4),
-                Arguments.of(LottoRank.FIFTH_PRIZE, "3개 일치 (5,000원) - 5개", 5)
-        );
-    }
-
     @DisplayName("숫자와 보너스가 일치하면 등수를 반환한다.")
     @ParameterizedTest
     @MethodSource("provideMatchedNumberCountWithMatchBonus")

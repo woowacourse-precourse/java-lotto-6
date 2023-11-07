@@ -28,12 +28,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void sort() {
-        numbers.sort(Integer::compareTo);
-    }
-
-    public List<Integer> getSortedNumbers() {
-        sort();
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

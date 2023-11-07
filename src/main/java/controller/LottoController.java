@@ -12,7 +12,7 @@ import domain.LottoResult;
 
 import java.util.List;
 
-import util.LottoResultMessage;
+import util.ConstOfLottoResult;
 
 import view.InputView;
 import view.OutputView;
@@ -36,12 +36,18 @@ public class LottoController {
         initBonusNumber();
         calculateLottoResult();
         showLottoResult();
+        showRateOfReturn();
+    }
+
+    private void showRateOfReturn() {
+        double rate = Math.round(lottoResult.calculateRateOfProfit(price.getPrice())*100) / 100.0;
+        OutputView.printRateOfReturn(rate);
     }
 
     private void showLottoResult() {
         OutputView.printEmptyLine();
         OutputView.printResultMessage();
-        for(LottoResultMessage resultMessage : LottoResultMessage.values()) {
+        for(ConstOfLottoResult resultMessage : ConstOfLottoResult.values()) {
             String msg = resultMessage.getMessageOFRank();
             int rank = resultMessage.getRank();
             OutputView.printEachLottoResult(msg,lottoResult.getCountOfRank(rank));

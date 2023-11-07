@@ -103,6 +103,7 @@ public class LottoController {
     }
 
     private void showResult(LottoResult lottoResult, long money) {
+        OutputView.showResultIntro();
         OutputView.showResult(lottoResult, money);
     }
 }

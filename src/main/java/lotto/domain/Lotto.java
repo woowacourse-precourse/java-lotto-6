@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.VerificationView;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            VerificationView.verificationViewLengthLottoNumberList();
             throw new IllegalArgumentException();
         }
     }

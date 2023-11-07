@@ -69,4 +69,22 @@ public class LottoConsole {
       getWinningLotto();
     }
   }
+
+  public void getBonusNumber() {
+    try {
+      System.out.println("\n보너스 번호를 입력해 주세요.");
+      try {
+        bonusNumber = Integer.parseInt(readLine());
+        if (bonusNumber < 1 && 45 < bonusNumber)
+          throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45의 숫자여야 합니다.");
+        if (winningLotto.matchWithBonusNumber(bonusNumber))
+          throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹칠 수 없습니다.");
+      } catch (NumberFormatException e) {
+        throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수 형태여야 합니다.");
+      }
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      getBonusNumber();
+    }
+  }
 }

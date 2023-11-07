@@ -14,20 +14,20 @@ public class LottoStart {
     static OutputView outputview = new OutputView();
 
     public LottoStart(){
-        final int num = numbergenerator.inputBuyCost();
-        final int num1 = numbergenerator.createUnitLotto(num);
-        final List<List<Integer>> num2 = numbergenerator.createLottoNumbers(num1);
-        lottonumbers(num2);
+        final int buycost = numbergenerator.inputBuyCost();
+        final int buycount = numbergenerator.createUnitLotto(buycost);
+        final List<List<Integer>> lottonumbers = numbergenerator.createLottoNumbers(buycount);
+        lottonumbers(lottonumbers);
         correctNumberSet();
         
         int bonusNumber = numbergenerator.InputBonusNumber(lotto.getLotto());
         
-        for(List<Integer> i : num2){
+        for(List<Integer> i : lottonumbers){
             int correctCount = judgment.correctCount(i , lotto.getLotto());
             setWinningInfo(i, correctCount, bonusNumber);
         }
 
-        outputview.getEndLotto(winninginfo, num);
+        outputview.getEndLotto(winninginfo, buycost);
     }
 
     public void lottonumbers(List<List<Integer>> numbers){

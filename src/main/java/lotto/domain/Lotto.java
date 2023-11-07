@@ -31,10 +31,6 @@ public class Lotto {
         return lotto;
     }
 
-    public static boolean isDuplicatedNum(List<Integer> lotto, int num) {
-        return lotto.contains(num);
-    }
-
     public void checkDuplicate(List<Integer> lotto) {
         Set<Integer> validLotto = new HashSet<>(lotto);
         if (validLotto.size() != lotto.size()) throw new IllegalArgumentException();

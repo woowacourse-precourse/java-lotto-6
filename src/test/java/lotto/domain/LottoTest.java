@@ -65,26 +65,4 @@ class LottoTest {
         List<Integer> randomLottery = randomLottery();
         assertThat(randomLottery.size()).isEqualTo(LOTTO_SIZE);
     }
-
-    @Test
-    @DisplayName("isDuplicateNum 메서드 테스트 - 중복이 아닐 경우 false반환")
-    public void checkDuplicatedNumFalse() {
-        List<Integer> originNums = List.of(1, 2, 3, 4, 5);
-        int addNum = 6;
-
-        boolean isDuplicated = Lotto.isDuplicatedNum(originNums, addNum);
-
-        assertThat(isDuplicated).isFalse();
-    }
-
-    @Test
-    @DisplayName("isDuplicateNum 메서드 테스트 - 중복일 경우 true반환")
-    public void checkDuplicatedNumTrue() {
-        List<Integer> originNums = List.of(1, 2, 3, 4, 5);
-        int addNum = 3;
-
-        boolean isDuplicated = Lotto.isDuplicatedNum(originNums, addNum);
-
-        assertThat(isDuplicated).isTrue();
-    }
 }

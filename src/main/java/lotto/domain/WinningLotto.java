@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningLotto extends Lotto{
+public class WinningLotto extends Lotto {
     private BonusNumber bonusNumber;
 
     private WinningLotto(List<Integer> numbers, int bonusNumber) {
@@ -20,7 +20,7 @@ public class WinningLotto extends Lotto{
     }
 
     public static WinningLotto of(List<Integer> numbers, int bonusNumber) {
-        return new WinningLotto(numbers,bonusNumber);
+        return new WinningLotto(numbers, bonusNumber);
     }
 
     public int countMatchingNumbers(Lotto otherLotto) {
@@ -30,5 +30,9 @@ public class WinningLotto extends Lotto{
         winningNumbers.retainAll(numbers);
 
         return winningNumbers.size();
+    }
+
+    public boolean isMatchBonusNumber(Lotto otherLotto) {
+        return bonusNumber.isContains(otherLotto.getNumbers());
     }
 }

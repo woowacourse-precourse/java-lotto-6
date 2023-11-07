@@ -30,15 +30,8 @@ public class Create {
 
     public static List<Integer> sortLottos(List<Integer> lottoNumbers) {
         List<Integer> sorted = new ArrayList<>();
-        List<Integer> copied = new ArrayList<>();
-        copied.addAll(lottoNumbers);
-
-        while (copied.size() != 0) {
-            int min = Collections.min(copied);
-            int index = copied.indexOf(min);
-            sorted.add(min);
-            copied.remove(index);
-        }
+        sorted.addAll(lottoNumbers);
+        sorted.sort(null);
 
         return sorted;
     }

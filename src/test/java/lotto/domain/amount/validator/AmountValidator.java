@@ -1,13 +1,12 @@
 package lotto.domain.amount.validator;
 
+import lotto.constant.Constant;
 import lotto.constant.errorMessage.amount.AmountExceptionStatus;
 import lotto.constant.errorMessage.amount.IllegalStateAmountException;
 
 public class AmountValidator {
 
     private static final AmountValidator AMOUNT_VALIDATOR = new AmountValidator();
-    private static final int ALLOWED_MIN_AMOUNT_VALUE = 1000;
-    private static final int ZERO_VALUE = 0;
 
     private AmountValidator() {
     }
@@ -25,7 +24,7 @@ public class AmountValidator {
     }
 
     private boolean isPositive(final int amount) {
-        return amount > ZERO_VALUE;
+        return amount > Constant.ZERO_VALUE;
     }
 
     private void validateAmountIsAbove(final int amount) {
@@ -35,7 +34,7 @@ public class AmountValidator {
     }
 
     private boolean isAbove(final int amount) {
-        return amount >= ALLOWED_MIN_AMOUNT_VALUE;
+        return amount >= Constant.ALLOWED_MIN_AMOUNT_VALUE;
     }
 
     private void validateAmountIsDivisible(final int amount) {
@@ -45,6 +44,6 @@ public class AmountValidator {
     }
 
     private boolean isDivisible(final int amount) {
-        return amount % ALLOWED_MIN_AMOUNT_VALUE == ZERO_VALUE;
+        return amount % Constant.ALLOWED_MIN_AMOUNT_VALUE == Constant.ZERO_VALUE;
     }
 }

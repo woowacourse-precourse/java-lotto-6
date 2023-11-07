@@ -9,5 +9,6 @@ public class Application {
         int purchaseAmount = InputView.getPurchaseAmountInput();
         List<Lotto> lotteries = LottoGenerator.generateLotteries(purchaseAmount);
         OutputView.printPurchasedLotteryNumbers(lotteries);
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
     }
 }

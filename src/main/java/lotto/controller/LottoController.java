@@ -20,7 +20,7 @@ public class LottoController {
         LottoTicket lottoTicket = purchaseLottoTicket(deposit);
 
         WinningNumbers winningNumbers = drawWinningNumbers();
-        BonusNumber bonusNumber = drawBonusNumber();
+        BonusNumber bonusNumber = drawBonusNumber(winningNumbers.getWinningNumbers());
 
         List<PrizeType> lottoResult = LottoReader.read(
                 winningNumbers.getWinningNumbers(),

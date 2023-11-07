@@ -6,6 +6,7 @@ import lotto.model.WinningNumbers;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.utils.ErrorMessage.BONUS_NUMBER_NOT_A_NUMBER;
 import static lotto.utils.ErrorMessage.WINNING_NUMBERS_NOT_A_NUMBER;
 import static lotto.view.InputView.*;
 
@@ -30,12 +31,21 @@ public class LottoDrawingMachine {
         }
     }
 
-    public static BonusNumber drawBonusNumber() {
+    public static BonusNumber drawBonusNumber(List<Integer> winningNumbers) {
         return (BonusNumber) askUntilGetValidAnswer(
                 () -> {
                     String bonusNumber = askBonusNumberMessage();
-                    return new BonusNumber(bonusNumber);
+                    Integer number = parseInt(bonusNumber);
+                    return new BonusNumber(winningNumbers, number);
                 }
         );
+    }
+
+    private static Integer parseInt(String s) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_A_NUMBER.getDescription());
+        }
     }
 }

@@ -14,8 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -60,15 +59,33 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {4,5,6})
-    @DisplayName("해당_객체_번호와_보너스_번호_일치_여부_테스트")
-    void isContainBonus(Integer answer) {
+    @ValueSource(ints = {7,8,9})
+    @DisplayName("해당_객체_번호와_보너스_번호_일치_테스트")
+    void valid_isContainBonus(Integer bonusNumber) {
         // given
         Lotto winningLotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
-        Lotto playerLotto = new Lotto(Arrays.asList(7,8,9,10,11,))
-        Bonus bonus = new Bonus(lotto.getNumbers(), )
+        Bonus bonus = new Bonus(winningLotto.getNumbers(), bonusNumber);
+        Lotto playerLotto = new Lotto(Arrays.asList(7,8,9,10,11,12));
+
         // when
+        Boolean isMatchBonus = playerLotto.isContainBonus(bonus);
         // then
+        assertThat(isMatchBonus).isEqualTo(true);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {33,27,44})
+    @DisplayName("해당_객체_번호와_보너스_번호_불일치_테스트")
+    void invalid_isContainBonus(Integer bonusNumber) {
+        // given
+        Lotto winningLotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Bonus bonus = new Bonus(winningLotto.getNumbers(), bonusNumber);
+        Lotto playerLotto = new Lotto(Arrays.asList(7,8,9,10,11,12));
+
+        // when
+        Boolean isMatchBonus = playerLotto.isContainBonus(bonus);
+        // then
+        assertThat(isMatchBonus).isEqualTo(false);
     }
 
     private static Stream<Arguments> provideLottoNumbers(){

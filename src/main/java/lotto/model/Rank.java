@@ -1,14 +1,17 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public enum Rank {
-    FIRST_PLACE(6,"6개 일치 (2,000,000,000원) - %d개", 2000000000),
-    SECOND_PLACE(5, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", 30000000),
-    THIRD_PLACE(5, "5개 일치 (1,500,000원) - %d개", 1500000),
-    FOURTH_PLACE(4, "4개 일치 (50,000원) - %d개", 50000),
+    LAST_PLACE(2, "", 0),
     FIFTH_PLACE(3, "3개 일치 (5,000원) - %d개", 5000),
-    LAST_PLACE(2, "", 0);
+    FOURTH_PLACE(4, "4개 일치 (50,000원) - %d개", 50000),
+    THIRD_PLACE(5, "5개 일치 (1,500,000원) - %d개", 1500000),
+    SECOND_PLACE(5, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", 30000000),
+    FIRST_PLACE(6, "6개 일치 (2,000,000,000원) - %d개", 2000000000);
+
 
     private int matchCount;
     private String message;
@@ -20,16 +23,31 @@ public enum Rank {
         this.reward = reward;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public int getReward() {
         return reward;
     }
 
-    public static Rank calculate(int matchCount, boolean hasBonusNumber){
-        if(matchCount == THIRD_PLACE.matchCount && !hasBonusNumber){
+    public static Rank calculate(int matchCount, boolean hasBonusNumber) {
+        if (matchCount == THIRD_PLACE.matchCount && !hasBonusNumber) {
             return THIRD_PLACE;
         }
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> rank != THIRD_PLACE
+                        && rank.matchCount == matchCount)
                 .findFirst().orElse(LAST_PLACE);
+    }
+
+    public static List<Rank> getShownRank(){
+        List<Rank> ranks = new ArrayList<>();
+        for(Rank rank : values()){
+            if (!rank.equals(Rank.LAST_PLACE)){
+                ranks.add(rank);
+            }
+        }
+        return ranks;
     }
 }

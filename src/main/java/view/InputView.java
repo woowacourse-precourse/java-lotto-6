@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import constants.ErrorMessage;
 
 public class InputView {
+    private static final String INPUT_DELIMITER = ",";
+
     public static String readLine() {
         String userInput = Console.readLine();
         validateBlankInput(userInput);
@@ -14,6 +16,21 @@ public class InputView {
         String userInput = readLine();
         validateNaturalNumberInput(userInput);
         return userInput;
+    }
+
+    public static String inputAnswerLotto() {
+        String userInput = readLine();
+        validateAnswerLottoInput(userInput);
+        return userInput;
+    }
+
+    private static void validateAnswerLottoInput(String input) {
+        for (String token : input.split(INPUT_DELIMITER, -1)) {
+            if (isNotNaturalNumber(token)) {
+                throw new IllegalArgumentException(
+                        String.format(ErrorMessage.INVALID_ANSWER_LOTTO_INPUT_ERROR.getMessage(), INPUT_DELIMITER));
+            }
+        }
     }
 
     private static void validateBlankInput(final String input) {

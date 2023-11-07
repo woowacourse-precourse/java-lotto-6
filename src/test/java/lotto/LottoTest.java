@@ -30,4 +30,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createNumberLottoMoney() {
+        assertThatThrownBy(() -> new LottoMoney("1000J"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

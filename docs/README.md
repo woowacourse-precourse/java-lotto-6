@@ -65,6 +65,7 @@
 - [X] ComparingLotto.java 로또번호 비교 클래스
 - [x] Lotto.java 클래스 활용 및 테스트
 - [x] Lotto 클래스 활용
+- [x] 테스트 케이스 추가
 
 ---
 

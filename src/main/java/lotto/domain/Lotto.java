@@ -1,16 +1,12 @@
 package lotto.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import lotto.constant.LottoConstant;
+
 import java.util.List;
 
 import static lotto.exception.ErrorMessage.*;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -19,14 +15,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers){
+    private void validate(List<Integer> numbers) {
         validateNumberSize(numbers);
         validateNumberDuplication(numbers);
         validateNumberRange(numbers);
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+        if (numbers.size() != LottoConstant.NUMBER_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
@@ -49,8 +45,8 @@ public class Lotto {
 
     private boolean isWrongRangeNumber(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < LOTTO_MIN_NUMBER
-                        || number > LOTTO_MAX_NUMBER);
+                .anyMatch(number -> number < LottoConstant.MIN_NUMBER
+                        || number > LottoConstant.MAX_NUMBER);
     }
 
     public String getSortedNumbers() {
@@ -61,7 +57,7 @@ public class Lotto {
                 .toString();
     }
 
-    public boolean isContainNumber(int number){
+    public boolean isContainNumber(int number) {
         return numbers.contains(number);
     }
 }

@@ -2,7 +2,7 @@ package lotto.view;
 
 public class OutputView {
     
-    private final static String GETSTATISTICS = "당첨 통계\n---";
+    private final static String GETSTATISTICS = "당첨 통계\n---\n";
     private final static String FIFTHRANK = "3개 일치 (5,000원) - ";
     private final static String FOURTHRANK = "4개 일치 (50,000원) - ";
     private final static String THIRDRANK = "5개 일치 (1,500,000원) - ";

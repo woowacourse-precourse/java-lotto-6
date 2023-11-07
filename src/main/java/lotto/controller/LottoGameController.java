@@ -7,7 +7,7 @@ import lotto.model.domain.Ranking;
 import lotto.service.LottoResultCheckService;
 import lotto.model.domain.Purchase;
 import lotto.model.domain.Statistics;
-import lotto.model.domain.WinningLotto;
+import lotto.model.domain.WinningNumber;
 import lotto.service.BonusNumberService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumberService;
@@ -31,7 +31,7 @@ public class LottoGameController {
         //로또를 발급하고, 당첨번호와 보너스 번호를 입력한다.
         Purchase purchase = purchaseLottoTickets();
         LottoMachine lottoTickets = getLottoTickets(purchase);
-        WinningLotto winningNumbers = getWinningNumbers();
+        WinningNumber winningNumbers = getWinningNumbers();
         Bonus bonusNumber = getBonusNumber(winningNumbers);
 
         //발급된 로또와 당첨번호,보너스 번호를 비교하여 랭킹 리스트를 가져온다.
@@ -55,26 +55,26 @@ public class LottoGameController {
         return purchase;
     }
 
-    private WinningLotto getWinningNumbers() {
-        WinningLotto winningLotto = null;
-        while (winningLotto == null) {
+    private WinningNumber getWinningNumbers() {
+        WinningNumber winningNumber = null;
+        while (winningNumber == null) {
             String winningNumbers = inputView.requestWinningNumber();
-            winningLotto = winningNumberService.getWinningNumberIfValid(winningNumbers);
+            winningNumber = winningNumberService.getWinningNumberIfValid(winningNumbers);
         }
-        return winningLotto;
+        return winningNumber;
     }
 
-    private Bonus getBonusNumber(WinningLotto winningLotto) {
+    private Bonus getBonusNumber(WinningNumber winningNumber) {
         Bonus bonus = null;
         while (bonus == null) {
             String bonusNumber = inputView.requestBonusNumber();
-            bonus = bonusNumberService.getBonusNumberIfValid(winningLotto, bonusNumber);
+            bonus = bonusNumberService.getBonusNumberIfValid(winningNumber, bonusNumber);
         }
         return bonus;
     }
 
-    private List<Ranking> getLottoRanking(LottoMachine lottoMachine, WinningLotto winningLotto, Bonus bonus) {
-        return lottoResultCheckService.checkResult(lottoMachine, winningLotto, bonus);
+    private List<Ranking> getLottoRanking(LottoMachine lottoMachine, WinningNumber winningNumber, Bonus bonus) {
+        return lottoResultCheckService.checkResult(lottoMachine, winningNumber, bonus);
     }
 
     private void getLotteryStatistics(List<Ranking> rankings, Purchase purchase) {

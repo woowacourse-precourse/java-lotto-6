@@ -7,23 +7,23 @@ import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoMachine;
 import lotto.model.domain.Ranking;
 import lotto.model.domain.Result;
-import lotto.model.domain.WinningLotto;
+import lotto.model.domain.WinningNumber;
 
 public class LottoResultCheckService {
 
-    public List<Ranking> checkResult(LottoMachine lottoMachine, WinningLotto winningLotto, Bonus bonus) {
+    public List<Ranking> checkResult(LottoMachine lottoMachine, WinningNumber winningNumber, Bonus bonus) {
         List<Ranking> results = new ArrayList<>();
         for(Lotto lotto : lottoMachine.getIssuedLotto()) {
-            Result result = getCommonResult(lotto, winningLotto, bonus);
+            Result result = getCommonResult(lotto, winningNumber, bonus);
             Ranking rankingOfLotto = result.checkRanking();
             results.add(rankingOfLotto);
         }
         return results;
     }
 
-    private Result getCommonResult(Lotto lotto, WinningLotto winningLotto, Bonus bonus) {
+    private Result getCommonResult(Lotto lotto, WinningNumber winningNumber, Bonus bonus) {
         boolean isMatchedBonusNumber = lotto.containBonusNumber(bonus.getNumber());
-        int resultSize = lotto.removeNonCommonNumber(winningLotto.getNumbers());
+        int resultSize = lotto.removeNonCommonNumber(winningNumber.getNumbers());
         return new Result(resultSize, isMatchedBonusNumber);
     }
 

@@ -30,15 +30,12 @@ public final class DrawLottosDtoBuilder {
      * <p>
      * 점진적으로 필드를 하나씩 채우기 때문에 `final`을 제해야 합니다.
      */
-    private List<Integer> lottoNumbers;
+    private List<Integer> lottoNumbers = null;
 
     /**
      * DrawLottosDto가 필드로 가지고 있는 보너스 번호
      */
-    private int bonusNumber;
-
-    private boolean isLottoNumbersNotSet = true;
-    private boolean isBonusNumberNotSet = true;
+    private Integer bonusNumber = null;
 
     /**
      * 기본 생성자를 막아서 반드시 `builder` 정적 팩토리 메소드를 통해서 Builder를 생성하도록 합니다.
@@ -67,7 +64,6 @@ public final class DrawLottosDtoBuilder {
         LottoValidator.validateLottoLength(lottoNumbers);
         LottoValidator.validateDuplication(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
-        this.isLottoNumbersNotSet = false;
         return this;
     }
 
@@ -78,7 +74,6 @@ public final class DrawLottosDtoBuilder {
      */
     public DrawLottosDtoBuilder bonusNumber(final String input) {
         this.bonusNumber = StrictInputParser.mustParseToInt(input);
-        this.isBonusNumberNotSet = false;
         return this;
     }
 
@@ -90,15 +85,15 @@ public final class DrawLottosDtoBuilder {
      * 유효하지 않은 객체가 생성되는 것을 방지하기 위해 모든 필드가 세팅 되었는지 검증 로직을 재차 수행합니다.
      */
     public DrawLottosDto build() {
-        validateAllFieldsSet();
+        ensureAllFieldsSet();
         return new DrawLottosDto(lottoNumbers, bonusNumber);
     }
 
     /**
      * build 시 수행하는 검증 로직
      */
-    private void validateAllFieldsSet() {
-        if (isLottoNumbersNotSet || isBonusNumberNotSet) {
+    private void ensureAllFieldsSet() {
+        if (lottoNumbers == null || bonusNumber == null) {
             throw new InvalidBuilderFieldsException();
         }
     }

@@ -8,7 +8,9 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     private final InputView inputView;
@@ -57,7 +59,7 @@ public class LottoGame {
         List<Lotto> lottos = new ArrayList<>();
         for(int i=0;i<purchaseManager.calcPurchaseNumber();i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            numbers = numbers.stream().sorted().collect(Collectors.toList());
             lottos.add(new Lotto(numbers));
         }
         return lottos;

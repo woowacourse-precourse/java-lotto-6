@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.message.ExceptionMessage.ERROR;
+
 import lotto.constant.message.InputMessage;
 import lotto.domain.LottoPurchase;
 import lotto.service.PurchaseService;
@@ -31,7 +33,7 @@ public class LottoController {
             winningLottoNumber();
             winningLottoResult();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(ERROR.getMessage()+e.getMessage());
         }
     }
 

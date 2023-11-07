@@ -4,6 +4,7 @@ import lotto.constant.LottoNumber;
 
 public enum ExceptionMessage {
     ERROR("[ERROR] "),
+    IS_NOT_ZERO(ERROR.getMessage() + "로또는 0개 이상 구입 가능합니다."),
     IS_NOT_NUMBER(ERROR.getMessage() + "숫자를 입력해주세요"),
     PURCHASE_ERROR(ERROR.getMessage() + "구매 금액은 " + LottoNumber.PURCHASE_AMOUNT_COND.getNumber() + "으로 나누어 떨어져야 합니다."),
     COUNT_ERROR("당첨 번호는 " + LottoNumber.MAX_COUNT.getNumber() + "개를 입력해야 합니다."),

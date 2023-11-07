@@ -20,24 +20,32 @@ public class ValidationUtil {
         while (true) {
             try {
                 validateNumberType(money);
-                return validateDivision(money);
-            } catch (IllegalArgumentException e) {
+                int purchase = validateDivision(money);
+                validateAmount(purchase);
+                return purchase;
+            } catch (NumberFormatException | ArithmeticException e) {
                 System.out.println(e.getMessage());
                 money = reInput();
             }
         }
     }
 
-    private void validateNumberType(String input) throws IllegalArgumentException {
+    private void validateNumberType(String input) throws NumberFormatException {
         if (!checkPattern.matcher(input).matches()) {
-            throwExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
+            throwNumFormatExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
         }
     }
 
-    private int validateDivision(String input) throws IllegalArgumentException {
+    private void validateAmount(int number) throws ArithmeticException {
+        if (number == ZERO) {
+            throwDivisionExceptionMessage(ExceptionMessage.IS_NOT_ZERO.getMessage());
+        }
+    }
+
+    private int validateDivision(String input) throws ArithmeticException {
         int purchase = Integer.parseInt(input);
         if (purchase % PURCHASE_AMOUNT_COND.getNumber() != ZERO) {
-            throwExceptionMessage(ExceptionMessage.PURCHASE_ERROR.getMessage());
+            throwDivisionExceptionMessage(ExceptionMessage.PURCHASE_ERROR.getMessage());
         }
         return purchase;
     }
@@ -50,7 +58,7 @@ public class ValidationUtil {
                 validateCount(LottoWinningNumber);
                 validateDuplicate(LottoWinningNumber);
                 return validateLottoRange(LottoWinningNumber);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
                 input = reInput();
             }
@@ -72,7 +80,7 @@ public class ValidationUtil {
 
     private void validateCount(List<String> inputs) throws IllegalArgumentException {
         if (inputs.size() != MAX_COUNT.getNumber()) {
-            throwExceptionMessage(ExceptionMessage.COUNT_ERROR.getMessage());
+            throwArgExceptionMessage(ExceptionMessage.COUNT_ERROR.getMessage());
         }
     }
 
@@ -81,17 +89,17 @@ public class ValidationUtil {
                 .anyMatch(s -> s == null || s.trim().isEmpty() || s.contains(" "));
 
         if (hasBlank) {
-            throwExceptionMessage(ExceptionMessage.NUMBER_BLANK.getMessage());
+            throwNumFormatExceptionMessage(ExceptionMessage.NUMBER_BLANK.getMessage());
         }
     }
 
     private void validateDuplicate(List<String> inputNums) throws IllegalArgumentException {
         if (inputNums.stream().distinct().count() != MAX_COUNT.getNumber()) {
-            throwExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
+            throwStateExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
         }
         List<Integer> numbers = StringToInteger(inputNums);
         if (numbers.stream().distinct().count() != MAX_COUNT.getNumber()) {
-            throwExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
+            throwStateExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
         }
     }
 
@@ -117,28 +125,40 @@ public class ValidationUtil {
         try {
             int num = Integer.parseInt(number);
             if (num < FIRST_NUMBER.getNumber() || num > LAST_NUMBER.getNumber()) {
-                throwExceptionMessage(ExceptionMessage.NUMBER_RANGE.getMessage());
+                throwArgExceptionMessage(ExceptionMessage.NUMBER_RANGE.getMessage());
             }
             return num;
         } catch (NumberFormatException e) {
-            throwExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
+            throwNumFormatExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
         }
         return -1;
     }
 
     private void isExistedNumber(int bonus, List<Integer> lotto) throws IllegalArgumentException {
         if (lotto.contains(bonus)) {
-            throwExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
+            throwArgExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
         }
     }
 
-    private void throwExceptionMessage(String errorMessage) {
+    private void throwArgExceptionMessage(String errorMessage) {
         throw new IllegalArgumentException(errorMessage);
     }
 
+    private void throwNumFormatExceptionMessage(String errorMessage) {
+        throw new NumberFormatException(errorMessage);
+    }
+
+    private void throwDivisionExceptionMessage(String errorMessage) {
+        throw new ArithmeticException(errorMessage);
+    }
+
+    private void throwStateExceptionMessage(String errorMessage) {
+        throw new IllegalStateException(errorMessage);
+    }
+
     private String reInput() {
-        String reInputMessage = "다시 입력해주세요.";
-        System.out.println(reInputMessage);
+        String reInputMessage = "다시 입력해주세요. : ";
+        System.out.print(reInputMessage);
         return inputUtil.getInput();
     }
 }

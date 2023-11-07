@@ -16,7 +16,7 @@ public class LottoManager {
         lottos = new ArrayList<>();
     }
 
-    public void purchaseLotto() {
+    public void purchaseLottos() {
         Announcement.INPUT_AMOUNT.speak();
         int amount = getAmount();
         for (int i = 0; i < amount / 1000; i++) {

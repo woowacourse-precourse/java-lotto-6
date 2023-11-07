@@ -38,6 +38,7 @@ public class Controller {
     }
 
     private List<Integer> getWinningNumber() { // String[] vs List<Integer> ..
+        InputMessage.winningNumberInput();
         String input = Console.readLine().trim();
         return lottoService.integerList(input);
     }

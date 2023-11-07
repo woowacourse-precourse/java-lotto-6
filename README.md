@@ -271,6 +271,7 @@ public class Lotto {
 - [ ] Lotto
 - [ ] LottoTickets
 - [ ] WinningResult
+- [ ] WinningNumber
 - [ ] Raking(enum)
       
 ### view 

@@ -21,7 +21,7 @@ public class Lotto {
 
     //입력값이 6개인지 확인
     private void lottoSizeValidate(String inputNumbers) {
-        String[] splitNumbers = inputNumbers.split(",");
+        String[] splitNumbers = stringToArray(inputNumbers);
         if (splitNumbers.length != Constant.LOTTO_LENGTH) {
             throw new IllegalArgumentException(
                     Constant.ERROR_PREFIX + Constant.USER_NUMBER_PREFIX + Constant.ERROR_NOT_COUNT_MESSAGE);
@@ -30,12 +30,16 @@ public class Lotto {
 
     //숫자값인지 확인
     private void isNumber(String inputNumbers) {
-        String[] splitNumbers = inputNumbers.split(",");
+        String[] splitNumbers = stringToArray(inputNumbers);
         for (String splitNumber : splitNumbers) {
             if (!splitNumber.matches(Constant.NUMBER_PATTERN)) {
                 throw new IllegalArgumentException(
                         Constant.ERROR_PREFIX + Constant.USER_NUMBER_PREFIX + Constant.ERROR_NOT_NUMBER_MESSAGE);
             }
         }
+    }
+
+    private String[] stringToArray(String inputNumbers) {
+        return inputNumbers.split(",");
     }
 }

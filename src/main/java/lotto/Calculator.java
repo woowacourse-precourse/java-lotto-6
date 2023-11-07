@@ -5,27 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    private final List<Lotto> userLottos;
+    private final List<Lotto> playerLottos;
     private final WinningNumbers winningNumbers;
+    private final Map<Rank, Integer> winningStatistics;
 
-    public Calculator(List<Lotto> userLottos, WinningNumbers winningNumbers) {
-        this.userLottos = userLottos;
+    public Calculator(List<Lotto> playerLottos, WinningNumbers winningNumbers) {
+        this.playerLottos = playerLottos;
         this.winningNumbers = winningNumbers;
+        winningStatistics = new EnumMap<>(Rank.class);
     }
 
     public Map<Rank, Integer> calculateStatistics() {
-        Map<Rank, Integer> winningStatistics = new EnumMap<>(Rank.class);
-        Lotto winningLotto = winningNumbers.getLottoNumbers();
-        int bonusNumber = winningNumbers.getBonusNumber();
-        for (Rank rank : Rank.values()) {
-            winningStatistics.put(rank, 0);
-        }
-        for (Lotto lotto : userLottos) {
-            int matchCount = lotto.matchCountWith(winningLotto);
-            boolean isBonusNumberMatched = lotto.contains(bonusNumber);
-            Rank rank = Rank.valueOf(matchCount, isBonusNumberMatched);
-            winningStatistics.put(rank, winningStatistics.get(rank) + 1);
-        }
+        initStatistics();
+        rankCountForEachLotto();
         return winningStatistics;
     }
 
@@ -37,5 +29,20 @@ public class Calculator {
         return winningResults.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
+    }
+
+    private void initStatistics() {
+        for (Rank rank : Rank.values()) {
+            winningStatistics.put(rank, 0);
+        }
+    }
+
+    private void rankCountForEachLotto() {
+        for (Lotto lotto : playerLottos) {
+            int matchCount = lotto.matchCountWith(winningNumbers.numbers());
+            boolean isBonusNumberMatched = lotto.contains(winningNumbers.bonusNumber());
+            Rank rank = Rank.valueOf(matchCount, isBonusNumberMatched);
+            winningStatistics.put(rank, winningStatistics.get(rank) + 1);
+        }
     }
 }

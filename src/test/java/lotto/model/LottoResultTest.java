@@ -39,4 +39,12 @@ class LottoResultTest {
         assertThat(result.get(Rank.FOURTH)).isEqualTo(1);
         assertThat(result.get(Rank.FIFTH)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("수익률 계산")
+    void calculateReturnRatePercentage() {
+        Map<Rank, Integer> result = lottoResult.checkResult(winningLotto);
+        double returnRatePercentage = lottoResult.calculateReturnRatePercentage(result, 6000);
+        assertThat(returnRatePercentage).isEqualTo(550916.67);
+    }
 }

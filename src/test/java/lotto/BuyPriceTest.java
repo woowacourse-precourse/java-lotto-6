@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static lotto.constant.ErrorMessage.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BuyPriceTest {
@@ -30,5 +31,11 @@ public class BuyPriceTest {
         assertThatThrownBy(() -> new BuyPrice(1200))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PRICE_NOT_DIVIDED);
+    }
+
+    @Test
+    @DisplayName("금액에 맞는 수량으로 로또를 사는지")
+    void getBuyCount() {
+        assertThat(new BuyPrice(8000).getBuyCount()).isEqualTo(8);
     }
 }

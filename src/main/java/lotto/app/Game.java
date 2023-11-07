@@ -8,7 +8,10 @@ import lotto.domain.Round;
 
 public class Game {
 
-    public void start() {
+    /**
+     * 로또 게임을 실행하는 메서드
+     */
+    public void run() {
         Round round = new Round();
         round.extractor(round.getTotalCnt());
         Lotto lotto = inputWinningNumber();

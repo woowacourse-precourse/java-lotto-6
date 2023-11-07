@@ -20,8 +20,6 @@ public class Lotto {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_IN_LOTTO.getMessage());
         }
-
-
     }
 
     // TODO: 추가 기능 구현

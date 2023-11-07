@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        final int LOTTO_NUMBERS = 6;
         // TODO: 프로그램 구현
         System.out.println("구입 금액을 입력해 주세요.");
         int buyMoney = getInt();
@@ -16,11 +17,35 @@ public class Application {
         lottoToList(number, lottoList);
         System.out.println("당첨 번호를 입력해 주세요.");
         String winNumbersString = getString();
+
         List<Integer> winNumbersList = new ArrayList<>();
         fillWinNumbersList(winNumbersString, winNumbersList);
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getInt();
+        int[] resultList = new int[number];
 
+        compareLotto(lottoList, winNumbersList, resultList);
+
+    }
+
+    private static void compareLotto(List<Lotto> lottoList, List<Integer> winNumbersList, int[] resultList) {
+        for (int j = 0; j < lottoList.size(); j++) {
+            compareOneNumber(winNumbersList, lottoList, j, resultList);
+        }
+    }
+
+    private static void compareOneNumber(List<Integer> winNumbersList, List<Lotto> lottoList, int j,
+                                         int[] resultList) {
+        for (int i = 0; i < 6; i++) {
+            boolean isIn = compareNum(winNumbersList.get(i), lottoList.get(j));
+            if (isIn) {
+                resultList[j]++;
+            }
+        }
+    }
+
+    private static boolean compareNum(int number, Lotto lotto) {
+        return lotto.isNumInList(number);
     }
 
     private static void fillWinNumbersList(String winNumbersString, List<Integer> winNumbersList) {

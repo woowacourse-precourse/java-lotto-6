@@ -3,6 +3,7 @@ package lotto.config;
 import lotto.controller.GameController;
 import lotto.controller.OutputController;
 import lotto.domain.Player;
+import lotto.service.LottoCountGenerator;
 import lotto.service.LottoGenerator;
 import lotto.service.PlayerService;
 import lotto.service.TotalStatCalculator;
@@ -16,8 +17,9 @@ public class GameConfig {
         PlayerService playerService = getPlayerService(player);
         OutputController outputController = getOutputController(player);
         WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
+        LottoCountGenerator lottoCountGenerator = new LottoCountGenerator();
 
-        return new GameController(player,playerService, winningNumberGenerator, outputController);
+        return new GameController(player, playerService, winningNumberGenerator, outputController, lottoCountGenerator);
     }
 
     private static PlayerService getPlayerService(Player player) {

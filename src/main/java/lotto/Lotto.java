@@ -1,10 +1,13 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private static final String WRONG_LEGNTH_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 6개의 숫자여야 합니다.";
     private static final String WRONG_RANGE_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.";
+    private static final String WRONG_SAME_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.";
     private static final int LOTTO_NUMBER_RANGE_START = 1;
     private static final int LOTTO_NUMBER_RANGE_END = 45;
     private final List<Integer> numbers;
@@ -19,6 +22,8 @@ public class Lotto {
             throw new IllegalArgumentException(WRONG_LEGNTH_LOTTO_NUMBER_MESSAGE);
         } else if (!isWithValidRange(numbers)) {
             throw new IllegalArgumentException(WRONG_RANGE_LOTTO_NUMBER_MESSAGE);
+        } else if (!isDifferentLottoNumber(numbers)) {
+            throw new IllegalArgumentException(WRONG_SAME_LOTTO_NUMBER_MESSAGE);
         }
     }
 
@@ -39,5 +44,10 @@ public class Lotto {
     private boolean isCheckRange(int number) {
         return number >= LOTTO_NUMBER_RANGE_START
                 && number <= LOTTO_NUMBER_RANGE_END;
+    }
+
+    private boolean isDifferentLottoNumber(List<Integer> numbers) {
+        Set<Integer> setLottoNumbers = new HashSet<>(numbers);
+        return setLottoNumbers.size() == numbers.size();
     }
 }

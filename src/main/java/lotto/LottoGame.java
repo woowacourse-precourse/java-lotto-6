@@ -18,6 +18,7 @@ public class LottoGame {
     private GameView gameView;
 
     private int buyPrice;
+    private int lottoCount;
     private List<Lotto> lotto = new ArrayList<>();
 
     public LottoGame() {
@@ -29,6 +30,7 @@ public class LottoGame {
     public void start() {
         buyLottoInput();
         publishLotto();
+        printLotto();
     }
 
     private void buyLottoInput() {
@@ -46,12 +48,15 @@ public class LottoGame {
     }
 
     private void publishLotto() {
-        int lottoCount = calculateLottoCount();
+        calculateLottoCount();
         lottoService.createLotto(lottoCount, lotto);
     }
 
-    private int calculateLottoCount() {
-        int lottoCount = buyPrice / LOTTO_PRICE_FOR_ONE;
-        return lottoCount;
+    private void calculateLottoCount() {
+        lottoCount = buyPrice / LOTTO_PRICE_FOR_ONE;
+    }
+
+    private void printLotto() {
+        gameView.lottoPrintView(lottoCount, lotto);
     }
 }

@@ -72,6 +72,14 @@ public class LottoController {
         return drawingResultDto;
     }
 
+    private WinningLotto mapToWinningLotto(final WinningLottoDto winningLottoDto) {
+        return new WinningLotto(winningLottoDto.numbers());
+    }
+
+    private BonusNumber mapToBonusNumber(final BonusNumberDto bonusNumberDto) {
+        return new BonusNumber(bonusNumberDto.number());
+    }
+
     public void profitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
         ProfitRateDto profitRateDto = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
         outputView.printProfitRate(profitRateDto);

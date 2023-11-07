@@ -33,11 +33,6 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
-    public static int rangeInputBonusNumber(int bonusNumber) {
-        Validation.verifyRangeInputBonusNumber(bonusNumber);
-        return bonusNumber;
-    }
-
     public static int stringToInteger(String string) {
         Validation.verifyStringToInteger(string);
         return Integer.parseInt(string);

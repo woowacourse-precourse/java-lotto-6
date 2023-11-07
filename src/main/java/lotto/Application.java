@@ -17,12 +17,9 @@ public class Application {
 
         LottoList lottoList = new LottoList(purchaseAmount.getAmount());
         lottoList.print_numberOfLottoList();
-        try {
-            lottoList.createLottoList();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
+        lottoList.createLottoList();
         lottoList.printLottoList();
+
+        
     }
 }

@@ -11,6 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BonusNumberTest {
     List<Integer> numbers;
@@ -22,23 +24,16 @@ class BonusNumberTest {
         lotto = new Lotto(numbers);
     }
 
-    @Test
     @DisplayName("보너스번호는 1~45사이에 숫자를 중복없이 뽑아야 정상적으로 저장된다.")
-    void validateRange() {
-        // when
-        int correctNum1 = 1;
-        int correctNum45 = 45;
-
-        // then
-        BonusNumber bonusNumber = BonusNumber.from(lotto, correctNum1);
-        assertThat(bonusNumber.getNumber()).isEqualTo(1);
-
-        BonusNumber bonusNumber2 = BonusNumber.from(lotto, correctNum45);
-        assertThat(bonusNumber2.getNumber()).isEqualTo(45);
+    @ParameterizedTest
+    @CsvSource(value = {"1,1","45,45"})
+    void validateRange(int correctNum, int expected) {
+        BonusNumber bonusNumber = BonusNumber.from(lotto, correctNum);
+        assertThat(bonusNumber.getNumber()).isEqualTo(expected);
     }
 
-    @Test
     @DisplayName("보너스번호에 1보다 작은 숫자를 뽑는다면 오류가 발생합니다")
+    @Test
     void validateSmallNumber() {
         // when
         int smallNumber = 0;
@@ -49,8 +44,8 @@ class BonusNumberTest {
                 .hasMessage(INVALID_RANGE.getMessage());
     }
 
-    @Test
     @DisplayName("보너스번호에 45보다 큰 숫자를 뽑는다면 오류가 발생합니다")
+    @Test
     void validateLargeNumber() {
         // when
         int LargeNum = 46;
@@ -61,8 +56,8 @@ class BonusNumberTest {
                 .hasMessage(INVALID_RANGE.getMessage());
     }
 
-    @Test
     @DisplayName("보너스번호가 당첨번호에 있는 번호라면 오류가 발생합니다.")
+    @Test
     void validateBonusNumInLotto() {
         // when
         int duplicateNum = 2;

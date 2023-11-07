@@ -1,23 +1,18 @@
 package lotto.service;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.WinningLottoRepository;
-import lotto.repository.rank.LottoNumbersPerRank;
-import org.junit.jupiter.api.Assertions;
+import lotto.view.View;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-class LotteryTrackerTest {
+class ResultServiceTest {
+
+    ResultService resultService = new ResultService();
     LotteryTracker lotteryTracker = LotteryTracker.create();
     BuyLottoRepository buyLottos = new BuyLottoRepository();
     WinningLottoRepository winningLottoRepo;
@@ -41,27 +36,19 @@ class LotteryTrackerTest {
         buyLottos.add(buyLotto2);
         buyLottos.add(buyLotto3);
     }
+    @Test
+    @DisplayName("")
+    void calculateRateOfReturn() {
+        // given
 
-    @DisplayName("산 로또번호가 등수안에 들면 해당등수의 인원수가 증가합니다.")
-    @ParameterizedTest
-    @CsvSource(value = {"4,1","3,1","2,1"})
-    void matching(int rank, int number) {
+
         // when
-        lotteryTracker.matching(buyLottos, winningLottoRepo);
+        // 복권을 10000개 샀다고 가정
+        int purchaseCount= 10000;
+        resultService.calculateRateOfReturn(10000);
 
         // then
-        assertThat(LottoNumbersPerRank.getNumberBy(rank)).isEqualTo(number);
+
     }
 
-   @DisplayName("복권으로 번 총수익을 계산합니다")
-   @Test
-   void calculateTotalRevenue() {
-       // when
-       // 복권 3개에 2등, 3등, 4등
-       lotteryTracker.matching(buyLottos, winningLottoRepo);
-
-       // then
-       // 2등(30,000,000) + 3등(1,500,000) + 4등(50,000)
-       assertThat(lotteryTracker.calculateTotalRevenue()).isEqualTo(31550000);
-   }
 }

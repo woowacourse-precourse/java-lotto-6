@@ -7,24 +7,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidateTest {
-    @Test
-    @DisplayName("사용자는 공백을 입력하면 예외가 발생한다.")
-    void validateTrim() {
-        // given
-        String[] spaces= {" a", "a b", "a "};
-
-        // when  // then
-        for (String space : spaces) {
-            assertThatThrownBy(()-> Validate.trim(space))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(CONTAIN_SPACE.getMessage());
-        }
+    @DisplayName("사용자가 공백을 입력하면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" a", "a b", "a "})
+    void validateTrim(String containsSpace) {
+        assertThatThrownBy(()-> Validate.trim(containsSpace))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CONTAIN_SPACE.getMessage());
     }
 
-    @Test
     @DisplayName("사용자가 문자를 입력하면 예외가 발생한다.")
+    @Test
     void ValidateNumber() {
         // given
         String[] strings= {"j","j20","2j0","20j"};
@@ -42,19 +40,16 @@ class ValidateTest {
                 .hasMessage(INVALID_NUMBER_FORMAT.getMessage());
     }
 
-    @Test
-    @DisplayName("사용자가 문자열을 입력할 때 양끝에 ,를 두면 예외가 발생한다.")
-    void ValidateCommaBeforeAndAfter() {
-        // given
-        String[] inputs = {",1,2", "1,2,", ",1,2,3,"};
+    @DisplayName("사용자가 문자열 양끝에 ,를 두면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {",1,2", "1,2,", ",1,2,3,"})
+    void ValidateCommaBeforeAndAfter(String input) {
         // when
-        for (String input : inputs) {
-            String[] splitInput = input.split(",", -1);
+        String[] splitInput = input.split(",", -1);
 
-            // then
-            assertThatThrownBy(() -> Validate.commaBeforeAndAfter(splitInput))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(HAS_COMMA_ON_BOTH_SIDES.getMessage());
-        }
+        // then
+        assertThatThrownBy(() -> Validate.commaBeforeAndAfter(splitInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(HAS_COMMA_ON_BOTH_SIDES.getMessage());
     }
 }

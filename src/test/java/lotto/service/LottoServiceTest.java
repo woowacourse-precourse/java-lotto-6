@@ -12,8 +12,8 @@ class LottoServiceTest {
     LottoService lottoService = new LottoService();
     BuyLottoRepository buyLottos;
 
-    @Test
     @DisplayName("구매한 갯수만큼 복권번호를 자동생성해줍니다.")
+    @Test
     void quickPick() {
         // given
         int purchaseCount = 5;
@@ -22,9 +22,8 @@ class LottoServiceTest {
         // then
         assertThat(buyLottos.size()).isEqualTo(5);
     }
-
-    @Test
     @DisplayName("복권을 사면 1~45사이에 6자리의 번호를 받습니다.")
+    @Test
     void createRandomNumbers() {
         int cnt =10000000;
 

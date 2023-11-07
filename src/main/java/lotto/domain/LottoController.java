@@ -44,14 +44,23 @@ public class LottoController {
         printTickets(userLottoTickets); // 구매한 로또들 번호 출력
 
         lotto = new Lotto(handleWinningNumbers()); // 당첨번호 입력, lotto 객체에 저장
+        handleCompareWinningNumbers(userLottoTickets); // 당첨번호와 추첨번호 비교
+
+    }
+
+    public void handleCompareWinningNumbers(List<LottoTicket> userLottoTickets) {
+        int matchCount = 0;
+        for (LottoTicket lottoTicket : userLottoTickets) {
+            matchCount = lotto.compareWinningNumbers(lottoTicket);
+            lottoTicket.setMatchCount(matchCount);
+        }
     }
 
     public List<Integer> handleWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
         do {
             System.out.println(LottoMessage.REQUEST_WINNING_NUMBERS.getMessage()); // 당첨번호 입력 안내문구 출력
-            String input = "";
-            input = userInput.input();
+            String input = userInput.input();
             winningNumbers = userInput.getUserWinningNumbers(userInputChecker, input);
         } while (winningNumbers == null);
 
@@ -61,23 +70,20 @@ public class LottoController {
     public int handlePurchaseAmount() {
         int purchaseAmount = 0;
         do {
-            int ticketCount = 0;
-            String input = "";
-
             System.out.println(LottoMessage.PURCHASE_AMOUNT_MESSAGE.getMessage()); // 구입금액 입력 안내문구 출력
-            input = userInput.input();
-
+            int ticketCount = 0;
+            String input = userInput.input();
             purchaseAmount = userInput.getUserPurchaseAmount(userInputChecker, input);
             ticketCount = purchaseAmount / 1000;
-            System.out.println(ticketCount + LottoMessage.PURCHASE_COUNT_MESSAGE.getMessage()); // 구매한 로또 개수 출력
-
+            if (ticketCount != 0)
+                System.out.println(ticketCount + LottoMessage.PURCHASE_COUNT_MESSAGE.getMessage()); // 구매한 로또 개수 출력
         } while (purchaseAmount == 0);
         return purchaseAmount;
     }
 
     public void printTickets(List<LottoTicket> userLottoTickets) {
         for (LottoTicket ticket : userLottoTickets) {
-            ticket.printNumbers();
+            System.out.println(ticket.getNumbers());
         }
     }
 }

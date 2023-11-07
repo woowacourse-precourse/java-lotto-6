@@ -37,4 +37,16 @@ public class Lotto {
         }
         return true;
     }
+
+    public int compareWinningNumbers(LottoTicket lottoTicket) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (lottoTicket.getNumbers().contains(number))
+                matchCount++;
+        }
+        return matchCount;
+    }
+    public void compareBonusNumber(LottoTicket lottoTicket, int bonusNumber) {
+        // lottoTicket의 추첨번호들과 보너스 번호를 비교 후 결과 저장
+    }
 }

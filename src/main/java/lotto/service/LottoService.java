@@ -12,10 +12,8 @@ import lotto.domain.Profit;
 import lotto.domain.PurchaseNumber;
 import lotto.domain.Rank;
 import lotto.utility.validation.WinningNumberChecker;
-import lotto.utility.vo.request.BonusNumberRequest;
 import lotto.utility.vo.response.ProfitResponse;
 import lotto.utility.vo.request.PurchaseAmountRequest;
-import lotto.utility.vo.request.WinningNumberRequest;
 
 public class LottoService {
     public IssuedLottos generateLottos(PurchaseAmountRequest purchaseAmount) {

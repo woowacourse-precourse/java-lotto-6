@@ -5,8 +5,15 @@ import lotto.util.ErrorThrower;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.config.ErrorMessage.*;
-import static lotto.config.LottoConfig.*;
+import static lotto.config.ErrorMessage.BONUS_DISTINCT_WINNING_NUMBER_ERROR;
+import static lotto.config.ErrorMessage.BONUS_EXCEED_RANGE_ERROR;
+import static lotto.config.ErrorMessage.BONUS_ONLY_NUMBER_ERROR;
+import static lotto.config.ErrorMessage.LOTTO_DISTINCT_ERROR;
+import static lotto.config.ErrorMessage.LOTTO_EXCEED_RANGE_ERROR;
+import static lotto.config.ErrorMessage.WINNING_NUMBER_ONLY_NUMBER_ERROR;
+import static lotto.config.LottoConfig.LOTTO_COUNT;
+import static lotto.config.LottoConfig.LOTTO_MAX_NUMBER;
+import static lotto.config.LottoConfig.LOTTO_MIN_NUMBER;
 import static lotto.config.RegexPattern.LOTTO_WINNING_NUMBER_REGEX_PATTERN;
 import static lotto.config.RegexPattern.ONLY_NUMBER_REGEX_PATTERN;
 

@@ -2,8 +2,23 @@ package lotto.view;
 
 import java.util.List;
 
-import static lotto.config.LottoConfig.*;
-import static lotto.config.LottoMessage.*;
+import static lotto.config.LottoConfig.LOTTO_FIFTH_NUMBER;
+import static lotto.config.LottoConfig.LOTTO_FIRST_NUMBER;
+import static lotto.config.LottoConfig.LOTTO_FOURTH_NUMBER;
+import static lotto.config.LottoConfig.LOTTO_SECOND_NUMBER;
+import static lotto.config.LottoConfig.LOTTO_SIXTH_NUMBER;
+import static lotto.config.LottoConfig.LOTTO_THIRD_NUMBER;
+import static lotto.config.LottoMessage.GRAPH_UNDER_BAR;
+import static lotto.config.LottoMessage.LOTTO_BONUS_NUMBER_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_NUMBER_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_PURCHASE_CHECK_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_PURCHASE_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_STATISTICS_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_TOTAL_PROFIT_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_WINNING_NUMBER_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_WINNING_RESULT_BONUS_MESSAGE;
+import static lotto.config.LottoMessage.LOTTO_WINNING_RESULT_MESSAGE;
+
 
 public class OutputView {
 

@@ -2,12 +2,22 @@ package lotto.domain;
 
 import lotto.view.OutputView;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static lotto.config.LottoConfig.*;
+import static lotto.config.LottoConfig.LOTTO_ALL_MATCH;
+import static lotto.config.LottoConfig.LOTTO_ALL_MATCH_PRIZE;
+import static lotto.config.LottoConfig.LOTTO_BONUS_MATCH;
+import static lotto.config.LottoConfig.LOTTO_BONUS_MATCH_PRIZE;
+import static lotto.config.LottoConfig.LOTTO_FIVE_MATCH;
+import static lotto.config.LottoConfig.LOTTO_FIVE_MATCH_PRIZE;
+import static lotto.config.LottoConfig.LOTTO_FOUR_MATCH;
+import static lotto.config.LottoConfig.LOTTO_FOUR_MATCH_PRIZE;
+import static lotto.config.LottoConfig.LOTTO_PRICE;
+import static lotto.config.LottoConfig.LOTTO_THREE_MATCH;
+import static lotto.config.LottoConfig.LOTTO_THREE_MATCH_PRIZE;
+
 
 public class LottoResult {
 
@@ -27,7 +37,7 @@ public class LottoResult {
     public void LottoPrizeResult() {
         lottoMatchCount();
         Double profit = lottoProfit();
-        lottoPrizePrint(lottoProfit());
+        lottoPrizePrint(profit);
     }
 
     private void lottoMatchCount() {

@@ -2,7 +2,6 @@ package lotto;
 
 import constants.ErrorMessage;
 import constants.NumberType;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,7 +9,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateLotto(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

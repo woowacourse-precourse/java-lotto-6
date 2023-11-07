@@ -20,7 +20,7 @@ public class Buying {
         String refinedReadLine = removeEmpty(readLine);
         checkDigit(refinedReadLine);
         Integer price = translateToPrice(refinedReadLine);
-        checkMaxPrice(price);
+        checkBoundary(price);
         checkRest(price);
         return price;
     }
@@ -35,15 +35,15 @@ public class Buying {
         }
     }
 
-    private void checkMaxPrice(Integer price) {
-        if (price > 100000) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 100000원 이하여야 합니다.");
+    private void checkBoundary(Integer price) {
+        if (price < 1000 || price > 100000) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상, 100000원 이하여야 합니다.");
         }
     }
 
     private void checkRest(Integer price) {
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
     }
 

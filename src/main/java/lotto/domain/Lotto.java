@@ -17,7 +17,8 @@ public class Lotto {
     }
 
     public boolean contains(int bonus){
-        return this.numbers.contains(bonus);}
+        return this.numbers.contains(bonus);
+    }
 
     public int countMatchNumbers(Lotto otherNumbers) {
         return (int)this.numbers.stream()

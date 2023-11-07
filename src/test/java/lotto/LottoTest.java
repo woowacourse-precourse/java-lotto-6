@@ -32,6 +32,8 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    // 아래에 추가 테스트 작성 가능
+
     @DisplayName("로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
     void createLottoWithInvalidNumbers() {
@@ -78,7 +80,7 @@ class LottoTest {
         assertEquals(6, generatedLotto.size());
     }
 
-    @DisplayName("구매한 티켓의 장수가 나오는지 테스트한다.")
+    @DisplayName("구매한 티켓의 장수에 대하여 테스트한다.")
     @Test
     void generateLottoTicketsBasedOnPurchaseAmount() {
         // Arrange
@@ -92,7 +94,4 @@ class LottoTest {
 
         assertEquals(expectedTicketCount, NumberOfLotto);
     }
-
-    // 아래에 추가 테스트 작성 가능
-
 }

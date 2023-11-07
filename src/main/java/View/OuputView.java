@@ -5,6 +5,7 @@ import static util.LottoRankNumber.FIRST;
 import static util.LottoRankNumber.SECOND;
 import static util.LottoValidationValue.LOTTO_PRICE;
 import static util.ProgressMessage.OUTPUT_BUY_NUMBER;
+import static util.RoundingOff.SECOND_DECIMAL;
 import static util.WinningStatisticsMessage.BAR;
 import static util.WinningStatisticsMessage.COUNT_RANK;
 import static util.WinningStatisticsMessage.COUNT_RANK_WITH_BONUS;
@@ -77,6 +78,6 @@ public class OuputView {
 
     private static double calculateRateOfReturn(int revenue, Amount amount) {
         double result = (double) revenue / (amount.getAmount() * LOTTO_PRICE.get());
-        return Math.round(result * 100) / 100.0;
+        return Math.round(result * SECOND_DECIMAL.get()) / SECOND_DECIMAL.get();
     }
 }

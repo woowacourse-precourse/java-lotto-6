@@ -3,6 +3,9 @@ package domain;
 import static util.ErrorMessage.LOTTO_NUMBER_IS_UNIQUE;
 import static util.ErrorMessage.LOTTO_NUMBER_RANGE;
 import static util.ErrorMessage.LOTTO_TAKE_SIX_NUMBERS;
+import static util.LottoValidationValue.LOTTO_NUMBER_COUNT;
+import static util.LottoValidationValue.LOTTO_NUMBER_MAXIMUM;
+import static util.LottoValidationValue.LOTTO_NUMBER_MINIMUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
@@ -34,7 +37,7 @@ public class Lotto {
 
     private boolean checkSize(List<Integer> numbers){
         try{
-            if (numbers.size() != 6) {
+            if (numbers.size() != LOTTO_NUMBER_COUNT.get()) {
                 throw new IllegalArgumentException();
             }
         }catch (IllegalArgumentException e){
@@ -77,7 +80,7 @@ public class Lotto {
     }
 
     private List<Integer> makeLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM.get(), LOTTO_NUMBER_MAXIMUM.get(), LOTTO_NUMBER_COUNT.get());
     }
 
     public boolean isValid() {

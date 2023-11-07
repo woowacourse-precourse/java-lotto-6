@@ -1,5 +1,8 @@
 package domain;
 
+import static util.LottoRankNumber.FIFTH;
+import static util.LottoRankNumber.FIRST;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +17,7 @@ public class Rank {
 
     public Map<Integer, Integer> count() {
         Map<Integer, Integer> rankCount = new HashMap<>();
-        for(int rankNumber = 1; rankNumber <= 5; rankNumber++){
+        for(int rankNumber = FIRST.get(); rankNumber <= FIFTH.get(); rankNumber++){
             rankCount.put(rankNumber,Collections.frequency(rank,rankNumber));
         }
         return rankCount;

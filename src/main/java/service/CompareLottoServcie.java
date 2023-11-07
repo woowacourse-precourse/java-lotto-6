@@ -1,5 +1,15 @@
 package service;
 
+import static util.EqualNumberAccordRank.FIFTH_EQUAL_NUMBER;
+import static util.EqualNumberAccordRank.FIRST_EQUAL_NUMBER;
+import static util.EqualNumberAccordRank.FORTH_EQUAL_NUMBER;
+import static util.EqualNumberAccordRank.THIRD_EQUAL_NUMBER;
+import static util.LottoRankNumber.FIFTH;
+import static util.LottoRankNumber.FIRST;
+import static util.LottoRankNumber.FOURTH;
+import static util.LottoRankNumber.OTHER;
+import static util.LottoRankNumber.THIRD;
+
 import domain.Amount;
 import domain.Lottos;
 import domain.Rank;
@@ -26,7 +36,7 @@ public class CompareLottoServcie {
     }
 
     private static int haveBonusNumberRank(int countEqual){
-        if(countEqual < 2){
+        if(countEqual < FIFTH_EQUAL_NUMBER.get() - 1){
             return rankCalculator(countEqual);
         }
         return rankCalculator(countEqual) + 1;
@@ -37,18 +47,18 @@ public class CompareLottoServcie {
     }
 
     private static int rankCalculator(int countEqual){
-        if(countEqual >= 0 && countEqual <= 2){
-            return 6;
+        if(countEqual == FIFTH_EQUAL_NUMBER.get()){
+            return FIFTH.get();
         }
-        if(countEqual == 3){
-            return 5;
+        if(countEqual == FORTH_EQUAL_NUMBER.get()){
+            return FOURTH.get();
         }
-        if(countEqual == 4){
-            return 4;
+        if(countEqual == THIRD_EQUAL_NUMBER.get()){
+            return THIRD.get();
         }
-        if(countEqual == 5){
-            return 3;
+        if(countEqual == FIRST_EQUAL_NUMBER.get()){
+            return FIRST.get();
         }
-        return 1;
+        return OTHER.get();
     }
 }

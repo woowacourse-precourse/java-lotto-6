@@ -3,6 +3,7 @@ package service;
 import static util.ErrorMessage.AMOUNT_MUST_BE_DIVIDED_BY_PRICE;
 import static util.ErrorMessage.ONLY_INPUT_NUMBER;
 import static util.LottoValidationValue.LOTTO_PRICE;
+import static util.Split.INPUT_SEPERATOR;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.BonusNumber;
@@ -45,7 +46,7 @@ public class UserInputService {
         List<Integer> numbers = new ArrayList<>();
 
         while(true){
-            if(checkIsNumberList(input().split(","),numbers)){
+            if(checkIsNumberList(input().split(INPUT_SEPERATOR.get()),numbers)){
                 Lotto lotto = MakeObjectService.lotto(numbers);
                 if(lotto.isValid()){
                     return lotto;

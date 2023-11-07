@@ -2,6 +2,8 @@ package domain;
 
 import static util.ErrorMessage.LOTTO_NUMBER_IS_UNIQUE;
 import static util.ErrorMessage.LOTTO_NUMBER_RANGE;
+import static util.LottoValidationValue.LOTTO_NUMBER_MAXIMUM;
+import static util.LottoValidationValue.LOTTO_NUMBER_MINIMUM;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class BonusNumber {
 
     private boolean checkValidNumberRange(int bonusNumber){
         try{
-            if(bonusNumber < 1 || bonusNumber > 45){
+            if(bonusNumber < LOTTO_NUMBER_MINIMUM.get() || bonusNumber > LOTTO_NUMBER_MAXIMUM.get()){
                 throw new IllegalArgumentException();
             }
         }catch (IllegalArgumentException e){

@@ -66,7 +66,7 @@ public class InputValidation {
     }
 
     private void isNumberRangeValidation(String input) {
-        if (Integer.parseInt(input) < LottoInformation.MIN_LOTTO_NUMBER.getNumber()) {
+        if (Integer.parseInt(input) <= 0) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER_Range_MESSAGE.getMessage());
         }
     }
@@ -98,7 +98,7 @@ public class InputValidation {
     }
 
     private void checkWinningNumbersDuplication(List<Integer> lottoWinningNumbers, String bonusNumber) {
-        if(lottoWinningNumbers.contains(Integer.parseInt(bonusNumber))){
+        if (lottoWinningNumbers.contains(Integer.parseInt(bonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATION_LOTTO_NUMBER_MESSAGE.getMessage());
         }
     }

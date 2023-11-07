@@ -16,11 +16,12 @@
 
 
 - [ ] <<2.발행 로또 출력>>
-  - [x] 구입 금액으로 구매 개수 계산 AmountCalculator. calculateNumberOfLottoPurchasedByAmount(int amount)
-  - [x] 구매 개수 출력 AmountCalculator.getNumberOfLottoPurchased()
-  - [x] 구매 개수 화면 출력 OutputView.printNumberOfLottosPurchased
-  - [ ] 구매한 개수만큼 로또 발행 LottoMachine
-  - [ ] 발행한 로또 번호 출력 OutputView
+  - [x] 구입 금액으로 구매 개수 계산 AmountCalculator. calculateNumberOfLottoPurchasedByAmount
+  - [x] 구매 개수 출력 AmountCalculator.getNumberOfLottoPurchased
+  - [x] 구매 개수 화면 출력 OutputView
+  - [x] 로또 발행 LottoMachine
+  - [x] 구매 개수만큼 발행한 로또 번호 출력 GameController.generateLottos
+  - [x] 구매 개수만큼 발행한 로또 번호 화면 출력 OutputView
     - 오름차순으로
 
 

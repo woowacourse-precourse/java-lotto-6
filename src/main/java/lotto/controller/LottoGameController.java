@@ -2,8 +2,8 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
-import lotto.model.LottoHeadQuarter;
-import lotto.model.LottoStore;
+import lotto.model.service.LottoHeadQuarter;
+import lotto.model.service.LottoStore;
 import lotto.model.vo.BonusNumber;
 import lotto.model.vo.Lottos;
 import lotto.model.vo.Money;

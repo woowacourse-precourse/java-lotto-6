@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.config.ErrorMessage.*;
+import static lotto.config.LottoConfig.*;
+import static lotto.config.RegexPattern.LOTTO_WINNING_NUMBER_REGEX_PATTERN;
+import static lotto.config.RegexPattern.ONLY_NUMBER_REGEX_PATTERN;
 
 public class LottoValidation {
 
@@ -13,7 +16,7 @@ public class LottoValidation {
 
         lottoNumber = lottoNumber.stream().distinct().collect(Collectors.toList());
 
-        if (lottoNumber.size() != 6) {
+        if (lottoNumber.size() != LOTTO_COUNT.getValue()) {
             ErrorThrower.throwIllegalArgumentException(LOTTO_DISTINCT_ERROR.getMessage());
         }
 
@@ -22,7 +25,7 @@ public class LottoValidation {
     public void validatorExceededRange(List<Integer> lottoNumber) {
 
         for (int number : lottoNumber) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
                 ErrorThrower.throwIllegalArgumentException(LOTTO_EXCEED_RANGE_ERROR.getMessage());
             }
         }
@@ -31,7 +34,7 @@ public class LottoValidation {
 
     public void validatorWinningNumberCheck(String winningNumber) {
 
-        if (!winningNumber.matches("^([0-9]+(,[0-9]+)+)$")) {
+        if (!winningNumber.matches(LOTTO_WINNING_NUMBER_REGEX_PATTERN.getPattern())) {
             ErrorThrower.throwIllegalArgumentException(WINNING_NUMBER_ONLY_NUMBER_ERROR.getMessage());
         }
 
@@ -39,7 +42,7 @@ public class LottoValidation {
 
     public void validatorBonusOnlyNumber(String bonus) {
 
-        if (!bonus.matches("[0-9]+")) {
+        if (!bonus.matches(ONLY_NUMBER_REGEX_PATTERN.getPattern())) {
             ErrorThrower.throwIllegalArgumentException(BONUS_ONLY_NUMBER_ERROR.getMessage());
         }
 
@@ -49,7 +52,7 @@ public class LottoValidation {
 
         int bonusNumber = Integer.parseInt(bonus);
 
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MIN_NUMBER.getValue() || bonusNumber > LOTTO_MAX_NUMBER.getValue()) {
             ErrorThrower.throwIllegalArgumentException(BONUS_EXCEED_RANGE_ERROR.getMessage());
         }
 

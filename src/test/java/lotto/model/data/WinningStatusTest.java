@@ -151,10 +151,10 @@ class WinningStatusTest {
             "5, 5, 25000",
             "6, 4, 300000",
             "4, 3, 6000000",
-            "3, 2, 900000000",
+            "3, 2, 90000000",
             "1, 1, 2000000000"
     })
-    void calculatePrizeMoneyTest(Integer countOfWinning, Integer prize, Integer totalPrizeMoney) {
+    void calculatePrizeMoneyTest(Integer countOfWinning, Integer prize, Long totalPrizeMoney) {
         // given
         // when & then
         assertThat(winningStatus.calculatePrizeMoney(prize, countOfWinning)).isEqualTo(totalPrizeMoney);
@@ -166,7 +166,7 @@ class WinningStatusTest {
             "0, 5"
     })
     @DisplayName("당첨금을 0원 이상 4294966000000000원 이하로 수령했다면 어떠한 Exception도 감지되지 않는다.")
-    void notSupportedPrizeMoney(Integer countOfWinning, Integer prize) {
+    void supportedPrizeMoney(Integer countOfWinning, Integer prize) {
         // given
         // when & then
         assertThatNoException().isThrownBy(() -> winningStatus.calculatePrizeMoney(prize, countOfWinning));

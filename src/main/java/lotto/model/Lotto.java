@@ -72,7 +72,7 @@ public class Lotto {
         boolean bonusNumberCheck = this.isBonus(bonusNumber);
         if (bonusNumberCheck) countTotalMatches++;
 
-        if (countTotalMatches == 5 && bonusNumberCheck) {
+        if (countTotalMatches == 5 && !bonusNumberCheck) {
             return Ranking.SECOND;
         }
         return Ranking.getRanking(countTotalMatches, false);

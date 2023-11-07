@@ -44,6 +44,10 @@ public class OutputView {
         return lottoNumbers.toString();
     }
 
+    public static void printLottoInputMessage() {
+        printMessage(LOTTO_NUMBERS_INPUT_MESSAGE);
+    }
+
     private static void printMessage(String message) {
         System.out.println(message);
     }

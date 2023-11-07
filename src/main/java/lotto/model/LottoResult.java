@@ -10,10 +10,12 @@ public class LottoResult {
     private static final int MAX_MATCH_COUNT = 6;
     private Map<Integer, Integer> matchCounts = new HashMap<>();
     private Map<Integer, Long> prizeMap = initializePrizeMap();
+    private Map<Integer, Integer> secondPrizeWinners = new HashMap<>();
 
     public LottoResult() {
         for (int i = 0; i <= MAX_MATCH_COUNT; i++) {
             matchCounts.put(i, 0);
+            secondPrizeWinners.put(5, 0); 
         }
     }
 

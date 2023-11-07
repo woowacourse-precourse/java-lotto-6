@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoGameServiceTest {
     LottoGameService lottoGameService;
+
     @BeforeEach
     void setUp() {
         lottoGameService = new LottoGameService();

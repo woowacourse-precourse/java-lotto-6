@@ -4,14 +4,11 @@ import lotto.view.Output;
 
 public class InputValidator {
 
-    private static final String ERROR_MESSAGE_NULL = "값을 입력해주세요.";
-    private static final String ERROR_MESSAGE_NOT_INTEGER = "정수를 입력해주세요.";
-
     public static void isInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            Output.printErrorMessage(ERROR_MESSAGE_NOT_INTEGER);
+            Output.printErrorMessage(Errors.NOT_INTEGER.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -22,14 +19,14 @@ public class InputValidator {
                 Integer.parseInt(inputs[i]);
             }
         } catch (NumberFormatException e) {
-            Output.printErrorMessage(ERROR_MESSAGE_NOT_INTEGER);
+            Output.printErrorMessage(Errors.NOT_INTEGER.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     public static void isNull(String input) {
         if (input == null) {
-            Output.printErrorMessage(ERROR_MESSAGE_NULL);
+            Output.printErrorMessage(Errors.NULL.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -37,7 +34,7 @@ public class InputValidator {
     public static void isNull(String[] inputs) {
         for (int i = 0; i < inputs.length; i++) {
             if (inputs[i] == null) {
-                Output.printErrorMessage(ERROR_MESSAGE_NULL);
+                Output.printErrorMessage(Errors.NULL.getMessage());
                 throw new IllegalArgumentException();
             }
         }

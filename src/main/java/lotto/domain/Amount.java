@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import lotto.validator.Errors;
 import lotto.view.Output;
 
 public class Amount {
 
-    private static final String ERROR_MESSAGE_NOT_DIVIDED = "로또 금액으로 나누어 떨어지는 금액이어야 합니다.";
     private int amount;
 
     public Amount(Integer amount) {
@@ -19,7 +19,7 @@ public class Amount {
 
     private void validateDividedByLottoPrice(Integer amount) {
         if (amount % Lotto.PRICE != 0) {
-            Output.printErrorMessage(ERROR_MESSAGE_NOT_DIVIDED);
+            Output.printErrorMessage(Errors.AMOUNT_NOT_DIVIDED.getMessage());
             throw new IllegalArgumentException();
         }
     }

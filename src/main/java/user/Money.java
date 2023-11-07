@@ -26,12 +26,14 @@ public class Money {
     }
 
     private int transformStringtoInt(String money) {
-        try {
-            int purchaseAmount = Integer.parseInt(money);
-            validate(purchaseAmount);
-            return purchaseAmount;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[Error] 금액은 숫자로 입력해야합니다.");
+        while (true) {
+            try {
+                int purchaseAmount = Integer.parseInt(money);
+                validate(purchaseAmount);
+                return purchaseAmount;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[Error] 금액은 숫자로 입력해야합니다.");
+            }
         }
     }
 

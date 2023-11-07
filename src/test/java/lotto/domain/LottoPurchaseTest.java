@@ -52,6 +52,6 @@ class LottoPurchaseTest {
     @DisplayName("1,000원 단위가 아닌 수가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByNonThousandAmount() {
-        assertThatThrownBy(() -> LottoPurchase.valueOf("1200")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
+        assertThatThrownBy(() -> LottoPurchase.valueOf("1200")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_PURCHASE_RULE_INPUT_MESSAGE.getMessage());
     }
 }

@@ -23,10 +23,9 @@ public class Lotto {
         return this.numbers;
     }
 
-    public int countEqualNumber(Lotto lotto) {
+    public int countEqualNumber(List<Integer> numbers) {
         List<Integer> originalNumbers = new ArrayList<>(this.numbers);
-        List<Integer> compareNumbers = lotto.getNumbers();
-        originalNumbers.retainAll(compareNumbers);
+        originalNumbers.retainAll(numbers);
         return originalNumbers.size();
     }
 

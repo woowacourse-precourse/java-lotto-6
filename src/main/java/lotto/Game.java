@@ -5,7 +5,6 @@ import static lotto.ResultCase.*;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,13 +13,12 @@ public class Game {
 
     private Buying buying;
     private List<Lotto> lottos;
-    private Lotto winning;
-    private Integer bonusNumber;
+    private Winning winning;
     private Result result;
 
     public Game() {
         this.lottos = new ArrayList<>();
-        this.bonusNumber = 0;
+        this.winning = new Winning();
         this.result = new Result();
     }
 
@@ -61,17 +59,13 @@ public class Game {
     private void saveWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String readLine = Console.readLine();
-        String[] split = readLine.split(",");
-        List<Integer> numbers = Arrays.stream(split)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        winning = new Lotto(numbers);
+        winning.saveNumbers(readLine);
     }
 
     private void saveBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String readLine = Console.readLine();
-        bonusNumber = Integer.parseInt(readLine);
+        winning.saveBonusNumber(readLine);
     }
 
     private void informWinning() {
@@ -94,7 +88,7 @@ public class Game {
     private int countMatchLotto(ResultCase resultCase) {
         int matchLotto = 0;
         for (Lotto lotto : lottos) {
-            int equalNumber = lotto.countEqualNumber(winning);
+            int equalNumber = lotto.countEqualNumber(winning.getNumbers());
             if (resultCase == FIVE_AND_BONUS_CORRECTNESS) {
                 equalNumber = addBonusNumber(lotto, equalNumber);
             }
@@ -106,7 +100,7 @@ public class Game {
     }
 
     private int addBonusNumber(Lotto lotto, int equalNumber) {
-        if (lotto.contain(bonusNumber)) {
+        if (lotto.contain(winning.getBonusNumber())) {
             equalNumber++;
         }
         return equalNumber;

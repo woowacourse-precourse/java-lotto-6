@@ -7,7 +7,7 @@ public class Money {
     private static final int UNIT_PRICE = 1000;
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_ERROR_MESSAGE = "[ERROR] 잘못된 금액을 입력했습니다.";
-    private int money;
+    private final int money;
 
     Money(int money) {
         validate(money);
@@ -26,6 +26,7 @@ public class Money {
     private static Money inputMoney() {
         OutputView.printMessage(MONEY_INPUT_MESSAGE);
         String input = InputView.readMessage();
+        OutputView.printMessage();
         int money;
         try {
             money = Integer.parseInt(input);

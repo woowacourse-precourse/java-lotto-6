@@ -3,6 +3,10 @@ package lotto.domain;
 import java.util.List;
 
 public class Lotto {
+    public static final int LOTTO_NUMBER = 6;
+    public static final int LOTTO_RANGE_BEGIN = 1;
+    public static final int LOTTO_RANGE_END = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

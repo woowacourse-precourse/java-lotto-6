@@ -1,12 +1,10 @@
 package lotto;
 
-import lotto.common.Validation;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

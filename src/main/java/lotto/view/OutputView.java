@@ -17,7 +17,7 @@ public class OutputView {
 
     public void printPurchaseMesssage(int purchaseCount) {
         System.out.println(" ");
-        System.out.println(purchaseCount+"개를 구매했습니다.");
+        System.out.println(purchaseCount + "개를 구매했습니다.");
     }
 
     public void printPurchasedLottoList(Lottos lottos) {
@@ -33,7 +33,7 @@ public class OutputView {
         lottoStringBuilder.append("[");
         for (int lottoNum : oneLottoArrayList) {
             lottoStringBuilder.append(lottoNum);
-            if(oneLottoArrayList.get(5)!=lottoNum){
+            if (oneLottoArrayList.get(5) != lottoNum) {
                 lottoStringBuilder.append(", ");
             }
         }
@@ -63,11 +63,11 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (int i = 3; i < 8; i++) {
-            if(i==6) {
+            if (i == 6) {
                 printBonusResult(i, user);
                 continue;
             }
-            if(i == 7){
+            if (i == 7) {
                 printAllCorrectResult(user);
                 break;
             }
@@ -75,7 +75,7 @@ public class OutputView {
             String prizeForPrint = rank.getPrizeForPrint();
             int eachRankCount = user.getLottoRanks()[i];
 
-            System.out.println(i+"개 일치 ("+prizeForPrint+"원) - "+eachRankCount+"개");
+            System.out.println(i + "개 일치 (" + prizeForPrint + "원) - " + eachRankCount + "개");
         }
     }
 
@@ -83,17 +83,17 @@ public class OutputView {
         int eachRankCount = user.getLottoRanks()[7];
         Rank rank = Rank.lottoRank(6);
         String prizeForPrint = rank.getPrizeForPrint();
-        System.out.println("6개 일치 ("+prizeForPrint+"원) - "+eachRankCount+"개");
+        System.out.println("6개 일치 (" + prizeForPrint + "원) - " + eachRankCount + "개");
     }
 
     public void printBonusResult(int i, User user) {
         Rank rank = Rank.lottoRank(10);
         String prizeForPrint = rank.getPrizeForPrint();
         int eachRankCount = user.getLottoRanks()[i];
-        System.out.println("5개 일치, 보너스 볼 일치 ("+prizeForPrint+"원) - "+eachRankCount+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + prizeForPrint + "원) - " + eachRankCount + "개");
     }
 
     public void printProfitRate(User user, float profitRate) {
-        System.out.println("총 수익률은 "+profitRate+"%입니다.");
+        System.out.println("총 수익률은 " + Math.round(profitRate * 10) / 10.0 + "%입니다.");
     }
 }

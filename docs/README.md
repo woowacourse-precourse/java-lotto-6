@@ -15,7 +15,7 @@
 - [x] get메서드 생성
 - lottoMoney: 로또 금액 저장
 - lottoTiket: 로또 개수 저장
-- [ ] 에러 메시지 Java Enum 적용
+- [x] 에러 메시지 Java Enum 적용
 
 2. Lotto
 

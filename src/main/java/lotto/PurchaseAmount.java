@@ -13,7 +13,7 @@ public class PurchaseAmount {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    private void validate(String input_amount){
+    public void validate(String input_amount){
         try {
             amount = Integer.parseInt(input_amount);
         } catch (NumberFormatException e) {

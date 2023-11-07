@@ -11,12 +11,7 @@ public class IntegerListUtil {
     public static List<Integer> parseListseperatedBy(String input, String seperateStandard) {
         return Arrays.stream(input.split(seperateStandard))
                 .filter(s -> !s.isEmpty())
-                .map(IntegerUtil::trimAndParseInt)
+                .map(IntegerUtil::trimAndParseInt) //TODO: parseInt로 바꿀지
                 .collect(Collectors.toList());
-    }
-
-    public static Set<Integer> toHashSet(List<Integer> numbers) {
-        return numbers.stream()
-                .collect(Collectors.toCollection(HashSet::new));
     }
 }

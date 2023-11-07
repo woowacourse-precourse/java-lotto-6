@@ -44,6 +44,15 @@ public class RankingTest {
         assertThat(prize.match(playerInputNumber)).isEqualTo(FOURTH);
     }
 
+    @DisplayName("3개의 숫자를 맞춰서 FIFTH가 나오는지 확인한다.")
+    @Test
+    void correctFifthPrize() {
+        Lotto playerInputNumber = new Lotto(List.of(1, 2, 3, 9, 10, 8));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Prize prize = new Prize(lotto, 7);
+        assertThat(prize.match(playerInputNumber)).isEqualTo(FIFTH);
+    }
+
 
 
 

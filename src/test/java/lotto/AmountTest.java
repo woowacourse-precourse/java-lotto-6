@@ -24,21 +24,21 @@ public class AmountTest extends Amount{
     }
 
     @Test
-    void 입력문자열이_숫자인_경우_예외_발생_X() {
+    void 입력문자열이_양수면_예외_발생_X() {
 
         //given
         String input = "8000";
 
         //when, then
-        assertThatNoException().isThrownBy(() -> isNum(input));
+        assertThatNoException().isThrownBy(() -> isPositiveNum(input));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"ten", "1a", "a12"})
-    void 입력문자열이_숫자가_아닌_경우_예외처리(String input) {
-        assertThatThrownBy(() -> isNum(input))
+    @ValueSource(strings = {"ten", "1a", "a12", "0", "-1000"})
+    void 입력문자열이_양수가_아닌_경우_예외처리(String input) {
+        assertThatThrownBy(() -> isPositiveNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 금액 값은 숫자여야 합니다.");
+                .hasMessage("[ERROR] 금액 값은 0보다 큰 숫자여야 합니다.");
     }
 
     @Test

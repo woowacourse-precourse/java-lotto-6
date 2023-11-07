@@ -31,15 +31,15 @@ public class DrawTest extends Draw{
 
     @Test
     void 입력값이_숫자가_아니면_예외_발생() {
-        assertThatThrownBy(() -> isInt("a"))
+        assertThatThrownBy(() -> isPositiveNum("a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 숫자여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 0보다 큰 숫자여야 합니다.");
     }
 
     @Test
     void 입력값이_숫자면_예외_발생_X() {
         assertThatNoException()
-                .isThrownBy(() -> isInt("45"));
+                .isThrownBy(() -> isPositiveNum("45"));
     }
 
     @Test

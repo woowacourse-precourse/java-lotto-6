@@ -29,7 +29,7 @@ public class Amount {
     }
 
     int validateAmount(String input) {
-        isNum(input);
+        isPositiveNum(input);
         int amount = stringToInt(input);
         return isDividedUp(amount);
     }
@@ -41,10 +41,10 @@ public class Amount {
         return amount;
     }
 
-    void isNum(String input) {
-        String regex = "^[0-9]+$";
+    void isPositiveNum(String input) {
+        String regex = "^([1-9]+[0-9]*)$";
         if (!input.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] 금액 값은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 금액 값은 0보다 큰 숫자여야 합니다.");
         }
     }
 

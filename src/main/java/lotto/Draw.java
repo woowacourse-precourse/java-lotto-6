@@ -79,14 +79,14 @@ public class Draw {
     }
 
     int toInt(String str) {
-        isInt(str);
+        isPositiveNum(str);
         return Integer.parseInt(str);
     }
 
-    void isInt(String str) {
-        String regex = "^[0-9]+$";
+    void isPositiveNum(String str) {
+        String regex = "^([1-9]+[0-9]+)$";
         if (!str.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 0보다 큰 숫자여야 합니다.");
         }
     }
 

@@ -1,0 +1,32 @@
+package lotto.domain;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+public class JudgementTest {
+    @DisplayName("로또 번호 확인 테스트, 로또 번호가 (1,2,3,4,5,6), (3,4,5,6,7,8) 당첨번호가 1,2,3,4,5,6 보너스가 7일 경우")
+    @Test
+    void checkWinningLottoNumbers() {
+        Lottos lottos = new Lottos(0);
+        lottos.addLottos(new Lotto(List.of(1,2,3,4,5,6)));
+        lottos.addLottos(new Lotto(List.of(3,4,5,6,7,8)));
+        List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        WinningLotto winningLotto = new WinningLotto(winningNumbers);
+        winningLotto.addBonusNumber("7");
+        Judgement.checkLottoNumber(lottos,winningLotto);
+        Assertions.assertEquals(lottos.getWinningCounts(), List.of(7,5));
+    }
+
+    @DisplayName("수익률 계산")
+    @Test
+    void checkcalculateEarningRate(){
+        List<Integer> rank = List.of(0,2,0,0,0);
+        Money money = new Money("5000");
+        float earningRate = Judgement.calculateEarningRate(rank, money);
+        Assertions.assertEquals(earningRate, 2000.0);
+    }
+}

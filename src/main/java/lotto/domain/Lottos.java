@@ -5,26 +5,18 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lotto.constant.Rank;
 
-public class LottoFactory {
+public class Lottos {
 
     private final List<Lotto> lottos;
 
-    private LottoFactory(final List<Lotto> lottos) {
+    private Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static LottoFactory of(final NumberGenerator numberGenerator, final Money money) {
-        return new LottoFactory(createLottos(numberGenerator, money));
-    }
-
-    private static List<Lotto> createLottos(final NumberGenerator numberGenerator, final Money money) {
-        return Stream.generate(numberGenerator::generate)
-                .limit(money.calculateLottoCount())
-                .map(Lotto::new)
-                .toList();
+    public static Lottos from(final List<Lotto> lottos) {
+        return new Lottos(lottos);
     }
 
     public Result calculateResult(final AnswerLotto answerLotto) {

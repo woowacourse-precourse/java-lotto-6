@@ -3,8 +3,8 @@ package lotto.controller;
 import lotto.convertor.Convertor;
 import lotto.domain.AnswerLotto;
 import lotto.domain.Lotto;
-import lotto.domain.LottoFactory;
-import lotto.domain.Money;
+import lotto.domain.Lottos;
+import lotto.domain.Ticket;
 import lotto.domain.RandomNumberGenerator;
 import lotto.domain.Result;
 import lotto.dto.ResultsDto;
@@ -22,12 +22,13 @@ public class LottoController {
     }
 
     public void run() {
-        final LottoFactory lottoFactory = LottoFactory.of(new RandomNumberGenerator(), createMoney());
+        final Ticket ticket = createTicket();
+        final Lottos lottos = ticket.buyLottos(new RandomNumberGenerator());
 
-        outputView.printLottoNumbers(lottoFactory.getLottoNumbers());
+        outputView.printLottoNumbers(lottos.getLottoNumbers());
 
         final AnswerLotto answerLotto = createAnswerLotto(createMainLotto());
-        final Result result = lottoFactory.calculateResult(answerLotto);
+        final Result result = lottos.calculateResult(answerLotto);
 
         outputView.printResults(ResultsDto.from(result));
         outputView.printRateOfReturn(result.calculateRateToReturn());
@@ -35,10 +36,10 @@ public class LottoController {
         inputView.close();
     }
 
-    private Money createMoney() {
+    private Ticket createTicket() {
         while (true) {
             try {
-                return Money.from(Convertor.toInt(inputView.enterMoney()));
+                return Ticket.from(Convertor.toInt(inputView.enterMoney()));
             } catch (IllegalArgumentException illegalArgumentException) {
                 outputView.printError(illegalArgumentException.getMessage());
             }

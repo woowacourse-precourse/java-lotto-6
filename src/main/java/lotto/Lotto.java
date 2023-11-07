@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +18,21 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return "Lotto{" +
+                "numbers=" + numbers +
+                '}';
+    }
+
+    public String length(Lotto lotto){
+        List<Integer> list = lotto.numbers;
+        int[] arr = new int[list.size()];
+
+        for(int i=0; i<list.size(); i++){
+            arr[i] = list.get(i);
+        }
+
+        return Arrays.toString(arr);
+    }
 }

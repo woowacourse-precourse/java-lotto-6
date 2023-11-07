@@ -10,6 +10,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int input = buyLotto();
+        System.out.println();
+        int number = input / 1000;
+        outputLottoNumber(number);
     }
 
     private static int buyLotto() {
@@ -47,6 +50,22 @@ public class Application {
     private static void inputValidate(int input) {
         if (input % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
+        }
+    }
+
+    private static void outputLottoNumber(int number){
+        int i = 0;
+        Lotto[] lottos = new Lotto[number];
+
+        while (i < number){
+            lottos[i] = new Lotto(lottoNumber());
+            i++;
+        }
+
+        System.out.println(number +"개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            String str = lotto.length(lotto);
+            System.out.println(str);
         }
     }
 }

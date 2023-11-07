@@ -33,7 +33,6 @@ public class WinningLotto {
         for (Lotto ticket : tickets) {
             int matchCount = getMatchCount(ticket);
             boolean matchBonus = matchBonus(ticket);
-            System.out.println("matchCount: " + matchCount + ", matchBonus: " + matchBonus);
             result.add(LottoEnum.LottoRank.valueOf(matchCount, matchBonus));
         }
         return result;

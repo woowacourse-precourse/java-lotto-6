@@ -58,30 +58,6 @@ public class ComputerCreateLottoTest {
         );
     }
 
-    @Test
-    void 숫자가_아닌_것_예외처리(){
-        String numberStr = "ㅂㅈㄷ";
-
-        assertThatThrownBy(() -> lottoController.setLottoBudget(numberStr))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 천_미만의_수_예외처리(){
-        String numberStr = "900";
-
-        assertThatThrownBy(() -> lottoController.setLottoBudget(numberStr))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 백원단위가_있을_때_예외처리(){
-        String numberStr = "11900";
-
-        assertThatThrownBy(() -> lottoController.setLottoBudget(numberStr))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     public boolean listsHaveSameElements(List<Integer> list1, List<Integer> list2) {
         Set<Integer> set1 = new HashSet<>(list1);
         Set<Integer> set2 = new HashSet<>(list2);

@@ -1,9 +1,9 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.LottoNumberDTO;
 
-import static lotto.CommonUnits.*;
+import static lotto.vo.CommonUnits.*;
 
 public class LottoNumberGenerator {
     private static LottoNumberGenerator lottoNumberGenerator;

@@ -1,12 +1,9 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoNumberDTO;
-
-import static lotto.CommonUnits.*;
 
 public class Inputter {
     private static Inputter inputter;

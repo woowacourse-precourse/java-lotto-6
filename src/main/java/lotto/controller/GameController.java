@@ -1,9 +1,18 @@
-package lotto;
+package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.service.Discriminator;
+import lotto.service.Inputter;
+import lotto.service.LottoNumberGenerator;
+import lotto.service.Printer;
 import lotto.dto.LottoNumberDTO;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Money;
+import lotto.model.Pocket;
+import lotto.vo.CommonUnits;
 
 public class GameController {
     private Pocket pocket;

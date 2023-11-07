@@ -1,4 +1,6 @@
-package lotto;
+package lotto.util;
+
+import lotto.vo.Grade;
 
 public class GradeUtil {
     public static Grade gradeMapper(int corrects, boolean bonus) {

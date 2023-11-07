@@ -1,8 +1,8 @@
-package lotto;
+package lotto.model;
 
-import static lotto.CommonUnits.MAX_LOTTO_NUMBER;
-import static lotto.CommonUnits.MIN_LOTTO_NUMBER;
-import static lotto.CommonUnits.NUMBERS_OF_LOTTO;
+import static lotto.vo.CommonUnits.MAX_LOTTO_NUMBER;
+import static lotto.vo.CommonUnits.MIN_LOTTO_NUMBER;
+import static lotto.vo.CommonUnits.NUMBERS_OF_LOTTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,7 +1,7 @@
-package lotto;
+package lotto.model;
 
-import static lotto.CommonUnits.MAX_LOTTO_NUMBER;
-import static lotto.CommonUnits.MIN_LOTTO_NUMBER;
+import static lotto.vo.CommonUnits.MAX_LOTTO_NUMBER;
+import static lotto.vo.CommonUnits.MIN_LOTTO_NUMBER;
 
 public class Bonus {
     private final int bonus;

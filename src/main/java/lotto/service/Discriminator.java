@@ -1,9 +1,12 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
-import lotto.dto.LottoNumberDTO;
 import lotto.dto.ProfitRateDTO;
 import lotto.dto.StatisticDTO;
+import lotto.model.Bonus;
+import lotto.model.Info;
+import lotto.model.Lotto;
+import lotto.util.GradeUtil;
 
 public class Discriminator {
     private Info info;

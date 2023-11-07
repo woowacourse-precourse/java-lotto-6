@@ -1,4 +1,7 @@
-package lotto;
+package lotto.model;
+
+import lotto.vo.CommonUnits;
+import lotto.vo.Grade;
 
 public class Info {
     private int[] statistic;
@@ -11,7 +14,7 @@ public class Info {
 
     public void addStatistic(Grade grade) {
         statistic[grade.getGrade()]++;
-        rewards += grade.price;
+        rewards += grade.getPrice();
     }
 
     public int[] getStatistic() {

@@ -1,9 +1,10 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
 import lotto.dto.LottoNumberDTO;
 import lotto.dto.ProfitRateDTO;
 import lotto.dto.StatisticDTO;
+import lotto.vo.Grade;
 
 public class Printer {
     private static Printer printer;

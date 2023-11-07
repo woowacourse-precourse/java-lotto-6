@@ -23,25 +23,28 @@ public class Lotto {
         if (numbers.size() != COUNT) {
             throw new IllegalArgumentException(Exception.LOTTO_SIZE);
         }
-        List<Integer> lotto = numbers.stream().distinct().toList();
-        if (lotto.size() != COUNT) {
-            throw new IllegalArgumentException(Exception.LOTTO_DUPLICATED);
-        }
-        if (getSizeInRange(lotto) != COUNT) {
+        checkDuplication(numbers);
+        numbers.forEach(this::checkRange);
+    }
+
+    private void checkDuplication(List<Integer> numbers) {
+        int nonDuplicationSize = numbers.stream()
+                .distinct().toList()
+                .size();
+        if (nonDuplicationSize != COUNT) {
             throw new IllegalArgumentException(Exception.LOTTO_RANGE);
         }
     }
 
-    private int getSizeInRange(List<Integer> lotto) {
-        return lotto.stream()
-                .filter(number -> number >= MIN_RANGE && number <= MAX_RANGE)
-                .toList().size();
+    protected void checkRange(int number) {
+        if (number < MIN_RANGE || number > MAX_RANGE) {
+            throw new IllegalArgumentException(Exception.LOTTO_RANGE);
+        }
     }
 
     public static List<Integer> generateLotto() {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT);
     }
-
 
     List<Integer> getNumbers() {
         return numbers;

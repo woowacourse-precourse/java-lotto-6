@@ -82,29 +82,30 @@
   - Application.java
 
 # 추가 refactoring 예정사항
--[ ] Naming 수정
+-[x] Naming 수정
   - 코드 구현 과정에서 lotto, lottoNumber, NumberString등 유사하게 작성된 코드가 많음.
   - 긴 메소드등을 세부적으로 분할하는 과정에서 네이밍수정이 필요함 
   - 클래스명 또한, 외국 로또에서 사용하는 네이밍을 기준으로 하였으나 직관적으로 알아보기 힘든 것 같음
--[ ] Controller 내의 메소드 수정
+-[x] Controller 내의 메소드 수정
   - 현재 여러기능을 동시에 하는 메소드들이 많음.
   - test과정에서 계속 시간초과가 나서 객체 생성등을 최소화 하려고 합쳐놓은 부분들을 분리해야함
   - 오류값 입력시 중간부터 계속시작해야했기에 while, try-catch구문을 사용했으나 2중 indent에대한 추가 고려 필요해보임
-- [ ] BonusNumber, WinningNumber
+- [x] BonusNumber, WinningNumber
   - 두 클래스의 경우, 입력값 검증 로직에서 유사한 부분이 많음.
   - 클래스를 상속관계로 두어 오버라이딩 하는 수준 에서 처리가 가능해보임
   - 유사한 코드의 중복을 줄이는 방향으로 추가 refactoring 예정.
-- [ ] Lotto
+- [x] Lotto
   - 제공된 클래스를 어떻게 수정해야 할 지 모르겠으나, 오류 검증위주로 코드추가예정
   - randomNumber 추출의 경우 제공된 코드가 있기에 어떻게 수정해 나갈지 미정.
 - [x] LottoTicket
   - 해당 검증에 빠진 부분이 있는지 추가 고려 필요
-- [ ] LottoService
+- [x] LottoService
   - switch/case로 구성된 메소드 다시 생각 
   - enum에서 사용 하는 부분에 대해 고려 포함.
-- [ ] OutputView
+- [x] OutputView
   - 고정된 출력형식에 대한 상수화 추가 진행
-- [ ] 전체 수정사항
-  - [ ] 구현순서가 제대로 되어있는지 체크할 것.
+- [x] 전체 수정사항
+  - [x] 구현순서가 제대로 되어있는지 체크할 것.
 - [ ] 테스트 코드 추가 하기 
   - [x] LottoTicketCount
+  - [x] WinningNumbersTest

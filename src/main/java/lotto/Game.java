@@ -4,7 +4,6 @@ import static lotto.InputReader.*;
 import static lotto.MessagePrinter.*;
 import static lotto.Util.*;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 

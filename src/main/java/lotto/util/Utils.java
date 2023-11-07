@@ -16,6 +16,12 @@ public class Utils {
         return Long.parseLong(string);
     }
 
+    public static int stringToInteger(String string) {
+        Validation.verifyStringToInteger(string);
+        return Integer.parseInt(string);
+
+    }
+
     public static long rangeInputMoney(long money){
         Validation.verifyRangeInputMoney(money);
         return money;

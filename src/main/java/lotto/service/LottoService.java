@@ -11,11 +11,9 @@ import lotto.util.Validator;
 
 public class LottoService {
 
-    private List<Integer> winningNumbers;
 
     public User initUser(int count) {
-        List<Lotto> lottoNumbers = new ArrayList<>();
-        makeRandomLotto(lottoNumbers, count);
+        List<Lotto> lottoNumbers = makeRandomLotto(count);
         return new User(count, lottoNumbers);
     }
 
@@ -31,28 +29,32 @@ public class LottoService {
         return sortedNumbers;
     }
 
-    private void makeRandomLotto(List<Lotto> lottoNumbers, int count) {
+    private List<Lotto> makeRandomLotto(int count) {
+        List<Lotto> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> randomNumbers = sorting(RandomUtil.getRandomUniqueNumbers());
             lottoNumbers.add(new Lotto(randomNumbers));
         }
+
+        return lottoNumbers;
     }
 
     public List<Integer> initWinningNumbers(String inputWinningNumbers) {
-        winningNumbers = parseAndValidateWinningNumbers(inputWinningNumbers);
-        return winningNumbers;
+        List<Integer> winningNumbers = parseAndValidateWinningNumbers(inputWinningNumbers);
+        Lotto lotto = new Lotto(winningNumbers);
+        return lotto.getNumbers();
     }
 
     private List<Integer> parseAndValidateWinningNumbers(String inputWinningNumbers) {
         String[] inputNumbers = inputWinningNumbers.split(",");
-        winningNumbers = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
 
         for (String inputNumber : inputNumbers) {
             int num = parseAndValidateSingleWinningNumber(inputNumber);
             winningNumbers.add(num);
         }
 
-        return validateWinningNumbers(winningNumbers);
+        return winningNumbers;
     }
 
     private int parseAndValidateSingleWinningNumber(String inputNumber) {
@@ -61,17 +63,11 @@ public class LottoService {
         return num;
     }
 
-    private List<Integer> validateWinningNumbers(List<Integer> winningNumbers) {
-        Validator.isSize(winningNumbers);
-        Validator.isDuplicated(winningNumbers);
-
-        return winningNumbers;
-    }
 
     public int initBonusNumber(String inputBonusNumber) {
         int num = Validator.isNumber(inputBonusNumber);
         Validator.isSmallAndBig(num);
-        Validator.isDuplicatedBonus(winningNumbers, num);
+        Validator.isDuplicatedBonus(lotto.getNumbers(), num);
 
         return num;
     }

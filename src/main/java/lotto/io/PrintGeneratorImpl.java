@@ -28,6 +28,7 @@ public class PrintGeneratorImpl implements PrintGenerator{
 	}
 
 	private String generateResult(StringBuilder resultBuilder) {
+		resultBuilder.append("\n");
 		resultBuilder.append("당첨 통계").append("\n");
 		resultBuilder.append("---").append("\n");
 		resultBuilder.append(LottoResult.THREE.getResultString()).append("\n");

@@ -45,9 +45,9 @@ public class Lotto {
 
 	public void checkLotto(int bonusNumber, List<List<Integer>> issuedLotto, Money money) {
 		for (List<Integer> lotto : issuedLotto) {
-			int matchCount = WinningCheck(lotto);
+			int matchNumbersCount = WinningCheck(lotto);
 			boolean isBonus = bonusCheck(bonusNumber, lotto);
-			reflectResult(matchCount, isBonus, money);
+			reflectResult(matchNumbersCount, isBonus, money);
 		}
 	}
 
@@ -59,13 +59,13 @@ public class Lotto {
 		return (int) lotto.stream().filter(numbers::contains).count();
 	}
 
-	private void reflectResult(int matchCount, boolean isBonus, Money money) {
-		if (matchCount == LottoResult.FIVE.number && isBonus) {
+	private void reflectResult(int matchNumbersCount, boolean isBonus, Money money) {
+		if (matchNumbersCount == LottoResult.FIVE.number && isBonus) {
 			LottoResult.FIVE_BONUS.reflectResult(money);
 			return;
 		}
 		for (LottoResult matchType : LottoResult.values()) {
-			if (matchType.number == matchCount) {
+			if (matchType.number == matchNumbersCount) {
 				matchType.reflectResult(money);
 				break;
 			}

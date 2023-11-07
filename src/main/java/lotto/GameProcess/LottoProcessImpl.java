@@ -33,7 +33,7 @@ public class LottoProcessImpl implements LottoProcess {
 		inputWinningNumbers();
 		inputBonusNumber();
 		//로또 번호 확인
-		lotto.checkLotto(bonus.getNumber(), IssuedLotto, this.money);
+		lotto.checkLotto(bonus.getNumber(), IssuedLotto, money);
 		PrintGenerator.printWinningStatistics();
 
 	}
@@ -63,8 +63,8 @@ public class LottoProcessImpl implements LottoProcess {
 		PrintGenerator.printInputMent("보너스 번호를");
 		try {
 			int bonusNumber = inputNumber.inputBonusNumber();
-			bonus = new Bonus(bonusNumber, this.lotto);
-			lotto.validateDuplicateWithBonus(bonus.getNumber());
+			bonus = new Bonus(bonusNumber, lotto);
+			// lotto.validateDuplicateWithBonus(bonus.getNumber());
 		} catch (IllegalArgumentException e) {
 			inputBonusNumber();
 		}

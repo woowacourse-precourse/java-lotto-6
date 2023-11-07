@@ -32,6 +32,5 @@ public class Money {
 
 	public void plusBenefit(int benefit) {
 		this.benefit += benefit;
-		System.out.println("개이덕 "+benefit);
 	}
 }

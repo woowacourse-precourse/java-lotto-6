@@ -4,6 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.LottoRank;
+import lotto.domain.Money;
+import lotto.domain.PurchasedLottos;
+import lotto.domain.WinningLotto;
 import lotto.generator.NumberGenerator;
 import lotto.generator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;

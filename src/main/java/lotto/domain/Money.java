@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class Money {
     private static final int NO_REMAINDER = 0;

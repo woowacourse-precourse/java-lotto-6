@@ -1,10 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import lotto.LottoMatchResultDto;
 
 public class LottoMatchResult {
     private final Map<LottoRank, Integer> lottoRankCount;

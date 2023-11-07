@@ -1,13 +1,11 @@
 package lotto.view;
 
-import java.text.NumberFormat;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.LottoMatchResult;
 import lotto.LottoMatchResultDto;
-import lotto.LottoRank;
-import lotto.PurchasedLottos;
+import lotto.domain.LottoRank;
+import lotto.domain.PurchasedLottos;
 
 public class OutputView {
     private static final String PURCHASED_LOTTOS_COUNT_MESSAGE = "%d개를 구매했습니다.\n";

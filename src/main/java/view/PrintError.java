@@ -12,7 +12,7 @@ public class PrintError {
 
   // 구입 금액이 숫자가 아닐 때 출력하는 메세지
   public void moneyNotNumber() {
-    System.out.println("[ERROR] 구입금액은 숫자로 입력하여야 합니다.");
+    System.out.println("[ERROR] 구입금액은 숫자로 입력하여야 하며 띄워쓰기를 하면 안됩니다.");
   }
 
   // 구입 금액이 1000 단위가 아닐 떄 출력하는 메세지

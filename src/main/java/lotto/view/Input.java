@@ -42,4 +42,10 @@ public class Input {
         return numbers;
     }
 
+    void validateNumber(int num) {
+        if ((num <= 0) || (num > 45)) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
 }

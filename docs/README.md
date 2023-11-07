@@ -9,8 +9,8 @@
 - [] 총 수익률 계산하기 (소수점 둘째 자리에서 반올림)                                              Judgement#calculateRevenue()
 
 - [X] 로또 구입 금액을 입력 받기 (1,000으로 나누어 떨어지지 않는 경우 예외처리)                          UserInput#getMoney()
-- [] 당첨 번호를 입력 받기 (번호는 쉼표(,)를 기준으로 구분)                                         UserInput#getWinNumbers()
-- [] 보너스 번호를 입력 받기                                                                  UserInput#getBonusNumbers()
+- [X] 당첨 번호를 입력 받기 (번호는 쉼표(,)를 기준으로 구분)                                         UserInput#getWinnersNumbers()
+- [X] 보너스 번호를 입력 받기                                                                  UserInput#getBonusNumber()
 
 - [X] 입력사항 출력하기 (구입금액을 입력해 주세요/당첨 번호를 입력해 주세요/보너스 번호를 입력해 주세요.)        Printer#printDirection()
 - [X] 발행한 로또 수량 및 번호를 출력하기                                                         Printer#printLottoTickets()

@@ -7,14 +7,14 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
     public static final int LOTTO_LENGTH = 6;
 
     private LottoMachine() { }
 
     public static Lotto buyLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_LENGTH);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
         List<Integer> sortedNumber = sort(numbers);
         return new Lotto(sortedNumber);
     }

@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.domain.LottoMoney.MONEY_UNIT;
-import static lotto.service.LottoMachine.LOTTO_LENGTH;
+import static lotto.service.LottoMachine.*;
 import static lotto.util.ErrorMessage.*;
 
 public class Validator {
 
     private static final String NOT_SPECIAL_REGEX = "^[a-zA-Z0-9,]*$";
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     private Validator() { }
 

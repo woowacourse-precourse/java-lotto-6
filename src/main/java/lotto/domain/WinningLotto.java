@@ -13,13 +13,9 @@ public class WinningLotto {
     }
 
     public int calculateMathCount(List<Integer> lotto) {
-        int count = 0;
-        for (Integer number : lotto) {
-            if(answerLotto.contains(number)) {
-                count++;
-            }
-        }
-        return count;
+        return (int) lotto.stream()
+                .filter(answerLotto::contains)
+                .count();
     }
 
     public int getBonusNumber() {

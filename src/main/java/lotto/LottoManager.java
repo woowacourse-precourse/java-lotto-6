@@ -8,6 +8,7 @@ import lotto.view.Output;
 import java.util.*;
 
 import static lotto.util.Repeater.untilNotException;
+import static lotto.util.Validator.validateBonusNumber;
 
 public class LottoManager {
     public static final int NUMBER_OF_LOTTO_NUMBER = 6;
@@ -38,6 +39,7 @@ public class LottoManager {
     public void checkMyWinning(List<Lotto> myTickets) {
         List<Integer> winningNumbers = this.getWinningNumbers();
         int bonusNumber = this.getBonusNumber();
+        validateBonusNumber(winningNumbers, bonusNumber);
 
         Map<WinningCondition, Integer> result = new HashMap<>();
         for (Lotto ticket : myTickets) {

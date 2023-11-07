@@ -26,4 +26,10 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_LOTTO_NUMBER_COUNT);
         }
     }
+
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE);
+        }
+    }
 }

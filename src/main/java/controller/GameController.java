@@ -5,12 +5,14 @@ import java.util.List;
 
 import lotto.Lotto;
 import lotto.LottoMoney;
+import lotto.LuckeyLotto;
 import view.InputView;
 import view.OutputView;
 
 public class GameController {
     LottoMoney lottoMoney;
     Lotto lotto;
+    LuckeyLotto luckeyLotto;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -25,7 +27,7 @@ public class GameController {
         randomUtility.generateRandomLottoNumbers();
         saveRandomLottoNumbers(lottoMoney);
         saveLuckeyNumbers();
-        inputView.enterBonusLottoNumber();
+        saveBonusLottoNumber();
     }
 
     private void saveLottoMoney() {
@@ -56,6 +58,19 @@ public class GameController {
                 luckeyNumber = deleteWhiteSpace(luckeyNumber);
                 List<Integer> luckeyNumbers = convertStringToStringList(luckeyNumber);
                 lotto = new Lotto(luckeyNumbers);
+                restart = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void saveBonusLottoNumber() {
+        restart = true;
+        while (restart) {
+            try {
+                String luckeyBonusNumber = inputView.enterBonusLottoNumber();
+                luckeyLotto = new LuckeyLotto(lotto.getNumbers(), luckeyBonusNumber);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

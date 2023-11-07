@@ -14,8 +14,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class LottoDomain {
-    OutputView outputView = new OutputView();
+    OutputView outputView;
     LottoPrizeMoney lottoPrizeMoney;
+
+    public LottoDomain(OutputView outputView) {
+        this.outputView = outputView;
+    }
 
     public Lottos createLottos(int purchaseCount) {
         Lotto lotto;

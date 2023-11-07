@@ -20,7 +20,7 @@ class LottoDomainTest {
     OutputView outputView = new OutputView();
     LottoPrizeMoney lottoPrizeMoney;
 
-    LottoDomain lottoDomain = new LottoDomain();
+    LottoDomain lottoDomain = new LottoDomain(outputView);
 
     @Test
     void createLottosTest() {

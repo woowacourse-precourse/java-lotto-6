@@ -95,6 +95,7 @@ public class WinningStatistics {
                 countMatchingFive() * WinningRank.FIVE.getPrize() +
                 countMatchingFiveBonus() * WinningRank.FIVE_BONUS.getPrize() +
                 countMatchingAll() * WinningRank.ALL.getPrize();
+        System.out.println(WinningRank.THREE.getPrize());
         return (double) totalPrize / (lottos.size() * 1000) * 100;
     }
 

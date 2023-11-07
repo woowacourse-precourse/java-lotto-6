@@ -91,4 +91,17 @@ class UiTest {
         ui.printLottoResult(List.of(LottoScore.FIFTH_PLACE, LottoScore.SECOND_PLACE), earningPercent);
         Assertions.assertThat(outputStreamCaptor.toString().trim()).isEqualToIgnoringNewLines(expectMessage);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "qwe",
+            "asd",
+            "123"
+    })
+    void 잘못된_입력일경우_예외태그와같이_예외문구를_출력한다(String errorMessage) {
+        String expectMessage = "[ERROR] " + errorMessage;
+        Ui ui = getUi();
+        ui.printError(new IllegalArgumentException(errorMessage));
+        Assertions.assertThat(outputStreamCaptor.toString().trim()).isEqualToIgnoringNewLines(expectMessage);
+    }
 }

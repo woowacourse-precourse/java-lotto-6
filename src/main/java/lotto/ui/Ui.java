@@ -20,6 +20,7 @@ public class Ui {
     public static final String EARNING_PERCENT_MESSAGE = "총 수익률은 %.1f%%입니다.";
     public static final String LOTTO_RESULT_START_MESSAGE = "당첨 통계";
     public static final String LOTTO_RESULT_START_DELIMITERS = "---";
+    public static final String ERROR_TAG = "[ERROR] ";
 
     public void printPrice() {
         System.out.println(PRICE_INPUT_MESSAGE);
@@ -73,5 +74,9 @@ public class Ui {
 
     private void printLottoEarningPercent(double earningPercent) {
         System.out.println(String.format(EARNING_PERCENT_MESSAGE, earningPercent));
+    }
+
+    public void printError(IllegalArgumentException e) {
+        System.out.println(ERROR_TAG + e.getMessage());
     }
 }

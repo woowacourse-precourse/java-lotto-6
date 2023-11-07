@@ -1,9 +1,9 @@
 package lotto.controller;
 
+import lotto.domain.PurchaseAmount;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.WinningLottoRepository;
 import lotto.service.Input;
-import lotto.domain.PurchaseAmount;
 import lotto.service.LottoService;
 import lotto.service.ResultService;
 import lotto.view.View;
@@ -15,7 +15,7 @@ public class LottoController {
 
     public void run(){
         // 구입금액 입력
-        PurchaseAmount purchaseAmount = Input.purChaseAmount();
+        PurchaseAmount purchaseAmount = Input.purchaseAmount();
         // 금액만큼 구입개수 계산
         int purchaseCount = calculatePurchaseCount(purchaseAmount);
 

@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static lotto.settings.ErrorMessage.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -12,11 +10,11 @@ import lotto.view.View;
 
 public class Input {
 
-    public static PurchaseAmount purChaseAmount(){
+    public static PurchaseAmount purchaseAmount(){
         while(true){
             View.requestPurchaseAmount();
-            String input = readLine();
             try{
+                String input = readLine();
                 Validate.trim(input);
                 Validate.number(input);
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class BonusNumberValidation {
     NumericInputValidation numericInputValidation = new NumericInputValidation();
+
     public int validateBonusNumber(String input) {
         numericInputValidation.validateInputIsNumeric(input);
         validateCheckRangeOfBonusNumberInput(input);

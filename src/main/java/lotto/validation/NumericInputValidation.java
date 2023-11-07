@@ -5,7 +5,6 @@ import lotto.constant.ErrorMessage;
 public class NumericInputValidation {
 
 
-
     public void validateInputIsNumeric(String input) {
         if (!input.matches("[-+]?\\d*")) {
             throw new IllegalArgumentException(ErrorMessage
@@ -13,7 +12,6 @@ public class NumericInputValidation {
                     .getMessage());
         }
     }
-
 
 
     public void validateInputIsNull(String input) {

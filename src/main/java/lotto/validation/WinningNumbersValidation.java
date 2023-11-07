@@ -44,9 +44,8 @@ public class WinningNumbersValidation {
 
         validateCheckRangeOfWinnerNumberInput(winnerNumbers);
 
-        if(Arrays.stream(winnerNumbers).anyMatch(number ->
-                Integer.parseInt(number) < NumberUtil.MIN_NUMBER.getNumber()))
-        {
+        if (Arrays.stream(winnerNumbers).anyMatch(number ->
+                Integer.parseInt(number) < NumberUtil.MIN_NUMBER.getNumber())) {
             throw new IllegalArgumentException(ErrorMessage
                     .POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE
                     .getMessage());

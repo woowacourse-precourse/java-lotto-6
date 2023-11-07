@@ -29,7 +29,7 @@ public class PrintUtil {
         System.out.print(DrawMessage.WINNING_STATISTICS_MESSAGE.getMessage());
     }
 
-    public void printLottoStatisticsResults(StringBuilder result){
+    public void printLottoStatisticsResults(StringBuilder result) {
         System.out.println(result);
     }
 

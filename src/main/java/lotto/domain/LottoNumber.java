@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.service.InputValue;
 import lotto.service.PrintUtil;
 import lotto.validation.BonusNumberValidation;
-import lotto.validation.NumericInputValidation;
 import lotto.validation.PurchaseAmountValidation;
 import lotto.validation.WinningNumbersValidation;
 
@@ -15,10 +14,10 @@ public class LottoNumber {
 
     PrintUtil printUtil = new PrintUtil();
 
-    NumericInputValidation numericInputValidation = new NumericInputValidation();
     PurchaseAmountValidation purchaseAmountValidation = new PurchaseAmountValidation();
     WinningNumbersValidation winningNumbersValidation = new WinningNumbersValidation();
     BonusNumberValidation bonusNumberValidation = new BonusNumberValidation();
+
     public int inputPurchaseAmount() {
         printUtil.printPurchaseAmountInput();
         try {

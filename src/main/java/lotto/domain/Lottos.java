@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class Lottos {
     private List<Lotto> lottos = new ArrayList<>();
@@ -26,5 +27,15 @@ public class Lottos {
             result.put(grade, result.getOrDefault(grade, 0) + 1);
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        stringJoiner.add(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            stringJoiner.add(lotto.toString());
+        }
+        return stringJoiner.toString();
     }
 }

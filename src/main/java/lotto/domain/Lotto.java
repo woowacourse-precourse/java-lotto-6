@@ -6,6 +6,7 @@ import static lotto.error.ErrorMessage.INVALID_LOTTO_NUMBER_LENGTH;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Lotto {
     public static final Integer PRICE = 1000;
@@ -49,5 +50,14 @@ public class Lotto {
             bonus++;
         }
         return Grade.from(answer,bonus);
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(", ","[","]");
+        for (Integer number : numbers){
+            stringJoiner.add(number.toString());
+        }
+        return stringJoiner.toString();
     }
 }

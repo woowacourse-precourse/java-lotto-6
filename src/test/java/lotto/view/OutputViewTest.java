@@ -2,7 +2,7 @@ package lotto.view;
 
 import static lotto.view.OutputView.printEarningRate;
 import static lotto.view.OutputView.printLottoResult;
-import static lotto.view.OutputView.printLottoTickets;
+import static lotto.view.OutputView.printLottos;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -13,7 +13,6 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.LottoResult;
-import lotto.model.LottoTickets;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,14 +42,12 @@ class OutputViewTest {
 
     @Test
     void 발행된_티켓들은_오름차순으로_출력되어야_한다() {
-        final LottoTickets tickets = new LottoTickets(
-            List.of(
-                new Lotto(List.of(1, 3, 5, 7, 9, 11)),
-                new Lotto(List.of(1, 7, 5, 6, 21, 11))
-            )
+        final List<Lotto> tickets = List.of(
+            new Lotto(List.of(1, 3, 5, 7, 9, 11)),
+            new Lotto(List.of(1, 7, 5, 6, 21, 11))
         );
 
-        printLottoTickets(tickets);
+        printLottos(tickets);
 
         assertThat(output()).contains(String.format("%d개를 구매했습니다.", 2));
         assertThat(output()).contains("[1, 3, 5, 7, 9, 11]");

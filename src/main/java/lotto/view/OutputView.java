@@ -1,7 +1,8 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoResult;
-import lotto.model.LottoTickets;
 
 public class OutputView {
 
@@ -9,11 +10,21 @@ public class OutputView {
     private static final String LOTTO_TICKETS_RESULT_MESSAGE = "당첨 통계\n---";
     private static final String LOTTO_TICKETS_EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static void printLottoTickets(final LottoTickets tickets) {
+    public static void printLottos(final List<Lotto> lottos) {
+        printLottosCount(lottos);
+        printLottosNumber(lottos);
+    }
+
+    private static void printLottosCount(List<Lotto> lottos) {
         final String ticketCountPrintFormat = String.format(LOTTO_TICKETS_COUNT_MESSAGE,
-            tickets.getTicketsCount());
+            lottos.size());
         System.out.println(ticketCountPrintFormat);
-        System.out.println(tickets.toOutputString());
+    }
+
+    private static void printLottosNumber(List<Lotto> lottos) {
+        for (final Lotto lotto : lottos) {
+            System.out.println(lotto.numbersToString());
+        }
     }
 
     public static void printLottoResult(final LottoResult result) {

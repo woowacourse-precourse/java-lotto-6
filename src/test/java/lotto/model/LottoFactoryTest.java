@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.Constants.Constants.TICKET_PRICE;
+import static lotto.Constants.Constants.LOTTO_PRICE;
 import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
 import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,25 +11,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoTicketFactoryTest {
+class LottoFactoryTest {
 
-    private final LottoTicketFactory lottoTicketFactory = new LottoTicketFactory();
+    private final LottoFactory lottoTicketFactory = new LottoFactory();
 
     @Test
     void 구매_금액에_맞춰_티켓을_발행한다() {
-        final int ticketCount = 3;
-        final int purchaseAmount = TICKET_PRICE * ticketCount;
+        final int lottoCount = 3;
+        final int purchaseAmount = LOTTO_PRICE * lottoCount;
 
-        final List<Lotto> tickets = lottoTicketFactory.generateTickets(purchaseAmount);
+        final List<Lotto> lottos = lottoTicketFactory.generateLottos(purchaseAmount);
 
-        assertThat(tickets.size()).isEqualTo(ticketCount);
+        assertThat(lottos.size()).isEqualTo(lottoCount);
     }
 
     @Test
     void 티켓_가격_단위로_지불하지_않는다면_예외를_던진다() {
-        final int purchaseAmount = TICKET_PRICE + TICKET_PRICE / 2;
+        final int purchaseAmount = LOTTO_PRICE + LOTTO_PRICE / 2;
 
-        assertThatThrownBy(() -> lottoTicketFactory.generateTickets(purchaseAmount))
+        assertThatThrownBy(() -> lottoTicketFactory.generateLottos(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(PURCHASE_AMOUNT_NOT_PRICE_UNIT.getMessage());
     }
@@ -37,7 +37,7 @@ class LottoTicketFactoryTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1000})
     void 티켓_가격이_음수라면_예외를_던진다(final int purchaseAmount) {
-        assertThatThrownBy(() -> lottoTicketFactory.generateTickets(purchaseAmount))
+        assertThatThrownBy(() -> lottoTicketFactory.generateLottos(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(PURCHASE_AMOUNT_NOT_POSITIVE.getMessage());
     }

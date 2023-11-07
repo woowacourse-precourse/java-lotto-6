@@ -13,6 +13,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int ticket = purchaseTicket();
+        for (int i = 0; i < ticket; i++) {
+            System.out.println(Lotto.makeLotto());
+        }
         int[] winNumbers = inputWinningNumbers(); // 당첨 번호는 6개
         int bonusNumber = inputBonusNumber(winNumbers); // 보너스 볼은 1개
 

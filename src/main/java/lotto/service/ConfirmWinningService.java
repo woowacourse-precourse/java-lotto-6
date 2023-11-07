@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.util.constants.Numbers.REWARD_CRITERIA;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class ConfirmWinningService implements Service {
     }
 
     private boolean hasWon(Integer rank) {
-        return rank <= 5;
+        return rank <= REWARD_CRITERIA.getNumber();
     }
 
     private void addReward(Integer rank) {

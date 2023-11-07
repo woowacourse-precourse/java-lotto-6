@@ -1,5 +1,6 @@
 package lotto.model.input;
 
+import static lotto.util.constants.Numbers.LOTTO_PRICE;
 import static lotto.util.exception.ErrorMessage.NEGATIVE_NUMBER;
 import static lotto.util.exception.ErrorMessage.NOT_DIVISIBLE_BY_UNIT;
 
@@ -35,6 +36,6 @@ public class InputMoney extends InputNumber {
     }
 
     private boolean notDivisibleByUnit() {
-        return number % 1000 != 0;
+        return number % LOTTO_PRICE.getNumber() != 0;
     }
 }

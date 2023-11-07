@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.util.constants.Numbers.BONUS_INCLUDED_START_RANK;
+import static lotto.util.constants.Numbers.BONUS_NOT_INCLUDED_START_RANK;
+import static lotto.util.constants.Numbers.FIRST_PRIZE_MATCH_COUNT;
 import static lotto.util.exception.ErrorMessage.WINNER_NUMBER_CONTAINS_BONUS;
 
 import java.util.List;
@@ -21,22 +24,29 @@ public class LottoBonusPair {
     }
 
     public List<Integer> getResults(PublishedLotto publishedLotto) {
-        return publishedLotto.getPublishedLottos()
+        return publishedLotto.getPublishedLotto()
                 .stream()
                 .map(this::checkRank)
                 .collect(Collectors.toList());
     }
 
     private Integer checkRank(Lotto lotto) {
-        boolean hasBonusNumber = lotto.contains(bonusNumber);
-        Integer correctNumbers = winnerNumbers.compare(lotto);
-        if (correctNumbers == 6) {
+        Integer correctNumbers = winnerNumbers.countSameNumbers(lotto);
+        if (isFirstPrize(correctNumbers)) {
             return 1;
         }
-        if (hasBonusNumber) {
-            return 7 - correctNumbers;
+        return calculateRank(lotto, correctNumbers);
+    }
+
+    private boolean isFirstPrize(int correctNumbers) {
+        return correctNumbers == FIRST_PRIZE_MATCH_COUNT.getNumber();
+    }
+
+    private int calculateRank(Lotto lotto, int correctNumbers) {
+        if (lotto.contains(bonusNumber)) {
+            return BONUS_INCLUDED_START_RANK.getNumber() - correctNumbers;
         }
-        return 8 - correctNumbers;
+        return BONUS_NOT_INCLUDED_START_RANK.getNumber() - correctNumbers;
     }
 
     private void validate(Lotto winnerNumbers, Integer bonusNumber) {

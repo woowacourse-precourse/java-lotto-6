@@ -1,5 +1,8 @@
 package lotto.util.input;
 
+import static lotto.util.constants.Strings.BLANK;
+import static lotto.util.constants.Strings.COMMA;
+import static lotto.util.constants.Strings.NULL_STRING;
 import static lotto.util.exception.ErrorMessage.BLANK_ELEMENT;
 
 import java.util.Arrays;
@@ -25,8 +28,8 @@ public abstract class InputList<T> implements InputValidator {
     }
 
     private List<String> toList(String input) {
-        input = input.replaceAll(" ", "");
-        return Arrays.stream(input.split(",")).toList();
+        input = input.replaceAll(BLANK.getString(), NULL_STRING.getString());
+        return Arrays.stream(input.split(COMMA.getString())).toList();
     }
 
     public abstract void validate();

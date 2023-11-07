@@ -1,5 +1,7 @@
 package lotto.util.input;
 
+import static lotto.util.constants.Strings.BLANK;
+import static lotto.util.constants.Strings.NULL_STRING;
 import static lotto.util.exception.ErrorMessage.BLANK_INPUT;
 import static lotto.util.exception.ErrorMessage.NOT_INTEGER;
 
@@ -15,7 +17,7 @@ public abstract class InputNumber implements InputValidator {
     }
 
     private void checkBlank(String input) {
-        input = input.replaceAll(" ", "");
+        input = input.replaceAll(BLANK.getString(), NULL_STRING.getString());
         if (input.isBlank()) {
             throw LottoException.of(BLANK_INPUT);
         }
@@ -28,7 +30,6 @@ public abstract class InputNumber implements InputValidator {
         } catch (NumberFormatException e) {
             throw LottoException.of(NOT_INTEGER);
         }
-
         return number;
     }
 

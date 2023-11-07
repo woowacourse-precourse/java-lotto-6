@@ -1,5 +1,7 @@
 package lotto.model.input;
 
+import static lotto.util.constants.Numbers.MAXIMUM_LOTTO_NUMBER;
+import static lotto.util.constants.Numbers.MINIMUM_LOTTO_NUMBER;
 import static lotto.util.exception.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.util.exception.ErrorMessage.NOT_INTEGER;
 
@@ -47,7 +49,7 @@ public class InputWinnerNumbers extends InputList<Integer> {
 
     private boolean notLottoNumbers() {
         for (Integer number:list) {
-            if (number < 1 || number > 45) {
+            if (number < MINIMUM_LOTTO_NUMBER.getNumber() || number > MAXIMUM_LOTTO_NUMBER.getNumber()) {
                 return true;
             }
         }

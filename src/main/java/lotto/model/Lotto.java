@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.constants.Numbers.VALID_NUMBER_LIST_SIZE;
 import static lotto.util.exception.ErrorMessage.HAS_DUPLICATE_NUMBER;
 import static lotto.util.exception.ErrorMessage.NOT_SIX_NUMBERS;
 
@@ -20,7 +21,7 @@ public class Lotto {
         return this.numbers.contains(number);
     }
 
-    public Integer compare(Lotto other) {
+    public Integer countSameNumbers(Lotto other) {
         Integer count = 0;
         for (Integer number:other.numbers) {
             if (this.contains(number)) {
@@ -39,7 +40,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (notSixNumbers(numbers)) {
+        if (validateListSize(numbers)) {
             throw LottoException.of(NOT_SIX_NUMBERS);
         }
 
@@ -48,8 +49,8 @@ public class Lotto {
         }
     }
 
-    private boolean notSixNumbers(List<Integer> numbers) {
-        return numbers.size() != 6;
+    private boolean validateListSize(List<Integer> numbers) {
+        return numbers.size() != VALID_NUMBER_LIST_SIZE.getNumber();
     }
 
     private boolean hasDuplicateNumber(List<Integer> numbers) {

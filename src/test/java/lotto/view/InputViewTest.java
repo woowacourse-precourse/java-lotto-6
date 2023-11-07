@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.common.constant.ErrorConstant.ERROR_PREFIX;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -78,7 +77,7 @@ class InputViewTest {
         // when
         assertThatThrownBy(view::inputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("%s 당첨 번호는 %d개 입력해야합니다.".formatted(ERROR_PREFIX, Lotto.DEFAULT_NUMBER_SIZE));
+                .hasMessage("당첨 번호는 %d개 입력해야합니다.".formatted(Lotto.DEFAULT_NUMBER_SIZE));
     }
 
     @DisplayName("당첨 번호 입력 시 번호가 1~45 사이가 아니면 예외를 발생한다.")
@@ -91,8 +90,7 @@ class InputViewTest {
         // when
         assertThatThrownBy(view::inputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("%s 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.".formatted(
-                        ERROR_PREFIX,
+                .hasMessage("로또 번호는 %d부터 %d 사이의 숫자여야 합니다.".formatted(
                         LottoNumberConstant.MIN_LOTTO_NUMBER,
                         LottoNumberConstant.MAX_LOTTO_NUMBER
                 ));
@@ -108,7 +106,7 @@ class InputViewTest {
         // when
         assertThatThrownBy(view::inputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("%s 당첨 번호는 중복될 수 없습니다.".formatted(ERROR_PREFIX));
+                .hasMessage("당첨 번호는 중복될 수 없습니다.");
     }
 
 }

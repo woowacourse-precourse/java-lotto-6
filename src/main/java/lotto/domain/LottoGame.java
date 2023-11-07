@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.Objects;
 import lotto.config.LottoConfig;
-import lotto.exception.InvalidBonusNumberException;
+import lotto.util.RetryHandler;
 
 public class LottoGame {
 
@@ -19,6 +19,11 @@ public class LottoGame {
         return new Builder();
     }
 
+    private static LottoWinningResult createWinningResultByPurchasedAndWinningLotto(List<Lotto> lottos,
+            WinningLotto winningLotto) {
+        return LottoWinningResult.of(lottos, winningLotto);
+    }
+
     public void play() {
         int purchasePrice = getValidPurchasePrice();
         List<Lotto> lottos = generateLottosByPurchasePrice(purchasePrice);
@@ -27,10 +32,6 @@ public class LottoGame {
         WinningLotto winningLotto = getWinningLottoWithBonusNumber();
         LottoWinningResult lottoWinningResult = createWinningResultByPurchasedAndWinningLotto(lottos, winningLotto);
         showLottoWinningResult(lottoWinningResult);
-    }
-
-    private static LottoWinningResult createWinningResultByPurchasedAndWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
-        return LottoWinningResult.of(lottos, winningLotto);
     }
 
     private int getValidPurchasePrice() {
@@ -43,21 +44,18 @@ public class LottoGame {
     }
 
     private WinningLotto getWinningLottoWithBonusNumber() {
-        WinningLotto winningLotto = userInterface.getWinningLotto();
-        addBonusNumberToWinningNumber(winningLotto);
-        return winningLotto;
+        WinningLotto winningLotto = userInterface.getValidWinningLotto();
+        return addValidBonusNumberToWinningLotto(winningLotto);
     }
 
-    private void addBonusNumberToWinningNumber(WinningLotto winningLotto) {
-        while (true) {
-            try {
-                Integer bonusNumber = userInterface.getBonusNumber();
-                winningLotto.addBonusNumber(bonusNumber);
-                return;
-            } catch (InvalidBonusNumberException exception) {
-                userInterface.printErrorMessage(exception);
-            }
-        }
+    private WinningLotto addValidBonusNumberToWinningLotto(WinningLotto winningLotto) {
+        return RetryHandler.retryOnException(this::addBonusNumberToWinningLotto, winningLotto);
+    }
+
+    private WinningLotto addBonusNumberToWinningLotto(WinningLotto winningLotto) {
+        Integer bonusNumber = userInterface.getBonusNumber();
+        winningLotto.addBonusNumber(bonusNumber);
+        return winningLotto;
     }
 
     private void showPurchasedLottos(List<Lotto> lottos) {

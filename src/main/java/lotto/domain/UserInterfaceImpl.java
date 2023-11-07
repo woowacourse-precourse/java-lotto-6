@@ -3,8 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Message;
 import lotto.exception.InvalidBonusNumberFormatException;
-import lotto.exception.InvalidLottoException;
 import lotto.util.PurchasePriceValidator;
+import lotto.util.RetryHandler;
 import lotto.util.WinningLottoConverter;
 import lotto.util.WinningLottoValidator;
 
@@ -19,30 +19,12 @@ public class UserInterfaceImpl implements UserInterface {
 
     @Override
     public int getValidPurchasePrice() {
-        while (true) {
-            try {
-                System.out.println(REQUEST_PURCHASE_PRICE);
-                String purchasePrice = readAndSkipLine();
-                PurchasePriceValidator.validate(purchasePrice);
-                return Integer.parseInt(purchasePrice);
-            } catch (IllegalArgumentException exception) {
-                printErrorMessage(exception);
-            }
-        }
+        return RetryHandler.retryOnException(this::getPurchasePrice);
     }
 
     @Override
-    public WinningLotto getWinningLotto() {
-        while (true) {
-            try {
-                System.out.println(REQUEST_WINNING_LOTTO);
-                String winningLottoNumbers = readAndSkipLine();
-                WinningLottoValidator.validate(winningLottoNumbers);
-                return WinningLottoConverter.convertToWinningLotto(winningLottoNumbers);
-            } catch (InvalidLottoException invalidLottoException) {
-                printErrorMessage(invalidLottoException);
-            }
-        }
+    public WinningLotto getValidWinningLotto() {
+        return RetryHandler.retryOnException(this::getWinningLotto);
     }
 
     @Override
@@ -72,6 +54,20 @@ public class UserInterfaceImpl implements UserInterface {
     public void printPurchasedResult(long lottoCount, LottoResult lottoResult) {
         System.out.printf(LOTTO_COUNT_FORMAT, lottoCount);
         System.out.println(lottoResult.getLottoResult() + Message.NEW_LINE);
+    }
+
+    private WinningLotto getWinningLotto() {
+        System.out.println(REQUEST_WINNING_LOTTO);
+        String winningLottoNumbers = readAndSkipLine();
+        WinningLottoValidator.validate(winningLottoNumbers);
+        return WinningLottoConverter.convertToWinningLotto(winningLottoNumbers);
+    }
+
+    private Integer getPurchasePrice() {
+        System.out.println(REQUEST_PURCHASE_PRICE);
+        String purchasePrice = readAndSkipLine();
+        PurchasePriceValidator.validate(purchasePrice);
+        return Integer.parseInt(purchasePrice);
     }
 
     private String readAndSkipLine() {

@@ -4,7 +4,7 @@ public interface UserInterface {
 
     int getValidPurchasePrice();
 
-    WinningLotto getWinningLotto();
+    WinningLotto getValidWinningLotto();
 
     Integer getBonusNumber();
 

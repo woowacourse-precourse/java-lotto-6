@@ -28,17 +28,17 @@ public class GameService {
         }
     }
 
-    public String generateNumber(){
+    public String generateNumber() {
         ArrayList<Integer> numbers = new ArrayList<>();
 
-        while (numbers.size() < 6){
+        while (numbers.size() < 6) {
             int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!numbers.contains(randomNumber)){
+            if (!numbers.contains(randomNumber)) {
                 numbers.add(randomNumber);
             }
         }
         Collections.sort(numbers);
-        // todo: GameRepository.saveNumber(numbers)
+        gameRepository.saveNumber(numbers);
         return numbers.toString();
     }
 

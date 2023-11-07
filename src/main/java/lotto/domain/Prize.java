@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Prize {
+    NONE(0, 0, false),
     FIFTH(5, 3, false),
     FOURTH(4, 4, false),
     THIRD(3, 5, false),
@@ -21,7 +22,7 @@ public enum Prize {
 
     public static Prize findFrom(int mainMatchCount, boolean isMatchBonus) {
         return Arrays.stream(Prize.values()).filter(prize -> prize.equals(mainMatchCount, isMatchBonus))
-                .findAny().orElseThrow();
+                .findAny().orElse(NONE);
     }
 
     private boolean equals(int mainMatchCount, boolean isMatchBonus) {

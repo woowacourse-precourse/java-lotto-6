@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class PrizeTest {
 
     @ParameterizedTest
-    @CsvSource({"3,false,FIFTH", "5,false,THIRD", "5,true,SECOND"})
+    @CsvSource({"3,false,FIFTH", "5,false,THIRD", "5,true,SECOND", "0,true,NONE"})
     void findFrom(int matchCount, boolean isBonusMatched, String nameExpected) {
 
         assertThat(Prize.findFrom(matchCount, isBonusMatched).name()).isEqualTo(nameExpected);

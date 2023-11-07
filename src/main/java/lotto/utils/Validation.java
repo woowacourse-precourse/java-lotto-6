@@ -7,6 +7,10 @@ import lotto.view.ExceptionMessages;
 
 public class Validation {
 
+    public static void validatePurchaseAmount(int purchaseAmount) {
+        validateNumberInRange(purchaseAmount, 1_000, 100_000);
+        validateNumberMultipleOf(purchaseAmount, 1_000);
+    }
     public static void validateLotto(List<Integer> winningNumbers) {
         validateListNumberCount(winningNumbers, 6);
         validateListNumberInRange(winningNumbers, 1, 45);

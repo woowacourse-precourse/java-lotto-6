@@ -4,7 +4,6 @@ import lotto.enums.Messages;
 import lotto.model.Lotto;
 import lotto.utils.Order;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -52,5 +51,11 @@ public class IOTest {
         numbers.add(15);
         Lotto lotto = new Lotto(numbers);
         assertThat(Order.orderNumbers(lotto.getNumbers()).toString()).isEqualTo("[1, 6, 15, 17, 22, 40]");
+    }
+
+    @DisplayName("당첨 번호 입력시 정수리스트 생성 테스트")
+    @Test
+    void inputWinNumberCorrect(){
+        assertThat(InputView.inputWinNumbers("1,2,3,4,5,6").toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }

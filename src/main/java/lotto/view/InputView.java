@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.Constants;
 import lotto.utils.Split;
@@ -9,10 +10,15 @@ import java.util.List;
 
 public class InputView {
     public static int intputAmount(String input){
-        ValidateCheck.pureIntegerCheck(input);
         int amount = Integer.parseInt(input);
-        ValidateCheck.inputAmountValidate(amount);
-        return amount/Constants.LOTTO_PRICE.getNumber();
+        try{
+            ValidateCheck.pureIntegerCheck(input);
+            ValidateCheck.inputAmountValidate(amount);
+            return amount/Constants.LOTTO_PRICE.getNumber();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return intputAmount(Console.readLine());
+        }
     }
 
     public static List<Integer> choiceNumbers(){
@@ -21,18 +27,33 @@ public class InputView {
     }
 
     public static List<Integer> inputWinNumbers(String input){
-        List<Integer> winNumbers = Split.splitStringToInteger(input);
-        ValidateCheck.numberCountValidate(winNumbers);
-        ValidateCheck.numberDupulicationValidate(winNumbers);
-        ValidateCheck.numbersRangeValidate(winNumbers);
-        return winNumbers;
+        try{
+            List<Integer> winNumbers = Split.splitStringToInteger(input);
+            ValidateCheck.numberCountValidate(winNumbers);
+            ValidateCheck.numberDupulicationValidate(winNumbers);
+            ValidateCheck.numbersRangeValidate(winNumbers);
+            return winNumbers;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputWinNumbers(Console.readLine());
+        }
     }
 
     public static int inputBonusNumber(String input, List<Integer> winNumbers){
-        ValidateCheck.pureIntegerCheck(input);
+        try{
+            ValidateCheck.pureIntegerCheck(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputBonusNumber(Console.readLine(), winNumbers);
+        }
         int bonusNumber = Integer.parseInt(input);
-        ValidateCheck.numberRangeValidate(bonusNumber);
-        ValidateCheck.isNumberExist(bonusNumber, winNumbers);
+        try{
+            ValidateCheck.numberRangeValidate(bonusNumber);
+            ValidateCheck.isNumberExist(bonusNumber, winNumbers);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputBonusNumber(Console.readLine(), winNumbers);
+        }
         return bonusNumber;
     }
 }

@@ -25,6 +25,10 @@ public class Lotto {
         return numbers;
     }
     
+    public boolean contains(int otherNumber) {
+        return numbers.contains(otherNumber);
+    }
+    
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(OVER_SIZE_ERROR_MESSAGE);
@@ -37,7 +41,7 @@ public class Lotto {
         }
     }
     
-    private static void validateNumberInSpecifiedRange(int number) {
+    public static void validateNumberInSpecifiedRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(NOT_IN_RIGHT_RANGE_ERROR_MESSAGE);
         }

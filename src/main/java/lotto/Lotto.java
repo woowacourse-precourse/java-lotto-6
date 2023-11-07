@@ -1,6 +1,7 @@
 package lotto;
 
-import java.util.Collections;
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -8,10 +9,21 @@ import java.util.stream.Collectors;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        sort();
+    }
+
+    public static Lotto generate() {
+        final int MINIMUM_NUMBER = 1;
+        final int MAXIMUM_NUMBER = 45;
+        final int NUMBER_COUNT = 6;
+
+        List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(
+                MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_COUNT
+        );
+
+        return new Lotto(generatedNumbers);
     }
 
     @Override
@@ -28,21 +40,14 @@ public class Lotto {
 
     private void validateSizeFrom(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.PREFIX + ErrorMessage.INVALID_NUMBER_LENGTH.message);
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_NUMBER_LENGTH.message);
         }
     }
 
     private void validateDuplicateFrom(List<Integer> numbers) {
-        if (numbers.stream()
-                .distinct()
-                .findAny()
-                .isPresent()) {
-            throw new IllegalArgumentException(ErrorMessage.PREFIX +ErrorMessage.INVALID_DUPLICATE_NUMBER.message);
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_DUPLICATE_NUMBER.message);
         }
-    }
-
-    private void sort() {
-        Collections.sort(numbers);
     }
 
     public List<Integer> getNumbers() {

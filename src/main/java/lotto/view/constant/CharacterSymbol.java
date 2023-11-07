@@ -2,8 +2,10 @@ package lotto.view.constant;
 
 public enum CharacterSymbol {
 
+    HYPHEN("-"),
     BLANK(" "),
-    COMMA(",");
+    COMMA(","),
+    EMPTY("");
 
     private final String literal;
 

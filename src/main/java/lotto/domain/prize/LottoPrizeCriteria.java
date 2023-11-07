@@ -18,4 +18,12 @@ public class LottoPrizeCriteria {
         return this.needToMatchBonusNumber == matchesBonusNumber;
     }
 
+    public int getWinningNumberCount() {
+        return winningNumberCount;
+    }
+
+    public boolean needToMatchBonusNumber() {
+        return needToMatchBonusNumber;
+    }
+
 }

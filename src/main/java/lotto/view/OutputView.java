@@ -25,13 +25,19 @@ public class OutputView {
     public static void displayResult(LottoResultDto lottoResultDto) {
         Map<LottoStatus, Integer> lottoStatusCounts = lottoResultDto.lottoStatusCounts();
         printEmptyLine();
-        System.out.println(WINNING_STATISTICS);
-        System.out.println("---");
+        StringBuilder lottoResult = new StringBuilder();
+        lottoResult.append(WINNING_STATISTICS).append("\n");
+        lottoResult.append("---").append("\n");
+
         for (LottoStatus status : LottoStatus.values()) {
             if (status != LottoStatus.SIXTH) {
-                System.out.println(status.getStatusMessage() + " - " + lottoStatusCounts.get(status) + "개");
+                lottoResult.append(status.getStatusMessage()).append(" - ").append(lottoStatusCounts.get(status))
+                        .append("개")
+                        .append("\n");
             }
         }
+
+        System.out.println(lottoResult);
     }
 
     public static void printEmptyLine() {

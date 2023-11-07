@@ -16,12 +16,12 @@ class CalculateRateTest {
 
     @Test
     @DisplayName("수익률을 계산해서 잘 반환 하는지 테스트")
-    void CalculateRate(){
+    void calculateRate(){
         //given
         int purchaseAmount = 8000;
-        int money = 3000;
+        int money = 5000;
         //when
-        double result = calculateRate.getRate(purchaseAmount, money);
+        Double result = calculateRate.getRate(purchaseAmount, money);
         //then
         assertEquals(result,62.5);
     }

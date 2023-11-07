@@ -5,28 +5,34 @@ import java.util.List;
 
 public class LottoStatistics {
     private final List<Integer> rankCounter;
-    private int winningMoney;
+    private long winningMoney;
 
     public LottoStatistics(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
         rankCounter = new ArrayList<>();
         winningMoney = 0;
-        int numberOfLottosPurchased = lottosPurchased.getNumberOfLottos();
 
         for (int i = 0; i < 6; i++) {
             rankCounter.add(0);
         }
 
+        makeResult(lottosPurchased, winningLotto, lottoBonus);
+    }
+
+    private void makeResult(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
+        int numberOfLottosPurchased = lottosPurchased.getNumberOfLottos();
+
         for (int i = 0; i < numberOfLottosPurchased; i++) {
-            Lotto lotto = lottosPurchased.getLotto(i);
-            int winningInLotto = lotto.countMatchingWith(winningLotto);
-            boolean bonusInLotto = lotto.contains(lottoBonus);
-            int rank = getRank(winningInLotto, bonusInLotto);
+            int rank = getRank(lottosPurchased.getLotto(i), winningLotto, lottoBonus);
 
             rankCounter.set(rank, rankCounter.get(rank) + 1);
+            winningMoney += getMoney(rank);
         }
     }
 
-    private int getRank(int winningInLotto, boolean bonusInLotto) {
+    private int getRank(Lotto lotto, Lotto winningLotto, LottoBonus lottoBonus) {
+        int winningInLotto = lotto.countMatchingWith(winningLotto);
+        boolean bonusInLotto = lotto.contains(lottoBonus);
+
         if (winningInLotto == 6) {
             return 1;
         } else if (winningInLotto == 5 && bonusInLotto) {
@@ -37,6 +43,21 @@ public class LottoStatistics {
             return 4;
         } else if (winningInLotto == 3) {
             return 5;
+        }
+        return 0;
+    }
+
+    private int getMoney(int rank) {
+        if (rank == 1) {
+            return 2000000000;
+        } else if (rank == 2) {
+            return 30000000;
+        } else if (rank == 3) {
+            return 1500000;
+        } else if (rank == 4) {
+            return 50000;
+        } else if (rank == 5) {
+            return 5000;
         }
         return 0;
     }

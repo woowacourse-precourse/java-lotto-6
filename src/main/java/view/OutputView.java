@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class OutputView {
 
     /**
-     * Description : 구입금액입력 메세지 출력
+     * Description : 구입 금액 입력 메세지 출력
      *
      * @Method : ()
      */
@@ -28,7 +28,7 @@ public class OutputView {
         System.out.printf(lottoTicketCount + OutputMessage.LOTTO_BUY_COMPLETE.getMessage());
     }
     /**
-     * Description : 로또 번호묶음 메세지 출력
+     * Description : 로또 번호 묶음 메세지 출력
      *
      * @Method : printLottoNums()
      */
@@ -36,7 +36,7 @@ public class OutputView {
         System.out.println(LottoNums);
     }
     /**
-     * Description : 당청 번호 요청메세지 출력
+     * Description : 당청 번호 요청 메세지 출력
      *
      * @Method : printLottoNumRequest()
      */

@@ -1,6 +1,6 @@
 /**
  * @Package_name   : view
- * @Enum_name     : InputView
+ * @Class_name     : InputView
  * <p>
  * Create Date : 2023-11-07
  * Create User : 정은채
@@ -12,7 +12,7 @@ import utility.Utility;
 
 public class InputView {
     /**
-     * Description : 로또구입금액 입력
+     * Description : 로또 구입 금액 입력
      *
      * @Method : inputLottoBuy()
      * @return : Integer

@@ -4,10 +4,6 @@ import lotto.Lotto;
 
 import main.java.lotto.domain.WinningLottos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class Calculator {
 
     public static int calculateMatchLottoNumber(UserLotto userLotto, Lotto winningLotto) {

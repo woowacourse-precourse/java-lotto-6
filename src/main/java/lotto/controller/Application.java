@@ -44,17 +44,17 @@ public class Application {
     private static Lotto getLottoList() {
         while (true) {
             try {
-                return makeLotto();
+                return new Lotto(makeLotto());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public static Lotto makeLotto() throws IllegalArgumentException {
+    public static List<Integer> makeLotto() throws IllegalArgumentException {
         List<Integer> numbers = getLottoRandom();
         PrintLottoNumbers(numbers);
-        return new Lotto(numbers);
+        return numbers;
     }
 
     private static List<Integer> getLottoRandom() {

@@ -1,8 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
-import lotto.Lotto;
 import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -12,17 +10,18 @@ public class LottoService {
     NumberGenerator numberGenerator = new NumberGenerator();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-    private Lotto[] myLotto;
+    private ArrayList<Lotto> myLotto;
 
     private int lottoCost;
     private int lottoPaper;
 
-    public void buyLotto(){
-        outputView.printRequirelottoCost();
+    public int buyLotto(){
         getLottoCost();
         getLottoPaper();
-        outputView.printNewLine();
-        outputView.printPublishedLotto(lottoPaper);
+        return lottoPaper;
+    }
+
+    public void getLottoNumber(){
         createLottoNumber();
         showMyLottoNumber();
     }
@@ -36,9 +35,9 @@ public class LottoService {
     }
 
     public void createLottoNumber(){
-        myLotto = new Lotto[lottoPaper];
-        for(int i = 0; i<myLotto.length; i++){
-            myLotto[i] = new Lotto(numberGenerator.generateLottoNumber());
+        myLotto = new ArrayList<>();
+        for(int i = 0; i<lottoPaper; i++){
+            myLotto.add(new Lotto(numberGenerator.generateLottoNumber()));
         }
     }
 

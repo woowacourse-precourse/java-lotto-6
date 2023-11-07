@@ -10,19 +10,17 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class NumberGeneratorTest {
-    private NumberGenerator numberGenerator;
     private List<Integer> randomNumbers;
 
     @BeforeEach
     void setUp() {
-        numberGenerator = new NumberGenerator();
-        randomNumbers = numberGenerator.createRandomNumbers();
+        randomNumbers = NumberGenerator.CreateRandomNumbers();
     }
 
     @DisplayName("숫자 List를 생성한다.")
     @Test
     void createIntegerList() {
-        assertThat(numberGenerator.createRandomNumbers()).isInstanceOf(List.class);
+        assertThat(NumberGenerator.CreateRandomNumbers()).isInstanceOf(List.class);
     }
 
     @DisplayName("6개의 숫자를 생성한다.")

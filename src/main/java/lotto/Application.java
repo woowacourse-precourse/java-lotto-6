@@ -1,7 +1,21 @@
 package lotto;
 
+import java.util.List;
+import lotto.util.InputUtil;
+import lotto.domain.Draw;
+import lotto.domain.User;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        final long money = InputUtil.inputMoney();
+
+        final User user = new User(money);
+        user.buyLotto();
+
+        final List<Integer> winningNumbers = InputUtil.inputWinningNumbers();
+        final int bonusNumber = InputUtil.inputBonusNumber(winningNumbers);
+
+        final Draw draw = new Draw(winningNumbers, bonusNumber);
+        user.doDraw(draw);
     }
 }

@@ -11,7 +11,7 @@ public class BuyPriceController {
         userInput = new UserInput();
     }
 
-    public void setBuyPrice(){
+    public int setBuyPrice(){
         try {
             buyPrice = new BuyPrice(userInput.inputLottoBuyPrice());
         }
@@ -19,5 +19,6 @@ public class BuyPriceController {
             System.out.println("[ERROR]:1000원 단위로 구매하세요");
             setBuyPrice();
         }
+        return buyPrice.getMoney();
     }
 }

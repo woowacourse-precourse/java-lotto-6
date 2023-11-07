@@ -14,6 +14,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> getNumbers() {
@@ -24,5 +27,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-    // TODO: 추가 기능 구현
 }

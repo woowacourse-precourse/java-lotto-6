@@ -33,7 +33,7 @@ public class Score {
     }
 
     private int getSpent(LottoRank lottoRank) {
-        return this.lottoResult.get(lottoRank) * LOTTO_PRICE_UNIT.getValue();
+        return this.lottoResult.get(lottoRank) * LOTTO_PRICE_UNIT;
     }
 
     public Map<LottoRank, Integer> getLottoResult() {

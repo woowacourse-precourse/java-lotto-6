@@ -15,7 +15,7 @@ import lotto.domain.LottoBundle;
 public class Store {
 
     public static int convertPriceToCount(int price) {
-        return price / LOTTO_PRICE_UNIT.getValue();
+        return price / LOTTO_PRICE_UNIT;
     }
 
     public static LottoBundle generateLottoBundle(int count) {
@@ -32,9 +32,9 @@ public class Store {
 
     private static List<Integer> createNumber() {
         final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_MIN_NUMBER.getValue(),
-                LOTTO_MAX_NUMBER.getValue(),
-                LOTTO_BALLS_NUMBER.getValue()
+                LOTTO_MIN_NUMBER,
+                LOTTO_MAX_NUMBER,
+                LOTTO_BALLS_NUMBER
         );
 
         return numbers

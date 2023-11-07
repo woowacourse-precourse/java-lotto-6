@@ -1,18 +1,9 @@
 package lotto.global;
 
-public enum LottoInformation {
-    LOTTO_BALLS_NUMBER(6),
-    LOTTO_PRICE_UNIT(1000),
-    LOTTO_MIN_NUMBER(1),
-    LOTTO_MAX_NUMBER(45);
+public class LottoInformation {
 
-    private final int value;
-
-    LottoInformation(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
+    public static final int LOTTO_BALLS_NUMBER = 6;
+    public static final int LOTTO_PRICE_UNIT = 1000;
+    public static final int LOTTO_MIN_NUMBER = 1;
+    public static final int LOTTO_MAX_NUMBER = 45;
 }

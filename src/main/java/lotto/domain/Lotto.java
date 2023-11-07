@@ -21,7 +21,7 @@ public class Lotto {
     }
 
     private void validateLottoSize(final List<Integer> numbers) {
-        if (isDifferentSize(numbers, LOTTO_BALLS_NUMBER.getValue())) {
+        if (isDifferentSize(numbers, LOTTO_BALLS_NUMBER)) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR.getMessage());
         }
     }

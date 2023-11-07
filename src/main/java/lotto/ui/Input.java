@@ -82,13 +82,14 @@ public class Input {
     }
 
     private static void checkNumberSize(List<Integer> userNumbers) {
-        if (userNumbers.size() != LOTTO_BALLS_NUMBER.getValue()) {
+        if (userNumbers.size() != LOTTO_BALLS_NUMBER) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
     private static void checkInRange(int number) {
-        if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
+        //  함스로 묶기
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR.getMessage());
         }
     }

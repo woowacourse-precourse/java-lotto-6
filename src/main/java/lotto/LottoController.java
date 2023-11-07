@@ -34,11 +34,6 @@ public class LottoController {
         printResult(matchCountChecker.checkRewardByLotto(compareLottoNumResult), lottoCost.getCost());
     }
 
-    private void printAllLotto(HashMap<Integer, Lotto> allLotto) {
-        for (int key : allLotto.keySet()) {
-            System.out.println(allLotto.get(key).getLotto());
-        }
-    }
 
     private LottoCost inputValueToLottoCost() {
         LottoCost lottoCost = null;
@@ -55,19 +50,6 @@ public class LottoController {
         }
 
         return lottoCost;
-    }
-
-    private int toNumber(String inputValue) {
-        isNumber(inputValue);
-        return Integer.parseInt(inputValue);
-    }
-
-    private void isNumber(String number) {
-        boolean hasOnlyNum = !number.isEmpty() && number.chars().allMatch(Character::isDigit);
-
-        if (!hasOnlyNum) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
-        }
     }
 
     private WinningNumber inputValueToWinningNumber() {
@@ -89,17 +71,6 @@ public class LottoController {
         return winningNumber;
     }
 
-    public void isNumber(List<String> numbers) {
-        boolean hasOnlyNum;
-
-        for (String number : numbers) {
-            hasOnlyNum = !number.isEmpty() && number.chars().allMatch(Character::isDigit);
-            if (!hasOnlyNum) {
-                throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
-            }
-        }
-    }
-
     private BonusNumber inputValueToBonusNumber(WinningNumber winningNumber) {
         BonusNumber lottoBonus = null;
         boolean loop = true;
@@ -117,6 +88,36 @@ public class LottoController {
         }
 
         return lottoBonus;
+    }
+
+    private int toNumber(String inputValue) {
+        isNumber(inputValue);
+        return Integer.parseInt(inputValue);
+    }
+
+    private void isNumber(String number) {
+        boolean hasOnlyNum = !number.isEmpty() && number.chars().allMatch(Character::isDigit);
+
+        if (!hasOnlyNum) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
+        }
+    }
+
+    public void isNumber(List<String> numbers) {
+        boolean hasOnlyNum;
+
+        for (String number : numbers) {
+            hasOnlyNum = !number.isEmpty() && number.chars().allMatch(Character::isDigit);
+            if (!hasOnlyNum) {
+                throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_NUMBER.getMessage());
+            }
+        }
+    }
+
+    private void printAllLotto(HashMap<Integer, Lotto> allLotto) {
+        for (int key : allLotto.keySet()) {
+            System.out.println(allLotto.get(key).getLotto());
+        }
     }
 
     private void checkBonusNumberInWinningNumber(List<Integer> winingNumber, int bonusNumber) {

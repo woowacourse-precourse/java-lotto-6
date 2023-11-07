@@ -1,16 +1,15 @@
-package lotto.controller;
+package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.Application;
 import org.junit.jupiter.api.Test;
 
-public class ControllerTest extends NsTest {
+public class ApplicationTest2 extends NsTest {
     @Test
-    void controllerTest1() {
+    void exampleTest1() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("2000", "1,2,3,4,5,6", "45");
@@ -31,7 +30,7 @@ public class ControllerTest extends NsTest {
     }
 
     @Test
-    void controllerTest2() {
+    void exampleTest2() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("4000", "1,2,3,5,6,9", "24");

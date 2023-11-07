@@ -14,4 +14,8 @@ public class HitNumbers {
     public List<Integer> getHitNumbers() {
         return Collections.unmodifiableList(hitNumbers);
     }
+
+    public boolean findNumber(int number) {
+        return hitNumbers.contains(number);
+    }
 }

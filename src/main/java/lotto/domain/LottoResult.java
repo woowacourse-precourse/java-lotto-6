@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
-    private final int payment;
-    private long totalPrizeMoney;
+    private final double payment;
+    private double totalPrizeMoney;
     final Map<LottoPrize, Integer> prizeResult;
 
     public LottoResult(int payment) {
@@ -29,5 +29,15 @@ public class LottoResult {
             LottoPrize prize = LottoPrize.valueOf(matchCount, matchBonus);
             prizeResult.put(prize, prizeResult.get(prize) + 1);
         }
+    }
+
+    public void calculateTotalPrizeMoney() {
+        for(LottoPrize prize : LottoPrize.values()) {
+            this.totalPrizeMoney += (prizeResult.get(prize) * prize.getPrizeMoney());
+        }
+    }
+
+    public double getYieldRate() {
+        return Math.round(totalPrizeMoney / payment*1000) / 10.0;
     }
 }

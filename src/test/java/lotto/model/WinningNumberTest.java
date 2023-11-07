@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.view.message.Error;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,11 +64,12 @@ public class WinningNumberTest {
     public void 올바른_당첨번호_입력() {
         //given
         String validWinningNumber = "3,5,13,43,22,42";
+        List<Integer> winningNumbers = Arrays.asList(3, 5, 13, 43, 22, 42);
 
         //when
         WinningNumber winningNumber = WinningNumber.create(validWinningNumber);
 
         //then
-        assertThat(winningNumber.getWinningNumbers()).isEqualTo(Arrays.asList(3, 5, 13, 43, 22, 42));
+        assertThat(winningNumber.getWinningNumbers().containsAll(winningNumbers)).isTrue();
     }
 }

@@ -1,7 +1,10 @@
 package lotto.controller;
 
 import lotto.dto.LottosDto;
+import lotto.model.BonusNumber;
+import lotto.model.WinningNumber;
 import lotto.service.LottoService;
+import lotto.service.ResultService;
 import lotto.service.UserService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,6 +12,7 @@ import lotto.view.OutputView;
 public class Game {
     private final UserService userService = new UserService();
     private final LottoService lottoService = new LottoService();
+    private final ResultService resultService = new ResultService();
 
     public void start() {
         boolean isValidPurchaseAmount = false;
@@ -48,6 +52,8 @@ public class Game {
         }
 
         LottosDto purchasedLottos = userService.getLottosDto();
-        lottoService.calculateWinningStatistics(purchasedLottos);
+        WinningNumber winningNumber = lottoService.getWinningNumber();
+        BonusNumber bonusNumber = lottoService.getBonusNumber();
+        resultService.calculateWinningStatistics(purchasedLottos, winningNumber, bonusNumber);
     }
 }

@@ -7,19 +7,24 @@ import lotto.view.message.Error;
 
 public class WinningNumber {
 
-    private List<Integer> winningNumbers;
+    private Set<Integer> winningNumbers;
 
     private WinningNumber(String candidateWinningNumber) {
         List<String> seperatedNumbers = split(candidateWinningNumber);
         checkOversize(seperatedNumbers);
         List<Integer> candidateWinningNumbers = toInteger(seperatedNumbers);
         checkOutOfRange(candidateWinningNumbers);
-        checkDuplicate(candidateWinningNumbers);
-        this.winningNumbers = candidateWinningNumbers;
+        this.winningNumbers = checkDuplicate(candidateWinningNumbers);
     }
 
     public static WinningNumber create(String candidateWinningNumber) {
         return new WinningNumber(candidateWinningNumber);
+    }
+
+    public Integer compare(List<Integer> lottoNumbers) {
+        Set<Integer> uniqueNumbers = winningNumbers;
+        uniqueNumbers.addAll(lottoNumbers);
+        return 12 - uniqueNumbers.size();
     }
 
     private List<String> split(String winningNumbers) {
@@ -52,14 +57,15 @@ public class WinningNumber {
         }
     }
 
-    private void checkDuplicate(List<Integer> candidateWinningNumbers) {
+    private Set<Integer> checkDuplicate(List<Integer> candidateWinningNumbers) {
         Set<Integer> uniqueWinningNumbers = new HashSet<>(candidateWinningNumbers);
         if (candidateWinningNumbers.size() != uniqueWinningNumbers.size()) {
             throw new IllegalArgumentException(Error.WINNING_NUMBER_DUPLICATED.getMessage());
         }
+        return uniqueWinningNumbers;
     }
 
-    public List<Integer> getWinningNumbers() {
+    public Set<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 }

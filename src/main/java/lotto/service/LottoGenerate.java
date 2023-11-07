@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import lotto.config.LottoConfig;
@@ -22,7 +23,7 @@ public class LottoGenerate {
     private Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_LOTTO_NUMBER,
                 LottoConfig.MAX_LOTTO_NUMBER, LottoConfig.SIZE_OF_LOTTO);
-        Collections.sort(numbers);
+        numbers = numbers.stream().sorted().toList();
 
         return new Lotto(numbers);
     }

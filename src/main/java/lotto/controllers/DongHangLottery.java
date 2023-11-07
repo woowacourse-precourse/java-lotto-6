@@ -3,15 +3,19 @@ package lotto.controllers;
 import static lotto.controllers.InputProcessor.readLine;
 import static lotto.model.InputValidator.*;
 import static lotto.model.Utilities.inputIntegerParsing;
+import static lotto.views.MessageManager.getBonusNumberPromptMessage;
 import static lotto.views.MessageManager.getProgramClosePromoptMessage;
 
 public class DongHangLottery {
     private String inputLottoNumber;
 
     public DongHangLottery() {
-        initialize();
+        winningNumberValidate();
+        System.out.println();
+        getBonusNumberPromptMessage();
+        bonusNumberValidate();
     }
-    public void initialize() {
+    public void winningNumberValidate() {
         inputLottoNumber = readLine();
         try {
             validateContainsCommaSeparator(inputLottoNumber);
@@ -20,6 +24,10 @@ public class DongHangLottery {
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public void bonusNumberValidate() {
+        inputLottoNumber = readLine();
     }
 }
 

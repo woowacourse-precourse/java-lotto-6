@@ -19,6 +19,10 @@ public class MessageManager {
         System.out.println(messages.getString("lottoNumberPrompt.message"));
     }
 
+    public static void getBonusNumberPromptMessage() {
+        System.out.println(messages.getString("bonusNumberPrompt.message"));
+    }
+
 
     //Exception Messages
     public static String getValidateNonIntegerMessage() {

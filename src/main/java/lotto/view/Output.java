@@ -1,7 +1,4 @@
-package lotto;
-
-import java.util.HashMap;
-import java.util.List;
+package lotto.view;
 
 public class Output {
     private static final String NUMBER_OF_PURCHAGE = "개를 구매했습니다.";

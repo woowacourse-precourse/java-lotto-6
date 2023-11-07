@@ -9,6 +9,8 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCost;
 import lotto.domain.WinningNumber;
+import lotto.view.Input;
+import lotto.view.Output;
 
 public class LottoController {
     private final Input input = new Input();

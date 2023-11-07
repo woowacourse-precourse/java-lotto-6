@@ -1,23 +1,15 @@
 package lotto;
 
-import java.util.List;
-
 public class LottoGame {
     public void process() {
-        int amount = InputHandler.getUserInputAmount();
-
-        LottoTicket lottoTicket = new LottoTicket(amount);
+        LottoTicket lottoTicket = UserInputErrorManager.getuntilNotInvalidAmount();
         lottoTicket.displayTickets();
 
-        List<Integer> lottoNumbers = InputHandler.getUserInputlotto();
+        Lotto lotto = UserInputErrorManager.getuntilNotInvalidLotto();
 
-        Lotto lotto = new Lotto(lottoNumbers);
+        Bonus bonus = UserInputErrorManager.getuntilNotInvalidBonus(lotto);
 
-        int bonusNumber = InputHandler.getUserInputBonus();
-
-        Bonus bonus = new Bonus(bonusNumber, lotto);
-
-        LottoWinningRecord lottoWinningRecord = new LottoWinningRecord(lottoNumbers, bonusNumber);
-        lottoWinningRecord.calculateAndPrintStatistics(lottoTicket.getTickets(), amount);
+        LottoWinningRecord lottoWinningRecord = new LottoWinningRecord(lotto.getNumbers(), bonus.getNumber());
+        lottoWinningRecord.calculateAndPrintStatistics(lottoTicket.getTickets(), lottoTicket.getQuantity() * 1000);
     }
 }

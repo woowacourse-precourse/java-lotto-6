@@ -10,7 +10,7 @@ public class InputPurchaseAmountView {
         return Integer.parseInt(input);
     }
 
-    public String inputPurchaseAmount(){
+    private String inputPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         return Console.readLine();
     }

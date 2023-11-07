@@ -1,5 +1,6 @@
 package lotto.View;
 
+import static lotto.View.OutputMessage.Enter_Lotto_Numbers;
 import static lotto.View.OutputMessage.Enter_Purchase_Mount;
 
 import java.util.ArrayList;
@@ -18,7 +19,9 @@ public class Output {
         lottos.stream()
                 .map(LottoData::getNumbers)
                 .forEach(Output::printLotto);
+        System.out.println();
     }
+    public static void printInsertLottoNumbers(){System.out.println(Enter_Lotto_Numbers.message);}
     private static void printLotto(List<Integer> lotto) {
         List<Integer> sortedNumbers = lotto.stream()
                 .sorted()

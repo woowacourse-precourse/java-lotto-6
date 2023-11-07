@@ -23,7 +23,7 @@ public class LottoController {
         int numberOfLotto = countLotto(lottoPrice);
         lottoView.buyMessage(numberOfLotto);
         lottos = new Lottos(numberOfLotto);
-
+        lottoView.lottosMessage(lottos);
     }
 
     public int countLotto(LottoPrice lottoPrice){

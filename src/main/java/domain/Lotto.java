@@ -18,6 +18,7 @@ public class Lotto {
 		validateIsSixLength(parsedNumbers);
 		List<Integer> validatedAndParsedNumbers = convertStringListToIntegerList(parsedNumbers);
 		validateIsBetweenLottoRange(validatedAndParsedNumbers);
+		validateDuplicateNumber(validatedAndParsedNumbers);
 		this.numbers = validatedAndParsedNumbers;
 	}
 

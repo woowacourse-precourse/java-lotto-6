@@ -21,7 +21,8 @@ public class LottoPurchase {
                 System.out.println(e.getMessage());
             }
         }
-        LottoPublisher.PrintLotto(GetPurchase_amount());
+        LottoPublisher lottoPublisher = new LottoPublisher(Purchase_amount);
+        LottoPublisher.PrintLotto();
     }
 
     public static int GetPurchase_amount() {

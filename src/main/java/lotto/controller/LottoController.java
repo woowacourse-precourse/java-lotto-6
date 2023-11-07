@@ -3,10 +3,12 @@ package lotto.controller;
 import static lotto.constant.ConstantInteger.ZERO;
 
 import java.util.List;
+import java.util.Map;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicketManager;
 import lotto.domain.LottoTickets;
+import lotto.domain.Rank;
 import lotto.domain.number.AutoNumberGenerator;
 import lotto.domain.number.LottoNumberGenerator;
 
@@ -27,17 +29,21 @@ public class LottoController {
         while (numberOfTickets-- > ZERO ){
             lottoTickets.setTicket(lottoNumberGenerator.getLottoNumbers());
         }
+        lottoTicketManager.getUserLottoTickets(lottoTickets.getLottoTickets());
         return lottoTickets.getLottoTickets();
     }
 
-    public void setLuckyNumber(Lotto luckyNumber){
+    public void setLuckyNumber(Lotto luckyNumber) {
         lottoTicketManager.getLuckyNumber(luckyNumber);
     }
 
-    public void validateBonusNumber(Integer bonusNumber){
+    public void validateBonusNumber(Integer bonusNumber) {
         lottoTicketManager.getBonusNumber(bonusNumber);
     }
 
+    public Map<Rank, Integer> provideResult() {
+        return lottoTicketManager.makeResult();
+    }
 
 
 }

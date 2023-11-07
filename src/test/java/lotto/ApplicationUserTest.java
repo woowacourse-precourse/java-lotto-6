@@ -65,6 +65,15 @@ class ApplicationUserTest extends NsTest {
         });
     }
 
+    @DisplayName("잘못된 당첨번호 중복 입력 테스트")
+    @Test
+    void invalidWinningNumberDuplicateInputTest() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,1,2,1,2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @DisplayName("정상 보너스번호 입력 테스트")
     @Test
     void validBonusNumberInputTest() {
@@ -82,6 +91,15 @@ class ApplicationUserTest extends NsTest {
     void invalidBonusNumberInputTest() {
         assertSimpleTest(() -> {
             runException("3000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("잘못된 보너스번호 중복 입력 테스트")
+    @Test
+    void invalidBonusNumberDuplicateInputTest() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

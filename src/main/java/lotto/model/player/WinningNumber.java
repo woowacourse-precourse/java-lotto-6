@@ -48,7 +48,7 @@ public class WinningNumber {
     private static void validateIsNumberInRange(List<String> numbers) {
         for(String number : numbers) {
             boolean IsNumberInRange = (Integer.parseInt(number) >= UnitNumber.LOTTO_MIN_NUMBER.getNumber()
-                    && Integer.parseInt(number) <= UnitNumber.LOTTO_MIN_NUMBER.getNumber());
+                    && Integer.parseInt(number) <= UnitNumber.LOTTO_MAX_NUMBER.getNumber());
             if(!IsNumberInRange) {
                 throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }

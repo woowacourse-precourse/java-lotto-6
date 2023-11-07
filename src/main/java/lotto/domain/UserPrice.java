@@ -8,4 +8,7 @@ public class UserPrice {
         this.price = price;
     }
 
+    public int buyCount(int lottoPrice) {
+        return price / lottoPrice;
+    }
 }

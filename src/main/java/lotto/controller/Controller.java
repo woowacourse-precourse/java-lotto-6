@@ -16,6 +16,7 @@ import lotto.view.OutputView;
 public class Controller {
     private int lottoCnt;
     private int userPrice;
+    private final int LOTTO_PRICE =1000;
 
 
     public void run() {
@@ -26,7 +27,7 @@ public class Controller {
         init();
 
         UserPrice userPrice = new UserPrice(InputView.inputUserPrice());
-
+        lottoCnt = userPrice.buyCount(LOTTO_PRICE);
 
         Lotties lotties = part2();
         WinningNumber winningNumber = part3();

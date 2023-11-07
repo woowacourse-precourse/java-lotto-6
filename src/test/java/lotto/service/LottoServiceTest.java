@@ -1,11 +1,14 @@
 package lotto.service;
 
+import lotto.configuration.ScoreBoard;
+import lotto.configuration.WinningLevel;
 import lotto.domain.Lotto;
 import lotto.util.Utils;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -103,8 +106,56 @@ class LottoServiceTest {
 
     }
 
+    @DisplayName("로또 수익 보드판 값 정확성 테스트")
     @Test
     void getResultScoreBoard() {
+        //given
+        List<List<Integer>> myLotto = new ArrayList<>();
+        List<Integer> winLotto = List.of(1,2,3,4,5,6);
+        int bonusNumber = 7;
+        List<Integer> case1 = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        List<Integer> case2 = new ArrayList<>(Arrays.asList(7,8,9,10,11,12));
+        List<Integer> case3 = new ArrayList<>(Arrays.asList(13,14,15,16,17,18));
+        myLotto.add(case1);
+        myLotto.add(case2);
+        myLotto.add(case3);
+        LottoService lottoService = new LottoService();
+
+        //when
+        HashMap<String,Long> scoreBoard = lottoService.getResultScoreBoard(myLotto,winLotto,bonusNumber);
+
+        //then
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.FIRST.getKey())).isEqualTo(2000000000L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.SECOND.getKey())).isEqualTo(0L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.THIRD.getKey())).isEqualTo(0L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.FOURTH.getKey())).isEqualTo(0L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.FIFTH.getKey())).isEqualTo(0L);
+    }
+
+    @DisplayName("로또 수익 보드판 값 정확성 테스트2")
+    @Test
+    void getResultScoreBoard2() {
+        //given
+        List<List<Integer>> myLotto = new ArrayList<>();
+        List<Integer> winLotto = List.of(1,2,3,4,5,6);
+        int bonusNumber = 7;
+        List<Integer> case1 = new ArrayList<>(Arrays.asList(3,4,5,6,7,8));
+        List<Integer> case2 = new ArrayList<>(Arrays.asList(7,8,9,10,11,12));
+        List<Integer> case3 = new ArrayList<>(Arrays.asList(13,14,15,16,17,18));
+        myLotto.add(case1);
+        myLotto.add(case2);
+        myLotto.add(case3);
+        LottoService lottoService = new LottoService();
+
+        //when
+        HashMap<String,Long> scoreBoard = lottoService.getResultScoreBoard(myLotto,winLotto,bonusNumber);
+
+        //then
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.FIRST.getKey())).isEqualTo(0L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.SECOND.getKey())).isEqualTo(0L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.THIRD.getKey())).isEqualTo(0L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.FOURTH.getKey())).isEqualTo(50000L);
+        Assertions.assertThat(scoreBoard.get(ScoreBoard.FIFTH.getKey())).isEqualTo(0L);
     }
 
     @Test

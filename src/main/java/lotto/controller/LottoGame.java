@@ -39,6 +39,8 @@ public class LottoGame {
             Integer parsed = StringParser.parsePurchaseAmount(str);
             LottoValidator.validatePurchaseAmount(parsed);
             this.purchaseAmount = parsed;
+
+            ConsolePrinter.printEmptyLine();
         } catch (Exception e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 
@@ -47,7 +49,7 @@ public class LottoGame {
     }
 
     private void initiateLottos() {
-        int lottoCount = purchaseAmount % PRICE.getValue();
+        int lottoCount = purchaseAmount / PRICE.getValue();
         ConsolePrinter.printLottoPurchasedMessage(lottoCount);
 
         for (int i = 0; i < lottoCount; i++) {
@@ -55,6 +57,8 @@ public class LottoGame {
             ConsolePrinter.printLottoNumbers(lotto);
             lottos.add(lotto);
         }
+
+        ConsolePrinter.printEmptyLine();
     }
 
     private void initiateWinningNumber() {
@@ -65,6 +69,8 @@ public class LottoGame {
             WinningNumber parsed = StringParser.parseWinningNumber(str);
             LottoValidator.validateWinningNumber(parsed);
             this.winningNumber = parsed;
+
+            ConsolePrinter.printEmptyLine();
         } catch (Exception e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 
@@ -80,6 +86,8 @@ public class LottoGame {
             Integer parsed = StringParser.parseBonusNumber(str);
             LottoValidator.validateBonusNumber(parsed, winningNumber);
             this.bonus = parsed;
+
+            ConsolePrinter.printEmptyLine();
         } catch (Exception e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 

@@ -55,6 +55,10 @@ public class ConsolePrinter {
 
     public static void printErrorMessage(String message) {
         System.out.println("[ERROR] " + message);
+        printEmptyLine();
+    }
+
+    public static void printEmptyLine() {
         System.out.println();
     }
 

@@ -32,7 +32,7 @@ public class Controller {
         ResultMessage.printResult(result, amount);
     }
 
-    private Map<Rank,Integer> calculateResult(List<Lotto> randomLottery, Lotto winningNum,int bonusNum){
+    private Map<Rank,Integer> calculateResult(List<Lotto> randomLottery, Lotto winningNum, int bonusNum){
         Map<Rank, Integer> result = setRankCount();
         Rank rank;
 

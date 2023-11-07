@@ -36,6 +36,5 @@ public enum Rank {
     public String getWinningMesaage() {
         return winningMessage;
     }
-    //TODO : RANK TEST
 }
 

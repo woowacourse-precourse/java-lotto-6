@@ -1,7 +1,7 @@
 package validator;
 
 public class LottoPurchaseValidator {
-    int validPurchaseAmount(String purchaseAmount) {
+    public int validPurchaseAmount(String purchaseAmount) {
         vaildIntegerPurchaseAmount(purchaseAmount);
         int purchaseAmountPrice = Integer.parseInt(purchaseAmount);
         validMinimumPurchaseAmount(purchaseAmountPrice);

@@ -94,10 +94,8 @@ public class LottoMachine {
     }
 
     private String mapResultToString(WinningGrade winningGrade, int value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(winningGrade.getMessage()).append(value).append("개");
 
-        return sb.toString();
+        return winningGrade.getMessage() + value + "개";
     }
 
     private long calculationTotalIncome(Map<WinningGrade,Integer> resultMap) {

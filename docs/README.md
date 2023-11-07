@@ -1,20 +1,20 @@
 ## 입력 - Input
 
-- 금액 - **amount**
-- 당첨 번호 - **winningNumber**
-- 보너스 번호 - **bonusNumber**
+- [x] 금액 - **amount**
+- [x] 당첨 번호 - **winningNumber**
+- [x] 보너스 번호 - **bonusNumber**
+
+## 출력 - Output
+
+- [x] 로또 발행 개수 - **printPurchasedLottoCount**
+- [x] 로또 번호 - **printPurchasedLottoNumbers**
+- [x] 등수별 당첨 내역 - **printWinningResultsByRank**
+- [x] 수익률 - **printProfitRate**
 
 ## 자료형 변환 - **TypeConverter**
 
 - String > int - **stringToInt**
 - String > ArrayList(쉼표로 구분) - **stringToArrayList**
-
-## 출력 - Output
-
-- 로또 발행 개수 - **purchasedLottoCount**
-- 로또 번호 - **purchasedLottoNumbers**
-- 등수별 당첨 내역 - **winningResultsByRank**
-- 수익률 - **profitRate**
 
 ## 예외 처리 - **ExceptionHandler**
 

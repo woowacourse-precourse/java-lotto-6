@@ -26,7 +26,8 @@ public class CaculateProfit {
         this.bonusCheck = bonusCheck;
 
         this.cntProfit = calculateCntProfit();
-        this.bonusProfit = calculateBounsProfit();
+        this.bonusProfit = calculateBonusProfit();
+        this.totalProfit = calculateTotalProfit();
     }
 
     private List<Integer> calculateCntProfit() {
@@ -52,7 +53,7 @@ public class CaculateProfit {
         return cntProfit;
     }
 
-    private List<Integer> calculateBounsProfit() {
+    private List<Integer> calculateBonusProfit() {
         List<Integer> bonusProfit = new ArrayList<>();
 
         for(int i = 0; i < lottoPurchaseCnt; i++) {
@@ -69,5 +70,17 @@ public class CaculateProfit {
         }
 
         return bonusProfit;
+    }
+
+    private List<Integer> calculateTotalProfit() {
+        List<Integer> totalProfit = new ArrayList<>();
+
+        for(int i = 0; i < lottoPurchaseCnt; i++)
+        {
+            int profit = cntProfit.get(i) + bonusProfit.get(i);
+            totalProfit.add(profit);
+        }
+
+        return totalProfit;
     }
 }

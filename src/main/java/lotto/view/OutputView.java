@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.Map;
-import javax.swing.Spring;
 import lotto.model.LotteryResult;
 import lotto.model.PersonLotto;
 import lotto.model.PurchaseMoney;
@@ -16,12 +15,11 @@ public class OutputView {
     WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     STATISTICS_MESSAGE("당첨 통계"),
     DIVIDER_MESSAGE("---"),
-    THREE_MATCH_MESSAGE("3개 일치 (5,000원) - "),
-    FOUR_MATCH_MESSAGE("4개 일치 (50,000원) - "),
-    FIVE_MATCH_MESSAGE("5개 일치 (1,500,000원) - "),
-    FIVE_AND_BONUS_MATCH_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-    SIX_MATCH_MESSAGE("6개 일치 (2,000,000,000원) - "),
-    COUNT_MESSAGE("개"),
+    THREE_MATCH_MESSAGE("3개 일치 (5,000원) - %d개"),
+    FOUR_MATCH_MESSAGE("4개 일치 (50,000원) - %d개"),
+    FIVE_MATCH_MESSAGE("5개 일치 (1,500,000원) - %d개"),
+    FIVE_AND_BONUS_MATCH_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
+    SIX_MATCH_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
     PROFIT_PERCENTAGE_MESSAGE("총 수익률은 "),
     END_MESSAGE("입니다.");
 
@@ -29,6 +27,16 @@ public class OutputView {
 
     OutputMessage(String message) {
       this.message = message;
+    }
+
+    public static String statisticsMessage(OutputMessage outputMessage, Map<WinningMoney, Integer> store, WinningMoney winningMoney) {
+      return String.format(outputMessage.message, resultCount(store, winningMoney));
+    }
+
+    private static int resultCount(Map<WinningMoney, Integer> store, WinningMoney winningMoney) {
+      int count = 0;
+      if (store.containsKey(winningMoney)) return store.get(winningMoney);
+      return count;
     }
   }
 
@@ -56,32 +64,22 @@ public class OutputView {
         .append(SpecialSign.PERCENTAGE_MESSAGE.getSign())
         .append(OutputMessage.END_MESSAGE.message);
 
-    System.out.println(sb);
+    System.out.print(sb);
   }
 
   private String winningLottoResult(Map<WinningMoney, Integer> store) {
     StringBuilder sb = new StringBuilder();
-    return sb.append(OutputMessage.THREE_MATCH_MESSAGE.message)
-        .append(resultCount(store, WinningMoney.THREE_MATCH)).append(OutputMessage.COUNT_MESSAGE.message)
+    return sb
+        .append(OutputMessage.statisticsMessage(OutputMessage.THREE_MATCH_MESSAGE, store, WinningMoney.THREE_MATCH))
         .append(SpecialSign.NEW_LINE.getSign())
-        .append(OutputMessage.FOUR_MATCH_MESSAGE.message)
-        .append(resultCount(store, WinningMoney.FOUR_MATCH)).append(OutputMessage.COUNT_MESSAGE.message)
+        .append(OutputMessage.statisticsMessage(OutputMessage.FOUR_MATCH_MESSAGE, store, WinningMoney.FOUR_MATCH))
         .append(SpecialSign.NEW_LINE.getSign())
-        .append(OutputMessage.FIVE_MATCH_MESSAGE.message)
-        .append(resultCount(store, WinningMoney.FIVE_MATCH)).append(OutputMessage.COUNT_MESSAGE.message)
+        .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH))
         .append(SpecialSign.NEW_LINE.getSign())
-        .append(OutputMessage.FIVE_AND_BONUS_MATCH_MESSAGE.message)
-        .append(resultCount(store, WinningMoney.FIVE_MATCH_BONUS)).append(OutputMessage.COUNT_MESSAGE.message)
+        .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_AND_BONUS_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH_BONUS))
         .append(SpecialSign.NEW_LINE.getSign())
-        .append(OutputMessage.SIX_MATCH_MESSAGE.message)
-        .append(resultCount(store, WinningMoney.SIX_MATCH)).append(OutputMessage.COUNT_MESSAGE.message)
+        .append(OutputMessage.statisticsMessage(OutputMessage.SIX_MATCH_MESSAGE, store, WinningMoney.SIX_MATCH))
         .toString();
-  }
-
-  private int resultCount(Map<WinningMoney, Integer> store, WinningMoney winningMoney) {
-    int count = 0;
-    if (store.containsKey(winningMoney)) return store.get(winningMoney);
-    return count;
   }
 
   private String purchaseLottoResult(PersonLotto personLotto) {

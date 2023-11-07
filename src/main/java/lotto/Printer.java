@@ -28,7 +28,7 @@ public class Printer {
         System.out.println();
     }
 
-    public void printStatistic(StatisticDTO statisticDTO) {
+    public void statistic(StatisticDTO statisticDTO) {
         StringBuilder sb = new StringBuilder();
         int[] statistic = statisticDTO.getStatistic();
         sb.append("당첨 통계\n").append("---\n")

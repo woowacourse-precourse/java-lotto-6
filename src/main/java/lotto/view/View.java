@@ -22,11 +22,17 @@ public class View {
         OutputView.printLineBreak();
         OutputView.printPurchasedLottoCountMessage(purchasedLottoCount);
         OutputView.printWinningLottos(winningLottos);
-        OutputView.printLineBreak();
     }
 
     public static List<Integer> readLottoNumbers() {
+        OutputView.printLineBreak();
         OutputView.printReadLottoNumberMessage();
         return InputView.readLottoNumbers();
+    }
+
+    public static Integer readBonusNumber() {
+        OutputView.printLineBreak();
+        OutputView.printReadBonusNumberMessage();
+        return InputView.readBonusNumber();
     }
 }

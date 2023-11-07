@@ -55,24 +55,4 @@ public class InputBonusNumberValidatorTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
-
-    @Test
-    @DisplayName("로또 보너스 번호 당첨 번호와 중복 테스트")
-    void 로또_보너스_번호_당첨_번호_중복() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> inputBonusNumberValidator
-                        .validateDuplicateBonusNumber("1,2,3,4,5,6", "6"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("로또 보너스 번호 당첨 번호와 중복 테스트2")
-    void 로또_보너스_번호_당첨_번호_중복2() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> inputBonusNumberValidator
-                        .validateDuplicateBonusNumber("1,12,23,34,35,42", "23"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
 }

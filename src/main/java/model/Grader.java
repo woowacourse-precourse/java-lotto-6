@@ -10,6 +10,7 @@ public class Grader {
   public Grader() {
   }
 
+  // 로또들이랑 당첨 번호를 입력 받아 비교 로직을 실행한다.
   public List<Integer> compareLottoWinningLotto(List<Lotto> lottos, WinningLotto winningLotto) {
     List<Integer> winningDetails = new ArrayList<>();
     for(int i = 0; i <= 5; i++) {
@@ -22,6 +23,7 @@ public class Grader {
     return winningDetails;
   }
 
+  // 로또 번호와 당첨 번호를 비교한다.
   public Integer compareNumber(Lotto lotto, WinningLotto winningLotto) {
     int sameNumberCount = 0, sameBonusNumber = 0;
     for(int i = 0; i < 6; i++) {
@@ -37,6 +39,7 @@ public class Grader {
     return checkRank(sameNumberCount, sameBonusNumber);
   }
 
+  // 일치한 번호와 보너스 번호 일치 여부를 받아 등수를 책정한다.
   public Integer checkRank(int sameNumberCount, int sameBonusNumber) {
     int rank = 0;
     if(sameNumberCount == 6) {
@@ -57,6 +60,7 @@ public class Grader {
     return rank;
   }
 
+  // 구입 금액과 등수 내역을 입력 받아 수익률을 계산한다.
   public double calculateEarningRatio(Integer inputMoney, List<Integer> winningDetails) {
     double earnMoney = winningDetails.get(5) * 5000 + winningDetails.get(4) * 50000 + winningDetails.get(3) * 1500000
             + winningDetails.get(2) * 30000000 + winningDetails.get(1) * 2000000000;

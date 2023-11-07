@@ -38,14 +38,11 @@
 * [x] 수익률을 출력합니다. - earningRatioPrint()
   
 ### PrintError.class
+
 * [x] 구입 금액이 숫자가 아닙니다 -  moneyNotNumber()
-  
 * [x] 구입 금액이 1000단위가 아닙니다. - moneyUnitOfThousand()
-  
 * [x] 로또 번호가 6자리가 아닙니다. - numberSizeMessage()
-  
 * [x] 로또 번호가 1~45 사이의 숫자가 아닙니다. - numberRangeMessage()
-  
 * [x] 로또 번호가 중복된 숫자가 있습니다. - numberDuplicatedMessage()
   
   

@@ -9,12 +9,14 @@ import model.WinningLotto;
 import view.PrintError;
 import view.PrintResult;
 
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
 
   private final PrintError printError = new PrintError();
+  private final WinningLotto winningLotto = new WinningLotto();
 
   // 로또 시작
   public void start() {
@@ -36,26 +38,23 @@ public class Store {
   public int inputMoney() {
     boolean isValid = false;
     int money = 0;
+    System.out.println("구입금액을 입력해 주세요.");
 
     while(!isValid) {
-      System.out.println("구입금액을 입력해 주세요.");
       String moneyInput = Console.readLine();
-
       try {
-        validateMoneyIsNumber(moneyInput);
+        validateIsNumber(moneyInput);
         money = Integer.parseInt(moneyInput);
         validateUnitOfThousandMoney(money);
         isValid = true;
       } catch (IllegalArgumentException e) {
-
       }
     }
-
     return money;
   }
 
   // 구입 금액이 숫자인지 확인
-  public void validateMoneyIsNumber(String money) {
+  public void validateIsNumber(String money) {
     for(char c : money.toCharArray()) {
       if(!Character.isDigit(c)) {
         printError.moneyNotNumber();
@@ -74,6 +73,7 @@ public class Store {
 
 
 
+  // 구입 금액만큼 로또 발급
   public List<Lotto> giveLotto(int money) {
     int count = money / 1000;
     System.out.println("\n" + count + "개를 구매했습니다.");
@@ -87,23 +87,71 @@ public class Store {
     return lottos;
   }
 
+  // 로또 번호 생성
   public List<Integer> makeLottoNumber() {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6);
   }
 
-  public WinningLotto inputWinningLotto() {
-    System.out.println("당첨 번호를 입력해 주세요");
-    String numbersInput = Console.readLine();
-    System.out.println("보너스 번호를 입력해 주세요");
-    int bonusNumber = Integer.parseInt(Console.readLine());
 
-    List<Integer> numbers = new ArrayList<>();
-    String[] numberInputSplit = numbersInput.split(",");
-    for(String number : numberInputSplit) {
-      numbers.add(Integer.parseInt(number));
-    }
+  // 당첨 번호와 보너스 번호 입력
+  public WinningLotto inputWinningLotto() {
+    // 당첨 번호 입력
+    List<Integer> numbers = inputWinningNumbers();
+    // 보너스 번호 입력
+    Integer bonusNumber = inputBonusNumber(numbers);
     return new WinningLotto(numbers, bonusNumber);
   }
+
+  // 당첨 번호 입력
+  public List<Integer> inputWinningNumbers() {
+    System.out.println("당첨 번호를 입력해 주세요");
+    boolean isValid = false;
+    List<Integer> numbers = new ArrayList<>();
+    while (!isValid) {
+      String inputWinningNumbers = Console.readLine();
+      numbers = new ArrayList<>();
+      try {
+        validateNumbersIsNumber(inputWinningNumbers);
+        String[] inputWinningNumbersSplit = inputWinningNumbers.split(",");
+        for(String number : inputWinningNumbersSplit) {
+          numbers.add(Integer.parseInt(number));
+        }
+        winningLotto.validateNumbers(numbers);
+        isValid = true;
+      } catch (IllegalArgumentException e) {
+      }
+    }
+    return numbers;
+  }
+
+  // 입력 받은 숫자들이 숫자인지 확인
+  public void validateNumbersIsNumber(String numbersInput) {
+    String[] numberInput = numbersInput.split(",");
+    for(String number : numberInput) {
+      validateIsNumber(number);
+    }
+  }
+
+  // 보너스 번호 입력
+  public Integer inputBonusNumber(List<Integer> numbers) {
+    boolean isValid = false;
+    int bonusNumber = 0;
+    System.out.println("보너스 번호를 입력해 주세요");
+
+    while (!isValid) {
+      String inputBonusNumber = Console.readLine();
+      try {
+        validateIsNumber(inputBonusNumber);
+        bonusNumber = Integer.parseInt(inputBonusNumber);
+        winningLotto.validateBonusNumber(numbers, bonusNumber);
+        isValid = true;
+      } catch (IllegalArgumentException e) {
+
+      }
+    }
+    return bonusNumber;
+  }
+
 
 
 

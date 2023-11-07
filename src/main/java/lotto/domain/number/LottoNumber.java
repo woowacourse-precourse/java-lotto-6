@@ -1,5 +1,6 @@
 package lotto.domain.number;
 
+import java.util.Objects;
 import lotto.global.enums.ErrorMessage;
 import lotto.global.exception.InvalidValueException;
 
@@ -19,6 +20,10 @@ public class LottoNumber extends Number  {
 
     public static LottoNumber fromAutoLotto(int value){
         return new LottoNumber(value, false);
+    }
+
+    public boolean isBonus(){
+        return this.isBonus;
     }
 
     private LottoNumber(String value, boolean isBonus){
@@ -56,6 +61,21 @@ public class LottoNumber extends Number  {
     @Override
     public String toString(){
         return String.valueOf(super.value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LottoNumber)) return false;
+        if (!super.equals(o)) return false;
+        LottoNumber that = (LottoNumber) o;
+        return isBonus == that.isBonus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), isBonus);
+
     }
 
 }

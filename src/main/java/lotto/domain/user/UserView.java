@@ -14,13 +14,14 @@ public class UserView {
         this.userViewValidator = userViewValidator;
     }
 
-    public void inputUserAssets(){
+    public User inputUserAssets(){
         System.out.println(ViewMessage.INPUT_MONEY_AMOUNT);
         User user = userController.createUserWithAssets(inputAssetWithValidate());
         outputBuyLotto(user);
+        return user;
     }
 
-    private void outputBuyLotto(User user){
+    private void outputBuyLotto(final User user){
         UserLottoResponse response = userController.buyLotto(user);
         response.outputLottoSize();
         System.out.println(response);

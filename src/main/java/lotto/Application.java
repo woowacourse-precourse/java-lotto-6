@@ -9,7 +9,6 @@ public class Application {
         Injector injector = new Injector();
         UserView userView = injector.getUserView();
         LottoView lottoView = injector.getLottoView();
-        userView.inputUserAssets();
-        lottoView.raffleLotto();
+        lottoView.runLotto(userView.inputUserAssets());
     }
 }

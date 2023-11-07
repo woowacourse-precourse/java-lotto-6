@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Optional;
 import lotto.domain.number.LottoNumber;
 
 public class Lotto {
@@ -20,6 +21,16 @@ public class Lotto {
 
     public void addBonusNumber(LottoNumber lottoNumber){
         this.numbers.add(lottoNumber);
+    }
+
+    public List<LottoNumber> getNumbers(){
+        return this.numbers;
+    }
+
+    public LottoNumber getBonusNumber(){
+        return this.numbers.stream()
+                .filter(LottoNumber::isBonus)
+                .findFirst().get();
     }
 
     private Lotto(List<LottoNumber> numbers) {

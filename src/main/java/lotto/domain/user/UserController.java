@@ -10,16 +10,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    public User createUserWithAssets(String userInput){
+    public User createUserWithAssets(final String userInput){
         int asset = convertService.stringToIntegerConverter(userInput);
         return createUserFromAsset(asset);
     }
 
-    public UserLottoResponse buyLotto(User user){
+    public UserLottoResponse buyLotto(final User user){
         return userService.buyAllPurchasableLotto(user);
     }
 
-    private User createUserFromAsset(int asset){
+    private User createUserFromAsset(final int asset){
         return userService.createUser(asset);
     }
 

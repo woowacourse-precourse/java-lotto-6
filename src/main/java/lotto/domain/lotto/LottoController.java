@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.List;
 import lotto.domain.converter.ConvertService;
 import lotto.domain.number.LottoNumber;
+import lotto.domain.user.User;
 
 public class LottoController {
 
@@ -14,12 +15,15 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public RaffleLottoResponse raffleLotto(String input){
+    public List<LottoResultResponse> getLottoStatistics(final User user, final Lotto raffledLotto){
+        return lottoService.getLottoStatistics(user.getMyLotto(), raffledLotto);
+    }
+    public RaffleLottoResponse raffleLotto(final String input){
         List<LottoNumber> lotto = convertService.stringToNormalNumberConverter(input);
         return lottoService.raffleLotto(lotto);
     }
 
-    public RaffleLottoResponse pickBonusNumber(Lotto lotto, String input){
+    public RaffleLottoResponse pickBonusNumber(final Lotto lotto, final String input){
         LottoNumber lottoNumber = convertService.stringToBonusNumberConverter(input);
         return lottoService.addBonusNumber(lotto, lottoNumber);
     }

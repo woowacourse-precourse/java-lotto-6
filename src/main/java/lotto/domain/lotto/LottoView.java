@@ -1,6 +1,8 @@
 package lotto.domain.lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.domain.user.User;
 import lotto.global.enums.ViewMessage;
 
 public class LottoView {
@@ -10,9 +12,12 @@ public class LottoView {
     public LottoView(LottoController lottoController){
         this.lottoController = lottoController;
     }
-    public void raffleLotto(){
+
+    public void runLotto(final User user){
         RaffleLottoResponse response = outputRaffleLotto(inputNormalNumber());
-        outputAddBonusNumber(response.getLotto(), inputBonusNumber());
+        Lotto raffledLotto = response.getLotto();
+        outputAddBonusNumber(raffledLotto, inputBonusNumber());
+        outputLottoStats(user, raffledLotto);
     }
 
     private String inputNormalNumber(){
@@ -23,20 +28,25 @@ public class LottoView {
 
     private String inputBonusNumber(){
         System.out.println(ViewMessage.INPUT_BONUS_NUMBER);
-        String input  = Console.readLine();
+        String input = Console.readLine();
         return input;
     }
 
-    private RaffleLottoResponse outputRaffleLotto(String input){
+    private RaffleLottoResponse outputRaffleLotto(final String input){
         RaffleLottoResponse response = lottoController.raffleLotto(input);
         System.out.println(response);
         return response;
     }
 
-    private RaffleLottoResponse outputAddBonusNumber(Lotto lotto, String input){
+    private void outputAddBonusNumber(final Lotto lotto, final String input){
         RaffleLottoResponse response = lottoController.pickBonusNumber(lotto, input);
         System.out.println(response);
-        return response;
+    }
+
+    private void outputLottoStats(final User user, final Lotto raffledLotto){
+        System.out.println(ViewMessage.OUTPUT_WIN_STATS);
+        List<LottoResultResponse> responses = lottoController.getLottoStatistics(user, raffledLotto);
+        responses.forEach(System.out::println);
     }
 
 }

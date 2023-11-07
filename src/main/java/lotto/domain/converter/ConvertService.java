@@ -8,17 +8,17 @@ import lotto.domain.number.LottoNumber;
 
 public class ConvertService {
 
-    public List<LottoNumber> stringToNormalNumberConverter(String input) {
+    public List<LottoNumber> stringToNormalNumberConverter(final String input) {
         return Stream.of(input.split(Separator.COMMA.toString()))
                 .map(LottoNumber::pickNormalNumber)
                 .collect(Collectors.toList());
     }
 
-    public LottoNumber stringToBonusNumberConverter(String input){
+    public LottoNumber stringToBonusNumberConverter(final String input){
         return LottoNumber.pickBonusNumber(input);
     }
 
-    public int stringToIntegerConverter(String input){
+    public int stringToIntegerConverter(final String input){
         return Integer.parseInt(input);
     }
 }

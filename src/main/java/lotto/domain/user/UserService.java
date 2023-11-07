@@ -22,11 +22,11 @@ public class UserService {
         return new UserLottoResponse(user);
     }
 
-    public int getUserAssets(User user){
+    public int getUserAssets(final User user){
         return user.getAsset();
     }
 
-    private int getPurchasableLottoCount(User user){
+    private int getPurchasableLottoCount(final User user){
         return getUserAssets(user) / lottoService.LOTTO_PRICE;
     }
 }

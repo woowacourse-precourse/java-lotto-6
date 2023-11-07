@@ -1,7 +1,11 @@
-package lotto;
+package lotto.cotroller;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.PurchaseAmount;
+import lotto.Util;
+import lotto.Validator;
+import lotto.view.InputView;
 
 public class InputController {
 

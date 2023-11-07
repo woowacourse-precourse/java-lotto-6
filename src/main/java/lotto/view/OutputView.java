@@ -1,9 +1,11 @@
-package lotto;
+package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import lotto.LottoDTO;
+import lotto.domain.Rank;
 
 public class OutputView {
 

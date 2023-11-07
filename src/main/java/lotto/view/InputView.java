@@ -14,19 +14,19 @@ public class InputView {
 
     }
 
-    protected Integer readPurchaseAmount() {
+    protected static Integer readPurchaseAmount() {
         String input = Console.readLine();
         InputValidator.validatePurchaseAmountInput(input);
         return parseInt(input);
     }
 
-    protected List<Integer> readLottoNumbers() {
+    protected static List<Integer> readLottoNumbers() {
         String input = Console.readLine();
         InputValidator.validateLottoNumberInput(input);
         return InputUtil.convertToList(input);
     }
 
-    protected Integer readBonusNumber() {
+    protected static Integer readBonusNumber() {
         String input = Console.readLine();
         InputValidator.validateBonusNumberInput(input);
         return parseInt(input);

@@ -44,4 +44,19 @@ public class LottoGame {
         return stringBuilder.toString();
     }
 
+    public WinningStatistic createWinningStatistic(WinningNumber winningNumber,
+        LottoNumber bonusNumber) {
+        WinningStatistic winningStatistic = WinningStatistic.newInstance();
+        compareWinningNumberWithLottos(winningNumber, bonusNumber, winningStatistic);
+        return winningStatistic;
+    }
+
+
+
+    private void compareWinningNumberWithLottos(WinningNumber winningNumber,
+        LottoNumber bonusNumber, WinningStatistic winningStatistic) {
+        issuedLottos.stream()
+            .map(lotto -> lotto.compareWinningNumber(winningNumber, bonusNumber))
+            .forEach(winningStatistic::increaseCount);
+    }
 }

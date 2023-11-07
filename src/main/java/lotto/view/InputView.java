@@ -15,30 +15,49 @@ public class InputView {
     public static final String SEPARATOR = ",";
 
     public static long getLottoPayment() {
-        printMessage(USER_MONEY_INPUT_MSG);
+        while (true) {
+            try {
+                printMessage(USER_MONEY_INPUT_MSG);
 
-        String money = Console.readLine();
-        System.out.println();
-        InputValidator.validateAmountFormatAndLimit(money);
-        InputValidator.validateAmountUnitAndMinimum(Long.parseLong(money));
-        return Long.parseLong(money);
+                String money = Console.readLine();
+                System.out.println();
+                InputValidator.validateAmountFormatAndLimit(money);
+                InputValidator.validateAmountUnitAndMinimum(Long.parseLong(money));
+                return Long.parseLong(money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public static List<Integer> getWinningNumber() {
-        printMessage(WINNING_NUMBER_INPUT_MSG);
+        while (true) {
+            try {
+                printMessage(WINNING_NUMBER_INPUT_MSG);
 
-        String winningNumber = Console.readLine();
-        System.out.println();
-        return convertStringToIntegerList(winningNumber);
+                String winningNumber = Console.readLine();
+                System.out.println();
+                return convertStringToIntegerList(winningNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int getBonusNumber(List<Integer> lottoNumbers) {
-        printMessage(BONUS_NUMBER_INPUT_MSG);
+        while (true) {
+            try {
+                printMessage(BONUS_NUMBER_INPUT_MSG);
 
-        String bonusNumber = Console.readLine();
-        System.out.println();
-        InputValidator.checkBonusNumber(lottoNumbers, bonusNumber);
-        return Integer.parseInt(bonusNumber);
+                String bonusNumber = Console.readLine();
+                InputValidator.checkBonusNumber(lottoNumbers, bonusNumber);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public static List<Integer> convertStringToIntegerList(String winningNumber) {

@@ -1,5 +1,7 @@
 package lotto.util.convert;
 
+import static lotto.user.model.UserConstant.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +45,9 @@ public class ConvertUtil {
             throw new IllegalArgumentException(e);
         }
         return numbers;
+    }
+
+    public static int moneyToCount(int money){
+        return money / THOUSAND;
     }
 }

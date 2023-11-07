@@ -1,5 +1,6 @@
 package lotto.util.validate;
 
+import static lotto.lotto.model.LottoConstant.*;
 import static lotto.user.model.UserConstant.*;
 
 import java.util.HashMap;

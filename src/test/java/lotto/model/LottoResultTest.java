@@ -27,4 +27,16 @@ class LottoResultTest {
         assertThat(lottoStatusCounts.get(LottoStatus.THIRD)).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("수익률이 제대로 계산되는지 확인한다")
+    void calculateProfitRate() {
+        List<LottoStatus> lottoResults = Arrays.asList(
+                LottoStatus.SIXTH, LottoStatus.SIXTH, LottoStatus.SIXTH, LottoStatus.SIXTH, LottoStatus.SIXTH,
+                LottoStatus.SIXTH, LottoStatus.SIXTH, LottoStatus.FIFTH
+        );
+        LottoResult lottoResult = new LottoResult(lottoResults);
+
+        assertThat(lottoResult.caculateProfitRate()).isEqualTo(62.5);
+    }
+
 }

@@ -3,7 +3,7 @@ package lotto.domain;
 public class LottoPurchaseAmount {
     private final int value;
 
-    private LottoPurchaseAmount(int value) {
+    LottoPurchaseAmount(int value) {
         this.value = value;
     }
 

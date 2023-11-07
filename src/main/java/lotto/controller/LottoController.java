@@ -18,19 +18,27 @@ public class LottoController {
     WinningResult winningResult;
 
     public void run() {
+        buyPlayerLotto();
+
+        createLotto();
+        createBonus();
+
+        calculateResult();
+    }
+
+    private void calculateResult() {
+        winningResult = new WinningResult(lotto, bonus, playerLottos);
+
+        outputView.printWinningResult(winningResult);
+        outputView.printProfit(money, winningResult.getTotalRevenue());
+    }
+
+    private void buyPlayerLotto() {
         money = inputView.inputMoney();
         playerLottos = new PlayerLottos(money);
 
         outputView.printIssueCount(money);
         outputView.printPlayerLottos(playerLottos);
-
-        createLotto();
-        createBonus();
-
-        winningResult = new WinningResult(lotto, bonus, playerLottos);
-
-        outputView.printWinningResult(winningResult);
-        outputView.printProfit(money, winningResult.getTotalRevenue());
     }
 
     private void createBonus() {

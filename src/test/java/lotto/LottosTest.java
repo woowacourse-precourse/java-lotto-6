@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Reward;
 import lotto.dto.GameResultResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,7 @@ public class LottosTest {
     void matchSix(){
         GameResultResponse response = setUpLottos().match(
                 Arrays.asList(1, 2, 3, 4, 5, 6), 7, 4000);
-        Assertions.assertThat(response.getTotalReward().get(1)).isEqualTo(1);
+        Assertions.assertThat(response.getRewards().get(Reward.FIRST_REWARD)).isEqualTo(1);
         Assertions.assertThat(response.getProfit()).isEqualTo("50000000.0");
     }
 
@@ -26,8 +27,8 @@ public class LottosTest {
     void matchThreeAndFour(){
         GameResultResponse response = setUpLottos().match(
                 Arrays.asList(1, 2, 3, 4, 13, 19), 7, 4000);
-        Assertions.assertThat(response.getTotalReward().get(5)).isEqualTo(1);
-        Assertions.assertThat(response.getTotalReward().get(4)).isEqualTo(1);
+        Assertions.assertThat(response.getRewards().get(Reward.FIFTH_REWARD)).isEqualTo(1);
+        Assertions.assertThat(response.getRewards().get(Reward.FOURTH_REWARD)).isEqualTo(1);
         Assertions.assertThat(response.getProfit()).isEqualTo("1375.0");
     }
 

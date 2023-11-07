@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
-import lotto.constant.GameConstant;
 import lotto.dto.GameResultResponse;
 
 public class Lottos {
@@ -14,36 +12,29 @@ public class Lottos {
     }
     public GameResultResponse match(List<Integer> luckyNumbers, int bonusNumber, int payment){
         int income = 0;
-        Map<Integer, Integer> totalReward = setUp();
+        EnumMap<Reward, Integer> rewards = setUp();
         for (Lotto lotto : lottos) {
-            Reward reward = compute(lotto.match(luckyNumbers, bonusNumber));
+            Reward reward = lotto.match(luckyNumbers, bonusNumber);
             income += reward.getMoney();
-            computeRank(totalReward, reward.getRank());
+            computeRank(rewards, reward);
         }
-        return new GameResultResponse(totalReward, computeProfit(income, payment));
+        return new GameResultResponse(rewards, computeProfit(income, payment));
     }
 
-    private static void computeRank(Map<Integer, Integer> totalReward, int rank) {
-        if (totalReward.get(rank) != null) {
-            int matchNumber = totalReward.get(rank);
-            totalReward.put(rank, matchNumber + 1);
-        }
+    private static void computeRank(EnumMap<Reward, Integer> totalReward, Reward reward) {
+        Integer matchNumber = totalReward.get(reward);
+        totalReward.put(reward, matchNumber + 1);
     }
 
     private String computeProfit(int income, int payment){
         return String.format("%.1f", ((double) income / payment) * 100);
     }
 
-    private static Map<Integer, Integer> setUp() {
-        Map<Integer, Integer> totalReward = new HashMap<>();
-        for (int i = GameConstant.FIRST_RANK; i <= GameConstant.FIFTH_RANK; i++) {
-            totalReward.computeIfAbsent(i, k -> 0);
+    private static EnumMap<Reward, Integer> setUp() {
+        EnumMap<Reward, Integer> totalReward = new EnumMap<Reward, Integer>(Reward.class);
+        for (Reward reward: Reward.values()) {
+            totalReward.computeIfAbsent(reward, k -> 0);
         }
         return totalReward;
-    }
-
-    private Reward compute(Map<String, Integer> matchResult){
-        return Reward.computer(matchResult.get(GameConstant.LUCKY_NUMBERS),
-                matchResult.get(GameConstant.BONUS_NUMBER));
     }
 }

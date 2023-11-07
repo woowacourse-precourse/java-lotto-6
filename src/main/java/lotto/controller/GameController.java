@@ -11,11 +11,12 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     Validator validator = new Validator();
-
     LottoGenerator generator = new LottoGenerator();
+
     public void play() {
         int payment = getPayment();
         Lottos lottos = buy(payment);

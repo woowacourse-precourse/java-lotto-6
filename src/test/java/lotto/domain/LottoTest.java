@@ -30,13 +30,13 @@ class LottoTest {
     @Test
     void createLottoByUpRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 
     @DisplayName("1 미만 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDownRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 }

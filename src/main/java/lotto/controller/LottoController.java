@@ -14,10 +14,25 @@ import static lotto.view.outputStatistics.printStatistics;
 public class LottoController {
 
     public void start() {
-        Money money = getLottoMoney();
+        Money money;
+        WinningLotto winningLotto;
+
+        try {
+            money = getLottoMoney();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            money = getLottoMoney();
+        }
+
         Lottos lottos = getLottos(money);
 
-        WinningLotto winningLotto = getWinningLotto();
+        try {
+            winningLotto = getWinningLotto();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            winningLotto = getWinningLotto();
+        }
+
         PrizeResult prizeResult = new PrizeResult();
         calcLottoResult(prizeResult, winningLotto, lottos);
 
@@ -30,14 +45,9 @@ public class LottoController {
     }
 
     private Money getLottoMoney() {
-        try {
-            InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
-            int money = inputBuyLottoView.getValue();
-            return new Money(money);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return getLottoMoney();
-        }
+        InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
+        int money = inputBuyLottoView.getValue();
+        return new Money(money);
     }
 
     private Lottos getLottos(Money money) {
@@ -46,18 +56,13 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        try {
-            InputWinningLottoView inputWinningLottoView = new InputWinningLottoView();
-            InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
+        InputWinningLottoView inputWinningLottoView = new InputWinningLottoView();
+        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
 
-            List<Integer> winningNumbers = inputWinningLottoView.getValue();
-            Integer bonusNumber = inputBonusNumberView.getValue();
+        List<Integer> winningNumbers = inputWinningLottoView.getValue();
+        Integer bonusNumber = inputBonusNumberView.getValue();
 
-            return new WinningLotto(winningNumbers, bonusNumber);
-        } catch (Exception e) {
-          System.out.println(e.getMessage());
-          return getWinningLotto();
-        }
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     private void calcLottoResult(PrizeResult prizeResult, WinningLotto winningLotto, Lottos lottos) {

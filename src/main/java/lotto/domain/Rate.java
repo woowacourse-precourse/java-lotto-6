@@ -10,11 +10,9 @@ public class Rate {
 
     private long getAllMoney(PrizeResult prizeResult) {
         int result = 0;
-
         for(Prize prize : Prize.values()) {
             result += prizeResult.getPrizeCount(prize) * prize.getMoney();
         }
-
         return result;
     }
 

@@ -111,48 +111,18 @@ public class UserInput {
 ////////////////////////////////////////////////////////////////////////////////
 
     //보너스 번호 입력
-    public List<Integer> getWinningNumbers() {
-        String winningNumbersInput;
-        List<Integer> winningNumbers = new ArrayList<>();
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
 
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                winningNumbersInput = Console.readLine();
-
-                //Array보다는  Collections 사용! - 1주차 피드백
-
-                //변수 이름에 자료형&자료구조 사용하지 마! - 2주차 피드백
-                List<String> splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
-                validateWinningNumbers(splittedWinningNumbersInput);
-                hasDuplicates(splittedWinningNumbersInput);
-
-                //나중에 for-each 문 개별 함수화 리팩토링!
-                for (var number : splittedWinningNumbersInput) {
-                    Integer.parseInt(number);
-                    winningNumbers.add(Integer.valueOf(number));
-                }
-
-                break;
-
-                //중복 체크
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-        return winningNumbers;
-    }
-
-    public int getBonusNumber() {
-        int bonusNumber;
-
-        while(true) {
-            try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 bonusNumber = Integer.parseInt(Console.readLine());
+
                 validateBonusNumber(bonusNumber);
+
+                checkOverlapWithNumber(winningNumbers, bonusNumber);
+
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -164,8 +134,9 @@ public class UserInput {
         return bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber){
-        if(!((bonusNumber >= 1) && (bonusNumber <= 45))){
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (!((bonusNumber >= 1) && (bonusNumber <= 45))) {
             throw new IllegalArgumentException("1부터 45 사이의 숫자를 하나 입력해 주세요.");
         }
 
@@ -173,25 +144,16 @@ public class UserInput {
     }
 
 
-    //보너스 번호 중복 확인 => while문 입력값 다시 받기
-    public void overlapWithNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private void checkOverlapWithNumber(List<Integer> winningNumbers, int bonusNumber) {
 
         for (var winningNumber : winningNumbers) {
             if (winningNumber == bonusNumber) {
                 throw new IllegalArgumentException("당첨 번호와 다른 숫자를 입력해주세요.");
             }
         }
-        repeatBonusNumber = false;
+
+        return;
     }
-
-
-    //나중에 main() 아래에서 각 입력값별로 메소드들 묶어서 하나의 메소드화 할꺼임 & while문으로 제대로된 값 입력될때까지 다시 물어보기
-//    public getInput(){
-//        while(repeatPurchase){
-//            int purchaseAmount = getPurchaseAmount();
-//
-//            validatePurchaseAmount(purchaseAmount);
-//    }
 
 
 }

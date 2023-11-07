@@ -27,6 +27,7 @@ public class GameController {
         lottoPrintNum(allLottoNumbers);
     }
 
+
     public static void lottoPrintNum(List<List<Integer>> lottoAllNumbers) {
         OutputView.printLottoNumber(lottoAllNumbers);
         lottoInputWinningNum();
@@ -40,13 +41,13 @@ public class GameController {
     public static void lottoPrintBonusNumber(Lotto winningNumbers) {
         OutputView.printLottoBonusNumber();
         bonusNumber = InputView.inputBonusNum(winningNumbers);
-        OutputView.printLottoWinningStatistics();
-        lottoWinCalculator();
+        List<Integer> lottoWinningCounts = lottoWinCalculator();
+        OutputView.printLottoWinningStatistics(lottoWinningCounts);
+        OutputView.printLottoTotalProfit(lottoWinningCounts, purchaseAmount);
     }
 
-    public static void lottoWinCalculator() {
-        LottoWinningCalculator.lottoCalculator(winningNumbers, allLottoNumbers, purchaseAmount, bonusNumber);
-     //   LottoWinningCalculator.winningCalculator(winningNumbers, allLottoNumbers, purchaseAmount, bonusNumber);
+    public static List<Integer> lottoWinCalculator() {
+        return LottoWinningCalculator.lottoCalculator(winningNumbers, allLottoNumbers);
     }
 }
 

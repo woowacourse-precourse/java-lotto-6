@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.LottoInformation;
 import lotto.domain.Lotto;
 import lotto.constant.LottoPrize;
 import lotto.domain.User;
@@ -23,7 +24,7 @@ public class OutputView {
     }
 
     private void printPurchaseLottoAmount(int money) {
-        System.out.println(money / 1000 + BUY_LOTTO_AMOUNT_MESSAGE);
+        System.out.println(money / LottoInformation.MONEY_UNIT.getNumber() + BUY_LOTTO_AMOUNT_MESSAGE);
     }
 
     private void printLottoNumbers(List<Lotto> lottos) {

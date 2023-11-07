@@ -1,6 +1,12 @@
 package lotto.domain;
 
-import java.util.*;
+import lotto.constant.LottoInformation;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +23,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

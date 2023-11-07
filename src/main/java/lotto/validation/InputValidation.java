@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.constant.LottoInformation;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,8 +13,7 @@ public class InputValidation {
     private static final String IS_NOT_NUMBER_MESSAGE = "숫자가 아닙니다";
     private static final String IS_NOT_EXPRESS_NUMBER_RANGE_MESSAGE = "정수의 형태로 표현할 수 없습니다";
     private static final String IS_NOT_NUMBER_Range_MESSAGE = "0이하 입니다";
-    private static final int MONEY_UNIT = 1000;
-    private static final String IS_NOT_MONEY_UNIT_MESSAGE = MONEY_UNIT + "원 단위가 아닙니다";
+    private static final String IS_NOT_MONEY_UNIT_MESSAGE = LottoInformation.MONEY_UNIT.getNumber() + "원 단위가 아닙니다";
     private static final String IS_NOT_LOTTO_SIZE_MESSAGE = "번호가 6개가 아닙니다";
     private static final String IS_NOT_LOTTO_RANGE_MESSAGE = "1~45의 번호가 아닙니다";
     private static final String IS_DUPLICATION_LOTTO_NUMBER_MESSAGE = "중복된 숫자가 있습니다";
@@ -38,7 +39,7 @@ public class InputValidation {
     }
 
     private void validationDetailNumbers(String[] lottoNumber) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber(); i++) {
             changeInteger(lottoNumber[i]);
             checkNumberRange(lottoNumber[i]);
         }
@@ -74,32 +75,33 @@ public class InputValidation {
     }
 
     private void isNumberRangeValidation(String input) {
-        if (Integer.parseInt(input) <= 0) {
+        if (Integer.parseInt(input) < LottoInformation.MIN_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ERROR + IS_NOT_NUMBER_Range_MESSAGE);
         }
     }
 
     private void isMoneyUnitValidation(String input) {
-        if (Integer.parseInt(input) % MONEY_UNIT != 0) {
+        if (Integer.parseInt(input) % LottoInformation.MONEY_UNIT.getNumber() != 0) {
             throw new IllegalArgumentException(ERROR + IS_NOT_MONEY_UNIT_MESSAGE);
         }
     }
 
     private void isLottoSize(String[] lottoNumber) {
-        if (lottoNumber.length != 6) {
+        if (lottoNumber.length != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()) {
             throw new IllegalArgumentException(ERROR + IS_NOT_LOTTO_SIZE_MESSAGE);
         }
     }
 
     private void checkNumberRange(String s) {
-        if (Integer.parseInt(s) <= 0 || Integer.parseInt(s) > 45) {
+        if (Integer.parseInt(s) < LottoInformation.MIN_LOTTO_NUMBER.getNumber() ||
+                Integer.parseInt(s) > LottoInformation.MAX_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ERROR + IS_NOT_LOTTO_RANGE_MESSAGE);
         }
     }
 
     private void isDuplicateNumber(String[] lottoNumber) {
         Set<String> checkDuplicationNumber = new HashSet<>(List.of(lottoNumber));
-        if (checkDuplicationNumber.size() != 6) {
+        if (checkDuplicationNumber.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()) {
             throw new IllegalArgumentException(ERROR + IS_DUPLICATION_LOTTO_NUMBER_MESSAGE);
         }
     }

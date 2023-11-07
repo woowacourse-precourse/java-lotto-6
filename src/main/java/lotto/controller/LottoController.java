@@ -23,52 +23,60 @@ public class LottoController {
     }
 
     public void run() {
-        Purchase purchase = read(this::getPurchase);
-        LottoCount lottoCount = getLottoCount(purchase);
+        Purchase purchase = read(this::readPurchase);
+        LottoCount lottoCount = createLottoCount(purchase);
         OutputView.printLottoCount(lottoCount.getCount());
 
-        LottoCollection lottoCollection = getLottoCollection(lottoCount);
+        LottoCollection lottoCollection = createLottoCollection(lottoCount);
         OutputView.printLottoCollection(lottoCollection.getLottoCollection());
 
-        List<MatchingCase> matchingResult = getMatchingResult(lottoCollection);
-        Profit profit = getProfit(purchase);
+        List<MatchingCase> matchingResult = calculateMatchingResult(lottoCollection);
+        Profit profit = calculateProfit(purchase);
 
-        announceResult(matchingResult, profit);
+        displayResults(matchingResult, profit);
     }
 
-    private Purchase getPurchase() {
+    private Purchase readPurchase() {
         int rawPurchase = read(InputView::inputPurchase);
         return Purchase.from(rawPurchase);
     }
 
-    private LottoCount getLottoCount(Purchase purchase) {
+    private LottoCount createLottoCount(Purchase purchase) {
         return LottoCount.from(purchase.getPurchase());
     }
 
-    private LottoCollection getLottoCollection(LottoCount lottoCount) {
+    private LottoCollection createLottoCollection(LottoCount lottoCount) {
         LottoCollectionGenerator lottoCollectionGenerator = new LottoCollectionGenerator(lottoCount.getCount(),
                 numberGenerator);
         return LottoCollection.from(lottoCollectionGenerator.generate());
     }
 
-    private List<MatchingCase> getMatchingResult(LottoCollection lottoCollection) {
-        Lotto winningLotto = read(this::getWinningtLotto);
-        int bonusNumber = read(InputView::inputBonusNumber, winningLotto.getNumbers());
-        MatchingCase.INIT.initMathcingCase();
+    private List<MatchingCase> calculateMatchingResult(LottoCollection lottoCollection) {
+        MatchingCase.NEW_GAME.initMathcingCase();
+        Lotto winningLotto = readWinningLotto();
+        int bonusNumber = readBonusNumber(winningLotto);
         lottoCollection.setResultGroup(winningLotto, bonusNumber);
-        return MatchingCase.INIT.getValues();
+        return MatchingCase.NEW_GAME.getValues();
     }
 
-    private Lotto getWinningtLotto() {
+    private Lotto readWinningLotto() {
+        return read(this::getWinningLottoFromInput);
+    }
+
+    private Lotto getWinningLottoFromInput() {
         WinningNumbersDto winningNumbersDto = read(InputView::inputWinningNumbers);
         return new Lotto(winningNumbersDto.getWinningNumbers());
     }
 
-    private Profit getProfit(Purchase purchase) {
+    private static int readBonusNumber(Lotto winningLotto) {
+        return read(InputView::inputBonusNumber, winningLotto.getNumbers());
+    }
+
+    private Profit calculateProfit(Purchase purchase) {
         return Profit.from(purchase.getPurchase());
     }
 
-    private void announceResult(List<MatchingCase> matchingResult, Profit profit) {
+    private void displayResults(List<MatchingCase> matchingResult, Profit profit) {
         OutputView.printResult(matchingResult);
         OutputView.printProfit(profit.getProfit());
     }

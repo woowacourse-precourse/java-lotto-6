@@ -7,7 +7,8 @@ public enum ErrorMessage {
     REQUEST_DELIMITER("쉼표(,)를 이용하여 번호를 구분해주세요."),
     REQUEST_NUMBER_RANGE("1부터 45 사이의 숫자를 입력해주세요"),
     REQUEST_INT_LIST("1부터 45사이의 숫자 6개를 쉼표(,)를 이용하여 구분해 입력해주세요"),
-    ERROR("[ERROR] ");
+    PREFIX("[ERROR]");
+
 
     private final String message;
 
@@ -16,6 +17,6 @@ public enum ErrorMessage {
     }
 
     public String getErrorMessage() {
-        return ERROR.message + message;
+        return PREFIX.message + message;
     }
 }

@@ -1,33 +1,33 @@
 package lotto.domain.lotto;
 
 public enum LottoRank {
-    LOSING(0, 0, 0),
-    FIFTH(5, 5000, 3),
-    FOURTH(4, 50000, 4),
-    THIRD(3, 1500000, 5),
-    SECOND(2, 30000000, 5),
-    FIRST(1, 2000000000, 6);
+    LOSING(0, "", 0),
+    FIFTH(5, "3개 일치 (5,000원) - ", 5000),
+    FOURTH(4, "4개 일치 (50,000원) - ", 50000),
+    THIRD(3, "5개 일치 (1,500,000원) - ", 1500000),
+    SECOND(2, "5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30000000),
+    FIRST(1, "6개 일치 (2,000,000,000원) - ", 200000000);
 
     private final int lottoRankIndex;
+    private final String resultMessage;
     private final int lottoRankPrize;
-    private final int matchNumberCount;
 
-    LottoRank(int lottoRankIndex, int lottoRankPrize, int matchNumberCount) {
+    LottoRank(int lottoRankIndex, String resultMessage, int lottoRankPrize) {
         this.lottoRankIndex = lottoRankIndex;
+        this.resultMessage = resultMessage;
         this.lottoRankPrize = lottoRankPrize;
-        this.matchNumberCount = matchNumberCount;
     }
 
     public int getLottoRankIndex() {
         return lottoRankIndex;
     }
 
-    public int getLottoRankPrize() {
-        return lottoRankPrize;
+    public String getResultMessage() {
+        return resultMessage;
     }
 
-    public int getMatchNumberCount() {
-        return matchNumberCount;
+    public int getLottoRankPrize() {
+        return lottoRankPrize;
     }
 }
 

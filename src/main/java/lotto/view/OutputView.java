@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
 
@@ -22,7 +23,7 @@ public class OutputView {
     private static final String TOTAL_RETURN_RATE = "총 수익률은 ";
     private static final String RETURN_RATE_MESSAGE = "입니다.";
     private static final String RETURN_RATE_MARK = "%";
-    private static final String RETURN_RATE_FORMAT = "###,###";
+    private static final String RETURN_RATE_FORMAT = "###,###.##";
 
     public void printRequestPurchasePrice() {
         System.out.println(REQUEST_PURCHASE_PRICE_MESSAGE);
@@ -43,6 +44,20 @@ public class OutputView {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
     }
 
+//    public void printLottoResult(Map<LottoRank, Integer> lottoResult) {
+//        StringBuilder sb = new StringBuilder();
+//        int count = 1;
+//        lottoResult.
+//
+//        for (LottoRankMessage value : LottoRankMessage.values()) {
+//
+//            sb.setLength(INITIALIZE_STRING_BUILDER);
+//            sb.append(value.getErrorMessage())
+//                .append(winner.get(count));
+//            System.out.println();
+//        }
+//    }
+
     public void printLottoResult(Map<LottoRank, Integer> lottoResult) {
         List<Integer> rankResult = new ArrayList<>(lottoResult.values());
         StringBuilder sb = new StringBuilder();
@@ -50,35 +65,46 @@ public class OutputView {
 
         System.out.println(LOTTO_STATS);
         System.out.println(RESULT_LINE);
-        for (LottoRank lottoRank : LottoRank.values()) {
-            if (lottoRank == LottoRank.LOSING) {
-                rankResultIndex++;
+        for (Entry<LottoRank, Integer> lottoResultValue : lottoResult.entrySet()) {
+            if (lottoResultValue.getKey() == LottoRank.LOSING) {
                 continue;
             }
-            rankResultIndex = getRankResultIndex(lottoRank, sb, rankResult, rankResultIndex);
+            sb.setLength(INITIALIZE_STRING_BUILDER);
+            sb.append(lottoResultValue.getKey().getResultMessage())
+                .append(lottoResultValue.getValue())
+                .append("개");
+            System.out.println(sb);
         }
+
+//        for (LottoRank lottoRank : LottoRank.values()) {
+//            if (lottoRank == LottoRank.LOSING) {
+//                rankResultIndex++;
+//                continue;
+//            }
+//            rankResultIndex = getRankResultIndex(lottoRank, sb, rankResult, rankResultIndex);
+//        }
     }
 
-    private int getRankResultIndex(LottoRank lottoRank, StringBuilder sb, List<Integer> rankResult,
-        int rankResultIndex) {
-        DecimalFormat decFormat = new DecimalFormat(RETURN_RATE_FORMAT);
-        int lottoRankPrize = lottoRank.getLottoRankPrize();
-        String lottoRankPrizeMoney = decFormat.format(lottoRankPrize);
-
-        sb.setLength(INITIALIZE_STRING_BUILDER);
-        sb.append(lottoRank.getMatchNumberCount()).append(RESULT_FORMAT_HEAD)
-            .append(lottoRankPrizeMoney).append(RESULT_FORMAT_MIDDLE)
-            .append(rankResult.get(rankResultIndex))
-            .append(RESULT_FORMAT_TAIL);
-        rankResultIndex++;
-        System.out.println(sb);
-        return rankResultIndex;
-    }
+//    private int getRankResultIndex(LottoRank lottoRank, StringBuilder sb, List<Integer> rankResult,
+//        int rankResultIndex) {
+//        DecimalFormat decFormat = new DecimalFormat(RETURN_RATE_FORMAT);
+//        int lottoRankPrize = lottoRank.getLottoRankPrize();
+//        String lottoRankPrizeMoney = decFormat.format(lottoRankPrize);
+//
+//        sb.setLength(INITIALIZE_STRING_BUILDER);
+//        sb.append(lottoRank.getMatchNumberCount()).append(RESULT_FORMAT_HEAD)
+//            .append(lottoRankPrizeMoney).append(RESULT_FORMAT_MIDDLE)
+//            .append(rankResult.get(rankResultIndex))
+//            .append(RESULT_FORMAT_TAIL);
+//        rankResultIndex++;
+//        System.out.println(sb);
+//        return rankResultIndex;
+//    }
 
     public void printReturnRate(double returnRate) {
         StringBuilder sb = new StringBuilder();
         DecimalFormat decFormat = new DecimalFormat(RETURN_RATE_FORMAT);
-        int rate = (int) returnRate;
+        double rate = returnRate;
         String returnRateResult = decFormat.format(rate);
 
         sb.append(TOTAL_RETURN_RATE)

@@ -8,7 +8,6 @@ public enum LottoResult {
     SECOND(5, "3,000,000", 2),
     FIRST(6, "2,000,000,000", 1);
 
-
     private final int matchCount;
     private final String winPrizeMoney;
     private final int rankIndex;

@@ -1,6 +1,5 @@
 package lotto.domain.lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class WinnerLotto {
@@ -9,7 +8,6 @@ public class WinnerLotto {
     int bonusNumber;
 
     public WinnerLotto(List<Integer> winnerLotto, int bonusNumber) {
-        Collections.sort(winnerLotto);
         this.winnerLotto = winnerLotto;
         this.bonusNumber = bonusNumber;
     }

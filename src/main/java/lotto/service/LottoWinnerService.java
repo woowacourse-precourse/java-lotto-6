@@ -16,6 +16,13 @@ public class LottoWinnerService {
     private static final int BONUS_NUMBER_MATCHED = 1;
     private static final int BONUS_NUMBER_UNMATCHED = 0;
     private static final int LOTTO_SIZE = 6;
+    private static final int COUNT_NUMBER = 0;
+    private static final int FIFTH_MATCH_NUMBER = 3;
+    private static final int FOURTH_MATCH_NUMBER = 4;
+    private static final int THIRD_MATCH_NUMBER = 5;
+    private static final int SECOND_MATCH_NUMBER = 5;
+    private static final int FIRST_MATCH_NUMBER = 6;
+
     private final LottoRepository lottoRepository = LottoRepository.getInstance();
 
     public List<LottoRank> checkRanking(WinnerLotto winnerLotto) {
@@ -38,7 +45,7 @@ public class LottoWinnerService {
         Map<LottoRank, Integer> lottoResult = new LinkedHashMap<>(6);
 
         for (LottoRank lottoRank : LottoRank.values()) {
-            int count = 0;
+            int count = COUNT_NUMBER;
             count = Collections.frequency(rankResult, lottoRank);
             lottoResult.put(lottoRank, count);
         }
@@ -71,22 +78,22 @@ public class LottoWinnerService {
     }
 
     private LottoRank checkRank(int matchNumberCount, int bonusNumberMatch) {
-        if (matchNumberCount < 3) {
+        if (matchNumberCount < FIFTH_MATCH_NUMBER) {
             return LottoRank.LOSING;
         }
-        if (matchNumberCount == 3) {
+        if (matchNumberCount == FIFTH_MATCH_NUMBER) {
             return LottoRank.FIFTH;
         }
-        if (matchNumberCount == 4) {
+        if (matchNumberCount == FOURTH_MATCH_NUMBER) {
             return LottoRank.FOURTH;
         }
-        if (matchNumberCount == 5 && bonusNumberMatch == BONUS_NUMBER_UNMATCHED) {
+        if (matchNumberCount == THIRD_MATCH_NUMBER && bonusNumberMatch == BONUS_NUMBER_UNMATCHED) {
             return LottoRank.THIRD;
         }
-        if (matchNumberCount == 5 && bonusNumberMatch == BONUS_NUMBER_MATCHED) {
+        if (matchNumberCount == SECOND_MATCH_NUMBER && bonusNumberMatch == BONUS_NUMBER_MATCHED) {
             return LottoRank.SECOND;
         }
-        if (matchNumberCount == 6) {
+        if (matchNumberCount == FIRST_MATCH_NUMBER) {
             return LottoRank.FIRST;
         }
         return LottoRank.LOSING;

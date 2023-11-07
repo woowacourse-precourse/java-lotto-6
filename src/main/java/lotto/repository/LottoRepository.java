@@ -6,9 +6,6 @@ import lotto.domain.lotto.Lotto;
 
 public class LottoRepository {
 
-    //repository
-    //저장 save
-
     private static final LottoRepository instance = new LottoRepository();
     private List<Lotto> lottoTicket = new ArrayList<>();
 

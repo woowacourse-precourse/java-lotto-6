@@ -9,9 +9,9 @@ public class LottoStatsService {
     private final int LOTTO_PRICE = 1000;
 
     public double calculateReturnRate(Map<LottoRank, Integer> lottoResult) {
-        double returnRate = 0;
-        int totalMoney = 0;
-        int lottoAmount = 0;
+        double returnRate = 0.0;
+        double totalMoney = 0.0;
+        double lottoAmount = 0.0;
 
         for (Entry<LottoRank, Integer> lotto : lottoResult.entrySet()) {
             int prize = lotto.getKey().getLottoRankPrize();
@@ -19,13 +19,10 @@ public class LottoStatsService {
             lottoAmount += winner;
             totalMoney += prize * winner;
         }
-        int purchaseMoney = lottoAmount * LOTTO_PRICE;
-
-        if (totalMoney == 0) {
-            return returnRate;
-        }
         if (totalMoney != 0) {
-            returnRate = (double) totalMoney / purchaseMoney;
+            double purchaseMoney = lottoAmount * LOTTO_PRICE;
+            returnRate = (double) totalMoney / purchaseMoney * 100;
+            returnRate = (double) Math.round(returnRate * 10) / 10;
         }
         return returnRate;
     }

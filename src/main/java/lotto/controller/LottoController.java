@@ -34,15 +34,15 @@ public class LottoController {
     }
 
     public void setLottoWinner() {
-        List<Integer> winnerNumber;
+        String winnerNumber;
         int bonusNumber;
 
         outputView.printRequestWinnerNumber();
         winnerNumber = inputView.getWinnerLotto();
+        List<Integer> winnerLottoPaper = inputView.getWinnerLottoPaper(winnerNumber);
         outputView.printRequestBonusNumber();
         bonusNumber = inputView.getBonusNumber();
-        winnerLotto = new WinnerLotto(winnerNumber, bonusNumber);
-
+        winnerLotto = new WinnerLotto(winnerLottoPaper, bonusNumber);
     }
 
     public void endLotto() {
@@ -51,7 +51,5 @@ public class LottoController {
         double returnRate = lottoStatsService.calculateReturnRate(lottoResult);
         outputView.printLottoResult(lottoResult);
         outputView.printReturnRate(returnRate);
-
-
     }
 }

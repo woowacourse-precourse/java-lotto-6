@@ -1,9 +1,6 @@
 package lotto.validation;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.util.message.ErrorMessage;
 
 public class InputValidator {
@@ -13,13 +10,31 @@ public class InputValidator {
     private static final int LOTTO_RANGE_START = 1;
     private static final int LOTTO_RANGE_END = 45;
 
-    public int validateInputPrice(String inputPrice) {
+    public boolean validateInputPrice(String inputPrice) {
         int price;
-        price = checkNumber(inputPrice);
-        price = checkMinPrice(price);
-        price = checkPrice(price);
+        try {
+            price = checkPriceNumber(inputPrice);
+            checkMinPrice(price);
+            checkPrice(price);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
 
-        return price;
+        return true;
+    }
+
+    private int checkPriceNumber(String userInput) {
+        int userInputNumber;
+
+        try {
+            userInputNumber = Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(
+                ErrorMessage.REQUEST_MORE_THAN_MINIMUM_PRICE.getErrorMessage());
+        }
+
+        return userInputNumber;
     }
 
     private int checkNumber(String userInput) {
@@ -27,76 +42,57 @@ public class InputValidator {
 
         try {
             userInputNumber = Integer.parseInt(userInput);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.REQUEST_NUMBER_RANGE.getErrorMessage());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ErrorMessage.REQUEST_NUMBER_RANGE.getErrorMessage());
         }
 
         return userInputNumber;
     }
 
-    private int checkMinPrice(int price) {
+    private void checkMinPrice(int price) {
         if (price >= MINIMUM_PRICE) {
-            return price;
+            return;
         }
-        if (price < MINIMUM_PRICE) {
-            throw new IllegalArgumentException(
-                ErrorMessage.REQUEST_MORE_THAN_MINIMUM_PRICE.getErrorMessage());
-        }
+        throw new IllegalArgumentException(
+            ErrorMessage.REQUEST_MORE_THAN_MINIMUM_PRICE.getErrorMessage());
 
-        return price;
     }
 
-    private int checkPrice(int price) {
-        if (price % MINIMUM_PRICE == 0) {
-            return price;
-        }
+    private void checkPrice(int price) {
         if (price % MINIMUM_PRICE != 0) {
             throw new IllegalArgumentException(
                 ErrorMessage.REQUEST_PRICE_STANDARD.getErrorMessage());
         }
-
-        return price;
     }
 
-    public int validateInputBonusNumber(String inputBonusNumber) {
+    public boolean validateInputBonusNumber(String inputBonusNumber) {
         int bonusNumber;
-        bonusNumber = checkNumber(inputBonusNumber);
-        checkNumberRange(bonusNumber);
+        try {
+            bonusNumber = checkNumber(inputBonusNumber);
+            checkNumberRange(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
-        return bonusNumber;
+        return true;
     }
 
     private void checkNumberRange(int bonusNumber) {
         if (bonusNumber >= LOTTO_RANGE_START && bonusNumber <= LOTTO_RANGE_END) {
             return;
         }
-        if (bonusNumber < LOTTO_RANGE_START || bonusNumber > LOTTO_RANGE_END) {
-            throw new IllegalArgumentException(ErrorMessage.REQUEST_NUMBER_RANGE.getErrorMessage());
-        }
+        throw new IllegalArgumentException(ErrorMessage.REQUEST_NUMBER_RANGE.getErrorMessage());
     }
 
-    public List<Integer> validateInputWinnerLotto(String input) {
-        checkSplit(input);
-        List<Integer> winnerLotto = getIntList(input);
-        checkListNumberRange(winnerLotto);
-
-        return winnerLotto;
-    }
-
-    private List<Integer> getIntList(String input) {
-        List<Integer> winnerLotto = new ArrayList<>();
-        int[] inputWinner;
+    public boolean validateInputWinnerLotto(String input) {
         try {
-            inputWinner = Arrays.stream(input.split(DELIMITER))
-                .map(String::trim)
-                .mapToInt(Integer::parseInt)
-                .toArray();
-            winnerLotto = Arrays.stream(inputWinner).boxed()
-                .collect(Collectors.toList());
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.REQUEST_INT_LIST.getErrorMessage());
+            checkSplit(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        return winnerLotto;
+
+        return true;
     }
 
     private void checkSplit(String userInput) {
@@ -106,8 +102,8 @@ public class InputValidator {
     }
 
     private void checkListNumberRange(List<Integer> winnerLotto) {
-        for (int index = 0; index < winnerLotto.size(); index++) {
-            checkNumberRange(winnerLotto.get(index));
+        for (Integer lotto : winnerLotto) {
+            checkNumberRange(lotto);
         }
     }
 }

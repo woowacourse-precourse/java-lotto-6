@@ -10,5 +10,6 @@ public class LottoController {
         int amount = inputView.lottoAmount();
         CreateLottoNumbers createLottoNumbers = new CreateLottoNumbers();
         createLottoNumbers.createLottoMain(amount);
+        inputView.winningLottoInput();
     }
 }

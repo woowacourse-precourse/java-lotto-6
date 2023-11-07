@@ -11,6 +11,11 @@ public class LottoService {
     private static final int DIVIDED_AMOUNT = 1000;
     private int lottoCount;
     private ArrayList<Lotto> lottos;
+    private int payment;
+
+    public int getPayment() {
+        return payment;
+    }
 
     public void createLottoCount() {
         while (true) {
@@ -24,8 +29,8 @@ public class LottoService {
     }
 
     public int checkLottoCount() {
-        int validAmount = checkPurchaseAmount();
-        return calculateLottoCount(validAmount);
+        payment = checkPurchaseAmount();
+        return calculateLottoCount(payment);
     }
 
     public int checkPurchaseAmount() {

@@ -11,21 +11,22 @@ import static lotto.Util.convertStringToInt;
 import static lotto.Util.println;
 
 public class Application {
+
     public static void main(String[] args) {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+
         println("구입금액을 입력해 주세요.");
-        int purchaseAmount = convertStringToInt(readLine());
-
-        int ticketCount = purchaseAmount / LOTTO_TICKET_PRICE;
-
-        if (purchaseAmount % LOTTO_TICKET_PRICE != 0) {
+        int budget = convertStringToInt(readLine());
+        if (budget % LOTTO_TICKET_PRICE != 0) {
             throw new IllegalStateException(MOD_NOT_ZERO.getMessage());
         }
-        Lotto[] tickets = new Lotto[ticketCount];
 
-        println(String.format("\n%d개를 구매했습니다.\n", ticketCount));
-        for (int i = 0; i < ticketCount; i++) {
-            tickets[i] = Lotto.generate();
-            println(tickets[i].getNumbers());
+        int lottoAmount = budget / LOTTO_TICKET_PRICE;
+        lottoGenerator.generate(lottoAmount);
+
+        println(String.format("\n%d개를 구매했습니다.\n", lottoAmount));
+        for (Lotto lotto : lottoGenerator.getLottos()) {
+            println(lotto.getNumbers());
         }
 
         println("\n당첨 번호를 입력해 주세요.");
@@ -42,8 +43,8 @@ public class Application {
         WinningNumbers win = new WinningNumbers(numbers, bonusNumber);
 
         int[] rankCount = new int[6];
-        for (int i = 0; i < ticketCount; i++) {
-            int rank = win.getRank(tickets[i]);
+        for (Lotto lotto : lottoGenerator.getLottos()) {
+            int rank = win.getRank(lotto);
             rankCount[rank]++;
         }
 
@@ -61,7 +62,7 @@ public class Application {
             profitTotal += type.multiplePrize(rankCount[i]);
         }
 
-        double profitRate = (double)(profitTotal) / purchaseAmount * 100;
+        double profitRate = (double)(profitTotal) / budget * 100;
         println(String.format("총 수익률은 %.1f%%입니다.", profitRate));
     }
 }

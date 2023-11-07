@@ -5,7 +5,7 @@ import lotto.domain.User;
 import lotto.service.ApplyWinningLotteryService;
 import lotto.service.CalculateResultService;
 import lotto.service.PurchaseLotteryService;
-import lotto.service.dto.CalculationOutcome;
+import lotto.service.dto.LotteryResultsDto;
 import lotto.service.dto.LotteryReceiptDto;
 
 public class Controller {
@@ -40,7 +40,7 @@ public class Controller {
     }
 
     public void calculateEarningRate() {
-        CalculationOutcome outcome = calculateResultService.calculate(user);
-        out.printResults(outcome.results(), outcome.earningRate());
+        LotteryResultsDto result = calculateResultService.calculate(user);
+        out.printResults(result.results(), result.earningRate());
     }
 }

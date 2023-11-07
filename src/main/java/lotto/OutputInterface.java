@@ -11,11 +11,9 @@ import static lotto.resource.TextResourceProvider.QUANTITY_OUTPUT_TEXT_FORMAT;
 
 import java.text.NumberFormat;
 import java.util.List;
-import lotto.domain.LotteryRanking;
-import lotto.domain.LotteryResult;
-import lotto.domain.PurchasedLottery;
 import lotto.service.dto.LotteryDto;
 import lotto.service.dto.LotteryReceiptDto;
+import lotto.service.dto.LotteryResultDto;
 
 public class OutputInterface {
 
@@ -30,7 +28,7 @@ public class OutputInterface {
         System.out.println(renderReceipt(receipt));
     }
 
-    public void printResults(List<LotteryResult> results, double earningRate) {
+    public void printResults(List<LotteryResultDto> results, double earningRate) {
         System.out.println(OUTPUT_LOTTERY_RESULT_TEXT);
         System.out.println(OUTPUT_LOTTERY_RESULT_HEADER_LINE_TEXT);
         System.out.println(renderLotteryResults(results));
@@ -56,27 +54,25 @@ public class OutputInterface {
         return LOTTO_NUMBERS_TEXT_FORMAT.format(arguments) + "\n";
     }
 
-    private String renderLotteryResults(List<LotteryResult> results) {
+    private String renderLotteryResults(List<LotteryResultDto> results) {
         StringBuilder builder = new StringBuilder();
-        for (LotteryResult result : results) {
+        for (LotteryResultDto result : results) {
             builder.append(renderLotteryResult(result));
         }
         return builder.toString();
     }
 
-    private String renderLotteryResult(LotteryResult result) {
-        String counts = Integer.toString(result.counts());
-        if (result.ranking() == LotteryRanking.LAST_PLACE) {
+    private String renderLotteryResult(LotteryResultDto result) {
+        if ("LAST_PLACE".equals(result.ranking())) {
             return "";
         }
-        if (result.ranking() == LotteryRanking.SECOND) {
-            String matches = Integer.toString(result.ranking().matches);
-            String amount = renderAmount(result.ranking().getAmount());
+        String counts = Integer.toString(result.counts());
+        String matches = Integer.toString(result.rankingMatches());
+        String amount = renderAmount(result.rankingAmount());
+        if ("SECOND".equals(result.ranking())) {
             String header = LOTTERY_RANKING_RESULT_SECOND_HEADER_FORMAT.format(matches, amount);
             return LOTTERY_RANKING_RESULT_FORMAT.format(header, counts) + "\n";
         }
-        String matches = Integer.toString(result.ranking().matches);
-        String amount = renderAmount(result.ranking().getAmount());
         String header = LOTTERY_RANKING_RESULT_DEFAULT_HEADER_FORMAT.format(matches, amount);
         return LOTTERY_RANKING_RESULT_FORMAT.format(header, counts) + "\n";
     }

@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Human;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
+import lotto.model.*;
 import lotto.utils.LottoCompare;
 import lotto.utils.Random;
 import lotto.view.OutputView;
@@ -22,8 +19,9 @@ public class MachineController {
         lottos = new Lottos(human.getCount());
         OutputView.displayPurchaseList(lottos);
         initWinningLotto();
-        OutputView.displayLottoCompareResult(compare());
-        OutputView.displayProfit(calcProfit());
+        LottoMachine lottoMachine = new LottoMachine(lottos, winningLotto, human.getCount());
+        OutputView.displayLottoCompareResult(lottoMachine.getLottoCompares());
+        OutputView.displayProfit(lottoMachine.calcProfit(human.getMoney()));
     }
 
     public void initAmount() {
@@ -35,49 +33,5 @@ public class MachineController {
         List<Integer> lottos = WinningLottoView.publishLotto();
         int bonus = WinningLottoView.publishBonus(lottos);
         winningLotto = new WinningLotto(lottos, bonus);
-    }
-
-    public float calcProfit() {
-        float winningAmount = 0;
-        for(int prize : calcPrize()) {
-            winningAmount += prize;
-        }
-        return (winningAmount / human.getMoney()) * 100;
-    }
-
-    public List<Integer> calcPrize() {
-        List<LottoCompare> lottoCompares = compare();
-        return List.of(
-                Collections.frequency(lottoCompares, LottoCompare.FIFTH) * LottoCompare.FIFTH.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.FOURTH) * LottoCompare.FOURTH.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.THIRD) * LottoCompare.THIRD.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.SECOND) * LottoCompare.SECOND.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.FIRST) * LottoCompare.FIRST.getPrize()
-        );
-    }
-
-    public List<LottoCompare> compare() {
-        List<LottoCompare> lottoCompareResults = new ArrayList<>();
-
-        for(int i = 0; i < human.getCount(); i++) {
-            int match = compareLotto(lottos.getLottos().get(i));
-            boolean isIncludeBonusNumbers = compareBonus(lottos.getLottos().get(i));
-            LottoCompare lottoResult = LottoCompare.getCompareResult(match, isIncludeBonusNumbers);
-            lottoCompareResults.add(lottoResult);
-        }
-
-        return lottoCompareResults;
-    }
-
-    public int compareLotto(Lotto lotto) {
-        Set<Integer> tempLotto = new HashSet<>(lotto.getNumbers());
-        Set<Integer> tempWinningLotto = new HashSet<>(winningLotto.getLotto());
-
-        tempLotto.retainAll(tempWinningLotto);
-        return tempLotto.size();
-    }
-
-    public boolean compareBonus(Lotto lotto) {
-        return lotto.getNumbers().contains(winningLotto.getBonus());
     }
 }

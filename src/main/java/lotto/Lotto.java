@@ -17,7 +17,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         Set<Integer> numbersSet = new HashSet<>(numbers);
-        if(numbersSet.size() != 6) {
+        if (numbersSet.size() != 6) {
             throw new IllegalArgumentException();
         }
     }

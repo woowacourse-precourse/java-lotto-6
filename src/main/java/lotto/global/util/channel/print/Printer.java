@@ -6,8 +6,4 @@ public abstract class Printer {
         System.out.println(message);
     }
 
-    public static void printBlankLine() {
-        System.out.println();
-    }
-
 }

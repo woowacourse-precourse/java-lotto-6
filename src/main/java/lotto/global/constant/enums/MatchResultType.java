@@ -3,7 +3,7 @@ package lotto.global.constant.enums;
 import java.util.function.Function;
 
 public enum MatchResultType {
-    BOOM("", value -> value * 0L),
+    BOOM("", value -> value * 0L), // 임의의 꽝 데이터
     MATCH_THREE("3개 일치 (5,000원) - %d개\n", value -> value * 5_000),
     MATCH_FOUR("4개 일치 (50,000원) - %d개\n", value -> value * 50_000),
     MATCH_FIVE("5개 일치 (1,500,000원) - %d개\n", value -> value * 1_500_000),

@@ -10,6 +10,10 @@ import java.util.StringJoiner;
 
 public abstract class GameResult {
 
+    /**
+     * 출력 요구사항에 맞는 구매 현황 데이터로 변환합니다.
+     * @see lotto.presentation.mapper.Resultable
+     */
     public static class IssuedLottos implements Resultable {
         private static final String PREFIX = "[";
         private static final String SUFFIX = "]\n";
@@ -46,6 +50,11 @@ public abstract class GameResult {
         }
     }
 
+
+    /**
+     * 출력 요구사항에 맞는 당첨 통계 데이터로 변환합니다.
+     * @see lotto.presentation.mapper.Resultable
+     */
     public static class WinningStatistic implements Resultable {
 
         private final Map<MatchResultType, Long> resultBoard;
@@ -69,6 +78,11 @@ public abstract class GameResult {
         }
     }
 
+
+    /**
+     * 출력 요구사항에 맞는 수익률 데이터로 변환합니다.
+     * @see lotto.presentation.mapper.Resultable
+     */
     public static class RevenueRate implements Resultable {
         private static final String REVENUE_RATE_FORMAT = "총 수익률은 %.1f";
         private static final String RESULT_SUFFIX = "%입니다.";

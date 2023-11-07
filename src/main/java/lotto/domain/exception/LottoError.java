@@ -17,7 +17,7 @@ public enum LottoError implements LottoGameError {
 
     @Override
     public String getErrorMessage() {
-        return null;
+        return errorMessage;
     }
 
 }

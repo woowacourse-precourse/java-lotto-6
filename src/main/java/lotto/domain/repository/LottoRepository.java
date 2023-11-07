@@ -16,12 +16,12 @@ public class LottoRepository {
         return new LottoRepository(lottos);
     }
 
-    // read
+    // Query - SELECT
     public List<Lotto> lottos() {
         return Collections.unmodifiableList(lottos);
     }
 
-    // query
+    // Query - COUNT(*)
     public long count() {
         return lottos.size();
     }

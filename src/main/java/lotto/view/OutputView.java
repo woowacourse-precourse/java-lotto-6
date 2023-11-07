@@ -16,7 +16,7 @@ public class OutputView {
     public static final String PREFIX_RATE_RETURN = "총 수익률은 ";
     public static final String SUFFIX_RATE_RETURN = "%입니다.";
 
-    public static void writeBuyLottoPrice() {
+    public static void askBuyLottoPrice() {
         System.out.println(BUY_PRICE);
     }
 
@@ -26,12 +26,12 @@ public class OutputView {
         boughtLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    public static void writeWinningNumber() {
+    public static void askWriteWinningNumber() {
         nextLine();
         System.out.println(WINNING_NUMBER);
     }
 
-    public static void writeBonusNumber() {
+    public static void askWriteBonusNumber() {
         nextLine();
         System.out.println(BONUS_NUMBER);
     }

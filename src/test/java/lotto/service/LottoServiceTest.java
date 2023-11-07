@@ -144,4 +144,54 @@ public class LottoServiceTest {
 
         assertThat(lottoService.calculateTotalWinningAmount(testLottoResult)).isEqualTo(expectedResult);
     }
+
+    @DisplayName("로또 수익률 테스트 - 1st 당첨 케이스 - 성공")
+    @Test
+    void calculateProfitRate1stTest() {
+        int testLottoAmount = 1000;
+        int testTotalWinningAmount = FIRST_PRIZE.getWinningAmount();
+        String expectedResult = "200000000.0";
+
+        assertThat(lottoService.calculateTotalProfitRate(testLottoAmount, testTotalWinningAmount)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 수익률 테스트 - 2nd 당첨 케이스 - 성공")
+    @Test
+    void calculateProfitRate2stTest() {
+        int testLottoAmount = 1000;
+        int testTotalWinningAmount = SECOND_PRIZE.getWinningAmount();
+        String expectedResult = "3000000.0";
+
+        assertThat(lottoService.calculateTotalProfitRate(testLottoAmount, testTotalWinningAmount)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 수익률 테스트 - 3rd 당첨 케이스 - 성공")
+    @Test
+    void calculateProfitRate3rdTest() {
+        int testLottoAmount = 1000;
+        int testTotalWinningAmount = THIRD_PRIZE.getWinningAmount();
+        String expectedResult = "150000.0";
+
+        assertThat(lottoService.calculateTotalProfitRate(testLottoAmount, testTotalWinningAmount)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 수익률 테스트 - 4th 당첨 케이스 - 성공")
+    @Test
+    void calculateProfitRate4thTest() {
+        int testLottoAmount = 1000;
+        int testTotalWinningAmount = FOURTH_PRIZE.getWinningAmount();
+        String expectedResult = "5000.0";
+
+        assertThat(lottoService.calculateTotalProfitRate(testLottoAmount, testTotalWinningAmount)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 수익률 테스트 - 5th 당첨 케이스 - 성공")
+    @Test
+    void calculateProfitRate5thTest() {
+        int testLottoAmount = 1000;
+        int testTotalWinningAmount = FIFTH_PRIZE.getWinningAmount();
+        String expectedResult = "500.0";
+
+        assertThat(lottoService.calculateTotalProfitRate(testLottoAmount, testTotalWinningAmount)).isEqualTo(expectedResult);
+    }
 }

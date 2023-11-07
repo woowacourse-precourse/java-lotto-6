@@ -14,10 +14,10 @@ public class GameResultDTO {
 
         this.prize = prize;
 
-        makeGameResult();
+        makeGameResultDTO();
     }
 
-    private void makeGameResult() {
+    private void makeGameResultDTO() {
 
         StringBuilder stringBuilder = new StringBuilder();
 

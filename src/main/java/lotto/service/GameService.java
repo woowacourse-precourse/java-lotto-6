@@ -159,7 +159,7 @@ public class GameService {
         for(Lotto lotto : lottos) {
 
             LottoDTO lottoDTO = new LottoDTO();
-            lottoDTO.saveNumbers(lotto.getNumbers());
+            lottoDTO.makeLottoDTO(lotto.getNumbers());
             lottoDTOS.add(lottoDTO);
         }
 

@@ -2,42 +2,32 @@ package lotto.dto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoDTO {
 
-    private int firstNumber;
+    private String result;
 
-    private int secondNumber;
+    public void makeLottoDTO(List<Integer> numbers){
 
-    private int thirdNumber;
+        List<Integer> sorted = numbers.stream().
+                sorted().collect(Collectors.toList());
 
-    private int forthNumber;
+        StringBuilder stringBuilder = new StringBuilder();
 
-    private int fifthNumber;
+        stringBuilder.append("[").append(sorted.get(0)).append(", ")
+                .append(sorted.get(1)).append(", ")
+                .append(sorted.get(2)).append(", ")
+                .append(sorted.get(3)).append(", ")
+                .append(sorted.get(4)).append(", ")
+                .append(sorted.get(5)).append("]");
 
-    private int sixthNumber;
-
-    public void saveNumbers(List<Integer> numbers){
-
-        //Collections.sort(numbers);
-
-        firstNumber = numbers.get(0);
-        secondNumber = numbers.get(1);
-        thirdNumber = numbers.get(2);
-        forthNumber = numbers.get(3);
-        fifthNumber = numbers.get(4);
-        sixthNumber = numbers.get(5);
+        result = stringBuilder.toString();
     }
 
     @Override
     public String toString() {
-        return "[" +
-                firstNumber + ", " +
-                secondNumber + ", " +
-                thirdNumber + ", " +
-                forthNumber + ", " +
-                fifthNumber + ", " +
-                sixthNumber +
-                "]";
+
+        return result;
     }
 }

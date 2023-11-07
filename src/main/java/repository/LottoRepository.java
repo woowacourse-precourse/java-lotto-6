@@ -1,6 +1,6 @@
 package repository;
 
-import lotto.Lotto;
+import domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;

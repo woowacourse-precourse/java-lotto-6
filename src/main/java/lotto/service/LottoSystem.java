@@ -39,7 +39,8 @@ public class LottoSystem {
         return WinningResultType.values()[howMatch-2];
     }
 
-    private int checkMatchCount(Lotto lotto){
+    public int checkMatchCount(Lotto lotto){
+
         int checkHowMatchCount = 0;
 
         for(Integer winningNumber:winningNumbers){
@@ -47,10 +48,12 @@ public class LottoSystem {
                 checkHowMatchCount += 1;
             }
         }
+
         return checkHowMatchCount;
     }
 
-    private boolean checkMatchBonus(Lotto lotto){
+    public boolean checkMatchBonus(Lotto lotto){
+
         if(lotto.getNumbers().contains(bonusNumber)){
             return true;
         }

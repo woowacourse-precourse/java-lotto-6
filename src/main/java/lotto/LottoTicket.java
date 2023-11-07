@@ -1,7 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {
@@ -10,6 +13,26 @@ public class LottoTicket {
 
     public LottoTicket(List<List<Integer>> ticketNumbers) {
         this.ticketNumbers = ticketNumbers;
+    }
+
+    public List<Integer> setTicketNumbers () {
+        List<Integer> ticketNumbers = new ArrayList<>();
+
+        for(int i = 0; i < 6; i++){
+            int number = Randoms.pickNumberInRange(1,45);
+            validateDistinction(ticketNumbers, number);
+        }
+
+        Collections.sort(ticketNumbers);
+        return ticketNumbers;
+    }
+
+    public void validateDistinction (List<Integer> ticketNumbers, int randomNumber) {
+
+        if (!ticketNumbers.contains(randomNumber)) {
+            ticketNumbers.add(randomNumber);
+        }
+
     }
 
     public int purchaseTicket() {

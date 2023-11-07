@@ -39,6 +39,15 @@ public class LottoPurchaseTest {
 
         assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
     }
+    @Test
+    @DisplayName("문자열을 입력할 시 재입력한다.")
+    void purchasePriceIncorrectPrice() {
+        consoleInput("j","8000");
+        int purchasePrice = lottoPurchase.inputPurchasePrice();
+
+        assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
+    }
+
 
     private void consoleInput(final String... args) {
         final byte[] buffer = String.join("\n", args).getBytes();

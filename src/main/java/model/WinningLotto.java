@@ -84,7 +84,7 @@ public class WinningLotto {
     }
   }
 
-  // 로또 번호를 오름차순으로 정렬한다. 
+  // 로또 번호를 오름차순으로 정렬한다.
   public List<Integer> sortNumbers(List<Integer> numbers) {
     List<Integer> sortNumbers = new ArrayList<>(numbers);
     Collections.sort(sortNumbers);

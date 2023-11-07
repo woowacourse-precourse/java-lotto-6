@@ -53,6 +53,7 @@ public class Store {
     return money;
   }
 
+
   // 구입 금액이 숫자인지 확인
   public void validateIsNumber(String money) {
     for(char c : money.toCharArray()) {
@@ -63,6 +64,7 @@ public class Store {
     }
   }
 
+
   // 구입 금액이 1000단위로 나누어 떨어지는지 확인
   public void validateUnitOfThousandMoney(int money) {
     if(money % 1000 != 0) {
@@ -70,7 +72,6 @@ public class Store {
       throw new IllegalArgumentException();
     }
   }
-
 
 
   // 구입 금액만큼 로또 발급
@@ -87,6 +88,7 @@ public class Store {
     return lottos;
   }
 
+
   // 로또 번호 생성
   public List<Integer> makeLottoNumber() {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -101,6 +103,7 @@ public class Store {
     Integer bonusNumber = inputBonusNumber(numbers);
     return new WinningLotto(numbers, bonusNumber);
   }
+
 
   // 당첨 번호 입력
   public List<Integer> inputWinningNumbers() {
@@ -124,6 +127,7 @@ public class Store {
     return numbers;
   }
 
+
   // 입력 받은 숫자들이 숫자인지 확인
   public void validateNumbersIsNumber(String numbersInput) {
     String[] numberInput = numbersInput.split(",");
@@ -132,12 +136,12 @@ public class Store {
     }
   }
 
+
   // 보너스 번호 입력
   public Integer inputBonusNumber(List<Integer> numbers) {
     boolean isValid = false;
     int bonusNumber = 0;
     System.out.println("보너스 번호를 입력해 주세요");
-
     while (!isValid) {
       String inputBonusNumber = Console.readLine();
       try {
@@ -146,17 +150,10 @@ public class Store {
         winningLotto.validateBonusNumber(numbers, bonusNumber);
         isValid = true;
       } catch (IllegalArgumentException e) {
-
       }
     }
     return bonusNumber;
   }
-
-
-
-
-
-
 
 
 }

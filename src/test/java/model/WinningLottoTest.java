@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class WinningLottoTest {
 
 
-
-
-
   @DisplayName("로또 번호가 오름차순으로 정렬되는지 확인한다.")
   @Test
   void sortNumbers() {

@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.domain.user.LottoRank;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -220,6 +222,23 @@ class ApplicationTest extends NsTest {
             runException("3000", "-1,2,3,4,5,6", "1,2,-3,-4,5,6", "1,2,3,4,5,-6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("enum_공부_태스트")
+    @Test
+    public void enum_test() throws Exception {
+        // given
+        LottoRank lottoRank = LottoRank.MONEY_FIRST_PLACE;
+
+        // when
+
+        // then
+        System.out.println(lottoRank.getCount());
+        System.out.println();
+
+        lottoRank.increaseCount();
+        System.out.println(lottoRank.getCount());
+
     }
 
     @Override

@@ -12,11 +12,12 @@ public class OutputView {
     private static final String STATISTIC_FORMAT = "%.1f";
     private static final String DECIMAL_FORMAT = "###,###";
 
+    private OutputView() {
+    }
+
     public static void printUserLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(changeLottoToString(lotto.numbers()));
-        }
+        lottos.forEach(lotto -> System.out.println(changeLottoToString(lotto.numbers())));
         System.out.println();
     }
 
@@ -38,12 +39,13 @@ public class OutputView {
         DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
 
         for (LottoResult lottoResultFormat : LottoResult.values()) {
-            stringBuilder.append(lottoResultFormat.getRule())
-                    .append(" (" + decFormat.format(lottoResultFormat.getPrize()) + "원) - ")
-                    .append(findEqualResultCount(userResults, lottoResultFormat))
-                    .append("개\n");
+            if (lottoResultFormat.equals(LottoResult.DEFAULT)) {
+                continue;
+            }
+            stringBuilder.append(lottoResultFormat.getRule()).append(" (")
+                    .append(decFormat.format(lottoResultFormat.getPrize())).append("원) - ")
+                    .append(findEqualResultCount(userResults, lottoResultFormat)).append("개\n");
         }
-
         return stringBuilder.toString();
     }
 

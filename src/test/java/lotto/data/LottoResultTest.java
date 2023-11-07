@@ -16,16 +16,16 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class LottoResultTest {
     @ParameterizedTest(name = "[{index}] {0}인 경우")
     @DisplayName("로또 순위 결과를 생성한다.")
-    @MethodSource("provideRankResultSets")
+    @MethodSource("provideLottoResultSets")
     void createRankResult(String title, List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos,
-                          Map<LottoPrize, BigDecimal> expected) {
+                          Map<LottoPrize, BigDecimal> expectedRank, BigDecimal expectedProfitPercent) {
         WinningCombination winningCombination = new WinningCombination(winningNumbers, bonusNumber);
 
         Map<LottoPrize, BigDecimal> rankResult = winningCombination.getResultWith(lottos);
         BigDecimal purchaseAmount = BigDecimal.valueOf(lottos.size()).multiply(BigDecimal.valueOf(1000));
         LottoResult lottoResult = new LottoResult(rankResult, purchaseAmount);
 
-        assertEquals(lottoResult.getLottoRank(), expected);
+        assertEquals(lottoResult.getLottoRank(), expectedRank);
     }
 
     @ParameterizedTest(name = "[{index}] {0}인 경우")
@@ -59,7 +59,12 @@ public class LottoResultTest {
                                 LottoPrize.FOURTH, BigDecimal.ZERO,
                                 LottoPrize.FIFTH, BigDecimal.ONE,
                                 LottoPrize.NONE, BigDecimal.ZERO
-                        )
+                        ),
+                        LottoPrize.FIRST.getPrize()
+                                .add(LottoPrize.SECOND.getPrize())
+                                .add(LottoPrize.FIFTH.getPrize())
+                                .multiply(BigDecimal.valueOf(100))
+                                .divide(BigDecimal.valueOf(3000), 5, RoundingMode.DOWN)
                 ), Arguments.of(
                         "2등(1), 4등(2)",
                         List.of(1, 2, 3, 4, 5, 6), 7,
@@ -75,7 +80,11 @@ public class LottoResultTest {
                                 LottoPrize.FOURTH, BigDecimal.valueOf(2),
                                 LottoPrize.FIFTH, BigDecimal.ZERO,
                                 LottoPrize.NONE, BigDecimal.ZERO
-                        )
+                        ),
+                        LottoPrize.SECOND.getPrize()
+                                .add(LottoPrize.FOURTH.getPrize().multiply(BigDecimal.valueOf(2)))
+                                .multiply(BigDecimal.valueOf(100))
+                                .divide(BigDecimal.valueOf(3000), 5, RoundingMode.DOWN)
                 ), Arguments.of(
                         "5등(2)",
                         List.of(1, 2, 3, 4, 5, 6), 7,
@@ -91,7 +100,10 @@ public class LottoResultTest {
                                 LottoPrize.FOURTH, BigDecimal.ZERO,
                                 LottoPrize.FIFTH, BigDecimal.valueOf(2),
                                 LottoPrize.NONE, BigDecimal.ONE
-                        )
+                        ),
+                        LottoPrize.FIFTH.getPrize().multiply(BigDecimal.valueOf(2))
+                                .multiply(BigDecimal.valueOf(100))
+                                .divide(BigDecimal.valueOf(3000), 5, RoundingMode.DOWN)
                 )
         );
     }

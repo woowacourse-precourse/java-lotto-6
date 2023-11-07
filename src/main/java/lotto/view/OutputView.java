@@ -7,6 +7,7 @@ import java.util.Map;
 import lotto.model.LottoPlayerNumber;
 import lotto.model.LottoPlayerNumbers;
 import lotto.model.Prize;
+import lotto.model.ProfitCalculator;
 import lotto.model.Statistics;
 
 public class OutputView {
@@ -15,7 +16,8 @@ public class OutputView {
         NUMBER_OF_LOTTO_TICKETS("%d개를 구매했습니다.\n"),
         OUTPUT_STATISTICS("당첨 통계\n---"),
         OUTPUT_MATCH_RESULT("%d개 일치 (%s원) - %d개\n"),
-        OUTPUT_SECOND_MATCH_RESULT("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n")
+        OUTPUT_SECOND_MATCH_RESULT("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
+        OUTPUT_PROFIT_RATIO("총 수익률은 %.1f%%입니다."),
         ;
 
 
@@ -58,5 +60,9 @@ public class OutputView {
                     formatter.format(entry.getKey().getPrize()),
                     entry.getValue());
         }
+    }
+
+    public static void outputProfitRatio(ProfitCalculator profitCalculator) {
+        System.out.printf(OutputMessage.OUTPUT_PROFIT_RATIO.message, profitCalculator.getProfitRatio());
     }
 }

@@ -69,7 +69,7 @@
 - 입력을 이곳에서 처리하고 Service로 넘겨준다.
 - 이곳에서 입력이 잘못될 경우 다시 재 요청한다.
 
-### GameService
+### LottoService
 
 
 

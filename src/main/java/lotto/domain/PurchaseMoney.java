@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.enums.ExceptionMessages.*;
-import static lotto.utils.NumberUtil.removeSpace;
+import static lotto.utils.LottoNumberUtil.removeSpace;
 
 import lotto.enums.Constants;
 
@@ -11,7 +11,7 @@ public class PurchaseMoney {
 
     public PurchaseMoney(String money){
         validate(money);
-        money =removeSpace(money);
+        money = removeSpace(money);
         this.value = Integer.valueOf(money);
     }
 

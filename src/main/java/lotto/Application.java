@@ -22,7 +22,7 @@ public class Application {
             throw new IllegalArgumentException();
         }
     }
-    private static int Affordable_LottoNum(Integer money) {
+    private static int Affordable_LottoNum(Integer money) { // money를 받아 구매할 로또 개수 반환ㄴ
         if (money % 1000 != 0){            // 나누어 떨어지지 않으면 IllegalArgumentException 발생
             throw new IllegalArgumentException();
         }

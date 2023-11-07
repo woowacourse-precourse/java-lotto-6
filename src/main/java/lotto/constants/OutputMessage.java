@@ -8,6 +8,8 @@ public enum OutputMessage {
     RANK_3("5개 일치 (1,500,000원) - %d개"),
     RANK_4("4개 일치 (50,000원) - %d개"),
     RANK_5("3개 일치 (5,000원) - %d개"),
+    PROFIT_RATE_INTRO("당첨 통계"),
+    SEPARATOR("---"),
     PROFIT_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;

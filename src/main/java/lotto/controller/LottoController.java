@@ -29,8 +29,8 @@ public class LottoController {
     }
 
     public void start() {
-        String purchaseAmount = SystemInput.readMoney();
-        int money = Integer.parseInt(purchaseAmount);
+
+        int money = SystemInput.readMoney();
         SystemOutput.printPurchaseAmount(money);
 
         int gameAmount = money / 1000;

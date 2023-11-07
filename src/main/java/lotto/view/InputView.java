@@ -1,12 +1,12 @@
 package lotto.view;
 
-import static lotto.exception.LottoErrorCode.BLANK_INPUT;
-import static lotto.exception.LottoErrorCode.NOT_INTEGER_INPUT;
+import static lotto.exception.ErrorCode.BLANK_INPUT;
+import static lotto.exception.ErrorCode.NOT_INTEGER_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.LottoException;
+import lotto.exception.InputException;
 
 public class InputView {
 
@@ -17,15 +17,25 @@ public class InputView {
     private static final String LOTTO_WINNING_NUMBER_DELIMITER = ",";
 
     public static int inputLottoPurchaseAmount() {
-        System.out.println(LOTTO_PURCHASE_AMOUNT_MESSAGE);
-
-        return getIntegerInput();
+        while (true) {
+            System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
+            try {
+                return getIntegerInput();
+            } catch (InputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static List<Integer> inputLottoWinningNumbers() {
-        System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
-
-        return getWinningNumbers();
+        while (true) {
+            System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
+            try {
+                return getWinningNumbers();
+            } catch (InputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> getWinningNumbers() {
@@ -35,9 +45,14 @@ public class InputView {
     }
 
     public static int inputLottoBonusNumber() {
-        System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
-
-        return getIntegerInput();
+        while (true) {
+            System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
+            try {
+                return getIntegerInput();
+            } catch (InputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int getIntegerInput() {
@@ -48,7 +63,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (Exception e) {
-            throw new LottoException(NOT_INTEGER_INPUT);
+            throw new InputException(NOT_INTEGER_INPUT);
         }
     }
 
@@ -60,7 +75,7 @@ public class InputView {
 
     private static void validateNotBlank(final String input) {
         if (input == null || input.isEmpty()) {
-            throw new LottoException(BLANK_INPUT);
+            throw new InputException(BLANK_INPUT);
         }
     }
 

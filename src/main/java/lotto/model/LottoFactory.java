@@ -4,13 +4,13 @@ import static lotto.Constants.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.Constants.Constants.LOTTO_PRICE;
 import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
 import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
-import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
-import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
+import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
+import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.LottoException;
+import lotto.exception.PurchaseException;
 
 public class LottoFactory {
 
@@ -41,13 +41,13 @@ public class LottoFactory {
 
     private void validatePurchaseAmountPositive(final int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new LottoException(PURCHASE_AMOUNT_NOT_POSITIVE);
+            throw new PurchaseException(PURCHASE_AMOUNT_NOT_POSITIVE);
         }
     }
 
     private void validatePurchaseAmountUnit(final int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new LottoException(PURCHASE_AMOUNT_NOT_PRICE_UNIT);
+            throw new PurchaseException(PURCHASE_AMOUNT_NOT_PRICE_UNIT);
         }
     }
 

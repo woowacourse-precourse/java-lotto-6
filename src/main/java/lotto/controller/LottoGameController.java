@@ -1,15 +1,17 @@
 package lotto.controller;
 
 import static lotto.view.InputView.inputLottoBonusNumber;
+import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputLottoWinningNumbers;
 
 import java.util.List;
+import lotto.exception.BonusNumberException;
 import lotto.exception.LottoException;
+import lotto.exception.PurchaseException;
 import lotto.model.Lotto;
 import lotto.model.LottoChecker;
 import lotto.model.LottoFactory;
 import lotto.model.LottoResult;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
@@ -20,37 +22,39 @@ public class LottoGameController {
         List<Lotto> lottos = getLottos();
         OutputView.printLottos(lottos);
 
-        int bonusNumber = getBonusNumber();
-        LottoChecker lottoChecker = new LottoChecker(getWinningLotto(),
-            bonusNumber);
+        LottoChecker lottoChecker = getLottoChecker();
+
         LottoResult lottoResult = lottoChecker.checkLottos(lottos);
         OutputView.printLottoResult(lottoResult);
 
         calculateEarningRate(lottoResult);
     }
 
-    private static int getBonusNumber() {
-        try {
-            return inputLottoBonusNumber();
-        } catch (LottoException e) {
-            return getBonusNumber();
-        }
-    }
+    private LottoChecker getLottoChecker() {
+        List<Integer> winningNumbers = inputLottoWinningNumbers();
+        int bonusNumber = inputLottoBonusNumber();
 
-    private static Lotto getWinningLotto() {
-        try {
-            return new Lotto(inputLottoWinningNumbers());
-        } catch (LottoException e) {
-            return getWinningLotto();
+        while (true) {
+            try {
+                return new LottoChecker(winningNumbers, bonusNumber);
+            } catch (LottoException e) {
+                winningNumbers = inputLottoWinningNumbers();
+                System.out.println(e.getMessage());
+            } catch (BonusNumberException e) {
+                bonusNumber = inputLottoBonusNumber();
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     private List<Lotto> getLottos() {
-        try {
-            int purchaseAmount = InputView.inputLottoPurchaseAmount();
-            return lottoFactory.generateLottos(purchaseAmount);
-        } catch (LottoException e) {
-            return getLottos();
+        int purchaseAmount = inputLottoPurchaseAmount();
+        while (true) {
+            try {
+                return lottoFactory.generateLottos(purchaseAmount);
+            } catch (LottoException | PurchaseException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

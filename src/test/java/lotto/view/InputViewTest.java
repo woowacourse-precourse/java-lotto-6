@@ -1,7 +1,7 @@
 package lotto.view;
 
-import static lotto.exception.LottoErrorCode.BLANK_INPUT;
-import static lotto.exception.LottoErrorCode.NOT_INTEGER_INPUT;
+import static lotto.exception.ErrorCode.BLANK_INPUT;
+import static lotto.exception.ErrorCode.NOT_INTEGER_INPUT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

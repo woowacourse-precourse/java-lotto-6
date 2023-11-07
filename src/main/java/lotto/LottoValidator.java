@@ -3,9 +3,9 @@ package lotto;
 import static lotto.Constants.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
 import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
-import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_DUPLICATE;
-import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_RANGE;
-import static lotto.exception.LottoErrorCode.LOTTO_NUMBER_SIZE;
+import static lotto.exception.ErrorCode.LOTTO_NUMBER_DUPLICATE;
+import static lotto.exception.ErrorCode.LOTTO_NUMBER_RANGE;
+import static lotto.exception.ErrorCode.LOTTO_NUMBER_SIZE;
 
 import java.util.List;
 import lotto.exception.LottoException;

@@ -1,8 +1,8 @@
 package lotto.model;
 
 import static lotto.Constants.Constants.LOTTO_PRICE;
-import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
-import static lotto.exception.LottoErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
+import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
+import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

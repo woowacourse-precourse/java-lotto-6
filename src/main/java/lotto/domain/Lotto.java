@@ -29,7 +29,7 @@ public class Lotto {
         numbers = removeSpace(numbers);
         String[] splitNumbers = splitComma(numbers);
 
-        if(!isDigit(splitNumbers)) ExceptionMessages.LOTTO_IS_NOT_NUMER.throwException();
+        if(!isDigit(numbers)) ExceptionMessages.LOTTO_IS_NOT_NUMER.throwException();
         if(!isSixNumbers(splitNumbers)) ExceptionMessages.LOTTO_SIZE_IS_OVER_SIX.throwException();
         if(!isBetweenOneAndFortyFive(splitNumbers)) ExceptionMessages.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
         if(isDuplicatedNumber(splitNumbers)) ExceptionMessages.LOTTO_IS_DUPLICATED.throwException();
@@ -43,8 +43,9 @@ public class Lotto {
         return numbers == null || numbers.isBlank();
     }
 
-    private boolean isDigit(final String[] numbers){
-        return Arrays.stream(numbers).allMatch(number -> Character.isDigit(number.charAt(0)));
+    private boolean isDigit(String numbers){
+        numbers = numbers.replace("-","");
+        return Arrays.stream(splitComma(numbers)).allMatch(number -> Character.isDigit(number.charAt(0)));
     }
 
     private boolean isSixNumbers(final String[] numbers){

@@ -7,7 +7,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplication(numbers);
         this.numbers = numbers;
+    }
+
+    private static void checkDuplication(List<Integer> numbers) {
+        if ((int) numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validate(List<Integer> numbers) {

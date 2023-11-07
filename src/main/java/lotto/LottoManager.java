@@ -16,7 +16,7 @@ public class LottoManager {
     public List<Lotto> purchaseLottoTickets() {
         output.printEnteringAmountPrompt();
         int purchasedAmount = input.readTotalPurchasedAmount();
-        int purchasedQuantity = purchasedAmount / 1000;
+        int purchasedQuantity = purchasedAmount / THOUSAND;
 
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < purchasedQuantity; i++) {
@@ -34,9 +34,17 @@ public class LottoManager {
         output.printPurchasedLottoTickets(tickets);
     }
 
-    public void checkMyWinning() {
+    public void checkMyWinning(List<Lotto> myTickets) {
         List<Integer> winningNumbers = this.getWinningNumbers();
         int bonusNumber = this.getBonusNumber();
+
+        Map<WinningCondition, Integer> result = new HashMap<>();
+        for (Lotto ticket : myTickets) {
+            WinningCondition tmpResult = checkWinningResult(ticket, winningNumbers, bonusNumber);
+            result.put(tmpResult, result.getOrDefault(tmpResult, 0) + 1);
+        }
+        output.printWinningStatistics(result);
+        output.printWinningRoR(calculateRoR(result, myTickets.size() * THOUSAND));
     }
 
     private List<Integer> getWinningNumbers() {

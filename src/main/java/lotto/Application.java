@@ -7,7 +7,6 @@ public class Application {
         LottoManager lottoManager = new LottoManager();
         List<Lotto> myLottoTickets = lottoManager.purchaseLottoTickets();
         lottoManager.printLottoTickets(myLottoTickets);
-
-        lottoManager.checkMyWinning();
+        lottoManager.checkMyWinning(myLottoTickets);
     }
 }

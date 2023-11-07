@@ -64,7 +64,10 @@ public class LottoController {
 
     private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
                                       final BonusNumber bonusNumber) {
-        return lotteries.compare(bonusNumber, winningLotto);
+        List<Integer> matchedCount = lotteries.matchCount(winningLotto);
+        List<Boolean> includeBonus = lotteries.bonusCount(bonusNumber);
+        
+        return Statistic.from(matchedCount, includeBonus);
     }
 
     private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {

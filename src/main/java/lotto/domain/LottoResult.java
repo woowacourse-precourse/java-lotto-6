@@ -21,18 +21,43 @@ public class LottoResult {
     }
 
     public void setGameStatus() {
+        if (isThreeEqual()) {
+            return;
+        }
+        if (isFourEqual()) {
+            return;
+        }
+        if (isFiveEqual()) {
+            return;
+        }
+        isSixEqual();
+    }
+
+    private boolean isThreeEqual() {
         if (equalCount + bonusCount == 3) {
             gameStatus = GameStatus.THREE_EQUAL;
-            return;
+            return true;
         }
+        return false;
+    }
+
+    private boolean isFourEqual() {
         if (equalCount + bonusCount == 4) {
             gameStatus = GameStatus.FOUR_EQUAL;
-            return;
+            return true;
         }
+        return false;
+    }
+
+    private boolean isFiveEqual() {
         if (equalCount + bonusCount == 5) {
             gameStatus = GameStatus.FIVE_EQUAL;
-            return;
+            return true;
         }
+        return false;
+    }
+
+    private void isSixEqual() {
         if (equalCount + bonusCount == 6) {
             if (bonusCount == 1) {
                 gameStatus = GameStatus.FIVE_AND_BONUS_EQUAL;

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +51,24 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 숫자가 아니라 영어일 때")
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("qwer");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 1000원으로 나누어 떨어지지 않을 때")
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1234");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

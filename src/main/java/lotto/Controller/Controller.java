@@ -43,6 +43,9 @@ public class Controller {
     private void finshGame(){
         ScoreBoard scoreBoard = gameModel.calculateRoundScore();
         Output.printScores(scoreBoard);
+
+        Double earnLate = gameModel.calculateRoundEarnRate();
+
     }
 
 }

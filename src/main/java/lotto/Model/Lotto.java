@@ -20,8 +20,7 @@ public class Lotto {
     public Prize calculatePrize(List<Integer> answer,Integer bonusNumber){
         int matchCount = calculateMatchCount(answer);
         boolean isBonusMatch = numbers.contains(bonusNumber);
-
-
+        System.out.println(isBonusMatch);
         if (matchCount == 6) {
             return Prize.FIRST;
         }

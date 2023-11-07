@@ -7,19 +7,17 @@ import lotto.Model.VO.LottoData;
 
 public class LottoPlayer {
 
-        private Integer currentAmount, spentAmount, earnedAmount;
+        private Integer spentAmount, earnedAmount;
         private ArrayList<Lotto> ownedLottos;
         public LottoPlayer(Integer insertData){
             CacheValidator.validateCache(insertData);
             this.ownedLottos = new ArrayList<>();
-            this.currentAmount=insertData;
-            this.spentAmount=0;
+            this.spentAmount=insertData;
             this.earnedAmount=0;
         }
 
         public Integer orderLottos(){
-            Integer purchaseQuantity = currentAmount/1000;
-            payMoney(currentAmount);
+            Integer purchaseQuantity = spentAmount/1000;
             return purchaseQuantity;
         }
 
@@ -27,12 +25,6 @@ public class LottoPlayer {
             ownedLottos.add(lotto);
         }
 
-        private void payMoney(Integer cache){
-            if( cache <= currentAmount ) {
-                currentAmount -= cache;
-                spentAmount += cache;
-            }
-        }
 
         public ArrayList<LottoData> getLottoDatas(){
             ArrayList<LottoData> playerLottoDatas = ownedLottos.stream()
@@ -46,14 +38,21 @@ public class LottoPlayer {
             List<Integer> answerNumbers = answerLotto.getNumbers();
             for (Lotto lotto : ownedLottos) {
                 Prize prize = lotto.calculatePrize(answerNumbers,bonusNumber);
+                getReward(prize);
                 roundScore.recordScore(prize);
             }
+
             return roundScore;
         }
 
-        public boolean remainLotto(){
-            return ownedLottos.isEmpty() == false;
+        public double getEarnRate(){
+            return (spentAmount / earnedAmount) * 100;
         }
+        private void getReward(Prize prize) {
+            earnedAmount += prize.getReward();
+        }
+
+
 
 
 }

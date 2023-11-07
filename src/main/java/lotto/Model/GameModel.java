@@ -64,6 +64,9 @@ public class GameModel {
         giveLottos(purchaseQuanity);
     }
 
+    public double calculateRoundEarnRate(){
+        return lottoPlayer.getEarnRate();
+    }
 
     private void giveLottos(Integer quanity){
         for(int i=0;i<quanity;i++){

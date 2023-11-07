@@ -15,6 +15,10 @@ public class InputView {
         return inputTemplate(INPUT_NUMBERS);
     }
 
+    public String inputBonusNumber() {
+        return inputTemplate(INPUT_BONUS_NUMBER);
+    }
+
     private String inputTemplate(String message) {
         printMessage(message);
         String input =  Console.readLine();

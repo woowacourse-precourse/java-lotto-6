@@ -8,7 +8,6 @@ import lotto.consts.MachineMessage;
 public class PurchaseView {
     public static int lotto() {
         String input;
-        System.out.println();
         do {
             System.out.println(MachineMessage.MACHINE_MESSAGE_BUY.getMessage());
             input = Console.readLine().trim();
@@ -21,6 +20,7 @@ public class PurchaseView {
         try {
             validateAmountIsNumber(input);
             validateAmountUnit(input);
+            validateAmountIsZero(input);
         } catch (Exception exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
@@ -39,6 +39,12 @@ public class PurchaseView {
     public static void validateAmountUnit(String input) throws IllegalArgumentException {
         if(Integer.parseInt(input) % Constants.PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_AMOUNT_UNIT.getMessage());
+        }
+    }
+
+    public static void validateAmountIsZero(String input) throws IllegalArgumentException {
+        if(input.matches(Constants.ZERO)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_BUY_MORE_THAN_ONE.getMessage());
         }
     }
 }

@@ -38,4 +38,15 @@ class LottoTest {
         Lotto lotto = new Lotto(Arrays.asList(2, 1, 3, 4, 6, 5));
         assertThat(lotto).hasToString("[1, 2, 3, 4, 5, 6]");
     }
+
+    @Test
+    @DisplayName("몇 개의 번호가 당첨되었는지 구한다.")
+    void countWinningNumber() {
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+
+        int count = lotto.countWinningNumber(winningLotto);
+
+        assertThat(count).isEqualTo(3);
+    }
 }

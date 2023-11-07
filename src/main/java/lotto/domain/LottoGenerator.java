@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoGenerator {
     private int lottoCount;
-    private List<Lotto> lottoGroup;
+    public static List<Lotto> lottoGroup;
     public LottoGenerator(int lottoCount) {
         this.lottoCount = lottoCount;
         lottoGroupGenerator();

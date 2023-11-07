@@ -21,7 +21,8 @@ public class Constants {
     public static final int PICK_NUM = 6;
 
 
-
+    public static final String LOTTO_START_BRACKET = "[";
+    public static final String LOTTO_END_BRACKET  ="]";
 
 
 

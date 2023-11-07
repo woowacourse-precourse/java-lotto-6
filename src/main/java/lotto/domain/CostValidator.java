@@ -14,6 +14,7 @@ public class CostValidator {
                 isRightNum(cost);
                 isRightLotto(cost);
                 setLottoNum();
+                return;
             }catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException(Constants.NUM_IS_INT);
             }
@@ -30,6 +31,6 @@ public class CostValidator {
         }
     }
     public void setLottoNum(){
-        this.lottoCount = cost % 1000;
+        this.lottoCount = cost / 1000;
     }
 }

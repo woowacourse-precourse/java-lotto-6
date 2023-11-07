@@ -1,7 +1,11 @@
 package lotto.domain;
 
+import lotto.util.Constants;
+
+
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     //제공된 Lotto 클래스를 활용해 구현해야 한다.
@@ -23,5 +27,11 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public void sort() {
         numbers.sort(Comparator.naturalOrder());
+    }
+    public void printResult(){
+        String result = numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ", Constants.LOTTO_START_BRACKET, Constants.LOTTO_END_BRACKET));
+        System.out.println(result);
     }
 }

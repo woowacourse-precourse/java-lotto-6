@@ -46,4 +46,8 @@ public class OutputView {
         return String.join(", ", numbers);
     }
 
+    public void printBlankLine() {
+        System.out.println();
+    }
+
 }

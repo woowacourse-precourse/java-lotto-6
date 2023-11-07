@@ -1,5 +1,6 @@
 package lotto.entity;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.LottoGameDto;
 
 import java.util.ArrayList;
@@ -32,5 +33,23 @@ public class LottoGame {
             result[score] += 1;
         }
         return new LottoGameDto.Result(result[3], result[4], result[5], result[7], result[6]);
+    }
+
+    public List<Integer> createLotto() {
+        List<Integer> lottoNumber = new ArrayList<>();
+        while (lottoNumber.size() < 6) {
+            int randomNumber = Randoms.pickNumberInRange(1, 45);
+            if (!lottoNumber.contains(randomNumber)) {
+                lottoNumber.add(randomNumber);
+            }
+        }
+        Lotto lotto = new Lotto(lottoNumber);
+        lottos.add(lotto);
+        return lottoNumber;
+    }
+
+    public void setWinningNumbers(List<Integer> winningNumbers,Integer bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 }

@@ -17,18 +17,29 @@ public class LottoGameController {
         this.lottoGameService = lottoGameService;
     }
 
-    public LottoGameDto.Response createLottoGame() {
+    public int createBudget() {
         IO.printNoticeln(SystemMessage.AMOUNT_INPUT.getMessage());
 
-        String inputMoney=IO.input();
-
-        //input
-        List<List<Integer>> buyLottos=new ArrayList<>();
-        return lottoGameService.initLottoGame(buyLottos);
+        Integer amount=IO.inputBudget();
+        IO.printNoticeln(amount+ SystemMessage.PURCHASE_NIO.getMessage());
+        return amount;
     }
 
-    public LottoGameDto.Result processLottoGame(LottoGameDto.Request request) {
-        return lottoGameService.doLottoGame(request);
+    public LottoGameDto.Response createLottoGame(int amount) {
+        LottoGameDto.Response response = lottoGameService.initLottoGame(amount);
+        for (List<Integer> lottoNumber : response.getLottoNubers()  ) {
+            IO.printLotto(lottoNumber);
+        }
+        return response;
+    }
+
+
+    public LottoGameDto.Result processLottoGame(Long requestId) {
+        IO.printNoticeln(SystemMessage.ANSWER_INPUT.getMessage());
+        List<Integer> integers = IO.inputWinningNumber();
+        IO.printNoticeln(SystemMessage.BONUS_INPUT.getMessage());
+        Integer integer = IO.BonusNumber();
+        return lottoGameService.doLottoGame(new LottoGameDto.Request(requestId,integers,integer));
     }
 
 }

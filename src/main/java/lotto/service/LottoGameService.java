@@ -5,6 +5,7 @@ import lotto.entity.Lotto;
 import lotto.entity.LottoGame;
 import lotto.repository.LottoGameRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGameService {
@@ -15,14 +16,14 @@ public class LottoGameService {
         this.lottoGameRepository = lottoGameRepository;
     }
 
-    public LottoGameDto.Response initLottoGame(List<List<Integer>> buyLottos) {
+    public LottoGameDto.Response initLottoGame(int amount) {
         LottoGame saveLottoGame = new LottoGame();
-        for (List<Integer> buyLotto : buyLottos) {
-            Lotto makeLotto = new Lotto(buyLotto);
-            saveLottoGame.addLotto(makeLotto);
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            lottoNumbers.add(saveLottoGame.createLotto());
         }
         Long lottoGameId = lottoGameRepository.save(saveLottoGame);
-        return new LottoGameDto.Response(lottoGameId);
+        return new LottoGameDto.Response(lottoGameId,lottoNumbers);
     }
 
 

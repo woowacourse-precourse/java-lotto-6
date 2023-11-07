@@ -11,9 +11,9 @@ public class LottoGameClient {
     }
 
     public void run() {
-        LottoGameDto.Response response = lottoGameController.createLottoGame();
-        LottoGameDto.Request request = new LottoGameDto.Request(response.getLottoGameId());
-        lottoGameController.processLottoGame(request);
+        int budget = lottoGameController.createBudget();
+        LottoGameDto.Response response = lottoGameController.createLottoGame(budget);
+        lottoGameController.processLottoGame(response.getLottoGameId());
     }
 
 

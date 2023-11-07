@@ -1,28 +1,49 @@
 package lotto.dto;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 public class LottoGameDto {
     public static class Response{
         private final Long lottoGameId;
+        private final List<List<Integer>> lottoNubers;
 
-        public Response(Long lottoGameId) {
+        public Response(Long lottoGameId, List<List<Integer>> lottoNubers) {
             this.lottoGameId = lottoGameId;
+            this.lottoNubers = lottoNubers;
         }
 
         public Long getLottoGameId() {
             return lottoGameId;
+        }
+
+        public List<List<Integer>> getLottoNubers() {
+            return lottoNubers;
         }
     }
     public static class Request{
         private final Long lottoGameId;
 
-        public Request(Long lottoGameId) {
+        private final List<Integer> winningNumbers;
+        private final Integer bonusNumber;
+
+
+        public Request(Long lottoGameId, List<Integer> winningNumbers, Integer bonusNumber) {
             this.lottoGameId = lottoGameId;
+            this.winningNumbers = winningNumbers;
+            this.bonusNumber = bonusNumber;
         }
 
         public Long getLottoGameId() {
             return lottoGameId;
+        }
+
+        public List<Integer> getWinningNumbers() {
+            return winningNumbers;
+        }
+
+        public Integer getBonusNumber() {
+            return bonusNumber;
         }
     }
     public static class Result{

@@ -1,5 +1,9 @@
 package lotto.ui;
 
+import static lotto.global.ErrorMessage.INVALID_LOTTO_NUMBER_ERROR;
+import static lotto.global.ErrorMessage.INVALID_LOTTO_SIZE_ERROR;
+import static lotto.global.ErrorMessage.INVALID_NATURAL_NUMBER_ERROR;
+import static lotto.global.ErrorMessage.INVALID_PRICE_UNIT_ERROR;
 import static lotto.global.LottoInformation.LOTTO_BALLS_NUMBER;
 import static lotto.global.LottoInformation.LOTTO_MAX_NUMBER;
 import static lotto.global.LottoInformation.LOTTO_MIN_NUMBER;
@@ -15,10 +19,6 @@ public class Input {
     private static final String USER_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String COMMA_SEPARATOR = ",";
-    private static final String INVALID_NATURAL_NUMBER_ERROR = "입력값은 자연수여야 합니다.";
-    private static final String INVALID_LOTTO_NUMBER_ERROR = "유효하지 않는 로또 번호입니다.";
-    private static final String INVALID_LOTTO_SIZE_ERROR = "유효하지 않는 로또 번호 개수입니다.";
-    private static final String INVALID_PRICE_UNIT_ERROR = "1,000원 단위로 입력해야 합니다.";
     private static final int ZERO = 0;
 
     public static int getPurchasePrice() {
@@ -39,19 +39,19 @@ public class Input {
         try {
             StringToInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR);
+            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR.getMessage());
         }
     }
 
     private static void checkNaturalNumber(int price) {
         if (price <= ZERO) {
-            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR);
+            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR.getMessage());
         }
     }
 
     private static void checkPurchaseAmount(int price) {
         if (price % LOTTO_PRICE_UNIT.getValue() != ZERO) {
-            throw new IllegalArgumentException(INVALID_PRICE_UNIT_ERROR);
+            throw new IllegalArgumentException(INVALID_PRICE_UNIT_ERROR.getMessage());
         }
     }
 
@@ -69,7 +69,7 @@ public class Input {
                     .map(number -> Integer.parseInt(number.trim()))
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR);
+            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -83,13 +83,13 @@ public class Input {
 
     private static void checkNumberSize(List<Integer> userNumbers) {
         if (userNumbers.size() != LOTTO_BALLS_NUMBER.getValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR);
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
     private static void checkInRange(int number) {
         if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR);
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR.getMessage());
         }
     }
 

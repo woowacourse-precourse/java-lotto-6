@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.global.ErrorMessage.INVALID_LOTTO_SIZE_ERROR;
+import static lotto.global.ErrorMessage.NUMBER_DUPLICATED_ERROR;
 import static lotto.global.LottoInformation.LOTTO_BALLS_NUMBER;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class Lotto {
 
     private void validateLottoSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_BALLS_NUMBER.getValue()) {
-            throw new IllegalArgumentException(LOTTO_BALLS_NUMBER.getValue() + "개의 로또 번호가 필요합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
@@ -28,7 +30,7 @@ public class Lotto {
         final int lottoSizeWithoutDuplicate = (int) lotto.stream().distinct().count();
 
         if (lotto.size() != lottoSizeWithoutDuplicate) {
-            throw new IllegalArgumentException("로또 번호가 중복됩니다");
+            throw new IllegalArgumentException(NUMBER_DUPLICATED_ERROR.getMessage());
         }
     }
 

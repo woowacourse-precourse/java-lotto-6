@@ -1,8 +1,8 @@
 package lotto.domain;
 
+import static lotto.global.ErrorMessage.BONUS_BALL_INCLUDE_ERROR;
 
 public class Result {
-    private static final String BONUS_BALL_INCLUDE_ERROR = "보너스 볼은 당첨 번호와 중복될 수 없습니다.";
     private final Lotto winningLotto;
     private final int bonusBall;
 
@@ -14,7 +14,7 @@ public class Result {
 
     private void validateWinningResult(Lotto lotto, int bonusBall) {
         if (lotto.containsNumber(bonusBall)) {
-            throw new IllegalArgumentException(BONUS_BALL_INCLUDE_ERROR);
+            throw new IllegalArgumentException(BONUS_BALL_INCLUDE_ERROR.getMessage());
         }
     }
 

@@ -15,7 +15,7 @@ public class Application {
         /* 추가할 것 : 입력한 구입금액이 1000원으로 나누어 떨어지지 않을 경우 예외처리한다. */
 
         int lottoTickets = purchaseAmount / 1000;
-        System.out.println(String.format("\n%d개를 구매했습니다.", lottoTickets));
+        System.out.printf("\n%d개를 구매했습니다.%n", lottoTickets);
 
         //로또 발행
         List[] allTickets = new List[lottoTickets];
@@ -72,15 +72,16 @@ public class Application {
 
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        System.out.println(String.format("3개 일치 (5,000원) - %d개\n" +
-                        "4개 일치 (50,000원) - %d개\n" +
-                        "5개 일치 (1,500,000원) - %d개\n" +
-                        "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
-                        "6개 일치 (2,000,000,000원) - %d개",
-                rank[5], rank[4], rank[3], rank[2], rank[1]));
+        System.out.printf("""
+                        3개 일치 (5,000원) - %d개
+                        4개 일치 (50,000원) - %d개
+                        5개 일치 (1,500,000원) - %d개
+                        5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
+                        6개 일치 (2,000,000,000원) - %d개%n""",
+                rank[5], rank[4], rank[3], rank[2], rank[1]);
 
         double prizeMoney = 5000 * rank[5] + 50000 * rank[4] + 1500000 * rank[3] + 30000000 * rank[2] + 2000000000 * rank[1];
         double rateOfReturn = (prizeMoney / purchaseAmount) * 100;
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", Math.round(rateOfReturn * 10) / 10.0));
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(rateOfReturn * 10) / 10.0);
     }
 }

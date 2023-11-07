@@ -9,21 +9,21 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    public static void lottoStart(){
-        inputMoney();
+    public static void runGame(){
+        moneyInputAndLottoIssue();
         PurchasedLottoDTO purchasedLottoDTO = LottoService.purchasedLottoToDTO();
         OutputView.printPurchasedLotto(purchasedLottoDTO);
         inputWinningNumbers();
         inputBonusNumber();
     }
 
-    private static void inputMoney(){
+    private static void moneyInputAndLottoIssue(){
         try{
             InputMoney money = InputView.inputMoney();
-            LottoService.lottoStart(money);
+            LottoService.inputMoneyAndIssueLotto(money);
         } catch (IllegalArgumentException e){
             OutputView.printErrorMessage(e);
-            inputMoney();
+            moneyInputAndLottoIssue();
         }
     }
 

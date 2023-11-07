@@ -20,7 +20,7 @@ public class LottoService {
     private static LottoWinningNumbers lottoWinningNumbers;
     private static LottoWinningBonusNumber lottoWinningBonusNumber;
 
-    public static void lottoStart(InputMoney inputMoney) {
+    public static void inputMoneyAndIssueLotto(InputMoney inputMoney) {
         User user = new User(inputMoney.getMoney());
         lottoGenerator(user.getAmount());
     }
@@ -45,6 +45,8 @@ public class LottoService {
     public static void inputBonusLotto(InputBonusNumber inputBonusNumber) {
         lottoWinningBonusNumber = new LottoWinningBonusNumber(inputBonusNumber.getInputBonusNumber(), lottoWinningNumbers.getWinningNumbers());
     }
+
+
 
     public static PurchasedLottoDTO purchasedLottoToDTO() {
         int purchasedLottoCount = purchasedLottoNumbers.getPurchasedLotto().size();

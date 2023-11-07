@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.Result;
 import lotto.parser.Parser;
+import lotto.util.Computer;
 import lotto.util.Counter;
 import lotto.util.Generator;
 import lotto.util.Matcher;
@@ -34,7 +36,10 @@ public class Game {
         // 당첨된 등수 세기
         Rank rank = Counter.countRank(results);
 
+        // 수익률 계산하기
+        BigDecimal profit = Computer.computeProfit(purchaseAmount, rank);
+
         // 당첨 통계 발표
-        OutputView.responseWinningStatics(rank);
+        OutputView.responseWinningStatics(rank, profit);
     }
 }

@@ -14,6 +14,8 @@ import static lotto.Lotto.lottoRangeLastNum;
 
 public class Draw {
 
+    static final int BOUNUS_CHECK_MATCH_COUNT = 5;
+
     public Lotto enterWinningLottoNums() {
         Lotto winningLotto;
 
@@ -112,14 +114,14 @@ public class Draw {
         Map<Rank, Integer> drawResult = initDrawResult();
         for (Lotto lotto : lottos) {
             int matchCount = calculateMatchCount(winning, lotto);
-            boolean bonus = hasBonus(lotto, bonusNum);
+            boolean bonus = hasBonus(lotto, matchCount, bonusNum);
             Rank rank = Rank.getRank(matchCount, bonus);
         }
         return drawResult;
     }
 
-    boolean hasBonus(Lotto lotto, int bonusNum) {
-        return lotto.getNumbers().contains(bonusNum);
+    boolean hasBonus(Lotto lotto, int matchCount, int bonusNum) {
+        return matchCount == BOUNUS_CHECK_MATCH_COUNT && lotto.getNumbers().contains(bonusNum);
     }
 
     int calculateMatchCount(Lotto winning, Lotto lotto) {

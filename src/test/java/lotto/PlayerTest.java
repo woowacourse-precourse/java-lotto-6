@@ -14,7 +14,15 @@ public class PlayerTest {
     @DisplayName("보너스 숫자가 1 ~ 45의 범위인지 확인합니다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 49})
-    void createLottoByProperRange(int target) {
+    void checkBonusProperRange(int target) {
+        assertThatThrownBy(() -> new Player(new Lotto(List.of(1, 2, 3, 4, 5, 6)), target))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 숫자가 6개의 로또 숫자와 중복되는지 확인합니다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 6})
+    void checkBonusDuplicated(int target) {
         assertThatThrownBy(() -> new Player(new Lotto(List.of(1, 2, 3, 4, 5, 6)), target))
                 .isInstanceOf(IllegalArgumentException.class);
     }

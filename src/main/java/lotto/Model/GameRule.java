@@ -13,7 +13,7 @@ public class GameRule {
     private static final List<Integer> INITIAL_RESULT = new ArrayList<>(List.of(0, 0, 0, 0, 0));
 
     public List<Integer> calculateResult(Cpu cpuLottos, Player playerLotto) {
-        List<Integer> Lottoresult = INITIAL_RESULT;
+        List<Integer> Lottoresult = new ArrayList<>(INITIAL_RESULT);
         List<Lotto> cpuSixNumbers = cpuLottos.getSixLottoNumbers();
 
         for (int index = 0; index < cpuLottos.getTickets(); index++) {

@@ -9,8 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-public class LottoCounterTest {
-
+public class LottoResultCalculatorTest {
 
     @Test
     @DisplayName("두 리스트에서 중복된 요소의 갯수를 찾는 메서드 테스트입니다.")

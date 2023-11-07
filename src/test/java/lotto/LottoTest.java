@@ -26,7 +26,7 @@ class LottoTest {
 
     @DisplayName("로또 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다..")
     @ParameterizedTest
-    @ValueSource(ints = {0, 49})
+    @ValueSource(ints = {0, 46})
     void createLottoByProperRange(int target) {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, target)))
                 .isInstanceOf(IllegalArgumentException.class);

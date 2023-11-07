@@ -10,11 +10,11 @@ import lotto.model.Rank;
 
 public class OutputView {
     private static final String BUY_LOTTO = "구입금액을 입력해 주세요";
-    private static final String COUNT_LOTTO = "개를 구매했습니다.";
+    private static final String COUNT_LOTTO = "%d개를 구매했습니다.";
     private static final String PICK_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String PICK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String STATS_LOTTO = "당첨 통계\n---";
-
+    private static final String BENEFIT_RATE = "총 수익률은 %.1f%%입니다.";
     public void printError(Exception e) {
         System.out.println(e.getMessage());
     }
@@ -35,7 +35,7 @@ public class OutputView {
     }
 
     private void printLottoCount(int count) {
-        System.out.println(count + COUNT_LOTTO);
+        System.out.println(String.format(COUNT_LOTTO, count));
     }
 
     private void printLottoPaper(LottoPaper paper) {
@@ -73,6 +73,10 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append(stat.getKey().getDescription()).append(" - ").append(stat.getValue()).append("개");
         System.out.println(sb);
+    }
+
+    public void printBenefitRate(double rate) {
+        System.out.println(String.format(BENEFIT_RATE, rate));
     }
 }
 

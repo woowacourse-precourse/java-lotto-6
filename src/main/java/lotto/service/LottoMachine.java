@@ -21,6 +21,7 @@ public class LottoMachine {
     private final int INIT_NUMBER = 0;
     private List<Lotto> lottos;
     private LinkedHashMap<Rank, Integer> stats;
+    private Coin coin;
     public LottoMachine() {
         lottos = new ArrayList<>();
         stats = new LinkedHashMap<>();
@@ -28,6 +29,7 @@ public class LottoMachine {
 
 
     public List<LottoPaper> publishLottoPaper(Coin coin) {
+        this.coin = coin;
 
         for(int i = 0; i < coin.getCount(); i++) {
             generateLotto();
@@ -64,4 +66,20 @@ public class LottoMachine {
         }
     }
 
+    public double calculateBenefitRate() {
+        double amount = coin.getAmount();
+        double benefit = calculateBenefit();
+
+        return benefit / amount * 100;
+    }
+
+    private double calculateBenefit() {
+        double benefit = 0.0;
+
+        for (Entry<Rank, Integer> stat : stats.entrySet()) {
+            benefit += stat.getKey().getPrice() * stat.getValue();
+        }
+
+        return benefit;
+    }
 }

@@ -16,6 +16,8 @@ public class Coin {
         return this.amount / UNIT;
     }
 
+    public int getAmount() { return this.amount; }
+
     // 구입 금액이 1000원을 넘는지 검증
     private void validateAmount(int amount) {
         if(amount < 1000) {

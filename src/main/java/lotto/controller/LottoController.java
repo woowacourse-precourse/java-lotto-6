@@ -77,6 +77,7 @@ public class LottoController {
     }
 
     private void resultLotto() {
-
+        double benefitRate = machine.calculateBenefitRate();
+        outputView.printBenefitRate(benefitRate);
     }
 }

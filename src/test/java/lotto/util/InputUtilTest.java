@@ -23,6 +23,6 @@ public class InputUtilTest extends NsTest {
 
     @Override
     protected void runMain() {
-        InputUtil.inputMoney();
+        InputUtil.inputNumber();
     }
 }

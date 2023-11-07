@@ -10,6 +10,7 @@ import static lotto.view.OutputView.*;
 
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
+import lotto.utils.CalculationUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class LottoController {
 
     public int registerBonusNumber() {
         String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
+        validateBonusNumber(userInput);
         return parseInt(userInput);
     }
 
@@ -57,9 +59,6 @@ public class LottoController {
         printResult(result);
     }
 
-
-
-
     private void validateReceivedMoney(String userInput) {
         // 숫자 인지 검증
         int number = parseInt(userInput);
@@ -69,10 +68,11 @@ public class LottoController {
         }
     }
 
+    private void validateBonusNumber(String userInput) {
+        int number = parseInt(userInput);
 
-
-
-
-
-
+        if (!CalculationUtils.isNumberInRange(number, 1, 45)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
+        }
+    }
 }

@@ -11,7 +11,7 @@ class ValidatorTest {
 
     @DisplayName("빈값 입력 시 예외 발생")
     @Test
-    void isInputEmpty() throws IllegalArgumentException{
+    void isInputEmpty() throws IllegalArgumentException {
 
         String userInput = "";
 
@@ -55,14 +55,14 @@ class ValidatorTest {
     @Test
     void isWinningNumberDuplicate() {
         Integer checkingNumber = 5;
-        List<Integer> referenceNumbers =List.of(5, 10, 15, 20, 5, 30);
+        List<Integer> referenceNumbers = List.of(5, 10, 15, 20, 5, 30);
         assertThat(Validator.isWinningNumberDuplicate(checkingNumber, referenceNumbers)).isTrue();
     }
 
     @Test
     void isBonusNumberDuplicate() {
         Integer bonusNumber = 12;
-        List<Integer> winningNumbers =List.of(6, 12, 18, 24, 30, 36);
+        List<Integer> winningNumbers = List.of(6, 12, 18, 24, 30, 36);
         assertThat(Validator.isBonusNumberDuplicate(bonusNumber, winningNumbers)).isTrue();
     }
 

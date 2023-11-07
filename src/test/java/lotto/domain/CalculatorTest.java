@@ -11,7 +11,6 @@ import java.util.List;
 class CalculatorTest {
 
 
-
     @DisplayName("상금 총액 계산")
     @Test
     void calculateTotalPrize() {

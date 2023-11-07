@@ -9,11 +9,9 @@ import java.util.List;
 public class Controller {
 
 
-
     public static void sortNumbers(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
     }
-
 
 
     public static Integer countMatchingNumberBetween(List<Integer> winningNumbers, Integer lotteryNumber) {

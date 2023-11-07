@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Rank {
 	ZERO_LOSE(0, 0L, "0"),
 	ONE_LOSE(1, 0L, "0"),
@@ -10,15 +14,44 @@ public enum Rank {
 	SECOND(5, 30_000_000L, "30,000,000"),
 	FIRST(6, 2_000_000_000L, "2,000,000,000");
 	
-	private final int correctCount;
+	private final int standardCount;
 	private final Long prize;
 	private final String prizeText;
+	private static final int DEFINITE_SIZE = 1;
 
-	Rank(int correctCount, long prize, String prizeText) {
-		this.correctCount = correctCount;
+	Rank(int standardCount, long prize, String prizeText) {
+		this.standardCount = standardCount;
 		this.prize = prize;
 		this.prizeText = prizeText;
 	}
 	
+	public static Rank ranking(int correctCount, boolean correctBonusNumber) {
+		List<Rank> applyRanks = Arrays.stream(values()).filter(rank -> rank.getStandardCount() == correctCount)
+				.collect(Collectors.toList());
+		if (applyRanks.size() != DEFINITE_SIZE) {
+			return isSecondOrThird(correctBonusNumber);
+		}
+		return applyRanks.get(0);
+    }
+	
+	public static Rank isSecondOrThird(boolean correctBonusNumber) {
+		if (correctBonusNumber) {
+			return SECOND;
+		}
+		return THIRD;
+	}
+	
+	public int getStandardCount() {
+		return standardCount;
+	}
+	
+	public Long getPrizeAmount() {
+		return prize;
+	}
+	
+	public String getPrizeText() {
+		return prizeText;
+	}
+
 	
 }

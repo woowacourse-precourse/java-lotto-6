@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
+import lotto.domain.Rank;
 import lotto.utils.Utils;
 import lotto.validation.Validation;
 import lotto.view.InputView;
@@ -88,6 +89,10 @@ public class Service {
 	
 	public int countCorrectLottoNumber(Lotto lotto) {
 		return Utils.countSameNumbers(lotto.getNumbers(), lottoGame.getWinningNumbers());
+	}
+	
+	public boolean isBonusNumberCorrect(Lotto lotto) {
+		return lotto.getNumbers().contains(lottoGame.getBonusNumber());
 	}
 
 }

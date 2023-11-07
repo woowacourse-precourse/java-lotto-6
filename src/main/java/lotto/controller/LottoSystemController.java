@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoSystem;
+import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,12 +18,11 @@ public class LottoSystemController {
         LottoSystem lottoSystem = buyLotto();
         printBuyLotto(lottoSystem);
 
-        enterLotto();
+        WinningLotto winningLotto = enterLotto();
     }
 
-    private static void enterLotto() {
-        enterLottoNumber();
-        enterLottoBonusNumber();
+    private static WinningLotto enterLotto() {
+        return new WinningLotto(enterLottoNumber(), enterLottoBonusNumber());
     }
 
     private static int enterLottoBonusNumber() {
@@ -32,14 +32,14 @@ public class LottoSystemController {
         return Integer.parseInt(lottoBonusNumber);
     }
 
-    private static List<Integer> enterLottoNumber() {
+    private static Lotto enterLottoNumber() {
         String lottoNumbers = inputLottoNumber();
         inputLottoNumberValidate(lottoNumbers);
 
         return parseStringToList(lottoNumbers);
     }
 
-    private static List<Integer> parseStringToList(String lottoNumbers) {
+    private static Lotto parseStringToList(String lottoNumbers) {
         List<Integer> lottos = new ArrayList<>();
 
         String[] lottoNumber = lottoNumbers.split(",");
@@ -47,9 +47,7 @@ public class LottoSystemController {
             lottos.add(Integer.parseInt(lottoNumber[i]));
         }
 
-        Collections.sort(lottos);
-
-        return lottos;
+        return new Lotto(lottos);
     }
 
     private static LottoSystem buyLotto() {

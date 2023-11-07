@@ -44,4 +44,14 @@ class ServiceTest {
         List<Integer> winNumberList = gameService.generateWinNumber(numbers);
         assertEquals(winNumberList, expectedList);
     }
+
+    @DisplayName("보너스 번호 형 변환 테스트")
+    @Test
+    void 보너스_번호_생성_테스트() {
+        String bonus = "5";
+        int expectedBonusNumber = 5;
+
+        int bonusNumber = gameService.generateBonusNumber(bonus);
+        assertEquals(bonusNumber, expectedBonusNumber);
+    }
 }

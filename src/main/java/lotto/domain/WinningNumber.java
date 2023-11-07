@@ -12,6 +12,20 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public LottoRank compareNumbers(List<Integer> lottoNumbers) {
+        int match = 0;
+        boolean bonus = false;
+        for (int i = 0; i < 6; i++) {
+            if (lottoNumbers.get(i) == numbers.get(i)) {
+                match += 1;
+            }
+            if (lottoNumbers.get(i) == bonusNumber) {
+                bonus = true;
+            }
+        }
+        return LottoRank.whichRank(match, bonus);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

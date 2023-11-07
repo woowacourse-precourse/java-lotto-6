@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
@@ -12,18 +13,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Controller {
-//    private List<Lotto> lottoTickets;
     public void run() {
-        /**
-         * 돈 입력 받기 x
-         * 돈 만큼 로또 발행하기 x
-         * 생성된 로또 출력하기
-         */
         int money = inputMoneyFromUser();
         List<Lotto> lottoTickets = purchaseLotto(money);
         printLottoNumbers(lottoTickets);
         WinningNumber winningNumber = inputWinnigNumberFromUser();
+        List<LottoRank> rankList = compareLottoNumber(winningNumber, lottoTickets);
 
+    }
+
+    private List<LottoRank> compareLottoNumber(WinningNumber winningNumber, List<Lotto> lottoTickets) {
+        List<LottoRank> rankList = new ArrayList<>();
+        for (Lotto lotto : lottoTickets) {
+            rankList.add(winningNumber.compareNumbers(lotto.getNumbers()));
+        }
+        return rankList;
     }
 
     private int inputMoneyFromUser() {
@@ -55,7 +59,6 @@ public class Controller {
         OutputView.lottoNumberMessage(lottoTickets);
     }
 
-//    private void
     private WinningNumber inputWinnigNumberFromUser() {
         try {
             Lotto lotto = new Lotto(InputView.inputLottoNumber());

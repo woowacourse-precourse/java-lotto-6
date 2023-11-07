@@ -32,6 +32,7 @@ public class LottoPurchaseInput {
             String inputNumbers = Console.readLine().trim();
 
             validate(inputNumbers);
+            Util.validateIntegerList(inputNumbers, ",");
             List<Integer> numbers = Util.convertToIntegerList(inputNumbers, ",");
             Lotto.validate(numbers);
 

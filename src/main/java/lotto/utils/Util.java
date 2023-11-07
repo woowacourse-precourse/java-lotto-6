@@ -41,4 +41,12 @@ public class Util {
         List<Integer> integerList = Arrays.stream(inputArr).map(Integer::parseInt).toList();
         return integerList;
     }
+
+    public static void validateIntegerList(String input, String delimiter) {
+        try {
+            convertToIntegerList(input, delimiter);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_INTEGER_LIST.getMessage());
+        }
+    }
 }

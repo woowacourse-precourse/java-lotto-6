@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Rank {
-    private List<Integer> rank;
+    private final List<Integer> rank;
 
     public Rank(List<Integer> rank) {
         this.rank = rank;

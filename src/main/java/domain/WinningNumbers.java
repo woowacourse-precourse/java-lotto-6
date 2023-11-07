@@ -3,8 +3,8 @@ package domain;
 import java.util.List;
 
 public class WinningNumbers {
-    private Lotto lotto;
-    private BonusNumber bonusNumber;
+    private final Lotto lotto;
+    private final BonusNumber bonusNumber;
 
     public WinningNumbers(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;

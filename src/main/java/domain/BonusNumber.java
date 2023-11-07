@@ -5,10 +5,8 @@ import static util.ErrorMessage.LOTTO_NUMBER_RANGE;
 import static util.LottoValidationValue.LOTTO_NUMBER_MAXIMUM;
 import static util.LottoValidationValue.LOTTO_NUMBER_MINIMUM;
 
-import java.util.List;
-
 public class BonusNumber {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(int bonusNumber, Lotto lotto) {
         this.bonusNumber = validate(bonusNumber, lotto);

@@ -21,6 +21,7 @@ public class LottoController {
     private void getLottoResult(PurchaseAmount purchaseAmount, WinningResults winningResults) {
         OutputView.printResultMessage();
         OutputView.printWinningStatistic(winningResults);
+        OutputView.printProfit(purchaseAmount.calculateProfit(winningResults.calculatePrizeSum()));
     }
 
     private PurchaseAmount readAmount() {

@@ -2,6 +2,8 @@ package lotto;
 
 import lotto.machine.ui.ConsoleUI;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -10,9 +12,9 @@ public class Application {
         ui.requirePurchaseView();
         ui.inputPurchaseAmount();
         ui.requireWinningNumbers();
-        ui.inputWinningNumbers();
+        List<Integer> winningNumbers = ui.inputWinningNumbers();
         ui.requireBonusNumber();
-        ui.inputBonusNumber();
+        ui.inputBonusNumber(winningNumbers);
         ui.outputGameResult(1,2,3,4,5, 55.5);
     }
 }

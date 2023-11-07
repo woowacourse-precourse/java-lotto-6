@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,12 +83,12 @@ public class ConsoleUI implements UI {
     }
 
     @Override
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         int bounusNumber = 0;
         boolean isValid = false;
         while (!isValid) {
             try {
-                bounusNumber = validateInputBonusNumber();
+                bounusNumber = validateInputBonusNumber(winningNumbers);
                 isValid = true;
             } catch (NumberFormatException numberFormatException) {
                 System.err.println("[ERROR] 값은 정수로 입력해야 합니다.");
@@ -134,7 +135,10 @@ public class ConsoleUI implements UI {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 골라야 합니다.");
         }
 
-        return Arrays.stream(result)
+
+
+
+        List<Integer> winningNumbers = Arrays.stream(result)
                 .map(Integer::parseInt)
                 .peek(number -> {
                     if (number < LOTTO_MIN_VALUE || number > LOTTO_MAX_VALUE) {
@@ -142,14 +146,24 @@ public class ConsoleUI implements UI {
                     }
                 })
                 .collect(Collectors.toList());
+
+        if (new HashSet<>(winningNumbers).size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 숫자는 서로 달라야 합니다.");
+        }
+
+        return winningNumbers;
     }
 
-    private int validateInputBonusNumber() {
+    private int validateInputBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber = 0;
         bonusNumber = Integer.parseInt(Console.readLine());
 
         if (bonusNumber < LOTTO_MIN_VALUE || bonusNumber > LOTTO_MAX_VALUE)
             throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이여야 합니다.");
+
+        for(int number: winningNumbers) {
+            if(number == bonusNumber) throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨 숫자와 중복될 수 없습니다.");
+        }
 
         return bonusNumber;
     }

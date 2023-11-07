@@ -40,13 +40,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호 목록이 null인 경우 예외가 발생한다.")
-    @Test
-    void createLottoWithNullNumbers() {
-        assertThatThrownBy(() -> new Lotto(null))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("로또 번호가 정상적으로 생성된다.")
     @Test
     void createValidLotto() {

@@ -58,4 +58,33 @@ class LottoWinnerSystemTest {
             lottoWinnerSystem.isValidRange(winNumber);
         });
     }
+
+
+    @Test
+    void 보너스번호_1개_아닐경우() {
+        List<Integer> bonusNumber = new ArrayList<>(List.of(13, 14));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinnerSystem.isValidLength(bonusNumber, BONUS_NUMBER_COUNT);
+        });
+    }
+
+    @Test
+    void 보너스번호_당첨번호와_중복되는경우() {
+        List<Integer> winNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> bonusNumber = new ArrayList<>(List.of(3));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinnerSystem.isContainWinNumbers(winNumber, bonusNumber);
+        });
+    }
+
+    @Test
+    void 보너스번호_정상범위_아닐경우() {
+        List<Integer> bonusNumber = new ArrayList<>(List.of(-1));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinnerSystem.isValidRange(bonusNumber);
+        });
+    }
 }

@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import java.util.Arrays;
-
 public enum LottoRanking {
+
     FIRST(2_000_000_000, 6),
     SECOND(30_000_000, 5),
     THIRD(1_500_000, 5),
@@ -18,21 +17,11 @@ public enum LottoRanking {
         this.correctNumberCount = correctNumberCount;
     }
 
-    public static LottoRanking findByCondition(int correctNumberCount, boolean isCorrectBonusNumber) {
-        if (correctNumberCount == SECOND.correctNumberCount) {
-            if (isCorrectBonusNumber) {
-                return SECOND;
-            }
-            return THIRD;
-        }
-
-        return Arrays.stream(values())
-                .filter(rank -> rank.correctNumberCount == correctNumberCount)
-                .findFirst()
-                .orElse(NO_LUCK);
-    }
-
     public Long getTotalPrize(Integer count) {
         return ((long) prize * count);
+    }
+
+    public boolean isCorrectCondition(int correctCount) {
+        return correctNumberCount == correctCount;
     }
 }

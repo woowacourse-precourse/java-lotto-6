@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
@@ -19,7 +20,16 @@ public class WinningLotto {
 
         boolean isCorrectBonusNumber = lotto.contains(bonusNumber);
 
+        if (LottoRanking.SECOND.isCorrectCondition(correctCount)) {
+            if (isCorrectBonusNumber) {
+                return LottoRanking.SECOND;
+            }
+            return LottoRanking.THIRD;
+        }
 
-        return LottoRanking.findByCondition(correctCount, isCorrectBonusNumber);
+        return Arrays.stream(LottoRanking.values())
+                .filter(rank -> rank.isCorrectCondition(correctCount))
+                .findFirst()
+                .orElse(LottoRanking.NO_LUCK);
     }
 }

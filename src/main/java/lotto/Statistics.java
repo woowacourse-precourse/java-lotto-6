@@ -28,4 +28,8 @@ public class Statistics {
             addFrequency(determineGrade(lotto, winningLotto, bonus));
         }
     }
+
+    private PrizeGrade determineGrade(Lotto lotto, Lotto winningLotto, Bonus bonus) {
+        return PrizeGrade.of(lotto.countMatches(winningLotto), lotto.matchWithBonus(bonus));
+    }
 }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class UserInputUtil {
 
-    private static final int PURCHASE_AMOUNT_UNIT = 1000;
+    public static final int PURCHASE_AMOUNT_UNIT = 1000;
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
@@ -40,9 +40,11 @@ public class UserInputUtil {
         while (true) {
             try {
                 String winningNumbersLine = Console.readLine();
-                return parseNumbers(winningNumbersLine);
+                List<Integer> winningNumbers = parseNumbers(winningNumbersLine);
+                validateNumbers(winningNumbers);
+                return winningNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[Error]" + e.getMessage());
             }
         }
     }
@@ -53,12 +55,11 @@ public class UserInputUtil {
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            validateNumbers(numbers);
             return numbers;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return Collections.emptyList();
+            System.out.println("[Error]" + e.getMessage());
         }
+        return Collections.emptyList();
     }
 
 

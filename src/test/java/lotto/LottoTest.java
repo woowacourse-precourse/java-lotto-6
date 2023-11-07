@@ -34,7 +34,9 @@ class LottoTest {
 
     @DisplayName("로또 숫자들을 전달한다.")
     @Test
-    void createStringOfNumbers() {
+    void createPassingNumbers() {
         assertThat(new Lotto(List.of(2, 24, 32, 29, 45, 17)).getNumbers()).isInstanceOf(List.class);
     }
+
+
 }

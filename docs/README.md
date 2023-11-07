@@ -20,8 +20,9 @@
     - [x] 중복되지 않는 로또 당첨 번호 - Lotto#validate()
     - [x] 6개의 당첨 번호 - Lotto#validate()
 - [ ] 보너스 번호 입력
-  - [ ] "보너스 번호를 입력해 주세요." - InputView#inputBonusNumber()
+  - [x] "보너스 번호를 입력해 주세요." - InputView#inputBonusNumber()
     - [ ] 1~45 사이의 보너스 번호 1개 - Bonus#validate()
+    - [ ] 로또 당첨 번호와 중복되지 않는 보너스 번호
 - [ ] 당첨 판단 - Lottos#determineWinnings()
   - 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
     - 1등: 6개 번호 일치 / 2,000,000,000원

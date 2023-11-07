@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private MatchNumber matchType;
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -41,10 +41,9 @@ public class Lotto {
         if(cnt == 6){
             cnt++;
         }
-        matchType = MatchNumber.getMatchNumber(cnt);
 
         if(numbers.contains(bonusNumber) && cnt == 5){
-            matchType = MatchNumber.getMatchNumber(6);
+            cnt++;
         }
 
         return cnt;

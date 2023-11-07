@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.domain.LotteryGame;
+
+import static lotto.app.ApplicaitonConfig.*;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LotteryGame lottery = new LotteryGame(getMerchant(), getMachine());
+        lottery.start();
     }
 }

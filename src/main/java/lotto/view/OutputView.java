@@ -15,9 +15,8 @@ public class OutputView {
         return outputView;
     }
 
-    public void printCreateLottoNumbers(final List<Lotto> lottos) {
+    public static void printLottoSize(final List<Lotto> lottos) {
         System.out.printf(Constants.PURCHASE_COUNT_MESSAGE, lottos.size());
-        lottos.forEach(lotto -> System.out.println(lotto.toString()));
     }
 
     public void printResult(final Referee referee, final double rateOfReturn) {

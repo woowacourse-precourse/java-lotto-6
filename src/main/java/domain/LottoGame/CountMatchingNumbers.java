@@ -9,12 +9,14 @@ class CountMatchingNumbers {
     public static int getCountMatchingNumbers(Lotto userLotto, WinningNumbers winningNumbers) {
         Set<Integer> userNumbersSet = new HashSet<>(userLotto.getNumbers());
         Set<Integer> winningNumbersSet = new HashSet(winningNumbers.getWinningLotto().getNumbers());
-
+        Set<Integer> getNumbersSet = new HashSet<>(userLotto.getNumbers());
         userNumbersSet.retainAll(winningNumbersSet);
-
         int matchCount = userNumbersSet.size();
-        if (matchCount == 5 && userNumbersSet.contains(winningNumbers.getBonusNumber())) {
-            matchCount = 6;
+        if (matchCount == 6) {
+            return matchCount;
+        }
+        if (matchCount == 5 && getNumbersSet.contains(winningNumbers.getBonusNumber())) {
+            return -1;
         }
         return matchCount;
     }

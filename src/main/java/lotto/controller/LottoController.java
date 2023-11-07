@@ -12,6 +12,11 @@ public class LottoController {
     public void init() {
         String purchaseAmount = fetchPurchaseAmount();
         int lottoCount = NumberUtil.toLottoCount(purchaseAmount, LOTTO_PRICE);
+
+        OutputView.printLottoCount(lottoCount);
+        Lottos lottos = new Lottos(LottoMachine.createLotto(lottoCount));
+        lottos.printLottos(OutputView::printEachLotto);
+
     }
 
     private String fetchPurchaseAmount() {

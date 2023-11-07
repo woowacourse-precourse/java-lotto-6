@@ -15,7 +15,7 @@ public class LottoController {
 
     public void run(){
         // 구입금액 입력
-        PurchaseAmount purchaseAmount = PurchaseAmount.from(Input.number());
+        PurchaseAmount purchaseAmount = Input.purChaseAmount();
         // 금액만큼 구입개수 계산
         int purchaseCount = calculatePurchaseCount(purchaseAmount);
 

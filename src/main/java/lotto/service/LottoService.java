@@ -23,6 +23,7 @@ public class LottoService {
             extractNumbers(lotto.listToAscendingString());
             purchaseCount --;
         }
+        View.spaceSkipTwice();
         return buyLottoRepo;
     }
 
@@ -38,30 +39,11 @@ public class LottoService {
     }
 
     public WinningLottoRepository createWinningLotto(){
-        // 올바르게 입력할 때까지 계속 입력받기
-        Lotto winningLotto = inputWinningNumber();
-        BonusNumber bonusNumber = inputBonusNumber(winningLotto);
+
+        Lotto winningLotto = Input.winningNumbers();
+        View.spaceSkip();
+        BonusNumber bonusNumber = Input.bonusNumber(winningLotto);
 
         return WinningLottoRepository.of(winningLotto, bonusNumber);
-    }
-
-    private  Lotto inputWinningNumber() {
-        while(true){
-            try {
-                return new Lotto(Input.winningNumbers());
-            }catch (IllegalArgumentException e){
-                System.out.print(e.getMessage());
-            }
-        }
-    }
-
-    private BonusNumber inputBonusNumber(Lotto winningLotto) {
-        while(true){
-            try {
-                return BonusNumber.from(winningLotto, Input.bonusNumber());
-            }catch (IllegalArgumentException e){
-                System.out.print(e.getMessage());
-            }
-        }
     }
 }

@@ -17,6 +17,7 @@ public class View {
     }
 
     public static void purchaseCount(int count){
+        spaceSkip();
         System.out.printf(PURCHASE_NUMBER.getPrint(), count);
     }
 
@@ -29,22 +30,39 @@ public class View {
     }
 
     public static void winningStatistics(){
+        spaceSkip();
         print(Announcement.WINNING_STATISTICS);
     }
 
     public static void result(String prize, int num){
         System.out.printf(prize+ LOTTO_COUNT_PER_RANK.getPrint(),num);
+        spaceSkip();
     }
 
     public static void buyLottos(String lottoNumber){
+        spaceSkip();
         System.out.printf(BUY_LOTTO.getPrint(),lottoNumber);
     }
 
     public static void rateOfReturn(double rateOfReturn){
         System.out.printf(RATE_OF_RETURN.getPrint(),rateOfReturn);
+        spaceSkip();
+    }
+
+    public static void errorMessage(String message) {
+        System.out.println(message);
+        spaceSkip();
     }
 
     private static void print(Announcement announcement){
         System.out.println(announcement.getPrint());
+    }
+
+    public static void spaceSkip() {
+        System.out.println();
+    }
+
+    public static void spaceSkipTwice() {
+        spaceSkip();spaceSkip();
     }
 }

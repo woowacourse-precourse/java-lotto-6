@@ -31,4 +31,19 @@ public class Lotto {
       return numbers;
     };
 
+    public Integer compareLotto(Lotto winningLotto, Integer bonusNumber) {
+        int equalsNumber = Math.toIntExact(numbers.stream()
+                .filter(winningLotto.getLottoNumber()::contains)
+                .count());
+
+        if(equalsNumber == 5 && compareBonusNumber(bonusNumber)){
+            equalsNumber = equalsNumber + 2;
+        }
+        return equalsNumber;
+    }
+
+        public boolean compareBonusNumber(Integer bonusNumber){
+            return numbers.contains(bonusNumber);
+    }
+
 }

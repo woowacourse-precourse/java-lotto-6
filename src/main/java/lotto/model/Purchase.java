@@ -24,4 +24,8 @@ public class Purchase {
     public Integer getlottoTicketNumber(){
         return money/1000;
     }
+
+    public Integer getMoney(){
+        return money;
+    }
 }

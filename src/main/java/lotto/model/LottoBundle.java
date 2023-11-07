@@ -23,4 +23,13 @@ public class LottoBundle {
     public List<Integer> getLottoBundle(int num){
         return lottoBundle.get(num).getLottoNumber();
     }
+
+    public List<Integer> calculateWinningNumbers(Lotto winningNumber, Integer bonusNumber){
+        ArrayList<Integer> bundleResult = new ArrayList<>();
+
+        for(Lotto lotto : lottoBundle){
+            bundleResult.add(lotto.compareLotto(winningNumber, bonusNumber));
+        }
+        return bundleResult;
+    }
 }

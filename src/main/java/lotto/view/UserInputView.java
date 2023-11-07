@@ -31,7 +31,7 @@ public class UserInputView {
         try{
             LottoController.putBonusNum(Console.readLine());
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            exceptionTypeMessage(e);
             inputBonusNum();
         }
     }

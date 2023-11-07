@@ -4,7 +4,9 @@ public enum ExceptionMessage {
 
     inputPurchaseAmountError("ERROR"),
     inputWinningNumbersSizeError("ERROR"),
-    NumberFormatError("ERROR");
+    NumberFormatError("ERROR"),
+
+    NumberRangeError("ERROR");
 
 
     private String errorMessage;

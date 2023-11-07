@@ -17,6 +17,7 @@ public class WinningNumber {
         String[] winningNum = winningNums.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for(int i=0; i<winningNum.length; i++){
+            validateRangeNum(Integer.valueOf(winningNum[i]));
             winningNumbers.add(Integer.valueOf(winningNum[i]));
         }
         WinningNumber.winningNums = winningNumbers;
@@ -24,6 +25,7 @@ public class WinningNumber {
     }
 
     public static void putBonusNum(String bonusNum) throws IllegalArgumentException{
+        validateRangeNum(Integer.parseInt(bonusNum));
         WinningNumber.bonusNum = Integer.parseInt(bonusNum);
     }
 
@@ -31,6 +33,13 @@ public class WinningNumber {
         if(winningNums.size() != 6){
             throw new IllegalArgumentException(ExceptionMessage.inputWinningNumbersSizeError.getErrorMessage());
         }
+    }
+
+    private static void validateRangeNum(int number){
+        if(number <1 || number >45){
+            throw new IllegalArgumentException(ExceptionMessage.NumberRangeError.getErrorMessage());
+        }
+
     }
 
 

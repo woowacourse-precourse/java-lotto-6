@@ -201,13 +201,13 @@ public class LottoController {
         return countByPrize;
     }
 
-    private int countByMatchNumber(HashMap<Integer, List<Integer>> compareLottoNumbers, int countMatchWinning) {
+    private int checkMatchCountByLotto(HashMap<Integer, List<Integer>> compareNumberResult, int countWinningInLotto) {
         int count = 0;
 
-        for (int key : compareLottoNumbers.keySet()) {
-            List<Integer> compareNumbersResult = compareLottoNumbers.get(key);
+        for (int key : compareNumberResult.keySet()) {
+            List<Integer> compareNumbersResult = compareNumberResult.get(key);
 
-            if (compareNumbersResult.get(Config.INDEX_WINNING_NUMBER) == countMatchWinning) {
+            if (compareNumbersResult.get(Config.INDEX_WINNING_NUMBER) == countWinningInLotto) {
                 count++;
             }
         }
@@ -215,15 +215,15 @@ public class LottoController {
         return count;
     }
 
-    private int countByMatchNumber(HashMap<Integer, List<Integer>> compareLottoNumbers,
-                                   int countMatchWinning, int countMatchBonus) {
+    private int checkMatchCountByLotto(HashMap<Integer, List<Integer>> compareNumberResult,
+                                   int countWinningInLotto, int countBonusInLotto) {
         int count = 0;
 
-        for (int key : compareLottoNumbers.keySet()) {
-            List<Integer> compareNumbersResult = compareLottoNumbers.get(key);
+        for (int key : compareNumberResult.keySet()) {
+            List<Integer> compareNumbersResult = compareNumberResult.get(key);
 
-            if (compareNumbersResult.get(Config.INDEX_WINNING_NUMBER) == countMatchWinning
-                    && compareNumbersResult.get(Config.INDEX_BONUS_NUMBER) == countMatchBonus) {
+            if (compareNumbersResult.get(Config.INDEX_WINNING_NUMBER) == countWinningInLotto
+                    && compareNumbersResult.get(Config.INDEX_BONUS_NUMBER) == countBonusInLotto) {
                 count++;
             }
         }

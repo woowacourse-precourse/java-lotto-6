@@ -18,45 +18,25 @@ public class Validator {
         try{
             return Integer.parseInt(input);
         }catch (NumberFormatException exception){
-            throw new IllegalArgumentException(NOT_VALID_NUMBER);
+            throw new IllegalArgumentException(NOT_VALID_MONEY);
         }
     }
 
     public static void validatePositiveNumber(int amount){
-        if(amount <= 0) throw new IllegalArgumentException(NOT_VALID_NUMBER);
-    }
-
-    public static void validateNotHasRemainder(int amount){
-        if(amount % unitOfMoney != 0) throw new IllegalArgumentException(NOT_VALID_NUMBER);
+        if(amount <= 0) throw new IllegalArgumentException(NOT_VALID_MONEY);
     }
 
     public static List<Integer> validateSplittedInputLengthIsSix(String input){
         List<Integer> WinnerNumber = new ArrayList<>();
 
         String[] splittedInputs = input.split(",");
-        validateLengthExceptBonus(splittedInputs);
 
         for(String splittedInput : splittedInputs){
             int number = validateInputIsNumeric(splittedInput);
-            validatePositiveNumber(number);
-            validateNumberInRange(number);
             WinnerNumber.add(number);
         }
 
         return WinnerNumber;
-    }
-
-    public static void validateComposedOfUniqueNumbers(List<Integer> numbers){
-        long unique_number = numbers.stream().distinct().count();
-        if(unique_number < numbers.size()){
-            throw new IllegalArgumentException(NOT_COMPOSED_OF_UNIQUE_NUMBERS);
-        }
-    }
-
-    private static void validateLengthExceptBonus(String... input){
-        if(input.length != Constant.LottoLength-1) {
-            throw new IllegalArgumentException(NOT_VALID_LENGTH);
-        }
     }
 
     public static void validateNumberInRange(int number){

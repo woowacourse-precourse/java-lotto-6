@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Message;
+import lotto.domain.BonusNumber;
 
 import java.sql.SQLOutput;
 import java.util.List;
@@ -18,7 +19,6 @@ public class InputView {
         validateNotEmptyInput(input);
         int amount = validateInputIsNumeric(input);
         validatePositiveNumber(amount);
-        validateNotHasRemainder(amount);
 
         return amount;
     }
@@ -28,23 +28,20 @@ public class InputView {
         String input = Console.readLine();
 
         validateNotEmptyInput(input);
-        List<Integer> numbers = validateSplittedInputLengthIsSix(input);
-        validateComposedOfUniqueNumbers(numbers);
+        List<Integer> numbers = validateSplittedInput(input);
 
         return numbers;
     }
 
-    public void inputBonusNumber(List<Integer> winningNumbers){
+    public BonusNumber inputBonusNumber(){
         System.out.println(BonusNumberMessage);
         String input = Console.readLine();
 
         validateNotEmptyInput(input);
         int bonusNumber = validateInputIsNumeric(input);
         validatePositiveNumber(bonusNumber);
-        validateNumberInRange(bonusNumber);
-        winningNumbers.add(bonusNumber);
-        validateComposedOfUniqueNumbers(winningNumbers);
 
+        return new BonusNumber(bonusNumber);
     }
 
 

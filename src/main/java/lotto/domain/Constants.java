@@ -18,10 +18,11 @@ public class Constants {
     public static final Integer LOTTO_LENGTH = 6;
 
     /** 에러 메시지 */
+    private static final String ERROR_PREFIX = "[ERROR]";
     public static final String NOT_INT_PRICE_ERROR = "[ERROR] 금액은 숫자로 입력해야 합니다.";
-    public static final String NOT_UNIT_PRICE_ERROR = "[ERROR] 금액은 1000원 단위로 입력해야 합니다.";
-    public static final String LOTTO_LENGTH_ERROR = "[ERROR] 당첨 번호의 길이는 6자리여야 합니다.";
-    public static final String NOT_INT_NUMBER_ERROR = "[ERROR] 번호는 숫자로 입력해야 합니다.";
-    public static final String DUPLICATE_NUMBER_ERROR = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
-    public static final String LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.";
+    public static final String NOT_UNIT_PRICE_ERROR = ERROR_PREFIX + " 금액은 1000원 단위로 입력해야 합니다.";
+    public static final String LOTTO_LENGTH_ERROR = ERROR_PREFIX + " 당첨 번호의 길이는 6자리여야 합니다.";
+    public static final String NOT_INT_NUMBER_ERROR = ERROR_PREFIX + " 번호는 숫자로 입력해야 합니다.";
+    public static final String DUPLICATE_NUMBER_ERROR = ERROR_PREFIX + " 로또 번호는 중복되지 않아야 합니다.";
+    public static final String LOTTO_NUMBER_RANGE_ERROR = ERROR_PREFIX + " 로또 번호는 1에서 45 사이의 숫자여야 합니다.";
 }

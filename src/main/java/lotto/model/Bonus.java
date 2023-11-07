@@ -2,7 +2,10 @@ package lotto.model;
 
 import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
+import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 import static lotto.view.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
+
+import java.util.Set;
 
 public class Bonus {
     private int number;
@@ -24,5 +27,11 @@ public class Bonus {
 
     public int getNumber() {
         return this.number;
+    }
+
+    public void validateWinningNumbers(Set<Integer> winningNumbers) {
+        if (winningNumbers.contains(this.number)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
+        }
     }
 }

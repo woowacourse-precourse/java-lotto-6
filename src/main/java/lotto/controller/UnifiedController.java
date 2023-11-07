@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.controller.DataController.calcGainPercentage;
+import static lotto.controller.DataController.calcTotalPrizeAmount;
 import static lotto.controller.DataController.getWinningCountsByRank;
 import static lotto.controller.RegisterController.storeInputData;
 import static lotto.controller.RegisterController.storeLotto;
@@ -71,18 +73,6 @@ public class UnifiedController {
         for (Rank rank : Rank.values()) {
             OutputView.printWinningLottosInfo(rank, winningCountByRank.get(rank));
         }
-    }
-
-    public long calcTotalPrizeAmount(Map<Rank, Long> winningCountByRank) {
-        long totalPrizeAmount = 0;
-        for (Rank rank : Rank.values()) {
-            totalPrizeAmount += winningCountByRank.get(rank) * rank.getPrizeMoney();
-        }
-        return totalPrizeAmount;
-    }
-
-    public double calcGainPercentage(long totalPrizeAmount, long money) {
-        return Math.round(((double) totalPrizeAmount / money * 100 * 10)) / 10.0;
     }
 
 }

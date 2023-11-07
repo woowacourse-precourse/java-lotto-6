@@ -1,14 +1,8 @@
 package lotto.controller;
 
-import static lotto.model.Rank.FIFTH;
-import static lotto.model.Rank.FIRST;
-import static lotto.model.Rank.FOURTH;
-import static lotto.model.Rank.SECOND;
-import static lotto.model.Rank.THIRD;
 import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
-import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -16,7 +10,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Rank;
@@ -32,22 +25,16 @@ public class DataController {
 
     public static Lotto createLotto(List<Integer> lottoNumbers, Bonus bonus) {
         if (bonus != null) {
-            compareBonusAndWinningNumbers(new HashSet<>(lottoNumbers), bonus.getNumber());
+            bonus.validateWinningNumbers(new HashSet<>(lottoNumbers));
         }
         return new Lotto(lottoNumbers);
     }
 
     public static Bonus createBonus(int number, Lotto firstPrizeLotto) {
         if (firstPrizeLotto != null) {
-            compareBonusAndWinningNumbers(new HashSet<>(firstPrizeLotto.getNumbers()), number);
+            firstPrizeLotto.validateBonusNumber(number);
         }
         return new Bonus(number);
-    }
-
-    private static void compareBonusAndWinningNumbers(Set<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
-        }
     }
 
     public static Lotto createRandomLotto() {
@@ -58,11 +45,7 @@ public class DataController {
                                                          int bonusNum) {
         Map<Rank, Long> winningCountByRank = initializeWinningCountsByRank();
         for (Lotto lotto : lottoTickets) {
-            int match = lotto.compareLotto(firstPrizeLotto);
-            if (match >= NUM_OF_NUMBERS - 3) {
-                winningCountByRank.put(checkRank(match, lotto, bonusNum),
-                        winningCountByRank.get(checkRank(match, lotto, bonusNum)) + 1);
-            }
+            lotto.updateLottoRank(firstPrizeLotto, winningCountByRank, bonusNum);
         }
         return winningCountByRank;
     }
@@ -75,23 +58,15 @@ public class DataController {
         return winningCountByRank;
     }
 
-    public static Rank checkRank(int match, Lotto lotto, int bonusNumber) {
-        if (match == NUM_OF_NUMBERS) {
-            return FIRST;
+    public static long calcTotalPrizeAmount(Map<Rank, Long> winningCountByRank) {
+        long totalPrizeAmount = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrizeAmount += winningCountByRank.get(rank) * rank.getPrizeMoney();
         }
-        if (match == NUM_OF_NUMBERS - 1) {
-            return resultSecondAndThird(lotto, bonusNumber);
-        }
-        if (match == NUM_OF_NUMBERS - 2) {
-            return FOURTH;
-        }
-        return FIFTH;
+        return totalPrizeAmount;
     }
 
-    public static Rank resultSecondAndThird(Lotto lotto, int bonusNumber) {
-        if (lotto.compareBonus(bonusNumber)) {
-            return SECOND;
-        }
-        return THIRD;
+    public static double calcGainPercentage(long totalPrizeAmount, long money) {
+        return Math.round(((double) totalPrizeAmount / money * 100 * 10)) / 10.0;
     }
 }

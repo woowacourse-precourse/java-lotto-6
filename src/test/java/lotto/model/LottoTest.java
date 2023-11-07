@@ -61,9 +61,9 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource({"provideLottoAndFirstPrizeAndExpect_1", "provideLottoAndFirstPrizeAndExpect_2",
             "provideLottoAndFirstPrizeAndExpect_3"})
-    void 테스트_compareLotto(Lotto myLotto, Lotto firstPrizeLotto, int expect) {
+    void 테스트_getMatchingNumberCount(Lotto myLotto, Lotto firstPrizeLotto, int expect) {
         //when
-        int result = myLotto.compareLotto(firstPrizeLotto);
+        int result = myLotto.getMatchingNumberCount(firstPrizeLotto);
         //then
         assertThat(result).isEqualTo(expect);
     }

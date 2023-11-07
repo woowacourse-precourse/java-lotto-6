@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.model.Rank.FIFTH;
+import static lotto.model.Rank.FIRST;
+import static lotto.model.Rank.FOURTH;
+import static lotto.model.Rank.SECOND;
+import static lotto.model.Rank.THIRD;
 import static lotto.model.SystemConstant.MAX_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.MIN_LOTTO_NUMBER;
 import static lotto.model.SystemConstant.NUM_OF_NUMBERS;
@@ -10,6 +15,7 @@ import static lotto.view.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Lotto {
@@ -56,7 +62,22 @@ public class Lotto {
         return new ArrayList<>(this.numbers);
     }
 
-    public int compareLotto(Lotto firstPrizeLotto) {
+    public void validateBonusNumber(int number) {
+        Set<Integer> winningNumbers = new HashSet<>(this.numbers);
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
+        }
+    }
+
+    public void updateLottoRank(Lotto firstPrizeLotto, Map<Rank, Long> winningCountByRank, int bonusNum) {
+        int match = getMatchingNumberCount(firstPrizeLotto);
+        if (match >= NUM_OF_NUMBERS - 3) {
+            winningCountByRank.put(checkRank(match, bonusNum),
+                    winningCountByRank.get(checkRank(match, bonusNum)) + 1);
+        }
+    }
+
+    public int getMatchingNumberCount(Lotto firstPrizeLotto) {
         Set<Integer> check = new HashSet<>(firstPrizeLotto.getNumbers());
         int match = 0;
         for (Integer number : this.numbers) {
@@ -65,6 +86,26 @@ public class Lotto {
             }
         }
         return match;
+    }
+
+    public Rank checkRank(int match, int bonusNumber) {
+        if (match == NUM_OF_NUMBERS) {
+            return FIRST;
+        }
+        if (match == NUM_OF_NUMBERS - 1) {
+            return resultSecondAndThird(bonusNumber);
+        }
+        if (match == NUM_OF_NUMBERS - 2) {
+            return FOURTH;
+        }
+        return FIFTH;
+    }
+
+    public Rank resultSecondAndThird(int bonusNumber) {
+        if (compareBonus(bonusNumber)) {
+            return SECOND;
+        }
+        return THIRD;
     }
 
     public boolean compareBonus(int bonusNumber) {

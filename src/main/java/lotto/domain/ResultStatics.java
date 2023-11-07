@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Map;
 
 public class ResultStatics {
+    private final static int PERCENTAGE = 100;
     private final Map<LottoPrize, Integer> prizeResult;
     private final int phrasedMoney;
     private final double earningRate;
@@ -17,7 +18,7 @@ public class ResultStatics {
     }
 
     private double calculateEarningRate() {
-        return ((double) totalEarning / phrasedMoney) * 100;
+        return ((double) totalEarning / phrasedMoney) * PERCENTAGE;
     }
 
     public long calculateTotalEarning() {

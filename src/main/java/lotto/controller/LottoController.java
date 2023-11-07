@@ -16,6 +16,7 @@ public class LottoController {
         LottoView.printLottoList(lottoList);
 
         Lotto winningNumbers = LottoService.inputWinningNumbers();
+        Integer bonusNumber = LottoService.inputBonusNumber(winningNumbers);
 
 
     }

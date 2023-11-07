@@ -72,4 +72,42 @@ public class LottoService {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+    public static Integer inputBonusNumber(Lotto winningNumbers) {
+        Integer bonusNumber = null;
+        while (bonusNumber == null) {
+            try {
+                String input = LottoView.inputBonusNumber();
+                validateBonusNumber(input, winningNumbers);
+                bonusNumber = Integer.valueOf(input);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private static void validateBonusNumber(String input, Lotto winningNumbers) {
+        try {
+            Integer bonusNumber = Integer.parseInt(input);
+            isDuplicateNumber(bonusNumber, winningNumbers);
+            bonusNumberIsInRange(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
+
+    private static void isDuplicateNumber(Integer bonusNumber, Lotto winningNumbers) {
+        List<Integer> numbers = winningNumbers.getNumbers();
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복된 숫자입니다.");
+        }
+    }
+
+    private static void bonusNumberIsInRange(Integer bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이에 숫자를 입력해주세요.");
+        }
+    }
 }

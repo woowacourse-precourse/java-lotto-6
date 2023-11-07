@@ -69,7 +69,8 @@ public class LottoService {
                     })
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 다시 한 번 입력해주세요. 쉼표로 구분된 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
+
 }

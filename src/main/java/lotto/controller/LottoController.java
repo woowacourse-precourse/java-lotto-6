@@ -43,9 +43,7 @@ public class LottoController {
     private Lotto getLotto() {
         try {
             String inputLotto = inputView.inputLottoNumber();
-            InputValidator.checkLottoNumberFormat(inputLotto);
-            List<Integer> userLotto = StringConvertor.stringToList(inputLotto);
-            return new Lotto(userLotto);
+            return new Lotto(inputLotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getLotto();
@@ -55,7 +53,6 @@ public class LottoController {
     private User getBonus(Lotto userLotto) {
         try {
             String inputBonus = inputView.inputBonusNumber();
-            userLotto.validateBonusNumber(inputBonus);
             return new User(userLotto, inputBonus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

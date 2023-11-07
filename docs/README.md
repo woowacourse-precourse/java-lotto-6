@@ -59,7 +59,7 @@ Rank(enum) 객체 활용
 Rate(model) 생성하기
 money(model) 객체 활용
   
-- [ ] 구입 금액을 나타내는 Money 와 총 수익상금을 나타내는 money 를 통해 수익율 도출
-- [ ] controller 에게 Money 객체 두 개를 넘겨 Rate model 생성
-- [ ] BigDecimal을 활용해서 수익율 도출
-- [ ] outputView 에게 Rate model 을 전달하여 결과 출력
+- [X] 구입 금액을 나타내는 Money 와 총 수익상금을 나타내는 money 를 통해 수익율 도출
+- [X] controller 에게 Money 객체 두 개를 넘겨 Rate model 생성
+- [X] BigDecimal을 활용해서 수익율 도출
+- [X] outputView 에게 Rate model 을 전달하여 결과 출력

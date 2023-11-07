@@ -40,6 +40,10 @@ public class AppConfig {
         return new ResultController();
     }
 
+    private RateController rateController(){
+        return new RateController();
+    }
+
     public GameManager gameManager() {
         return new GameManager(
                 inputView(),
@@ -49,7 +53,8 @@ public class AppConfig {
                 lottosController(),
                 lottoController(),
                 bonusController(),
-                resultController());
+                resultController(),
+                rateController());
     }
 
 }

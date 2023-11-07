@@ -20,6 +20,7 @@ public class GameManager {
     private final LottoController lottoController;
     private final BonusController bonusController;
     private final ResultController resultController;
+    private final RateController rateController;
 
 
     public GameManager(InputView inputView,
@@ -29,7 +30,8 @@ public class GameManager {
                        LottosController lottosController,
                        LottoController lottoController,
                        BonusController bonusController,
-                       ResultController resultController) {
+                       ResultController resultController,
+                       RateController rateController) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
@@ -38,6 +40,7 @@ public class GameManager {
         this.lottoController = lottoController;
         this.bonusController = bonusController;
         this.resultController = resultController;
+        this.rateController = rateController;
     }
 
     public void play() {
@@ -46,7 +49,7 @@ public class GameManager {
         Lotto winningLotto = getWinningLotto();
         Bonus bonus = getBonus(winningLotto);
         Result result = getResult(winningLotto, lottos, bonus);
-
+        getRate(money.getMoney(), result.getReward());
     }
 
     private Money getMoney() {
@@ -103,4 +106,10 @@ public class GameManager {
         return result;
     }
 
+    private void getRate(long purchaseMoney, long reward) {
+        Rate rate = rateController.create(purchaseMoney, reward);
+        outputView.println(rate);
+    }
+
 }
+

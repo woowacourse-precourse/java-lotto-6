@@ -45,7 +45,11 @@ public class OutputView {
         printMessage(LottoMessage.TOTAL_PROFIT_RATE.getFormattedMessage(profitRate));
     }
 
-    private void printMessage(Object message) {
+    public void printExceptionMessage(Exception e) {
+        printMessage(e.getMessage());
+    }
+
+    private static void printMessage(Object message) {
         System.out.println(message);
     }
 

@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.exception.lotto.LottoRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,7 +41,7 @@ class LottoTest {
     @Test
     void createLottoWhenContainsNonNumeric() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 66)))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(LottoRangeException.class)
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 

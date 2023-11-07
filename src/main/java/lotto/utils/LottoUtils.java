@@ -5,6 +5,7 @@ import static lotto.constants.LottoConstants.LOTTO_MIN_LENGTH;
 import static lotto.constants.LottoConstants.LOTTO_NOT_DIVISION;
 import static lotto.constants.LottoConstants.LOTTO_NUMBER_OVER_MAX;
 import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
+import static lotto.constants.LottoConstants.PATTERN;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
@@ -28,7 +29,7 @@ public class LottoUtils {
 
     public static void rateFormat(double rateNumber) {
         double decimalPoint = rateNumber;
-        DecimalFormat decimalFormat = new DecimalFormat("#.0%");
+        DecimalFormat decimalFormat = new DecimalFormat(PATTERN);
         System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), decimalFormat.format(decimalPoint)));
     }
 }

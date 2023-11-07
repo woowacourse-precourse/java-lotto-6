@@ -18,4 +18,8 @@ public class LottoPurchaseController {
         }
     }
 
+    private int calculateLottoTicketsPurchasable(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE.getValue();
+    }
+
 }

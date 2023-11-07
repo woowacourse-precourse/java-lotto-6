@@ -16,6 +16,7 @@ public enum Rank {
         this.prize = prize;
     }
 
+    // 주어진 일치 개수와 보너스 번호 여부에 따라 Rank를 반환합니다.
     public static Rank valueOf(long matchCount, boolean hasBonusNumber) {
         if (matchCount == 6) {
             return FIRST;

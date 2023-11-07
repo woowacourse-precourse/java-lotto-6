@@ -67,6 +67,4 @@ public class InputView {
             throw new IllegalArgumentException(BLANK_LINE.getMessage());
         }
     }
-
-
 }

@@ -29,7 +29,6 @@ public class Customer {
         return result;
     }
 
-
     public List<Lotto> getLotteryTicket() {
         return Collections.unmodifiableList(lotteryTicket);
     }

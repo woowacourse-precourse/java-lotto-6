@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -48,49 +49,34 @@ public class LottoWinnerNumbersTest extends NsTest {
 
     @DisplayName("로또 당첨 번호 입력 시 숫자 갯수가 6개가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @MethodSource("provideInputForInvalidInputNumberSize")
-    void createLottoWinnerNumbersByValidSize(String input, String expectedMessage) {
+//    @MethodSource("provideInputForInvalidInputNumberSize")
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4", "1", "1,"})
+    void createLottoWinnerNumbersByValidSize(String input) {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     assertThatThrownBy(() ->
                             run("3000", input, "7"));
-                    assertThat(output()).contains(expectedMessage);
+                    assertThat(output()).contains(ERROR_MESSAGE3);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
                 List.of(7, 11, 16, 35, 36, 44)
-        );
-    }
-
-    private static Stream<Arguments> provideInputForInvalidInputNumberSize() {
-        return Stream.of(
-                Arguments.of("1,2,3,4,5", ERROR_MESSAGE3),
-                Arguments.of("1,2,3,4", ERROR_MESSAGE3),
-                Arguments.of("1", ERROR_MESSAGE3),
-                Arguments.of("1,", ERROR_MESSAGE3)
         );
     }
 
     @DisplayName("로또 당첨 번호 입력 시 숫자가 중복인 경우 예외가 발생한다.")
     @ParameterizedTest
-    @MethodSource("provideInputForInvalidInputUniqueNumber")
-    void createLottoWinnerNumbersByUniqueValue(String input, String expectedMessage) {
+    @ValueSource(strings = {"1,2,3,4,4,5", "1,2,3,4,1,6"})
+    void createLottoWinnerNumbersByUniqueValue(String input) {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     assertThatThrownBy(() ->
                             run("3000", input, "7"));
-                    assertThat(output()).contains(expectedMessage);
+                    assertThat(output()).contains(ERROR_MESSAGE4);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
                 List.of(7, 11, 16, 35, 36, 44)
-        );
-    }
-
-    private static Stream<Arguments> provideInputForInvalidInputUniqueNumber() {
-        return Stream.of(
-                Arguments.of("1,2,3,4,4,5", ERROR_MESSAGE4),
-                Arguments.of("1,2,3,4,1,6", ERROR_MESSAGE4)
         );
     }
 

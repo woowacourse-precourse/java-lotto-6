@@ -43,6 +43,10 @@ public class Score {
         return Result.find(matchCount, isBonusMatched);
     }
 
+    public Map<Result, Integer> getScore() {
+        return new HashMap<>(score);
+    }
+
     public int getTotalProfit() {
         return totalProfit;
     }

@@ -83,7 +83,7 @@ public class LottoGameController {
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
             RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, moneyLottosDto.getLottos());
 
-            double yield = lottoHeadQuarter.calculateReturn(moneyLottosDto.getMoney(), rankingBoard);
+            double yield = lottoHeadQuarter.calculateYield(moneyLottosDto.getMoney(), rankingBoard);
 
             WinningStatisticDto dto = WinningStatisticDto.from(rankingBoard, yield);
             outputView.printWinningStatistic(dto);

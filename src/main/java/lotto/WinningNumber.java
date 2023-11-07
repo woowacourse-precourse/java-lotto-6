@@ -34,4 +34,8 @@ public record WinningNumber(List<Integer> numbers) {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    public boolean contains(Integer integer) {
+        return numbers.contains(integer);
+    }
 }

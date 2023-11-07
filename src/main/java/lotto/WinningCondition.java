@@ -10,8 +10,24 @@ public class WinningCondition {
     private BonusNumber bonusNumber;
     private final InputReader inputReader;
 
+    public LottoCompareResult compare(Lotto lotto) {
+        int matchCount = calculateMatchCount(lotto.getNumbers());
+        boolean matchBonus = calculateMatchBonus(lotto.getNumbers());
+        return new LottoCompareResult(matchCount, matchBonus);
+    }
+
+    private int calculateMatchCount(List<Integer> lottoNumbers) {
+        return (int) lottoNumbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+    }
+
+    private boolean calculateMatchBonus(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber.getNumber());
+    }
+
     public void inputBonusNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String readLine = inputReader.readInput();
         Integer parsingNumber = parseToInteger(readLine);
         if (isWinningNumberContains(parsingNumber)) {

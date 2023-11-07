@@ -44,4 +44,8 @@ public class Output {
     public static void printLottoRate(double lottoRate) {
         System.out.println(String.format(LOTTO_RATE_FORMAT, lottoRate));
     }
+
+    public static void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exceptionMessages.ExceptionMessages;
+
 public class BonusNumber {
     private final int bonusNumber;
     private static final int MIN_RANGE = 1;
@@ -12,7 +14,7 @@ public class BonusNumber {
 
     private void validate(int bonusNumber) {
         if (isInvalidRange(bonusNumber)) {
-            throw new IllegalArgumentException("1~45 사이만 입력 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.EXCEPTION_NUMBER_RANGE.getMessage());
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exceptionMessages.ExceptionMessages;
+
 public class Money {
     private static final int THOUSAND = 1_000;
     private static final int ZERO = 0;
@@ -18,13 +20,13 @@ public class Money {
 
     private void validateZeroMoney(int money) {
         if (money == ZERO) {
-            throw new IllegalArgumentException("0원은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessages.EXCEPTION_MONEY_ZERO.getMessage());
         }
     }
 
     private void validateDivideMoney(int money) {
         if (money % THOUSAND != ZERO) {
-            throw new IllegalArgumentException("1,000원 단위만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ExceptionMessages.EXCEPTION_MONEY_DIVIDE.getMessage());
         }
     }
 }

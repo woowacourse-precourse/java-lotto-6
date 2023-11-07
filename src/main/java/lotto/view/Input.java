@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exceptionMessages.ExceptionMessages;
 
 public class Input {
     private static final String INPUT_MONEY_GUIDE = "구입금액을 입력해 주세요.";
@@ -40,13 +41,13 @@ public class Input {
 
     private static void validateBlank(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("공백은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessages.EXCEPTION_BLANK_INPUT.getMessage());
         }
     }
 
     private static void validateNumeric(String input) {
         if (!input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ExceptionMessages.EXCEPTION_NUMERIC_INPUT.getMessage());
         }
     }
 

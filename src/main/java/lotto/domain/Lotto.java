@@ -10,8 +10,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
-        sort();
+        this.numbers = numbers.stream()
+                                .sorted()
+                                .collect(java.util.stream.Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {
@@ -40,7 +41,4 @@ public class Lotto {
         }
     }
 
-    private void sort() {
-        numbers.sort(Integer::compareTo);
-    }
 }

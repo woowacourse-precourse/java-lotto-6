@@ -1,6 +1,6 @@
 package lotto;
 
-public enum WinStatistics {
+public enum WinInformation {
 
     MATCH_ZERO(0, 0L),
     MATCH_ONE(1, 0L),
@@ -14,7 +14,7 @@ public enum WinStatistics {
     private int matchCount;
     private long winMoney;
 
-    WinStatistics(int matchCount, long winMoney) {
+    WinInformation(int matchCount, long winMoney) {
         this.matchCount = matchCount;
         this.winMoney = winMoney;
     }

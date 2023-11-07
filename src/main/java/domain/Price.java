@@ -1,6 +1,7 @@
 package domain;
 
 import domain.validator.PriceValidator;
+
 import util.ConstantOfLotto;
 
 public class Price {

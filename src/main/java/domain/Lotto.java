@@ -3,7 +3,6 @@ package domain;
 import domain.validator.LottoValidator;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {

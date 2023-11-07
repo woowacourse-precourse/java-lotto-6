@@ -22,7 +22,7 @@ public class LottoGame {
     public LottoGame() {
         purchasedLotto = new ArrayList<>();
         lottoAmountByRank = Arrays.asList(ZERO, ZERO, ZERO, FIVE_RANK, FOUR_RANK, THREE_RANK, ONE_RANK, TWO_RANK);
-        winningCount = new int[7];
+        winningCount = new int[8];
     }
 
     public void gameStart(){

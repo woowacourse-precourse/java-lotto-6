@@ -10,7 +10,7 @@ public enum ViewConstant {
     TICKET_NUMBER_DELIMITER(", "),
     MAIN_NUMBER_DELIMITER(","),
     NUMBER_PATTERN("\\d+"),
-    MAIN_NUMBER_PATTERN("([\\d]+[,])*[\\d]");
+    MAIN_NUMBER_PATTERN("([\\d]+[,])*[\\d]+");
 
     private final String value;
 

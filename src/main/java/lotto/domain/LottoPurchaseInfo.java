@@ -8,9 +8,9 @@ public class LottoPurchaseInfo {
     int purchaseLottoNum;
     private final List<Lotto> lottos;
 
-    public LottoPurchaseInfo(int purchaseAmount, int purchaseLottoNum) {
+    public LottoPurchaseInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        this.purchaseLottoNum = purchaseLottoNum;
+        this.purchaseLottoNum = purchaseAmount / 1000;
         this.lottos = new ArrayList<>();
         for (int i = 0; i < purchaseLottoNum; i++) {
             this.lottos.add(new Lotto());

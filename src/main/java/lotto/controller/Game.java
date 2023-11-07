@@ -7,21 +7,28 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Game {
-    public Game() {
-
-    }
+    private LottoPurchaseInfo lottoPurchaseInfo;
+    private WinningLotto winningLotto;
 
     public void play() {
+        purchaseLotto();
+        showPurchaseResult();
+        registerWinningLotto();
+    }
 
+    void purchaseLotto() {
         int purchaseAmount = InputView.inputPurchaseAmount();
-        int purchaseLottoNum = purchaseAmount / 1000;
+        this.lottoPurchaseInfo = new LottoPurchaseInfo(purchaseAmount);
+    }
 
-        LottoPurchaseInfo lottoPurchaseInfo = new LottoPurchaseInfo(purchaseAmount, purchaseLottoNum);
+    void showPurchaseResult() {
         OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoNum());
         OutputView.outputPurchaseLottos(lottoPurchaseInfo.getLottos());
+    }
 
+    void registerWinningLotto() {
         List<Integer> winningNum = InputView.inputWinningNum();
         int bonusNum = InputView.inputBonusNum();
-        WinningLotto winningLotto = new WinningLotto(winningNum, bonusNum);
+        this.winningLotto = new WinningLotto(winningNum, bonusNum);
     }
 }

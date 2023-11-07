@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.configuration.PrintMessage;
 import lotto.service.LottoService;
+import lotto.util.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,8 +30,7 @@ public class LottoController {
 
     private Long inputPurchaseAmount() {
         OutputView.inputViewPurchaseAmount();
-        long myMoney = Long.parseLong(InputView.input());
-        Money money = new Money(myMoney);
+        Money money = new Money(getInputAmount());
         return money.getMoney();
     }
 
@@ -70,5 +70,10 @@ public class LottoController {
         }
 
         return totalScore;
+    }
+
+    private long getInputAmount() {
+        String userInput = InputView.input().trim();
+        return Utils.stringToLong(userInput);
     }
 }

@@ -52,7 +52,6 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-
         purchasedPrice = Integer.parseInt(inputPurchasedPrice);
     }
 

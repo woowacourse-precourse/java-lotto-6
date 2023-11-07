@@ -15,8 +15,8 @@ public class GameController {
         int ticketCount;
 
         while (true) {
-            String rawInput = inputCash();
-            ticketCount = gameService.validInput(rawInput);
+            String rawCash = inputCash();
+            ticketCount = gameService.validCash(rawCash);
             if (ticketCount != ERROR) {
                 break;
             }
@@ -30,7 +30,10 @@ public class GameController {
     }
 
     public void buyTicket(int ticketCount) {
-        // todo gameService.generTicketNumber(ticketCount);
         System.out.println(ticketCount + "개를 구매했습니다.");
+        for(int count = 1; count <= ticketCount; count++) {
+            String generateResult = gameService.generateNumber();
+            System.out.println(generateResult);
+        }
     }
 }

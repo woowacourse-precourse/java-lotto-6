@@ -16,16 +16,20 @@ public class LottoController {
     public static final int MIN_NUMBER_LOTTO = 1;
     public static final int MAX_NUMBER_LOTTO = 45;
     public static final int COUNT_OF_LOTTO = 6;
+    public Statistics statistics;
+    public int price;
 
     public void run() {
-        int price = buyLotto();
+        price = buyLotto();
         int lottoCount = getLottoCount(price);
 
         List<Lotto> userLottos = userLotto(lottoCount);
 
         Lotto winLotto = getWinNumber();
         int bonusNumber = getBonusNumber(winLotto);
-        System.out.println(winLotto.getNumbers() + ", " + bonusNumber);
+
+        winnerStatistics(userLottos, winLotto, bonusNumber);
+
     }
 
     private int buyLotto() {
@@ -57,6 +61,7 @@ public class LottoController {
     }
 
     public List<Lotto> userLotto(int lottoCount) {
+        OUTPUT_VIEW.enterMessage();
         OUTPUT_VIEW.printBuyLottoMessage(lottoCount);
         List<Lotto> lottos = publishLotto(lottoCount);
         OUTPUT_VIEW.printLottoMessage(lottos);
@@ -77,6 +82,7 @@ public class LottoController {
     }
 
     public Lotto getWinNumber() {
+        OUTPUT_VIEW.enterMessage();
         List<Integer> winnerNumbers = null;
         while (true) {
             OUTPUT_VIEW.printInsertNumberMessage();
@@ -115,6 +121,7 @@ public class LottoController {
     }
 
     public int getBonusNumber(Lotto number) {
+        OUTPUT_VIEW.enterMessage();
         int bonusNumber = 0;
         while (true) {
             try {
@@ -128,6 +135,19 @@ public class LottoController {
             } catch (IllegalArgumentException e) {}
         }
         return bonusNumber;
+    }
+
+    public void winnerStatistics(List<Lotto> userLottos, Lotto winLotto, int bonusNumber) {
+        OUTPUT_VIEW.enterMessage();
+        OUTPUT_VIEW.printWinningMessage();
+        OUTPUT_VIEW.printDivisionMessage();
+        statistics = new Statistics(userLottos, winLotto, bonusNumber);
+        OUTPUT_VIEW.print3NumberMessage(statistics.getThreeNumberMatch());
+        OUTPUT_VIEW.print4NumberMessage(statistics.getFourNumberMatch());
+        OUTPUT_VIEW.print5NumberMessage(statistics.getFiveNumberMatch());
+        OUTPUT_VIEW.print5BonusMessage(statistics.getFiveBonusNumberMatch());
+        OUTPUT_VIEW.print6BonusMessage(statistics.getSixNumberMatch());
+        OUTPUT_VIEW.printRateOfReturnMessage(statistics.getRateOfReturn(price));
     }
 
 }

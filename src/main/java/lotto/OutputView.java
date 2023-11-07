@@ -19,6 +19,10 @@ import java.util.List;
 
 public class OutputView {
 
+    public void enterMessage() {
+        System.out.println();
+    }
+
     public void printPriceMessage() {
         INSERT_PRICE_MESSAGE.print();
     }
@@ -70,7 +74,7 @@ public class OutputView {
     }
 
     public void printRateOfReturnMessage(Double rateOfReturn) {
-        System.out.println(RATE_OF_RETURN_MESSAGE.get() + rateOfReturn + FINISH_MESSAGE.get());
+        System.out.println(RATE_OF_RETURN_MESSAGE.get() + String.format("%.1f", rateOfReturn) + FINISH_MESSAGE.get());
     }
 
 }

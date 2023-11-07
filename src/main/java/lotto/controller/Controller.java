@@ -8,41 +8,39 @@ import lotto.view.inputMessage;
 import lotto.view.outputMessage;
 
 import java.util.HashMap;
-import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.util.Utils.ChangeStringToInt;
+import static lotto.util.Utils.changeStringToInt;
 
 public class Controller {
 
     private Buyer buyer;
 
-    public void playGame(){
+    public void playGame() {
         buyLotto();
         pickPrize();
-
     }
-    public void buyLotto(){
+
+    public void buyLotto() {
         inputMessage.priceMessage();
-        int price = ChangeStringToInt(readLine());
+        int price = changeStringToInt(readLine());
         buyer = new Buyer(price);
     }
 
-    public void pickPrize(){
-        Prize prize = new Prize(getPrizeNumber(),getBonusNumber());
-//        List<Rank> MatchNumberCounts = prize.getMatchNumberCounts(buyer);
+    public void pickPrize() {
+        Prize prize = new Prize(getPrizeNumber(), getBonusNumber());
         HashMap<Rank, Integer> ranks = prize.makePrizeRanks(buyer);
         outputMessage.rankMessage(ranks);
-
     }
-    public String getPrizeNumber(){
+
+    private String getPrizeNumber() {
         inputMessage.prizeMessage();
         return readLine();
     }
 
-    public int getBonusNumber(){
+    private int getBonusNumber() {
         inputMessage.bonusMessage();
-        return Utils.ChangeStringToInt(readLine());
+        return Utils.changeStringToInt(readLine());
     }
 
 }

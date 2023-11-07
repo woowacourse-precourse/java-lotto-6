@@ -5,7 +5,7 @@ public class Exception {
     private static final String VALIDATE_NUMBER_INPUT_MESSAGE = "구입금액은 숫자 이외의 값이 포함될 수 없습니다.";
     private static final String VALIDATE_ENDS_WITH_MESSAGE = "구입금액은 1,000원 단위여야 합니다.";
 
-    public void validatePurchaseAmount(String input) {
+    public void validatePurchasePrice(String input) {
         validateNumberInput(input);
         validateEndsWith(input);
     }

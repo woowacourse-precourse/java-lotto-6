@@ -22,11 +22,15 @@ public class StatisticsService {
         lottos.forEach(lotto -> {
             int correctCount = lotto.compare(winingNumber);
             boolean hasBonus = lotto.containBonus(bonus);
-            Optional<WiningType> wining = WiningType.findByWiningType(correctCount, hasBonus);
-            if (!wining.isEmpty()) {
-                winingCountMap.computeIfPresent(wining.get(), (key, count) -> count + 1);
-            }
+            collectCountByWiningType(correctCount, hasBonus, winingCountMap);
         });
         return winingCountMap;
+    }
+
+    private void collectCountByWiningType(int correctCount, boolean hasBonus, Map<WiningType, Integer> winingCountMap) {
+        Optional<WiningType> wining = WiningType.findByWiningType(correctCount, hasBonus);
+        if (!wining.isEmpty()) {
+            winingCountMap.computeIfPresent(wining.get(), (key, count) -> count + 1);
+        }
     }
 }

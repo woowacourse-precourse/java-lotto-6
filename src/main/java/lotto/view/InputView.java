@@ -1,17 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.messages.Error;
 
 public class InputView {
-    public String readMoney() {
-        return Console.readLine();
+    public String read() {
+        String input = Console.readLine();
+        validateInputFormat(input);
+        return input;
     }
 
-    public String readWinningLotto() {
-        return Console.readLine();
-    }
-
-    public String readBonusNumber() {
-        return Console.readLine();
+    private void validateInputFormat(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(Error.INPUT_FORMAT_NULL_OR_EMPTY.getMessage());
+        }
     }
 }

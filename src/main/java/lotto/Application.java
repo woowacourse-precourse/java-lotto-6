@@ -90,6 +90,15 @@ public class Application {
         return numbers;
 
     }
+
+    private static Integer inputPlayerBonusNumber(){
+        String sNumber = Console.readLine();
+
+        if (isLottoNumber(sNumber)) {
+            return Integer.parseInt(sNumber);
+        }
+        return -1;
+    }
     public static void main(String[] args) {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 10, 6);
         Collections.sort(numbers);
@@ -113,5 +122,12 @@ public class Application {
             playerNumbers = inputPlayerNumbers();
         } while(playerNumbers.isEmpty());
         
+        Integer playerBonusNumber;
+        do {
+            playerBonusNumber = inputPlayerBonusNumber();
+        } while(playerBonusNumber < 0);
+
+        
+
     }
 }

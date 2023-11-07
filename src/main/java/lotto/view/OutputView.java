@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public void requestWinningNumber() {
-        System.out.println(LottoGameMessage.REQUEST_WINNGIN_NUMBER.message);
+        System.out.println(LottoGameMessage.REQUEST_WINNING_NUMBER.message);
     }
 
     public void requestBonusNumber() {

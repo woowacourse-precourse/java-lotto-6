@@ -14,18 +14,18 @@ public class LottoManagerTest {
     @Test
     void 로또_구입금액_테스트() {
         assertAll(
-                () -> assertDoesNotThrow(() -> new LottoManager(1000)),
-                () -> assertDoesNotThrow(() -> new LottoManager(5000)),
-                () -> assertThatThrownBy(() -> new LottoManager(5600))
+                () -> assertDoesNotThrow(() -> new LottoManager(new Token(1000))),
+                () -> assertDoesNotThrow(() -> new LottoManager(new Token(5000))),
+                () -> assertThatThrownBy(() -> new LottoManager(new Token(5600)))
                         .isInstanceOf(IllegalArgumentException.class),
-                () -> assertThatThrownBy(() -> new LottoManager(500))
+                () -> assertThatThrownBy(() -> new LottoManager(new Token(500)))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
     @Test
     void 로또_발행_테스트() {
-        LottoManager lottoManager = new LottoManager(5000);
+        LottoManager lottoManager = new LottoManager(new Token(5000));
         lottoManager.ticket();
         assertEquals(lottoManager.toString()
                 .chars()
@@ -35,7 +35,7 @@ public class LottoManagerTest {
 
     @Test
     void 정답_로또_보관_테스트() {
-        LottoManager lottoManager = new LottoManager(1000);
+        LottoManager lottoManager = new LottoManager(new Token(1000));
         Lotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertAll(

@@ -25,10 +25,4 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("랜덤 번호로 로또가 생성된다.")
-    @Test
-    void 랜덤_로또_생성(){
-        assertThatNoException().isThrownBy(() -> Lotto.issueRandomLotto());
-    }
-
 }

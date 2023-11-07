@@ -4,8 +4,11 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import lotto.core.Lotto;
 import lotto.core.LottoGame;
+import lotto.util.LottoConst;
 import lotto.util.RandomNumGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,11 +21,12 @@ class LottoGameTest {
     @DisplayName("로또 번호 생성 시 중복 생기지 않는지 테스트")
     @Test
     void generatedNumberDuplicatedTest() {
-        List<Integer> lotto = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            LottoGame.drawNumber(new RandomNumGenerator(1, 6), lotto);
-        }
-        assertThat(lotto.stream().distinct().count()).isEqualTo(lotto.size());
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.setNumOfLotto(1);
+        lottoGame.makeLottos();
+
+        // Lotto 인스턴스 생성 시 Lotto.validate() 통과
+        Lotto lotto = lottoGame.makeLotto(new RandomNumGenerator(LottoConst.FIRST_NUM, LottoConst.LAST_NUM));
     }
 
     @DisplayName("로또 발급 시 예외 발생하지 않는지 테스트")
@@ -38,6 +42,7 @@ class LottoGameTest {
     void generatedNumOfLottosTest() {
         LottoGame lottoGame = new LottoGame();
         lottoGame.setNumOfLotto(5);
-        assertThat(lottoGame.makeLottos().count()).isEqualTo(5);
+        lottoGame.makeLottos();
+        assertThat(lottoGame.issueLottos().count()).isEqualTo(5);
     }
 }

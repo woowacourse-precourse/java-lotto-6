@@ -18,7 +18,7 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public void createLottos(int count) {
         for (int i = 0; i < count; i++) {
-            lottoRepository.saveLotto(getRandomNumbers());
+            lottoRepository.saveLotto(generateNumbers());
         }
     }
 
@@ -27,7 +27,8 @@ public class LottoServiceImpl implements LottoService {
         return lottoRepository.findAll();
     }
 
-    public List<Integer> getRandomNumbers() {
+    @Override
+    public List<Integer> generateNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(randomNumbers);
         return randomNumbers;

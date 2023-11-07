@@ -51,9 +51,35 @@
             - [x] 소수점 둘째 자리에서 반올림
 - [x] 총 수익률 출력
 
-## 추후 진행 계획
-세세하게 메서드 분리<br/>
-매직넘버 처리<br/>
-MVC 패턴으로 클래스 생성 및 메서드 분류
-
 ## 🗂️ 디렉터리 구조
+📦src<br/>
+ ┣ 📂main<br/>
+ ┃ ┗ 📂java<br/>
+ ┃ ┃ ┗ 📂lotto<br/>
+ ┃ ┃ ┃ ┣ 📂constant<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜ConstantMessage.java<br/>
+ ┃ ┃ ┃ ┣ 📂controller<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜LottoController.java<br/>
+ ┃ ┃ ┃ ┣ 📂exception<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜ErrorMessage.java<br/>
+ ┃ ┃ ┃ ┣ 📂model<br/>
+ ┃ ┃ ┃ ┃ ┣ 📜EarnMoney.java<br/>
+ ┃ ┃ ┃ ┃ ┣ 📜Lotto.java<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜Result.java<br/>
+ ┃ ┃ ┃ ┣ 📂parser<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜Parser.java<br/>
+ ┃ ┃ ┃ ┣ 📂validate<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜InputValidate.java<br/>
+ ┃ ┃ ┃ ┣ 📂view<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜View.java<br/>
+ ┃ ┃ ┃ ┗ 📜Application.java<br/>
+ ┗ 📂test<br/>
+ ┃ ┗ 📂java<br/>
+ ┃ ┃ ┗ 📂lotto<br/>
+ ┃ ┃ ┃ ┣ 📂model<br/>
+ ┃ ┃ ┃ ┃ ┣ 📜EarnMoneyTest.java<br/>
+ ┃ ┃ ┃ ┃ ┣ 📜LottoTest.java<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜ResultTest.java<br/>
+ ┃ ┃ ┃ ┣ 📂parser<br/>
+ ┃ ┃ ┃ ┃ ┗ 📜ParserTest.java<br/>
+ ┃ ┃ ┃ ┗ 📜ApplicationTest.java<br/>

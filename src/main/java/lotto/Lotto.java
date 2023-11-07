@@ -1,9 +1,9 @@
 package lotto;
 
 import constants.Constants;
-import exception.lottoException.DuplicateLottoNumberException;
-import exception.lottoException.InvalidLottoLengthException;
-import exception.lottoException.OutOfLottoNumberRangeException;
+import exception.DuplicateLottoNumberException;
+import exception.InvalidLottoLengthException;
+import exception.OutOfLottoNumberRangeException;
 import java.util.Collections;
 import java.util.List;
 

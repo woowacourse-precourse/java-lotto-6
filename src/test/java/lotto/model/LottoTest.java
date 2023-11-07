@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.constant.LottoNumber;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,32 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 최소 값 미만이면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderRange() {
+        // given
+        List<Integer> numbers = List.of(LottoNumber.MINIMUM - 1, LottoNumber.MINIMUM, 3, 4, 5, 6);
+
+        // when
+        ThrowingCallable target = () -> new Lotto(numbers);
+
+        // then
+        assertThatIllegalArgumentException().isThrownBy(target);
+    }
+
+    @DisplayName("로또 번호가 최대 값을 넘어가면 예외가 발생한다.")
+    @Test
+    void createLottoByExceedRange() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, LottoNumber.MAXIMUM, LottoNumber.MAXIMUM + 1);
+
+        // when
+        ThrowingCallable target = () -> new Lotto(numbers);
+
+        // then
+        assertThatIllegalArgumentException().isThrownBy(target);
     }
 
     @DisplayName("유효하지 않은 숫자 리스트 테스트")

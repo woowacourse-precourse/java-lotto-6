@@ -39,14 +39,17 @@ public class LottoController {
     }
 
     public void inputPurchasedPrice() {
-        boolean isPriceValidated = false;
-        boolean isRangeValidated = false;
+        boolean isValidated = false;
         String inputPurchasedPrice = "";
 
-        while (!isPriceValidated && !isRangeValidated) {
-            inputPurchasedPrice = inputView.promptForPurchasedPrice();
-            isPriceValidated = valueValidator.validatePurchasedPriceValue(inputPurchasedPrice);
-            isRangeValidated = valueValidator.validatePurchasedPriceValueRange(inputPurchasedPrice);
+        while (!isValidated) {
+            try {
+                inputPurchasedPrice = inputView.promptForPurchasedPrice();
+                isValidated = valueValidator.validatePurchasedPrice(inputPurchasedPrice);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         purchasedPrice = Integer.parseInt(inputPurchasedPrice);
@@ -64,20 +67,28 @@ public class LottoController {
         boolean isValidated = false;
 
         while (!isValidated) {
-            String winningInput = inputView.promptForWinningCondition();
-            winningNumbers = lottoGenerator.winningInputToWinningLotto(winningInput);
-            isValidated = valueValidator.validateWinningInputValue(winningNumbers);
+            try {
+                String winningInput = inputView.promptForWinningCondition();
+                winningNumbers = lottoGenerator.winningInputToWinningLotto(winningInput);
+                isValidated = valueValidator.validateWinningInputValue(winningNumbers);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public void inputBonusNumber() {
-        boolean isValueValidated = false;
-        boolean isBonusValidated = false;
+        boolean isValidated = false;
 
-        while (!isValueValidated && !isBonusValidated) {
-            String inputBonusNumber = inputView.promptForBonusNumber();
-            isValueValidated = valueValidator.validateBonusNumberValue(inputBonusNumber);
-            isBonusValidated = valueValidator.validateBonusNumberValueRange(inputBonusNumber);
+        while (!isValidated) {
+            try {
+                String inputBonusNumber = inputView.promptForBonusNumber();
+                isValidated = valueValidator.validateBonusNumber(inputBonusNumber);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

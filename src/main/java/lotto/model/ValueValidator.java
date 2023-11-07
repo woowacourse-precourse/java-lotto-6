@@ -5,14 +5,21 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ValueValidator {
-    public boolean validatePurchasedPriceValue(String inputPurchasedPrice) {
+    public boolean validatePurchasedPrice(String inputPurchasedPrice) {
+        if (!validatePurchasedPriceValue(inputPurchasedPrice) && !validatePurchasedPriceValueRange(inputPurchasedPrice)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePurchasedPriceValue(String inputPurchasedPrice) {
         if (!inputPurchasedPrice.matches("\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_FORMAT.getMessage());
         }
         return true;
     }
 
-    public boolean validatePurchasedPriceValueRange(String inputPurchasedPrice) {
+    private boolean validatePurchasedPriceValueRange(String inputPurchasedPrice) {
         int purchasedPrice = Integer.parseInt(inputPurchasedPrice);
         if (purchasedPrice < 1000) {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PURCHASE_AMOUNT.getMessage());
@@ -28,6 +35,13 @@ public class ValueValidator {
                         throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
                     }
                 });
+        return true;
+    }
+
+    public boolean validateBonusNumber(String inputBonusNumber) {
+        if (!validateBonusNumberValue(inputBonusNumber) && !validateBonusNumberValueRange(inputBonusNumber)) {
+            return false;
+        }
         return true;
     }
 

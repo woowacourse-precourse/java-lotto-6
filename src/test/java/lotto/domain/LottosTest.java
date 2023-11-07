@@ -30,4 +30,14 @@ class LottosTest {
 
         assertEquals(List.of(Result.SIX_MATCH, Result.FIVE_MATCH_WITH_BONUS), results);
     }
+
+    @Test
+    void Lottos_내부_필드가_동일하다면_같은_객체로_인식한다() {
+        Lottos lottosA = new Lottos();
+        lottosA.addLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lottos lottosB = new Lottos();
+        lottosB.addLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertEquals(lottosA, lottosB);
+    }
 }

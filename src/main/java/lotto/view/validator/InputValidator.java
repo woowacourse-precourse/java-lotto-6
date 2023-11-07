@@ -9,8 +9,12 @@ public class InputValidator {
     }
 
     public static void validateLottoNumber(String input) {
-        validateIsEmpty(input);
-        validateIsRightFormat(input);
+        try {
+            validateIsEmpty(input);
+            validateIsRightFormat(input);
+        } catch(IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     private static void validateIsEmpty(String input) {

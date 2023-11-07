@@ -4,9 +4,14 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRanking;
 import lotto.dto.LottoDto;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoViewResolver {
+
+    private static final String WON_FORMAT_PATTERN = "#,###";
 
     public String parseLottosDetail(LottoDto.Information lottos) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -21,27 +26,27 @@ public class LottoViewResolver {
 
     public String parseLottoResult(LottoDto.Result lottoResult) {
         Map<LottoRanking, Integer> result = lottoResult.result();
+        DecimalFormat decimalFormat = new DecimalFormat(WON_FORMAT_PATTERN);
 
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder
-                .append("3개 일치 (5,000원) - ")
-                .append(result.getOrDefault(LottoRanking.FIFTH, 0))
-                .append("개\n")
-                .append("4개 일치 (50,000원) - ")
-                .append(result.getOrDefault(LottoRanking.FOURTH, 0))
-                .append("개\n")
-                .append("5개 일치 (1,500,000원) - ")
-                .append(result.getOrDefault(LottoRanking.THIRD, 0))
-                .append("개\n")
-                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(result.getOrDefault(LottoRanking.SECOND, 0))
-                .append("개\n")
-                .append("6개 일치 (2,000,000,000원) - ")
-                .append(result.getOrDefault(LottoRanking.FIRST, 0))
-                .append("개\n");
-
-        return stringBuilder.toString();
+        return Arrays.stream(LottoRanking.values())
+                .map(lottoRanking -> {
+                    if (lottoRanking.equals(LottoRanking.NO_LUCK)) {
+                        return "";
+                    }
+                    StringBuilder stringBuilder = new StringBuilder()
+                            .append(lottoRanking.getCorrectNumberCount())
+                            .append("개 일치");
+                    if (lottoRanking.equals(LottoRanking.SECOND)) {
+                        stringBuilder.append(", 보너스 볼 일치");
+                    }
+                    stringBuilder.append(" (")
+                            .append(decimalFormat.format(lottoRanking.getPrize()))
+                            .append("원) - ")
+                            .append(result.getOrDefault(lottoRanking, 0))
+                            .append("개\n");
+                    return stringBuilder.toString();
+                })
+                .collect(Collectors.joining(""));
     }
 
     public String parseProfit(double calculateProfit) {

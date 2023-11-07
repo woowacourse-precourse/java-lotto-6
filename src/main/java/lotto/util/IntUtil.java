@@ -22,4 +22,8 @@ public class IntUtil {
     public static String[] splitNumbers(String numbers) {
         return numbers.split(",");
     }
+
+    public static long calculateProfit(long profit, int money) {
+        return (profit / money) * 100;
+    }
 }

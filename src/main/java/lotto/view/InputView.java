@@ -21,9 +21,8 @@ public class InputView {
             return new MoneyToBuy(Integer.parseInt(string));
         } catch (IllegalArgumentException e) {
             this.printError(e);
-            requestMoneyToBuy();
+            return requestMoneyToBuy();
         }
-        return null;
     }
 
     public WinningLotto requestWinningLotto() {
@@ -40,9 +39,8 @@ public class InputView {
             return new WinningLotto(convertStringArrToList(winningLottoNumbers));
         } catch (IllegalArgumentException e) {
             this.printError(e);
-            requestSixNumbers();
+            return requestSixNumbers();
         }
-        return null;
     }
 
     private void requestBonusNumber(WinningLotto winningLotto) {

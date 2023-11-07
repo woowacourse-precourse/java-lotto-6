@@ -21,9 +21,10 @@ public class StatisticsOffice {
         }
     }
 
-    public static StatisticsOffice registerWinningLotto(List<Integer> winningLotto, Integer bonusNumber) {
-        return new StatisticsOffice(new Lotto(winningLotto), new LottoNumber(bonusNumber));
+    public static StatisticsOffice registerWinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
+        return new StatisticsOffice(winningLotto, bonusNumber);
     }
+
 
     public Map<Rank, Integer> convertToRank(List<Lotto> lottoTicket) {
         Map<Rank, Integer> winningStatus = new HashMap<>();

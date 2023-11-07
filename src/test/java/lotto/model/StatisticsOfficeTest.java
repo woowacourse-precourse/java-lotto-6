@@ -21,7 +21,7 @@ class StatisticsOfficeTest {
     void registerWinningLotto() {
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = Integer.valueOf(7);
-        assertThat(StatisticsOffice.registerWinningLotto(winningLotto, bonusNumber))
+        assertThat(StatisticsOffice.registerWinningLotto(new Lotto(winningLotto), new LottoNumber(bonusNumber)))
                 .isInstanceOf(StatisticsOffice.class);
     }
 
@@ -30,7 +30,7 @@ class StatisticsOfficeTest {
     void validateDuplicate() {
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = Integer.valueOf(3);
-        assertThatThrownBy(() -> StatisticsOffice.registerWinningLotto(winningLotto, bonusNumber))
+        assertThatThrownBy(() -> StatisticsOffice.registerWinningLotto(new Lotto(winningLotto), new LottoNumber(bonusNumber)))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
@@ -39,7 +39,7 @@ class StatisticsOfficeTest {
     @ParameterizedTest
     @MethodSource("rankStatusData")
     void convertToRank(List<Lotto> lottoTicket, Map<Rank, Integer> rankStatus) {
-        StatisticsOffice statisticsOffice = StatisticsOffice.registerWinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        StatisticsOffice statisticsOffice = StatisticsOffice.registerWinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)),new LottoNumber(7));
         assertThat(statisticsOffice.convertToRank(lottoTicket)).isEqualTo(rankStatus);
     }
 

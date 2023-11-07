@@ -27,19 +27,23 @@ public class Controller {
         buyLotto(buyer);
 
         PlayLotto playLotto = startLotto();
-
-        playLotto.lottoResult(buyer.getMyLotteries());
-        Map<Rank, Integer> lottoResult = playLotto.getLottoResult();
-
-        for (Rank key : Rank.values()) {
-            OutputView.printWinResult(key.getMessage(lottoResult.get(key)));
-        }
-
-        long prizeSum = playLotto.prizeSum();
-        OutputView.printReturnOfRate(buyer.calculateReturnRate(prizeSum));
-
+        LottoResult(playLotto);
     }
 
+    public PlayLotto startLotto() {
+        Lotto prizeLotto = askPrizeNumbers();
+        List<Integer> prizeNumbers = prizeLotto.getNumbers();
+        int bonusNumber = askBonusNumber(prizeNumbers);
+        return new PlayLotto(prizeNumbers, bonusNumber);
+    }
+
+    public void LottoResult(PlayLotto playLotto) {
+        Map<Rank, Integer> lottoResult = playLotto.getLottoResult();
+        printLottoResults(lottoResult);
+        long prizeSum = playLotto.prizeSum();
+        printReturnOfRate(prizeSum);
+    }
+    
     private int askPurchaseAmount() {
         OutputView.promptPurchaseAmount();
         try {
@@ -55,13 +59,6 @@ public class Controller {
         buyer.buyLotteries();
         OutputView.printPurchaseAmount(buyer.getPurchaseAmount());
         OutputView.printLottos(buyer.getMyLotteries());
-    }
-
-    private PlayLotto startLotto() {
-        Lotto prizeLotto = askPrizeNumbers();
-        List<Integer> prizeNumbers = prizeLotto.getNumbers();
-        int bonusNumber = askBonusNumber(prizeNumbers);
-        return new PlayLotto(prizeNumbers, bonusNumber);
     }
 
     private Lotto askPrizeNumbers() {
@@ -95,6 +92,20 @@ public class Controller {
             throw new IllegalArgumentException("보너스 번호는 당첨번호와 중복 값으로 설정할 수 없습니다.");
         }
     }
-}
 
-// 당첨 번호를 입력받고 입력 받은 당첨 번호와 중복이 있는 경우 해당 보너스 번호는 새로 발급 받아야 한다.
+    private Map<Rank, Integer> calculatedLottoResults(PlayLotto playLotto) {
+        playLotto.lottoResult(buyer.getMyLotteries());
+        return playLotto.getLottoResult();
+    }
+
+    private void printLottoResults(Map<Rank, Integer> lottoResults) {
+        OutputView.promptWinStatistics();
+        for (Rank key : Rank.values()) {
+            OutputView.printWinResult(key.getMessage(lottoResults.get(key)));
+        }
+    }
+
+    private void printReturnOfRate(long prizeSum) {
+        OutputView.printReturnOfRate(buyer.calculateReturnRate(prizeSum));
+    }
+}

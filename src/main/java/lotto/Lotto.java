@@ -7,7 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         checkSize(numbers);
-        isNumberInRange(numbers);
+        checkNumberInRange(numbers);
         hasSameNumber(numbers);
         this.numbers = numbers;
     }
@@ -23,7 +23,7 @@ public class Lotto {
         return numbers;
     }
 
-    private void isNumberInRange(List<Integer> numbers) {
+    private void checkNumberInRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < Config.MIN_LOTTO_NUMBER || number > Config.MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_OUT_OF_RANGE_LOTT_NUMBER.getMessage());

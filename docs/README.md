@@ -47,7 +47,7 @@
     - [x] [Exception] 값이 1부터 45사이의 수가 아닌 경우
     - [x] [Exception] 당첨번호에 존재하는 값을 입력한 경우
 
-- [ ] About Exception: Exception 발생의 경우 발생한 입력기능 부터 다시 입력을 받는다.
+- [x] About Exception: Exception 발생의 경우 발생한 입력기능 부터 다시 입력을 받는다.
 
 ### 2. 결과 계산 파트
 

@@ -8,7 +8,16 @@ public class LottoGameController {
     private final OutputView outputView = new OutputView();
 
     public BuyCash inputBuyCash() {
-        return new BuyCash(inputView.inputBuyCashFromUser());
+        BuyCash buycash;
+        while (true) {
+            try {
+                buycash = new BuyCash(inputView.inputBuyCashFromUser());
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return buycash;
     }
 
     public Lottos purchaseLotto(BuyCash buyCash) {
@@ -22,7 +31,18 @@ public class LottoGameController {
     }
 
     public Lotto inputWinningLotto() {
-        return generateWinningLotto(inputView.inputWinningNumbers());
+        Lotto winningNumbers;
+
+        while (true) {
+            try {
+                winningNumbers = generateWinningLotto(inputView.inputWinningNumbers());
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
+        return winningNumbers;
     }
 
     public Lotto generateWinningLotto(List<Integer> winningNumbers) {

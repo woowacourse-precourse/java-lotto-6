@@ -23,9 +23,19 @@ public class LottoGame {
     }
 
     private WinningLotto inputWinningLotto() {
+        WinningLotto winningLotto;
         Lotto winningNumbers = controller.inputWinningLotto();
-        LottoNumber bonusNumber = controller.inputBonusNumber();
 
-        return new WinningLotto(winningNumbers, bonusNumber);
+        while (true) {
+            try {
+                LottoNumber bonusNumber = controller.inputBonusNumber();
+                winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
+        return winningLotto;
     }
 }

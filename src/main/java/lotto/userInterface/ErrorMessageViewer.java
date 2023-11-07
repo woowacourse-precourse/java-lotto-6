@@ -11,14 +11,14 @@ public class ErrorMessageViewer {
     }
 
     public static void printInvalidAmount() {
-        System.out.println(INVALID_AMOUNT.getMessage());
+        System.out.println("\n" + INVALID_AMOUNT.getMessage());
     }
 
     public static void printInvalidFirstRankNumbers() {
-        System.out.println(INVALID_FIRST_RANK_NUMBERS.getMessage());
+        System.out.println("\n" + INVALID_FIRST_RANK_NUMBERS.getMessage());
     }
 
     public static void printInvalidBonusNumber() {
-        System.out.println(INVALID_BONUS_NUMBER.getMessage());
+        System.out.println("\n" + INVALID_BONUS_NUMBER.getMessage());
     }
 }

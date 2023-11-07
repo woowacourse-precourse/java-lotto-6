@@ -8,11 +8,11 @@ public class OutputViewer {
     }
 
     public static void printRequestAmountMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println("\n구입금액을 입력해 주세요.");
     }
 
     public static void printNumberOf(int countOfLottery) {
-        System.out.println(countOfLottery + "개를 구매했습니다.");
+        System.out.println("\n" + countOfLottery + "개를 구매했습니다.");
     }
 
     public static void printPurchased(List<Integer> lottoNumbers) {
@@ -20,15 +20,15 @@ public class OutputViewer {
     }
 
     public static void printRequestWinningNumberMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public static void printRequestBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public static void printPrefaceOfResult() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
     }
 
     public static void printLottoResultBy(Rank rank, int rankCount) {

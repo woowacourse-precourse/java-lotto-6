@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    private static final String WINNING_NUMBERS_REGEX = "^([0-9]{1,2},){5}[0-9]{1,2},?$";
+    private static final String WINNING_NUMBERS_REGEX = "^([0-9]{1,2},){5}[0-9]{1,2}$";
 
     public static String inputPurchaseMoney() {
         printPurchaseMoneyMessage();

@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.domain;
+
+import lotto.service.PriceValidator;
 
 public class Price {
     private final int price;

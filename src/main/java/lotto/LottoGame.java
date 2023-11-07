@@ -46,10 +46,13 @@ public class LottoGame {
         return winningNumbersList;
     }
 
-    public static void GetTwoNumbers(List<Integer> winningNumbers, List<List<Integer>> userNumbersBundle, int bonus){
+    public static int getTwoNumbers(List<Integer> winningNumbers, List<List<Integer>> userNumbersBundle, int bonus){
+        int equalNumCount = 0;
         for (List<Integer> userNumbersUnit : userNumbersBundle) {
-            CompareNumbers(winningNumbers, userNumbersUnit, bonus);
+            equalNumCount = compareNumbers(winningNumbers, userNumbersUnit, bonus);
         }
+
+        return equalNumCount;
     }
 
     public static void CompareNumbers(List<Integer> winningNumbers, List<Integer> userNumberUnit, int bonus){

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-
+    private static final int PERCENTAGE_MULTIPLIER = 100;
     public static void purchaseLottoMessage(int purchasableLotto) {
         System.out.println(purchasableLotto+"개를 구매했습니다.");
     }
@@ -53,6 +53,6 @@ public class OutputView {
     }
 
     public static void earnResultMessage(int lottoEarning, int money) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", (float) lottoEarning/money*100);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", (float) lottoEarning/money*PERCENTAGE_MULTIPLIER);
     }
 }

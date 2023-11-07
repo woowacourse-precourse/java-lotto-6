@@ -13,6 +13,7 @@ public class InputView {
         String input = Console.readLine();
         validateEmptyInput(input);
         validateInt(input);
+        System.out.println();
         return Util.stringToInt(input);
     }
 
@@ -27,6 +28,7 @@ public class InputView {
             int number = Util.stringToInt(stringNumber);
             lottoNumbers.add(number);
         }
+        System.out.println();
         return lottoNumbers;
     }
 
@@ -35,6 +37,7 @@ public class InputView {
         String input = Console.readLine();
         validateEmptyInput(input);
         validateInt(input);
+        System.out.println();
         return Util.stringToInt(input);
     }
 

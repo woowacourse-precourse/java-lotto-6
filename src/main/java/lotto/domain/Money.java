@@ -2,12 +2,11 @@ package lotto.domain;
 
 public class Money {
     private static final int MONEY_UNIT = 1000;
-
     private final int money;
 
     public Money(int money) {
-        validateMoneyUnit(money);
         validateMoneyRange(money);
+        validateMoneyUnit(money);
         this.money = money;
     }
 
@@ -26,5 +25,4 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 1000원 단위의 돈을 입력 해야 합니다.");
         }
     }
-
 }

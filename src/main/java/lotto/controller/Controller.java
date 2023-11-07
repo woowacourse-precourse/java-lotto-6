@@ -10,6 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Controller {
+    private static final int MONEY_UNIT = 1000;
+    private static final int SMALLEST_LOTTO_NUMBER = 1;
+    private static final int LARGEST_LOTTO_NUMBER = 45;
+    private static final int NUMBER_OF_LOTTO_NUMBERS = 6;
+
     public void run() {
         int money = inputMoneyFromUser();
         List<Lotto> lottoTickets = purchaseLotto(money);
@@ -43,12 +48,18 @@ public class Controller {
     }
 
     private List<Lotto> purchaseLotto(int money) {
-        int purchasableLotto = money / 1000;
+        int purchasableLotto = money / MONEY_UNIT;
         OutputView.purchaseLottoMessage(purchasableLotto);
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchasableLotto; i++) {
-            List<Integer> randomLottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> randomLottoNumber = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(
+                            SMALLEST_LOTTO_NUMBER,
+                            LARGEST_LOTTO_NUMBER,
+                            NUMBER_OF_LOTTO_NUMBERS
+                    )
+            );
             Collections.sort(randomLottoNumber);
             Lotto lotto = new Lotto(randomLottoNumber);
             lottoTickets.add(lotto);

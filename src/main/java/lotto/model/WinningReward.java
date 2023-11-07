@@ -1,17 +1,22 @@
 package lotto.model;
 
+import static lotto.constant.Numbers.FIFTHAWARD;
+import static lotto.constant.Numbers.FIRSTAWARD;
+import static lotto.constant.Numbers.FORPERCENT;
+import static lotto.constant.Numbers.FOURTHAWARD;
+import static lotto.constant.Numbers.SECONDAWARD;
+import static lotto.constant.Numbers.THIRDAWARD;
+import static lotto.constant.Rank.FIFTHRANK;
+import static lotto.constant.Rank.FIRSTRANK;
+import static lotto.constant.Rank.FOURTHRANK;
+import static lotto.constant.Rank.SECONDRANK;
+import static lotto.constant.Rank.THIRDRANK;
+
 import java.util.HashMap;
 
 public class WinningReward {
     private Long winningReward;
     private Double rateOfReturn;
-
-    private final Long FIRSTAWARD = 2000000000L;
-    private final Long SECONDAWARD = 30000000L;
-    private final Long THIRDAWARD = 1500000L;
-    private final Long FOURTHAWARD = 50000L;
-    private final Long FIFTHAWARD = 5000L;
-    private final Long FORPERCENT = 100L;
 
     public WinningReward() {
         this.winningReward = 0L;
@@ -21,16 +26,16 @@ public class WinningReward {
     public Double calculateRateOfReturn(HashMap<String, Integer> winningStatics, Integer lottoAmountofMoney) {
         Long totalWinningAward = calculateWinningReward(winningStatics);
         rateOfReturn = totalWinningAward.doubleValue() / lottoAmountofMoney.doubleValue();
-        rateOfReturn = rateOfReturn * FORPERCENT;
+        rateOfReturn = rateOfReturn * FORPERCENT.getLongValue();
         return rateOfReturn;
     }
 
     private Long calculateWinningReward(HashMap<String, Integer> winningStatics) {
-        winningReward = winningReward + winningStatics.get("FIRST") * FIRSTAWARD;
-        winningReward = winningReward + winningStatics.get("SECOND") * SECONDAWARD;
-        winningReward = winningReward + winningStatics.get("THIRD") * THIRDAWARD;
-        winningReward = winningReward + winningStatics.get("FOURTH") * FOURTHAWARD;
-        winningReward = winningReward + winningStatics.get("FIFTH") * FIFTHAWARD;
+        winningReward = winningReward + winningStatics.get(FIRSTRANK.getValue()) * FIRSTAWARD.getLongValue();
+        winningReward = winningReward + winningStatics.get(SECONDRANK.getValue()) * SECONDAWARD.getLongValue();
+        winningReward = winningReward + winningStatics.get(THIRDRANK.getValue()) * THIRDAWARD.getLongValue();
+        winningReward = winningReward + winningStatics.get(FOURTHRANK.getValue()) * FOURTHAWARD.getLongValue();
+        winningReward = winningReward + winningStatics.get(FIFTHRANK.getValue()) * FIFTHAWARD.getLongValue();
         return winningReward;
     }
 }

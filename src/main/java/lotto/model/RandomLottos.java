@@ -1,6 +1,10 @@
 package lotto.model;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.constant.Numbers.LOTTONUMBEREND;
+import static lotto.constant.Numbers.LOTTONUMBERSTART;
+import static lotto.constant.Numbers.LOTTOPRICE;
+import static lotto.constant.Numbers.NUMBERSPERLOTTO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -10,13 +14,9 @@ import java.util.List;
 public class RandomLottos {
     private final List<Lotto> randomLottos;
     private final Integer lottoTicketNumber;
-    private final Integer LOTTOPRICE = 1000;
-    private final Integer NUMBERSPERLOTTO = 6;
-    private final Integer LOTTONUMBERSTART = 1;
-    private final Integer LOTTONUMBEREND = 45;
 
     public RandomLottos(LottoAmountofMoney lottoAmountofMoney) {
-        this.lottoTicketNumber = lottoAmountofMoney.getLottoAmountofMoney() / LOTTOPRICE;
+        this.lottoTicketNumber = lottoAmountofMoney.getLottoAmountofMoney() / LOTTOPRICE.getIntValue();
         this.randomLottos = generateRandomLottos();
     }
 
@@ -29,7 +29,8 @@ public class RandomLottos {
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = pickUniqueNumbersInRange(LOTTONUMBERSTART, LOTTONUMBEREND, NUMBERSPERLOTTO);
+        List<Integer> numbers = pickUniqueNumbersInRange(LOTTONUMBERSTART.getIntValue(), LOTTONUMBEREND.getIntValue(),
+                NUMBERSPERLOTTO.getIntValue());
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
         System.out.println(lottoNumbers.toString());
         lottoNumbers.sort(Comparator.naturalOrder());

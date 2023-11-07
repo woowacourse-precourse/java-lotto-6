@@ -1,5 +1,12 @@
 package lotto.model;
 
+import static lotto.constant.Rank.FIFTHRANK;
+import static lotto.constant.Rank.FIRSTRANK;
+import static lotto.constant.Rank.FOURTHRANK;
+import static lotto.constant.Rank.NOMATCHING;
+import static lotto.constant.Rank.SECONDRANK;
+import static lotto.constant.Rank.THIRDRANK;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,12 +21,12 @@ public class LottoChecker {
         this.answerLotto = answerLotto.getLotto();
         this.bounsNumber = bounsNumber.getBonusNumber();
         this.winningStatics = new HashMap<>();
-        winningStatics.put("FIRST", 0);
-        winningStatics.put("SECOND", 0);
-        winningStatics.put("THIRD", 0);
-        winningStatics.put("FOURTH", 0);
-        winningStatics.put("FIFTH", 0);
-        winningStatics.put("NOMATCHING", 0);
+        winningStatics.put(FIRSTRANK.getValue(), 0);
+        winningStatics.put(SECONDRANK.getValue(), 0);
+        winningStatics.put(THIRDRANK.getValue(), 0);
+        winningStatics.put(FOURTHRANK.getValue(), 0);
+        winningStatics.put(FIFTHRANK.getValue(), 0);
+        winningStatics.put(NOMATCHING.getValue(), 0);
     }
 
     public HashMap<String, Integer> checkLottoNumbers() {
@@ -37,22 +44,22 @@ public class LottoChecker {
     private String getLottoRank(List<Integer> lotto, boolean bonusNumberCheck) {
         switch (lotto.size()) {
             case 6 -> {
-                return "FIRST";
+                return FIRSTRANK.getValue();
             }
             case 5 -> {
                 if (bonusNumberCheck) {
-                    return "SECOND";
+                    return SECONDRANK.getValue();
                 }
-                return "THIRD";
+                return THIRDRANK.getValue();
             }
             case 4 -> {
-                return "FOURTH";
+                return FOURTHRANK.getValue();
             }
             case 3 -> {
-                return "FIFTH";
+                return FIFTHRANK.getValue();
             }
             default -> {
-                return "NOMATCHING";
+                return NOMATCHING.getValue();
             }
         }
     }

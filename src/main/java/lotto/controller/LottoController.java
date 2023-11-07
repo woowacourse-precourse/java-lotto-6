@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.Format.DELIMITER;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +19,6 @@ public class LottoController {
     private final DisplayOutput displayOutput = new DisplayOutput();
     private final DisplayInput displayInput = new DisplayInput();
 
-    private final String DELIMETER = ",";
     private final boolean EXCEPTIONLOOPCHECKER = true;
 
     public void play() {
@@ -52,7 +53,7 @@ public class LottoController {
         displayOutput.outputAnswerLotto();
         List<Integer> lottoNumbers = new ArrayList<>();
         String inputtedLottoNumbers = displayInput.inputLottoNumbers();
-        String[] inputtedlottoNumberList = inputtedLottoNumbers.split(DELIMETER);
+        String[] inputtedlottoNumberList = inputtedLottoNumbers.split(DELIMITER.getValue());
         for (String lottoNumber : inputtedlottoNumberList) {
             lottoNumbers.add(Integer.parseInt(lottoNumber));
         }

@@ -1,5 +1,23 @@
 package lotto.view;
 
+import static lotto.constant.Format.DOUBLEFORMAT;
+import static lotto.constant.Message.OUTPUTANSWERNUMBER;
+import static lotto.constant.Message.OUTPUTBONUSNUMBER;
+import static lotto.constant.Message.OUTPUTBUYINGMESSAGE;
+import static lotto.constant.Message.OUTPUTFIFTHRANK;
+import static lotto.constant.Message.OUTPUTFIRSTRANK;
+import static lotto.constant.Message.OUTPUTFOURTHRANK;
+import static lotto.constant.Message.OUTPUTLOTTOAMOUNTOFMONEY;
+import static lotto.constant.Message.OUTPUTSECONDRANK;
+import static lotto.constant.Message.OUTPUTTHIRDRANK;
+import static lotto.constant.Message.OUTPUTWINNINGREWARDRATE;
+import static lotto.constant.Message.OUTPUTWINNINGSTATIC;
+import static lotto.constant.Rank.FIFTHRANK;
+import static lotto.constant.Rank.FIRSTRANK;
+import static lotto.constant.Rank.FOURTHRANK;
+import static lotto.constant.Rank.SECONDRANK;
+import static lotto.constant.Rank.THIRDRANK;
+
 import java.util.HashMap;
 import java.util.List;
 import lotto.model.Lotto;
@@ -8,24 +26,20 @@ import lotto.model.RandomLottos;
 
 public class DisplayOutput {
 
-    private final String OUTPUTLOTTOAMOUNTOFMONEY = "구입금액을 입력해 주세요.";
-    private final String OUTPUTANSWERNUMBER = "당첨 번호를 입력해 주세요.";
-    private final String OUTPUTBONUSNUMBER = "보너스 번호를 입력해 주세요.";
-
     public void outputLottoAmountofMoney() {
-        System.out.println(OUTPUTLOTTOAMOUNTOFMONEY);
+        System.out.println(OUTPUTLOTTOAMOUNTOFMONEY.getValue());
     }
 
     public void outputAnswerLotto() {
-        System.out.println(OUTPUTANSWERNUMBER);
+        System.out.println(OUTPUTANSWERNUMBER.getValue());
     }
 
     public void outputBonusNumber() {
-        System.out.println(OUTPUTBONUSNUMBER);
+        System.out.println(OUTPUTBONUSNUMBER.getValue());
     }
 
     public void outputRandomLottos(RandomLottos randomLottos, LottoAmountofMoney lottoAmountofMoney) {
-        System.out.printf("%d개를 구매했습니다.\n", lottoAmountofMoney.getLottoAmountofMoney() / 1000);
+        System.out.printf(OUTPUTBUYINGMESSAGE.getValue(), lottoAmountofMoney.getLottoAmountofMoney() / 1000);
         int randomLottoNumbers = randomLottos.getRandomLottos().size();
         List<Lotto> randomLotto = randomLottos.getRandomLottos();
         for (int i = 0; i < randomLottoNumbers; i++) {
@@ -34,18 +48,16 @@ public class DisplayOutput {
     }
 
     public void outputWinningStatics(HashMap<String, Integer> winningStatics) {
-//        for (String grade : winningStatics.keySet()) {
-//            System.out.println(grade + " " + winningStatics.get(grade).toString());
-//        }
-        System.out.println("당첨 통계\n---");
-        System.out.printf("3개 일치 (5,000원) - %s개\n", winningStatics.get("FIFTH"));
-        System.out.printf("4개 일치 (50,000원) - %s개\n", winningStatics.get("FOURTH"));
-        System.out.printf("5개 일치 (1,500,000원) - %s개\n", winningStatics.get("THIRD"));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개\n", winningStatics.get("SECOND"));
-        System.out.printf("6개 일치 (2,000,000,000원) - %s개\n", winningStatics.get("FIRST"));
+        System.out.println(OUTPUTWINNINGSTATIC.getValue());
+        System.out.printf(OUTPUTFIFTHRANK.getValue(), winningStatics.get(FIFTHRANK.getValue()));
+        System.out.printf(OUTPUTFOURTHRANK.getValue(), winningStatics.get(FOURTHRANK.getValue()));
+        System.out.printf(OUTPUTTHIRDRANK.getValue(), winningStatics.get(THIRDRANK.getValue()));
+        System.out.printf(OUTPUTSECONDRANK.getValue(), winningStatics.get(SECONDRANK.getValue()));
+        System.out.printf(OUTPUTFIRSTRANK.getValue(), winningStatics.get(FIRSTRANK.getValue()));
     }
 
     public void outputWinningReward(Double winningReward) {
-        System.out.printf("총 수익률은 %s%c입니다.", String.format("%.1f", winningReward), '%');
+        System.out.printf(OUTPUTWINNINGREWARDRATE.getValue(), String.format(DOUBLEFORMAT.getValue(), winningReward),
+                '%');
     }
 }

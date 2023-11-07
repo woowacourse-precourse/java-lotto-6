@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 
 public class LottoMachine {
     private final View view = new View();
+    private final InputController inputController = new InputController();
     private final LottoController lottoController = new LottoController();
 
     public Lotto readWinningNumber() {
@@ -16,7 +17,7 @@ public class LottoMachine {
         view.print(ViewMessage.ASK_WINNING_NUMBER.getMessage());
         do {
             try {
-                lotto = new Lotto(lottoController.readWinningNumber());
+                lotto = new Lotto(inputController.readInputByManyNumbers());
             } catch (IllegalArgumentException e) {
                 view.print(ErrorMessage.INVALID_WINNING_NUMBER.getErrorMessage());
             }
@@ -25,14 +26,14 @@ public class LottoMachine {
     }
 
     public int readBonusNumber(Lotto winningLotto) {
-        int bonusNumber;
+        int bonusNumber = inputController.readInputByInteger();
 
         view.printLine();
         view.print(ViewMessage.ASK_BONUS_NUMBER.getMessage());
         do {
             try {
-                bonusNumber = lottoController.readBonusNumber();
-                validateBonusNumber(bonusNumber, winningLotto);
+                lottoController.validateBonusNumber(bonusNumber);
+                containsCheckBonusNumber(bonusNumber, winningLotto);
             } catch (IllegalArgumentException e) {
                 view.print(ErrorMessage.INVALID_BONUS_NUMBER.getErrorMessage());
                 bonusNumber = 0;
@@ -41,7 +42,7 @@ public class LottoMachine {
         return bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber, Lotto winningLotto) {
+    private void containsCheckBonusNumber(int bonusNumber, Lotto winningLotto) {
         if (winningLotto.getLottoNumber().contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

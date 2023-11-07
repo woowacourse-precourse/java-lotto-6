@@ -12,15 +12,17 @@ import java.util.stream.Collectors;
 
 public class PurchaseMachine {
     private final View view = new View();
+    private final InputController inputController = new InputController();
     private final LottoController lottoController = new LottoController();
 
     public int getPurchaseQuantity() {
         int purchaseQuantity = 0;
+        int money = inputController.readInputByInteger();
 
         view.print(ViewMessage.ASK_PURCHASE_AMOUNT.getMessage());
         do {
             try {
-                purchaseQuantity = lottoController.getPurchaseQuantity();
+                purchaseQuantity = lottoController.getPurchaseQuantity(money);
             } catch (NumberFormatException e) {
                 view.print(ErrorMessage.NOT_A_NUMBER.getErrorMessage());
             } catch (IllegalArgumentException e) {

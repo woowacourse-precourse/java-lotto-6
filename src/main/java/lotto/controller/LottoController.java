@@ -7,31 +7,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
-    public Integer getPurchaseQuantity() {
-        int purchaseAmount = Integer.parseInt(Console.readLine().trim());
+    private final InputController inputController = new InputController();
 
-        if (purchaseAmount % 1000 != 0) {
+    public Integer getPurchaseQuantity(int money) {
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException();
         }
-        return purchaseAmount / 1000;
+        return money / 1000;
     }
 
-    public List<Integer> readWinningNumber() {
-        List<Integer> winningNumbers = new ArrayList<>();
-        List<String> inputNumbers;
-
-        inputNumbers = Arrays.stream(Console.readLine().replaceAll(" ", "").split(",")).toList();
-        for (String inputNumber : inputNumbers) {
-            winningNumbers.add(Integer.parseInt(inputNumber));
-        }
-        return winningNumbers;
-    }
-
-    public Integer readBonusNumber() {
-        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+    public void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException();
         }
-        return bonusNumber;
     }
 }

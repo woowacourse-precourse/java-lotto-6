@@ -22,9 +22,9 @@ public class LottoController {
         Lottos lottos = generateLottos(money);
         printLottos(lottos);
 
-        Lotto validWinningLotto = getValidLotto();
-        WinningLotto validWinningLotto1 = getValidWinningLotto(validWinningLotto);
-        WinningResult winningResult = calculateWinningResult(lottos, validWinningLotto1);
+        Lotto winningLotto = getValidLotto();
+        WinningLotto validWinningLotto = getValidWinningLotto(winningLotto);
+        WinningResult winningResult = calculateWinningResult(lottos, validWinningLotto);
 
         double rateOfReturn = getRateOfReturn(money, winningResult);
         printWinningResultAndRateOfReturn(winningResult, rateOfReturn);

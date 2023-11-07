@@ -11,4 +11,5 @@ public class ErrorText {
     public static final String NOT_NUMBER = "(숫자로 읽히지 않음)";
     public static final String INCORRECTLY_NUMBER = "(구매액은 1000원 단위로만 판매함)";
     public static final String LOTTO_NUMBERS_IS_NOT_SIX = "로또 번호가 6개가아닙니다.";
+    public static final String WRONG_WINNING_COUNT ="잘못된 당첨 카운트";
 }

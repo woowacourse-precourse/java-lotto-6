@@ -107,6 +107,6 @@ public class ErrorCheck {
     }
 
     public static void WinningValueOf() {
-        throw new NullPointerException(ErrorText.ERROR);
+        throw new NullPointerException(ErrorText.ERROR+ErrorText.WRONG_WINNING_COUNT);
     }
 }

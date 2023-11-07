@@ -3,6 +3,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.service.Winning;
 import lotto.vo.winning.LottoWinning;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -102,6 +103,16 @@ public class ErrorCheckTest {
         }
     }
 
+    @DisplayName("당첨 로또 번호 6개가 아닐 때 오류 오류")
+    @Test
+    void LottoList_6개가아닐때오류_테스트(){
+        try {
+            ErrorCheck.WinnerNumberInput("1,2,3,4,5,6,7");
+        } catch (IllegalArgumentException error) {
+            Assertions.assertEquals("[ERROR] : 로또 번호가 6개가아닙니다.", error.getMessage());
+        }
+    }
+
     @DisplayName("당첨 보너스 번호 문자 일 경우 오류")
     @Test
     void BonusNumberInput_문자입력_테스트() {
@@ -137,6 +148,16 @@ public class ErrorCheckTest {
             ErrorCheck.BonusNumberInput("1");
         } catch (IllegalArgumentException error) {
             Assertions.assertEquals("[ERROR] : 로또 번호를 중복 입력 하셨습니다.", error.getMessage());
+        }
+    }
+
+    @DisplayName("잘못된 승리 카운트(7개를 맞췄다던가 데이터가 Null인 경우)")
+    @Test
+    void WinningValueOf_테스트() {
+        try {
+            Winning.valueOf(7, true);
+        } catch (NullPointerException error) {
+            Assertions.assertEquals("[ERROR] : 잘못된 당첨 카운트", error.getMessage());
         }
     }
 }

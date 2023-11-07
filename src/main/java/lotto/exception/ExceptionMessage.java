@@ -10,7 +10,7 @@ public enum ExceptionMessage {
     WINNING_NUMBER_IS_NOT_DIGIT("당첨 번호를 숫자로 입력해 주세요."),
     BONUS_NUMBER_IS_NOT_DIGIT("보너스 번호를 숫자로 입력해 주세요.");
 
-    private static final String TAG_ERROR = "[ERROR]";
+    private static final String TAG_ERROR = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {

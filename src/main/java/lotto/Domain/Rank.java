@@ -1,21 +1,27 @@
 package lotto.Domain;
 
 public enum Rank {
-    THREE_MATCH("3개 일치 (5,000원)"),
-    FOUR_MATCH("4개 일치 (50,000원)"),
-    FIVE_MATCH("5개 일치 (1,500,000원)"),
-    FIVE_MATCH_WITH_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    SIX_MATCH("6개 일치 (2,000,000,000원)"),
-    NO_MATCH("꽝");
+    THREE_MATCH("3개 일치 (5,000원)", 5000),
+    FOUR_MATCH("4개 일치 (50,000원)", 50000),
+    FIVE_MATCH("5개 일치 (1,500,000원)", 1500000),
+    FIVE_MATCH_WITH_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
+    SIX_MATCH("6개 일치 (2,000,000,000원)", 2000000000),
+    NO_MATCH("꽝", 0);
 
     private final String description;
+    private final int prize; // 상금(금액)
 
-    Rank(String description) {
+    Rank(String description, int prize) {
         this.description = description;
+        this.prize = prize;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     public static String getResultDescription(int matchingNumbers, boolean bonusNumberMatch) {
@@ -26,7 +32,6 @@ public enum Rank {
         }
         return "꽝";
     }
-
 
     public int getMatchingNumbers() {
         int length = description.indexOf("개");

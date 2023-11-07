@@ -40,7 +40,7 @@ public class GameService {
             try {
                 List<Integer> answerNumbers = InputLottoUI.inputAnswerLottoPrint();
 
-                //TODO 들여쓰기 3번이라 추후에 메소드로 구현하기
+                //TODO 들여쓰기 3번이라 추후에 클래스로 구현하기
                 if (answerNumbers.size() != 6) {
                     System.out.println("Please enter exactly 6 numbers.");
                     continue;
@@ -59,6 +59,9 @@ public class GameService {
     public void resultGame() {
         System.out.println("\n당첨 통계\n---");
         Map<Rank, Integer> matchingCounts = new HashMap<>();
+        int totalInvestment = money * lottoCount;
+        int totalPrize = 0;
+
         for (Rank rank : Rank.values()) {
             matchingCounts.put(rank, 0);
         }
@@ -73,15 +76,21 @@ public class GameService {
             }
         }
 
+        //TODO 들여쓰기 3번이라 추후에 클래스로 구현하기
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NO_MATCH) {
                 int count = matchingCounts.get(rank);
                 String resultDescription = rank.getDescription();
+                int prize = rank.getPrize();
                 System.out.println(resultDescription + " - " + count + "개");
+                if(count != 0 ) {
+                    totalPrize += count * prize;
+                }
             }
         }
-
-        System.out.println("총 수익률 ");
+        //TODO 클래스로 구현하기
+        System.out.println("총 수익: " + totalPrize + "입니다.");
+        System.out.println("총 수익률은: " + ((double)totalPrize/money)*100 + "%입니다.");
     }
 
     private Rank matchingNumbersToRank(int matchingNumbers, boolean bonusNumberMatch) {

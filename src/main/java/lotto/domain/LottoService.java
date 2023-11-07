@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
+import static lotto.domain.constants.LottoNumber.MAX_NUMBER;
+import static lotto.domain.constants.LottoNumber.MIN_NUMBER;
+import static lotto.domain.constants.LottoNumber.NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,8 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoService {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
 
     private final LottoRepository lottoRepository;
     private PurchaseCount purchaseCount;
@@ -52,14 +53,14 @@ public class LottoService {
     private List<Integer> createRandomNumberList(){
         Set<Integer> numberSet = new HashSet<>();
 
-        while (numberSet.size()<6){
+        while (numberSet.size()<NUMBER_COUNT.getValue()){
             numberSet.add(getRandomNumber());
         }
         return new ArrayList<>(numberSet);
     }
 
     private int getRandomNumber() {
-        return pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+        return pickNumberInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue());
     }
 
 

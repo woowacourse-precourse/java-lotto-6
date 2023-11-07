@@ -3,12 +3,12 @@ package lotto.domain;
 public class PurchaseCount {
     private final int value;
 
-    public PurchaseCount(int input) {
-        validate(input);
-        this.value = input/1000;
+    public PurchaseCount(int purchaseAmount) {
+        validate(purchaseAmount);
+        this.value = purchaseAmount/1000;
     }
 
-    private void validate(int input) {
+    private void validate(int purchaseAmount) {
     }
 
     public int getValue() {

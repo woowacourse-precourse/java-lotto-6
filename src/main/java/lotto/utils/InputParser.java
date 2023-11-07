@@ -6,8 +6,12 @@ import java.util.stream.Collectors;
 
 public class InputParser {
 
-    public int parseToInteger(String input) {
-        return Integer.parseInt(input);
+    public int parseToInteger(String input) throws NumberFormatException {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 숫자가 아닙니다: " + input);
+        }
     }
 
     public List<Integer> parseLottoNumbers(String input) {

@@ -41,6 +41,8 @@
 
 2. 계산
 
++) enum을 이용해 RANKING 구현
+
 2-1) 1-1)을 1,000으로 나누어 로또 발행 수 설정
 
 2-2) 로또 발행 수에 따른 6자리 랜덤 수 생성 → camp.nextstep.edu.missionutils.Randoms의 Randoms.pickNumberInRange()

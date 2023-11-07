@@ -37,6 +37,9 @@ public class Setting {
 
 		System.out.println(Constants.INPUT_BONUS_NUMBER);
 		validateBonus(Console.readLine());
+
+		LottoNumbers lottoNumbers = new LottoNumbers(inputNum, lottoNum, totalAmount, bonus);
+		lottoNumbers.run();
 	}
 
 	public List<List> makeLottoNumbers(int ticket) {

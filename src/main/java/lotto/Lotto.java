@@ -30,9 +30,8 @@ public class Lotto {
         return result;
     }
 
-    public List<Integer> lottoascending() {
+    public void lottoascending() {
         Collections.sort(numbers);
-        return numbers;
     }
 
     public List<Integer> getLotto() {

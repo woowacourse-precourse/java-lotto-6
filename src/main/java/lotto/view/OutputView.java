@@ -1,12 +1,22 @@
 package lotto.view;
 
-import lotto.domain.*;
+import lotto.domain.Cash;
+import lotto.domain.Lottos;
+import lotto.domain.Lotto;
+import lotto.domain.Prize;
+import lotto.domain.LottoResult;
 
 import java.text.DecimalFormat;
 
-import static lotto.util.CharacterUnits.*;
+import static lotto.util.CharacterUnits.ENTER;
+
 import static lotto.util.PatternUnits.PATTERN_FOR_DECIMAL_FORMAT;
-import static lotto.view.OutputViewMessage.*;
+
+import static lotto.view.OutputViewMessage.PURCHASED_LOTTOS_MESSAGE_FORMAT;
+import static lotto.view.OutputViewMessage.WINNING_STATIC_MESSAGE;
+import static lotto.view.OutputViewMessage.SECOND_PLACE_RESULT_MESSAGE_FORMAT;
+import static lotto.view.OutputViewMessage.OTHER_PLACE_RESULT_MESSAGE_FORMAT;
+import static lotto.view.OutputViewMessage.TOTAL_BENEFIT_MESSAGE_FORMAT;
 
 public class OutputView {
 

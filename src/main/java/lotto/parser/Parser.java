@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.exception.InputViewExceptionMessage.WRONG_NUMBER_FORMAT;
-import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.CharacterUnits.SEPARATOR;
 
 public class Parser {

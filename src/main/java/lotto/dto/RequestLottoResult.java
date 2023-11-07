@@ -1,8 +1,9 @@
 package lotto.dto;
 
+import java.util.List;
+
 import lotto.domain.Prize;
 
-import java.util.List;
 
 public record RequestLottoResult(
         List<Prize> results

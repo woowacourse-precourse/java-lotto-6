@@ -2,8 +2,10 @@ package lotto.domain;
 
 import static lotto.constant.CashConstant.INIT_SPEND_AMOUNT;
 import static lotto.constant.CashConstant.UNIT;
-import static lotto.exception.CashExceptionMessage.*;
 
+import static lotto.exception.CashExceptionMessage.NOT_MORE_THAN_UNIT;
+import static lotto.exception.CashExceptionMessage.WRONG_INIT_AMOUNT;
+import static lotto.exception.CashExceptionMessage.NOT_DIVISIBLE_BY_UNIT;
 
 public class Cash {
     private final Integer depositAmount;

@@ -1,9 +1,10 @@
 package lotto.dto;
 
-import lotto.domain.Lotto;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lotto.domain.Lotto;
+
 
 public record RequestLottos(
         List<RequestLotto> lottoDummy

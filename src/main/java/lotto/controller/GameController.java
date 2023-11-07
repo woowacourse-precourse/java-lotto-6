@@ -1,11 +1,18 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.Cash;
+import lotto.domain.Lottos;
+import lotto.domain.WinnerLotto;
+import lotto.domain.LottoMachine;
+import lotto.domain.LottoResult;
+
 import lotto.dto.RequestCash;
 import lotto.dto.RequestLottos;
 import lotto.dto.RequestWinnerLotto;
 import lotto.dto.RequestLottoResult;
+
 import lotto.util.NumberGenerator;
+
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

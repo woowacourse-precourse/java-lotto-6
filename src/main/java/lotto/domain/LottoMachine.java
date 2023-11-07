@@ -1,11 +1,12 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lotto.dto.RequestLotto;
 import lotto.dto.RequestLottos;
 import lotto.util.NumberGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class LottoMachine {
     private final NumberGenerator numberGenerator;

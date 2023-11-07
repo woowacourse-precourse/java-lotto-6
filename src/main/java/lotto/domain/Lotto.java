@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
 import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
-import static lotto.constant.LottoConstant.REPLACE_SIZE;
-import static lotto.constant.LottoConstant.INIT_BUILDER_SIZE;
+
 import static lotto.exception.LottoExceptionMessage.WRONG_LOTTO_LENGTH;
 import static lotto.exception.LottoExceptionMessage.DUPLICATED_NUMBER;
 import static lotto.exception.LottoExceptionMessage.WRONG_LOTTO_NUMBER_RANGE;
+
 import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.CharacterUnits.LEFT_BRACKET;
 import static lotto.util.CharacterUnits.RIGHT_BRACKET;

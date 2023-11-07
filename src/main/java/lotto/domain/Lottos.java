@@ -1,10 +1,11 @@
 package lotto.domain;
 
-import lotto.dto.RequestLottoResult;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lotto.dto.RequestLottoResult;
+
 
 public class Lottos {
 

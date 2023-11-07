@@ -1,12 +1,12 @@
 package lotto.validator;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static lotto.exception.InputViewExceptionMessage.*;
-import static lotto.util.CharacterUnits.*;
+import static lotto.exception.InputViewExceptionMessage.NOT_NUMBER;
+import static lotto.exception.InputViewExceptionMessage.NO_LINE_FOUND;
+import static lotto.exception.InputViewExceptionMessage.FOUND_SPECIAL_SIGN;
+
 import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
 
 public class InputValidator {

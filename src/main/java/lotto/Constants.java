@@ -8,6 +8,7 @@ public class Constants {
     public static final int MIN_PRIZE_SIZE = 3; // 최소 일치 개수
     public static final int MAX_PRIZE_SIZE = 6; // 최대 일치 개수
     public static final String PURCHASE_AMOUNT_REGEX = "^[1-9]\\d*000$"; // 구입 금액 정규식 (0 이상의 정수이고 000으로 끝나야 함, 1000원 단위)
+    public static final String INTEGER_REGEX = "^-?[0-9]*$"; // 정수 정규식 (0 이상의 정수)
     public static final String STATISTICS_HEADER = "당첨 통계\n---------\n"; // 당첨 통계 헤더
     public static final String TOTAL_YIELD_HEADER = "총 수익률은 "; // 총 수익률 헤더
     public static final String TOTAL_YIELD_TAIL = "%입니다."; // 총 수익률 꼬리

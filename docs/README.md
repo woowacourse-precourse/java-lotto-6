@@ -27,4 +27,6 @@
 | LottoResult.class   | - 구입한 로또 개수 출력<br>- 로또 통계 출력                                       |
 | LottoProfit.class   | - 수익률 계산                                          |
 | LottoWinner.class   | - 보너스 번호 생성 및 저장<br>- 당첨 번호 저장          |
-| Constants.class     | - 상수 변수 별도 저장                                   |
+| Constants/ErrorMessages.enum     | - 에러 관련 상수                               |
+| Constants/PromptMessages.enum     | - 프롬프트 관련 상수                                |
+| Constants/LottoRank.enum     | - 로또 랭킹 정보 상수                        |

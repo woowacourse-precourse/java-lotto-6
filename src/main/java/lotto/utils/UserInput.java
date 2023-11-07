@@ -80,6 +80,7 @@ public class UserInput {
     private void validateWinningNumbers(String input){
         validateNullOrEmpty(input);
         validateIsNumbers(input.split(","));
+        validateNumbersLength(convertNumbers(input));
         validateIsNumbersInRange(convertNumbers(input));
     }
 

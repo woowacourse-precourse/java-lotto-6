@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.Budget;
 import lotto.model.lotto.BonusNumber;
-import lotto.model.lotto.LottoMachine;
+import lotto.model.lotto.RankCount;
+import lotto.model.machine.LottoMachine;
 import lotto.model.lotto.LottoRank;
 import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.WinningLotto;
@@ -19,6 +20,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -29,7 +31,7 @@ public class LottoStrategyTest {
     private LottoMachine lottoMachine;
     private BonusNumber bonusNumber;
     private LottoStrategy lottoStrategy;
-    private EnumMap<LottoRank, Integer> expectedCounts;
+    private RankCount expectedCounts;
 
     @BeforeEach
     void setUp() {
@@ -37,7 +39,7 @@ public class LottoStrategyTest {
         winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         bonusNumber = new BonusNumber(7, winningLotto);
         lottoStrategy = new MyLottoStrategy();
-        expectedCounts =  new EnumMap<>(LottoRank.class);
+        expectedCounts =  new RankCount();
     }
 
     @DisplayName("6개 번호 일치 시 RANK1 출력 테스트")
@@ -47,12 +49,12 @@ public class LottoStrategyTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        expectedCounts.put(LottoRank.RANK1, 1);
+        expectedCounts.incrementCount(LottoRank.RANK1);
         //when
-        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        RankCount actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         //then
-        assertThat(actualCounts)
-                .isEqualTo(expectedCounts);
+        assertThat(actualCounts.getCounts(LottoRank.RANK1))
+                .isEqualTo(expectedCounts.getCounts(LottoRank.RANK1));
     }
 
     @DisplayName("5개 번호와 보너스 번호 일치 시 RANK2 출력 테스트")
@@ -62,12 +64,12 @@ public class LottoStrategyTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 7);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        expectedCounts.put(LottoRank.RANK2, 1);
+        expectedCounts.incrementCount(LottoRank.RANK2);
         //when
-        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        RankCount actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         //then
-        assertThat(actualCounts)
-                .isEqualTo(expectedCounts);
+        assertThat(actualCounts.getCounts(LottoRank.RANK2))
+                .isEqualTo(expectedCounts.getCounts(LottoRank.RANK2));
     }
 
     @DisplayName("5개 번호 일치 시 RANK3 출력 테스트")
@@ -77,12 +79,12 @@ public class LottoStrategyTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        expectedCounts.put(LottoRank.RANK3, 1);
+        expectedCounts.incrementCount(LottoRank.RANK3);
         //when
-        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        RankCount actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         //then
-        assertThat(actualCounts)
-                .isEqualTo(expectedCounts);
+        assertThat(actualCounts.getCounts(LottoRank.RANK3))
+                .isEqualTo(expectedCounts.getCounts(LottoRank.RANK3));
     }
 
     @DisplayName("4개 번호 일치 시 RANK4 출력 테스트")
@@ -92,12 +94,12 @@ public class LottoStrategyTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 9, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        expectedCounts.put(LottoRank.RANK4, 1);
+        expectedCounts.incrementCount(LottoRank.RANK4);
         //when
-        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        RankCount actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         //then
-        assertThat(actualCounts)
-                .isEqualTo(expectedCounts);
+        assertThat(actualCounts.getCounts(LottoRank.RANK4))
+                .isEqualTo(expectedCounts.getCounts(LottoRank.RANK4));
     }
 
     @DisplayName("3개 번호 일치 시 RANK5 출력 테스트")
@@ -107,12 +109,13 @@ public class LottoStrategyTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 8, 9, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        expectedCounts.put(LottoRank.RANK5, 1);
+        expectedCounts.incrementCount(LottoRank.RANK5);
+
         //when
-        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        RankCount actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         //then
-        assertThat(actualCounts)
-                .isEqualTo(expectedCounts);
+        assertThat(actualCounts.getCounts(LottoRank.RANK5))
+                .isEqualTo(expectedCounts.getCounts(LottoRank.RANK5));
     }
 
     @DisplayName("2개 이하 번호 일치 시 FAIL 출력 테스트")
@@ -122,12 +125,13 @@ public class LottoStrategyTest {
         //given
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        expectedCounts.put(LottoRank.FAIL, 1);
+        expectedCounts.incrementCount(LottoRank.FAIL);
+
         //when
-        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        RankCount actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         //then
-        assertThat(actualCounts)
-                .isEqualTo(expectedCounts);
+        assertThat(actualCounts.getCounts(LottoRank.FAIL))
+                .isEqualTo(expectedCounts.getCounts(LottoRank.FAIL));
     }
 
     static Stream<Arguments> rankNothingTestNumbers() {

@@ -2,7 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
+    // 당첨 로또 수
+    static int first = 0, second = 0, third = 0, fourth = 0, fifth = 0;
+
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         // 구입 금액을 입력
@@ -14,8 +20,11 @@ public class Application {
         System.out.println(lottoGame + "개를 구매했습니다.");
 
         // 게임 수 만큼 로또 생성후 출력
+        List<List<Integer>> lottoList = new ArrayList<>();
         for (int i = 0; i < lottoGame; i++) {
             Lotto lotto = Lotto.generateLotto();
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            lottoList.add(lottoNumbers);
             System.out.println(lotto.getNumbers());
         }
         System.out.println();
@@ -33,17 +42,49 @@ public class Application {
         // 당첨 통계 출력
         System.out.println("당첨 통계");
         System.out.println("---");
-        
-        // 5등 확인 메서드
-        
-        // 4등 확인 메서드
-        
-        // 3등 확인 메서드
-        
-        // 2등 확인 메서드
-        
-        // 1등 확인 메서드
+
+        for (int i = 0; i < lottoGame; i++) {
+            List<Integer> userLotto = lottoList.get(i);
+            int matches = checkMatches(userLotto, winningNumbers);
+            boolean bonus = checkBonusMatches(userLotto, bonusNumber);
+            countMatches(matches, bonus);
+        }
+        System.out.println("3개 일치 (5,000원) - " + fifth + "개");
+        System.out.println("4개 일치 (50,000원) - " + fourth + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + third + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + second + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + first + "개");
     }
+
+    // 당첨 로또 수 카운트 메서드
+    public static void countMatches(int matches, boolean bonus) {
+        if (matches == 6) first++;
+        if (matches == 5 && bonus) second++;
+        if (matches == 5) third++;
+        if (matches == 4) fourth++;
+        if (matches == 3) fifth++;
+    }
+
+    // 각 게임에서 몇 개의 번호가 맞았는지 확인하는 메서드
+    public static int checkMatches(List<Integer> userLotto, int[] winningNumbers) {
+        int matches = 0;
+        boolean[] matched = new boolean[46];
+        for (int userNumber : userLotto) {
+            matched[userNumber] = true;
+        }
+        for (int winningNumber : winningNumbers) {
+            if (matched[winningNumber]) {
+                matches++;
+            }
+        }
+        return matches;
+    }
+
+    // 각 게임에서 보너스 번호가 있는지 확인하는 메서드
+    public static boolean checkBonusMatches(List<Integer> userLotto, int bonusNumber) {
+        return userLotto.contains(bonusNumber);
+    }
+
 
     // 당첨 번호를 입력받는 메서드
     public static int[] getWinningNumbers() {

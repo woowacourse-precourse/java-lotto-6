@@ -16,14 +16,16 @@ public enum Number {
     FORTY_FIVE(45),
     WINNING_MONEY(0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
 
-    private List<Integer> winningMoney;
-    private int number;
+    private final List<Integer> winningMoney;
+    private final int number;
 
     Number(int unit) {
         this.number = unit;
+        this.winningMoney = null;
     }
 
     Number(Integer... money) {
+        this.number = 0;
         winningMoney = new ArrayList<>();
         Collections.addAll(winningMoney, money);
     }

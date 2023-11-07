@@ -13,16 +13,18 @@ public enum OutputMessage {
 
     PRINT_CORRECTS("", "", "", "3개 일치", "4개 일치", "5개 일치", "6개 일치", "5개 일치, 보너스 볼 일치");
 
-    private List<String> matchMessages;
-    private String message;
+    private final List<String> matchMessages;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;
+        this.matchMessages = null;
     }
 
     OutputMessage(String... messages) {
         matchMessages = new ArrayList<>();
         Collections.addAll(matchMessages, messages);
+        this.message = null;
     }
 
     public String getMessage() {

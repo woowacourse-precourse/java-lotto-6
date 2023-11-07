@@ -19,7 +19,7 @@ public class ValidatorTest {
 
 	@DisplayName("문자열을 받아 숫자로 이루어져 있는지 검사하는 메서드 테스트 - 통과")
 	@Test
-	void isComposedOfNumbersTest() {
+	void isComposedOfNumbersTest1() {
 		String check = "123";
 		assertDoesNotThrow(() -> validator.isComposedOfNumbers(check));
 	}
@@ -27,16 +27,26 @@ public class ValidatorTest {
 	@DisplayName("문자열을 받아 숫자로 이루어져 있는지 검사하는 메서드 테스트 - 실패")
 	@ParameterizedTest
 	@ValueSource(strings = {"r123", "abc"})
-	void isComposedOfNumbersTest(String check) {
+	void isComposedOfNumbersTest2(String check) {
 		assertThatThrownBy(() -> validator.isComposedOfNumbers(check))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("[ERROR] 숫자로 이루어져 있지 않습니다.");
 	}
 
-	@DisplayName("가격을 받아 1000원 단위인지 검사하는 메서드 테스트")
-	@Test
-	void isMultiplesOfThousandTest() {
+	@DisplayName("가격을 받아 1000원 단위인지 검사하는 메서드 테스트 - 통과")
+	@ParameterizedTest
+	@ValueSource(longs = {1000L, 3000L, 5000L, 10000L})
+	void isMultiplesOfThousandTest1(long check) {
+		assertDoesNotThrow(() -> validator.isMultiplesOfThousand(check));
+	}
 
+	@DisplayName("가격을 받아 1000원 단위인지 검사하는 메서드 테스트 - 실패")
+	@ParameterizedTest
+	@ValueSource(longs = {1001L, 2050L, 900L, 5500L})
+	void isMultiplesOfThousandTest2(long check) {
+		assertThatThrownBy(() -> validator.isMultiplesOfThousand(check))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("[ERROR] 1000으로 나누어 떨어져야 합니다.");
 	}
 
 	@DisplayName("문자열을 받아 문자열을 숫자로 파싱하였을 때," +

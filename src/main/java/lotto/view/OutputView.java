@@ -17,12 +17,12 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void printPurchaseCount(LottoTicket lottoTicket) {
+    public static void printPurchasedCount(LottoTicket lottoTicket) {
         System.out.printf("%d개를 구매했습니다.", lottoTicket.getLottoCount());
         printNewLine();
     }
 
-    public static void printPurchaseLottoTickets(LottoTicket lottoTicket) {
+    public static void printPurchasedLottoTicket(LottoTicket lottoTicket) {
         StringBuilder lottoPrinter = new StringBuilder();
         lottoTicket.getLottoTicket().stream()
                 .forEach(lotto -> lottoPrinter.append(lotto).append("\n"));

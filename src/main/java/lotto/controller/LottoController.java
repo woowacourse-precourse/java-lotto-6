@@ -36,8 +36,8 @@ public class LottoController {
 
     private LottoTicket createLottoEqualTo(PurchasePrice purchasePrice) {
         LottoTicket lottoTicket = LottoTicket.of(purchasePrice, lottoNumberGenerator);
-        OutputView.printPurchaseCount(lottoTicket);
-        OutputView.printPurchaseLottoTickets(lottoTicket);
+        OutputView.printPurchasedCount(lottoTicket);
+        OutputView.printPurchasedLottoTicket(lottoTicket);
         return lottoTicket;
     }
 

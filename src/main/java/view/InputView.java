@@ -10,9 +10,9 @@ public class InputView {
         return userInput;
     }
 
-    public static String inputBonusCount() {
+    public static String inputNaturalNumber() {
         String userInput = readLine();
-        validateNumberInput(userInput);
+        validateNaturalNumberInput(userInput);
         return userInput;
     }
 
@@ -22,13 +22,13 @@ public class InputView {
         }
     }
 
-    private static void validateNumberInput(final String userInput) {
-        if (isNotNumber(userInput)) {
+    private static void validateNaturalNumberInput(final String userInput) {
+        if (isNotNaturalNumber(userInput)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT_ERROR.getMessage());
         }
     }
 
-    private static boolean isNotNumber(final String userInput) {
+    private static boolean isNotNaturalNumber(final String userInput) {
         return !userInput.matches("\\d+");
     }
 }

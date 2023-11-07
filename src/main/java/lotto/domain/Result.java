@@ -34,10 +34,15 @@ public class Result {
 
     public double getProfitRate(Integer purchaseAmount) {
         double totalProfit = 0;
+        totalProfit = getTotalProfit(totalProfit);
+        double profitRate = totalProfit / purchaseAmount * 100;
+        return profitRate;
+    }
+
+    private double getTotalProfit(double totalProfit) {
         for(Rank rank : Rank.values()) {
             totalProfit += (result.get(rank) * rank.getProfit());
         }
-        double profitRate = totalProfit / purchaseAmount * 100;
-        return profitRate;
+        return totalProfit;
     }
 }

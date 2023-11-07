@@ -2,13 +2,13 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-// 리팩터링 진행할 것
 public class Converter {
-    public static List<Integer> toIntegerList(String input) {
-        return Arrays.stream(input.trim().split(","))
-                .mapToInt(Integer::parseInt)
-                .boxed().toList();
+    public static List<Integer> toIntegerList(String string) {
+        return Arrays.stream(string.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
-

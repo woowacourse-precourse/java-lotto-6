@@ -1,6 +1,5 @@
 package lotto.dto;
 
-
 public class LottoResult {
 
     private int rank1;
@@ -12,8 +11,8 @@ public class LottoResult {
     public static class Builder {
         private int rank1;
         private int rank2;
-        private int rank4;
         private int rank3;
+        private int rank4;
         private int rank5;
 
         public Builder rank1(int rank1) {

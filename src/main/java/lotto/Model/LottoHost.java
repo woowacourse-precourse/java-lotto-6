@@ -15,7 +15,6 @@ public class LottoHost {
         validateLotto(numbers);
         AnswerLotto = new Lotto(numbers);
     }
-
     public void validateLotto(List<Integer> numbers){
         if(validateNumbersInRange(numbers)){
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
@@ -25,6 +24,9 @@ public class LottoHost {
         }
     }
 
+    public void initBonusNumber(Integer number){
+        bonusNumber = number;
+    }
     private boolean validateNumbersDuplicate(List<Integer> numbers){
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
@@ -37,13 +39,13 @@ public class LottoHost {
 
     private boolean validateNumbersInRange(List<Integer> numbers){
         for(Integer number:numbers){
-            if(isNumberOutRange(number))
+            if(validateNumberOutRange(number))
                 return true;
         }
         return false;
     }
 
-    private boolean isNumberOutRange(Integer number){
+    private boolean validateNumberOutRange(Integer number){
         return number < 1  || 35 < number;
     }
 

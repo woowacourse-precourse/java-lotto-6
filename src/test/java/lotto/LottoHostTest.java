@@ -49,4 +49,13 @@ public class LottoHostTest {
         Assertions.assertThatThrownBy(() -> testLottoHost.initAnswerLotto(testLottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints= {0,-9, 36,99})
+    public void 보너스_번호가_범위를_넘는_경우에_대한_예외처리(Integer numbers) {
+        LottoHost testLottoHost= new LottoHost();
+        Assertions.assertThatThrownBy(() -> testLottoHost.initBonusNumber(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
+    }
 }

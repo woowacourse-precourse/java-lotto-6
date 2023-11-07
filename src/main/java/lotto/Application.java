@@ -16,6 +16,16 @@ public class Application {
         return templist;
     }
 
+
+    public static boolean rangeCheck(List<Integer> winningNumber){
+        for(int i:winningNumber){
+            if(i > 45 && i < 1){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         // 로또 당첨 금액 ENUM
         enum LottoResult {
@@ -81,24 +91,53 @@ public class Application {
 
 
         // 입력 2. 쉼표 기준으로 구분해서 당첨 번호 입력 받기
-        Print.message(2);
-        List<Integer> winningNumber = convert(Get.winningNumber());
+        List<Integer> winningNumber = new ArrayList<>();
+        while(true){
+            Print.message(2);
+            winningNumber = convert(Get.winningNumber());
 
-        try {
-            //중복있거나 6자리 수 아니면 예외처리(, 체크는 나중에 추가)
-            Set<Integer> wnSet = new HashSet<>(winningNumber);
-            if( (wnSet.size()!= winningNumber.size()) || winningNumber.size() != 6){
-                throw new IllegalArgumentException();
+            try {
+                //중복있거나 6자리 수 아니면 예외처리(, 체크는 나중에 추가)
+                Set<Integer> wnSet = new HashSet<>(winningNumber);
+                if( wnSet.size()!= winningNumber.size()){
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 되지 않는 숫자로만 구성되어야 합니다.");
+                }
+                else if( winningNumber.size() != 6 ){
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리 숫자여야 합니다.");
+                }
+                else if(rangeCheck(winningNumber)){
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                else{
+                    break;
+                }
+
+
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
             }
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException();
+
         }
 
-
         //입력 3. 보너스 번호 입력 받기
-        Print.message(3);
-        int bonusNumber = Get.bonusNumber();
-
+        int bonusNumber = 0;
+        
+        while(true){
+            Print.message(3);
+            bonusNumber = Get.bonusNumber();
+            
+            //1~45 체크
+            try{
+                if(rangeCheck(winningNumber)){
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                else{
+                    break;
+                }
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         //게임 3. 당첨번호, 보너스번호와 구매한 로또번호 비교
         int correctCount = 0; // 일치하는 숫자 개수
@@ -139,9 +178,6 @@ public class Application {
         // 게임 4. 비교 결과에 따른 총 수익률 구하기
         float earningRate = ((float) totalReward / purchasePrice) * 100;
         Print.roundEarningRate(earningRate);
-
-
-
 
     }
 }

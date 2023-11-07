@@ -10,15 +10,15 @@ public class Lotteries {
 
     private final List<Lotto> lotteries;
 
-    private Lotteries(int purchaseCount, RandomNumberGenerator numberGenerator) {
+    private Lotteries(int purchaseCount, NumberGenerator numberGenerator) {
         this.lotteries = generateLotteries(purchaseCount, numberGenerator);
     }
 
-    public static Lotteries of(int purchaseCount, RandomNumberGenerator numberGenerator) {
+    public static Lotteries of(int purchaseCount, NumberGenerator numberGenerator) {
         return new Lotteries(purchaseCount, numberGenerator);
     }
 
-    private List<Lotto> generateLotteries(int purchaseCount, RandomNumberGenerator numberGenerator) {
+    private List<Lotto> generateLotteries(int purchaseCount, NumberGenerator numberGenerator) {
         List<Lotto> lottos = IntStream.range(0, purchaseCount)
                 .mapToObj(i -> new Lotto(generateLottoNumbers(numberGenerator)))
                 .collect(Collectors.toList());
@@ -26,7 +26,7 @@ public class Lotteries {
         return Collections.unmodifiableList(lottos);
     }
 
-    private List<Integer> generateLottoNumbers(RandomNumberGenerator numberGenerator) {
+    private List<Integer> generateLottoNumbers(NumberGenerator numberGenerator) {
         return numberGenerator.generateLottoNumbers().stream()
                 .sorted()
                 .collect(Collectors.toList());

@@ -43,6 +43,14 @@ class LottoTest {
                 .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
     }
 
+    @DisplayName("값이 유효할 경우 객체가 정상 생성된다.")
+    @Test
+    void createLottoByNormalValue() {
+        Lotto lotto = new Lotto(List.of(1,2,7,33,35,41));
+
+        assertThat(lotto).isNotNull();
+    }
+
     @DisplayName("동일한 번호의 숫자를 계산하여 출력하는지 확인한다.")
     @Test
     void printSameNumber() {

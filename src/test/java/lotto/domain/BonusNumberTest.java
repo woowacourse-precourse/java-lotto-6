@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -41,5 +42,12 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.of(bonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_SIZE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"11", "13", "44", "45"})
+    void 값이_유효하면_예외가_발생하지_않음(String bonusNumber) {
+        assertThatCode(() -> BonusNumber.of(bonusNumber, lotto))
+                .doesNotThrowAnyException();
     }
 }

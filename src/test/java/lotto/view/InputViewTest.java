@@ -30,16 +30,16 @@ class InputViewTest {
     @BeforeEach
     void setUp() {
         inputView = new InputView();
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
     }
 
     @AfterEach
     void closeConsole() {
         Console.close();
-        System.setOut(System.out);
     }
 
+    /**
+     * PurchaseAccount 로직 검증을 위한 테스트
+     */
     @DisplayName("구입 금액이 제대로 입력되는지 확인한다.")
     @Test
     void inputNormalAccount() {
@@ -47,7 +47,35 @@ class InputViewTest {
         System.setIn(createUserInput("8000"));
 
         // when, then
-        Assertions.assertThat(inputView.readPurchaseAccount()).isEqualTo(8000);
+        Assertions.assertThat(inputView.readPurchaseAmount()).isEqualTo(8000);
+    }
+
+    /**
+     * @DisplayName("구입 금액에 음수가 입력되면 예외 메시지가 출력된다")
+     *     @Test
+     *     void inputNegativeAccount() {
+     *         // given
+     *         System.setIn(createUserInput("-1000"));
+     *
+     *         // when
+     *         inputView.readPurchaseAmount();
+     *
+     *         // then
+     *         String consoleOutput = outputStream.toString();
+     *         assertThat(consoleOutput).contains(ErrorMessage.NEGATIVE_NUM_ERROR.getMessage());
+     *
+     *     }
+     */
+
+    @DisplayName("구입 금액에 음수가 입력되면 예외 메시지가 출력된다")
+    @Test
+    void inputNegativeAccount1() {
+        // given
+        System.setIn(createUserInput("-1000"));
+
+        // when, then
+        assertThatThrownBy(() -> inputView.readPurchaseAmount())
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입 금액에 음수가 입력되면 예외 메시지가 출력된다")
@@ -56,12 +84,9 @@ class InputViewTest {
         // given
         System.setIn(createUserInput("-1000"));
 
-        // when
-        inputView.readPurchaseAccount();
-
-        // then
-        String consoleOutput = outputStream.toString();
-        assertThat(consoleOutput).contains(ErrorMessage.NEGATIVE_NUM_ERROR.getMessage());
+        // when, then
+        assertThatThrownBy(() -> inputView.readPurchaseAmount())
+            .isInstanceOf(IllegalArgumentException.class);
 
     }
 
@@ -71,12 +96,9 @@ class InputViewTest {
         // given
         System.setIn(createUserInput("100a"));
 
-        // when
-        inputView.readPurchaseAccount();
-
-        // then
-        String consoleOutput = outputStream.toString();
-        assertThat(consoleOutput).contains(ErrorMessage.NUMBER_FORMAT_ERROR.getMessage());
+        // when, then
+        assertThatThrownBy(() -> inputView.readPurchaseAmount())
+            .isInstanceOf(NumberFormatException.class);
     }
 
     @DisplayName("구입 금액이 1000원을 넘지 않으면 예외가 발생한다")
@@ -85,12 +107,9 @@ class InputViewTest {
         // given
         System.setIn(createUserInput("100"));
 
-        // when
-        inputView.readPurchaseAccount();
-
-        // then
-        String consoleOutput = outputStream.toString();
-        assertThat(consoleOutput).contains(ErrorMessage.LESS_NUM_ERROR.getMessage());
+        // when, then
+        assertThatThrownBy(() -> inputView.readPurchaseAmount())
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입 금액이 1000원 단위로 입력되지 않으면 예외가 발생한다")
@@ -99,13 +118,17 @@ class InputViewTest {
         // given
         System.setIn(createUserInput("1234"));
 
-        // when
-        inputView.readPurchaseAccount();
-
-        // then
-        String consoleOutput = outputStream.toString();
-        assertThat(consoleOutput).contains(ACCOUNT_UNIT_ERROR.getMessage());
+        // when, then
+        assertThatThrownBy(() -> inputView.readPurchaseAmount())
+            .isInstanceOf(IllegalArgumentException.class);
     }
+
+    /**
+     *
+     * WinningNumbers 로직 검증을 위한 테스트
+     */
+    @DisplayName("")
+    @Test
 
 
     InputStream createUserInput(String input) {

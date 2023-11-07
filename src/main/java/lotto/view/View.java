@@ -89,11 +89,11 @@ public class View {
         String view = frontController.match("informPurchasedLottosNumbersMessage", model);
         List<String> messages = (List<String>) model.get("messages");
 
-        if (view != null)
-            redirect(view);
-
         if (messages != null)
             printMessage(messages);
+
+        if (view != null)
+            redirect(view);
     }
 
     public void redirect(String url) {
@@ -101,11 +101,11 @@ public class View {
         String view = frontController.match(url, model);
         List<String> messages = (List<String>) model.get("messages");
 
-        if (view != null)
-            redirect(view);
-
         if (messages != null)
             printMessage(messages);
+
+        if (view != null)
+            redirect(view);
     }
 
     private void printMessage(List<String> messages) {

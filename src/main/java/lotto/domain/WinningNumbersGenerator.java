@@ -15,33 +15,28 @@ public class WinningNumbersGenerator {
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
-    private String[] winningNumberInput;
 
     public void generateWinningNumbers(final String[] winningNumbersInput) {
-        this.setWinningNumberInput(winningNumbersInput);
-        this.validateEachWinningNumberInput();
-        this.validateDividedInput();
-        this.saveWinningNumbers();
+        validateEachWinningNumberInput(winningNumbersInput);
+        validateDividedInput(winningNumbersInput);
+        saveWinningNumbers(winningNumbersInput);
     }
 
-    public void setWinningNumberInput(final String[] winningNumbersInput) {
-        this.winningNumberInput = winningNumbersInput;
-    }
 
-    public void validateEachWinningNumberInput() {
-        if (this.winningNumberInput.length != NUM_COUNT) {
+    public void validateEachWinningNumberInput(final String[] winningNumbersInput) {
+        if (winningNumbersInput.length != NUM_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NOT_SIX_NUMBER.errorMessage);
         }
 
-        final Set<String> noDuplicatedInput = Arrays.stream(this.winningNumberInput)
+        final Set<String> noDuplicatedInput = Arrays.stream(winningNumbersInput)
                 .collect(Collectors.toSet());
         if (noDuplicatedInput.size() != NUM_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.errorMessage);
         }
     }
 
-    public void validateDividedInput() {
-        for (String winningNumberInput : this.winningNumberInput) {
+    public void validateDividedInput(final String[] winningNumbersInput) {
+        for (String winningNumberInput : winningNumbersInput) {
             int winningNumber = Integer.parseInt(winningNumberInput);
 
             if (winningNumber > END_NUM || winningNumber < START_NUM) {
@@ -51,13 +46,13 @@ public class WinningNumbersGenerator {
     }
 
 
-    public void saveWinningNumbers() {
-        this.winningNumbers = Arrays.stream(this.winningNumberInput).map(Integer::parseInt).toList();
+    public void saveWinningNumbers(final String[] winningNumbersInput) {
+        this.winningNumbers = Arrays.stream(winningNumbersInput).map(Integer::parseInt).toList();
     }
 
     public void generateBonusNumber(final int bonusNumberInput) {
-        this.saveBonusNumber(bonusNumberInput);
-        this.validateBonusNumber();
+        saveBonusNumber(bonusNumberInput);
+        validateBonusNumber();
     }
 
 

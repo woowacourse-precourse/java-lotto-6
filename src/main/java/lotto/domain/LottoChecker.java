@@ -30,20 +30,20 @@ public class LottoChecker {
 
     public void insertLottos(final List<Lotto> lottoPapers) {
         this.lottos = lottoPapers;
-        this.saveLottosResult();
-        this.calculateTotalPrize();
-        this.calculateProfitRate();
+        saveLottosResult();
+        calculateTotalPrize();
+        calculateProfitRate();
     }
 
     public void saveLottosResult() {
-        this.lottos.forEach(lotto -> {
+        lottos.forEach(lotto -> {
             long matches = this.checkWinningNumber(lotto);
             boolean isContainBonus = false;
             if (matches == 5L) {
                 isContainBonus = checkContainBonusNumber(lotto);
             }
             Prize prize = this.getPrize(matches, isContainBonus);
-            this.result.put(prize, this.result.get(prize) + 1);
+            result.put(prize, this.result.get(prize) + 1);
         });
     }
 
@@ -88,13 +88,13 @@ public class LottoChecker {
     }
 
     public void calculateTotalPrize() {
-        long totalPrize = this.result.keySet().stream().mapToLong(prize -> prize.money * this.result.get(prize)).sum();
+        long totalPrize = result.keySet().stream().mapToLong(prize -> prize.money * result.get(prize)).sum();
         this.totalPrize = totalPrize;
     }
 
     public void calculateProfitRate() {
-        if (this.totalPrize == 0) {
-            this.profitRate = "0.0";
+        if (totalPrize == 0) {
+            profitRate = "0.0";
             return ;
         }
         DecimalFormat decimalFormat = new DecimalFormat("#.0");

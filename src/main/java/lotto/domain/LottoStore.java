@@ -21,7 +21,7 @@ public class LottoStore {
 
     public void getMoney(final long moneyInput) {
         validateChargedMoney(moneyInput);
-        this.chargeMoney(moneyInput);
+        chargeMoney(moneyInput);
     }
 
 
@@ -39,8 +39,8 @@ public class LottoStore {
     }
 
     public void sellLottos(final Customer customer) {
-        this.calculateLottoAmount();
-        this.generateAllLottos();
+        calculateLottoAmount();
+        generateAllLottos();
         customer.getLotto(this.lottoPapers);
     }
 

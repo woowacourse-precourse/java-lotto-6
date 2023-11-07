@@ -32,4 +32,11 @@ public class InputView {
         }
         return numberList;
     }
+
+    public int readBonusNumber() {
+        String input = Console.readLine();
+        // validator.checkCanParseInt(input);
+        // validator.checkIsNotBlank(input);
+        return Integer.parseInt(input);
+    }
 }

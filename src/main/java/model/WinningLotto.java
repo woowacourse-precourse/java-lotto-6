@@ -38,12 +38,13 @@ public class WinningLotto {
   public void validateNumbers(List<Integer> numbers) {
     validateNumbersRange(numbers);
     validateSize(numbers);
+    validateNumbersDuplicated(numbers);
   }
 
   // bonusNumber 검증 로직
   public void validateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
     checkNumberRange(bonusNumber);
-    validateDuplicated(numbers, bonusNumber);
+    validateNumbersBonusNumbersDuplicated(numbers, bonusNumber);
   }
 
 
@@ -70,8 +71,20 @@ public class WinningLotto {
     }
   }
 
-  // 로또 번호와 보너스 숫자가 중복인지 검증한다.
-  public void validateDuplicated(List<Integer> numbers, Integer bonusNumber) {
+  // 로또 번호가 중복인지 검증한다.
+  public void validateNumbersDuplicated(List<Integer> numbers) {
+    Set<Integer> duplicatedChecker = new HashSet<>();
+    for(Integer number : numbers) {
+      duplicatedChecker.add(number);
+    }
+    if(duplicatedChecker.size() != 6) {
+      printError.numberDuplicatedMessage();
+      throw new IllegalArgumentException();
+    }
+  }
+
+  // 로또 번호와 보너스 번호가 중복인지 검증한다.
+  public void validateNumbersBonusNumbersDuplicated(List<Integer> numbers, Integer bonusNumber) {
     Set<Integer> duplicateChecker = new HashSet<>();
     for(Integer number : numbers) {
       duplicateChecker.add(number);
@@ -79,7 +92,7 @@ public class WinningLotto {
     duplicateChecker.add(bonusNumber);
 
     if(duplicateChecker.size() != 7) {
-      printError.numberDuplicatedMessage();
+      printError.numberBonusNumberDuplicatedMessage();
       throw new IllegalArgumentException();
     }
   }

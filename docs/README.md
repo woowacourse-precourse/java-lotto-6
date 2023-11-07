@@ -25,13 +25,13 @@
 
 ### WinningLotto.class  
 
+* [x] 당첨 번호의 모든 검증 로직을 수행한다. - validateNumbers()
+* [x] 보너스 번호의 모든 검증 로직을 수행한다. - validateBonusNumber()
 * [x] 당첨 번호와 숫자 범위는 1~45까지이다. - validateNumberRange()
-* [x] 당첨 번호의 검증을 수행한다 - validateNumbers()
-* [x] 보너스 번호의 검증을 수행한다. - validateBonusNumber()
-* [x] 당첨 번호가 1~45인지 확인한다. - validateNumbersRange()
 * [x] 번호 중 하나의 숫자 범위가 1~45인지 확인한다. - checkNumberRange()
 * [x] 당첨 번호는 6개의 숫자를 뽑고 보너스 번호는 1개의 숫자를 뽑는다. - validateSize()
-* [x] 당첨 번호, 보너스 번호는 중복되지 않아야 한다. - validateDuplicated()
+* [x] 당첨 번호가 중복인지 검증한다. - validateNumbersDuplicated()
+* [x] 당첨 번호와 보너스 번호가 중복인지 검증한다. - validateNumbersBonusNumbersDuplicated()
 * [x] 당첨 번호를 정렬한다. - sortNumbers()
 
 ### Grader.class

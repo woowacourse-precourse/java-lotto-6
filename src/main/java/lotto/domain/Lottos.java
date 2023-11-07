@@ -12,4 +12,12 @@ public class Lottos {
     public void add(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public Integer getTotalReward(WinningNumber winningNumber, Integer bonus) {
+        int totalReward = 0;
+        for (Lotto lotto : lottos) {
+            totalReward += lotto.checkReward(winningNumber, bonus).getValue();
+        }
+        return totalReward;
+    }
 }

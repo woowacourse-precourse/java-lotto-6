@@ -17,14 +17,14 @@ public class SystemInput {
 
     public static void validateNone(String purchase) {
         if (purchase.length() == 0) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException("입력된 값이 없습니다. 다시 입력해주세요.");
         }
     }
 
     public static void validateDivision(String purchase) {
         int money = Integer.parseInt(purchase);
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000으로 나눠 떨어져야 합니다.");
+            throw new IllegalArgumentException("금액은 1000으로 나눠 떨어져야 합니다.");
         }
     }
 
@@ -39,6 +39,7 @@ public class SystemInput {
         validateCorrectInput(pickLotto);
         validateString(pickLotto);
         validateNone(pickLotto);
+
     }
 
     public static void validateCorrectInput(String pickLotto) {
@@ -46,18 +47,18 @@ public class SystemInput {
         char firstChar = pickLotto.charAt(0);
 
         if(lastChar == ",".charAt(0)){
-            throw new IllegalArgumentException("[ERROR] 입력 값이 잘 못 되었습니다. 다시 입력해주세요!");
+            throw new IllegalArgumentException("입력 값이 잘 못 되었습니다. 다시 입력해주세요!");
         }
         if (pickLotto.contains(",,") || firstChar == ",".charAt(0)){
-            throw new IllegalArgumentException("[ERROR] 입력 값이 잘 못 되었습니다. 다시 입력해주세요!");
+            throw new IllegalArgumentException("입력 값이 잘 못 되었습니다. 다시 입력해주세요!");
         }
 
     }
 
     public static void validateString(String pickLotto) {
-        String PATTERN = "^[0-9,]+$";
-        if (pickLotto.matches(PATTERN)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자 형식입니다. 다시 입력해주세요!");
+        String PATTERN = ".*\\d.*";
+        if (!pickLotto.matches(PATTERN)) {
+            throw new IllegalArgumentException("로또 번호는 숫자 형식입니다. 다시 입력해주세요!");
         }
 
     }
@@ -76,9 +77,9 @@ public class SystemInput {
     }
 
     public static void validateBonusNum(String pickBonus) {
-        String PATTERN = "^[0-9,]+$";
-        if (pickBonus.matches(PATTERN)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자 형식입니다. 다시 입력해주세요!");
+        String PATTERN = ".*\\d.*";
+        if (!pickBonus.matches(PATTERN)) {
+            throw new IllegalArgumentException("보너스 번호는 숫자 형식입니다. 다시 입력해주세요!");
         }
     }
 

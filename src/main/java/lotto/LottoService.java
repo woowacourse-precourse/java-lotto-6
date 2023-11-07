@@ -67,24 +67,24 @@ public class LottoService {
         }
     }
 
-    private void validateOneNumber(String input) {
+    public void validateOneNumber(String input) {
         containsNonNumericCharacters(input);
         isNumberOverLimit(input);
     }
 
-    private void containsNonNumericCharacters(String input) {
+    public void containsNonNumericCharacters(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());
         }
     }
 
-    private void isPurchaseAmountDivideBy1000(String input) {
+    public void isPurchaseAmountDivideBy1000(String input) {
         if (Integer.parseInt(input)% PURCHASE_STANDARD > 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_NOT_DIVIDE_BY_1000.getMessage());
         }
     }
 
-    private void isNumberOverLimit(String input) {
+    public void isNumberOverLimit(String input) {
         if (Integer.parseInt(input) > LIMIT_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OVER_LIMIT.getMessage());
         }

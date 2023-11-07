@@ -119,7 +119,8 @@ public class LottoGameController {
         try {
             validateNumber(bonus);
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR]로또 번호는 1~45 사이의 숫자입니다.");
+
+            view.printRangeError();
         }
 
         return bonus;
@@ -148,7 +149,8 @@ public class LottoGameController {
             validateWinningNumbers(winningNumbers);
 
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR]당첨 번호는 6개이며 1~45 사이의 숫자입니다.");
+
+            view.printWinningNumberError();
         }
 
         return winningNumbers;

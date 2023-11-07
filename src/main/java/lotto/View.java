@@ -41,6 +41,19 @@ public class View {
         System.out.println(ErrorMessage);
     }
 
+    void printRangeError(){
+
+
+        String errorMessage = "[ERROR]로또 번호는 1~45 사이의 숫자입니다.";
+        System.out.println(errorMessage);
+    }
+
+    void printWinningNumberError(){
+
+        String errorMessage = "[ERROR]당첨 번호는 6개이며 1~45 사이의 숫자입니다.";
+        System.out.println(errorMessage);
+
+    }
     void printWinStat(LottoGame lottoGame, User user){
 
         System.out.println("당첨 통계");

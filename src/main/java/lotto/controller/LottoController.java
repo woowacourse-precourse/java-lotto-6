@@ -11,8 +11,9 @@ import lotto.exception.*;
 public class LottoController {
 
     static String[] strTotalWinningNumbers;
-    static ArrayList<Integer> totalWinningNumbers=new ArrayList<>();;
-    static int bonusNumber;
+    public static ArrayList<Integer> totalWinningNumbers=new ArrayList<>();;
+    public static List<Lotto> lottoList;
+    public static int bonusNumber;
     public int processInputPurchaseAmount() {
         int price;
 
@@ -32,7 +33,7 @@ public class LottoController {
 
     public void processCreateLotto(int price){
         // 구매한 개수 및 로또번호 리스트 출력
-        List<Lotto> lottoList = createLottoList(price);
+        lottoList = createLottoList(price);
         printPurchaseResult(lottoList);
     }
 
@@ -54,7 +55,6 @@ public class LottoController {
     }
 
     public void processInputBonusNumber(){
-
         // validate 후 totalWinningNumbers에 문자열(숫자)를 정수형(숫자로) 바꿀 것
         String inputBonusNumber;
         while (true) {
@@ -76,6 +76,31 @@ public class LottoController {
         for (String eachNumber : strTotalWinningNumbers) {
             totalWinningNumbers.add(Integer.parseInt(eachNumber));
         }
+    }
+
+    public void processCheckWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int[] rankCounts = new int[WinningRank.values().length];
+
+        for (Lotto lotto : lottos) {
+            int matchingCount = countMatchingNumbers(lotto, winningNumbers);
+            boolean hasBonusNumber = hasBonusNumber(lotto, bonusNumber);
+
+            WinningRank rank = WinningRank.calculateRank(matchingCount, hasBonusNumber);
+
+            rankCounts[rank.ordinal()]++;
+        }
+
+        printWinningResults(rankCounts);
+    }
+
+    private int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
 }

@@ -80,4 +80,50 @@ public class Lotto {
             }
         }
     }
+
+    public enum WinningRank {
+        FIRST(6, 2000000000),
+        SECOND(5, 30000000),
+        THIRD(5, 1_500_000),
+        FOURTH(4, 50_000),
+        FIFTH(3, 5_000),
+        NONE(0,0);
+        private final int matchingCount;
+        private final int prize;
+
+        WinningRank(int matchingCount, int prize) {
+            this.matchingCount = matchingCount;
+            this.prize = prize;
+        }
+
+        public int getMatchingCount() {
+            return matchingCount;
+        }
+
+        public int getPrize() {
+            return prize;
+        }
+
+
+        public static WinningRank calculateRank(int matchingCount, boolean hasBonusNumber) {
+            if (matchingCount == 6) {
+                return FIRST;
+            }
+            if (matchingCount == 5) {
+                if (hasBonusNumber) {
+                    return SECOND;
+                }
+                return THIRD;
+            }
+            if (matchingCount == 4) {
+                return FOURTH;
+            }
+            if (matchingCount == 3) {
+                return FIFTH;
+            }
+            return NONE;
+        }
+
+    }
+
 }

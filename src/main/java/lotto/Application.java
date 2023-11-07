@@ -1,8 +1,9 @@
 package lotto;
 
+import static lotto.controller.LottoController.*;
+
 import lotto.controller.LottoController;
 import lotto.model.Lotto;
-
 public class Application {
     public static void main(String[] args) {
 
@@ -11,5 +12,6 @@ public class Application {
         lottoController.processCreateLotto(price);
         lottoController.processInputWinningNumber();
         lottoController.processInputBonusNumber();
+        lottoController.processCheckWinningNumbers(lottoList,totalWinningNumbers,bonusNumber);
     }
 }

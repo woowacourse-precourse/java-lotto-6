@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.domain.LottoPrice;
 import lotto.domain.Lottos;
+import lotto.domain.MatchNumber;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -18,6 +20,7 @@ public class LottoController {
     public void run(){
         LottoPrice lottoPrice = new LottoPrice(userInput());
         drawLottoNumbers(lottoPrice);
+        MatchNumber matchNumber = new MatchNumber(userInput());
     }
     public void drawLottoNumbers(LottoPrice lottoPrice){
         int numberOfLotto = countLotto(lottoPrice);

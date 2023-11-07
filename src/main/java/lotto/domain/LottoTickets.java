@@ -15,15 +15,15 @@ public class LottoTickets {
              throw new IllegalArgumentException(ExceptionMessage.inputPurchaseAmountError.getErrorMessage());
         }
 
-        LottoTickets.lottoTickets = putBuyLottoTickets(purchaseAmount);
+        lottoTickets = putBuyLottoTickets(purchaseAmount);
     }
 
     public static int getBuyLottoTicketsNum(){
-        return LottoTickets.lottoTickets.size();
+        return lottoTickets.size();
     }
 
     public static List<Lotto> getBuyLottoTickets(){
-        return LottoTickets.lottoTickets;
+        return lottoTickets;
     }
 
     private static List<Lotto> putBuyLottoTickets(long purchaseAmount){

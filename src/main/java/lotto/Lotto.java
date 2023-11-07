@@ -26,16 +26,15 @@ public class Lotto {
         return numbers.toString();
     }
 
-    //테스트코드에서 써보기
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void CheckDuplicateNumber(List<Integer> numbers){
+    private void CheckDuplicateNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if(uniqueNumbers.size() != numbers.size()){
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }
@@ -50,9 +49,8 @@ public class Lotto {
         return lottos;
     }
 
-    static int countWinningNumberInLotto(List<Integer> winningNumber, Lotto lotto){
+    static int countWinningNumberInLotto(List<Integer> winningNumber, Lotto lotto) {
         int count = 0;
-        //만약 당첨번호가 로또 안에 있다면 + 1
         for (int i = 0; i < 6; i++) {
             if (checkLottoNumberInWinningNumber(winningNumber, lotto.getNumbers().get(i))) {
                 count += 1;
@@ -64,19 +62,15 @@ public class Lotto {
     //메서드 분리
     static Rank judgeLottoRank(List<Integer> winningNumber, Lotto lotto, int bonusNumber) {
         int count = countWinningNumberInLotto(winningNumber, lotto);
-        if (count >= 0 && count < 3) {
+        if (count >= 0 && count < 3)
             return Rank.NOT;
-        }
-        if (count == 3) {
+        if (count == 3)
             return Rank.FIFTH;
-        }
-        if (count == 4) {
+        if (count == 4)
             return Rank.FOURTH;
-        }
         if (count == 5) {
-            if (isBonusNumberInLotto(lotto, bonusNumber)) {
+            if (isBonusNumberInLotto(lotto, bonusNumber))
                 return Rank.SECOND;
-            }
             return Rank.THIRD;
         }
         return Rank.FIRST;

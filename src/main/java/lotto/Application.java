@@ -10,14 +10,12 @@ public class Application {
 
     static Map<Rank, Integer> createLottoRanksMap(List<Integer> winningNumber, List<Lotto> lottos, int bonusNumber) {
         Map<Rank, Integer> lottoRanks = new HashMap<>();
-        //map 초기화
         lottoRanks.put(Rank.NOT, 0);
         lottoRanks.put(Rank.FIFTH, 0);
         lottoRanks.put(Rank.FOURTH, 0);
         lottoRanks.put(Rank.THIRD, 0);
         lottoRanks.put(Rank.SECOND, 0);
         lottoRanks.put(Rank.FIRST, 0);
-
         for (int i = 0; i < lottos.size(); i++) {
             Rank rank = Lotto.judgeLottoRank(winningNumber, lottos.get(i), bonusNumber);
             lottoRanks.put(rank, lottoRanks.get(rank) + 1);
@@ -46,6 +44,7 @@ public class Application {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             long purchaseAmount = Integer.parseInt(Console.readLine());
+            System.out.println(String.format("%d개를 구매했습니다.", purchaseAmount / 1000));
             if (purchaseAmount % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
             }
@@ -55,28 +54,30 @@ public class Application {
         }
     }
 
+    static List<Integer> getWinningNumber() {
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            List<String> winningNumberOfString = List.of(Console.readLine().split(","));
+            List<Integer> winningNumber = new ArrayList<>();
+            for (int i = 0; i < 6; i++) {
+                winningNumber.add(Integer.parseInt(winningNumberOfString.get(i)));
+            }
+            System.out.println(winningNumber);
+            return winningNumber;
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 숫자가 포함되어야 합니다.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 6개여야 합니다.");
+        }
+    }
+
     public static void game() {
         long purchaseAmount = getPurchaseAmount();
 
-        //1000의 배수라면 구입한 로또의 개수 출력
-        System.out.println(String.format("%d개를 구매했습니다.", purchaseAmount / 1000));
-        //로또 생성 + 출력
         List<Lotto> lottos = Lotto.createLottos(purchaseAmount / 1000);
 
-        //당첨 번호 입력 받기
-        // ,로 분리되지 않는 경우
-        // 문자만 입력한 경우
-        // 6개의 수를 입력하지 않은 경우
+        List<Integer> winningNumber = getWinningNumber();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<String> winningNumberOfString = List.of(Console.readLine().split(","));
-        List<Integer> winningNumber = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            winningNumber.add(Integer.parseInt(winningNumberOfString.get(i)));
-        }
-        System.out.println(winningNumber);
-
-        //보너스 번호 입력 받기
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println(bonusNumber);
@@ -85,7 +86,6 @@ public class Application {
 
         double rateOfReturn = computeRateOfReturn(lottoRanks, purchaseAmount);
 
-        //당첨 통계 출력
         printResult(lottoRanks, rateOfReturn);
     }
 

@@ -3,23 +3,22 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.List;
+import lotto.data.Amount;
 import lotto.data.Lotto;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
-import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
 public class LottoPurchaseInput {
-    public static BigDecimal inputPurchaseAmount(BigDecimal lottoPrice) {
+    public static Amount inputPurchaseAmount(BigDecimal lottoPrice) {
         try {
             OutputMessage.ASK_PURCHASE_AMOUNT.printMessage();
             String input = Console.readLine().trim();
 
             validate(input);
             Util.validateNumber(input);
-            LottoUtil.validatePurchaseAmount(new BigDecimal(input), lottoPrice);
 
-            return new BigDecimal(input);
+            return new Amount(input, lottoPrice);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPurchaseAmount(lottoPrice);

@@ -23,10 +23,5 @@ public class LottoUtil {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    public static void validatePurchaseAmount(BigDecimal purchaseAmount, BigDecimal lottoPrice) {
-        if (purchaseAmount.compareTo(lottoPrice) < 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_IS_LESS_THAN_LOTTO_PRICE.getMessage());
-        }
-        Util.validateMultiplesOf(purchaseAmount, lottoPrice);
-    }
+
 }

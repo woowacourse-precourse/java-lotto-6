@@ -41,13 +41,13 @@ public class LottoValidator {
         validateNumbersDuplication(numbers);
     }
 
-    private static void validateNumbersCount(List<Integer> numbers) {
+    public static void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(WINNING_NUMBER_COUNT_EXCEPTION_MESSAGE.toString());
         }
     }
 
-    private static void validateNumbersRange(List<Integer> numbers) {
+    public static void validateNumbersRange(List<Integer> numbers) {
         numbers.forEach(LottoValidator::validateNumberRange);
     }
 
@@ -57,7 +57,7 @@ public class LottoValidator {
         }
     }
 
-    private static void validateNumbersDuplication(List<Integer> numbers) {
+    public static void validateNumbersDuplication(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (set.contains(number)) {

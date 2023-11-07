@@ -34,7 +34,16 @@ public class UserView {
         System.out.println("총 수익률은 " + winningRate + "%입니다.");
     }
 
-    public void winnings(HashMap<Rewards, Integer> resultAll) {
+    public void winnings() {
+        boolean state = STATE_INIT;
+        while (state == STATE_SUCESS) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String inputWinnings = Console.readLine();
+            state = viewProcessor.winnings(inputWinnings);
+        }
+    }
+
+    public void winningsLog(HashMap<Rewards, Integer> resultAll) {
         Rewards[] rewards = Rewards.values();
         Arrays.sort(rewards, Comparator.comparingInt(Rewards::correctLottos));
         System.out.println();

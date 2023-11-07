@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 import lotto.config.LottoConfig;
 
 public class LottoMachine {
@@ -18,12 +17,13 @@ public class LottoMachine {
         return lottoNumbers;
     }
 
-    public static int checkGenerateLimit(int amount){
+    private static int checkGenerateLimit(int amount){
         return amount / LottoConfig.LOTTO_LEAST_AMOUNT.getValue();
     }
 
-    public static List<Integer> generateLottoTickets(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private static List<Integer> generateLottoTickets(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConfig.LOTTO_START_NUMBER.getValue(),
+                LottoConfig.LOTTO_LAST_NUMBER.getValue(), LottoConfig.LOTTO_LENGTH.getValue());
         return numbers;
     }
 }

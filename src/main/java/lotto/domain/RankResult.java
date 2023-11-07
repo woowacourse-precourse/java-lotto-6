@@ -13,7 +13,7 @@ public class RankResult {
                 .forEach(rank -> rankResult.put(rank, 0));
     }
 
-    public void calculateRankResult(WinningNumber winningNumber, Lottos lottos) {
+    public void calcRankResult(WinningNumber winningNumber, Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             Rank rank = Rank.calculate(lotto.getMatchLottoNumber(winningNumber),
                     lotto.isContain(winningNumber.getBonusNumber()));

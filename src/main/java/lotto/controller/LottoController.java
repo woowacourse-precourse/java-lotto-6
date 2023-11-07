@@ -43,7 +43,7 @@ public class LottoController {
     }
 
     private void calcLottoResult(RankResult rankResult, WinningNumber winningNumber, Lottos lottos) {
-        rankResult.calculateRankResult(winningNumber, lottos);
+        rankResult.calcRankResult(winningNumber, lottos);
     }
 
     private Rate getRate(Money money, RankResult rankResult) {

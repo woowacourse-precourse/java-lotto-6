@@ -6,4 +6,5 @@ public class Constant {
     public static final Integer LOTTO_NUMBER_COUNT = 6;
     public static final Integer MINIMUM_LOTTO_PRICE_UNIT = 1000;
     public static final String DELIMITER = ",";
+    public static final String WHITESPACE_REGEX = "\\s";
 }

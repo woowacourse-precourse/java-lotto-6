@@ -1,7 +1,9 @@
 package View;
 
 import static lotto.Constant.DELIMITER;
+import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
 import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
+import static lotto.Constant.WHITESPACE_REGEX;
 import static lotto.ErrorMessage.CONTAINS_WHITESPACE;
 import static lotto.ErrorMessage.ENDS_WITH_DELIMITER;
 import static lotto.ErrorMessage.INVALID_NUMBER_FORMAT;
@@ -17,6 +19,8 @@ import lotto.Lotto;
 import lotto.WinningNumbers;
 
 public class InputView {
+
+    private static final Integer ZERO_REMAINDER = 0;
 
     public int askPurchaseAmount() {
         while (true) {
@@ -56,7 +60,7 @@ public class InputView {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String numbers = Console.readLine();
                 validateNumbers(numbers);
-                return new Lotto(Stream.of(numbers.split(","))
+                return new Lotto(Stream.of(numbers.split(DELIMITER))
                         .map(Integer::parseInt)
                         .toList());
             } catch (IllegalArgumentException e) {
@@ -90,7 +94,7 @@ public class InputView {
     }
 
     private boolean containsWhitespace(String input) {
-        Pattern pattern = Pattern.compile("\\s");
+        Pattern pattern = Pattern.compile(WHITESPACE_REGEX);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }
@@ -105,14 +109,14 @@ public class InputView {
 
     private void validateInputIsPositiveNumber(String input) {
         int purchaseAmount = Integer.parseInt(input);
-        if (purchaseAmount < 1) {
+        if (purchaseAmount < MINIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER);
         }
     }
 
     private void validateInputIsMultipleOfThousand(String input) {
         int purchaseAmount = Integer.parseInt(input);
-        if (purchaseAmount % MINIMUM_LOTTO_PRICE_UNIT != 0) {
+        if (purchaseAmount % MINIMUM_LOTTO_PRICE_UNIT != ZERO_REMAINDER) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }

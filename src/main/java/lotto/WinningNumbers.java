@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
 import static lotto.ErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
@@ -25,7 +27,7 @@ public record WinningNumbers(Lotto winningLotto, int bonusNumber) {
     }
 
     private void validateNumberInRange(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }

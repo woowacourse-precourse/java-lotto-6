@@ -2,14 +2,12 @@ package lotto.validation;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningNumberValidatorTest {
-    
+
     @Test
     @DisplayName("당첨 번호에 쉼표가 포함할 경우 예외를 발생시키지 않는다.")
     void notThrowExceptionWinningNumbersContainLestDelimiter() {

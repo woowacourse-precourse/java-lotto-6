@@ -41,7 +41,7 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> issueLottos(int issueCount){
+  //  private List<Lotto> issueLottos(int issueCount){
 //        List<Lotto> lottos = new ArrayList<>();
 //
 //        for(int i=0; i<issueCount; i++){
@@ -53,7 +53,7 @@ public class LottoController {
 //            lottos.add(new Lotto(numbers));
 //        }
 //        return lottos;
-    }
+ //   }
 
     private void printPublishedLottos(){
         System.out.println();

@@ -20,11 +20,11 @@ public class Lottos {
     }
 
     private Lotto createLotto(){
-        List<Integer> numbers = RandomNumberGenerator.create(
+        List<Integer> notDuplecateNumbers = RandomNumberGenerator.create(
                 LottoConfig.NUM_COUNT.getValue(),
                 LottoConfig.START_INCLUSIVE.getValue(),
                 LottoConfig.END_INCLUSIVE.getValue()
         );
-        return new Lotto(numbers);
+        return new Lotto(notDuplecateNumbers);
     }
 }

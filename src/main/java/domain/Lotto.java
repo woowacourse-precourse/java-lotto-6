@@ -1,5 +1,7 @@
 package domain;
 
+import validator.LottoValidator;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -13,15 +15,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        List<Integer> copyNums = new ArrayList<>();
-
-        // 중복 예외 처리
-        if(!numbers.stream().allMatch(num-> !copyNums.contains(num) && copyNums.add(num))){
-            throw new IllegalArgumentException();
-        }
+        LottoValidator.validSize(numbers);
+        LottoValidator.validDuplcate(numbers);
+        LottoValidator.validRange(numbers);
     }
 
     @Override

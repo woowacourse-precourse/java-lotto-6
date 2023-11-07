@@ -21,7 +21,7 @@ class UserInputServiceTest extends NsTest {
 
     @DisplayName("입력한 로또 번호가 숫자가 아니면 예외 처리")
     @Test
-    void createLottoByInvalidRange() {
+    void createLottoByNoNumber() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6k");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -30,7 +30,7 @@ class UserInputServiceTest extends NsTest {
 
     @DisplayName("입력한 보너스 번호가 숫자가 아니면 예외 처리")
     @Test
-    void createLottoByDuplicate() {
+    void createBonusNumberByNoNumber() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6", "7k");
             assertThat(output()).contains(ERROR_MESSAGE);

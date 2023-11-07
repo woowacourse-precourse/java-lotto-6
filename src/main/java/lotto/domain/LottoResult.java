@@ -33,5 +33,17 @@ public class LottoResult {
         result.computeIfPresent(lottoRank, (LottoRank key, Integer value) -> ++value);
     }
 
+    public double calculateTotalReturn(Money money) {
+        return ((double) sumOrPrizeAmount() / money.getMoney()) * 100;
+    }
 
+    private int sumOrPrizeAmount() {
+        return result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().calculatePrizeAmount(entry.getValue()))
+                .sum();
+    }
+
+    public Map<LottoRank, Integer> getResult() {
+        return result;
+    }
 }

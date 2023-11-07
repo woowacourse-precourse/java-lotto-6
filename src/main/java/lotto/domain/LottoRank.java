@@ -28,5 +28,9 @@ public enum LottoRank {
                 .orElse(NOTHING);
     }
 
+    public int calculatePrizeAmount(int count) {
+        return this.prizeAmount * count;
+    }
+
 
 }

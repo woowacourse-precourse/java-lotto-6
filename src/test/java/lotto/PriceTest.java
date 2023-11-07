@@ -87,11 +87,23 @@ public class PriceTest {
 
     @DisplayName("당첨금액에 따라 수익률이 만들어지는지 테스트")
     @Test
-    void makeWinningRate() {
+    void makeWinningRate1() {
         int totalWinningPrize = 5000;
 
         double actualWinningRate = price.makeWinningRate(totalWinningPrize);
-        double expectedWinningRate = 62.5d;
+        double expectedWinningRate = 62.5f;
+
+        assertThat(actualWinningRate).isEqualTo(expectedWinningRate);
+    }
+
+    @DisplayName("당첨금액에 따라 수익률이 만들어지는지 테스트")
+    @Test
+    void makeWinningRate2() {
+        price = new Price("3000");
+        int totalWinningPrize = 5000;
+
+        double actualWinningRate = price.makeWinningRate(totalWinningPrize);
+        double expectedWinningRate = 166.7d;
 
         assertThat(actualWinningRate).isEqualTo(expectedWinningRate);
     }

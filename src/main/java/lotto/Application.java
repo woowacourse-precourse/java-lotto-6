@@ -48,6 +48,17 @@ public class Application {
 	}
 	
 	private void createLotto() {
+		for (int i=0; i<lottoCnt; i++) {
+			makeNumbers();
+		}
+		printNumbers();
+	}
+	
+	private void makeNumbers() {
+		
+	}
+	
+	private void printNumbers() {
 		
 	}
 	

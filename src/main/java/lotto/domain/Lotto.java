@@ -10,8 +10,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplication(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers); // ArrayList로 복사
+        Collections.sort(this.numbers); // 정렬
     }
 
     private void validate(List<Integer> numbers) {

@@ -22,7 +22,6 @@ public class LottoMachine {
         buyLotto();
         drawLottoNumber();
         drawWinningNumber();
-        drawBonusNumber();
         getWinningStatistics();
     }
 
@@ -40,18 +39,11 @@ public class LottoMachine {
 
     public void drawWinningNumber() {
         inputView.inputWinningNumber();
-    }
-
-    public void drawBonusNumber() {
         inputView.inputBonusNumber();
     }
 
     public void getWinningStatistics() {
-        Message.WINNING_STATISTICS.getMessage();
-        System.out.println("---");
         compareLottoTicket();
-        calculate.settingTotalPrize();
-        calculate.settingTotalProfit();
         outputView.printWinningStatistics(result.getWinningCount());
         outputView.printTotalProfit();
     }
@@ -60,6 +52,8 @@ public class LottoMachine {
         for (Lotto lotto : result.getLottoTicket()) {
             compareNumber(lotto.getNumbers(), user.getWinningNumber().getNumbers());
         }
+        calculate.settingTotalPrize();
+        calculate.settingTotalProfit();
     }
 
     public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {

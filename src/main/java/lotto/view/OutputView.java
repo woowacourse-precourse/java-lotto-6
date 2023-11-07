@@ -32,6 +32,8 @@ public class OutputView {
     }
 
     public void printWinningStatistics(HashMap<Integer, Integer> winningCount) {
+        Message.WINNING_STATISTICS.getMessage();
+        System.out.println("---");
         for (LottoRank lottoRank : LottoRank.values()) {
             int rankCount = getRankCount(lottoRank.getRank(), winningCount);
             printWinningResult(lottoRank, rankCount);

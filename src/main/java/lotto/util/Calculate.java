@@ -1,6 +1,5 @@
 package lotto.util;
 
-import java.util.HashMap;
 import lotto.enums.LottoRank;
 import lotto.model.Result;
 import lotto.model.User;
@@ -8,6 +7,7 @@ import lotto.model.User;
 public class Calculate {
     User user = new User();
     Result result = new Result();
+
     public void settingLottoTicketCount() {
         user.setLottoTicketCount(user.getPaymentAmount() / 1000);
     }
@@ -26,7 +26,6 @@ public class Calculate {
         }
         return rankCount;
     }
-
 
     public void settingTotalProfit() {
         double TotalProfit = ((double) result.getTotalPrize() / user.getPaymentAmount()) * 100;

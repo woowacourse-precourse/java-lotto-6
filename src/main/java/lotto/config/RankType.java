@@ -1,4 +1,4 @@
-package lotto;
+package lotto.config;
 
 import java.util.Arrays;
 

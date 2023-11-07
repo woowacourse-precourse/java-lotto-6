@@ -9,7 +9,7 @@ import static lotto.view.message.SystemMessage.OUTPUT_RATE_OF_RETURN;
 import static lotto.view.message.SystemMessage.OUTPUT_RESULT;
 
 import java.util.HashMap;
-import lotto.RankType;
+import lotto.config.RankType;
 import lotto.domain.Referee;
 import lotto.domain.Win;
 import lotto.validator.PurchaseAmountValidator;

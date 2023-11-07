@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.List;
-import lotto.RankType;
+import lotto.config.RankType;
 
 public class Referee {
     private final HashMap<Integer, Integer> result;

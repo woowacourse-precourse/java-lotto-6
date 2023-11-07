@@ -22,12 +22,4 @@ public class LottoRepository {
     }
 
 
-
-    //    public Lotto findById(Long id) {
-//        return lotteries.get(id);
-//    }
-
-//    public ArrayList<Lotto> findAll() {
-//        return new ArrayList<>(lotteries.values());
-//    }
 }

@@ -22,10 +22,6 @@ public class Lotto {
         validator.isValidLength(numbers);
         validator.isDuplicateNumberInList(numbers);
         validator.isValidRangeNumberInList(numbers);
-
-//        if (numbers.size() != 6) {
-//            throw new IllegalArgumentException();
-//        }
     }
 
     // TODO: 추가 기능 구현

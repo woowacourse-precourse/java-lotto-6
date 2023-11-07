@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserRepository {
-
     private Long id = 0L;
     private final Map<Long, User> users = new HashMap<>();
 

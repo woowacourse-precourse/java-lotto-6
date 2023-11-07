@@ -15,13 +15,6 @@ public class Validator {
 
     private static final int DIVISOR = 1000;
 
-
-
-
-    public void isValidNumberAmount(String amount){
-        isNumberCharInteger(amount);
-    }
-
     public List<Integer> isValidWinningNumbers(List<Integer> winningNumbers){
         isValidLength(winningNumbers);
         isDuplicateNumberInList(winningNumbers);
@@ -63,15 +56,6 @@ public class Validator {
         }
     }
 
-//    public boolean isNumberCharInteger(String input){
-//        for(char c : input.toCharArray()){
-//            if(!Character.isDigit(c)){
-//                ErrorMessage.numberCharErrorMessage();
-//                throw new IllegalArgumentException();
-//            }
-//        }
-//        return true;
-//    }
     public boolean  isNumberCharInteger(String string) {
         if (!string.chars().allMatch(Character::isDigit)) {
             ErrorMessage.numberCharErrorMessage();

@@ -23,9 +23,6 @@ public class Game {
     public int getBonusNumber() {
         return bonusNumber;
     }
-    public void validateBonusNumber(int bonusNumber){
-        validator.isValidBonusNumber(winningNumbers,bonusNumber);
-    }
 
 
 }

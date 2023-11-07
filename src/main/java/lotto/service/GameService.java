@@ -17,25 +17,12 @@ public class GameService {
     private User user;
     private  HashMap<Rank, Integer> lottoResult = new HashMap<>();
 
-    private HashMap<Rank, Integer> userResult = getLottoResult();
-
-
     private static final int ZERO = 0;
     private static final int ONE = 1;
-
-
-    //전체 로또 조회
-    public ArrayList<Lotto> getLotteries(){
-        return lottoRepository.getLotteries();
-    }
 
     public HashMap<Rank, Integer> getLottoResult() {
         return lottoResult;
     }
-
-
-
-
 
     public void checkUserLotteries(User user, Game game){
         HashMap<Rank, Integer> result = user.getLottoResult();

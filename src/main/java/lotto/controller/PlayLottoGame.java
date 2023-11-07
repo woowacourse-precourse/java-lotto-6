@@ -20,13 +20,9 @@ public class PlayLottoGame {
 
     private final GameService gameService = new GameService();
     private final LottoService lottoService = new LottoService();
-    private final UserService userService = new UserService();
+
     private final InputView inputView = new InputView();
     private final Validator validator = new Validator();
-    private final LottoRepository lottoRepository = new LottoRepository();
-
-    private final GameRepository gameRepository = new GameRepository();
-
     private final OutputView outputView = new OutputView();
     private final Parser parser = new Parser();
     private List<Integer> winningNumbers;

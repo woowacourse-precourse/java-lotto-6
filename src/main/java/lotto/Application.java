@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.controller.PlayLottoGame;
-import lotto.view.ErrorMessage;
 
 public class Application {
 

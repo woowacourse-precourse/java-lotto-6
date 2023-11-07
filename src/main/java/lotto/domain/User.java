@@ -10,10 +10,6 @@ import java.util.HashMap;
 
 public class User {
 
-    private final Validator validator = new Validator();
-
-    private LottoRepository lottoRepository = new LottoRepository();
-
     private final ArrayList<Lotto> purchasedLotteries = new ArrayList<>();
 
     private final HashMap<Rank, Integer> lottoResult = new HashMap<>();
@@ -24,11 +20,10 @@ public class User {
     private static final double ROUND_CONSTANT_DOUBLE_TEN = 10.0;
     private static final double PERCENT = 100;
 
-    private final GameService gameService = new GameService();
+
 
 
     public User(int purchaseAmount) {
-//        validator.isValidPurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
         initLottoResult();
     }
@@ -40,9 +35,6 @@ public class User {
     public void buyLotto(Lotto lotto) {
         purchasedLotteries.add(lotto);
     }
-//    public ArrayList<Lotto> getUserLotteries(){
-//        return lottoRepository.getLotteries();
-//    }
 
     public ArrayList<Lotto> getPurchasedLotteries() {
         return purchasedLotteries;

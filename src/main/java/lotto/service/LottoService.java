@@ -34,8 +34,6 @@ public class LottoService {
         user.buyLotto(lotto);
     }
 
-
-
     //Lotto안에 넣어야 자동 검증
     private Lotto generateLottoNumber(){
         List<Integer> numbers = new ArrayList<>(Utils.generateRandomUniqueNumber());

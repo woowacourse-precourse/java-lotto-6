@@ -35,7 +35,7 @@ public enum Score {
         else if(sameNumberCount == SECOND.getSameNumber() && bonusContain == YES) {
             return Score.SECOND;
         }
-        else if(sameNumberCount == FIRST.getSameNumber() && bonusContain == YES) {
+        else if(sameNumberCount == FIRST.getSameNumber()) {
             return Score.FIRST;
         }
         return Score.NULL;

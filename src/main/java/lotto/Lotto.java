@@ -30,7 +30,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         InputValidator inputValidator = new InputValidator();
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자 6개만 입력 가능합니다.");
         }
         inputValidator.checkWinningNumbers(numbers);
     }
@@ -65,6 +65,7 @@ public class Lotto {
         for (int i = MatchesForWin.MIN.getCount(); i <= MatchesForWin.MAX.getCount(); i++) {
             winningStatistics.putIfAbsent(i, 0);
         }
+        // key값에 원래는 일치한 개수를 넣었지만 보너스는 key값에 2를 넣음
         winningStatistics.put(2, bonus.getBonusCount());
         return winningStatistics;
     }

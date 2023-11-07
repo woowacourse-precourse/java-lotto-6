@@ -1,5 +1,6 @@
 package lotto.lottery;
 
+import lotto.Lotto;
 import lotto.exception.InputValidator;
 import lotto.manager.InputManager;
 
@@ -13,12 +14,12 @@ public class Winning {
         this.winningNumbers = inputManager.splitAndConvertToList(winningNumbers);
         Collections.sort(this.winningNumbers);
         checkWinningNumbers(winningNumbers);
+        new Lotto(this.winningNumbers);
     }
 
     //당첨 번호 예외 체크
     private void checkWinningNumbers(String winningNumbers){
         InputValidator inputValidator = new InputValidator();
-        inputValidator.checkWinningNumbers(this.winningNumbers);
         inputValidator.checkInputValue(winningNumbers);
     }
 

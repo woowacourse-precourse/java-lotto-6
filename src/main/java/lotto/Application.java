@@ -21,9 +21,9 @@ public class Application {
         }
 
         System.out.println("\n" + "당첨 번호를 입력해 주세요.");
-        String[] winNumber_String = Console.readLine().trim().split(",");
+        String[] winNumberString = Console.readLine().trim().split(",");
         List<Integer> winNumbers = new ArrayList<>();
-        for (String numberStr : winNumber_String) {
+        for (String numberStr : winNumberString) {
             winNumbers.add(Integer.parseInt(numberStr.trim()));
         }
 

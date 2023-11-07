@@ -12,39 +12,49 @@ public class LottoRepository {
     private Money payment;
     private AnswerLotto answerLotto;
 
+    private static <T> void requireNonNull(T object) {
+        if (Objects.isNull(object)) {
+            throw new IllegalStateException();
+        }
+    }
+
     public void save(LottoStore lottoStore) {
-        Objects.requireNonNull(lottoStore);
+        requireNonNull(lottoStore);
         this.lottoStore = lottoStore;
     }
 
     public void save(Money payment) {
-        Objects.requireNonNull(payment);
+        requireNonNull(payment);
         this.payment = payment;
     }
 
     public void save(PurchasedLottoBundle purchasedLottoBundle) {
-        Objects.requireNonNull(purchasedLottoBundle);
+        requireNonNull(purchasedLottoBundle);
         this.purchasedLottoBundle = purchasedLottoBundle;
     }
 
     public void save(final AnswerLotto answerLotto) {
-        Objects.requireNonNull(answerLotto);
+        requireNonNull(answerLotto);
         this.answerLotto = answerLotto;
     }
 
     public LottoStore findLottoStore() {
+        requireNonNull(this.lottoStore);
         return this.lottoStore;
     }
 
     public PurchasedLottoBundle findPurchasedLottoBundle() {
+        requireNonNull(this.purchasedLottoBundle);
         return this.purchasedLottoBundle;
     }
 
     public Money findPayment() {
+        requireNonNull(this.payment);
         return this.payment;
     }
 
     public AnswerLotto findAnswerLotto() {
+        requireNonNull(this.answerLotto);
         return this.answerLotto;
     }
 }

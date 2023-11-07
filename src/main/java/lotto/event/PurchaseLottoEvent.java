@@ -1,6 +1,5 @@
 package lotto.event;
 
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.event.EventListener.ParameterAndReturnEvent;
@@ -9,19 +8,17 @@ import lotto.state.PurchasedLottoState;
 
 public record PurchaseLottoEvent(LottoRepository lottoRepository) implements ParameterAndReturnEvent<Integer, PurchasedLottoState> {
     @Override
-    public PurchasedLottoState execute(Integer payment) {
-        final var money = new Money(payment);
+    public PurchasedLottoState execute(Integer paymentInput) {
+        final var payment = new Money(paymentInput);
         final var store = lottoRepository.findLottoStore();
-        final var purchasedLottoBundle = store.purchaseLotto(money);
+        final var purchasedLottoBundle = store.purchaseLotto(payment);
 
         lottoRepository.save(purchasedLottoBundle);
-        lottoRepository.save(money);
+        lottoRepository.save(payment);
 
         return new PurchasedLottoState(
-                purchasedLottoBundle.value().size(),
-                purchasedLottoBundle.value()
-                        .stream().map(Lotto::getNumbers)
-                        .collect(Collectors.toList())
+                purchasedLottoBundle.getQuantity(),
+                purchasedLottoBundle.convert(Lotto::getNumbers)
         );
     }
 }

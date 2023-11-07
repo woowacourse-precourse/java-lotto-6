@@ -18,11 +18,7 @@ public class PurchaseService {
 	}
 
 	private Lotto generateRandomLotto() {
-		Lotto lotto = new Lotto();
-		Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, Lotto.SIZE).stream()
-			.map(LottoNumber::from)
-			.forEach(lotto::add);
-		return lotto;
+		return new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, Lotto.SIZE));
 	}
 
 	private int calculateAmountLotto(int money) {

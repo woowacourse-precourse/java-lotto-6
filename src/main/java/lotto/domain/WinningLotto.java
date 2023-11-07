@@ -3,8 +3,6 @@ package lotto.domain;
 import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 
-import java.util.List;
-import lotto.constant.LottoConstant;
 import lotto.exception.ExceptionMessage;
 
 public class WinningLotto {
@@ -17,11 +15,6 @@ public class WinningLotto {
 
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
-    }
-
-    public static WinningLotto of(List<Integer> numbers, int bonusNumber) {
-        Lotto lotto = LottoGenerator.manualGenerate(numbers);
-        return new WinningLotto(lotto, bonusNumber);
     }
 
     public Rank calcuateWinningRank(Lotto purchaseLotto) {

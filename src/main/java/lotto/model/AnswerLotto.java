@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class AnswerLotto extends Lotto {
+    private static final String NO_DUPLICATE_BONUS_NUMBER_IN_WINNING_NUMBER = "보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
     private final LottoNo bonusNo;
 
     public AnswerLotto(List<Integer> numbers, int bonusNo) {
@@ -13,7 +14,7 @@ public class AnswerLotto extends Lotto {
 
     private void validate(int bonusNo) {
         if (super.contains(new LottoNo(bonusNo))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(NO_DUPLICATE_BONUS_NUMBER_IN_WINNING_NUMBER);
         }
     }
 

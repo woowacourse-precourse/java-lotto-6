@@ -5,6 +5,8 @@ import java.util.Set;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
+    private static final String WRONG_LOTTO_SIZE = "로또는 6개의 숫자로 이루어져야 합니다.";
+    private static final String NO_DUPLICATE_NUMBER = "로또 숫자는 중복되지 않아야 합니다.";
     private final List<LottoNo> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,11 +24,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isWrongSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException(WRONG_LOTTO_SIZE);
         }
 
         if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(NO_DUPLICATE_NUMBER);
         }
     }
 

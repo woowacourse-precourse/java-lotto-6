@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.GameDto;
 import lotto.dto.LottoDto;
 import lotto.model.Game;
 import lotto.service.GameService;
@@ -30,29 +31,32 @@ public class GameController {
     }
 
     private void processGame(Game game) {
-        printLottoQuantity(game);
-        printLottoInfo(game);
-        printLottoResult(game);
+        printLottoQuantity(game.getLottoQuantity());
+
+        List<LottoDto> lottoDtos = gameService.purchaseLotto(game);
+        printLottoInfo(lottoDtos);
+
+        List<Integer> winnerNumber = getWinnerNumber();
+        int bonusNumber = getBonusNumber(winnerNumber);
+
+        GameDto lottoResult = gameService.getLottoResult(game, winnerNumber, bonusNumber);
+        printLottoResult(lottoResult);
     }
 
-    private void printLottoQuantity(Game game) {
-        outputView.printLottoQuantity(game.getLottoQuantity());
+    private void printLottoQuantity(int quantity) {
+        outputView.printLottoQuantity(quantity);
     }
 
-    private void printLottoInfo(Game game) {
-        gameService.purchaseLotto(game);
-
-        for(LottoDto dto : game.getLottoNumbers()) {
+    private void printLottoInfo(List<LottoDto> lottoDtos) {
+        for(LottoDto dto : lottoDtos) {
             outputView.printPurchasedLotto(dto.getLottoNumber());
         }
         outputView.printNewLine();
     }
 
-    private void printLottoResult(Game game) {
-        List<Integer> winnerNumber = getWinnerNumber();
-        int bonusNumber = getBonusNumber(winnerNumber);
-
-        printGameResultAndProfit(game, winnerNumber, bonusNumber);
+    private void printLottoResult(GameDto gameDto) {
+        outputView.printGameResults(gameDto.gameResults());
+        outputView.printGameProfit(gameDto.profit());
     }
 
     private List<Integer> getWinnerNumber() {
@@ -67,11 +71,5 @@ public class GameController {
         outputView.printNewLine();
 
         return bonusNumber;
-    }
-
-    private void printGameResultAndProfit(Game game, List<Integer> winnerNumber, int bonusNumber) {
-        gameService.getLottoResult(game, winnerNumber, bonusNumber);
-        outputView.printGameResults(game.getResultInfo());
-        outputView.printGameProfit(game.getGameProfit());
     }
 }

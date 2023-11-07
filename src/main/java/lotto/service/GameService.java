@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.dto.GameDto;
 import lotto.dto.LottoDto;
 import lotto.model.Game;
 import lotto.util.LottoNumberFactory;
@@ -16,16 +17,18 @@ public class GameService {
         this.numberFactory = lottoNumberFactory;
     }
 
-    public void purchaseLotto(Game game) {
+    public List<LottoDto> purchaseLotto(Game game) {
         int lottoQuantity = game.getLottoQuantity();
 
         for(int lotto = 0; lotto < lottoQuantity; lotto++) {
             List<Integer> numbers = numberFactory.getNumbers();
             game.buyLotto(numbers);
         }
+
+        return game.getLottoNumbers();
     }
 
-    public void getLottoResult(Game game, List<Integer> winnerNumber, int bonusNumber) {
+    public GameDto getLottoResult(Game game, List<Integer> winnerNumber, int bonusNumber) {
         List<LottoDto> lottoNumbers = game.getLottoNumbers();
 
         for(LottoDto dto : lottoNumbers) {
@@ -34,6 +37,8 @@ public class GameService {
             int grade = getGrade(matchedNumber, bonusResult);
             game.winTheGame(grade);
         }
+
+        return new GameDto(game);
     }
 
     private long getMatchedLottoNumber(List<Integer> myLotto, List<Integer> winnerNumber) {

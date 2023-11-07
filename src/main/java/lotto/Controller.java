@@ -1,11 +1,13 @@
 package lotto;
 
-import lotto.domain.*;
+import java.util.List;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoChecker;
+import lotto.domain.LottoMachine;
+import lotto.domain.Calculator;
 import lotto.ui.Input;
 import lotto.ui.Output;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Controller {
     Input input = new Input();

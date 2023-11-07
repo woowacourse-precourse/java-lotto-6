@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import lotto.Controller;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import lotto.Controller;
 
 public class Lotto {
     public static final int PRICE = 1000;

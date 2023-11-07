@@ -16,8 +16,8 @@ public class LottoWinResultService {
         return winResult;
     }
 
-    public String calculateProfitRate(PurchasePrice purchasePrice) {
-        String profitRate = new ProfitRate().calculateProfitRate(purchasePrice, winResult);
+    public double calculateProfitRate(PurchasePrice purchasePrice) {
+        double profitRate = new ProfitRate().calculateProfitRate(purchasePrice, winResult);
         return profitRate;
     }
 

@@ -24,7 +24,7 @@ public class LottoGame {
         inputBonusNumber(winningLotto);
 
         WinResult winResult = lottoWinResultService.getWinResult(lottos, winningLotto);
-        String profitRate = lottoWinResultService.calculateProfitRate(purchasePrice);
+        double profitRate = lottoWinResultService.calculateProfitRate(purchasePrice);
 
         printWinResult(winResult);
         printProfitRate(profitRate);
@@ -77,7 +77,7 @@ public class LottoGame {
         outputView.printWinResult(winResult);
     }
 
-    private void printProfitRate(String profitRate) {
+    private void printProfitRate(double profitRate) {
         outputView.printProfitRate(profitRate);
     }
 }

@@ -42,8 +42,8 @@ public class LottoWinResultServiceTest {
     @Test
     void calculateProfitRate() {
         PurchasePrice purchasePrice = new PurchasePrice(PRICE);
-        String profitRate = lottoWinResultService.calculateProfitRate(purchasePrice);
+        double profitRate = lottoWinResultService.calculateProfitRate(purchasePrice);
 
-        assertThat(profitRate).isEqualTo("40630200");
+        assertThat(profitRate).isEqualTo(40630200);
     }
 }

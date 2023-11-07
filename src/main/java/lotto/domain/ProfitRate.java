@@ -6,21 +6,22 @@ import java.math.BigDecimal;
 
 public class ProfitRate {
     private final static float HUNDRED_FOR_PERCENT = 100.0f;
+    private final static float TEN_FOR_ROUND_UP = 10.0f;
 
-    public String calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
+    public double calculateProfitRate(PurchasePrice purchasePrice, WinResult winResult) {
         double moneyPrize = sumWinMoney(winResult);
         double profitRate = (moneyPrize / purchasePrice.getPrice()) * HUNDRED_FOR_PERCENT;
         return roundUpProfit(profitRate);
     }
 
-    private String roundUpProfit(double profitRate) {
-        profitRate = Math.round(profitRate * HUNDRED_FOR_PERCENT) / HUNDRED_FOR_PERCENT;
+    private double roundUpProfit(double profitRate) {
+        profitRate = Math.round(profitRate * TEN_FOR_ROUND_UP) / TEN_FOR_ROUND_UP;
 
-        return String.valueOf(new BigDecimal(profitRate));
+        return new BigDecimal(profitRate).doubleValue();
     }
 
-    private float sumWinMoney(WinResult winResult) {
-        float moneyPrize = 0;
+    private double sumWinMoney(WinResult winResult) {
+        double moneyPrize = 0;
         for (WinnerRank winnerRank : WinnerRank.values()) {
             int key = winnerRank.getValue();
             moneyPrize += winResult.getWinResultValue(key) * winnerRank.getPrizeMoney();

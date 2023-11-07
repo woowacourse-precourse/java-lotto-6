@@ -59,7 +59,7 @@ public class OutputView {
         return winMoneyComma;
     }
 
-    public void printProfitRate(String profitRate) {
+    public void printProfitRate(double profitRate) {
         System.out.printf(PROFIT_RATE_MESSAGE.getMessage(), profitRate);
     }
 }

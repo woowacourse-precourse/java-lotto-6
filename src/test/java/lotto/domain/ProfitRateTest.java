@@ -20,11 +20,12 @@ public class ProfitRateTest {
     @DisplayName("수익률 계산 확인")
     @Test
     void calculateProfitRate() {
-        String expectedProfitRate = "22142.86";
+        double expectedProfitRate = 22142.9;
 
         winResult.increaseWinResultValue(WinnerRank.FOUR.getValue());
         winResult.increaseWinResultValue(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue());
 
-        assertThat(profitRate.calculateProfitRate(purchasePrice, winResult)).isEqualTo(expectedProfitRate);
+        assertThat(Math.floor(profitRate.calculateProfitRate(purchasePrice, winResult) * 10) / 10)
+                .isEqualTo(expectedProfitRate);
     }
 }

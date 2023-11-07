@@ -2,11 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.model.Money;
 import lotto.model.ResultDetails;
 import lotto.model.WinningNumbers;
-import lotto.model.WinningNumbersData;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -49,24 +49,24 @@ public class LottoController {
     }
 
     private WinningNumbers createValidWinningNumbers() {
-        WinningNumbersData winningNumbersData = createValidWinningNumbersData();
+        Lotto winningNumbers = createValidWinningNumbersData();
         while (true) {
             try {
                 outputView.printBonusNumberMessage();
                 BonusNumber bonusNumber = new BonusNumber(inputView.inputNumber());
-                return new WinningNumbers(winningNumbersData, bonusNumber);
+                return new WinningNumbers(winningNumbers, bonusNumber);
             } catch (final IllegalArgumentException illegalArgumentException) {
                 outputView.printExceptionMessage(illegalArgumentException);
             }
         }
     }
 
-    private WinningNumbersData createValidWinningNumbersData() {
+    private Lotto createValidWinningNumbersData() {
         while (true) {
             try {
                 outputView.printWinningNumbersMessage();
                 List<Integer> winningNumbers = inputView.inputWinningNumbers();
-                return new WinningNumbersData(winningNumbers);
+                return new Lotto(winningNumbers);
             } catch (final IllegalArgumentException illegalArgumentException) {
                 outputView.printExceptionMessage(illegalArgumentException);
             }

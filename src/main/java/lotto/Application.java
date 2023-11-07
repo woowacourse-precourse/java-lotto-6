@@ -82,8 +82,52 @@ public class Application {
                 numbers.add(randomNumber);
             }
         }
+        // 오름 차순
         numbers.sort(Integer::compareTo);
         return numbers;
+    }
+
+    private static void printLottoNumbers(List<Lotto> lottos){
+        for (Lotto lotto: lottos){
+            List<Integer> numbers=lotto.getNumbers();
+            System.out.println(numbers);
+        }
+    }
+    //발행 로또에 당첨 번호 있는지 확인
+    private static int countMatchingNumbers(List<Integer> numbers,List<Integer> winningNumbers){
+        return (int) numbers.stream().filter(winningNumbers::contains).count();
+    }
+    private static void printWinningStatistics(List<Lotto> lottos,List<Integer> winningNumbers,int bonusNumber) {
+        int[] matchingCounts=new int[7];
+        int[] prizes=new int[] {0,0,0,5000,50000,1500000, 30000000,2000000000};
+
+        for (Lotto lotto:lottos) {
+            List<Integer> numbers=lotto.getNumbers();
+            int matchingCount=countMatchingNumbers(numbers,winningNumbers);
+            boolean hasBonusNumber=numbers.contains(bonusNumber);
+
+            matchingCounts[matchingCount]++;
+            if (matchingCount==5 && hasBonusNumber){
+                matchingCounts[6]++;
+            }
+            System.out.println("당첨 통계");
+            System.out.println("---");
+            for (int i=3; i<=6; i++){
+                String message=i+"개 일치";
+                if (i==5){
+                    message+=",보너스 볼 일치";
+                }
+                message+="("+calculatePrize(i,prizes)+"원) - "+matchingCounts[i]+"개";
+                System.out.println(message);
+            }
+        }
+        //수익률 출력
+        double totalPrize=calculateTotalPrize(matchingCounts,prizes);
+        double totalPurchaseAmount=lottos.size()*1000.0;
+        double profitRate=(totalPrize/totalPurchaseAmount)*100;
+        System.out.printf("총 수익률을 %.1f%%입니다.\n",profitRate);
+
+
     }
 
 

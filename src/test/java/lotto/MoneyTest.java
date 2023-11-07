@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.exception.WrongTypeFormatException;
+import lotto.exception.IllegalTypeFormatException;
 import lotto.service.impl.ValidateServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ class MoneyTest {
     void createMoneyByWrongTypeTwo() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
         Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1000j"))
-                .isInstanceOf(WrongTypeFormatException.class);
+                .isInstanceOf(IllegalTypeFormatException.class);
     }
 
     @DisplayName("금액 입력 시 1000원 단위가 아니면 IllegalArgumentException 예외가 발생한다")
@@ -37,6 +37,6 @@ class MoneyTest {
     void createMoneyByWrongUnitTypeTwo() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
         Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1500"))
-                .isInstanceOf(WrongTypeFormatException.class);
+                .isInstanceOf(IllegalTypeFormatException.class);
     }
 }

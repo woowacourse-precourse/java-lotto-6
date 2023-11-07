@@ -33,7 +33,7 @@ public final class Statistics {
         this.ranks = getRank();
     }
 
-    private static List<Integer> makeWinningAmounts() {
+    private List<Integer> makeWinningAmounts() {
         Integer lastPlaceWinningAmount = LAST_PLACE_WINNING_AMOUNT.getValue();
         Integer fifthPlaceWinningAmount = FIFTH_PLACE_WINNING_AMOUNT.getValue();
         Integer fourthPlaceWinningAmount = FOURTH_PLACE_WINNING_AMOUNT.getValue();

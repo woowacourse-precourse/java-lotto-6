@@ -2,9 +2,9 @@ package lotto.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.WrongBlankException;
-import lotto.exception.WrongCommasFormatException;
-import lotto.exception.WrongTypeFormatException;
+import lotto.exception.IllegalCommasFormatException;
+import lotto.exception.IllegalInputException;
+import lotto.exception.IllegalTypeFormatException;
 import lotto.service.ValidateService;
 import lotto.utils.CharUnit;
 import lotto.utils.StringUnit;
@@ -14,7 +14,7 @@ public class ValidateServiceImpl implements ValidateService {
     private void checkBlankInput(String input) {
         StringUnit blank = StringUnit.BLANK;
         if (input.equals(blank.getValue())) {
-            throw new WrongBlankException();
+            throw new IllegalInputException();
         }
     }
 
@@ -23,7 +23,7 @@ public class ValidateServiceImpl implements ValidateService {
         ValueUnit commasNumbers = ValueUnit.COMMAS_NUMBERS;
         ValueUnit lottoNumbers = ValueUnit.LOTTO_NUMBERS;
         if (commasCount != commasNumbers.getValue() || inputStream.size() != lottoNumbers.getValue()) {
-            throw new WrongCommasFormatException();
+            throw new IllegalCommasFormatException();
         }
     }
 
@@ -36,7 +36,7 @@ public class ValidateServiceImpl implements ValidateService {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw new WrongTypeFormatException();
+            throw new IllegalTypeFormatException();
         }
     }
 
@@ -46,7 +46,7 @@ public class ValidateServiceImpl implements ValidateService {
         ValueUnit lottoTicketPurchaseAmount = ValueUnit.LOTTO_TICKET_PURCHASE_AMOUNT;
         ValueUnit remains = ValueUnit.REMAINS;
         if (money % lottoTicketPurchaseAmount.getValue() != remains.getValue()) {
-            throw new WrongTypeFormatException();
+            throw new IllegalTypeFormatException();
         }
     }
 
@@ -59,7 +59,7 @@ public class ValidateServiceImpl implements ValidateService {
         try {
             return inputStream.stream().map(Integer::parseInt).toList();
         } catch (NumberFormatException numberFormatException) {
-            throw new WrongTypeFormatException();
+            throw new IllegalTypeFormatException();
         }
     }
 }

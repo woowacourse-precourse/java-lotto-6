@@ -8,8 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.exception.OutOfRangeNumbersException;
-import lotto.exception.WrongSameNumberException;
-import lotto.utils.ValueUnit;
+import lotto.exception.IllegalSameNumberException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -32,7 +31,7 @@ public class Lotto {
         Set<Integer> comparisonTarget = new HashSet<>(numbers);
         Integer lottoNumbers = LOTTO_NUMBERS.getValue();
         if (comparisonTarget.size() != lottoNumbers) {
-            throw new WrongSameNumberException();
+            throw new IllegalSameNumberException();
         }
     }
 

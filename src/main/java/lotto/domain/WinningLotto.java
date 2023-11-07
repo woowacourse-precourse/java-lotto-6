@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.exception.OutOfRangeNumbersException;
-import lotto.exception.WrongSameNumberException;
+import lotto.exception.IllegalSameNumberException;
 import lotto.utils.ValueUnit;
 
 public class WinningLotto extends Lotto {
@@ -18,7 +18,7 @@ public class WinningLotto extends Lotto {
 
     private void checkSameNumbers(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new WrongSameNumberException();
+            throw new IllegalSameNumberException();
         }
     }
 

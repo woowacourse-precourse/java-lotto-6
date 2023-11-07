@@ -3,8 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.exception.WrongCommasFormatException;
-import lotto.exception.WrongTypeFormatException;
+import lotto.exception.IllegalCommasFormatException;
+import lotto.exception.IllegalTypeFormatException;
 import lotto.service.impl.ValidateServiceImpl;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -63,7 +63,7 @@ class LottoTest {
 
         ValidateServiceImpl validateService = new ValidateServiceImpl();
         assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,,6"))
-                .isInstanceOf(WrongCommasFormatException.class);
+                .isInstanceOf(IllegalCommasFormatException.class);
     }
 
     @DisplayName("로또 번호 6개보다 적게 들어오면 IllegalArgumentException 예외가 발생한다.")
@@ -79,7 +79,7 @@ class LottoTest {
     void createLottoByWrongChar() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
         assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,a"))
-                .isInstanceOf(WrongTypeFormatException.class);
+                .isInstanceOf(IllegalTypeFormatException.class);
     }
 
     @DisplayName("로또 번호에 특수 문자가 들어오면 WrongTypeFormatException 예외가 발생한다.")
@@ -87,6 +87,6 @@ class LottoTest {
     void createLottoByWrongSpecialChar() {
         ValidateServiceImpl validateService = new ValidateServiceImpl();
         assertThatThrownBy(() -> validateService.checkCorrectWinnerNumbers("1,2,3,4,5,!"))
-                .isInstanceOf(WrongTypeFormatException.class);
+                .isInstanceOf(IllegalTypeFormatException.class);
     }
 }

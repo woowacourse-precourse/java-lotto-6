@@ -3,10 +3,14 @@ package lotto.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.util.ExceptionEnum.NOT_NUMBER_FORMAT;
 import static lotto.util.InputEnum.PURCHASE_AMOUNT_INPUT;
+import static lotto.util.InputEnum.WINNING_NUMBERS_INPUT;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lotto.domain.Amount;
 import lotto.domain.lotteryresult.Bonus;
-import lotto.domain.lotto.Lotto;
+import lotto.domain.lotteryresult.WinningNumbers;
 
 public class InputView{
 
@@ -21,8 +25,15 @@ public class InputView{
         return new Amount(amount);
     }
 
-    public static Lotto inputWinningNumbers(){
-        return null;
+    public static WinningNumbers inputWinningNumbers(){
+        System.out.println(WINNING_NUMBERS_INPUT.message());
+        List<Integer> numbers = new ArrayList<>();
+        try{
+            numbers = Arrays.asList(readLine().split(",")).stream().map(s -> Integer.parseInt(s)).toList();
+        } catch (NumberFormatException NPE){
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.message());
+        }
+        return new WinningNumbers(numbers);
     }
 
     public static Bonus inputBonusNumber(){

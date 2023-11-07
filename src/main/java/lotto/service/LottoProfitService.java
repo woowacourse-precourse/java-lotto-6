@@ -43,12 +43,15 @@ public class LottoProfitService {
     }
 
     private long calculateWinningAmountForRanking(LottoWinningRanking ranking, int count) {
-        if (ranking.getWinningAmount() >= LottoWinningRanking.THIRD.getWinningAmount()) {
-            return ranking.getWinningAmount();
-        } else if (ranking.getWinningAmount() <= LottoWinningRanking.FOURTH.getWinningAmount()) {
-            return ranking.getWinningAmount() * count;
+        long winningAmount = ranking.getWinningAmount();
+
+        if (winningAmount >= LottoWinningRanking.THIRD.getWinningAmount()) {
+            return winningAmount;
+        }
+        if (winningAmount <= LottoWinningRanking.FOURTH.getWinningAmount()) {
+            return winningAmount * count;
         }
 
-        return 0;
+        return LottoWinningRanking.NONE.getWinningAmount();
     }
 }

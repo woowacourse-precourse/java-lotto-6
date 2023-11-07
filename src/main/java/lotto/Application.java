@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     static InputView inputView = InputView.getInstance();
@@ -23,7 +21,24 @@ public class Application {
         List<Integer>[] issueNumbers = setIssueNumbers(count);
         outputView.printIssueNumbers(issueNumbers, count);
 
+        Set<Integer> winningNumbers = setWinningNumbers();
 
+    }
+
+    private static Set<Integer> setWinningNumbers() {
+        boolean askAgain = true;
+        Set<Integer> winningNumbers = new HashSet<>();
+        while (askAgain) {
+            askAgain = false;
+            String winningNumbersInput = inputView.inputWinningNumbers();
+            try {
+                winningNumbers = validator.validateWinningNumbers(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                askAgain = true;
+            }
+        }
+        return winningNumbers;
     }
 
     private static List<Integer>[] setIssueNumbers(int count) {
@@ -39,7 +54,6 @@ public class Application {
     static int setPrice() {
         boolean askAgain = true;
         int price = 0;
-
         while (askAgain) {
             askAgain = false;
             String priceInput = inputView.inputPrice();

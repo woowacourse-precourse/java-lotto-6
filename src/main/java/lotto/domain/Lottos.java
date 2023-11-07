@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import lotto.view.InputView;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lottos {
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     private final List<Lotto> lottos;
 
@@ -18,7 +20,6 @@ public class Lottos {
     }
 
     public int numberLottos(int inputPrice) {
-        isNotDivided(LOTTO_PRICE, inputPrice);
         return inputPrice / LOTTO_PRICE;
     }
 
@@ -26,12 +27,6 @@ public class Lottos {
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> new Lotto(NumberGenerator.createRandomNumbers()))
                 .collect(Collectors.toList());
-    }
-
-    private void isNotDivided(int lottoPrice, int inputPrice) {
-        if (inputPrice % lottoPrice != 0) {
-            throw new IllegalArgumentException();
-        }
     }
 
     @Override

@@ -1,8 +1,12 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
+import lotto.exception.money.MinimumMoneyException;
+import lotto.exception.money.MoneyNumberFormatException;
+import lotto.exception.money.MoneyOutOfRangeException;
+import lotto.exception.money.MoneyUnitException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +19,7 @@ class MoneyTest {
     @ValueSource(strings = {"", "천원", "1000won"})
     void isNumeric(String moneys) {
         assertThatThrownBy(() -> Money.of(moneys))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(MoneyNumberFormatException.class)
                 .hasMessage("숫자만 입력해 주세요.");
     }
 
@@ -24,7 +28,7 @@ class MoneyTest {
     @ValueSource(strings = {"-1000", "0", "500"})
     void isOverThousand(String moneys) {
         assertThatThrownBy(() -> Money.of(moneys))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(MinimumMoneyException.class)
                 .hasMessage("최소 금액은 1,000원 입니다.");
     }
 
@@ -33,7 +37,7 @@ class MoneyTest {
     @ValueSource(strings = {"1200", "1350", "1557"})
     void isDivisibleByThousand(String moneys) {
         assertThatThrownBy(() -> Money.of(moneys))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(MoneyUnitException.class)
                 .hasMessage("금액은 1,000원 단위로 입력해 주세요.");
     }
 
@@ -41,7 +45,7 @@ class MoneyTest {
     @Test
     void isMaxPrice() {
         assertThatThrownBy(() -> Money.of("2147484000"))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(MoneyOutOfRangeException.class)
                 .hasMessage("최대 2,147,483,000원 까지 구매 가능합니다.");
     }
 

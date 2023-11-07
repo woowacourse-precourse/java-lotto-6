@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.regex.Pattern;
 import lotto.domain.constant.LottoConstant;
+import lotto.exception.money.MinimumMoneyException;
+import lotto.exception.money.MoneyNumberFormatException;
+import lotto.exception.money.MoneyOutOfRangeException;
+import lotto.exception.money.MoneyUnitException;
 
 public class Money {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^-?\\d+$");
-    private static final String ONLY_NUMBER_ALLOWED_MESSAGE = "숫자만 입력해 주세요.";
-    private static final String MINIMUM_AMOUNT_MSG = "최소 금액은 1,000원 입니다.";
-    private static final String THOUSAND_UNIT_ONLY_MSG = "금액은 1,000원 단위로 입력해 주세요.";
-    private static final String MAX_AMOUNT_MSG = "최대 2,147,483,000원 까지 구매 가능합니다.";
     private int amount;
 
     private Money(final int amount) {
@@ -36,19 +36,19 @@ public class Money {
 
     private static void isNumeric(final String amount) {
         if (!NUMBER_PATTERN.matcher(trim(amount)).matches()) {
-            throw new IllegalArgumentException(ONLY_NUMBER_ALLOWED_MESSAGE);
+            throw new MoneyNumberFormatException();
         }
     }
 
     private static void isOverThousand(final String amount) {
         if ((parseNumeric(amount) < LottoConstant.PRICE.getValue())) {
-            throw new IllegalArgumentException(MINIMUM_AMOUNT_MSG);
+            throw new MinimumMoneyException();
         }
     }
 
     private static void isDivisibleByThousand(final String amount) {
         if ((parseNumeric(amount) % LottoConstant.PRICE.getValue() != 0)) {
-            throw new IllegalArgumentException(THOUSAND_UNIT_ONLY_MSG);
+            throw new MoneyUnitException();
         }
     }
 
@@ -56,7 +56,7 @@ public class Money {
         try {
             return Integer.parseInt(trim(input));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(MAX_AMOUNT_MSG);
+            throw new MoneyOutOfRangeException();
         }
     }
 

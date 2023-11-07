@@ -19,9 +19,15 @@ public class MainController {
     }
 
     private LottoTickets purchaseLottoTickets() {
-        String order = view.askPurchasingAmount();
-
-        payedMoney = new OrderAmount(order);
+        while (true){
+            try {
+                String order = view.askPurchasingAmount();
+                payedMoney = new OrderAmount(order);
+                break;
+            } catch (IllegalArgumentException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
         view.printOrderedLottoCount(payedMoney.amountOfLotto());
         return new LottoTickets(payedMoney.amountOfLotto());
     }

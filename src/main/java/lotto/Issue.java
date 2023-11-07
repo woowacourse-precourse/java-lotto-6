@@ -36,7 +36,6 @@ public class Issue {
         for (int i = 0; i < lottoQuantity; i++) {
             Lotto transfer = new Lotto(getNumbers());
 
-            transfer.sort();
             List<Integer> convertedLotto = transfer.convertType();
             lottoGroup.add(convertedLotto);
         }

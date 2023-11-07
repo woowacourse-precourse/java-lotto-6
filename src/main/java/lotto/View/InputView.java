@@ -11,7 +11,7 @@ public class InputView {
     private static final Pattern isNumber = Pattern.compile("\\d+");
     private static final String splitSymbol = ",";
 
-    public List<Integer> NumberListInput(int length) {
+    public List<Integer> NumberListSplitInput(int length) {
         String input = Console.readLine();
         if (!checkSplitBySymbol(input, length)) {
             throw new IllegalArgumentException(

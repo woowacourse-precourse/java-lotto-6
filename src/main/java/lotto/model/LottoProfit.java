@@ -5,6 +5,7 @@ import static lotto.model.LottoRanking.FIRST;
 import static lotto.model.LottoRanking.FORTH;
 import static lotto.model.LottoRanking.SECOND;
 import static lotto.model.LottoRanking.THIRD;
+import static lotto.util.Constant.PERCENT;
 
 public class LottoProfit {
 
@@ -16,6 +17,10 @@ public class LottoProfit {
                 + THIRD.getPrizeMoney() + THIRD.getCount()
                 + FORTH.getPrizeMoney() + FORTH.getCount()
                 + FIFTH.getPrizeMoney() + FIFTH.getCount();
+    }
+
+    private static double calculateProfit(long totalPrizeMoney, long totalPurchaseMoney) {
+        return (totalPrizeMoney / totalPurchaseMoney) * PERCENT;
     }
 
 

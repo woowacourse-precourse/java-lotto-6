@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.utils.constants.InputConstants.HAS_NOT_COMMA_MESSAGE;
 import static lotto.utils.constants.InputConstants.SPLIT_STANDARD;
 
 public class InputView {
@@ -22,12 +21,12 @@ public class InputView {
         outputView = new OutputView();
     }
 
-    public Integer purchaseLotto() {
+    public Long purchaseLotto() {
         while (true) {
             String inputMoney = getInput();
             try {
                 validateInputMoney(inputMoney);
-                return convertInputToInteger(inputMoney);
+                return convertInputToLong(inputMoney);
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
@@ -36,8 +35,8 @@ public class InputView {
         }
     }
 
-    private Integer convertInputToInteger(String inputMoney) {
-        return Integer.parseInt(inputMoney);
+    private Long convertInputToLong(String inputMoney) {
+        return Long.parseLong(inputMoney);
     }
 
     private void validateInputMoney(String inputMoney) {
@@ -86,6 +85,10 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private Integer convertInputToInteger(String bonusNumber) {
+        return Integer.parseInt(bonusNumber);
     }
 
     private void validateBonusNumber(String bonusNumber) {

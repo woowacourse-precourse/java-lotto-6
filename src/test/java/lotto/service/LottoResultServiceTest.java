@@ -63,7 +63,7 @@ class LottoResultServiceTest {
         // given
         List<LottoResult> lottoResults = createLottoResultsTestObject();
         Map<LottoReward, Integer> reward = lottoResultService.confirmRewardLottos(lottoResults);
-        Integer lottoCount = 10;
+        Long lottoCount = 10L;
 
         // when
         Double earnRate = lottoResultService.countEarnRate(reward, lottoCount);

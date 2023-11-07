@@ -10,12 +10,12 @@ import java.util.List;
 import static lotto.view.ServiceConstants.*;
 
 public class LottoService {
-    public Integer purchaseLottoWithValidPrice(Integer inputMoney) {
+    public Long purchaseLottoWithValidPrice(Long inputMoney) {
         validateInputMoney(inputMoney);
         return inputMoney / DIVIDE_STANDARD;
     }
 
-    private void validateInputMoney(Integer inputMoney) {
+    private void validateInputMoney(Long inputMoney) {
         if (!isThousandUnit(inputMoney)) {
             throw new InvalidInputException(INVALID_NON_THOUSAND_UNIT_MESSAGE);
         }
@@ -24,11 +24,11 @@ public class LottoService {
         }
     }
 
-    private Boolean isZero(Integer inputMoney) {
+    private Boolean isZero(Long inputMoney) {
         return inputMoney.equals(ZERO_AMOUNT);
     }
 
-    private Boolean isThousandUnit(Integer inputMoney) {
+    private Boolean isThousandUnit(Long inputMoney) {
         return inputMoney % DIVIDE_STANDARD == ZERO_AMOUNT;
     }
 

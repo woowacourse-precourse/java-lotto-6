@@ -29,9 +29,9 @@ class LottoServiceTest {
     @DisplayName("가격을 입력받고 가격만큼 로또를 구매하는지")
     @ParameterizedTest
     @CsvSource({"1000, 1", "2000, 2", "3000, 3", "4000, 4", "200000000, 200000"})
-    void purchaseLottoWithValidPriceTest(Integer inputMoney, Integer expectedLottoCount) {
+    void purchaseLottoWithValidPriceTest(Long inputMoney, Long expectedLottoCount) {
         // given && when
-        Integer lottoCount = lottoService.purchaseLottoWithValidPrice(inputMoney);
+        Long lottoCount = lottoService.purchaseLottoWithValidPrice(inputMoney);
 
         // then
         assertTrue(lottoCount.equals(expectedLottoCount));
@@ -55,8 +55,8 @@ class LottoServiceTest {
 
     @DisplayName("나머지가 발생하는 가격이 입력되었을 때, 예외처리를 하는지")
     @ParameterizedTest
-    @ValueSource(ints = {1, 888, 1950, 2350})
-    void invalidInputMoneyTest(Integer inputMoney) {
+    @ValueSource(longs = {1, 888, 1950, 2350})
+    void invalidInputMoneyTest(Long inputMoney) {
         // given & when & then
         assertThatThrownBy(
                 () -> lottoService.purchaseLottoWithValidPrice(inputMoney))
@@ -67,7 +67,7 @@ class LottoServiceTest {
     @Test
     void invalidInputMoneyZeroTest() {
         // given
-        Integer inputMoney = 0;
+        Long inputMoney = 0L;
 
         // when & then
         assertThatThrownBy(

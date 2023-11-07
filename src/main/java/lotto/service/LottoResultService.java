@@ -35,7 +35,7 @@ public class LottoResultService {
         return rewardCount;
     }
 
-    public Double countEarnRate(Map<LottoReward, Integer> reward, Integer lottoCount) {
+    public Double countEarnRate(Map<LottoReward, Integer> reward, Long lottoCount) {
         Integer totalProfit = INITIAL_COUNT;
 
         for (Map.Entry<LottoReward, Integer> entry : reward.entrySet()) {

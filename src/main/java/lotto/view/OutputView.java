@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println(PURCHASE_LOTTO_MESSAGE);
     }
 
-    public void purchaseLottoCountMessage(Integer lottoCount) {
+    public void purchaseLottoCountMessage(Long lottoCount) {
         System.out.println(lottoCount + PURCHASE_LOTTO_COUNT_MESSAGE);
     }
 

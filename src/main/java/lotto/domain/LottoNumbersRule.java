@@ -10,7 +10,6 @@ public enum LottoNumbersRule {
 
     private final int value;
 
-
     LottoNumbersRule(final int value) {
         this.value = value;
     }

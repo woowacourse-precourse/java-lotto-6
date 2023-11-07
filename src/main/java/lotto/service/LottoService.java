@@ -20,11 +20,17 @@ public class LottoService {
     private static final int FOUR_MATCH = 4;
     private static final int FIVE_MATCH = 5;
     private static final int SIX_MATCH = 6;
+    private static final int FIRST_PLACE_PRIZE = 5000;
+    private static final int SECOND_PLACE_PRIZE = 50000;
+    private static final int THIRD_PLACE_PRIZE = 1500000;
+    private static final int FOURTH_PLACE_PRIZE = 30000000;
+    private static final int FIFTH_PLACE_PRIZE = 2000000000;
 
     private List<Lotto> purchaseLotto = new ArrayList<>();
     private Winner winners;
     private Lotto winLotto;
-    private Integer bonusNumber;
+    private int bonusNumber;
+    private int totalPrize;
 
     public void repeatPurchase(int lottoCount) {
         for (int count = 0; count < lottoCount; count++) {
@@ -123,22 +129,31 @@ public class LottoService {
     }
 
     private int getFirstPlaceCount() {
+        totalPrize += winners.get1stPlace() * FIRST_PLACE_PRIZE;
         return winners.get1stPlace();
     }
 
     private int getSecondPlaceCount() {
+        totalPrize += winners.get2ndPlace() * SECOND_PLACE_PRIZE;
         return winners.get2ndPlace();
     }
 
     private int getThirdPlaceCount() {
+        totalPrize += winners.get3rdPlace() * THIRD_PLACE_PRIZE;
         return winners.get3rdPlace();
     }
 
     private int getFourthPlaceCount() {
+        totalPrize += winners.get4thPlace() * FOURTH_PLACE_PRIZE;
         return winners.get4thPlace();
     }
 
     private int getFifthPlaceCount() {
+        totalPrize += winners.get5thPlace() * FIFTH_PLACE_PRIZE;
         return winners.get5thPlace();
+    }
+
+    public float getRevenue(int purchasePrice) {
+        return (totalPrize / purchasePrice) * 100;
     }
 }

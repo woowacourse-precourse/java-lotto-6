@@ -1,6 +1,6 @@
 package lotto.io;
 
 @FunctionalInterface
-interface InputReader {
+public interface InputReader {
     String readLine();
 }

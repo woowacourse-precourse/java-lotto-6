@@ -10,8 +10,10 @@ final class StatisticsPublisher {
         this.controller = controller;
     }
 
-    void publish(Lottos generatedLottos, Lotto winningNumber, BonusNumber bonusNumber, Money money) {
+    Statistics publish(Lottos generatedLottos, Lotto winningNumber, BonusNumber bonusNumber, Money money) {
         Statistics statistics = new StatisticsCalculator().calculate(generatedLottos, winningNumber, bonusNumber, money);
         controller.showStatistics(statistics);
+
+        return statistics;
     }
 }

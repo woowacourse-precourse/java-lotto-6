@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import java.util.Objects;
 import lotto.util.AutoGenerator;
 import lotto.view.InputView;
@@ -46,7 +47,17 @@ public class LottoGame {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        return inputView.inputWinningNumbers();
+        WinningNumbers winningNumbers = null;
+        while (!isValidWinningNumbers(winningNumbers)) {
+            List<Integer> inputWinningNumbers = inputView.inputWinningNumbers();
+            winningNumbers = WinningNumbers.from(inputWinningNumbers);
+        }
+
+        return winningNumbers;
+    }
+
+    private boolean isValidWinningNumbers(WinningNumbers winningNumbers) {
+        return Objects.nonNull(winningNumbers);
     }
 
     private BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {

@@ -22,17 +22,17 @@ public class InputView {
         return validPrice;
     }
 
-    public WinningNumbers inputWinningNumbers() {
-        WinningNumbers winningNumbers = null;
+    public List<Integer> inputWinningNumbers() {
+        List<Integer> validWinningNumbers = null;
 
-        while (!isValidWinningNumbers(winningNumbers)) {
+        while (!isValidWinningNumbers(validWinningNumbers)) {
             printNewLine();
             System.out.println(Message.INPUT_WINNING_NUMBERS.getMessage());
             String inputWinningNumbers = Console.readLine();
-            winningNumbers = createWinningNumbers(inputWinningNumbers);
+            validWinningNumbers = parseValidWinningNumbers(inputWinningNumbers);
         }
 
-        return winningNumbers;
+        return validWinningNumbers;
     }
 
     public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
@@ -74,19 +74,17 @@ public class InputView {
         }
     }
 
-    private boolean isValidWinningNumbers(WinningNumbers validWinningNumbers) {
-        return !Objects.isNull(validWinningNumbers);
+    private boolean isValidWinningNumbers(List<Integer> validWinningNumbers) {
+        return Objects.nonNull(validWinningNumbers);
     }
 
 
-    private WinningNumbers createWinningNumbers(String inputWinningNumbers) {
+    private List<Integer> parseValidWinningNumbers(String inputWinningNumbers) {
         try {
-            List<Integer> parseWinningNumbers = parseWinningNumbers(inputWinningNumbers);
-            return WinningNumbers.from(parseWinningNumbers);
-
+            return parseWinningNumbers(inputWinningNumbers);
         } catch (IllegalArgumentException e) {
+            System.out.println(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
             return null;
-
         }
     }
 
@@ -97,7 +95,6 @@ public class InputView {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            System.out.println(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
             throw new IllegalArgumentException(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
         }
 

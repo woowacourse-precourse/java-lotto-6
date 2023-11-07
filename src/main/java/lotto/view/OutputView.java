@@ -13,11 +13,12 @@ public class OutputView {
     private static final String RESULT_COUNT = "%d개";
     private static final double PERCENT_CHANGER = 100.0;
     private static final double LOTTO_AMOUNT = 1000.0;
+    private static final String START_ERROR_MESSAGE = "[ERROR] ";
 
     public void printLottos(List<Lotto> lottos) {
         for(Lotto lotto : lottos) {
             String lottoNumber = StringHandler.joinBy(lotto.getNumbers(), DELIMITER);
-            System.out.printf(ARRAY_BEGIN_STRING + lottoNumber + ARRAY_END_STRING);
+            System.out.print(ARRAY_BEGIN_STRING + lottoNumber + ARRAY_END_STRING);
         }
     }
 
@@ -38,16 +39,20 @@ public class OutputView {
     }
 
     public void printResultStatisticsPhrases() {
-        System.out.printf("당첨 통계" + System.lineSeparator() + "---");
+        System.out.print("당첨 통계" + System.lineSeparator() + "---");
     }
 
-    public void printRateOfReturn(int lottosCount, long totalPrize) {
-        double purchaseMoney = lottosCount * LOTTO_AMOUNT;
-        double profit = totalPrize - purchaseMoney;
-
-        double rateOfReturn = (profit / purchaseMoney) * PERCENT_CHANGER;
-
+    public void printRateOfReturn(int lottoCount, long totalPrize) {
+        double rateOfReturn = calculateRateOfReturn(lottoCount, totalPrize);
         System.out.printf("총 수익률은 %.1f%%입니다.",rateOfReturn);
     }
 
+    public double calculateRateOfReturn(int lottoCount, long totalPrize) {
+        double purchaseMoney = lottoCount * LOTTO_AMOUNT;
+        return (totalPrize / purchaseMoney) * PERCENT_CHANGER;
+    }
+
+    public void printError(String errorMessage) {
+        System.out.println(START_ERROR_MESSAGE + errorMessage);
+    }
 }

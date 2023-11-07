@@ -8,7 +8,7 @@ import static lotto.config.GameConfig.START_INCLUSIVE;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,11 +76,7 @@ public class LottoManager {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
-    public Map<FixedLottoPrizeStandard, Integer> getLottoWinningResults() {
-        Map<FixedLottoPrizeStandard, Integer> lottoWinningResults = new HashMap<>();
-        fixedLottoWinningPolicy.getFixedLottoPrizeStandards()
-                .forEach(prizeStandard -> lottoWinningResults.put(prizeStandard, 0));
-
+    private void calculateLottoWinningResult(Map<FixedLottoPrizeStandard, Integer> lottoWinningResults) {
         lotteries.forEach(lotto -> {
             List<FixedLottoPrizeStandard> winningResult = fixedLottoWinningPolicy
                     .getWinningResult(lotto.getNumbers(), winningNumbers);
@@ -88,17 +84,35 @@ public class LottoManager {
             winningResult.forEach(prizeStandard ->
                     lottoWinningResults.put(prizeStandard, lottoWinningResults.get(prizeStandard) + 1));
         });
+    }
 
+    private Map<FixedLottoPrizeStandard, Integer> initLottoWinningResults() {
+        Map<FixedLottoPrizeStandard, Integer> lottoWinningResults = new EnumMap<>(FixedLottoPrizeStandard.class);
+        fixedLottoWinningPolicy.getFixedLottoPrizeStandards()
+                .forEach(prizeStandard -> lottoWinningResults.put(prizeStandard, 0));
+        return lottoWinningResults;
+    }
+
+    public Map<FixedLottoPrizeStandard, Integer> getLottoWinningResults() {
+        Map<FixedLottoPrizeStandard, Integer> lottoWinningResults = initLottoWinningResults();
+        calculateLottoWinningResult(lottoWinningResults);
         return sortLottoWinningResult(lottoWinningResults);
     }
 
+    private int calculateTotalReturn(Map<FixedLottoPrizeStandard, Integer> lottoWinningResults) {
+        return lottoWinningResults.entrySet().stream()
+                .mapToInt(winningResult -> winningResult.getKey().getPrize() * winningResult.getValue())
+                .sum();
+    }
+
+    private double calculateTotalReturnRate(Integer totalReturn) {
+        return (1.0 * totalReturn / purchaseAmount) * 100;
+    }
 
     public Double getTotalReturnRate() {
         Map<FixedLottoPrizeStandard, Integer> lottoWinningResults = getLottoWinningResults();
-        Integer totalReturn = lottoWinningResults.entrySet().stream()
-                .mapToInt(winningResult -> winningResult.getKey().getPrize() * winningResult.getValue())
-                .sum();
+        Integer totalReturn = calculateTotalReturn(lottoWinningResults);
 
-        return (1.0 * totalReturn / purchaseAmount) * 100;
+        return calculateTotalReturnRate(totalReturn);
     }
 }

@@ -2,7 +2,9 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -29,6 +31,8 @@ public class InputView {
     }
 
     public List<String> toList(String numbers) {
-        return List.of(numbers.split(","));
+        return Arrays.stream(numbers.split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 }

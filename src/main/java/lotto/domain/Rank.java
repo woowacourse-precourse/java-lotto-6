@@ -29,6 +29,13 @@ public enum Rank {
         return prize;
     }
 
+    // 매핑
 
+    public static Rank valueOfMatchCount(int matchCount) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.getMatchCount() == matchCount)
+                .findFirst()
+                .orElse(NONE); // or throw an exception if match count is not valid
+    }
 
 }

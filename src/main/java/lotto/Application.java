@@ -10,21 +10,19 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
-    private static Integer buyTickets(){
-        while (true) {
-            try {
-                Integer N = Integer.parseInt(Console.readLine());
-                if (N % 1000 != 0) {
-                    throw new IllegalStateException();
-                }
-                return N/1000;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해주세요.");
-            } catch (IllegalStateException e) {
-                System.out.println("[ERROR] 구입 금액은 1000원 단위로 입력해주세요.");
+    private static int buyTickets(){
+        try {
+            Integer N = Integer.parseInt(Console.readLine());
+            if (N % 1000 != 0) {
+                throw new IllegalStateException();
             }
+            return N/1000;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+        } catch (IllegalStateException e) {
+            System.out.println("[ERROR] 구입 금액은 1000원 단위로 입력해주세요.");
         }
-               
+        return -1;
     }
 
     private static boolean isLottoLength(String[] sNumbers) {
@@ -105,7 +103,11 @@ public class Application {
         int count = lotto.run(players);
         System.out.println(count);
 
-        buyTickets();
+        int tickets;
+        do {
+            tickets = buyTickets();
+        } while(tickets < 0);
+        
         List<Integer> playerNumbers;
         do{
             playerNumbers = inputPlayerNumbers();

@@ -1,21 +1,18 @@
 package lotto;
 
-import java.util.List;
-import lotto.Common.LottoValue;
+import lotto.Model.Lotto.Lotto;
 import lotto.Service.LottoNumberService.LottoNumberService;
-import lotto.View.InputView.InputView;
 
 public class Application {
 
 
     public static void main(String[] args) {
         LottoNumberService number = new LottoNumberService();
-        List<Integer> list = number.getUniqueLottoNumber();
+        Lotto lotto = number.getUniqueLottoNumber();
 
+        // 생성된 로또 번호 출력
+        System.out.println("로또 번호: " + lotto.getNumbers());
 
-        for(Integer a : list) {
-            System.out.print(a + " ");
-        }
 
 
     }

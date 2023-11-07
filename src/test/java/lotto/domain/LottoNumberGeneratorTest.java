@@ -24,8 +24,8 @@ class LottoNumberGeneratorTest {
         assertThat(isNumbers1And45(numbers)).isTrue();
     }
 
-    private boolean isNumbers1And45(List<Integer> lottoNumber) {
-        return lottoNumber.stream()
+    private boolean isNumbers1And45(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
                 .allMatch(number -> number >= 1 && number <= 45);
     }
 

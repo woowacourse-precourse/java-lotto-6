@@ -23,8 +23,8 @@
 | Lotto.class         | - 한 개의 로또 생성<br>- 로또 번호 유효성 검사          |
 | LottoGame.class     | - 게임 진행<br>- 프롬프트 인풋, 아웃풋 흐름 관리      |
 | InputChecker.class  | - 사용자 입력 유효성 검사                               |
-| LottoTicket.class   | - 입력된 금액에 해당하는 갯수의 로또 생성              |
-| LottoResult.class   | - 로또 통계 출력                                       |
+| Lottos.class   | - 입력된 금액에 해당하는 갯수의 로또 생성              |
+| LottoResult.class   | - 구입한 로또 개수 출력<br>- 로또 통계 출력                                       |
 | LottoProfit.class   | - 수익률 계산                                          |
 | LottoWinner.class   | - 보너스 번호 생성 및 저장<br>- 당첨 번호 저장          |
 | Constants.class     | - 상수 변수 별도 저장                                   |

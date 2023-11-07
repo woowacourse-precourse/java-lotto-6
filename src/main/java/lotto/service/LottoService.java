@@ -28,4 +28,8 @@ public class LottoService {
         }
     }
 
+    public int getRateSize() {
+        return rate.size();
+    }
+
 }

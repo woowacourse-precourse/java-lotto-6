@@ -22,7 +22,7 @@ class LottoGeneratorTest {
         assertThatNoException().isThrownBy(target);
     }
 
-    @DisplayName("로또를 인스턴스를 생성할 수 있다.")
+    @DisplayName("로또 인스턴스를 생성할 수 있다.")
     @Test
     void generateLottoInstance() {
         // given

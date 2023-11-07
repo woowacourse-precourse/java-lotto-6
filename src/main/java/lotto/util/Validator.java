@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Validator {
     private static final int NATURAL_NUMBER_START = 1;
+    private static final int ZERO = 0;
 
     private Validator() {
     }
@@ -48,6 +49,13 @@ public class Validator {
     public static void validateLottoCount(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_SIZE) {
             ErrorMessage.printSizeErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateNonDivisibility(int money) {
+        if (money % Constants.LOTTO_MIN_AMOUNT != ZERO) {
+            ErrorMessage.printNotDivisionErrorMessage();
             throw new IllegalArgumentException();
         }
     }

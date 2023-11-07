@@ -11,6 +11,8 @@ import lotto.domain.LottoNumbersGenerator;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Ranking;
 import lotto.domain.WinningNumbers;
+import lotto.dto.ConsumerDto;
+import lotto.dto.WinningLottoDto;
 
 public class MainController {
 
@@ -20,11 +22,13 @@ public class MainController {
         this.calculator = new Calculator();
     }
 
-    public ArrayList<Lotto> settingConsumerLottos(PurchaseAmount purchaseAmount) {
+    public void settingConsumerLottos(ConsumerDto consumerDto) {
+        PurchaseAmount purchaseAmount = consumerDto.getPurchaseAmount();
         int ticketQuantity = purchaseAmount.getTicketQuantity();
         ArrayList<Lotto> consumerLottos = new ArrayList<>();
         publishLottoByTicketQuantity(ticketQuantity, consumerLottos);
-        return consumerLottos;
+
+        consumerDto.setConsumerLottos(consumerLottos);
     }
 
     private void publishLottoByTicketQuantity(int ticketQuantity, ArrayList<Lotto> lottos) {
@@ -35,14 +39,15 @@ public class MainController {
         }
     }
 
-    public Map<Ranking, Integer> getRankingResult(ArrayList<Lotto> consumerLottos, WinningNumbers winningNumbers) {
+    public void setRankingResult(ConsumerDto consumerDto, WinningLottoDto winningLottoDto) {
+        ArrayList<Lotto> consumerLottos = consumerDto.getConsumerLottos();
+        WinningNumbers winningNumbers = winningLottoDto.getWinningNumbers();
         Map<Ranking, Integer> resultBoard = makeResultMap();
         for (Lotto lotto : consumerLottos) {
             Ranking rank = calculator.calculateRanking(lotto, winningNumbers);
             resultBoard.put(rank, resultBoard.getOrDefault(rank, 0) + 1);
         }
-        preventNullPointMap(resultBoard);
-        return resultBoard;
+        consumerDto.setResultBoard(resultBoard);
     }
 
     private Map<Ranking, Integer> makeResultMap() {
@@ -59,9 +64,12 @@ public class MainController {
                 .forEach((rank) -> result.put(rank, 0));
     }
 
-    public float getReturnOfRate(Map<Ranking, Integer> resultBoard, PurchaseAmount purchaseAmount) {
+    public void setReturnOfRate(ConsumerDto consumerDto) {
+        Map<Ranking, Integer> resultBoard = consumerDto.getResultBoard();
+        PurchaseAmount purchaseAmount = consumerDto.getPurchaseAmount();
         float returnOfRate = calculator.calculateReturnOfRate(resultBoard, purchaseAmount);
-        return returnOfRate;
+
+        consumerDto.setReturnOfRate(returnOfRate);
     }
 
 }

@@ -1,14 +1,10 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Map;
 import lotto.controller.InputController;
 import lotto.controller.MainController;
 import lotto.controller.OutputController;
-import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.Ranking;
-import lotto.domain.WinningNumbers;
+import lotto.dto.ConsumerDto;
+import lotto.dto.WinningLottoDto;
 
 public class LottoGame {
 
@@ -23,19 +19,31 @@ public class LottoGame {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = inputController.settingPurchaseAmount();
-        outputController.orderPrintTicketQuantity(purchaseAmount);
+        ConsumerDto consumerDto = new ConsumerDto();
+        WinningLottoDto winningLottoDto = new WinningLottoDto();
 
-        ArrayList<Lotto> consumerLottos = mainController.settingConsumerLottos(purchaseAmount);
-        outputController.orderPrintConsumerLottos(consumerLottos);
+        settingGame(consumerDto, winningLottoDto);
+        calculateThisGame(consumerDto, winningLottoDto);
+        printResult(consumerDto);
+    }
 
-        WinningNumbers winningNumbers = inputController.settingWinningNumbers();
+    private void settingGame(ConsumerDto consumerDto, WinningLottoDto winningLottoDto) {
+        inputController.settingPurchaseAmount(consumerDto);
+        outputController.orderPrintTicketQuantity(consumerDto);
 
-        Map<Ranking, Integer> resultBoard = mainController.getRankingResult(consumerLottos, winningNumbers);
-        outputController.orderPrintRanking(resultBoard);
+        mainController.settingConsumerLottos(consumerDto);
+        outputController.orderPrintConsumerLottos(consumerDto);
 
-        float returnOfRate = mainController.getReturnOfRate(resultBoard, purchaseAmount);
-        outputController.orderPrintReturnOfRate(returnOfRate);
+        inputController.settingWinningNumbers(winningLottoDto);
+    }
+
+    private void calculateThisGame(ConsumerDto consumerDto, WinningLottoDto winningLottoDto) {
+        mainController.setRankingResult(consumerDto, winningLottoDto);
+        mainController.setReturnOfRate(consumerDto);
+    }
+
+    private void printResult(ConsumerDto consumerDto) {
+        outputController.orderPrintResult(consumerDto);
     }
 
 }

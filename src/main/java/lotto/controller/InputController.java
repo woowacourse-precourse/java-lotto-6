@@ -4,6 +4,8 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
+import lotto.dto.ConsumerDto;
+import lotto.dto.WinningLottoDto;
 import lotto.utils.Converter;
 import lotto.utils.InputValidator;
 import lotto.view.InputView;
@@ -16,13 +18,14 @@ public class InputController {
         this.inputValidator = new InputValidator();
     }
 
-    public PurchaseAmount settingPurchaseAmount() {
+    public void settingPurchaseAmount(ConsumerDto consumerDto) {
         PurchaseAmount purchaseAmount = null;
         while (purchaseAmount == null) {
             purchaseAmount = tryGetPurchaseAmount();
         }
 
-        return purchaseAmount;
+        consumerDto.setPurchaseAmount(purchaseAmount);
+
     }
 
     private PurchaseAmount tryGetPurchaseAmount() {
@@ -38,12 +41,13 @@ public class InputController {
         return purchaseAmount;
     }
 
-    public WinningNumbers settingWinningNumbers() {
+    public void settingWinningNumbers(WinningLottoDto winningLottoDto) {
         Lotto mainNumbers = settingMainNumbers();
         BonusNumber bonusNumber = settingBonusNumber(mainNumbers);
 
         WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
-        return winningNumbers;
+        winningLottoDto.setWinningNumbers(winningNumbers);
+
     }
 
     private Lotto settingMainNumbers() {

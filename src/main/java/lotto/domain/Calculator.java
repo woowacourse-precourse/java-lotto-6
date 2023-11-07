@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.domain.Ranking.None;
 import static lotto.domain.Ranking.Second;
-import static lotto.utils.constants.LottoConstants.LOTTO_TICKET_PRICE;
 
 import java.util.Arrays;
 import java.util.List;

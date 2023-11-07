@@ -25,9 +25,10 @@ public class OutputMessage {
             return;
         }
         if(ranking.equals(Ranking.FIVE_BONUS)){
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",ranking.getCount(),ranking.getReward(),map.get(ranking));
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",ranking.getCount(),ranking.getStringReward(),map.get(ranking));
+            return;
         }
-        System.out.printf("%d개 일치 (%d원) - %d개\n", ranking.getCount(), ranking.getReward(), map.get(ranking));
+        System.out.printf("%d개 일치 (%s원) - %d개\n", ranking.getCount(), ranking.getStringReward(), map.get(ranking));
     }
 
     public static void showRank(HashMap<Ranking,Integer> map){

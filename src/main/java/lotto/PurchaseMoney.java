@@ -12,4 +12,8 @@ public class PurchaseMoney {
     public int getLottoQuantity() {
         return amount / LOTTO_PRICE;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

@@ -10,7 +10,7 @@ public class Application {
         List<Lotto> lottos = lottoWinningProcess.buyLotto(purchaseMoney);
         LottoResult lottoResult = lottoWinningProcess.run(lottos);
         OutputView.printStatistics(lottoResult.getFinalResult());
-        double earningRate = lottoResult.calculateEarningRate(purchaseMoney.getLottoQuantity());
+        double earningRate = lottoResult.calculateEarningRate(purchaseMoney.getAmount());
         OutputView.printEarningRate(earningRate);
     }
 }

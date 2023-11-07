@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.nio.channels.FileLockInterruptionException;
 import java.util.*;
 import java.util.regex.Pattern;
 

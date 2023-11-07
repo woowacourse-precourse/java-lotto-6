@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WinningLotto {
     private final Lotto lotto;
     private final int bonus;
@@ -10,9 +13,11 @@ public class WinningLotto {
     }
 
     public Rank match(Lotto userLotto) {
-        boolean hasBonus = userLotto.getLottoNumbers().contains(bonus);
-        userLotto.getLottoNumbers().retainAll(lotto.getLottoNumbers());
+        List<Integer> userLottoNumbers = new ArrayList<>(userLotto.getLottoNumbers());
 
-        return Rank.getRank(userLotto.getLottoNumbers().size(), hasBonus);
+        boolean hasBonus = userLottoNumbers.contains(bonus);
+        userLottoNumbers.retainAll(lotto.getLottoNumbers());
+
+        return Rank.getRank(userLottoNumbers.size(), hasBonus);
     }
 }

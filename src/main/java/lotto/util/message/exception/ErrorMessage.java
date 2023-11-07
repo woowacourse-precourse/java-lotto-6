@@ -1,4 +1,4 @@
-package lotto.util.exception;
+package lotto.util.message.exception;
 
 public enum ErrorMessage {
     INVALID_STRING("숫자만 입력해주세요."),

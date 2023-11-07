@@ -15,20 +15,26 @@ public class OutputView {
     private static final String RETURN_ON_LOTTO_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String DASH = "-";
     private static final int RESULT_DASH_COUNT = 3;
+    private static final String NEW_LINE = "\n";
 
     public void printLottoCountOfPurchase(int lottosCount) {
         System.out.println(String.format(LOTTO_COUNT_OF_PURCHASES_FORMAT, lottosCount));
     }
 
     public void printLottos(List<Lotto> lottos) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         lottos.forEach(lotto -> {
-            List<Integer> numbers = lotto.getNumbers().stream()
-                    .sorted()
-                    .collect(Collectors.toList());
-            stringBuilder.append(numbers);
+            List<Integer> numbers = sortNumbers(lotto.getNumbers());
+            result.append(numbers)
+                    .append(NEW_LINE);
         });
-        System.out.println(stringBuilder);
+        System.out.println(result);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public void printResult(Map<WinningPrize, Integer> winningPrizes, double ReturnOnLotto) {
@@ -36,7 +42,7 @@ public class OutputView {
         System.out.println(DASH.repeat(RESULT_DASH_COUNT));
         printWinningStatistics(winningPrizes);
 
-        System.out.println(String.format(RETURN_ON_LOTTO_MESSAGE, ReturnOnLotto));
+        System.out.print(String.format(RETURN_ON_LOTTO_MESSAGE, ReturnOnLotto));
     }
 
     private void printWinningStatistics(Map<WinningPrize, Integer> winningPrizes) {

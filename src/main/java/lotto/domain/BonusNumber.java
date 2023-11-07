@@ -14,6 +14,7 @@ public class BonusNumber {
 
     private static void validateBonusNumber(List<Integer> lotto, int bonus) {
         Validator.validateInputIsNatural(bonus);
+        Validator.validateInputRange(bonus);
     }
 
     public int getBonus() {

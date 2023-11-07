@@ -6,7 +6,7 @@ import lotto.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         try {
-            SystemController systemController = SystemController.create();
+            SystemController systemController = SystemController.createAndPlay();
             systemController.showResult();
         } catch (IllegalStateException e) {
             OutputView.exceptionMessage(e);

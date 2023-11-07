@@ -10,21 +10,22 @@ public class SystemController {
     private final WinningStats winningStats;
     private final Money purchasedAmount;
 
-    private SystemController() {
-        purchasedAmount = Money.createManual();
-        winningStats = getWinningStats();
+    private SystemController(WinningStats winningStats, Money purchasedAmount) {
+        this.winningStats = winningStats;
+        this.purchasedAmount = purchasedAmount;
     }
 
-    public static SystemController create() {
-        return new SystemController();
+    public static SystemController createAndPlay() {
+        Money purchasedAmount = Money.createManual();
+        return new SystemController(getWinningStatsFrom(purchasedAmount), purchasedAmount);
     }
 
-    public WinningStats getWinningStats() {
-        return WinningStats.of(getPurchasedLottosAndPrintFromMoney(purchasedAmount),
+    private static WinningStats getWinningStatsFrom(Money purchasedAmount) {
+        return WinningStats.of(getPurchasedLottosAndPrintFrom(purchasedAmount),
                 WinningNumbersWithBonus.createManual());
     }
 
-    private PurchasedLottos getPurchasedLottosAndPrintFromMoney(Money purchasedAmount) {
+    private static PurchasedLottos getPurchasedLottosAndPrintFrom(Money purchasedAmount) {
         PurchasedLottos purchasedLottos = PurchasedLottos.from(purchasedAmount);
         OutputView.printPurchasedLottos(purchasedLottos);
         return purchasedLottos;

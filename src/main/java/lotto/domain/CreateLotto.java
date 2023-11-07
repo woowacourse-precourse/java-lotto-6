@@ -15,10 +15,11 @@ public class CreateLotto {
         for (int i = 0; i < lottoCounts; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE,
                     LOTTO_LENGTH);
-            lottoNumbers.stream().sorted().toList();
-            lottoList.add(lottoNumbers);
-            System.out.println(lottoNumbers);
+            List<Integer> list = lottoNumbers.stream().sorted().toList();
+            lottoList.add(list);
+            System.out.println(list);
         }
+
         return lottoList;
     }
 }

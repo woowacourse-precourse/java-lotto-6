@@ -61,13 +61,13 @@ public class LottoController {
 
         purchaseLottoList = new ArrayList<>();
         for(int i = 0; i<countLotto; i++) {
-            Lotto lotto = createLotto();
+            Lotto lotto = createPlayerLotto();
             outputView.outputLottoNum(lotto);
             purchaseLottoList.add(lotto);
         }
     }
 
-    private Lotto createLotto() {
+    private Lotto createPlayerLotto() {
         List<Integer> lottoNumList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumList);
     }

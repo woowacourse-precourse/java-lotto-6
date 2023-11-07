@@ -37,10 +37,6 @@ public enum Ranking {
         if(this != MISS) System.out.println(message + count + "개");
     }
 
-    public int getWinningCount() {
-        return winningCount;
-    }
-
     public int getWinningAmount() {
         return winningAmount;
     }

@@ -9,5 +9,6 @@ public class Application {
         int purchaseNum = InputAmount.calculate(Integer.parseInt(amount));
 
         System.out.println(purchaseNum + "개를 구매했습니다.");
+        Lotto.publish(purchaseNum);
     }
 }

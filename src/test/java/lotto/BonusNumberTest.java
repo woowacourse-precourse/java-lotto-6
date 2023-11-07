@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.lotto.LottoDuplicateException;
 import lotto.exception.lotto.LottoOutOfRangeException;
 
 import lotto.model.lotto.BonusNumber;
@@ -29,6 +30,14 @@ public class BonusNumberTest {
     void createBonusNumberOutOfRange(int input){
         assertThatThrownBy(() -> new BonusNumber(input, winningLotto))
                 .isInstanceOf(LottoOutOfRangeException.class);
+    }
+
+    @DisplayName("보너스 넘버가 당첨로또와 중복일 시 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1,2})
+    void createBonusNumberDuplicateWithWinningNumbers(int input){
+        assertThatThrownBy(() -> new BonusNumber(input, winningLotto))
+                .isInstanceOf(LottoDuplicateException.class);
     }
 
 

@@ -21,6 +21,8 @@ public class Application {
 
         System.out.println(InputMessage.WINNING_NUMBER);
         Lotto winningNumber = createWinningNumber(inputWinningNumber());
+
+        System.out.println(InputMessage.BONUS_NUMBER);
     }
 
     private static String inputWinningNumber() {

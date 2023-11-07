@@ -23,7 +23,10 @@ public class OutputView {
     }
 
     public static void printPurchaseLottoTickets(LottoTicket lottoTicket) {
-        System.out.println(lottoTicket.getPrintedLottoTicket());
+        StringBuilder lottoPrinter = new StringBuilder();
+        lottoTicket.getLottoTicket().stream()
+                .forEach(lotto -> lottoPrinter.append(lotto).append("\n"));
+        System.out.println(lottoPrinter);
     }
 
     public static void printWinningNumberMessage() {

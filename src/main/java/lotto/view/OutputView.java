@@ -35,16 +35,16 @@ public class OutputView {
         System.out.println(GET_BONUS_NUMBER_MESSAGE);
     }
 
-    public static void printWinningStatistics(HashMap<String, Integer> finalScore, int lottoCount) {
+    public static void printWinningStatistics(HashMap<String, Integer> finalScore, float yield) {
         System.out.println();
         System.out.println(WIN_STATS_MESSAGE);
         System.out.println(LINE_MESSAGE);
-        System.out.println(WIN_MESSAGE_5.getMessage() + winningStatistics[0] + "개");
-        System.out.println(WIN_MESSAGE_4.getMessage() + winningStatistics[1] + "개");
-        System.out.println(WIN_MESSAGE_3.getMessage() + winningStatistics[2] + "개");
-        System.out.println(WIN_MESSAGE_2.getMessage() + winningStatistics[3] + "개");
-        System.out.println(WIN_MESSAGE_1.getMessage() + winningStatistics[4] + "개");
-        System.out.println(PROFIT_MESSAGE.getMessage() + yield + "%");
+        System.out.println(WIN_MESSAGE_5.getMessage() + finalScore.get("5등") + "개");
+        System.out.println(WIN_MESSAGE_4.getMessage() + finalScore.get("4등") + "개");
+        System.out.println(WIN_MESSAGE_3.getMessage() + finalScore.get("3등") + "개");
+        System.out.println(WIN_MESSAGE_2.getMessage() + finalScore.get("2등") + "개");
+        System.out.println(WIN_MESSAGE_1.getMessage() + finalScore.get("1등") + "개");
+        System.out.println(PROFIT_MESSAGE.getMessage() + yield + "%입니다.");
     }
 
 }

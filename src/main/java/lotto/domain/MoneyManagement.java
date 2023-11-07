@@ -1,14 +1,14 @@
 package lotto.domain;
 
 public class MoneyManagement {
-    private final int quantity;
+    private final int balance;
     private static final int LOTTO_AMOUNT = 1000;
     private static final int ZERO = 0;
     private static final String NUMERIC_PATTERN = "\\d+";
 
     private MoneyManagement(final String userInput) {
         validate(userInput);
-        quantity = toInt(userInput) / LOTTO_AMOUNT ;
+        balance = toInt(userInput);
     }
 
     public static MoneyManagement from(final String userInput) {
@@ -48,14 +48,19 @@ public class MoneyManagement {
         }
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
     public static long totalAmount(LottoResult lottoResult) {
         return lottoResult.getResults().entrySet()
                 .stream()
                 .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
                 .sum();
     }
+
+    public int getQuantity() {
+        return balance / LOTTO_AMOUNT;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
 }

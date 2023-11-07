@@ -55,13 +55,14 @@ public class LottoController {
     }
 
     private void generateLotteries() {
-        // n개를 구매했습니다.
+        outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
         List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
         lotteries = lottoNumbersDTOs.stream()
                 .map(LottoNumbersDTO::numbers)
                 .map(Lotto::new)
                 .toList();
-        // 발행번호들 출력
+        lottoNumbersDTOs.forEach(dto -> outputView.print(Messages.LOTTERIES_NUMBERS_FORMAT.getMessage(dto.numbers(),
+                        Messages.LOTTERIES_NUMBERS_DELIMITER.getMessage())));
     }
 
     private void inputWinningLottoNumbers() {

@@ -3,6 +3,7 @@ package lotto;
 import static lotto.LottoConstants.LOTTO_NUMBERS;
 
 import exception.LottoException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +13,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = sortAscending(numbers);
+    }
+
+    private List<Integer> sortAscending(List<Integer> numbers) {
+        List<Integer> lotto = new ArrayList<>(numbers);
+        Collections.sort(lotto);
+        return lotto;
     }
 
     private void validate(List<Integer> numbers) {

@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.validation.constant.BonusInputConstant.SPLIT_MESSAGE;
+import static lotto.validation.constant.CommonErrorConstant.SPLIT_MESSAGE;
 
 import java.util.Arrays;
 import java.util.List;

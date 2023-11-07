@@ -1,10 +1,10 @@
 package lotto.validation;
 
 import static lotto.validation.constant.BonusInputConstant.DUPLICATION_BONUS_NUMBER;
-import static lotto.validation.constant.BonusInputConstant.LOTTO_MAX_NUMBER;
-import static lotto.validation.constant.BonusInputConstant.LOTTO_MIN_NUMBER;
-import static lotto.validation.constant.BonusInputConstant.NUMBER_RANGE_MESSAGE;
-import static lotto.validation.constant.BonusInputConstant.SPLIT_MESSAGE;
+import static lotto.validation.constant.CommonErrorConstant.LOTTO_MAX_NUMBER;
+import static lotto.validation.constant.CommonErrorConstant.LOTTO_MIN_NUMBER;
+import static lotto.validation.constant.CommonErrorConstant.NUMBER_RANGE_MESSAGE;
+import static lotto.validation.constant.CommonErrorConstant.SPLIT_MESSAGE;
 
 import java.util.Arrays;
 import java.util.List;

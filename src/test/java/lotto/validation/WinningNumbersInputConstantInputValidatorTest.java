@@ -3,7 +3,7 @@ package lotto.validation;
 import static lotto.validation.constant.WinningNumbersInputConstant.CHECK_COMMA_MESSAGE;
 import static lotto.validation.constant.WinningNumbersInputConstant.DUPLICATE_MESSAGE;
 import static lotto.validation.constant.WinningNumbersInputConstant.NUMBERS_COUNT_MESSAGE;
-import static lotto.validation.constant.WinningNumbersInputConstant.NUMBER_RANGE_MESSAGE;
+import static lotto.validation.constant.CommonErrorConstant.NUMBER_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

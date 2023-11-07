@@ -14,7 +14,7 @@ public class OutputView {
 
     public static void purchaseCount(int count) {
         System.out.println(PURCHASE_QUANTITY
-                .format(String.valueOf(count)));
+                .format(count));
     }
 
     public static void displayLottoPapers(LottoMachine lottoMachine) {

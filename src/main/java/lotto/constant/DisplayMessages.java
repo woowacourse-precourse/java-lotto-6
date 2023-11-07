@@ -3,7 +3,7 @@ package lotto.constant;
 public enum DisplayMessages {
     SEPARATOR("---"),
     LOTTO_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
-    PURCHASE_QUANTITY("\n%s개를 구매했습니다."),
+    PURCHASE_QUANTITY("\n%,d개를 구매했습니다."),
     REQUEST_WINNING_NUMBER("\n당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
     PRIZE_STATISTICS("\n당첨 통계"),

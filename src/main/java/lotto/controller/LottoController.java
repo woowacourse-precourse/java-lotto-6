@@ -21,7 +21,10 @@ public class LottoController {
         Lottos lottos = new Lottos(getLottos(lotto.getNumberOfLotto()));
         printLottos(lottos);
 
-        Lotto win =
+        Lotto win = getWinningLotto();
+        int bonus = getBonusLotto();
+
+
     }
 
     public User getMoney(){
@@ -36,10 +39,17 @@ public class LottoController {
         return lottoMaker.FullLottoMaker(numOfLotto);
     }
 
-    public Lotto getWinningLotto(){
+    public Lotto getWinningLotto() {
         InputWinningNumbersView winningNumber = new InputWinningNumbersView();
         List<Integer> win = winningNumber.getValue();
 
         return new Lotto(win);
+    }
+
+    public int getBonusLotto() {
+        InputBonusNumberView bonusNumber = new InputBonusNumberView();
+        int bonus = bonusNumber.getValue();
+
+        return bonus;
     }
 }

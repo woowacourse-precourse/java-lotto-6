@@ -54,6 +54,21 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + third + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + second + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + first + "개");
+
+        // 총 수익률 출력
+        int total = getTotalMoney();
+        double profit = (double) total / userMoney * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+    }
+
+    public static int getTotalMoney() {
+        int total = 0;
+        total += first * 2000000000;
+        total += second * 30000000;
+        total += third * 1500000;
+        total += fourth * 50000;
+        total += fifth * 5000;
+        return total;
     }
 
     // 당첨 로또 수 카운트 메서드

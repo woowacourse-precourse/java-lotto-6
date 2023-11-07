@@ -129,6 +129,57 @@ public class Application {
         validateBonusNumberIsInAnswer(bonusNumber);
     }
 
+    static int calculateBonusNumber(List<Integer> MyLotto) {
+
+        if (MyLotto.contains(bonusNumber)) {
+            return LottoWin.MATCHED_5_WITH_BONUS.getMatchValue();
+        }
+
+        return LottoWin.MATCHED_5.getMatchValue();
+    }
+
+    static int matchBonusCount(int matchCount, List<Integer> MyLotto) {
+
+        if (matchCount == 5) {
+            matchCount = calculateBonusNumber(MyLotto);
+        }
+
+        return matchCount;
+    }
+
+    static int matchMyLotto(Lotto purchasedLotto) {
+        int matchCount = 0;
+
+        List<Integer> MyLotto = purchasedLotto.getLotto();
+
+        for (int LottoIndex = 0; LottoIndex < MyLotto.size(); LottoIndex++) {
+            if (lottoAnswer.contains(MyLotto.get(LottoIndex))) {
+                matchCount++;
+            }
+        }
+
+        matchCount = matchBonusCount(matchCount, MyLotto);
+
+        return matchCount;
+    }
+
+    static void calculateMyMatch(int matchedCount) {
+        for (LottoWin win : LottoWin.values()) {
+            if (win.getMatchValue() == matchedCount) {
+                win.increaseCount();
+            }
+        }
+    }
+
+    static void validateMyRevenue(List<Lotto> purchasedLottos) {
+        for (int purchasedLottoCount = 0; purchasedLottoCount < purchasedLottos.size(); purchasedLottoCount++) {
+            Lotto purchasedLotto = purchasedLottos.get(purchasedLottoCount);
+            int matchedCount = matchMyLotto(purchasedLotto);
+            calculateMyMatch(matchedCount);
+        }
+
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Scanner sc = new Scanner(System.in);
@@ -147,8 +198,8 @@ public class Application {
         System.out.print("보너스 번호를 입력해 주세요.");
         setBonusNumber(sc.nextLine());
 
+        validateMyRevenue(purchasedLottos);
 
-        sc.close();
 
     }
 }

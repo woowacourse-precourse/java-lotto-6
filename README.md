@@ -271,15 +271,8 @@ public class Lotto {
   - Bonus Number에 대해, answer.contains를 통해 중복되지 않는 것을 뽑아야 함!
 - static 변수로 만드는 것이 좋을까??? ~~[ 고민해봐야할것같음 ]~~
 
-### 4) 구매한 로또에 대한 출력
 
-##### - 구현 방법
-
-- purchased_lottos.size()를 통해 구매한 갯수 출력
-- for(int purchased_lotto=0; purchased_lotto<purchased_lottos.size() purchased_lotto++)을 통해 구매한 로또 출력
-  * Lotto.numbers는 private으로 선언되어있기 때문에, get_numbers() 메소드가 필요함.
-
-### 5) 구매한 로또 각각에 대해 당첨인지 판별
+### 4) 구매한 로또 각각에 대해 당첨인지 판별
 
 
 ##### - 구현방법
@@ -299,10 +292,15 @@ public class Lotto {
 - ~~static int matched_5_with_bonus = 3;~~
 - ~~static int matched_6 = 4; 를 통해 가독성이 쉽게 접근하기로 하자.~~
 - [JAVA ENUM을 사용하자]
-- 
-- Ex) my_lotto_scores[match_count]++; 
 
-### 6) 당첨금과 내 돈을 입력받아 수익률 계산
+
+### 5) 당첨된 로또에 대한 출력
+
+- 구현방법
+  - JAVA ENUM을 순회하며 출력하도록 하자.
+  - 순회하며 나온 값들을 TotalEarnings 변수에 담도록 하자.
+
+### 6) 수익률 출력
 
 ##### - 구현방법
 

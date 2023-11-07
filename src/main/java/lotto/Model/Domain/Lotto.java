@@ -13,6 +13,10 @@ public class Lotto{
     public void sortLottoNumbersAscending(){
         numbers.sort(Comparator.naturalOrder());
     }
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

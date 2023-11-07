@@ -1,7 +1,7 @@
 package lotto;
 
 public class Validator {
-    protected Integer validateStringIsInt(String subjectString) throws IllegalArgumentException{
+    protected int validateStringIsInt(String subjectString) throws IllegalArgumentException{
         int validatedInt;
         try{
             validatedInt = Integer.parseInt(subjectString);

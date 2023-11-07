@@ -8,6 +8,7 @@ public class Customer {
     List<Lotto> havingTickets;
 
     public int getTicketQuantity(){return ticketQuantity;}
+    public List<Lotto> getHavingTickets(){return havingTickets;}
     public void setPurchasePrice(int price){this.purchasePrice = price;}
     public void setTicketQuantity(int quantity){this.ticketQuantity = quantity;}
     public void setHavingTickets(List<Lotto> tickets){this.havingTickets = tickets;}

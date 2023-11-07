@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 
 public class TicketGenerator {
     private final NumberGenerator numberGenerator;
@@ -14,13 +15,14 @@ public class TicketGenerator {
         return new TicketGenerator(numberGenerator);
     }
 
-    public List<List<Integer>> generateLottoTicket(int purchaseAmount) {
-        int totalTicketCount = purchaseAmount / 1000; // 하드코딩 상수 대체
-        List<List<Integer>> lottoTickets = new ArrayList<>();
+    public List<Lotto> generateLottoTicket(int purchaseAmount) {
+        int totalTicketCount = purchaseAmount / Lotto.LOTTO_PRICE;
+        List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < totalTicketCount; i++) {
             List<Integer> lottoNumbers = numberGenerator.generateLottoNumber();
-            lottoTickets.add(lottoNumbers);
+            Lotto lottoTicket = new Lotto(lottoNumbers);
+            lottoTickets.add(lottoTicket);
         }
 
         return lottoTickets;

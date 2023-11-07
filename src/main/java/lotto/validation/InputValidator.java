@@ -2,6 +2,7 @@ package lotto.validation;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.BonusNumberDuplicateException;
 import lotto.exception.InputFormatException;
 import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.LottoNumberRangeException;
@@ -85,7 +86,7 @@ public class InputValidator {
 
     private static void validateDuplicateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if(winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new BonusNumberDuplicateException();
         }
     }
 }

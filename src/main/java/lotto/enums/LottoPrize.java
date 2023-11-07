@@ -1,7 +1,5 @@
 package lotto.enums;
 
-import java.util.Arrays;
-
 public enum LottoPrize {
     FIFTH(3, 5000, false),
     FOURTH(4, 50000, false),
@@ -32,10 +30,18 @@ public enum LottoPrize {
     }
 
     public static LottoPrize calculate(int matchCount, boolean bonus) {
-        return Arrays.stream(values())
-                .filter(prize -> prize.matchCount == matchCount)
-                .filter(prize -> prize.bonus == bonus)
-                .findAny()
-                .orElse(null);
+        if (SECOND.isMatchCountEqual(matchCount) && bonus) {
+            return SECOND;
+        }
+        for (LottoPrize rank : values()) {
+            if (rank.isMatchCountEqual(matchCount) && rank != SECOND) {
+                return rank;
+            }
+        }
+        return null;
+    }
+
+    private boolean isMatchCountEqual(int matchCount) {
+        return this.matchCount == matchCount;
     }
 }

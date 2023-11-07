@@ -20,22 +20,36 @@ public class InputView {
 
     public static int inputUserPrice() {
         try{
-            try {
-                String input = userInput();
-                return userInputParsedInt(input);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
-            }
+            return userInputPrice();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputUserPrice();
         }
     }
 
+    private static int userInputPrice() {
+        try {
+            String input = userInput();
+            return userInputParsedInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
+        }
+    }
+
 
     public static List<Integer> inputLottoNumbers() {
-        String input = InputView.userInput();
         List<Integer> numbers = new ArrayList<>();
+        try {
+            String input = InputView.userInput();
+            inputSplitNumbers(input, numbers);
+            return numbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoNumbers();
+        }
+    }
+
+    private static void inputSplitNumbers(String input, List<Integer> numbers) {
         for (String s : input.split(",")) {
             try {
                 int num = Integer.parseInt(s);
@@ -44,10 +58,18 @@ public class InputView {
                 throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
             }
         }
-        return numbers;
     }
 
     public static int inputBonusNumber() {
+        try{
+            return userBonusNumber();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
+    }
+
+    private static int userBonusNumber() {
         String input = InputView.userInput();
         try {
             return Integer.parseInt(input);

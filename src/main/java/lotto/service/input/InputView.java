@@ -29,7 +29,6 @@ public class InputView implements Input{
             System.out.println(e.getMessage());
             return getWinningNumber();
         }
-
     }
 
     @Override

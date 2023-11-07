@@ -7,7 +7,7 @@ public class GetBonusNumberDto {
         return bonusNumber;
     }
 
-    public GetBonusNumberDto(int bonusNumber) {
+    public GetBonusNumberDto(final int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 

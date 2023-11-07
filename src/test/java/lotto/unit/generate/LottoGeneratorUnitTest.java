@@ -1,5 +1,7 @@
 package lotto.unit.generate;
 
+import static org.assertj.core.api.Assertions.*;
+
 import lotto.dto.generate.GetGeneratedLottosDto;
 import lotto.dto.input.GetLottoCountDto;
 import lotto.service.generate.Generator;
@@ -18,13 +20,15 @@ public class LottoGeneratorUnitTest {
 
     @DisplayName("로또 생성 정상 실행")
     @Test
-    void hi(){
+    void lottoGenerateNormalCase(){
         //given
         GetLottoCountDto getLottoCountDto = new GetLottoCountDto(10);
+
         //when
         GetGeneratedLottosDto getGeneratedLottosDto = generator.generateLottos(getLottoCountDto);
+
         //then
-        Assertions.assertThat(getGeneratedLottosDto.getLottos().lottos().size()).isEqualTo(10);
+        assertThat(getGeneratedLottosDto.getLottos().lottos().size()).isEqualTo(10);
     }
 
 }

@@ -7,7 +7,7 @@ public class GetLottoResultDto {
     private final int fiveHitWithBonus;
     private final int sixHit;
 
-    public GetLottoResultDto(int threeHit, int fourHit, int fiveHit, int fiveHitWithBonus, int sixHit) {
+    public GetLottoResultDto(final int threeHit, final int fourHit, final int fiveHit, final int fiveHitWithBonus, final int sixHit) {
         this.threeHit = threeHit;
         this.fourHit = fourHit;
         this.fiveHit = fiveHit;

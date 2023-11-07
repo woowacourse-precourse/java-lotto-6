@@ -1,11 +1,8 @@
 package lotto.unit.validate;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.dto.input.GetWinningNumberDto;
 import lotto.util.exception.ErrorMessage;
 import lotto.util.validate.Validator;
@@ -120,14 +117,7 @@ public class ValidatorUnitTest {
     @Test
     void bonusNumberInWinningNumbers(){
         //given
-        ArrayList<Integer> nums = new ArrayList<>();
-        nums.add(1);
-        nums.add(2);
-        nums.add(3);
-        nums.add(4);
-        nums.add(5);
-        nums.add(7);
-        GetWinningNumberDto getWinningNumberDto = new GetWinningNumberDto(nums);
+        GetWinningNumberDto getWinningNumberDto = prepareWinningNumbers();
         String bonusNumber = "7";
         //when
 
@@ -141,14 +131,7 @@ public class ValidatorUnitTest {
     @Test
     void biggerThenFourtyFiveBonusNumber(){
         //given
-        ArrayList<Integer> nums = new ArrayList<>();
-        nums.add(1);
-        nums.add(2);
-        nums.add(3);
-        nums.add(4);
-        nums.add(5);
-        nums.add(7);
-        GetWinningNumberDto getWinningNumberDto = new GetWinningNumberDto(nums);
+        GetWinningNumberDto getWinningNumberDto = prepareWinningNumbers();
         String bonusNumber = "46";
         //when
 
@@ -162,14 +145,7 @@ public class ValidatorUnitTest {
     @Test
     void lowerThenOneBonusNumber(){
         //given
-        ArrayList<Integer> nums = new ArrayList<>();
-        nums.add(1);
-        nums.add(2);
-        nums.add(3);
-        nums.add(4);
-        nums.add(5);
-        nums.add(7);
-        GetWinningNumberDto getWinningNumberDto = new GetWinningNumberDto(nums);
+        GetWinningNumberDto getWinningNumberDto = prepareWinningNumbers();
         String bonusNumber = "-1";
         //when
 
@@ -177,5 +153,20 @@ public class ValidatorUnitTest {
         assertThatThrownBy(() -> Validator.checkBonusNumber(getWinningNumberDto,bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_RIGHT_BOUNDARY.toString());
+    }
+
+    private static GetWinningNumberDto prepareWinningNumbers() {
+        ArrayList<Integer> nums = new ArrayList<>();
+        addWinningNumbers(nums);
+        return new GetWinningNumberDto(nums);
+    }
+
+    private static void addWinningNumbers(ArrayList<Integer> nums) {
+        nums.add(1);
+        nums.add(2);
+        nums.add(3);
+        nums.add(4);
+        nums.add(5);
+        nums.add(7);
     }
 }

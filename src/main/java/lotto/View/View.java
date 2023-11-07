@@ -15,6 +15,10 @@ public class View {
         this.outputView = outputView;
     }
 
+    public void printErrorMessage(String message) {
+        outputView.printPhrase(message);
+    }
+
     public int getLottoBuyAmout() {
         outputView.printPhrase(PrintPhrase.PURCHASE_INPUT.getPhrase());
         return inputView.SingleNumberInput();

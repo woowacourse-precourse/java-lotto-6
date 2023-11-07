@@ -2,6 +2,7 @@ package lotto.Model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Controller.LottoController;
 import lotto.Global.Exception;
 
 public class Lotto {
@@ -13,9 +14,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (!isNumbersSizeValidate(numbers)) {
             throw new IllegalArgumentException(Exception.LOTTO_WRONG_AMOUNT_INPUT.getErrorPhrase());
         }
+        if (!isUniqueNumberValidate(numbers)) {
+            throw new IllegalArgumentException(Exception.LOTTO_NO_DUPLICATE_CREATE.getErrorPhrase());
+        }
+    }
+
+    private Boolean isNumbersSizeValidate(List<Integer> numbers) {
+        return numbers.size() == LottoController.LOTTO_NUMBER_AMOUNT;
+    }
+
+    private Boolean isUniqueNumberValidate(List<Integer> numbers) {
+        return numbers.size() == numbers.stream().distinct().count();
     }
 
     public String getLottoCreatedResult() {

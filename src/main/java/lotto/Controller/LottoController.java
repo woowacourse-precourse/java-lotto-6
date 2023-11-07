@@ -22,30 +22,80 @@ public class LottoController {
     public void run() {
         sellLotto();
         getWinningLottoInformation();
-        getLottoResult();
+        getTotalLottoResult();
     }
 
     private void sellLotto() {
-        int lottoAmount = getLottoAmountByReceivedMoney();
-        view.putLottoSellResult(lottoMachine.buyLottos(lottoAmount));
+        try {
+            int lottoAmount = getLottoAmountByReceivedMoney();
+            view.putLottoSellResult(lottoMachine.buyLottos(lottoAmount));
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            sellLotto();
+        }
     }
 
     private int getLottoAmountByReceivedMoney() {
-        int moneyAmount = view.getLottoBuyAmout();
-        if (moneyAmount % LOTTO_SALES_AMOUNT_MONEY != 0) {
-            throw new IllegalArgumentException(Exception.LOTTO_PURCHASE_INPUT.getErrorPhrase());
+        try {
+            int moneyAmount = view.getLottoBuyAmout();
+            if (moneyAmount % LOTTO_SALES_AMOUNT_MONEY != 0) {
+                throw new IllegalArgumentException(Exception.LOTTO_PURCHASE_INPUT.getErrorPhrase());
+            }
+            return moneyAmount / LOTTO_SALES_AMOUNT_MONEY;
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            return getLottoAmountByReceivedMoney();
         }
-        return moneyAmount / LOTTO_SALES_AMOUNT_MONEY;
     }
 
     private void getWinningLottoInformation() {
-        List<Integer> winningNumber = view.getWinningLottoNumber(LOTTO_NUMBER_AMOUNT);
-        int bonusNumber = view.getBonusLottoNumber();
+        List<Integer> winningNumber = getWinningNumber();
+        int bonusNumber = getBonusNumber();
         lottoMachine.setWinningNumberInformation(winningNumber, bonusNumber);
     }
 
-    private void getLottoResult() {
-        HashMap<String, Integer> result = lottoMachine.getResult();
-        view.putLottoResult(result, lottoMachine.getRateOfResult(result));
+    private List<Integer> getWinningNumber() {
+        try {
+            List<Integer> winningNumber = view.getWinningLottoNumber(LOTTO_NUMBER_AMOUNT);
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            return getWinningNumber();
+        }
+    }
+
+    private int getBonusNumber() {
+        try {
+            int bonusNumber = view.getBonusLottoNumber();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
+    private void getTotalLottoResult() {
+        HashMap<String, Integer> result = getLottoResult();
+        view.putLottoResult(result, getRateOfResult(result));
+    }
+
+    private HashMap<String, Integer> getLottoResult() {
+        try {
+            HashMap<String, Integer> result = lottoMachine.getResult();
+            return result;
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            return getLottoResult();
+        }
+    }
+
+    private float getRateOfResult(HashMap<String, Integer> result) {
+        try {
+            float ratioOfResult = lottoMachine.getRateOfResult(result);
+            return ratioOfResult;
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            return getRateOfResult(result);
+        }
     }
 }

@@ -20,38 +20,36 @@ public class LottoMachine {
 
     public LottoResult calculateResult(List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber) {
         Map<Prize, Integer> prizeCounts = new EnumMap<>(Prize.class);
-        prizeCounts.put(Prize.FIRST, 0);
-        prizeCounts.put(Prize.SECOND, 0);
-        prizeCounts.put(Prize.THIRD, 0);
-        prizeCounts.put(Prize.FOURTH, 0);
-        prizeCounts.put(Prize.FIFTH, 0);
 
-        List<List<Integer>> convertedLottos = lottos.stream()
-                .map(Lotto::getNumbers)
-                .collect(Collectors.toList());
+        List<List<Integer>> lottoNumbers = getLottoNumbers(lottos);
 
         for (Lotto lotto : lottos) {
-            int matchCount = countMatchingNumbers(lotto, winNumbers);
-            int bonusMatchCount = countBonusMatch(lotto, bonusNumber);
-            Prize prize = calculatePrize(matchCount, bonusMatchCount);
-
-            int currentCount=prizeCounts.getOrDefault(prize,0);
-            prizeCounts.put(prize, currentCount + 1);
+            Prize prize = calculatePrize(lotto, winNumbers, bonusNumber);
+            prizeCounts.put(prize, prizeCounts.getOrDefault(prize, 0) + 1);
         }
 
-        return new LottoResult(winNumbers, bonusNumber, convertedLottos, prizeCounts);
+        return new LottoResult(winNumbers, bonusNumber, lottoNumbers, prizeCounts);
     }
 
-    private Prize calculatePrize(int matchCount, int bonusMatchCount) {
-        Prize prize = Prize.NONE;
+    private List<List<Integer>> getLottoNumbers(List<Lotto> lottos) {
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoNumbers.add(lotto.getNumbers());
+        }
+        return lottoNumbers;
+    }
 
-        if (matchCount == 6) prize = Prize.FIRST;
-        if (matchCount == 5 && bonusMatchCount == 1) prize = Prize.SECOND;
-        if (matchCount == 5 && bonusMatchCount == 0) prize = Prize.THIRD;
-        if (matchCount == 4) prize = Prize.FOURTH;
-        if (matchCount == 3) prize = Prize.FIFTH;
+    private Prize calculatePrize(Lotto lotto, List<Integer> winNumbers, int bonusNumber) {
+        int matchCount = countMatchingNumbers(lotto, winNumbers);
+        int bonusMatchCount = countBonusMatch(lotto, bonusNumber);
 
-        return prize;
+        if (matchCount == 6) return Prize.FIRST;
+        if (matchCount == 5 && bonusMatchCount == 1) return Prize.SECOND;
+        if (matchCount == 5) return Prize.THIRD;
+        if (matchCount == 4) return Prize.FOURTH;
+        if (matchCount == 3) return Prize.FIFTH;
+
+        return Prize.NONE;
     }
 
     private int countMatchingNumbers(Lotto lotto, List<Integer> winNumbers) {

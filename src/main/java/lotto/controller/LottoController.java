@@ -38,4 +38,6 @@ public class LottoController {
 
         outputView.printLottoResult(result,purchaseAmount);
     }
+
+
 }

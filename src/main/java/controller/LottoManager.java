@@ -1,9 +1,13 @@
 package controller;
 
+import static constants.ConstantNumbersManager.INDEX_RESET;
+
 import java.util.ArrayList;
 import java.util.List;
-import view.*;
-import model.*;
+import model.Transform;
+import model.Validation;
+import view.InputView;
+import view.OutputView;
 
 public class LottoManager {
     private final List<List<Integer>> fullLottoValue = new ArrayList<>();
@@ -36,7 +40,7 @@ public class LottoManager {
     }
 
     private void generateAndPrintRandomLottoNumbers(int lottoCount) {
-        for (int index = 0; index < lottoCount; index++) {
+        for (int index = INDEX_RESET; index < lottoCount; index++) {
             List<Integer> randomLotto = transform.generateRandomList();
             fullLottoValue.add(randomLotto);
             outputView.printRandomNumber(randomLotto);

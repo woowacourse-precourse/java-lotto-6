@@ -1,5 +1,7 @@
 package lotto;
 
+import Converter.Converter;
+import Validator.IntegerValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class GameInput {

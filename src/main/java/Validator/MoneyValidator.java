@@ -1,4 +1,4 @@
-package lotto;
+package Validator;
 
 import static Constant.LottoSettingValue.COST_OF_LOTTO;
 

@@ -5,6 +5,7 @@ import static Constant.LottoSettingValue.LOTTO_MAXIMUM_NUMBER;
 import static Constant.LottoSettingValue.LOTTO_MINIMAL_NUMBER;
 import static Constant.LottoSettingValue.NUMBER_OF_UNIQUE_NUMBERS;
 
+import Converter.Converter;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;

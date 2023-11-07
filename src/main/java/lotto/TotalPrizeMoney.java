@@ -1,5 +1,7 @@
 package lotto;
 
+import Converter.Converter;
+
 public class TotalPrizeMoney {
 
     Integer totalPrizeMoney;

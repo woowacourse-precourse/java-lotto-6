@@ -1,4 +1,4 @@
-package lotto;
+package Converter;
 
 import static Constant.GuideMessagePiece.COMMA;
 import static Constant.LottoSettingValue.LOTTO_SIZE;
@@ -6,6 +6,9 @@ import static Constant.LottoSettingValue.LOTTO_SIZE;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import Validator.IntegerValidator;
+import lotto.Lotto;
+import Validator.MoneyValidator;
 
 public class Converter {
 

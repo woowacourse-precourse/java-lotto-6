@@ -18,9 +18,4 @@ public enum ExceptionMessage {
         return value;
     }
 
-    public static ExceptionMessage[] getSuccessCodes() {
-        return new ExceptionMessage[] {
-            NUMBER, THOUSAND
-        };
-    }
 }

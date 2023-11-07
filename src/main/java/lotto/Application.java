@@ -2,6 +2,12 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoSeller lottoSeller = new LottoSeller();
+        lottoSeller.buyLotto();
+
+        WinningNumberManager winningNumberManager = new WinningNumberManager();
+        winningNumberManager.setWinningNumberToLottoMachine();
+
+        lottoSeller.noticeStatistic();
     }
 }

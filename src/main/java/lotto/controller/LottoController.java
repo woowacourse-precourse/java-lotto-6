@@ -22,7 +22,9 @@ public class LottoController {
         printLottos(lottos);
 
         WinningLotto win = getWinningLotto();
-        printResults(win);
+        Compare scoreResult = new Compare();
+        scoringResult(scoreResult, win, lottos);
+
 
     }
 
@@ -50,5 +52,9 @@ public class LottoController {
         int bonus = bonusNumber.getValue();
 
         return bonus;
+    }
+
+    public void scoringResult(Compare score, WinningLotto win, Lottos lottos) {
+        score.scoringResult(win, lottos);
     }
 }

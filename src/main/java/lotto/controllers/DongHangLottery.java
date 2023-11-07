@@ -12,6 +12,7 @@ public class DongHangLottery {
         try {
             validateContainsCommaSeparator(inputLottoNumber);
             validateDuplicateNumber(inputLottoNumber);
+            validateWinningNumberInOneToFortyFive(inputLottoNumber);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }

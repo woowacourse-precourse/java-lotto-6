@@ -35,11 +35,29 @@ public class InputValidator {
     }
 
     public static void validateDuplicateNumber(String input) {
-        String[] winningNumbers = input.split(COMMA_SEPARATOR);
-        Set<String> inputNumber = new HashSet<>();
-        Collections.addAll(inputNumber, winningNumbers);
+        Set<String> inputNumber = inputNumberSet(input);
         if (inputNumber.size()!=WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(getDuplicateNumberMessage());
         }
     }
+
+    public static void validateWinningNumberInOneToFortyFive(String input) {
+        Set<String> inputNumber = inputNumberSet(input);
+        for (String element : inputNumber) {
+            validateNumberInOneToFortyFive (element);
+        }
+    }
+    private static void validateNumberInOneToFortyFive (String input) {
+        int number = Integer.parseInt(input);
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(getWinningNumberInOneToFortyFiveMessage());
+        }
+    }
+    private static Set<String> inputNumberSet (String input) {
+        String[] winningNumbers = input.split(COMMA_SEPARATOR);
+        Set<String> inputNumber = new HashSet<>();
+        Collections.addAll(inputNumber, winningNumbers);
+        return inputNumber;
+    }
+
 }

@@ -35,4 +35,7 @@ public class MessageManager {
     public static String getDuplicateNumberMessage() {
         return exceptionMessages.getString("duplicateNumber.message");
     }
+    public static String getWinningNumberInOneToFortyFiveMessage() {
+        return exceptionMessages.getString("winningNumberInOneToFortyFive.message");
+    }
 }

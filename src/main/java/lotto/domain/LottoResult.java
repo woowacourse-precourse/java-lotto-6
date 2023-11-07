@@ -13,7 +13,8 @@ public class LottoResult {
     public void add(LottoEnum.LottoRank rank) {
         result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
-    public int getCount(LottoEnum.LottoRank rank) {ㄷ
+    public int getCount(LottoEnum.LottoRank rank) {
+        return result.getOrDefault(rank, 0);
     }
     public double calculateEarningsRate(int purchaseAmount) {
     }

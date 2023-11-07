@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.domain.LottoWinningBonusNumber;
+import lotto.domain.LottoWinningNumbers;
+import lotto.domain.PurchasedLottoNumbers;
 import lotto.domain.dto.InputBonusNumber;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
@@ -11,55 +14,52 @@ import lotto.view.OutputView;
 
 public class GameController {
     public static void runGame() {
-        lottoPreparation();
-        lottoProgress();
-        lottoResult();
+        PurchasedLottoNumbers purchasedLottoNumbers = buyLotto();
+        lottoProgress(purchasedLottoNumbers);
     }
 
-    private static void lottoPreparation() {
-        moneyInputAndLottoIssue();
-        PurchasedLottoDTO purchasedLottoDTO = LottoService.purchasedLottoToDTO();
+    private static PurchasedLottoNumbers buyLotto() {
+        PurchasedLottoNumbers purchasedLottoNumbers = moneyInputAndLottoIssue();
+        PurchasedLottoDTO purchasedLottoDTO = LottoService.purchasedLottoToDTO(purchasedLottoNumbers);
         OutputView.printPurchasedLotto(purchasedLottoDTO);
-        inputWinningNumbers();
-        inputBonusNumber();
+        return purchasedLottoNumbers;
     }
 
-    private static void lottoProgress() {
-        LottoService.compareLotto();
-    }
-
-    private static void lottoResult() {
-        LottoResultDTO lottoResultDTO = LottoService.compareLotto();
+    private static void lottoProgress(PurchasedLottoNumbers purchasedLottoNumbers) {
+        LottoWinningNumbers lottoWinningNumbers = inputWinningNumbers();
+        LottoWinningBonusNumber lottoWinningBonusNumber = inputBonusNumber(lottoWinningNumbers);
+        LottoResultDTO lottoResultDTO = LottoService.compareLotto(lottoWinningNumbers, lottoWinningBonusNumber,
+                purchasedLottoNumbers);
         OutputView.printLottoResult(lottoResultDTO);
     }
 
-    private static void moneyInputAndLottoIssue() {
+    private static PurchasedLottoNumbers moneyInputAndLottoIssue() {
         try {
             InputMoney money = InputView.inputMoney();
-            LottoService.inputMoneyAndIssueLotto(money);
+            return LottoService.inputMoneyAndIssueLotto(money);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            moneyInputAndLottoIssue();
+            return moneyInputAndLottoIssue();
         }
     }
 
-    private static void inputWinningNumbers() {
+    private static LottoWinningNumbers inputWinningNumbers() {
         try {
             InputWinningNumbers inputWinningNumbers = InputView.inputWinningNumbers();
-            LottoService.inputWinningLotto(inputWinningNumbers);
+            return LottoService.inputWinningLotto(inputWinningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            inputWinningNumbers();
+            return inputWinningNumbers();
         }
     }
 
-    private static void inputBonusNumber() {
+    private static LottoWinningBonusNumber inputBonusNumber(LottoWinningNumbers lottoWinningNumbers) {
         try {
             InputBonusNumber inputBonusNumber = InputView.inputBonusNumber();
-            LottoService.inputBonusLotto(inputBonusNumber);
+            return LottoService.inputBonusLotto(lottoWinningNumbers, inputBonusNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            inputBonusNumber();
+            return inputBonusNumber(lottoWinningNumbers);
         }
     }
 }

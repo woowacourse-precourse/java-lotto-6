@@ -23,7 +23,8 @@ public class LottoServiceTest {
         User user = new User("10000");
 
         //when
-        List<Lotto> purchasedLotto = lottoGenerator(user.getAmount());
+        PurchasedLottoNumbers purchasedLottoNumbers = lottoGenerator(user.getAmount());
+        List<Lotto> purchasedLotto = purchasedLottoNumbers.getPurchasedLotto();
 
         //then
         //purchasedLotto.getPurchasedLotto().size();
@@ -34,11 +35,10 @@ public class LottoServiceTest {
     @DisplayName("생성된 로또가 출력되는지 검사한다.")
     public void 로또_출력() throws Exception {
         //given
-        List<Lotto> lottos = lottoGenerator(3000);
-        PurchasedLottoNumbers purchasedLottoNumbers = new PurchasedLottoNumbers(lottos);
+        PurchasedLottoNumbers purchasedLottoNumbers = lottoGenerator(3000);
 
         //when
-        PurchasedLottoDTO purchasedLottoDTO = purchasedLottoToDTO();
+        PurchasedLottoDTO purchasedLottoDTO = purchasedLottoToDTO(purchasedLottoNumbers);
 
         String lottoDTO1 = Arrays.toString(purchasedLottoDTO.getPurchasedLotto().get(0).getNumbers().toArray());
         String lottoDTO2 = Arrays.toString(purchasedLottoDTO.getPurchasedLotto().get(1).getNumbers().toArray());

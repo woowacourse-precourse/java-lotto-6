@@ -3,6 +3,7 @@ package lotto.configuration;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import lotto.controller.LottoGameController;
+import lotto.repository.Repository;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -75,5 +76,18 @@ public class AppConfigTest {
         assertThat(outputView1).isNotNull();
         assertThat(outputView2).isNotNull();
         assertThat(outputView1).isSameAs(outputView2);
+    }
+
+    @Test
+    public void LottoGameRepository가_싱글톤인지() {
+        // Given && When
+        Repository repository1 = config.lottoGameRepository();
+        Repository repository2 = config.lottoGameRepository();
+
+        // Then
+        assertThat(repository1).isInstanceOf(Repository.class);
+        assertThat(repository1).isNotNull();
+        assertThat(repository2).isNotNull();
+        assertThat(repository1).isSameAs(repository2);
     }
 }

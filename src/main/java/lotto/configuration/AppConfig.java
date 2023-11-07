@@ -1,6 +1,8 @@
 package lotto.configuration;
 
 import lotto.controller.LottoGameController;
+import lotto.repository.MemoryLottoGameRepository;
+import lotto.repository.Repository;
 import lotto.service.LottoGameService;
 import lotto.service.LottoGameServiceImpl;
 import lotto.view.ConsoleInputView;
@@ -16,12 +18,14 @@ public class AppConfig implements Config {
         private static final InputView inputView = createInputView();
         private static final OutputView outputView = createOutputView();
         private static final LottoGameService lottoGameService = createLottoGameService();
+        private static final Repository lottoGameRepository = createLottoGameRepository();
 
         private static LottoGameController createLottoGameController() {
             return new LottoGameController(
                     inputView,
                     outputView,
-                    lottoGameService
+                    lottoGameService,
+                    lottoGameRepository
             );
         }
 
@@ -35,6 +39,10 @@ public class AppConfig implements Config {
 
         private static LottoGameService createLottoGameService() {
             return new LottoGameServiceImpl();
+        }
+
+        private static Repository createLottoGameRepository() {
+            return new MemoryLottoGameRepository();
         }
     }
 
@@ -53,12 +61,17 @@ public class AppConfig implements Config {
     }
 
     @Override
-    public  InputView inputView() {
+    public InputView inputView() {
         return LazyHolder.inputView;
     }
 
     @Override
-    public synchronized OutputView outputView() {
+    public OutputView outputView() {
         return LazyHolder.outputView;
+    }
+
+    @Override
+    public Repository lottoGameRepository() {
+        return LazyHolder.lottoGameRepository;
     }
 }

@@ -43,7 +43,7 @@ public class LottoStatisticsTest {
         ArrayList<PrizeInformation> testResult;
         testResult = new ArrayList<>(List.of(SECOND_PRIZE, THIRD_PRIZE, THIRD_PRIZE));
         int testPurchaseAmount = 100000;
-        double expectedProfit = 330;
+        double expectedProfit = 33000;
 
         lottoStatistics.writeStatistics(testResult);
         double profit = lottoStatistics.calculateLottoProfit(testPurchaseAmount);

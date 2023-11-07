@@ -1,4 +1,4 @@
-package lotto.InputView;
+package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ExceptionMessage;

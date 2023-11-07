@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.domain.Bonus;
 import lotto.model.domain.BonusValidator;
 import lotto.model.domain.LottoMachine;
@@ -8,7 +7,6 @@ import lotto.model.domain.LottoResultChecker;
 import lotto.model.domain.Purchase;
 import lotto.model.domain.Statistics;
 import lotto.model.domain.WinningLotto;
-import lotto.model.domain.WinningLottoValidator;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumberService;
 import lotto.view.InputView;
@@ -58,22 +56,12 @@ public class LottoGameController {
 
     //TODO: 메서드 리팩토링
     private void getWinningNumbers() {
-        boolean isValidInput = false;
-        WinningLottoValidator validator = new WinningLottoValidator();
-        while (!isValidInput) {
+        while (winningLotto == null) {
+            String winningNumbers = inputView.requestWinningNumber();
             try {
-                String winningNumbers = inputView.requestWinningNumber();
-                List<String> inputDividedByComma = validator.validateDelimiterComma(winningNumbers);
-                validator.validateSixElements(inputDividedByComma);
-                List<Integer> integerNumbers = validator.validateWinningNumberIsNumeric(inputDividedByComma);
-                validator.validateNumberBetweenInRange(integerNumbers);
-                winningLotto = new WinningLotto(integerNumbers);
+                winningLotto = winningNumberService.getWinningNumberIfValid(winningNumbers);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            } finally {
-                if (winningLotto != null) {
-                    isValidInput = true;
-                }
             }
         }
     }

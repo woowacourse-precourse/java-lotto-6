@@ -12,10 +12,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public Map<Rank, Integer> saveRankResult(User user) {
         Map<Rank, Integer> rankResult = initRank();
         for (Lotto lotto : lottos) {

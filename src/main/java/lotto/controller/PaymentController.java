@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.PaymentConstant;
 import lotto.domain.payment.Payment;
 import lotto.exception.ParserException;
 import lotto.exception.PaymentException;
@@ -8,7 +9,7 @@ import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public final class PaymentController {
+public final class PaymentController{
     public Payment createPayment(){
         OutputView.printPaymentMessage();
         Payment payment = generatePaymentFromAmount();
@@ -17,7 +18,7 @@ public final class PaymentController {
     private Payment generatePaymentFromAmount(){
         try{
             Integer amount = requestAmount();
-            return new Payment(amount);
+            return Payment.of(amount);
         } catch (PaymentException exception){
             OutputView.printErrorMessage(exception.getMessage());
             return generatePaymentFromAmount();

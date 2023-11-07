@@ -12,7 +12,7 @@ public class PaymentTest {
     @DisplayName("금액을 입력하면 Payment 를 생성한다.")
     void CreatePaymentWhenInputAmount(){
         int amount = 1000;
-        payment = new Payment(amount);
+        payment = Payment.of(amount);
         Assertions.assertEquals(Payment.class,payment.getClass());
         Assertions.assertEquals(payment.amount(),amount);
     }
@@ -23,10 +23,10 @@ public class PaymentTest {
         int negativeAmount = -1;
 
         var zeroException = Assertions.assertThrows(PaymentException.class,()->{
-            new Payment(zeroAmount);
+            Payment.of(zeroAmount);
         });
         var negativeException = Assertions.assertThrows(PaymentException.class,()->{
-            new Payment(negativeAmount);
+            Payment.of(negativeAmount);
         });
         Assertions.assertEquals(zeroException.getMessage(),negativeException.getMessage());
     }
@@ -35,7 +35,7 @@ public class PaymentTest {
     void ThrowExceptionWhenInputIsNotAlignedWithPaymentUnit(){
         int notAlignedAmount = 999;
         Assertions.assertThrows(PaymentException.class,()->{
-            new Payment(notAlignedAmount);
+            Payment.of(notAlignedAmount);
         });
     }
 }

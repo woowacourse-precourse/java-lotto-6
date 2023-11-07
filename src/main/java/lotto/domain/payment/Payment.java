@@ -4,11 +4,16 @@ import lotto.constant.PaymentConstant;
 import lotto.exception.PaymentException;
 import lotto.exception.message.PaymentExceptionMessage;
 
-public record Payment (int amount) implements PaymentConstant {
-    public Payment(int amount){
+public record Payment (int ticketPurchaseCount,int amount) implements PaymentConstant {
+    public static Payment of(int amount){
         validateAmount(amount);
-        this.amount = amount;
+        int ticketPurchaseCount = calculateLottoTicketQuantityWithAmount(amount);
+        return new Payment(ticketPurchaseCount,amount);
     }
+    private static int calculateLottoTicketQuantityWithAmount(int amount){
+        return amount/PAYMENT_UNIT;
+    }
+
     private static void validateAmount(int amount){
         validateAmountIsPositiveNumber(amount);
         validateAmountIsAligned(amount);

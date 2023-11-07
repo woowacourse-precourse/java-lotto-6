@@ -19,6 +19,7 @@ public class WinningNumberController {
     private final Validator validator = new Validator();
 
     void inputWinningNumberStage() {
+        OutputView.requestWinningNumberMessage();
         requestWinningNumber();
         requestBonusNumber();
     }
@@ -67,8 +68,12 @@ public class WinningNumberController {
     }
 
     private void requestWinningNumber() {
-        OutputView.requestWinningNumberMessage();
-        winningLotto = new Lotto(inputWinningNumber());
+        try {
+            winningLotto = new Lotto(inputWinningNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + LOTTERY_NUMBER_FORMAT_EXCEPTION.getMessage());
+            requestWinningNumber();
+        }
     }
 
     private List<Integer> inputWinningNumber() {
@@ -77,9 +82,13 @@ public class WinningNumberController {
 
         List<Integer> numbers = new ArrayList<>();
         for (String numberString : numberStrings) {
-            numbers.add(Integer.parseInt(numberString));
+            if (validator.isInputInteger(numberString)) {
+                numbers.add(Integer.parseInt(numberString));
+                continue;
+            }
+            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + LOTTERY_NUMBER_FORMAT_EXCEPTION.getMessage());
+            return inputWinningNumber();
         }
-
         return numbers;
     }
 }

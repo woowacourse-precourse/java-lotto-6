@@ -145,24 +145,24 @@ public class UserInput {
         return winningNumbers;
     }
 
-//    public int getBonusNumber() {
-//        int bonusNumber;
-//
-//        while(true) {
-//            try {
-//                System.out.println("보너스 번호를 입력해 주세요.");
-//                bonusNumber = Integer.parseInt(Console.readLine());
-//                validateBonusNumber(bonusNumber);
-//                break;
-//            } catch (NumberFormatException e) {
-//                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-//            } catch (IllegalArgumentException e) {
-//                System.out.println("[ERROR] " + e.getMessage());
-//            }
-//        }
-//
-//        return bonusNumber;
-//    }
+    public int getBonusNumber() {
+        int bonusNumber;
+
+        while(true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(Console.readLine());
+                validateBonusNumber(bonusNumber);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+
+        return bonusNumber;
+    }
 
     private void validateBonusNumber(int bonusNumber){
         if(!((bonusNumber >= 1) && (bonusNumber <= 45))){

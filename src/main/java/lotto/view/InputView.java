@@ -7,17 +7,23 @@ import lotto.domain.WinningLotto;
 import lotto.utils.InputConvertor;
 import lotto.utils.InputValidator;
 
-public class InputView {
+public class InputView implements Viewable {
+
+    private static final InputView inputView = new InputView();
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    private static String getInput(final String message) {
+    public static Viewable getInstance() {
+        return new ProxyInputView(inputView);
+    }
+
+    private String getInput(String message) {
         System.out.println(message);
         return InputValidator.validate(Console.readLine());
     }
 
-    public static Money getMoneyInput() {
+    public Money getMoneyInput() {
         String money = getInput(MONEY_INPUT_MESSAGE);
         try {
             money = InputValidator.validateMoney(money);
@@ -28,7 +34,7 @@ public class InputView {
         }
     }
 
-    public static Bonus getBonusInput() {
+    public Bonus getBonusInput() {
         String bonus = getInput(BONUS_INPUT_MESSAGE);
         try {
             InputValidator.validateLottoNumber(bonus);
@@ -39,7 +45,7 @@ public class InputView {
         }
     }
 
-    public static WinningLotto getWinningInput() {
+    public WinningLotto getWinningInput() {
         String winnings = getInput(WINNING_INPUT_MESSAGE);
         try {
             InputValidator.validateWinnings(winnings);

@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
+import java.util.List;
 
 public class Controller {
     private LottoService lottoService = new LottoService();
@@ -23,6 +24,11 @@ public class Controller {
         for (Lotto lotto : customer.getPurchaseLotteries()) {
             OutputMessage.lottoNumber(lotto.getNumbers());
         }
+    }
+
+    private List<Integer> getWinningNumber() { // String[] vs List<Integer> ..
+        String input = Console.readLine().trim();
+        return lottoService.integerList(input);
     }
 
 }

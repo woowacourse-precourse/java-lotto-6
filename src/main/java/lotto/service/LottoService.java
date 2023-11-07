@@ -5,10 +5,8 @@ import lotto.exception.Exceptions;
 import lotto.model.Customer;
 import lotto.model.Lotto;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoService {
     Exceptions exceptions = new Exceptions();
@@ -49,6 +47,15 @@ public class LottoService {
         List<Integer> sortLotto = new ArrayList<Integer>(list);
         Collections.sort(sortLotto);
         return sortLotto;
+    }
+
+
+    public List<Integer> integerList(String input){
+        return Arrays.stream(intArray(input)).boxed().collect(Collectors.toList());
+    }
+
+    private int[] intArray(String input){
+        return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
 }

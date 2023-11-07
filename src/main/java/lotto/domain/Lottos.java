@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -21,7 +22,7 @@ public class Lottos {
     }
 
     public Map<Grade, Integer> grade(List<Integer> winningNumbers, Integer bonusNumber) {
-        Map<Grade, Integer> result = new HashMap<>();
+        Map<Grade, Integer> result = new LinkedHashMap<>();
         for (Grade grade : Grade.values()){
             result.put(grade,0);
         }

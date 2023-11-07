@@ -4,18 +4,18 @@ import camp.nextstep.edu.missionutils.Console;
 
 public abstract class Input {
 
-    private boolean isValidInput = true;
+    private static final String ERROR = "[ERROR]";
+    private boolean isValidInput = false;
 
     public String readLine() {
         String data = "";
-        while (isValidInput) {
+        while (!isValidInput) {
             try {
                 data = Console.readLine();
                 validate(data);
-                isValidInput = false;
+                isValidInput = true;
             } catch (IllegalArgumentException ex) {
-                System.out.println("Exception in thread \"main\" java.lang.IllegalArgumentException");
-                System.out.println("[ERROR]" + ex.getMessage());
+                System.out.println(ERROR + ex.getMessage());
             }
         }
         System.out.println();

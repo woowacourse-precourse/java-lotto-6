@@ -24,14 +24,11 @@ public class GameController {
         gameProcess();
     }
 
+
     private void gameProcess() {
-        try {
-            Cash cash = depositCash();
-            Lottos lottos = purchaseLotto(cash);
-            WinnerLotto winnerLotto = getWinnerLotto();
-        } catch (IllegalStateException e) {
-            outputView.printErrorMessage(e);
-        }
+        Cash cash = depositCash();
+        Lottos lottos = purchaseLotto(cash);
+        WinnerLotto winnerLotto = getWinnerLotto();
     }
 
 
@@ -44,6 +41,8 @@ public class GameController {
             throw e;
         }
     }
+
+
 
 
     private Lottos purchaseLotto(Cash cash) {
@@ -65,6 +64,7 @@ public class GameController {
             throw e;
         }
     }
+
 
 
 

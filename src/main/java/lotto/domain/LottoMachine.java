@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.dto.RequestLotto;
+import lotto.dto.RequestLottos;
 import lotto.util.NumberGenerator;
 
 import java.util.ArrayList;
@@ -17,24 +18,24 @@ public class LottoMachine {
     }
 
     public Lottos purchaseLottos() {
-        final List<Lotto> generatedLottos = generateLottosByCash();
-        return new Lottos(generatedLottos);
+        final RequestLottos requestLottos = generateLottosByCash();
+        return Lottos.create(requestLottos.lottoDummy());
     }
 
-    private List<Lotto> generateLottosByCash() {
-        List<Lotto> generatedLottos = new ArrayList<>();
+    private RequestLottos generateLottosByCash() {
+        List<Lotto> generatedNumbersDummy = new ArrayList<>();
         while (cash.isAfford()) {
             cash.spendOneUnit();
-            Lotto lotto = generateLotto();
-            generatedLottos.add(lotto);
+            final Lotto lotto = generateLotto();
+            generatedNumbersDummy.add(lotto);
         }
 
-        return generatedLottos;
+        return RequestLottos.of(generatedNumbersDummy);
     }
 
     private Lotto generateLotto() {
         final List<Integer> numbers = numberGenerator.generateNumbers();
-        RequestLotto requestLotto = RequestLotto.of(numbers);
+        final RequestLotto requestLotto = RequestLotto.of(numbers);
         return Lotto.create(requestLotto.numbers());
     }
 

@@ -9,9 +9,14 @@ public class Lottos {
     private final List<Lotto> lottos;
     private final Integer count;
 
-    public Lottos(final List<Lotto> lottos) {
-        this.lottos = lottos;
+    private Lottos(final List<Lotto> lottoDummy) {
+        this.lottos = lottoDummy;
         this.count = lottos.size();
+    }
+
+
+    public static Lottos create(final List<Lotto> lottoDummy) {
+        return new Lottos(lottoDummy);
     }
 
     public Prizes createPrizes(final WinnerLotto winnerLotto) {

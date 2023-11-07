@@ -22,8 +22,8 @@ public class LottoProfit {
     }
 
     public void createLottoProfit(LottoPrize lottoPrize, LottoPurchase lottoPurchase) {
-        int totalWinningAmount = createTotalWinningAmount(lottoPrize);
-        int totalPurchaseAmount = createTotalPurchaseAmount(lottoPurchase);
+        double totalWinningAmount = createTotalWinningAmount(lottoPrize);
+        double totalPurchaseAmount = createTotalPurchaseAmount(lottoPurchase);
     }
 
     public int createTotalWinningAmount(LottoPrize lottoPrize) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
@@ -16,6 +17,7 @@ import lotto.view.OutputView;
 public class Controller {
     private Buyer buyer;
     private WinningNumbers winningNumbers;
+    private BonusNumber bonusNumber;
 
     private void getPurchasePrice() {
         String inputPurchasePrice = askPurchasePrice();
@@ -96,5 +98,21 @@ public class Controller {
             winningNumbers.add(Integer.parseInt(number.trim()));  // 구분자 뒤 공백 제거
         }
         return winningNumbers;
+    }
+
+    private void getBonusNumber() {
+        String inputBonusNumber = askBonusNumber();
+        checkInputValidation(inputBonusNumber);
+        bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber));
+    }
+
+    private String askBonusNumber() {
+        InputView.showAskBonusNumber();
+        return Console.readLine().trim();
+    }
+
+    private void checkInputValidation(String inputBonusNumber) {
+        InputValidator.isNullOrIsEmpty(inputBonusNumber);
+        InputValidator.isNotDigit(inputBonusNumber);
     }
 }

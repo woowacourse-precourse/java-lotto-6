@@ -23,7 +23,7 @@ public class Parser {
     }
 
 
-    public static Integer parseInt(String input) {
+    public static Integer parseInt(String input) throws IllegalStateException{
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

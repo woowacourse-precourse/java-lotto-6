@@ -21,8 +21,7 @@ public class Lottos {
 
     public List<Prize> compareWithWinnerLotto(final WinnerLotto winnerLotto) {
         return lottos.stream()
-                .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(),
-                        winnerLotto.getBonusNumber()))
+                .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(), winnerLotto.getBonusNumber()))
                 .collect(Collectors.toList());
     }
 

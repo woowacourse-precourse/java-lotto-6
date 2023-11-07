@@ -27,9 +27,14 @@ public class GameController {
 
 
     private void gameProcess() {
-        Cash cash = depositCash();
-        Lottos lottos = purchaseLotto(cash);
-        WinnerLotto winnerLotto = getWinnerLotto();
+        try {
+            Cash cash = depositCash();
+            Lottos lottos = purchaseLotto(cash);
+            WinnerLotto winnerLotto = getWinnerLotto();
+            compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e);
+        }
     }
 
 
@@ -65,9 +70,12 @@ public class GameController {
         }
     }
 
-
-
-
+    private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {
+        List<Prize> prizeDummy = lottos.compareWithWinnerLotto(winnerLotto);
+        Prizes prizes = new Prizes(prizeDummy);
+        prizes.getRoundedTotalBenefit(cash.getDepositAmount());
+        outputView.printStaticResult(prizes, cash);
+    }
 
 
 

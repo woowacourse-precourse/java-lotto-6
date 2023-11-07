@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import lotto.Dto.SingleResultDto;
 import lotto.Dto.TotalResultDto;
-import lotto.constants.Constant;
-import lotto.constants.messages.Error;
+import lotto.constant.constants.Prize;
+import lotto.constant.messages.Error;
 
 public class LottoComputer {
 
@@ -16,34 +16,38 @@ public class LottoComputer {
     private Lottos myLottos;
 
     // matched / prize
-    Map<Integer, Integer> prizes = new HashMap<>() {{
-        put(3, Constant.MATCHED_THREE_PRICE.getConstant());
-        put(4, Constant.MATCHED_FOUR_PRICE.getConstant());
-        put(5, Constant.MATCHED_FIVE_PRICE.getConstant());
-        put(6, Constant.MATCHED_SIX_PRICE.getConstant());
-        put(7, Constant.MATCHED_FIVE_ONE_BONUS_PRICE.getConstant());
-    }};
+    Map<Integer, Integer> prizes;
 
-    public void config(Lottos myLottos) {
-        this.myLottos = myLottos;
-    }
 
     public void config(String bonusNumber) {
         validateBonusNumber(bonusNumber);
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
+    public void config(Lottos myLottos) {
+        this.myLottos = myLottos;
+    }
 
     public void config(Lotto winnerLotto) {
         this.winnerLotto = winnerLotto;
     }
 
 
+    private Map<Integer, Integer> makePrizes() {
+        prizes = new TreeMap<>();
+        Prize[] s = Prize.values();
+        for (Prize a : s) {
+            prizes.put(a.getCode(), a.getPrize());
+        }
+        return prizes;
+    }
+
     public TotalResultDto simulate() {
         TotalResultDto totalResultDto = new TotalResultDto();
+        prizes = makePrizes();
 
-        for (int won = 3; won <= 7; won++) {
-            totalResultDto.add(won, calculateWonLottery(won));
+        for (Integer key : prizes.keySet()) {
+            totalResultDto.add(key, calculateWonLottery(key));
         }
         totalResultDto.setProfit(calculateProfit(totalResultDto));
 
@@ -54,20 +58,19 @@ public class LottoComputer {
     private double calculateProfit(TotalResultDto totalWon) {
         int totalPrize = 0;
         int spentMoney = myLottos.size() * 1000;
-        for (int i = 3; i <= 7; i++) {
-            totalPrize += totalWon.getSingleResult(i).getWon() * totalWon.getSingleResult(i).getPrize();
+        for (Integer key : prizes.keySet()) {
+            totalPrize += totalWon.getSingleResult(key).getWon() * totalWon.getSingleResult(key).getPrize();
         }
         return (double) totalPrize / spentMoney * 100;
     }
 
-    // [match, bonus, prize, won]
+    // singleResultDto: [match, bonus, prize, won]
     private SingleResultDto calculateWonLottery(int won) {
         SingleResultDto singleResultDto = new SingleResultDto();
-
         singleResultDto.setMatch(won);
         singleResultDto.setWon(myLottos.match(winnerLotto, won));
         singleResultDto.setPrize(this.prizes.get(won));
-        if (won == 7) {
+        if (won == Prize.FIVE_AND_BONUS_MATCHED.getCode()) {
             singleResultDto.setMatch(5);
         }
         return singleResultDto;

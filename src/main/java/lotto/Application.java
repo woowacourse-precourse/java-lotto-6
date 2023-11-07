@@ -1,21 +1,53 @@
 package lotto;
 
+import java.util.List;
 import lotto.controller.LottoController;
+import lotto.model.Lotto;
+import lotto.model.LottoManager;
 import lotto.model.Referee;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
+    private static final InputView inputView = InputView.getInstance();
+    private static final Referee referee = new Referee();
+    private static final LottoController lottoController = new LottoController(referee);
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        InputView inputView = InputView.getInstance();
+        start();
+    }
+
+    private static void start() {
+        //로또 구매 금액 입력
         inputView.printPurchaseMoneyMessage();
+        final int money = lottoController.inputPurchaseMoney();
 
-        Referee referee = new Referee();
-        LottoController lottoController = new LottoController(referee);
+        //로또 생성
+        final List<Lotto> newLottos = LottoManager.createLottos(money);
+        OutputView.printLottoSize(newLottos);
+        newLottos.forEach(System.out::println);
+        createWinningLotto(newLottos);
+    }
 
+    private static void createWinningLotto(final List<Lotto> newLottos) {
+        //당첨 번호 입력
         inputView.printWinningNumbersMessage();
-        lottoController.createWinningLotto();
+        final List<Integer> winningNumbers = lottoController.inputWinningLottoNumbers();
 
-        lottoController.getLottoResult();
+        //보너스 번호 입력
+        inputView.printWinningBonusNumberMessage();
+        final int bonusNumber = lottoController.inputWinningLottoBonusNumber(winningNumbers);
+
+        final WinningLotto newWinningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        result(newLottos, newWinningLotto);
+    }
+
+    private static void result(final List<Lotto> newLottos, final WinningLotto newWinningLotto) {
+        LottoManager lottoManager = new LottoManager(newLottos, newWinningLotto);
+        final List<Lotto> lottos = lottoManager.getLottos();
+        final WinningLotto winningLotto = lottoManager.getWinningLotto();
+        lottoController.getLottoResult(lottos, winningLotto);
     }
 }

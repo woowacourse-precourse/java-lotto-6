@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,7 +21,7 @@ public class Store {
     }
 
     public List<Integer> makeLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private LottoTickets makeLottoTickets() {

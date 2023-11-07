@@ -62,13 +62,13 @@ public class RankingBoard {
         if (winCount == 5 && bonusCount == 1) {
             ranks.get(1).addWinner();
         }
-        if (winCount == 4) {
+        if (winCount == 5) {
             ranks.get(2).addWinner();
         }
-        if (winCount == 3) {
+        if (winCount == 4) {
             ranks.get(3).addWinner();
         }
-        if (winCount == 4) {
+        if (winCount == 3) {
             ranks.get(4).addWinner();
         }
     }

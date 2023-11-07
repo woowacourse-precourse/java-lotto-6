@@ -77,8 +77,7 @@ class ValidatorTest {
 
 
     @ParameterizedTest
-    @CsvSource(value = {"1,2,3,4,5, ", "sa", "!,1,2,3,4,5", "1, 2,3,4,5,6",},
-            delimiter = ':')
+    @ValueSource(strings = {"1,2,3,4,5, ", "sa", "!,1,2,3,4,5", " 1, 2,3,4,5,6", " 1,2,3,4,5,6 "})
     @DisplayName("로또 당첨 번호가 검증 포맷과 다른 경우 예외 발생")
     void validatedWinningNumbersFormat(String input) throws LottoException {
         // 포맷 예시) 1,23,12,34,42,45
@@ -89,8 +88,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,2,3,4,5,6", "12,1,2,3,4,5", " 1,2,3,4,5,6", " 1,2,3,4,5,6 "},
-            delimiter = ':')
+    @ValueSource(strings = {"1,2,3,4,5,6", "12,1,2,3,4,5", "1,2,3,4,5,6", "1,2,3,4,5,6"})
     @DisplayName("로또 당첨 번호 검증 포맷과 같은 경우")
     void validatedWinningNumbersFormatSuccess(String input) throws LottoException {
         // 포맷 예시) 1,23,12,34,42,45

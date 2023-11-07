@@ -7,6 +7,7 @@ public class Money {
 
 	private int purchaseMoney;
 	private int benefit;
+	private int lottoCount;
 
 	public Money(int purchaseMoney) {
 		validateMinimum(purchaseMoney);
@@ -15,7 +16,8 @@ public class Money {
 	}
 
 	public int calculateAmount() {
-		return purchaseMoney/RelateToLotto.MINIMUM_MONEY.number();
+		lottoCount = purchaseMoney/RelateToLotto.MINIMUM_MONEY.number();
+		return lottoCount;
 	}
 
 	private void validateMinimum(int purchaseMoney) {
@@ -32,5 +34,10 @@ public class Money {
 
 	public void plusBenefit(int benefit) {
 		this.benefit += benefit;
+	}
+
+	public double calculateProfitRate() {
+		double profitRate = 100 + ((double)(benefit - purchaseMoney) / purchaseMoney * 100);
+		return Math.round(profitRate * 100) / 100.0;
 	}
 }

@@ -28,18 +28,20 @@ public class LottoProcessImpl implements LottoProcess {
 
 	@Override
 	public void playGame() {
+		PrintGenerator.printInputMent("구입금액을");
 		inputPrice();
 		List<List<Integer>> IssuedLotto = generateLotto();
+		PrintGenerator.printInputMent("당첨 번호를");
 		inputWinningNumbers();
+		PrintGenerator.printInputMent("보너스 번호를");
 		inputBonusNumber();
-		//로또 번호 확인
 		lotto.checkLotto(bonus.getNumber(), IssuedLotto, money);
 		PrintGenerator.printWinningStatistics();
-
+		double profitRate = money.calculateProfitRate();
+		PrintGenerator.printBenefit(profitRate);
 	}
 
 	private void inputPrice() {
-		PrintGenerator.printInputMent("구입금액을");
 		try {
 			int lottoPrice = inputNumber.inputPurchasePrice();
 			money = new Money(lottoPrice);
@@ -49,7 +51,6 @@ public class LottoProcessImpl implements LottoProcess {
 	}
 
 	private void inputWinningNumbers() {
-		PrintGenerator.printInputMent("당첨 번호를");
 		try {
 			List<Integer> lottoNumbers = new ArrayList<>();
 			inputNumber.inputWinningNumbers(lottoNumbers);
@@ -60,11 +61,9 @@ public class LottoProcessImpl implements LottoProcess {
 	}
 
 	private void inputBonusNumber() {
-		PrintGenerator.printInputMent("보너스 번호를");
 		try {
 			int bonusNumber = inputNumber.inputBonusNumber();
 			bonus = new Bonus(bonusNumber, lotto);
-			// lotto.validateDuplicateWithBonus(bonus.getNumber());
 		} catch (IllegalArgumentException e) {
 			inputBonusNumber();
 		}

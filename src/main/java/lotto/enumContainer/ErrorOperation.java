@@ -20,7 +20,7 @@ public enum ErrorOperation {
 	}
 
 	public void apply() {
-		System.err.println(this.message);
+		System.out.println(this.message);
 		throw new IllegalArgumentException();
 	}
 }

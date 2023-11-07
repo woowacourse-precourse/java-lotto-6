@@ -35,12 +35,12 @@ public class PrintGeneratorImpl implements PrintGenerator{
 		resultBuilder.append(LottoResult.FOUR.getResultString()).append("\n");
 		resultBuilder.append(LottoResult.FIVE.getResultString()).append("\n");
 		resultBuilder.append(LottoResult.FIVE_BONUS.getResultString()).append("\n");
-		resultBuilder.append(LottoResult.SIX.getResultString()).append("\n");
+		resultBuilder.append(LottoResult.SIX.getResultString());
 		return resultBuilder.toString();
 	}
 
 	@Override
-	public void printBenefit() {
-
+	public void printBenefit(double benefit) {
+		System.out.println("총 수익률은 " + benefit + "%입니다.");
 	}
 }

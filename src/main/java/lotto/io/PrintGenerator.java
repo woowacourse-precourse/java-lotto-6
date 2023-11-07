@@ -10,7 +10,7 @@ public interface PrintGenerator {
 
 	void printWinningStatistics();
 
-	void printBenefit();
+	void printBenefit(double benefit);
 
 
 

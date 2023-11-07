@@ -24,9 +24,7 @@ public class GameManager {
     }
 
     public void run() {
-        int numberOfLottos = purchase();
-        List<Lotto> lottos = issueLottos(numberOfLottos);
-
+        List<Lotto> lottos = purchase();
         showLottos(lottos);
 
         List<Integer> winningNumbers = chooseWinningNumbers();
@@ -56,12 +54,13 @@ public class GameManager {
         return winningNumbers;
     }
 
-    private int purchase() {
+    private List<Lotto> purchase() {
         outputProcessor.outputPurchaseMoneyInputMessage();
         int purchaseMoney = requestRepeatedly(inputProcessor::getUserPurchaseMoney);
         int numberOfLottos = purchaseMoney / PURCHASE_MONEY_UNIT;
+        List<Lotto> lottos = issueLottos(numberOfLottos);
         outputProcessor.outputNewLine();
-        return numberOfLottos;
+        return lottos;
     }
 
     private void showLottos(List<Lotto> lottos) {

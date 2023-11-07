@@ -1,6 +1,7 @@
 Lotto 게임 만들기
 
 Controller
+
 public void runLottoGame()
 Lotto 게임을 시작합니다. 먼저 사용자로부터 로또 티켓의 구매 금액, 당첨 번호 및 보너스 번호를 수집합니다. 그런 다음 구매 금액을 기반으로 로또 티켓을 생성하고 결과를 표시합니다.
 
@@ -15,7 +16,9 @@ private void validatePurchaseAmount(int purchaseAmount)
 
 
 model
+
 Lotto
+
 private void validate(List<Integer> numbers)
 로또 번호가 6개인지 확인하고, 중복 체크, 1부터 45사이의 숫자인지 확인을 통해 에러 메시지를 출력합니다.
 
@@ -37,7 +40,9 @@ toString 메서드는 로또 티켓의 숫자 목록을 문자열 형태로 반�
 public boolean equals(Object obj)
 equals 메서드는 다른 객체와 해당 로또 티켓을 비교하여 동일한지 확인합니다.
 
+
 Lottoresult
+
 LottoResult 열거형은 다음과 같은 다섯 개의 상수를 가지고 있습니다:
 FIRST: 3개 일치 시 상금 5,000원
 SECOND: 4개 일치 시 상금 50,000원
@@ -58,6 +63,7 @@ LottoResult 열거형은 Lotto 게임에서 각 당첨 결과를 정의하는데
 
 
 View
+
 public void printPurchasedLottosCount(int numberOfLotto)
 이 메서드는 구입한 로또 티켓의 개수를 출력합니다. 사용자가 구매한 로또 티켓의 개수를 화면에 표시합니다.
 

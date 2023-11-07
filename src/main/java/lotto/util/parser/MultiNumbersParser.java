@@ -5,21 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constant.ErrorMessage;
 
-public class WinningNumbersParser implements InputParser<List<Integer>> {
+public class MultiNumbersParser extends AbstractParser<List<Integer>> {
 
     @Override
     public List<Integer> parse(String input) {
         validateIsNotBlank(input);
-        return convertToNumbers(input);
+        return convert(input);
     }
 
-    private void validateIsNotBlank(String input) {
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.IS_BLANK);
-        }
-    }
-
-    private List<Integer> convertToNumbers(String input) {
+    @Override
+    protected List<Integer> convert(String input) {
         try {
             return Arrays.stream(input.split(","))
                     .map(String::trim)

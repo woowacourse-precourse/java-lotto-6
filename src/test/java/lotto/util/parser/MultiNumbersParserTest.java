@@ -8,13 +8,13 @@ import org.junit.jupiter.api.BeforeEach;
 
 import java.util.List;
 
-public class WinningNumbersParserTest {
+public class MultiNumbersParserTest {
 
-    private WinningNumbersParser parser;
+    private MultiNumbersParser parser;
 
     @BeforeEach
     void setUp() {
-        parser = new WinningNumbersParser();
+        parser = new MultiNumbersParser();
     }
 
     @Test

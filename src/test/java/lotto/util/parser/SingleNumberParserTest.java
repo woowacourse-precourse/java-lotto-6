@@ -9,9 +9,9 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AmountParserTest {
+public class SingleNumberParserTest {
 
-    private final InputParser<Integer> parser = new AmountParser();
+    private final InputParser<Integer> parser = new SingleNumberParser();
 
     @ParameterizedTest
     @ValueSource(strings = {"1000", "2000", "3000"})

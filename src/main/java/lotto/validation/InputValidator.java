@@ -1,6 +1,7 @@
 package lotto.validation;
 
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.domain.ConstantValue;
@@ -41,4 +42,22 @@ public class InputValidator {
             ExceptionHandler.throwChangeAvailableException();
         }
     }
+
+    public static void validateWinningNumber(List<Integer> winningNumbers) {
+        hasDuplicateWinningNumbers(winningNumbers);
+        hasValidWinningNumberCount(winningNumbers);
+    }
+
+    public static void hasDuplicateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
+            ExceptionHandler.throwDuplicatedWinningNumberException();
+        }
+    }
+
+    public static void hasValidWinningNumberCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            ExceptionHandler.throwWinningNumberLengthException();
+        }
+    }
+
 }

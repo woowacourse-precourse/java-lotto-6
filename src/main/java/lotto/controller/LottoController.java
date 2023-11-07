@@ -26,7 +26,7 @@ public class LottoController {
     public void run() {
         String input = getUserInput();
         Player player = setPlayerVariableValue(input);
-        List<Integer> winningNumbers = getwinningNumbers();
+        getwinningNumbers();
     }
 
     private String getUserInput() {
@@ -64,14 +64,26 @@ public class LottoController {
         outputView.displayLottiesNumber(lottiesInfoDto.lottiesNumber());
     }
 
-    private List<Integer> getwinningNumbers() {
-        ConsoleOutput.displayWinningNumberPrompt();
-        String winningNumber = inputView.getWinningNumber();
-        List<Integer> validateWinningNumber = validateWinningNumber(winningNumber);
-        return validateWinningNumber;
+    private String getwinningNumbers() {
+        String input;
+        while (true) {
+            ConsoleOutput.displayWinningNumberPrompt();
+            input = inputView.getWinningNumber();
+            if (validateWinningNumber(input)) {
+                break;
+            }
+        }
+        return input;
     }
 
-    private List<Integer> validateWinningNumber(String winningNumber) {
-        return lottoService.convertStringToList(winningNumber);
+    private boolean validateWinningNumber(String input) {
+        try {
+            List<Integer> winningNumbers = lottoService.convertStringToList(input);
+            InputValidator.validateWinningNumber(winningNumbers);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }

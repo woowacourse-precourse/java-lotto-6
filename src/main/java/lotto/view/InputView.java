@@ -1,10 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseBudget;
 
-import static lotto.constants.InputMessage.DEMAND_INPUT_BUDGET;
-import static lotto.constants.InputMessage.DEMAND_INPUT_WINNING_NUMBERS;
+import static lotto.constants.InputMessage.*;
 import static lotto.util.InputUtils.*;
 
 public class InputView {
@@ -26,6 +26,16 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             println(e.getMessage());
             return getWinningLotto();
+        }
+    }
+
+    public static LottoNumber getBonusLottoNumber() {
+        try {
+            println(DEMAND_INPUT_BONUS_NUMBER.getMessage());
+            return new LottoNumber(readInt());
+        } catch (IllegalArgumentException e) {
+            println(e.getMessage());
+            return getBonusLottoNumber();
         }
     }
 

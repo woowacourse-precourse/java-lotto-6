@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.controllers.LottoStoreManager;
+
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
@@ -35,8 +37,14 @@ public class Lotto {
         return pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
     }
 
-    public void sortAscending(List<Integer> numbers) {
+    public List<Integer> sortAscending(List<Integer> numbers) {
         Collections.sort(numbers);
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
 

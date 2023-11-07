@@ -28,7 +28,7 @@ public class Lotto {
     }
 
     private void isDuplicated(List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>();
+        Set<Integer> numberSet = new HashSet<>(numbers);
         if (numbers.size() != numberSet.size()) {
             throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED.getMessage());
         }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.config.Constant;
 import lotto.config.LottoPrize;
 import lotto.util.Util;
 
@@ -8,7 +7,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static lotto.config.LottoConfig.LOTTO_UNIT_PRICE;
 
 public class LottoResult {
     private static final int INITIAL_COUNT = 0;
@@ -29,19 +27,19 @@ public class LottoResult {
         lottoResult.put(lottoPrize, lottoResult.getOrDefault(lottoPrize, INITIAL_COUNT) + 1);
     }
 
+    private long getPrizeMoney(LottoPrize lottoPrize) {
+        return LottoPrize.valueOf(lottoPrize.name()).getPrizeMoney();
+    }
+
     private void calculateTotalPrizeMoney() {
         lottoResult.forEach(
                 (lottoPrize, count) -> totalPrizeMoney += getPrizeMoney(lottoPrize) * count
         );
     }
 
-    private long getPrizeMoney(LottoPrize lottoPrize) {
-        return LottoPrize.valueOf(lottoPrize.name()).getPrizeMoney();
-    }
-
     public double calculateProfit(int money) {
         calculateTotalPrizeMoney();
-        return Util.round((double) totalPrizeMoney / money, LOTTO_UNIT_PRICE.getNumber(), Constant.ROUND_POSITION);
+        return Util.round((double) totalPrizeMoney / money);
     }
 
     public Map<LottoPrize, Integer> getLottoResult() {

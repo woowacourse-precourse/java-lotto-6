@@ -44,8 +44,8 @@ class LottoResultGeneratorTest {
 
         //then
         assertThat(prizeResult.getOrDefault(PrizeCondition.FIRST, 0L)).isEqualTo(1);  //FIRST : 1
-        assertThat(prizeResult.getOrDefault(PrizeCondition.SECOND, 0L)).isEqualTo(1);  //SECOND : 1
-        assertThat(prizeResult.getOrDefault(PrizeCondition.THIRD, 0L)).isEqualTo(0);  //THIRD : 0
+        assertThat(prizeResult.getOrDefault(PrizeCondition.SECOND, 0L)).isEqualTo(0);  //SECOND : 0
+        assertThat(prizeResult.getOrDefault(PrizeCondition.THIRD, 0L)).isEqualTo(1);  //THIRD : 1
         assertThat(prizeResult.getOrDefault(PrizeCondition.FOURTH, 0L)).isEqualTo(1);  //FOURTH : 1
         assertThat(prizeResult.getOrDefault(PrizeCondition.FIFTH, 0L)).isEqualTo(0);  //FIFTH : 0
     }

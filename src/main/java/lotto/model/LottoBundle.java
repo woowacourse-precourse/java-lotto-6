@@ -61,7 +61,7 @@ public class LottoBundle {
     private Map<String, Integer> initResult() {
         Map<String, Integer> initResult = new LinkedHashMap<>();
         for (LottoResult result : LottoResult.values()) {
-            initResult.put(result.getDescription(), 0);
+            initResult.put(result.getDescription(), DEFAULT_VALUE);
         }
         return initResult;
     }

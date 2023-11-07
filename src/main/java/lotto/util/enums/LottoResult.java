@@ -1,5 +1,6 @@
 package lotto.util.enums;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public enum LottoResult {
@@ -32,20 +33,15 @@ public enum LottoResult {
     }
 
     public static Optional<LottoResult> fromDescription(String description) {
-        for (LottoResult result : LottoResult.values()) {
-            if (result.getDescription().equals(description)) {
-                return Optional.of(result);
-            }
-        }
-        return Optional.empty();
+        return Arrays.stream(LottoResult.values())
+                .filter(result -> result.getDescription().equals(description))
+                .findFirst();
     }
 
     public static Optional<String> fromMatchCount(Integer matchCount) {
-        for(LottoResult result : LottoResult.values()) {
-            if(result.getMatchCount() == matchCount) {
-                return Optional.ofNullable(result.getDescription());
-            }
-        }
-        return Optional.empty();
+        return Arrays.stream(LottoResult.values())
+                .filter(result -> result.getMatchCount() == matchCount)
+                .map(LottoResult::getDescription)
+                .findFirst();
     }
 }

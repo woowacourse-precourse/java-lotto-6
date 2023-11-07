@@ -12,9 +12,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-//    public Integer getValueAt(int index) {
-//        return numbers.get(index);
-//    }
+    public String getGeneratedLottoString() {
+        return numbers.toString();
+    }
 
     public boolean hasNumber(int number) {
         return numbers.stream()

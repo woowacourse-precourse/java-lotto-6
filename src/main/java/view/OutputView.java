@@ -1,6 +1,7 @@
 package view;
 
 import constants.OutputMessage;
+import lotto.Lotto;
 
 public class OutputView {
     public static void printMoneyInputMessage() {
@@ -20,5 +21,9 @@ public class OutputView {
 
     public static void printLottoResultMessage() {
         System.out.println(OutputMessage.LOTTO_RESULT_MESSAGE.getMessage());
+    }
+
+    public static void printLottoString(Lotto lotto) {
+        System.out.println(lotto.getGeneratedLottoString());
     }
 }

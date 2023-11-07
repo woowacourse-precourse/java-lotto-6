@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Round;
@@ -141,5 +143,35 @@ class LottoTest {
         assertThat(containBonusCnt).isEqualTo(1);
         assertThat(notContainBonusCnt).isEqualTo(1);
         assertThat(winCnts.stream().filter(num -> num == 6).count()).isEqualTo(1);
+    }
+
+    @DisplayName("소수점 둘째 자리에서 반올림한다.")
+    @Test
+    void roundToTwoDecimalPlaces() {
+        assertThat(Math.round(40.555 * 10) / 10.0).isEqualTo(40.6);
+        assertThat(Math.round(40.545 * 10) / 10.0).isEqualTo(40.5);
+        assertThat(Math.round(0.67 * 10) / 10.0).isEqualTo(0.7);
+    }
+
+    @DisplayName("소수점 둘째 자리에서 반올림하여 계산한 수익률을 출력한다.")
+    @Test
+    void calculateRateOfProfitWithRound() {
+        int payment = 10_000;   // 10장 구매
+        Map<Integer, Long> result = new HashMap<>();
+        result.put(5_000, 1L);
+        result.put(50_000, 3L);
+        result.put(1_500_000, 1L);
+        result.put(30_000_000, 0L);
+        result.put(2_000_000_000, 0L);
+
+        double rateOfProfit = result.entrySet().stream()
+                .mapToLong(entry -> entry.getKey() * entry.getValue())
+                .sum();
+
+        rateOfProfit = ((double) (rateOfProfit - payment) / payment) * 100;
+        rateOfProfit = Math.round(rateOfProfit * 10) / 10.0;  // 소수점 둘째 자리 반올림
+
+        assertThat(rateOfProfit+100).isEqualTo(16550);   // 16550
+
     }
 }

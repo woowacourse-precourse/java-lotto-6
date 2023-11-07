@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.model.AnalyzerWinningStatistics;
-import lotto.model.BuyerLottoHistory;
+import lotto.model.dto.AnalyzerWinningStatistics;
+import lotto.model.dto.BuyerLottoHistory;
 
 public class OutputView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";

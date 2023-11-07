@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.dto;
 
 import java.util.ArrayList;
 import java.util.Comparator;

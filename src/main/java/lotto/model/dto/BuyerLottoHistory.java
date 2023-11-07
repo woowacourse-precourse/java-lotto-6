@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.model.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.Lotto;
 
 public record BuyerLottoHistory(int lottoCount, List<Lotto> lottos) {
     private static final String LOTTO_COUNT_FORMAT = "개를 구매했습니다.";

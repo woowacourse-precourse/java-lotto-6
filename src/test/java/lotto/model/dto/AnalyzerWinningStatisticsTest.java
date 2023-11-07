@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.model.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.model.WinningRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

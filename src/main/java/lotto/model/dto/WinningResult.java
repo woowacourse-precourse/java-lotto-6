@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.model.dto;
+
+import lotto.model.WinningRule;
 
 public record WinningResult(WinningRule winningRule, int winningCount) {
     private static final String COUNT_PREFIX = " - ";

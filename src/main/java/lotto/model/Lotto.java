@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    // 상수와의 순서 바꿔
     private final List<Integer> numbers;
     // enum 으로 고칠 수 있으면 고쳐
     private final static int MIN_RANGE = 1;
@@ -17,6 +18,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    // 메서드 이름 고칠 수 있음녀 고쳐
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -39,5 +41,9 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    protected boolean containsNumber(int targetNumber) {
+        return numbers.contains(targetNumber);
     }
 }

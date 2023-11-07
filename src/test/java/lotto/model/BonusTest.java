@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BonusTest {
     List<Integer> winningNumbers;
@@ -35,6 +37,17 @@ class BonusTest {
     void 보너스번호가_정상적으로_만들어진다() {
         Bonus bonus = new Bonus(winningNumbers, "7");
         assertEquals(bonus.getNumber(), 7);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+        "58,[ERROR] 1에서 45사이의 숫자로 입력해주세요.",
+        "-5,[ERROR] 1에서 45사이의 숫자로 입력해주세요.",
+    })
+    void 보너스번호가_1과_45사이의_숫자라면_생성되지_않는다(String bonusNumber, String exceptionMessage) {
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+            () -> new Bonus(winningNumbers, bonusNumber));
+        assertEquals(e.getMessage(), exceptionMessage);
     }
 
 }

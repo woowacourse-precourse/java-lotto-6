@@ -8,6 +8,13 @@ public enum Prize {
     FIFTH(5000),
     None(0);
 
+    private final int prizeMoney;
+
     Prize(int prizeMoney) {
+        this.prizeMoney = prizeMoney;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

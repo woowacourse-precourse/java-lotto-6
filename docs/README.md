@@ -16,8 +16,8 @@
 - [x] Lotto를 발급하는 기능
 - [x] Lotto의 당첨 여부를 확인하는 기능
 - [x] Ticket을 발급하는 기능
-- [ ] Ticket의 총 당첨 금액을 계산하는 기능
-- [ ] Ticket의 총 수익률을 계산하는 기능
+- [x] Ticket의 총 당첨 금액을 계산하는 기능
+- [x] Ticket의 총 수익률을 계산하는 기능
 
 ## Controller
 - [ ] 입력 받은 금액에 따라 Ticket을 발급하고 출력하는 기능

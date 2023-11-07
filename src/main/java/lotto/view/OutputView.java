@@ -2,7 +2,7 @@ package lotto.view;
 
 public class OutputView {
 
-    public static String printErrorMessage(String message) {
+    public static void printErrorMessage(String message) {
         System.out.println(message);
     }
 }

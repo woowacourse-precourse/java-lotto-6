@@ -25,8 +25,9 @@ public class LottoDatas {
         lottoNumbers.add(lotto);
     }
 
-    public void inputWinningNumber(String userInputNumber) {
-        String[] splitNumber = userInputNumber.split(",");
+    public void inputWinningNumber(final List<Integer> generatedLottoNumbers) {
+        Lotto lotto = Lotto.createLotto(generatedLottoNumbers);
+        this.winnigNumber = lotto;
     }
 
     public LottoDatas() {

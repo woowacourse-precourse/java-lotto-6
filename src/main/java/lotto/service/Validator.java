@@ -25,11 +25,11 @@ public class Validator {
 
     public static void validateInputLength(List<Integer> inputNumbers) {
         if (inputNumbers.size() != Number.LOTTO_LENGTH_LIMIT.getMessage()) {
-            throw new IllegalArgumentException(ErrorMessage.ENTER_MORE_THAN_SIX.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ENTER_NOT_SIX_LENGTH.getMessage());
         }
     }
 
-    public static void duplicateInputLottoNumbers(List<Integer> inputNumbers) {
+    public static void duplicateInputWinningNumbers(List<Integer> inputNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(inputNumbers);
         if (inputNumbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.ENTER_DUPLICATE_NUMBER.getMessage());

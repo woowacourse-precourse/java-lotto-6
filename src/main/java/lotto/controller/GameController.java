@@ -43,7 +43,8 @@ public class GameController {
         while (true) {
             String inputLottoNumbers = InputView.inputWinningNumbers();
             try {
-                lottoService.convertToArray(inputLottoNumbers);
+                lottoService.convertToIntegerList(inputLottoNumbers);
+                break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

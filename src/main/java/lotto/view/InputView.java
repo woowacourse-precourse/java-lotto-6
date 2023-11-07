@@ -10,6 +10,7 @@ public class InputView {
     }
 
     public static String inputWinningNumbers() {
-        System.out.println(OutputMessage.INPUT_LOTTO_WINNING_NUMBER);
+        System.out.println(OutputMessage.INPUT_LOTTO_WINNING_NUMBER.getMessage());
+        return Console.readLine();
     }
 }

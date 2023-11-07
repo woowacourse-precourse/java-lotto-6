@@ -1,10 +1,9 @@
 package lotto;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class LottoStatistics {
+    private static final String RESULT_MESSAGE_FORMAT = "\n%s - %d개";
     private Map<Rank, Integer> results;
     private float profit;
 
@@ -40,5 +39,23 @@ public class LottoStatistics {
 
     public float getProfit() {
         return profit;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (Rank rank : sortByPrize(Rank.values())) {
+            if (rank == Rank.LOSE) continue;
+            int count = results.getOrDefault(rank, 0);
+            String currentLine = String.format(RESULT_MESSAGE_FORMAT, rank.getResultMessage(), count);
+            result.append(currentLine);
+        }
+        return result.toString();
+    }
+
+    private List<Rank> sortByPrize(Rank[] rank) {
+        List<Rank> sorted = new ArrayList<>(List.of(rank));
+        Collections.sort(sorted, Comparator.comparingInt(Rank::getPrize));
+        return sorted;
     }
 }

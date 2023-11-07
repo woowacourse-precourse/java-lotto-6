@@ -8,6 +8,8 @@ public enum Rank {
     FIFTH(3, 5000),
     LOSE(0, 0);
 
+    private static final String RESULT_MESSAGE_FORMAT = "%d개 일치 (%,d원)";
+    private static final String SECOND_PRIZE_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원)";
     private float matchCount;
     private int prize;
     Rank(float matchCount, int prize) {
@@ -24,5 +26,12 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public String getResultMessage() {
+        if (this == SECOND) {
+            return String.format(SECOND_PRIZE_FORMAT, (int) matchCount, prize);
+        }
+        return String.format(RESULT_MESSAGE_FORMAT, (int) matchCount, prize);
     }
 }

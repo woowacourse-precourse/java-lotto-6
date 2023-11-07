@@ -7,21 +7,22 @@ import java.util.*;
 
 public class Application {
     private static int input ;
+    private static int bonus ;
+    private static Lotto[] lottos;
+    private static String[] winning;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         buyLotto();
-        Lotto[] lottos = outputLottoNumber();
-        String[] winning = winningNumber();
-        int bonus = bonusNumber();
+        outputLottoNumber();
+        winningNumber();
+        bonusNumber();
         compare(lottos, winning, bonus);
     }
 
     private static void buyLotto() {
-        String str = "";
-
         try {
             System.out.println("구입금액을 입력해 주세요.");
-            str = Console.readLine();
+            String str = Console.readLine();
             exceptionMessage(str);
             input = Integer.parseInt(str);
         } catch (IllegalArgumentException e) {
@@ -61,17 +62,15 @@ public class Application {
         return Integer.parseInt(input) % 1000 == 0;
     }
 
-    private static Lotto[] outputLottoNumber() {
+    private static void outputLottoNumber() {
         int number = input / 1000;
-        int i = 0;
-        Lotto[] lottos = new Lotto[number];
+        lottos = new Lotto[number];
         try {
-            while (i < number) {
+            for(int i=0; i<number; i++) {
                 lottos[i] = new Lotto(lottoNumber());
-                i++;
             }
-
             System.out.println(number + "개를 구매했습니다.");
+
             for (Lotto lotto : lottos) {
                 String str = lotto.length(lotto);
                 System.out.println(str);
@@ -80,24 +79,21 @@ public class Application {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        return lottos;
     }
 
-    private static String[] winningNumber() {
+    private static void winningNumber() {
         String str = "";
-        String[] number;
 
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
             str = Console.readLine();
             if (!checkExpression(str)) throw new IllegalArgumentException("쉼표(,) 기준으로 구분합니다. 쉼표(,)를 넣어주세요.");
 
-            number = str.split(",");
+            winning = str.split(",");
 
-            if (!duplicateNumber(number)) {
+            if (!duplicateNumber(winning)) {
                 throw new IllegalArgumentException("이미 숫자가 존재합니다.");
-            } else if (!checkLength(number)) {
+            } else if (!checkLength(winning)) {
                 throw new IllegalArgumentException("6개 입력해주세요.");
             }
             System.out.println();
@@ -105,8 +101,6 @@ public class Application {
             System.out.println(e.getMessage());
             winningNumber();
         }
-
-        return str.split(",");
     }
 
     private static boolean checkExpression(String str) {
@@ -132,11 +126,9 @@ public class Application {
         return str.length == 6;
     }
 
-    private static int bonusNumber() {
+    private static void bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String str = Console.readLine();
-        System.out.println();
-        return Integer.parseInt(str);
+        bonus = Integer.parseInt(Console.readLine());
     }
 
     private static void compare(Lotto[] lottos, String[] winning, int bonus) {

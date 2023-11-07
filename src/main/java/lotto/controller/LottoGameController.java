@@ -17,17 +17,18 @@ public class LottoGameController {
     public void gameStart() {
         LottoBuyer lottoBuyer = generateLottoBuyer();
         generateLottoStep(lottoBuyer);
-        WinningLotto winningLotto = generateWinningLottoStep();
+        List<Integer> winningNumber = generateWinningNumber();
+        WinningLotto winningLotto = generateWinningLottoStep(winningNumber);
         winningResultStep(lottoBuyer, winningLotto);
     }
 
     private LottoBuyer generateLottoBuyer() {
-        while (true) {
-            try {
-                int purchaseAmount = inputView.inputPurchaseAmount();
-                return new LottoBuyer(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-            }
+        try {
+            int purchaseAmount = inputView.inputPurchaseAmount();
+            return new LottoBuyer(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.errorMessageOutput(e.getMessage());
+            return generateLottoBuyer();
         }
     }
 
@@ -42,15 +43,31 @@ public class LottoGameController {
         outputView.purchaseHistoryOutput(lottoBuyer.getPurchaseLottos());
     }
 
-    private WinningLotto generateWinningLottoStep() {
-        while (true) {
-            try {
-                List<Integer> winningNumber = ConverterUtil.covertStringToList(inputView.inputWinningNumber());
-                int bounsNumber = inputView.inputBonusNumber();
-                WinningLotto winningLotto = new WinningLotto(winningNumber, bounsNumber);
-                return winningLotto;
-            } catch (IllegalArgumentException e) {
-            }
+    private WinningLotto generateWinningLottoStep(List<Integer> winningNumber) {
+        try {
+            WinningLotto winningLotto = new WinningLotto(winningNumber, generateBonusNumber());
+            return winningLotto;
+        } catch (IllegalArgumentException e) {
+            outputView.errorMessageOutput(e.getMessage());
+            return generateWinningLottoStep(winningNumber);
+        }
+    }
+
+    private List<Integer> generateWinningNumber() {
+        try {
+            return ConverterUtil.covertStringToList(inputView.inputWinningNumber());
+        } catch (IllegalArgumentException e) {
+            outputView.errorMessageOutput(e.getMessage());
+            return generateWinningNumber();
+        }
+    }
+
+    private int generateBonusNumber() {
+        try {
+            return inputView.inputBonusNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.errorMessageOutput(e.getMessage());
+            return generateBonusNumber();
         }
     }
 

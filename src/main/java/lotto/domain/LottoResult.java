@@ -60,13 +60,14 @@ public enum LottoResult {
     }
 
     public static int findIndexInResult(int cntCorrNum, int bonusNum, List<Integer> eachLotto) {
+        int appendToCntCorrNum = 0;
         if (cntCorrNum == 6) {
-            cntCorrNum += 1;
+            appendToCntCorrNum += 1;
         }
         if (cntCorrNum == 5) {
-            cntCorrNum += isBonusNumInLotto(bonusNum, eachLotto);
+            appendToCntCorrNum += isBonusNumInLotto(bonusNum, eachLotto);
         }
-        return cntCorrNum;
+        return appendToCntCorrNum;
     }
 
     public static int isBonusNumInLotto(int bonusNum, List<Integer> eachLotto) {

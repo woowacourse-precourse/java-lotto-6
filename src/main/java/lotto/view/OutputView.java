@@ -56,6 +56,19 @@ public class OutputView {
         printMessage(WINNING_STATISTICS_OUTPUT_MESSAGE);
     }
 
+    public static void printLottoResultMessage(Result result) {
+        filterAndSortResult(result)
+                .forEach(Rank -> System.out.printf(LOTTO_RESULT_MESSAGE, Rank.getKey().getResultMessage(),
+                        Rank.getValue()));
+    }
+
+    private static List<Map.Entry<LottoRanking, Integer>> filterAndSortResult(Result result) {
+        return result.getLottoResult().entrySet().stream()
+                .filter(entry -> LottoRanking.NO_MATCH != entry.getKey())
+                .sorted(Comparator.comparingInt(money -> money.getKey()
+                        .getPrizeAmount())).toList();
+    }
+
     private static void printMessage(String message) {
         System.out.println(message);
     }

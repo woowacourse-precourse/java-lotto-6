@@ -9,11 +9,21 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class BuyTickets {
     private Map<Integer, List<Integer>> LotteryNumbers = new HashMap<>();
+    private String purchaseAmount;
+    private int ticketAmounts;
 
-    public BuyTickets(String purchaseAmount) {
-        int ticketAmounts = validate(purchaseAmount);
-        LotteryNumbers = makeLotteryNumber(ticketAmounts);
-        SystemIO.showTickets(LotteryNumbers);
+    public BuyTickets() {
+        while (true) {
+            try {
+                purchaseAmount = SystemIO.requestPurchaseAmount();
+                ticketAmounts = validate(purchaseAmount);
+                LotteryNumbers = makeLotteryNumber(ticketAmounts);
+                SystemIO.showTickets(LotteryNumbers);
+                break;
+            }catch (IllegalStateException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int validate(String stringPurchaseAmount) {
@@ -40,6 +50,10 @@ public class BuyTickets {
             throw new IllegalStateException(ExceptionCase.NOT_SATISFY_CONDITION_OF_PURCHASE_AMOUNT.getErrMessage());
         }
         return purchaseAmount / 1000;
+    }
+
+    public String getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public Map<Integer, List<Integer>> getLotteryNumbers() {

@@ -22,14 +22,14 @@ class BuyTicketsTest {
     @DisplayName("입력값은 숫자여야 한다.")
     void validateInputIsIntegerTest() {
         String purchaseAmount = "String INPUT";
-        Assertions.assertThrows(IllegalStateException.class, () -> new BuyTickets(purchaseAmount));
+        Assertions.assertThrows(IllegalStateException.class, () -> new BuyTickets());
     }
 
     @Test
     @DisplayName("입력값은 1000의 배수여야 한다.")
     void validateInputIsMultipleNumberOfThousand() {
         String purchaseAmount = "1200";
-        Assertions.assertThrows(IllegalStateException.class, () -> new BuyTickets(purchaseAmount));
+        Assertions.assertThrows(IllegalStateException.class, () -> new BuyTickets());
     }
 
     @Test
@@ -41,7 +41,7 @@ class BuyTicketsTest {
         }
         for (Long key : ticketAmounts.keySet()) {
             String buyAmounts = String.valueOf(ticketAmounts.get(key)*1000);
-            BuyTickets buyTickets = new BuyTickets(buyAmounts);
+            BuyTickets buyTickets = new BuyTickets();
             assertThat(buyTickets.getLotteryNumbers().size()).isEqualTo(ticketAmounts.get(key));
         }
     }

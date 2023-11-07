@@ -9,9 +9,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
     public static void main(String[] args) {
-        //티켓 구매
-        String purchaseAmount = SystemIO.requestPurchaseAmount();
-        BuyTickets buyTickets = new BuyTickets(purchaseAmount);
+        //구매 금액 입력
+        BuyTickets buyTickets = new BuyTickets();
         //당첨 번호 입력
         List<Integer> winningNumbers = SystemIO.requestWinningNumber();
         Map<Integer, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
@@ -22,6 +21,6 @@ public class Application {
             Lotto lotto = new Lotto(value);
             calculations.tallyWinnings(lotto.getWinningRank(winningNumbers, bonusNumber));
         }
-        SystemIO.showResult(calculations.getWinningTally(),calculations.getWinningAmount(),purchaseAmount);
+        SystemIO.showResult(calculations.getWinningTally(), calculations.getWinningAmount(), buyTickets.getPurchaseAmount());
     }
 }

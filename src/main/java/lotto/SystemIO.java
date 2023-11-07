@@ -14,8 +14,14 @@ public class SystemIO {
     }
 
     public static List<Integer> requestWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return readWinningNumbers();
+        while(true){
+            try{
+                System.out.println("당첨 번호를 입력해 주세요.");
+                return readWinningNumbers();
+            }catch (IllegalStateException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> readWinningNumbers() {
@@ -32,8 +38,15 @@ public class SystemIO {
     }
 
     public static int requestBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return readBonusNumber();
+        while(true){
+            try{
+                System.out.println("보너스 번호를 입력해 주세요.");
+                return readBonusNumber();
+            }catch (IllegalStateException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private static int readBonusNumber() {

@@ -9,7 +9,13 @@ public class MyLottosDto {
         this.myLottosNumber = myLottosNumber;
     }
 
-    public List<List<Integer>> getMyLottosNumber() {
+    public List<List<Integer>> getMyLottos() {
         return myLottosNumber;
     }
+
+    public int size() {
+        return getMyLottos().size();
+    }
+
+    ;
 }

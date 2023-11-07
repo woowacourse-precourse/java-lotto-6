@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class InputBuyLotto {
     private static final String BUY_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String COUNT_MESSAGE = "개를 구매했습니다.";
     private static final int ZERO = 0;
     private static final int THOUSAND = 1000;
 
@@ -30,7 +29,6 @@ public class InputBuyLotto {
     public int getTicket(int money) {
         validateZero(money);
         validateDivideThousand(money);
-        System.out.println(money / THOUSAND+COUNT_MESSAGE);
         return money / THOUSAND;
     }
 

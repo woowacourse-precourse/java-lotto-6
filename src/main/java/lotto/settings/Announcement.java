@@ -7,7 +7,9 @@ public enum Announcement {
     REQUEST_LOTTO_BONUS_NUMBERS("\n보너스 번호를 입력해 주세요."),
     BUY_LOTTO("\n[%s]"),
     WINNING_STATISTICS("\n당첨 통계\n---"),
-    PER_LOTTO_TOTAL_COUNT("%d개\n");
+    LOTTO_COUNT_PER_RANK("%d개\n"),
+    RATE_OF_RETURN("총 수익률은 %.1f%%입니다.\n");
+
     private final String print;
 
     Announcement(String print) {

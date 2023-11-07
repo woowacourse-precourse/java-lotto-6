@@ -28,6 +28,7 @@ public class BonusNumber {
             throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
         }
     }
+
     public int getNumber() {
         return number;
     }

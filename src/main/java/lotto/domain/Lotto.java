@@ -16,10 +16,9 @@ public class Lotto {
         this.numbers = numbers;
     }
     // TODO: 추가 기능 구현
-    private void validateDuplicate(List<Integer> numbers) {
-        int uniqueSize = numbers.stream().distinct().toList().size();
-        if(numbers.size() != uniqueSize){
-            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(INVALID_COUNT.getMessage());
         }
     }
 
@@ -31,9 +30,10 @@ public class Lotto {
         }
     }
 
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_COUNT.getMessage());
+    private void validateDuplicate(List<Integer> numbers) {
+        int uniqueSize = numbers.stream().distinct().toList().size();
+        if(numbers.size() != uniqueSize){
+            throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
         }
     }
 

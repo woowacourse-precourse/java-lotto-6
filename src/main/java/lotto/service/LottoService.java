@@ -1,10 +1,9 @@
 package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.settings.ErrorMessage.DUPLICATE_NUM;
+import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
 import static lotto.settings.LottoSettings.MAX_VALUE;
 import static lotto.settings.LottoSettings.MIN_VALUE;
-import static lotto.settings.LottoSettings.LOTTO_NUMBER_SIZE;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
@@ -39,7 +38,7 @@ public class LottoService {
     }
 
     public WinningLottoRepository createWinningLotto(){
-        // 올바르게 입력할 때까지 계속 입력받습니다.
+        // 올바르게 입력할 때까지 계속 입력받기
         Lotto winningLotto = inputWinningNumber();
         BonusNumber bonusNumber = inputBonusNumber(winningLotto);
 

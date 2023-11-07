@@ -6,12 +6,12 @@ import lotto.repository.BuyLottoRepository;
 import lotto.repository.rank.LottoNumbersPerRank;
 import lotto.repository.rank.PrintsPerRank;
 import lotto.repository.WinningLottoRepository;
+import lotto.settings.WinningAmount;
 import lotto.view.View;
 
 public class LotteryTracker {
 
-    private LotteryTracker() {
-    }
+    private LotteryTracker() {}
 
     public static LotteryTracker create(){
         //등수별 출력결과 저장하는 곳
@@ -20,6 +20,7 @@ public class LotteryTracker {
         PrizesPerRank.create();
         //등수별 로또수를 저장하는 곳
         LottoNumbersPerRank.create();
+
         return new LotteryTracker();
     }
 
@@ -33,21 +34,23 @@ public class LotteryTracker {
         }
     }
 
-    public void increaseNumberPerRank(int cnt, Lotto buyLotto, int bonusNum){
-        int rank = buyLotto.findRank(cnt, bonusNum);
+    public void increaseNumberPerRank(int correctNum, Lotto buyLotto, int bonusNum){
+        int rank = buyLotto.findRank(correctNum, bonusNum);
         LottoNumbersPerRank.plus(rank);
     }
+
     public void printResultByRank() {
         //등수별 결과 출력
-        for(int rank=5; rank>0;rank--){
-            String prize = printBy(rank);
-            View.result(prize, numberBy(rank));
+        int size = WinningAmount.size();
+        for(int rank=size; rank>0;rank--){
+            View.result(printBy(rank), numberBy(rank));
         }
     }
 
     public double calculateTotalRevenue() {
+        int size = WinningAmount.size();
         int totalRevenue =0;
-        for(int rank=5; rank>0;rank--){
+        for(int rank=size; rank>0;rank--){
             totalRevenue += numberBy(rank) * prizeBy(rank);
         }
         return totalRevenue;

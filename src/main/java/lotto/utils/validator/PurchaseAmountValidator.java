@@ -13,6 +13,7 @@ public class PurchaseAmountValidator {
         validateMaxLength(input);
         validateNumeric(input);
         validateRange(input);
+        validateAmountUnit(input);
     }
 
     private static void validateBlank(String input) {
@@ -41,6 +42,14 @@ public class PurchaseAmountValidator {
         if (purchaseAmount < LOTTO_COUNTS_MIN_LIMIT * LOTTO_PRICE_UNIT ||
                 purchaseAmount > LOTTO_COUNTS_MAX_LIMIT * LOTTO_PRICE_UNIT) {
             throw new IllegalArgumentException(PurchaseAmountExceptionMessage.OUT_OF_AMOUNT_RANGE.getError());
+        }
+    }
+
+    private static void validateAmountUnit(String input) {
+        int purchaseAmount = Integer.parseInt(input);
+
+        if (purchaseAmount % LOTTO_PRICE_UNIT != 0) {
+            throw new IllegalArgumentException(PurchaseAmountExceptionMessage.INVALID_AMOUNT_UNIT.getError());
         }
     }
 }

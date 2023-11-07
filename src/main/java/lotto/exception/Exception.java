@@ -41,14 +41,19 @@ public class Exception {
             }
             numbers.add(number);
         }
-        if(numbers.size() != 6) {
+        if (numbers.size() != 6) {
             System.out.println("[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.");
             throw new IllegalArgumentException();
         }
         return numbers;
     }
 
-    public boolean checkBonus(String bonus) {
-        return true;
+    public boolean checkBonus(List<Integer> winningNumber, String bonus, boolean exist) {
+        int bonusNumber = checkInt(bonus);
+        if(winningNumber.contains(bonusNumber) || bonusNumber < 1) {
+            System.out.println("[ERROR] 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자 1개를 입력해주세요.");
+            exist = false;
+        }
+        return exist;
     }
 }

@@ -40,11 +40,11 @@
 - [ ] 수익률 계산하기 - Judgement#calculateReturnRate()
 
 # Exception
-- [ ] 예외 처리
+- [x] 예외 처리
   - [x] String to int 변환 체크 - Exception#checkInt
   - [x] 1000 단위 체크 - Exception#checkAmount
   - [x] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
-  - [ ] 보너스 숫자 중복 여부 체크 - Exception#checkBonus
+  - [x] 보너스 숫자 중복 여부 체크 - Exception#checkBonus
 
 # view
 - [x] 구매 로또 출력하기 - PrintGames#purchaseHistory()

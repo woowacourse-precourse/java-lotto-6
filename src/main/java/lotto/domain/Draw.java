@@ -9,7 +9,7 @@ import java.util.List;
 public class Draw {
     Exception exception = null;
     List<Integer> winningNumber = null;
-    boolean exist = false;
+    boolean exist = true;
 
     public void winningNumbers() {
         exception = new Exception();
@@ -19,9 +19,9 @@ public class Draw {
             winningNumber = exception.checkNumbers(number);
         }
         System.out.println("보너스 번호를 입력해 주세요.");
-        while (!exist) {
+        while (exist) {
             String bonus = Console.readLine();
-            exist = exception.checkBonus(bonus);
+            exist = exception.checkBonus(winningNumber, bonus, exist);
         }
     }
 }

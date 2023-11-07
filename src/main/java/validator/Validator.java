@@ -44,10 +44,10 @@ public class Validator {
         return input.matches(ONLY_NUMBER_REGEX);
     }
 
-    public static void validateWinningNumbersUniqueness(List<Integer> winningNumbers) {
+    public static void validateLottoNumbersUniqueness(List<Integer> winningNumbers) {
         Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
         if (winningNumbers.size() != uniqueWinningNumbers.size()) {
-            throw new IllegalArgumentException("당첨 번호 6개가 중복되지 않도록 입력해 주세요.");
+            throw new IllegalArgumentException("로또 번호 6개가 중복되지 않도록 입력해 주세요.");
         }
     }
 

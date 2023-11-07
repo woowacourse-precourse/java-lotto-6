@@ -1,7 +1,9 @@
 package lotto.view;
 
-import static lotto.constant.Constant.PURCHASE_PRICE_MESSAGE;
+import static lotto.constant.ConstantString.LUCKY_NUMBER_INIT_MESSAGE;
+import static lotto.constant.ConstantString.PURCHASE_PRICE_MESSAGE;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,6 +15,7 @@ public class InputView {
 
     private final InputValidator inputValidator;
     private String validateInput;
+    private List<String> validateLuckyNumbers;
 
     public InputView() {
         inputValidator = new InputValidator();
@@ -55,6 +58,36 @@ public class InputView {
 
     private void print(String message) {
         System.out.println(message);
+    }
+
+    public List<Integer> writeLuckyNumber() {
+        print(LUCKY_NUMBER_INIT_MESSAGE);
+        validateLuckyNumber();
+        return convertLuckyNumberForm(this.validateLuckyNumbers);
+    }
+
+    public void validateLuckyNumber() {
+        while (!validLuckyNumber()) {
+        }
+    }
+
+    private boolean validLuckyNumber() {
+        try {
+            validateInput = removeWhitespace(Console.readLine());
+            inputValidator.validateNotNull(validateInput);
+            validateLuckyNumbers = inputValidator.separateInput(validateInput);
+            inputValidator.validateLuckyNumberIsNumber(validateLuckyNumbers);
+            return true;
+        } catch (LottoApplicationException e) {
+            e.getErrorMessage();
+            return false;
+        }
+    }
+
+    public List<Integer> convertLuckyNumberForm(List<String> validateLuckyNumbers) {
+        return validateLuckyNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 }

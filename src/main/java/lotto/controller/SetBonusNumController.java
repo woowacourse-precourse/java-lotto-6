@@ -5,7 +5,6 @@ import lotto.view.Input;
 import lotto.view.Output;
 import lotto.vo.BonusNumber;
 import lotto.vo.WinningNumber;
-import lotto.vo.WinningResult;
 
 public class SetBonusNumController {
     BonusNumber bonusNumber;

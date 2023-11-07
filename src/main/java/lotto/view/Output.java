@@ -33,10 +33,11 @@ public class Output {
     }
 
     public void printResult() {
+        System.out.println();
         System.out.println(RESULT_MESSAGE.getMessage());
     }
 
-    public void printWinning(ArrayList<Integer> winningResult) {
+    public void printWinning(List<Integer> winningResult) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < WinningMessage.values().length; i++) {
             sb.append(String.format(WinningMessage.values()[i].getMessage(), winningResult.get(i)));
@@ -44,7 +45,7 @@ public class Output {
         System.out.println(sb);
     }
 
-    public void printEarnings(float earningsRate) {
+    public void printEarnings(double earningsRate) {
         System.out.printf(TOTAL_EARNINGS_RATE_MESSAGE.getMessage(), earningsRate);
     }
 

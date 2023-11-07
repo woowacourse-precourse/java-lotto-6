@@ -8,7 +8,7 @@ public class LottoGroup {
     private List<Lotto> lottos;
 
 
-    public LottoGroup(List<Lotto> lottos) {
+    private LottoGroup(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 

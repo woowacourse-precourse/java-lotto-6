@@ -13,6 +13,8 @@ public class OutputView {
     private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
 
+    private static final String WINNING_RATE_MESSAGE = "총 수익률은 ";
+
     private void printWithNewLine(String s) {
         System.out.println(s);
     }
@@ -53,5 +55,9 @@ public class OutputView {
 
     public void printErrorMessage(String message) {
         printWithNewLine(message);
+    }
+
+    public void printWinningRate(double winningRate) {
+        printWithNewLine(WINNING_RATE_MESSAGE + winningRate + "%" + UIConstant.SENTENCE_ENDING);
     }
 }

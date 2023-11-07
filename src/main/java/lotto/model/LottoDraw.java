@@ -45,4 +45,12 @@ public class LottoDraw {
 
         return winnings;
     }
+    public double getWinningRate(Map<LottoWinCategory, Integer> winnings, int totalPurchaseAmount) {
+        int totalWinningAmount = winnings.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        return ((double) totalWinningAmount / totalPurchaseAmount) * 100;
+    }
 }

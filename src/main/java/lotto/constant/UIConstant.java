@@ -6,7 +6,9 @@ public enum UIConstant {
     LOTTO_NUMBER_CLOSING_BRACKET("]"),
     WINNING_STATISTICS_OPENING("---"),
     NUMBER_SEPARATOR(","),
-    NEW_LINE("\n");
+    NEW_LINE("\n"),
+
+    SENTENCE_ENDING("입니다.");
     
     private final String ui;
 

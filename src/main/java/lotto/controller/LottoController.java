@@ -40,6 +40,9 @@ public class LottoController {
 
         Map<LottoWinCategory, Integer> winningResult = lottoDraw.getWinnings(lottoTicket);
         outputView.printWinningStatistics(winningResult);
+
+        double winningRate = lottoDraw.getWinningRate(winningResult, lottoPurchase.getMoney());
+        outputView.printWinningRate(winningRate);
     }
 
     public LottoPurchase getLottoPurchase() {

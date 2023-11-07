@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 
 import static lotto.message.ErrorMessage.ERROR_MESSAGE_HEAD;
@@ -21,5 +22,9 @@ public class Printer {
 
     public static void printLottoCount(LottoCount lottoCount) {
         System.out.println(lottoCount.getLottoCount() + PURCHASE_COMPLETE);
+    }
+
+    public static void printLotto(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
     }
 }

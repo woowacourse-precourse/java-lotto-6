@@ -5,7 +5,7 @@ import lotto.vo.Grade;
 public class GradeUtil {
     public static Grade gradeMapper(int corrects, boolean bonus) {
         if (corrects == 6) {
-            return Grade.FORTH_GRADE;
+            return Grade.FIRST_GRADE;
         }
         if (corrects == 5) {
             return isBonus(bonus);

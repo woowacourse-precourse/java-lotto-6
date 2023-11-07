@@ -12,9 +12,12 @@ public class Validator {
 //	xSHORT_OF_MONEY("[ERROR] 1000원부터 로또 구매가 가능합니다.");
 	
 	public void DuplicatedNumber(List<Integer> numbers) {
-		
-		System.out.println(ErrorMessage.DUPLICATED_NUMBER);
+		for(int i = 0; i < numbers.size(); i++) {
+			if(numbers.contains(numbers)) {
+				System.out.println(ErrorMessage.DUPLICATED_NUMBER);
 		throw new IllegalArgumentException();
+			}
+		}
 	}
 	
 	

@@ -44,6 +44,7 @@ public class Controller {
     }
 
     private int getBonusNumber() {
+        InputMessage.bonusNumberInput();
         int input = Integer.parseInt(Console.readLine().trim());
         return input;
     }

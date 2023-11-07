@@ -12,7 +12,7 @@ public class LottoWinningNumbers extends Lotto{
     }
 
     private void validateBonusNumber(final int bonusNumber) {
-        if (containsNumber(bonusNumber)) {
+        if (getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

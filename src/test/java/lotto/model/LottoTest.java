@@ -1,15 +1,24 @@
 package lotto.model;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class LottoTest {
+    @DisplayName("로또 번호가 유효한 범위 내에 있으면 생성에 성공한다.")
+    @Test
+    void createValidLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertNotNull(lotto);
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -32,19 +41,24 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("인자로 받은 번호가 로또 번호 리스트 안에 있으면 true를 반환한다.")
+    @DisplayName("두 개의 같은 로또 번호를 생성해 동등함을 확인한다.")
     @Test
-    void checkIfNumberIsInLotto() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    void testEqualsAndHashCode() {
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 
-        assertTrue(lotto.containsNumber(1));
+        assertThat(lotto1).isEqualTo(lotto2);
+
+        assertThat(lotto1.hashCode()).isEqualTo(lotto2.hashCode());
     }
 
-    @DisplayName("인자로 받은 번호가 로또 번호 리스트 안에 없으면 false를 반환한다.")
+    @DisplayName("로또 번호가 정렬되어야 한다.")
     @Test
-    void checkIfNumberIsNotInLotto() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        assertFalse(lotto.containsNumber(8));
+    void sortLottoNumbers() {
+        List<Integer> unsortedNumbers = List.of(6, 1, 5, 2, 4, 3);
+        Lotto lotto = new Lotto(unsortedNumbers);
+        lotto.sortNumbers();
+        List<Integer> sortedNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertIterableEquals(sortedNumbers, lotto.getNumbers());
     }
 }

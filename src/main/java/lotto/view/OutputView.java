@@ -39,7 +39,7 @@ public class OutputView {
         newLine();
     }
 
-    public static void printProfitResult(float profit) {
+    public static void printProfitResult(double profit) {
         String format = ViewMessage.OUTPUT_PROFIT_FORMAT.message();
         System.out.printf(format, profit);
         newLine();

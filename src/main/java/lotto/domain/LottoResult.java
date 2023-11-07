@@ -33,11 +33,11 @@ public class LottoResult {
         return result.get(prize);
     }
 
-    public float getFinalProfit() {
-        float investment = tryCount * LottoConfig.PRICE.value();
-        float profit = Arrays.stream(WinningPrize.values())
-                .map(it -> it.prize() * getEachResult(it))
-                .reduce(DEFAULT, Integer::sum);
-        return  (profit / investment) * PERCENTAGE;
+    public double getFinalProfit() {
+        long investment = (long) tryCount * LottoConfig.PRICE.value();
+        double profit = Arrays.stream(WinningPrize.values())
+                .map(it -> (double) it.prize() * getEachResult(it))
+                .reduce((double) DEFAULT, Double::sum);
+        return (profit / investment) * PERCENTAGE;
     }
 }

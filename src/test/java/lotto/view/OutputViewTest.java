@@ -51,8 +51,8 @@ public class OutputViewTest {
 
     @DisplayName("수익률이 소숫점 둘째 자리에서 반올림이 제대로 되는지 확인")
     @ParameterizedTest
-    @CsvSource(value = {"72.24F,72.2", "32.68F,32.7", "42,42.0"})
-    public void printProfitResult(float input, String answer) {
+    @CsvSource(value = {"72.24,72.2", "32.68,32.7", "42,42.0"})
+    public void printProfitResult(double input, String answer) {
         OutputView.printProfitResult(input);
         assertThat(console.toString())
                 .contains(String.format("총 수익률은 %s%%입니다.", answer));

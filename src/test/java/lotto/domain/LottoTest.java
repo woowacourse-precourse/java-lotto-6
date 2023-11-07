@@ -98,4 +98,9 @@ class LottoTest {
             Assertions.assertThat(number).isBetween(LottoOption.LOTTO_START_INCLUSIVE, LottoOption.LOTTO_END_INCLUSIVE);
         });
     }
+
+    @Test
+    void d() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    }
 }

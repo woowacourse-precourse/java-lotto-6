@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Utils;
+import lotto.TypeValidator;
 import lotto.message.ExceptionMessage;
 
 public class InputView {
@@ -27,6 +27,6 @@ public class InputView {
 
     private static void validateInteger(String inputValue) {
         validateBlank(inputValue);
-        Utils.validateNumber(inputValue);
+        TypeValidator.validateNumber(inputValue);
     }
 }

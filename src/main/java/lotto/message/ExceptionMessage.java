@@ -15,5 +15,4 @@ public class ExceptionMessage {
     private ExceptionMessage() {
         // 불필요한 인스턴스 생성 방지
     }
-
 }

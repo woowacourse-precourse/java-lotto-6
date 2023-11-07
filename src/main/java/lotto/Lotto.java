@@ -52,16 +52,23 @@ public class Lotto {
 		}
 	}
 
-	public static List<Integer> checkNum(List<List<Integer>> lottos, String inputnumber) {
-		String[] usernums = inputnumber.split(",");
-		List<Integer> matchingList = new ArrayList<>();
+	public static List<WinningRank> checkNum(List<List<Integer>> lottos, String mynumber, String bonusnum) {
+
+		String[] usernums = mynumber.split(",");
+		List<WinningRank> rankingList = new ArrayList<>();
+		int bonus = Integer.parseInt(bonusnum);
 
 		for (int i = 0; i < lottos.size(); i++) {
 			List<Integer> lotto = lottos.get(i);
 			int matching = checkMatchingNumbers(lotto, usernums);
-			matchingList.add(matching);
+
+			if (matching == 5 && lottos.contains(bonus)) {
+				rankingList.add(WinningRank.SECOND);
+			}
+			WinningRank rank = WinningRank.findByMatchingNumbers(matching);
+			rankingList.add(rank);
 		}
-		return matchingList;
+		return rankingList;
 	}
 
 	private static int checkMatchingNumbers(List<Integer> lotto, String[] usernums) {

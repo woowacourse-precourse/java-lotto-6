@@ -60,4 +60,23 @@ public class LotteryResults {
         }
         return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+
+        LotteryResults other = (LotteryResults) obj;
+
+        return results.equals(other.results);
+    }
+
+    @Override
+    public int hashCode() {
+        return results.hashCode();
+    }
 }

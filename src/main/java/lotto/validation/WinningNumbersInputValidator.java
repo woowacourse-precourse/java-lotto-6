@@ -18,11 +18,8 @@ import java.util.Set;
 public class WinningNumbersInputValidator {
 
     public void validateNumberRange(String input) {
-        String[] numbers = input.split(SPLIT_MESSAGE.getMessage());
-        for (String value : numbers) {
-            int number = Integer.parseInt(value);
-            isValidNumberRange(number);
-        }
+        List<String> numbers = stringToCollection(input);
+        numbers.forEach(number -> isValidNumberRange(Integer.parseInt(number)));
     }
 
     private void isValidNumberRange(int number) {

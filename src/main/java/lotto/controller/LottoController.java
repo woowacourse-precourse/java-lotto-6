@@ -1,7 +1,6 @@
 package lotto.controller;
 
 
-import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -26,7 +25,8 @@ public class LottoController {
         Lottos lottos = lottosGenerator.generateLottos(numberOfLottos);
         OutputView.printGeneratedLottos(lottos);
 
-        WinnerLotto winnerLotto = getWinnerLotto();
+        Lotto lotto = getLotto();
+        WinnerLotto winnerLotto = getWinnerLotto(lotto);
 
         Map<Prize, Long> prizeResults = getPrizeResults(lottos, winnerLotto);
         OutputView.printStatistics(prizeResults);
@@ -43,10 +43,31 @@ public class LottoController {
         return numberOfLottos;
     }
 
-    private WinnerLotto getWinnerLotto() {
-        Lotto winninglotto = new Lotto(inputView.readLottoNumbers());
-        BonusNumber bonusNumber = new BonusNumber(inputView.readBonusNumber());
-        return new WinnerLotto(winninglotto, bonusNumber);
+    private Lotto getLotto() {
+        Lotto lotto;
+        while (true) {
+            try {
+                lotto = new Lotto(inputView.readLottoNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto;
+    }
+
+    private WinnerLotto getWinnerLotto(Lotto lotto) {
+        WinnerLotto winnerLotto;
+        while (true) {
+            try {
+                BonusNumber bonusNumber = new BonusNumber(inputView.readBonusNumber());
+                winnerLotto = new WinnerLotto(lotto, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winnerLotto;
     }
 
     private Map<Prize, Long> getPrizeResults(Lottos lottos, WinnerLotto winnerLotto) {

@@ -11,160 +11,102 @@ public class IntegerValidatorTest {
 
     @Test
     public void 정수가_아닌_문자면_예외발생() {
-        // Given
-        String nonInteger = "k";
-
-        // When && Then
-        assertThatThrownBy(() -> IntegerValidator.validateInteger(nonInteger))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("정수 범위의 값이 필요합니다.");
+        assertExceptionThrownForInvalidValue("k", "정수 범위의 값이 필요합니다.");
     }
 
     @Test
     public void 정수인_문자면_검증통과() {
-        // Given
-        String integer = "1";
-
-        // When
-        IntegerValidator.validateInteger(integer);
-
-        // Then
-
+        IntegerValidator.validateInteger("1");
     }
 
     @Test
     public void 정수가_특정수의_배수가_아니면_예외발생() {
-        // Given
-        int nonMultipleOfThousand = 1234;
-
-        // When && Then
-        assertThatThrownBy(() -> IntegerValidator.validateMultipleOf(
-                nonMultipleOfThousand,1000))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1000의 배수인 숫자가 필요합니다.");
+        assertExceptionThrownForInvalidMultiple(1234, 1000, "1000의 배수인 숫자가 필요합니다.");
     }
 
     @Test
     public void 정수가_특정수의_배수면_정상통과() {
-        // Given
-        int nonMultipleOfThousand = 10000;
-
-        // When
-        IntegerValidator.validateMultipleOf(nonMultipleOfThousand,1000);
-
-        // Then
-
+        IntegerValidator.validateMultipleOf(10000, 1000);
     }
 
     @Test
     public void 정수가_특정수의_범위내에_없으면_예외발생() {
-        // Given
-        int outOfRangeNumber = 101;
-
-        // When && Then
-        assertThatThrownBy(() -> IntegerValidator.validateInRange(
-                outOfRangeNumber, minRange, maxRange))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+        assertExceptionThrownForInvalidRange(101, minRange, maxRange, "정해진 범위의 숫자를 입력하세요.");
     }
 
     @Test
     public void 정수가_특정수의_범위내에_있으면_정상통과() {
-        // Given
-        int inRangeNumber = 100;
-
-
-        // When
-        IntegerValidator.validateInRange(inRangeNumber, minRange, maxRange);
-
-        // Then
-
+        IntegerValidator.validateInRange(100, minRange, maxRange);
     }
 
     @Test
     public void 정수가_특정수보다_작으면_예외발생() {
-        // Given
-        int smallerNumber = 0;
-
-        // When && Then
-        assertThatThrownBy(() -> IntegerValidator.validateSmaller(
-                smallerNumber, minRange))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+        assertExceptionThrownForSmallerValue(0, minRange, "정해진 범위의 숫자를 입력하세요.");
     }
 
     @Test
     public void 정수가_특정수보다_작지않으면_정상통과() {
-        // Given
-        int nonSmallerNumber = 2;
-
-        // When
-        IntegerValidator.validateSmaller(nonSmallerNumber, minRange);
-
-        // Then
-
+        IntegerValidator.validateSmaller(2, minRange);
     }
 
     @Test
     public void 정수가_특정수보다_크면_예외발생() {
-        // Given
-        int biggerNumber = 101;
-
-        // When && Then
-        assertThatThrownBy(() -> IntegerValidator.validateBigger(
-                biggerNumber, maxRange))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+        assertExceptionThrownForBiggerValue(101, maxRange, "정해진 범위의 숫자를 입력하세요.");
     }
 
     @Test
     public void 정수가_특정수보다_크지않으면_정상통과() {
-        // Given
-        int nonBiggerNumber = 99;
-
-        // When
-        IntegerValidator.validateBigger(nonBiggerNumber, maxRange);
-
-        // Then
-
+        IntegerValidator.validateBigger(99, maxRange);
     }
 
     @Test
     public void 두_정수의_합이_정수범위를_벗어나면_예외발생() {
-        // Given
-        int integer1 = 1200000000;
-        int integer2 = 1000000000;
-
-        // When && Then
-        assertThatThrownBy(() -> IntegerValidator.validatePlusRange(
-                integer1, integer2))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("정수 범위를 벗어난 값은 더할 수 없습니다.");
+        assertExceptionThrownForInvalidPlusRange(1200000000, 1000000000, "정수 범위를 벗어난 값은 더할 수 없습니다.");
     }
 
     @Test
     public void 두_정수의_합이_정수범위를_벗어나지_않으면_정상통과_양수값() {
-        // Given
-        int integer1 = 2147483646;
-        int integer2 = 1;
-
-        // When
-        IntegerValidator.validatePlusRange(integer1, integer2);
-
-        // Then
-
+        IntegerValidator.validatePlusRange(2147483646, 1);
     }
 
     @Test
     public void 두_정수의_합이_정수범위를_벗어나지_않으면_정상통과_음수값() {
-        // Given
-        int integer1 = -2147483647;
-        int integer2 = -1;
+        IntegerValidator.validatePlusRange(-2147483647, -1);
+    }
 
-        // When
-        IntegerValidator.validatePlusRange(integer1, integer2);
+    private void assertExceptionThrownForInvalidValue(String input, String expectedMessage) {
+        assertThatThrownBy(() -> IntegerValidator.validateInteger(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
 
-        // Then
+    private void assertExceptionThrownForInvalidMultiple(int value, int multiple, String expectedMessage) {
+        assertThatThrownBy(() -> IntegerValidator.validateMultipleOf(value, multiple))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
 
+    private void assertExceptionThrownForInvalidRange(int value, int min, int max, String expectedMessage) {
+        assertThatThrownBy(() -> IntegerValidator.validateInRange(value, min, max))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
+
+    private void assertExceptionThrownForSmallerValue(int value, int min, String expectedMessage) {
+        assertThatThrownBy(() -> IntegerValidator.validateSmaller(value, min))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
+
+    private void assertExceptionThrownForBiggerValue(int value, int max, String expectedMessage) {
+        assertThatThrownBy(() -> IntegerValidator.validateBigger(value, max))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
+
+    private void assertExceptionThrownForInvalidPlusRange(int value1, int value2, String expectedMessage) {
+        assertThatThrownBy(() -> IntegerValidator.validatePlusRange(value1, value2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
     }
 }

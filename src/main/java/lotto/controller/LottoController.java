@@ -7,6 +7,7 @@ import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
+import lotto.domain.message.Messages;
 import lotto.domain.prize.Prize;
 import lotto.domain.shop.LottoShop;
 import lotto.domain.win.WinStatesCounter;
@@ -43,7 +44,7 @@ public class LottoController {
     }
 
     private void inputPurchaseCash() {
-        // 구입금액을 입력해 주세요.
+        outputView.print(Messages.INPUT_PURCHASE_CASH_AMOUNT.getMessage());
         try {
             purchaseCash = new Cash(inputView.inputNumber());
             lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoList;
 import lotto.model.LottoManager;
@@ -8,7 +7,6 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,14 +14,12 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoManager lottoManager;
     private final LottoList lottoList;
     private final LottoService lottoService;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoManager = new LottoManager();
         this.lottoList = new LottoList();
         this.lottoService = new LottoService();
     }
@@ -31,8 +27,13 @@ public class LottoController {
     public void startLottoGame() {
         int purchaseAmount = getPurchaseAmount();
         showLottoTicketNumbers(purchaseAmount);
-        List<Integer> winningNumbers = getWinningNumbersFromUser();
+        LottoManager winningNumbers = getWinningNumbersFromUser();
         int bonusNumber = getBonusNumberFromUser();
+        addBonusNumberToWinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private void addBonusNumberToWinningNumbers(LottoManager winningNumbers, int bonusNumber) {
+        winningNumbers.addBonusNumber(bonusNumber);
     }
 
     private int getBonusNumberFromUser() {
@@ -40,10 +41,9 @@ public class LottoController {
         return inputView.getBonusNumberFromUser();
     }
 
-    private List<Integer> getWinningNumbersFromUser() {
+    private LottoManager getWinningNumbersFromUser() {
         outputView.askWinningNumbers();
-        List<Integer> winningNumbers = inputView.getWinningNumbersFromUser();
-        return winningNumbers;
+        return new LottoManager(inputView.getWinningNumbersFromUser());
     }
 
     private void showLottoTicketNumbers(int purchaseAmount) {

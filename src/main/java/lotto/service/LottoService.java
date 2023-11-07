@@ -1,19 +1,20 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.enums.LottoConfig;
 import lotto.enums.WinningRank;
+import lotto.repository.LottoRepository;
 import lotto.utils.RandomGenerator;
 import lotto.view.OutputView;
 
 public class LottoService {
-    private final List<Lotto> lottos = new ArrayList<>();
+    private final LottoRepository lottoRepository;
 
     public LottoService() {
+        this.lottoRepository = new LottoRepository();
     }
 
     public void publishLottos(int payAmount) {
@@ -23,11 +24,11 @@ public class LottoService {
                     LottoConfig.LOTTO_MINIMUM_NUMBER.getValue(),
                     LottoConfig.LOTTO_MAXIMUM_NUMBER.getValue(),
                     LottoConfig.LOTTO_NUMBER_SIZE.getValue());
-            lottos.add(new Lotto(lottoNumbers));
+            lottoRepository.save(new Lotto(lottoNumbers));
         }
 
         OutputView.printPaySuccessMessageMessage(lottoCount);
-        OutputView.printLottos(lottos);
+        OutputView.printLottos(lottoRepository.getLottos());
 
     }
 
@@ -60,7 +61,7 @@ public class LottoService {
         HashMap<WinningRank, Integer> winningStatistics = new HashMap<>();
         initHashMap(winningStatistics);
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoRepository.getLottos()) {
             int winningRank = countMatchNumber(lotto, jackpotNumbers, bonusNumber);
             if (winningRank >= 3) {
                 WinningRank rank = WinningRank.fromMatchNumber(winningRank);

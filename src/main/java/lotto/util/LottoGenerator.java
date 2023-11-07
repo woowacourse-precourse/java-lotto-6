@@ -5,7 +5,9 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.constant.LottoConsts.*;
 
@@ -19,6 +21,12 @@ public class LottoGenerator {
         }
 
         return new Lottos(lottos);
+    }
+
+    public static List<Integer> generateWinningLottoNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(LottoUtil::parseLottoNumber)
+                .collect(Collectors.toList());
     }
 
 }

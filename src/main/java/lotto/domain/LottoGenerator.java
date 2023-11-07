@@ -5,6 +5,7 @@ import lotto.util.RandomNumberGenerator;
 import lotto.util.Validator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class LottoGenerator {
                     DomainConfiguration.LOTTO_NUMBER_MAX,
                     DomainConfiguration.LENGTH_OF_LOTTO
             );
+            Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             lottoContainer.add(lotto);
         }

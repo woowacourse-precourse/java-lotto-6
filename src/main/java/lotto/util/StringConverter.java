@@ -32,6 +32,6 @@ public class StringConverter {
      */
     public static List<Integer> convertWinningNumbers(String toConvert) {
         return Arrays.stream(toConvert.split(InputConfiguration.DELIMITER_TO_PARSE_INPUT_OF_WINNING_NUMBER))
-                .map(Integer::parseInt).toList();
+                .map(Integer::parseInt).sorted().toList();
     }
 }

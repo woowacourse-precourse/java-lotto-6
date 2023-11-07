@@ -21,7 +21,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         this.numbers = numbers;
         validate(numbers);
-        Collections.sort(numbers);
     }
 
     public Lotto(Lotto lotto) throws IllegalArgumentException {

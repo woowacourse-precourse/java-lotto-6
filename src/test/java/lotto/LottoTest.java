@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +25,20 @@ class LottoTest {
   }
 
   // 아래에 추가 테스트 작성 가능
+  @DisplayName("보너스 번호와 겹치는 숫자를 찾을 수 있다.")
+  @Test
+  void matchWithBonusNumber() {
+    List<Integer> numbers = List.of(1,2,3,4,5,6);
+    List<Integer> matchedBonusNumber = List.of(1,2,3,4,5,6);
+    List<Integer> unmatchedBonusNumber = List.of(7,8,9,10);
+
+    Lotto lotto = new Lotto(numbers);
+
+    for(Integer number : matchedBonusNumber) {
+      assertThat(lotto.matchWithBonusNumber(number)).isEqualTo(true);
+    }
+    for(Integer number : unmatchedBonusNumber) {
+      assertThat(lotto.matchWithBonusNumber(number)).isEqualTo(false);
+    }
+  }
 }

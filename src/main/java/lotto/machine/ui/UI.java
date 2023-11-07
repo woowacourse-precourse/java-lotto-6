@@ -16,6 +16,6 @@ public interface UI {
     int inputBonusNumber(List<Integer> lotto);
 
     // TODO : outputGameResult 의 매개 변수는 아직 정해지지 않음
-    void outputGameResult(int matchThree, int matchFour, int matchFiveIncludeBonus, int matchFiveExceptBonus, int matchSix, double rateOfReturn);
+    void outputGameResult(int matchThree, int matchFour, int matchFive, int matchFiveIncludeBonus, int matchSix, double rateOfReturn);
 
 }

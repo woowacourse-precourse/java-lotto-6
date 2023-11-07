@@ -42,6 +42,7 @@ public class LottoResultCalculationService {
     }
 
     public void printStatistics(Map<Integer, Integer> matchingCounts) {
+        outputPort.printEmptyLine();
         outputPort.printLine(StringConstants.PRINT_STATISTICS_MESSAGE);
         outputPort.printLine(StringConstants.PRINT_STATISTICS_SEPARATOR);
         outputPort.printLine(StringConstants.PRINT_MATCH_COUNT_3 + matchingCounts.getOrDefault(3, 0) + "개");

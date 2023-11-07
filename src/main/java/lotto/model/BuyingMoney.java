@@ -1,7 +1,12 @@
-package lotto.validate;
+package lotto.model;
 
-public class Validate {
+public class BuyingMoney {
+    public int buyingMoney;
 
+    public BuyingMoney(String buyingMoney) {
+        inputBuyingMoneyValidate(buyingMoney);
+        this.buyingMoney = Integer.parseInt(buyingMoney);
+    }
     public void inputBuyingMoneyValidate(String s){
         inputBuyingMoneyValidateOnlyNum(s);
         inputBuyingMoneyValidateDivided1000(s);

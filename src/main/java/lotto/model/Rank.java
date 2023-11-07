@@ -1,30 +1,31 @@
 package lotto.model;
 
 public class Rank {
-    private static int rank;
-    private static int prize;
+    private int rank;
+    private int prize;
 
     public Rank(int rank) {
         this.rank = rank;
-        setPrize();
+        this.prize = setPrize(rank);
     }
 
-    private static void setPrize() {
+    private static int setPrize(int rank) {
         if (rank == 1) {
-            prize = 2000000;
+            return 2000000;
         }
         if (rank == 2) {
-            prize = 30000;
+            return 30000;
         }
         if (rank == 3) {
-            prize = 1500;
+            return 1500;
         }
         if (rank == 4) {
-            prize = 50;
+            return 50;
         }
         if (rank == 5) {
-            prize = 5;
+            return 5;
         }
+        return 0;
     }
 
     public int getRank() {

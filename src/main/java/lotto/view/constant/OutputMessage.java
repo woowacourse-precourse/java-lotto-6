@@ -2,7 +2,8 @@ package lotto.view.constant;
 
 public enum OutputMessage {
 
-    PURCHASED_COUNT("개를 구매했습니다."),
+    LOTTO_PURCHASE_COUNT("\n%d개를 구매했습니다.\n"),
+    LOTTO_STATUS("%s\n"),
     NEWLINE("\n"),
     STATS_MESSAGE("\n당첨 통계\n---\n"),
     WINNING_STATS_FIVE_RANK("3개 일치 (5,000원) - %d개\n"),

@@ -1,7 +1,7 @@
 package lotto.view;
 
-import static lotto.view.constant.OutputMessage.NEWLINE;
-import static lotto.view.constant.OutputMessage.PURCHASED_COUNT;
+import static lotto.view.constant.OutputMessage.LOTTO_PURCHASE_COUNT;
+import static lotto.view.constant.OutputMessage.LOTTO_STATUS;
 import static lotto.view.constant.OutputMessage.STATS_MESSAGE;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_FIRST_RANK;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_FIVE_RANK;
@@ -23,18 +23,14 @@ public class OutputView {
 
     public void printLottoNumbers(Lottos lottos) {
         StringBuilder lottoNumberResult = new StringBuilder();
-        lottoNumberResult.append(NEWLINE.getMessage())
-                .append(lottos.getLottos().size())
-                .append(PURCHASED_COUNT.getMessage())
-                .append(NEWLINE.getMessage());
+        lottoNumberResult.append(String.format(LOTTO_PURCHASE_COUNT.getMessage(), lottos.getLottos().size()));
         lottos.getLottos()
                 .forEach(lotto -> createLottoStatus(lotto, lottoNumberResult));
         System.out.println(lottoNumberResult);
     }
 
     public void createLottoStatus(Lotto lotto, StringBuilder lottoNumberResult) {
-        lottoNumberResult.append(lotto.getNumbers().toString())
-                .append(NEWLINE.getMessage());
+        lottoNumberResult.append(String.format(LOTTO_STATUS.getMessage(), lotto.getNumbers().toString()));
     }
 
     public void printLottoPrize(LottoPrize lottoPrize) {

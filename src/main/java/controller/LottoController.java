@@ -8,6 +8,7 @@ import domain.LottoNumberGenerator;
 import domain.Price;
 import domain.WinningLotto;
 import domain.repository.LottoRepository;
+import domain.LottoResult;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class LottoController {
     private WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
     private BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
     private WinningLotto winningLotto = new WinningLotto();
+    private LottoResult lottoResult = new LottoResult();
 
     public void run() {
         initPriceByUserInput();
@@ -30,6 +32,61 @@ public class LottoController {
         showLottoTicket();
         initWinningNumber();
         initBonusNumber();
+        calculateLottoResult();
+    }
+
+    private void showResult() {
+
+    }
+
+    private void calculateLottoResult() {
+        for(Lotto lotto : lottoRepository.getAllLotto()) {
+            int matchedNumberCount = countOfMatchedNumber(lotto, winningLotto);
+            boolean isEqualToBonus = checkBonusNumber(lotto, winningLotto);
+            increaseCountOfRank(analyzeResult(matchedNumberCount,isEqualToBonus));
+        }
+    }
+
+    private void increaseCountOfRank(int rank) {
+        lottoResult.increaseCountOfRank(rank);
+    }
+
+    private int analyzeResult(int matchedNumberCount,boolean isEqualToBonus) {
+        if(matchedNumberCount == 6) {
+            return 1;
+        }
+        if(matchedNumberCount == 5 && isEqualToBonus) {
+            return 2;
+        }
+        if(matchedNumberCount == 5 && !isEqualToBonus){
+            return 3;
+        }
+        if(matchedNumberCount == 4) {
+            return 4;
+        }
+        if(matchedNumberCount == 3) {
+            return 5;
+        }
+        return 0;
+    }
+
+    private int countOfMatchedNumber(Lotto lotto, WinningLotto winLotto) {
+        int count = 0;
+        for(int number : lotto.getNumbers()) {
+            if(winLotto.isEqualToWnningNumber(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean checkBonusNumber(Lotto lotto, WinningLotto winLotto) {
+        for(int number : lotto.getNumbers()) {
+            if(winLotto.isEqualToBonusNumber(number)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void initBonusNumber() {

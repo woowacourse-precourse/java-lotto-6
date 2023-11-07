@@ -37,11 +37,23 @@
 
 <br>
 
-## View
+## Exception
 
 ### ExceptionMessage
 
 - 에러 문구는 `[ERROR]`로 시작해야 한다.
+
+<br>
+
+## Validator
+
+### 예외를 발생시키는 기능
+
+- 조건식과 메세지를 통해 예외를 발생시킵니다.
+
+<br>
+
+## View
 
 ### 구입 금액 입력 문구를 출력하는 기능
 

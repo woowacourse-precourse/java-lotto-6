@@ -260,14 +260,14 @@ public class LottoController {
     }
 
     private int compareBonusAndLottoNumber(List<Integer> randomLottoNumber, int bonusNumber) {
-        int matchCount = 0; //countSameNumber
+        int countSameNumber = 0;
 
         for (int number : randomLottoNumber) {
             if (number == bonusNumber) {
-                matchCount++;
+                countSameNumber++;
             }
         }
 
-        return matchCount;
+        return countSameNumber;
     }
 }

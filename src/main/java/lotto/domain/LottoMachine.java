@@ -21,7 +21,7 @@ public class LottoMachine {
         return new Lottos(List.copyOf(lottos));
     }
 
-    public Map<Ranking, Integer> rank(Player player, WinningLotto winningLotto) {
+    public LottoResult rank(Player player, WinningLotto winningLotto) {
         Map<Ranking, Integer> rankingCounts = new EnumMap<>(Ranking.class);
         Arrays.stream(Ranking.values()).forEach(key -> rankingCounts.put(key, 0));
 
@@ -35,6 +35,6 @@ public class LottoMachine {
             rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
         }
 
-        return Map.copyOf(rankingCounts);
+        return new LottoResult(Map.copyOf(rankingCounts));
     }
 }

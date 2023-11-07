@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -20,5 +21,17 @@ class WinningNumberTest {
                 () -> assertEquals(lotto, winningNumber.getLotto()),
                 () -> assertEquals(bonusNumber, winningNumber.getBonusNumber())
         );
+    }
+
+
+    @DisplayName("보너스숫자 범위가 1-45가 벗어나면 예외처리 하기 ")
+    @Test
+    void validRangeBonusNumber(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonus = 46;
+
+        assertThatThrownBy(
+                ()-> new WinningNumber(lotto,bonus)
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 }

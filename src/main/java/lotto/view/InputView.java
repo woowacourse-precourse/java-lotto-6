@@ -20,4 +20,10 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
         }
     }
+
+    protected void isNotZeroValidate(String result) {
+        if ((Integer.parseInt(result) == 0)) {
+            throw new IllegalArgumentException("[ERROR] 0원 을 입력하셨습니다.");
+        }
+    }
 }

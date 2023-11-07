@@ -6,6 +6,9 @@ public class LottoController {
     public void execute() {
         settingPlayer();
         player.buyLotto();
+        player.outputLottoInfo();
+        //TODO: 당첨번호 선정
+        //TODO: 당첨 통계 출력
     }
 
     private void settingPlayer() {

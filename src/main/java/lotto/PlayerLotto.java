@@ -23,4 +23,14 @@ public class PlayerLotto {
     public int getQuantity() {
         return lottos.size();
     }
+
+    public String getAllLottoInfo() {
+        StringBuilder info = new StringBuilder();
+
+        for (Lotto lotto : lottos) {
+            info.append(lotto.toString()).append("\n");
+        }
+
+        return info.toString();
+    }
 }

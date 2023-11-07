@@ -36,4 +36,9 @@ public class Player {
     public void buyLotto() {
         playerLotto.publish(getPurchaseQuantity());
     }
+
+    public void outputLottoInfo() {
+        System.out.printf(LottoMessage.LOTTO_PURCHASE_QUANTITY.getMessage(), getPurchaseQuantity());
+        System.out.printf(playerLotto.getAllLottoInfo());
+    }
 }

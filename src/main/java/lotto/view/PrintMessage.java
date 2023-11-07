@@ -27,9 +27,16 @@ public class PrintMessage {
     public static void printPrizes(LottoPrize lottoPrize, int count) {
         String result = lottoPrize.getMatches() + "개 일치";
         if (lottoPrize.isBonus()) {
-            result += ", 보너스 볼 일치 ";
+            result += ", 보너스 볼 일치";
         }
-        result += "(" + String.format("%,d", lottoPrize.getPrize()) + "원) - " + count + "개";
+        result += " (" + String.format("%,d", lottoPrize.getPrize()) + "원) - " + count + "개";
         System.out.println(result);
     }
+
+    public static void printRate(double rate) {
+        String rateResult = "총 수익률은 ";
+        rateResult += String.format("%.1f", rate) + "%입니다.";
+        System.out.println(rateResult);
+    }
+
 }

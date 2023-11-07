@@ -10,6 +10,7 @@ import lotto.domain.WinningLotto;
 import lotto.view.PrintMessage;
 
 public class LottoRogic {
+    private static int prize = 0;
 
     public static void matchWinningLotto(Lottos lottos, WinningLotto winningLotto) {
         Map<LottoPrize, Integer> prizeCount = setInitLottoResult();
@@ -24,6 +25,8 @@ public class LottoRogic {
             }
         }
         printLottoPrize(prizeCount);
+        double rate = getRate(lottos.getLottos().size());
+        PrintMessage.printRate(rate);
     }
 
     public static int getMatchCounts(Lotto lotto, WinningLotto winningLotto) {
@@ -41,7 +44,7 @@ public class LottoRogic {
         return lotto.getNumbers().contains(winningLotto.getBonusNumber());
     }
 
-    public static Map setInitLottoResult() {
+    public static Map<LottoPrize, Integer> setInitLottoResult() {
         Map<LottoPrize, Integer> prizeCount = new EnumMap<>(LottoPrize.class);
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             prizeCount.put(lottoPrize, 0);
@@ -49,8 +52,9 @@ public class LottoRogic {
         return prizeCount;
     }
 
-    public static Map setLottoCount(Map<LottoPrize, Integer> prizeCount, int count, boolean bonus) {
-        if (count == 5 && bonus == true) {
+    public static Map<LottoPrize, Integer> setLottoCount(Map<LottoPrize, Integer> prizeCount, int count,
+                                                         boolean bonus) {
+        if (count == 5 && bonus) {
             prizeCount.put(LottoPrize.FIVE_PLUS_BONUS, (prizeCount.get(LottoPrize.FIVE_PLUS_BONUS)) + 1);
         } else if (count == 5) {
             prizeCount.put(LottoPrize.FIVE_MATCHES, (prizeCount.get(LottoPrize.FIVE_MATCHES)) + 1);
@@ -67,7 +71,11 @@ public class LottoRogic {
     public static void printLottoPrize(Map<LottoPrize, Integer> prizeCount) {
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             PrintMessage.printPrizes(lottoPrize, prizeCount.get(lottoPrize));
+            prize += lottoPrize.getPrize() * prizeCount.get(lottoPrize);
         }
     }
 
+    public static double getRate(int lottoSize) {
+        return (double) prize / (lottoSize * 1000) * 100;
+    }
 }

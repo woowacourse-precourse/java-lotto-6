@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
-import lotto.domain.Money;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,9 +14,14 @@ public class Controller {
         int money = inputMoneyFromUser();
         List<Lotto> lottoTickets = purchaseLotto(money);
         printLottoNumbers(lottoTickets);
-        WinningNumber winningNumber = inputWinnigNumberFromUser();
+        WinningNumber winningNumber = inputWinningNumberFromUser();
         List<LottoRank> rankList = compareLottoNumber(winningNumber, lottoTickets);
+        lottoResult(rankList, money);
+    }
 
+    private void lottoResult(List<LottoRank> rankList, int money) {
+        Statistic statistic = new Statistic(rankList);
+        OutputView.lottoResultMessage(statistic, money);
     }
 
     private List<LottoRank> compareLottoNumber(WinningNumber winningNumber, List<Lotto> lottoTickets) {
@@ -43,11 +45,10 @@ public class Controller {
     private List<Lotto> purchaseLotto(int money) {
         int purchasableLotto = money / 1000;
         OutputView.purchaseLottoMessage(purchasableLotto);
-        OutputView.lineBreakMessage();
-        List<Lotto> lottoTickets = new ArrayList<Lotto>();
+        List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchasableLotto; i++) {
-            List<Integer> randomLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomLottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(randomLottoNumber);
             Lotto lotto = new Lotto(randomLottoNumber);
             lottoTickets.add(lotto);
@@ -59,15 +60,14 @@ public class Controller {
         OutputView.lottoNumberMessage(lottoTickets);
     }
 
-    private WinningNumber inputWinnigNumberFromUser() {
+    private WinningNumber inputWinningNumberFromUser() {
         try {
             Lotto lotto = new Lotto(InputView.inputLottoNumber());
             int inputBonusNumber = InputView.inputBonusNumber();
-            WinningNumber winningNumber = new WinningNumber(lotto.getNumbers(), inputBonusNumber);
-            return winningNumber;
+            return new WinningNumber(lotto.getNumbers(), inputBonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinnigNumberFromUser();
+            return inputWinningNumberFromUser();
         }
     }
 }

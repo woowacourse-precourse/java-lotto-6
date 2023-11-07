@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoGame {
 
@@ -12,6 +13,8 @@ public class LottoGame {
         System.out.println();
         List<Lotto> lottos = generateLottos(purchaseAmount);
         showLottos(lottos);
+        System.out.println();
+        List<Integer> winningNumbers = getWinningNumbersFromUser();
     }
 
     private static int getValidPurchaseAmount() {
@@ -55,6 +58,15 @@ public class LottoGame {
     private static void showLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto));
+    }
+
+    private static List<Integer> getWinningNumbersFromUser() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        String[] numbers = input.split(",");
+        return Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 }

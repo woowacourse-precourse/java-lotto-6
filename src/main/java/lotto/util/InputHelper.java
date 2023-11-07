@@ -14,6 +14,7 @@ public class InputHelper {
         try {
             return LottoGenerator.calculateNumOfLotto(inputPurchasePrice());
         } catch (IllegalArgumentException e) {
+            OutputAdaptor.displayErrorMessage(e.getMessage());
             return numOfLottoToBuy();
         }
     }
@@ -37,6 +38,7 @@ public class InputHelper {
         try {
             return new Lotto(inputWinningNumbers());
         } catch (IllegalArgumentException e) {
+            OutputAdaptor.displayErrorMessage(e.getMessage());
             return getWinningNumbersWithoutBonusNumber();
         }
     }
@@ -55,6 +57,7 @@ public class InputHelper {
         try {
             return new WinningNumbers(winningNumbers, inputBonusNumber());
         } catch (IllegalArgumentException e) {
+            OutputAdaptor.displayErrorMessage(e.getMessage());
             return getWinningNumbersWithBonusNumber(winningNumbers);
         }
     }

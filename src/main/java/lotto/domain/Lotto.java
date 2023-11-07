@@ -35,7 +35,7 @@ public class Lotto {
 
     private void validateLottoLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR.getExceptionMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class Lotto {
                 .anyMatch(i -> i < LOTTO_MIN_NUMBER.getValue() || i > LOTTO_MAX_NUMBER.getValue());
 
         if(isInvalid){
-            throw new IllegalArgumentException(RANGE_ERROR.getExceptionMessage());
+            throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getExceptionMessage());
         }
     }
 

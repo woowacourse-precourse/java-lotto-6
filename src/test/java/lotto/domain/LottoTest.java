@@ -24,10 +24,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에가 1~45 사이의 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void createLottoByOverNumber(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46))).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     @DisplayName("로또 번호를 오름차순으로 정렬한다.")
     void sortedLottoNumbers() {
-        List<java.lang.Integer> sortedLottoNumber = new Lotto(List.of(6, 5, 4, 3, 2, 1)).getSortLottoNumber();
+        List<java.lang.Integer> sortedLottoNumber = new Lotto(List.of(6, 5, 4, 3, 2, 1)).getSortedLottoNumber();
         Assertions.assertEquals(sortedLottoNumber, Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 
@@ -44,7 +50,6 @@ class LottoTest {
     void test() {
         Lotto myLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
         WinningNumber winLotto = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
-
         Assertions.assertTrue(winLotto.containsBonusNumber(myLotto));
 
     }

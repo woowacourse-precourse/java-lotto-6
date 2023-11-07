@@ -3,15 +3,19 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     static ArrayList<Lotto> lottoTickets = new ArrayList<>();
+    static List<Integer> winningNumbers = new ArrayList<>();
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해주세요:");
         generateLottoTickets(Console.readLine());
         showLottoTickets();
+        System.out.println("당첨번호를 입력해 주세요.");
+        getWinningNumbers(Console.readLine());
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -42,5 +46,9 @@ public class Application {
             System.out.println(numbers);
         }
     }
-
+    public static void getWinningNumbers(String inputWinningNumbers) {
+        for (String winningNumber : inputWinningNumbers.split(",")) {
+            winningNumbers.add(Integer.valueOf(winningNumber));
+        }
+    }
 }

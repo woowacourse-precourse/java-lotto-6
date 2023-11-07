@@ -12,7 +12,7 @@ public class InputHandler {
         do {
             Printer.printPurchaseAmountChoiceMessage();
             purchaseAmount = Console.readLine();
-            exceptionStatus = ExceptionHandler.handleMoneyFormatException(purchaseAmount);
+            exceptionStatus = ExceptionHandler.handleMoneyException(purchaseAmount);
         } while (exceptionStatus.isOccurred());
 
         return purchaseAmount;

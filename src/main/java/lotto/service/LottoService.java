@@ -20,11 +20,11 @@ public class LottoService {
     private static final int FOUR_MATCH = 4;
     private static final int FIVE_MATCH = 5;
     private static final int SIX_MATCH = 6;
-    private static final int FIRST_PLACE_PRIZE = 5000;
-    private static final int SECOND_PLACE_PRIZE = 50000;
+    private static final int FIRST_PLACE_PRIZE = 2000000000;
+    private static final int SECOND_PLACE_PRIZE = 30000000;
     private static final int THIRD_PLACE_PRIZE = 1500000;
-    private static final int FOURTH_PLACE_PRIZE = 30000000;
-    private static final int FIFTH_PLACE_PRIZE = 2000000000;
+    private static final int FOURTH_PLACE_PRIZE = 50000;
+    private static final int FIFTH_PLACE_PRIZE = 5000;
 
     private List<Lotto> purchaseLotto = new ArrayList<>();
     private Winner winners;

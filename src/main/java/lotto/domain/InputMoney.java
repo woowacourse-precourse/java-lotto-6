@@ -16,6 +16,9 @@ public class InputMoney {
 	private int validateMoney(String input) {
 		moneyValidator.validateNumber(input);
 		int inputMoney = Integer.parseInt(input);
+
+		moneyValidator.validatePositive(inputMoney);
+		moneyValidator.validateUnit(inputMoney);
 		return inputMoney;
 	}
 }

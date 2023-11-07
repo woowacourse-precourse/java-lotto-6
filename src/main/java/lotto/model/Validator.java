@@ -11,7 +11,7 @@ public class Validator {
 
 
     // input값이 1 이상의 양의 정수인지 판별하는 로직
-    private static void isPositiveInteger(String input){
+    public static void isPositiveInteger(String input){
         try {
             int number = Integer.parseInt(input);
             if (number < 1) {
@@ -62,8 +62,6 @@ public class Validator {
         isAllUniqueNumbers(numberStrings);
         isWithinOneToFortyFive(numberStrings);
     }
-
-
 
     public static void validatePurchaseInput(String input) {
         isPositiveInteger(input);

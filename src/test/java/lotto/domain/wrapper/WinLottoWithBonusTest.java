@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import static lotto.handler.ErrorHandler.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class WinLottoWithBonusTest {
 
@@ -34,6 +35,14 @@ public class WinLottoWithBonusTest {
                 Arguments.of(List.of(1, 10, 20, 30, 40, 45), "56"),
                 Arguments.of(List.of(1, 3, 5, 6, 10, 11), "-1"),
                 Arguments.of(List.of(1, 3, 5, 6, 25, 36), "0")
+        );
+    }
+
+    private static Stream<Arguments> generateBonusNumber() {
+        return Stream.of(
+                Arguments.of(WinLottoWithBonus.create(List.of(1, 10, 20, 30, 40, 45), "7"), 7),
+                Arguments.of(WinLottoWithBonus.create(List.of(1, 3, 5, 6, 10, 11), "20"), 20),
+                Arguments.of(WinLottoWithBonus.create(List.of(1, 3, 5, 6, 25, 36), "9"), 9)
         );
     }
 
@@ -62,5 +71,12 @@ public class WinLottoWithBonusTest {
         assertThatThrownBy(() -> WinLottoWithBonus.create(winningLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_RANGE.getException().getMessage());
+    }
+
+    @DisplayName("보너스 번호가 정상적으로 반환된다.")
+    @ParameterizedTest(name = "[{index}] input {0} " )
+    @MethodSource("generateBonusNumber")
+    void createBonusNumber(WinLottoWithBonus winLottoWithBonus, int bonusNumber) {
+        assertThat(winLottoWithBonus.getBonusNumber()).isEqualTo(bonusNumber);
     }
 }

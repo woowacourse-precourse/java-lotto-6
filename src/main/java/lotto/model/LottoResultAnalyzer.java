@@ -11,4 +11,9 @@ public class LottoResultAnalyzer {
                 .filter(number -> winningNumbers.contains(number))
                 .count();
     }
+
+    public void writeResultToLottoPaper(LottoPaper lottoPaper, List<Integer> winningNumbers) {
+            int calculatedMatchCount = calculateMatchCount(lottoPaper, winningNumbers);
+            lottoPaper.setMatchingCount(calculatedMatchCount);
+    }
 }

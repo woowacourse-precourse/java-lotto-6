@@ -1,5 +1,7 @@
 package controller;
 
+import model.Lotto;
+import model.LottoRepository;
 import util.RandomNumberGeneratorUtil;
 import view.LottoBonusNumberInputView;
 import view.LottoPurchaseInputView;
@@ -10,6 +12,7 @@ public class LottoController {
     RandomNumberGeneratorUtil randomNumberGeneratorUtil = new RandomNumberGeneratorUtil();
     LottoWinningNumberInputView lottoWinningNumberInputView = new LottoWinningNumberInputView();
     LottoBonusNumberInputView lottoBonusNumberInputView = new LottoBonusNumberInputView();
+    LottoRepository lottoRepository = new LottoRepository();
 
     public void gameStart() {
         int lottoPurchase = lottoPurchaseInputView.readLottoPurchaseValidator();
@@ -22,7 +25,8 @@ public class LottoController {
         int totalLottoCount = countTotalLotto(price);
         displayPurchaseQuantity(totalLottoCount);
         for (int count = 0; count < totalLottoCount; count++) {
-            randomNumberGeneratorUtil.randomNumbersGenerate();
+            Lotto lotto = new Lotto(randomNumberGeneratorUtil.randomNumbersGenerate());
+            lottoRepository.addLotto(lotto);
         }
         System.out.println();
     }

@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.validation.ErrorMessage;
@@ -35,7 +34,7 @@ enum Index {
 
 
 public class Lotto {
-    private List<Integer> numbers;
+    private List<Integer> numbers = new ArrayList<>();
 
     public Lotto(List<Integer> numbers)throws IllegalArgumentException {
     	validate(numbers);
@@ -83,7 +82,8 @@ public class Lotto {
     }
     
     public void rateOfReturn(List<Integer> result, int purchase) { //수익률 계산해서 반환
-    	ArrayList<Integer> income = new ArrayList<>(Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000));
+    	List<Integer> income = new ArrayList<Integer>(List.of(5000, 50000, 1500000, 30000000, 2000000000));
+    	
     	double totalIncome = 0;
     	for(int i = 0; i < result.size(); i++) {
     		totalIncome = totalIncome + income.get(i)*result.get(i);

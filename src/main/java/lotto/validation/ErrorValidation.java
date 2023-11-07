@@ -5,17 +5,23 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class ErrorValidation {
-	public static void validateComma(String inputNumbers) {
-		if (!Pattern.matches("^\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2}$", inputNumbers)) {
-            throw new IllegalArgumentException();
-        }
-	}
-	
 	public static void validateWinningNumbersFormat(String input) {
         validateCommaFormat(input);
         String[] splitInput = input.split(",");
         Arrays.stream(splitInput).forEach(ErrorValidation::validateInteger);
     }
+	
+	private static void validateCommaFormat(String input) {
+        if(input.contains(",,") || input.startsWith(",") || input.endsWith(",")) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_WINNING_CONTAINS_COMMA.getMessage());
+        }
+    }
+	
+	public static void validateComma(String inputNumbers) {
+		if (!Pattern.matches("^\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2}$", inputNumbers)) {
+            throw new IllegalArgumentException();
+        }
+	}
 	
 	private static void validateInteger(String input) {
         try {
@@ -49,11 +55,7 @@ public class ErrorValidation {
         }
     }
 	
-	private static void validateCommaFormat(String input) {
-        if(input.contains(",,") || input.startsWith(",") || input.endsWith(",")) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_WINNING_CONTAINS_COMMA.getMessage());
-        }
-    }
+	
 	
 	//
 	public static void validateBonusNumber(String input, List<Integer> winningNumbers) {

@@ -11,7 +11,8 @@ public class RandomGenerator {
 	public RandomGenerator(int number) {
 		
 		for(int i=0; i < number; i++) {
-			List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			List<Integer> numbers = new ArrayList<>();
+			numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 			Collections.sort(numbers);
 			myLotto.add(numbers);
 		}
@@ -24,5 +25,4 @@ public class RandomGenerator {
 			System.out.println(myLotto.get(i));
 		}
 	}
-
 }

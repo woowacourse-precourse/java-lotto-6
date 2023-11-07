@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-
-	/*@Test
+	@SuppressWarnings("unchecked")
+	@Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -45,7 +45,7 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
-    }*/
+    }
 
     @Test
     void 예외_테스트() {

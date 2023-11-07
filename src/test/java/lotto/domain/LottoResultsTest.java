@@ -3,6 +3,8 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -36,5 +38,27 @@ class LottoResultsTest {
         // then
         assertThat(totalWinningMoney).isEqualTo(expectedResult);
     }
+
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "5_000/8_000/62.5",
+                    "10_000/10_000/100.0",
+                    "2_000_000_000/1_000/200_000_000.0",
+                    "5_000/13_000/38.5",
+                    "5_000/17_000/29.4"
+            },
+            delimiter = '/')
+    void 가격_금액을_입력하면_로또_수익률_계산에_성공한다(int totalWinningMoney, int inputPrice, double expected) {
+        // given
+        LottoResults lottoResults = new LottoResults(List.of());
+
+        // when
+        double actual = lottoResults.calculateTotalProfit(totalWinningMoney, inputPrice);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
 
 }

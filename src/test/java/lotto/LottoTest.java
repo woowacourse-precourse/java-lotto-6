@@ -31,4 +31,9 @@ class LottoTest {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).hasNumber(1)).isTrue();
     }
 
+    @Test
+    void 맞춘_로또_번호() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).calculateWinNumber(1)).isTrue();
+    }
+
 }

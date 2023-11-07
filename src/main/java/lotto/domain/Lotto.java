@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.message.ErrorMessage.LOTTO_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_RANGE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE;
 
@@ -13,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
         validationRange(numbers);
+        validationDuplication(numbers);
         this.numbers = ascendingNumbers(numbers);
     }
 
@@ -29,6 +31,12 @@ public class Lotto {
                 .ifPresent(number -> {
                     throw new IllegalStateException(LOTTO_RANGE.errorMessage());
                 });
+    }
+
+    private void validationDuplication(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalStateException(LOTTO_DUPLICATE.errorMessage());
+        }
     }
 
     private List<Integer> ascendingNumbers(List<Integer> numbers) {

@@ -21,7 +21,6 @@ public class Lotto {
         winningNumberInput = removeSpaces(winningNumberInput);
         List<String> winningNumbers = stringToList(winningNumberInput);
         validateInput(winningNumbers);
-        validateDuplicate(winningNumbers);
         this.numbers = stringToInt(winningNumbers);
     }
 
@@ -61,20 +60,13 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicate(List<String> winningNumbersInput) {
-        try {
-            checkDuplicates(winningNumbersInput);
-        } catch (IllegalArgumentException e) {
-            throw e;
-        }
-    }
-
-    private void checkDuplicates(List<String> inputs) {
+    private void checkDuplicates(List<Integer> inputs) {
         Set<Integer> uniqueNumbers = new HashSet<>();
-        for (String input : inputs) {
+        for (int input : inputs) {
             if (uniqueNumbers.contains(input)) {
                 ExceptionMessage.LOTTO_NUMBER_DUPLICATES.throwException();
             }
+            uniqueNumbers.add(input);
         }
     }
 
@@ -95,6 +87,7 @@ public class Lotto {
         try {
             checkSixNumbers(numbers);
             checkInRange(numbers);
+            checkDuplicates(numbers);
         } catch (IllegalArgumentException e) {
             throw e;
         }

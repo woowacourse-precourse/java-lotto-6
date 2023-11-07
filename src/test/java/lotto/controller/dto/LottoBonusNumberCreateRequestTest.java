@@ -1,4 +1,4 @@
-package lotto.view.dto;
+package lotto.controller.dto;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;

@@ -1,4 +1,4 @@
-package lotto.view.dto;
+package lotto.controller.dto;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -25,6 +25,9 @@ public class Application {
 	public static int purchaseAmount() {
 		System.out.println("구입금액을 입력해 주세요.");
 		String amountInput = Console.readLine();
+//		if (!amountInput.matches("^\\d+$")) {
+//			throw new IllegalArgumentException("[ERROR] 유효한 숫자가 아닙니다.");
+//		}
 		int amount = Integer.parseInt(amountInput);
 		if (amount % 1000 != 0) {
 			throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");

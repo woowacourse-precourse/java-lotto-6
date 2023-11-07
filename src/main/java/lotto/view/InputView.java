@@ -10,6 +10,12 @@ import java.util.List;
 
 public class InputView {
     public static int intputAmount(String input) {
+        try {
+            ValidateCheck.pureIntegerCheck(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return intputAmount(Console.readLine());
+        }
         int amount = Integer.parseInt(input);
         try {
             ValidateCheck.pureIntegerCheck(input);

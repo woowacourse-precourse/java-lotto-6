@@ -11,8 +11,7 @@ public class OutputView {
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void displayUserLottos(List<Lotto> userLottos) {
-        String purchaseHeader = String.format(PURCHASE_INFO_MESSAGE, userLottos.size());
-        System.out.println(purchaseHeader);
+        System.out.printf(PURCHASE_INFO_MESSAGE, userLottos.size());
         userLottos.forEach(userLotto -> {
             System.out.println(userLotto.getDisplayFormat());
         });

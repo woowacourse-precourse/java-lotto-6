@@ -14,7 +14,7 @@ import java.util.Map;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import static lotto.view.OutputView.printTicketCnt;
+import static lotto.view.OutputView.*;
 
 public class GameController {
 
@@ -25,6 +25,7 @@ public class GameController {
     private static List<Integer> lotto = new ArrayList<>();
     private static List<Lotto> lottoList;
     private static WinningLotto winningResult;
+    private static Map<Rank, Integer> result;
 
     public GameController() {
     }
@@ -36,7 +37,7 @@ public class GameController {
         lottoList = makeLottoList(ticketCnt);
         winningResult = validateNums();
 
-
+        printResult(result, winningResult, ticketCnt);
     }
 
     public int amountToCnt(){
@@ -69,5 +70,45 @@ public class GameController {
         winningResult = new WinningLotto(new Lotto(winningLotto), bonusNum);
 
         return winningResult;
+    }
+
+    private Map<Rank, Integer> setResult() {
+        Map<Rank, Integer> result = new LinkedHashMap<>();
+
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
+        }
+        return result;
+    }
+
+    private void calcResult(WinningLotto winningLotto){
+        result = setResult();
+        Rank rank;
+
+        for (int i = 0; i < lottoList.size(); i++) {
+            rank = winningLotto.matchCnt(lottoList.get(i));
+            result.put(rank, result.get(rank) + 1);
+        }
+    }
+
+    private void printResult(Map<Rank, Integer> result, WinningLotto winningLotto, int amount){
+        OutputView.printSuccessResult();
+        calcResult(winningLotto);
+        printRank(result);
+        printEarningRate(result, amount);
+    }
+
+    private void printRank(Map<Rank, Integer> result) {
+        for (int i = 0; i < Rank.values().length; i++) {
+            Rank.values()[i].printMessage(result.get(Rank.values()[i]));
+        }
+    }
+
+    private void printEarningRate(Map<Rank, Integer> result, int amount) {
+        double earningRate = 0;
+        for (Rank rank : result.keySet()) {
+            earningRate += ((double) (rank.getReward()) / (amount * TICKET_PRICE) * (result.get(rank)) * (PERCENTAGE));
+        }
+        printRevenueRate(earningRate);
     }
 }

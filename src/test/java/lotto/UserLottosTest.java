@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.text.DecimalFormat;
 
@@ -19,5 +20,13 @@ public class UserLottosTest {
         DecimalFormat df = new DecimalFormat("#.#");
 
         Assertions.assertThat(df.format(rateOfReturn)).isEqualTo(result);
+    }
+
+    @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {5200, 5500, 1500, 1700, 800})
+    void createPurchaseAmountNotDivideByLottoPrice(int purchaseAmount) {
+        Assertions.assertThatThrownBy(() -> new UserLottos(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

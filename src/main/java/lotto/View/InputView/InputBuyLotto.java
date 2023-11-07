@@ -18,7 +18,7 @@ public class InputBuyLotto {
     }
 
     private int buyLotto() {
-        int result = 0;
+        int result;
         while (true) {
             try {
                 String input = Console.readLine();
@@ -33,7 +33,7 @@ public class InputBuyLotto {
     }
 
     private int validateInput(String input) {
-        int result = 0;
+        int result;
         try {
             result = Integer.parseInt(input);
             if (result % PURCHASE_UNIT != 0)

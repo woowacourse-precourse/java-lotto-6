@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.controller.LottoController;
-import lotto.domain.Lotto;
+import lotto.domain.Lottery;
 import lotto.domain.LottoNumber;
 import lotto.domain.Price;
 import lotto.domain.Ranks;
@@ -17,10 +17,10 @@ public class Application {
         LottoController lottoController = new LottoController();
 
         Price purchasePrice = getPurchasePrice();
-        List<Lotto> lottery = lottoController.buyLottery(purchasePrice);
+        Lottery lottery = lottoController.buyLottery(purchasePrice);
 
         OutputView.printPurchaseResult(purchasePrice.numberLotteryAvailablePurchase());
-        OutputView.printLotteryNumber(lottery);
+        OutputView.printLotteryNumber(lottery.printLottoNumbers());
 
         String stringWinningNumber = getWinningNumber();
         List<LottoNumber> winningNumber = toLottoNumbers(stringWinningNumber);
@@ -55,7 +55,7 @@ public class Application {
         }
 
         if (isRestart) {
-            getPurchasePrice();
+            price = getPurchasePrice();
         }
         return price;
     }
@@ -69,7 +69,8 @@ public class Application {
     private static void validateWinningNumber(String stringWinningNumber) {
         boolean isRestart = true;
         try {
-            isRestart = LottoNumberValidator.validateWinningNumber(stringWinningNumber);
+            LottoNumberValidator.validateWinningNumber(stringWinningNumber);
+            isRestart = false;
         } catch (IllegalArgumentException e) {
             OutputView.printCustomMessage(e.getMessage());
         }

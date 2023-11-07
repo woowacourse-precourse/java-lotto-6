@@ -18,7 +18,7 @@ public class CostService {
         while (true) {
             try {
                 String readLine = input.getReadLine();
-                CostValidator.validateReadLine(readLine);
+                CostValidator.validateCostReadLine(readLine);
                 return new Cost(validateParseInt(readLine));
             } catch (IllegalArgumentException e) {
                 Output.printErrorMessage(e);

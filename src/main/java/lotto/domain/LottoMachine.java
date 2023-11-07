@@ -12,9 +12,9 @@ public class LottoMachine {
     private LottoMachine() {
     }
 
-    public List<Lotto> purchaseLotto(int gameCount) {
+    public static List<Lotto> purchaseLotto(int gameCount) {
         List<Lotto> playerLotto = new ArrayList<>();
-        int publishCount = 1;
+        int publishCount = 0;
 
         while (!publishAllLotto(publishCount, gameCount)) {
             playerLotto.add(new Lotto(createLottoNumbers()));
@@ -25,12 +25,12 @@ public class LottoMachine {
         return playerLotto;
     }
 
-    private List<Integer> createLottoNumbers() {
+    private static List<Integer> createLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 LOTTO_MINIMUM_BOUND.getValue(), LOTTO_MAXIMUM_BOUND.getValue(), TOTAL_NUMBERS_OF_LOTTO.getValue());
     }
 
-    private boolean publishAllLotto(int publishCount, int gameCount) {
+    private static boolean publishAllLotto(int publishCount, int gameCount) {
         return publishCount == gameCount;
     }
 }

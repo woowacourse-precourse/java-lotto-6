@@ -16,7 +16,7 @@ public class BonusNumber {
         validateNotInWinnerNumbers(winnerLotto, bonusNumber);
     }
 
-    private static void validateNotInWinnerNumbers(Lotto winnerLotto, int bonusNumber) {
+    private void validateNotInWinnerNumbers(Lotto winnerLotto, int bonusNumber) {
         if (winnerLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATED_NUMBER.getMessage());
         }

@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+
+import static lotto.domain.Constant.MAX_LOTTOES_SIZE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,11 +12,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.stream().distinct().count() != MAX_LOTTOES_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
 }

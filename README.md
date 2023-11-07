@@ -278,7 +278,7 @@ public class Lotto {
 - [ ] UserOutputView
 - [ ] ExceptionMessage(enum)
 
-### view 
+### controller
 - [ ] LottoController 
 
 

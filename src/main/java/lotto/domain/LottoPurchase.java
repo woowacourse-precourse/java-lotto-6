@@ -16,4 +16,8 @@ public class LottoPurchase {
     public boolean isRunning(int count) {
         return this.purchaseCount.getCount() != count;
     }
+
+    public PurchaseCount getPurchaseCount() {
+        return purchaseCount;
+    }
 }

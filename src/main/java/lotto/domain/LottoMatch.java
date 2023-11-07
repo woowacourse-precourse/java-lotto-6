@@ -56,10 +56,9 @@ public class LottoMatch {
     }
 
     public double earningRateMain(Map<Rank, Integer> lottoResult, int lottoAmount) {
-        double EarningRate = lottoResult.keySet().stream()
+        return lottoResult.keySet().stream()
                 .mapToDouble(rank -> earningRateSub(lottoResult, lottoAmount, rank))
                 .sum();
-        return EarningRate;
     }
 
     public double earningRateSub(Map<Rank, Integer> lottoResult, int lottoAmount, Rank rank) {

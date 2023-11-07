@@ -1,9 +1,11 @@
 package lotto;
 
+import java.util.List;
 import view.InputView;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = InputView.getPurchaseAmountInput();
+        List<Lotto> lotteries = LottoGenerator.generateLotteries(purchaseAmount);
     }
 }

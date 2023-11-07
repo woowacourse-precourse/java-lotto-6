@@ -14,6 +14,7 @@ public class LottoController {
     }
 
     public void play() {
-
+        outputView.printPurchaseAmount();
+        int purchaseAmount = Integer.parseInt(inputView.readPurchaseAmount());
     }
 }

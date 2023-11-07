@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoFromUser;
 import lotto.model.LottoPurchasingAmount;
 import lotto.model.Lottos;
 import lotto.view.OutputView;
@@ -22,6 +23,6 @@ public class LottoController {
             OutputView.showPurchasedLotto(lotto.getLottoNumbers());
         }
 
-        OutputView.askLottoNumbers();
+        inputController.getWinnerNumbersFromUser();
     }
 }

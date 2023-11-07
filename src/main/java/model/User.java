@@ -16,4 +16,6 @@ public class User {
         lottoList.add(lotto);
     }
 
+    public int calculateRate
+
 }

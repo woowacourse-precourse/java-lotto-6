@@ -49,9 +49,9 @@ public class Validator {
             }
         }
     }
-    public void checkLottoDuplicate(List<Integer> lotto){
+    public void checkWinningDuplicate(List<Integer> lotto){
         Set<Integer> lottoSet = new HashSet<>(lotto);
-        if(lottoSet.size() != 6){
+        if(lottoSet.size() != 7){
             System.out.println(ErrorMessage.ERROR4);
             throw new IllegalArgumentException();
         }

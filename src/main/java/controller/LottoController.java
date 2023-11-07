@@ -3,6 +3,7 @@ package controller;
 import camp.nextstep.edu.missionutils.Console;
 import model.Lotto;
 import model.User;
+import model.WinningNumber;
 import service.LottoService;
 import validate.Validator;
 import view.InputView;
@@ -17,8 +18,9 @@ public class LottoController {
 
     public void startLotto(){
         int price = AskPrice();
+        User user = new User(price, lottoService.makeLottoList(price));
+        WinningNumber winning_numbers = new WinningNumber(AskWinningNumbers(),AskBonus());
 
-        Lotto winning_numbers = new Lotto(AskWinningNumbers());
 
     }
     public int AskPrice(){
@@ -60,6 +62,11 @@ public class LottoController {
         return winningNumberList;
     }
 
+    public int AskBonus(){
+        inputView.printAskBonusNumber();
+        return inputBonus();
+    }
+
     public int inputBonus(){
         String bonus = Console.readLine();
         try {
@@ -72,10 +79,4 @@ public class LottoController {
         }
         return Integer.parseInt(bonus);
     }
-
-    public int AskBonus(){
-        inputView.printAskBonusNumber();
-        return inputBonus();
-    }
-
 }

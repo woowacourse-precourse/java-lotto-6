@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.*;
 import java.util.*;
 
 public class Application {
+    public static final int RANKING = 5;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
@@ -66,19 +67,18 @@ public class Application {
         }
 
         System.out.println();
+        int bonusNum;
+
         while(true) {
             System.out.println("보너스 번호를 입력해 주세요.");
 
             try {
-                int n = Integer.parseInt(Console.readLine());
-                if(n < 1 || n > 45) {
+                bonusNum = Integer.parseInt(Console.readLine());
+                if(bonusNum < 1 || bonusNum > 45) {
                     throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
 
-                userNum.add(n);
-                Set<Integer> userSet = new HashSet<>(userNum);
-                if (userNum.size() != userSet.size()) {
-                    userNum.remove(userNum.size() - 1);
+                if (userNum.contains(bonusNum)) {
                     throw new IllegalArgumentException("당첨 번호와 보너스 번호는 서로 중복되지 않아야 합니다.");
                 }
 
@@ -88,5 +88,68 @@ public class Application {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        int[] lottoWinsCount = new int[RANKING];
+        for(Lotto l : lottoNum) {
+            int winsCount = 0;
+            boolean bonusCount = false;
+
+            for(int n : userNum) {
+                if(l.getNumbers().contains(n)) {
+                    winsCount++;
+                }
+
+                bonusCount = l.getNumbers().contains(bonusNum);
+            }
+
+            if(winsCount == Rank.FIRST.getWins()) {
+                lottoWinsCount[Rank.FIRST.ordinal()]++;
+                continue;
+            }
+
+            if(winsCount == Rank.SECOND.getWins() && bonusCount) {
+                lottoWinsCount[Rank.SECOND.ordinal()]++;
+                continue;
+            }
+
+            if(winsCount == Rank.THIRD.getWins()) {
+                lottoWinsCount[Rank.THIRD.ordinal()]++;
+                continue;
+            }
+
+            if(winsCount == Rank.FOURTH.getWins()) {
+                lottoWinsCount[Rank.FOURTH.ordinal()]++;
+                continue;
+            }
+
+            if(winsCount == Rank.FIFTH.getWins()) {
+                lottoWinsCount[Rank.FIFTH.ordinal()]++;
+            }
+        }
+
+        System.out.print(Rank.FIFTH.getWins() + "개 일치 ");
+        System.out.print("(" + String.format("%,d", Rank.FIFTH.getPrize()) + "원) - ");
+        System.out.println(lottoWinsCount[Rank.FIFTH.ordinal()] + "개");
+
+        System.out.print(Rank.FOURTH.getWins() + "개 일치 ");
+        System.out.print("(" + String.format("%,d", Rank.FOURTH.getPrize()) + "원) - ");
+        System.out.println(lottoWinsCount[Rank.FOURTH.ordinal()] + "개");
+
+        System.out.print(Rank.THIRD.getWins() + "개 일치 ");
+        System.out.print("(" + String.format("%,d", Rank.THIRD.getPrize()) + "원) - ");
+        System.out.println(lottoWinsCount[Rank.THIRD.ordinal()] + "개");
+
+        System.out.print(Rank.SECOND.getWins() + "개 일치, 보너스 볼 일치 ");
+        System.out.print("(" + String.format("%,d", Rank.SECOND.getPrize()) + "원) - ");
+        System.out.println(lottoWinsCount[Rank.SECOND.ordinal()] + "개");
+
+        System.out.print(Rank.FIRST.getWins() + "개 일치 ");
+        System.out.print("(" + String.format("%,d", Rank.FIRST.getPrize()) + "원) - ");
+        System.out.println(lottoWinsCount[Rank.FIRST.ordinal()] + "개");
     }
 }
+

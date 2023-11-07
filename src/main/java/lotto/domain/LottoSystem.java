@@ -1,12 +1,11 @@
 package lotto.domain;
 
+import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.util.RandomUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LottoSystem {
 
@@ -36,6 +35,16 @@ public class LottoSystem {
 
     private int getPurchasedLottoCount() {
         return player.getPurchasedLottoCount();
+    }
+
+    public List<Prize> getWinningResult() {
+        List<Prize> prizes = new ArrayList<>();
+        for (int i = 0; i < getPurchasedLottoCount(); i++) {
+            Lotto winningLotto = winningLottos.get(i);
+            int totalMatchingNumberCount = getMatchingNumberCount(winningLotto) + getMatchingBonusNumberCount(winningLotto);
+            getPrize(totalMatchingNumberCount, hasBonusNumber(winningLotto)).ifPresent(prizes::add);
+        }
+        return prizes;
     }
 
     private Optional<Prize> getPrize(int totalMatchingNumberCount, boolean hasBonusNumber) {

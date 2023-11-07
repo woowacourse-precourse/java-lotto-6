@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.dto.WinningResult;
 
-import java.util.List;
+import java.util.*;
 
 public class OutputViewImpl implements OutputView {
 
@@ -30,10 +32,15 @@ public class OutputViewImpl implements OutputView {
     }
 
     @Override
-    public void writeResult() {
+    public void writeResult(WinningResult winningResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        // TODO : 결과 출력
+
+        List<Rank> ranks = getRanksExceptNONE();
+        for (Rank rank : ranks) {
+            printIndividualRank(winningResult.getRanks(), rank);
+        }
+        // TODO : 수익률 출력
     }
 
     @Override
@@ -44,5 +51,18 @@ public class OutputViewImpl implements OutputView {
     @Override
     public void writeWithErrorMessage(String message) {
         System.out.println(HEADER + message);
+    }
+
+    private List<Rank> getRanksExceptNONE() {
+        List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values()));
+        ranks.remove(Rank.MISS);
+        Collections.reverse(ranks);
+        return ranks;
+    }
+
+    private void printIndividualRank(Map<Rank, Integer> rankMap, Rank rank) {
+        int count = rankMap.getOrDefault(rank, 0);
+        String message = rank.showMessage(count);
+        System.out.println(message);
     }
 }

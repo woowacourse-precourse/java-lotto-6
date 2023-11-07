@@ -39,6 +39,10 @@ public enum Rank {
                 .orElseThrow(() -> new IllegalStateException(NOT_EXISTE_RANK_MESSAGE));
     }
 
+    public String showMessage(int count) {
+        return String.format("%d개 일치 (%s) - %d개", this.matchCount, getReward(), count);
+    }
+
     private static boolean isNotWinning(int matchCount) {
         return matchCount < FIFTH.matchCount;
     }

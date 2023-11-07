@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int START = 1;
+    private static final int END = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -30,7 +32,7 @@ public class Lotto {
 
     private void rangeCheck(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < START || number > END) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45내의 정수입니다.");
             }
         }

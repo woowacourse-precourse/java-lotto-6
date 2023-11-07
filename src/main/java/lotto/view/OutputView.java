@@ -47,11 +47,11 @@ public class OutputView {
             return String.format(BONUS_MATCH_MESSAGE,
                     winningStatistics.getMatchCount(),
                     String.format("%,d", winningStatistics.getAmount()),
-                    lottoResult.getLottoResultCount(winningStatistics));
+                    lottoResult.getCount(winningStatistics));
         }
         return String.format(MATCH_MESSAGE,
                 winningStatistics.getMatchCount(),
                 String.format("%,d", winningStatistics.getAmount()),
-                lottoResult.getLottoResultCount(winningStatistics));
+                lottoResult.getCount(winningStatistics));
     }
 }

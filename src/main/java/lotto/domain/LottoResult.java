@@ -25,7 +25,7 @@ public class LottoResult {
     private void lottoCount(WinningStatistics winningStatistics) {
         winningResult.put(winningStatistics, winningResult.get(winningStatistics) + 1);
     }
-    public int getLottoResultCount(WinningStatistics winningStatistics){
+    public int getCount(WinningStatistics winningStatistics){
         return winningResult.get(winningStatistics);
     }
 

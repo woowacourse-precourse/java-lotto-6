@@ -10,7 +10,7 @@ public class RateOnReturn {
     private double getMoney(LottoResult lottoResult) {
         int result = 0;
         for (WinningStatistics winningStatistics : WinningStatistics.values()) {
-            result += lottoResult.getLottoResultCount(winningStatistics) * winningStatistics.getAmount();
+            result += lottoResult.getCount(winningStatistics) * winningStatistics.getAmount();
         }
         return result;
     }

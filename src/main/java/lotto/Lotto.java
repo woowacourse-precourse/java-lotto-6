@@ -62,7 +62,7 @@ public class Lotto {
         return numbers;
     }
 
-    public Score getResult(WinningLotto winningLotto) {
+    public Score getScore(WinningLotto winningLotto) {
         int count = getSameNumberCount(winningLotto.getNumbers());
         if (count == 6) {
             return Score.FIRST;

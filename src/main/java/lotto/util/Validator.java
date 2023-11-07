@@ -12,9 +12,9 @@ public class Validator {
     }
 
     //숫자가 아닌 경우
-    public static void isDigit(String number) {
+    public static int isDigit(String number) {
         try {
-            Integer.parseInt(number);
+            return Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력하신 값은 숫자가 아닙니다.");
         }

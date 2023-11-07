@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
+import lotto.domain.Profit;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
 import lotto.utility.vo.request.BonusNumberRequest;
@@ -33,7 +34,8 @@ public class LottoController {
         List<Rank> rankResult = calculateWinning(issuedLottos);
         printWinning(rankResult);
 
-        printProfit(rankResult);
+        Profit profit = calculateProfit(rankResult);
+        printProfit(profit);
     }
 
     private IssuedLottos buyLottoTickets() {
@@ -73,8 +75,12 @@ public class LottoController {
         outputView.informWinningResult(response);
     }
 
-    private void printProfit(List<Rank> ranks) {
-        ProfitResponse profitResponse = lottoService.createProfit(ranks);
+    private Profit calculateProfit(List<Rank> ranks) {
+        return lottoService.createProfit(ranks);
+    }
+
+    private void printProfit(Profit profit) {
+        ProfitResponse profitResponse = profit.convertResponse();
         outputView.informProfit(profitResponse);
     }
 }

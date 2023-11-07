@@ -12,7 +12,6 @@ import lotto.domain.Profit;
 import lotto.domain.PurchaseNumber;
 import lotto.domain.Rank;
 import lotto.utility.validation.WinningNumberChecker;
-import lotto.utility.vo.response.ProfitResponse;
 import lotto.utility.vo.request.PurchaseAmountRequest;
 
 public class LottoService {
@@ -39,8 +38,7 @@ public class LottoService {
         return issuedLottos.determineRanks(winningLotto, bonusNumber);
     }
 
-    public ProfitResponse createProfit(List<Rank> ranks) {
-        Profit profit = new Profit(ranks);
-        return profit.convertResponse();
+    public Profit createProfit(List<Rank> ranks) {
+        return new Profit(ranks);
     }
 }

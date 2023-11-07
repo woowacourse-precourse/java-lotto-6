@@ -10,19 +10,19 @@ public enum LottoResult {
     FIFTH(5000, 3, false, "3개 일치 (5,000원)"),
     ;
 
-    private final int prize;
+    private final long prize;
     private final int matchCount;
     private final boolean isBonusMatch;
     private final String description;
 
-    LottoResult(int prize, int matchCount, boolean isBonusMatch, String description) {
+    LottoResult(long prize, int matchCount, boolean isBonusMatch, String description) {
         this.prize = prize;
         this.matchCount = matchCount;
         this.isBonusMatch = isBonusMatch;
         this.description = description;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 

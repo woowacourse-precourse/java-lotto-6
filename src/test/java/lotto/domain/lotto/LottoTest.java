@@ -45,4 +45,19 @@ class LottoTest {
 
     }
 
+    @DisplayName("로또 번호에 당첨 번호가 몇 개 있는지 확인한다.")
+    @Test
+    void 로또_내_당첨_번호_개수(){
+        //given
+        List<Integer> winningNumbers = List.of(2,4,6,8,10,11);
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,11));
+        int winningNumbersCount = 3;
+
+        //when
+        int count = lotto.countWinningNumbers(winningNumbers);
+
+        //then
+        assertThat(count).isEqualTo(winningNumbersCount);
+    }
+
 }

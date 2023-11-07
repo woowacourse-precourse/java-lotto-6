@@ -43,13 +43,17 @@
 
 ### LottoStatistics
 
-- [x] 로또의 통계 내역을 저장한다.
-- [x] 수익률을 계산한다.
+- [x] 로또 당첨 내역에 따라 통계 계산한다.
 - [x] 총 당첨 금액을 계산한다.
+
+### TotalRate
+
+- [x] 수익률을 계산한다.
 
 ### Number
 
 - [x] 로또의 번호를 저장한다.
+    - [x] 번호가 NULL이라면 값을 가져올 수 없다.
 
 ### Numbers
 
@@ -61,12 +65,13 @@
 ### PlayerLottoNumbers
 
 - [x] 로또 구입 금액 만큼 생성된 로또들을 저장한다.
+- [x] 로또 구입 가격을 반환한다.
 
 ### PurchasePrice
 
 - [x] 로또 구입 금액을 저장한다.
-  - [x] 로또 구입 금액은 1000원 단위어야 한다.
-  - [x] 로또 구입 개수를 반환한다.
+    - [x] 로또 구입 금액은 1000원 단위어야 한다.
+    - [x] 로또 구입 개수를 반환한다.
 
 ### WinningLotto
 
@@ -74,11 +79,11 @@
     - [x] 당첨 로또를 반환한다.
     - [x] 보너스 번호를 반환한다.
 
-### LottosResultFormatter
+### PlayerLottosFormatter
 
 - [x] 생성된 로또들을 출력 형태에 맞게 전달해준다.
 
-### LottoStatisticsResultFormatter
+### GameResultFormatter
 
 - [x] 로또 통계 내역을 출력 형태에 맞게 전달해준다.
 
@@ -87,7 +92,7 @@
 - [x] 로또 게임 객체들의 의존성을 주입시켜준다.
 - [x] 싱글톤 패턴으로 LottoFactory 객체를 생성한다.
 
-### InputManager
+### LottoIoManager
 
 - [x] 로또 구입 금액 입력 요청을 관리한다.
 - [x] 당첨 로또 번호 입력 요청을 관리한다.
@@ -109,9 +114,14 @@
 - [x] 보너스 번호를 입력한다.
     - [x] 당첨 번호에 포함되지 않고 1 ~ 45 사이의 숫자이다.
 
+### IoManager
+
+- [x] 로또 게임 서비스 입력 메서드 추상화
+
 ### OutputView
 
 - [x] 구입한 로또들을 형식에 맞게 출력한다.
+- [x] 싱글톤 패턴으로 적용
 
 ### InputValidator
 
@@ -144,11 +154,11 @@
 
 ### WinningFactor
 
-- [x] 당첨 로또 조건 일ㅌ 상수
+- [x] 당첨 로또 조건 요소 상수
 
-### WinningFactor
+### ViewElement
 
-- [x] 당첨 기준에 따른 금액 상수
+- [x] 화면 요소 상수
 
 ## 예외 목록
 
@@ -163,10 +173,11 @@
     - [x] 당첨 로또의 범위가 1~45 가 아닐 경우 예외가 발생한다.
 - LottoNumberSizeException
     - [x] 당첨 로또의 크기가 6이 아닐 경우 예외가 발생한다.
--
-    - NotDivisionCommaException
-- [x] 당첨 번호를 쉼표로 구분하지 않을 경우 예외가 발생한다.
+- NotDivisionCommaException
+    - [x] 당첨 번호를 쉼표로 구분하지 않을 경우 예외가 발생한다.
 - NotNumericException
     - [x] 숫자를 입력하지 않을 경우 예외가 발생한다.
 - NotThousandUnitException
     - [x] 로또 구입 금액을 1000단위로 입력하지 않을 경우 예외가 발생한다.
+- NumberNullException
+    - [x] 숫자 값에 Null 저장했을 시 예외가 발생한다.

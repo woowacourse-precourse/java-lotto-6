@@ -1,7 +1,7 @@
 package lotto.domain;
 
 
-import lotto.exception.NumberUpdateException;
+import lotto.exception.NumberNullException;
 
 public class Number {
     private final Integer value;
@@ -11,13 +11,13 @@ public class Number {
     }
 
     public Integer getValue() {
-        validateUpdateNumber();
+        validateNotNullNumber();
         return value;
     }
 
-    private void validateUpdateNumber() {
+    private void validateNotNullNumber() {
         if (value == null) {
-            throw new NumberUpdateException();
+            throw new NumberNullException();
         }
     }
 }

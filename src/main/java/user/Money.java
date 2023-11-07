@@ -12,6 +12,7 @@ public class Money {
         while (!isValidInput) {
             try {
                 String input = inputter.inputPurchaseAmount();
+                System.out.println();
                 this.money = transformStringtoInt(input);
                 isValidInput = true;
             } catch (IllegalArgumentException e) {

@@ -17,8 +17,7 @@ public class Calculate {
     }
 
     public boolean canBeBonus(List<Integer> generatedNums, List<Integer> winningNums, int bonus){
-        int cnt = getMatchCount(generatedNums, winningNums);
-        if (cnt == FIVE.getNum()){
+        if (getMatchCount(generatedNums, winningNums) == FIVE.getNum()){
             return generatedNums.contains(bonus);
         }
         return false;

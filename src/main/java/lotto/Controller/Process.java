@@ -20,7 +20,6 @@ public class Process {
 
     public void drawLotto(Exceptable exceptable){
         ValidateInput validateInput = new ValidateInput(exceptable);
-
         int cost = askCost(validateInput, 0);
         int count = new Calculate().getLottoCount(cost);
         outputView.printNumberPurchase(count);
@@ -30,7 +29,7 @@ public class Process {
         int bonus = askBonus(validateInput, winningNums, 0);
         outputView.printWinningStatistics();
 
-        statistics(lottos, winningNums, bonus, cost);
+        executeStatistics(lottos, winningNums, bonus, cost);
     }
 
 
@@ -99,7 +98,7 @@ public class Process {
     }
 
 
-    private void statistics(List<Lotto> lottos, List<Integer> winningNums, int bonus, int cost){
+    private void executeStatistics(List<Lotto> lottos, List<Integer> winningNums, int bonus, int cost){
         Statistics statistics = new Statistics();
         statistics.updateResult(new Calculate(), lottos, winningNums, bonus);
         statistics.printStatistics(outputView, new Calculate(), cost);

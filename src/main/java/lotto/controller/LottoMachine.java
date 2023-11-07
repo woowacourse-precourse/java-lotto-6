@@ -20,12 +20,9 @@ public class LottoMachine {
     public void startLottoGame() {
         buyLotto();
         drawLottoNumber();
-        result.printLottoNumber(lottoNumbers);
         drawWinningNumber();
         drawBonusNumber();
         getWinningStatistics();
-        result.printWinningStatistics(winningCount);
-        result.printTotalProfit();
     }
 
     public void buyLotto() {
@@ -45,6 +42,7 @@ public class LottoMachine {
         for (int i = 0; i < user.getManyLottoTicket(); i++) {
             getLottoNumber();
         }
+        result.printLottoNumber(lottoNumbers);
     }
 
     public void getLottoNumber() {
@@ -90,6 +88,8 @@ public class LottoMachine {
         Message.WINNING_STATISTICS.getMessage();
         System.out.println("---");
         compareLottoTicket();
+        result.printWinningStatistics(winningCount);
+        result.printTotalProfit();
     }
 
     public void compareLottoTicket() {
@@ -99,18 +99,24 @@ public class LottoMachine {
     }
 
     public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {
-        int matchCount = 0;
-        for (int number : lottoNumbers) {
-            if (winningLottoNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
+        int matchCount = getMatchCount(lottoNumbers, winningLottoNumbers);
+
         if (matchCount != 5) {
             addLottoWinning(matchCount);
         }
         if (matchCount == 5) {
             addSecondWinning(lottoNumbers);
         }
+    }
+
+    public int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {
+        int matchCount = 0;
+        for (int number : lottoNumbers) {
+            if (winningLottoNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     public void addLottoWinning(int matchCount) {

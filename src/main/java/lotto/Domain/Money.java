@@ -11,6 +11,10 @@ public class Money {
         this.value = Integer.parseInt(value);
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
     private void validate(String value) {
         isNumber(value);
         isDivide(value);
@@ -29,5 +33,4 @@ public class Money {
             throw new IllegalArgumentException(Constant.ERROR_PREFIX + Constant.ERROR_NOT_DIVIDE_MESSAGE);
         }
     }
-
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.enums.Prize.*;
+import static lotto.enums.LottoRank.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;

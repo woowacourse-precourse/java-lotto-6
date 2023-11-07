@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static lotto.enums.OutputMessages.*;
-import static lotto.enums.Prize.*;
+import static lotto.enums.LottoRank.*;
 
 import java.util.HashMap;
 import java.util.List;

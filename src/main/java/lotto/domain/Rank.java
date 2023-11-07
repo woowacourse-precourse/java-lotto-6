@@ -37,5 +37,10 @@ public enum Rank {
                 .findFirst()
                 .orElse(NONE); // or throw an exception if match count is not valid
     }
+    // second 여부
+    public boolean isSecond(int matchCount) {
+        return matchCount != SECOND.matchCount;
+    }
+
 
 }

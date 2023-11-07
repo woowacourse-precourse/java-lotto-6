@@ -23,6 +23,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getLottoNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
     private void validate(List<Integer> numbers) {
         if (!isValidSize(numbers)) {
             throw new InvalidArgumentException(LOTTO_NUMBERS_INVALID_SIZE);

@@ -4,6 +4,7 @@ import static common.ErrorCode.NOT_NUMBER_STRING;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;
+import static lotto.view.OutputView.printLottoNumbers;
 
 import common.exception.InvalidArgumentException;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.strategy.LottoNumberStrategy;
 import lotto.domain.strategy.RandomNumberStrategy;
+import lotto.dto.LottoNumbers;
 
 public class Game {
 
@@ -23,8 +25,16 @@ public class Game {
         strategy = settingStrategy(strategy);
         this.amount = createAmount();
         this.lottoes = createLottoes(strategy, amount.getNumberOfLotto());
+        printLottoes();
         this.winningNumbers = createWinningNumbers();
         addBonusNumber();
+    }
+
+    private void printLottoes() {
+        List<LottoNumbers> lottoNumbers = lottoes.stream()
+                .map(lotto -> new LottoNumbers(lotto.getLottoNumbers()))
+                .toList();
+        printLottoNumbers(lottoNumbers);
     }
 
     private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {

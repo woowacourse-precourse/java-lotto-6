@@ -7,18 +7,17 @@ public class CostValidator {
     private static int cost;
     public static int lottoCount;
     public CostValidator(String coststring) {
-        while(true){
-            try{
-                this.costInput = coststring;
-                this.cost = Integer.parseInt(coststring);
-                isRightNum(cost);
-                isRightLotto(cost);
-                setLottoNum();
-                return;
-            }catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(Constants.NUM_IS_INT);
-            }
+        try{
+            this.costInput = coststring;
+            this.cost = Integer.parseInt(coststring);
+            isRightNum(cost);
+            isRightLotto(cost);
+            setLottoNum();
+            return;
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Constants.NUM_IS_INT);
         }
+
     }
     public void isRightNum(int cost){
         if(cost<=0){

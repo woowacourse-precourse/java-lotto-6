@@ -3,8 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.view.InputView;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class InputController {
     private InputView input;
@@ -17,13 +16,17 @@ public class InputController {
         try{
             new CostValidator(input.inputCost());
             return new LottoGenerator(CostValidator.lottoCount);
-        }catch (IllegalArgumentException  e){
-            throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            System.err.println(e.getMessage());
+            throw e;
         }
     }
     public Lotto setLottoNum(){
+        //new LottoNumValidator(input.inputLottoNum());
+        //return new Lotto(LottoNumValidator.lottoNums);
         new LottoNumValidator(input.inputLottoNum());
-        return new Lotto(LottoNumValidator.lottoNums);
+        Lotto lists = new Lotto(LottoNumValidator.lottoNums);
+        return lists;
     }
     public int setBonusNum(){
         new BonusNumValidator(input.inputLottoBonusNum());

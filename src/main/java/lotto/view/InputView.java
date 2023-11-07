@@ -14,6 +14,7 @@ public class InputView {
         return Console.readLine();
     }
     public String inputLottoBonusNum(){
+        System.out.println();
         System.out.println(START_BONUS_MESSAGE);
         return Console.readLine();
     }

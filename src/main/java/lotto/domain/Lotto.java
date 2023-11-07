@@ -23,8 +23,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        isNotDuplicate(numbers);
     }
     // TODO: 추가 기능 구현
+    public void isNotDuplicate(List<Integer>numbers){
+        if(numbers.size()!=numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(Constants.NUM_DUPLICATE_EORROR);
+        }
+    }
     public void sort() {
         numbers.sort(Comparator.naturalOrder());
     }
@@ -33,5 +39,8 @@ public class Lotto {
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", Constants.LOTTO_START_BRACKET, Constants.LOTTO_END_BRACKET));
         System.out.println(result);
+    }
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

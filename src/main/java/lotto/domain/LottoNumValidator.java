@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.util.Constants;
 import lotto.util.Util;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -12,6 +13,7 @@ public class LottoNumValidator {
     public LottoNumValidator(String inputLottoNum) {
         lottoInput = inputLottoNum;
         lottoNums = Util.toList(inputLottoNum);
+        Collections.sort(lottoNums);
         numValidators();
     }
     public void numValidators() {

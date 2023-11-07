@@ -1,5 +1,6 @@
 package lotto.result;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class LottoResult {
         return lottoResult.getOrDefault(resultType, 0);
     }
 
-    public void print() {
+    public void printAllLottoResultType() {
         for(LottoResultType lottoResultType: lottoResult.keySet()) {
             lottoResultType.print(getCount(lottoResultType));
         }
@@ -38,7 +39,8 @@ public class LottoResult {
             sum += lottoResultType.getPrice() * getCount(lottoResultType);
         }
 
-        rateOfReturn = (sum / money) * 100;
+        rateOfReturn = ((double) sum / money) * 100;
+        rateOfReturn = Math.round(rateOfReturn * 10.0) / 10.0; // 소수점 자릿수 반 올림
 
         return rateOfReturn;
     }
@@ -51,10 +53,13 @@ public class LottoResult {
         sb.append("---");
         System.out.println(sb);
 
-        print();
+        // 당첨된 갯수 출력
+        printAllLottoResultType();
 
+        // 수익률 출력 형식에 맞는 DecimalFormat
+        DecimalFormat decFormat = new DecimalFormat("###,###.0");
         sb = new StringBuilder();
-        sb.append("총 수익률은 ").append(String.format("%.1f", calculateRateOfReturn(money))).append("%입니다.");
+        sb.append("총 수익률은 ").append(decFormat.format(calculateRateOfReturn(money))).append("%입니다.");
 
         System.out.println(sb);
     }

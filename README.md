@@ -153,29 +153,29 @@ BUILD SUCCESSFUL in 0s
 
 ## 🎯 프로그래밍 요구 사항
 
-- JDK 17 버전에서 실행 가능해야 한다. **JDK 17에서 정상적으로 동작하지 않을 경우 0점 처리한다.**
-- 프로그램 실행의 시작점은 `Application`의 `main()`이다.
-- `build.gradle` 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
-- [Java 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/master/styleguide/java) 가이드를 준수하며 프로그래밍한다.
-- 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
-- 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
-- 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
-- indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+-[ ] JDK 17 버전에서 실행 가능해야 한다. **JDK 17에서 정상적으로 동작하지 않을 경우 0점 처리한다.**
+-[ ] 프로그램 실행의 시작점은 `Application`의 `main()`이다.
+-[ ] `build.gradle` 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
+-[ ] [Java 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/master/styleguide/java) 가이드를 준수하며 프로그래밍한다.
+-[ ] 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
+-[ ] 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
+-[ ] 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
+-[ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
     - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
     - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
-- 3항 연산자를 쓰지 않는다.
-- 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+-[ ] 3항 연산자를 쓰지 않는다.
+-[ ] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
+-[ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
 
 ### 추가된 요구 사항
 
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+-[ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
     - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- else 예약어를 쓰지 않는다.
+-[ ] else 예약어를 쓰지 않는다.
     - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
-- Java Enum을 적용한다.
-- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+-[ ] Java Enum을 적용한다.
+-[ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다. 
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
@@ -227,3 +227,31 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+## 구현할 기능 정리
+
+### 입력
+-[ ] 로또 구입 금액을 입력받는다. InputView#getLottoPrice
+  -[ ] 금액은 1000원 이상이어야 한다. Validator#LottoPrice
+  -[ ] 1000원 단위로 입력받아야 한다. Validator#LottoPrice
+  -[ ] 위의 형식이 지켜지지 않을 경우 InvalidPurchaseAmountException
+
+### 핵심
+-[ ] 로또 구입 금액/1000 만큼 로또 번호를 생성한다. LottoNumberCreator#createLottoTickets(int purchaseAmount)
+-[ ] 당첨번호와 보너스 번호를 입력받는다. LottoTicketGenerator#getWinningNumberAndBonus
+  - [ ] 번호는 1-45 사이이다.
+  - [ ] 위의 형식이 지켜지지 않을 경우 InValidLottoNumberException
+
+-[ ] 로또를 순회하며 각 회차당, LottoResultChecker
+  - [ ] 당첨 번호와 3개가 일치하면 5등, 5000 LottoResultChecker#checkFifthRank
+  - [ ] 당첨 번호와 4개가 일치하면 4등, 50,000 LottoResultChecker#checkFourthRank
+  - [ ] 당첨 번호와 5개가 일치하면 3등, 1,500,000 LottoResultChecker#checkThirdRank
+  - [ ] 당첨 번호와 5개가 일치 +  보너스 번호 일치 2등, 30,000,000 LottoResultChecker#checkSecondRank
+  - [ ] 당첨 번호와 6개가 일치 1등, 2,000,000,000 LottoResultChecker#checkFirstRank
+
+- [ ] Winners에 따라 수익률을 계산한다. LottoResultChecker#calculateProfitPercentage(Winners winners)
+
+### 출력
+-[ ] Winners 결과를 각 등수마다 출력한다. OutputView#printWinningSummary
+-[ ] 수익률을 출력한다. OutputView#printProfitPercentage

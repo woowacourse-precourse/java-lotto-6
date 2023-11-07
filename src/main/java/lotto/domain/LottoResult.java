@@ -7,6 +7,7 @@ public class LottoResult {
     private Map<Integer, Integer> winningCount = new LinkedHashMap<>();
     private long totalWinningMoney;
     private double profitMargin;
+
     public LottoResult() {
         addPrizeCount();
         this.totalWinningMoney = 0l;
@@ -24,22 +25,18 @@ public class LottoResult {
         return winningCount;
     }
 
-    public long getTotalWinningMoney() {
-        return totalWinningMoney;
-    }
-
     public double getProfitMargin() {
         return profitMargin;
     }
 
     public void addWinningCount(int number) {
-        if(checkLottoWinner(number)){
+        if (checkLottoWinner(number)) {
             winningCount.put(number, winningCount.get(number) + 1);
         }
     }
 
     public void addTotalWinningMoney(int number) {
-        if(checkLottoWinner(number)){
+        if (checkLottoWinner(number)) {
             totalWinningMoney += LottoPrize.findPrizeMoney(number);
         }
     }
@@ -49,6 +46,6 @@ public class LottoResult {
     }
 
     public void calculateProfitMargin(int money) {
-        this.profitMargin = ((double)this.totalWinningMoney/money)*100;
+        this.profitMargin = ((double) this.totalWinningMoney / money) * 100;
     }
 }

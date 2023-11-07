@@ -16,7 +16,6 @@ public class InputView {
     public Token readAmount() {
         System.out.println(READ_AMOUNT_MSG);
         int amount = TypeConverter.toInt(readLine());
-        System.out.println();
         return new Token(amount);
     }
 

@@ -23,6 +23,10 @@ public class LottoManager {
         }
     }
 
+    public int ticketedCount() {
+        return lottos.size();
+    }
+
     public boolean registerAnswerLotto(Lotto lotto) {
         if (!lotto.isAnswerLotto()) {
             return false;

@@ -1,10 +1,10 @@
 package lotto.view;
 
-import static lotto.constant.LottoConstants.LOTTO_MAX_NUMBER;
-import static lotto.constant.LottoConstants.LOTTO_MIN_NUMBER;
-import static lotto.constant.LottoConstants.LOTTO_NUMBER_FORMAT;
-import static lotto.constant.LottoConstants.LOTTO_PRICE;
-import static lotto.constant.LottoConstants.LOTTO_SIZE;
+import static lotto.domain.Lotto.LOTTO_MAX_NUMBER;
+import static lotto.domain.Lotto.LOTTO_MIN_NUMBER;
+import static lotto.domain.Lotto.LOTTO_NUMBER_FORMAT;
+import static lotto.domain.Lotto.LOTTO_PRICE;
+import static lotto.domain.Lotto.LOTTO_SIZE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_NUMBERS_COUNT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_RANGE;
@@ -15,7 +15,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

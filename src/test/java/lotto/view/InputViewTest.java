@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.constant.LottoConstants.LOTTO_NUMBER_FORMAT;
+import static lotto.domain.Lotto.LOTTO_NUMBER_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_NUMBERS_COUNT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_RANGE;
@@ -14,7 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.TreeSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,8 +1,7 @@
 package lotto.service;
 
-import static lotto.constant.LottoConstants.LOTTO_PRICE;
+import static lotto.domain.Lotto.LOTTO_PRICE;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

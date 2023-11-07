@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,13 +23,22 @@ class ValidatorTest {
     }
 
     @Test
-    @DisplayName("로또 구매 금액이 공백인 경우 예외 발생")
-    void validateLottoAmountNumeric() throws LottoException {
-        String input = " ";
+    @DisplayName("로또 구매 금액이 null 예외 발생")
+    void validateLottoAmountNumericNull() throws LottoException {
+        String input = null;
         assertThatThrownBy(() -> Validator.validateLottoAmountNumeric(input))
                 .isInstanceOf(LottoException.class)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", ""})
+    @DisplayName("로또 구매 금액이 공백인 경우 예외 발생")
+    void testValidatedWinningNumbersFormat(String lottoNumbers) {
+        assertThatThrownBy(() -> Validator.validatedWinningNumbersFormat(lottoNumbers))
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
     }
 
     @ParameterizedTest

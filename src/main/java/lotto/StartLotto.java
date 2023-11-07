@@ -321,7 +321,7 @@ public class StartLotto {
     }
 
     public void printTotalEarningRate(double totalEarningRate) {
-        System.out.println("총 수익률은 " + totalEarningRate + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", totalEarningRate) + "%입니다.");
     }
 
     /*

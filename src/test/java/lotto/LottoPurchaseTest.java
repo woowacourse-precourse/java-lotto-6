@@ -40,7 +40,6 @@ public class LottoPurchaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"700", "7777", "7700", "Asdf"})
     void validateLottoPurchase(String input) {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new LottoPurchase(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }

@@ -17,7 +17,7 @@ public class Lotto {
         Validation.lottoLimit(numbers);
     }
 
-    private List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

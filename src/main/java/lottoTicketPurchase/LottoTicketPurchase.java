@@ -1,7 +1,7 @@
 package lottoTicketPurchase;
 
 import static constant.ErrorMessage.NOT_DIVISIBLE_BY_1000;
-import static constant.ErrorMessage.NOT_NUMBER;
+import static constant.ErrorMessage.NOT_POSITIVE_NUMBER;
 import static constant.RequestMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
 
 import base.Converter;
@@ -31,12 +31,12 @@ public class LottoTicketPurchase {
     private int validateString() {
         while (true) {
             String purchaseAmountString = receivePurchaseAmountString();
-            final String REGEX = "[0-9]+";
+            final String REGEX = "[1-9][0-9]+";
 
             if (purchaseAmountString.matches(REGEX)) {
                 return converter.stringToInteger(purchaseAmountString);
             }
-            System.out.println(NOT_NUMBER);
+            System.out.println(NOT_POSITIVE_NUMBER);
         }
     }
 

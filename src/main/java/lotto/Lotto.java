@@ -48,4 +48,10 @@ public class Lotto {
         return numbers.stream()
                 .anyMatch(number -> number.equals(other));
     }
+
+    private long compare(final Lotto other) {
+        return numbers.stream()
+                .filter(other::contains)
+                .count();
+    }
 }

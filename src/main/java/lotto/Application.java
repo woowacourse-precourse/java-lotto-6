@@ -80,8 +80,13 @@ public class Application {
 		}
 	}
 	
-	private String makeStr(ArrayList<Integer> lst) {
-		return "";
+	private String makeStr(ArrayList<Integer> lst) {		
+		ArrayList<String> stringN = new ArrayList<>();
+		for (Integer n : lst) {
+			stringN.add(n.toString());
+		}
+		String result = String.join(", ", stringN);
+		return result;
 	}
 	
 	private void makeWinningNumber() {

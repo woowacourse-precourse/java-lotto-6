@@ -10,9 +10,10 @@ import static lotto.values.ExceptionMessage.ERROR;
 import static lotto.values.GuideMessage.*;
 
 public class Output {
-    public void printError(String exceptionMessage){
+    public void printError(String exceptionMessage) {
         System.out.println(ERROR.getMessage() + exceptionMessage);
     }
+
     public void printMoneyPrompt() {
         System.out.println(REQUEST_MONEY_MESSAGE.getMessage());
     }
@@ -47,8 +48,8 @@ public class Output {
         System.out.printf(TOTAL_EARNINGS_RATE_MESSAGE.getMessage(), earningsRate);
     }
 
-    public void printLotto(List<Lotto> lottoPackage){
-        for(Lotto lotto : lottoPackage) {
+    public void printLotto(List<Lotto> lottoPackage) {
+        for (Lotto lotto : lottoPackage) {
             System.out.println(lotto.getNumbers());
         }
         System.out.println();

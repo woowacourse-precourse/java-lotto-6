@@ -4,37 +4,33 @@ import lotto.service.OrderService;
 import lotto.view.Input;
 import lotto.view.Output;
 
-
 public class OrderController {
     Output output;
     int lottoNumber;
 
-    public OrderController(){
+    public OrderController() {
+        lottoNumber = -1;
         output = new Output();
         getMoney();
         output.printPurchasedResult(lottoNumber);
     }
-    private void getMoney(){
+
+    private void getMoney() {
         Input input = new Input();
-        OrderService orderLotto = null;
 
-        String money;
-        boolean checkException = false;
-
-        while(!checkException){
+        while (lottoNumber == -1) {
             output.printMoneyPrompt();
-            orderLotto = new OrderService();
-            try{
-                money = input.get();
-                checkException = orderLotto.checkException(money);
-            }catch (IllegalArgumentException e){
+            String money = input.get();
+            try {
+                OrderService orderService = new OrderService();
+                lottoNumber = orderService.generateLottoNumber(money);
+            } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
-
-        this.lottoNumber = orderLotto.getLottoNumber();
     }
-    public int getLottoNumber(){
+
+    public int getLottoNumber() {
         return lottoNumber;
     }
 }

@@ -30,4 +30,8 @@ public class OutputView {
     public void informProfit(ProfitResponse profitResponse) {
         Writer.println(profitResponse.createMessage());
     }
+
+    public void informErrorMessage(String message) {
+        Writer.println(message);
+    }
 }

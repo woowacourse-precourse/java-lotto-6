@@ -20,7 +20,7 @@ public class Lotto {
         return (int)numbers.stream().filter(winningNumbers ::containNumber).count();
     }
 
-    private boolean containNumber(int num){
+    public boolean containNumber(int num){
         return numbers.contains(num);
     }
     private void validate(List<Integer> numbers) {

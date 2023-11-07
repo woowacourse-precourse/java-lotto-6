@@ -15,7 +15,7 @@ public enum Rank {
     private int matchCount;
     private int winningMoney;
 
-    private static Rank valueOf(int matchNum, boolean matchBonus){
+    public static Rank valueOf(int matchNum, boolean matchBonus){
         if(matchNum<MIN_MATCH_COUNT){
             return NOTHING;
         }

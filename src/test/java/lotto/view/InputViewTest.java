@@ -1,8 +1,10 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
@@ -16,10 +18,15 @@ class InputViewTest {
     }
 
     @DisplayName("입력한 구매 금액이 숫자가 아니면 예외가 발생한다.")
-    @Test
-    void readAmountByNonNumericInput() {
-        setIn("문자");
-        Assertions.assertThatThrownBy(inputView::readAmount)
-                .isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest
+    @ValueSource(strings = {"문자", " 12", "1 2", "12 "})
+    void readAmountByNonNumericInput(String amount) {
+        try {
+            setIn(amount);
+            Assertions.assertThatThrownBy(inputView::readAmount)
+                    .isInstanceOf(IllegalArgumentException.class);
+        } finally {
+            Console.close();
+        }
     }
 }

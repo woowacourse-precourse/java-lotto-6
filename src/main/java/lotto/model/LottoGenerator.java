@@ -10,8 +10,12 @@ public class LottoGenerator {
     private final int LOTTO_PRICE = 1000;
 
     public ArrayList<Lotto> generateLottoBundle(int amount) {
-        int lottoCount = amount / LOTTO_PRICE;
+        if (amount <= 0)
+            throw new IllegalArgumentException();
+        if (amount % LOTTO_PRICE != 0)
+            throw new IllegalArgumentException();
 
+        int lottoCount = amount / LOTTO_PRICE;
         ArrayList<Lotto> lottoBundle = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottoBundle.add(generateRandomLotto());

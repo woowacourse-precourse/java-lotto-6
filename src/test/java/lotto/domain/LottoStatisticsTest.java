@@ -27,7 +27,7 @@ class LottoStatisticsTest {
         @MethodSource("provideLottoStatisticsAndResult")
         void checkLottoRank(LottoStatistics lottoStatistics, LottoRank lottoRank) {
 
-            if(lottoRank.equals(LottoRank.NOTHING)) {
+            if (lottoRank.equals(LottoRank.NOTHING)) {
                 assertThat(lottoStatistics.toString())
                         .doesNotContain("1개 일치");
                 return;

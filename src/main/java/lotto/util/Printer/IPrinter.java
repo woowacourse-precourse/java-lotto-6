@@ -2,8 +2,8 @@ package lotto.util.Printer;
 
 public interface IPrinter {
 
-    public void println(String string);
+    void println(String string);
 
-    public void println();
+    void println();
 
 }

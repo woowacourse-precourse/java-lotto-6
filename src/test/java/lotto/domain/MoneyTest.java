@@ -10,7 +10,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Money 테스트")
 class MoneyTest {
@@ -64,7 +65,7 @@ class MoneyTest {
 
         @DisplayName("입력받은 금액을 반환한다.")
         @ParameterizedTest
-        @ValueSource(ints = {1000,2000,3000})
+        @ValueSource(ints = {1000, 2000, 3000})
         void returnGivenNumber(int number) {
             assertEquals(new Money(number).getPrice(), number);
         }

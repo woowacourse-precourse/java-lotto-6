@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoBuyTest {
-    @DisplayName("로또 구매 금액 입력이 1000원 단위가 아니면 예외가 발생한다.")
+    @DisplayName("로또 구매 금액 입력이 1,000원 단위가 아니면 예외가 발생한다.")
     @Test
     void buyLottoByNotUnit() {
         assertThatThrownBy(() -> new LottoBuy(900))

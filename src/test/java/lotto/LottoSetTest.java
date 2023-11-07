@@ -1,15 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LottoSet;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-
 
 public class LottoSetTest {
     @DisplayName("로또 set 생성 테스트")

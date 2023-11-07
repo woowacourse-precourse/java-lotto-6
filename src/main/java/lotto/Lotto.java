@@ -1,12 +1,41 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Application;
+
+enum Index {
+	THREE(3),
+	FOUR(4),
+	FIVE(5),
+	FIVE_BONUS(7),
+	SIX(6);
+
+	public int value;
+
+	Index(int i) {
+		this.setValue(i);
+	}
+	
+	public void setValue(int name) {
+		this.value = name;
+	}
+	
+	public static Index test(int n) {
+		for(Index s : Index.values() ) {
+			if(s.value == n) {
+				return s;
+			}
+		}
+		return null;
+	}
+}
+
 
 public class Lotto {
     private static List<Integer> numbers;
@@ -100,9 +129,27 @@ public class Lotto {
     }
 
     public List<Integer> compare(List<List<Integer>> myLotto, int bonus) { //당첨번호와 발행된 로또 비교하여 당첨내역 반환
-    	List<Integer> result = new ArrayList<>(5);
+    	List<Integer> result = new ArrayList<>(Collections.nCopies(5, 0));
+    	
+    	for(List<Integer> lotto : myLotto) {
+    		boolean b = lotto.contains(bonus);
+    		lotto.retainAll(numbers);
+    		int size = lotto.size();
+    		
+    		if(size < 3) {
+    			continue;
+    		}
+    		if(size == 5 && b) {
+    			size = 7;
+    		}
+    		int value = result.get(Index.test(size).ordinal());
+    		result.set(Index.test(size).ordinal(), value + 1);
+    	}
     	return result;
     }
+    
+    	
+		
     
     public double rateOfReturn(List<Integer> result, int purchase) { //수익률 계산해서 반환
     	return 0.1;

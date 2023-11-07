@@ -26,7 +26,10 @@ public class Application {
     	Lotto lotto = new Lotto(inputNumbers());
     	bonus = inputBonus();
     	lotto.validateBonus(bonus);
-    	System.out.println(bonus);
+    	
+    	List<Integer> result = lotto.compare(generator.myLotto, bonus);
+    	
+    	System.out.println(result);
     	
     }
     

@@ -8,7 +8,7 @@ import java.util.List;
 public class Customer {
     private int price;
     private int quantity;
-    private List<Lotto> lottos;  // lottos getter, setter 구현해야 함
+    private List<Lotto> lottos;
 
     public Customer(String input) {
         int convertedInput = convertStringToInt(input);
@@ -19,6 +19,10 @@ public class Customer {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     private int convertStringToInt(String input) {
@@ -36,6 +40,10 @@ public class Customer {
     }
 
     private void setQuantity(int price) {
-        quantity = price / 1000;
+        this.quantity = price / 1000;
+    }
+
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 }

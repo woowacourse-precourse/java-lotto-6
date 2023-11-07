@@ -7,11 +7,14 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class CustomerTest {
-    Customer customer;
+    private static final String PRICE = "5000";
+    private static final int QUANTITY = 5;
+
+    private Customer customer;
 
     @BeforeEach
     void setUp() {
-        customer = new Customer("5000");
+        customer = new Customer(PRICE);
     }
 
     @DisplayName("로또 구매 금액을 인자로 받아 customer 객체 생성")
@@ -51,12 +54,6 @@ class CustomerTest {
     @DisplayName("구매금액으로 로또 구매 갯수를 알 수 있다.")
     @Test
     void getQuantityOfPurchase() {
-        assertThat(customer.getQuantity()).isEqualTo(5);
-    }
-
-    @DisplayName("구매 갯수만큼 발행한 로또를 확인할 수 있다.")
-    @Test
-    void getLottos() {
-        // test code 구현해야 함
+        assertThat(customer.getQuantity()).isEqualTo(QUANTITY);
     }
 }

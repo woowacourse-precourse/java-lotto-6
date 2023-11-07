@@ -15,5 +15,5 @@ public interface LottoOutput {
 
     void printResults(Map<Rank, Integer> result);
 
-    void printProfitAsPercentage(Map<Rank, Integer> result);
+    void printProfitAsPercentage(double profitAsPercentage);
 }

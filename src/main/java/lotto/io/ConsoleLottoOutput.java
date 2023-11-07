@@ -12,6 +12,7 @@ public class ConsoleLottoOutput implements LottoOutput {
     private final String MESSAGE_ASKING_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private final String MESSAGE_ASKING_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final String MESSAGE_RESULT = "당첨 통계\n---";
+    private final String FORMAT_PROFIT_PERCENTAGE = "총 수익률은 %.01f입니다.";
 
     private final String BRACKET_OPEN = "[";
     private final String BRACKET_CLOSE = "]";
@@ -58,7 +59,7 @@ public class ConsoleLottoOutput implements LottoOutput {
     }
 
     @Override
-    public void printProfitAsPercentage(Map<Rank, Integer> result) {
-
+    public void printProfitAsPercentage(double profitAsPercentage) {
+        System.out.printf(FORMAT_PROFIT_PERCENTAGE, profitAsPercentage);
     }
 }

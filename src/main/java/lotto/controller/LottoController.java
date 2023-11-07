@@ -34,7 +34,7 @@ public class LottoController {
     }
 
     private void setLotteries() {
-        String lottoOutput = lottoService.generateByQuantity();
+        String lottoOutput = lottoService.createLotteries();
         lottoView.printOutput(lottoOutput);
     }
 }

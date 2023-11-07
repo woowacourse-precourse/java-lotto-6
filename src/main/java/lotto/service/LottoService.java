@@ -20,7 +20,7 @@ public class LottoService {
         return lottoRepository.updatePurchaseAmount(amountInput);
     }
 
-    public String generateByQuantity() {
+    public String createLotteries() {
         int totalQuantity = lottoRepository.getPurchaseQuantity();
         for (int quantity = 0; quantity < totalQuantity; quantity++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);

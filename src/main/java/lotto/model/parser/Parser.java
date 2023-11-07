@@ -1,4 +1,4 @@
-package lotto.utils.parser;
+package lotto.model.parser;
 
 import static lotto.utils.constants.LottoConstants.NUMBER_SPLIT_FORMAT;
 import static lotto.utils.validator.Validator.validateEmpty;
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NumberParser {
-    private NumberParser() {
+public class Parser {
+    private Parser() {
     }
 
-    public static List<Integer> parseListStringToListInteger(String input) {
+    public static List<Integer> parseInputToWinningNumbers(String input) {
         validateEmpty(input);
         validateFormat(input);
 
@@ -30,17 +30,18 @@ public class NumberParser {
         return inputNumbers;
     }
 
-    public static int parseStringToIntNumber(String input) {
+    public static int parseInputToBonusNumber(List<Integer> winningNumbers, String input) {
         validateEmpty(input);
         validateNumber(input);
 
         int parsInt = Integer.parseInt(input);
 
         validateNumberRange(parsInt);
+        validateUniqueValue(winningNumbers, parsInt);
         return parsInt;
     }
 
-    public static int parseStringToIntPrice(String input) {
+    public static int parseInputToPurchasePrice(String input) {
         validateEmpty(input);
         validateNumber(input);
 

@@ -7,7 +7,6 @@ public final class LottoConstants {
     public static final int MATCH_THREE_COUNT = 3;
     public static final int MATCH_FOUR_COUNT = 4;
     public static final int MATCH_FIVE_COUNT = 5;
-    public static final int MATCH_FIVE_AND_BONUS_COUNT = 5;
     public static final int MATCH_SIX_COUNT = 6;
     public static final int LOTTO_TICKET_PRICE = 1000;
     public static final int MATCH_THREE_PRICE = 5_000;

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model.calculator;
 
 import static lotto.utils.constants.LottoConstants.MATCH_FIVE_AND_BONUS_PRICE;
 import static lotto.utils.constants.LottoConstants.MATCH_FIVE_COUNT;

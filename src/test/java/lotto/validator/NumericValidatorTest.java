@@ -10,9 +10,9 @@ public class NumericValidatorTest {
 
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
+    @DisplayName("숫자 형식이 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"sdfjlvo14n", "121@fsh", "1,2,4", "-1,2,10.0"})
-    @DisplayName("숫자 형식이 아닌 경우 예외가 발생한다.")
     void isNotNumeric_Then_ExceptionOccurs(final String stringNumber) {
         assertThatThrownBy(() -> NumericValidator.validate(stringNumber))
                 .isInstanceOf(IllegalArgumentException.class)

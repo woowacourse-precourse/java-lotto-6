@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
+    private InputView(){}
 
     private static String getInput() {
         return Console.readLine();

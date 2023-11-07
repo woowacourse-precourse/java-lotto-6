@@ -9,6 +9,7 @@ public enum Constant {
     END_RANGE_OF_NUMBER("45"),
     NUMBER_USED_TO_ROUND_FIRST_DIGIT("10"),
     NUMBER_USED_TO_MAKE_PERCENTAGE("100"),
+    MONEY_UNITS("1000"),
     DELIMITER(",");
 
     public static final Pattern PATTERN_NUMBER = Pattern.compile("(\\+|-)?[0-9]+");

@@ -1,9 +1,9 @@
 package lotto.utils;
 
 import java.util.List;
+import lotto.config.LottoGameRule;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.config.LottoGameRule;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
 import lotto.exception.LottoNumberOutOfRangeException;

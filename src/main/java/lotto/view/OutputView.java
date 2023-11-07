@@ -7,10 +7,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import lotto.config.LottoGameMessage;
+import lotto.domain.Rank;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottoResultDto;
-import lotto.domain.Rank;
-import lotto.config.LottoGameMessage;
 import lotto.io.OutputWriter;
 
 public class OutputView {

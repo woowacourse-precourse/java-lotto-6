@@ -3,9 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
-import lotto.domain.Lotto;
-import lotto.domain.Rank;
-import lotto.domain.WinningLotto;
 import lotto.fixtures.LottoFixtures;
 import lotto.fixtures.WinningLottoFixtures;
 import org.junit.jupiter.api.DisplayName;

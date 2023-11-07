@@ -1,6 +1,5 @@
 package lotto.input.console;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.common.LottoException;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAnswer;
@@ -12,6 +11,12 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class UserConsoleInputAdapter implements UserInputPort {
+    private final Supplier<String> userInputFunction;
+
+    public UserConsoleInputAdapter(Supplier<String> userInputFunction) {
+        this.userInputFunction = userInputFunction;
+    }
+
     @Override
     public int getLottoBuyPrice() {
         return doLoop(() -> {
@@ -42,12 +47,12 @@ public class UserConsoleInputAdapter implements UserInputPort {
 
     private String getInputWithMessage(String message) {
         System.out.println(message);
-        return Console.readLine();
+        return userInputFunction.get();
     }
 
     private List<Integer> getLottoNumber() {
         return doLoop(() -> {
-            String input = getInputWithMessage("당첨 번호를 입력해 주세요.");;
+            String input = getInputWithMessage("당첨 번호를 입력해 주세요.");
             List<String> numbers = Arrays.asList(input.split(","));
 
             validateLottoNumbers(numbers);

@@ -1,11 +1,14 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.view.constant.Exception;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static lotto.view.constant.Exception.LOTTO_DUPLICATED;
+import static lotto.view.constant.Exception.LOTTO_SIZE;
+import static lotto.view.constant.Exception.LOTTO_RANGE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,7 +24,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != COUNT) {
-            throw new IllegalArgumentException(Exception.LOTTO_SIZE);
+            throw new IllegalArgumentException(LOTTO_SIZE);
         }
         checkDuplication(numbers);
         numbers.forEach(this::checkRange);
@@ -32,13 +35,13 @@ public class Lotto {
                 .distinct().toList()
                 .size();
         if (nonDuplicationSize != COUNT) {
-            throw new IllegalArgumentException(Exception.LOTTO_RANGE);
+            throw new IllegalArgumentException(LOTTO_DUPLICATED);
         }
     }
 
     protected void checkRange(int number) {
         if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException(Exception.LOTTO_RANGE);
+            throw new IllegalArgumentException(LOTTO_RANGE);
         }
     }
 

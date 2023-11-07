@@ -37,5 +37,4 @@ class LottoTest {
         Assertions.assertAll(() -> new Lotto(List.of(7, 2, 1, 36, 41, 43)));
     }
 
-    // TODO: 발행된 로또가 오름차순으로 정렬되어있는지 확인하는 방법이 있을까?
 }

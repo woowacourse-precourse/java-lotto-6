@@ -11,12 +11,7 @@ public class LottoResult {
         this.lottoRankingResult = lottoRankingResult;
     }
 
-    public double calculateProfit(int purchasedAmount) {
-        long totalPrize = calculateTotalPrize();
-        return Math.round(((double) totalPrize / purchasedAmount) * 100 * 100) / 100.0;
-    }
-
-    private long calculateTotalPrize() {
+    public long calculateTotalPrize() {
         return lottoRankingResult.keySet().stream()
                 .mapToLong(ranking -> {
                     Integer count = lottoRankingResult.getOrDefault(ranking, 0);

@@ -18,4 +18,8 @@ public class Payment {
     public int getPayment() {
         return payment;
     }
+
+    public double calculateProfitPercentage(long totalPrize) {
+        return Math.round(((double) totalPrize / payment) * 100 * 100) / 100.0;
+    }
 }

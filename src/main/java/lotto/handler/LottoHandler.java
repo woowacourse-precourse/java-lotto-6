@@ -36,8 +36,9 @@ public class LottoHandler {
     }
 
     private void showProfit(Payment payment, LottoResult lottoResult) {
-        double profit = lottoResult.calculateProfit(payment.getPayment());
-        writer.write(lottoViewResolver.parseProfit(profit));
+        long totalPrize = lottoResult.calculateTotalPrize();
+        double profitPercentage = payment.calculateProfitPercentage(totalPrize);
+        writer.write(lottoViewResolver.parseProfit(profitPercentage));
     }
 
     private void showResult(LottoResult lottoResult) {

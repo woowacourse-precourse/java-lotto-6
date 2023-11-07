@@ -59,4 +59,11 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateBonusNumberInLotto(List<Integer> lotto, int number) {
+        if (lotto.contains(number)) {
+            ErrorMessage.printBonusIncludedErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
 }

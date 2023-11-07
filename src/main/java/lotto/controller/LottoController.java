@@ -36,4 +36,16 @@ public class LottoController {
         lottoService.inputBonusNumber();
     }
 
+    public void getNumbersMatchesResult() {
+        lottoView.outputWinningStatisticsView();
+        lottoService.lottoResultAddPrizes();
+
+        IntStream.rangeClosed(1, 5).boxed()
+                .sorted(Collections.reverseOrder())
+                .forEach(prize -> lottoView.outputWinningDescription(lottoService.getPrizeDescription(prize)));
+    }
+
+    public void printRevenue() {
+        lottoView.outputRevenueView(lottoService.getRevenue());
+    }
 }

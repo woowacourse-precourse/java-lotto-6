@@ -35,7 +35,7 @@ public class WinningLotto {
     }
 
     private void validateRange(Integer number) {
-        if (number < MIN_RANGE && number > MAX_RANGE) {
+        if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
             throw new InvalidRangeLottoNumberException();
         }
     }

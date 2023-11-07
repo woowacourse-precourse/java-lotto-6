@@ -21,8 +21,8 @@
     - money 필드의 유효성을 검사한다. ✅
 #### LottoGame class
     - 사용자가 입력한 금액에 따라 로또를 생성한다. ✅
-    - 각 금액 별 당첨 된 로또의 개수를 센다.
-    - 수익률을 계산한다.
+    - 각 금액 별 당첨 된 로또의 개수를 센다. ✅
+    - 수익률을 계산한다. ✅
 ### 📌 Controller
 #### LottoGameController
     - LottoGame을 실행한다.

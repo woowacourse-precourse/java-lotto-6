@@ -30,7 +30,7 @@ class ApplicationTest extends NsTest {
     }
 
     enum Num{
-        ZERO(0), TOPRANGE(46), MINUS(-100);
+        ZERO(0), TOPRANGE(46), MINUS(-100), FIVE(5);
 
         private int num;
 
@@ -122,8 +122,7 @@ class ApplicationTest extends NsTest {
 
     @BeforeAll
     static void 복권_개수_확인_테스트(){
-        int test = 5;
-        assertThat(random_lotto.print_lotto(test)).hasSize(5);
+        assertThat(random_lotto.print_lotto(Num.FIVE.getNum())).hasSize(5);
     }
 
     @Test
@@ -155,6 +154,13 @@ class ApplicationTest extends NsTest {
                 () -> bonus_number.checkBonusRange(Num.ZERO.getNum()));
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> bonus_number.checkBonusRange(Num.TOPRANGE.getNum()));
+    }
+
+    @Test
+    void 보너스숫자_중복확인_테스트(){
+        List<Integer> criteria = Arrays.asList(4,5,9,8,1,2);
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> bonus_number.circulationForCheck(criteria, Num.FIVE.getNum()));
     }
 
     @Override

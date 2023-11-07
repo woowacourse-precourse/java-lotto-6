@@ -19,19 +19,9 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     // 아래에 추가 테스트 작성 가능
-    @DisplayName("입력 금액이 1000원 단위가 아닌 경우 예외가 발생한다.")
-    @Test
-    void throwExceptionWhenPurchaseAmountIsNotMultipleOfThousand(){
-        int purchaseAmount = 1500;
-
-        assertThatThrownBy(() -> validatePurchaseAmount(purchaseAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-    }
 }

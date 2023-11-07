@@ -1,8 +1,7 @@
-package lotto.service;
+package lotto.util;
 
-public class LottoService {
-
-    private LottoService() {
+public class MathUtil {
+    private MathUtil() {
     }
 
     public static String formatPercentage(int money, double profit) {

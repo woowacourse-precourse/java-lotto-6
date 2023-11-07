@@ -43,7 +43,7 @@ public class LottoManager extends Observable {
         PrizeNumbers prizeNumbers = new PrizeNumbers(winningNumbers, bonusNumber);
         rankEvaluator = new RankEvaluator(prizeNumbers);
     }
-    
+
     public void calculateStatistics() {
         for (Lotto lotto : lottos) {
             Iterator<Integer> lottoNumbers = lotto.getIterator();
@@ -60,7 +60,7 @@ public class LottoManager extends Observable {
     }
 
     @Override
-    public void notifyObserver(Object o) {
-        observer.update(o);
+    public void notifyObserver(Object data) {
+        observer.update(data);
     }
 }

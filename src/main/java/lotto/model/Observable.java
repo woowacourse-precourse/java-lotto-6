@@ -11,5 +11,5 @@ abstract public class Observable {
 
     abstract public void unsubscribe(Observer observer);
 
-    abstract public void notifyObserver(Object o);
+    abstract public void notifyObserver(Object data);
 }

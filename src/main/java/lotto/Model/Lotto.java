@@ -6,7 +6,6 @@ import lotto.Controller.Exceptable;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private Exceptable exceptable = new Exceptable();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -14,6 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        Exceptable exceptable = new Exceptable();
         exceptable.validate6Nums(numbers);
         exceptable.validateDuplicateLottos(numbers);
         for (int num: numbers){

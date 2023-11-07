@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import java.util.Map;
+import java.util.function.IntBinaryOperator;
 import lotto.domain.Amount;
 import lotto.enums.Prize;
 
@@ -16,9 +17,10 @@ public record WinningResult(Map<Prize, Integer> prizes) {
     }
 
     private int totalWinningMoney() {
+        IntBinaryOperator multiply = (a, b) -> a * b;
         return prizes.keySet().stream()
                 .filter(prize -> prize != Prize.NONE)
-                .mapToInt(prize -> prize.getWinningMoney() * prizes.get(prize))
+                .mapToInt(p -> multiply.applyAsInt(p.getWinningMoney(), prizes.get(p)))
                 .sum();
     }
 }

@@ -1,5 +1,9 @@
 package lotto;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class validator {
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
@@ -19,5 +23,10 @@ public class validator {
     public static boolean validateBonusNumber(String bonusNumberString) {
         String regex = "^\\d+$";
         return bonusNumberString.matches(regex);
+    }
+
+    public static boolean isUniqueLottoNumber(List<Integer> lottoNumber) {
+        Set<Integer> set = new HashSet<>(lottoNumber);
+        return set.size() == lottoNumber.size();
     }
 }

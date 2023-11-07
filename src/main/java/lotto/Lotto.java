@@ -18,11 +18,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        if (!validator.isUniqueLottoNumber(numbers)) {
+            System.out.println("[ERROR] 숫자가 중복되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 중복되었습니다.");
+        }
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 숫자를 6개 입력해야합니다.");
             throw new IllegalArgumentException();
         }
     }

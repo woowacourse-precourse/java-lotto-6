@@ -8,7 +8,7 @@
   - [x] 입력받은 당첨 번호가 모두 쉼표로 구분된 숫자인지 확인 - validator#validateWinningNumber()
   - [x] 예외) 당첨 번호의 수가 6개가 아니면 예외 처리 - Lotto#validate()
   - [x] 예외) 보너스 번호의 수가 1개가 아니면 예외 처리 - validator#validateBonnusNumber()
-  - [ ] 예외) 중복된 숫자가 있으면 예외 처리 - validator#isUnique()
+  - [x] 예외) 중복된 숫자가 있으면 예외 처리 - validator#isUniqueLottoNumber()
 - [x] 구매 번호와 담첨 번호 비교해 - Lotto#LottoResults()
   - [x] 당첨 내역 출력하고  - LottoReporter#lottoReport()
   - [x] 수익률을 출력 - LottoReporter#rateOfReturn()

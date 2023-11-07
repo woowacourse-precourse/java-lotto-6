@@ -42,6 +42,21 @@ public class Application {
 	}
 	
 	private void run() {
+		createLotto();
+		makeWinningNumber();
+		finish();
+	}
+	
+	private void createLotto() {
+		
+	}
+	
+	private void makeWinningNumber() {
+		
+	}
+	
+	private void finish() {
+		
 	}
 	
     public static void main(String[] args) {

@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 
 class WinningNumberValidatorTest extends NsTest {
-    WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
+    private final WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
 
     @DisplayName("올바르지 않은 형식으로 입력 시 예외 발생")
     @ParameterizedTest

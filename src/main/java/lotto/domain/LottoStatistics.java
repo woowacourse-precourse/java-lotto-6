@@ -18,15 +18,7 @@ public class LottoStatistics {
         }
     }
 
-    public void calculateLottoMatch(PlayerLottoNumbers playerLottoNumbers, WinningLotto winningLotto) {
-        for (Numbers numbers : playerLottoNumbers.getLottoValues()) {
-            Integer matchCount = numbers.getMatchCount(winningLotto.getLotto()).intValue();
-            Boolean isMatchBonusNumber = numbers.isMatchBonusNumber(winningLotto.getBonusNumber());
-            upWinningFactorValue(matchCount, isMatchBonusNumber);
-        }
-    }
-
-    private void upWinningFactorValue(Integer matchCount, Boolean isMatchBonusNumber) {
+    public void upWinningFactorValue(Integer matchCount, Boolean isMatchBonusNumber) {
         WinningFactor winningFactorByCount = WinningFactor.findWinningFactorByCount(matchCount, isMatchBonusNumber);
         statistics.put(winningFactorByCount, statistics.get(winningFactorByCount) + MATCH_UP);
     }

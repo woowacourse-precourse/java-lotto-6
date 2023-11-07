@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.domain.LottoStatistics;
-import lotto.domain.PlayerLottoNumbers;
-import lotto.domain.PurchasePrice;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.formatter.PlayerLottosFormatter;
 import lotto.formatter.LottoStatisticsResultFormatter;
 
@@ -32,7 +29,11 @@ public class LottoService {
     }
 
     public void calculateWinningStatistics() {
-        lottoStatistics.calculateLottoMatch(playerLottoNumbers, winningLotto);
+        for (Numbers numbers : playerLottoNumbers.getLottoValues()) {
+            Integer matchCount = numbers.getMatchCount(winningLotto.getLotto()).intValue();
+            Boolean isMatchBonusNumber = numbers.isMatchBonusNumber(winningLotto.getBonusNumber());
+            lottoStatistics.upWinningFactorValue(matchCount, isMatchBonusNumber);
+        }
     }
 
     public void calculateTotalRate() {

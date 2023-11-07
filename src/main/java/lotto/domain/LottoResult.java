@@ -49,6 +49,6 @@ public class LottoResult {
     }
 
     public void calculateProfitMargin(int money) {
-        this.profitMargin = (double)this.totalWinningMoney/money;
+        this.profitMargin = ((double)this.totalWinningMoney/money)*100;
     }
 }

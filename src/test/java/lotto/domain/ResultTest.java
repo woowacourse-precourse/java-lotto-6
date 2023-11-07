@@ -2,6 +2,8 @@ package lotto.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
@@ -44,5 +46,24 @@ class ResultTest {
     @Test
     void 보너스_번호를_포함하더라도_세개_일치인_경우_그에_맞는_객체를_반환한다() {
         assertEquals(Result.THREE_MATCH, Result.of(3, true));
+    }
+
+    @Test
+    void Result_결과에_따라_총_상금을_계산한다() {
+        List<Result> results = List.of(
+                Result.SIX_MATCH, Result.SIX_MATCH,
+                Result.FIVE_MATCH_WITH_BONUS, Result.FIVE_MATCH_WITH_BONUS,
+                Result.FIVE_MATCH, Result.FIVE_MATCH,
+                Result.FOUR_MATCH, Result.FOUR_MATCH,
+                Result.THREE_MATCH, Result.THREE_MATCH
+        );
+
+        Long expected = 2_000_000_000L + 2_000_000_000L
+                + 30_000_000L + 30_000_000L
+                + 1_500_000L + 1_500_000L
+                + 50_000L + 50_000L
+                + 5_000L + 5_000L;
+
+        assertEquals(expected, Result.sumOfRewards(results));
     }
 }

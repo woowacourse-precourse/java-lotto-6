@@ -43,17 +43,27 @@ public class LottoController {
     private WinningLotto setWinningNumbers() {
         WinningLotto winningLotto = null;
         try {
-            controllerOutputManager.WINNING_PRINT();
-            String winningNumbers = Console.readLine();
-            List<Integer> integers = Converter.to(winningNumbers);
-            controllerOutputManager.BONUS_PRINT();
-            String bonusNumber = Console.readLine();
-            winningLotto = new WinningLotto(integers, bonusNumber);
+            List<Integer> winning = getWinningNumbers();
+            String bonusNumber = getBonus();
+            winningLotto = new WinningLotto(winning, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(WRONG_NUMBER);
             setWinningNumbers();
         }
         return winningLotto;
+    }
+
+    private static String getBonus() {
+        controllerOutputManager.BONUS_PRINT();
+        String bonusNumber = Console.readLine();
+        return bonusNumber;
+    }
+
+    private static List<Integer> getWinningNumbers() {
+        controllerOutputManager.WINNING_PRINT();
+        String winningNumbers = Console.readLine();
+        List<Integer> integers = Converter.to(winningNumbers);
+        return integers;
     }
 
     private int BuyLotto() {

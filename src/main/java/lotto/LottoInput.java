@@ -6,16 +6,19 @@ import java.util.List;
 
 public class LottoInput {
 
-    private final int amount;
 
-    public LottoInput(int amount) {
-        checkPurchaseAmount(amount);
-        this.amount = amount;
+    public LottoInput (){}
+
+    protected int inputAmount() {
+        String amount = Console.readLine();
+        return Integer.parseInt(amount);
     }
-    private void checkPurchaseAmount(int amount) {
+
+    protected int checkPurchaseAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR]구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
+        return amount / 1000;
     }
 
     protected List<Integer> inputWinningNumbers() {
@@ -23,7 +26,8 @@ public class LottoInput {
         boolean isValid;
 
         do {
-            String input = "1,2,3,4,5,6";
+            //이거 readLine으로 고쳐야함
+            String input = "1,3,6,12,9,2";
             isValid = parseAndValidateNumbers(input, winningNumbers);
         } while (!isValid);
 
@@ -40,7 +44,7 @@ public class LottoInput {
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자만 입력해야 합니다.");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println("[ERROR]" + e.getMessage());
         }
         return false;
     }

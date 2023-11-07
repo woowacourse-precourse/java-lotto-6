@@ -29,7 +29,7 @@ class LottoTest {
     @DisplayName("구입 금액이 1,000원으로 나누어 떨어 지지 않으면 예외가 발생한다.")
     @Test
     void inputPurchaseAmount() {
-        assertThatThrownBy(() -> new LottoInput(1550))
+        assertThatThrownBy(() -> new LottoInput())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
@@ -61,8 +61,8 @@ class LottoTest {
     @DisplayName("당첨 번호 확인")
     @Test
     void winningNumber() {
-        LottoInput lottoInput = new LottoInput(1000);
-        List<Integer> winningNUmbers = lottoInput.inputWinningNumbers();
-        System.out.println(winningNUmbers);
+        LottoInput lottoInput = new LottoInput();
+        List<Integer> winningNumbers = lottoInput.inputWinningNumbers();
+        System.out.println(winningNumbers);
     }
 }

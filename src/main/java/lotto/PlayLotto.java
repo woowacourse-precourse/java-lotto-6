@@ -15,11 +15,12 @@ public class PlayLotto {
         this.lottoGame = new LottoGame();
         this.calculator = new Calculator();
     }
-    public PlayLotto(UserIO userIO, LottoManager lottoManager, LottoGame lottoGame, Calculator calculator){
-        this.userIO=userIO;
-        this.lottoManager=lottoManager;
-        this.lottoGame=lottoGame;
-        this.calculator=calculator;
+
+    public PlayLotto(UserIO userIO, LottoManager lottoManager, LottoGame lottoGame, Calculator calculator) {
+        this.userIO = userIO;
+        this.lottoManager = lottoManager;
+        this.lottoGame = lottoGame;
+        this.calculator = calculator;
     }
 
     public void play() {

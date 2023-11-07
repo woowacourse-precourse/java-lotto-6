@@ -1,7 +1,5 @@
 package lotto;
 
-import java.text.NumberFormat;
-
 public enum LottoPrize {
     FIFTH(5_000, "3개 일치 "),
     FOURTH(50_000, "4개 일치 "),

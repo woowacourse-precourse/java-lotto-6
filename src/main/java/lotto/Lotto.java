@@ -37,7 +37,8 @@ public class Lotto {
             checkSet.add(number);
         }
     }
-    public List<Integer> getNumbers(){
+
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 

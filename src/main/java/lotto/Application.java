@@ -20,13 +20,15 @@ public class Application {
 
         //로또 리스트 만들기
         generateLotto(purchase, lottoList);
+
+        // 당첨 번호 입력
         winningLotto = getLottoNumber();
+
+        // 보너스 번호 입력
         Integer bonus = getBonus(winningLotto);
 
         //당첨 통계
         getStatistics(lottoList, winningLotto, bonus, purchase);
-
-
     }
 
     private static void getStatistics(List<Lotto> lottoList, Lotto winningLotto, Integer bonus, int purchase) {
@@ -135,7 +137,7 @@ public class Application {
             lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
 
-        System.out.println("8개를 구매했습니다");
+        System.out.println(purchase/1000 + "개를 구매했습니다");
         for (Lotto l: lottoList) {
             l.printLotto();
         }

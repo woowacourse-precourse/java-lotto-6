@@ -35,8 +35,8 @@ public class Lotto {
     }
 
 
-    public boolean containLottoNumber(int num) {
-        return numbers.contains(num);
+    public boolean containLottoNumber(int winningNumber) {
+        return numbers.contains(winningNumber);
     }
 
     public int matchCount(WinningLotto winningLotto) {

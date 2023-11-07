@@ -10,7 +10,7 @@ public class WinningStatistics {
     private int matchingCount;
 
     public WinningStatistics(Lotto resultLotto, Lotto userLotto) { // Test 용 생성자
-        matchOfCount(resultLotto, userLotto);
+        setMatchingCount(resultLotto, userLotto);
     }
 
     public int getMatchingCount() {
@@ -24,16 +24,15 @@ public class WinningStatistics {
 
     private void checkLotto(Lotto resultLotto, List<Lotto> lotties) {
         for (int i = 0; i < lotties.size(); i++) {
-            this.ranking = ranking.value(matchOfCount(resultLotto, lotties.get(i)), true);
+            setMatchingCount(resultLotto, lotties.get(i);
+            this.ranking = ranking.value(matchingCount, true);
         }
     }
-
-    private int matchOfCount(Lotto resultLotto, Lotto userLotto) {
+    private void setMatchingCount(Lotto resultLotto, Lotto userLotto) {
         List<Integer> resultNumbers = resultLotto.getNumbers();
         List<Integer> userNumbers = userLotto.getNumbers();
         int checkCount = (int) userNumbers.stream().filter(resultNumbers::contains).count();
         this.matchingCount = checkCount;
-        return checkCount;
     }
 
 

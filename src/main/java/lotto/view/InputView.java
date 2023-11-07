@@ -12,4 +12,12 @@ public class InputView {
 
         return StringHandler.stringToInt(input);
     }
+
+
+    public List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return StringHandler.separatedWith(input, STRING_DELIMITER);
+    }
+
 }

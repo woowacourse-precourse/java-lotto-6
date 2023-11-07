@@ -7,6 +7,16 @@ public class WinnerLotto {
 
     private HashMap<PrizeMoney,Integer> lottoRankStore = new HashMap<>();
 
+    private int PrizeSumMoney;
+
+    public int getPrizeSumMoney() {
+        return PrizeSumMoney;
+    }
+
+    public void setPrizeSumMoney(int prizeSumMoney) {
+        PrizeSumMoney += prizeSumMoney;
+    }
+
     public HashMap<PrizeMoney, Integer> getLottoRankStore() {
         return lottoRankStore;
     }

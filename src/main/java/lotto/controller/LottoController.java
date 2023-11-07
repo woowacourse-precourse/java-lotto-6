@@ -22,15 +22,19 @@ public class LottoController {
 
     public void proceedLotto(){
         createUserLottoNum();
-        for(Lotto lo : userLotto.getUsersLotto()){
-            System.out.println("로또 번호:"+lo.getNumbers());
-        }
+        outputView.printNumberOfBuyLotto(userLotto.getBuyMoney()/1000);
+        outputView.printLottoNums(userLotto.getUsersLotto());
+
         prizeLotto = createPrizeNum();
-        System.out.println("당첨 번호 ="+prizeLotto.getPrizeNumbers());
-        System.out.println("보너스 번호="+ prizeLotto.getBonusNum());
 
         prizeController.comparePrizeNumToLottoNum(prizeLotto,userLotto);
         prizeController.createLottoRankStore();
+        prizeController.calculateLottoPrize();
+        System.out.println("상금: "+prizeController.winnerLotto.getPrizeSumMoney());
+        System.out.println("수익률:"+prizeController.rateOfReturn(userLotto.getBuyMoney()));
+
+        outputView.printWinnerStatistcs(prizeController.winnerLotto.getLottoPrizeCount(),prizeController.rateOfReturn(userLotto.getBuyMoney()));
+
 
     }
     public PrizeLotto createPrizeNum(){
@@ -72,6 +76,7 @@ public class LottoController {
             try {
                 int buyLottoNum = numberValidator.buyLottoMoneyValidator(inputView.enterBuyLottoAmount());
                 List<Lotto> lotto = generateLottoNum(buyLottoNum);
+                userLotto.setBuyMoney(1000*buyLottoNum);
                 userLotto.setUsersLotto(lotto);
                 break;
             } catch (IllegalArgumentException e) {

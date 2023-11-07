@@ -4,10 +4,32 @@ import lotto.model.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class PrizeController {
     PrizeMoney prizeMoney;
     WinnerLotto winnerLotto = new WinnerLotto();
+
+    public double rateOfReturn(int buyMoney){
+        return (winnerLotto.getPrizeSumMoney()/(double)buyMoney)*100;
+    }
+
+    public void calculateLottoPrize(){
+        HashMap<PrizeMoney,Integer> lottoRankStore = winnerLotto.getLottoRankStore();
+        int[] lottoPrizeCount = winnerLotto.getLottoPrizeCount();
+        for(int i=3 ; i<8 ; i++){
+            winnerLotto.setPrizeSumMoney(findMoney(i,lottoPrizeCount[i]));
+        }
+    }
+    public int findMoney(int matchNum, int count){
+        for(PrizeMoney p : winnerLotto.getLottoRankStore().keySet()){
+            if(p.getMatchNum() == matchNum){
+                return count*p.getPrizeMoney();
+            }
+        }
+        return 0;
+    }
+
     public void createLottoRankStore(){
         HashMap<PrizeMoney,Integer> lottoRankStore = new HashMap<>();
         lottoRankStore.put(PrizeMoney.FIRST_PRIZE,0);
@@ -16,9 +38,10 @@ public class PrizeController {
         lottoRankStore.put(PrizeMoney.FOURTH_PRIZE,0);
         lottoRankStore.put(PrizeMoney.FIFTH_PRIZE,0);
         for(PrizeMoney p : lottoRankStore.keySet()){
-            System.out.println("PrizeMoney: "+p.getPrizeMoney());
+            System.out.println("PrizeMatchNum: "+p.getMatchNum());
         }
         winnerLotto.setLottoRankStore(lottoRankStore);
+        Set<PrizeMoney> set = lottoRankStore.keySet();
     }
     public void comparePrizeNumToLottoNum(PrizeLotto prizeLotto , UserLotto userLotto){
         //배열을 생성해서 로또마다 몇개 맞췄는지 배열에 인덱스로 장

@@ -16,7 +16,7 @@ public class LottoGame {
 
     public void run() {
         player = generateLottoTickets();
-        winningNumber = generateWinningNumber();
+        winningNumber = creatWinningNumber();
         evaluateProfitAndPrintResults(player, winningNumber);
     }
 
@@ -30,17 +30,14 @@ public class LottoGame {
     }
 
 
-    public WinningNumber generateWinningNumber() {
-        List<Integer> winningNumber = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusNumber();
-        return new WinningNumber(new Lotto(winningNumber), bonusNumber);
+    public WinningNumber creatWinningNumber() {
+        return new WinningNumber(new Lotto(InputView.inputWinningNumbers()), InputView.inputBonusNumber());
     }
 
     public void evaluateProfitAndPrintResults(Player player, WinningNumber winningNumber) {
         List<LottoRank> lottoRanks = player.checkLottoTickets(winningNumber);
         lottoResult.calculateRankCounts(lottoRanks);
         double profit = lottoResult.calculateProfit(lottoRanks, player.getMoney());
-        System.out.println(profit);
         OutputView.printUserPrizeStats(lottoResult);
         OutputView.PrintUserProfit(profit);
     }

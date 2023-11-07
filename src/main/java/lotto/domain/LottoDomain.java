@@ -22,6 +22,13 @@ public class LottoDomain {
         return lottos;
     }
 
+    public WinningNumbers createWinningNumbers(List<Integer> winningNumber, int bonusNumber) {
+        WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+
+        return winningNumbers;
+    }
+
+
     private Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_NUMBER_MIN, LottoConstants.LOTTO_NUMBER_MAX, LottoConstants.LOTTO_NUMBER_COUNT);
         Lotto lotto = new Lotto(numbers);

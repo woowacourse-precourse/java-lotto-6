@@ -5,7 +5,7 @@ import java.util.List;
 import static lotto.message.ErrorMessage.DUPLICATE_NUMBER_EXCEPTION;
 import static lotto.message.ErrorMessage.NUMBER_INDICATION;
 
-public class DuplicateNumberValidator {
+public class LottoNumberValidator {
     public static void validateDuplicateNumbers(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             matchTwoNumbers(numbers, i);

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.validation.DuplicateNumberValidator;
+import lotto.validation.LottoNumberValidator;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
-        DuplicateNumberValidator.validateDuplicateNumbers(numbers);
+        LottoNumberValidator.validateDuplicateNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {

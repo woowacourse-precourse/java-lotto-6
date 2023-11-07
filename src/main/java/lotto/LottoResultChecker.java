@@ -46,6 +46,17 @@ public class LottoResultChecker {
                 this.lottoResult.get(lottoRank));
     }
 
-    public void printProfit() {
+    public void printProfit(int price) {
+        int totalProfit = getTotalProfit();
+        double profitRatio = (double) Math.round((double) totalProfit * 10000 / price) / 100;
+        System.out.println("총 수익률은 " + profitRatio + "%입니다.");
+    }
+
+    private int getTotalProfit() {
+        int totalProfit = 0;
+        for (LottoRank lottoRank : LottoRank.values()) {
+            totalProfit += lottoRank.getPrize() * this.lottoResult.get(lottoRank);
+        }
+        return totalProfit;
     }
 }

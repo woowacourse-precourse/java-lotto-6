@@ -12,4 +12,8 @@ public class IssuedLottos {
     public List<Integer> find_issued_lotto_by_index(int index){
         return Issued_Lottos.get(index).findAll();
     }
+
+    public void add(IssuedLotto lotto) {
+        Issued_Lottos.add(lotto);
+    }
 }

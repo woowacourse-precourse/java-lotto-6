@@ -2,11 +2,13 @@ package lotto;
 
 import java.util.*;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class MatchingMachine {
 
-    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, Lotto winningLotto) {
+    public int countSingleLottoMatchingNumbers(Lotto lotto, Lotto winningLotto) {
         int count = 0;
-        for (int lottoNum : lottoNumbers) {
+        for (int lottoNum : lotto.getNumbers()) {
             if (winningLotto.getNumbers().contains(lottoNum)) {
                 count++;
             }
@@ -27,7 +29,7 @@ public class MatchingMachine {
         boolean hasBonus = false;
         List<MatchingCount> matchingCounts = new ArrayList<>();
         for (Lotto singleLotto : allLotto) {
-            count = countSingleLottoMatchingNumbers(singleLotto.getNumbers(), winningLotto);
+            count = countSingleLottoMatchingNumbers(singleLotto, winningLotto);
             hasBonus = checkBonusNumber(singleLotto, bonusNumber);
             MatchingCount matchingCount = MatchingCount.findByMatchCount(count, hasBonus);
             if(matchingCount != null) {

@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -60,9 +61,14 @@ public class ValidationImpl implements Validation {
     }
 
     @Override
-    public boolean isValidBonusNumber(String input) {
+    public boolean isValidBonusNumber(String input, List<Integer> winningNumbers) {
         return !BONUS_NUMBER_PATTERN.matcher(input).find()
-                && isBetween(Integer.parseInt(input));
+                && isBetween(Integer.parseInt(input))
+                && isDuplicatedInput(input, winningNumbers);
+    }
+
+    private boolean isDuplicatedInput(String input, List<Integer> winningNumbers) {
+        return !winningNumbers.contains(Integer.parseInt(input));
     }
 
     @Override

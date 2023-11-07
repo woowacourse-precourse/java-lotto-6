@@ -23,11 +23,11 @@ public class LottoMachineTest {
     }
 
     static Stream generateData() {
-        Stream argumentsStream = Stream.of(
+        Stream lottos = Stream.of(
                 Arrays.asList(1, 2, 3, 4, 5, 45),
                 Arrays.asList(10, 21, 35, 42, 7, 3)
         );
-        return argumentsStream;
+        return lottos;
     }
 
     @DisplayName("6개의 랜덤 숫자가 든 복권을 발행한다.")

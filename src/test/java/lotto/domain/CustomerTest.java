@@ -24,10 +24,10 @@ public class CustomerTest {
     @Test
     public void issuedLottos() {
         // given
-        Lotto issuedLotto1 = lottoMachine.issueLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto issuedLotto = lottoMachine.issueLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6));
 
         // when
-        customer.buyLotto(issuedLotto1);
+        customer.buyLotto(issuedLotto);
 
         // then
         customer.getIssuedLottos().stream().forEach(lotto ->

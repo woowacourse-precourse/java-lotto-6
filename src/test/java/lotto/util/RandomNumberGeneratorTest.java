@@ -25,8 +25,10 @@ public class RandomNumberGeneratorTest {
     @RepeatedTest(10)
     @DisplayName("1-45 사이의 숫자를 생성한다.")
     void generateRandomNumber() {
+        // given & when
         List<Integer> lottos = randomNumberGenerator.generate();
 
+        // then
         lottos.stream().forEach(lotto ->
                 assertThat(lotto).isBetween(MINIMUM.getValue(), MAXIMUM.getValue()));
     }
@@ -34,9 +36,10 @@ public class RandomNumberGeneratorTest {
     @DisplayName("1-45 사이의 숫자를 6개 생성한다.")
     @Test
     void generateRandomNumberSize() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        // given & when
         List<Integer> lottos = randomNumberGenerator.generate();
 
+        // then
         assertEquals(lottos.size(), SIZE.getValue());
     }
 }

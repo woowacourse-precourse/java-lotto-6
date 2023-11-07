@@ -12,6 +12,9 @@ public class OutputView {
     private static final String LINE_FEED = "\n";
     private static final String EMPTY = "";
 
+    private OutputView() {
+    }
+
     public static void printLottos(List<List<Integer>> lottos) {
         print(lottos.size() + PAID_DONE_MESSAGE);
         lottos.forEach(System.out::println);

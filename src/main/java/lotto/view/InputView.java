@@ -17,6 +17,9 @@ public class InputView {
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
 
+    private InputView() {
+    }
+
     public static long getPurchaseCost() {
         print(PURCHASE_COST_MESSAGE);
         String input = getLine();

@@ -19,7 +19,7 @@ public enum LottoPrize {
 		return matches;
 	}
 
-	public long getPrize() {
+	public int getPrize() {
 		return prize;
 	}
 }

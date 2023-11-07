@@ -35,6 +35,30 @@ public class LottoGameTest extends NsTest {
         );
     }
 
+    @Test
+    void 기능_테스트3() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "11,18,22,33,44,45", "7");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[11, 18, 22, 33, 44, 45]",
+                            "[7, 11, 22, 33, 44, 45]",
+                            "[8, 11, 22, 33, 44, 45]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 1개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 67,716,666.7%입니다."
+                    );
+                },
+                List.of(11, 18, 22, 33, 44, 45),
+                List.of(7, 11, 22, 33, 44, 45),
+                List.of(8, 11, 22, 33, 44, 45)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

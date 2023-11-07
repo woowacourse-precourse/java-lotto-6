@@ -7,14 +7,13 @@ public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
 
-
-    private WinningLotto(Lotto lotto, int bonusNumber){
+    public WinningLotto(Lotto lotto, int bonusNumber){
         validate(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static void validate(Lotto lotto, int bonusNumber) {
+    private void validate(Lotto lotto, int bonusNumber) {
         if (lotto.containBonusNum(bonusNumber)) {
             throw new BonusNumDuplicateException();
         }

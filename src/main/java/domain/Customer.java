@@ -8,8 +8,8 @@ public class Customer {
 
     public Customer() {
         int inputMoney = input();
-        validateDigit(this.money);
-        validateRange(this.money);
+        validateDigit(inputMoney);
+        validateRange(inputMoney);
         this.money = inputMoney;
     }
 

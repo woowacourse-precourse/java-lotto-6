@@ -8,6 +8,18 @@ import java.util.Map;
 public class LottoStatistic {
     private final Map<LottoGrade, Integer> result = new LinkedHashMap<>();
 
+    public LottoStatistic(List<Lotto> issueLottos, WinningLotto winningLotto) {
+        initLottoRankCountMap();
+        generateResult(issueLottos, winningLotto);
+    }
+
+    private void initLottoRankCountMap() {
+        result.put(LottoGrade.FIRST, 0);
+        result.put(LottoGrade.SECOND, 0);
+        result.put(LottoGrade.THIRD, 0);
+        result.put(LottoGrade.FOURTH, 0);
+        result.put(LottoGrade.FIFTH, 0);
+    }
 
     private void generateResult(List<Lotto> issueLottos, WinningLotto winningLotto) {
         List<Integer> winningNumbers = winningLotto.getWinningNumbers();

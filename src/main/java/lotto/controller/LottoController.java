@@ -49,14 +49,16 @@ public class LottoController {
         int userBonusNumber = Integer.parseInt(userBonus);
         UserLotto userLotto = new UserLotto(userPickNumber, userBonusNumber);
 
-        Calculator calculator = new Calculator();
-        calculator.match(userLotto, winningLottos);
-
         RankContainer rankContainer = new RankContainer();
+        Calculator calculator = new Calculator();
+        calculator.match(rankContainer, userLotto, winningLottos);
+
+
         int cnt = 0;
         for (Rank rank : Rank.values()) {
             cnt += rankContainer.getRankContainer(rank) * rank.getAward();
         }
         double rate = (cnt * 0.1) / ((money) / 1000);
+        SystemOutput.printRankResult(rankContainer, rate);
     }
 }

@@ -30,7 +30,7 @@ public class SystemOutput {
         System.out.println("당첨 통계" + "\n" + "---");
         for (Rank rank : Rank.values()) {
             if (!rank.equals(Rank.NONE)) {
-                System.out.println()
+                System.out.println(getRankContainerResult(rank, rankContainer));
             }
         }
         System.out.printf(("총 수익률은 %.1f%%입니다.") + "\n", rate);
@@ -41,7 +41,7 @@ public class SystemOutput {
             return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getCount(), String.format("%,d", rank.getAward()), rankContainer.getRankContainer(rank));
         }
 
-        return String.format("%d개 일치 (%s원) - %d개", rank.getCount(), String.format("%,d", rank.getAward(), rankContainer.getRankContainer(rank)));
+        return String.format("%d개 일치 (%s원) - %d개", rank.getCount(), String.format("%,d", rank.getAward()), rankContainer.getRankContainer(rank));
     }
 
 

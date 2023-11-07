@@ -6,6 +6,7 @@ import main.java.lotto.domain.WinningLottos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Calculator {
 
@@ -14,7 +15,7 @@ public class Calculator {
         for (int number : winningLotto.getNumbers()) {
             for (int userNumber : userLotto.getUserNumbers().getNumbers()) {
                 if (number == userNumber) {
-                    count ++;
+                    count++;
                 }
             }
         }
@@ -22,12 +23,12 @@ public class Calculator {
 
     }
 
-    public void match(UserLotto userLotto, WinningLottos winninglottos) {
+    public void match(RankContainer rankContainer, UserLotto userLotto, WinningLottos winninglottos) {
         for (Lotto lotto : winninglottos.getWiningLottos()) {
             Rank rank = Rank.valueOf(calculateMatchLottoNumber(userLotto, lotto), lotto.isContain(userLotto.getBonusNumber()));
-            RankContainer rankContainer = new RankContainer();
             rankContainer.incRank(rank);
         }
     }
+
 }
 

@@ -18,8 +18,6 @@ public class LottoController {
     }
 
 
-
-    //실제 실행
     public void run() throws IllegalArgumentException{
 
         try {
@@ -33,9 +31,6 @@ public class LottoController {
             //유저의 당첨 번호, 보너스 번호
             Lotto userWinningNum = runInputWinningNum();
             Integer bonusNum = runInputBonusNum(userWinningNum);
-
-//            System.out.println(userWinningNum.getNumbers());
-//            System.out.println(bonusNum);
 
             //구매 로또랑 유저 번호랑 매칭 작업
             HashMap<Integer, Integer> matchCount = runMatchNums(lottoes, userWinningNum, bonusNum);
@@ -71,12 +66,10 @@ public class LottoController {
         return lottoService.validateUserBonusNum(winningNum, inputBonusNum);
     }
 
-    //TODO 서비스 코드 실행
+    //서비스 코드 실행
     public HashMap<Integer, Integer> runMatchNums(List<Lotto> lottoes, Lotto userWinningNum, Integer bonusNum){
         return lottoService.matchNums(lottoes, userWinningNum, bonusNum);
     }
-
-
 
 
     //outputView 실행

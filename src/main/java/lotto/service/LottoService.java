@@ -13,9 +13,6 @@ import static lotto.domain.Constant.*;
 
 public class LottoService {
 
-    //모델을 수정하는 곳
-    //lotto 자체 관련 로직
-
     public int convertToTimes(String inputMoney) {
         int money = validateMoney(inputMoney);
         if (money % 1000 == 0 )
@@ -31,7 +28,6 @@ public class LottoService {
         return Integer.parseInt(inputMoney);
     }
 
-
     public List<Lotto> createLottoes(int times) {
         List<Lotto> result = new ArrayList<>();
         for (int i = 0; i < times; i++) {
@@ -40,12 +36,10 @@ public class LottoService {
         return result;
     }
 
-
     public Lotto createLotto() {
         Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         return lotto;
     }
-
 
     public Lotto convertToLotto(String inputWinningNum){
         List<String> before = Arrays.stream(inputWinningNum.split(",")).toList();
@@ -73,7 +67,6 @@ public class LottoService {
         }
     }
 
-
     public int validateUserBonusNum(Lotto winningNum, String bonusNum){
         if(validateNum(bonusNum) && !winningNum.getNumbers().contains(Integer.parseInt(bonusNum))){ //숫자인지 확인
            return Integer.parseInt(bonusNum);
@@ -87,7 +80,6 @@ public class LottoService {
             return true;
         throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45까지 입력해 주세요.");
     }
-
 
     public HashMap<Integer, Integer> matchNums(List<Lotto> lottoes, Lotto userWinningNum, Integer bonusNum){
         // 3, 4, 5, 5보너스, 6 => 3, 4, 5, 6, 7
@@ -110,7 +102,6 @@ public class LottoService {
             }
             if(lotto.getNumbers().contains(bonusNum))
                 bonusCnt++;
-
 
             //맞춘 개수에 따라 체크
             if(cnt == 3) {

@@ -20,7 +20,6 @@ public class OutputView {
         }
     }
 
-
     public static void printFinalResult(HashMap<Integer, Integer> matchCount, double rateOfReturn){
         System.out.println("\n"+OUTPUT_RESULT_START);
         System.out.println(THREE_MATCH+matchCount.get(3)+COUNT);

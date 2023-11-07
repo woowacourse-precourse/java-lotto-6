@@ -32,12 +32,12 @@ class InputTest {
 
     @DisplayName("입력이 정수가 아니면 에러가 발생한다.")
     @Test
-    void inputPurchaseAmountByString() {
+    void inputPurchaseAmountByNotInteger() {
         String inputString = "bad";
         provideInput(inputString);
         assertThatThrownBy(() -> input.inputPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_INTEGER_PURCHASE_AMOUNT.getErrMsg());
+                .hasMessage(NOT_INTEGER_VALUE.getErrMsg());
     }
 
     @DisplayName("입력이 1000으로 나누어지지 않으면 에러가 발생한다.")
@@ -86,6 +86,36 @@ class InputTest {
         String inputString = "-1,2,3,4,5,6";
         provideInput(inputString);
         assertThatThrownBy(() -> input.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_NUMBERS_VALUE.getErrMsg());
+    }
+
+    @DisplayName("보너스 번호에 정수가 아닌 값이 입력되면 예외가 발생한다.")
+    @Test
+    void inputBonusNumberByNotInteger() {
+        String inputString = "bad";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_INTEGER_VALUE.getErrMsg());
+    }
+
+    @DisplayName("보너스 번호에 46이상의 숫자가있으면 예외가 발생한다.")
+    @Test
+    void inputBonusNumberByInvalidedNumber_01() {
+        String inputString = "46";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_NUMBERS_VALUE.getErrMsg());
+    }
+
+    @DisplayName("보너스 번호에 1이하의 숫자가있으면 예외가 발생한다.")
+    @Test
+    void inputBonusNumberByInvalidedNumber_02() {
+        String inputString = "-1";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputBonusNumber())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBERS_VALUE.getErrMsg());
     }

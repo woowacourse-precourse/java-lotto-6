@@ -10,13 +10,18 @@ public class LotteryAnswerNumberService {
         String lottoAnswerInput = null;
         while (!success) {
             lottoAnswerInput = Console.readLine();
-            try {
-                LottoAnswerValidator.validateLottoAnswerInput(lottoAnswerInput);
-                success = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            success = isValidAnswer(success, lottoAnswerInput);
         }
         return LottoAnswerMapper.mapToLotto(lottoAnswerInput);
+    }
+
+    private boolean isValidAnswer(boolean success, String lottoAnswerInput) {
+        try {
+            LottoAnswerValidator.validateLottoAnswerInput(lottoAnswerInput);
+            success = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return success;
     }
 }

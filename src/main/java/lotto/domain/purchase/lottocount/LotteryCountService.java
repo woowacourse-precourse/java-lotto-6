@@ -4,32 +4,38 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class LotteryCountService {
     public Integer getLottoTicketCount() {
-        boolean success = false;
-        Integer lottoTicketCount = 0;
-        lottoTicketCount = getValidTicketCount(success, lottoTicketCount);
-        return lottoTicketCount;
+        // 입력
+        String validCashInput = getValidCashInput();
+        // 매핑
+        Integer cash = CashMapper.mapToInteger(validCashInput);
+        // 개수 반환
+        return LottoCountCalculator.divideByLottoPrice(cash);
     }
 
-    Integer getValidTicketCount(boolean success, Integer lottoTicketCount) {
-        // 검증 통과될 때까지 입력
+    String getValidCashInput() {
+        boolean success = false;
+        String cashInput = null;
         while (!success) {
-            String cashInput = Console.readLine();
-            try {
-                lottoTicketCount = getTicketCountFromCash(cashInput);
-                success = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            cashInput = Console.readLine();
+            success = validateCash(success, cashInput);
         }
-        return lottoTicketCount;
+        return cashInput;
+    }
+
+    boolean validateCash(boolean success, String cashInput) {
+        try {
+            CashValidator.validateCashInput(cashInput);
+            success = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return success;
     }
 
     Integer getTicketCountFromCash(String cashInput) throws IllegalArgumentException {
-        // 검증
-        CashValidator.validateCashInput(cashInput);
         // 매핑
         Integer cash = CashMapper.mapToInteger(cashInput);
         // 개수 반환
-        return LottoCountCalculator.getLottoTicketCount(cash);
+        return LottoCountCalculator.divideByLottoPrice(cash);
     }
 }

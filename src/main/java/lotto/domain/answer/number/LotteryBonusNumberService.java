@@ -8,13 +8,18 @@ public class LotteryBonusNumberService {
         String bonusInput = null;
         while (!sucess) {
             bonusInput = Console.readLine();
-            try {
-                LottoAnswerValidator.validateBonusInput(bonusInput);
-                sucess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            sucess = isValidBonus(sucess, bonusInput);
         }
         return LottoAnswerMapper.mapToBonus(bonusInput);
+    }
+
+    private boolean isValidBonus(boolean sucess, String bonusInput) {
+        try {
+            LottoAnswerValidator.validateBonusInput(bonusInput);
+            sucess = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return sucess;
     }
 }

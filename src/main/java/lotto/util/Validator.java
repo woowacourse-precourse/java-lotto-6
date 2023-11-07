@@ -1,5 +1,6 @@
 package lotto.util;
 
+import static lotto.constant.ExceptionMessages.BONUS_NUMBER_DUPLICATION_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.MIN_PURCHASE_AMOUNT_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_COUNT_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_DUPLICATION_EXCEPTION_MESSAGE;
@@ -12,6 +13,7 @@ import static lotto.constant.GameOptions.LOTTO_PRICE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.WinningNumber;
 
 public class Validator {
 
@@ -75,6 +77,17 @@ public class Validator {
                 throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATION_EXCEPTION_MESSAGE.toString());
             }
             set.add(number);
+        }
+    }
+
+    public static void validateBonusNumber(Integer bonus, WinningNumber winningNumbers) {
+        validateNumberRange(bonus);
+        validateBonusNumberDuplication(bonus, winningNumbers);
+    }
+
+    private static void validateBonusNumberDuplication(Integer bonus, WinningNumber winningNumbers) {
+        if (winningNumbers.getNumbers().contains(bonus)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION_MESSAGE.toString());
         }
     }
 }

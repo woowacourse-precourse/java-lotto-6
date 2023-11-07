@@ -5,8 +5,17 @@ import java.util.Map;
 
 public record LottoResultDto(double profitRate, Map<Rank, Integer> result) {
     public LottoResultDto(double profitRate, Map<Rank, Integer> result) {
-        this.profitRate = profitRate;
-        result.remove(Rank.OUT_RANK);
+        removeOutRankKeys(result);
         this.result = result;
+
+        this.profitRate = profitRate;
+    }
+
+    private void removeOutRankKeys(Map<Rank, Integer> result) {
+        for (Rank rank : Rank.values()) {
+            if(rank.isOutRank()) {
+                result.remove(rank);
+            }
+        }
     }
 }

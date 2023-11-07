@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Rank {
-    OUT_RANK(0, -1),
+    ZERO_MATCH(0, 0),
+    ONE_MATCH(0, 1),
+    TWO_MATCH(0, 2),
     THREE_MATCH(5000, 3),
     FOUR_MATCH(50000, 4),
     FIVE_MATCH(1500000, 5),
@@ -31,7 +33,7 @@ public enum Rank {
         if (isDecidedByBonusNumber(matchedCount)) {
             return decideByBonusNumberMatched(bonusNumberMatched);
         }
-        return matchedCountToRank.getOrDefault(matchedCount, OUT_RANK);
+        return matchedCountToRank.get(matchedCount);
     }
 
     private static boolean isDecidedByBonusNumber(int matchedCount) {
@@ -43,6 +45,10 @@ public enum Rank {
             return FIVE_AND_BONUS_MATCH;
         }
         return FIVE_MATCH;
+    }
+
+    public boolean isOutRank() {
+        return prizeMoney == 0;
     }
 
     public int getPrizeMoney() {

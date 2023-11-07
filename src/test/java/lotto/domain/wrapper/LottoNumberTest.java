@@ -13,9 +13,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberTest {
-    private static final int MINUS_VALUE = -1;
-    private static final int ZERO_VALUE = -1;
-    private static final int TOO_BIG_VALUE = 46;
     private static final int LOTTO_NUMBER_EXAMPLE = 2;
     private static final int ONLY_ONE_ELEMENT = 1;
     private static final int SMALLER_LOTTO_NUMBER_EXAMPLE = 1;
@@ -26,7 +23,7 @@ class LottoNumberTest {
 
     @DisplayName("로또 번호가 1~45 사이 값이 아니라면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {MINUS_VALUE, ZERO_VALUE, TOO_BIG_VALUE})
+    @ValueSource(ints = {-1, 0, 46})
     void createLottoNumberOutOfRange(int number) {
         assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)

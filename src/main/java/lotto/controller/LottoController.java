@@ -22,6 +22,7 @@ public class LottoController {
         outputView.printLottoTicketCount(lottoTicketCount);
         lottos = createLottos(lottoTicketCount);
         outputView.printLottos(lottos);
+        inputView.inputWinningNumbers();
     }
 
     private int inputLottoAmount() {

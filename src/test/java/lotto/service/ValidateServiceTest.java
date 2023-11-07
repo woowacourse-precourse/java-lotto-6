@@ -19,7 +19,7 @@ public class ValidateServiceTest {
         //when - then
         assertThatThrownBy(() -> validateService.validateInputPurchaseMoney(inputPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ERROR_PREFIX + "구매금액은 숫자로 이루어져야 합니다.");
+                .hasMessage(ERROR_PREFIX + "숫자로 이루어져야 합니다.");
     }
 
     @Test

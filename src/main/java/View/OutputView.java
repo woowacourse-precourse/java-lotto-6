@@ -1,5 +1,6 @@
 package View;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -11,6 +12,7 @@ public class OutputView {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
             System.out.println(numbers);
         });
     }

@@ -17,20 +17,27 @@ public class LottoGame {
         int payment = Integer.parseInt(money);
 
         OutputView.print(Message.LINE_BREAK);
-        int numberOfLotto = payment / 1000;
-        OutputView.print(String.valueOf(numberOfLotto));
+        int countOfLotto = payment / 1000;
+        OutputView.print(String.valueOf(countOfLotto));
         OutputView.print(Message.PAYMENT_COMPLETE);
         OutputView.print(Message.LINE_BREAK);
 
         List<Lotto> lottoPaper = new ArrayList<>();
+        for (int count = 0; count < countOfLotto; count++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto attempt = new Lotto(numbers);
+            lottoPaper.add(attempt);
+        }
 
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Lotto attempt = new Lotto(numbers);
+        for (Lotto lotto : lottoPaper) {
+
+        }
+
     }
 
     public void validateNumber(String input) {
         if (!input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
         }
     }
 

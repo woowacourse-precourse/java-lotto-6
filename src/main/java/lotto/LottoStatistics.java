@@ -27,27 +27,18 @@ public class LottoStatistics {
         returnRate = calcReturnRate(lottoList.size() * 1000);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder msgBuilder = new StringBuilder("");
-        for (LottoResult result : statistics.keySet()) {
-            if (result == LottoResult.OTHER) {
-                continue;
-            }
-            msgBuilder.append(result.getMsg());
-            msgBuilder.append(statistics.get(result));
-            msgBuilder.append("개\n");
-        }
-        msgBuilder.append("총 수익률은 ")
-                .append(returnRate)
-                .append("%입니다.\n");
-        return msgBuilder.toString();
+    public Map<LottoResult, Integer> getStatistics() {
+        return statistics;
+    }
+
+    public Float getReturnRate() {
+        return returnRate;
     }
 
     private Float calcReturnRate(Integer totalCost) {
-        Integer sum = 0;
+        Long sum = 0L;
         for (LottoResult key : statistics.keySet()) {
-            sum += statistics.get(key) * key.getPrize();
+            sum += Long.valueOf(statistics.get(key)) * key.getPrize();
         }
         return Math.round(sum.floatValue() / totalCost * 1000) / 10.0f;
     }

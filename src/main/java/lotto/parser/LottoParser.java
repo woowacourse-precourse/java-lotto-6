@@ -25,7 +25,6 @@ public class LottoParser {
         }
         return new Lotto(parseNumbers(winningLotto));
     }
-
     private static List<Integer> parseNumbers(String winningLotto) {
         return Arrays.stream(winningLotto.split(DELIMITER))
                 .map(String::trim)

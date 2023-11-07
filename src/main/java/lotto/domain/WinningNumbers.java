@@ -35,4 +35,16 @@ public class WinningNumbers {
         numbers.remove(Integer.valueOf(bonusNumber));
     }
 
+    public boolean isBonus(LottoTicket lottoTicket) {
+        List<LottoNumber> lottoNumbers = lottoTicket.getLottoNumbers();
+        return lottoNumbers.contains(bonusNumber);
+    }
+
+    public Rank getRank(LottoTicket lottoTicket) {
+        long matchCount = lottoTicket.getLottoNumbers().stream()
+                .filter(lottoNumber -> winningNumbers.contains(lottoNumber))
+                .count();
+        return Rank.of((int) matchCount, isBonus(lottoTicket));
+    }
+
 }

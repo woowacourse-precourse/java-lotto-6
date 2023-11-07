@@ -4,23 +4,42 @@ import java.util.List;
 
 public class User {
 
-    private int totalReturnPercentage = 0;
+    private int purchaseAmount = 0;
+    private int totalReturn = 0;
+    private double totalReturnPercentage = 0;
     private List<Lotto> lottoList;
-    private List<Integer> winningStatistics;
+    private int[] winningStatistics;
 
-    public List<Integer> getWinningStatistics() {
+    public int getTotalReturn() {
+        return totalReturn;
+    }
+
+    public void setTotalReturn(int totalReturn) {
+        this.totalReturn = totalReturn;
+    }
+
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public void setPurchaseAmount(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
+
+    public int[] getWinningStatistics() {
         return winningStatistics;
     }
 
-    public void setWinningStatistics(List<Integer> winningStatistics) {
+    public void setWinningStatistics(int[] winningStatistics) {
         this.winningStatistics = winningStatistics;
     }
 
-    public int getTotalReturnPercentage() {
+    public double getTotalReturnPercentage() {
         return totalReturnPercentage;
     }
 
-    public void setTotalReturnPercentage(int totalReturn) {
+    public void setTotalReturnPercentage(double totalReturnPercentage) {
         this.totalReturnPercentage = totalReturn;
     }
 

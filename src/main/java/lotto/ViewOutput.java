@@ -7,11 +7,12 @@ public class ViewOutput {
     private static StringBuilder stringBuilder = new StringBuilder();
 
     public void showLottoList(List<Lotto> lottoList) {
+        stringBuilder.append("\n" + lottoList.size() + "개를 구매핬습니다.\n");
         for(Lotto lotto : lottoList) {
             stringBuilder.append("[");
 
             for(int index = 0; index < 6; index++) {
-                List<Integer> lottoNumbers = new ArrayList<>();
+                List<Integer> lottoNumbers = lotto.getNumbers();
                 stringBuilder.append(lottoNumbers.get(index) + ", ");
             }
             stringBuilder.setLength(stringBuilder.length() - 2);
@@ -34,7 +35,7 @@ public class ViewOutput {
         stringBuilder.setLength(0);
     }
 
-    public void showTotalReturn(int totalReturnPercentage) {
+    public void showTotalReturnPercentage(double totalReturnPercentage) {
         String formattedResult = String.format("%1f", totalReturnPercentage);
         System.out.println("총 수익률은 " + formattedResult + "%입니다.");
     }

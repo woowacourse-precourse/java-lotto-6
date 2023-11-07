@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
     private static final int SUM_SIZE = 12;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

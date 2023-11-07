@@ -52,7 +52,7 @@ public class LottoController {
         outputView.printWinningInput();
         Lotto winningNumbers = createWinningNumbers();
         outputView.printBonusInput();
-        int bonusNumber = createBonusNumber();
+        int bonusNumber = createBonusNumber(winningNumbers);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
@@ -67,11 +67,11 @@ public class LottoController {
         }
     }
 
-    private int createBonusNumber() {
+    private int createBonusNumber(Lotto winningNumbers) {
         while (true) {
             try {
                 String inputBonus = inputView.bonusNumberInput();
-                return WinningLotto.createBonusNumber(inputBonus);
+                return WinningLotto.createBonusNumber(winningNumbers, inputBonus);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

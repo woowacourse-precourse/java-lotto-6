@@ -15,7 +15,6 @@ public class Game {
     private final List<Integer> checkCount;
     private final int BONUS_NUMBER_CORRECT;
     private int COUNT_LOTTO;
-    private String PAST_BONUS_NUMBER;
     private int BONUS_NUMBER;
     private InputView inputView;
     private OutputView outputView;
@@ -46,14 +45,10 @@ public class Game {
         prizeNumberInput();   //당첨 번호 입력 및 변환
 
         inputView.bonusNumberView();
-        PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
-        BONUS_NUMBER = changeBonusNumber(PAST_BONUS_NUMBER);    //보너스 번호 변환
+        BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력 및 변환
 
         checkPrize(lottos, prizes); //당첨 개수 확인
-
-        outputView.winningStatistics(checkCount); //당첨 통계 출력
-
-        outputView.yieldRateOfReturn(COUNT_LOTTO*1000);
+        outputView.winningStatistics(checkCount, COUNT_LOTTO*1000); //당첨 통계 및 수익률 출력
     }
 
     public int purchaseAmountInput(){
@@ -151,16 +146,51 @@ public class Game {
     }
 
 
-    public String bonusNumberInput(){
-        //예외 처리 추가해야 함
-
-        return Console.readLine();
+    public int bonusNumberInput(){
+        int bonusNumber;
+        while(true) {
+            try {
+                String PRIZE = Console.readLine();
+                bonusNumber = changeBonusNumber(PRIZE);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(ERROR_MESSAGE);
+            }
+        }
+        return bonusNumber;
     }
 
-    public int changeBonusNumber(String PAST_BONUS_NUMBER){
-        //예외 처리 추가해야 함
+    public int changeBonusNumber(String PRIZE){
+        int bonus = changeBonusPrize(PRIZE);
+        validate_Duplication_Bonus(prizes, bonus); // 중복 예외 처리
+        validate_OverLess_Bonus(bonus); //당첨 번호 45 초과, 1 미만 예외 처리
 
-        return Integer.parseInt(PAST_BONUS_NUMBER);
+        return bonus;
+    }
+
+    private int changeBonusPrize(String PRIZE){
+        try{
+            return Integer.parseInt(PRIZE);
+        }catch (IllegalArgumentException e){
+            ERROR_MESSAGE = ERROR_MESSAGE_NUMBER;
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validate_Duplication_Bonus(List<Integer> prizes, int bonus){
+        for (int prize : prizes) {
+            if(prize == bonus){
+                ERROR_MESSAGE = ERROR_MESSAGE_REPEAT;
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    private void validate_OverLess_Bonus(int bonus){
+        if (bonus > 45 || bonus < 1) {
+            ERROR_MESSAGE = ERROR_MESSAGE_OVERLESS;
+            throw new IllegalArgumentException();
+        }
     }
 
     public void checkPrize(List<Lotto> lottos, List<Integer> prizes){

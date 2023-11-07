@@ -37,7 +37,7 @@ public class OutputView {
         }
     }
 
-    public void winningStatistics(List<Integer> checkCount){
+    public void winningStatistics(List<Integer> checkCount, int COUNT_LOTTO){
         System.out.println("\n" + WINNING_STATISTICS);
         System.out.println(LINE);
 
@@ -50,6 +50,8 @@ public class OutputView {
         fiveBonusPrize(checkCount);
 
         sixPrize(checkCount);
+
+        yieldRateOfReturn(COUNT_LOTTO);
     }
 
     public int countPrize(List<Integer> checkCount, int Number){

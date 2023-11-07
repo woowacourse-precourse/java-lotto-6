@@ -46,10 +46,18 @@ public class WinningNumbersTest {
                 .hasMessage("[Error] 쉼표(,)로 구분했을 때 6개의 정수로 이루어져야 합니다.\n");
     }
 
-    @DisplayName("당첨 번호에 1~45 사이를 벗어나는 정수가 있으면 예외가 발생한다.")
+    @DisplayName("당첨 번호에 45보다 큰 정수가 있으면 예외가 발생한다.")
     @Test
-    void createResultNumbersByOutOfRange() {
+    void createResultNumbersByOverOfRange() {
         assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 48, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1~45 사이의 정수만 입력할 수 있습니다.\n");
+    }
+
+    @DisplayName("당첨 번호에 1보다 작은 정수가 있으면 예외가 발생한다.")
+    @Test
+    void createResultNumbersByUnderOfRange() {
+        assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 0, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1~45 사이의 정수만 입력할 수 있습니다.\n");
     }
@@ -57,7 +65,6 @@ public class WinningNumbersTest {
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createResultNumbersByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 중복된 숫자가 있습니다.\n");

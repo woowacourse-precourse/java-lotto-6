@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoNumbersGeneratorTest {
     LottoNumbersGenerator lottoNumbersGenerator;
@@ -40,5 +42,13 @@ public class LottoNumbersGeneratorTest {
         for (int index = 0; index < generatedLottoNumbers.size() - 1; index++) {
             assertTrue(generatedLottoNumbers.get(index) < generatedLottoNumbers.get(index + 1));
         }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @DisplayName("count 개수만큼 Lotto 생성")
+    void generateLottoAsCount(int count) {
+        List<Lotto> lottos = lottoNumbersGenerator.generateLottos(count);
+        assertEquals(lottos.size(), count);
     }
 }

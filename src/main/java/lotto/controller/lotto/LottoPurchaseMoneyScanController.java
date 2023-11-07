@@ -6,12 +6,12 @@ import lotto.domain.LottoPurchaseMoney;
 import lotto.view.MessageOutputView;
 
 public class LottoPurchaseMoneyScanController {
-	MessageOutputView messageOutputController = new MessageOutputView();
+	MessageOutputView messageOutputView = new MessageOutputView();
 	InputController inputController = new InputController();
 	LottoPurchaseMoneyValidator lottoPurchaseMoneyValidator = new LottoPurchaseMoneyValidator();
 	public void scanLottoPurchaseMoney(LottoPurchaseMoney lottoPurchaseMoney) {
 		try{
-			messageOutputController.printScanningLottoPurchaseMoneyMessage();
+			messageOutputView.printScanningLottoPurchaseMoneyMessage();
 			String scannedPurchaseMoneyString = inputController.scanLottoPurchaseMoneyString();
 			lottoPurchaseMoneyValidator.checkValidatioOfLottoPurchaseMoney(scannedPurchaseMoneyString);
 			Integer scannedPurchaseMoney = Integer.parseInt(scannedPurchaseMoneyString);

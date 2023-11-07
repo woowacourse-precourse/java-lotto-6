@@ -18,7 +18,9 @@ public enum GlobalError implements LottoGameError {
     ALREADY_EXIST_IN_WINNING_NUMBERS("이미 당첨 번호에 포함되어 있는 숫자입니다. 다른 숫자를 입력해주세요."),
 
     /** 잘못된 애플리케이션 메서드 호출 */
-    NOT_PAID_YET("금액을 먼저 지불하세요."),
+    NOT_REGISTER_WINNING_YET("당첨 번호를 먼저 입력하세요."),
+    NOT_REGISTER_BONUS_YET("보너스 번호를 먼저 입력하세요."),
+    REGISTER_WINNING_YET("당첨 번호를 먼저 지불하세요."),
     TOO_MANY_LOTTOS("너무 많은 로또를 구매하셨습니다. 구매 금액을 줄여주세요."),
     ALREADY_REGISTER_WINNING("이미 당첨 번호와 보너스 번호가 등록되어 있습니다."),
     ;

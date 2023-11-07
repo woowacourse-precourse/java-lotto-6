@@ -14,13 +14,13 @@ public class Intersection {
         return matchingCounts;
     }
 
-    public List checkBonusNumber(int bonusNum, List<Set> lottoNum) {
+    public List checkBonusNumber(String bonusNum, List<Set> lottoNum) {
         List<Boolean> intersectionBonus = new ArrayList<>();
         for (Set intersectionCheck : lottoNum) {
-            if (intersectionCheck.contains(bonusNum)) {
+            if (intersectionCheck.contains(Integer.parseInt(bonusNum))) {
                 intersectionBonus.add(true);
             }
-            if (!intersectionCheck.contains(bonusNum)) {
+            if (!intersectionCheck.contains(Integer.parseInt(bonusNum))) {
                 intersectionBonus.add(false);
             }
         }

@@ -12,7 +12,7 @@ class IntersectionTest {
 
     @DisplayName("당첨 번호 비교")
     @Test
-    void winNum() {
+    void countMatchingNumbers() {
         Intersection intersection = new Intersection();
         List<Integer> winNum = List.of(1, 11, 5, 24, 3, 7);
         List<Set> lottoNum = List.of(Set.of(1, 11, 5, 24, 3, 8));
@@ -22,10 +22,10 @@ class IntersectionTest {
 
     @DisplayName("보너스 번호 비교")
     @Test
-    void bonusNum() {
+    void checkBonusNumber() {
         Intersection intersection = new Intersection();
         List<Set> numbers = List.of(Set.of(1, 11, 5, 24, 3, 7));
-        List result = intersection.checkBonusNumber(1, numbers);
+        List result = intersection.checkBonusNumber("1", numbers);
         assertThat(result).isEqualTo(List.of(true));
     }
 }

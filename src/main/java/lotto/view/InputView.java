@@ -23,12 +23,12 @@ public class InputView {
         return lottoNumbers;
     }
 
-    public String inputBonusNumberView(){
+    public String inputBonusNumberView() {
         String bonusNumber = Console.readLine();
         return bonusNumber;
     }
 
-    public static int toIntStringNumberParser(String number){
+    public static int toIntStringNumberParser(String number) {
         return Integer.parseInt(number);
     }
 

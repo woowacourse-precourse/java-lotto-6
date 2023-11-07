@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.List;
+
 import lotto.domain.Lotto;
 import lotto.util.LottoUtil;
 import lotto.view.InputView;

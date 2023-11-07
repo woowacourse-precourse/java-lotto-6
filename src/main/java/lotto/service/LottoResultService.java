@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import lotto.domain.Lotto;
 import lotto.domain.LottoInformation;
 import lotto.domain.User;

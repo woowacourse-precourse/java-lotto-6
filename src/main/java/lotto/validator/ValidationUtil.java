@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import java.util.List;
+
 public class ValidationUtil {
     public static boolean isNumber(String input) {
         if (input.isEmpty()) {
@@ -15,5 +17,25 @@ public class ValidationUtil {
 
     public static boolean isInputFirstZero(String input) {
         return input.charAt(0) == '0';
+    }
+
+    public static boolean isDuplicateNumbers(List<Integer> numbers) {
+        List<Integer> duplicateNumbers = numbers
+                .stream()
+                .distinct()
+                .toList();
+
+        if (duplicateNumbers.size() != numbers.size()) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public static boolean isOutOfRange(int start, int end, int num) {
+        if (num < start || end < num) {
+            return true;
+        }
+        return false;
     }
 }

@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 
 public class LottoRankTest {
 
-    @DisplayName("LottoRank enum static 메서드 valueOf 정상 생성 테스트")
+    @DisplayName("valueOf SECOND 정상 생성 테스트")
     @Test
-    void valueOf_EqualResult_success() {
+    void valueOf_EqualSECOND_success() {
 
         //given
         long matchCount = 5L;
@@ -25,4 +25,41 @@ public class LottoRankTest {
         assertThat(result).isEqualTo(LottoRank.SECOND);
 
     }
+
+    @DisplayName("valueOf NONE 정상 생성 테스트")
+    @Test
+    void valueOf_EqualNONE_success() {
+
+        //given
+        long matchCount = 2L;
+        Boolean bonusBall = true;
+
+        //when
+        LottoRank result = LottoRank.valueOf(matchCount, bonusBall);
+
+        //then
+        assertThat(result).isEqualTo(LottoRank.NONE);
+
+    }
+
+    @DisplayName("valueOf FIRST 정상 생성 테스트")
+    @Test
+    void valueOf_EqualFIRST_success() {
+
+        //given
+        long matchCount = 6L;
+        Boolean bonusBall = true;
+
+        //when
+        LottoRank result = LottoRank.valueOf(matchCount, bonusBall);
+
+        //then
+        assertThat(result).isEqualTo(LottoRank.FIRST);
+
+    }
+
+
+
+
+
 }

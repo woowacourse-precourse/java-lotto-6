@@ -13,7 +13,7 @@ public class YieldCalculator {
 
     public double calculateYieldCalculator(Map<String, Integer> winningResults, int purchasePrice) {
         double winningMoney = getSumOfResult(winningResults);
-        yeild = (winningMoney - purchasePrice) / purchasePrice * 100;
+        yeild = winningMoney / purchasePrice * 100;
         return yeild;
     }
 

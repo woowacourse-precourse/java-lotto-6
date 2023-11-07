@@ -45,7 +45,7 @@ class PurchaseAmountTest {
     }
 
     @Nested
-    @DisplayName("Success")
+    @DisplayName("Failure")
     class Failure {
         @Test
         @DisplayName("빈 값 입력 시, 에러 처리")

@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BonusTest {
     private static final String IS_NOT_OVERLAP_BONUS_VALIDATOR_ERROR_MESSAGE = "[ERROR] 보너스 번호와 중복된 로또 번호가 존재합니다.";

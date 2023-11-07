@@ -19,6 +19,7 @@ public class LottoController {
 
     public void start() {
         lottosList = new LottosList(ConsolePrint.readPrice());
+        printLottos();
         winningNumber = new Lotto(
                 ConsolePrint.readWinningNum().split(","));
         bonus = new BonusNumber(ConsolePrint.readBonusNum());
@@ -37,6 +38,14 @@ public class LottoController {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    void printLottos() {
+        ConsolePrint.printPurchased(lottosList.getLottosList().size());
+        for (Lotto lotto : lottosList.getLottosList()) {
+            ConsolePrint.printLotto(lotto);
+        }
+
     }
 
 

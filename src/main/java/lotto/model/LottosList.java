@@ -26,7 +26,6 @@ public class LottosList {
     public LottosList(String price) {
         lottosList = new ArrayList<>();
         int lottoNum = calculateNumberLottos(price);
-//        System.out.println(lottoNum);
         createLottos(lottoNum);
 
     }
@@ -38,7 +37,6 @@ public class LottosList {
     public void createLottos(int lottoNum) {
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> numbers = generateUniqueNumbers();
-            System.out.println(numbers.toString());
             lottosList.add(new Lotto(numbers));
         }
     }

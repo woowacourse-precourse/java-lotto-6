@@ -6,9 +6,6 @@ import java.util.List;
 import lotto.Money;
 
 public class LottoMachine {
-    private static final int MIN = 1;
-    private static final int MAX = 45;
-    private static final int SIZE = 6;
 
     private final List<List<Integer>> lottoCandidates = new ArrayList<>();
 
@@ -21,7 +18,11 @@ public class LottoMachine {
     }
 
     private void pickAndSave() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                LottoRule.MIN.value(),
+                LottoRule.MAX.value(),
+                LottoRule.SIZE.value()
+        );
         lottoCandidates.add(numbers);
     }
 

@@ -4,8 +4,6 @@ import lotto.Rank;
 import lotto.exception.ExceptionMessage;
 
 public record WinningNumbers(Lotto winningLotto, int bonus) {
-    private static final int MIN = 1;
-    private static final int MAX = 45;
     public WinningNumbers {
         validate(winningLotto, bonus);
     }
@@ -16,7 +14,7 @@ public record WinningNumbers(Lotto winningLotto, int bonus) {
     }
 
     private void validateRange(int bonus) {
-        if (outOfRange(bonus)) {
+        if (LottoRule.outOfRange(bonus)) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
@@ -25,10 +23,6 @@ public record WinningNumbers(Lotto winningLotto, int bonus) {
         if (winningLotto.contains(bonus)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
-    }
-
-    private boolean outOfRange(int number) {
-        return number < MIN || number > MAX;
     }
 
     public Rank rank(Lotto lotto) {

@@ -6,9 +6,6 @@ import lotto.exception.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int MIN = 1;
-    private static final int MAX = 45;
-    private static final int SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -22,7 +19,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (numbers.size() != LottoRule.SIZE.value()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE.getMessage());
         }
     }
@@ -48,11 +45,7 @@ public class Lotto {
 
     private boolean outOfRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(this::outOfRange);
-    }
-
-    private boolean outOfRange(int number) {
-        return number < MIN || number > MAX;
+                .anyMatch(LottoRule::outOfRange);
     }
 
     public Rank rank(Lotto winningLotto, int bonus) {

@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -47,6 +49,8 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
+    // test when user entered the wrong cash
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -54,6 +58,36 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    @DisplayName("공백을 입력한 경우 예외 발생")
+    void inputBlankExceptionTest() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("1000원 보다 작은 값을 압력한 경우 에외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"100", "200", "300", "400", "999"})
+    void inputAmountSmallThanUnitExceptionTest(String amountSmallThanUnit) {
+        assertSimpleTest(() -> {
+            runException(amountSmallThanUnit);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("1000원 으로 나누어 떨어지지 않는 값을 압력한 경우 에외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1001", "2002", "3003", "4004", "9999"})
+    void inputNotDivisibleByUnitExceptionTest(String notDivisibleByUnit) {
+        assertSimpleTest(() -> {
+            runException(notDivisibleByUnit);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
 
 

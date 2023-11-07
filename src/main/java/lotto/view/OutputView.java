@@ -25,7 +25,8 @@ public class OutputView {
         for (Lotto lotto : autoLottos) {
             result = new StringBuilder();
             result.append(OutputConstants.LOTTO_PRINT_PREFIX.getConstants());
-            result.append(lotto.getLotto().stream().map(String::valueOf).collect(Collectors.joining(", ")));
+            result.append(lotto.getLotto().stream().map(String::valueOf)
+                    .collect(Collectors.joining(OutputConstants.JOIN_FORMAT.getConstants())));
             result.append(OutputConstants.LOTTO_PRINT_SUFFIX.getConstants());
             System.out.print(result);
             printEmpty();

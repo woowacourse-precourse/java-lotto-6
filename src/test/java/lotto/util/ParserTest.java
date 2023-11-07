@@ -3,7 +3,7 @@ package lotto.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParserTest {
     Parser parser = new Parser();
@@ -19,10 +19,9 @@ public class ParserTest {
     @Test
     @DisplayName("정상적으로 입력했을 때 테스트")
     public void testParserValidInput() {
-        String input = "1000";
-        int expected = 1000;
-        int result = parser.lottoPrice(input);
-        assertEquals(expected, result);
+       String inputPrice = "1000";
+       int Price = parser.lottoPrice(inputPrice);
+       assertThat(Price).isEqualTo(1000);
     }
 
 }

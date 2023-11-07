@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lottos;
 import lotto.util.LottoUtil;
 import lotto.util.Validator;
+import lotto.util.parser.LottoParser;
 import lotto.view.input.LottoInputView;
 import lotto.view.input.PurchaseInputView;
 import lotto.view.output.LottoOutputView;
@@ -26,6 +27,7 @@ public class LottoController {
 
         printLottoCount(lottoCount);
         generateLottos(lottoCount);
+        printPurchasedLottos();
     }
 
     /**
@@ -55,6 +57,15 @@ public class LottoController {
      */
     private void generateLottos(int lottoCount) {
         purchasedLottos = new Lottos(LottoUtil.generateLottos(lottoCount));
+    }
+
+    /**
+     * Description: 구입한 로또들을 출력한다.
+     */
+    private void printPurchasedLottos() {
+        purchasedLottos.getLottos().forEach(lotto -> {
+            lottoOutputView.printLotto(LottoParser.parseLottoNumberListToString(lotto.getSortedLottoNumbers()));
+        });
     }
 }
 

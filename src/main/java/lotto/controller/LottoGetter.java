@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGetter implements LottoGetterInterface {
-    LottoResultCalculation lottoResultCalculation;
-    RandomLottoNumber randomLottoNumber;
-    List<Lotto> randomLottoResult;
+    private LottoResultCalculation lottoResultCalculation;
+    private RandomLottoNumber randomLottoNumber;
+    private List<Lotto> randomLottoResult;
 
     public LottoGetter() {
         lottoResultCalculation = new LottoResultCalculation();

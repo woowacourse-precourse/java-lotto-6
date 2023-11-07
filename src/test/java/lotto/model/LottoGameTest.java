@@ -33,6 +33,15 @@ class LottoGameTest {
     }
 
     @Test
+    @DisplayName("구입 금액 단위 검증 테스트")
+    void validateUnit() {
+        assertThatThrownBy(() -> lottoGame.validateUnit(1200)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1,000단위로 입력하세요");
+        assertThatThrownBy(() -> lottoGame.validateUnit(500)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1,000단위로 입력하세요");
+    }
+
+    @Test
     void calculationResult() {
     }
 

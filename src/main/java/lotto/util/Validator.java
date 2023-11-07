@@ -39,7 +39,7 @@ public class Validator {
 
     public static boolean validateAmountMultiple(int amount) {
         try {
-            if(amount / 1000 != 0) {
+            if(amount % 1000 != 0) {
                 throw new IllegalArgumentException(ExceptionType.AMOUNT_NOT_MULTIPLE_1000.getMessage());
             }
             return true;
@@ -48,4 +48,7 @@ public class Validator {
             return false;
         }
     }
+
+    // 쉼표로 시작하거나 끝나는 경우
+
 }

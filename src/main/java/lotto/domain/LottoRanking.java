@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 
 public enum LottoRanking {
     FIRST(2_000_000_000, 6),
@@ -33,12 +32,7 @@ public enum LottoRanking {
                 .orElse(NO_LUCK);
     }
 
-    public static long calculateTotalPrize(LinkedHashMap<LottoRanking, Integer> lottoRankingResult) {
-        return lottoRankingResult.keySet().stream()
-                .mapToLong(ranking -> {
-                    Integer count = lottoRankingResult.getOrDefault(ranking, 0);
-                    return (long) ranking.prize * count;
-                })
-                .sum();
+    public Long getTotalPrize(Integer count) {
+        return ((long) prize * count);
     }
 }

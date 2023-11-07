@@ -14,8 +14,8 @@ public class SlotMachine {
     public static void run() {
         BuyPrice price = requestUntilValidated(() -> BuyPrice.from(InputView.askBuyPrice()));
         int count = price.getBuyCount();
-        Tickets lottos = Tickets.generate(count);
-        OutputView.printBuyLottos(count, lottos.toString());
+        Tickets tickets = Tickets.generate(count);
+        OutputView.printBuyLottos(count, tickets.toString());
 
         Lotto winning = requestUntilValidated(() -> Lotto.from(InputView.askWinningNumbers()));
         LottoNumber bonus = requestUntilValidated(() -> LottoNumber.from(InputView.askBonusNumber()));

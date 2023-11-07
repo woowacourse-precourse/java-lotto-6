@@ -9,6 +9,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import java.util.Map;
 import model.Lotto;
 import model.LottoNumberPicker;
 import model.LottoNumberComparater;
@@ -55,6 +56,11 @@ public class LottoController {
             String LottoWinResult = lottoNumberComparater.comparaterLottoResult(lotto.getLottoNumbers());
             lottoWinResultsHolder.lottoWinResultsAdd(LottoWinResult);
         }
-        // LottoNumberComparater
+
+        Map<String, Integer> winResults = lottoWinResultsHolder.getWinResults();
+        //outputView.
+
+        // lottoWinResultsHolder에서 전체 결과 맵 가져와서 LottoResultJudger 이용해 톡계출력
+
     }
 }

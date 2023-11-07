@@ -6,6 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import model.enums.LottoWinResults;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -36,8 +39,14 @@ public class OutPutViewTest {
     @DisplayName("당첨 통계 메세지 출력 테스트")
     @Test
     void printWinStatisticTest() {
-        final ArrayList<Integer> WinStatistics = new ArrayList<>(Arrays.asList(1,2,3,4,5));
-        outputView.printWinStatistic(WinStatistics);
+        final Map<String, Integer> winResults = new HashMap<>();
+        winResults.put(LottoWinResults.LOTTO_3SAME.getMessage() ,1);
+        winResults.put(LottoWinResults.LOTTO_4SAME.getMessage() ,2);
+        winResults.put(LottoWinResults.LOTTO_5SAME.getMessage() ,3);
+        winResults.put(LottoWinResults.LOTTO_5SAME_BONUS.getMessage() ,4);
+        winResults.put(LottoWinResults.LOTTO_6SAME.getMessage() ,5);
+
+        outputView.printWinStatistic(winResults);
         assertThat(outputMessage.toString()).contains("당첨 통계\n---",
                 "3개 일치 (5,000원) - 1개",
                 "4개 일치 (50,000원) - 2개\n",

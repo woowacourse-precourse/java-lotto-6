@@ -8,6 +8,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Map;
+import model.enums.LottoWinResults;
 
 public class OutputView {
 
@@ -56,13 +58,13 @@ public class OutputView {
      *
      * @Method : printWinStatistic()
      */
-    public void printWinStatistic(ArrayList<Integer> WinStatistics){
+    public void printWinStatistic(Map<String, Integer> winResults){
         printWinStatisticTitle();
-        printWinStatistic3(WinStatistics.get(0));
-        printWinStatistic4(WinStatistics.get(1));
-        printWinStatistic5(WinStatistics.get(2));
-        printWinStatistic5Bonus(WinStatistics.get(3));
-        printWinStatistic6(WinStatistics.get(4));
+        printWinStatistic3(winResults.get(LottoWinResults.LOTTO_3SAME.getMessage()));
+        printWinStatistic4(winResults.get(LottoWinResults.LOTTO_4SAME.getMessage()));
+        printWinStatistic5(winResults.get(LottoWinResults.LOTTO_5SAME.getMessage()));
+        printWinStatistic5Bonus(winResults.get(LottoWinResults.LOTTO_5SAME_BONUS.getMessage()));
+        printWinStatistic6(winResults.get(LottoWinResults.LOTTO_6SAME.getMessage()));
     }
     /**
      * Description : 당첨 통계 타이틀 메세지 출력

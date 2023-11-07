@@ -28,7 +28,7 @@ public class LottoWinResultsHolder {
      * @Method : lottoWinResultsAdd()
      */
     public void lottoWinResultsAdd(String winResult){
-        winResults.put(winResult, winResults.get(winResult)+1 );
+        winResults.put(winResult, winResults.get(winResult) + 1 );
     }
 
     /**

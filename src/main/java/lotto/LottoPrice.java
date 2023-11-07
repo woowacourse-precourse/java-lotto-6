@@ -5,13 +5,11 @@ public class LottoPrice {
         private final int payMoney;
         private int lottoCount;
         public LottoPrice(int payMoney) {
+                validatePrice(payMoney);
                 this.payMoney = payMoney;
                 lottoCount = payMoney / LOTTO_PRICE;
         }
-        public void validatePrice() {
-                if (payMoney < LOTTO_PRICE) {
-                        throw new IllegalArgumentException();
-                }
+        private void validatePrice(int payMoney) {
                 if(payMoney%LOTTO_PRICE!=0){
                         throw new IllegalArgumentException();
                 }

@@ -3,12 +3,14 @@ package lotto.controller;
 import static lotto.view.View.requestMoney;
 import static lotto.view.View.printMessage;
 
+import java.util.List;
 import lotto.constant.Message;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Money;
+import lotto.model.LottoStore;
 import lotto.validator.ValidateObject;
 import lotto.view.View;
 
@@ -30,7 +32,9 @@ public class LottoController {
         printMessage(Message.RESULT_MESSAGE.getMessage());
         View.seperateLine();
 
-        printMessage("이햐 3개부터 6개까지 일치여부 프린트");
+        LottoStore lottoStore = new LottoStore();
+        List<Integer> lottoRank = lottoStore.rankLottos(customer.getLottos(), winningLotto, bonusNumber);
+        View.printLottoRank(lottoRank);
     }
 
     private Customer buyLottoAndGetNumbers() {

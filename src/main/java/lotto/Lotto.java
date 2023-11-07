@@ -22,7 +22,7 @@ public class Lotto {
     }
 
     private static void validateNumbers(List<Integer> numbers) {
-        for (Integer number: numbers) {
+        for (Integer number : numbers) {
             validateRange(number);
         }
     }

@@ -25,7 +25,7 @@ public class Lotto {
     }
 
     private void checkSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT.getNumber()) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(VALIDATE_LOTTO_SIZE.getMessage());
         }
     }
@@ -41,7 +41,7 @@ public class Lotto {
 
     private static void checkRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number > LOTTO_RANGE_MAX.getNumber() || number < LOTTO_RANGE_MIN.getNumber()) {
+            if (number > LOTTO_RANGE_MAX.getValue() || number < LOTTO_RANGE_MIN.getValue()) {
                 throw new IllegalArgumentException(VALIDATE_RANGE.getMessage());
             }
         }

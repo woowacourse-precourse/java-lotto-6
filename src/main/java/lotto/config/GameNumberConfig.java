@@ -12,5 +12,5 @@ public enum GameNumberConfig {
         this.number = number;
     }
 
-    public int getNumber() { return this.number; }
+    public int getValue() { return this.number; }
 }

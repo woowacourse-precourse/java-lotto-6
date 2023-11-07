@@ -27,13 +27,13 @@ public class LottoGameController {
     }
 
     public void run() {
-        int purchasePrice = purchasedLottoService.inputPurchasePrice();
-        PurchasedLotto purchasedLotto = purchasedLottoService.createPurchasedLotto(purchasePrice);
+        int purchaseAmount = purchasedLottoService.inputPurchaseAmount();
+        PurchasedLotto purchasedLotto = purchasedLottoService.createPurchasedLotto(purchaseAmount);
         Lotto winningLotto = winningLottoService.craeteWinningLotto();
         BonusNumber bonusNumber = bonusNumberService.craeteBonusNumber(winningLotto);
 
         LottoResult lottoResult = createLottoResult(purchasedLotto, winningLotto, bonusNumber);
-        printWinningStatistics(lottoResult, purchasePrice);
+        printWinningStatistics(lottoResult, purchaseAmount);
     }
 
     private LottoResult createLottoResult(PurchasedLotto purchasedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
@@ -41,7 +41,7 @@ public class LottoGameController {
         return new LottoResult(winningResult);
     }
 
-    private void printWinningStatistics(LottoResult lottoResult, int purchasePrice) {
+    private void printWinningStatistics(LottoResult lottoResult, int purchaseAmount) {
         OutputView.printNewLine();
         OutputView.printMessage(WINNING_STATISTICS_MESSAGE.getMessage());
 
@@ -62,11 +62,11 @@ public class LottoGameController {
             winningIndex--;
         }
 
-        double incomeRate = calculateIncomeRate(lottoResult, purchasePrice);
+        double incomeRate = calculateIncomeRate(lottoResult, purchaseAmount);
         OutputView.printMessage(String.format(RESULT_MESSAGE.getMessage(), incomeRate));
     }
 
-    private double calculateIncomeRate(LottoResult lottoResult, int purchasePrice) {
-        return (double) lottoResult.getIncome() / purchasePrice * 100;
+    private double calculateIncomeRate(LottoResult lottoResult, int purchaseAmount) {
+        return (double) lottoResult.getIncome() / purchaseAmount * 100;
     }
 }

@@ -15,9 +15,9 @@ public class RandomNumbersGenerator {
 
     public static List<Integer> generateSortedRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_RANGE_MIN.getNumber(),
-                LOTTO_RANGE_MAX.getNumber(),
-                LOTTO_NUMBER_COUNT.getNumber()
+                LOTTO_RANGE_MIN.getValue(),
+                LOTTO_RANGE_MAX.getValue(),
+                LOTTO_NUMBER_COUNT.getValue()
         );
         List<Integer> sortedNumbers = new ArrayList<>(List.copyOf(numbers));
         Collections.sort(sortedNumbers);

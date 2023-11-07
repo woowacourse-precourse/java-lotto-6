@@ -9,5 +9,5 @@ public enum GameTextConfig {
         this.text = text;
     }
 
-    public String getText() { return this.text; }
+    public String getValue() { return this.text; }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.util.RandomNumbersGenerator;
-import lotto.view.InputPurchasePriceView;
+import lotto.view.InputPurchaseAmountView;
 import lotto.view.OutputView;
 
 public class PurchasedLottoService {
@@ -27,10 +27,10 @@ public class PurchasedLottoService {
         return purchasedLotto;
     }
 
-    public int inputPurchasePrice() {
+    public int inputPurchaseAmount() {
         do {
             try {
-                return InputPurchasePriceView.inputPurchasePrice();
+                return InputPurchaseAmountView.inputPurchaseAmount();
             } catch (IllegalArgumentException e) {
                 OutputView.printNewLine();
                 OutputView.printMessage(e.getMessage());
@@ -38,8 +38,8 @@ public class PurchasedLottoService {
         } while (true);
     }
 
-    private int calculatePurchasedLottoCount(int purchasePrice) {
-        int purchasedLottoCount = purchasePrice / LOTTO_PRICE.getNumber();
+    private int calculatePurchasedLottoCount(int purchaseAmount) {
+        int purchasedLottoCount = purchaseAmount / LOTTO_PRICE.getValue();
         printPurchasedLottoCount(purchasedLottoCount);
 
         return purchasedLottoCount;

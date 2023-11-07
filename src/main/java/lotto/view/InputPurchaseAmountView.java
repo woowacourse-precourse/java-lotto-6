@@ -3,24 +3,24 @@ package lotto.view;
 import static lotto.config.GameNumberConfig.LOTTO_PRICE;
 import static lotto.exception.ErrorMessage.VALIDATE_INPUT_EMPTY;
 import static lotto.exception.ErrorMessage.VALIDATE_INPUT_NUMBER;
-import static lotto.exception.ErrorMessage.VALIDATE_PURCHASE_PRICE_DIVIDE;
-import static lotto.view.constants.OutputMessage.INPUT_PURCHASE_PRICE_MESSAGE;
+import static lotto.exception.ErrorMessage.VALIDATE_PURCHASE_AMOUNT_DIVIDE;
+import static lotto.view.constants.OutputMessage.INPUT_PURCHASE_AMOUNT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputPurchasePriceView {
-    private InputPurchasePriceView() {
+public class InputPurchaseAmountView {
+    private InputPurchaseAmountView() {
     }
 
-    public static int inputPurchasePrice() {
-        OutputView.printMessage(INPUT_PURCHASE_PRICE_MESSAGE.getMessage());
+    public static int inputPurchaseAmount() {
+        OutputView.printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE.getMessage());
 
         String input = Console.readLine();
-        validatePurchasePrice(input);
-        return parsePurchasePrice(input);
+        validatePurchaseAmount(input);
+        return parsePurchaseAmount(input);
     }
 
-    private static void validatePurchasePrice(String input) {
+    private static void validatePurchaseAmount(String input) {
         checkEmpty(input);
         checkDivide(input);
     }
@@ -33,12 +33,12 @@ public class InputPurchasePriceView {
 
     private static void checkDivide(String input) {
         int price = parseInt(input);
-        if (price % LOTTO_PRICE.getNumber() != 0) {
-            throw new IllegalArgumentException(VALIDATE_PURCHASE_PRICE_DIVIDE.getMessage());
+        if (price % LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(VALIDATE_PURCHASE_AMOUNT_DIVIDE.getMessage());
         }
     }
 
-    private static int parsePurchasePrice(String input) {
+    private static int parsePurchaseAmount(String input) {
         int price = parseInt(input);
         return price;
     }

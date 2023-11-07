@@ -26,7 +26,7 @@ public class BonusNumber {
     }
 
     private void checkRange(int number) {
-        if (number > LOTTO_RANGE_MAX.getNumber() || number < LOTTO_RANGE_MIN.getNumber()) {
+        if (number > LOTTO_RANGE_MAX.getValue() || number < LOTTO_RANGE_MIN.getValue()) {
             throw new IllegalArgumentException(VALIDATE_RANGE.getMessage());
         }
     }

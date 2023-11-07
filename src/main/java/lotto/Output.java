@@ -84,14 +84,12 @@ public class Output {
         System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
     }
 
-    private static double calculateReward() {
+    private static void calculateReward() {
 
         reward += fifth * Prize.FIFTH.getPrizeAmount();
         reward += fourth * Prize.FOURTH.getPrizeAmount();
         reward += third * Prize.THIRD.getPrizeAmount();
         reward += second * Prize.SECOND.getPrizeAmount();
         reward += first * Prize.FIRST.getPrizeAmount();
-
-        return reward;
     }
 }

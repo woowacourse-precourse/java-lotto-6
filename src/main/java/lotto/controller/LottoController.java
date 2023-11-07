@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.PrizeLotto;
+import lotto.model.PrizeMoney;
 import lotto.model.UserLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -14,6 +15,7 @@ public class LottoController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     NumberValidator numberValidator = new NumberValidator();
+    PrizeController prizeController = new PrizeController();
     UserLotto userLotto = new UserLotto();
     Lotto lotto;
     PrizeLotto prizeLotto;
@@ -26,6 +28,9 @@ public class LottoController {
         prizeLotto = createPrizeNum();
         System.out.println("당첨 번호 ="+prizeLotto.getPrizeNumbers());
         System.out.println("보너스 번호="+ prizeLotto.getBonusNum());
+
+        prizeController.comparePrizeNumToLottoNum(prizeLotto,userLotto);
+
     }
     public PrizeLotto createPrizeNum(){
         List<Integer> lo;

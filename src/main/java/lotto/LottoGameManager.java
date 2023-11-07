@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStats;
-import lotto.exception.UserInputValidator;
+import lotto.validation.UserInputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

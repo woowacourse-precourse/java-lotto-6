@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.validation;
 
 import lotto.domain.Lotto;
 

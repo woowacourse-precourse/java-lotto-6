@@ -2,7 +2,7 @@ package lotto.v3.controller;
 
 import lotto.v3.view.LottoPurchaseView;
 
-import static lotto.v3.model.LottoConstants.LOTTO_PRICE;
+import static lotto.v3.util.LottoConstants.LOTTO_PRICE;
 
 public class LottoPurchaseController {
 

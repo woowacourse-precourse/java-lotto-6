@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.util.LottoConstants;
 import lotto.validation.InputValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,8 +12,6 @@ public class InputService {
     InputView inputView;
     InputValidation inputValidation;
     OutputView outputView;
-
-    private static final int DIVISION_THOUSAND = 1000;
 
     public InputService(InputView inputView, InputValidation inputValidation, OutputView outputView) {
         this.inputView = inputView;
@@ -65,12 +64,12 @@ public class InputService {
     }
 
     private Integer getPurchaseCount(String purchasingAmount) {
-        return Integer.parseInt(purchasingAmount) / DIVISION_THOUSAND;
+        return Integer.parseInt(purchasingAmount) / LottoConstants.DIVISION_THOUSAND;
     }
 
     private List<Integer> getWinningNumber(String winningNumbers) {
         List<Integer> winningNumber = new ArrayList<>();
-        String[] numbers = winningNumbers.split(",");
+        String[] numbers = winningNumbers.split(LottoConstants.DIVISION_STANDARD);
 
         for (String number : numbers) {
             int num = Integer.parseInt(number);

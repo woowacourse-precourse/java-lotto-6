@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.util.LottoConstants;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -67,7 +69,7 @@ public class InputValidation {
         return true;
     }
     private boolean checkDuplicateNumber(String readNumbers) {
-        String[] readNumber = readNumbers.split(",");
+        String[] readNumber = readNumbers.split(LottoConstants.DIVISION_STANDARD);
         List<String> numbers = Arrays.asList(readNumber);
         Collections.sort(numbers);
         boolean flag = true;
@@ -81,13 +83,13 @@ public class InputValidation {
         return flag;
     }
     private boolean checkLimitLottoNumber(String readNumbers) {
-        String[] numbers = readNumbers.split(",");
+        String[] numbers = readNumbers.split(LottoConstants.DIVISION_STANDARD);
         boolean flag = true;
 
         for (String number : numbers) {
             int num = Integer.parseInt(number);
 
-            if (num < 1 || num > 45) {
+            if (num < LottoConstants.LOTTO_NUMBER_MIN || num > LottoConstants.LOTTO_NUMBER_MAX) {
                 flag = false;
                 break;
             }
@@ -114,7 +116,7 @@ public class InputValidation {
     private boolean checkLimitAmount(String readNumber) {
         int number = Integer.parseInt(readNumber);
 
-        if (number >= 1000 && number <= 100000) {
+        if (number >= LottoConstants.PURCHASE_LIMIT_MIN && number <= LottoConstants.PURCHASE_LIMIT_MAX) {
             return true;
         }
         return false;
@@ -122,7 +124,7 @@ public class InputValidation {
     private boolean checkNumberInThreeFigures(String readNumber) {
         int number = Integer.parseInt(readNumber);
 
-        if (number % 1000 != 0) {
+        if (number % LottoConstants.LOTTO_MONEY_UNIT != 0) {
             return false;
         }
         return true;

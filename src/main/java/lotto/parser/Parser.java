@@ -26,9 +26,9 @@ public class Parser {
     }
 
     // 보너스 번호를 숫자로 변환한다.
-    public static int parseBonusNumber(String input, Lotto winningNumbers) {
+    public static int parseBonusNumber(String input, Lotto winningLotto) {
         int bonusNumber = parse(input);
-        Validator.validateUnique(bonusNumber, winningNumbers);
+        Validator.validateUnique(bonusNumber, winningLotto);
         return bonusNumber;
     }
 

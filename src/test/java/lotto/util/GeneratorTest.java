@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class GeneratorTest {
     @DisplayName("랜덤 로또 6개를 생성한다.")
     @Test
-    void printMessage() {
+    void generateLotto() {
         int number = Parser.parsePurchaseAmount("8000");
         List<Lotto> ticket = Generator.publishTickets(number);
         for (Lotto lotto : ticket) {

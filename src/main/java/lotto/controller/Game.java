@@ -2,7 +2,9 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 import lotto.parser.Parser;
+import lotto.util.Computer;
 import lotto.util.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,6 +26,6 @@ public class Game {
         String bonusNumber = InputView.requestBonusNumber();
         int bonusLotto = Parser.parseBonusNumber(bonusNumber, winnigLotto);
 
-
+        List<Result> results = Computer.computeResult(tickets, winnigLotto, bonusLotto);
     }
 }

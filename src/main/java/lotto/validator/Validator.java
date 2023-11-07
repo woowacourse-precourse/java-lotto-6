@@ -24,7 +24,7 @@ public class Validator {
     }
 
     public static void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(Validator::existOutside)) {
+        if (numbers.stream().anyMatch(Validator::measureRange)) {
             throw LottoException.of(OUTSIDE_RANGE);
         }
     }
@@ -57,7 +57,7 @@ public class Validator {
         return purchaseAmount % LOTTO_PRISE;
     }
 
-    private static boolean existOutside(Integer num) {
-        return num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER;
+    private static boolean measureRange(Integer number) {
+        return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
     }
 }

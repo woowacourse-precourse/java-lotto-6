@@ -3,6 +3,7 @@ package lotto.data;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -27,7 +28,21 @@ public class LottoResultTest {
         assertEquals(lottoResult.getLottoRank(), expected);
     }
 
-    private static Stream<Arguments> provideRankResultSets() {
+    @ParameterizedTest(name = "[{index}] {0}인 경우")
+    @DisplayName("수익률을 계산한다.")
+    @MethodSource("provideLottoResultSets")
+    void getProfitPercent(String title, List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos,
+                          Map<LottoPrize, BigDecimal> expectedRank, BigDecimal expectedProfitPercent) {
+        WinningCombination winningCombination = new WinningCombination(winningNumbers, bonusNumber);
+
+        Map<LottoPrize, BigDecimal> rankResult = winningCombination.getResultWith(lottos);
+        BigDecimal purchaseAmount = BigDecimal.valueOf(lottos.size()).multiply(BigDecimal.valueOf(1000));
+        LottoResult lottoResult = new LottoResult(rankResult, purchaseAmount);
+
+        assertEquals(lottoResult.getProfitPercent(), expectedProfitPercent);
+    }
+
+    private static Stream<Arguments> provideLottoResultSets() {
         return Stream.of(
                 Arguments.of(
                         "1등(1), 2등(1), 5등(1)",

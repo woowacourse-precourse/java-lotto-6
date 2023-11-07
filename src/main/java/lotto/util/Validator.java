@@ -15,7 +15,7 @@ public class Validator {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력하신 보너스 번호는 숫자가 아닙니다.");
+            throw new IllegalArgumentException("입력하신 값은 숫자가 아닙니다.");
         }
     }
 

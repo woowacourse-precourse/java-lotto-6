@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-import lotto.model.number.LottoNumber;
 import lotto.model.number.LottoNumbers;
 
 public class Lotto {
@@ -11,11 +9,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public LottoNumbers getNumbers() {
+    public LottoNumbers getLottoNumbers() {
         return numbers;
     }
 
-    public LottoNumbers getSortedNumbers() {
+    public LottoNumbers getSortedLottoNumbers() {
         return new LottoNumbers(numbers.getSortedNumbers());
     }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
+import lotto.controller.WinningController;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningNumber;
 
@@ -19,7 +20,7 @@ public class UserInputView {
 
     public static void inputWinningNums(){
         try{
-            LottoController.putWinningNums(Console.readLine());
+            WinningController.putWinningNums(Console.readLine());
 
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
@@ -29,7 +30,7 @@ public class UserInputView {
 
     public static  void inputBonusNum(){
         try{
-            LottoController.putBonusNum(Console.readLine());
+            WinningController.putBonusNum(Console.readLine());
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
             inputBonusNum();

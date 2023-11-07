@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.view.InputGuideMessage.BONUS_NUMBER_INPUT_GUIDE;
 import static lotto.view.InputGuideMessage.LOTTO_PURCHASE_AMOUNT_INPUT_GUIDE;
 import static lotto.view.InputGuideMessage.WINNING_NUMBERS_INPUT_GUIDE;
 
@@ -47,6 +48,15 @@ public class InputView {
         validator.validateWinningNumbers(numbers);
 
         return numbers;
+    }
+
+    public int inputBonusNumber() {
+        printer.printLine(BONUS_NUMBER_INPUT_GUIDE.getGuide());
+
+        String input = reader.readLine();
+        validator.validateBonusNumber(input);
+
+        return Integer.parseInt(input);
     }
 
 }

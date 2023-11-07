@@ -49,7 +49,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("1~45 를 벗어난 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("허용 숫자 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("outOfRangeProvider")
     void createLottoByOutOfRange(List<Integer> lottoNumbers) {
@@ -59,8 +59,8 @@ class LottoTest {
 
     static Stream<Arguments> outOfRangeProvider() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 0, 5)),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 46))
+                Arguments.of(List.of(1, 2, 3, 4, LottoOption.LOTTO_START_INCLUSIVE - 1, 5)),
+                Arguments.of(List.of(1, 2, 3, 4, 5, LottoOption.LOTTO_END_INCLUSIVE + 1))
         );
     }
 

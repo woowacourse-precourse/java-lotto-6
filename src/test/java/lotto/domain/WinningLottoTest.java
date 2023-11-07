@@ -31,9 +31,9 @@ public class WinningLottoTest {
         );
     }
 
-    @DisplayName("보너스 숫자가 1~45 숫자가 아닌 경우 예외가 발생한다.")
+    @DisplayName("보너스 숫자가 허용 숫자가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {0, 46, -2})
+    @ValueSource(ints = {LottoOption.LOTTO_START_INCLUSIVE - 1, LottoOption.LOTTO_END_INCLUSIVE + 1})
     void createAnswerLottoWithInvalidBonus(int number) {
         Assertions.assertThatThrownBy(() -> new BonusNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);

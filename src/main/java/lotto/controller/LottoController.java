@@ -31,10 +31,13 @@ public class LottoController {
         int count = amount.getCount();
         OutputView.printPurchaseCount(count);
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+        Lottos lottoContainer = new Lottos(new ArrayList<>());
         for(int i = 0; i  < count; i++){
             Lotto lotto = new Lotto(lottoNumberGenerator.generate());
+            lottoContainer.addLotto(lotto);
             OutputView.printBoughtLottoNumbers(lotto.getNumbers());
         }
+        System.out.println(lottoContainer.size());
     }
 
     private void winningLotto() {

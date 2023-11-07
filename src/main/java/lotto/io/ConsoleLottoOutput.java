@@ -60,13 +60,9 @@ public class ConsoleLottoOutput implements LottoOutput {
         System.out.println(MESSAGE_RESULT);
         List<Rank> resultRanks = List.of(Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
 
-        resultRanks.stream().map(rank -> {
-            StringBuilder stringBuilder = new StringBuilder(rank.getResultFormat());
-            stringBuilder.append("- ")
-                    .append(result.getOrDefault(rank, 0))
-                    .append("개");
-            return stringBuilder.toString();
-        }).forEach(System.out::println);
+        resultRanks.stream()
+                .map(rank -> rank.getResultFormat() + "- " + result.getOrDefault(rank, 0) + "개")
+                .forEach(System.out::println);
     }
 
     @Override

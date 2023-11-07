@@ -30,7 +30,7 @@ public class GameController {
     }
 
     public void start() {
-        int ticketCnt = moneyToCnt();
+        int ticketCnt = amountToCnt();
         printTicketCnt(ticketCnt);
 
         lottoList = makeLottoList(ticketCnt);
@@ -38,7 +38,7 @@ public class GameController {
 
     }
 
-    public int moneyToCnt(){
+    public int amountToCnt(){
         lottoAmount = new LottoAmount(InputView.getInputAmount());
         return lottoAmount.amountChangeToLottoCnt();
     }

@@ -1,8 +1,10 @@
 package lotto;
 
 public class Application {
+    GameController gameController = new GameController();
+
     void boot(){
-        // todo : controller.start
+        gameController.start();
     }
 
     public static void main(String[] args) {

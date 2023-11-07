@@ -64,4 +64,8 @@ public class OutputView {
         double rateOfReturn = (prizeAmount) / (double) balance * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
     }
+
+    public static void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }

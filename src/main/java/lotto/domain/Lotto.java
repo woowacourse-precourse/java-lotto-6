@@ -31,8 +31,6 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidator.validateSize(numbers);
-        LottoValidator.validateDuplication(numbers);
-        LottoValidator.validateRange(numbers);
+        LottoValidator.canBeLotto(numbers);
     }
 }

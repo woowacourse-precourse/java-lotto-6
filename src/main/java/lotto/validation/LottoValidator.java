@@ -8,6 +8,12 @@ import java.util.List;
 import lotto.exception.LottoException;
 
 public class LottoValidator {
+	public static void canBeLotto(List<Integer> numbers) {
+		LottoValidator.validateSize(numbers);
+		LottoValidator.validateDuplication(numbers);
+		LottoValidator.validateRange(numbers);
+	}
+
 	public static void validateSize(List<Integer> numbers) {
 		if (numbers.size() != LOTTO_SIZE) {
 			throw new LottoException(LOTTO_INVALID_SIZE.getMessage());

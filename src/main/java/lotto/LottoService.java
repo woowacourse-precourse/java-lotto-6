@@ -15,6 +15,8 @@ public class LottoService {
         float returnRatio = calculateResult(winningLotto, bonusNumber, lottoList, countOfPrize, times);
 
         LottoRank[] ranks = LottoRank.values();
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (int i = 4; i >= 0; i--) {
             LottoRank rank = ranks[i];
             System.out.println(rank.description + " - " + countOfPrize[rank.prize] + "개");
@@ -33,6 +35,7 @@ public class LottoService {
     }
 
     public int purchaseLotto() {
+        System.out.println("구입 금액을 입력해 주세요.");
         int number = 0;
         while (number == 0) {
             try {
@@ -53,6 +56,7 @@ public class LottoService {
     }
 
     public Lotto drawLotto() {
+        System.out.println("당첨 번호를 입력해주세요.");
         Lotto winningLotto = null;
         while (winningLotto == null) {
             try {
@@ -65,6 +69,7 @@ public class LottoService {
     }
 
     public int drawBonus(Lotto winningLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = 0;
         while (bonusNumber == 0) {
             try {

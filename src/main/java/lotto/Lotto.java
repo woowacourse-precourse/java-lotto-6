@@ -36,9 +36,13 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public void printNumbers() {
+        System.out.println(getSortedNumberString());
+    }
+
+    public String getSortedNumberString(){
         StringJoiner stringJoiner = new StringJoiner(", ");
         getSortedNumber().forEach(number -> stringJoiner.add(number + ""));
-        System.out.println("[" + stringJoiner + "]");
+        return "[" + stringJoiner + "]";
     }
 
     private List<Integer> getSortedNumber() {

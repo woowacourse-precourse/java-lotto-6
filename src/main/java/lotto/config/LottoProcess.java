@@ -4,27 +4,28 @@ import lotto.view.LottoBuyer;
 import lotto.view.LottoDrawer;
 
 public class LottoProcess {
+    private final LottoBuyer lottoBuyer;
+    private final LottoDrawer lottoDrawer;
 
-    public static LottoProcess start(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer){
+    public static LottoProcess start(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer) {
         return new LottoProcess(lottoBuyer, lottoDrawer);
     }
 
     public LottoProcess(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer){
-        lottoProcess(lottoBuyer, lottoDrawer);
+        this.lottoBuyer = lottoBuyer;
+        this.lottoDrawer = lottoDrawer;
+
+        inputProcess();
+        outputProcess();
     }
 
-    private static void lottoProcess(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer) {
-        inputProcess(lottoBuyer, lottoDrawer);
-        outputProcess(lottoBuyer);
-    }
-
-    private static void inputProcess(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer) {
+    private void inputProcess() {
         lottoBuyer.gernerateTicket();
         lottoDrawer.inputLotto();
         lottoDrawer.inputWinRecord();
     }
 
-    private static void outputProcess(LottoBuyer lottoBuyer) {
+    private void outputProcess() {
         lottoBuyer.printWinRecord();
         lottoBuyer.printReturns();
     }

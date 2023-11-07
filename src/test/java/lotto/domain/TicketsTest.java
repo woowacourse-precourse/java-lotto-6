@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getLottoModel;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.Arrays;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TicketsTest {
-    private LottoModel lottoModel = getLottoModel();
+    // private LottoModel lottoModel = getLottoModel();
 
     /*@Test
     @DisplayName("티켓 발급이 정상처리되었음을 확인한다.")

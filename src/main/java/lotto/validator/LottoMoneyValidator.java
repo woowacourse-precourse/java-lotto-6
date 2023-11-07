@@ -10,9 +10,7 @@ public class LottoMoneyValidator {
     }
 
     private static void isNumeric(String lottoMoneyInput) {
-        try {
-            Integer.parseInt(lottoMoneyInput);
-        } catch (NumberFormatException e) {
+        if (!lottoMoneyInput.matches("^[0-9]*$")) {
             throw new IllegalArgumentException(ErrorMessages.NOT_NUMBER.getMessage());
         }
     }

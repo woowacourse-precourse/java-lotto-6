@@ -11,27 +11,23 @@ public class Asset {
     }
 
     private void validate(Double money) {
+        validateRange(money);
+        validateModulate(money);
+    }
+    private void validateModulate(Double money){
         if(money % 1000 != 0){
-            System.out.println("1000");
             throw new IllegalArgumentException("wrong money input");
         }
-
-        if(money > Double.MAX_VALUE){
-            System.out.println("over");
-            throw new IllegalArgumentException("wrong money input or money overflow");
+    }
+    private void validateRange(Double number){
+        if(number > Double.MAX_VALUE){
+            throw new IllegalArgumentException("overflow");
         }
     }
 
     public void increaseIncome(Grade grade){
         income += grade.getPrize();
-        System.out.println(income);
-        validateIncome(income);
-    }
-
-    private void validateIncome(Double income){
-        if(income > Double.MAX_VALUE){
-            throw new IllegalArgumentException("income overflow");
-        }
+        validateRange(income);
     }
 
     public Double getRate(){
@@ -46,7 +42,7 @@ public class Asset {
     public Double getIncome() { return income; }
 
     public void setIncome(Double income) {
-        validateIncome(income);
+        validateRange(income);
         this.income = income;
     }
 }

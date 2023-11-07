@@ -1,9 +1,6 @@
 package lotto;
 
-import lotto.domain.Asset;
-import lotto.domain.Grade;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
+import lotto.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,17 +32,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액으로 overflow가 날 경우")
+    @DisplayName("로또를 100장 넘게 구매할 경우")
     @Test
     void createMoneyByOverflow() {
-        assertThatThrownBy(() -> new Asset(200000000000000000000000000000000000000000000000000000000000000000D))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("당첨 총액이 overflow 일 경우")
-    @Test
-    void setAssetIncomeOverflow() {
-        assertThatThrownBy(() -> new Asset(100D).setIncome(1000000000000000000000000000000000000000000000000000000000000D))
+        assertThatThrownBy(() -> new Player(new Asset(200000D)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

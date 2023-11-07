@@ -38,7 +38,12 @@ public class Player {
     }
 
     public Long calTicketNum(Double money){
-        return (long) (money / 1000);
+        long ticketNum = (long) (money / 1000);
+        
+        if(ticketNum > 100){
+            throw new IllegalArgumentException("로또는 100장만 살 수 있습니다.");
+        }
+        return ticketNum;
     }
     public void updatePlayer(List<Grade> grades){
         grades.stream()

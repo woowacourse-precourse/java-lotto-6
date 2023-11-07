@@ -30,4 +30,12 @@ public class WinningNumbers {
     private boolean containsDuplicateNumber(MainNumbers mainNumbers, BonusNumber bonusNumber) {
         return mainNumbers.hasNumber(bonusNumber.getBonusNumber());
     }
+
+    public MainNumbers getMainNumbers() {
+        return mainNumbers;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

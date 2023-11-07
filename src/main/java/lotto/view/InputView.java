@@ -13,6 +13,7 @@ public class InputView {
     public static final String INPUT_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public PurchaseAmountRequestDto readPurchaseAmount() {
+        System.out.println();
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String purchaseAmount = getInput();
         validatePurchaseAmount(purchaseAmount);
@@ -21,6 +22,7 @@ public class InputView {
     }
 
     public MainNumbersRequestDto readMainNumbers() {
+        System.out.println();
         System.out.println(INPUT_MAIN_NUMBERS_MESSAGE);
         String mainNumbers = getInput();
         validateMainNumbers(mainNumbers);
@@ -42,6 +44,7 @@ public class InputView {
     }
 
     public BonusNumberRequestDto readBonusNumbers() {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBERS_MESSAGE);
         String bonusNumber = getInput();
         validateBonusNumber(bonusNumber);

@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.MainNumbers;
 import lotto.model.PurchaseAmount;
@@ -29,6 +30,8 @@ public class LottoController {
         PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         Lottos lottos = issueLottos(new LottoNumberGenerator(), purchaseAmount.calculateLottoCount());
         WinningNumbers winningNumbers = getWinningNumbers();
+
+        LottoResult lottoResult = LottoResult.getResultFrom(lottos, winningNumbers, purchaseAmount);
     }
 
     private PurchaseAmount getValidPurchaseAmount() {

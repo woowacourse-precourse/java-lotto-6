@@ -54,4 +54,8 @@ public class MainNumbers {
         return mainNumbers.stream()
                 .anyMatch(mainNumber -> mainNumber.isNumberEqual(number));
     }
+
+    public List<MainNumber> getMainNumbers() {
+        return mainNumbers;
+    }
 }

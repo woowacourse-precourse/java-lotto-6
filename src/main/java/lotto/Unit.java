@@ -5,7 +5,8 @@ public enum Unit {
     LOTTERY_NUMBER_COUNT(6),
     LOTTERY_MINIMUM_NUMBER(1),
     LOTTERY_MAXIMUM_NUMBER(45),
-    ZERO(0);
+    ZERO(0),
+    ONE(1);
 
     int unit;
 

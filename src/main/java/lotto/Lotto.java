@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import message.Symbol;
 
@@ -29,5 +30,9 @@ public class Lotto {
                 .collect(Collectors.joining(Symbol.COMMA.getSymbol())));
         lotteryNumbers.append(Symbol.CLOSE_SQUARE_BRACKET.getSymbol());
         return lotteryNumbers.toString();
+    }
+
+    public Optional<Rank> getRank(List<Integer> winningNumbers, int bonusNumber) {
+        return Rank.getRank(numbers, winningNumbers, bonusNumber);
     }
 }

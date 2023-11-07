@@ -15,5 +15,6 @@ public class WinningNumbers {
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         Validator.validateWinningNumberCount(winningNumbers);
+        Validator.validateWinningNumbersInRange(winningNumbers);
     }
 }

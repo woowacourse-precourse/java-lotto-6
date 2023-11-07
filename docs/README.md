@@ -81,4 +81,4 @@
 - [x] 함수의 길이가 `15라인`을 넘어가지 않도록 구현한다.
 - [x] `else` 예약어를 쓰지 않는다.
 - [x] `Enum` 을 적용한다.
-- [ ] 도메인 로직 단위 테스트를 구현한다. `UI(System.out, System.in, Scanner)` 로직은 제외한다.
+- [x] 도메인 로직 단위 테스트를 구현한다. `UI(System.out, System.in, Scanner)` 로직은 제외한다.

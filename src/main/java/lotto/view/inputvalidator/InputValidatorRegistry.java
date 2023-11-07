@@ -1,6 +1,6 @@
 package lotto.view.inputvalidator;
 
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.model.AppConstants.exceptionMessage.*;
 
 public class InputValidatorRegistry {
     protected static void validateInputHasSpace(final String userInput) {
@@ -10,13 +10,13 @@ public class InputValidatorRegistry {
     }
     protected static void validateInputContainsOnlyNumericAndComma(final String userInput) {
         if (!userInput.matches("^[0-9,]*$")) {
-            throw new IllegalArgumentException("입력은 숫자와 쉼표(,) 이외에 다른 문자가 포함되어서는 안 됩니다.");
+            throw new IllegalArgumentException(INPUT_MUST_BE_NUMERIC.message);
         }
     }
 
     protected static void validateEmptyCheck(final String userInput) {
         if (userInput.isEmpty()) {
-            throw new IllegalArgumentException("입력은 null이 될 수 없습니다.");
+            throw new IllegalArgumentException(INPUT_MUST_BE_NOTNULL.message);
         }
     }
 
@@ -24,7 +24,12 @@ public class InputValidatorRegistry {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_MUST_BE_NUMERIC.message);
+            throw new IllegalArgumentException(INPUT_MUST_BE_FALSENESS.message);
+        }
+    }
+    protected static void validate1000s(final String userInput) {
+        if (Integer.parseInt(userInput) % 1000 != 0) {
+            throw new IllegalArgumentException(INPUT_MUST_BE_1000s.message);
         }
     }
 

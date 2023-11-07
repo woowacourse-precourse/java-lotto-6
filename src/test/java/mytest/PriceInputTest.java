@@ -15,7 +15,7 @@ public class PriceInputTest {
     @DisplayName("숫자가 아닌 값이 들어오면 예외처리.")
     void priceInputTest(String testInput) {
         assertThrows(IllegalArgumentException.class, () -> {
-            inputValidate.validate(testInput);
+            inputValidate.lottoWinningNumberValidate(testInput);
         });
     }
     @ParameterizedTest
@@ -23,7 +23,7 @@ public class PriceInputTest {
     @DisplayName("빈 칸이 들어오면 예외처리")
     void priceBlankInputTest(String testInput) {
         assertThrows(IllegalArgumentException.class, () -> {
-            inputValidate.validate(testInput);
+            inputValidate.lottoWinningNumberValidate(testInput);
         });
     }
     @ParameterizedTest
@@ -31,7 +31,7 @@ public class PriceInputTest {
     @DisplayName("정상입력 테스트")
     void validPriceInputTest(String testInput) {
         assertDoesNotThrow(() -> {
-            inputValidate.validate(testInput);
+            inputValidate.lottoWinningNumberValidate(testInput);
         });
     }
 }

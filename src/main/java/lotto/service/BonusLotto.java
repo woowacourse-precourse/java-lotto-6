@@ -11,6 +11,7 @@ public class BonusLotto {
         bonusNumberValidate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

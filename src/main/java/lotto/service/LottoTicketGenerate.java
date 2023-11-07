@@ -4,31 +4,45 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.LottoTicketEntity;
 import lotto.service.validator.LottoValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.model.AppConstants.lottoConstants.*;
+
 public class LottoTicketGenerate {
-    static final int LOTTO_NUMBER_MAX = 45;
-    static final int LOTTO_NUMBER_MIN = 1;
-    static final int TOTAL_LOTTO_NUMBER_COUNT = 6;
+    private List<LottoTicketEntity> lottoTicketEntities = new ArrayList<>();
 
 
-    public LottoTicketEntity setLottoTicketsNumber() {
-       LottoTicketEntity lottoTicketEntity = new LottoTicketEntity();
+    public LottoTicketGenerate(int price) {
+        int lottoTicketCount = price / LOTTO_TICKET_PRICE.getValue();
 
-        List<Integer> lottoNumbers = randomNumberGenerate();
-        lottoTicketEntity.setLottoNumbers(lottoNumbers);
+        for (int i = 0; i < lottoTicketCount; i++) {
+            List<Integer> lottoNumbers = randomNumberGenerate();
+            LottoTicketEntity lottoTicketEntity = new LottoTicketEntity();
 
-        return lottoTicketEntity;
+            lottoTicketEntity.setLottoNumbers(lottoNumbers);
+
+            this.lottoTicketEntities.add(lottoTicketEntity);
+        }
     }
 
+    public List<LottoTicketEntity> getLottoTicketEntities() {
+        return lottoTicketEntities;
+    }
 
     private static List<Integer> randomNumberGenerate() {
         List<Integer> lottoNumbers;
 
-        lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, TOTAL_LOTTO_NUMBER_COUNT);
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN.getValue(), LOTTO_NUMBER_MAX.getValue(), TOTAL_LOTTO_NUMBER_COUNT.getValue());
         LottoValidator.lottoTicketValidate(lottoNumbers);
 
         return lottoNumbers;
+    }
+
+    public void sortLottoTicketEntities() {
+        for (LottoTicketEntity lottoTicketEntity : lottoTicketEntities) {
+            lottoTicketEntity.getLottoNumbers().sort(Integer::compareTo);
+        }
     }
 
 }

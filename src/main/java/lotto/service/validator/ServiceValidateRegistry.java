@@ -3,7 +3,7 @@ package lotto.service.validator;
 import java.util.HashSet;
 import java.util.List;
 
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.model.AppConstants.exceptionMessage.*;
 
 public class ServiceValidateRegistry {
     protected static void checkDuplicateNumbers (final List<Integer> userInput) {

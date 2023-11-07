@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,20 +19,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LottoTicketGenerateTest {
     @Test
     void setLottoTicketNumberTest() {
-        LottoTicketGenerate lottoTicketGenerate = new LottoTicketGenerate();
-        LottoTicketEntity lottoTicketEntity = lottoTicketGenerate.setLottoTicketsNumber();
+        LottoTicketGenerate lottoTicketGenerate = new LottoTicketGenerate(1000);
+        List<LottoTicketEntity> lottoTicketEntitys = lottoTicketGenerate.getLottoTicketEntities();
 
-        System.out.println(lottoTicketEntity.getLottoNumbers());
-        assertNotNull(lottoTicketEntity);
+        assertNotNull(lottoTicketEntitys);
 
         // 6개의 숫자가 생성되었는지 확인
-        assertEquals(6, lottoTicketEntity.getLottoNumbers().size());
+        assertEquals(6, lottoTicketEntitys.get(0).getLottoNumbers().size());
         // 1~45 사이의 숫자가 생성되었는지 확인
-        for (int number : lottoTicketEntity.getLottoNumbers()) {
+        for (int number : lottoTicketEntitys.get(0).getLottoNumbers()) {
             assertTrue(number >= 1 && number <= 45);
         }
         // 중복된 숫자가 있는지 확인
-        assertEquals(6, new HashSet<>(lottoTicketEntity.getLottoNumbers()).size());
+        assertEquals(6, new HashSet<>(lottoTicketEntitys.get(0).getLottoNumbers()).size());
     }
 
     @ParameterizedTest

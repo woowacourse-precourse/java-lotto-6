@@ -5,17 +5,17 @@ import lotto.view.inputvalidator.InputValidator;
 
 public class InputView {
     private final InputValidator inputValidator = new InputValidator();
-    // input에서는 빈칸가 없는지 확인과 숫자 ','로만 이루어져 있는지 확인
 
     public int inputPrice() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String userInput = Console.readLine();
-                inputValidator.validate(userInput);
+                inputValidator.priceInputValidate(userInput);
 
                 return Integer.parseInt(userInput);
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -25,10 +25,11 @@ public class InputView {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String userInput = Console.readLine();
-                inputValidator.validate(userInput);
+                inputValidator.lottoWinningNumberValidate(userInput);
 
                 return userInput;
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -42,6 +43,7 @@ public class InputView {
 
                 return Integer.parseInt(userInput);
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

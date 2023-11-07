@@ -1,6 +1,7 @@
 package lotto.verifier;
 
 import lotto.system.ExceptionMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -12,6 +13,7 @@ class MoneyVerifierTest {
     private final Verifier moneyVerifier = new MoneyVerifier();
 
     @ParameterizedTest
+    @DisplayName("checkNumeric 메소드 테스트")
     @ValueSource(strings = {
             "1234k",
             "@.381",
@@ -24,6 +26,7 @@ class MoneyVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkTypeRange 메소드 테스트")
     @ValueSource(strings = {
             "-9223372036854775809",
             "22337203685477580883"
@@ -35,6 +38,7 @@ class MoneyVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkRange 메소드 테스트")
     @ValueSource(strings = {
             "-1",
             "0",
@@ -48,6 +52,7 @@ class MoneyVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkDivisible 메소드 테스트")
     @ValueSource(strings = {
             "10001",
             "20083",

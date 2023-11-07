@@ -20,7 +20,7 @@ public class InputView {
         this.commonErrorValidator = new CommonErrorValidator();
     }
 
-    public String readAmountInput() {
+    public String readPurchaseAmount() {
         while (true) {
             try {
                 String input = Console.readLine();

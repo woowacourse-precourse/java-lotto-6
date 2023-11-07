@@ -57,7 +57,7 @@ public class LottoController {
 
     public String getPurchaseAmount() {
         OutputView.printMessage(GET_PURCHASE_AMOUNT_MESSAGE.getMessage());
-        return inputView.readAmountInput();
+        return inputView.readPurchaseAmount();
     }
 
     public String getWinningNumbers() {

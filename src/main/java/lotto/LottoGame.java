@@ -62,6 +62,7 @@ public class LottoGame {
     }
 
     private List<Integer> pickWinningNumbers() {
+        
         return Randoms.pickUniqueNumbersInRange(1, 45, 7);
     }
 

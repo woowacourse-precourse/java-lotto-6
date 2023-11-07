@@ -12,16 +12,16 @@
     - LottoGame.inputNumbers() : 사용자에게 숫자 6개를 입력받는다.
     - LottoGame.inputBonusNumber() : 사용자에게 보너스 번호를 입력받는다.
     - LottoGame.splitByComma() : 입력 받은 숫자들을 쉼표로 구현
-- [ ] 입력된 번호들의 숫자가 6개를 넘어선 안된다. 잘못 입력될시 다시 입력한다.
-    - Lotto.validate() : 기존에 구현된 메소드 사용하기
-    - 다시 입력은 LottoGame.generateLottoTickets()에서 구현하기
+- [x] 로또 번호의 숫자 범위는 1~45까지이다, 중복되지 않는 7개의 숫자(보너스 번호 포함)를 뽑는다.
+    - LottoGame.winningNumbers : 당첨 번호
+    - LottoGame.pickWinningNumbers() :  당첨번호 + 보너스 번호까지 뽑기
+        - pickUniqueNumbersInRange(1, 45, 7)
 - [ ] 금액만큼 로또 티켓을 발행한다. 로또 1장의 가격은 1,000원이다.
     - LottoGame.lottoTickets<Lotto> : 구입된 로또 티켓 리스트(로또 객체)
     - LottoGame.generateLottoTickets() : 입력된 금액에 따라 로또 티켓 발행하기
-- [ ] 로또 번호의 숫자 범위는 1~45까지이다, 중복되지 않는 7개의 숫자(보너스 번호 포함)를 뽑는다.
-    - LottoGame.winningNumbers : 당첨 번호 속성
-    - LottoGame.pickWinningNumbers() :  당첨번호 + 보너스 번호까지 뽑기
-        - pickUniqueNumbersInRange(1, 45, 7)
+- [ ] 입력된 번호들의 숫자가 6개를 넘어선 안된다. 잘못 입력될시 다시 입력한다.
+    - Lotto.validate() : 기존에 구현된 메소드 사용하기
+    - 다시 입력은 LottoGame.generateLottoTickets()에서 구현하기
 - [ ] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
     ```
     1등: 6개 번호 일치 / 2,000,000,000원
@@ -50,5 +50,5 @@
 ## 📝 과제 진행중 개인 기록
 
 - 코드말고 기능 요구사항과 클래스, 메소드 정리 하는데 최대한 시간 많이 쓰기
-- 보너스 번호가 사용자가 정하는것이 아닌 게임에서 만드는 것으로 착각했음. 중간에 수정
-- 커밋 메시지는 줄바꿈까지 해서 구체적인 내용을 전부 써야 하는건가? 
+- 보너스 번호를 사용자가 정하는것이 아닌 게임에서 만드는 것으로 착각했음. 중간에 수정
+- 커밋 메시지는 줄바꿈까지 해서 구체적인 내용을 전부 써야 하는건가?

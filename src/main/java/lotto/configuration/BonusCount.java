@@ -1,7 +1,5 @@
 package lotto.configuration;
 
-import lotto.BonusNumber;
-
 public enum BonusCount {
     PLUS_ONE(1),
     PLUS_ZERO(0);

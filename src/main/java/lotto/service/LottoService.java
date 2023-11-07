@@ -1,9 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.BonusNumber;
-import lotto.Lotto;
-import lotto.configuration.BonusCount;
+import lotto.domain.Lotto;
 import lotto.configuration.ScoreBoard;
 import lotto.configuration.WinningLevel;
 

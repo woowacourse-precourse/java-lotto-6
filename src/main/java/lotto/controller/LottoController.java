@@ -1,10 +1,8 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.BonusNumber;
-import lotto.Lotto;
-import lotto.Money;
-import lotto.configuration.InputMessage;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.configuration.PrintMessage;
 import lotto.service.LottoService;
 import lotto.view.InputView;

@@ -31,6 +31,7 @@ public class LottoResultService {
     private double getTotal(EnumMap<Rank, Integer> countResult) {
         return countResult.keySet()
                 .stream()
+                .filter(rank -> rank != Rank.BLANK)
                 .mapToDouble(rank -> rank.amountOf(countResult.get(rank)))
                 .sum();
     }

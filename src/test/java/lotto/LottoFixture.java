@@ -36,4 +36,9 @@ public enum LottoFixture {
                 .map(LottoFixture::toLotto)
                 .toList();
     }
+
+    public static int numberOfFixture() {
+        return (int) Arrays.stream(LottoFixture.values())
+                .count();
+    }
 }

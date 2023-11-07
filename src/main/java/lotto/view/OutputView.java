@@ -55,7 +55,7 @@ public class OutputView {
 
     public void printRateOfReturn(double rateOfReturn) {
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
-        System.out.println("총 수익률은 " + decimalFormat.format(rateOfReturn) + "%입니다.");
+        System.out.println("총 수익률은 " + decimalFormat.format(rateOfReturn * 100) + "%입니다.");
     }
 
     public void printErrorMessage(String message) {

@@ -25,6 +25,10 @@ public enum Rank {
         return description;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public static Rank from(int matches, boolean bonusMatched) {
         if (matches == 5) {
             return selectBy(bonusMatched);

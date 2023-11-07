@@ -80,13 +80,13 @@ public class LottoService {
     }
 
     public void containsNonNumericCharacters(String input) {
-        if (!input.matches("[0-9]+")) {
+        if (!input.matches("[0-9\\s]+")) {
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());
         }
     }
 
     public void isPurchaseAmountDivideBy1000(String input) {
-        if (Integer.parseInt(input)% PURCHASE_STANDARD > 0) {
+        if (Integer.parseInt(input) % PURCHASE_STANDARD > 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_NOT_DIVIDE_BY_1000.getMessage());
         }
     }

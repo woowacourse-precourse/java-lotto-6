@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -34,4 +35,22 @@ class UserLottoTest {
             assertThat(userLotto.size()).isEqualTo(expected);
         }
     }
+    @DisplayName("getLottoAt 메소드 테스트")
+    @Nested
+    class GetLottoAt {
+        @ParameterizedTest(name = "{0}이 입력으로 들어왔을 때")
+        @CsvSource(value = {"8000, 8", "1000, 1", "15000, 15", "2000, 2"})
+        void 로또객체를_잘_가져오는지_테스트(String target, int size) {
+            ByteArrayInputStream in = new ByteArrayInputStream(target.getBytes());
+            System.setIn(in);
+            UserLotto userLotto = new UserLotto();
+
+            Assertions.assertAll(() -> {
+                for (int i = 0; i < size; i++) {
+                    assertThat(userLotto.getIndexAt(i)).isInstanceOf(Lotto.class);
+                }
+            });
+        }
+    }
+
 }

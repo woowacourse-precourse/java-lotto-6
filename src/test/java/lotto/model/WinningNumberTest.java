@@ -95,7 +95,7 @@ class WinningNumberTest {
     @ParameterizedTest
     @MethodSource("lottoProvider")
     @DisplayName("당첨번호와 보너스 번호를 통해 로또의 결과를 반환해준다.")
-    void compareLottoNumbers(List<Integer> lottoNumbers, int expectedCount) {
+    void compareLottoNumbers(List<Integer> lottoNumbers, int expectedCount, boolean expectedMatchBonus) {
         // given
         List<Integer> givenWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
@@ -103,19 +103,20 @@ class WinningNumberTest {
         Lotto lotto = Lotto.generateLotto(lottoNumbers);
 
         // when
-        int count = winningNumber.countMatchingNumbers(lotto);
+        MatchResult matchResult = winningNumber.matchLotto(lotto);
 
         // then
-        assertThat(count).isEqualTo(expectedCount);
+        assertThat(matchResult.matchingCount()).isEqualTo(expectedCount);
+        assertThat(matchResult.isMatchBonusBall()).isEqualTo(expectedMatchBonus);
     }
 
     private static Stream<Arguments> lottoProvider() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 7), 6),
-                Arguments.of(List.of(11, 12, 13, 14, 15, 16), 0),
-                Arguments.of(List.of(1, 2, 3, 4, 15, 16), 4),
-                Arguments.of(List.of(1, 2, 3, 4, 7, 16), 5)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6, false),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), 5, true),
+                Arguments.of(List.of(11, 12, 13, 14, 15, 16), 0, false),
+                Arguments.of(List.of(1, 2, 3, 4, 15, 16), 4, false),
+                Arguments.of(List.of(1, 2, 3, 4, 7, 6), 5, true)
         );
     }
 

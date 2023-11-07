@@ -3,7 +3,9 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.port.LottoNumbersProvider;
 
@@ -72,9 +74,11 @@ public class LottoService {
         return allLottoNumbers;
     }
 
-    public void addLottoNumberToWinningNumbers(String lottoNumbersString) {
+    public List<Integer> addLottoNumberToWinningNumbers(String lottoNumbersString) {
         List<Integer> winningNumbers = convertStringToWinningNumbers(lottoNumbersString);
         Lotto lotto = new Lotto(winningNumbers);
+
+        return lotto.getNumbers();
     }
 
 
@@ -91,7 +95,7 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    public void validateBonusNumber(String lottoWinningNumbers, String bonusNumber) {
+    public void validateBonusNumber(List<Integer> lottoWinningNumbers, String bonusNumber) {
         if (bonusNumberNotDigit(bonusNumber)) {
             throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
         }
@@ -117,8 +121,35 @@ public class LottoService {
         return number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX;
     }
 
-    public boolean bonusNumberDuplicateWinningNumbers(String lottoWinningNumbers, String bonusNumber) {
-        List<String> winningNumbers = Arrays.asList(lottoWinningNumbers.split(","));
-        return winningNumbers.contains(bonusNumber);
+    public boolean bonusNumberDuplicateWinningNumbers(List<Integer> lottoWinningNumbers, String bonusNumber) {
+        int bonusNumberInt = Integer.parseInt(bonusNumber);
+        return lottoWinningNumbers.contains(bonusNumberInt);
+    }
+
+    public Map<Integer, Integer> calculateMatchingCounts(List<List<Integer>> userLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Integer, Integer> matchingCounts = new HashMap<>();
+        for (List<Integer> lottoNumbers : userLottoNumbers) {
+            int count = 0;
+            for (int number : lottoNumbers) {
+                if (winningNumbers.contains(number)) {
+                    count++;
+                }
+            }
+            if (lottoNumbers.contains(bonusNumber)) {
+                count = count == 5 ? 6 : count;
+            }
+            matchingCounts.put(count, matchingCounts.getOrDefault(count, 0) + 1);
+        }
+        return matchingCounts;
+    }
+
+    public void printStatistics(Map<Integer, Integer> matchingCounts) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + matchingCounts.getOrDefault(3, 0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + matchingCounts.getOrDefault(4, 0) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + matchingCounts.getOrDefault(5, 0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchingCounts.getOrDefault(6, 0) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + matchingCounts.getOrDefault(7, 0) + "개");
     }
 }

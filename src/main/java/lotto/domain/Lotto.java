@@ -49,4 +49,8 @@ public class Lotto {
     private boolean isValidNumbersSize(List<Integer> numbers) {
         return numbers.size() != LOTTO_SIZE;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

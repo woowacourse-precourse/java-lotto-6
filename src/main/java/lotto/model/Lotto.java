@@ -7,7 +7,7 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6;
 
     private static final String COMMON_ERROR_MESSAGE = "[ERROR] ";
-    private static final String INVALID_LOTTO_SIZE_MESSAGE = COMMON_ERROR_MESSAGE + "로또는 서로 다른 숫자 6자여야 합니다.";
+    private static final String INVALID_LOTTO_MESSAGE = COMMON_ERROR_MESSAGE + "로또는 서로 다른 숫자 6자여야 합니다.";
 
     private final List<Integer> numbers;
 
@@ -18,11 +18,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_MESSAGE);
+            throw new IllegalArgumentException(INVALID_LOTTO_MESSAGE);
         }
 
         if(numbers.size() != numbers.stream().distinct().count()){
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE_MESSAGE);
+            throw new IllegalArgumentException(INVALID_LOTTO_MESSAGE);
         }
     }
 

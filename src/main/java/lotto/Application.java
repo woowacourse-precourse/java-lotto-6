@@ -14,7 +14,9 @@ public class Application {
         LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator();
         LottoService lottoService = new LottoService();
 
-        LottoController lottoController = new LottoController(consoleInputView, consoleOutputView, lottoService, lottoTicketGenerator);
+        LottoController lottoController = new LottoController(
+                consoleInputView, consoleOutputView, lottoService, lottoTicketGenerator
+        );
         lottoController.lottoGamePlay();
     }
 }

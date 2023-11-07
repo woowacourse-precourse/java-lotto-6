@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.model.LottoRank;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +33,55 @@ public class LottoService {
         userLottoNumbersAndBonusNumber.put("userBonusNumber", inputUserBonusNumber);
 
         return userLottoNumbersAndBonusNumber;
+    }
+
+    public Map<LottoRank, Integer> getLottoWinningResult(Map<String, String> userLottoNumbersAndBonusNumber, List<List<Integer>> lottoTickets) {
+        Map<LottoRank, Integer> lottoWinningResult = new HashMap<>();
+
+        List<String> userLottoNumbers = Arrays.stream(
+                userLottoNumbersAndBonusNumber.get("userLottoNumbers").split(",")
+        ).toList();
+
+        for (List<Integer> lottoTicket : lottoTickets) {
+            boolean isMatchBonusNumber = isMatchBonusNumber(lottoTicket, userLottoNumbersAndBonusNumber);
+            int matchNumberCount = getMatchNumberCount(lottoTicket, userLottoNumbers);
+            LottoRank lottoRank = getLottoRank(matchNumberCount, isMatchBonusNumber);
+
+            if (lottoWinningResult.get(lottoRank) == null) {
+                lottoWinningResult.put(lottoRank, 1);
+            } else if (lottoWinningResult.get(lottoRank) != null) {
+                lottoWinningResult.put(lottoRank, lottoWinningResult.get(lottoRank) + 1);
+            }
+        }
+        return lottoWinningResult;
+    }
+
+    private int getMatchNumberCount(List<Integer> lottoTicket, List<String> userLottoNumbers) {
+        int matchNumberCount = 0;
+        for (String tempUserLottoNumber : userLottoNumbers) {
+            int userLottoNumber = Integer.parseInt(tempUserLottoNumber);
+            if (lottoTicket.contains(userLottoNumber)) {
+                matchNumberCount++;
+            }
+        }
+        return matchNumberCount;
+    }
+
+    private LottoRank getLottoRank(int matchCount, boolean isMatchBonus) {
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (matchCount == 5 && lottoRank.getMatchCount() == matchCount && isMatchBonus) {
+                return LottoRank.SECOND;
+            } else if (lottoRank.getMatchCount() == matchCount) {
+                return lottoRank;
+            }
+        }
+        return LottoRank.NONE;
+    }
+
+    private boolean isMatchBonusNumber(List<Integer> lottoTicket, Map<String, String> userLottoNumbersAndBonusNumber) {
+        return lottoTicket.contains(
+                Integer.parseInt(userLottoNumbersAndBonusNumber.get("userBonusNumber"))
+        );
     }
 
     public void buyLottoAmountValidate(String inputBuyLottoAmount) {

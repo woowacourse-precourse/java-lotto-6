@@ -1,11 +1,12 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.model.LottoTicketGenerator;
 import lotto.service.LottoService;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,14 +31,22 @@ public class LottoController {
 
     // 게임 진행을 총괄하는 메서드
     public void lottoGamePlay() {
+
+        // 사용자가 구매 금액을 입력하고, 그 가격에 맞게 로또를 발행한다.
         List<List<Integer>> lottoTickets = buyLottoTickets();
         consoleOutputView.outputBuyLottoTickets(lottoTickets);
 
+        // 사용자가 당첨 번호와 보너스 번호를 입력하여 그 정보를 저장한다.
+        Map<String, String> userLottoNumbersAndBonusNumber = getUserLottoNumberAndBonusNumber();
+
+        // 구매한 로또와 사용자의 로또를 비교하여 등수를 구한다.
+        Map<LottoRank, Integer> lottoWinningResult = lottoService.getLottoWinningResult(userLottoNumbersAndBonusNumber, lottoTickets);
+    }
+
+    private Map<String, String> getUserLottoNumberAndBonusNumber() {
         String inputUserLottoNumbers = getUserLottoNumbers();
         String inputUserBonusNumber = getUserBonusNumber(inputUserLottoNumbers);
-        Map<String, String> userLottoNumbersAndBonusNumber = lottoService.setUserLottoNumbersAndBonusNumber(
-                inputUserLottoNumbers, inputUserBonusNumber
-        );
+        return lottoService.setUserLottoNumbersAndBonusNumber(inputUserLottoNumbers, inputUserBonusNumber);
     }
 
     private String getUserBonusNumber(String inputUserLottoNumbers) {

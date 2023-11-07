@@ -13,7 +13,6 @@ public class LottoTicketGenerator {
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
 
     public List<List<Integer>> createRandomLottoTickets(String inputBuyLottoAmount) {
-
         int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
         int lottoTicketCount = buyLottoAmount / 1000;
 
@@ -27,7 +26,6 @@ public class LottoTicketGenerator {
                 lottoTickets.add(lottoTicket.getNumbers());
             }
         }
-
         return lottoTickets;
     }
 

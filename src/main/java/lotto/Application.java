@@ -19,18 +19,33 @@ public class Application {
 
         //로또 발행
         List[] allTickets = new List[lottoTickets];
+        automaticNum(allTickets, lottoTickets);
+
+        List<Integer> numbers = new ArrayList<>();
+        int bonus = 0;
+        winningBonusNum(numbers, bonus);
+
+        //numbers.add(bonus);
+        int[] rank;
+        rank = rank(lottoTickets, allTickets, bonus, numbers);
+        rate(rank, purchaseAmount);
+    }
+
+    public static void automaticNum(List[] allTickets, int lottoTickets) {
         for (int i = 0; i < lottoTickets; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             numbers.sort(Comparator.naturalOrder());
             allTickets[i] = numbers;
             System.out.println(numbers);
         }
+    }
 
+    public static void winningBonusNum(List<Integer> numbers, int bonus) {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String a = Console.readLine();
         String[] winningNumbers = a.split(",");
 
-        List<Integer> numbers = new ArrayList<>();
+
         for (int i = 0; i < winningNumbers.length; i++) {
             int x = Integer.parseInt(winningNumbers[i]);
             if (!numbers.contains(x)) {
@@ -42,13 +57,14 @@ public class Application {
         //나중에 보너스 번호가 당첨 번호와 중복 될 경우의
         //예외처리로 변경할 것.
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonus = Integer.parseInt(Console.readLine());
+        bonus = Integer.parseInt(Console.readLine());
         while (numbers.contains(bonus)) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             bonus = Integer.parseInt(Console.readLine());
         }
-        //numbers.add(bonus);
+    }
 
+    public static int[] rank(int lottoTickets, List[] allTickets, int bonus, List<Integer> numbers) {
         //당첨여부
         int[] rank = new int[6];
         int includedBonus = 0;
@@ -79,7 +95,10 @@ public class Application {
                         5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
                         6개 일치 (2,000,000,000원) - %d개%n""",
                 rank[5], rank[4], rank[3], rank[2], rank[1]);
+        return rank;
+    }
 
+    public static void rate(int[] rank, int purchaseAmount) {
         double prizeMoney = 5000 * rank[5] + 50000 * rank[4] + 1500000 * rank[3] + 30000000 * rank[2] + 2000000000 * rank[1];
         double rateOfReturn = (prizeMoney / purchaseAmount) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(rateOfReturn * 10) / 10.0);

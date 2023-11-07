@@ -55,6 +55,12 @@ public class Lotto {
                 .count();
     }
 
+    public DrawResult getResult(Lotto winningNumbers, LottoNumber bonusNumber) {
+        int matchingNumberCount = getMatchingCount(winningNumbers);
+        boolean hasBonusNumber = containBonusNumber(bonusNumber);
+        return DrawResult.getResult(matchingNumberCount, hasBonusNumber);
+    }
+
     public LottoDto toLottoDto() {
         List<Integer> lottoNumbers = numbers.stream()
                 .map(LottoNumber::getNumber)

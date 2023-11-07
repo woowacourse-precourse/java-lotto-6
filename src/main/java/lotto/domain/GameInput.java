@@ -5,11 +5,14 @@ import java.util.List;
 public class GameInput {
 
     private final int purchaseAmount;
-    private final List<Integer> lottoNumbers;
-    private final int bonusNumber;
+    private List<Integer> lottoNumbers;
+    private int bonusNumber;
 
     public GameInput(InputReader inputReader) {
         this.purchaseAmount = inputReader.readAndValidatePurchaseAmount();
+    }
+
+    public void setLottoNumbersAndBonusNumber(InputReader inputReader) {
         this.lottoNumbers = inputReader.readAndValidateNumbers();
         this.bonusNumber = inputReader.readAndValidateBonumNumber();
     }

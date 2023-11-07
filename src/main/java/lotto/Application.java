@@ -16,8 +16,10 @@ public class Application {
         InputReader inputReader = new InputReader();
         GameInput gameInput = new GameInput(inputReader);
         LottoTicket lottoTicket = generateLottoTicket(gameInput.calculateLottoPurchase());
+        lottoTicket.printLottoTicket();
+        gameInput.setLottoNumbersAndBonusNumber(inputReader);
         LottoGame lottoGame = new LottoGame(lottoTicket.getLottos());
-        return new Game(gameInput, lottoTicket, lottoGame);
+        return new Game(gameInput, lottoGame);
     }
 
     private static LottoTicket generateLottoTicket(int lottoPurchase) {
@@ -29,18 +31,15 @@ public class Application {
     public static class Game {
 
         private final GameInput gameInput;
-        private final LottoTicket lottoTicket;
         private final LottoGame lottoGame;
 
-        public Game(GameInput gameInput, LottoTicket lottoTicket, LottoGame lottoGame) {
+        public Game(GameInput gameInput, LottoGame lottoGame) {
             this.gameInput = gameInput;
-            this.lottoTicket = lottoTicket;
             this.lottoGame = lottoGame;
         }
 
         public void run() {
             lottoGame.setWinningNumbers(gameInput.getLottoNumbers(), gameInput.getBonusNumber());
-            lottoTicket.printLottoTicket();
             lottoGame.printLottoResult();
         }
     }

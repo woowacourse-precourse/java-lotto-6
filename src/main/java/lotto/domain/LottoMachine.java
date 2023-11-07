@@ -14,9 +14,12 @@ public class LottoMachine {
 
     public List<Lotto> purchaseLotto(int gameCount) {
         List<Lotto> playerLotto = new ArrayList<>();
+        int publishCount = 1;
 
-        for(int publishedLotto = 1; publishedLotto <= gameCount; gameCount--){
+        while (publishAllLotto(publishCount, gameCount)) {
             playerLotto.add(new Lotto(createLottoNumbers()));
+
+            publishCount++;
         }
 
         return playerLotto;
@@ -25,5 +28,9 @@ public class LottoMachine {
     private List<Integer> createLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 LOTTO_MINIMUM_BOUND.getValue(), LOTTO_MAXIMUM_BOUND.getValue(), TOTAL_NUMBERS_OF_LOTTO.getValue());
+    }
+
+    private boolean publishAllLotto(int publishCount, int gameCount) {
+        return publishCount == gameCount;
     }
 }

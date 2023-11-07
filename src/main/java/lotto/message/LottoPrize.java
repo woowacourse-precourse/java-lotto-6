@@ -1,16 +1,18 @@
 package lotto.message;
 
+import java.math.BigDecimal;
+
 public enum LottoPrize {
-    FIRST(2_000_000_000, "6개 일치 (2,000,000,000원)"),
-    SECOND(30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    THIRD(1_500_000, "5개 일치 (1,500,000원)"),
-    FOURTH(50_000, "4개 일치 (50,000원)"),
-    FIFTH(5_000, "3개 일치 (5,000원)"),
-    NONE(0, "꽝");
-    private final int prize;
+    FIRST(BigDecimal.valueOf(2_000_000_000), "6개 일치 (2,000,000,000원)"),
+    SECOND(BigDecimal.valueOf(30_000_000), "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    THIRD(BigDecimal.valueOf(1_500_000), "5개 일치 (1,500,000원)"),
+    FOURTH(BigDecimal.valueOf(50_000), "4개 일치 (50,000원)"),
+    FIFTH(BigDecimal.valueOf(5_000), "3개 일치 (5,000원)"),
+    NONE(BigDecimal.ZERO, "꽝");
+    private final BigDecimal prize;
     private final String message;
 
-    LottoPrize(int prize, String message) {
+    LottoPrize(BigDecimal prize, String message) {
         this.prize = prize;
         this.message = message;
     }
@@ -34,7 +36,7 @@ public enum LottoPrize {
         return NONE;
     }
 
-    public int getPrize() {
+    public BigDecimal getPrize() {
         return prize;
     }
 

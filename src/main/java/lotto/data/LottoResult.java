@@ -29,7 +29,7 @@ public class LottoResult {
         BigDecimal totalPrize = BigDecimal.ZERO;
         for (LottoPrize lottoResult : lottoRank.keySet()) {
             BigDecimal count = lottoRank.get(lottoResult);
-            BigDecimal prize = BigDecimal.valueOf(lottoResult.getPrize());
+            BigDecimal prize = lottoResult.getPrize();
             totalPrize = totalPrize.add(prize.multiply(count));
         }
         return totalPrize;

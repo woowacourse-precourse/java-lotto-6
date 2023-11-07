@@ -44,4 +44,17 @@ class BuyerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 구매 금액 예외처리 - 1000의 배수가 아닌 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1000, 1200, 2000})
+    void 로또_구매금액_입력_예외처리_1000의_배수가_아닌_경우(int expectedValue) throws Exception {
+        //given
+        Buyer buyer = new Buyer();
+        provideRemoteInput(String.valueOf(expectedValue));
+
+        //when & then
+        assertThatThrownBy(() -> buyer.buyLotto())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

@@ -15,7 +15,8 @@ public class OutputView {
     private static final double LOTTO_AMOUNT = 1000.0;
     private static final String START_ERROR_MESSAGE = "[ERROR] ";
 
-    public void printLottos(List<Lotto> lottos) {
+    public void printLottos(List<Lotto> lottos, int lottosCount) {
+        printBuyMessage(lottosCount);
         for(Lotto lotto : lottos) {
             String lottoNumber = StringHandler.joinBy(lotto.getNumbers(), DELIMITER);
             System.out.print(ARRAY_BEGIN_STRING + lottoNumber + ARRAY_END_STRING);
@@ -38,7 +39,7 @@ public class OutputView {
         }
     }
 
-    public void printResultStatisticsPhrases() {
+    private void printResultStatisticsPhrases() {
         System.out.print("당첨 통계" + System.lineSeparator() + "---");
     }
 

@@ -2,20 +2,22 @@ package lotto.domain;
 
 import static lotto.exception.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
 
+import java.util.Objects;
+
 public class LottoAmount {
     private final int LOTTO_PRICE = 1_000;
     private final int amount;
 
-    public LottoAmount(int money) {
-        validateDivisibleByThousand(money);
-        this.amount = money;
+    public LottoAmount(int amount) {
+        validate(amount);
+        this.amount = amount;
     }
     public int getAmount() {
         return amount;
     }
 
-    private void validateDivisibleByThousand(int money) {
-        if (money % LOTTO_PRICE != 0) {
+    private void validate(int money) {
+        if (Objects.equals(money % LOTTO_PRICE, 0)) {
             throw new IllegalArgumentException(ONLY_DIVISIBLE_BY_THOUSAND.getMessage());
         }
     }

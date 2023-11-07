@@ -26,7 +26,7 @@ public class InputView {
 
     private static final String INPUT_LOTTO_NUMBER_SPLITTER = ",";
 
-    int requestLottoPurchaseAmount() {
+    public int requestLottoPurchaseAmount() {
         System.out.println(PURCHASE_MESSAGE);
         String inputValue = Console.readLine().trim();
         validateNumber(inputValue);

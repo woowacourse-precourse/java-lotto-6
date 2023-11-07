@@ -12,14 +12,14 @@ public class OutputView {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    public void printStatistics(WinningResult winningResult) {
+    public void printWinningResult(WinningResult winningResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printWinningResult(winningResult.winningStatistics());
-        printWinningRate(winningResult.winningRate());
+        print(winningResult.winningStatistics());
+        print(winningResult.winningRate());
     }
 
-    private void printWinningResult(Map<Rank, Integer> winningResult) {
+    private void print(Map<Rank, Integer> winningResult) {
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NOTHING) {
                 continue;
@@ -30,7 +30,7 @@ public class OutputView {
         }
     }
 
-    private void printWinningRate(Double winningRate) {
-        System.out.println("총 수익률은 " + winningRate + "%입니다.");
+    private void print(Double winningRate) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", winningRate));
     }
 }

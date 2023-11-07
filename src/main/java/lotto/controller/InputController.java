@@ -1,9 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.WinningLotto;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class InputController {
 

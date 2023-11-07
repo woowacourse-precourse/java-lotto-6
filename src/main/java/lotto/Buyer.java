@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Buyer {
-    private LottoMachine lottoMachine;
+    private final LottoMachine lottoMachine;
     private List<Lotto> lottos;
     private WinningLotto winningLotto;
 
@@ -21,7 +21,7 @@ public class Buyer {
 
                 int price = InputProcessor.parsePrice(input);
                 InputProcessor.checkPriceValidation(price);
-                this.lottos = lottoMachine.inputPurchasePrice();
+                this.lottos = lottoMachine.inputPurchasePrice(price);
                 return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -60,8 +60,8 @@ public class Buyer {
         }
     }
 
-    public Object getLotto() {
-        return null;
+    public List<Lotto> getLotto() {
+        return this.lottos;
     }
 
     public Object getDrawnNumbers() {

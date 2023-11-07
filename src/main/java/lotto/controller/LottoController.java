@@ -1,6 +1,4 @@
 package lotto.controller;
-
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
@@ -14,11 +12,9 @@ public class LottoController {
     OutputView outputView = new OutputView();
 
     public void playLotto() {
-
         int purchaseAmount = inputView.readPurchaseAmount();
         List<Lotto> lottoTickets = lottoService.purchaseLottoTickets(purchaseAmount);
         outputView.displayLottoTickets(lottoTickets);
-
     }
 
 }

@@ -26,8 +26,8 @@ public class LottoController {
     public void run() {
         String input = getUserInput();
         Player player = setPlayerVariableValue(input);
-        getwinningNumbers();
-        getExtraWinningNumber();
+        List<Integer> winningNumbers = getwinningNumbers();
+        List<Integer> winningNumbersAddExtraWinningNumber = getExtraWinningNumber(winningNumbers);
     }
 
     private String getUserInput() {
@@ -65,7 +65,7 @@ public class LottoController {
         outputView.displayLottiesNumber(lottiesInfoDto.lottiesNumber());
     }
 
-    private String getwinningNumbers() {
+    private List<Integer> getwinningNumbers() {
         String input;
         while (true) {
             ConsoleOutput.printNewLine();
@@ -75,7 +75,8 @@ public class LottoController {
                 break;
             }
         }
-        return input;
+        List<Integer> winningNumbers = lottoService.convertStringToList(input);
+        return winningNumbers;
     }
 
     private boolean validateWinningNumber(String input) {
@@ -89,8 +90,33 @@ public class LottoController {
         }
     }
 
-    public void getExtraWinningNumber() {
-        ConsoleOutput.printNewLine();
-        ConsoleOutput.displayExtraWinningNumberPrompt();
+    public List<Integer> getExtraWinningNumber(List<Integer> winningNumbers) {
+        String input;
+        while (true) {
+            ConsoleOutput.printNewLine();
+            ConsoleOutput.displayExtraWinningNumberPrompt();
+            input = inputView.getExtraWinningNumber();
+            if (validateExtraWinningNumber(input, winningNumbers)) {
+                break;
+            }
+        }
+        return addExtraWinningNumberInWinningNumbers(input, winningNumbers);
+    }
+
+    private boolean validateExtraWinningNumber(String input, List<Integer> winningNumbers) {
+        try {
+            InputValidator.validateExtraWinningNumber(input, winningNumbers);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    private List<Integer> addExtraWinningNumberInWinningNumbers(String extraWinningNumber,
+                                                                List<Integer> winningNumber) {
+        int extraWinningNumberInteger = Integer.parseInt(extraWinningNumber);
+        winningNumber.add(extraWinningNumberInteger);
+        return winningNumber;
     }
 }

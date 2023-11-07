@@ -9,4 +9,8 @@ public class InputView {
     public String getWinningNumber() {
         return readLine();
     }
+
+    public String getExtraWinningNumber() {
+        return readLine();
+    }
 }

@@ -21,7 +21,9 @@ public enum OutputMessage {
 
     public static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(System.out::println);
+        StringBuilder sb = new StringBuilder();
+        lottos.forEach(lotto -> sb.append(lotto).append("\n"));
+        System.out.println(sb);
     }
 
     public static void printWinningStatistics(HashMap<LottoResult, BigDecimal> result, float profitRate) {

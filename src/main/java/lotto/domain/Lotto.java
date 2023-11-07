@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.domain.constant.NumberConstant.*;
+import static lotto.utils.Validator.validateLotto;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +24,13 @@ public class Lotto {
 
 
     public static Lotto create(List<Integer> numbers) {
-        return new Lotto(numbers);
+        try {
+            validateLotto(numbers);
+
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
 

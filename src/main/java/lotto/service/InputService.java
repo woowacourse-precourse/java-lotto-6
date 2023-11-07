@@ -26,21 +26,21 @@ public class InputService {
     }
 
 
-    public static List<Integer> readWinningNumbers() {
+    public static Lotto readWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
         String[] input = trim(readLine().split(SPLIT_DELIMITER));
 
-        for (String num : input) {
-            try {
+        try {
+            for (String num : input) {
                 validateNumberType(num);
                 winningNumbers.add(parseInt(num));
-            } catch (IllegalArgumentException e) {
-                return readWinningNumbers();
             }
-        }
 
-        winningNumbers.sort(null);
-        return winningNumbers;
+            winningNumbers.sort(null);
+            return Lotto.create(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            return readWinningNumbers();
+        }
     }
 
     private static String[] trim(String[] input) {

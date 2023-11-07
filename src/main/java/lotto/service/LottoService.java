@@ -45,7 +45,7 @@ public class LottoService {
     private static Lotto generateWinningLotto() {
         printWinningNumInputForm();
 
-        return Lotto.create(readWinningNumbers());
+        return readWinningNumbers();
     }
 
     private static int generateBonusNum(Lotto winningLotto) {

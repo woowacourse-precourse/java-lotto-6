@@ -22,6 +22,6 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateAuthorizedLength(numbers);
         validateDuplicatedNums(numbers);
-        validateProperNumbers(numbers);
+        validateNumbersInRange(numbers);
     }
 }

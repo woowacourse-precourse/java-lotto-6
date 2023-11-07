@@ -17,6 +17,16 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public static Rank getRank(int winningNumberCount, boolean hasBonusNumber) {
+        for (Rank rank : Rank.values()) {
+            if (rank.winningNumberCount == winningNumberCount && hasBonusNumber) {
+                return rank;
+            }
+        }
+
+        return null;
+    }
+
     public int getWinningNumberCount() {
         return winningNumberCount;
     }

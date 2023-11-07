@@ -46,5 +46,24 @@ public class Lotto {
         }
     }
 
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getMatchedNumbers(WinningLotto winningLotto) {
+        int result = 0;
+
+        for (int lottoNumber : numbers) {
+            if (winningLotto.hasNumber(lottoNumber)) {
+                result++;
+            }
+        }
+
+        return result;
+    }
 
 }

@@ -39,4 +39,16 @@ public class WinningLotto {
             throw new InvalidLottoNumberRangeException();
         }
     }
+
+    public boolean hasNumber(int number) {
+        return winningLotto.hasNumber(number);
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

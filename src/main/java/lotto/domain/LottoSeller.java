@@ -2,9 +2,7 @@ package lotto.domain;
 
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constant.LottoFigure;
 import lotto.constant.Value;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +24,8 @@ public class LottoSeller {
 
     Lotto issueLotto() {
         List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < LottoFigure.LOTTO_NUMBER_COUNT.get()) {
-            int picked = Randoms.pickNumberInRange(LottoFigure.START_NUMBER.get(), LottoFigure.END_NUMBER.get());
+        while (numbers.size() < Value.LOTTO_NUMBER_COUNT.get()) {
+            int picked = Randoms.pickNumberInRange(Value.START_NUMBER.get(), Value.END_NUMBER.get());
             if (!numbers.contains(picked)) {
                 numbers.add(picked);
             }

@@ -2,11 +2,10 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoSeller;
-import lotto.domain.NumberMatcher;
+import lotto.domain.LottoResult;
 import lotto.domain.User;
 import lotto.io.InputStream;
 import lotto.io.OutputStream;
-import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import java.util.List;
@@ -17,7 +16,7 @@ public class LottoController {
     private final OutputView outputView;
     private final User user;
     private final LottoSeller seller;
-    private NumberMatcher numberMatcher;
+    private LottoResult lottoResult;
 
     public LottoController(InputStream inputStream, OutputStream outputStream) {
         this.inputView = new InputView(inputStream);
@@ -49,12 +48,12 @@ public class LottoController {
         outputView.printEmptyLine();
     }
 
-    public void inputWinningNumbers() {
+    public void inputWinNumbers() {
         while (true) {
             try {
-                outputView.printWinningNumbersInputMessage();
-                List<Integer> numbers = inputView.inputWinningNumbers();
-                this.numberMatcher = NumberMatcher.from(numbers);
+                outputView.printWinNumbersInputMessage();
+                List<Integer> winNumbers = inputView.inputWinNumbers();
+                lottoResult = LottoResult.from(winNumbers);
                 outputView.printEmptyLine();
                 break;
             } catch (IllegalArgumentException e) {
@@ -64,18 +63,22 @@ public class LottoController {
     }
 
     public void inputBonusNumber() {
-        List<Integer> answerNumbers = numberMatcher.getAnswerNumbers();
         while (true) {
             try {
                 outputView.printBonusNumberInputMessage();
                 int bonusNumber = inputView.inputBonusNumber();
-                Validator.checkDuplicated(answerNumbers, bonusNumber);
-                this.numberMatcher.setBonusNumber(bonusNumber);
+                this.lottoResult.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
             }
         }
         outputView.printEmptyLine();
+    }
+
+    public void getWinStatistics() {
+        outputView.printStatisticsMessage();
+        String winStatistics = lottoResult.getWinStatistics(user.getLottos());
+        outputView.print(winStatistics);
     }
 }

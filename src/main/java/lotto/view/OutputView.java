@@ -27,11 +27,15 @@ public class OutputView {
         outputStream.print(message);
     }
 
-    public void printWinningNumbersInputMessage() {
+    public void printWinNumbersInputMessage() {
         outputStream.print(Message.INPUT_WINNING_NUMBERS.get());
     }
 
     public void printBonusNumberInputMessage() {
         outputStream.print(Message.INPUT_BONUS_NUMBER.get());
+    }
+
+    public void printStatisticsMessage() {
+        outputStream.print(Message.START_STATISTICS.get());
     }
 }

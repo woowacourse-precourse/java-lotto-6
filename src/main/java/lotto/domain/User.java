@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -27,6 +28,10 @@ public class User {
 
     public int getBudget() {
         return budget;
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     public void setLottos(List<Lotto> lottos) {

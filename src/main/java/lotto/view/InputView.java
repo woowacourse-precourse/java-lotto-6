@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.constant.Format;
+import lotto.domain.Lotto;
 import lotto.io.InputStream;
 import lotto.util.Validator;
 import java.util.ArrayList;
@@ -20,22 +21,22 @@ public class InputView {
         return money;
     }
 
-    public List<Integer> inputWinningNumbers() throws IllegalArgumentException {
+    public List<Integer> inputWinNumbers() throws IllegalArgumentException {
         String inputLine = inputStream.inputLine();
         List<String> elements = List.of(inputLine.split(Format.DELIMITER.get()));
-        List<Integer> winningNumbers = new ArrayList<>();
+        List<Integer> winNumbers = new ArrayList<>();
         for (String element : elements) {
-            int number = Validator.checkLottoNumberInput(element);
-            Validator.checkDuplicated(winningNumbers, number);
-            winningNumbers.add(number);
+            int number = Lotto.checkRange(Integer.parseInt(element));
+            Validator.checkDuplicated(winNumbers, number);
+            winNumbers.add(number);
         }
-        Validator.checkLottoNumbersCount(winningNumbers);
+        Lotto.checkFormat(winNumbers);
         Validator.checkDelimiterCount(inputLine);
-        return winningNumbers;
+        return winNumbers;
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber() throws IllegalArgumentException {
         int number = inputStream.inputInt();
-        return Validator.checkLottoRange(number);
+        return Lotto.checkRange(number);
     }
 }

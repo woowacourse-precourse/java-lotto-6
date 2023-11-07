@@ -1,9 +1,8 @@
 package lotto.model;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
+import static lotto.model.Utilities.inputNumberSet;
 import static lotto.views.MessageManager.*;
 
 public class InputValidator {
@@ -53,11 +52,4 @@ public class InputValidator {
             throw new IllegalArgumentException(getWinningNumberInOneToFortyFiveMessage());
         }
     }
-    private static Set<String> inputNumberSet (String input) {
-        String[] winningNumbers = input.split(COMMA_SEPARATOR);
-        Set<String> inputNumber = new HashSet<>();
-        Collections.addAll(inputNumber, winningNumbers);
-        return inputNumber;
-    }
-
 }

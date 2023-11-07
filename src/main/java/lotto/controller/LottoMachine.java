@@ -42,6 +42,7 @@ public class LottoMachine {
         Judgment judgment = new Judgment();
 
         judgment.judge(lottoTicket);
+        judgment.showResult(outputView);
     }
 
     public void start() {

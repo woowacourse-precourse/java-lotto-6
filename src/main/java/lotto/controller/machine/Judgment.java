@@ -3,6 +3,7 @@ package lotto.controller.machine;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 import lotto.model.LottoTicket;
+import lotto.view.OutputView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Judgment {
     }
 
     private void initilizeWinningStatistics() {
-        for(int count = 0; count < 6; count++) {
+        for(int count = 0; count <= 6; count++) {
             winningStatistics.put(count, 0);
         }
     }
@@ -33,5 +34,9 @@ public class Judgment {
 
             winningStatistics.put(matchCount, lottoCount);
         }
+    }
+
+    public void showResult(OutputView outputView) {
+        outputView.showWinningStatistics(winningStatistics);
     }
 }

@@ -1,13 +1,14 @@
 package lotto;
 
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
 
 public class Application {
     static int purchaseLottoCost;
+
+
 
     static int validateInputCostIsNum(String inputCostStr){
         int inputCost = 0;
@@ -43,11 +44,43 @@ public class Application {
 
         return inputCost/1000;
     }
+
+
+
+    static List<Integer> getLottoNumber(){
+        List<Integer> LottoNumber = pickUniqueNumbersInRange(1, 45, 6);
+
+        Collections.sort(LottoNumber);
+
+        return LottoNumber;
+    }
+
+
+    static List<Lotto> generateLottos(int purchaseLottoCount){
+        List<Lotto> generatedLottos = new ArrayList<>();
+
+        for(int generatedLottoCount = 0; generatedLottoCount < purchaseLottoCount; generatedLottoCount++){
+            Lotto generatedLotto = new Lotto(getLottoNumber());
+            generatedLottos.add(generatedLotto);
+        }
+
+        return generatedLottos;
+    }
+
+
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Scanner sc = new Scanner(System.in);
 
         int purchaseLottoCount = calculateLottoCount((sc.nextLine()));
+
+
+        List<Lotto> purchasedLottos = generateLottos(purchaseLottoCount);
+
+
+
+        sc.close();
 
     }
 }

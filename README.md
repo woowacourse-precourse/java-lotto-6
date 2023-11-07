@@ -291,11 +291,14 @@ public class Lotto {
 
 2) 맞춘 개수에 맞추어 내가 당첨된 내역에 업데이트한다.
 - int[] my_lotto_scores = new int[5];
-- static int matched_3 = 0;
-- static int matched_4 = 1;
-- static int matched_5 = 2;
-- static int matched_5_with_bonus = 3;
-- static int matched_6 = 4; 를 통해 가독성이 쉽게 접근하기로 하자.
+
+- ~~static int matched_3 = 0;~~
+- ~~static int matched_4 = 1;~~
+- ~~static int matched_5 = 2;~~
+- ~~static int matched_5_with_bonus = 3;~~
+- ~~static int matched_6 = 4; 를 통해 가독성이 쉽게 접근하기로 하자.~~
+- [JAVA ENUM을 사용하자]
+- 
 - Ex) my_lotto_scores[match_count]++; 
 
 ### 6) 당첨금과 내 돈을 입력받아 수익률 계산

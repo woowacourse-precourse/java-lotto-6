@@ -19,6 +19,7 @@ public class GameController {
         purchaseLotto();
         issueLotto();
         inputWinningLotto();
+        inputBonusNumber();
     }
 
     public void purchaseLotto() {
@@ -48,6 +49,14 @@ public class GameController {
         } while (isInvalidWinningLotto(input));
     }
 
+    public void inputBonusNumber() {
+        String input;
+        do {
+            outputView.requestBonusNumberMessage();
+            input = inputView.scanBonusNumber();
+        } while (isInvalidBonusNumber(input));
+    }
+
     private boolean isInvalidPurchaseAmount(String input) {
         try {
             numberService.initPurchaseAmount(input);
@@ -61,6 +70,16 @@ public class GameController {
     private boolean isInvalidWinningLotto(String input) {
         try {
             numberService.initWinningLotto(input);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isInvalidBonusNumber(String input) {
+        try {
+            numberService.initBonusNumber(input);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             return true;

@@ -38,6 +38,10 @@ public class NumberService {
         allWinningNumbers.initWinningLotto(input);
     }
 
+    public void initBonusNumber(String input) {
+        allWinningNumbers.initBonusNumber(input);
+    }
+
     private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < purchaseAmount.getPurchaseNumber(); count++) {

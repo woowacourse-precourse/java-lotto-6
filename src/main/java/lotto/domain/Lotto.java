@@ -19,6 +19,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(NUMBERS_SIZE_INVALID_EXCEPTION);

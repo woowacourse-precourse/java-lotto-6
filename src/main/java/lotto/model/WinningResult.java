@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public enum WinningResult {
@@ -35,6 +36,14 @@ public enum WinningResult {
         }
     }
 
+    public static double calculateEarning(int purchaseMoney) {
+        long totalEarning = Arrays.stream(WinningResult.values())
+                .mapToLong(values -> (long) values.money * values.winningCount)
+                .sum();
+
+        return Math.round(((double) totalEarning / purchaseMoney * 1000.0)) / 10.0;
+    }
+    
     public static void checkWinning(int bonus, List<Integer> winningNumber, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             compareLotto(bonus, winningNumber, lotto.getNumbers());

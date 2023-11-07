@@ -76,6 +76,6 @@ public class LottoController {
 
     private void showWinningResult() {
         WinningResult.checkWinning(bonusNumber.getBonus(), winningLotto.getWinning(), lottos.getLottos());
-        OutputView.printResultStatistics();
+        OutputView.printResultStatistics(purchase.getMoney());
     }
 }

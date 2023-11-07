@@ -5,7 +5,8 @@ public enum Guide {
     LOTTO_COUNT("%d개를 구매했습니다."),
     WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-    WINNING_RESULT_STATISTICS("당첨 통계\n" + "---");
+    WINNING_RESULT_STATISTICS("당첨 통계\n" + "---"),
+    EARNING_RATE("총 수익률은 %s입니다.");
 
     private final String message;
 
@@ -20,4 +21,5 @@ public enum Guide {
     public String getMessage(int number) {
         return String.format(message, number);
     }
+
 }

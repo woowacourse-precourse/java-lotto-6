@@ -1,6 +1,8 @@
 package lotto.view;
 
+import static lotto.model.WinningResult.calculateEarning;
 import static lotto.model.WinningResult.printWinningResult;
+import static lotto.util.message.Guide.EARNING_RATE;
 import static lotto.util.message.Guide.WINNING_RESULT_STATISTICS;
 
 import java.util.List;
@@ -22,8 +24,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResultStatistics() {
+    public static void printResultStatistics(int purchaseMoney) {
         System.out.println(WINNING_RESULT_STATISTICS.getMessage());
         printWinningResult();
+
+        System.out.printf(EARNING_RATE.getMessage(), calculateEarning(purchaseMoney) + "%");
     }
 }

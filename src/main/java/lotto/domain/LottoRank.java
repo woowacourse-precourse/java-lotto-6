@@ -29,15 +29,15 @@ public enum LottoRank {
                 .orElse(FAIL);
     }
 
-    private static boolean isSameMatchCount(LottoRank rank, int count){
+    private static boolean isSameMatchCount(LottoRank rank, int count) {
         return rank.matchCount == count;
     }
 
-    private static boolean checkBonusBall(LottoRank rank, boolean containBonusBall){
+    private static boolean checkBonusBall(LottoRank rank, boolean containBonusBall) {
         return rank.bonusBall == containBonusBall;
     }
 
-    public static int calculateReward(LottoRank rank, int count){
+    public static int calculateReward(LottoRank rank, int count) {
         return rank.reward * count;
     }
 
@@ -53,7 +53,7 @@ public enum LottoRank {
         return reward;
     }
 
-    public String getFormattedReward(){
+    public String getFormattedReward() {
         DecimalFormat formatter = new DecimalFormat("###,###");
         return formatter.format(reward);
     }

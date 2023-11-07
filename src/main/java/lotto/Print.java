@@ -8,7 +8,7 @@ public class Print {
         System.out.println(printStr);
     }
     public static void printPurchase(Integer purchaseAmount){
-        System.out.printf((MainMessage.NUMBER_OF_ITEMS_PURCHASE.getMessage()) + "%n", purchaseAmount);
+        System.out.printf((MainMessage.NUMBER_OF_ITEMS_PURCHASE.getMessage()) + "%n", purchaseAmount / 1000);
     }
     public static void printStatistics(Integer winningAmount){
 

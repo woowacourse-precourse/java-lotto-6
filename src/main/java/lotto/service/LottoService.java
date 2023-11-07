@@ -52,6 +52,6 @@ public class LottoService {
 	}
 
 	private void setUpLottoWinningNumbers(String numbers, String bonus) {
-		lottoWinningNumbers = new LottoWinningNumbers(numbers);
+		lottoWinningNumbers = new LottoWinningNumbers(numbers, bonus);
 	}
 }

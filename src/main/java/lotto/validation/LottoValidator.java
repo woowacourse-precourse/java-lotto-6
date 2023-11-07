@@ -32,6 +32,12 @@ public class LottoValidator {
 		}
 	}
 
+	public static void validateRange(int number) {
+		if (isNumberNotInRange(number)) {
+			throw new LottoException(LOTTO_OUT_OF_RANGE_ERROR.getMessage());
+		}
+	}
+
 	private static boolean isDuplicated(List<Integer> numbers) {
 		return numbers.stream()
 			.distinct()

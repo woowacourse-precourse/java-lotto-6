@@ -10,10 +10,11 @@ import lotto.validation.LottoValidator;
 
 public class LottoWinningNumbers {
 	private List<Integer> winningNumbers;
+	private int bonus;
 
-	public LottoWinningNumbers(String input) {
-		List<Integer> numbers = convertToList(input);
-		LottoValidator.canBeLotto(numbers);
+	public LottoWinningNumbers(String input, String bonus) {
+		List<Integer> numbers = convertAndvalidateLottos(input);
+		validateBonus(bonus);
 		this.winningNumbers = numbers;
 	}
 
@@ -25,5 +26,15 @@ public class LottoWinningNumbers {
 		return Arrays.stream(input.split(WINNING_INPUT_DELIMITER))
 			.map(Integer::parseInt)
 			.collect(Collectors.toList());
+	}
+
+	private List<Integer> convertAndvalidateLottos(String input) {
+		List<Integer> numbers = convertToList(input);
+		LottoValidator.canBeLotto(numbers);
+		return numbers;
+	}
+
+	private void validateBonus(String bonus) {
+		LottoValidator.validateRange(Integer.parseInt(bonus));
 	}
 }

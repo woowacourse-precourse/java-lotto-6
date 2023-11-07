@@ -23,12 +23,22 @@ class WinningNumberTest {
         );
     }
 
-
     @DisplayName("보너스숫자 범위가 1-45가 벗어나면 예외처리 하기 ")
     @Test
     void validRangeBonusNumber(){
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         int bonus = 46;
+
+        assertThatThrownBy(
+                ()-> new WinningNumber(lotto,bonus)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호 안에 보너스숫자가 있으면 예외 처리하기")
+    @Test
+    void validDuplicateBonusNumber(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonus = 6;
 
         assertThatThrownBy(
                 ()-> new WinningNumber(lotto,bonus)

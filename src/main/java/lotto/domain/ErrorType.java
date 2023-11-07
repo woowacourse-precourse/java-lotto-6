@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
+import lotto.constant.Condition;
+import lotto.constant.Message;
 
 public enum ErrorType {
-    NOT_A_NUMBER("(은)는 숫자여야 합니다.", input -> {
+    NOT_A_NUMBER(Message.ERROR_MSG_NOT_A_NUMBER, input -> {
         try {
             Arrays.stream(input.split(","))
                     .forEach(Integer::parseInt);
@@ -15,25 +17,26 @@ public enum ErrorType {
             return true;
         }
     }),
-    NOT_IN_THOUSANDS("(은)는 1000원 단위여야 합니다.", input -> {
-        int money = Integer.parseInt(input) % 1_000;
-        return money != 0;
-    }),
-    OUT_OF_RANGE("(은)는 1부터 45 사이의 수여야 합니다.", input ->
-            Arrays.stream(input.split(","))
-                    .map(Integer::parseInt)
-                    .noneMatch(number -> 0 < number && number <= 45)
-    ),
-    LENGTH_NOT_MATCH("(은)는 6자리여야 합니다.", input -> input.split(",").length == 6),
-    DUPLICATED_NUMBER("(은)는 중복된 수입니다.", input -> {
-        Set<Integer> isDuplicated = new HashSet<>();
-
+    NOT_IN_THOUSANDS(Message.ERROR_MSG_NOT_IN_THOUSANDS, input -> {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
-                .anyMatch(isDuplicated::add);
-    }),
+                .anyMatch(integer -> integer % Condition.THOUSAND != 0);
 
-    NOT_AN_ERROR("정상", null);
+    }),
+    OUT_OF_RANGE(Message.ERROR_MSG_OUT_OF_RANGE, input ->
+            Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .anyMatch(number -> Condition.MIN_DRAW_NUMBER > number || number > Condition.MAX_DRAW_NUMBER)
+    ),
+    LENGTH_NOT_MATCH(Message.ERROR_MSG_LENGTH_NOT_MATCH, input -> input.split(",").length != Condition.WINNING_NUMBERS_COUNT),
+    DUPLICATED_NUMBER(Message.ERROR_MSG_DUPLICATED_NUMBER, input -> {
+        Set<Integer> isDuplicated = new HashSet<>();
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .anyMatch(integer -> !isDuplicated.add(integer));
+    });
+
+//    NOT_AN_ERROR("정상", null);
 
     private final String errorMsg;
     private Predicate<String> isError;
@@ -46,5 +49,9 @@ public enum ErrorType {
 
     public String getErrorMsg() {
         return errorMsg;
+    }
+
+    public boolean isError(String input){
+        return isError.test(input);
     }
 }

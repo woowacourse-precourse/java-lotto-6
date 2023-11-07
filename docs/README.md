@@ -10,7 +10,7 @@
     - [ ] 보너스 번호 1개를 생성한다. LottoSalesman#bonusNumberGenerator
     - [ O ] 모든 번호는 중복되지 않아야한다. - Lotto#dupulicationCheck()
 - 사용자 로또 번호와 당첨 번호를 비교한다. - Referee#compare()
-  - [ ] 발행한 로또 수량 및 번호를 출력한다. - ResultLotto#
+  - [ O ] 발행한 로또 수량 및 번호를 출력한다. - ResultLotto#
     - [ O ] 로또 번호는 오름차순으로 정렬하여 보여준다. -> 처음 로또에 로또 번호를 넣을 때 정렬하면 좋을 것 같다.
   - 당첨 내역
     - [ ] 6개 번호가 일치하면 1등, 2,000,000,000원 

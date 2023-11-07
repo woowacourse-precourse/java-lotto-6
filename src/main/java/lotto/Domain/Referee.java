@@ -7,6 +7,14 @@ public class Referee {
     private final int bonusNumber;
     private boolean bonusNumberMatch = false;
 
+    public List<Integer> getAnswerNumbers() {
+        return answerNumbers;
+    }
+
+    public int getBonusNumbers() {
+        return bonusNumber;
+    }
+
     public Referee(List<Integer> answerNumbers, int bonusNumber) {
         Lotto.dupulicationCheck(answerNumbers);
         Lotto.validate(answerNumbers);

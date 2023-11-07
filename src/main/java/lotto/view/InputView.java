@@ -1,16 +1,20 @@
 package lotto.view;
 
 import static lotto.common.exception.ExceptionMessages.INVALID_NUMBER_FORMAT;
+import static lotto.common.exception.ExceptionMessages.INVALID_WINNING_NUMBERS_FORMAT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InputView {
     public static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.\n";
     public static final String INPUT_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.\n";
     public static final String INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.\n";
     public static final String WINNING_NUMBER_SEPARATOR = ",";
+    public static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^(\\d+,){5}\\d+$");
 
     public long inputPurchaseAmount() {
         System.out.print(INPUT_PURCHASE_AMOUNT);
@@ -28,11 +32,19 @@ public class InputView {
 
     public List<Integer> inputWinningNumbers() {
         System.out.print(INPUT_WINNING_NUMBERS);
-        String input = Console.readLine();
+        String winningNumbers = Console.readLine();
+        validateFormat(winningNumbers);
 
-        return Arrays.stream(input.split(WINNING_NUMBER_SEPARATOR))
+        return Arrays.stream(winningNumbers.split(WINNING_NUMBER_SEPARATOR))
                 .map(this::parseInt)
                 .toList();
+    }
+
+    private void validateFormat(String winningNumbers) {
+        Matcher matcher = WINNING_NUMBERS_PATTERN.matcher(winningNumbers);
+        if (!matcher.find()) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+        }
     }
 
     public int inputBonusNumber() {

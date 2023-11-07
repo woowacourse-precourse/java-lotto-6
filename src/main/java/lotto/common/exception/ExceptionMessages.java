@@ -7,7 +7,8 @@ public enum ExceptionMessages {
     DUPLICATE_WINNING_NUMBER("당첨 번호와 보너스 번호에 중복된 숫자가 올 수 없습니다."),
     INVALID_PURCHASE_AMOUNT("구입 금액은 0원일 수 없습니다."),
     NOT_DIVISIBLE_PURCHASE_AMOUNT("구입 금액은 %s원으로 나누어 떨어져야 합니다."),
-    INVALID_NUMBER_FORMAT("숫자를 입력해주세요.");
+    INVALID_NUMBER_FORMAT("숫자를 입력해주세요."),
+    INVALID_WINNING_NUMBERS_FORMAT("쉼표(,)로 구분된 6개의 숫자를 정확히 입력해주세요. 예) 1,2,3,4,5,6");
 
     private static final String MESSAGE_FORMAT = "[ERROR] %s";
     private final String message;

@@ -14,7 +14,8 @@ public class Game {
         WinningStatistics winningStatistics = new WinningStatistics();
 
         Output.printPurchaseAmountMessage();
-        List<Lotto> totalLotto = gameManager.createLotto();
+        int purchaseAmount = input.getPurchaseAmount();
+        List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
 
         Output.printPurchaseLottoQuantityMessage(totalLotto.size());
         Output.printTotalLotto(totalLotto);
@@ -26,6 +27,10 @@ public class Game {
         int bonusNumber = input.getBonusNumber();
 
         gameManager.compareTotalLotto(totalLotto, winningNumbers, bonusNumber, winningStatistics);
+        Output.printWinningStatisticsMessage();
         Output.printWinningResult(winningStatistics);
+
+        double profitPercentage = gameManager.calculateProfitPercentage(winningStatistics, purchaseAmount);
+        Output.printProfitPercentage(profitPercentage);
     }
 }

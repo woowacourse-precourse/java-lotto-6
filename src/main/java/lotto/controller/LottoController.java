@@ -1,20 +1,28 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
 /*
 - [ ] 로또 구입 금액을 입력받는 기능
     - [v] "구입금액을 입력해 주세요." 메시지를 출력하는 기능
-- [ ] 랜덤 메서드를 이용해서 중복되지 않는 숫자를 뽑는 기능
-- [ ] 뽑은 숫자를 저장하는 기능
-- [ ] 로또를 발행하는 기능
-- [ ] 당첨 번호를 입력받는 기능
+- [v] 랜덤 메서드를 이용해서 중복되지 않는 숫자를 뽑는 기능 -> 컨트롤러에서 하기
+- [v] 뽑은 숫자를 저장하는 기능 -> 이것도 컨트롤러
+- [v] 로또를 발행하는 기능 -> 이것도 컨트롤러
+- [ ] 당첨 번호를 입력받는 기능 -> 컨트롤러
     - [ ] 당첨 번호를 입력해 주세요. 메시지를 출력하는 기능
-- [ ] 보너스 번호를 입력받는 기능
+- [ ] 보너스 번호를 입력받는 기능 -> 컨트롤러
     - [ ] 보너스 번호를 입력해 주세요. 메시지를 출력하는 기능
-- [ ] 당첨 여부와 등수를 계산하는 기능
-- [ ] 수익률을 계산 하는 기능
-- [ ] 당첨 통계를 출력하는 기능
+- [ ] 당첨 여부와 등수를 계산하는 기능 -> 이건 계산 클래스에서 하자
+- [ ] 수익률을 계산 하는 기능 -> 이것도 계산 클래스
+- [ ] 당첨 통계를 출력하는 기능 -> 이건 컨트롤러(뷰에서 할까?)
     - [ ] 수익률을 출력하는 기능
-- [ ] 예외가 발생했을 때 에러 메시지를 처리 하는 기능
+- [ ] 예외가 발생했을 때 에러 메시지를 처리 하는 기능 -> 일단 컨트롤러에서 하고, 예외 클래스를 따로 둘지 생각해보기
 - [ ] 예외가 발생한 다음 다시 입력을 받는 기능 */
 // 이 컨트롤러에서는 로또 구입 금액 입력, 로또 발행(데이터 전달)을 구현
 // 로또 구입 금액이 로또 클래스에 필요할까? ㄴㄴ, 로또 구입 금액은 로또컨트롤러에서만 필요
@@ -24,6 +32,12 @@ public class LottoController {
     final static int MOD_VALUE = 1000;
     final static int MAX_LOTTO_PRICES = 2147483000;
     final static int MIN_LOTTO_PRICES = 1000;
+    List<Lotto> lottos = new ArrayList<>();
+    int lottoCounts;
+
+    public void setLottoCounts(int lottoCounts) {
+        this.lottoCounts = lottoCounts;
+    }
 
     public String printLottoPrices() {
         return "구입금액을 입력해 주세요.";
@@ -40,6 +54,7 @@ public class LottoController {
         if(!isPriceModZero(lottoPrices)) {
             throw new IllegalArgumentException("구입 금액은 " + MOD_VALUE + "원 단위 여야 합니다.");
         }
+        setLottoCounts(lottoPrices % MOD_VALUE);
         return lottoPrices;
     }
     public int isInteger(String confirmString) {
@@ -48,7 +63,6 @@ public class LottoController {
         } catch (NumberFormatException numberFormatException) {
         throw new IllegalArgumentException("숫자만 입력하실 수 있습니다");
         }
-
     }
     public boolean isPriceLowerThanMax(int confirmInteger) {
         return confirmInteger < MAX_LOTTO_PRICES;
@@ -59,6 +73,13 @@ public class LottoController {
     public boolean isPriceModZero(int confirmInteger) {
         return confirmInteger % MOD_VALUE == 0;
     }
+
+    public List<Integer> GenerateRandomNumber() {
+        List<Integer> lottoNumbers = new ArrayList<>();
+        lottoNumbers = pickUniqueNumbersInRange(1,45,6);
+        return lottoNumbers;
+    }
+
 
     // 순서 - 상수, 클래스 변수
     // 인스턴스 변수

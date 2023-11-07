@@ -18,8 +18,8 @@ public class InputBuyLottoView extends InputView {
         validateFormat(inputValue);
     }
 
-    private void validateFormat(String inputVlaue) {
-        if(!Rule.NUMBER_PATTERN.matcher(inputVlaue).matches()) {
+    private void validateFormat(String inputValue) {
+        if(!Rule.NUMBER_PATTERN.matcher(inputValue).matches()) {
             throw new IllegalArgumentException(Rule.NOTNUMBER_PATTERN);
         }
     }

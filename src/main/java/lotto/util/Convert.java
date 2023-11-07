@@ -29,6 +29,6 @@ public class Convert {
     }
 
     public static String formatDoubleWithCommaAndRound(double totalYield) {
-        return new DecimalFormat("#,###.#").format(totalYield);
+        return new DecimalFormat("#,##0.0").format(totalYield);
     }
 }

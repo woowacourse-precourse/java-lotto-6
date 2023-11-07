@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.constant.LottoPrizeConstant.FIRST_PRIZE_COUNT;
+import static lotto.domain.constant.LottoPrizeConstant.FIVE_PRIZE_COUNT;
 import static lotto.domain.constant.LottoPrizeConstant.SECOND_PRIZE_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,5 +47,18 @@ class LottoProfitTest {
 
             assertThat(totalPurchaseAmount).isEqualTo(23000);
         }
+    }
+
+    @Test
+    @DisplayName("당첨 수익률이 예상값과 일치하는지 테스트")
+    void testProfitRateEqualsExpectedValue() {
+        boolean hasBonusNumber = true;
+        int fiveRankCount = FIVE_PRIZE_COUNT.getNumber();
+        lottoPrize.updateRankCount(fiveRankCount, hasBonusNumber);
+        LottoPurchase lottoPurchase = LottoPurchase.create(8);
+
+        lottoProfit.updateLottoProfit(lottoPrize, lottoPurchase);
+
+        assertThat(lottoProfit.getTotalProfitRate().getProfitRate()).isEqualTo(62.5);
     }
 }

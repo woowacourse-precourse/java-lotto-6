@@ -14,7 +14,7 @@ public class LottoResult {
         return result;
     }
 
-    public void calculateWinningResult(Lottos lottos, String inputWinningNumber, int bonusNumber) {
+    public void calculateWinningResult(Lottos lottos, List<Integer> inputWinningNumber, int bonusNumber) {
         for (Lotto lotto : lottos.getLottos()) {
             Rank rank = checkRank(lotto, inputWinningNumber, bonusNumber);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
@@ -38,11 +38,7 @@ public class LottoResult {
         return formatter.format(profitRate);
     }
 
-    private Rank checkRank(Lotto lotto, String inputWinningNumber, int bonusNumber) {
-        List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(InputView.COMMA))
-                .map(Integer::parseInt)
-                .toList();
-
+    private Rank checkRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.utils.ExceptionMessage;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,9 +14,28 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_TOTAL.getValue());
         }
+        numbers.forEach(number -> {
+            if(0 < number && number <= 45) {
+                throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
+            }
+        });
     }
 
-    // TODO: 추가 기능 구현
+    public void validate(String number) {
+        int num;
+        try {
+            num = Integer.parseInt(number);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER.getValue());
+        }
+
+        if(0 < num && num <= 45) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
+        }
+
+        this.numbers.add(num);
+    }
+
 }

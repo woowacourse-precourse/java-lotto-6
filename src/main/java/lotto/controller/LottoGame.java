@@ -15,6 +15,7 @@ public class LottoGame {
         printMessageAndInputMoney();
         List<List<Integer>> lottos = getRandamLottos();
         printMessageAndInputWinningNumber();
+        printMessageAndInputBonusNumber();
     }
 
     public void printMessageAndInputMoney() {
@@ -31,9 +32,15 @@ public class LottoGame {
 
     public void printMessageAndInputWinningNumber() {
         lottoView.printWinningNumberMessage();
-        String winningNumber;
-        winningNumber = lottoUtil.getUserInput();
+        String winningNumber = lottoUtil.getUserInput();
         lottoUtil.validateNumberCheck(winningNumber);
+        lotto = new Lotto(lottoUtil.convertNumbers(winningNumber));
+    }
+
+    public void printMessageAndInputBonusNumber() {
+        lottoView.printBonusNumberMessage();
+        String bonusNumber = lottoUtil.getUserInput();
+        lotto.validate(bonusNumber);
     }
 
 }

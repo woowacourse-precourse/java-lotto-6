@@ -6,12 +6,12 @@ public class TicketAmount {
     private final int amount;
 
     public TicketAmount(String money) {
-        validateInput(money);
         int purchaseAmount = Integer.parseInt(money);
+        validateMoney(purchaseAmount);
+        this.amount = purchaseAmount;
     }
 
-    private static void validateInput(String money) {
-        Validator.validateInputNotEmpty(money);
-        Validator.validateIsParsableToInt(money);
+    private static void validateMoney(int money) {
+        Validator.validateNonDivisibility(money);
     }
 }

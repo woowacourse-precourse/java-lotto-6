@@ -11,17 +11,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.ErrorMessage;
-import lotto.constant.NumberConstant;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        duplicate(numbers);
         rangeCheck(numbers);
+        lengthCheck(numbers);
+        duplicateCheck(numbers);
         this.numbers = numbers;
     }
 
@@ -38,19 +36,23 @@ public class Lotto {
             || winnerNumber > LAST_LOTTO_NUMBER.getNumber();
     }
 
-    private void duplicate(List<Integer> numbers) {
+    private void duplicateCheck(List<Integer> numbers) {
         Set<Integer> nonDuplicateLotto = new HashSet<>(numbers);
         List<Integer> numberNonDuplicate = new ArrayList<>(nonDuplicateLotto);
-        if (numberNonDuplicate.size() != NUMBERS_LENGTH.getNumber()) {
+        if (isNotRightLength(numberNonDuplicate)) {
             throw new IllegalArgumentException(WINNUMBER_NO_DUPLICATE_LENGTH.getMessage());
         }
 
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != NUMBERS_LENGTH.getNumber()) {
+    private void lengthCheck(List<Integer> numbers) {
+        if (isNotRightLength(numbers)) {
             throw new IllegalArgumentException(WINNUMBER_LENGTH.getMessage());
         }
+    }
+
+    private boolean isNotRightLength(List<Integer> numbers) {
+        return numbers.size() != NUMBERS_LENGTH.getNumber();
     }
 
 

@@ -8,7 +8,7 @@ import static lotto.util.LottoInformation.MIN_NUMBER;
 import static lotto.util.LottoInformation.MAX_NUMBER;
 
 public class WinningNumbersValidator {
-    public static void validateWinningNumbers(List<String> numbers) {
+    public void validateWinningNumbers(List<String> numbers) {
         if (numbers.isEmpty()) {
             throw new IllegalArgumentException(NumberErrorMessage.NUMBER_IN_EMPTY.getMessage());
         }
@@ -30,7 +30,7 @@ public class WinningNumbersValidator {
         }
     }
 
-    private static boolean isNumeric(List<String> numbers) {
+    private boolean isNumeric(List<String> numbers) {
         for (String numberAsText : numbers) {
             try {
                 Integer.parseInt(numberAsText);
@@ -42,16 +42,16 @@ public class WinningNumbersValidator {
         return true;
     }
 
-    private static boolean isSixNumbers(List<String> numbers) {
+    private boolean isSixNumbers(List<String> numbers) {
         return numbers.size() == NUMBER_OF_NUMBERS;
     }
 
-    private static boolean isDuplicateNumbers(List<String> numbers) {
+    private boolean isDuplicateNumbers(List<String> numbers) {
         List<String> distinctNumbers = numbers.stream().distinct().collect(Collectors.toList());
         return distinctNumbers.size() != numbers.size();
     }
 
-    private static boolean isWithinRange(List<String> numbers) {
+    private boolean isWithinRange(List<String> numbers) {
         for (String numberAsText : numbers) {
             int number = Integer.parseInt(numberAsText);
             if (number > MAX_NUMBER || number < MIN_NUMBER) {

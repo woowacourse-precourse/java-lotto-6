@@ -5,10 +5,11 @@ import java.util.List;
 
 public class WinningNumbersConverter {
     private static List<String> winningNumbers;
+    private static final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
 
     public static List<Integer> convertStringToList(String winningNumbersAsText) {
         winningNumbers = List.of(winningNumbersAsText.split(","));
-        WinningNumbersValidator.validateWinningNumbers(winningNumbers);
+        winningNumbersValidator.validateWinningNumbers(winningNumbers);
         return convertStringListToIntegerList(winningNumbers);
     }
 

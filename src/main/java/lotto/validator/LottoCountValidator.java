@@ -5,7 +5,7 @@ import static lotto.Option.ErrorMessage.NOT_NEGATIVE_NUMBER;
 import static lotto.Option.ErrorMessage.NOT_ZERO;
 
 public class LottoCountValidator {
-    public static void check(int money) { //메서드명 뭘로하지?
+    public static void check(int money) {
         validatePositiveNumber(money);
         validateZeroNumber(money);
         validateDivision(money);

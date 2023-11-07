@@ -36,6 +36,7 @@ public class Lotto {
             if (validDuplicate.contains(number)) {
                 throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER);
             }
+            validDuplicate.add(number);
         }
     }
 

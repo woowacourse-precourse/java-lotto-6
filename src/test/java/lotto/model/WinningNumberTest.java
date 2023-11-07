@@ -64,4 +64,24 @@ public class WinningNumberTest {
         winningNumber = new WinningNumber(List.of(45, 44, 43, 42, 41, 40));
         Assertions.assertThat(winningNumber).isNotNull();
     }
+
+    // 당첨 번호 중복 관련 테스트
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByDuplicatedNumber() {
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.DUPLICATE_NUMBER_EXCEPTION.getMessage());
+
+        assertThatThrownBy(() -> new WinningNumber(List.of(45, 2, 3, 4, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.DUPLICATE_NUMBER_EXCEPTION.getMessage());
+    }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 없으면 당첨 번호가 생성된다.")
+    @Test
+    void createWinningNumberByNotDuplicatedNumber() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertThat(winningNumber).isNotNull();
+    }
 }

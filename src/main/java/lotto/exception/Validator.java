@@ -41,4 +41,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+
+    private static void validateUniqueWinningNumbers(HashSet<Integer> duplicateSet) {
+        if (duplicateSet.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 불가능합니다.");
+        }
+    }
 }

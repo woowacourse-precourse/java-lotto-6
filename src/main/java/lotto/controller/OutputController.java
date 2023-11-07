@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Ranking;
 import lotto.utils.Converter;
 import lotto.view.OutView;
 
 public class OutputController {
 
-    public void orderPrintTicketQuantity(int ticketQuantity) {
+    public void orderPrintTicketQuantity(PurchaseAmount purchaseAmount) {
+        int ticketQuantity = purchaseAmount.getTicketQuantity();
         OutView.printTicketQuantity(ticketQuantity);
     }
 

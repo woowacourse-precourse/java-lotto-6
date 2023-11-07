@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersValidatorTest extends NsTest {
+class InputValidatorTest extends NsTest {
 
     @Test
     void 콤마_위치_테스트() {

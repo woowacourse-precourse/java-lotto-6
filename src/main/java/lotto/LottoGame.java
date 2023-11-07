@@ -6,6 +6,7 @@ import lotto.controller.InputController;
 import lotto.controller.MainController;
 import lotto.controller.OutputController;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Ranking;
 import lotto.domain.WinningNumbers;
 
@@ -22,10 +23,10 @@ public class LottoGame {
     }
 
     public void run() {
-        int ticketQuantity = inputController.settingTicketQuantity();
-        outputController.orderPrintTicketQuantity(ticketQuantity);
+        PurchaseAmount purchaseAmount = inputController.settingTicketQuantity();
+        outputController.orderPrintTicketQuantity(purchaseAmount);
 
-        ArrayList<Lotto> consumerLottos = mainController.settingConsumerLottos(ticketQuantity);
+        ArrayList<Lotto> consumerLottos = mainController.settingConsumerLottos(purchaseAmount);
         outputController.orderPrintConsumerLottos(consumerLottos);
 
         WinningNumbers winningNumbers = inputController.settingWinningNumbers();
@@ -33,7 +34,7 @@ public class LottoGame {
         Map<Ranking, Integer> resultBoard = mainController.getRankingResult(consumerLottos, winningNumbers);
         outputController.orderPrintRanking(resultBoard);
 
-        float returnOfRate = mainController.getReturnOfRate(resultBoard, ticketQuantity);
+        float returnOfRate = mainController.getReturnOfRate(resultBoard, purchaseAmount);
         outputController.orderPrintReturnOfRate(returnOfRate);
     }
 

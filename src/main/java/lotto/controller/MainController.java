@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import lotto.domain.Calculator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbersGenerator;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Ranking;
 import lotto.domain.WinningNumbers;
 
@@ -19,7 +20,8 @@ public class MainController {
         this.calculator = new Calculator();
     }
 
-    public ArrayList<Lotto> settingConsumerLottos(int ticketQuantity) {
+    public ArrayList<Lotto> settingConsumerLottos(PurchaseAmount purchaseAmount) {
+        int ticketQuantity = purchaseAmount.getTicketQuantity();
         ArrayList<Lotto> consumerLottos = new ArrayList<>();
         publishLottoByTicketQuantity(ticketQuantity, consumerLottos);
         return consumerLottos;
@@ -57,7 +59,8 @@ public class MainController {
                 .forEach((rank) -> result.put(rank, 0));
     }
 
-    public float getReturnOfRate(Map<Ranking, Integer> resultBoard, int ticketQuantity) {
+    public float getReturnOfRate(Map<Ranking, Integer> resultBoard, PurchaseAmount purchaseAmount) {
+        int ticketQuantity = purchaseAmount.getTicketQuantity();
         float returnOfRate = calculator.calculateReturnOfRate(resultBoard, ticketQuantity);
         return returnOfRate;
     }

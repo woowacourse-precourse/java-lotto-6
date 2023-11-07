@@ -29,17 +29,12 @@ public class Converter {
         return new ArrayList<>(List.of(inputValue.split(",")));
     }
 
-    public static int convertStringToInt(String inputValue) {
+    public static int stringToInt(String inputValue) {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + PURCHASE_AMOUNT_FORMAT_ERROR_MESSAGE);
         }
-    }
-
-    public static void stringToInt(List<String> numbers) {
-        numbers.stream()
-                .forEach((number) -> Integer.parseInt(number));
     }
 
     public static List<String> lottoToString(Lotto lotto) {

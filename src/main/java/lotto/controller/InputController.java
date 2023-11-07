@@ -2,31 +2,40 @@ package lotto.controller;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmountCalculator;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.utils.Converter;
-import lotto.utils.WinningNumbersValidator;
+import lotto.utils.InputValidator;
 import lotto.view.InputView;
 
 public class InputController {
 
-    public int settingTicketQuantity() {
-        int ticketQuantity = 0;
-        while (ticketQuantity == 0) {
-            ticketQuantity = tryInputTicketQuantity(ticketQuantity);
-        }
-        return ticketQuantity;
+    InputValidator inputValidator;
+
+    public InputController() {
+        this.inputValidator = new InputValidator();
     }
 
-    private int tryInputTicketQuantity(int ticketQuantity) {
-        PurchaseAmountCalculator purchaseAmountCalculator = new PurchaseAmountCalculator();
+    public PurchaseAmount settingTicketQuantity() {
+        PurchaseAmount purchaseAmount = null;
+        while (purchaseAmount == null) {
+            purchaseAmount = tryGetPurchaseAmount();
+        }
+
+        return purchaseAmount;
+    }
+
+    private PurchaseAmount tryGetPurchaseAmount() {
+        PurchaseAmount purchaseAmount = null;
         try {
             String inputPurchaseAmount = InputView.getPurchaseAmount();
-            ticketQuantity = purchaseAmountCalculator.getTicketQuantity(inputPurchaseAmount);
+            inputValidator.validatePurchaseAmount(inputPurchaseAmount);
+            int amount = Converter.stringToInt(inputPurchaseAmount);
+            purchaseAmount = new PurchaseAmount(amount);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-        return ticketQuantity;
+        return purchaseAmount;
     }
 
     public WinningNumbers settingWinningNumbers() {
@@ -49,7 +58,7 @@ public class InputController {
         try {
             String inputWinningNumbers = InputView.getWinningNumbers();
             inputWinningNumbers = Converter.deleteSpace(inputWinningNumbers);
-            WinningNumbersValidator.validateMainNumbers(inputWinningNumbers);
+            inputValidator.validateMainNumbers(inputWinningNumbers);
             mainNumbers = Converter.stringToLotto(inputWinningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -70,7 +79,7 @@ public class InputController {
         try {
             String inputValue = InputView.getBonusNumber();
             inputValue = Converter.deleteSpace(inputValue);
-            WinningNumbersValidator.validateBonusNumber(inputValue);
+            inputValidator.validateBonusNumber(inputValue);
 
             int inputBonusNumber = Integer.parseInt(inputValue);
             bonusNumber = new BonusNumber(inputBonusNumber, mainNumbers);

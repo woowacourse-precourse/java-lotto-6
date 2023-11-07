@@ -19,6 +19,15 @@ public class LottoPurchaseService {
         StringUtil.checkNotNull(purchaseAmount);
         StringUtil.checkNumeric(purchaseAmount);
 
+        int value = Integer.parseInt(purchaseAmount);
+        isMinimumAmountValid(value);
+    }
+
+    private void isMinimumAmountValid(int value) {
+        if (value < LOTTO_TICKET_PRICE) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorConstants.INVALID_RANGE_INPUT.getData(), LOTTO_TICKET_PRICE));
+        }
     }
 
 

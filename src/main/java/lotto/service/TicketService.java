@@ -16,7 +16,7 @@ public class TicketService {
         return new Ticket(lottos);
     }
 
-    public static double getWinningRate(
+    public static double getProfitRate(
             Ticket ticket,
             List<Integer> winningNumbers,
             int bonusNumber)

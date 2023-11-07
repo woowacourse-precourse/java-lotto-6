@@ -32,7 +32,7 @@ class TicketServiceTest {
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        double winningRate = TicketService.getWinningRate(ticket, winningNumbers, bonusNumber);
+        double winningRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
         assertThat(winningRate).isEqualTo(62.5);
     }
 
@@ -49,7 +49,7 @@ class TicketServiceTest {
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        double winningRate = TicketService.getWinningRate(ticket, winningNumbers, bonusNumber);
+        double winningRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
         //총 수익률 -> 166.66666666...
         assertThat(winningRate).isEqualTo(166.7);
     }
@@ -64,7 +64,7 @@ class TicketServiceTest {
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        double winningRate = TicketService.getWinningRate(ticket, winningNumbers, bonusNumber);
+        double winningRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
         // 1등 100번 -> 2,000,000,000(20억) * 100 = 200,000,000,000(2천억)
         // 최대 구입 금액 -> 100,000
         // 최대 수익률 -> 2,000,000,000,000 / 100,000 = 200,000,000

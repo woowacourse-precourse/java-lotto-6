@@ -37,7 +37,7 @@ public class LottoProgram {
     public List<Integer> inputWinningNumbers() {
         PrintUtil.printInputWinningNumberMessage();
 
-        String winningNumberInput = Console.readLine();
+        String winningNumberInput = inputUtil.inputWinningNumber();
 
         return winningNumberProvider.getWinningNumber(winningNumberInput);
     }

@@ -28,4 +28,27 @@ public class Lotto {
         return numbers;
     }
 
+    public int checkWinning(Lotto winningLotto, int bonusNumber) {
+        int matchCount = 0;
+        for (int number : this.numbers) {
+            if (winningLotto.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+
+        if (matchCount == 6) {
+            return 1; // 1등
+        } else if (matchCount == 5 && this.numbers.contains(bonusNumber)) {
+            return 2; // 2등
+        } else if (matchCount == 5) {
+            return 3; // 3등
+        } else if (matchCount == 4) {
+            return 4; // 4등
+        } else if (matchCount == 3) {
+            return 5; // 5등
+        } else {
+            return 0; // 당첨되지 않음
+        }
+    }
+
 }

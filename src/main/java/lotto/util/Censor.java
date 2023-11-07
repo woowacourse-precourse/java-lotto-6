@@ -36,8 +36,8 @@ public class Censor {
             throw new IllegalArgumentException(UNIQUE_NUMBER_ERROR.getContent());
         }
 
-        if (numbers.stream().anyMatch(number -> number <= MIN_LOTTO_RANGE.getValue()
-                || number >= MAX_LOTTO_RANGE.getValue())) {
+        if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_RANGE.getValue()
+                || number > MAX_LOTTO_RANGE.getValue())) {
             throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getContent());
         }
     }

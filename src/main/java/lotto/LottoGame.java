@@ -56,6 +56,8 @@ public class LottoGame {
         OutputView.print(Message.LINE_BREAK);
         input = InputView.read();
         validateNumber(input);
+        validateRangeOne(Integer.parseInt(input));
+
 
     }
 
@@ -104,6 +106,12 @@ public class LottoGame {
     public void validateRangeOne(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
+        }
+    }
+
+    public void validateBonusDuplication(int num, List<Integer> numbers) {
+        if (numbers.contains(num)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 서로 중복된 숫자가 없어야 합니다.");
         }
     }
 }

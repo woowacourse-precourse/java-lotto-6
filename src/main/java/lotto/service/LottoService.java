@@ -38,7 +38,7 @@ public class LottoService {
         return countValue;
     }
 
-    public boolean countMatchingBonusNumbers(List<Integer> winningLotto, Integer bonusNumber) {
+    public boolean countMatchingBonusNumbers(List<Integer> winningLotto, int bonusNumber) {
 
         if (winningLotto.contains(bonusNumber)) {
             return true;

@@ -62,11 +62,11 @@ public class LottoController {
         int totalPrize = 0;
 
         for (Lotto lotto : lottoList) {
-            Optional<LottoResult> lottoResultOptional = calculateLottoResult(winning, bonusNumber, lotto);
+            LottoResult lottoResult = calculateLottoResult(winning, bonusNumber, lotto);
 
-            if (lottoResultOptional.isPresent()) {
-                lottoResultMap.merge(lottoResultOptional.get(), 1, Integer::sum);
-                totalPrize += lottoResultOptional.get().getPrize();
+            if (lottoResult.isWin()) {
+                lottoResultMap.merge(lottoResult, 1, Integer::sum);
+                totalPrize += lottoResult.getPrize();
             }
         }
         double roundedYield = getRoundedYield(totalPrice, totalPrize);
@@ -79,7 +79,7 @@ public class LottoController {
         return Math.round(yield * 10.0) / 10.0;
     }
 
-    public Optional<LottoResult> calculateLottoResult(Lotto winning, int bonusNumber, Lotto lotto) {
+    public LottoResult calculateLottoResult(Lotto winning, int bonusNumber, Lotto lotto) {
         List<Integer> myLottoNums = lotto.getNumbers();
         List<Integer> winningNums = winning.getNumbers();
         long matchCount = myLottoNums.stream()

@@ -38,7 +38,9 @@ public class OutputView {
         System.out.println(OutputMessage.RESULT_SUMMARY);
 
         for (LottoResult result : values) {
-            System.out.println(result.getDescription() + " - " + resultMap.getOrDefault(result, 0) + "개");
+            if(result.isWin()){
+                System.out.println(result.getDescription() + " - " + resultMap.getOrDefault(result, 0) + "개");
+            }
         }
 
         System.out.println("총 수익률은 " + totalResult.yield() + "%입니다.");

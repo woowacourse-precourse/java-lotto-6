@@ -20,7 +20,7 @@ public class MatchingResults {
     // Utility Method
     public List<PrizeGrade> findPrizeGrade() {
         return matchingResults.stream()
-                .map(PrizeGrade::findPrizeRank)
+                .map(PrizeGrade::findPrizeGrade)
                 .toList();
     }
 }

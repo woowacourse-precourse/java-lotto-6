@@ -5,7 +5,9 @@ import lotto.domain.lottery.Lottos;
 import lotto.domain.prize.*;
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
+import lotto.service.FinalResultService;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class FinalResultController {
@@ -20,7 +22,8 @@ public class FinalResultController {
         MatchingResults matchingResults = MatchingResults.from(matchingResultList);
 
         List<PrizeGrade> prizeGrades = matchingResults.findPrizeGrade();
-        return FinalResults.from(prizeGrades);
+        EnumMap<PrizeGrade, Integer> results = FinalResultService.generate(prizeGrades);
+        return FinalResults.from(results);
     }
 
     public static FinalResultResponse responseFinalResult(

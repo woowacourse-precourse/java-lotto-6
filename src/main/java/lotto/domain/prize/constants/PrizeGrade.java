@@ -59,7 +59,7 @@ public enum PrizeGrade {
     }
 
     // Utility Method
-    public static PrizeGrade findPrizeRank(final MatchingResult matchingResult) {
+    public static PrizeGrade findPrizeGrade(final MatchingResult matchingResult) {
         return Arrays.stream(PrizeGrade.values())
                 .filter(findGradeByCount(matchingResult))
                 .filter(isSatisfyBonusCondition(matchingResult))
@@ -69,11 +69,11 @@ public enum PrizeGrade {
 
     // Validation Method
     private static Predicate<PrizeGrade> findGradeByCount(MatchingResult matchingResult) {
-        return rank -> matchingResult.isSamePrizeMatchingCount(rank.prizeMatchingCount);
+        return grade -> matchingResult.isSamePrizeMatchingCount(grade.prizeMatchingCount);
     }
 
     private static Predicate<PrizeGrade> isSatisfyBonusCondition(MatchingResult matchingResult) {
-        return rank -> rank.matchingBonus.apply(matchingResult.getMatchingBonus());
+        return grade -> grade.matchingBonus.apply(matchingResult.getMatchingBonus());
     }
 
     // Getter

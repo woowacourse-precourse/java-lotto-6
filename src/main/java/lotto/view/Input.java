@@ -39,7 +39,7 @@ public class Input {
 	}
 
 	private static int toInteger(String str) {
-		if (isNumeric(str)) {
+		if (isNumeric(str) && Integer.parseInt(str) > 0) {
 			return Integer.parseInt(str);
 		}
 		throw new IllegalArgumentException("숫자로 변환할 수 없습니다.");

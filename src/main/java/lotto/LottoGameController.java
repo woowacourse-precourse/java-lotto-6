@@ -114,8 +114,22 @@ public class LottoGameController {
 
     private int setBonusNumber() {
         view.printAskBonusNumber();
+        int bonus = sc.nextInt();
 
-        return sc.nextInt();
+        try {
+            validateNumber(bonus);
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR]로또 번호는 1~45 사이의 숫자입니다.");
+        }
+
+        return bonus;
+    }
+
+    private void validateNumber(int bonus) {
+
+        if(bonus<0||bonus>45){
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Integer> setWinningNumbers() {
@@ -129,7 +143,25 @@ public class LottoGameController {
         for (String numberString: numbersString){
             winningNumbers.add(Integer.valueOf(numberString));
         }
+        try{
+
+            validateWinningNumbers(winningNumbers);
+
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR]당첨 번호는 6개이며 1~45 사이의 숫자입니다.");
+        }
+
         return winningNumbers;
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+
+        Lotto.checkDuplicateRange(winningNumbers);
+
     }
 
     private void setLotto() {

@@ -32,8 +32,8 @@ public class LottoGameManager {
         return lottoCost / LottoGameRule.LOTTO_COST_UNIT.getConstant();
     }
 
-    public String showPublishedLotto() {
-        return lottoBucket.showLottoBucket();
+    public List<String> getPublishedLotto() {
+        return lottoBucket.getPublishedLotto();
     }
 
     //보너스 번호 없는 당첨 로또만 만드는 메서드

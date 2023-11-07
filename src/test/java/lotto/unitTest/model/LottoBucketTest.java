@@ -6,6 +6,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mockStatic;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoBucket;
 import lotto.model.LottoCreator;
@@ -65,8 +66,8 @@ class LottoBucketTest {
         given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
         LottoBucket lottoBucket = new LottoBucket(1);
 
-        String shownLottoBucket = lottoBucket.showLottoBucket();
+        List<String> publishedLotto = lottoBucket.getPublishedLotto();
 
-        assertThat(shownLottoBucket).contains(mockLotto.showNumbers());
+        assertThat(publishedLotto.get(0)).isEqualTo(mockLotto.showNumbers());
     }
 }

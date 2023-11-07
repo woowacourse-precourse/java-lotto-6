@@ -9,18 +9,21 @@ public class WinningNumber {
     private static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
+    private static List<Long> matchWinningNumber = new ArrayList<>();
+    private static List<Long> matchBonusNumber = new ArrayList<>();
+
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    private List<Long> matchWinningNumber = new ArrayList<>();
-    private List<Long> matchBonusNumber = new ArrayList<>();
 
     public void inputWinningNumber() {
         System.out.println();
         System.out.println(WINNING_NUMBER);
         winningNumbers = toWinningNumberList(readLine());
+        System.out.println();
         System.out.println(BONUS_NUMBER);
         bonusNumber = Integer.parseInt(readLine());
+        System.out.println();
     }
 
 
@@ -34,19 +37,18 @@ public class WinningNumber {
     }
 
     public void compareToLotto(List<Lotto> lottos) {
-        for (int i = 0; i < lottos.size(); i++) {
-            Lotto lotto = lottos.get(i);
+        for (Lotto lotto : lottos) {
             matchWinningNumber.add(winningNumbers.stream().filter(w -> lotto.getNumbers().contains(w))
                     .count());
             matchBonusNumber.add(lotto.getNumbers().stream().filter(l -> l.equals(bonusNumber)).count());
         }
     }
 
-    public List<Long> getMatchWinningNumber() {
+    public static List<Long> getMatchWinningNumber() {
         return matchWinningNumber;
     }
 
-    public List<Long> getMatchBonusNumber() {
+    public static List<Long> getMatchBonusNumber() {
         return matchBonusNumber;
     }
 }

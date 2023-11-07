@@ -9,6 +9,7 @@ import lotto.validator.Validator;
 public class InputView {
     private static final String INPUT_PURCHASE_AMOUNT_MASSAGE = "구입 금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS_MASSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MASSAGE = "보너스 번호를 입력해 주세요.";
 
     private final Validator validator = new Validator();
 
@@ -34,6 +35,20 @@ public class InputView {
                     .collect(Collectors.toList());
             validateWinningNumbers(winningNumbers);
             return winningNumbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자열이 입력되었습니다.");
+        }
+    }
+
+    public String inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MASSAGE);
+        return Console.readLine();
+    }
+
+    public int parseBonusNumber(String input, List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자열이 입력되었습니다.");
         }

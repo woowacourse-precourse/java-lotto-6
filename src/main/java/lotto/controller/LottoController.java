@@ -37,6 +37,7 @@ public class LottoController {
 
     public Lotto registerWinningLottoCombination() {
         String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
+        validateWinningLottoCombination(userInput);
         List<Integer> lottoCombination = userInputToLottoCombination(userInput);
         return new Lotto(lottoCombination);
     }
@@ -76,6 +77,14 @@ public class LottoController {
 
         if (!CalculationUtils.isNumberInRange(number, 1, 45)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
+        }
+    }
+
+    private void validateWinningLottoCombination(String userInput) {
+        String[] strArr = userInput.replace(" ", "").split(",");
+
+        for (String str : strArr) {
+            validateLottoNumber(str); // 숫자인지 체크, 1~45인지 체크
         }
     }
 

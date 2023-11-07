@@ -98,8 +98,7 @@ public class InputView {
 
 	void validateLottoNumberNotDuplicate(List<String> inputList) {
 		for (String num : inputList) {
-			List<String> copyList = new ArrayList<>();
-			copyList.addAll(inputList);
+			List<String> copyList = new ArrayList<>(inputList);
 			copyList.remove(inputList.indexOf(num));
 			if (copyList.contains(num)) {
 				throw new IllegalArgumentException(

@@ -63,15 +63,13 @@ public class ProgramManager {
 	Lotto getLottoNumber() {
 		String number = inputView.getLottoNumber();
 		List<String> inputList = Arrays.asList(number.split(Constant.COMMA));
-		Lotto lotto = new Lotto(inputList.stream()
+		return new Lotto(inputList.stream()
 			.map(s -> Integer.parseInt(s))
 			.collect(Collectors.toList()));
-		return lotto;
 	}
 
 	int getBonusNumber(Lotto winningLotto) {
-		int bonusNumber = inputView.getBonusNumber(winningLotto);
-		return bonusNumber;
+		return inputView.getBonusNumber(winningLotto);
 	}
 
 	void setLottoHostInstance(Lotto winningNumberLotto, int bonusNumber) {
@@ -86,8 +84,7 @@ public class ProgramManager {
 	}
 
 	List<Integer> compareLotte(LottoHost lottoHost, Customer customer) {
-		List<Integer> resultList = lottoHost.compareLottoNumber(customer.getLottoList());
-		return resultList;
+		return lottoHost.compareLottoNumber(customer.getLottoList());
 	}
 
 	double calcRate(List<Integer> resultList, Customer customer) {

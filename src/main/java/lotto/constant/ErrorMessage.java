@@ -11,7 +11,7 @@ public enum ErrorMessage {
 	BONUS_RANGE("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요."),
 	BONUS_NOT_SAME_WINNING_NUM("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
-	private String errorMsg;
+	private final String errorMsg;
 
 	ErrorMessage(String errorMsg) {
 		this.errorMsg = errorMsg;

@@ -22,8 +22,7 @@ public class Lotto {
 
 	boolean checkSameNumber(List<Integer> numbers) {
 		for (int number : numbers) {
-			List<Integer> copyList = new ArrayList<>();
-			copyList.addAll(numbers);
+			List<Integer> copyList = new ArrayList<>(numbers);
 			copyList.remove(copyList.indexOf(number));
 			if (copyList.contains(number)) {
 				return false;

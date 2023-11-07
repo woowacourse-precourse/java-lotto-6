@@ -9,23 +9,23 @@ public class InputView {
 
     private final InputParser inputParser;
 
-    public InputView(){
+    public InputView() {
         inputParser = new InputParser();
     }
 
-    public UserMoney getUserMoney(){
+    public UserMoney getUserMoney() {
         return inputParser.parseUserMoney(readLine());
     }
 
-    public void /* LottoGameResult */ getLottoGameResult(){
-        WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
-    }
-
-    public WinningLottoNumbers getWinningLottoNumbers(){
+    public WinningLottoNumbers getWinningLottoNumbers() {
         return inputParser.parseWinningLottoNumbers(readLine());
     }
 
-    private String readLine(){
+    public String getBonusNumber() {
+        return inputParser.parseBonusNumber(readLine());
+    }
+
+    private String readLine() {
         return Console.readLine();
     }
 }

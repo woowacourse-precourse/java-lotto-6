@@ -22,7 +22,8 @@ public class LottoController {
     public void playGame() {
         UserMoney userMoney = getUserMoney();
         WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
-        askUserToInsertBonusNumber();
+        String bonusNumber = getBonusNumber();
+        System.out.println(bonusNumber);
         lottoService.playGame();
         endGame();
     }
@@ -55,8 +56,9 @@ public class LottoController {
         return inputView.getWinningLottoNumbers();
     }
 
-    private void askUserToInsertBonusNumber() {
+    private String getBonusNumber() {
         outputView.askUserToInsertBonusNumber();
+        return inputView.getBonusNumber();
     }
 
     private void endGame() {

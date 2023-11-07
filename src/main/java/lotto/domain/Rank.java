@@ -10,12 +10,11 @@ public enum Rank {
     FIFTH(5, 3, 0, 5000),
     LOSER(0, 0, 0, 0);
 
-    private int place;
+    private final int place;
+    private final int matchingNumberCount;
+    private final int matchingBonusNumberCount;
+    private final int prize;
 
-    private int matchingNumberCount;
-    // todo : boolean으로 수정
-    private int matchingBonusNumberCount;
-    private int prize;
     Rank(int place, int matchingNumberCount, int matchingBonusNumberCount, int prize) {
         this.place = place;
         this.matchingNumberCount = matchingNumberCount;

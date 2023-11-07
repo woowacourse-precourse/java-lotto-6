@@ -158,7 +158,7 @@ class LottoServiceTest {
         Statistic statistic = lottoService.judgeAll(winningLotto, buyingLottos);
 
         // then
-        assertThat(statistic.get(expected)).isEqualTo(1);
+        assertThat(statistic.getCount(expected)).isEqualTo(1);
     }
 
     static Stream<Arguments> lottoJudgeArgument() {

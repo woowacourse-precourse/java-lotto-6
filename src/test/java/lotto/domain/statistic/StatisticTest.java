@@ -16,7 +16,7 @@ class StatisticTest {
 
         // then
         statistic.keySet().forEach(
-            key -> assertThat(statistic.get(key)).isEqualTo(0)
+            key -> assertThat(statistic.getCount(key)).isEqualTo(0)
         );
     }
 
@@ -31,7 +31,7 @@ class StatisticTest {
         statistic.addCount(ranking);
 
         // then
-        assertThat(statistic.get(ranking)).isEqualTo(1);
+        assertThat(statistic.getCount(ranking)).isEqualTo(1);
     }
 
     @DisplayName("수익률을 계산할 수 있다.")

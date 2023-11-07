@@ -38,7 +38,7 @@ public class Statistic {
         return winningResult.keySet();
     }
 
-    public int get(LottoRanking lottoRanking) {
+    public int getCount(LottoRanking lottoRanking) {
         return winningResult.get(lottoRanking);
     }
 

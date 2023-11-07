@@ -8,11 +8,11 @@ public class Ranks {
 
     private final List<Rank> ranks;
 
-    public Ranks(Lottery lottery, List<LottoNumber> winningNumber, LottoNumber bonusNumber) {
+    public Ranks(Lottery lottery, Lotto winningNumber, LottoNumber bonusNumber) {
         this.ranks = makeRankResult(lottery, winningNumber, bonusNumber);
     }
 
-    private List<Rank> makeRankResult(Lottery lottery, List<LottoNumber> winningNumber, LottoNumber bonusNumber) {
+    private List<Rank> makeRankResult(Lottery lottery, Lotto winningNumber, LottoNumber bonusNumber) {
         return lottery.calLottoRank(winningNumber, bonusNumber);
     }
 

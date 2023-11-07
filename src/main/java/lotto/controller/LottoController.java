@@ -28,7 +28,7 @@ public class LottoController {
         return new Lottery(lottery);
     }
 
-    public Ranks lottoResults(Lottery lottery, List<LottoNumber> winningNumber, LottoNumber bonusNumber) {
+    public Ranks lottoResults(Lottery lottery, Lotto winningNumber, LottoNumber bonusNumber) {
         return new Ranks(lottery, winningNumber, bonusNumber);
     }
 

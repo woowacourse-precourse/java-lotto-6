@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.controller.LottoController;
 import lotto.domain.Lottery;
+import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Price;
 import lotto.domain.Ranks;
@@ -23,7 +24,7 @@ public class Application {
         OutputView.printLotteryNumber(lottery.printLottoNumbers());
 
         String stringWinningNumber = getWinningNumber();
-        List<LottoNumber> winningNumber = toLottoNumbers(stringWinningNumber);
+        Lotto winningNumber = new Lotto(toIntegerList(stringWinningNumber));
 
         Ranks ranks = lottoController.lottoResults(lottery, winningNumber, new LottoNumber(InputView.bonusNumber()));
 
@@ -31,10 +32,9 @@ public class Application {
         OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);
     }
 
-    private static List<LottoNumber> toLottoNumbers(String stringWinningNumber) {
+    private static List<Integer> toIntegerList(String stringWinningNumber) {
         return Arrays.stream(stringWinningNumber.split(","))
                 .map(s -> Integer.valueOf(s))
-                .map(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 

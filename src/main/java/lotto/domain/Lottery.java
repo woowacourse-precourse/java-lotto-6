@@ -20,7 +20,7 @@ public class Lottery {
                 .collect(Collectors.joining("\n"));
     }
 
-    public List<Rank> calLottoRank(List<LottoNumber> winningNumber, LottoNumber bonusNumber) {
+    public List<Rank> calLottoRank(Lotto winningNumber, LottoNumber bonusNumber) {
         List<Rank> list = new ArrayList<>();
         for (Lotto lotto : lottery) {
             Rank rank = matchLottoWinningNumber(lotto, winningNumber, bonusNumber);
@@ -29,10 +29,7 @@ public class Lottery {
         return list;
     }
 
-    private Rank matchLottoWinningNumber(Lotto lotto, List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
-        HashSet<LottoNumber> set = new HashSet<>();
-        set.addAll(lotto.getNumbers());
-        set.retainAll(winningNumbers);
-        return Rank.valueOf(set.size(), lotto.getNumbers().contains(bonusNumber));
+    private Rank matchLottoWinningNumber(Lotto lotto, Lotto winningNumbers, LottoNumber bonusNumber) {
+        return Rank.valueOf(lotto.numberOfMatches(winningNumbers), lotto.contains(bonusNumber));
     }
 }

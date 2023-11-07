@@ -3,13 +3,14 @@ package lotto.validator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static lotto.exception.InputViewExceptionMessage.NOT_NUMBER;
-import static lotto.exception.InputViewExceptionMessage.NO_LINE_FOUND;
-import static lotto.exception.InputViewExceptionMessage.FOUND_SPECIAL_SIGN;
-
+import static lotto.exception.InputViewExceptionMessage.*;
+import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
 
 public class InputValidator {
+
+    private static final Integer FRONT = 0;
+    private static final Integer GAP = 1;
 
     private static final Pattern pattern = Pattern.compile(PATTERN_FOR_FINDING_SPECIAL_SIGN.getPattern());
 
@@ -59,8 +60,9 @@ public class InputValidator {
     }
 
     public static void validateCommaAtEdge(final String input) {
-        if (input.charAt(0) == ',' || input.charAt(input.length()-1) == ',') {
-            throw new IllegalArgumentException("[ERROR] 입력한 값의 가장 자리에 ','를 입력할 수 없습니다.");
+        if (input.charAt(FRONT) == COMMA.getUnit().charAt(FRONT)
+                || input.charAt(input.length()-GAP) == COMMA.getUnit().charAt(FRONT)) {
+            throw new IllegalArgumentException(FOUND_COMMA_FRONT_LAST.getMessage());
         }
     }
 

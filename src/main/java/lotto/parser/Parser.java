@@ -22,11 +22,11 @@ public class Parser {
     }
 
 
-    public static Integer parseInt(String input) throws IllegalArgumentException{
+    public static Integer parseInt(String input) throws IllegalStateException{
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(WRONG_NUMBER_FORMAT.getMessage());
+            throw new IllegalStateException(WRONG_NUMBER_FORMAT.getMessage());
         }
     }
 

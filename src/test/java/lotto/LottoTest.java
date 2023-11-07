@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.constant.ExceptionConstant;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,11 +56,21 @@ class LottoTest {
 
     @DisplayName("로또 번호와 보너스 번호가 동일하면 true를 반환한다.")
     @Test
-    void printCompareByBonusNumber() {
+    void checkCompareByBonusNumber() {
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
         int bonusNumber = 6;
         boolean answer = lotto1.isCompareByBonusNumber(bonusNumber);
 
         assertThat(answer).isTrue();
+    }
+
+    @DisplayName("로또 객체가 불변한지 확인한다. 반환한 객체를 수정하려 할 경우 예외가 발생한다.")
+    @Test
+    void checkLottoIsImmutable() {
+        Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
+        List<Integer> lottoNumbers = lotto1.getNumbers();
+
+        assertThatThrownBy(() -> lottoNumbers.add(8))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }

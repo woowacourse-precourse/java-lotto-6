@@ -15,7 +15,7 @@ public class OutputView {
 
     public void displayResults(Map<LottoRank, Integer> results) {
         System.out.println("\n당첨 통계");
-        System.out.println("----------");
+        System.out.println("---");
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
@@ -27,6 +27,10 @@ public class OutputView {
                 System.out.println(message);
             }
         }
+    }
+
+    public void displayProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 }
 

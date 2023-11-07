@@ -1,6 +1,8 @@
 package lotto.controller;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,7 +19,9 @@ public class LottoController {
         outputView.displayLottoTickets(lottoTickets);
         List<Integer> winningNumbers = inputView.readWinningNumbers();
         int bonusNumber = inputView.readBonusNumber();
-        outputView.displayResults(lottoService.checkWinningResults(lottoTickets, winningNumbers, bonusNumber));
+        Map<LottoRank, Integer> results = lottoService.checkWinningResults(lottoTickets, winningNumbers, bonusNumber);
+        outputView.displayResults(results);
+        outputView.displayProfitRate(lottoService.calculateProfitRate(results, lottoTickets.size()));
     }
 
 }

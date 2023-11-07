@@ -35,6 +35,15 @@ public class LottoService {
         return results;
     }
 
+    public double calculateProfitRate(Map<LottoRank, Integer> results, int purchasesAmount) {
+        int totalPrize = results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
+        double profitRate =  (double) totalPrize / purchasesAmount;
+
+        return Math.round(profitRate*100.0) / 100.0;
+    }
+
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0 || purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");

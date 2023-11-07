@@ -12,10 +12,8 @@ public class LottoSystem {
     private static int purchaseMoney;
     private static List<Lotto> purchaseLottos;
 
-    public LottoSystem(String money) {
-        validateMoney(money);
-
-        this.purchaseMoney = stringToInteger(money);
+    public LottoSystem(int money) {
+        this.purchaseMoney = money;
         this.purchaseLottos = createLottos();
     }
 
@@ -69,13 +67,6 @@ public class LottoSystem {
         return false;
     }
 
-    private static boolean validateMoney(String money) {
-        if (isNotIntegerType(money)) return false;
-        if (isWrongMoneyUnit(Integer.parseInt(money))) return false;
-
-        return true;
-    }
-
     private static boolean isNotIntegerType(String num) {
         try {
             Integer.parseInt(num);
@@ -85,15 +76,4 @@ public class LottoSystem {
 
         return false;
     }
-
-    private static boolean isWrongMoneyUnit(int money) {
-        if (money % moneyUnit != 0) return true;
-
-        return false;
-    }
-
-    private static Integer stringToInteger(String num) {
-        return Integer.parseInt(num);
-    }
-
 }

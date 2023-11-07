@@ -27,11 +27,13 @@ public enum LottoRank {
     }
 
     public static LottoRank findLottoRank(int lottoBallMatch, boolean bonusMatch) {
-        return Arrays.stream(values())
-                .filter(lottoRank -> lottoRank.checkLottoBallMatch(lottoBallMatch))
-                .filter(lottoRank -> lottoRank.checkBonusMatch(lottoBallMatch, bonusMatch))
-                .findFirst()
-                .orElse(NO_PRIZE);
+        for (LottoRank lottoRank : values()) {
+            if (lottoRank.checkLottoBallMatch(lottoBallMatch) &&
+                    lottoRank.checkBonusMatch(lottoBallMatch, bonusMatch)) {
+                return lottoRank;
+            }
+        }
+        return NO_PRIZE;
     }
 
     private boolean checkLottoBallMatch(int lottoBallMatch) {

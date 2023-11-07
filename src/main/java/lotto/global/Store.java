@@ -36,6 +36,11 @@ public class Store {
                 LOTTO_MAX_NUMBER.getValue(),
                 LOTTO_BALLS_NUMBER.getValue()
         );
-        return numbers.stream().distinct().sorted().collect(Collectors.toList());
+
+        return numbers
+                .stream()
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

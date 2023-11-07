@@ -2,13 +2,13 @@ package lotto.domain;
 
 import static lotto.global.ErrorMessage.BONUS_BALL_INCLUDE_ERROR;
 
-public class Result {
-    private final Lotto winningLotto;
+public class Customer {
+    private final Lotto userLotto;
     private final int bonusBall;
 
-    public Result(Lotto lotto, int bonusBall) {
+    public Customer(Lotto lotto, int bonusBall) {
         validateWinningResult(lotto, bonusBall);
-        this.winningLotto = lotto;
+        this.userLotto = lotto;
         this.bonusBall = bonusBall;
     }
 
@@ -19,7 +19,7 @@ public class Result {
     }
 
     public int matchWinningLotto(Lotto lotto) {
-        return this.winningLotto.matchNumber(lotto);
+        return this.userLotto.matchNumber(lotto);
     }
 
     public boolean matchBonusBall(Lotto lotto) {

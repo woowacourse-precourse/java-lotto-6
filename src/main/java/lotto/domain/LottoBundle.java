@@ -19,18 +19,18 @@ public class LottoBundle {
         return lottoBundle;
     }
 
-    public Score checkResult(final Result result) {
+    public Score checkResult(final Customer customer) {
         final Map<LottoRank, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : this.lottoBundle) {
-            LottoRank lottoRank = checkSingleLottoRank(lotto, result);
+            LottoRank lottoRank = checkSingleLottoRank(lotto, customer);
             lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, INITIAL_SCORE) + INCREASE_SCORE);
         }
         return new Score(lottoResult);
     }
 
-    private LottoRank checkSingleLottoRank(final Lotto lotto, final Result result) {
-        final int matchNumberResult = result.matchWinningLotto(lotto);
-        final boolean matchBonusBallResult = result.matchBonusBall(lotto);
+    private LottoRank checkSingleLottoRank(final Lotto lotto, final Customer customer) {
+        final int matchNumberResult = customer.matchWinningLotto(lotto);
+        final boolean matchBonusBallResult = customer.matchBonusBall(lotto);
         return LottoRank.findLottoRank(matchNumberResult, matchBonusBallResult);
     }
 

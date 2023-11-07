@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ResultTest {
+class CustomerTest {
     @Test
     @DisplayName("보너스 숫자가 로또에 포함될 경우, 에러가 발생한다.")
     public void testBonusNumberInLotto() throws Exception {
@@ -16,7 +16,7 @@ class ResultTest {
         int bonusNumber = 1;
 
         //when&then
-        assertThatThrownBy(() -> new Result(lotto, bonusNumber))
+        assertThatThrownBy(() -> new Customer(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
@@ -30,8 +30,8 @@ class ResultTest {
         int bonusNumber = 10;
 
         //when
-        Result result = new Result(lotto1, bonusNumber);
-        int matched = result.matchWinningLotto(lotto2);
+        Customer customer = new Customer(lotto1, bonusNumber);
+        int matched = customer.matchWinningLotto(lotto2);
 
         //then
         assertEquals(matched, 6);
@@ -46,8 +46,8 @@ class ResultTest {
         int bonusNumber = 10;
 
         //when
-        Result result = new Result(lotto1, bonusNumber);
-        boolean bonusResult = result.matchBonusBall(lotto2);
+        Customer customer = new Customer(lotto1, bonusNumber);
+        boolean bonusResult = customer.matchBonusBall(lotto2);
 
         //then
         assertFalse(bonusResult);

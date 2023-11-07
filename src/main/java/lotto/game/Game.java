@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 import lotto.domain.Score;
-import lotto.domain.Result;
+import lotto.domain.Customer;
 import lotto.global.Store;
 import lotto.ui.Input;
 import lotto.ui.Output;
@@ -13,8 +13,8 @@ public class Game {
     public void run() {
         LottoBundle lottoBundle = Store.generateLottoBundle(getUserPurchasePrice());
         Output.printLottoBundle(lottoBundle);
-        Result result = makeLottoResult();
-        Score score = lottoBundle.checkResult(result);
+        Customer customer = makeLottoResult();
+        Score score = lottoBundle.checkResult(customer);
         Output.printLottoResult(score);
     }
 
@@ -29,11 +29,11 @@ public class Game {
         }
     }
 
-    private Result makeLottoResult() {
+    private Customer makeLottoResult() {
         try {
             final Lotto winningLotto = getUserLotto();
             final int bonusBall = Input.getBonusNumber();
-            return new Result(winningLotto, bonusBall);
+            return new Customer(winningLotto, bonusBall);
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
             return makeLottoResult();

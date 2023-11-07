@@ -14,6 +14,7 @@
 
 ### 입력 기능
 - 구입 금액 입력
+  - 문자, 음수가 들어올 경우 `IllegalArgumentException` 발생
   - 1000 단위로 나누어 떨어지지 않을 경우 `IllegalArgumentException` 발생
 - 당첨번호 입력
   - 1~45 이외의 수 입력 시 `IllegalArgumentException` 발생

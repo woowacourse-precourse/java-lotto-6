@@ -32,9 +32,8 @@ public class InputController {
     public Lotto getLottoNumberFromUser() {
         OutputView.askLottoNumbers();
         List<String> splitNumbers = validateLength(Console.readLine());
-        List<Integer> lottoNumbers = convertToIntList(splitNumbers);
 
-        return new Lotto(lottoNumbers);
+        return new Lotto(convertToIntList(splitNumbers));
     }
 
     public List<String> validateLength(String lottoNumbersFromUser) {
@@ -54,6 +53,7 @@ public class InputController {
         for (String splitNumber : splitNumbers) {
             int number = validateNumber(splitNumber);
             validateNumberRange(number);
+            validateNumberDuplication(number, numbers);
             numbers.add(number);
         }
 
@@ -71,6 +71,13 @@ public class InputController {
 
     public void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
+            ErrorMessage.lottoNumberRangeException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateNumberDuplication(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
             ErrorMessage.lottoNumberRangeException();
             throw new IllegalArgumentException();
         }

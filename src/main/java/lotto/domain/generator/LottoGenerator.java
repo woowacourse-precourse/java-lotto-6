@@ -4,19 +4,24 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
+import lotto.domain.repository.UserLottoRepository;
 
 public class LottoGenerator {
-    private final static RandomLottoNumbers randomLottoNumbers = new RandomLottoNumbers();
+    private final UserLottoRepository userLottoRepository;
+    public LottoGenerator() {
+        userLottoRepository = new UserLottoRepository();
+    }
 
     public List<Lotto> createLottoList(LottoMoney lottoMoney){
         int lottoCount = lottoMoney.getLottoCount();
-        return IntStream.range(0, lottoCount)
+        List<Lotto> userLotto = IntStream.range(0, lottoCount)
                 .mapToObj(i -> createLotto())
                 .toList();
+        return userLottoRepository.save(userLotto);
     }
 
     private Lotto createLotto() {
-        return new Lotto(randomLottoNumbers.getValue());
+        return new Lotto(RandomLottoNumbers.getValue());
     }
 
 }

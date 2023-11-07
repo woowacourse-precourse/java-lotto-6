@@ -24,8 +24,7 @@ public class LottoProgram {
 
     public List<Lotto> getLottoListByPrice(int price) {
         this.lottoMoney = new LottoMoney(price);
-        List<Lotto> userLotto = lottoGenerator.createLottoList(lottoMoney);
-        return userLottoRepository.save(userLotto);
+        return lottoGenerator.createLottoList(lottoMoney);
     }
 
     public WinningStatisticsDto getWinningNumber(List<Integer> number, Integer bonus) {

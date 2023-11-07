@@ -8,7 +8,7 @@ import static lotto.congin.LottoConfing.*;
 
 public class RandomLottoNumbers {
 
-    public List<Integer> getValue() {
+    public static List<Integer> getValue() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LoTTO_LENGTH);
     }
 

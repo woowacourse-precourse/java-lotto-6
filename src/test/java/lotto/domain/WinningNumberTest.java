@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.DuplicateNumberException;
+import lotto.exception.InvalidNumberException;
 import org.junit.jupiter.api.Test;
 
 class WinningNumberTest {
@@ -33,7 +34,9 @@ class WinningNumberTest {
         numbers.add(3);
         int bonusNumber = 4;
 
-        new WinningNumber(new Lotto(numbers), bonusNumber);
+        assertThrows(InvalidNumberException.class, () -> {
+            new WinningNumber(new Lotto(numbers), bonusNumber);
+        });
     }
 
     @Test
@@ -42,6 +45,9 @@ class WinningNumberTest {
         numbers.add(1);
         numbers.add(3);
         numbers.add(3);
+        numbers.add(5);
+        numbers.add(6);
+        numbers.add(7);
         int bonusNumber = 4;
 
         assertThrows(DuplicateNumberException.class, () -> {

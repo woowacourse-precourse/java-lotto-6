@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.domain.Customer.*;
+import static lotto.provider.LottoInputProvider.*;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,18 +17,6 @@ import lotto.domain.LottoResult;
 import lotto.domain.WinningRank;
 
 public class LottoService {
-
-	private static final int MIN_LOTTO_PRICE = 1000;
-
-	public List<Lotto> purchaseLotto(int price) {
-		validate(price);
-
-		int lottoAmount = price / MIN_LOTTO_PRICE;
-
-		return IntStream.range(0, lottoAmount)
-			.mapToObj(i -> generateRandomLotto())
-			.collect(Collectors.toList());
-	}
 
 	public List<LottoResult> checkWinning(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
 		return lottos.stream()
@@ -51,17 +42,6 @@ public class LottoService {
 
 	private boolean containsBonusNumber(Lotto lotto, int bonusNumber) {
 		return lotto.getNumbers().contains(bonusNumber);
-	}
-
-	private void validate(int price) {
-		if (price < MIN_LOTTO_PRICE || price % MIN_LOTTO_PRICE != 0) {
-			throw new IllegalArgumentException(ErrorType.INVALID_PURCHASE_ERROR.getErrorMessage());
-		}
-	}
-
-	private Lotto generateRandomLotto() {
-		return new Lotto(Randoms.pickUniqueNumbersInRange(
-			Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.MAX_LOTTO_SIZE));
 	}
 
 }

@@ -17,13 +17,9 @@ public class LottoGame {
 
     public void run () {
         int purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottoBundle = new ArrayList<>();
-        buyLottoBundle(purchaseAmount, lottoBundle);
+        List<Lotto> lottoBundle = buyLottoBundle(purchaseAmount);
+        printPurchaseHistory(lottoBundle);
 
-        System.out.println(lottoBundle.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottoBundle) {
-            System.out.println(lotto.toString());
-        }
         String userInput = inputHandler.getWinnerNumbers();
         List<Integer> winnerNumbers = Arrays.stream(userInput.split(","))
                 .map(Integer::parseInt)
@@ -40,6 +36,13 @@ public class LottoGame {
 
     }
 
+    public void printPurchaseHistory(List<Lotto> lottoBundle) {
+        System.out.println(lottoBundle.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottoBundle) {
+            System.out.println(lotto.toString());
+        }
+    }
+
     private void printResults(LottoService lottoService, double profitRate) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -51,14 +54,14 @@ public class LottoGame {
         System.out.printf(Result.TOTAL_PROFIT_RATE.getMessage() + "%n", profitRate);
     }
 
-    private void buyLottoBundle(int purchaseAmount, List<Lotto> lottoBundle) {
-        int temp = purchaseAmount;
-        while (temp != 0) {
-            temp -= 1000;
+    private List<Lotto> buyLottoBundle(int purchaseAmount) {
+        List<Lotto> lottoBundle = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount; i += 1000) {
             List<Integer> numbers = new ArrayList<>(generateNumbers());
             Collections.sort(numbers);
             lottoBundle.add(new Lotto(numbers));
         }
+        return lottoBundle;
     }
 
     private List<Integer> generateNumbers() {

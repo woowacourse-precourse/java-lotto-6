@@ -43,7 +43,7 @@ class LottoTest {
 
     @DisplayName("로또 번호를 당첨 로또 번호와 비교한다.")
     @Test
-    void sortLottoInAscendingOrder() {
+    void compareLottoWithWinningLotto() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
 

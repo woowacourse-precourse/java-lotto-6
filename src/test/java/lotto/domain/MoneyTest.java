@@ -29,7 +29,7 @@ public class MoneyTest {
 	@DisplayName("돈이 0이하라면 예외가 발생한다.")
 	@ValueSource(ints =  { 0, -10, -100 })
 	@ParameterizedTest
-	void createMoneyByPositiveNumber(int number) {
+	void createMoneyByZeroOrNegativeNumber(int number) {
 		assertThatThrownBy(() -> new Money(number))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(ErrorMessage.ZERO_OR_NEGATIVE_NUMBER_ERROR.getMessage());

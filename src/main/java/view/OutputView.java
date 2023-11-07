@@ -38,9 +38,11 @@ public class OutputView {
 
     public static void printResult(Grade grade, int count) {
         System.out.printf(grade.getMessage(), count);
+        System.out.println();
     }
 
     public static void printEarningRate(double earningRate) {
         System.out.printf(OutputMessage.EARNING_RATE_MESSAGE.getMessage(), earningRate);
+        System.out.println();
     }
 }

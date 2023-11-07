@@ -14,7 +14,7 @@ public class Validation {
         if (input == null || input.isEmpty()) {
             return false;
         }
-        if (input.charAt(0) == '-') {
+        if (input.length() != 1 && input.charAt(0) == '-') {
             input = input.substring(1);
         }
         return input.chars().allMatch(Character::isDigit);

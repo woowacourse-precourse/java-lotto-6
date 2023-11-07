@@ -57,7 +57,7 @@ BonusNumber
      - [ERROR] : 당첨번호에 없는 번호를 입력해 주셔야 합니다.
 - 보너스번호 저장
 
-WinStatisticsCalculayot
+WinStatisticsCalculate
 > 당첨 통계 계산기로, 당첨 내역 개수와 수익률에 대해 계산하고 저장하는 클래스
 - 당첨 내역 초기화
 - 당첨 번호와 로또 비교
@@ -117,3 +117,4 @@ OutputView
    오류 메시지 : [ERROR] 45 사이의 값을 입력해 주셔야 합니다.
    4. 당첨 번호에 있는 번호인 경우
    오류 메시지 : [ERROR] 당첨 번호에 없는 번호를 입력해 주셔야 합니다.
+

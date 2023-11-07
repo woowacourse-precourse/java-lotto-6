@@ -7,7 +7,7 @@ public enum Unit {
 
     private final int unit;
 
-    Unit(int unit) {
+    Unit(final int unit) {
         this.unit = unit;
     }
 

@@ -1,15 +1,17 @@
 package lotto.controller;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
-import lotto.util.LottoGenerator;
+import lotto.util.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
+    public static final String COMMA = ",";
     private final OutputView outputView;
     private final InputView inputView;
 
@@ -19,6 +21,32 @@ public class LottoGameController {
     }
 
     public void run() {
+        purchaseLotto();
+        Lotto winningNumbers = setWinningNumbers();
+    }
+
+    private Lotto setWinningNumbers() {
+        try {
+            outputView.printInputWinningNumbers();
+            String inputWinningNumbers = inputView.inputWinningNumbers();
+            WinningNumbersValidator.validate(inputWinningNumbers);
+            List<Integer> numbers = convertStringToList(inputWinningNumbers);
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return setWinningNumbers();
+    }
+
+    private List<Integer> convertStringToList(String inputWinningNumbers) {
+        return Arrays.stream(inputWinningNumbers.split(COMMA))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+    private void purchaseLotto() {
         PurchaseAmount purchaseAmount = setPurchaseAmount();
         Lottos lottos = createLottos(purchaseAmount.getNumberOfLotto());
         outputView.printLottos(lottos);

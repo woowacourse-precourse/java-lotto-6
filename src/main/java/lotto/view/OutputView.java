@@ -29,4 +29,7 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
+    public void printInputWinningNumbers() {
+        System.out.println(SystemMessage.INPUT_WINNING_NUMBERS.getMessage());
+    }
 }

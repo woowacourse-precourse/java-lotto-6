@@ -27,8 +27,8 @@ public class LottoController {
         LottoStatistics lottoStatistics = new LottoStatistics(lottoPack, result);
         IncomeRate incomeRate = new IncomeRate(money.getPrice(), lottoStatistics.calculateIncome());
 
-        outputView.printResult(lottoStatistics);
-        outputView.printIncomeRate(incomeRate);
+        outputView.printResult(lottoStatistics.toString());
+        outputView.printIncomeRate(incomeRate.getPercentageIncomeRate());
 
     }
 
@@ -55,7 +55,7 @@ public class LottoController {
 
     private LottoPack buildLottoPack(Money money) {
         LottoPack lottoPack = LottoPack.createLottoPack(money.count());
-        outputView.printLottoPack(lottoPack);
+        outputView.printLottoPack(lottoPack.size(), lottoPack.toString());
         outputView.newline();
         return lottoPack;
     }

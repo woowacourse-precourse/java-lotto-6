@@ -4,7 +4,6 @@ import lotto.domain.Result;
 import lotto.domain.User;
 import lotto.domain.Rank;
 
-
 public class ProfitCalculator {
 
     public static double calcProfitRate(User user, Result result) {

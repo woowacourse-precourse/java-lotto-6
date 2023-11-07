@@ -1,11 +1,11 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
+
 import lotto.domain.Rank;
 import lotto.domain.Result;
 import lotto.domain.User;
 import lotto.domain.Lotto;
-
-import java.text.DecimalFormat;
 
 public class OutputView {
     public static final String AMOUNT_OF_LOTTO = "개를 구매했습니다.";

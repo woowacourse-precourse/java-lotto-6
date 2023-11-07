@@ -1,18 +1,17 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.User;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
+
+import camp.nextstep.edu.missionutils.Randoms;
+
+import lotto.domain.Lotto;
+import lotto.domain.User;
 
 public class UserLottoService {
     public List<Lotto> UserTickets;
     public static User user;
     public static User lottoSetting(int amount) {
-
         List<Lotto> userTickets = generateLottoTickets(amount);
         return user = new User(amount, userTickets);
     }

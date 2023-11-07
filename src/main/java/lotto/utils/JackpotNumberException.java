@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import java.util.List;
-import java.util.Arrays;
 
 import lotto.domain.JackpotNumber;
 
@@ -16,6 +15,9 @@ public class JackpotNumberException {
         isJackpotSixValue(jackpotNumber);
         isJackpotDuplicated(jackpotNumber);
         isJackpotRange(jackpotNumber);
+
+    }
+    public static void isBonusValid(JackpotNumber jackpotNumber) {
         isBounusNumberRepeated(jackpotNumber);
     }
     public static void isJackpotSixValue(JackpotNumber jackpotNumber) {

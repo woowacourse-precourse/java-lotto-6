@@ -5,7 +5,7 @@ import lotto.domain.*;
 import java.util.List;
 
 public class LottoService {
-    public User buyLottoTicket(int buyAmount) {
+    public User buyLottoTicket(long buyAmount) {
         Money money = new Money(buyAmount);
         LottoTicket lottoTicket = new LottoTicket(money.getNumberOfPurchase());
         return new User(money, lottoTicket);
@@ -25,7 +25,7 @@ public class LottoService {
     }
 
     public double calculateReturnRate(User user, LottoResult lottoResult) {
-        double totalPrize = lottoResult.calculateTotalPrize();
+        long totalPrize = lottoResult.calculateTotalPrize();
         Money userBuyAmount = user.getBuyAmount();
         return userBuyAmount.getReturnRate(totalPrize);
     }

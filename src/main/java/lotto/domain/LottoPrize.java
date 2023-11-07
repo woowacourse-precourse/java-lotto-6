@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum LottoPrize {
-    PRIZE_1ST(6, new Money(2000000000)),
-    PRIZE_2ND(5, new Money(30000000)),
-    PRIZE_3RD(5, new Money(1500000)),
-    PRIZE_4TH(4, new Money(50000)),
-    PRIZE_5TH(3, new Money(5000)),
+    PRIZE_1ST(6, new Money(2_000_000_000)),
+    PRIZE_2ND(5, new Money(30_000_000)),
+    PRIZE_3RD(5, new Money(1_500_000)),
+    PRIZE_4TH(4, new Money(50_000)),
+    PRIZE_5TH(3, new Money(5_000)),
     NOTHING(0, new Money(0));
     private final int matchingCount;
     private final Money prize;

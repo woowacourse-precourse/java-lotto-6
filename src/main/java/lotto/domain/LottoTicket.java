@@ -14,8 +14,8 @@ public class LottoTicket {
     private static final int ZERO = 0;
     private final List<Lotto> lottoTicket;
 
-    public LottoTicket(int numberOfPurchase) {
-        List<Lotto> lottoTicket = IntStream.range(ZERO, numberOfPurchase)
+    public LottoTicket(long numberOfPurchase) {
+        List<Lotto> lottoTicket = IntStream.range(ZERO, (int) numberOfPurchase)
                 .mapToObj(i -> new Lotto(pickLottoNumber()))
                 .toList();
 

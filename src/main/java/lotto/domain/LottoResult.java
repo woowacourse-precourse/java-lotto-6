@@ -21,9 +21,9 @@ public class LottoResult {
         this.lottoResult = calculateLottoResult(userLottoPrizeResults);
     }
 
-    public double calculateTotalPrize() {
+    public long calculateTotalPrize() {
         return this.lottoResult.keySet().stream()
-                .mapToDouble(prize -> lottoResult.get(prize) * prize.getPrize().getMoney())
+                .mapToLong(prize -> lottoResult.get(prize) * prize.getPrize().getMoney())
                 .sum();
     }
 

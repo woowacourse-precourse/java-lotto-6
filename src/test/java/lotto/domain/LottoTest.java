@@ -32,4 +32,15 @@ class LottoTest {
         assertThrows(UnsupportedOperationException.class, () -> retrievedNumbers.add(13));
     }
 
+    @DisplayName("로또안에 숫자가 포함되어 있는지 확인한다")
+    @Test
+    void testContains(){
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(numbers);
+        assertTrue(lotto.contains(1));
+        assertTrue(lotto.contains(2));
+        assertFalse(lotto.contains(7));
+        assertFalse(lotto.contains(8));
+    }
+
 }

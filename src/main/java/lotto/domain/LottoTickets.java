@@ -26,4 +26,8 @@ public class LottoTickets {
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
+
+    public List<Lotto> getLottoTickets() {
+        return Collections.unmodifiableList(lottoTickets);
+    }
 }

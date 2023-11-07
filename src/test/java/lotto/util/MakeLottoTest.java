@@ -20,7 +20,7 @@ class MakeLottoTest {
 
     @Test
     @DisplayName("수 받아서 그 만큼 로또리스트를 만드는지 확인")
-    void makeLotto(){
+    void makeLottoList(){
         //given
         int lottoCount = 6;
         //when
@@ -28,5 +28,6 @@ class MakeLottoTest {
         //then
         assertEquals(list.size(),6);
     }
+
 
 }

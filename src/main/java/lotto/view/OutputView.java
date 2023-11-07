@@ -7,6 +7,12 @@ import lotto.model.Lotto;
 public class OutputView {
 
     private final static String PRINT_BUY_AMOUNT = "%d개를 구매했습니다.\n";
+    private final static String PRINT_REVENUE = "총 수익률은 %.1f%%입니다.\n";
+
+    private void printRevenue(int winningMoney, int purchaseMoney) {
+        double revenue = (double) (winningMoney - purchaseMoney) / purchaseMoney * 100;
+        System.out.printf(PRINT_REVENUE, revenue);
+    }
 
     public void printLottoBundle(List<Lotto> lottoBundle) {
         int buyAmount = lottoBundle.size();

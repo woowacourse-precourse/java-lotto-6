@@ -96,8 +96,8 @@
         - [x] 정수와 쉼표로 이루어져 있는지 검증.
 
     - [ ] BonusAndPaymentInputParser InputParser 구현 클래스
-        - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
-        - [ ] 정수로 이루어져 있는지 검증.
+        - [x] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
+        - [x] 정수로 이루어져 있는지 검증.
 
 
 2. UI(View)

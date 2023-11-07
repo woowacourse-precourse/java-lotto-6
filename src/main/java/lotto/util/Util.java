@@ -23,8 +23,13 @@ public class Util {
         return ascending;
     }
 
-    public static List<Integer> splitInputNumbers(String input) {
+    public static List<String> splitInputNumbers(String input) {
         return Arrays.stream(input.split(COMMA))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Integer> stringListToIntegerList(List<String> list) {
+        return list.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
@@ -44,7 +49,7 @@ public class Util {
                 count += 1;
             }
         }
-        
+
         return count;
     }
 }

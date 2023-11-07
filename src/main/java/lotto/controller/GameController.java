@@ -60,7 +60,10 @@ public class GameController {
     private List<Integer> getInputWinningNumbers() {
         try {
             InputMessage.inputWinningNumbers();
-            List<Integer> winningNumbers = Util.splitInputNumbers(Console.readLine());
+            List<String> inputNumbers = Util.splitInputNumbers(Console.readLine());
+            Validation.validateListNumeric(inputNumbers);
+            
+            List<Integer> winningNumbers = Util.stringListToIntegerList(inputNumbers);
             Validation.validateListSize(winningNumbers, LOTTO_SIZE);
             Validation.validateListNumbersInRange(winningNumbers, LOTTO_FIRST_NUMBER, LOTTO_LAST_NUMBER);
             Validation.validateListDuplication(winningNumbers);

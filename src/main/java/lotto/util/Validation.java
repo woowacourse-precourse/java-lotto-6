@@ -19,6 +19,12 @@ public class Validation {
         }
     }
 
+    public static void validateListNumeric(List<String> list) {
+        for (String number : list) {
+            validateInputIsNumber(number);
+        }
+    }
+
     public static void validateInputIsNumber(String input) {
         if (!Pattern.matches(REGEXP_PATTERN_NUMBER, input)) {
             ErrorMessage.inputIsNotNumberError();

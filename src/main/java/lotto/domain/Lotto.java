@@ -37,4 +37,8 @@ public class Lotto {
             Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER,
                     LOTTO_NUMBER_SIZE));
     }
+
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number.getNumber());
+    }
 }

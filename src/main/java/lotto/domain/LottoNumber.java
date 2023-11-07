@@ -22,4 +22,8 @@ public class LottoNumber {
                     "[ERROR] 로또 번호는 " + MAXIMUM_LOTTO_NUMBER + "보다 작아야 합니다.");
         }
     }
+
+    public Integer getNumber() {
+        return number;
+    }
 }

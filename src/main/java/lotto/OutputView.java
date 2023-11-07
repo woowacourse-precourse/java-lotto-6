@@ -61,8 +61,8 @@ public class OutputView {
                 NUMBER_FORMAT.format(FOURTH_AWARD.getRewardMoney()), lottoResultStore.get(FOURTH_AWARD.getRewardMoney()));
         System.out.printf(GENERAL_MATCH_RESULT_MESSAGE, THIRD_AWARD.getMatchCount(),
                 NUMBER_FORMAT.format(THIRD_AWARD.getRewardMoney()), lottoResultStore.get(THIRD_AWARD.getRewardMoney()));
-        System.out.printf(BONUS_MATCH_RESULT_MESSAGE, SECOND_AWARD.getMatchCount(),
-                NUMBER_FORMAT.format(SECOND_AWARD.getRewardMoney()), lottoResultStore.get(SECOND_AWARD.getRewardMoney()));
+        System.out.printf(BONUS_MATCH_RESULT_MESSAGE, SECOND_AWARD_WITH_BONUS.getMatchCount(),
+                NUMBER_FORMAT.format(SECOND_AWARD_WITH_BONUS.getRewardMoney()), lottoResultStore.get(SECOND_AWARD_WITH_BONUS.getRewardMoney()));
         System.out.printf(GENERAL_MATCH_RESULT_MESSAGE, FIRST_AWARD.getMatchCount(),
                 NUMBER_FORMAT.format(FIRST_AWARD.getRewardMoney()), lottoResultStore.get(FIRST_AWARD.getRewardMoney()));
     }

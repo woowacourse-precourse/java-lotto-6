@@ -32,5 +32,13 @@ public class Lotto {
         return equalNumbers;
     }
 
-    // TODO: 추가 기능 구현
+    public int bonusNumberContains(int equalNumbers, int bonusNumber){
+        for (Integer number : numbers){
+            if (number == bonusNumber){
+                equalNumbers++;
+                return equalNumbers;
+            }
+        }
+        return equalNumbers;
+    }
 }

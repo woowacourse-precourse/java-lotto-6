@@ -34,6 +34,9 @@ public class LottoGameController {
         InputView inputView = appConfig.inputView();
         List<Integer> winningNumbers = inputView.getWinningNumbers();
         Lotto lotto = new Lotto(winningNumbers);
+
+        LottoNumber bonusNumber = inputView.getBonusNumber(lotto);
+
     }
 
     public Money getMoney() {

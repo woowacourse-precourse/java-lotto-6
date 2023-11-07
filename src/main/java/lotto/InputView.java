@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.config.LottoGameMessage;
+import lotto.exception.DuplicateNumberException;
 import lotto.exception.NonNumericAmountException;
 import lotto.utils.Validator;
 
@@ -30,6 +31,21 @@ public class InputView {
         System.out.println(LottoGameMessage.INPUT_WINNING_NUMBER.message());
 
         return inputWinningNumbers();
+    }
+
+    public LottoNumber getBonusNumber(Lotto lotto) {
+        System.out.println(LottoGameMessage.INPUT_BONUS_NUMBER.message());
+        try {
+            String bonusNumber = receiver.readLine();
+            LottoNumber bonusLottoNumber = new LottoNumber(convertToInt(bonusNumber));
+            Validator.validateDuplicate(lotto, bonusLottoNumber);
+            return bonusLottoNumber;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber(lotto);
+        }
+
     }
 
     private List<Integer> inputWinningNumbers() {

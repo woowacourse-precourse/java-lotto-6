@@ -1,6 +1,8 @@
 package lotto.utils;
 
 import java.util.List;
+import lotto.Lotto;
+import lotto.LottoNumber;
 import lotto.config.LottoGameRule;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
@@ -26,6 +28,12 @@ public class Validator {
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoGameRule.LOTTO_SIZE.value()) {
             throw new InvalidSizeException();
+        }
+    }
+
+    public static void validateDuplicate(Lotto lotto, LottoNumber lottoNumber) {
+        if (lotto.hasBonusNumber(lottoNumber)) {
+            throw new DuplicateNumberException();
         }
     }
 }

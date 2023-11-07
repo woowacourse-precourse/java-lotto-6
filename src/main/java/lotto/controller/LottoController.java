@@ -1,24 +1,37 @@
-package controller;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.Customer;
-import domain.WinningLotto;
-import service.LottoService;
-import util.ControllerOutputManager;
+import lotto.domain.Customer;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
+import lotto.service.LottoService;
+import lotto.support.RandomLotto;
+import lotto.util.ControllerOutputManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
 
     private static final LottoService lottoService = new LottoService();
+    private static final RandomLotto randomLotto = new RandomLotto();
 
     private static final ControllerOutputManager controllerOutputManager = new ControllerOutputManager();
     public void execute() {
 
+        List<Lotto> lottos = new ArrayList<>();
+
         int lottoTimes = BuyLotto();
+        for (int i = 0; i < lottoTimes; i++) {
+            Lotto lotto = new Lotto(randomLotto.getRandomLotto());
+            lotto.print();
+            lottos.add(lotto);
+        }
         WinningLotto winningLotto = setWinningNumbers();
         setBonusNumber(winningLotto);
 
 
-        lottoService.execute(winningLotto,lottoTimes);
+        lottoService.execute(lottos,winningLotto);
     }
 
     private void setBonusNumber(WinningLotto winningLotto) {

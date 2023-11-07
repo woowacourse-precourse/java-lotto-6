@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.enums.Rank;
@@ -14,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         CheckDuplicateNumber(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

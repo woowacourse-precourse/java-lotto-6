@@ -10,7 +10,7 @@ public class PurchaseAmount implements Askable<String> {
 
     @Override
     public String ask() {
-        System.out.println(inputPurchaseAmount);
+        System.out.println(INPUT_PURCHASE_AMOUNT);
 
         do {
             input = readLine();
@@ -28,10 +28,10 @@ public class PurchaseAmount implements Askable<String> {
 
         try {
             if (!isPositiveInteger.test(input)) {
-                throw new IllegalArgumentException(nonPositiveIntegerError);
+                throw new IllegalArgumentException(NON_POSITIVE_INTEGER_ERROR);
             }
             if (!isThousandUnit.test(input)) {
-                throw new IllegalArgumentException(nonThousandUnitError);
+                throw new IllegalArgumentException(NON_THOUSAND_UNIT_ERROR);
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -10,7 +10,7 @@ import lotto.Settings;
 public class WinningNumbers extends Numbers implements Askable<List<Integer>> {
     @Override
     public List<Integer> ask() {
-        System.out.println(inputWinningNumbers);
+        System.out.println(INPUT_WINNING_NUMBERS);
 
         String input;
         List<Integer> convertedInput;
@@ -42,13 +42,13 @@ public class WinningNumbers extends Numbers implements Askable<List<Integer>> {
 
     private void checkValidity(List<Integer> convertedInput) {
         if (!isCorrectRange.test(convertedInput)) {
-            throw new IllegalArgumentException(numberRangeError);
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
         }
         if (!isNoDuplicate.test(convertedInput)) {
-            throw new IllegalArgumentException(duplicateNumbersError);
+            throw new IllegalArgumentException(DUPLICATE_NUMBERS_ERROR);
         }
         if (!isCorrectAmount.test(convertedInput)) {
-            throw new IllegalArgumentException(WinningNumberAmountError);
+            throw new IllegalArgumentException(WINNING_NUMBER_SIZE_ERROR);
         }
     }
 

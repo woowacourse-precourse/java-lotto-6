@@ -10,7 +10,7 @@ import lotto.Settings;
 public class BonusNumber extends Numbers implements Askable<Integer> {
     @Override
     public Integer ask() {
-        System.out.println(inputBonusNumber);
+        System.out.println(INPUT_BONUS_NUMBER);
 
         String input;
         List<Integer> convertedInput;
@@ -42,10 +42,10 @@ public class BonusNumber extends Numbers implements Askable<Integer> {
 
     private void checkValidity(List<Integer> convertedInput) {
         if (!isCorrectRange.test(convertedInput)) {
-            throw new IllegalArgumentException(numberRangeError);
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
         }
         if (!isCorrectAmount.test(convertedInput)) {
-            throw new IllegalArgumentException(BonusNumberAmountError);
+            throw new IllegalArgumentException(BONUS_NUMBER_SIZE_ERROR);
         }
     }
 

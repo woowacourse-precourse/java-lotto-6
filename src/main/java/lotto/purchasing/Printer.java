@@ -8,7 +8,7 @@ import java.util.List;
 import lotto.Lotto;
 
 public class Printer {
-    private static final String purchaseCountMessage = "개를 구매했습니다.";
+    private static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
     Generator generator;
 
     public Printer(Generator generator) {
@@ -22,7 +22,7 @@ public class Printer {
         List<Lotto> lottos =
                 generator.issue(issueAmount, MINIMUM.getNumber(), MAXIMUM.getNumber(), SIZE.getNumber());
 
-        System.out.println(issueAmount + purchaseCountMessage);
+        System.out.println(issueAmount + PURCHASE_COUNT_MESSAGE);
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
         System.out.println();

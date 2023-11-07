@@ -1,8 +1,8 @@
 package lotto.util;
 
-import static lotto.domain.LottoRule.MAXIMUM;
-import static lotto.domain.LottoRule.MINIMUM;
-import static lotto.domain.LottoRule.SIZE;
+import static lotto.domain.lotto.LottoRule.MAXIMUM;
+import static lotto.domain.lotto.LottoRule.MINIMUM;
+import static lotto.domain.lotto.LottoRule.SIZE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +24,6 @@ public class RandomNumberGeneratorTest {
 
     @RepeatedTest(10)
     @DisplayName("1-45 사이의 숫자를 생성한다.")
-    @Test
     void generateRandomNumber() {
         List<Integer> lottos = randomNumberGenerator.generate();
 

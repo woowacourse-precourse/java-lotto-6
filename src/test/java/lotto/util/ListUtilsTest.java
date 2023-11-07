@@ -14,7 +14,7 @@ public class ListUtilsTest {
     public void stringToIntegerList() {
         // given
         String inputLotto = "1,2,3,4,5,6";
-        ListUtils listUtils = new ListUtils();
+        Utils listUtils = new Utils();
 
         // when
         List<Integer> lotto = listUtils.stringToIntegerSortedList(inputLotto);

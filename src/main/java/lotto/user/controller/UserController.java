@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.*;
 
 import java.util.List;
 
+import lotto.user.view.UserView;
 import lotto.util.convert.ConvertUtil;
 import lotto.util.validate.UserValidate;
 
@@ -17,6 +18,7 @@ public class UserController {
     }
 
     public int purchaseInput(){
+        UserView.inputPurchase();
         String input = readLine();
         int temp = 0;
         try{
@@ -30,6 +32,7 @@ public class UserController {
     }
 
     public List<Integer> lottoNumberInput(){
+        UserView.inputLottoNumber();
         String input = readLine();
         List<Integer> temp = null;
         try{
@@ -44,6 +47,7 @@ public class UserController {
     }
 
     public int lottoBonusNumberInput(){
+        UserView.inputLottoBonusNumber();
         String input = readLine();
         int temp = 0;
         try{

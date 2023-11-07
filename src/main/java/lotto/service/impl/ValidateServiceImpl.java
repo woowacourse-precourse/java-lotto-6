@@ -1,9 +1,9 @@
 package lotto.service.impl;
 
-import static lotto.utils.LottoConstants.LOTTO_NUMBERS;
-import static lotto.utils.LottoConstants.LOTTO_TICKET_PURCHASE_AMOUNT;
 import static lotto.utils.CalculationConstants.COMMAS_NUMBERS;
 import static lotto.utils.CalculationConstants.REMAINS;
+import static lotto.utils.LottoConstants.LOTTO_NUMBERS;
+import static lotto.utils.LottoConstants.LOTTO_TICKET_PURCHASE_AMOUNT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,9 +45,17 @@ public class ValidateServiceImpl implements ValidateService {
     @Override
     public void checkCorrectMoney(String input) {
         Integer money = checkIncludeChar(input);
-        if (money % LOTTO_TICKET_PURCHASE_AMOUNT.getValue() != REMAINS.getValue()) {
+        if (!isThousandUnit(money) || !isNaturalNumber(money)) {
             throw new IllegalTypeFormatException();
         }
+    }
+
+    private boolean isNaturalNumber(Integer money) {
+        return money > 0;
+    }
+
+    private boolean isThousandUnit(Integer money) {
+        return money % LOTTO_TICKET_PURCHASE_AMOUNT.getValue() == REMAINS.getValue();
     }
 
     @Override

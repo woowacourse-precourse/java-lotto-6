@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.Constant.LottoCashConstant;
+
 import java.util.List;
 
 public class OutputLottoResult {
@@ -15,24 +17,17 @@ public class OutputLottoResult {
         for (LottoResult lottoResult : lottoResults) {
             int returnCash = lottoResult.getReturnCash();
             totalReturnCash += returnCash;
-
-            switch (returnCash) {
-                case 5000:
-                    match3++;
-                    break;
-                case 50000:
-                    match4++;
-                    break;
-                case 1500000:
-                    match5++;
-                    break;
-                case 30000000:
-                    match5AndBonus++;
-                    break;
-                case 2000000000:
-                    match6++;
-                    break;
-            }
+            
+            if (returnCash == LottoCashConstant.match3.getCash())
+                match3++;
+            else if (returnCash == LottoCashConstant.match4.getCash())
+                match4++;
+            else if (returnCash == LottoCashConstant.match5.getCash())
+                match5++;
+            else if (returnCash == LottoCashConstant.match5AndBonus.getCash())
+                match5AndBonus++;
+            else if (returnCash == LottoCashConstant.match6.getCash())
+                match6++;
         }
     }
 

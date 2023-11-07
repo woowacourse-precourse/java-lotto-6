@@ -12,6 +12,7 @@ public class WinningNumberValidator {
 
     public void checkLottoNumber(List<String> lotto) {
         checkLottoNumberIsNumber(lotto);
+        checkLottoInRange(lotto);
         checkLottoDuplicate(lotto);
     }
 
@@ -39,6 +40,17 @@ public class WinningNumberValidator {
         Set<String> lottoWithoutDuplicate = new HashSet<>(lotto);
         if (lotto.size() != lottoWithoutDuplicate.size()) {
             System.out.printf(constants.WINNING_NUMBER_DUPLICATED_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkLottoInRange(List<String> lotto) {
+        for (int i=constants.ZERO_NUMBER; i<lotto.size(); i++) {
+            int lottoNumber = Integer.parseInt(lotto.get(i));
+            if(lottoNumber >= constants.LOTTO_NUMBER_MIN && lottoNumber <= constants.LOTTO_NUMBER_MAX) {
+                continue;
+            }
+            System.out.printf(constants.LOTTO_NUMBER_RANGE_ERROR);
             throw new IllegalArgumentException();
         }
     }

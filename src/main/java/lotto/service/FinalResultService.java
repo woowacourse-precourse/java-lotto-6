@@ -11,7 +11,7 @@ public class FinalResultService {
     private FinalResultService() {
     }
 
-    public static EnumMap<PrizeGrade, Integer> generate(final List<PrizeGrade> prizeGrades) {
+    public static EnumMap<PrizeGrade, Integer> generateResult(final List<PrizeGrade> prizeGrades) {
         EnumMap<PrizeGrade, Integer> results = new EnumMap<>(PrizeGrade.class);
         final PrizeGrade[] entirePrizeGradeArray = PrizeGrade.values();
 

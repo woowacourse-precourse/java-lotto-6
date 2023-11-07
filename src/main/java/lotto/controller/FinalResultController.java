@@ -22,7 +22,7 @@ public class FinalResultController {
         MatchingResults matchingResults = MatchingResults.from(matchingResultList);
 
         List<PrizeGrade> prizeGrades = matchingResults.findPrizeGrade();
-        EnumMap<PrizeGrade, Integer> results = FinalResultService.generate(prizeGrades);
+        EnumMap<PrizeGrade, Integer> results = FinalResultService.generateResult(prizeGrades);
         return FinalResults.from(results);
     }
 

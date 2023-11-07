@@ -27,7 +27,7 @@ class RevenueTest {
             // given
             Buyer buyer = BuyerFixture.VALID.toEntity();
             List<PrizeGrade> prizeGrades = VALID.getPrizeGrades();
-            EnumMap<PrizeGrade, Integer> prizeGradeCountMap = FinalResultService.generate(prizeGrades);
+            EnumMap<PrizeGrade, Integer> prizeGradeCountMap = FinalResultService.generateResult(prizeGrades);
             FinalResults finalResults = FinalResults.from(prizeGradeCountMap);
             // when &&  then
             Assertions.assertDoesNotThrow(() -> Revenue.of(buyer, finalResults));

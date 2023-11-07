@@ -25,7 +25,7 @@ class FinalResultsTest {
         void Should_Success_When_Valid() {
             // given
             List<PrizeGrade> prizeGrades = VALID.getPrizeGrades();
-            EnumMap<PrizeGrade, Integer> prizeGradeCountsMap = FinalResultService.generate(prizeGrades);
+            EnumMap<PrizeGrade, Integer> prizeGradeCountsMap = FinalResultService.generateResult(prizeGrades);
             // when && then
             assertDoesNotThrow(() -> FinalResults.from(prizeGradeCountsMap));
         }
@@ -40,7 +40,7 @@ class FinalResultsTest {
         void Should_Success_When_Valid() {
             // given
             List<PrizeGrade> prizeGrades = VALID.getPrizeGrades();
-            EnumMap<PrizeGrade, Integer> prizeGradeCountMap = FinalResultService.generate(prizeGrades);
+            EnumMap<PrizeGrade, Integer> prizeGradeCountMap = FinalResultService.generateResult(prizeGrades);
             FinalResults finalResults = FinalResults.from(prizeGradeCountMap);
             // when
             long result = finalResults.calculateFinalRevenueAmount();

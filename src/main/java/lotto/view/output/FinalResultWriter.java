@@ -2,7 +2,7 @@ package lotto.view.output;
 
 import lotto.domain.prize.constants.PrizeGrade;
 import lotto.dto.FinalResultResponse;
-import lotto.view.constants.PrintablePrizeType;
+import lotto.view.constants.PrintablePrizeGrade;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public final class FinalResultWriter extends OutputWriter {
         printMessage(RESPONSE_SEPARATOR);
 
         EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap = response.finalResults().getFinalResults();
-        PrintablePrizeType[] printablePrizeTypes = PrintablePrizeType.values();
+        PrintablePrizeGrade[] printablePrizeTypes = PrintablePrizeGrade.values();
 
         Arrays.stream(printablePrizeTypes)
                 .forEach(type -> printEachMatchingResult(type, prizeGradeIntegerEnumMap));
@@ -36,7 +36,7 @@ public final class FinalResultWriter extends OutputWriter {
 
 
     private static void printEachMatchingResult(
-            PrintablePrizeType type,
+            PrintablePrizeGrade type,
             EnumMap<PrizeGrade, Integer> prizeGradeIntegerEnumMap
     ) {
         DecimalFormat seperatedFormat = SEPARATOR_FORMAT.getFormat();

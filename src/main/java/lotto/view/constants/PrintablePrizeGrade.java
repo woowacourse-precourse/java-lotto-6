@@ -6,7 +6,7 @@ import static lotto.domain.prize.constants.PrizeGrade.*;
 import static lotto.view.constants.PrizeResultFormat.RESPONSE_MATCHING;
 import static lotto.view.constants.PrizeResultFormat.RESPONSE_MATCHING_WITH_BONUS;
 
-public enum PrintablePrizeType {
+public enum PrintablePrizeGrade {
     MATCHING_THREE(HIT_THREE, RESPONSE_MATCHING),
     MATCHING_FOUR(HIT_FOUR, RESPONSE_MATCHING),
     MATCHING_FIVE(HIT_FIVE, RESPONSE_MATCHING),
@@ -16,7 +16,7 @@ public enum PrintablePrizeType {
     private final PrizeGrade grade;
     private final PrizeResultFormat format;
 
-    PrintablePrizeType(PrizeGrade grade, PrizeResultFormat format) {
+    PrintablePrizeGrade(PrizeGrade grade, PrizeResultFormat format) {
         this.grade = grade;
         this.format = format;
     }

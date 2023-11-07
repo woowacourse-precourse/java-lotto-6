@@ -19,7 +19,7 @@ public enum MatchResult {
         this.message = message;
     }
 
-    public static MatchResult fromCount(int count) {
+    public static MatchResult getFromCount(int count) {
         if (count == SIX_WIN_COUNT)
             return values()[count - SIX_IDX_OFFSET];
 

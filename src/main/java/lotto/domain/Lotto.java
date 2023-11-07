@@ -65,7 +65,7 @@ public class Lotto {
         if (isBonusMatch(matchCount, randomNumbers, bonusNum))
             return MatchResult.BONUS;
 
-        return MatchResult.fromCount(matchCount);
+        return MatchResult.getFromCount(matchCount);
     }
 
     private static boolean isBonusMatch(int matchCount, List<Integer> randomNumbers, int bonusNum) {

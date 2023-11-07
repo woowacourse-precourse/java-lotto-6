@@ -33,6 +33,12 @@ public class LottoService {
         return lottos;
     }
 
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
+        }
+    }
+
     private void containsNonNumericCharacters(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());

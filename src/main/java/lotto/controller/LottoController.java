@@ -10,6 +10,8 @@ import lotto.io.InputManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
 
+import java.util.function.Supplier;
+
 public class LottoController {
 
     private final OutputView outputView;
@@ -35,7 +37,7 @@ public class LottoController {
 
     private void createPurchaseAmount() {
         outputView.printPurchaseAmountRequest();
-        final PurchaseAmount purchaseAmount = inputManager.readPurchaseAmount();
+        final PurchaseAmount purchaseAmount = read(inputManager::readPurchaseAmount);
         lottoService.savePurchaseAmount(purchaseAmount);
     }
 
@@ -46,10 +48,10 @@ public class LottoController {
 
     private void createWinningCombination() {
         outputView.printWinningNumbersRequest();
-        final WinningNumbers winningNumbers = inputManager.readWinningNumbers();
+        final WinningNumbers winningNumbers = read(inputManager::readWinningNumbers);
 
         outputView.printBonusNumberRequest();
-        final BonusNumber bonusNumber = inputManager.readBonusNumber();
+        final BonusNumber bonusNumber = read(inputManager::readBonusNumber);
 
         lottoService.saveWinningCombination(winningNumbers, bonusNumber);
     }
@@ -63,5 +65,15 @@ public class LottoController {
     private void checkEarningRate() {
         final EarningRate earningRate = lottoService.checkEarningRate();
         outputView.printEarningRate(earningRate);
+    }
+
+    private <T> T read(final Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (final IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
     }
 }

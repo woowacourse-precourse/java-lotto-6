@@ -4,8 +4,6 @@ import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 
-import java.util.function.Supplier;
-
 public class InputManager {
 
     private final InputMapper inputMapper;
@@ -17,36 +15,17 @@ public class InputManager {
     }
 
     public PurchaseAmount readPurchaseAmount() {
-        return read(
-                () -> {
-                    final String input = inputView.readNumber();
-                    return inputMapper.toPurchaseAmount(input);
-                });
+        final String input = inputView.readNumber();
+        return inputMapper.toPurchaseAmount(input);
     }
 
     public WinningNumbers readWinningNumbers() {
-        return read(
-                () -> {
-                    final String input = inputView.readWinningNumbers();
-                    return inputMapper.toWinningNumbers(input);
-                });
+        final String input = inputView.readWinningNumbers();
+        return inputMapper.toWinningNumbers(input);
     }
 
     public BonusNumber readBonusNumber() {
-        return read(
-                () -> {
-                    final String input = inputView.readNumber();
-                    return inputMapper.toBonusNumber(input);
-                });
-    }
-
-    private <T> T read(final Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (final IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        final String input = inputView.readNumber();
+        return inputMapper.toBonusNumber(input);
     }
 }

@@ -45,4 +45,8 @@ public class OutputView {
         System.out.println(
                 String.format(ProgressMessage.EARNING_RATE.toValue(), earningRate.toValue()));
     }
+
+    public void printError(final IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }

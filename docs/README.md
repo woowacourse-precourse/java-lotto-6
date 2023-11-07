@@ -67,5 +67,5 @@
 
 ## 수익률 - ProfitRate
 
-- 일치하는 번호의 개수에 따라 상금을 계산( 구입 금액 / 총 당첨 금액 )- **calculateMoneyByMatchingNumbers**
-- 당첨금 - **calculateTotalPrizeAmount**
+- [x] 일치하는 번호의 개수에 따라 상금을 계산( 구입 금액 / 총 당첨 금액 )- **calculateTotalPrizeAmount**
+- [x] 수익률 - **calculateProfitRate**

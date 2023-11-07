@@ -16,6 +16,7 @@ public class PlayLotto {
     Lotto lotto;
     BonusNumber bonusNumber;
     WinningChecker winningChecker;
+    ProfitRate profitRate;
 
     public void playLotto() {
         int purchaseLottoCount = getPurchaseLottoCount(input, output);
@@ -24,6 +25,7 @@ public class PlayLotto {
         List<Integer> winningNumbers = getWinningNumbers(input);
         int bonusNumber = getBonusNumber(input, winningNumbers);
         Map<Rank, Integer> matchRankCount = getMatchCount(output, purchaseLottoNumbers, winningNumbers, bonusNumber);
+        getProfitRate(output, matchRankCount, purchaseLottoAmount);
     }
 
     private int getPurchaseLottoCount(Input input, Output output) {
@@ -98,5 +100,12 @@ public class PlayLotto {
         Map<Rank, Integer> matchRankCount = winningChecker.getMatchCount();
         output.printWinningResultsByRank(matchRankCount);
         return matchRankCount;
+    }
+
+    private double getProfitRate(Output output, Map<Rank, Integer> matchRankCount, int purchaseLottoAmount) {
+        profitRate = new ProfitRate(matchRankCount,purchaseLottoAmount);
+        double rate = profitRate.getProfitRate();
+        output.printProfitRate(rate);
+        return rate;
     }
 }

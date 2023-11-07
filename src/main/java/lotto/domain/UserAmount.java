@@ -49,5 +49,7 @@ public class UserAmount {
         return userAmount % USER_AMOUNT_DIVIDE_STANDARD == ALL_DIVIDE_SIGNAL_VALUE;
     }
 
-
+    public int getUserAmount() {
+        return userAmount;
+    }
 }

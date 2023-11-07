@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WinningBundle {
     private static final String WINNING_NUMBER_MUST_TOTAL_SIX_MESSAGE = "[ERROR] 당첨 번호의 갯수는 총 6개여야 합니다.";
@@ -22,6 +23,9 @@ public class WinningBundle {
         }
     }
 
-
-
+    public List<Integer> getWinningBundle() {
+        return this.winningBundle.stream()
+                .map(WinningNumber::toInt)
+                .collect(Collectors.toList());
+    }
 }

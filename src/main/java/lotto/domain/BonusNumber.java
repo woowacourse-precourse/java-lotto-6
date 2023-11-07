@@ -16,4 +16,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(BONUS_NUMBER_MUST_NUMERIC_MESSAGE);
         }
     }
+
+    public int toInt() {
+        return bonusNumber;
+    }
 }

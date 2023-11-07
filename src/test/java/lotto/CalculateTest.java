@@ -15,7 +15,7 @@ public class CalculateTest {
         calculate = new Calculate();
     }
     @Test
-    void 발행한_로또_수량을_출력한다(){
+    void 발행한_로또_수량_확인(){
         int output = calculate.getLottoCount(8000);
         assertEquals(8, output);
         int output2 = calculate.getLottoCount(16000);
@@ -36,15 +36,15 @@ public class CalculateTest {
 
     @Test
     void 수익률_계산_확인(){
-        assertEquals(62.5, calculate.getProfitRate(5000, 8000));
-        assertEquals(285.7, calculate.getProfitRate(20000, 7000));
-        assertEquals(28571428.6, calculate.getProfitRate(2_000_000_000, 7000));
+        assertEquals("62.5", calculate.getProfitRate(5000, 8000));
+        assertEquals("285.7", calculate.getProfitRate(20000, 7000));
+        assertEquals("28,571,428.6", calculate.getProfitRate(2_000_000_000, 7000));
     }
 
 
 
     @Test
-    void 수익금_계산(){
+    void 수익금_계산_확인(){
         Map<Integer, Integer> matchMap = Map.of(
                 3,2,
                 4,0,

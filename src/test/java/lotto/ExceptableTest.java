@@ -7,10 +7,8 @@ import lotto.Controller.Exceptable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class AmountProcessingTest {
+public class ExceptableTest {
 
-    
-    // 테스트 다 하고 lotto처럼 validate 안에 집어넣자
     @DisplayName("1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
     @Test
     void validateCostByDivided(){

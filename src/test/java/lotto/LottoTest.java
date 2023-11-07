@@ -14,8 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoTest {
 
-    private Lotto lotto;
-
     @BeforeEach
     void setUp() {
     }

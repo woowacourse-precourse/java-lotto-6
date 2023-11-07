@@ -2,6 +2,7 @@ package lotto.domain;
 
 public class MoneyManagement {
     private final int balance;
+    private static final int PERCENT = 100;
     private static final int LOTTO_AMOUNT = 1000;
     private static final int ZERO = 0;
     private static final String NUMERIC_PATTERN = "\\d+";
@@ -63,4 +64,8 @@ public class MoneyManagement {
         return balance;
     }
 
+    public static double calculateYield(int purchaseAmount, long totalAmount) {
+        double value = (double) totalAmount / (double) purchaseAmount * PERCENT;
+        return Math.round(value);
+    }
 }

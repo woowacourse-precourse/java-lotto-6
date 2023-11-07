@@ -25,6 +25,12 @@ public class WinningStatistics {
         return winningsStatistics.get(rank);
     }
 
+    public long getPrizeMoney() {
+        return Arrays.stream(LottoRank.values())
+                .mapToLong(rank -> getCountOfRank(rank)* (long)rank.getPrize())
+                .sum();
+    }
+
     private void addCount(LottoRank rank) {
         int exist = winningsStatistics.get(rank);
         winningsStatistics.put(rank,++exist);

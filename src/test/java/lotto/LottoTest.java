@@ -28,7 +28,10 @@ class LottoTest {
 
     @Test
     void 보너스볼과_같은_숫자를_가지고있는지_확인() {
-        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).hasNumber(1)).isTrue();
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatThrownBy(() -> new BonusBall(1, lotto))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

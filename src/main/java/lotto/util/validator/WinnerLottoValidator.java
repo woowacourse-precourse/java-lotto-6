@@ -1,6 +1,8 @@
 package lotto.util.validator;
 
+import static lotto.util.Constant.END_NUMBER;
 import static lotto.util.Constant.LOTTO_LENGTH;
+import static lotto.util.Constant.START_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,11 @@ public class WinnerLottoValidator extends Validator {
 
     @Override
     public boolean validation(String input) {
+
+        if (validationIsNumeric(input)) {
+            System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
+            return false;
+        }
         if (validationInputLength(input)) {
             System.out.println(ExceptionMessage.INVALID_INPUT_LENGTH.getMessage());
             return false;
@@ -23,15 +30,25 @@ public class WinnerLottoValidator extends Validator {
             System.out.println(ExceptionMessage.INVALID_INPUT_DUPLICATE.getMessage());
             return false;
         }
-        if (validationIsNumeric(input)) {
-            System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
-            return false;
-        }
         if (validationHasBlank(input)) {
             System.out.println(ExceptionMessage.INVALID_INPUT_HAS_BLAMK.getMessage());
             return false;
         }
+        if(validationOutOfRange(input)){
+            System.out.println(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
+            return false;
+        }
         return true;
+    }
+
+    private boolean validationOutOfRange(String input) {
+        List<String> numbers = Arrays.stream(input.split(SEPARATOR)).toList();
+        return numbers.stream()
+                .anyMatch(this::isOutOfRange);
+    }
+
+    private boolean isOutOfRange(String number){
+        return START_NUMBER > Integer.parseInt(number) || Integer.parseInt(number) > END_NUMBER;
     }
 
     private boolean validationHasDuplicate(String input) {

@@ -100,4 +100,20 @@ class CalculationUtilsTest {
         assertThat(result).isEqualTo(false);
     }
 
+    @Test
+    @DisplayName("기능14 테스트 : 소수 두번째 자리에서 반올림 해서 소수 첫째 자리까지 나타낸다.")
+    void roundAtDotPointBelowThirdNumber() {
+        // given
+        double[] numbers = {12.30, 12.34, 12.35};
+        int location = 1;
+        double[] answers = {12.3, 12.3, 12.4};
+
+        // when, then
+        for (int i = 0; i < numbers.length; i++) {
+            double result = roundToDecimalPlace(numbers[i], location);
+            assertThat(result).isEqualTo(answers[i]);
+        }
+    }
+
+
 }

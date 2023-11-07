@@ -5,6 +5,8 @@ import java.util.Map;
 import lotto.constant.OutputMessage;
 import lotto.constant.Ranking;
 import lotto.model.Lotto;
+import lotto.util.IntUtil;
+import lotto.util.OutputUtil;
 
 public class OutputView {
 
@@ -46,7 +48,7 @@ public class OutputView {
         System.out.println(count + "개");
     }
 
-    public static void showResult(Map<Integer, Integer> winningCount, int money, int profit) {
+    public static void showResult(Map<Integer, Integer> winningCount, int money, long profit) {
         showWinningCount(winningCount);
         showProfitRate(money, profit);
     }
@@ -60,9 +62,10 @@ public class OutputView {
         showLottoWinning(winningCount.get(Ranking.FIRST.getRanking()));
     }
 
-    public static void showProfitRate(int money, int profit) {
-        double rate = ((double) profit / money) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", rate);
+    public static void showProfitRate(int money, long profit) {
+        long rate = IntUtil.calculateProfit(profit, money);
+        String formatRate = OutputUtil.makeEasyToRead(rate);
+        System.out.printf("총 수익률은 %s%%입니다.%n", formatRate);
     }
 
     public static void printNextLine() {

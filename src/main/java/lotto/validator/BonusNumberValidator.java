@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 import static lotto.constant.ErrorMessage.WINNING_LOTTO_CONTAIN_BONUS_NUMBER;
 

@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.InputValidator;
 import lotto.validator.LottoNumbersValidator;
@@ -16,7 +16,6 @@ import static lotto.constant.ConsoleMessage.INPUT_PURCHASE_MONEY;
 import static lotto.constant.ConsoleMessage.INPUT_WINNING_LOTTO;
 
 public class InputView {
-
     private PurchaseMoneyValidator purchaseMoneyValidator = new PurchaseMoneyValidator();
     private LottoNumbersValidator lottoNumbersValidator = new LottoNumbersValidator();
     private BonusNumberValidator bonusNumberValidator;

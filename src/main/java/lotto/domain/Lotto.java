@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 
 import lotto.constant.LottoRank;
@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static lotto.constant.NumericConstant.LOTTO_NUMBER_COUNT;
 
 public class Lotto {
     private final List<Integer> numbers;

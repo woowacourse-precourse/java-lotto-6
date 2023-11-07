@@ -1,0 +1,32 @@
+package lotto.util;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Converter {
+
+
+    public static List<Integer> to(String numbers) {
+        List<Integer> numberInteger = new ArrayList<>();
+        String[] split = numbers.split(",");
+        for (String now : split) {
+            try {
+                Integer nowNumber = Integer.parseInt(now);
+                numberInteger.add(nowNumber);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("정수를 입력하세요");
+            }
+        }
+        return numberInteger;
+    }
+
+    public static String from(List<Integer> numbers) {
+        String numberString = numbers.stream().map(String::valueOf)
+                .collect(Collectors.joining(","));
+
+        return numberString;
+    }
+
+}

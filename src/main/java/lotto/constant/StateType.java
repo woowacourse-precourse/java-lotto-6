@@ -3,6 +3,7 @@ package lotto.constant;
 public enum StateType {
     THREE_MATCH, FOUR_MATCH, FIVE_MATCH_NO_BONUS, FIVE_MATCH_BONUS, SIX_MATCH, UNDEFINED, NO_PRIZE;
 
+    public static final StateType[] STATES = StateType.values();
     public static StateType valueOf(int correctCount, boolean correctBonus) {
         if (correctCount == 3) {
             return THREE_MATCH;
@@ -27,3 +28,4 @@ public enum StateType {
         return NO_PRIZE;
     }
 }
+

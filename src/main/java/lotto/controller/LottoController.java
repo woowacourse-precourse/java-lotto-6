@@ -24,6 +24,7 @@ public class LottoController {
         service.createGame(lottoDto);
 
         service.compareLottosWithWinningNumbers();
-        
+        OutputView.outputResult(service.getResult());
+        OutputView.outputProfitRate(service.getProfitRate());
     }
 }

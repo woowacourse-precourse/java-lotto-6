@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoDto {
-
     private int lottoPurchaseAmount;
     private List<Integer> winningNumbers;
     private int BonusNumber;

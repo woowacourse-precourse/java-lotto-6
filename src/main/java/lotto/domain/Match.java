@@ -23,6 +23,10 @@ public enum Match {
         return matchCount;
     }
 
+    public int prizeMoney() {
+        return prizeMoney;
+    }
+
     public static Match match(int matchCount, boolean bonus) {
         if (matchCount == FIVE.matchCount && bonus) {
             return FIVE_BONUS;

@@ -3,10 +3,8 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Match;
-import lotto.service.LottoBonusMachine;
-import lotto.service.LottoMatchNumber;
-import lotto.service.LottoTotalCount;
-import lotto.service.LottoWinningMachine;
+import lotto.service.*;
+import lotto.view.TotalMarginView;
 import lotto.view.WinningStatisticsView;
 
 import java.util.List;
@@ -30,5 +28,9 @@ public class LottoWinningController {
 
         WinningStatisticsView winningStatisticsView = new WinningStatisticsView();
         winningStatisticsView.printWinningStatistics(matchCount);
+
+        TotalMarginCalculator totalMarginCalculator = new TotalMarginCalculator();
+        TotalMarginView totalMarginView = new TotalMarginView();
+        totalMarginView.printTotalMargin(totalMarginCalculator.totalMarginCalculator(matchCount));
     }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import lotto.dto.LottoStatistics;
 import lotto.service.LottoService;
@@ -20,24 +21,51 @@ public class LottoController {
     public void run(){
         buyLotto();
         setWinningNumbers();
+        setBonusNumber();
         getWinningStatistic();
     }
 
-    public void buyLotto(){
-        int purchaseAmount = inputView.inputLottoPurchaseAmount();
-        lottoService.buyLotto(purchaseAmount);
+    private void buyLotto(){
+        while(true) {
+            try {
+                int purchaseAmount = inputView.inputLottoPurchaseAmount();
+                lottoService.buyLotto(purchaseAmount);
 
-        outputView.printLottoNumbers(lottoService.getMyLotto());
+                outputView.printLottoNumbers(lottoService.getMyLotto());
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public void setWinningNumbers(){
-        List<Integer> winningNumbers = inputView.inputLottoWinningNumbers();
-        int bonusNumber = inputView.inputLottoBonusNumber();
+    private void setWinningNumbers(){
+        while(true) {
+            try {
+                List<Integer> winningNumbers = inputView.inputLottoWinningNumbers();
+                lottoService.saveWinningNumbers(winningNumbers);
 
-        lottoService.saveWinningNumbers(winningNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public void getWinningStatistic(){
+    private void setBonusNumber(){
+        while(true) {
+            try {
+                int bonusNumber = inputView.inputLottoBonusNumber();
+                lottoService.saveBonusNumber(bonusNumber);
+
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void getWinningStatistic(){
         LottoStatistics lottoStatistics = lottoService.calcLotto();
 
         outputView.printLottoStatistics(lottoStatistics);

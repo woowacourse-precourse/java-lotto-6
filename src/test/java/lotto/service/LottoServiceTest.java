@@ -158,7 +158,36 @@ class LottoServiceTest {
         Assertions.assertThat(scoreBoard.get(ScoreBoard.FIFTH.getKey())).isEqualTo(0L);
     }
 
+    @DisplayName("당첨 번호 보너스 번호에 따른 등수 결과 테스트")
     @Test
-    void calculateLottoScore() {
+    void rankLottoResult() {
+        //given
+        int matchingWinningNumber1 = 6;
+        int matchingWinningNumber2 = 5;
+        int matchingWinningNumber3 = 4;
+        int matchingWinningNumber4 = 3;
+        boolean consistencyBonusNumber = true;
+        boolean inconsistencyBonusNumber = false;
+        LottoService lottoService = new LottoService();
+
+        //when
+        WinningLevel result1 = lottoService.rankLottoResult(matchingWinningNumber1,consistencyBonusNumber);
+        WinningLevel result2 = lottoService.rankLottoResult(matchingWinningNumber1,inconsistencyBonusNumber);
+        WinningLevel result3 = lottoService.rankLottoResult(matchingWinningNumber2,consistencyBonusNumber);
+        WinningLevel result4 = lottoService.rankLottoResult(matchingWinningNumber2,inconsistencyBonusNumber);
+        WinningLevel result5 = lottoService.rankLottoResult(matchingWinningNumber3,inconsistencyBonusNumber);
+        WinningLevel result6 = lottoService.rankLottoResult(matchingWinningNumber3,consistencyBonusNumber);
+        WinningLevel result7 = lottoService.rankLottoResult(matchingWinningNumber4,inconsistencyBonusNumber);
+        WinningLevel result8 = lottoService.rankLottoResult(matchingWinningNumber4,consistencyBonusNumber);
+
+        //then
+        Assertions.assertThat(result1).isEqualTo(WinningLevel.FIRST_PLACE);
+        Assertions.assertThat(result2).isEqualTo(WinningLevel.FIRST_PLACE);
+        Assertions.assertThat(result3).isEqualTo(WinningLevel.SECOND_PLACE);
+        Assertions.assertThat(result4).isEqualTo(WinningLevel.THIRD_PLACE);
+        Assertions.assertThat(result5).isEqualTo(WinningLevel.FOURTH_PLACE);
+        Assertions.assertThat(result6).isEqualTo(WinningLevel.FOURTH_PLACE);
+        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH_PLACE);
+        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH_PLACE);
     }
 }

@@ -73,6 +73,17 @@ public class LottoGame {
     }
 
     private void initiateBonus() {
+        try {
+            ConsolePrinter.printBonusNumberMessage();
 
+            String str = ConsoleScanner.scanBonusNumber();
+            Integer parsed = StringParser.parseBonusNumber(str);
+            LottoValidator.validateBonusNumber(parsed, winningNumber);
+            this.bonus = parsed;
+        } catch (Exception e) {
+            ConsolePrinter.printErrorMessage(e.getMessage());
+
+            initiateBonus();
+        }
     }
 }

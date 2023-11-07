@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,13 @@ public class Customer {
     }
 
     public void buyLotto() {
-        lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(RANGE_START.getNumber(), RANGE_END.getNumber(), LOTTO_SIZE.getNumber())));
+        try {
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(RANGE_START.getNumber(), RANGE_END.getNumber(), LOTTO_SIZE.getNumber());
+            lottos.add(new Lotto(lotto));
+        } catch (IllegalArgumentException error) {
+            buyLotto();
+        }
+
     }
     public Lotto getLastLotto() {
         return lottos.get(lottos.size()-1);

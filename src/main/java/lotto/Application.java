@@ -3,7 +3,7 @@ package lotto;
 import static lotto.controller.LottoController.*;
 
 import lotto.controller.LottoController;
-import lotto.model.Lotto;
+import lotto.view.LottoView;
 public class Application {
     public static void main(String[] args) {
 
@@ -13,5 +13,6 @@ public class Application {
         lottoController.processInputWinningNumber();
         lottoController.processInputBonusNumber();
         lottoController.processCheckWinningNumbers(lottoList,totalWinningNumbers,bonusNumber);
+        lottoController.calculateTotalRate();
     }
 }

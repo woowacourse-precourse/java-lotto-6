@@ -1,16 +1,18 @@
 package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.util.*;
 import lotto.model.Lotto;
 import lotto.model.Lotto.WinningRank;
 
 public class LottoView {
 
+    public static int purchaseAmount;
     // 로또 구입 금액 입력 받기
     public static Integer inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
-        return price;
+        purchaseAmount = Integer.parseInt(Console.readLine());
+        return purchaseAmount;
     }
 
     // 로또 구매 결과 출력
@@ -52,6 +54,11 @@ public class LottoView {
             }
         }
 
+    }
+
+
+    public static void printTotalRate(double rate) {
+        System.out.println("총 수익률은 "+ rate+"%입니다.");
     }
 
 }

@@ -1,7 +1,12 @@
 package lotto.model;
 import java.util.*;
 import lotto.exception.Exceptions;
+
+import static lotto.controller.LottoController.rankCounts;
 import static lotto.model.LottoConstantsNumber.*;
+import static lotto.view.LottoView.printTotalRate;
+import static lotto.view.LottoView.purchaseAmount;
+
 import camp.nextstep.edu.missionutils.Randoms;
 public class Lotto {
     private final List<Integer> numbers;
@@ -125,5 +130,6 @@ public class Lotto {
         }
 
     }
+
 
 }

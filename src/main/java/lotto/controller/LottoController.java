@@ -14,6 +14,7 @@ public class LottoController {
     public static ArrayList<Integer> totalWinningNumbers=new ArrayList<>();;
     public static List<Lotto> lottoList;
     public static int bonusNumber;
+    public static int[] rankCounts;
     public int processInputPurchaseAmount() {
         int price;
 
@@ -79,7 +80,7 @@ public class LottoController {
     }
 
     public void processCheckWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] rankCounts = new int[WinningRank.values().length];
+        rankCounts = new int[WinningRank.values().length];
 
         for (Lotto lotto : lottos) {
             int matchingCount = countMatchingNumbers(lotto, winningNumbers);
@@ -101,6 +102,23 @@ public class LottoController {
 
     private boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public double calculateRate(int purchaseAmount, int totalPrizeAmount) {
+        double rate = ((double) totalPrizeAmount / (double)purchaseAmount) * 100;
+        return (double) Math.round(rate * 100) /100;
+    }
+
+    public void calculateTotalRate() {
+        int totalPrizeAmount = 0;
+        for (WinningRank rank : WinningRank.values()) {
+            if (rank != WinningRank.NONE) {
+                totalPrizeAmount += rankCounts[rank.ordinal()] * rank.getPrize();
+            }
+        }
+
+        double rate = calculateRate(purchaseAmount, totalPrizeAmount);
+        printTotalRate(rate);
     }
 
 }

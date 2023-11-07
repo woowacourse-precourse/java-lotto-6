@@ -10,8 +10,12 @@ import domain.LottoWinningTier;
 import dto.LottoStatisticsResult;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottoWinningStatisticsTest {
     @Test
@@ -22,18 +26,54 @@ public class LottoWinningStatisticsTest {
                         List.of(Optional.of(LottoWinningTier.FIRST_TIER))));
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("통계 정상 반환")
-    void calculateStatistics() {
+    @MethodSource("AmountWinningTiersAndExpectPercentOfTotalWinningAmount")
+    void calculateStatistics(Amount amount, List<Optional<LottoWinningTier>> winningTiers, double expectPercent) {
         LottoStatisticsResult lottoStatisticsResult = assertDoesNotThrow(
-                () -> LottoWinningStatistics.calculateStatistics(new Amount(3_000),
+                () -> LottoWinningStatistics.calculateStatistics(amount, winningTiers));
+
+        assertThat(lottoStatisticsResult.getPercentOfTotalWinningAmount()).isEqualTo(expectPercent);
+    }
+
+    public static Stream<Arguments> AmountWinningTiersAndExpectPercentOfTotalWinningAmount() {
+        return Stream.of(
+                Arguments.of(new Amount(2_000),
+                        List.of(Optional.empty(),
+                                Optional.of(LottoWinningTier.FIRST_TIER)),
+                        100_000_000),
+
+                Arguments.of(new Amount(1_000),
+                        List.of(Optional.of(LottoWinningTier.FIRST_TIER)),
+                        200_000_000),
+
+                Arguments.of(new Amount(3_000),
                         List.of(
                                 Optional.of(LottoWinningTier.FIRST_TIER),
                                 Optional.of(LottoWinningTier.FIRST_TIER),
-                                Optional.of(LottoWinningTier.FIRST_TIER)
-                        )));
+                                Optional.of(LottoWinningTier.FIRST_TIER)),
+                        200_000_000),
 
-        assertThat(lottoStatisticsResult.getPercentOfTotalWinningAmount()).isEqualTo(2_000_000);
+                Arguments.of(new Amount(8_000),
+                        List.of(
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.of(LottoWinningTier.FIFTH_TIER)),
+                        62.5),
+
+                Arguments.of(new Amount(4_000),
+                        List.of(
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty(),
+                                Optional.empty()),
+                        0)
+        );
     }
 
 }

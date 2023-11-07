@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UserLottoTest {
 
-    @DisplayName("check if UserInput works properly")
+    @DisplayName("userInput이 정상 작동하는 지 확인하기")
     @Test
     void checkUserInnputWorks() {
         String userPickLotto = "1,2,3,4,5";
@@ -24,6 +24,7 @@ class UserLottoTest {
         assertThat(userPickNumber).isEqualTo(List.of(1,2,3,4,5));
     }
 
+    @DisplayName("BonusNumber 작동 확인 하기")
     @Test
     void checkUserBonus() {
         String userBonus = "5";

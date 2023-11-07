@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGeneratorTest {
-    @DisplayName("check if lottoGenerator works")
+    @DisplayName("lotto Generator가 정상 작동하는 지 확인하기")
     @Test
     void checkLottoGenerator() {
         int gameAmount = 4;

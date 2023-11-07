@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.Lotto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import main.java.lotto.domain.WinningLottos;
 
 class CalculatorTest {
-
+    @DisplayName("calculateMatchLottoNumber메소드 정상 작동 확인")
     @Test
     void checkcalculateMatchLottoNumber() {
         Calculator calculator = new Calculator();
@@ -22,6 +23,7 @@ class CalculatorTest {
         System.out.println(calculator.calculateMatchLottoNumber(userLotto, winningLotto));
     }
 
+    @DisplayName("rankContainer에서 incRank가 정상 작동하는 지 확인하기")
     @Test
     void checkcMatch() {
         Calculator calculator = new Calculator();

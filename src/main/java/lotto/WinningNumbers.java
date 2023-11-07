@@ -32,7 +32,7 @@ public class WinningNumbers {
             }
         }
         for (String numberText : winningLottoText.split(",")) {
-            if (!numberText.matches("[0-9]+")) {
+            if (!numberText.matches("[-0-9]+")) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 각각이 수여야 합니다.");
             }
         }
@@ -57,7 +57,7 @@ public class WinningNumbers {
         if (bonusNumberText.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1자 이상이어야 합니다.");
         }
-        if (!bonusNumberText.matches("[0-9]+")) {
+        if (!bonusNumberText.matches("[-0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 수를 입력해야 합니다.");
         }
     }

@@ -18,7 +18,7 @@ public class LottoBudget{
         if (inputBudgetText.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액 입력은 1자 이상이어야 합니다.");
         }
-        if (!inputBudgetText.matches("[0-9]+")) {
+        if (!inputBudgetText.matches("[-0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액 입력은 수를 입력해야 합니다.");
         }
     }

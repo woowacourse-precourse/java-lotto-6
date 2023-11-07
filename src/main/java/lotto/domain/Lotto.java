@@ -26,6 +26,20 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+    public int matchCount(Lotto lotto) {
+        return (int) lotto.numbers
+                .stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
+    public boolean isContainNumber(int number) {
+        if (!numbers.contains(number)) {
+            return false;
+        }
+        return true;
+    }
+
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 현재 로또가 6개의 숫자를 포함하고 있지 않습니다.");

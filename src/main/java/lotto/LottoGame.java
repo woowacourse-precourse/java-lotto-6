@@ -8,9 +8,10 @@ public class LottoGame {
     private static final int FIRST = 0;
     private Input lottoInput = new Input();
     private List<Integer> purchaseAmount;
-    private List<Lotto> purchasedLotto = new ArrayList<>();
+    private List<Lotto> purchasedLotto;
 
     public LottoGame() {
+        purchasedLotto = new ArrayList<>();
     }
 
     public void gameStart(){

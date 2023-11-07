@@ -78,7 +78,6 @@ public class LottoController {
                     .count();
 
             lottoResult.addHashMap(matchCount, isMatchBonus(lotto, bonusNumber));
-
         }
         OutputView.LottoResults(lottoResult.getLottoResultHashMap());
 

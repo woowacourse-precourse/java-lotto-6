@@ -22,10 +22,12 @@ public class OutputView {
         System.out.println("---");
 
         for(LottoResultFormat key : lottoResults.keySet()){
-            if(key == LottoResultFormat.FIVE_BONUS){
-                System.out.println(key.getLottoOfMatching() +"개 일치, 보너스 볼 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
+            if(key != LottoResultFormat.FAIL){
+                if(key == LottoResultFormat.FIVE_BONUS){
+                    System.out.println(key.getLottoOfMatching() +"개 일치, 보너스 볼 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
+                }
+                System.out.println(key.getLottoOfMatching() +"개 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
             }
-            System.out.println(key.getLottoOfMatching() +"개 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
         }
     }
 

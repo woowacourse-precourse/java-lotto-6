@@ -28,7 +28,7 @@ public class LottoResult {
                 return lottoResultFormat;
             }
         }
-        return ERROR;
+        return FAIL;
     }
 
     public HashMap<LottoResultFormat, Integer> getLottoResultHashMap() {

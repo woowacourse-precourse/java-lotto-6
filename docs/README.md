@@ -1,5 +1,5 @@
 ### 객체 간의 협력관계 파악하기
-<img src="./collaborative-relationship.png" >
+<img src="./collaborative-relationship.jpg" >
 
 ### 프로그래밍 요구사항
 

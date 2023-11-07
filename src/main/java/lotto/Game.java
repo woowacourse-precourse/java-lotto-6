@@ -14,9 +14,7 @@ public class Game {
     private final List<Integer> prizes;
     private final List<Integer> checkCount;
     private final int BONUS_NUMBER_CORRECT;
-    private int AMOUNT;
     private int COUNT_LOTTO;
-    private String PRIZE;
     private String PAST_BONUS_NUMBER;
     private int BONUS_NUMBER;
     private InputView inputView;
@@ -24,6 +22,7 @@ public class Game {
     private int CHECK_PRIZE;
     private final String ERROR_MESSAGE_1000 = "[ERROR] 1,000단위로 입력해주세요.";
     private final String ERROR_MESSAGE_NUMBER = "[ERROR] 숫자를 입력해주세요.";
+    private final String ERROR_MESSAGE_REPEAT = "[ERROR] 숫자가 중복되지 않도록 입력해주세요.";
     private String ERROR_MESSAGE;
 
     public Game() {
@@ -37,16 +36,13 @@ public class Game {
 
     public void run(){
         inputView.purchaseAmountView();
-        AMOUNT = purchaseAmountInput(); //로또 구매 금액
-        COUNT_LOTTO = countLotto(AMOUNT);   //로또 금액을 개수로 변환
+        COUNT_LOTTO = purchaseAmountInput(); //로또 구매 금액 입력
 
         outputView.purchasesNumberView(COUNT_LOTTO);
-        createLotto(COUNT_LOTTO);    //로또 생성
-        outputView.lottosView(lottos);  //로또 출력
+        createLotto(COUNT_LOTTO);    //로또 생성 및 출력
 
         inputView.prizeNumberView();
-        PRIZE = prizeNumberInput(); //당첨 번호 입력
-        changePrizeNumber(PRIZE);   //당첨 번호 변환
+        prizeNumberInput();   //당첨 번호 입력 및 변환
 
         inputView.bonusNumberView();
         PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
@@ -56,7 +52,7 @@ public class Game {
 
         outputView.winningStatistics(checkCount); //당첨 통계 출력
 
-        outputView.yieldRateOfReturn(AMOUNT);
+        outputView.yieldRateOfReturn(COUNT_LOTTO*1000);
     }
 
     public int purchaseAmountInput(){
@@ -70,7 +66,7 @@ public class Game {
                 System.out.println(ERROR_MESSAGE);
             }
         }
-        return input;
+        return input/1000;
     }
 
     private int validate_Number(){
@@ -90,29 +86,52 @@ public class Game {
             }
     }
 
-    public int countLotto(int AMOUNT){
-        return AMOUNT/1000;
-    }
-
     public void createLotto(int AMOUNT){
         for(int i=0; i<AMOUNT; i++){
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(lotto);
         }
+        outputView.lottosView(lottos);
     }
 
-    public String prizeNumberInput(){
-        //예외 처리 추가해야 함
-
-        return Console.readLine();
+    public void prizeNumberInput(){
+        while(true) {
+            try {
+                String PRIZE = Console.readLine();
+                changePrizeNumber(PRIZE);
+                break;
+            }catch (IllegalArgumentException e){
+                prizes.clear();
+                System.out.println(ERROR_MESSAGE);
+            }
+        }
     }
 
     public void changePrizeNumber(String PRIZE){
-        String[] prizeNumbers = PRIZE.split(",");
-        //예외 처리 추가해야 함
+        changeNumbers(PRIZE.split(","));    // 숫자로 변경
+        validate_Duplication(prizes); // 중복 예외 처리
 
+    }
+
+    public void changeNumbers(String[] prizeNumbers){
         for (String prizeNumber : prizeNumbers) {
             prizes.add(Integer.parseInt(prizeNumber));
+        }
+    }
+
+    private void validate_Duplication(List<Integer> prizes){
+        for (int i=0; i<prizes.size(); i++) {
+            int prize = prizes.get(i);
+            inside_Repeat(prize, prizes, i);
+        }
+    }
+
+    private void inside_Repeat(int prize, List<Integer> prizes, int i){
+        for(int n=0; n<prizes.size(); n++){
+            if(prize == prizes.get(n) && n != i){
+                ERROR_MESSAGE = ERROR_MESSAGE_REPEAT;
+                throw new IllegalArgumentException();
+            }
         }
     }
 

@@ -3,8 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.vo.TicketCount;
-import lotto.domain.vo.TotalAmount;
+import lotto.vo.TicketCount;
+import lotto.vo.TotalAmount;
 
 public class Purchase {
     private final TicketCount ticketCount;

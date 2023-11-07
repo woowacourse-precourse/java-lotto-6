@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.config.InputConfiguration;
 import lotto.domain.Purchase;
-import lotto.domain.vo.TotalAmount;
+import lotto.vo.TotalAmount;
 import lotto.util.handler.InputHandler;
 
 public class PurchaseController {

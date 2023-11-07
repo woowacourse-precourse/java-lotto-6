@@ -2,7 +2,7 @@ package lotto.util.validator;
 
 
 import lotto.constant.ErrorMessage;
-import lotto.domain.vo.WinningNumbers;
+import lotto.vo.WinningNumbers;
 
 public class BonusNumberValidator extends AbstractNumberValidator<Integer> {
     private final WinningNumbers winningNumbers;

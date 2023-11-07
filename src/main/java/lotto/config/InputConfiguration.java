@@ -1,7 +1,7 @@
 package lotto.config;
 
 import java.util.List;
-import lotto.domain.vo.WinningNumbers;
+import lotto.vo.WinningNumbers;
 import lotto.util.handler.InputHandler;
 import lotto.util.parser.MultiNumbersParser;
 import lotto.util.parser.SingleNumberParser;

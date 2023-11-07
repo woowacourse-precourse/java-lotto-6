@@ -1,4 +1,4 @@
-package lotto.domain.vo;
+package lotto.vo;
 
 import lotto.constant.LottoConstants;
 

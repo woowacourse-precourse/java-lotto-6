@@ -3,8 +3,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.config.InputConfiguration;
-import lotto.domain.vo.BonusNumber;
-import lotto.domain.vo.WinningNumbers;
+import lotto.vo.BonusNumber;
+import lotto.vo.WinningNumbers;
 import lotto.util.handler.InputHandler;
 
 public class WinningController {

@@ -1,4 +1,4 @@
-package lotto.domain.vo;
+package lotto.vo;
 
 public final class TicketCount {
     private final int count;

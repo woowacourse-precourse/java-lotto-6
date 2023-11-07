@@ -20,10 +20,12 @@ public class LottoMachine {
 
         return lottoTickets;
     }
+
     public static Lotto generate(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }
+
     public static void judgeGrade(LottoGame lottoGame, Player player) {
         Lotto winningNum = lottoGame.getWinningNum();
         Integer bonusNum = lottoGame.getBonusNum();

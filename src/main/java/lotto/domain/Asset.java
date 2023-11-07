@@ -28,7 +28,4 @@ public class Asset {
     public Float getMoney(){
         return money;
     }
-    public void setMoney(Float money){
-        this.money = money;
-    }
 }

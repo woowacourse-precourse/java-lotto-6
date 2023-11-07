@@ -20,6 +20,7 @@ public class Lotto {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
         }
     }
+
     public int matchNumbers(Lotto player){
         List<Integer> playerNumbers = player.getNumbers();
 
@@ -28,6 +29,7 @@ public class Lotto {
 
         return matchList.size();
     }
+
     public boolean matchBonusNum(int bonusNum){
         return numbers.contains(bonusNum);
     }

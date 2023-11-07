@@ -3,10 +3,10 @@ package game;
 import base.Converter;
 import java.util.ArrayList;
 import java.util.List;
-import lottoProfit.OutputProfitResult;
+import lottoProfit.tProfitResultDisplay;
 import lottoProfit.ProfitCalculator;
 import lottoResult.LottoResultDisplay;
-import lottoResult.UserLottoNumbers;
+import lottoTicketPurchase.UserLottoNumbers;
 import lottoTicketPurchase.LottoTicketPurchase;
 import lottoTicketPurchase.LottoTicketQuantity;
 import lottoWinningNumber.BonusNumberInput;
@@ -23,7 +23,7 @@ public class LottoGame {
         BonusNumberInput bonusNumberInput = new BonusNumberInput();
         LottoResultDisplay lottoResultDisplay = new LottoResultDisplay();
         ProfitCalculator profitCalculator = new ProfitCalculator();
-        OutputProfitResult outputResult = new OutputProfitResult();
+        tProfitResultDisplay outputResult = new tProfitResultDisplay();
 
         // LottoTicketPurchase
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount();

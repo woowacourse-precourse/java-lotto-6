@@ -17,9 +17,9 @@ public class LottoTicketPurchase {
             if (purchaseAmountString.matches(REGEX)) {
                 return converter.stringToInteger(purchaseAmountString);
             }
-                System.out.println(NOT_NUMBER);
-            }
+            System.out.println(NOT_NUMBER);
         }
+    }
 
     private String receivePurchaseAmountString() {
         printPurchaseAmountRequestMessage();

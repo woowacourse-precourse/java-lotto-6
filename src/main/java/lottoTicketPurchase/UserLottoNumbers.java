@@ -1,4 +1,4 @@
-package lottoResult;
+package lottoTicketPurchase;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

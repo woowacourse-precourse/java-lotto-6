@@ -14,9 +14,14 @@ public class OutputView {
         }
     }
 
-    void printCountOfWonLotto(List<Integer> counts){
+    void printWinningStatistics(List<Integer> counts, float profitRate){
         System.out.println("당첨 통계");
         System.out.println("---");
+        printCountOfWonLotto(counts);
+        printProfitRate(profitRate);
+    }
+
+    void printCountOfWonLotto(List<Integer> counts){
         System.out.println(String.format("3개 일치 (5,000원) - %d개", counts.get(0)));
         System.out.println(String.format("4개 일치 (50,000원) - %d개", counts.get(1)));
         System.out.println(String.format("5개 일치 (1,500,000원) - %d개", counts.get(2)));

@@ -20,7 +20,7 @@ public class WinningNumber {
         input = input.trim();
         validateCommaAtBothEndsForInput(input);
         String[] numbers = input.split(COMMA);
-
+        validateNumbersCount(numbers);
         winningNumbers = Arrays.stream(numbers).map(LottoNumber::newInstance).toList();
     }
 
@@ -50,5 +50,9 @@ public class WinningNumber {
         throw new IllegalArgumentException(ERROR_NO_INPUT_BLANK);
     }
 
-
+    private void validateNumbersCount(String[] numbers) {
+        if (numbers.length != LOTTO_NUMBER_LENGTH) {
+            throw new IllegalArgumentException(ERROR_INPUT_LOTTO_NUMBER_LENGTH);
+        }
+    }
 }

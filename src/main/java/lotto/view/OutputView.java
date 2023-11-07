@@ -4,6 +4,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoEnum;
 import lotto.domain.LottoResult;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
     // 발행된 로또 번호 출력 로직 작성 필요
@@ -18,9 +20,10 @@ import java.util.List;
         public static void printResult(LottoResult result, int purchaseAmount) {
             System.out.println("당첨 통계");
             System.out.println("---------");
-            for (LottoEnum.LottoRank rank : LottoEnum.LottoRank.values()) {
-                System.out.println(rank + " - " + result.getCount(rank) + "개");
-            }
+            Arrays.stream(LottoEnum.LottoRank.values())
+                    .filter(rank -> rank != LottoEnum.LottoRank.MISS)
+                    .sorted(Comparator.reverseOrder())
+                    .forEach(rank -> System.out.println(rank + " - " + result.getCount(rank) + "개"));
             System.out.println("총 수익률은 " + result.calculateEarningsRate(purchaseAmount)*100 + "%입니다.");
         }
     }

@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.utils.LottoSystemUtils.*;
@@ -10,7 +11,6 @@ import static lotto.utils.LottoSystemUtils.*;
 public class LottoSystem {
     private static int purchaseMoney;
     private static List<Lotto> purchaseLottos;
-    private static Lotto winningLotto;
 
     public LottoSystem(String money) {
         validateMoney(money);
@@ -32,7 +32,9 @@ public class LottoSystem {
 
         int purchaseLottoCnt = purchaseMoney / moneyUnit;
         while (purchaseLottoCnt --> 1) {
-            lottos.add(new Lotto(createRandomNumbers()));
+            List<Integer> lotto = createRandomNumbers();
+            Collections.sort(lotto);
+            lottos.add(new Lotto(lotto));
         }
 
         return lottos;

@@ -117,8 +117,9 @@ public class Application {
 		}
 	}
 	
-	private void lenCheck(String[]s, int n) {
-		
+	private void lenCheck(String[]s, int n) throws IllegalArgumentException{
+		if (s.length != n)
+			throw new IllegalArgumentException();
 	}
 	
 	private void valueCheck(String[]s) {

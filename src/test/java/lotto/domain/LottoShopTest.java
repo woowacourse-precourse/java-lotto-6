@@ -12,9 +12,9 @@ public class LottoShopTest {
     @DisplayName("주문 받은 로또 개수만큼 로또를 발급해준다.")
     @Test
     void createLottosByNumber() {
-        int count = 5;
-        List<Lotto> lottos = lottoShop.createLottosBy(5);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
+        List<Lotto> lottos = lottoShop.createLottosBy(purchaseAmount);
 
-        Assertions.assertThat(lottos.size()).isEqualTo(count);
+        Assertions.assertThat(lottos.size()).isEqualTo(5);
     }
 }

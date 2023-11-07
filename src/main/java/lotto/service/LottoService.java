@@ -2,17 +2,17 @@ package lotto.service;
 
 import lotto.Constant.PurchaseAmount;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
+import lotto.domain.RandomLottoNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
 
-    private final LottoNumberGenerator lottoNumberGenerator;
+    private final RandomLottoNumberGenerator randomLottoNumberGenerator;
 
-    public LottoService(LottoNumberGenerator lottoNumberGenerator) {
-        this.lottoNumberGenerator = lottoNumberGenerator;
+    public LottoService(RandomLottoNumberGenerator randomLottoNumberGenerator) {
+        this.randomLottoNumberGenerator = randomLottoNumberGenerator;
     }
 
     public List<Lotto> buyLottos(int purchaseAmount) {
@@ -32,7 +32,7 @@ public class LottoService {
 
     private void getLotto(int lottoQuantity, List<Lotto> lottos) {
         for (int i = 0; i < lottoQuantity; i++) {
-            lottos.add(new Lotto(lottoNumberGenerator.generate()));
+            lottos.add(new Lotto(randomLottoNumberGenerator.generate()));
         }
     }
 }

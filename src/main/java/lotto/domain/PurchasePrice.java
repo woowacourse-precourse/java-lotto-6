@@ -4,18 +4,18 @@ import lotto.util.Convertor;
 import lotto.validation.PriceValidator;
 
 public class PurchasePrice {
-    private final int price;
+    private final long price;
 
-    private PurchasePrice(int price) {
+    private PurchasePrice(long price) {
         PriceValidator.validate(price);
         this.price = price;
     }
 
     public static PurchasePrice from(String input) {
-        return new PurchasePrice(Convertor.convertStringToInt(input));
+        return new PurchasePrice(Convertor.convertStringToLong(input));
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 }

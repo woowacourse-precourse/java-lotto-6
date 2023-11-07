@@ -14,6 +14,10 @@ public class Convertor {
         return Integer.parseInt(value);
     }
 
+    public static long convertStringToLong(String value) {
+        return Long.parseLong(value);
+    }
+
     public static List<Integer> convertStringToIntegerList(String input) {
         return Arrays.stream(Convertor.splitByComma(input))
                 .map(Integer::parseInt)

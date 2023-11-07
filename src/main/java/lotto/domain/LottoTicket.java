@@ -19,7 +19,7 @@ public class LottoTicket {
     }
 
     private static int calculateTicketCount(PurchasePrice purchasePrice) {
-        return purchasePrice.getPrice() / LottoValue.PRICE_PER_LOTTO.getValue();
+        return (int) (purchasePrice.getPrice() / LottoValue.PRICE_PER_LOTTO.getValue());
     }
 
     private static List<Lotto> pickAutoLottoEqualTo(int purchaseCount, NumberGenerator lottoNumberGenerator) {

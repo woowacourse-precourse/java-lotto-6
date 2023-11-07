@@ -20,5 +20,13 @@ public class Lotto {
         }
     }
 
+    public int match(Lotto winningNumber) {
+    	return (int) numbers.stream()
+    			.filter(winningNumber::containNumber)
+    			.count();
+    }
     
+    public boolean containNumber(int number) {
+    	return numbers.contains(number);
+    }
 }

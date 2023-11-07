@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.system.Constant;
 import lotto.system.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -73,6 +74,26 @@ class LottoTest {
                     Arguments.of(List.of(1,2,3,4,5,1)),
                     Arguments.of(List.of(1,2,3,4,4,4)),
                     Arguments.of(List.of(43,43,43,45,45,45))
+            );
+        }
+    }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    @DisplayName("checkEachOutOfRange 검증 테스트")
+    class CheckEachOutOfRange {
+        @ParameterizedTest(name = "{0}가 입력되었을 때")
+        @MethodSource("parameterProvider")
+        void 각_원소가_지정된_로또_값의_범위를_넘지_않는지_테스트(List<Integer> target) {
+            assertThatThrownBy(() -> new Lotto(target))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
+        }
+
+        private Stream<Arguments> parameterProvider() {
+            return Stream.of(
+                    Arguments.of(List.of(1,2,3,4,5, Constant.END_INCLUSIVE + 1)),
+                    Arguments.of(List.of(Constant.START_INCLUSIVE - 1,1,2,3,4,5))
             );
         }
     }

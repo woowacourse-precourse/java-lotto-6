@@ -8,6 +8,13 @@ public class LottoOutput {
 
     public void printTotalPurchaseAmount(List<Lotto> lottos) {
         System.out.println(lottos.size() + Message.OUTPUT_TOTAL_PURCHASE_AMOUNT.getMessage());
+        printLottos(lottos);
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        for(Lotto lotto: lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void inputWinningNumber() {

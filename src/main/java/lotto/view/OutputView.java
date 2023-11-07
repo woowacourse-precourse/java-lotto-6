@@ -46,18 +46,35 @@ public class OutputView {
 
         System.out.println(LOTTO_STATS);
         System.out.println(RESULT_LINE);
-        for (LottoResult value : LottoResult.values()) {
-            if (value == LottoResult.LOSING) {
+
+//        for (LottoResult value : LottoResult.values()) {
+//            if (value == LottoResult.LOSING) {
+//                rankResultIndex++;
+//                continue;
+//            }
+//            sb.setLength(INITIALIZE_STRING_BUILDER);
+//            sb.append(value.getMatchCount()).append(RESULT_FORMAT_HEAD)
+//                .append(value.getWinPrizeMoney()).append(RESULT_FORMAT_MIDDLE)
+//                .append(rankResult.get(rankResultIndex))
+//                .append(RESULT_FORMAT_TAIL);
+//            rankResultIndex++;
+//            System.out.println(sb);
+//        }
+
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (lottoRank == LottoRank.LOSING) {
                 rankResultIndex++;
                 continue;
             }
             sb.setLength(INITIALIZE_STRING_BUILDER);
-            sb.append(value.getMatchCount()).append(RESULT_FORMAT_HEAD)
-                .append(value.getWinPrizeMoney()).append(RESULT_FORMAT_MIDDLE)
+            sb.append(lottoRank.getMatchNumberCount()).append(RESULT_FORMAT_HEAD)
+                .append(lottoRank.getLottoRankPrize()).append(RESULT_FORMAT_MIDDLE)
                 .append(rankResult.get(rankResultIndex))
                 .append(RESULT_FORMAT_TAIL);
             rankResultIndex++;
             System.out.println(sb);
+
+
         }
     }
 

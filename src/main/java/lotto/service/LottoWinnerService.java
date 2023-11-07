@@ -38,13 +38,6 @@ public class LottoWinnerService {
     public Map<LottoRank, Integer> setLottoResult(List<LottoRank> rankResult) {
         Map<LottoRank, Integer> lottoResult = new LinkedHashMap<>(6);
 
-//        for (LottoRank value : LottoRank.values()) {
-//            lottoResult.put(value, 0);
-//        }
-//        for (LottoRank lottoRank : lottoResult.keySet()) {
-//            System.out.println("lottoRank = " + lottoRank);
-//        }
-
         for (LottoRank lottoRank : LottoRank.values()) {
             int count = 0;
             count = Collections.frequency(rankResult, lottoRank);

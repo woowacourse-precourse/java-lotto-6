@@ -26,16 +26,14 @@ public class OutputView {
     }
 
     public void printLottoResult(LottoResult lottoResult, Double earningRatio) {
-        Map<Ranking, Integer> results = lottoResult.getResults();
-
         String roundedEarningRatio = roundToTwoDecimalPlaces(earningRatio);
 
         System.out.printf(OutputMessage.PRINT_LOTTO_RESULT.getComment(),
-                results.getOrDefault(Ranking.FIFTH, 0),
-                results.getOrDefault(Ranking.FOURTH, 0),
-                results.getOrDefault(Ranking.THIRD, 0),
-                results.getOrDefault(Ranking.SECOND, 0),
-                results.getOrDefault(Ranking.FIRST, 0),
+                lottoResult.getCountByRanking(Ranking.FIFTH),
+                lottoResult.getCountByRanking(Ranking.FOURTH),
+                lottoResult.getCountByRanking(Ranking.THIRD),
+                lottoResult.getCountByRanking(Ranking.SECOND),
+                lottoResult.getCountByRanking(Ranking.FIRST),
                 roundedEarningRatio
         );
     }

@@ -6,8 +6,6 @@ import lotto.message.ExceptionMessage;
 import java.util.List;
 
 public class BonusNumber {
-    private static final int MIN_LOTTO_NUMBER = Constants.MIN_LOTTO_NUMBER.getValue();
-    private static final int MAX_LOTTO_NUMBER = Constants.MAX_LOTTO_NUMBER.getValue();
     private final int bonusNumber;
 
     public BonusNumber(String bonusNumber, List<Integer> winningLotto) {
@@ -26,15 +24,16 @@ public class BonusNumber {
     }
 
     private void isNumber(String bonusNumber) {
-        try{
+        try {
             Integer.parseInt(bonusNumber);
-        }
-        catch (NumberFormatException ex){
-            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        } catch (NumberFormatException ex) {
+            ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.throwException();
         }
     }
 
     private void isInRange(int bonusNumber) {
+        int MIN_LOTTO_NUMBER = Constants.MIN_LOTTO_NUMBER.getValue();
+        int MAX_LOTTO_NUMBER = Constants.MAX_LOTTO_NUMBER.getValue();
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }

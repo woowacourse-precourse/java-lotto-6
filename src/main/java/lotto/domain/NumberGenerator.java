@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.configuration.Constants;
@@ -20,8 +20,16 @@ public class NumberGenerator {
         return number;
     }
 
-    public List<Integer> createRandomNumbers() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(START.getValue(), END.getValue(), COUNT.getValue()));
+    public List<List<Integer>> createRandomNumberLists(int lottoCount) {
+        List<List<Integer>> randomNumberLists = new ArrayList<>();
+
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> randomNumbers = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(START.getValue(), END.getValue(), COUNT.getValue())
+            );
+            randomNumberLists.add(randomNumbers);
+        }
+        return randomNumberLists;
     }
 
 }

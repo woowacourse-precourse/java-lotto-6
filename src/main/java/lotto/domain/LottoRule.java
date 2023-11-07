@@ -21,32 +21,32 @@ public class LottoRule {
         }
     }
 
-    protected boolean isMismatchLength(List<Integer> numbers) {
+    protected boolean isOutOfRange(int number) {
+        if (number < MIN_RANGE || number > MAX_RANGE) {
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean isMismatchLength(List<Integer> numbers) {
         if (numbers.size() != LENGTH) {
             return true;
         }
         return false;
     }
 
-    protected boolean isDuplicate(List<Integer> numbers) {
+    private boolean isDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             return true;
         }
         return false;
     }
 
-    protected boolean isOutOfRange(List<Integer> numbers) {
+    private boolean isOutOfRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (isOutOfRange(number)) {
                 return true;
             }
-        }
-        return false;
-    }
-
-    protected boolean isOutOfRange(int number) {
-        if (number < MIN_RANGE || number > MAX_RANGE) {
-            return true;
         }
         return false;
     }

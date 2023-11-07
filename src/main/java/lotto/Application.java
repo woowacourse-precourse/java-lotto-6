@@ -32,11 +32,11 @@ public class Application {
         }
         System.out.println();
 
-        Lotto winning;
+        Lotto winningNumbers;
         do {
             System.out.println("당첨 번호를 입력해 주세요.");
-            winning = winningNumbersValidate(Console.readLine());
-        } while (winning == null);
+            winningNumbers = winningNumbersValidate(Console.readLine());
+        } while (winningNumbers == null);
         System.out.println();
     }
 
@@ -70,13 +70,13 @@ public class Application {
     }
 
     public static Lotto winningNumbersValidate(String input) {
-        Lotto winningNumbers = null;
+        Lotto lotto = null;
         try {
-            winningNumbers = new Lotto(checkInteger(input));
+            lotto = new Lotto(checkInteger(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return winningNumbers;
+        return lotto;
     }
 
     private static List<Integer> checkInteger(String input) {

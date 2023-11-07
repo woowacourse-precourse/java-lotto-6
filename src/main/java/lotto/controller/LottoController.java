@@ -35,6 +35,7 @@ public class LottoController {
         try {
             outputView.getInputAmount();
             int purchaseAmount = inputProcessor.getUserInputPurchaseAmount();
+            Validation.validatePurchaseAmount(purchaseAmount);
             user = new User(new Amount(purchaseAmount));
             lottoService.buyLottoTickets(user);
             printBuyLotto();

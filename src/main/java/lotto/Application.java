@@ -18,17 +18,21 @@ public class Application {
         LottoRandom random = new LottoRandom();
         LotteryOperator operator = new LotteryOperator();
         LotteryRetailer retailer = new LotteryRetailer(random);
-        NumberFormat numberFormat = NumberFormat.getIntegerInstance();
         UserService userService = new UserService();
         userService.register(username);
         PurchaseLotteryService purchaseLotteryService = new PurchaseLotteryService(retailer, operator, userService);
         ApplyWinningLotteryService applyWinningLotteryService = new ApplyWinningLotteryService(operator);
         CalculateResultService calculateResultService = new CalculateResultService(
                 new LotteryResultsCalculator(operator), userService);
-        Controller controller = new Controller(new InputInterface(Console::readLine, System.out::println),
-                new OutputInterface(numberFormat),
-                username, purchaseLotteryService,
+
+        InputValidator validator = new InputValidator();
+        InputInterface in = new InputInterface(Console::readLine, System.out::println, validator);
+        NumberFormat numberFormat = NumberFormat.getIntegerInstance();
+        OutputInterface out = new OutputInterface(numberFormat);
+
+        Controller controller = new Controller(in, out, username, purchaseLotteryService,
                 applyWinningLotteryService, calculateResultService);
+
         controller.purchaseLotteries();
         controller.drawWinningLottery();
         controller.calculateEarningRate();

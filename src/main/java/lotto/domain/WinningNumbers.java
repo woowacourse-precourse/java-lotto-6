@@ -17,10 +17,16 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank compareLotto(Lotto userLotto) {
-        return Rank.decideRank(checkCollectCount(userLotto), checkBonusNumber(userLotto));
+    public LottoResult checkLottos(Lottos userLottos) {
+        LottoResult lottoResult = new LottoResult();
+        userLottos.getLottos()
+                .forEach(lotto -> lottoResult.addResult(checkLotto(lotto)));
+        return lottoResult;
     }
 
+    private Rank checkLotto(Lotto userLotto) {
+        return Rank.decideRank(checkCollectCount(userLotto), checkBonusNumber(userLotto));
+    }
     private void validateBonusNumber(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
         validateNumberBoundry(bonusNumber);
         validateDuplication(lotto, bonusNumber);

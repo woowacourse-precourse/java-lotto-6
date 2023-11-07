@@ -4,7 +4,6 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 
 public class LottoController {
 
@@ -17,6 +16,7 @@ public class LottoController {
         Lottos lottos = buyLottos(count);
         printBuyResult(lottos, count);
         WinningNumbers winningNumbers = makeWinningNumbers();
+        LottoResult lottoResult = winningNumbers.checkLottos(lottos);
 
     }
 
@@ -53,4 +53,5 @@ public class LottoController {
             return new WinningNumbers(lotto, bonusNum);
         }
     }
+
 }

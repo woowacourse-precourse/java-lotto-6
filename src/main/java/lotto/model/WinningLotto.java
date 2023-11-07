@@ -8,19 +8,34 @@ public class WinningLotto extends Lotto{
 
     public WinningLotto(String lottoNumbers, String bonusNumber) {
         super(lottoNumbers);
-        validateBonusNumber(Integer.valueOf(bonusNumber));
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = Integer.valueOf(bonusNumber);
     }
 
-    private void validateBonusNumber(Integer bonusNumber) {
+    private void validateBonusNumber(String bonusNumber) {
+        validateCastingBeforeBonusNumber(bonusNumber);
+        validateCastingAfterBonusNumber(Integer.valueOf(bonusNumber));
+    }
+
+    private void validateCastingBeforeBonusNumber(String bonusNumber) {
         validateNotNullBonusNumber(bonusNumber);
+        validateNonNumericBonusNumber(bonusNumber);
+    }
+
+    private void validateCastingAfterBonusNumber(Integer bonusNumber) {
         vaildateOutOfRangeBonusNumber(bonusNumber);
         vaildateLottoNumbersContainBonusNumber(bonusNumber);
     }
 
-    private void validateNotNullBonusNumber(Integer bonusNumber) {
+    private void validateNotNullBonusNumber(String bonusNumber) {
         if (bonusNumber == null) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
+        }
+    }
+
+    private void validateNonNumericBonusNumber(String bonusNumber) {
+        if (!bonusNumber.matches("\\d+")) {
+            throw new IllegalArgumentException("[Error] 보너스 번호에 숫자가 아닌 값이 들어왔습니다.");
         }
     }
 

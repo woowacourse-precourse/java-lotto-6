@@ -8,7 +8,13 @@ import static lotto.util.ErrorMessage.ERROR_BONUS_OUT_OF_RANGE;
 import java.util.List;
 
 public class BonusNumber {
-    private int bonusNumber;
+    private final int bonusNumber;
+
+    public BonusNumber(String input) {
+        int inputNumber = Integer.parseInt(input);
+        validateRangeofBonusNumber(inputNumber);
+        this.bonusNumber = inputNumber;
+    }
 
     private void validateRangeofBonusNumber(int number) {
         if (number < LOTTO_MIN_RANGE || number > LOTTO_MAX_RANGE) {
@@ -16,7 +22,7 @@ public class BonusNumber {
         }
     }
 
-    private void validateDuplicate(List<Integer> winningNumbers, int number) {
+    public void validateDuplicate(List<Integer> winningNumbers, int number) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException(ERROR_BONUS_DUPLICATE);
         }

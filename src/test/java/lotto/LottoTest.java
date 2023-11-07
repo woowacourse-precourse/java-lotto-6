@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -27,5 +28,47 @@ class LottoTest {
     void validateLottoNumbers_numberNotInRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, -5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호 출력 형식 테스트")
+    @Test
+    void lottoPrintFormat_test() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 15));
+        assertThat(lotto.lottoPrintFormat()).isEqualTo("[1, 2, 3, 4, 5, 15]");
+    }
+
+    @DisplayName("5등 당첨")
+    @Test
+    void compareWithWinNumbers_THREE() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 15));
+        assertThat(lotto.compareWithWinNumbers(List.of(1, 2, 3, 24, 25, 35), 40)).isEqualTo(3);
+    }
+
+    @DisplayName("4등 당첨")
+    @Test
+    void compareWithWinNumbers_FOUR() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 15));
+        assertThat(lotto.compareWithWinNumbers(List.of(1, 2, 3, 24, 25, 35), 40)).isEqualTo(3);
+    }
+
+    @DisplayName("3등 당첨")
+    @Test
+    void compareWithWinNumbers_FIVE() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 15));
+        assertThat(lotto.compareWithWinNumbers(List.of(1, 2, 3, 24, 25, 35), 40)).isEqualTo(3);
+    }
+
+    @DisplayName("2등 당첨")
+    @Test
+    void compareWithWinNumbers_FIVE_AND_BONUS() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 15));
+        assertThat(lotto.compareWithWinNumbers(List.of(1, 2, 3, 4, 25, 15), 5)).isEqualTo(7);
+    }
+
+    @DisplayName("1등 당첨")
+    @Test
+    void compareWithWinNumbers_SIX() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 15));
+        assertThat(lotto.compareWithWinNumbers(List.of(1, 2, 3, 4, 5, 15), 40)).isEqualTo(6);
     }
 }

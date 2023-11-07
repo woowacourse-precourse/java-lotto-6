@@ -29,7 +29,7 @@ public class PurchaseAmountValidator extends Validator {
 
     // 금액이 1000원 단위인지 확인하는 메서드 -> ClientInform에서 체크
     public static boolean isThousandWonAmount(Integer purchaseAmount) {
-        if (purchaseAmount % LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue() == 0) {
+        if (purchaseAmount % LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue() == LottoNumConstant.ZERO.getValue()) {
             return true;
         }
         return false;

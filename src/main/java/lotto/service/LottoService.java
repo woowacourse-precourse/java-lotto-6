@@ -1,16 +1,14 @@
 package lotto.service;
 
 import lotto.constant.Constant;
-import lotto.constant.LottoRateConstant;
-import lotto.constant.OutputViewMessage;
 import lotto.constant.Ranking;
 import lotto.handler.LottoMatchingHandler;
 import lotto.model.*;
 import lotto.util.LottoNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoService {
     private Lottos lottos;
@@ -48,11 +46,9 @@ public class LottoService {
     }
 
     private List<Lotto> makeLotto(int lottoNum) {
-        List<Lotto> newLottos = new ArrayList<>();
-        while (lottoNum-- > 0) {
-            newLottos.add(new Lotto(lottoNumberGenerator.makeLottoNumbers()));
-        }
-        return newLottos;
+        return IntStream.range(0, lottoNum)
+                .mapToObj(i -> new Lotto(lottoNumberGenerator.makeLottoNumbers()))
+                .toList();
     }
 
     public String getLottoNumbers() {
@@ -73,19 +69,36 @@ public class LottoService {
         return Integer.parseInt(bonusNumber);
     }
 
-    // 로또와 당첨번호로 매칭갯수와 보너스볼을 가지고 자료구조에 저장하기
-    public void compareLottoWithWinningLotto() {
+    public void saveLottoStatus() {
         List<Lotto> lottos1 = lottos.getLottos();
         for (Lotto lotto : lottos1) {
-            int matchingNum = lottoMatchingHandler.countMatchingNum(lotto, winningLotto);
-            boolean isMatching = lottoMatchingHandler.isMatchingBonusNum(lotto, winningLotto.getBonusNumber());
             // 몇등짜리 로또인지 구하기
-            Ranking ranking = Ranking.getRanking(matchingNum, isMatching);
-            // 당첨된 로또의 수익금을 clientInform에서 업데이트해줌
-            clientInform.addWinningReward(ranking.getReward());
+            Ranking ranking = getRanking(getMatchingNum(lotto, winningLotto), isMatching(lotto, winningLotto));
+            // 당첨된 로또의 수익금을 clientInform에서 업데이트
+            addWinningReward(ranking.getReward());
             // EnumMap에 각 등수에 update해줌
-            rankStatus.updateRankStatus(ranking);
+            updateRankStatus(ranking);
         }
+    }
+
+    private int getMatchingNum(Lotto lotto, WinningLotto winningLotto) {
+        return lottoMatchingHandler.countMatchingNum(lotto, winningLotto);
+    }
+
+    private boolean isMatching(Lotto lotto, WinningLotto winningLotto) {
+        return lottoMatchingHandler.isMatchingBonusNum(lotto, winningLotto.getBonusNumber());
+    }
+
+    private void addWinningReward(int reward) {
+        clientInform.addWinningReward(reward);
+    }
+
+    private void updateRankStatus(Ranking ranking) {
+        rankStatus.updateRankStatus(ranking);
+    }
+
+    private Ranking getRanking(int matchingNum, boolean isMatching) {
+        return Ranking.getRanking(matchingNum, isMatching);
     }
 
     public String generateLottoRate() {

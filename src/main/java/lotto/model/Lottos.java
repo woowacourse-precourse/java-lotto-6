@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private List<Lotto> lottos;
@@ -14,11 +15,9 @@ public class Lottos {
     }
 
     public String getLottoNumbers() {
-        StringBuilder sb = new StringBuilder();
-        for (Lotto lotto : lottos) {
-            sb.append(lotto.getLottoNumbers());
-        }
-        return sb.toString();
+        return lottos.stream()
+                .map(Lotto::getLottoNumbers)
+                .collect(Collectors.joining());
     }
 
     public List<Lotto> getLottos() {

@@ -59,11 +59,11 @@ public class LottoController {
         }
     }
 
-    private int readPurchaseAmount() throws IllegalArgumentException {
+    private int readPurchaseAmount() {
         return inputView.readPurchaseAmount();
     }
 
-    private void makeLottoByPurchaseAmount(int purchaseAmount) throws IllegalArgumentException {
+    private void makeLottoByPurchaseAmount(int purchaseAmount) {
         lottoService.makeLottoByPurchaseAmount(purchaseAmount);
     }
 
@@ -79,11 +79,11 @@ public class LottoController {
         return lottoService.getLottoNum();
     }
 
-    private String readWinningLotto() throws IllegalArgumentException {
+    private String readWinningLotto() {
         return inputView.readWinningLotto();
     }
 
-    private String readBonusNumber() throws IllegalArgumentException {
+    private String readBonusNumber() {
         return inputView.readBonusNumber();
     }
 
@@ -92,7 +92,7 @@ public class LottoController {
     }
 
     private void compareLottoWithWinningLotto() {
-        lottoService.compareLottoWithWinningLotto();
+        lottoService.saveLottoStatus();
     }
 
     private String generateLottoRate() {

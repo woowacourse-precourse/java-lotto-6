@@ -7,6 +7,7 @@ import static lotto.constants.LottoConstants.LOTTO_NUMBER_OVER_MAX;
 import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
 import static lotto.constants.LottoConstants.PATTERN;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -17,10 +18,21 @@ import lotto.exception.UserInputException;
 public class LottoUtils {
 
     public static int divisionLottoPrice(int price) {
+        while (true) {
+            try {
+                validateCheckPrice(price);
+                return (price / LOTTO_DIVISION);
+            } catch (UserInputException e) {
+                System.out.println(ErrorMsg.ERROR_LOTTO_PRICE_DIVISON.getMsg());
+            }
+            price = Integer.parseInt(Console.readLine());
+        }
+    }
+
+    public static void validateCheckPrice(int price) {
         if (price % LOTTO_DIVISION != LOTTO_NOT_DIVISION) {
             throw new UserInputException(ErrorMsg.ERROR_LOTTO_PRICE_DIVISON.getMsg());
         }
-        return (price / LOTTO_DIVISION);
     }
 
     public static List<Integer> generateRandomNumbers() {

@@ -10,5 +10,6 @@ public class ConsoleOutputView {
         for (List<Integer> lottoTicket : lottoTickets) {
             System.out.println(lottoTicket);
         }
+        System.out.println();
     }
 }

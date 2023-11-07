@@ -1,16 +1,12 @@
 package lotto.domain;
 
+import lotto.constants.LottoErrorMessage;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    static final String LOTTO_START_ERROR_MESSAGE = "[ERROR] ";
-    static final String LOTTO_NUMBER_LENGTH_INVALID_MESSAGE = "발행한 로또 번호는 6자리 숫자여야 합니다.";
-    static final String LOTTO_NUMBER_RANGE_INVALID_MESSAGE = "발행한 로또 번호는 1~45의 숫자여야 합니다.";
-    static final String LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE = "발행한 로또 번호는 중복이 있으면 안됩니다.";
-
     static final int PRICE_PER_LOTTO = 1000;
 
     private static final int LOTTO_SIX_SIZE = 6;
@@ -43,13 +39,13 @@ public class Lotto {
 
     private static void validateLengthNumber(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIX_SIZE) {
-            throw new IllegalArgumentException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_LENGTH_INVALID_MESSAGE);
+            throw new IllegalArgumentException(LottoErrorMessage.LENGTH_INVALID.entireMessage());
         }
     }
 
     private static void validateRange(List<Integer> numbers) {
         if (isOverRange(numbers)) {
-            throw new IllegalArgumentException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_RANGE_INVALID_MESSAGE);
+            throw new IllegalArgumentException(LottoErrorMessage.RANGE_INVALID.entireMessage());
         }
     }
 
@@ -62,9 +58,8 @@ public class Lotto {
 
     private static void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            throw new IllegalStateException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE);
+            throw new IllegalStateException(LottoErrorMessage.DUPLICATE_INVALID.entireMessage());
         }
-        ;
     }
 
     private static boolean isDuplication(List<Integer> numbers) {

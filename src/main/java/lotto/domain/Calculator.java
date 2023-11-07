@@ -40,13 +40,13 @@ public class Calculator {
     }
 
     static private Grade obtainGrade(Integer sameNumbersNumber, Boolean isBonusInLotto) {
-        if (sameNumbersNumber == Lotto.size) {
+        if (sameNumbersNumber == Lotto.SIZE) {
             return FIRST;
         }
-        if ((sameNumbersNumber == Lotto.size - 1) && isBonusInLotto == true) {
+        if ((sameNumbersNumber == Lotto.SIZE - 1) && isBonusInLotto == true) {
             return SECOND;
         }
-        if (sameNumbersNumber == Lotto.size - 1) {
+        if (sameNumbersNumber == Lotto.SIZE - 1) {
             return THIRD;
         }
 
@@ -54,10 +54,10 @@ public class Calculator {
     }
 
     private static Grade getThirdAfterGrade(Integer sameNumbersNumber) {
-        if (sameNumbersNumber == Lotto.size - 2) {
+        if (sameNumbersNumber == Lotto.SIZE - 2) {
             return FOURTH;
         }
-        if (sameNumbersNumber == Lotto.size - 3) {
+        if (sameNumbersNumber == Lotto.SIZE - 3) {
             return FIFTH;
         }
 
@@ -66,7 +66,7 @@ public class Calculator {
 
     static public Double returnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Integer purchaseCnt = lottos.size();
-        Integer purchaseMoney = purchaseCnt * Lotto.price;
+        Integer purchaseMoney = purchaseCnt * Lotto.PRICE;
         Integer winningMoney = 0;
 
         for (int i = 0; i < purchaseCnt; i++) {

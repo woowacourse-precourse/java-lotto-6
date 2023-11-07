@@ -49,9 +49,9 @@ public class UI {
         newNumbers.sort(Comparator.naturalOrder());
 
         System.out.print("[");
-        for (int i = 0; i < Lotto.size; i++) {
+        for (int i = 0; i < Lotto.SIZE; i++) {
             System.out.print(newNumbers.get(i));
-            if (i < Lotto.size - 1) {
+            if (i < Lotto.SIZE - 1) {
                 System.out.print(", ");
             }
         }

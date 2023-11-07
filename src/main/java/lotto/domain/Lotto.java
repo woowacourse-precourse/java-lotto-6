@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    public static final Integer size = 6;
-    public static final Integer price = 1000;
+    public static final Integer SIZE = 6;
+    public static final Integer PRICE = 1000;
 
     private final List<Integer> numbers;
 

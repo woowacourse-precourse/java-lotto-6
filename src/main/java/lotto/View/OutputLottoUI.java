@@ -26,4 +26,10 @@ public class OutputLottoUI {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public static void lottoSalse(List<List<Integer>> lottos) {
+        for(List<Integer> lotto : lottos) {
+            System.out.println(lotto);
+        }
+    }
+
 }

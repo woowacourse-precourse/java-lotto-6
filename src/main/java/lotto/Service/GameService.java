@@ -13,8 +13,7 @@ import static lotto.View.OutputLottoUI.lottoCountView;
 public class GameService {
     int money;
     int lottoCount;
-    List<Integer> lottoNumbers;
-
+    List<List<Integer>> lottos;
 
     public void setGame() {
         while (true) {
@@ -23,17 +22,8 @@ public class GameService {
             try {
                 lottoCount = LottoSalesman.lottoCount(money);
                 lottoCountView(lottoCount);
-
-                List<List<Integer>> lottos = new ArrayList<>();
-
-                for (int i = 0; i < lottoCount; i++) {
-                    List<Integer> lottoNumbers = Lotto.createLottoRandomNumber();
-                    lottos.add(lottoNumbers);
-                }
-
-                for (List<Integer> lotto : lottos) {
-                    System.out.println(lotto);
-                }
+                lottos = LottoSalesman.buyLotto(lottoCount);
+                OutputLottoUI.lottoSalse(lottos);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

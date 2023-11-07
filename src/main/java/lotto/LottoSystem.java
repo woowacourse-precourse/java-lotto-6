@@ -9,6 +9,12 @@ import java.util.List;
 
 public class LottoSystem {
     private static final int PRICE_0 = 1000;
+    private static final int PRICE_1 = 5000;
+    private static final int PRICE_2 = 50000;
+    private static final int PRICE_3 = 1500000;
+    private static final int PRICE_4 = 3000000;
+    private static final int PRICE_5 = 2000000000;
+    private static final int PERCENT = 100;
 
     public void start() throws IllegalArgumentException {
         System.out.println("구입금액을 입력해 주세요.");
@@ -109,5 +115,41 @@ public class LottoSystem {
             return 3;
         }
         return 2;
+    }
+
+    public void winnerLottoNumbersPrint(int lottoTicket, int[] winLotto){
+        double rateOfReturn = winningTotalMoney(winLotto)/(lottoTicket*PRICE_0)*PERCENT;
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(String.format("3개 일치 (5,000원) - %d개", winLotto[0]));
+        System.out.println(String.format("4개 일치 (50,000원) - %d개", winLotto[1]));
+        System.out.println(String.format("5개 일치 (1,500,000원) - %d개", winLotto[2]));
+        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", winLotto[3]));
+        System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", winLotto[4]));
+        System.out.println(String.format("총 수익률은 %.1f",  rateOfReturn)+"%입니다.");
+    }
+
+    public double winningTotalMoney(int[] winLotto){
+        double sum = 0;
+        for(int i=0;i<winLotto.length;i++){
+            sum += moneySum(i, winLotto[i]);
+        }
+        return sum;
+    }
+
+    public double moneySum(int rank, int lottoTickets){
+        if (rank == 0){
+            return lottoTickets * PRICE_1;
+        }
+        if (rank == 1){
+            return lottoTickets * PRICE_2;
+        }
+        if (rank == 2){
+            return lottoTickets * PRICE_3;
+        }
+        if (rank == 3){
+            return lottoTickets * PRICE_4;
+        }
+        return lottoTickets * PRICE_5;
     }
 }

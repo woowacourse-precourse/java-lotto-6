@@ -42,7 +42,9 @@ public class InputView {
                 storeWinningNumbersArraysToList(WinningNumbers, InputData);
                 CustomizedException.winningNumbersQualification(WinningNumbers);
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (NumberFormatException e) {
+                System.out.println(CustomizedException.ERROR_MESSAGE_INIT + "유효한 번호를 입력해주세요.");
+            }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

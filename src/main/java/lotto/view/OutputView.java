@@ -49,6 +49,19 @@ public class OutputView {
         System.out.println("---");
     }
 
+    private static void printLottoMatched(Map<Result, Integer> score, Result[] printOrder, NumberFormat numberFormat) {
+        for (Result result : printOrder) {
+            int count = score.getOrDefault(result, 0);
+            String winningsFormatted = numberFormat.format(result.getWinnings()) + "원";
+            String message = result.getMatchCnt() + "개 일치 (" + winningsFormatted + ")";
+            if (result.getMatchCnt() == 5 && result.isBonus()) {
+                message = result.getMatchCnt() + "개 일치, 보너스 볼 일치 (" + winningsFormatted + ")";
+            }
+            message += " - " + count + "개";
+            System.out.println(message);
+        }
+    }
+
 
 
 

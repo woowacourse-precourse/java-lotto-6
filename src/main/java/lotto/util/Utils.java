@@ -51,4 +51,11 @@ public class Utils {
         return str.matches("-?\\d+");
     }
 
+    public static String calculateReturn(long totalReturn, long money) {
+        double total = (double) totalReturn / (double) money;
+        double roundedTotal = Math.round(total * 10000.0) / 100.0; // 소수점 둘째 자리에서 반올림
+        String result = String.format("총 수익률은 %.1f%%입니다.", roundedTotal);
+        return result;
+    }
+
 }

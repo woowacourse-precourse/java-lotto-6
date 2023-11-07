@@ -36,10 +36,7 @@ public class OutputView {
         System.out.println(WinningLevel.FIRST_PLACE.getResult() + " - " + scoreBoard.get("1st") / WinningLevel.FIRST_PLACE.getReward() + "개");
     }
 
-    public static void outputViewTotalReturn(Long totalReturn, Long money) {
-        double total = (double) totalReturn / (double) money;
-        double roundedTotal = Math.round(total * 10000.0) / 100.0; // 소수점 둘째 자리에서 반올림
-        String result = String.format("총 수익률은 %.1f%%입니다.", roundedTotal);
-        System.out.println(result);
+    public static void outputViewTotalReturn(String totalReturn) {
+        System.out.println(totalReturn);
     }
 }

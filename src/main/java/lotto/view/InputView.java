@@ -46,11 +46,11 @@ public class InputView {
         }
     }
 
-    public BonusNumber inputBonusNumber() {
+    public BonusNumber inputBonusNumber(Lotto winningNumbers) {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
         while (true) {
             try {
-                return new BonusNumber(parseInt(Console.readLine()));
+                return new BonusNumber(parseInt(Console.readLine()),winningNumbers);
             } catch (NumberFormatException e) {
                 System.out.println(IS_LOTTO_NUMBER_DIGIT.getMessage());
             } catch (IllegalArgumentException e) {

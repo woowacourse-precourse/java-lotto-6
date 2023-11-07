@@ -34,7 +34,7 @@ class ResultTest {
         when(lottoBuyer.getPayment()).thenReturn(new Payment(2000));
 
         winningNumbers = new Lotto(winningTestNumbers);
-        bonusNumber = new BonusNumber(4);
+        bonusNumber = new BonusNumber(4,winningNumbers);
     }
 
     @Nested

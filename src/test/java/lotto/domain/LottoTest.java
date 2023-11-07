@@ -68,7 +68,7 @@ class LottoTest {
         @Test
         void 로또에_보너스_번호가_포함되어있으면_true를_반환한다() {
             Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
-            BonusNumber bonusNumber = new BonusNumber(3);
+            BonusNumber bonusNumber = new BonusNumber(3,new Lotto(Arrays.asList(1,2,4,5,6,7)));
             assertEquals(true,lotto.containsNumber(bonusNumber.getNumber()));
             assertEquals(false, lotto.containsNumber(9));
         }

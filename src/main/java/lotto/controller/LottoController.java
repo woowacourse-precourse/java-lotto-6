@@ -23,7 +23,7 @@ public class LottoController {
         lottoBuyer.generateLotto();
         outputView.printLottoNumbers(lottoBuyer.getLottos());
         Lotto winningNumbers = inputView.inputWinningNumbers();
-        BonusNumber bonusNumber = inputView.inputBonusNumber();
+        BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
         Result result = new Result(lottoBuyer);
         result.calculateResult(winningNumbers,bonusNumber);
         outputView.printWinningResult(result);

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.exception.InvalidPaymentAmountException;
 import lotto.model.Lotto;
 import lotto.service.LottoGameService;
 import lotto.validation.Validator;
@@ -39,7 +40,7 @@ public class LottoGameController {
                 ArrayList<Lotto> purchasedAllLotto = lottoGameService.checkPurchasedLotto();
                 outputView.printPurchasedLotto(purchasedLottoCount, purchasedAllLotto);
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (InvalidPaymentAmountException e) {
                 System.out.println(e.getMessage());
             }
         }

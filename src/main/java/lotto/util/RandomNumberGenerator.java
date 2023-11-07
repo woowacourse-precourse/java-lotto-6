@@ -19,19 +19,6 @@ public class RandomNumberGenerator {
      * @return 벡터를 리스트 형식으로 반환한다. 값이 중복된 요소를 허용하지 않는다.
      */
     public static List<Integer> generateMultiple(int min, int max, int count) {
-        List<Integer> randomNumbers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            generateRandomNumber(min, max, randomNumbers);
-        }
-        return randomNumbers;
-    }
-
-    private static void generateRandomNumber(int min, int max, List<Integer> randomNumbers) {
-        int randomNumberBetween = Randoms.pickNumberInRange(min, max);
-        if (randomNumbers.contains(randomNumberBetween)) {
-            generateRandomNumber(min, max, randomNumbers);
-            return;
-        }
-        randomNumbers.add(randomNumberBetween);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(min, max, count));
     }
 }

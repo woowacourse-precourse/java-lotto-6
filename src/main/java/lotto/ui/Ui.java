@@ -66,6 +66,7 @@ public class Ui {
         Map<LottoScore, Long> scoreHistory = scores.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         Arrays.stream(LottoResult.values())
+                .sorted((x, y) -> Long.compare(y.getLottoScore().getReward(), x.getLottoScore().getReward()))
                 .forEach(lottoResult -> System.out.println(
                         lottoResult.getMessage(
                                 scoreHistory.getOrDefault(lottoResult.getLottoScore(), SCORE_RESULT_DEFAULT_VALUE))

@@ -8,36 +8,12 @@ import java.util.List;
 public class LottoGenerator {
     private final List<Lotto> lottos;
 
-    public LottoGenerator(long buyingPrice) {
-        long buyingCount = calculateBuyingCount(buyingPrice, LOTTO_PRICE);
-        this.lottos = generateLottos(buyingCount);
+    public LottoGenerator(long ticketNumber) {
+        this.lottos = generateLottos(ticketNumber);
     }
 
     public List<Lotto> getLottos() {
         return this.lottos;
-    }
-
-    private long calculateBuyingCount(long buyingPrice, long unitPrice) {
-        validate(buyingPrice, unitPrice);
-        return buyingPrice / unitPrice;
-    }
-
-    private void validate(long buyingPrice, long unitPrice) {
-        validatePositive(unitPrice);
-        validatePositive(buyingPrice);
-        validateUnit(buyingPrice, unitPrice);
-    }
-
-    private void validatePositive(long number) {
-        if (number <= ZERO) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateUnit(long number, long unitNumber) {
-        if (number % unitNumber != ZERO) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private List<Lotto> generateLottos(long buyingCount) {

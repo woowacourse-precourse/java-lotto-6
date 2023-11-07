@@ -36,6 +36,8 @@ public class GameController {
             outputView.printExceptionMessage(e.getMessage());
             throw e;
         }
+        outputView.printPurchasedNumberMessage(numberService.getPurchasedNumber());
+        outputView.printAllLottoNumbers(numberService.getAllLottoNumbersInString());
     }
 
     private boolean isInvalidPurchaseAmount(String input) {

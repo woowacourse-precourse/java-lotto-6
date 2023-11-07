@@ -17,6 +17,14 @@ public class NumberService {
         this.lottoGenerator = lottoGenerator;
     }
 
+    public int getPurchasedNumber() {
+        return purchaseAmount.getPurchasedNumber();
+    }
+
+    public String getAllLottoNumbersInString() {
+        return allLottoNumbers.toString();
+    }
+
     public void initPurchaseAmount(String input) {
         this.purchaseAmount = new PurchaseAmount(input);
     }
@@ -27,7 +35,7 @@ public class NumberService {
 
     private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < purchaseAmount.getLottoNumber(); count++) {
+        for (int count = 0; count < purchaseAmount.getPurchasedNumber(); count++) {
             lottos.add(new Lotto(lottoGenerator.create(Lotto.LOTTO_SIZE)));
         }
         return lottos;

@@ -10,7 +10,8 @@ public class InputUser {
         inputMoney = camp.nextstep.edu.missionutils.Console.readLine();
         validateInputMoneyIsInteger(inputMoney);
         lottoMoney = Integer.parseInt(inputMoney);
-        return lottoMoney;
+        validateMoneyIsMultipleOfThousand(lottoMoney);
+        return Integer.parseInt(inputMoney);
     }
 
     private void validateInputMoneyIsInteger(String inputMoney){
@@ -18,6 +19,11 @@ public class InputUser {
             Integer.parseInt(inputMoney);
         }catch (NumberFormatException e){
             throw new NumberFormatException("[ERROR] 구입 금액은 숫자를 입력해야 합니다.");
+        }
+    }
+    private void validateMoneyIsMultipleOfThousand(Integer lottoMoney){
+        if (lottoMoney % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 }

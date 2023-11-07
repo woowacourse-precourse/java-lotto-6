@@ -4,17 +4,16 @@ import java.util.ArrayList;
 
 public class Lottos {
 
-    private ArrayList<Lotto> lottos=new ArrayList<>();
+    private ArrayList<Lotto> lottos = new ArrayList<>();
 
-    public void addLotto(Lotto lotto){
+    public void addLotto(Lotto lotto) {
         this.lottos.add(lotto);
     }
 
-    public void printLottosNumbers(){
-        for(int i=0; i<lottos.size(); i++){
+    public void printLottosNumbers() {
+        for (int i = 0; i < lottos.size(); i++) {
             lottos.get(i).printLottoNumbers();
         }
-
     }
 
 }

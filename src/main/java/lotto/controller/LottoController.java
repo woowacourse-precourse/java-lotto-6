@@ -1,22 +1,26 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import org.mockito.internal.matchers.GreaterThan;
 
 public class LottoController {
-
     private final int lottoPrice = 1000;
     private int purchaseQuantity;
     private boolean checkInitPurchaseQuantity = true;
     private boolean checkInitWinningNumber = true;
-
+    private boolean checkBonusNumber = true;
     private Lottos lottos;
+
+    private WinningNumber winningNumber;
 
 
     public void start() {
@@ -32,6 +36,11 @@ public class LottoController {
         while (checkInitWinningNumber) {
             initWinningNumber(); // 당첨 번호 초기화
         }
+
+        while (checkBonusNumber) {
+            initBonusNumber();
+        }
+        // todo : 보너스 번호 저장.
     }
 
     public void initPurchaseQuantity() {
@@ -49,15 +58,32 @@ public class LottoController {
             String winningNumber = InputView.inputWinningNumber();
             validateWinningNumbers(winningNumber);
             System.out.println();
-            String bonusNumber = InputView.inputBonusNumber();
-            // todo: 예외처리
-            // todo : 보너스 넘버와 당첨번호 저장
-            // todo : 보너스 넘버 길이에 대한 예외처리
+            saveWinningNumber(winningNumber);
             checkInitWinningNumber = false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    public void initBonusNumber() {
+        try {
+            String bonusNumber = InputView.inputBonusNumber();
+            validateBonusNumber(bonusNumber);
+            checkBonusNumber = false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void saveWinningNumber(String string) {
+        winningNumber = new WinningNumber();
+        String[] split = string.split(",");
+        List<Integer> integers = Arrays.stream(split).map(Integer::parseInt).toList();
+        validateWinningNumberLength(integers.size());
+        winningNumber.setWinningNumbers(integers); // 클래스에 저장.
+
+    }
+
 
     private void calculateQuantity(String input) { // 로또 구매 수량 계산.
         try {
@@ -110,8 +136,21 @@ public class LottoController {
         }
     }
 
-    public void validateWinningNumberLength(int number) {
+    public void validateWinningNumberLength(int size) {
+        if(size!=6){
+            throw new IllegalArgumentException("[ERROR]당첨번호는 6개의 숫자를 입력해주세요.");
+        }
 
+    }
+
+
+    public void validateBonusNumber(String number) {
+        String regex = "^(?:[1-9]|[1-3][0-9]|4[0-5])$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(number);
+        if (!matcher.find()) {
+            throw new IllegalArgumentException("[ERROR]보너스 번호는 1~45 사이의 숫자 하나만 입력해 주세요.");
+        }
     }
 
     public void validateWinningNumbers(String number) {

@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.domain.Lotto;
+
 public class InputException {
 
     public void validateInputNumber(String input) {
@@ -15,8 +17,12 @@ public class InputException {
         if(!winningNumber.matches("^[0-9,]*$"))
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 쉼표(,)로 이루어져야 합니다.");
     }
-    public void validateBounsRange(String bonus) {
+    public void validateBonusRange(String bonus) {
         if(Integer.parseInt(bonus)<1 || Integer.parseInt(bonus) > 45)
             throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자를 입력해야 합니다.");
+    }
+    public void validateDuplicateBonus(String bonus, Lotto winningNumber) {
+        if(winningNumber.getNumbers().contains(Integer.parseInt(bonus)))
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호는 중복되면 안됩니다.");
     }
 }

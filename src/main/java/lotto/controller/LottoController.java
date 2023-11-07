@@ -32,7 +32,7 @@ public class LottoController {
     }
     public void run(int amount) {
         Lotto winningNumber = lottoService.splitString(inputView.inputWinningNumber());
-        int bonus = inputView.inputBonusNumber();
+        int bonus = inputView.inputBonusNumber(winningNumber);
         Map<ResultType,Integer> result = resultService.checkLotto(lottos,winningNumber,bonus);
         outputView.printResult(result);
         int prize = resultService.calculatePrize(result);

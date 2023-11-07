@@ -1,9 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.exception.InputException;
-
-import java.util.List;
 
 public class InputView {
 
@@ -27,11 +26,12 @@ public class InputView {
         return winningNumber;
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(Lotto winningNumber) {
         System.out.println("\n"+INPUT_BONUS_NUMBER);
         String bonus = Console.readLine();
         inputException.validateInputNumber(bonus);
-        inputException.validateBounsRange(bonus);
+        inputException.validateBonusRange(bonus);
+        inputException.validateDuplicateBonus(bonus,winningNumber);
         return Integer.parseInt(bonus);
     }
 

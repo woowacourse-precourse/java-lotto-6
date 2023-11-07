@@ -31,7 +31,7 @@ public class GameController {
         printer.profitRate(discriminator.getProfitRate(money));
     }
 
-    private void initGame() {
+    private void init() {
         money = getPurchase();
         pocket = new Pocket(getLottos());
     }

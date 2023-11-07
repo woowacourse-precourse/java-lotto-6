@@ -1,4 +1,4 @@
-package lotto;
+package lotto.enums;
 
 public enum LottoErrorMessageConstants {
     LOTTO_INVALID_SIZE("[ERROR] 로또의 숫자는 " + LottoConstants.LOTTO_PER_NUMBERS.getConstant() + "개 입력되어야 합니다."),

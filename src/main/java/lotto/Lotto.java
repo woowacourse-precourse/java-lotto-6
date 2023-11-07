@@ -1,8 +1,13 @@
 package lotto;
 
+import static lotto.enums.LottoPrizeConstants.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.enums.LottoConstants;
+import lotto.enums.LottoErrorMessageConstants;
+import lotto.enums.LottoPrizeConstants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,5 +35,17 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public LottoPrizeConstants checkPrize(List<Integer> winningNumbers, int bonusNumber) {
+        int matchedCount = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchedCount++;
+            }
+        }
+        /* 보너스 번호를 check 해야할 경우 */
+        if ((matchedCount == BONUS_PRIZE.getMatchingNumber() - 1) && numbers.contains(bonusNumber)) {
+            return BONUS_PRIZE;
+        }
+        return LottoPrizeConstants.getPrizeByMatchingNumber(matchedCount);
+    }
 }

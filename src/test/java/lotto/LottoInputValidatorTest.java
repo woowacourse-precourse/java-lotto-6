@@ -1,11 +1,12 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 import java.util.ArrayList;
 import java.util.List;
+import lotto.enums.LottoConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LottoInputValidatorTest {
     @DisplayName("입력한 로또 구입금액은 로또의 가격과 나누어떨어져야 한다")

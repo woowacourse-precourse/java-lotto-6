@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.enums.LottoErrorMessageConstants;
+import lotto.enums.LottoSeparatorConstant;
 
 public class LottoParser {
     public static int readLineToNumber(String readLine) {

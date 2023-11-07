@@ -6,6 +6,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import lotto.data.Rewards;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -55,18 +56,35 @@ class ViewProcessorTest {
                 .hasMessageContaining(expect);
     }
 
+    @DisplayName("구입금액 에러여부 판단한다.")
     @ParameterizedTest
     @CsvSource({
             "15,[ERROR] 구입 금액은 1000원 단위여야 합니다.",
-            "-20,[ERROR] 구입 금액은 0원 이상이여야 합니다.",
+            "-20,[ERROR] 구입 금액은 0원 초과해야 합니다.",
             "\0,[ERROR] 구입 금액은 정수여야 합니다.",
             "만원,[ERROR] 구입 금액은 정수여야 합니다."
     })
-    void checkValidPurchase_입력값_에러여부_판단(String input, String expect) {
+    void checkValidPurchase_(String input, String expect) {
 
         assertThatThrownBy(() -> viewProcessor.checkValidPurchase(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expect);
+    }
+
+    @DisplayName("구입금액이 최소금액(0) 이하일 경우 에러가 발생한다.")
+    @Test
+    void checkRangePurchase() {
+        assertThatThrownBy(() -> viewProcessor.checkRangePurchase(-100))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액은 0원 초과해야 합니다.");
+    }
+
+    @DisplayName("구입금액이 천원 단위가 아닐경우 에러가 발생한다.")
+    @Test
+    void checkUnitPurchase() {
+        assertThatThrownBy(() -> viewProcessor.checkUnitPurchase(50))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
 
     @ParameterizedTest

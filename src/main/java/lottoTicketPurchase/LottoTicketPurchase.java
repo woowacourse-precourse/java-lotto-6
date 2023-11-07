@@ -1,5 +1,6 @@
 package lottoTicketPurchase;
 
+import static constant.ErrorMessage.NOT_DIVISIBLE_BY_1000;
 import static constant.ErrorMessage.NOT_NUMBER;
 import static constant.RequestMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
 
@@ -10,6 +11,24 @@ public class LottoTicketPurchase {
     Converter converter = new Converter();
 
     public int getPurchaseAmount() {
+        while (true) {
+            try {
+                return validateNumber();
+            } catch (IllegalArgumentException error) {
+                System.out.println(NOT_DIVISIBLE_BY_1000);
+            }
+        }
+    }
+
+    private int validateNumber() {
+        int number = validateString();
+        if (number % 1000 == 0) {
+            return number;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private int validateString() {
         while (true) {
             String purchaseAmountString = receivePurchaseAmountString();
             final String REGEX = "[0-9]+";

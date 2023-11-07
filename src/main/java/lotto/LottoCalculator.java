@@ -1,39 +1,33 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Map;
 import java.util.Map.Entry;
 import lotto.model.Lottos;
 import lotto.model.WinningGrade;
 import lotto.model.WinningLotto;
+import lotto.model.WinningStatics;
 
 public class LottoCalculator {
 
     private static final int PERCENT_FACTOR = 100;
 
-    public Map<WinningGrade, Integer> getMatchStatics(
+    public WinningStatics getWinningStatic(
             Lottos lottos,
             WinningLotto winningLotto
     ) {
-        Map<WinningGrade, Integer> statics = new EnumMap<>(WinningGrade.class);
-
-        Arrays.stream(WinningGrade.values())
-                .forEach(type -> statics.put(type, 0));
+        WinningStatics statics = new WinningStatics();
 
         lottos.getLottos().forEach(lotto -> {
             WinningGrade winningGrade = winningLotto.matchLotto(lotto);
-
-            int count = statics.get(winningGrade);
-
-            statics.put(winningGrade, count + 1);
+            statics.addWinningCount(winningGrade);
         });
 
         return statics;
     }
 
-    public int getLottosProfit(Map<WinningGrade, Integer> statics) {
-        return statics.entrySet().stream()
+    public int getLottosProfit(WinningStatics statics) {
+        return statics.getStatics()
+                .entrySet()
+                .stream()
                 .mapToInt(this::getProfit)
                 .sum();
     }

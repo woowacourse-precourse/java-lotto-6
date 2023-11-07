@@ -35,7 +35,7 @@ public class LottoManager {
         BonusNumber bonusNumber = consoleManager.inputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        Map<WinningGrade, Integer> statics = lottoCalculator.getMatchStatics(lottos, winningLotto);
+        Map<WinningGrade, Integer> statics = lottoCalculator.getWinningStatic(lottos, winningLotto);
 
         consoleManager.printStatics(statics);
 

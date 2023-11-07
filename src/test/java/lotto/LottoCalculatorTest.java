@@ -39,7 +39,7 @@ class LottoCalculatorTest {
                         new Lotto(List.of(1, 8, 11, 31, 41, 42))));
 
         // When
-        Map<WinningGrade, Integer> result = lottoCalculator.getMatchStatics(lottos, winningLotto);
+        Map<WinningGrade, Integer> result = lottoCalculator.getWinningStatic(lottos, winningLotto);
 
         // Then
         assertThat(result).containsKeys(WinningGrade.NONE_GRADE, WinningGrade.FIRST_GRADE);

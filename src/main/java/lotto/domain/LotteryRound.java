@@ -7,7 +7,7 @@ public class LotteryRound {
         this.round = round;
     }
 
-    LotteryRound next() {
+    public LotteryRound next() {
         return new LotteryRound(round + 1);
     }
 }

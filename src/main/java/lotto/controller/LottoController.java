@@ -21,27 +21,32 @@ public class LottoController {
 
 
     public void play() {
-        try {
-            buyLotto();
-            WinningLotto winningLotto = getWinningLotto();
-            getLottoResult(winningLotto);
-            getProfitRate();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorCode(e.getMessage());
-        }
+        buyLotto();
+        WinningLotto winningLotto = getWinningLotto();
+        getLottoResult(winningLotto);
+        getProfitRate();
     }
 
     private void buyLotto() {
-        String money = inputView.printAskPurchase();
-        List<Lotto> lottoTickets = lottoService.buyMultipleLotto(money);
-        outputView.printLottoTickets(lottoTickets);
+        try {
+            String money = inputView.printAskPurchase();
+            List<Lotto> lottoTickets = lottoService.buyMultipleLotto(money);
+            outputView.printLottoTickets(lottoTickets);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorCode(e.getMessage());
+            buyLotto();
+        }
     }
 
     private WinningLotto getWinningLotto() {
-        String winningNumber = inputView.askWinningNumbers();
-        String bonusNumber = inputView.askBonusNumber();
-
-        return lottoService.getWinningLotto(winningNumber, bonusNumber);
+        try {
+            String winningNumber = inputView.askWinningNumbers();
+            String bonusNumber = inputView.askBonusNumber();
+            return lottoService.getWinningLotto(winningNumber, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorCode(e.getMessage());
+            return getWinningLotto();
+        }
     }
 
     private void getLottoResult(WinningLotto winningLotto) {

@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import lotto.constants.ErrorCode;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -29,9 +30,13 @@ public class Lotto {
     }
 
     private List<Integer> splitToList(String number) {
-        return Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            return Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.NOT_INTEGER.getMessage());
+        }
     }
 
     private void validate(List<Integer> numbers) {

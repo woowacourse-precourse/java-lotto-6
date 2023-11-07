@@ -42,6 +42,15 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또가 생성될 때 잘 정렬되는지 확인한다")
+    void createSortedLotto() {
+        List<Integer> numbers = Arrays.asList(3, 2, 5, 4, 6, 1);
+        Lotto lotto = new Lotto(numbers);
+
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
     @DisplayName("로또 번호를 비교했을 때 몇 개가 일치하는지 확인한다")
     void testMatchNumbers() {
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);

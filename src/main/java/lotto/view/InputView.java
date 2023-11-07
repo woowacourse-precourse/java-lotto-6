@@ -50,11 +50,11 @@ public class InputView {
                 validator.validateWinNumberDuplicate(numberList);
                 return input;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 당첨번호는 쉼표(,)로 구분하고, 1 ~ 45 사이의 중복되지 않는 숫자를 입력해주세요. NUM");
+                System.out.println("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
             } catch (IllegalStateException e) {
-                System.out.println("[ERROR] 당첨번호는 쉼표(,)로 구분하고, 1 ~ 45 사이의 중복되지 않는 숫자를 입력해주세요. STATE");
+                System.out.println("[ERROR] 1 ~ 45 사이의 숫자 6개를 입력해주세요.");
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨번호는 쉼표(,)로 구분하고, 1 ~ 45 사이의 중복되지 않는 숫자를 입력해주세요. ARG");
+                System.out.println("[ERROR] 중복되지 않는 숫자를 입력해주세요.");
             }
         }
     }

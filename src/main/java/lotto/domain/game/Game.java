@@ -46,7 +46,7 @@ public class Game {
     }
 
     private Lottos buyLottoFromComputer() {
-        return computer.createUserLottos();
+        return computer.createRandomLottos();
     }
 
     private void printUserLottos(User user) {

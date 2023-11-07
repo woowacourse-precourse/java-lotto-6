@@ -21,7 +21,7 @@ class RandomLottoGeneratorTest {
     @MethodSource("lotto.computer.MoneyArgumentsProvider#provideCorrectInput")
     void createUserLottosByCorrectInput(int money) {
         randomLottoGenerator.setMoney(money);
-        assertThat(randomLottoGenerator.createUserLottos().lottoList().size())
+        assertThat(randomLottoGenerator.createLottos().lottoList().size())
                 .isEqualTo(money / 1000);
     }
 

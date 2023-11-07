@@ -14,8 +14,8 @@ public class Computer {
         this.resultGenerator = resultGenerator;
     }
 
-    public Lottos createUserLottos() {
-        return randomLottoGenerator.createUserLottos();
+    public Lottos createRandomLottos() {
+        return randomLottoGenerator.createLottos();
     }
 
     public Result createResult(Lottos lottos) {

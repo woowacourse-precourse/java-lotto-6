@@ -8,7 +8,6 @@ import static lotto.constant.LottoNumber.*;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.constant.LottoNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 
@@ -17,7 +16,7 @@ public class RandomLottoGenerator {
     private int maxMoney = DEFAULT_MAX_AMOUNT_OF_LOTTO.getNumber();
     private int money;
 
-    public Lottos createUserLottos() {
+    public Lottos createLottos() {
         List<Lotto> lottos = createLottoList();
         return new Lottos(lottos);
     }

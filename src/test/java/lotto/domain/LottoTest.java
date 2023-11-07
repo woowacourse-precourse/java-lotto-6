@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import lotto.domain.Lotto;
 import lotto.exception.LottoException;
-import lotto.exception.MoneyException;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -40,6 +38,6 @@ class LottoTest {
         List<Integer> descendingLotto = new ArrayList<>(List.of(6, 5, 4, 3, 2, 1));
         Lotto lotto = new Lotto(descendingLotto);
 
-        assertThat(lotto.getNumbers()).containsExactlyInAnyOrder(1,2,3,4,5,6);
+        assertThat(lotto.getLotto()).containsExactlyInAnyOrder(1,2,3,4,5,6);
     }
 }

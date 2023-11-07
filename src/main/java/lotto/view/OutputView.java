@@ -11,7 +11,7 @@ public class OutputView {
 		System.out.println(String.format(PRINT_LOTTO_AMOUNT, amount));
 
 		for(Lotto lotto : lotts) {
-			System.out.println(lotto.getNumbers());
+			System.out.println(lotto.getLotto());
 		}
 	}
 }

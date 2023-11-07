@@ -10,12 +10,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.LottoException;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> lotto;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         sortAscending(numbers);
-        this.numbers = numbers;
+        this.lotto = numbers;
     }
 
     public static Lotto createLotto() {
@@ -27,8 +27,8 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return this.numbers;
+    public List<Integer> getLotto() {
+        return this.lotto;
     }
 
     private void validate(List<Integer> numbers) {

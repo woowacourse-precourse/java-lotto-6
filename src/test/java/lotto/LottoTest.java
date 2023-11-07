@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -71,4 +72,18 @@ class LottoTest {
         assertEquals(6, otherLottoMatchCount);
         assertEquals(5, anotherLottoMatchCount);
     }
+
+    @DisplayName("로또 번호에 범위를 벗어나는 숫자가 있을 경우 예외를 발생한다.")
+    @Test
+    void throwExceptionInRange() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
+
+        // when
+        // then
+        Assertions.assertThatThrownBy(() -> Lotto.of(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Lotto.LOTTO_RANGE_EXCEPTION);
+    }
+
 }

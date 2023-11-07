@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 public class Lotto implements Comparable<Lotto>, Iterable<Integer> {
     public static final String DUPLICATE_EXCEPTION = "로또는 중복된 숫자를 가질 수 없습니다";
     public static final String LOTTO_SIZE_EXCEPTION = "로또는 6개의 숫자를 가져야 합니다";
+    public static final String LOTTO_RANGE_EXCEPTION = "로또 범위를 벗어나는 숫자를 가질 수 없습니다";
     public static final int START_INCLUSIVE = 1;
     public static final int END_INCLUSIVE = 45;
     public static final int LOTTO_SIZE = 6;
@@ -20,6 +21,7 @@ public class Lotto implements Comparable<Lotto>, Iterable<Integer> {
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateDuplicateNumber(numbers);
+        validateRange(numbers);
     }
 
     private static void validateLottoSize(List<Integer> numbers) {
@@ -39,6 +41,14 @@ public class Lotto implements Comparable<Lotto>, Iterable<Integer> {
                 .distinct()
                 .toList()
                 .size() < numbers.size();
+    }
+
+    private void validateRange(final List<Integer> numbers) {
+        for (int number : numbers) {
+            if (NumberUtils.isNotInRange(START_INCLUSIVE, END_INCLUSIVE, number)) {
+                throw new IllegalArgumentException(LOTTO_RANGE_EXCEPTION);
+            }
+        }
     }
 
     public static Lotto of(final List<Integer> numbers) {

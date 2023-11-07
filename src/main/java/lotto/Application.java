@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.List;
-
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -17,14 +15,14 @@ public class Application {
             }
         }
 
-        Lottoes lottoes = new Lottoes(purchaseAmount.getAmount() / 1000);
-        lottoes.print_numberOfLottoes();
+        LottoList lottoList = new LottoList(purchaseAmount.getAmount());
+        lottoList.print_numberOfLottoList();
         try {
-            lottoes.createLottoes();
+            lottoList.createLottoList();
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        lottoes.printLottoes();
+        lottoList.printLottoList();
     }
 }

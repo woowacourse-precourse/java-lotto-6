@@ -36,12 +36,13 @@ public class RankService {
         long matchingCount = lottoNumbers.stream().filter(winningNumbers::contains).count();
         LottoRank bonusWin = LottoRank.BONUS;
 
+        if (matchingCount == bonusWin.getMatchingNumbers() && lottoNumbers.contains(bonusNumber)) {
+            return bonusWin;
+        }
+
         for (int i = 0; i < Config.RANK_LOTTO; i++) {
             LottoRank rank = LottoRank.values()[i];
             if (matchingCount == rank.getMatchingNumbers()) {
-                if (matchingCount == bonusWin.getMatchingNumbers() && lottoNumbers.contains(bonusNumber)) {
-                    return bonusWin;
-                }
                 return rank;
             }
         }
@@ -52,7 +53,7 @@ public class RankService {
         BigDecimal sum = BigDecimal.ZERO;
         BigDecimal totalSpent = BigDecimal.valueOf(user.getCount() * Config.PRICE_UNIT);
 
-        for(LottoRank rank : LottoRank.values()) {
+        for (LottoRank rank : LottoRank.values()) {
             int count = winningCount[rank.getRank()];
             BigDecimal rankMoney = BigDecimal.valueOf(rank.getMoney());
             sum = sum.add(rankMoney.multiply(BigDecimal.valueOf(count)));

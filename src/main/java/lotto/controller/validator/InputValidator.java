@@ -1,8 +1,8 @@
-package lotto.validator;
+package lotto.controller.validator;
 
 import java.util.regex.Pattern;
 import lotto.controller.exception.NumericInputValidationException;
-import lotto.exception.InvalidInputFormatException;
+import lotto.controller.exception.InvalidInputFormatException;
 
 /**
  * 외부로부터 받는 사용자의 입력에 대한 검증기 역할

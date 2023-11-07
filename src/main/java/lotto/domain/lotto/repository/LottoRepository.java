@@ -1,4 +1,4 @@
-package lotto.repository;
+package lotto.domain.lotto.repository;
 
 import java.util.ArrayList;
 import java.util.List;

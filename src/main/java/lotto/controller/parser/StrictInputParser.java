@@ -1,8 +1,8 @@
-package lotto.parser;
+package lotto.controller.parser;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.validator.InputValidator;
+import lotto.controller.validator.InputValidator;
 
 /**
  * 입력 변환을 담당하는 클래스.

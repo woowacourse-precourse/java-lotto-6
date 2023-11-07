@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 
 class IllegalArgumentException extends Exception{
 	public IllegalArgumentException() {
@@ -73,7 +74,14 @@ public class Application {
 	}
 	
 	private void printNumbers() {
-		
+		for (ArrayList<Integer> lst : lotto) {
+			Collections.sort(lst);
+			System.out.println("[" +  makeStr(lst) + "]");
+		}
+	}
+	
+	private String makeStr(ArrayList<Integer> lst) {
+		return "";
 	}
 	
 	private void makeWinningNumber() {

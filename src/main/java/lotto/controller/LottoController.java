@@ -10,7 +10,7 @@ import lotto.view.InputBonusNumberView;
 
 import static lotto.view.OutputNumberOfBoughtLottoView.printBoughtLottos;
 import static lotto.view.OutputLottoNumbersView.printLottos;
-//import static lotto.view.OutputLottoResultsView..printBoughtLottos;
+import static lotto.view.OutputLottoResultsView.printResults;
 
 public class LottoController {
 
@@ -21,8 +21,8 @@ public class LottoController {
         Lottos lottos = new Lottos(getLottos(lotto.getNumberOfLotto()));
         printLottos(lottos);
 
-        Lotto win = getWinningLotto();
-        int bonus = getBonusLotto();
+        WinningLotto win = getWinningLotto();
+        printResults(win);
 
     }
 
@@ -38,11 +38,11 @@ public class LottoController {
         return lottoMaker.FullLottoMaker(numOfLotto);
     }
 
-    public Lotto getWinningLotto() {
+    public WinningLotto getWinningLotto() {
         InputWinningNumbersView winningNumber = new InputWinningNumbersView();
         List<Integer> win = winningNumber.getValue();
 
-        return new Lotto(win);
+        return new WinningLotto(win, getBonusLotto());
     }
 
     public int getBonusLotto() {

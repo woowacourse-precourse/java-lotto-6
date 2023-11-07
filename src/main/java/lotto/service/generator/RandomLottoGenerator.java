@@ -13,7 +13,7 @@ public class RandomLottoGenerator implements LottoGenerator {
 
     @Override
     public List<LottoBall> generate() {
-        return numbersGenerator.generateUniqueNumbersInRange(
+        return numbersGenerator.generateSortedUniqueNumbersInRange(
                         LottoBall.MIN_RANGE,
                         LottoBall.MAX_RANGE,
                         Lotto.LOTTO_BALL_COUNT)

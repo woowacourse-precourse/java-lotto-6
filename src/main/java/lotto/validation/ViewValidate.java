@@ -18,8 +18,10 @@ public class ViewValidate {
         }
     }
 
-    public static void validateConvertingString2Int(String content) {
-        if (!content.matches("\\d+")) {
+    public static int validateAndConvertString2Int(String content) {
+        try {
+            return Integer.parseInt(content);
+        } catch (NumberFormatException e) {
             throw new NumberFormatException(ErrorMessage.STRING_IS_NOT_INT.getMessage());
         }
     }

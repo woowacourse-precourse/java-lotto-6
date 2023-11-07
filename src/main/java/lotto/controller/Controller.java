@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import jdk.jfr.Percentage;
 import lotto.domain.*;
 import lotto.util.LottoBonusNumberValidator;
 import lotto.view.InputView;
@@ -20,32 +19,25 @@ public class Controller {
     private static final int TICKET_PRICE = 1000;
     private static final int PERCENTAGE = 100;
 
-    private static List<Integer> lottoNumberList = new ArrayList<>();
+    private static List<Integer> lottoNumberList;
     private static List<Integer> winningNumber;
     private static List<Lotto> lottoList;
-    private static LottoPlayer lottoPlayer;
+    private static LottoPrice lottoPlayer;
     private static WinningResult winningResult;
-    private static Lotto lotto;
     private static int inputBonusNumber;
 
     public void run() {
         start();
     }
 
-    //start
     public void start() {
-
         int ticketCount = inputTotalPrice();
         OutputView.responseLottoCount(ticketCount);
 
-        //로또 갯수당 랜덤 넘버 이용해서 로또 번호 출력 -> outputview
         lottoList = makeLottoList(ticketCount);
-
-        //로또 번호와 당첨 번호 비교하기 -> service
         winningResult = new WinningResult(new Lotto(inputLottoWinningNumber()), inputBonusNumber());
 
         lottoFinalResult(ticketCount);
-
     }
 
     private void lottoFinalResult(int ticketCount) {
@@ -60,9 +52,8 @@ public class Controller {
             Rank rank = winningResult.match(lottoList.get(i));
             result.put(rank, result.get(rank) + 1);
         }
-        //당첨 내역 출력 -> outputview
+
         responseResult(result);
-        //수익률 구하기 -> service, 수익률 출력 -> outputview
         responseEarningRate(result, ticketCount);
     }
 
@@ -94,7 +85,7 @@ public class Controller {
 
     private int inputTotalPrice() {
         try {
-            lottoPlayer = new LottoPlayer(InputView.requestLottoBuyingPrice());
+            lottoPlayer = new LottoPrice(InputView.requestLottoBuyingPrice());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputTotalPrice();
@@ -122,11 +113,7 @@ public class Controller {
     }
 
     private static Lotto makeLotto() {
-        LottoNumber lottoNumber = new LottoNumber();
-        lottoNumberList = new ArrayList<>();
-
-        lottoNumberList = lottoNumber.getRandomNumbers();
-        System.out.println("lottoNumberList = " + lottoNumberList);
+        lottoNumberList = LottoRandomNumber.getRandomNumbers();
         OutputView.responseLottoRandomNumber(lottoNumberList);
         return new Lotto(lottoNumberList);
     }

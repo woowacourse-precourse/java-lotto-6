@@ -3,11 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoNumber {
+public class LottoRandomNumber {
 
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int MIN_LOTTO_NUMBER = 1;

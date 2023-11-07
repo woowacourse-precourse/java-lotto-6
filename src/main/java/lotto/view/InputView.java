@@ -22,13 +22,13 @@ public class InputView {
             System.out.println("당첨 번호를 입력해주세요.");
             winningnumber = stringToList(Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            System.out.println("[ERROR] 당첨 번호는 숫자와 반점으로만 입력되어야 합니다.");
             requestLottoWinningNumber();
         }
         return winningnumber;
     }
 
-    private static List<Integer> stringToList(String winningNumber) {
+    public static List<Integer> stringToList(String winningNumber) {
         String[] result = winningNumber.split(",");
         winningNumberList = new ArrayList<>();
         for (String string : result) {

@@ -36,6 +36,10 @@ public class LottoResult {
         return lottoPurchasePrice;
     }
 
+    public Map<LottoRankAndPrize, Integer> getTotalRanks(){
+        return totalRanks;
+    }
+
     public int calculateTotalPrize(){
         int totalPrize = 0;
 

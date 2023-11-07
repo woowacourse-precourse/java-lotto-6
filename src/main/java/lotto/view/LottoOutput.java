@@ -3,13 +3,15 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.global.constant.LottoRankAndPrize;
+import static lotto.global.constant.LottoRankAndPrize.*;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class LottoOutput {
 
-    private final String INITIAL_LOTTO_STATIC_MESSAGE = "당첨 통계";
+    private final String INITIAL_LOTTO_STATIC_MESSAGE = "당첨 통계\n---\n";
 
     private StringBuffer stringBuffer;
 
@@ -37,14 +39,17 @@ public class LottoOutput {
         return stringBuffer.toString();
     }
 
-    public String printLottoStatistics(Map<LottoRankAndPrize, Integer> totalRanks){
-        for (Map.Entry<LottoRankAndPrize, Integer> entry : totalRanks.entrySet()) {
-            LottoRankAndPrize rankAndPrize = entry.getKey();
-            int count = entry.getValue();
-        }
-    }
+    public String printLottoStatistics(LottoResult lottoResult){
+        Map<LottoRankAndPrize, Integer> totalRanks = lottoResult.getTotalRanks();
 
-    public String printFirstRank(LottoRankAndPrize lottoRankAndPrize){
-
+        stringBuffer = new StringBuffer();
+        stringBuffer.append(INITIAL_LOTTO_STATIC_MESSAGE);
+        stringBuffer.append(printFirstRank(totalRanks.get(FIRST_RANK))+"\n");
+        stringBuffer.append(printSecondRank(totalRanks.get(SECOND_RANK))+"\n");
+        stringBuffer.append(printThirdRank(totalRanks.get(THIRD_RANK))+"\n");
+        stringBuffer.append(printFourthRank(totalRanks.get(FOURTH_RANK))+"\n");
+        stringBuffer.append(printFifthRank(totalRanks.get(FIFTH_RANK))+"\n");
+        stringBuffer.append(String.format("총 수익률은 %.1f%%입니다", lottoResult.calculateProfitPercentage()));
+        return stringBuffer.toString();
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static common.ErrorCode.NOT_NUMBER_STRING;
+import static common.enumtype.ErrorCode.NOT_NUMBER_STRING;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;

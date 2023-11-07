@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static common.ErrorCode.LOTTO_NUMBERS_DUPLICATED;
-import static common.ErrorCode.LOTTO_NUMBERS_INVALID_RANGE;
-import static common.ErrorCode.LOTTO_NUMBERS_INVALID_SIZE;
+import static common.enumtype.ErrorCode.LOTTO_NUMBERS_DUPLICATED;
+import static common.enumtype.ErrorCode.LOTTO_NUMBERS_INVALID_RANGE;
+import static common.enumtype.ErrorCode.LOTTO_NUMBERS_INVALID_SIZE;
 
 import common.exception.InvalidArgumentException;
 import java.util.Collections;

@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static common.ErrorCode.AMOUNT_INVALID_UNIT;
-import static common.ErrorCode.AMOUNT_LESS_THAN_MINIMUM;
+import static common.enumtype.ErrorCode.AMOUNT_INVALID_UNIT;
+import static common.enumtype.ErrorCode.AMOUNT_LESS_THAN_MINIMUM;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

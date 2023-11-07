@@ -1,6 +1,6 @@
 package common.exception;
 
-import common.ErrorCode;
+import common.enumtype.ErrorCode;
 
 public class InvalidStatementException extends IllegalStateException {
 

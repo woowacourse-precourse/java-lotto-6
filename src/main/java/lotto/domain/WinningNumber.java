@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static common.ErrorCode.WINNING_NUMBER_INVALID_RANGE;
+import static common.enumtype.ErrorCode.WINNING_NUMBER_INVALID_RANGE;
 
 import common.exception.InvalidArgumentException;
 import java.util.Objects;

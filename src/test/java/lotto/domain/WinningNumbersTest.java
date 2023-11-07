@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static common.ErrorCode.BONUS_NUMBER_ALREADY_REGISTERED;
-import static common.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
-import static common.ErrorCode.WINNING_NUMBERS_DUPLICATED;
-import static common.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
+import static common.enumtype.ErrorCode.BONUS_NUMBER_ALREADY_REGISTERED;
+import static common.enumtype.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
+import static common.enumtype.ErrorCode.WINNING_NUMBERS_DUPLICATED;
+import static common.enumtype.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

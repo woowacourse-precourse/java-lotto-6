@@ -1,4 +1,4 @@
-package common;
+package common.enumtype;
 
 public enum ErrorCode {
 

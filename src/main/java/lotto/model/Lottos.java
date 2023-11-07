@@ -12,7 +12,7 @@ public class Lottos {
         return lottoInfos.size();
     }
 
-    public List<LottoInfo> getLottos(){
+    public List<LottoInfo> getLottoInfoList(){
         return lottoInfos;
     }
 

@@ -55,18 +55,18 @@ public class LottoService {
     }
 
     private static int countMatches(Lottos randomLottos,Lotto winningLotto, int targetCount) {
-        int count = (int) randomLottos.getLottos().stream()
+        int count = (int) randomLottos.getLottoInfoList().stream()
                 .filter(lottoInfo -> hasMatchCount(lottoInfo, winningLotto, targetCount))
                 .count();
-        randomLottos.getLottos().forEach(LottoInfo::resetMatchCount);
+        randomLottos.getLottoInfoList().forEach(LottoInfo::resetMatchCount);
         return count;
     }
 
     private static int countMatchesWithBonus(Lottos randomLottos, Lotto winningLotto,BonusNumber bonusNumber) {
-        int count = (int) randomLottos.getLottos().stream()
+        int count = (int) randomLottos.getLottoInfoList().stream()
                 .filter(lottoInfo -> hasMatchCount(lottoInfo,winningLotto, MATCH_COUNT_5.getValue()) && lottoInfo.isMatchBonus(bonusNumber))
                 .count();
-        randomLottos.getLottos().forEach(LottoInfo::resetMatchCount);
+        randomLottos.getLottoInfoList().forEach(LottoInfo::resetMatchCount);
         return count;
     }
 

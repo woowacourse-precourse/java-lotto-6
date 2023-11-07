@@ -13,6 +13,10 @@ public class LottoInfo {
         return this.lotto;
     }
 
+    public Integer getMatchCount() {
+        return this.matchCount;
+    }
+
     public boolean isMatchBonus(BonusNumber bonusNumber) {
         this.matchBonus = this.contain(bonusNumber.bonusNumber());
         return this.matchBonus;

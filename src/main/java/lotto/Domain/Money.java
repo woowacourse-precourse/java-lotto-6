@@ -33,4 +33,8 @@ public class Money {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }

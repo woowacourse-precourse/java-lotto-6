@@ -5,8 +5,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoNumber;
+import lotto.Domain.LottoResult;
+import lotto.Domain.LottoReward;
+import lotto.Domain.Money;
+import lotto.Domain.TotalLotto;
 import lotto.Util.LottoComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,5 +64,37 @@ class LottoTest {
         Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
         LottoComparator lottoComparator = new LottoComparator(winLotto);
         assertThat(lottoComparator.compareBonusNumber(userLotto, bonusNumber)).isEqualTo(true);
+    }
+
+    @DisplayName("당첨 통계 테스트")
+    @Test
+    void createStatisticTest() {
+        TotalLotto totalLotto = new TotalLotto(new Money("3000"));
+        LottoNumber bonusNumber = new LottoNumber("7");
+
+        // 사용자 로또 번호에서 하나를 당첨 번호로 사용한다.
+        Lotto winLotto = new Lotto(totalLotto.getTotalLotto().get(0).getNumbers());
+        LottoResult lottoResult = new LottoResult(winLotto);
+
+        Map<LottoReward, Integer> lottoStatistic = lottoResult.createStatistic(totalLotto, bonusNumber);
+
+        // 사용자 로또 번호가 곧 당첨 번호이기 때문에 6개 일치가 하나 이상 나와야 한다.
+        assertThat(lottoStatistic.get(LottoReward.FIRST_PLACE)).isGreaterThanOrEqualTo(1);
+    }
+
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void calculateSumOfRewardTest() {
+        TotalLotto totalLotto = new TotalLotto(new Money("20000"));
+        LottoNumber bonusNumber = new LottoNumber("7");
+
+        // 사용자 로또 번호에서 하나를 당첨 번호로 사용한다.
+        Lotto winLotto = new Lotto(totalLotto.getTotalLotto().get(0).getNumbers());
+        LottoResult lottoResult = new LottoResult(winLotto);
+        lottoResult.createStatistic(totalLotto, bonusNumber);
+        String reward = lottoResult.calculateSumOfReward(new Money("20000"));
+
+        // 20,000원 -> 2,000,000,000원이 됐으므로 10,000,000.0%의 수익률을 가진다.
+        assertThat(reward).isEqualTo("10000000.0");
     }
 }

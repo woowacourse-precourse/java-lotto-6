@@ -5,6 +5,7 @@ import static lotto.exception.ExceptionMessage.INVALID_DUPLICATE_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_INPUT_NOT_INTEGER_ERROR;
 import static lotto.exception.ExceptionMessage.INVALID_NUMBER_RANGE;
 import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT;
+import static lotto.exception.ExceptionMessage.INVALID_RANGE_OF_BONUS_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_WINNING_NUMBER_LENGTH;
 
 import java.util.Arrays;
@@ -36,9 +37,12 @@ public class InputValidator {
         }
     }
 
-    public int validateBonusNumber(String stringInteger) {
+    public int validateBonusNumber(List<Integer> winningNumbers, String stringInteger) {
         validateNumeric(stringInteger);
-        return Integer.parseInt(stringInteger);
+        int bonusNumber = Integer.parseInt(stringInteger);
+        validateBonusNumberRange(bonusNumber);
+        validateBonusNumberNotInLottoNumbers(bonusNumber,winningNumbers);
+        return bonusNumber;
     }
 
     public List<Integer> validateAndParseWinningNumbers(String winningNumbersInput) {
@@ -86,6 +90,18 @@ public class InputValidator {
 
         if (outOfRange) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getErrorMessage());
+        }
+    }
+
+    private void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber <= 0 || bonusNumber > 45) {
+            throw new IllegalArgumentException(INVALID_RANGE_OF_BONUS_NUMBER.getErrorMessage());
+        }
+    }
+
+    private void validateBonusNumberNotInLottoNumbers(int bonusNumber, List<Integer> winningLottoNumber) {
+        if (winningLottoNumber.stream().anyMatch(number -> number == bonusNumber)) {
+            throw new IllegalArgumentException(INVALID_DUPLICATE_NUMBER.getErrorMessage());
         }
     }
 }

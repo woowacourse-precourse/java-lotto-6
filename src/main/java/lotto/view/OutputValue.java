@@ -15,6 +15,7 @@ public class OutputValue {
     private static final String THIRD_PLACE_MESSAGE = "5개 일치 (1,500,000원) - %d개";
     private static final String SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개";
+    private static final String REVENUE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void purchaseMessage() {
         System.out.println(PURCHASE_PRICE_MESSAGE);
@@ -63,5 +64,9 @@ public class OutputValue {
 
     public static void fifthPlaceMessage(int count) {
         System.out.println(String.format(FIFTH_PLACE_MESSAGE, count));
+    }
+
+    public static void revenueMessage(float revenue) {
+        System.out.println(String.format(REVENUE_MESSAGE, revenue));
     }
 }

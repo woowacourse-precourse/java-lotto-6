@@ -84,5 +84,6 @@ public class LottoController {
         OutputValue.secondPlaceMessage(placeCounts.get(1));
         OutputValue.firstPlaceMessage(placeCounts.get(0));
 
+        OutputValue.revenueMessage(lottoService.getRevenue(lottoCount * 1000));
     }
 }

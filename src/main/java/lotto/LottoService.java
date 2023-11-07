@@ -46,7 +46,7 @@ public class LottoService {
 		return true;
 	}
 
-	public Lotto checkNumbers(String inputNumbers) throws IllegalArgumentException {
+	public Lotto issueUserLotto(String inputNumbers) throws IllegalArgumentException {
 		List<Integer> userNumbers = new ArrayList<>();
 
 		String[] numbers = inputNumbers.split(",");

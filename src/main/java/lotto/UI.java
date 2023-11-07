@@ -50,7 +50,7 @@ public class UI {
 		try {
 			System.out.println("\n당첨 번호를 입력해 주세요.");
 			String inputNumbers = Console.readLine();
-			this.user = lottoService.checkNumbers(inputNumbers);
+			this.user = lottoService.issueUserLotto(inputNumbers);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			inputNumbers();

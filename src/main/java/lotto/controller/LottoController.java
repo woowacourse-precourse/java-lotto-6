@@ -10,13 +10,11 @@ import lotto.view.OutputView;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoController {
 
     private static EnumMap<Prize, Integer> prizeMap = new EnumMap<Prize, Integer>(Prize.class);
+
     public PurchaseAmount payMoney() {
         int money = 0;
         try {
@@ -26,7 +24,6 @@ public class LottoController {
             System.out.println("");
             return payMoney();
         }
-
     }
 
     public WinningLotto selectWinningLottoNumbers() {
@@ -52,7 +49,7 @@ public class LottoController {
         return lottoList;
     }
 
-    public EnumMap<Prize, Integer> compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
+    public void compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
         boolean isEqualWithBonus = false;
         initalizeEnumMap();
         for (int i=0; i<lottoList.size(); i++) {
@@ -64,7 +61,6 @@ public class LottoController {
             Prize prize = Prize.rankLotto(equalCount, isEqualWithBonus);
             prizeMap.put(prize, prizeMap.getOrDefault(prize, 0)+1);
         }
-        return prizeMap;
     }
 
     private void initalizeEnumMap() {
@@ -78,6 +74,16 @@ public class LottoController {
 
     public void LottoResult() {
         OutputView.outputWinningInfo(prizeMap);
+    }
+
+    public void calculate(PurchaseAmount purchaseAmount) {
+        int totalRevenue = 0;
+        for (Prize prize : prizeMap.keySet()) {
+            int winningCnt = prizeMap.get(prize);
+            totalRevenue += (winningCnt * prize.getWinningAmount());
+        }
+
+        OutputView.outputRateOfReturn(String.format("%.2f", (float)totalRevenue/purchaseAmount.getMoney()));
     }
 
 

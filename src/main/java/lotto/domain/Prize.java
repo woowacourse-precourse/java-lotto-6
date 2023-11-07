@@ -34,6 +34,10 @@ public enum Prize {
         return equalNumCount;
     }
 
+    public int getWinningAmount() {
+        return winningAmount;
+    }
+
     public static Prize rankLotto(int matchingCount, boolean isBonusMatching) {
         if (matchingCount == 5 && isBonusMatching) {
             return SECOND;

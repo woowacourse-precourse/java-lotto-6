@@ -14,5 +14,9 @@ public class PurchaseAmount {
         return money / 1000;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
 
 }

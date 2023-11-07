@@ -9,12 +9,19 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         System.out.println("구매 금액을 입력해주세요.");
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNextInt()) {
-            System.out.println("잘못된 입력입니다. 정수를 입력해주세요.");
-            scanner.next(); // 잘못된 입력을 무시합니다.
+        while (true) {
+            try {
+                int amount = scanner.nextInt();
+                scanner.nextLine();
+                if (amount % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 입력 금액은 1,000원 단위여야 합니다.");
+                }
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                scanner.nextLine();
+            }
         }
-        return scanner.nextInt();
     }
 
     public static List<Integer> getWinningNumbers() {

@@ -14,13 +14,26 @@ public class Application {
         // 구매한 로또 결과를 출력합니다.
         ResultView.printPurchasedLottos(lottos);
 
-        // 당첨 번호, 보너스 번호 입력
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+        Lotto winningLotto = null;
+        WinningLotto winning = null;
 
-        // 당첨 번호를 생성합니다.
-        Lotto winningLotto = new Lotto(winningNumbers);
-        WinningLotto winning = new WinningLotto(winningLotto, bonusNumber);
+        while (winningLotto == null) {
+            try {
+                List<Integer> winningNumbers = InputView.getWinningNumbers();
+                winningLotto = new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (winning == null) {
+            try {
+                int bonusNumber = InputView.getBonusNumber();
+                winning = new WinningLotto(winningLotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         // 로또 결과를 계산합니다.
         LottoResult result = new LottoResult();

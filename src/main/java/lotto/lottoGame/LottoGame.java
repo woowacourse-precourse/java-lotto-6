@@ -1,5 +1,6 @@
 package lotto.lottoGame;
 
+import lotto.Lotto;
 import lotto.WinningLotto;
 import lotto.customer.Customer;
 import lotto.view.InputView;
@@ -18,10 +19,15 @@ public class LottoGame {
         String inputPurchaseValue = InputView.inputPrice();
         return new Customer(inputPurchaseValue);
     }
+
     private WinningLotto initWinningLotto() {
-        String inputWinningNumbers = InputView.inputNumbers();
-        String inputBonusNumber = InputView.inputBonusNumer();
-        return new WinningLotto();
+        String inputWinningNumbers = InputView.inputWinningLottoNumber();
+        Lotto winningNumbers = lottoInputGenerator.inputNumbersToLotto(inputWinningNumbers);
+
+        String inputBonusNumber = InputView.inputWinningBonusNumber();
+        int validatedBonusNumber = lottoInputGenerator.inputBonusToValidatedValue(inputBonusNumber);
+
+        return new WinningLotto(winningNumbers, validatedBonusNumber);
     }
 
     public void run() {
@@ -29,6 +35,7 @@ public class LottoGame {
         issuanceLottos(customer);
 
         WinningLotto winningLotto = initWinningLotto();
+
     }
 
 

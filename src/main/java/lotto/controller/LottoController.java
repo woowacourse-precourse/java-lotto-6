@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.common.Lotto;
 import lotto.domain.consumer.Consumer;
 import lotto.domain.consumer.Price;
 import lotto.view.InputView;
@@ -17,6 +18,8 @@ public class LottoController {
         Consumer consumer = createConsumer(price);
         printConsumerLotto(consumer);
 
+        printProducerLottoMessage();
+        Lotto producerLotto = createProducerLotto();
     }
 
     private void printPriceMessage() {
@@ -27,7 +30,7 @@ public class LottoController {
         Price price = null;
         boolean valid = false;
 
-        while(!valid) {
+        while (!valid) {
             try {
                 price = new Price(inputView.inputPrice());
                 valid = true;
@@ -45,5 +48,24 @@ public class LottoController {
     private void printConsumerLotto(Consumer consumer) {
         outputView.printCountMessage(consumer);
         outputView.printConsumerNumbers(consumer);
+    }
+
+    private void printProducerLottoMessage() {
+        outputView.printProducerLottoMessage();
+    }
+
+    private Lotto createProducerLotto() {
+        boolean valid = false;
+        Lotto lotto = null;
+
+        while (!valid) {
+            try {
+                lotto = new Lotto(inputView.inputLotto());
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto;
     }
 }

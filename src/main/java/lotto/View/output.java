@@ -2,7 +2,9 @@ package lotto.View;
 
 import lotto.Lotto;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class output {
     public static void printLotto(List<Lotto> lottoTickets) {

@@ -23,7 +23,6 @@ public class LottoTicket {
 
     private static Lotto generateSingleLottoTicket() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
         Lotto lottoTicket = new Lotto(numbers);
         return lottoTicket;
     }

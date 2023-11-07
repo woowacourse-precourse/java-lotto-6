@@ -46,10 +46,14 @@ public class Application {
     private static void validateInputDataType(String winningLotteryNumber) {
         if (!(winningLotteryNumber.matches("^[0-9, ]+$"))) {
             throw new IllegalArgumentException("[Error] 숫자와 콤마(,) 이외의 값을 입력하셨습니다.");
+        }
     }
 
-
-
-
+    private static void validateBonusNum(int bonusNum) {
+        if (!(bonusNum >= LOTTO_START_NUMBER && bonusNum <= LOTTO_END_NUMBER)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+    }
+    
 
 }

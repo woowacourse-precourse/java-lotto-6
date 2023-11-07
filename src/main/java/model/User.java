@@ -7,8 +7,9 @@ public class User {
     private int price = 0;
     private List<Lotto> lottoList = new ArrayList<>();
 
-    public User(int price) {
+    public User(int price, List<Lotto> lottos) {
         this.price = price;
+        this.lottoList = lottos;
     }
 
     public void addLotto(Lotto lotto){

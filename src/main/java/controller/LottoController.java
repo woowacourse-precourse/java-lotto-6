@@ -18,9 +18,7 @@ public class LottoController {
     public void startLotto(){
         int price = AskPrice();
 
-        User user = new User(price);
-        Lotto winning_numbers = new Lotto();
-
+        Lotto winning_numbers = new Lotto(AskWinningNumbers());
 
     }
     public int AskPrice(){
@@ -28,24 +26,56 @@ public class LottoController {
         return inputPrice();
     }
     public int inputPrice(){
-        int my_price;
+        String my_price = Console.readLine();
         try{
-            my_price = validator.validatePrice(Console.readLine());
+            validator.checkInteger(my_price);
+            validator.checkNull(my_price);
+            validator.checkPrice1000(Integer.parseInt(my_price));
         }catch (NullPointerException e){
             return AskPrice();
         }catch (IllegalArgumentException e){
             return AskPrice();
         }
-        return my_price;
+        return Integer.parseInt(my_price);
     }
+
 
     public List<Integer> AskWinningNumbers(){
         List<Integer> winningNumberList = new ArrayList<>();
 
         inputView.printWinningNumbers();
-        Console.readLine()
-
+        return inputWinningNumber();
     }
 
-    public
+    public List<Integer> inputWinningNumber(){
+        List<Integer> winningNumberList = new ArrayList<>();
+        try {
+            lottoService.makeWinningNumber(Console.readLine());
+            validator.checkLottoRange(winningNumberList);
+        }catch (NumberFormatException e){
+            return inputWinningNumber();
+        }catch (IllegalArgumentException e){
+            return inputWinningNumber();
+        }
+        return winningNumberList;
+    }
+
+    public int inputBonus(){
+        String bonus = Console.readLine();
+        try {
+            validator.checkNull(bonus);
+            validator.checkInteger(bonus);
+        }catch (NullPointerException e){
+            return AskBonus();
+        }catch (IllegalArgumentException e){
+            return AskBonus();
+        }
+        return Integer.parseInt(bonus);
+    }
+
+    public int AskBonus(){
+        inputView.printAskBonusNumber();
+        return inputBonus();
+    }
+
 }

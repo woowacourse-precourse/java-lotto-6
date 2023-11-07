@@ -1,6 +1,7 @@
 package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import model.Lotto;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,19 +13,34 @@ public class LottoService {
         String[] numberList = number.split(",");
 
         for (String num : numberList) {
-            winning_number.add(Integer.parseInt(num));
+            try {
+                winning_number.add(Integer.parseInt(num));
+            }catch (NumberFormatException e){
+                throw new IllegalArgumentException();
+            }
         }
-
         return winning_number;
     }
-    public List<Integer> generateLottoNumber(){
+    public Lotto generateLottoNumber(){
         Set<Integer> lottoNumberSet = new HashSet<>();
+
         while (lottoNumberSet.size() <6){
             lottoNumberSet.add(Randoms.pickNumberInRange(1, 45));
         }
-        ArrayList<Integer> lottoNumberList = new ArrayList<>(lottoNumberSet);
-        Collections.sort(lottoNumberList);
+        ArrayList<Integer> lottoNumber = new ArrayList<>(lottoNumberSet);
+        Collections.sort(lottoNumber);
 
-        return lottoNumberList;
+        Lotto lotto = new Lotto(lottoNumber);
+
+        return lotto;
+    }
+
+    public List<Lotto> makeLottoList(int price){
+        List<Lotto> lottoList = new ArrayList<>();
+        int lotto_count = price/1000;
+        for(int i = 0; i<lotto_count;i++){
+            lottoList.add(generateLottoNumber());
+        }
+        return lottoList;
     }
 }

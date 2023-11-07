@@ -11,6 +11,7 @@ public class AmountToBuyLotto {
     public static final int ZERO = 0;
 
     private AmountToBuyLotto(String input) {
+        isBlank(input);
         input = input.trim();
 
         this.amount = Integer.parseInt(input);
@@ -28,6 +29,15 @@ public class AmountToBuyLotto {
     public int dividedByLottoPrice(int lottoPrice) {
         return amount / lottoPrice;
     }
+
+
+    private void isBlank(String input) {
+        if (input != null && !input.isBlank()) {
+            return;
+        }
+        throw new IllegalArgumentException(ERROR_INPUT_VALID_VAULE);
+    }
+
 
 
 }

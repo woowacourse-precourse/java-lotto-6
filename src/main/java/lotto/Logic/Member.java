@@ -25,6 +25,10 @@ public class Member {
     }
 
 
+    public List<Prize> getPrize(){
+        return this.prize;
+    }
+
     public List<Lotto> getMemberLotto(){
         return this.memberLotto;
     }
@@ -64,6 +68,8 @@ public class Member {
 
         createMemberLotto(this.count);
     }
+
+
 
     public String getProfit(){
         double totalPrice=0;

@@ -55,6 +55,13 @@ public class WinningNumber {
 
         this.lotto=new Lotto(checkNumbers);
     }
+    public Lotto getLotto(){
+        return this.lotto;
+    }
+
+    public int getBonus(){
+        return this.bonus;
+    }
 
     public void setBonusValid(String bonus) throws IllegalArgumentException{
         try{
@@ -81,9 +88,9 @@ public class WinningNumber {
 
         for (int i=0;i<memberLotto.size();i++){
             List<Integer> winNumbers=new ArrayList<>();
-            winNumbers.addAll(this.lotto.getNumbers());
+            winNumbers.addAll(this.getLotto().getNumbers());
 
-            List<Integer> correct=correctBonus(memberLotto.get(i),winNumbers,this.bonus);
+            List<Integer> correct=correctBonus(memberLotto.get(i),winNumbers,this.getBonus());
 
             member.setPrize(Prize.sixth.prizeDetermine(correct));
         }

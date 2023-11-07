@@ -13,8 +13,8 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 로또_배열_출력(){
-        run("14000","1,2,3,4,5,6","7");
+    void 로또_배열_출력() {
+        run("14000", "1,2,3,4,5,6", "7");
         assertThat(output().contains("1,2,3,4,5,6,7"));
 
     }

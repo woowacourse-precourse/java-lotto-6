@@ -9,7 +9,7 @@ public class PurchaseAmount {
     int amount;
 
     public PurchaseAmount(String inputAmount) {
-        int amount = Parser.parseNumber(inputAmount);
+        int amount = Parser.parseSingleNumber(inputAmount);
         validate(amount);
         this.amount = amount;
     }
@@ -25,10 +25,10 @@ public class PurchaseAmount {
 
     private void validate(int amount) {
         if (amount == 0) {
-            throw new IllegalArgumentException(ErrorMessage.ZERO_NUMBER.toString());
+            throw new IllegalArgumentException(ErrorMessage.ZERO_NUMBER.getMessage());
         }
         if ((amount % LOTTO_PRICE) > 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT.toString());
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT.getMessage(LOTTO_PRICE));
         }
     }
 }

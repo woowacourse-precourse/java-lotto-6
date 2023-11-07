@@ -5,11 +5,10 @@ import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.repository.LottoRepository;
+import lotto.util.LottoConstants;
+import lotto.util.Parser;
 
-public class LottoService {
-    private static final int MAX_NUMBER = 45;
-    private static final int MIN_NUMBER = 1;
-    private static final int LOTTO_SIZE = 6;
+public class LottoService implements LottoConstants {
     private LottoRepository lottoRepository;
 
     public LottoService() {
@@ -29,5 +28,10 @@ public class LottoService {
             lottoRepository.insertLotto(lotto);
         }
         return lottoRepository.getLotteriesInfo();
+    }
+
+    public void createWinningNumbers(String numbersInput) {
+        List<Integer> numbers = Parser.parseNumbers(numbersInput);
+        lottoRepository.updateWinningNumbers(numbers);
     }
 }

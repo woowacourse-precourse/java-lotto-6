@@ -36,4 +36,14 @@ public class LottoController {
         String lottoOutput = lottoService.createLotteries();
         lottoView.printOutput(lottoOutput);
     }
+
+    private void setWinningNumbers() {
+        String numbersInput = lottoView.requestInput(InputRequestMessage.WINNIG_NUMBERS);
+        try {
+            lottoService.createWinningNumbers(numbersInput);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            lottoView.printError(illegalArgumentException);
+            setWinningNumbers();
+        }
+    }
 }

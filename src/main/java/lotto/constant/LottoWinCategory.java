@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 
 public enum LottoWinCategory {
@@ -22,6 +24,7 @@ public enum LottoWinCategory {
 
     private static final String MATCH_COUNT = "개 일치";
     private static final String BONUS_MATCH_COUNT = ", 보너스 볼 일치";
+    private static final DecimalFormat WINNING_PRIZE_FORMAT = new DecimalFormat("#,###");
 
     LottoWinCategory(int count, boolean bonus, int prize) {
         this.count = count;
@@ -36,12 +39,12 @@ public enum LottoWinCategory {
     public static List<LottoWinCategory> getWinningValues() {
         List<LottoWinCategory> values = new java.util.ArrayList<>(List.of(LottoWinCategory.values()));
         values.remove(NO_PRIZE);
-        values.sort((o1, o2) -> o1.prize - o2.prize);
+        values.sort(Comparator.comparingInt(o -> o.prize));
         return values;
     }
 
     public static LottoWinCategory getWinningCategoryByCountAndBonus(int count, boolean bonus, List<LottoWinCategory> lottoWinningCategories) {
-        if (count == 5 && bonus) {
+        if (count == SECOND_PRIZE.count + 1 && bonus) {
             return SECOND_PRIZE;
         }
         return lottoWinningCategories.stream()
@@ -55,11 +58,16 @@ public enum LottoWinCategory {
         return this.count == count;
     }
 
+    public String convertPrizeToString() {
+        return WINNING_PRIZE_FORMAT.format((double) prize);
+    }
+
     public String getMessage() {
         StringBuilder sb = new StringBuilder();
         sb.append(count).append(MATCH_COUNT);
-        sb.append(bonus ? BONUS_MATCH_COUNT : " ");
-        sb.append(" (" + prize + "원)").append(" ");
+        if (bonus)
+            sb.append(BONUS_MATCH_COUNT);
+        sb.append(" (").append(convertPrizeToString()).append("원)");
         return sb.toString();
     }
 }

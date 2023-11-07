@@ -1,6 +1,11 @@
 package lotto.domain.lotto;
 
+import lotto.exception.LottoNumDuplicateException;
+import lotto.exception.LottoSizeException;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +16,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+//        if (numbers.size() != 6) {
+//            throw new IllegalArgumentException();
+//        }
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new LottoSizeException();
         }
     }
 
@@ -30,4 +38,10 @@ public class Lotto {
                 .filter(winningLotto::contains)
                 .count();
     }
+
+    public List<Integer> getLottoNums(){
+        return numbers;
+    }
+
+
 }

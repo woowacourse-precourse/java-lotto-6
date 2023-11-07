@@ -168,4 +168,23 @@ class ConsolePrinterTest extends TestDefault {
 
         assertThat(actualed).isEqualTo(expected);
     }
+
+    @DisplayName("한개 이상의 숫자(int형)가 포함된 에러들이 정상적으로 출력된다.")
+    @ParameterizedTest
+    @EnumSource(mode = INCLUDE, names = {
+            "LOTTO_PURCHASE_AMOUNT_UNIT",
+            "LOTTO_NUMBERS_COUNT",
+            "LOTTO_NUMBErS_RANGE",
+            "WINNING_NUMBERS_COUNT",
+            "WINNING_NUMBERS_RANGE",
+            "BONUS_NUMBER_RANGE",
+    })
+    void testShowExceptionWithNumber(ErrorMessages message) {
+        List<Integer> numbers = List.of(1, 2);
+        String excepted = message.getMessage(numbers);
+
+        ConsolePrinter.showException(message, numbers);
+
+        assertThat(getConsoleOuputMessage()).isEqualTo(excepted);
+    }
 }

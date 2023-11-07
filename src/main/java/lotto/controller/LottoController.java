@@ -45,6 +45,18 @@ public class LottoController {
         }
     }
 
+    private PurchaseAmount getPurchaseAmount() {
+        try {
+            int amount = inputView.inputPurchaseAmount();
+            PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
+            LottoShop.validateAmountDivisible(purchaseAmount);
+            return purchaseAmount;
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return getPurchaseAmount();
+        }
+    }
+
     private int getBonusNumber() {
         try {
             return inputView.inputBonusNumber();
@@ -53,4 +65,10 @@ public class LottoController {
             return getBonusNumber();
         }
     }
+
+    private List<Lotto> getUserLottos(PurchaseAmount purchaseAmount) {
+        return LottoShop.createLottosBy(purchaseAmount);
+    }
+
+
 }

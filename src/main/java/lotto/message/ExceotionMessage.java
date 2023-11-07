@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum ErrorMessage {
+public enum ExceotionMessage {
     NOT_NUMBER("숫자를 입력해주세요."),
     NOT_THOUSAND("1,000원 단위로 입력해주세요"),
     NOT_6_NUMBER("6개의 숫자를 입력해주세요"),
@@ -10,7 +10,7 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    ExceotionMessage(String message) {
         this.message = message;
     }
 

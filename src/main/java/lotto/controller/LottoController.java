@@ -51,7 +51,7 @@ public class LottoController {
     }
 
     // 수익률을 계산하는 메서드
-    private double calculateEarningRate(int totalPrize, int ticketCount) {
+    public double calculateEarningRate(int totalPrize, int ticketCount) {
         if (ticketCount == 0) {
             return 0.0;
         }

@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.exception.DuplicateNumbersLottoException;
 import lotto.exception.InvalidNumberScopeException;
+import lotto.exception.InvalidSizeOfLottoNumbersException;
 
 public class Lotto {
     private static final Integer LOTTO_SIZE = 6;
@@ -12,6 +12,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+
         validateSize(numbers);
         validateNumberScope(numbers);
         validateDuplicatedNumber(numbers);
@@ -29,11 +30,12 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new InvalidSizeOfLottoNumbersException();
         }
     }
 
     private void validateNumberScope(List<Integer> numbers) {
+
         for (Integer number : numbers) {
             if (number < MINIMUM_LOTTO_NUMBER) {
                 throw new InvalidNumberScopeException();
@@ -45,12 +47,13 @@ public class Lotto {
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {
-        int count = (int) numbers.stream()
-                .distinct()
-                .count();
+
+        int count = (int) numbers.stream().distinct().count();
+
         if (count < LOTTO_SIZE) {
             throw new DuplicateNumbersLottoException();
         }
+
     }
 
 }

@@ -34,13 +34,8 @@ public class LottoService {
 	}
 
 	public Map<WinningRank, Integer> totalStatistics(List<LottoResult> lottoResults) {
-		Map<WinningRank, Integer> statisticsMap = new HashMap<>();
-
-		lottoResults.stream()
-			.map(lottoResult -> lottoResult.getWinningRank())
-			.forEach(winningRank -> statisticsMap.put(winningRank,statisticsMap.getOrDefault(winningRank,0)+1));
-
-		return statisticsMap;
+		return lottoResults.stream()
+			.collect(Collectors.groupingBy(LottoResult::getWinningRank, Collectors.summingInt(result -> 1)));
 	}
 
 	private LottoResult createLottoResult(Lotto lotto, Lotto winningNumbers, int bonusNumber) {

@@ -75,5 +75,18 @@ package lotto.control;public class Lottogame {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
         }
     }
+
+    private int parseIntWithMessage(String input, String errorMessage) {
+        int num = 0;
+        while (true) {
+            try {
+                num = Integer.parseInt(input);
+                return num;
+            } catch (NumberFormatException e) {
+                System.out.println(errorMessage);
+                input = readLineWithMessage("다시 입력해 주세요.");
+            }
+        }
+    }
   
 }

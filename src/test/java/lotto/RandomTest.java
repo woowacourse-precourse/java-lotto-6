@@ -24,12 +24,9 @@ class RandomTest {
     @DisplayName("각 로또 번호는 6개이다.")
     @Test
     void generateLottoNumbersTest() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         Random random = new Random();
         List<Integer> lottoNumbers = random.generateLottoNumbers();
         int lottoNumbersSize = lottoNumbers.size();
         assertThat(lottoNumbersSize).isEqualTo(6);
     }
-
-    // 아래에 추가 테스트 작성 가능
 }

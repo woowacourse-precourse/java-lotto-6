@@ -7,7 +7,7 @@ import lotto.constant.LottoResultStatus;
 public class LottoResult {
     private Map<LottoResultStatus, Integer> result;
 
-    public LottoResult() {
+    private LottoResult() {
         result = new HashMap<>() {{
             put(LottoResultStatus.NOTHING, 0);
             put(LottoResultStatus.THREE, 0);
@@ -16,6 +16,16 @@ public class LottoResult {
             put(LottoResultStatus.FIVE_BONUS, 0);
             put(LottoResultStatus.SIX, 0);
         }};
+    }
+
+    public static LottoResult of(PurchaseLottos purchaseLottos, WinningNumbers winningNumbers,
+                                 BonusNumber bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
+        purchaseLottos.getPurchaseLottos().forEach(lotto -> {
+            LottoResultStatus lottoResultStatus = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
+            lottoResult.add(lottoResultStatus);
+        });
+        return lottoResult;
     }
 
     public void add(LottoResultStatus resultStatus) {

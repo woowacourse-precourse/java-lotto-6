@@ -2,9 +2,12 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import lotto.constant.LottoResultStatus;
+import lotto.util.ManualGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -13,7 +16,12 @@ public class LottoResultTest {
 
     @BeforeEach
     void setUp() {
-        lottoResult = new LottoResult();
+        //dummy - 일치 0개
+        PurchaseLottos purchaseLottos = new PurchaseLottos(PurchasePrice.from(1000), new ManualGenerator());
+        WinningNumbers winningNumbers = WinningNumbers.from(List.of(7, 8, 9, 10, 11, 12));
+        BonusNumber bonusNumber = BonusNumber.of(13, winningNumbers);
+
+        lottoResult = LottoResult.of(purchaseLottos, winningNumbers, bonusNumber);
         lottoResult.add(LottoResultStatus.THREE);
     }
 
@@ -33,5 +41,16 @@ public class LottoResultTest {
 
         String actual = lottoResult.roundRateOfReturn(PurchasePrice.from(price));
         assertThat(actual).contains(expected);
+    }
+
+    @DisplayName("LottoResultStatus에 해당하면 value를 1만큼 증가시킨다.")
+    @Test
+    void plusOneByLottoResultStatus() {
+        LottoResultStatus lottoResultStatus = LottoResultStatus.SIX;
+
+        lottoResult.add(lottoResultStatus);
+        int actual = lottoResult.get(lottoResultStatus);
+        int expected = 1;
+        assertThat(actual).isEqualTo(expected);
     }
 }

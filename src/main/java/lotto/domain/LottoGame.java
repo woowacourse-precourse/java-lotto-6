@@ -26,7 +26,7 @@ public class LottoGame {
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
 
-        lottoResult = purchaseLottos.calculateLottoResult(winningNumbers, bonusNumber);
+        lottoResult = LottoResult.of(purchaseLottos, winningNumbers, bonusNumber);
 
         outputView.printLottoResult(lottoResult);
         outputView.printRateOfReturn(lottoResult, purchasePrice);

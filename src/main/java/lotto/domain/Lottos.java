@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.LottoResultStatus;
 import lotto.exception.ErrorMessagePrinter;
 import lotto.util.LottoNumbersGenerator;
 
@@ -30,15 +29,6 @@ public class Lottos {
 
     public List<Lotto> getEachLotto() {
         return lottos.stream().toList();
-    }
-
-    public LottoResult getLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        LottoResult lottoResult = new LottoResult();
-        lottos.forEach(lotto -> {
-            LottoResultStatus lottoResultStatus = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
-            lottoResult.add(lottoResultStatus);
-        });
-        return lottoResult;
     }
 
     private void addLotto(LottoNumbersGenerator generator) {

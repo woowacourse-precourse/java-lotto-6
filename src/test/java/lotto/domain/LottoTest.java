@@ -29,13 +29,13 @@ class LottoTest {
     @ParameterizedTest
     @CsvSource({"1,8,9,10,11,12,1", "1,2,8,9,10,11,2", "1,2,3,8,9,10,3", "1,2,3,4,8,9,4", "1,2,3,4,5,8,5",
             "1,2,3,4,5,7,7", "1,2,3,4,5,6,6"})
-    void checkWinningCount(int lotto1, int lotto2, int lotto3, int lotto4, int lotto5, int lotto6, int expectedCount) {
+    void getLottoResultStatus(int lotto1, int lotto2, int lotto3, int lotto4, int lotto5, int lotto6,
+                              int expectedCount) {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers);
-
         Lotto lotto = new Lotto(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6));
-        LottoResultStatus resultStatus = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
-        assertThat(resultStatus).isEqualTo(LottoResultStatus.from(expectedCount));
+        LottoResultStatus actual = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
+        assertThat(actual).isEqualTo(LottoResultStatus.from(expectedCount));
     }
 
     @DisplayName("생성된 로또 번호가 오름차순으로 정렬된다.")

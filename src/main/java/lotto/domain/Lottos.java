@@ -32,10 +32,12 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<LottoRanking> calculateRankings(WinningLotto winningLotto) {
-        return lottos.stream()
+    public LottoRankings calculateRankings(WinningLotto winningLotto) {
+        List<LottoRanking> rankings = lottos.stream()
                 .map(winningLotto::calculateRanking)
                 .toList();
+
+        return new LottoRankings(rankings);
     }
 
     public List<Lotto> getLottos() {

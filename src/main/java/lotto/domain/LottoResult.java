@@ -1,26 +1,14 @@
 package lotto.domain;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
 
     private final EnumMap<LottoRanking, Integer> lottoRankingResult;
 
-    private LottoResult(EnumMap<LottoRanking, Integer> lottoRankingResult) {
+    public LottoResult(EnumMap<LottoRanking, Integer> lottoRankingResult) {
         this.lottoRankingResult = lottoRankingResult;
-    }
-
-    public static LottoResult createByRankings(List<LottoRanking> rankings) {
-        EnumMap<LottoRanking, Integer> lottoRankingResult = new EnumMap<>(LottoRanking.class);
-
-        for (LottoRanking ranking : rankings) {
-            Integer prevCount = lottoRankingResult.getOrDefault(ranking, 0);
-            lottoRankingResult.put(ranking, prevCount + 1);
-        }
-
-        return new LottoResult(lottoRankingResult);
     }
 
     public double calculateProfit(int purchasedAmount) {

@@ -1,6 +1,6 @@
 package lotto.validation;
 
-public class LottoNumberValidator implements InputValidator {
+public class LottoNumberValidator implements Validator<String> {
     private final static int END_INCLUSIVE = 45;
 
     @Override

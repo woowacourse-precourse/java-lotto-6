@@ -1,6 +1,6 @@
 package lotto.validation;
 
-public class LottoAmountValidator implements InputValidator {
+public class LottoAmountValidator implements Validator<String> {
     private final static int UNIT = 1000;
 
     @Override

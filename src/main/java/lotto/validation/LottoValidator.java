@@ -4,9 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoValidator {
+public class LottoValidator implements Validator<List<Integer>> {
     private final static int COUNT = 6;
 
+    @Override
     public void validate(List<Integer> numbers) {
         if (!isLottoSize(numbers)) {
             Error error = Error.COUNT_ERROR;
@@ -31,5 +32,9 @@ public class LottoValidator {
             set.add(number);
         }
         return true;
+    }
+
+    public boolean isSmallerThan(int input, int n) {
+        return input < n;
     }
 }

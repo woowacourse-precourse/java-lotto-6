@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class WinningLottoCalculatorTest {
 	@DisplayName("당첨 번호와 로또 번호를 비교해 같은 숫자 카운트")
 	@Test
-	public void CountMatchingNumbers() {
+	public void countMatchingNumbers() {
 		//given
 		String lotto = "1,2,3,4,5,6";
 		String bonusNumber = "7";

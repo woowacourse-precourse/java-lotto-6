@@ -90,4 +90,31 @@ public class LottoServiceTest {
 
         assertThat(lottoService.calculateWinningResult(testLottos, answerLotto, bonusNumber)).isEqualTo(expectedResult);
     }
+
+    @DisplayName("당첨 로또 순위별 당첨 수량 - 3개/4개 번호 일치 - 성공")
+    @Test
+    void calculateWinningTimes4th5thTest() {
+        List<Integer> testResult = Arrays.asList(0, 0, 0, 1, 1, 0, 0, 0);
+        List<String> expectedResult = Arrays.asList("1", "1", "0", "0", "0");
+
+        assertThat(lottoService.calculateEachWinningTimes(testResult)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("당첨 로또 순위별 당첨 수량 - 5개/5개+보너스 번호 일치 - 성공")
+    @Test
+    void calculateWinningTimes2nd3rdTest() {
+        List<Integer> testResult = Arrays.asList(0, 0, 0, 0, 0, 1, 0, 1);
+        List<String> expectedResult = Arrays.asList("0", "0", "1", "0", "1");
+
+        assertThat(lottoService.calculateEachWinningTimes(testResult)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("당첨 로또 순위별 당첨 수량 - 6개 번호 일치 - 성공")
+    @Test
+    void calculateWinningTimes1stTest() {
+        List<Integer> testResult = Arrays.asList(0, 0, 0, 0, 0, 0, 1, 0);
+        List<String> expectedResult = Arrays.asList("0", "0", "0", "1", "0");
+
+        assertThat(lottoService.calculateEachWinningTimes(testResult)).isEqualTo(expectedResult);
+    }
 }

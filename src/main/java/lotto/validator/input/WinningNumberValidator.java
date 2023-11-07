@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.view.message.ValidationErrorMessage.INPUT_EMPTY;
+import static lotto.view.message.ValidationErrorMessage.INPUT_WRONG_SEPARATOR;
+
 public class WinningNumberValidator {
     public List<Integer> validateAndParse(String userInput) {
         validateNotEmpty(userInput);
@@ -14,7 +17,7 @@ public class WinningNumberValidator {
 
     private void validateNotEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new EmptyInputException("입력이 비었습니다.");
+            throw new EmptyInputException(INPUT_EMPTY.getMessage());
         }
     }
 
@@ -24,7 +27,7 @@ public class WinningNumberValidator {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new NumberFormatException("정수 형태의 입력이 쉼표로 구분 되어야 합니다.");
+            throw new NumberFormatException(INPUT_WRONG_SEPARATOR.getMessage());
         }
     }
 }

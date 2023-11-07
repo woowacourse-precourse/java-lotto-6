@@ -73,8 +73,8 @@ public class OutputView {
         printMessage(sb.toString());
     }
 
-    public static void printErrorMessage() {
-        printMessage("[ERROR]");
+    public static void printErrorMessage(String message) {
+        printMessage(message);
     }
 
     private static String formatPrize(int prize) {

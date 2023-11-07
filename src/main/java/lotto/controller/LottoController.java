@@ -50,7 +50,7 @@ public class LottoController {
 
                 break;
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage();
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }

@@ -2,6 +2,9 @@ package lotto.validator.input;
 
 import lotto.exception.input.EmptyInputException;
 
+import static lotto.view.message.ValidationErrorMessage.INPUT_EMPTY;
+import static lotto.view.message.ValidationErrorMessage.INPUT_NOT_INTEGER;
+
 public class PurchaseAmountValidator {
 
     public int validateAndParse(String userInput) {
@@ -11,7 +14,7 @@ public class PurchaseAmountValidator {
 
     private void validateNotEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new EmptyInputException("입력이 비었습니다.");
+            throw new EmptyInputException(INPUT_EMPTY.getMessage());
         }
     }
 
@@ -19,7 +22,7 @@ public class PurchaseAmountValidator {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("입력이 정수가 아닙니다.");
+            throw new NumberFormatException(INPUT_NOT_INTEGER.getMessage());
         }
     }
 }

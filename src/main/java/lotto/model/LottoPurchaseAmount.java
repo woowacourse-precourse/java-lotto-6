@@ -2,6 +2,9 @@ package lotto.model;
 
 import lotto.exception.business.BusinessConditionException;
 
+import static lotto.view.message.ValidationErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_THOUSAND;
+import static lotto.view.message.ValidationErrorMessage.PURCHASE_AMOUNT_NOT_POSITIVE;
+
 public class LottoPurchaseAmount {
     private final int amount;
 
@@ -13,13 +16,13 @@ public class LottoPurchaseAmount {
 
     private void validatePositive(int amount) {
         if (amount <= 0) {
-            throw new BusinessConditionException("구입 금액은 양수여야 합니다.");
+            throw new BusinessConditionException(PURCHASE_AMOUNT_NOT_POSITIVE.getMessage());
         }
     }
 
     private void validateMultipleOfThousand(int amount) {
         if (amount % 1000 != 0) {
-            throw new BusinessConditionException("구입 금액은 1000의 자리로 나눠 떨어져야 합니다.");
+            throw new BusinessConditionException(PURCHASE_AMOUNT_NOT_MULTIPLE_THOUSAND.getMessage());
         }
     }
 

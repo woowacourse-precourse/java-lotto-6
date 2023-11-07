@@ -6,6 +6,8 @@ import lotto.exception.input.NumberFormatException;
 
 import java.util.List;
 
+import static lotto.view.message.ValidationErrorMessage.*;
+
 public class BonusNumberValidator {
 
     public int validateAndParse(String userInput, List<Integer> winningNumbers) {
@@ -18,7 +20,7 @@ public class BonusNumberValidator {
 
     private void validateNotEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new EmptyInputException("입력이 비었습니다.");
+            throw new EmptyInputException(INPUT_EMPTY.getMessage());
         }
     }
 
@@ -26,7 +28,7 @@ public class BonusNumberValidator {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("입력이 정수가 아닙니다.");
+            throw new NumberFormatException(INPUT_NOT_INTEGER.getMessage());
         }
     }
 
@@ -36,7 +38,7 @@ public class BonusNumberValidator {
 
     private void validateDuplicationWithWinningNumbers(int validatedNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(validatedNumber)) {
-            throw new DuplicateRequestException("입력하신 번호는 당첨 번호와 중복됩니다.");
+            throw new DuplicateRequestException(INPUT_DUPLICATE_WITH_WINNING.getMessage());
         }
     }
 }

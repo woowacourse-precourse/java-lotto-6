@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.constant.LottoConfig.*;
+import static lotto.view.message.ValidationErrorMessage.*;
 
 public class WinningNumbers {
     private final List<Integer> numbers;
@@ -20,21 +21,21 @@ public class WinningNumbers {
 
     private void validateCounts(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT_NUMBER.getValue()) {
-            throw new BusinessConditionException("정답 갯수가 6자리가 아닙니다.");
+            throw new BusinessConditionException(WINNING_NUMBER_INVALID_DIGITS.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(n -> n < LOTTO_START_NUMBER.getValue() || n > LOTTO_END_NUMBER.getValue())) {
-            throw new BusinessConditionException("숫자 범위가 1~45여야 합니다.");
+            throw new BusinessConditionException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new BusinessConditionException("정답 번호에 중복이 있습니다.");
+            throw new BusinessConditionException(WINNING_NUMBER_DUPLICATE_DIGITS.getMessage());
         }
     }
 

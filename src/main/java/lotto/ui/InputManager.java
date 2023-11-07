@@ -1,5 +1,7 @@
 package lotto.ui;
 
+import lotto.LottoGenerator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +13,7 @@ public class InputManager {
         while (true) {
             System.out.println("\n구입금액을 입력해 주세요.");
             try {
-                return validateAmount(readLine());
+                return validatedNumber(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -87,9 +89,10 @@ public class InputManager {
         return amount;
     }
 
-    private static void validatedNumber(String input) {
+    private static int validatedNumber(String input) {
         if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
+        return Integer.parseInt(input);
     }
 }

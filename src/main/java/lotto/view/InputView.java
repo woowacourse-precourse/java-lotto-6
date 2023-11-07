@@ -1,10 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 import lotto.dto.WinningNumbersDto;
 import lotto.util.Converter;
-import lotto.util.validator.LottoNumberValidator;
 import lotto.util.validator.InputValidator;
 
 public class InputView {
@@ -20,10 +18,8 @@ public class InputView {
         return WinningNumbersDto.from(rawWinningNumbers);
     }
 
-    public static int inputBonusNumber(List<Integer> winningNumbers) {
-        int bonusNumber = inputInteger("보너스 번호를 입력해 주세요.");
-        LottoNumberValidator.validate(bonusNumber, winningNumbers);
-        return bonusNumber;
+    public static int inputBonusNumber() {
+        return inputInteger("보너스 번호를 입력해 주세요.");
     }
 
     private static int inputInteger(String message) {

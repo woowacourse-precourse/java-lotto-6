@@ -6,7 +6,7 @@ import static lotto.domain.constant.LottoConstant.MIN_LOTTO_NUMBER;
 import java.util.List;
 
 public class LottoNumberValidator {
-    public static void validate(int bonusNumber, List<Integer> winningNumbers) {
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateRange(bonusNumber);
         validateDuplicates(bonusNumber, winningNumbers);
     }

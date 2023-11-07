@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.LottoCollectionGenerator;
 import lotto.domain.LottoCount;
+import lotto.domain.BonusNumber;
 import lotto.domain.MatchingCase;
 import lotto.domain.NumberGenerator;
 import lotto.domain.Profit;
@@ -54,8 +55,8 @@ public class LottoController {
     private List<MatchingCase> calculateMatchingResult(LottoCollection lottoCollection) {
         MatchingCase.NEW_GAME.initMatchingCase();
         Lotto winningLotto = readWinningLotto();
-        int bonusNumber = readBonusNumber(winningLotto);
-        lottoCollection.applyResults(winningLotto, bonusNumber);
+        BonusNumber bonusNumber = readBonusNumber(winningLotto);
+        lottoCollection.applyResults(winningLotto, bonusNumber.getNumber());
         return MatchingCase.NEW_GAME.getResult();
     }
 
@@ -68,8 +69,13 @@ public class LottoController {
         return new Lotto(winningNumbersDto.getWinningNumbers());
     }
 
-    private static int readBonusNumber(Lotto winningLotto) {
-        return read(InputView::inputBonusNumber, winningLotto.getNumbers());
+    private BonusNumber readBonusNumber(Lotto winningLotto) {
+        return read(this::getBonusNumberFromInput, winningLotto);
+    }
+
+    private BonusNumber getBonusNumberFromInput(Lotto winningLotto) {
+        int rawBonusNumber = read(InputView::inputBonusNumber);
+        return BonusNumber.from(rawBonusNumber, winningLotto.getNumbers());
     }
 
     private Profit calculateProfit(List<MatchingCase> matchingResult, Purchase purchase) {

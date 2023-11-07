@@ -12,7 +12,7 @@ public class LottoPurchasingAmount {
         int moneyFromUser = validateNumber(moneyFromUserInput);
         validateMinimumPrice(moneyFromUser);
         validateDivisible(moneyFromUser);
-        this.lottoAmount = parseInt(moneyFromUserInput) / LOTTO_MINIMUM_PRICE;
+        this.lottoAmount = moneyFromUser / LOTTO_MINIMUM_PRICE;
     }
 
     private int validateNumber(String money) {

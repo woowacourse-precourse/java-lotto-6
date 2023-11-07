@@ -7,6 +7,9 @@ public class User {
 
     private int asset;
     private List<Lotto> myLotto;
+    public static User fromAsset(int asset){
+        return new User(asset);
+    }
 
     public User(int asset){
         this.asset = asset;

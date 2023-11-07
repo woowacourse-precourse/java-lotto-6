@@ -8,7 +8,6 @@ import lotto.number.LottoNumber;
 
 public class ConvertService {
 
-
     public List<LottoNumber> stringToNormalNumberConverter(String input) {
         return Stream.of(input.split(Separator.COMMA.toString()))
                 .map(LottoNumber::pickNormalNumber)
@@ -17,5 +16,9 @@ public class ConvertService {
 
     public LottoNumber stringToBonusNumberConverter(String input){
         return LottoNumber.pickBonusNumber(input);
+    }
+
+    public int stringToIntegerConverter(String input){
+        return Integer.parseInt(input);
     }
 }

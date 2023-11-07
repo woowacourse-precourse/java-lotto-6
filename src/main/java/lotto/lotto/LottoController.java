@@ -16,7 +16,7 @@ public class LottoController {
         this.convertService = convertService;
     }
 
-    public void startLotto(){
+    public void pickLottoNumber(){
         List<LottoNumber> normalNumber = Stream.concat(pickNormalNumber().stream(), Stream.of(pickBonusNumber()))
                 .collect(Collectors.toList());
     }

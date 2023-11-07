@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -47,6 +45,26 @@ public class Application {
         }
     }
 
+    public static int inputMoney() {
+        //로또 구매금액 입력
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                int lottoInput = Integer.parseInt(readLine());
+                if (lottoInput % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하세요.");
+                }
+                int num = lottoInput / 1000;
+                System.out.println(num + "개를 구매했습니다.");
+                return num;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 
     public static List<Integer> winLottoNum(int num) {
 
@@ -71,7 +89,6 @@ public class Application {
 
         // 리스트를 오름차순으로 정렬합니다.
         Collections.sort(sortedList);
-//        Collections.sort(numbers);
         return sortedList;
     }
 
@@ -107,6 +124,38 @@ public class Application {
         return false;
     }
 
+
+    //금액 합산 메서드
+    public static List<Integer> calculate(List<Integer> results, Prize prize){
+        List calResult = new ArrayList();
+        int totalPrize = 0;
+        int count = 0;
+        int matNums = prize.getMatNums();
+        int prizeAmount = prize.getPrizeMoney();
+        if (results.contains(matNums) && matNums != 5) {
+                count++;
+            }
+        totalPrize += prizeAmount * count;
+        calResult.add(count);
+        calResult.add(totalPrize);
+        return calResult;
+    }
+
+    //보너스 볼 금액 합산 메서드
+    public static List<Integer> calBonus(List<Integer> results, Prize prize){
+        List calResult = new ArrayList();
+        int totalPrize = 0;
+        int prizeAmount = prize.getPrizeMoney();
+        int bonusCnt = 0;
+        bonusCnt++;
+        totalPrize += prizeAmount * bonusCnt;
+        calResult.add(bonusCnt);
+        calResult.add(totalPrize);
+
+        return calResult;
+    }
+
+
     // 결과 통계 확인 메서드
     public static String checkResults(List<Integer> results, List<Boolean> hasBonus, int num) {
         System.out.println("당첨 통계");
@@ -115,34 +164,25 @@ public class Application {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
         double totalPrize = 0;
+        int count = 0;
+        int bonusCnt = 0;
         for (Prize prize : Prize.values()) {
-            int count = 0;
-            int bonusCnt = 0;
-            int matNums = prize.getMatNums();
-            int prizeAmount = prize.getPrizeMoney();
             boolean bonus = prize.isBonus();
-            String resultFormat = prize.getResultFormat();
-
-            // 숫자 포맷을 정의
-            String formattedNum = decimalFormat.format(prizeAmount);
-            if (results.contains(matNums) && matNums != 5) {
-                count++;
-            }
-
-            String result = resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
-
+            count = calculate(results, prize).get(0);
+            String formattedNum = decimalFormat.format(prize.prizeMoney);
+            String result = prize.resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
             result += " - " + count + "개";
 
             //보너스 볼 통계
             if (results.contains(5) && bonus && hasBonus.contains(true)) {
                 count = 0;
-                bonusCnt++;
-                result = resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
+                bonusCnt = calBonus(results, prize).get(0);
+                totalPrize += calBonus(results, prize).get(1);
+                result = prize.resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
                 result += " - " + bonusCnt + "개";
-                totalPrize += prizeAmount * bonusCnt;
             }
+            totalPrize += calculate(results, prize).get(1);
 
-            totalPrize += prizeAmount * count;
 
             resultBuilder.append(result).append("\n");
         }
@@ -150,26 +190,6 @@ public class Application {
         resultBuilder.append("총 수익률은 " + rate + "%입니다.");
 
         return resultBuilder.toString();
-    }
-
-    public static int inputMoney() {
-        //로또 구매금액 입력
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                int lottoInput = Integer.parseInt(readLine());
-                if (lottoInput % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하세요.");
-                }
-                int num = lottoInput / 1000;
-                System.out.println(num + "개를 구매했습니다.");
-                return num;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 유효한 숫자를 입력하세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
 
@@ -187,16 +207,9 @@ public class Application {
             boolean hasBonusNum = matchingBonus(lottoNumbers, bonus);
             results.add(matchedNums);
             hasBonus.add(hasBonusNum);
-//            System.out.println(matchedNums + "개 일치");
-//            System.out.println(hasBonusNum + "보너스?");
             System.out.println(lottoNumbers.toString());
         }
-//        System.out.println("결과");
-//        System.out.println(results.toString());
-//        System.out.println(bonusResults.toString());
-//        System.out.println(checkResults(results, bonusResults));
         System.out.println(checkResults(results, hasBonus, num));
-
 
     }
 }

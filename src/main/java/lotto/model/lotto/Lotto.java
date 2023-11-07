@@ -16,4 +16,10 @@ public class Lotto {
     public List<Integer> getLotto(){
         return Collections.unmodifiableList(numbers);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

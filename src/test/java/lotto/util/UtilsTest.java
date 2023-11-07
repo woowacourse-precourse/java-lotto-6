@@ -1,5 +1,6 @@
 package lotto.util;
 
+import static lotto.util.Utils.stringToIntegerSortedList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class ListUtilsTest {
         Utils listUtils = new Utils();
 
         // when
-        List<Integer> lotto = listUtils.stringToIntegerSortedList(inputLotto);
+        List<Integer> lotto = stringToIntegerSortedList(inputLotto);
 
         // then
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);

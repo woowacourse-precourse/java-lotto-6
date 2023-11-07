@@ -19,6 +19,6 @@ public class Utils {
     }
 
     public static final float getRoundUpTwoDecimalPlace(float returnRate) {
-        return Math.round(returnRate * 100f) / 100f;
+        return Math.round(returnRate * 10f) / 10f;
     }
 }

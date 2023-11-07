@@ -3,7 +3,7 @@ package enums;
 public enum Constants {
 
     NUMERIC_REGEX("^[1-9]\\d*$"),
-    LOTTO_NUMBER_SIZE("6");
+    WINNING_NUMBER_SIZE("6");
 
     private final String constant;
     Constants(String constant) {

@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
+import lotto.controller.dto.LottosDto;
+import lotto.controller.dto.WinningResultDto;
 import lotto.domain.generator.AutoLottoGenerator;
 import lotto.domain.generator.LottosMachine;
 import lotto.domain.generator.RandomNumbersGenerator;
@@ -22,19 +22,47 @@ public class LottoController {
     }
 
     public void play() {
-        LottoMoney lottoMoney = new LottoMoney(lottoView.askPurchaseMoney());
+        LottoMoney lottoMoney = createLottoMoney();
+        Lottos lottos = buyLottosBy(lottoMoney);
+        WinningLotto winningLotto = createWinningLotto();
+        WinningResult winningResult = createWinningResultWith(lottos, winningLotto);
+        printResult(winningResult, lottoMoney);
 
+    }
+    private LottoMoney createLottoMoney() {
+        while (true) {
+            try {
+                return new LottoMoney(lottoView.askPurchaseMoney());
+            } catch (IllegalArgumentException e) {
+                lottoView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private Lottos buyLottosBy(LottoMoney lottoMoney) {
         LottosMachine lottosMachine = new LottosMachine(
                 new AutoLottoGenerator(new RandomNumbersGenerator()));
         Lottos lottos = lottosMachine.buy(lottoMoney);
-        lottoView.printLottos(lottos);
+        lottoView.printLottos(LottosDto.from(lottos));
+        return lottos;
+    }
+    private WinningLotto createWinningLotto() {
+        while (true) {
+            try {
+                return new WinningLotto(new Lotto(lottoView.askLottoNumbers()),
+                        new BonusNumber(lottoView.askBonusNumber()));
+            } catch (IllegalArgumentException e) {
+                lottoView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+    private WinningResult createWinningResultWith(Lottos lottos, WinningLotto winningLotto) {
+        return lottos.calculateWinningResult(winningLotto);
+    }
 
-        WinningLotto winningLotto = new WinningLotto(new Lotto(lottoView.askLottoNumbers()),
-                new BonusNumber(lottoView.askBonusNumber()));
-
-        WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
-        float profit = winningResult.calculateProfitRate(lottoMoney);
-        lottoView.printWinningResult(winningResult);
-        lottoView.printWinningProfit(profit);
+    private void printResult(WinningResult winningResult, LottoMoney lottoMoney) {
+        WinningResultDto winningResultDto = WinningResultDto.of(winningResult.getResult());
+        lottoView.printWinningResult(winningResultDto);
+        lottoView.printWinningProfit(winningResult.calculateProfitRate(lottoMoney));
     }
 }

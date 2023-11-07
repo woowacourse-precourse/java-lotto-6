@@ -55,7 +55,7 @@ class PurchaseAmountValidatorTest {
 
     @Nested
     @DisplayName("validatePurchaseAmount 메소드 test")
-    class ValidatePurchaseAmountDtoTest {
+    class ValidatePurchaseAmountDto {
         @DisplayName("구입 금액이 " + PurchaseAmount.PURCHASE_AMOUNT_UNIT + " 단위면 검증 통과")
         @Test
         void Amount_is_divisible_by_the_purchase_amount_unit() {

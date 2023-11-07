@@ -1,13 +1,12 @@
-package lotto.domain.dto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class PurchaseAmountDtoTest {
+class PurchaseAmountTest {
     @Nested
     @DisplayName("purchaseQuantityLottos 메소드 test")
     class PurchaseQuantityLottosTest {
@@ -24,4 +23,5 @@ class PurchaseAmountDtoTest {
             assertThat(lottosCount).isEqualTo(15_000 / PurchaseAmount.PURCHASE_AMOUNT_UNIT);
         }
     }
+
 }

@@ -1,10 +1,12 @@
 package lotto.model;
 
+import static lotto.util.GameConstant.*;
+
 public class Result {
     private int count;
 
     protected Result() {
-        this.count = 0;
+        this.count = CONSTANT_INITIAL_VALUE.getConstant();
     }
 
     protected void addCount() {

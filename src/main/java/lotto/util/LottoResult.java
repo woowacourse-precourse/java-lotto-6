@@ -6,10 +6,11 @@ public enum LottoResult {
     FIRST_GRADE(6, false, 1),
     SECOND_GRADE(5, true, 2),
     THIRD_GRADE(5, false, 3),
-    FOURTH__GRADE(4, false, 4),
+    FOURTH_GRADE(4, false, 4),
     FIFTH_GRADE(3, false, 5)
     ;
 
+    private static final int CONDITION = 3;
     private final int matchedNumber;
     private final boolean bonusResult;
     private final int grade;
@@ -21,7 +22,7 @@ public enum LottoResult {
     }
 
     public static int getGrade(long matchedNumber, boolean bonusResult) {
-        if(matchedNumber < 3) return 0;
+        if(matchedNumber < CONDITION) return 0;
         if(matchedNumber == SECOND_GRADE.grade && bonusResult) return SECOND_GRADE.grade;
         return Arrays.stream(values())
                 .filter(value -> value.matchedNumber == matchedNumber)

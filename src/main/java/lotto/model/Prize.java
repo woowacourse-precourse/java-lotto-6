@@ -1,10 +1,12 @@
 package lotto.model;
 
+import static lotto.util.GameConstant.*;
+
 public class Prize {
     private long money;
 
     protected Prize() {
-        this.money = 0;
+        this.money = CONSTANT_INITIAL_VALUE.getConstant();
     }
 
     protected void addPrize(long money) {

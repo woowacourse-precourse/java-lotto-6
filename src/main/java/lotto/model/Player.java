@@ -8,7 +8,6 @@ import java.util.List;
 import static lotto.util.GameConstant.*;
 
 public class Player {
-    private final int INITIAL_VALUE = 0;
     private List<Lotto> lottos;
     private List<Result> results;
 
@@ -36,7 +35,7 @@ public class Player {
     private List<Result> initResults() {
         List<Result> result = new ArrayList<>();
 
-        for(int index = INITIAL_VALUE; index < CONSTANT_GRADE_LENGTH.getConstant(); index++) {
+        for(int index = CONSTANT_INITIAL_VALUE.getConstant(); index < CONSTANT_GRADE_LENGTH.getConstant(); index++) {
             result.add(new Result());
         }
 

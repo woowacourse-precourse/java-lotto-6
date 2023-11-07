@@ -35,8 +35,9 @@ class LottoTest {
     }
 
     @Test
-    void 맞춘_로또_번호() {
-        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).calculateWinNumber(1)).isTrue();
+    void 맞춘_번호의_갯수를_리턴한다() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        LottoNumber lottoNumber = new LottoNumber(List.of(1,2,3,4,5,6));
+        assertThat(lotto.calculateWinNumber(lottoNumber)).isEqualTo(6);
     }
-
 }

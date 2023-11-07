@@ -34,16 +34,17 @@ public class Controller {
         Lotto prizeLotto = askPrizeNumbers();
         List<Integer> prizeNumbers = prizeLotto.getNumbers();
         int bonusNumber = askBonusNumber(prizeNumbers);
+
         return new PlayLotto(prizeNumbers, bonusNumber);
     }
 
     public void LottoResult(PlayLotto playLotto) {
-        Map<Rank, Integer> lottoResult = playLotto.getLottoResult();
+        Map<Rank, Integer> lottoResult = calculatedLottoResults(playLotto);
         printLottoResults(lottoResult);
         long prizeSum = playLotto.prizeSum();
         printReturnOfRate(prizeSum);
     }
-    
+
     private int askPurchaseAmount() {
         OutputView.promptPurchaseAmount();
         try {

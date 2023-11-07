@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.util.ErrorMessage;
@@ -10,8 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateNumberUnique(numbers);
-        this.numbers = numbers;
-        Collections.sort(numbers);
+        this.numbers = sortImmutableList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -53,6 +53,12 @@ public class Lotto {
 
     private boolean compareBonusNumber(int bonus) {
         return numbers.contains(bonus);
+    }
+
+    private List<Integer> sortImmutableList(List<Integer> numbers) {
+        List<Integer> mutable = new ArrayList<>(numbers);
+        Collections.sort(mutable);
+        return Collections.unmodifiableList(mutable);
     }
     // TODO: 추가 기능 구현
 }

@@ -18,7 +18,6 @@ public class Controller {
         int myMoney = view.buyMoney();
         int count = view.buyLotto(myMoney);
 
-        System.out.println(myMoney / 1000 + "개를 구매했습니다.");
         String[] listLotto = rand.getBuyLotto(count);
         List correctLotto = correctLotto();
         String bonus = view.bonusNum(correctLotto);

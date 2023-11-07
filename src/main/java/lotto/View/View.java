@@ -25,6 +25,7 @@ public class View {
         return buyMoney();
     }
     public int buyLotto(int buyMoney){
+        System.out.println(buyMoney / 1000 + "개를 구매했습니다.");
         return buyMoney / 1000;
     }
     private void stringToList(String money){

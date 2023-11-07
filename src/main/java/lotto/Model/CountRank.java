@@ -9,22 +9,23 @@ public class CountRank {
         List<Integer> countList = new ArrayList<>();
 
         for (int i = 0; i < myLotto.size(); i++) {
-            int count = 0;
-            for(int j = 0; j < correctLotto.size(); j++) {
-                if (Arrays.asList(myLotto.get(i).toString().replace(" ", "").replace("[", "").
-                        replace("]", "").split(",")).contains(correctLotto.get(j).toString()))
-                {
-                    count++;
-                }
-                if(count == 5){
-                    if (Arrays.asList(myLotto.get(i).toString().replace(" ", "").replace("[", "").
-                            replace("]", "").split(",")).contains(bonus)){
-                        count = count + 2;
-                    }
-                }
-            }
+            List splitList = Arrays.asList(myLotto.get(i).toString().replace(" ", "").replace("[", "").
+                    replace("]", "").split(","));
+            int count = countCorrect(splitList, correctLotto, bonus);
             countList.add(count);
         }
         return countList;
+    }
+    private static int countCorrect(List splitList, List correctLotto, String bonus){
+        int count = 0;
+        for(int i = 0; i < correctLotto.size(); i++){
+            if (splitList.contains(correctLotto.get(i).toString())){
+                count++;
+            }
+            if (count == 5 && splitList.contains(bonus)){
+                count = count + 2;
+            }
+        }
+        return count;
     }
 }

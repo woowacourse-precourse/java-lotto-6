@@ -46,7 +46,7 @@
 - 당첨 번호와 보너스 번호를 입력받는다.
   - 당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
   - 보너스 번호를 입력 받는다.
-- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "ERROR"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   - 예외 상황 시 에러 문구를 출력한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 

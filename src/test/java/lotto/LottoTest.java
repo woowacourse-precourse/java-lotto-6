@@ -44,4 +44,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 로또 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createBonusNumberLottoMoney() {
+        assertThatThrownBy(() -> new LuckeyLotto(List.of(1, 2, 3, 4, 5, 6), "7a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

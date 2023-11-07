@@ -9,7 +9,7 @@ public class LottoChecker {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
     private final Map<Prize, Integer> result = new HashMap<>();
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos;
     private long totalPrize;
     private String profitRate;
 
@@ -50,18 +50,14 @@ public class LottoChecker {
     public long checkWinningNumber(final Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        long matches = lottoNumbers.stream()
+        return lottoNumbers.stream()
                 .filter(this.winningNumbers::contains).count();
-
-        return matches;
     }
 
     public boolean checkContainBonusNumber(final Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        boolean isContainBonus = lottoNumbers.contains(this.bonusNumber);
-
-        return isContainBonus;
+        return lottoNumbers.contains(this.bonusNumber);
     }
 
     public Prize getPrize(final long matches, boolean isContainBonus) {
@@ -88,9 +84,7 @@ public class LottoChecker {
     }
 
     public void calculateTotalPrize() {
-        long totalPrize = result.keySet().stream().mapToLong(prize -> prize.money * result.get(prize)).sum();
-
-        this.totalPrize = totalPrize;
+        this.totalPrize = result.keySet().stream().mapToLong(prize -> prize.money * result.get(prize)).sum();
     }
 
     public void calculateProfitRate() {

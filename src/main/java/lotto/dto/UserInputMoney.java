@@ -1,6 +1,6 @@
-package lotto.ui;
+package lotto.dto;
 
-import static lotto.Lotto.LOTTO_PRICE;
+import static lotto.domain.Lotto.LOTTO_PRICE;
 
 public record UserInputMoney(Long amount) {
 

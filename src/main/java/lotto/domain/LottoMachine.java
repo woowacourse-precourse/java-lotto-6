@@ -1,11 +1,12 @@
-package lotto.ui;
+package lotto.domain;
 
-import static lotto.Lotto.LOTTO_PRICE;
+import static lotto.domain.Lotto.LOTTO_PRICE;
+import static lotto.constants.Message.INPUT_MONEY;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import lotto.Lotto;
-import lotto.ui.reader.InputReader;
+import lotto.dto.UserInputMoney;
+import lotto.view.InputReader;
 
 public class LottoMachine {
 
@@ -32,8 +33,7 @@ public class LottoMachine {
     }
 
     public void insertMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String readLine = inputReader.readInput();
+        String readLine = inputReader.readInput(INPUT_MONEY);
         Long inputAmount = validateAndConvertInt(readLine);
         this.inputMoney = new UserInputMoney(inputAmount);
     }

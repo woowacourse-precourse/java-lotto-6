@@ -1,9 +1,15 @@
-package lotto;
+package lotto.domain;
+
+import static lotto.constants.Message.INPUT_BONUS_NUMBER;
+import static lotto.constants.Message.INPUT_WINNING_NUMBER;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import lotto.ui.reader.InputReader;
+import lotto.dto.BonusNumber;
+import lotto.dto.LottoCompareResult;
+import lotto.dto.WinningNumber;
+import lotto.view.InputReader;
 
 public class WinningCondition {
     private WinningNumber winningNumber;
@@ -27,8 +33,7 @@ public class WinningCondition {
     }
 
     public void inputBonusNumbers() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String readLine = inputReader.readInput();
+        String readLine = inputReader.readInput(INPUT_BONUS_NUMBER);
         Integer parsingNumber = parseToInteger(readLine);
         if (isWinningNumberContains(parsingNumber)) {
             throw new IllegalArgumentException();
@@ -55,8 +60,7 @@ public class WinningCondition {
     }
 
     public void inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String readLine = inputReader.readInput();
+        String readLine = inputReader.readInput(INPUT_WINNING_NUMBER);
         List<Integer> parsingNumbers = parseToIntegerList(readLine);
         WinningNumber winningNumber = new WinningNumber(parsingNumbers);
         System.out.println();

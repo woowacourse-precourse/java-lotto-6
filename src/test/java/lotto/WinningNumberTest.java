@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.dto.WinningNumber;
 import org.junit.jupiter.api.Test;
 
 public class WinningNumberTest {

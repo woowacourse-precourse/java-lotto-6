@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.WinningCondition;
+import lotto.dto.LottoCompareResult;
 import lotto.ui.TestInputReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

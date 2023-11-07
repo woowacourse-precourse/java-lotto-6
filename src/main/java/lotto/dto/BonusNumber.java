@@ -1,4 +1,4 @@
-package lotto;
+package lotto.dto;
 
 public record BonusNumber(Integer number) {
     public BonusNumber {

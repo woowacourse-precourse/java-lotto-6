@@ -1,6 +1,6 @@
 package lotto.ui;
 
-import lotto.ui.reader.InputReader;
+import lotto.view.InputReader;
 
 public class TestInputReader implements InputReader {
     private String input;
@@ -12,7 +12,7 @@ public class TestInputReader implements InputReader {
     }
 
     @Override
-    public String readInput() {
+    public String readInput(String message) {
         return input;
     }
 }

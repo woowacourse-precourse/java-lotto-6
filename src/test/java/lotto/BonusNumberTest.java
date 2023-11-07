@@ -2,6 +2,7 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.dto.BonusNumber;
 import org.junit.jupiter.api.Test;
 
 class BonusNumberTest {

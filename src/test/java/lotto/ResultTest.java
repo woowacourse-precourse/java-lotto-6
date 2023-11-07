@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Rank;
+import lotto.domain.Result;
+import lotto.dto.LottoCompareResult;
 import org.junit.jupiter.api.Test;
 
 public class ResultTest {

@@ -3,6 +3,10 @@ package lotto;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoCost;
+import lotto.domain.WinningNumber;
 
 public class LottoController {
     private final Input input = new Input();

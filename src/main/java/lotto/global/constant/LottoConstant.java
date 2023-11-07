@@ -21,4 +21,9 @@ public class LottoConstant {
     public static final int FOURTH_RANK_LOTTO_MATCHED = 4;
     public static final int FIFTH_RANK_LOTTO_MATCHED = 3;
 
+    public static final String PRINT_FIRST_RANK = "6개 일치 (2,000,000,000원) - ";
+    public static final String PRINT_SECOND_RANK = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    public static final String PRINT_THIRD_RANK = "5개 일치 (1,500,000원) - ";
+    public static final String PRINT_FOURTH_RANK = "4개 일치 (50,000원) - ";
+    public static final String PRINT_FIFTH_RANK = "3개 일치 (5,000원) - ";
 }

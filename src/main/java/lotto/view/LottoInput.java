@@ -8,7 +8,13 @@ import java.util.List;
 
 public class LottoInput {
 
+    private static final String PURCHASE_MESSAGE = "구입금액을 입려해 주세요.";
+
+    public LottoInput(){
+    }
+
     public int lottoPurchaseInput(){
+        System.out.println(PURCHASE_MESSAGE);
         String lottoPurchasePrice = Console.readLine();
         return Integer.parseInt(lottoPurchasePrice);
     }

@@ -2,14 +2,15 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.global.constant.LottoConstant;
 import lotto.global.constant.LottoRankAndPrize;
-import static lotto.global.constant.LottoRankAndPrize.*;
-
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class LottoOutput {
+
+    public LottoOutput(){
+    }
 
     private final String INITIAL_LOTTO_STATIC_MESSAGE = "당첨 통계\n---\n";
 
@@ -40,16 +41,40 @@ public class LottoOutput {
     }
 
     public String printLottoStatistics(LottoResult lottoResult){
-        Map<LottoRankAndPrize, Integer> totalRanks = lottoResult.getTotalRanks();
 
+        Map<LottoRankAndPrize, Integer> totalRanks = lottoResult.getTotalRanks();
         stringBuffer = new StringBuffer();
         stringBuffer.append(INITIAL_LOTTO_STATIC_MESSAGE);
-        stringBuffer.append(printFirstRank(totalRanks.get(FIRST_RANK))+"\n");
-        stringBuffer.append(printSecondRank(totalRanks.get(SECOND_RANK))+"\n");
-        stringBuffer.append(printThirdRank(totalRanks.get(THIRD_RANK))+"\n");
-        stringBuffer.append(printFourthRank(totalRanks.get(FOURTH_RANK))+"\n");
-        stringBuffer.append(printFifthRank(totalRanks.get(FIFTH_RANK))+"\n");
+        stringBuffer.append(printFirstRank(totalRanks.get(LottoRankAndPrize.FIRST_RANK))+"\n");
+        stringBuffer.append(printSecondRank(totalRanks.get(LottoRankAndPrize.SECOND_RANK))+"\n");
+        stringBuffer.append(printThirdRank(totalRanks.get(LottoRankAndPrize.THIRD_RANK))+"\n");
+        stringBuffer.append(printFourthRank(totalRanks.get(LottoRankAndPrize.FOURTH_RANK))+"\n");
+        stringBuffer.append(printFifthRank(totalRanks.get(LottoRankAndPrize.FIFTH_RANK))+"\n");
         stringBuffer.append(String.format("총 수익률은 %.1f%%입니다", lottoResult.calculateProfitPercentage()));
         return stringBuffer.toString();
+    }
+
+    public String printFirstRank(int rankCount){
+        return printLottoRankFormat(LottoConstant.PRINT_FIRST_RANK, rankCount);
+    }
+
+    public String printSecondRank(int rankCount){
+        return printLottoRankFormat(LottoConstant.PRINT_SECOND_RANK, rankCount);
+    }
+
+    public String printThirdRank(int rankCount){
+        return printLottoRankFormat(LottoConstant.PRINT_THIRD_RANK, rankCount);
+    }
+
+    public String printFourthRank(int rankCount){
+        return printLottoRankFormat(LottoConstant.PRINT_FOURTH_RANK, rankCount);
+    }
+
+    public String printFifthRank(int rankCount){
+        return printLottoRankFormat(LottoConstant.PRINT_FIFTH_RANK, rankCount);
+    }
+
+    public String printLottoRankFormat(String lottoRankMessage, int rankCount){
+        return lottoRankMessage + rankCount + "개";
     }
 }

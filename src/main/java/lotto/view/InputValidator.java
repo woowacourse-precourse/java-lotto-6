@@ -1,17 +1,16 @@
 package lotto.view;
 
 import lotto.global.ResponseStatus;
+import lotto.global.constant.LottoConstant;
 import lotto.global.error.ErrorMessage;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static lotto.global.constant.LottoConstant.*;
-
 public class InputValidator {
 
     public static ResponseStatus purchasePriceCheck(int lottoPurchasePrice){
-        if(lottoPurchasePrice < LOTTO_PRICE || lottoPurchasePrice % LOTTO_PRICE != 0){
+        if(lottoPurchasePrice < LottoConstant.LOTTO_PRICE || lottoPurchasePrice % LottoConstant.LOTTO_PRICE != 0){
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PURCHASE_PRICE.getMessage());
         }
         return ResponseStatus.OK;
@@ -41,7 +40,7 @@ public class InputValidator {
     }
 
     public static ResponseStatus isLottoInRange(int number){
-        if(number >= LOTTO_NUMBER_RANGE_START && number <= LOTTO_NUMBER_RANGE_END){
+        if(number >= LottoConstant.LOTTO_NUMBER_RANGE_START && number <= LottoConstant.LOTTO_NUMBER_RANGE_END){
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
         }
         return ResponseStatus.OK;

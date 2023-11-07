@@ -1,23 +1,24 @@
 package lotto.domain;
 
 import lotto.global.constant.LottoRankAndPrize;
+import lotto.manager.LottoManager;
+import lotto.utils.LottoReferee;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import static lotto.global.constant.LottoConstant.*;
+import java.util.*;
 
 public class LottoResult {
 
     private static final int NONE = 0;
 
+    private final LottoManager lottoManager = new LottoManager();
+    private final List<Lotto> lottos;
     private final Map<LottoRankAndPrize, Integer> totalRanks;
     private final int lottoPurchasePrice;
     private int totalPrize = NONE;
 
     public LottoResult(int lottoPurchasePrice) {
         this.totalRanks = new HashMap<>();
+        this.lottos = new ArrayList<>();
         for(LottoRankAndPrize rankAndPrize : LottoRankAndPrize.values()) {
             totalRanks.put(rankAndPrize, 0);
         }
@@ -32,12 +33,8 @@ public class LottoResult {
         totalRanks.put(lottoRankAndPrize, 1);
     }
 
-    public int getLottoPurchasePrice() {
-        return lottoPurchasePrice;
-    }
-
-    public Map<LottoRankAndPrize, Integer> getTotalRanks(){
-        return totalRanks;
+    public void accumulateLotto(Lotto lotto){
+        lottos.add(lotto);
     }
 
     public int calculateTotalPrize(){
@@ -53,14 +50,12 @@ public class LottoResult {
     }
 
     public float calculateProfitPercentage(){
-        if(totalPrize == NONE){
-            return NONE;
-        }
         float profit = (float) calculateProfit();
         return Math.round((profit * 100) / lottoPurchasePrice);
     }
 
     public int calculateProfit(){
+        int totalPrize = calculateTotalPrize();
         int profit = totalPrize - lottoPurchasePrice;
         if(profit < NONE){
             return NONE;
@@ -68,7 +63,22 @@ public class LottoResult {
         return profit;
     }
 
-    public int getTotalPrizeAmount() {
-        return totalPrize;
+    public void determineAllLottoRank(WinningLotto winningLotto){
+        LottoReferee lottoReferee = lottoManager.getLottoReferee();
+        for(Lotto lotto : lottos){
+            accumulateLottoResult(lottoReferee.determineLottoRank(lotto, winningLotto));
+        }
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
+
+    public int getLottoPurchasePrice() {
+        return lottoPurchasePrice;
+    }
+
+    public Map<LottoRankAndPrize, Integer> getTotalRanks(){
+        return totalRanks;
     }
 }

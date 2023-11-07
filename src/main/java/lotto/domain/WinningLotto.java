@@ -1,10 +1,9 @@
 package lotto.domain;
 
 import lotto.global.ResponseStatus;
+import lotto.global.constant.LottoConstant;
 import lotto.global.error.ErrorMessage;
 import java.util.List;
-
-import static lotto.global.constant.LottoConstant.*;
 
 public class WinningLotto{
 
@@ -18,7 +17,7 @@ public class WinningLotto{
     }
 
     private ResponseStatus validate(List<Integer> numbers, int bonusNumber) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
         }
         return ResponseStatus.OK;

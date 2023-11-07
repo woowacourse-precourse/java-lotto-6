@@ -39,11 +39,11 @@ public class OutputView {
 
     public void printLottoPrize(LottoPrize lottoPrize) {
         StringBuilder lottoPrizeResult = new StringBuilder();
-        createLottoPrizeStatS(lottoPrize, lottoPrizeResult);
+        createLottoPrizeStats(lottoPrize, lottoPrizeResult);
         System.out.println(lottoPrizeResult);
     }
 
-    public void createLottoPrizeStatS(LottoPrize lottoPrize, StringBuilder lottoPrizeResult) {
+    public void createLottoPrizeStats(LottoPrize lottoPrize, StringBuilder lottoPrizeResult) {
         lottoPrizeResult.append(STATS_MESSAGE.getMessage());
         lottoPrizeResult.append(String.format(WINNING_STATS_FIVE_RANK.getMessage(), lottoPrize.getFiveRankCount()));
         lottoPrizeResult.append(String.format(WINNING_STATS_FOUR_RANK.getMessage(), lottoPrize.getFourRankCount()));

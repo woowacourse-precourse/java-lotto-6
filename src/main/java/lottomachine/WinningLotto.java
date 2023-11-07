@@ -7,28 +7,29 @@ import service.Inputter;
 public class WinningLotto {
 
     public Lotto requestWinningLottoNumbers(Inputter inputter) {
-        Lotto winningLottoNumbers = null;
-        try {
-            String input = inputter.inputWinningNumbers();
-            List<Integer> lottoNumbers = transformStringtoLottoNumberList(input);
-            winningLottoNumbers = new Lotto(lottoNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        while (true) {
+            try {
+                String input = inputter.inputWinningNumbers();
+                List<Integer> lottoNumbers = transformStringtoLottoNumberList(input);
+                return new Lotto(lottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[Error] 잘못된 번호를 입력하였습니다.");
+            }
         }
-
-        return winningLottoNumbers;
     }
 
     public int requestBonusNumber(Inputter inputter, Lotto winningLottoNumbers) {
         int bonusNumber = 0;
-        try {
-            String input = inputter.inputBonusNumber();
-            bonusNumber = transformStringtoBonusNumber(input);
-            validate(bonusNumber, winningLottoNumbers);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[Error] 유효하지 않은 번호 입니다.");
+        while (true) {
+            try {
+                String input = inputter.inputBonusNumber();
+                bonusNumber = transformStringtoBonusNumber(input);
+                validate(bonusNumber, winningLottoNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[Error] 유효하지 않은 번호입니다. 숫자를 입력해 주세요.");
+            }
         }
-        return bonusNumber;
     }
 
     private List<Integer> transformStringtoLottoNumberList(String input) {

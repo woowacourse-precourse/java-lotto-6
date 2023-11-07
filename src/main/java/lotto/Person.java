@@ -20,6 +20,11 @@ public class Person {
 		}
 	}
 	
-
+	public void displayTicket() {
+	    System.out.println(lottoTicket.size() + "개를 구매했습니다.");
+	    for (List<Integer> ticket : lottoTicket) {
+	    	ticket.sort(null);
+	        System.out.println(ticket);
+	    }
+	}
 }
-

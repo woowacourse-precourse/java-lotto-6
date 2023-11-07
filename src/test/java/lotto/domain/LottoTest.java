@@ -22,4 +22,10 @@ class LottoTest {
         assertThat(lotto.toString()).isIn("[6, 5, 4, 3, 2, 1]", "[1, 2, 3, 4, 5, 6]");
     }
 
+    @DisplayName("toString 메소드 : 오름차순 정렬 테스트")
+    @Test
+    void sort_validateAsc() {
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
 }

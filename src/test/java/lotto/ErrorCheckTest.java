@@ -49,5 +49,13 @@ class ErrorCheckTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 구매 금액이 1000단위로 나누어지지 않으면 에러가 발생해야 한다.")
+    @Test
+    void checkErrorOccurPurchaseInput() {
+        int invalidPurchaseAmount = 1001;
+        assertThatThrownBy(() -> ErrorCheck.validatePurchaseInput(invalidPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

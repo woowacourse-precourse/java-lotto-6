@@ -17,6 +17,9 @@ public class User {
         this.ranks = ranks;
     }
 
+    public List<Integer> getRanks(){
+        return this.ranks;
+    }
     public int getUserAmount(){
         return this.amount;
     }

@@ -20,7 +20,7 @@ public class WinningLotto {
         return this.bonusNumber;
     }
 
-    public List<Integer> stringArrayToIntegerList(String[] stringArray){
+    private List<Integer> stringArrayToIntegerList(String[] stringArray){
         List<Integer> integerList = new ArrayList<>();
         for(String string : stringArray){
             integerList.add(Integer.parseInt(string));

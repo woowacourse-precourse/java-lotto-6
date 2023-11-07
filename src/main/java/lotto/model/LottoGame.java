@@ -18,7 +18,7 @@ public class LottoGame {
         int amount = InputView.validateInputAmount();
         List<Lotto> lottos = createLottos(amount);
         User user = new User(amount,lottos);
-        OutputView.displaylottosList(user);
+        OutputView.displayLottoList(user);
         return user;
     }
 

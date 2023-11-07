@@ -86,6 +86,8 @@ public class Service {
 		return bonusNumber;
 	}
 	
-	
+	public int countCorrectLottoNumber(Lotto lotto) {
+		return Utils.countSameNumbers(lotto.getNumbers(), lottoGame.getWinningNumbers());
+	}
 
 }

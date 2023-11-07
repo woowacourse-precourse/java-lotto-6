@@ -10,7 +10,7 @@ public class UserInput {
         ResultOutput.printMessage("구입금액을 입력해 주세요.");
         String amount = Console.readLine();
 
-        Validator.validateNonNumeric(amount);
+        validateNonNumeric(amount);
         return amount;
     }
 
@@ -23,7 +23,7 @@ public class UserInput {
         ResultOutput.printMessage("보너스 번호를 입력해 주세요.");
         String bonus = Console.readLine();
 
-        Validator.validateNonNumeric(bonus);
+        validateNonNumeric(bonus);
         return bonus;
     }
 
@@ -37,5 +37,19 @@ public class UserInput {
         return input.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static void validateNonNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자로만 이루어진 값을 입력해주세요.");
+        }
+    }
+
+    public static void validateUnit(int input) {
+        if (input % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지는 숫자여야 합니다.");
+        }
     }
 }

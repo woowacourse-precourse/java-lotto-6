@@ -1,4 +1,4 @@
-package lotto;
+package lotto.config;
 
 public enum ErrorMessages {
     ERROR_NOT_NUMBER("[ERROR] 양의 정수를 입력해 주세요"),

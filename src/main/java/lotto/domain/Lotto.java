@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.LottoConfig;
-import lotto.ErrorMessages;
+import lotto.config.LottoConfig;
+import lotto.config.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;

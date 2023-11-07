@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.domain.Lotto;
 
 public class LottoGenerate {

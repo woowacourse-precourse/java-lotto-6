@@ -3,6 +3,8 @@ package lotto;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import lotto.config.ErrorMessages;
+import lotto.config.LottoConfig;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCost;

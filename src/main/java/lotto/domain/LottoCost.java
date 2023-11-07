@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.LottoConfig;
-import lotto.ErrorMessages;
+import lotto.config.LottoConfig;
+import lotto.config.ErrorMessages;
 
 public class LottoCost {
     private final int cost;

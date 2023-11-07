@@ -1,4 +1,4 @@
-package lotto;
+package lotto.config;
 
 public class LottoConfig {
     public final static int UNIT = 1000;

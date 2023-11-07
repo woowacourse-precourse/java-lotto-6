@@ -10,9 +10,21 @@ public class LottoStatistics {
     private static final Map<LottoResult, Integer> lottoPlaceResults = new HashMap<>();
     private static final Map<LottoResult, Long> lottoTotalAmountResult = new HashMap<>();
 
+    public LottoStatistics () {
+        initLottoPlaceResults();
+    }
+
+    private void initLottoPlaceResults() {
+        lottoPlaceResults.clear();
+
+        for (LottoResult lottoResult : LottoResult.values()) {
+            lottoPlaceResults.put(lottoResult, 0);
+        }
+    }
+
     public Map<LottoResult, Integer> calculateLottoResults(List<Lotto> lottos, WinnerNumbers winner) {
 
-        lottoPlaceResults.clear();
+        initLottoPlaceResults();
         lottoTotalAmountResult.clear();
 
         calculateLottoPlaceResult(lottos, winner);
@@ -21,17 +33,24 @@ public class LottoStatistics {
         return lottoPlaceResults;
     }
 
+    public double calculateLottoRateOfReturn(int baseBalance) {
+        return getTotalAmount() / (double) baseBalance;
+    }
+
+    private long getTotalAmount() {
+        return lottoTotalAmountResult.values()
+                .stream()
+                .mapToLong(Long::longValue)
+                .sum();
+    }
+
     private void calculateLottoPlaceResult(List<Lotto> lottos, WinnerNumbers winner) {
 
         for (Lotto lotto : lottos) {
 
             LottoResult result = getLottoResultByLottoWithWinnerNumber(lotto, winner);
 
-            int count = 0;
-
-            if (lottoPlaceResults.containsKey(result)) {
-                count = lottoPlaceResults.get(result);
-            }
+            int count = lottoPlaceResults.get(result);
 
             lottoPlaceResults.put(result, count + 1);
         }

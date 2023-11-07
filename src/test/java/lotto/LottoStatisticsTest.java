@@ -25,17 +25,6 @@ public class LottoStatisticsTest {
 
         Map<LottoResult, Integer> result = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
 
-        assertThat(result.size()).isEqualTo(5);
-
-        assertThat(result.keySet())
-                .contains(
-                        LottoResult.OUT_OF_BOUND_NO_MATCH,
-                        LottoResult.OUT_OF_BOUND_ONE_MATCH,
-                        LottoResult.OUT_OF_BOUND_TWO_MATCH,
-                        LottoResult.FIFTH_PLACE,
-                        LottoResult.FOURTH_PLACE
-                );
-
         assertThat(result.get(LottoResult.OUT_OF_BOUND_NO_MATCH)).isEqualTo(1);
         assertThat(result.get(LottoResult.OUT_OF_BOUND_ONE_MATCH)).isEqualTo(1);
         assertThat(result.get(LottoResult.OUT_OF_BOUND_TWO_MATCH)).isEqualTo(1);
@@ -52,15 +41,6 @@ public class LottoStatisticsTest {
         LottoStatistics lottoStatistics = new LottoStatistics();
 
         Map<LottoResult, Integer> result = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
-
-        assertThat(result.size()).isEqualTo(3);
-
-        assertThat(result.keySet())
-                .contains(
-                        LottoResult.FIRST_PLACE,
-                        LottoResult.SECOND_PLACE,
-                        LottoResult.THIRD_PLACE
-                );
 
         assertThat(result.get(LottoResult.THIRD_PLACE)).isEqualTo(2);
         assertThat(result.get(LottoResult.SECOND_PLACE)).isEqualTo(2);

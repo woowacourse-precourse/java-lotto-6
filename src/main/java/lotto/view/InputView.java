@@ -28,12 +28,12 @@ public class InputView {
         return Integer.parseInt(purchaseAmount);
     }
 
-    public static List<Integer> inputWinningNumber() {
+    public static List<Integer> inputWinningNumber(int size) {
         List<Integer> winningNumberList = new ArrayList<>();
         while (true) {
             try {
                 String winningNumber = printAndInput(PrintMessage.INPUT_WINNING_NUMBER);
-                winningNumberList = InputException.validateWinningNumber(winningNumber);
+                winningNumberList = InputException.validateWinningNumber(winningNumber, size);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

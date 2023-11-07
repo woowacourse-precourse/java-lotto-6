@@ -196,6 +196,7 @@ class InputExceptionTest {
     @DisplayName("리스트의 길이를 확인하는 메서드 테스트")
     void checkSizeTest() {
         // given
+        int lottoSize = 6;
         List<List<Integer>> lists = new ArrayList<>(List.of(
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(2, 6, 10, 14, 18, 22),
@@ -204,13 +205,13 @@ class InputExceptionTest {
 
         // when
         Throwable throwable1 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(0));
+            InputException.checkSize(lists.get(0), lottoSize);
         });
         Throwable throwable2 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(1));
+            InputException.checkSize(lists.get(1), lottoSize);
         });
         Throwable throwable3 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(2));
+            InputException.checkSize(lists.get(2), lottoSize);
         });
 
         // then
@@ -223,6 +224,7 @@ class InputExceptionTest {
     @DisplayName("리스트의 길이를 확인하는 메서드 예외처리 테스트")
     void checkSizeExceptionTest() {
         // given
+        int lottoSize = 6;
         List<List<Integer>> lists = new ArrayList<>(List.of(
                 List.of(1),
                 List.of(1, 2),
@@ -232,16 +234,16 @@ class InputExceptionTest {
 
         // when
         Throwable throwable1 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(0));
+            InputException.checkSize(lists.get(0), lottoSize);
         });
         Throwable throwable2 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(1));
+            InputException.checkSize(lists.get(1), lottoSize);
         });
         Throwable throwable3 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(2));
+            InputException.checkSize(lists.get(2), lottoSize);
         });
         Throwable throwable4 = catchThrowable(() -> {
-            InputException.checkSize(lists.get(3));
+            InputException.checkSize(lists.get(3), lottoSize);
         });
 
         // then

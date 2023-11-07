@@ -14,10 +14,10 @@ public class InputException {
         isThousandUnit(Integer.parseInt(input));
     }
 
-    public static List<Integer> validateWinningNumber(String input) {
+    public static List<Integer> validateWinningNumber(String input, int size) {
         isContainComma(input);
         List<Integer> list = new ArrayList<>(validateList(input.split(",")));
-        checkSize(list);
+        checkSize(list, size);
         isDuplication(list);
         Collections.sort(list);
         return list;
@@ -39,6 +39,12 @@ public class InputException {
         }
 
         return list;
+    }
+
+    public static void validateList(List<Integer> list) {
+        for (int num : list) {
+            isBetweenOneAndFourtyfive(num);
+        }
     }
 
     public static void isDigit(String input) {
@@ -70,8 +76,8 @@ public class InputException {
             throw new IllegalArgumentException(PrintMessage.NOT_DUPLICATION);
     }
 
-    public static void checkSize(List<Integer> list) {
-        if (list.size() != 6)
+    public static void checkSize(List<Integer> list, int size) {
+        if (list.size() != size)
             throw new IllegalArgumentException(PrintMessage.ONLY_SIX_NUMBER);
     }
 

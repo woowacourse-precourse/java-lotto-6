@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Controller {
 
+    private static final int LOTTO_SIZE = 6;
+
     private Buyer buyer;
     private LottoOffice lottoOffice;
 
@@ -28,7 +30,7 @@ public class Controller {
     }
 
     private void setLottoWinningNumbers() {
-        List<Integer> winningNumbers = InputView.inputWinningNumber();
+        List<Integer> winningNumbers = InputView.inputWinningNumber(LOTTO_SIZE);
         int bonusNumber = InputView.inputBonusNumber(winningNumbers);
         lottoOffice = new LottoOffice(winningNumbers, bonusNumber);
     }

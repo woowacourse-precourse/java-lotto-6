@@ -34,7 +34,7 @@ public class LottoInputConsole {
         System.out.println(System.lineSeparator() + READ_BONUS_NUMBERS);
         String bonusNumber = Console.readLine();
 
-        if (StringUtil.isNumber(bonusNumber)) {
+        if (!StringUtil.isNumber(bonusNumber)) {
             LottoException.NOT_NUMBER.throwing();
         }
         return Integer.parseInt(bonusNumber);

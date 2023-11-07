@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public Ranking getScore(final List<Integer> winningNumbers, final int bonusNumber) {
+    public Ranking getRank(final List<Integer> winningNumbers, final int bonusNumber) {
         int[] score = new int[2];
         for (int winningNumber : winningNumbers) {
             if (numbers.contains(winningNumber)) {

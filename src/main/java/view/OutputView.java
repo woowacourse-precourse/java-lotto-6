@@ -52,7 +52,7 @@ public class OutputView {
         printFiveBonusCorrect(lotto[7]);
         printSixCorrect(lotto[6]);
 
-        float revenue = (float)(lotto[3]*5000 + lotto[4]*50000 + lotto[5]*1500000 + lotto[6]*30000000 + lotto[7]*2000000000)/money;
+        float revenue = (float)(lotto[3]*5000 + lotto[4]*50000 + lotto[5]*1500000 + lotto[7]*30000000 + lotto[6]*2000000000)/money;
         System.out.printf("총 수익률은 %.1f%%입니다.", revenue * 100);
     }
 

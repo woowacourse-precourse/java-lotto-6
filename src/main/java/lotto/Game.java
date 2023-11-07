@@ -79,6 +79,8 @@ public class Game {
 
         int bonusNum = getBonusNum();
 
+        prizeLotto = new PrizeLotto(winLotto,bonusNum);
+
     }
 
     private List<Integer> getIntegerWinLotto(String input){
@@ -104,9 +106,23 @@ public class Game {
     }
 
     private int getBonusNum(){
+        return Integer.parseInt(inputBonusNum());
+    }
+
+    private String inputBonusNum(){
         view.request_InputBonusNumbers();
 
-        return 7;
+        return check_ValidationInputBonusNum(Console.readLine());
+    }
+
+    private String check_ValidationInputBonusNum(String input){
+        try{
+            validator.check_BonusNum(input);
+            return input;
+        }catch(IllegalArgumentException e){
+            view.print_Exception(e.getMessage());
+            return inputBonusNum();
+        }
     }
 
 }

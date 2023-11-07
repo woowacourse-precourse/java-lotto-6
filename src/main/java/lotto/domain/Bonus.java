@@ -20,7 +20,7 @@ public class Bonus {
 
     private void validateRange(int bonusNumber) {
         if (bonusNumber > Lotto.MAX_VALUE || bonusNumber < Lotto.MIN_VALUE) {
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_BONUS_NUMBER.getErrorDescription());
         }
     }
     public int getBonusNumber() {

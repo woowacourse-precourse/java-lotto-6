@@ -54,7 +54,7 @@ public class Lotto {
                 .filter(number -> ((number > MAX_VALUE) || (number < MIN_VALUE)))
                 .findFirst()
                 .isPresent()) {
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER.getErrorDescription());
         }
     }
 

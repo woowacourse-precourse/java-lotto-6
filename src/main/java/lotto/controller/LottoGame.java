@@ -2,12 +2,15 @@ package lotto.controller;
 
 import static lotto.constant.GameOptions.PRICE;
 
+import java.util.Map;
+import lotto.constant.Rewards;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.ui.ConsolePrinter;
 import lotto.ui.ConsoleScanner;
 import lotto.util.LottoValidator;
+import lotto.util.NumberUtil;
 import lotto.util.StringParser;
 
 public class LottoGame {
@@ -22,9 +25,10 @@ public class LottoGame {
 
     public void run() {
         initiate();
+        showResult();
     }
 
-    public void initiate() {
+    private void initiate() {
         initiatePurchaseAmount();
         initiateLottos();
         initiateWinningNumber();
@@ -93,5 +97,25 @@ public class LottoGame {
 
             initiateBonus();
         }
+    }
+
+    private void showResult() {
+        showStats();
+        showReturnRate();
+    }
+
+    private void showStats() {
+        ConsolePrinter.printWinningStatsMessage();
+
+        Map<Rewards, Integer> totalStats = lottos.getTotalStats(winningNumber, bonus);
+        for (Rewards reward : totalStats.keySet()) {
+            ConsolePrinter.printWinningReward(reward, totalStats.get(reward));
+        }
+    }
+
+    private void showReturnRate() {
+        Integer totalReward = lottos.getTotalReward(winningNumber, bonus);
+        Double returnRatio = NumberUtil.calculateReturnRatio((double) purchaseAmount, (double) totalReward);
+        ConsolePrinter.printTotalReturnRate(returnRatio);
     }
 }

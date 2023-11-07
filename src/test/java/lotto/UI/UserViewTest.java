@@ -13,18 +13,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 
-class OutputUITest {
-    private OutputUI outputUI;
+class UserViewTest {
+    private UserView userView;
 
     @BeforeEach
     void setUp() {
-        outputUI = new OutputUI();
+        userView = new UserView();
     }
 
     @ParameterizedTest
     @MethodSource("parameterProviderMoneyEdit")
     void moneyEdit_상금액수_출력형식_변경_테스트(Rewards reward, String expect) {
-        assertThat(outputUI.moneyEdit(reward)).isEqualTo(expect);
+        assertThat(userView.moneyEdit(reward)).isEqualTo(expect);
     }
 
     static Stream<Arguments> parameterProviderMoneyEdit() {

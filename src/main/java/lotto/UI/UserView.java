@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.UI;
 
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 
 import java.util.*;
 
-public class OutputUI {
+public class UserView {
 
     public String moneyEdit(Rewards reward) {
         int money = reward.money();

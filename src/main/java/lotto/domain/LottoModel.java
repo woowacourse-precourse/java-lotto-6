@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import lotto.UI.UserView;
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 
@@ -13,7 +14,7 @@ public class LottoModel {
     private boolean hasBonus;
     private final int CHECK_BONUS = 999;
     private final InputUI inputUI;
-    private final OutputUI outputUI;
+    private final UserView userView;
     private List<Lotto> publishedLottos;
     private int totalEarnedMoney;
     private HashMap<Rewards, Integer> winningTable;
@@ -22,7 +23,7 @@ public class LottoModel {
 
     public LottoModel() {
         this.inputUI = new InputUI();
-        this.outputUI = new OutputUI();
+        this.userView = new UserView();
         this.publishedLottos = new ArrayList<>();
         this.winningTable = initWinningTable();
         this.totalEarnedMoney = 0;
@@ -118,12 +119,12 @@ public class LottoModel {
     public void run() {
         inputUI.purchase();
         publishLotto(inputUI.getNumofLotto());
-        outputUI.purchaseLog(inputUI.getNumofLotto(), this.publishedLottos);
+        userView.purchaseLog(inputUI.getNumofLotto(), this.publishedLottos);
         inputUI.winnings();
         inputUI.bonusBall();
         computeLotto(publishedLottos, inputUI.getWinningNums(), inputUI.getBonusNum());
-        outputUI.winnings(winningTable);
-        outputUI.rate(computeRate(totalEarnedMoney, inputUI.getCost()));
+        userView.winnings(winningTable);
+        userView.rate(computeRate(totalEarnedMoney, inputUI.getCost()));
     }
 
     public int sumOfWinningNumsTable() {

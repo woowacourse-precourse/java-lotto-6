@@ -6,20 +6,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputUI {
-    private final int INIT_NUM = 0;
-    private final int LOTTONUM_MIN_RANGE = 0;
-    private final int LOTTONUM_MAX_RANGE = 45;
-    private final int LOTTO_LENGTH = 6;
-    private final int PURCHASE_MIN = 0;
-    private final int PURCHASE_UNIT = 1000;
+
 
     private int bonusNum;
     private int cost;
     private List<Integer> winningNums;
 
+    enum finalsInputUI {
+
+        INIT_NUM(0),
+        LOTTONUM_MIN_RANGE(0),
+        LOTTONUM_MAX_RANGE(45),
+        LOTTO_LENGTH(6),
+        PURCHASE_MIN(0),
+        PURCHASE_UNIT(1000);
+
+        private final int value;
+
+        finalsInputUI(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+    }
+
     public InputUI() {
-        this.bonusNum = INIT_NUM;
-        this.cost = INIT_NUM;
+        this.bonusNum = finalsInputUI.INIT_NUM.getValue();
+        this.cost = finalsInputUI.INIT_NUM.getValue();
     }
 
     public void bonusBall() {
@@ -36,13 +52,14 @@ public class InputUI {
     }
 
     public void checkExceptionWinning(int winning) {
-        if (winning < LOTTONUM_MIN_RANGE || winning > LOTTONUM_MAX_RANGE) {
+        if (winning < finalsInputUI.LOTTONUM_MIN_RANGE.getValue()
+                || winning > finalsInputUI.LOTTONUM_MAX_RANGE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
     public void checkLengthWinning(String[] parsedWinnings) {
-        if (parsedWinnings.length != LOTTO_LENGTH) {
+        if (parsedWinnings.length != finalsInputUI.LOTTO_LENGTH.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }
@@ -50,7 +67,8 @@ public class InputUI {
     public int checkValidBonusNum(String tempBonus) {
         try {
             int bonusNum = Integer.parseInt(tempBonus);
-            if (bonusNum >= LOTTONUM_MIN_RANGE && bonusNum <= LOTTONUM_MIN_RANGE) {
+            if (bonusNum >= finalsInputUI.LOTTONUM_MIN_RANGE.getValue()
+                    && bonusNum <= finalsInputUI.LOTTONUM_MAX_RANGE.getValue()) {
                 return bonusNum;
             }
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -62,11 +80,15 @@ public class InputUI {
     public int checkValidPurchase(String tempCost) {
         try {
             int cost = Integer.parseInt(tempCost);
-            if (cost <= PURCHASE_MIN) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 "+PURCHASE_MIN+"원 이상이여야 합니다.");
+            if (cost <= finalsInputUI.PURCHASE_MIN.getValue()) {
+                throw new IllegalArgumentException(
+                        "[ERROR] 구입 금액은 " + finalsInputUI.PURCHASE_MIN.getValue() + "원 이상이여야 합니다."
+                );
             }
-            if (cost % PURCHASE_UNIT != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 "+PURCHASE_UNIT+"원 단위여야 합니다.");
+            if (cost % finalsInputUI.PURCHASE_UNIT.getValue() != 0) {
+                throw new IllegalArgumentException(
+                        "[ERROR] 구입 금액은 " + finalsInputUI.PURCHASE_UNIT.getValue() + "원 단위여야 합니다."
+                );
             }
             return cost;
         } catch (NumberFormatException e) {
@@ -100,7 +122,7 @@ public class InputUI {
     }
 
     public int getNumofLotto() {
-        return cost / PURCHASE_UNIT;
+        return cost / finalsInputUI.PURCHASE_UNIT.getValue();
     }
 
     public List<Integer> getWinningNums() {

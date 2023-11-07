@@ -8,7 +8,7 @@ import static lotto.constant.LottoConstants.LOTTO_PRICE;
 
 public class LottoException extends IllegalArgumentException {
     public enum ErrorMessage {
-        MIN_LOTTO_AMOUNT("숫자를 입력해 주세요. 로또 한장 금액은 " + LOTTO_PRICE.getValue() +"원 입니다." + LINE.getMessage() +
+        RANGE_LOTTO_AMOUNT("숫자를 입력해 주세요. 로또 한장 금액은 " + LOTTO_PRICE.getValue() +"원 입니다." + LINE.getMessage() +
                 "예시) 8,000(X), 8000(O)"),
         RANGE_LOTTO_NUMBER("로또 번호는 1부터 45 사이의 숫자입니다."),
         DUPLICATE_LOTTO_NUMBERS("1부터 45 사이의 중복되지 않는 숫자 6개를 입력해 주세요." + LINE.getMessage() +

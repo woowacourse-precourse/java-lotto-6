@@ -9,7 +9,7 @@ public class Validator {
         try {
             Integer.valueOf(input);
         } catch (NumberFormatException e) {
-            throw new LottoException(LottoException.ErrorMessage.MIN_LOTTO_AMOUNT.getMessage());
+            throw new LottoException(LottoException.ErrorMessage.RANGE_LOTTO_AMOUNT.getMessage());
         }
     }
 
@@ -22,6 +22,9 @@ public class Validator {
     }
 
     public static void validatedWinningNumbersFormat(String lottoNumbers) throws LottoException {
+        if (lottoNumbers == null || lottoNumbers.isBlank()) {
+            throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+        }
         if (!lottoNumbers.matches(winningLottoNumbersFormat)) {
             throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }

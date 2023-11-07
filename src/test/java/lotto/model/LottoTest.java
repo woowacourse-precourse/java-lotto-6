@@ -31,13 +31,26 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자는 1에서 45 사이어야 합니다.");
     }
+
     @Test
     @DisplayName("로또가 잘 생성되는지 확인한다")
-    void createLotto(){
+    void createLotto() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
 
-        assertThat(lotto.getNumbers()).containsExactly(1,2,3,4,5,6);
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    @DisplayName("로또 번호를 비교했을 때 몇 개가 일치하는지 확인한다")
+    public void testMatchNumbers() {
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        List<Integer> winningNumbers = Arrays.asList(2, 4, 6, 8, 10, 12);
+        Lotto winningLotto = new Lotto(winningNumbers);
+
+        assertThat(lotto.matchNumbers(winningLotto)).isEqualTo(3);
     }
 
 }

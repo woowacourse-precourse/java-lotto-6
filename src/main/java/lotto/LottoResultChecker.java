@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.PatternSyntaxException;
 
 public class LottoResultChecker {
 
@@ -62,7 +63,7 @@ public class LottoResultChecker {
         try {
             System.out.println();
             System.out.println("당첨 번호를 입력해 주세요.");
-            winNumbers = numbersSeparator(Console.readLine());
+            winNumbers = winNumbersSeparator(Console.readLine());
             Exception.validateLottoNumbers(winNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -82,14 +83,19 @@ public class LottoResultChecker {
         }
     }
 
-    private List<Integer> numbersSeparator(String numberString) {
-        List<String> separatedNumbersInString = List.of(numberString.split(","));
+    private List<Integer> winNumbersSeparator(String numberString) {
+        List<String> separatedNumbersInString;
+
+        try {
+            separatedNumbersInString = List.of(numberString.split(","));
+        } catch (PatternSyntaxException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호의 구분자가 ,가 아닙니다.");
+        }
 
         List<Integer> separatedNumbers = new ArrayList<Integer>();
         for (String number : separatedNumbersInString) {
             separatedNumbers.add(Integer.parseInt(number));
         }
-
         return separatedNumbers;
     }
 

@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.regex.Matcher;
 import lotto.enums.Constant;
 import lotto.enums.ErrorMessage;
+import lotto.utils.Converter;
 
 public class Money {
     private final Integer amount;

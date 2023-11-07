@@ -1,7 +1,7 @@
 package lotto.enums;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.utils.Converter;
 
 public enum Constant {
     COUNT_OF_LOTTO_NUMBERS("6"),
@@ -26,30 +26,10 @@ public enum Constant {
     }
 
     public Integer getContentToInteger() {
-        validateNumber();
-
         return Converter.stringToInteger(content);
     }
 
     public Float getContentToFloat() {
-        validateFloat();
-
         return Converter.stringToFloat(content);
-    }
-
-    private void validateNumber() {
-        Matcher numberMatcher = PATTERN_NUMBER.matcher(content);
-
-        if (numberMatcher.matches() == false) {
-            throw new IllegalArgumentException(ErrorMessage.STRING_CANNOT_CONVERT_TO_INTEGER.getMessage()); // 에러문 추가
-        }
-    }
-
-    private void validateFloat() {
-        Matcher floatMatcher = PATTERN_FLOAT.matcher(content);
-
-        if (floatMatcher.matches() == false) {
-            throw new IllegalArgumentException(ErrorMessage.STRING_CANNOT_CONVERT_TO_FLOAT.getMessage());
-        }
     }
 }

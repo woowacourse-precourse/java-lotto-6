@@ -1,6 +1,10 @@
 package lotto.domain;
 
+
+import static lotto.domain.LottoErrorMessages.*;
+
 public class Money {
+
     private final int amount;
 
     public Money(int amount) {
@@ -10,7 +14,7 @@ public class Money {
 
     private void validatePositive(int amount) {
         if (amount < LottoConfig.ZERO.getValue()) {
-            throw new IllegalArgumentException(LottoErrorMessages.NEGATIVE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(NEGATIVE_AMOUNT.getMessage());
         }
     }
 

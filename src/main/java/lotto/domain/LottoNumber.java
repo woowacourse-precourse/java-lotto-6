@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.LottoErrorMessages.*;
+
 import java.util.Objects;
+
 
 public class LottoNumber {
 
@@ -14,7 +17,7 @@ public class LottoNumber {
     private void validateRange(int number) {
         if (isOutOfRange(number)) {
             throw new IllegalArgumentException(
-                    LottoErrorMessages.INVALID_NUMBER_RANGE.getMessage());
+                    INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -29,8 +32,12 @@ public class LottoNumber {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         LottoNumber that = (LottoNumber) obj;
         return number == that.number;
     }

@@ -1,8 +1,13 @@
 package lotto.domain;
 
+import static lotto.domain.LottoErrorMessages.*;
+import static lotto.domain.LottoConfig.*;
+
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+
 
 public class Lotto {
 
@@ -21,13 +26,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoConfig.NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(LottoErrorMessages.INVALID_SIZE.getMessage());
+            throw new IllegalArgumentException(INVALID_SIZE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException(LottoErrorMessages.DUPLICATE_NUMBERS.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_NUMBERS.getMessage());
         }
     }
 
@@ -44,14 +49,19 @@ public class Lotto {
                 .sorted(Comparator.comparingInt(LottoNumber::getNumber))
                 .toList();
     }
-    public List<LottoNumber> getNumbers(){
+
+    public List<LottoNumber> getNumbers() {
         return numbers;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Lotto lotto = (Lotto) obj;
         return this.numbers.equals(lotto.numbers);
     }

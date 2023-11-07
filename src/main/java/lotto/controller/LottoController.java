@@ -29,9 +29,7 @@ public class LottoController {
 
     public void lottoGamePlay() {
         List<List<Integer>> lottoTickets = buyLottoTickets();
-        /*for (List<Integer> lottoTicket : lottoTickets) {
-            System.out.println(lottoTicket);
-        }*/
+        consoleOutputView.outputBuyLottoTickets(lottoTickets);
 
         String inputUserLottoNumbers = consoleInputView.inputUserLottoNumbers();
         lottoService.userLottoNumbersValidate(inputUserLottoNumbers);

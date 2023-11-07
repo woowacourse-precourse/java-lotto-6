@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String INPUT_LOTTO_PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     private static final String ERROR_INPUT_IS_NOT_NUMBER = "숫자만 입력 가능합니다.";
 
@@ -13,6 +14,11 @@ public class InputView {
 
     public static int inputLottoPurchaseMoney() {
         System.out.println(INPUT_LOTTO_PURCHASE_MONEY_MESSAGE);
+        return getUserNumberInput();
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return getUserNumberInput();
     }
 

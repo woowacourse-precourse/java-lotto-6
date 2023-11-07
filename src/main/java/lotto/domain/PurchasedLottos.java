@@ -6,10 +6,6 @@ import java.util.stream.Stream;
 public class PurchasedLottos {
     private final List<Lotto> lottos;
 
-    private PurchasedLottos(Money money) {
-        lottos = createLottos(money);
-    }
-
     private PurchasedLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
@@ -19,10 +15,10 @@ public class PurchasedLottos {
     }
 
     public static PurchasedLottos from(Money money) {
-        return new PurchasedLottos(money);
+        return new PurchasedLottos(createLottos(money));
     }
 
-    private List<Lotto> createLottos(Money money) {
+    private static List<Lotto> createLottos(Money money) {
         return Stream.generate(Lotto::createAuto)
                 .limit(money.countPurchase())
                 .toList();

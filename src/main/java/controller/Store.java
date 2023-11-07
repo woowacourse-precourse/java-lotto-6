@@ -9,6 +9,7 @@ import model.WinningLotto;
 import view.PrintError;
 import view.PrintResult;
 
+import java.math.BigDecimal;
 import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Store {
 
     Grader grader = new Grader();
     List<Integer> winningDetails = grader.compareLottoWinningLotto(lottos, winningLotto);
-    double earningRatio = grader.calculateEarningRatio(money, winningDetails);
+    BigDecimal earningRatio = grader.calculateEarningRatio(money, winningDetails);
 
     PrintResult printResult = new PrintResult();
     printResult.winningDetailPrint(winningDetails);
@@ -38,9 +39,9 @@ public class Store {
   public int inputMoney() {
     boolean isValid = false;
     int money = 0;
-    System.out.println("구입금액을 입력해 주세요.");
 
     while(!isValid) {
+      System.out.println("구입금액을 입력해 주세요.");
       String moneyInput = Console.readLine();
       try {
         validateIsNumber(moneyInput);
@@ -67,7 +68,7 @@ public class Store {
 
   // 구입 금액이 1000단위로 나누어 떨어지는지 확인
   public void validateUnitOfThousandMoney(int money) {
-    if(money % 1000 != 0) {
+    if(money % 1000 != 0 || money == 0) {
       printError.moneyUnitOfThousand();
       throw new IllegalArgumentException();
     }
@@ -107,10 +108,11 @@ public class Store {
 
   // 당첨 번호 입력
   public List<Integer> inputWinningNumbers() {
-    System.out.println("당첨 번호를 입력해 주세요");
+
     boolean isValid = false;
     List<Integer> numbers = new ArrayList<>();
     while (!isValid) {
+      System.out.println("당첨 번호를 입력해 주세요");
       String inputWinningNumbers = Console.readLine();
       numbers = new ArrayList<>();
       try {
@@ -141,8 +143,9 @@ public class Store {
   public Integer inputBonusNumber(List<Integer> numbers) {
     boolean isValid = false;
     int bonusNumber = 0;
-    System.out.println("보너스 번호를 입력해 주세요");
+
     while (!isValid) {
+      System.out.println("보너스 번호를 입력해 주세요");
       String inputBonusNumber = Console.readLine();
       try {
         validateIsNumber(inputBonusNumber);

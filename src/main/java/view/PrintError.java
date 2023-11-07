@@ -9,6 +9,7 @@ public class PrintError {
 
   }
 
+
   // 구입 금액이 숫자가 아닐 때 출력하는 메세지
   public void moneyNotNumber() {
     System.out.println("[ERROR] 구입금액은 숫자로 입력하여야 합니다.");
@@ -29,9 +30,14 @@ public class PrintError {
     System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
   }
 
-  // 중복 숫자가 있으면 안됩니다.
+  // 중복 숫자가 있을 때 출력하는 메세지
   public void numberDuplicatedMessage() {
     System.out.println("[ERROR] 로또 번호는 중복되면 안됩니다.");
+  }
+
+  // 로또 번호와 보너스 번호는 중복될 때 출력하는 메세지
+  public void numberBonusNumberDuplicatedMessage() {
+    System.out.println("[ERROR] 로또 번호와 보너스 번호는 중복되면 안됩니다.");
   }
 
 

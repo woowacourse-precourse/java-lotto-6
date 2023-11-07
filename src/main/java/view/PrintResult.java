@@ -1,5 +1,6 @@
 package view;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /*
@@ -21,7 +22,7 @@ public class PrintResult {
     System.out.println(sb);
   }
 
-  public void earningRatioPrint(double earningRatio) {
+  public void earningRatioPrint(BigDecimal earningRatio) {
     StringBuilder sb = new StringBuilder();
     sb.append("총 수익률은 ").append(earningRatio).append("%입니다.");
     System.out.println(sb);

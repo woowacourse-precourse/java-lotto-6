@@ -1,6 +1,6 @@
 package domain;
 
-import exception.NotPositiveAmountException;
+import exception.ImpossibleAmountException;
 
 public class Amount {
     private final int amount;
@@ -12,7 +12,7 @@ public class Amount {
 
     private void validateAmount(int amount) {
         if (amount < 0) {
-            throw new NotPositiveAmountException();
+            throw new ImpossibleAmountException();
         }
     }
 

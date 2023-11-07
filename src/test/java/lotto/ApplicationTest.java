@@ -47,13 +47,118 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구매_금액_숫자_아닌_문자_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
+    @Test
+    void 최소_구매_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("999");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 최대_구매_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("100000001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 금액_단위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1111");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_숫자_아닌_문자_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_6개_아닌_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_중복_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_범위_45초과_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_범위_1미만_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_숫자_아닌_문자_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    //보너스 번호 한개 아닌 경우
+    //보너스 번호 1 ~ 45 사이 아닌 경우
+    @Test
+    void 보너스_번호_범위_45초과_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,43","46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_범위_1미만_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스_번호_당첨_번호_중복_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_개수_1개_아님_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","7,8");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

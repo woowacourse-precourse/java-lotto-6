@@ -11,15 +11,19 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class BuyLotto {
     private static boolean correctInputMoney;
     private static int buyingQuantityLotto;
-    public static void inputMoney(){
-        correctInputMoney = false;
+    public static int inputMoney(){
         //로또 구입 금액 입력
+        correctInputMoney = false;
+        int inputPurchaseMoney = 0;
+
         while(!correctInputMoney){
             System.out.println("구입금액을 입력해 주세요.");
-            int inputPurchaseMoney = Integer.valueOf(readLine());
+            inputPurchaseMoney = Integer.valueOf(readLine());
 
             validateInputMoney(inputPurchaseMoney);
         }
+
+        return inputPurchaseMoney;
     }
 
     private static void validateInputMoney(int inputPurchaseMoney){

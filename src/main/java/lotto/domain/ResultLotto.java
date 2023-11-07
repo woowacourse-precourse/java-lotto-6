@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ResultLotto {
     //매칭 개수 리스트 -> 3개,4개,5개,5+1개,6개 리스트(enum Prize List) -> 각각 몇개인지 리스트 -> 출력 및 수익률 계산
-    public static void showDetail(List<Integer> lottoNumbersPurchased, List<Integer> winningNumber, int bonusNumber){
+    public static List<Prize> showDetail(List<Integer> lottoNumbersPurchased, List<Integer> winningNumber, int bonusNumber){
+        //당첨 내역 출력
         List<Prize> prizeList = checkRank(lottoNumbersPurchased, winningNumber, bonusNumber);
         List<Integer> categorizeRank = categorizeRank(prizeList);
 
@@ -18,9 +18,12 @@ public class ResultLotto {
         System.out.println("5개 일치 (1,500,000원) - " + categorizeRank.get(2) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + categorizeRank.get(3) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + categorizeRank.get(4) + "개");
+
+        return prizeList;
     }
 
     public static List<Integer> categorizeRank(List<Prize> countMatched){
+        //당첨된 로또 등수 각각 몇개인지 확인
         List<Integer> categorizedRank = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
         for(Prize p : countMatched){
             if(p == Prize.FIFTH_PLACE){

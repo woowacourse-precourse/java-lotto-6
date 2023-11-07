@@ -21,4 +21,4 @@
     - [x] 당첨 번호 5개가 일치할 때 보너스 번호 매치 - #matchingBonus
 
 ### Revenue.class
-- [ ] 수익률 출력(소수점 둘째 자리에서 반올림) - #rateOfRevenue()
+- [x] 수익률 출력(소수점 둘째 자리에서 반올림) - #rateOfRevenue()

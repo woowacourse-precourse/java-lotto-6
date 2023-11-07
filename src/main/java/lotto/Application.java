@@ -1,17 +1,14 @@
 package lotto;
 
-import lotto.domain.BuyLotto;
-import lotto.domain.InputNumber;
-import lotto.domain.ResultLotto;
+import lotto.domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         BuyLotto buyLotto = new BuyLotto();
-        buyLotto.inputMoney();
+        int purchaseLottoMoney = buyLotto.inputMoney();
 
         List<Integer> lottoNumbersPurchased;
         lottoNumbersPurchased = buyLotto.numberLotto();
@@ -21,6 +18,8 @@ public class Application {
         int bonusNumber = inputNumber.inputBonusNumber();
 
         ResultLotto resultLotto = new ResultLotto();
-        resultLotto.showDetail(lottoNumbersPurchased, winningNumber, bonusNumber);
+        List<Prize> prizeList = resultLotto.showDetail(lottoNumbersPurchased, winningNumber, bonusNumber);
+
+        Revenue.rateOfRevenue(prizeList, purchaseLottoMoney);
     }
 }

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.Customer;
 import lotto.view.constant.ConstantMessage;
 import lotto.view.constant.ErrorMessage;

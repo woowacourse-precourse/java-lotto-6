@@ -146,7 +146,7 @@ public class Application {
 	}
 	
 	private boolean isRange(int n) {
-		return true;
+		return !(n >= 1 && n <= 45);
 	}
 	
 	private void isDuplicated(String[]s) {

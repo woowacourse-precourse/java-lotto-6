@@ -21,7 +21,11 @@ public class Lotto {
         if (duplicate(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_DUPLICATE.toString());
         }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45 || number < 0)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.toString());
+        }
     }
+
 
     public boolean duplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumber = new HashSet<>(numbers);
@@ -33,4 +37,3 @@ public class Lotto {
         return numbers;
     }
 }
-

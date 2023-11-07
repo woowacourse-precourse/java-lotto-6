@@ -34,4 +34,14 @@ public class LottoResult {
         joiner.add(lottoRank.getOutputString(rankCount));
     }
 
+    public double getEarningsRate(final int purchaseAmount) {
+        return getWinningAmount() * 100.0 / purchaseAmount;
+    }
+
+    private int getWinningAmount() {
+        return Arrays.stream(LottoRank.values())
+            .mapToInt(rank -> rank.getPrize() * checkResult.get(rank))
+            .sum();
+    }
+
 }

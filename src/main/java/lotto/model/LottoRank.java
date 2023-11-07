@@ -45,4 +45,8 @@ public enum LottoRank {
         return String.format(outputString, resultCount);
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
 }

@@ -15,11 +15,16 @@ public class LottoController {
     private LottoService lottoService = new LottoService();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private int purchasePrice;
 
     public void run() {
 
         outputView.printInputPurchasePriceSentence();
-        int purchasePrice = inputView.inputPurchasePrice();
+        try {
+            purchasePrice = inputView.inputPurchasePrice();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
         Buyer buyer = lottoService.issueLotteryTicketAll(purchasePrice);
         List<Lotto> lottos = buyer.getLottos();

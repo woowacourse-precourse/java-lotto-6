@@ -14,7 +14,9 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(inputNumbers);
 
         int inputNumberCnt = inputNumbers.length;
-        int lottoResultCnt = lottoResult.getLottoResultNumber().size();
+        int lottoResultCnt = lottoResult.getLottoResultNumber()
+                .getNumbers()
+                .size();
 
         assertThat(inputNumberCnt).isEqualTo(lottoResultCnt);
     }

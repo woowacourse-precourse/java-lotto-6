@@ -34,8 +34,8 @@ public class LottoResult {
         return lottoResult;
     }
 
-    public List<Integer> getLottoResultNumber() {
-        return lottoResultNumber.getNumbers();
+    public Lotto getLottoResultNumber() {
+        return lottoResultNumber;
     }
 
     private void setLottoResultNumber(String[] lottoResult) {

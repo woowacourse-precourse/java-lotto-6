@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class RevenueCalculatorTest {
 
     @ParameterizedTest
-    @CsvSource({"2000, 5000, 250.0", "0, 5000, 0.0", "2000, 0, 0.0", "1000, 1500, 150.0"
+    @CsvSource({"2000, 5000, 250.0", "1000, 5000, 500.0", "2000, 0, 0.0", "1000, 1500, 150.0"
     })
     @DisplayName("수익률 계산 다양한 케이스 테스트")
     void calculateRevenueRate(int investedAmount, long totalEarnings, double expectedRevenueRate) {

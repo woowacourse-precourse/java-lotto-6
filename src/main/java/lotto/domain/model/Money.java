@@ -19,7 +19,7 @@ public class Money {
     private void validatePositive(int amount) {
         if (amount <= ZERO.getValue()) {
             throw new IllegalArgumentException(
-                    LottoErrorMessages.INVALID_LOTTO_PRICE.getMessage());
+                    LottoErrorMessages.NEGATIVE_AMOUNT.getMessage());
         }
     }
 

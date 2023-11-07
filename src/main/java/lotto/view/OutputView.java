@@ -3,10 +3,10 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
+import lotto.constant.LottoResultStatus;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.LottoResultStatus;
 import lotto.domain.PurchaseLottos;
 import lotto.domain.PurchasePrice;
 

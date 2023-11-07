@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.LottoResultStatus;
 import lotto.exception.ErrorMessagePrinter;
 import lotto.util.LottoNumbersGenerator;
 

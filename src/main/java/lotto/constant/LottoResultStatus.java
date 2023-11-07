@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constant;
 
 import java.util.stream.Stream;
 

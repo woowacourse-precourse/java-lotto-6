@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.constant.LottoResultStatus;
 
 public class LottoResult {
     private Map<LottoResultStatus, Integer> result;

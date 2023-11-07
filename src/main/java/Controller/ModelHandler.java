@@ -3,11 +3,13 @@ package Controller;
 import Model.Domain;
 import Model.Lotto;
 import Model.Service;
+import View.InputView;
 import java.util.List;
 
 public class ModelHandler {
-    private Domain DOMAIN = Domain.getInstance();
-    private Service SERVICE = Service.getInstance();
+    private final Domain DOMAIN = Domain.getInstance();
+    private final Service SERVICE = Service.getInstance();
+    private final InputView INPUT_VIEW = InputView.getInstance();
 
     public List<Lotto> MY_LOTTO = DOMAIN.getMyLotto();
     public List<Integer> CORRECT_NUMBER_COUNT = DOMAIN.getCorrectNumberCount();
@@ -22,5 +24,11 @@ public class ModelHandler {
         return Singleton.INSTANCE;
     }
 
+    public void setInputPrice() {
+        DOMAIN.setPrice(INPUT_VIEW.inputPrice());
+    }
 
+    public void setInputWinningNumber() {
+        DOMAIN.setLottoWinningNumber(SERVICE.makeLotto(INPUT_VIEW.inputWinningNumber()));
+    }
 }

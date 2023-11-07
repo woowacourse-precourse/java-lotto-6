@@ -16,12 +16,12 @@ public class InputView {
         return Singleton.INSTANCE;
     }
 
-    public void inputPrice() {
-        int price = Integer.parseInt(Console.readLine());
+    public int inputPrice() {
+        return Integer.parseInt(Console.readLine());
     }
 
-    public void inputWinningNumber() {
-
+    public String inputWinningNumber() {
+        return Console.readLine();
     }
 
     public void inputBonusNumber() {

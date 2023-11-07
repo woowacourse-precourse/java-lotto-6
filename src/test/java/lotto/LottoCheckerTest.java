@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoCheckerTest {
     private final List<Integer> WINNING_NUMBER = List.of(1, 2, 3, 4, 5, 45);

@@ -10,7 +10,7 @@ public class Customer {
         this.lottoPapers = lottoPapers;
     }
 
-    public void insertMoney(final LottoStore lottoStore, final String money) {
+    public void insertMoney(final LottoStore lottoStore, final long money) {
         lottoStore.getMoney(money);
     }
 

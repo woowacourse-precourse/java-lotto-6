@@ -9,8 +9,18 @@ public enum WinningPrize {
 
     private final int price;
     private final String message;
+
+    public static int[] priceArray = {5000,50000,1500000,30000000,2000000000};
     WinningPrize(int price, String message){
         this.price = price;
         this.message = message;
+    }
+
+    public int getPrice(){
+        return this.price;
+    }
+
+    public String getMessage(){
+        return this.message;
     }
 }

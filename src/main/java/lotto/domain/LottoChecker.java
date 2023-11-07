@@ -7,8 +7,9 @@ import java.util.List;
 public class LottoChecker {
 
     private List<Lotto> lottos;
-    private List<Integer> winningNumbers = new ArrayList<>(6);
+    private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
+    private List<Integer> result;
 
 
 
@@ -18,16 +19,10 @@ public class LottoChecker {
             this.winningNumbers.add(Integer.parseInt(num));
         }
         this.bonusNumber = Integer.parseInt(bonusNumber);
+        result = Arrays.asList(0,0,0,0,0);
     }
 
     public List<Integer> checkResult(){
-        List<Integer> result = new ArrayList<>();
-        result.add(0);
-        result.add(0);
-        result.add(0);
-        result.add(0);
-        result.add(0);
-
         for(Lotto lotto : lottos){
             int n = checkNumber(lotto)-3;
             if(n>=0) result.set(n,result.get(n)+1);

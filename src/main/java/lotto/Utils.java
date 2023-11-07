@@ -1,5 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
+
 public class Utils {
     public static int convertStringToInt(String purchasePriceInput) {
         int purchasePrice = 0;
@@ -8,5 +12,9 @@ public class Utils {
         }
 
         return purchasePrice;
+    }
+
+    public static List<Integer> makeLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

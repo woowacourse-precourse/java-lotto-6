@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.Utils.makeLottoNumber;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -17,6 +19,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public static Lotto makeLotto() {
+        List<Integer> lottoNumbers = makeLottoNumber();
+        return new Lotto(lottoNumbers);
+    }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
 }

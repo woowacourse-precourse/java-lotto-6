@@ -20,10 +20,7 @@ public class Controller {
 
     public void run() {
         UserPrice userPrice =inputUserPrice();
-        Lotties lotties = userPrice.buy(LOTTO_PRICE);
-
-        OutputView.printBuyLottoCount(lotties.size());
-        OutputView.printLotties(lotties.getLottiesNumbers());
+        Lotties lotties = buyLotties(userPrice);
 
         WinningNumber winningNumber = inputWinningNumber();
 
@@ -32,6 +29,13 @@ public class Controller {
 
         OutputView.printScore(score.getScore());
         OutputView.printProfit(totalProfit, userPrice.getPrice());
+    }
+
+    private static Lotties buyLotties(UserPrice userPrice) {
+        Lotties lotties = userPrice.buy(LOTTO_PRICE);
+        OutputView.printBuyLottoCount(lotties.size());
+        OutputView.printLotties(lotties.getLottiesNumbers());
+        return lotties;
     }
 
     private static UserPrice inputUserPrice() {

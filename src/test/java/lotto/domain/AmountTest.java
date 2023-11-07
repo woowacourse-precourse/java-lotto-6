@@ -15,7 +15,7 @@ class AmountTest{
     @ValueSource(ints = {100, 10100, 11200, 5100, 10})
     void 구입_금액_단위_예외_처리(int amount){
         assertThatThrownBy(() -> new Amount(amount)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionEnum.INVALID_PURCHASE_PRICE_UNIT.getMessage());
+                .hasMessage(ExceptionEnum.INVALID_PURCHASE_PRICE_UNIT.message());
     }
 
     @DisplayName("구입 금액이 1000원 단위이다.")

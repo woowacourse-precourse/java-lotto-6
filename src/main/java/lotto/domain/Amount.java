@@ -22,7 +22,7 @@ public class Amount{
 
     private void throwIfInvalidPurchasePriceUnit(int purchasePrice){
         if (purchasePrice % UNIT != 0){
-            throw new IllegalArgumentException(INVALID_PURCHASE_PRICE_UNIT.getMessage());
+            throw new IllegalArgumentException(INVALID_PURCHASE_PRICE_UNIT.message());
         }
     }
 

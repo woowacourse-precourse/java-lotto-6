@@ -13,8 +13,8 @@ public enum ExceptionEnum{
         this.message = NOTICE + message;
     }
 
-    public String getMessage(){
-        return message;
+    public String message(){
+        return this.message;
     }
 
 }

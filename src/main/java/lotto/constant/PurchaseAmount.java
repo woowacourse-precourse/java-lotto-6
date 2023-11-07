@@ -5,13 +5,13 @@ public enum PurchaseAmount {
     MIN(1000),
     MAX(100000);
 
-    private final int amount;
+    private final long amount;
 
-    PurchaseAmount(int amount) {
+    PurchaseAmount(long amount) {
         this.amount = amount;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return this.amount;
     }
 }

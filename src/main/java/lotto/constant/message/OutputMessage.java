@@ -29,7 +29,7 @@ public enum OutputMessage {
         return NEW_LINE.getMessage() + this.message;
     }
 
-    public String getMessageWithNewLine(int quantity) {
+    public String getMessageWithNewLine(long quantity) {
         return NEW_LINE.getMessage() + String.format(this.message, quantity);
     }
 

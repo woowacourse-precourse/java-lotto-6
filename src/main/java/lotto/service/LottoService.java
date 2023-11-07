@@ -15,22 +15,22 @@ public class LottoService {
         this.randomLottoNumberGenerator = randomLottoNumberGenerator;
     }
 
-    public List<Lotto> buyLottos(int purchaseAmount) {
-        int lottoQuantity = getLottoQuantity(purchaseAmount);
+    public List<Lotto> buyLottos(long purchaseAmount) {
+        long lottoQuantity = getLottoQuantity(purchaseAmount);
         return getLottos(lottoQuantity);
     }
 
-    private static int getLottoQuantity(int purchaseAmount) {
+    private static long getLottoQuantity(long purchaseAmount) {
         return purchaseAmount / PurchaseAmount.UNIT.getAmount();
     }
 
-    private List<Lotto> getLottos(int lottoQuantity) {
+    private List<Lotto> getLottos(long lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
         getLotto(lottoQuantity, lottos);
         return lottos;
     }
 
-    private void getLotto(int lottoQuantity, List<Lotto> lottos) {
+    private void getLotto(long lottoQuantity, List<Lotto> lottos) {
         for (int i = 0; i < lottoQuantity; i++) {
             lottos.add(new Lotto(randomLottoNumberGenerator.generate()));
         }

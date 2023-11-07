@@ -34,7 +34,7 @@ public class LottoController {
     }
 
     public void playLotto() {
-        int purchaseAmount = getPurchaseAmount();
+        long purchaseAmount = getPurchaseAmount();
         List<Lotto> lottos = purchaseLottos(purchaseAmount);
         printLottos(lottos);
 
@@ -46,17 +46,17 @@ public class LottoController {
         printProfitRate(profitRate);
     }
 
-    private int getPurchaseAmount() {
+    private long getPurchaseAmount() {
         return inputView.getPurchaseAmount();
     }
 
-    private List<Lotto> purchaseLottos(int purchaseAmount) {
+    private List<Lotto> purchaseLottos(long purchaseAmount) {
         return lottoService.buyLottos(purchaseAmount);
     }
 
     private WinningNumbers getWinningNumbers() {
         String winningNumbersInput = getWinningNumbersInput();
-        int bonusNumber = getBonusNumberInput();
+        int bonusNumber = getBonusNumberInput(winningNumbersInput);
         return WinningNumbersFactory.createWinningNumbers(winningNumbersInput, bonusNumber);
     }
 
@@ -68,7 +68,7 @@ public class LottoController {
         outputView.printResults(results);
     }
 
-    private double calculateProfitRate(int purchaseAmount, Map<Rank, Integer> results) {
+    private double calculateProfitRate(long purchaseAmount, Map<Rank, Integer> results) {
         return profitCalculator.getProfitRate(purchaseAmount, results);
     }
 
@@ -85,7 +85,7 @@ public class LottoController {
         return inputView.getWinningNumbers();
     }
 
-    private int getBonusNumberInput() {
-        return inputView.getBonusNumber();
+    private int getBonusNumberInput(String winningNumbersInput) {
+        return inputView.getBonusNumber(winningNumbersInput);
     }
 }

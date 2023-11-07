@@ -14,7 +14,7 @@ public class InputView {
         this.outputView = new OutputView();
     }
 
-    public int getPurchaseAmount() {
+    public long getPurchaseAmount() {
         try {
             outputView.printRequestPurchaseAmount();
             String purchaseAmount = getInput();
@@ -37,14 +37,14 @@ public class InputView {
         }
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(String winningNumbersInput) {
         try {
             outputView.printRequestBonusNumber();
-            String bonusNumber = Console.readLine();
-            return BonusNumberValidator.validate(bonusNumber);
-        } catch (IllegalArgumentException e) {
+            String bonusNumberInput = Console.readLine();
+            return BonusNumberValidator.validate(bonusNumberInput, winningNumbersInput);
+        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningNumbersInput);
         }
     }
 

@@ -7,7 +7,7 @@ public class ProfitCalculator {
 
     private static final int PERCENTAGE_FACTOR = 100;
 
-    public double getProfitRate(int purchaseAmount, Map<Rank, Integer> results) {
+    public double getProfitRate(long purchaseAmount, Map<Rank, Integer> results) {
         long totalWinningAmount = calculateTotalWinningAmount(results);
         return calculateRate(purchaseAmount, totalWinningAmount);
     }
@@ -18,7 +18,7 @@ public class ProfitCalculator {
                 .sum();
     }
 
-    private double calculateRate(int purchaseAmount, long totalWinningAmount) {
+    private double calculateRate(long purchaseAmount, long totalWinningAmount) {
         return (double) totalWinningAmount / purchaseAmount * PERCENTAGE_FACTOR;
     }
 }

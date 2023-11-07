@@ -20,7 +20,7 @@ public class LottoException {
 
     public boolean purchaseAmountCheckMain(String purchaseAmount) {
         try {
-            return purchaseAmountCheckMain(purchaseAmount);
+            return purchaseAmountCheckSub(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;

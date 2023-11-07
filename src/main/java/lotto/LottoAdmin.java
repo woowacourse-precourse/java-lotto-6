@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoAdmin {
@@ -24,6 +25,16 @@ public class LottoAdmin {
         for (LottoRank rank: checkLottos(player)) {
             player.addMoney(rank.getValue());
         }
+    }
+
+    public void printPrize(LottoPlayer player) {
+        List<LottoRank> ranks = checkLottos(player);
+        System.out.printf("당첨 통계\n---\n");
+        System.out.printf(LottoRank.FIFTH.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.FIFTH));
+        System.out.printf(LottoRank.FOURTH.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.FOURTH));
+        System.out.printf(LottoRank.THIRD.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.THIRD));
+        System.out.printf(LottoRank.SECOND.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.SECOND));
+        System.out.printf(LottoRank.FIRST.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.FIRST));
     }
 
     private LottoRank getRank(Lotto lotto) {

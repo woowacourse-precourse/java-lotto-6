@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;

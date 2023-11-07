@@ -1,6 +1,6 @@
 package lotto.view;
 
-public class InputBuyAmountView extends InputView{
+public class InputBuyAmountView extends InputView {
     private static final String INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 
     public Integer getInputValue() {

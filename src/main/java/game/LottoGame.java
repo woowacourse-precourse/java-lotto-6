@@ -26,7 +26,7 @@ public class LottoGame {
         OutputProfitResult outputResult = new OutputProfitResult();
 
         // LottoTicketPurchase
-        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount(converter);
+        int purchaseAmount = lottoTicketPurchase.getPurchaseAmount();
 
         System.out.println();
 
@@ -61,6 +61,7 @@ public class LottoGame {
         System.out.println();
 
         // LottoResultDisplay
+        lottoResultDisplay.outputLottoResultNotice();
         lottoResultDisplay.getLottoSuccessCount(userLottoNumbers, winningNumberList, bonusNumber);
         lottoResultDisplay.outputLottoResult();
 

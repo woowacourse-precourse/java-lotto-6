@@ -7,11 +7,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BonusTest {
-    
+
     @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
     @Test
     void bonusIsNumber() {
         assertThatThrownBy(() -> new Bonus("abc"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 빈칸이면 예외가 발생한다.")
+    @Test
+    void bonusIsEmpty() {
+        assertThatThrownBy(() -> new Bonus(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

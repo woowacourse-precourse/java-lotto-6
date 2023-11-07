@@ -4,12 +4,9 @@ import lotto.domain.RevenueDto;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
 
-    private static final String LEFT_LOTTO_BRACKET = "[";
-    private static final String RIGHT_LOTTO_BRACKET = "]";
 
     public static void printError(String errorMessage) {
         System.out.println(errorMessage);
@@ -17,15 +14,9 @@ public class OutputView {
 
     public static void printLottosByAmount(List<List<Integer>> lottos) {
         for(List<Integer> lotto: lottos) {
-            printLottoByAmount(lotto);
+            System.out.println(lotto);
         }
-    }
-
-    private static void printLottoByAmount(List<Integer> lotto) {
-        System.out.println(LEFT_LOTTO_BRACKET);
-        String result = String.join(", ", lotto.toString());
-        System.out.println(result);
-        System.out.println(RIGHT_LOTTO_BRACKET);
+        printEnter();
     }
 
     public static void printIssueAbleCount(int issueAbleCount) {
@@ -47,10 +38,10 @@ public class OutputView {
     }
 
     public static void printWinningStaticsInput() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
     }
 
-    private static void printEnter() {
+    public static void printEnter() {
         System.out.println();
     }
 

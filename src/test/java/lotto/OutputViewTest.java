@@ -63,6 +63,6 @@ public class OutputViewTest {
     void 당첨_통계_문구를_출력하는_기능_검증() {
         outputView.printWinningStaticsInput();
 
-        Assertions.assertThat(output.toString()).isEqualTo("당첨 통계\n---\n");
+        Assertions.assertThat(output.toString()).isEqualTo("\n당첨 통계\n---\n");
     }
 }

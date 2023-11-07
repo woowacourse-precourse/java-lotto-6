@@ -17,4 +17,11 @@ public class Lotto {
                 .sorted()
                 .toList();
     }
+
+    public List<String> getStringNumbers() {
+        return this.numbers
+                .stream()
+                .map(String::valueOf)
+                .toList();
+    }
 }

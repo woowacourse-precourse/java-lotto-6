@@ -33,5 +33,6 @@ public class GameController {
 
     public void announceLottos(Lottos lottos) {
         outputView.printLottoCount(lottos.getLottoStatus());
+        outputView.printLottoStatus(lottos.getLottoStatus());
     }
 }

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.compareSystem;
 
 import static lotto.Option.GameOption.FIVE_AND_BONUS_MONEY;
 import static lotto.Option.GameOption.FIVE_MONEY;

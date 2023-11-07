@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.domain.LottoMachine;
-import lotto.domain.LottoResult;
+import lotto.domain.compareSystem.LottoMachine;
+import lotto.domain.compareSystem.LottoResult;
 import lotto.domain.user.UserLotto;
 
 public class Output {

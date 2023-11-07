@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.compareSystem;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.MockNumberGenerator;
 import lotto.Option.GameStatus;
+import lotto.domain.Lotto;
 import lotto.domain.user.LottoCount;
 import lotto.domain.user.UserLotto;
 import lotto.domain.win.Bonus;

@@ -27,7 +27,7 @@ public class LottoGame {
         countWinRank(lottos, winningLotto);
 
         printWinResult();
-        printProfit(purchasePrice);
+        printProfitRate(purchasePrice);
     }
 
     private PurchasePrice inputPurchasePrice() {
@@ -111,8 +111,8 @@ public class LottoGame {
         outputView.printWinResult(winResult);
     }
 
-    private void printProfit(PurchasePrice purchasePrice) {
-        String profit = new Profit().calculateProfitRate(purchasePrice, winResult);
-        outputView.printProfit(profit);
+    private void printProfitRate(PurchasePrice purchasePrice) {
+        String profitRate = new ProfitRate().calculateProfitRate(purchasePrice, winResult);
+        outputView.printProfitRate(profitRate);
     }
 }

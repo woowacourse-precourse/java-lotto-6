@@ -8,11 +8,20 @@ public class LottoGame {
 
     private List<Lotto> lottos;
     private List<Integer> winningLotto;
+
     private int purchasePrice;
     private int purchaseAmount;
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+
+    public LottoGame() {
+
+    }
+
+    public LottoGame(int purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
 
     public void setPurchaseAmount() {
         this.purchaseAmount = purchasePrice / 1000;
@@ -26,5 +35,9 @@ public class LottoGame {
 
     public void setWinningLotto() {
         this.winningLotto = inputView.inputWinningNumbers();
+    }
+
+    public int getPurchaseAmount() {
+        return this.purchaseAmount;
     }
 }

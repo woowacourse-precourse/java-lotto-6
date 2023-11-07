@@ -28,7 +28,7 @@ public class ValueValidator {
     }
 
     public boolean validateWinningInputValue(List<Integer> winningNumbers) {
-        if (validateWinningInputValueSize(winningNumbers) && validateDuplicateWinningInputValue(winningNumbers)) {
+        if (!validateWinningInputValueSize(winningNumbers) && !validateDuplicateWinningInputValue(winningNumbers)) {
             return false;
         }
         return true;

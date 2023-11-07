@@ -15,8 +15,8 @@ public class Lotto {
         Validator.validateIsDuplicationExists(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public LottoDTO getLottoDTO() {
+        return LottoDTO.from(numbers);
     }
 
     public int countMatchingNumber(WinningNumber winningNumber) {

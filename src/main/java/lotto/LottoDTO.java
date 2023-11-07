@@ -5,8 +5,8 @@ import java.util.List;
 
 public class LottoDTO {
 
-    public static LottoDTO from(Lotto lotto) {
-        return new LottoDTO(lotto.getNumbers());
+    public static LottoDTO from(List<Integer> numbers) {
+        return new LottoDTO(numbers);
     }
 
     private LottoDTO(List<Integer> numbers) {

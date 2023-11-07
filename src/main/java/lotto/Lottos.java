@@ -12,7 +12,7 @@ public class Lottos {
 
     public List<LottoDTO> getLottoDTOs() {
         return lottos.stream()
-                .map(LottoDTO::from)
+                .map(Lotto::getLottoDTO)
                 .toList();
     }
 

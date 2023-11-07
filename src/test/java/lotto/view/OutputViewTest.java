@@ -4,6 +4,7 @@ import lotto.domain.Cash;
 import lotto.domain.Profit;
 import lotto.domain.Rank;
 import lotto.domain.WinningYield;
+import lotto.dto.Ranks;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
 class OutputViewTest {
@@ -26,10 +26,7 @@ class OutputViewTest {
     @DisplayName("출력 형식에 맞추어 당첨 내역을 출력한다.")
     void displayWinningDetails() {
         // given
-        List<Rank> ranks = new ArrayList<>();
-        ranks.add(Rank.FIFTH);
-        ranks.add(Rank.FOURTH);
-        ranks.add(Rank.FIFTH);
+        Ranks ranks = new Ranks(List.of(Rank.FIFTH, Rank.FIFTH, Rank.FOURTH));
         Cash cash = new Cash(8000);
         Profit profit = new Profit();
         profit.calculateAmount(ranks);

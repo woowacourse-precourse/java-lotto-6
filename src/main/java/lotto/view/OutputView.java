@@ -4,12 +4,9 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningYield;
 import lotto.dto.Lottos;
+import lotto.dto.Ranks;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class OutputView {
     public static void displayLottos(Lottos lottos) {
@@ -17,28 +14,23 @@ public class OutputView {
         printLottos(lottos);
     }
 
-    public static void displayWinningDetails(List<Rank> ranks, WinningYield winningYield) {
+    public static void displayWinningDetails(Ranks ranks, WinningYield winningYield) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         printRankDetail(ranks);
         printYield(winningYield);
     }
 
-    private static void printRankDetail(List<Rank> ranks) {
+    private static void printRankDetail(Ranks ranks) {
         // 출력 형식 요구사항을 위한 정렬
-        List<Rank> reversedRanks = sortRank();
+        Ranks reversedRanks = Ranks.getSortedRanks();
 
-        for (Rank rank : reversedRanks) {
+        for (Rank rank : reversedRanks.getRanks()) {
             if (rank == Rank.NONE) {
                 continue;
             }
-            long count = countMatches(ranks, rank);
-            System.out.println(rankMessage(rank, count));
+            System.out.println(rankMessage(rank, ranks.countMatches(rank)));
         }
-    }
-
-    private static long countMatches(List<Rank> ranks, Rank rank) {
-        return ranks.stream().filter(r -> r == rank).count();
     }
 
     private static String formatPrizeAmount(Rank rank) {
@@ -64,11 +56,5 @@ public class OutputView {
 
     private static void printYield(WinningYield winningYield) {
         System.out.println("총 수익률은 " + winningYield.getYield() + "%입니다.");
-    }
-
-    private static List<Rank> sortRank() {
-        List<Rank> reversedRanks = new ArrayList<>(Arrays.asList(Rank.values()));
-        Collections.reverse(reversedRanks);
-        return reversedRanks;
     }
 }

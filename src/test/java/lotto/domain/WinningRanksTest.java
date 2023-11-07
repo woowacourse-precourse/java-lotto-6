@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.dto.Lottos;
+import lotto.dto.Ranks;
 import lotto.dto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,10 +27,10 @@ class WinningRanksTest {
         WinningRanks winningRanks = new WinningRanks(new Lottos(lottos), winningNumbers);
 
         // when
-        List<Rank> ranks = winningRanks.calculateRanks();
+        Ranks ranks = winningRanks.calculateRanks();
 
         // then
-        assertThat(ranks.size()).isEqualTo(lottos.size());
-        assertThat(ranks.get(1)).isEqualTo(Rank.FIFTH);
+        assertThat(ranks.getRanks().size()).isEqualTo(lottos.size());
+        assertThat(ranks.getRanks().get(1)).isEqualTo(Rank.FIFTH);
     }
 }

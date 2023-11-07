@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.dto.Lottos;
+import lotto.dto.Ranks;
 import lotto.dto.WinningNumbers;
 import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
@@ -23,7 +24,7 @@ public class Game {
         WinningNumbers winningNumbers = getWinningNumbers();
 
         // 당첨 통계 출력
-        List<Rank> ranks = getRanks(lottos, winningNumbers);
+        Ranks ranks = getRanks(lottos, winningNumbers);
         WinningYield yield = getYield(cash, ranks);
         OutputView.displayWinningDetails(ranks, yield);
     }
@@ -84,12 +85,12 @@ public class Game {
         }
     }
 
-    private List<Rank> getRanks(Lottos lottos, WinningNumbers winningNumbers) {
+    private Ranks getRanks(Lottos lottos, WinningNumbers winningNumbers) {
         WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
         return winningRanks.calculateRanks();
     }
 
-    private WinningYield getYield(Cash cash, List<Rank> ranks) {
+    private WinningYield getYield(Cash cash, Ranks ranks) {
         Profit profit = new Profit();
         profit.calculateAmount(ranks);
         return new WinningYield(cash, profit);

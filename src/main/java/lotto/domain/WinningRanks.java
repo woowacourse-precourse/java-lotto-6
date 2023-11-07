@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.dto.Lottos;
+import lotto.dto.Ranks;
 import lotto.dto.WinningNumbers;
 
 import java.util.ArrayList;
@@ -15,13 +16,13 @@ public class WinningRanks {
         this.winningNumbers = winningNumbers;
     }
 
-    public List<Rank> calculateRanks() {
+    public Ranks calculateRanks() {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos.getLottos()) {
             Rank rank = generateRank(lotto);
             ranks.add(rank);
         }
-        return ranks;
+        return new Ranks(ranks);
     }
 
     private Rank generateRank(Lotto lotto) {

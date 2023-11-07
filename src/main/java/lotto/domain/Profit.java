@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import lotto.dto.Ranks;
 
 public class Profit {
     private Integer amount;
@@ -9,8 +9,8 @@ public class Profit {
         this.amount = 0;
     }
 
-    public void calculateAmount(List<Rank> ranks) {
-        for (Rank rank : ranks) {
+    public void calculateAmount(Ranks ranks) {
+        for (Rank rank : ranks.getRanks()) {
             this.amount += rank.getPrizeAmount();
         }
     }

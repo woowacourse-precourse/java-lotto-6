@@ -12,7 +12,7 @@ public enum ErrorMessage {
     CONTAIN_BLANK("[ERROR] 입력에 공백이 섞여있습니다"),
     ANOTHER_COMMA("[ERROR] 입력은 ',' 으로 구분해야합니다"),
     SEQUENCE_COMMA("[ERROR] ',' 를 확인해주세요"),
-    BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 기존 번호와 중복될 수 없습니다");
+    BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다");
 
 
 

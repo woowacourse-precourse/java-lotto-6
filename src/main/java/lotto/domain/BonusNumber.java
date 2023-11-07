@@ -15,16 +15,9 @@ public class BonusNumber {
     }
 
     private void validate(int bonusNumber) {
-      //  validateDuplicateLotto(bonusNumber, randomNumber.getNumbers());
         validateOutOfRange(bonusNumber);
     }
 
-    //private void validateDuplicateLotto(int bonusNumber, List<Integer> numbers) {
-     //   if (numbers.contains(bonusNumber)) {
-       //     throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
-       // }
-
-    //}
 
     private void validateOutOfRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {

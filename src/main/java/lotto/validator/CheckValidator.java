@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE;
+
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -43,14 +45,20 @@ public class CheckValidator {
         }
     }
 
-    public BonusNumber validateBonusNumber() {
+    public BonusNumber validateBonusNumber(List<Integer> numbers) {
         while (true) {
             try {
                 int number = bonusNumberView.bonusNumber();
+                validateBonusNumberNotInLottoNumbers(number ,numbers);
                 return new BonusNumber(number);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+    private void validateBonusNumberNotInLottoNumbers(int bonusNumber, List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 }

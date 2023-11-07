@@ -64,8 +64,9 @@ public class Game {
 
     private void lottoMethod() {
         this.numbers = checkValidator.validateLotto().getNumbers();
-        this.bonusNumber = checkValidator.validateBonusNumber().getBonusNumber();
+        this.bonusNumber = checkValidator.validateBonusNumber(numbers).getBonusNumber();
     }
+
 
     private void printReceipt(int ticket) {
         String printReceiptMessage = String.format(BUY_RECEIPT.getMessage(),

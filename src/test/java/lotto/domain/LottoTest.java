@@ -2,8 +2,10 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +37,21 @@ public class LottoTest {
         // Then
         numbers.stream()
                 .forEach(number -> assertTrue(lotto.doesContain(number)));
+    }
+
+
+    @Test
+    public void 로또에_값이_들어있는지() {
+        // Given
+        Lotto lotto = Lotto.create("1,2,3,4,5,6");
+
+        // When
+        boolean resultTrue = lotto.doesContain(1);
+        boolean resultFalse = lotto.doesContain(7);
+
+        // Then
+        assertTrue(resultTrue);
+        assertFalse(resultFalse);
     }
 
 

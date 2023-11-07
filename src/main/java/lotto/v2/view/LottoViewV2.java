@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoViewV2 {
-    public LottoViewV2() {
+
+    private Console console;
+
+    public LottoViewV2(Console console) {
+        this.console = console;
     }
 
     public int inputMoney() {

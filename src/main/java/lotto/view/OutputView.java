@@ -3,9 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
-import lotto.service.LottoWinningCalculator;
 import lotto.utils.constants.Comment;
-import lotto.utils.constants.LottoWinning;
 
 public class OutputView {
 

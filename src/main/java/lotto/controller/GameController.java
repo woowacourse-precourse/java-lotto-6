@@ -34,7 +34,7 @@ public class GameController {
 
     private boolean handlePurchaseLottoTickets() {
         int purchaseAmount = inputPurchaseAmount();
-        //TODO: 입력한 구입 금액에 해당하는 만큼 로또 발행
+        game.purchaseLottoTickets(purchaseAmount);
         return true;
     }
 

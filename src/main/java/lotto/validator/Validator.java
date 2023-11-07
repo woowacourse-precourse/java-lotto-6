@@ -14,7 +14,7 @@ public class Validator {
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
-    private static final int LOTTO_PRISE = 1000;
+    private static final int LOTTO_PRICE = 1000;
     private static final int PROPER_REMAINDER = 0;
 
     public static void validateSize(List<Integer> numbers) {
@@ -50,11 +50,11 @@ public class Validator {
     }
 
     private static int calculateUnit(int purchaseAmount) {
-        return purchaseAmount / LOTTO_PRISE;
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     private static int calculateRemainder(int purchaseAmount) {
-        return purchaseAmount % LOTTO_PRISE;
+        return purchaseAmount % LOTTO_PRICE;
     }
 
     private static boolean measureRange(Integer number) {

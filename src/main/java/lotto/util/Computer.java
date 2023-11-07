@@ -5,6 +5,7 @@ import java.math.MathContext;
 import lotto.domain.Rank;
 
 public class Computer {
+    private static final int LOTTO_PRICE = 1000;
     private static final String HUNDRED = "100";
     private static final BigDecimal PERCENT = new BigDecimal(HUNDRED);
     private static final BigDecimal FIFTH_PRIZE = Prize.getPrize(Prize.FIFTH_PRIZE);
@@ -13,8 +14,8 @@ public class Computer {
     private static final BigDecimal SECOND_PRIZE = Prize.getPrize(Prize.SECOND_PRIZE);
     private static final BigDecimal FIRST_PRIZE = Prize.getPrize(Prize.FIRST_PRIZE);
 
-    public static BigDecimal computeProfit(String purchaseAmount, Rank rank) {
-        BigDecimal purchase = new BigDecimal(purchaseAmount);
+    public static BigDecimal computeProfit(int ticketAmount, Rank rank) {
+        BigDecimal purchase = new BigDecimal(String.valueOf(ticketAmount * LOTTO_PRICE));
         BigDecimal fifth = new BigDecimal(String.valueOf(rank.fifth()));
         BigDecimal fourth = new BigDecimal(String.valueOf(rank.fourth()));
         BigDecimal third = new BigDecimal(String.valueOf(rank.third()));

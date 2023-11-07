@@ -8,7 +8,7 @@ public class ComputerTest {
     @DisplayName("수익률을 계산한다.")
     @Test
     void computeProfit() {
-        String purchase = "8000";
+        int purchase = 8000;
         Rank rank = new Rank(1, 0, 3, 0, 0);
         System.out.println("-------------결과---------------");
         System.out.println(rank);

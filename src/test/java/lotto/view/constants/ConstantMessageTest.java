@@ -15,7 +15,7 @@ public class ConstantMessageTest {
     @DisplayName("상수 메시지를 출력한다.")
     @Test
     void printMessage() {
-        String purchase = "8000";
+        int purchase = 8000;
         Rank rank = new Rank(1, 0, 3, 0, 0);
         BigDecimal profit = Computer.computeProfit(purchase, rank);
         System.out.println("-------------결과---------------");

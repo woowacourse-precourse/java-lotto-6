@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TypeConverter {
-
     private static final String COMMA = ",";
 
     public int stringToInt(String input) {

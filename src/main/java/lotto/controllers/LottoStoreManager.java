@@ -16,6 +16,10 @@ public class LottoStoreManager {
     private final double LOTTO_PRICE = 1000;
     private int lottoTicketCount;
 
+    public LottoStoreManager() {
+        purchaseController();
+    }
+
     public void setInput(String inputAmount) {
         this.inputAmount = inputAmount;
     }
@@ -23,6 +27,7 @@ public class LottoStoreManager {
     public int getLottoTicketCount() {
         return lottoTicketCount;
     }
+
     public void purchaseController() {
         setInput(InputProcessor.readLine());
 
@@ -44,11 +49,11 @@ public class LottoStoreManager {
         if (attempts == maxAttempts) {
             getProgramClosePromoptMessage();
         }
+        lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
         InputProcessor.close();
     }
 
     public LottoGenerator lottoMachine() {
-        lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
         return new LottoGenerator(lottoTicketCount);
     }
 

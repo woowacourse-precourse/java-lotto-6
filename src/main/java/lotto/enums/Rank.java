@@ -31,7 +31,7 @@ public enum Rank {
         return prize;
     }
 
-    public static Rank findRank(WinningNumber winningNumber, BonusNumber bonusNumber, Lotto lotto) {
+    public static Rank findRankMatchesThat(WinningNumber winningNumber, BonusNumber bonusNumber, Lotto lotto) {
         int matchCount = lotto.getMatchCount(winningNumber);
         boolean matchBonus = lotto.isMatchBonus(bonusNumber);
         if (isSecondPlace(matchCount, matchBonus)) {

@@ -12,14 +12,12 @@ class WinningValidatorTest {
     private WinningValidator winningValidator;
     private List<Integer> winningNumbers;
     private List<Integer> numbers;
-    private int bonusNumber;
 
     @BeforeEach
     public void setUp() {
         winningValidator = new WinningValidator();
         winningNumbers = Arrays.asList(3, 6, 17, 23, 28, 40);
         numbers = Arrays.asList(4, 6, 17, 19, 23, 36);
-        bonusNumber = 10;
     }
 
     @Test
@@ -33,12 +31,14 @@ class WinningValidatorTest {
     @DisplayName("보너스 번호가 당첨 되지 않았으면 false 를 반환한다.")
     @Test
     void 보너스_번호_비당첨_테스트() {
+        int bonusNumber = 10;
         assertFalse(winningValidator.checkWinningBonusNumber(numbers, bonusNumber));
     }
 
     @DisplayName("보너스 번호가 당첨 되었다면 true 를 반환한다.")
     @Test
     void 보너스_번호_당첨_테스트() {
+        int bonusNumber = 17;
         assertTrue(winningValidator.checkWinningBonusNumber(numbers, bonusNumber));
     }
 }

@@ -8,7 +8,6 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -66,9 +65,10 @@ public class LottoService {
 
     public int calcIndex(int countNum, Lotto winningNumber, Bonus bonus){
         int winIndex = -1;
+        boolean isBonus =  winningNumber.getNumbers().contains(bonus.getBonusNumber());
 
         for(Ranking ranking : Ranking.values()){
-            if(countNum == 5 && winningNumber.getNumbers().contains(bonus.getBonusNumber())){
+            if(countNum == Ranking.SECOND.getWinNum() && isBonus){
                 return Ranking.SECOND.getIndex();
             }
             if(ranking.getWinNum() == countNum){

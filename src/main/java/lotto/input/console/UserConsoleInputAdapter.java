@@ -14,13 +14,18 @@ import java.util.function.Supplier;
 public class UserConsoleInputAdapter implements UserInputPort {
     @Override
     public int getLottoBuyPrice() {
-        return doLoop(this::getLottoBuyPriceWithInput);
+        return doLoop(() -> {
+            String input = getInputWithMessage("구입금액을 입력해 주세요.");
+
+            validateLottoBuyPrice(input);
+            return toInt(input);
+        });
     }
 
     @Override
     public LottoAnswer getLottoAnswer() {
-        List<Integer> lottoNumber = doLoop(this::getLottoNumber);
-        int bonusNumber = doLoop(() -> getLottoBonusNumber(lottoNumber));
+        List<Integer> lottoNumber = getLottoNumber();
+        int bonusNumber = getBonusNumber(lottoNumber);
 
         return new LottoAnswer(lottoNumber, bonusNumber);
     }
@@ -35,28 +40,27 @@ public class UserConsoleInputAdapter implements UserInputPort {
         }
     }
 
-    private int getLottoBuyPriceWithInput() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-
-        validateLottoBuyPrice(input);
-        return toInt(input);
+    private String getInputWithMessage(String message) {
+        System.out.println(message);
+        return Console.readLine();
     }
 
     private List<Integer> getLottoNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<String> numbers = Arrays.asList(input.split(","));
+        return doLoop(() -> {
+            String input = getInputWithMessage("당첨 번호를 입력해 주세요.");;
+            List<String> numbers = Arrays.asList(input.split(","));
 
-        validateLottoNumbers(numbers);
-        return toIntList(numbers);
+            validateLottoNumbers(numbers);
+            return toIntList(numbers);
+        });
     }
 
-    public int getLottoBonusNumber(List<Integer> lottoNumber) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        validateBonusNumber(input, lottoNumber);
-        return toInt(input);
+    private int getBonusNumber(List<Integer> lottoNumber) {
+        return doLoop(() -> {
+            String input = getInputWithMessage("보너스 번호를 입력해 주세요.");
+            validateBonusNumber(input, lottoNumber);
+            return toInt(input);
+        });
     }
 
     private void validateBonusNumber(String input, List<Integer> lottoNumber) {

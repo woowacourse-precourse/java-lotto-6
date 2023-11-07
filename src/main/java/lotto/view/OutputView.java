@@ -13,7 +13,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계" + NEWLINE + "---";
     private static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s" + NEWLINE;
-    private static final String RATE_OF_RETURN_FORMAT_PATTERN = "###,###.0";
+    private static final String RATE_OF_RETURN_FORMAT_PATTERN = "###,##0.0";
 
     private final MessageGenerator messageGenerator;
 

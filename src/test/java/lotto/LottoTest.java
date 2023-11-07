@@ -22,13 +22,18 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("로또 번호가 1~45가 아니면 예외가 발생한다.")
+    @DisplayName("로또 번호가 45가 넘으면 예외가 발생한다.")
     @Test
-    void createLottoInRange() {
+    void createLottoByOver45() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnder1() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     // 아래에 추가 테스트 작성 가능
     // 로또 번호 입력받은 후 integer로 변환하기 전 변수를 넣어야 할 듯

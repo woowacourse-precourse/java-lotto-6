@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +16,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         if(numbers.size()!=numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
+        if(Collections.max(numbers)>45){
+            throw new IllegalArgumentException();
+        }
+        if(Collections.min(numbers)<1){
             throw new IllegalArgumentException();
         }
     }

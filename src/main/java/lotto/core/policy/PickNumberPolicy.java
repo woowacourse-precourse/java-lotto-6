@@ -1,7 +1,7 @@
-package lotto.core;
+package lotto.core.policy;
 
 import java.util.List;
 
-public interface PickUniqueNumbers {
+public interface PickNumberPolicy {
     List<Integer> pickUniqueNumbers();
 }

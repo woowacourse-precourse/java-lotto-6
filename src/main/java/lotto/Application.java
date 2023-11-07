@@ -5,7 +5,6 @@ import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -14,6 +13,11 @@ public class Application {
     public static final int NUM_OF_LOTTO = 6;
     public static final int MINIMUM_LOTTO_NUMBER = 1;
     public static final int MAXIMUM_LOTTO_NUMBER = 45;
+    public static final int FIRST_RANKING = 6;
+    public static final int SECOND_RANKING = 15;
+    public static final int THIRD_RANKING = 5;
+    public static final int FOURTH_RANKING = 4;
+    public static final int FIFTH_RANKING = 3;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -24,19 +28,93 @@ public class Application {
         int purchaseAmount = inputPurchaseAmount();
         System.out.println(purchaseAmount);
 
-        List<Integer> lottoNumbers = inputLottoNumbers();
-        for (Integer lottoNumber : lottoNumbers) {
+        List<Integer> userLottoNumbers = inputLottoNumbers();
+        for (Integer lottoNumber : userLottoNumbers) {
             System.out.print(lottoNumber + " ");
         }
         System.out.println();
-        int bonusNumber = inputBonusNumber(lottoNumbers);
+        int bonusNumber = inputBonusNumber(userLottoNumbers);
         System.out.println(bonusNumber);
 
         List<Lotto> lotties = createLotties(purchaseAmount);
+        List<Integer> lottoMatchCounts = getLottoMatchCounts(lotties, userLottoNumbers, bonusNumber);
+        printLottoWinResult(lottoMatchCounts);
+//        for (Lotto lotto : lotties) {
+//            lotto.printLottoNumbers();
+//            int matchCount = lotto.compareWithUserNumbers(userLottoNumbers, bonusNumber);
+//            System.out.println("matchCount" + matchCount);
+//            int prizeMoney = Ranking.getPrizeMoney(matchCount);
+//            System.out.println("prizeMoney" + prizeMoney);
+//        }
+    }
+
+    public static void printLottoWinResult(final List<Integer> lottoMatchCounts) {
+        List<Integer> numOfRankings = getNumOfRankings(lottoMatchCounts);
+
+        System.out.println(String.format("3개 일치 (5,000원) - %d개", numOfRankings.get(4)));
+        System.out.println(String.format("4개 일치 (50,000원) - %d개", numOfRankings.get(3)));
+        System.out.println(String.format("5개 일치 (1,500,000원) - %d개", numOfRankings.get(2)));
+        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", numOfRankings.get(1)));
+        System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", numOfRankings.get(0)));
+    }
+
+    private static List<Integer> getNumOfRankings(final List<Integer> lottoMatchCounts) {
+        Integer[] numOfRankings = { 0, 0, 0, 0, 0 }; // 차례대로 1등, 2등, 3등, 4등, 5등 개수
+
+        for (Integer lottoMatchCount : lottoMatchCounts) {
+            isFirstRanking(lottoMatchCount, numOfRankings);
+            isSecondRanking(lottoMatchCount, numOfRankings);
+            isThirdRanking(lottoMatchCount, numOfRankings);
+            isFourthRanking(lottoMatchCount, numOfRankings);
+            isFifthRanking(lottoMatchCount, numOfRankings);
+        }
+        return List.of(numOfRankings);
+    }
+
+    private static void isFirstRanking(final Integer lottoMatchCount, final Integer[] numOfRankings) {
+        if (lottoMatchCount == FIRST_RANKING) {
+            numOfRankings[0] += 1;
+        }
+    }
+
+    private static void isSecondRanking(final Integer lottoMatchCount, final Integer[] numOfRankings) {
+        if (lottoMatchCount == SECOND_RANKING) {
+            numOfRankings[1] += 1;
+        }
+    }
+
+    private static void isThirdRanking(final Integer lottoMatchCount, final Integer[] numOfRankings) {
+        if (lottoMatchCount == THIRD_RANKING) {
+            numOfRankings[2] += 1;
+        }
+    }
+
+    private static void isFourthRanking(final Integer lottoMatchCount, final Integer[] numOfRankings) {
+        if (lottoMatchCount == FOURTH_RANKING) {
+            numOfRankings[3] += 1;
+        }
+    }
+
+    private static void isFifthRanking(final Integer lottoMatchCount, final Integer[] numOfRankings) {
+        if (lottoMatchCount == FIFTH_RANKING) {
+            numOfRankings[4] += 1;
+        }
+    }
+
+    public static List<Integer> getLottoMatchCounts(
+            final List<Lotto> lotties,
+            final List<Integer> userLottoNumbers,
+            final int bonusNumber
+    ) {
+        List<Integer> lottoMatchCounts = new ArrayList<>();
 
         for (Lotto lotto : lotties) {
-            lotto.printLottoNumbers();
+//            lotto.printLottoNumbers();
+            lottoMatchCounts.add(lotto.compareWithUserNumbers(userLottoNumbers, bonusNumber));
+//            System.out.println(lotto.compareWithUserNumbers(userLottoNumbers, bonusNumber));
         }
+
+        return lottoMatchCounts;
     }
 
     public static List<Lotto> createLotties(final int purchaseAmount) {

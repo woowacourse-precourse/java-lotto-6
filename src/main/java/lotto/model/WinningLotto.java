@@ -11,11 +11,23 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getWinningLotto() {
-        return winningLotto.getLotto();
+    public int getEqualWinningNumber(Lotto lotto) {
+        return (int) lotto.getLotto().stream()
+                .filter(winningLotto.getLotto()::contains)
+                .count();
     }
-
-    public int getBonusNumber() {
-        return bonusNumber;
+    
+    public boolean isEqualBonusNumber(Lotto lotto) {
+        return lotto.getLotto().contains(bonusNumber);
+    }
+    
+    public Prize calculatePrize(Lotto lotto) {
+        return Prize.getRank(getEqualWinningNumber(lotto), isEqualBonusNumber(lotto));
+    }
+    
+    public List<Prize> calculateTotalPrize(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(this::calculatePrize)
+                .toList();
     }
 }

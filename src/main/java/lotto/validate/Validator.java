@@ -6,6 +6,7 @@ public abstract class Validator {
     private static final String INVALID_NATURAL_NUMBER = "[ERROR] 자연수가 아닙니다.";
     private static final String INVALID_NUMBER_RANGE = "[ERROR] 정해진 범위의 숫자가 아닙니다.";
     private static final String INVALID_DIVISIBLE = "[ERROR] 1,000으로 나누어 떨어지는 숫자가 아닙니다.";
+
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int THOUSAND_WON = 1000;
@@ -15,15 +16,15 @@ public abstract class Validator {
     abstract void validate(String input) throws IllegalArgumentException;
 
     void validateNaturalNumber(String input) {
-        if(!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
+        if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
             throw new IllegalArgumentException(INVALID_NATURAL_NUMBER);
         }
     }
 
     void validateLottoRange(String input) {
         int number = Integer.parseInt(input);
-        if (number <= MIN_NUMBER || number >= MAX_NUMBER) {
-            throw  new IllegalArgumentException(INVALID_NUMBER_RANGE);
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE);
         }
     }
 
@@ -37,7 +38,7 @@ public abstract class Validator {
 
     void validateDivisibleByThousand(String input) {
         int number = Integer.parseInt(input);
-        if(number % THOUSAND_WON != 0) {
+        if (number % THOUSAND_WON != 0) {
             throw new IllegalArgumentException(INVALID_DIVISIBLE);
         }
     }

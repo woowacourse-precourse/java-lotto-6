@@ -1,11 +1,9 @@
 package lotto.validate;
 
-public class AmountValidator extends Validator {
-
+public class WinningLottoValidator extends Validator {
     @Override
     public void validate(String input) throws IllegalArgumentException {
         validateNaturalNumber(input);
-        validateIntRange(input);
-        validateDivisibleByThousand(input);
+        validateLottoRange(input);
     }
 }

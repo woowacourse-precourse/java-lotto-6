@@ -22,7 +22,7 @@ public class AmountValidatorTest {
     class InvalidInput {
 
         @ParameterizedTest
-        @ValueSource(strings = {"글자", "&*()", "-1234"})
+        @ValueSource(strings = {"글자", "&*()", "-1234", "1000j"})
         @DisplayName("자연수 입력이 아닌 경우 예외 처리")
         void 자연수가_아닌_입력(String input) {
             assertThatThrownBy(() -> amountValidator.validate(input))
@@ -57,3 +57,4 @@ public class AmountValidatorTest {
         }
     }
 }
+

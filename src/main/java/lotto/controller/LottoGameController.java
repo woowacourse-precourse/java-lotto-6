@@ -2,11 +2,13 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.PlayerLotto;
 import lotto.dto.PurchaseLottoDto;
 import lotto.service.LottoGameService;
 import lotto.utils.GameUtils;
 import lotto.utils.validator.PurchaseAmountValidator;
+import lotto.utils.validator.WinningInfoValidator;
 import lotto.utils.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -47,6 +49,19 @@ public class LottoGameController {
                 WinningNumberValidator.validate(winningNumbers);
 
                 return new Lotto(GameUtils.parse(winningNumbers));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private LottoNumber openBonusNumber(final Lotto winningNumbers) {
+        while (true) {
+            try {
+                LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(inputView.readBonusNumber()));
+                WinningInfoValidator.validate(winningNumbers, bonusNumber);
+
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

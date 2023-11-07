@@ -29,5 +29,7 @@ public class Application {
         }
 
         System.out.println(lotto.getLotto());
+
+        
     }
 }

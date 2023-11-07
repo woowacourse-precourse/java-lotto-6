@@ -12,8 +12,8 @@ Error 메시지, 등수별 상금
 - [x] 구입할 금액을 입력, 입력값이 비어있는 경우 - IllegalArgumentException
 - [x] 구입할 금액을 검증, 정수형태가 아니거나, 1000으로 나누어떨어지지 않는 경우 에러 처리 - IllegalArgumentException
 
-- [ ] 당첨 번호를 입력, 쉼표를 기준으로 구분한다.
-- [ ] 당첨 번호를 검증 - 예외처리 IllegalArgumentException
+- [x] 당첨 번호를 입력, 쉼표를 기준으로 구분한다.
+- [x] 당첨 번호를 검증 - 예외처리 IllegalArgumentException
 
 - [ ] 보너스 번호 입력
 - [ ] 보너스 번호 검증 - 예외처리 IllegalArgumentException 

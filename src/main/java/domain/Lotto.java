@@ -51,14 +51,21 @@ public class Lotto {
 
     private boolean validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            try {
-                if (!lotto.matcher(Integer.toString(number)).matches()) {
-                    throw new IllegalArgumentException();
-                }
-            }catch(IllegalArgumentException e){
-                System.out.println(LOTTO_NUMBER_RANGE.getErrorMessage());
+            if(!validateRangeByNumber(number)){
                 return false;
             }
+        }
+        return true;
+    }
+
+    private boolean validateRangeByNumber(Integer number) {
+        try {
+            if (!lotto.matcher(Integer.toString(number)).matches()) {
+                throw new IllegalArgumentException();
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println(LOTTO_NUMBER_RANGE.getErrorMessage());
+            return false;
         }
         return true;
     }

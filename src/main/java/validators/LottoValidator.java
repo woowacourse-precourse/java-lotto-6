@@ -10,12 +10,10 @@ public class LottoValidator {
      *
      * @return 공백 입력, 숫자/콤마 외의 문자가 있을 경우 예외 발생
      */
-    public static boolean isVerifyInputLotto(String inputLotto){
+    public static void verifyInputLotto(String inputLotto){
         isBlankLottoNumbers(inputLotto);
         isNumberAndComma(inputLotto);
         isVerifyArrayLotto(inputLotto);
-
-        return true;
     }
 
     private static void isVerifyArrayLotto(String inputLotto){
@@ -50,14 +48,16 @@ public class LottoValidator {
         }
     }
 
-    public static boolean isVerifyLotto(List<Integer> numbers){
-        try{
-            numbers.stream()
-                    .forEach(number -> isBetweenLottoNumber(number));
-        }catch (IllegalArgumentException iae){
-            return false;
+    public static void verifyLotto(List<Integer> numbers){
+        isLottoNumber6Length(numbers);
+        numbers.stream()
+                .forEach(number -> isBetweenLottoNumber(number));
+    }
+
+    private static void isLottoNumber6Length(List<Integer> numbers){
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorCodeConstant.DEFAULT_LOTTO_NUMBER_LENGTH_ERROR);
         }
-        return true;
     }
 
     private static void isBetweenLottoNumber(int number){

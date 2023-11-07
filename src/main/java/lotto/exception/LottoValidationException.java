@@ -11,6 +11,6 @@ public class LottoValidationException extends IllegalArgumentException {
      * @param message 예외에 대한 메시지
      */
     public LottoValidationException(String message) {
-        super("[ERROR] " + message);
+        super(message);
     }
 }

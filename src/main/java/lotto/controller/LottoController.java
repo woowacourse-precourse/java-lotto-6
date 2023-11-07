@@ -1,12 +1,30 @@
 package lotto.controller;
 
+import lotto.exception.LottoValidationException;
+import lotto.service.LottoService;
+import lotto.view.InputView;
+import lotto.view.ResultView;
+
 /**
  * 로또 게임의 메인 컨트롤러입니다. 사용자의 입력을 받고 게임의 흐름을 제어합니다.
  */
 public class LottoController {
 
-    public void receivePurchaseAmount() {
-        // TODO: 사용자로부터 로또 구매 금액을 입력받는 메서드 구현
+    private final LottoService lottoService;
+
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
+    }
+
+    private int receivePurchaseAmount() {
+        int purchaseAmount = InputView.inputPurchaseAmount();
+        try {
+            lottoService.validatePurchaseAmount(purchaseAmount);
+            return purchaseAmount;
+        } catch (LottoValidationException e) {
+            ResultView.printErrorMessage(e.getMessage());
+            return -1;
+        }
     }
 
     public void createLottoTickets() {
@@ -30,7 +48,11 @@ public class LottoController {
      */
     public void run() {
         // 로또 구매 금액 입력받기
-        receivePurchaseAmount();
+        int purchaseAmount = receivePurchaseAmount();
+
+        if (purchaseAmount == -1) {
+            return;
+        }
 
         // 로또 티켓 생성
         createLottoTickets();

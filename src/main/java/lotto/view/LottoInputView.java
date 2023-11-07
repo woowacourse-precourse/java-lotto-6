@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 
 public final class LottoInputView {
 
@@ -13,6 +15,21 @@ public final class LottoInputView {
         LottoInputValidator.validateNumeric(purchasePrice);
 
         return Integer.parseInt(purchasePrice);
+    }
+
+    public static List<Integer> inputWinningLottoNumbers() {
+        LottoOutputView.printWinningLottoNumbersMessage();
+        String winningLottoNumbers = Console.readLine();
+        LottoInputValidator.validateNumericCommaUnion(winningLottoNumbers);
+
+        return convertToIntegerList(winningLottoNumbers);
+    }
+
+    private static List<Integer> convertToIntegerList(String target) {
+        String[] split = target.split(",");
+        return Arrays.stream(split)
+                .map(Integer::parseInt)
+                .toList();
     }
 
 }

@@ -11,11 +11,8 @@ import lotto.domain.LottoGenerator;
 import lotto.domain.WinningPrize;
 
 public class LottoService {
-    private final Lotto winningNumbers;
 
-    public LottoService(Lotto winningNumbers) {
-        this.winningNumbers = winningNumbers;
-    }
+    public LottoService() {}
 
     public List<Lotto> createLottos(int lottoPurchaseAmount) {
         int lottoCount = calculateLottoCount(lottoPurchaseAmount);
@@ -24,17 +21,26 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public double getReturnOnLotto(List<Lotto> lottos, int lottoPurchaseAmount, int bonusNumber) {
-        Map<WinningPrize, Integer> winningPrizes = getWinningPrizes(lottos, bonusNumber);
+    public double getReturnOnLotto(
+            List<Lotto> lottos,
+            List<Integer> winningNumbers,
+            int lottoPurchaseAmount,
+            int bonusNumber
+    ) {
+        Map<WinningPrize, Integer> winningPrizes = getWinningPrizes(lottos, winningNumbers, bonusNumber);
         int winningPrizeAmount = sumWinningPrizeAmount(winningPrizes);
         double returnOnLotto = calculateReturnOnLotto(winningPrizeAmount, lottoPurchaseAmount);
         return roundSecondPoint(returnOnLotto);
     }
 
-    public Map<WinningPrize, Integer> getWinningPrizes(List<Lotto> lottos, int bonusNumber) {
+    public Map<WinningPrize, Integer> getWinningPrizes(
+            List<Lotto> lottos,
+            List<Integer> winningNumbers,
+            int bonusNumber
+    ) {
         return lottos.stream()
                 .map(lotto -> {
-                    int winningNumbersCount = checkLotto(lotto);
+                    int winningNumbersCount = checkLotto(lotto, winningNumbers);
                     boolean existBonusNumber = checkBonusNumber(lotto, bonusNumber);
                     return WinningPrize.valueOf(winningNumbersCount, existBonusNumber);
                 })
@@ -57,8 +63,8 @@ public class LottoService {
         return (double) Math.round(amount * 10) / 10;
     }
 
-    public int checkLotto(Lotto lotto) {
-        return winningNumbers.compareNumbers(lotto);
+    public int checkLotto(Lotto lotto, List<Integer> winningNumbers) {
+        return lotto.compareNumbers(winningNumbers);
     }
 
     public boolean checkBonusNumber(Lotto lotto, int bonusNumber) {

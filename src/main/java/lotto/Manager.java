@@ -37,4 +37,9 @@ public class Manager {
         output.printLottoWinningNumbersPrompt();
         input.readWinningNumbers();
     }
+
+    public void getBonusNumber() {
+        output.printLottoBonusNumberPrompt();
+        input.readBonusNumber();
+    }
 }

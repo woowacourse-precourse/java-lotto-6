@@ -21,4 +21,8 @@ public class Output {
     public void printLottoWinningNumbersPrompt() {
         System.out.println(Message.PROMPT_ENTERING_WINNING_NUMBERS);
     }
+
+    public void printLottoBonusNumberPrompt() {
+        System.out.println(Message.PROMPT_ENTERING_BONUS_NUMBER);
+    }
 }

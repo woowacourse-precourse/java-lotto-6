@@ -9,5 +9,6 @@ public class Application {
         lottoManager.printLottoTickets(myLottoTickets);
 
         lottoManager.getWinningNumbers();
+        lottoManager.getBonusNumber();
     }
 }

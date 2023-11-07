@@ -22,4 +22,10 @@ public class Input {
         validateNumberOfLottoNumbers(winningNumbers);
         return winningNumbers;
     }
+
+    public int readBonusNumber() {
+        String numberStr = Console.readLine();
+        validateDigit(numberStr.trim());
+        return Integer.parseInt(numberStr.trim());
+    }
 }

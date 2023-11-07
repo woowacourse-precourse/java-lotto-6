@@ -14,4 +14,11 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void moneyIsDivide() {
+        assertThatThrownBy(() -> new Money("3001"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

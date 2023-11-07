@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Set;
+import java.util.HashSet;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
@@ -7,14 +9,14 @@ public class Application {
         // TODO: 프로그램 구현 
         int amountOfLotto = setAmountOfLotto(-1);
         String[] winningNumber = setWinningNumber();
-        int bonusNumber = setBonusNumber(-1);
+        int bonusNumber = setBonusNumber(-1, winningNumber);
 
 
         System.out.println("amountOfLotto " + amountOfLotto);
         System.out.println("winningNumber " + winningNumber);
         System.out.println("bonusNumber " + bonusNumber);
     }
-
+    //금액 입력받기
     public static int setAmountOfLotto(int amountOfLotto){
         while (amountOfLotto == -1) {
             amountOfLotto = parseAmount(Console.readLine());
@@ -32,10 +34,11 @@ public class Application {
         return -1; // 유효하지 않은 입력에 대해 -1 반환
     }
     public static void validateInput(int amountOfLotto){
-        if(amountOfLotto % 1000 != 0){
+        if(amountOfLotto <= 0 || amountOfLotto % 1000 != 0){
             throw new IllegalArgumentException("로또는 1000원 단위로 적어야합니다.");
         }
     }
+    //당첨 번호 입력받기
     public static String[] setWinningNumber() {
         String[] winningNumber = null;
         while (winningNumber == null) {
@@ -54,22 +57,40 @@ public class Application {
         if (numbers.length != 6) {
             throw new IllegalArgumentException("당첨 번호는 쉼표로 구분된 6개의 숫자여야 함");
         }
+        Set<Integer> uniqueNumber = new HashSet<>();        
         for (String number : numbers) {
-            isValidWinningNumbers(number);
+            int num = isValidWinningNumbers(number);
+            uniqueNumber = isDuplicateNumber(num, uniqueNumber);
         }
         return numbers;
     }
-    public static int setBonusNumber(int initialNum){
+    //보너스 번호 입력받기
+    public static int setBonusNumber(int initialNum, String[] winningNumbers){
+        Set<Integer> uniqueNumber = new HashSet<>();
+        for(int i = 0; i < 6; i++){
+            uniqueNumber.add(Integer.parseInt(winningNumbers[i]));
+        }
         while (initialNum == -1) {
             try {
                 initialNum = isValidWinningNumbers(Console.readLine());
+                isDuplicateNumber(initialNum, uniqueNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                initialNum = -1;
             }
+            
         }
         return initialNum;
     }
-    private static int isValidWinningNumbers(String number) {
+    //중복 검사
+    public static Set<Integer> isDuplicateNumber(int num, Set<Integer> uniqueNumber){
+        if(!uniqueNumber.add(num)){
+            throw new IllegalArgumentException("중복된 번호가 있습니다.");
+        }
+        return uniqueNumber;
+    }
+    //당첨번호 범위와 숫자인지 검사하기
+    static int isValidWinningNumbers(String number) {
         int num = 0;
         try {
             num = Integer.parseInt(number.trim());
@@ -81,4 +102,7 @@ public class Application {
         }
         return num;
     } 
+
+
+
 }

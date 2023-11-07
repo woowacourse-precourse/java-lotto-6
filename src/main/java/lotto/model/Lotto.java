@@ -1,19 +1,17 @@
-package lotto.model.lotto;
+package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.model.WinningInfo;
-import lotto.model.WinningLotto;
 
 public class Lotto {
     public static final int PRICE = 1000;
     public static final int LOTTO_MIN = 1;
     public static final int LOTTO_MAX = 45;
     public static final int LOTTO_SIZE = 6;
+    public static final String OPEN_BRACKET = "[";
+    public static final String CLOSE_BRACKET = "]";
     public static final String INVALID_SIZE_ERROR = "로또 번호는 " + LOTTO_SIZE + "자리여야 합니다.";
     public static final String OUT_OF_RANGE_ERROR =
             "로또 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.";
@@ -58,12 +56,6 @@ public class Lotto {
         }
     }
 
-    public LottoDTO toLottoDTO() {
-        final List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return LottoDTO.of(sortedNumbers);
-    }
-
     public long countMatchedNumbers(Lotto winningNumber) {
         return numbers.stream()
                 .filter(winningNumber.numbers::contains)
@@ -78,6 +70,6 @@ public class Lotto {
         String purchaseLotto = numbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
-        return "[" + purchaseLotto + "]";
+        return OPEN_BRACKET + purchaseLotto + CLOSE_BRACKET;
     }
 }

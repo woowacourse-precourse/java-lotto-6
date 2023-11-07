@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.lotto.Lotto;
+import lotto.model.Lotto;
 
 public class InputValidator {
     private static final String DIVISIBILITY_ERROR = "구입 금액은 " + Lotto.PRICE + "으로 나누어져야 합니다.";

@@ -1,9 +1,8 @@
-package lotto.model.lotto;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.Collections;
-import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoDTO;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,18 +46,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-    @DisplayName("로또를 LottoDTO로 변환한다.")
-    @Test
-    void convertToLottoDTO() {
-        List<Integer> validNumbers = Arrays.asList(12, 5, 35, 25, 20, 42);
-        Lotto lotto = new Lotto(validNumbers);
-        Collections.sort(validNumbers);
 
-        LottoDTO lottoDTO = lotto.toLottoDTO();
-
-        assertThat(lottoDTO).isNotNull();
-        assertThat(lottoDTO.numbers()).containsExactlyElementsOf(validNumbers);
-    }
 
 
 }

@@ -1,8 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoDTO;
 
 public class LottoManager {
     private Lottos lottos;

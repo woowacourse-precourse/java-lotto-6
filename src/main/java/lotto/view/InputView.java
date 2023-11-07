@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.model.lotto.Lotto;
+import lotto.model.Lotto;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT_PROMPT = "구입금액을 입력해 주세요.";

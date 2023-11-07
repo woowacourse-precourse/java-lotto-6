@@ -11,6 +11,11 @@ import view.OutputView;
 
 public class Controller {
     private final LottoGame lottoGame = new LottoGame();
+    private LottoMachine lottoMachine;
+
+    private void showPurchasedLottoInfo() {
+        OutputView.printPurchaseCount(lottoMachine.getSpend());
+    }
 
     private void setupWinningNumbers() {
         OutputView.printInputWinningNumbers();
@@ -29,6 +34,6 @@ public class Controller {
         int lottoTicketCount = spend / 1000;
         List<Integer> lottoNumbers = Utils.generateLottoNumbers();
         List<Lotto> lottoTickets = lottoGame.generateLottoTickets(lottoTicketCount, lottoNumbers);
-        new LottoMachine(spend, lottoTickets);
+        lottoMachine = new LottoMachine(spend, lottoTickets);
     }
 }

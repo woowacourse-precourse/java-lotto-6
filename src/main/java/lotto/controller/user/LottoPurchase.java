@@ -1,20 +1,23 @@
 package lotto.controller.user;
 
 import lotto.exception.AmountException;
+import lotto.model.LottoReceipt;
 import lotto.view.InputView;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoPurchase {
-    private final AmountException amountException;
+    private static final int LOTTO_PRICE = 1000;
+    private LottoReceipt lottoReceipt;
     private final InputView inputView;
 
     public LottoPurchase(InputView inputView) {
-        amountException = new AmountException();
         this.inputView = inputView;
     }
 
     private boolean isCorrectAmount(String input) {
+        AmountException amountException = new AmountException();
+
         try {
             amountException.checkBlank(input);             //빈칸 입력
             amountException.checkEmptySpace(input);        //공백
@@ -30,7 +33,7 @@ public class LottoPurchase {
         return true;
     }
 
-    public int inputAmount() {
+    private int inputAmount() {
         String input;
 
         while (true) {
@@ -44,5 +47,16 @@ public class LottoPurchase {
         }
 
         return Integer.parseInt(input);
+    }
+
+    public void purchase() {
+        int amount = inputAmount();
+        int count = amount / LOTTO_PRICE;
+
+        lottoReceipt = new LottoReceipt(amount, count);
+    }
+
+    public int getCount() {
+        return lottoReceipt.getPurchaseCount();
     }
 }

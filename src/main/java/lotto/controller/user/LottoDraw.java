@@ -52,13 +52,13 @@ public class LottoDraw {
         List<Integer> drawNumbers = new ArrayList<>();
 
         for(String number: numbers) {
-            drawNumbers.add(Integer.parseInt(number));
+            drawNumbers.add(Integer.parseInt(number.trim()));
         }
 
         return drawNumbers;
     }
 
-    public void drawLotto () {
+    public void draw () {
         List<String> numbers = inputDrawNumbers();
         List<Integer> drawNumbers = creatLotto(numbers);
 

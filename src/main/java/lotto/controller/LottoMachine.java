@@ -4,6 +4,7 @@ import lotto.controller.machine.NumberGenerator;
 import lotto.controller.user.LottoDraw;
 import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
+import lotto.model.LottoReceipt;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,22 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private static final int LOTTO_PRICE = 1000;
-    private int lottoCount;
-
-    private void purchaseLotto(InputView inputView) {
-        LottoPurchase lottoPurchase = new LottoPurchase(inputView);
-        int purchaseAmount = lottoPurchase.inputAmount();
-
-        lottoCount = purchaseAmount / LOTTO_PRICE;
-    }
-
-    private List<Lotto> createLottos() {
+    private List<Lotto> createLottos(int purchaseCount) {
         NumberGenerator numberGenerator = new NumberGenerator();
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto;
 
-        for (int count = 0; count < lottoCount; count++) {
+        for (int count = 0; count < purchaseCount; count++) {
             lotto = numberGenerator.createLotto();
             lottos.add(lotto);
         }
@@ -36,18 +27,18 @@ public class LottoMachine {
 
     private void drawLotto(InputView inputView) {
         LottoDraw lottoDraw = new LottoDraw(inputView);
-        lottoDraw.drawLotto();
+        lottoDraw.draw();
     }
 
     public void start() {
-        List<Lotto> lottos;
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        LottoPurchase lottoPurchase = new LottoPurchase(inputView);
 
-        purchaseLotto(inputView);
-        lottos = createLottos();
+        lottoPurchase.purchase();
+        List<Lotto> lottos = createLottos(lottoPurchase.getCount());
 
-        outputView.showLottoCount(lottoCount);
+        outputView.showLottoCount(lottoPurchase.getCount());
         outputView.showLottos(lottos);
 
         drawLotto(inputView);

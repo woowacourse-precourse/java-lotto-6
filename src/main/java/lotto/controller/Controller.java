@@ -1,6 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.Buyer;
+import lotto.domain.Lotto;
+import lotto.domain.Statistics;
+import lotto.domain.WinningLotto;
 import lotto.view.View;
 
 import java.util.ArrayList;

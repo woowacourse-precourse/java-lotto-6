@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.dto.LottoNumberDTO;
 import lotto.dto.ProfitRateDTO;
+import lotto.dto.StatisticDTO;
 
 public class Printer {
     private static Printer printer;
@@ -27,9 +28,9 @@ public class Printer {
         System.out.println();
     }
 
-    public void printStatistic(Info info) {
+    public void printStatistic(StatisticDTO statisticDTO) {
         StringBuilder sb = new StringBuilder();
-        int[] statistic = info.getStatistic();
+        int[] statistic = statisticDTO.getStatistic();
         sb.append("당첨 통계\n").append("---\n")
                 .append("3개 일치 (5,000원) - ").append(statistic[Grade.FIFTH_GRADE.getGrade()])
                 .append("\n").append("4개 일치 (50,000원) - ")

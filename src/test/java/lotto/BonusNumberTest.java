@@ -43,4 +43,12 @@ public class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 공백이면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void createBonusNumberByBlank(String bonus) {
+        assertThatThrownBy(() -> new User(lotto, bonus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

@@ -6,8 +6,8 @@ import java.util.List;
 import lotto.constants.WinningType;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.dto.WinningLotto;
-import lotto.dto.WinningResult;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

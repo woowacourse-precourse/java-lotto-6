@@ -23,6 +23,6 @@ class LottoNumberTest {
     public void should_throwException_when_invalidRange(String input) {
         assertThatThrownBy(() -> LottoNumber.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorCode.INVALID_LOTTO_NUMBER.getMessage());
+                .hasMessageContaining(ErrorCode.INVALID_LOTTO_RANGE.getMessage());
     }
 }

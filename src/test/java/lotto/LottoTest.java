@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constants.ErrorCode;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
@@ -33,5 +34,27 @@ class LottoTest {
             assertThat(numbers.get(i).getNumber())
                     .isLessThan(numbers.get(i + 1).getNumber());
         }
+    }
+
+    @Test
+    @DisplayName("Lotto 객체를 생성할 때, 1에서 45사이의 값이 아닌 수가 들어오면 예외가 발생한다")
+    public void should_throwException_when_invalidRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.INVALID_LOTTO_RANGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("List numbers 안에 특정 번호가 있는지 여부를 확인할 수 있다.")
+    public void should_checkThatContainCertainNumber() {
+        //given
+        LottoNumber lottoNumber = LottoNumber.from("2");
+
+        //when
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        boolean hasCertainNumber = lotto.hasCertainNumber(lottoNumber);
+
+        //then
+        assertThat(hasCertainNumber).isTrue();
     }
 }

@@ -2,12 +2,17 @@ package lotto;
 
 import config.LottoConfig;
 import number_generator.NumberGenerator;
+import number_generator.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPublisher {
     private final NumberGenerator ng;
+
+    public LottoPublisher() {
+        this.ng = new RandomNumberGenerator();
+    }
 
     public LottoPublisher(NumberGenerator ng) {
         this.ng = ng;

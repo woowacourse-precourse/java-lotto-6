@@ -62,7 +62,7 @@
 - printLottoNumber()
   - [x] 발행한 로또 수량 및 번호 출력
 - printLottoResultMessage()
-  - [ ] 로또 당첨 내역 안내 메시지 출력
+  - [x] 로또 당첨 내역 안내 메시지 출력
 - printLottoResult()
   - [ ] 로또 당첨 내역 출력
     - 6등부터 1등 순서로 일치개수, 상금, 당첨자 명수로 출력

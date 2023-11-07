@@ -30,6 +30,7 @@ public class GameController {
         saveLuckeyNumbers();
         saveBonusLottoNumber();
         lottoController = new LottoController(lottoMoney, luckeyLotto);
+        lottoController.playGame(lottoNumbers);
     }
 
     private void saveLottoMoney() {

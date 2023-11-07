@@ -17,10 +17,9 @@ public class LottoController {
     public static int[] rankCounts;
     public int processInputPurchaseAmount() {
         int price;
-
             while (true) {
-                price = inputPurchaseAmount();
                 try {
+                    price = inputPurchaseAmount();
                     // 입력 금액이 유효하면 종료
                     validateInputPurchaseAmount(price);
                     break; //

@@ -1,4 +1,6 @@
 package lotto.view;
+import static lotto.model.Lotto.validateInputPurchaseAmountContainCharacter;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -11,9 +13,13 @@ public class LottoView {
     // 로또 구입 금액 입력 받기
     public static Integer inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        purchaseAmount = Integer.parseInt(Console.readLine());
+        String inputPurchaseAmount;
+        inputPurchaseAmount = Console.readLine();
+        validateInputPurchaseAmountContainCharacter(inputPurchaseAmount);
+        purchaseAmount=Integer.parseInt(inputPurchaseAmount);
         return purchaseAmount;
     }
+
 
     // 로또 구매 결과 출력
     public static void printPurchaseResult(List<Lotto> lottoList) {

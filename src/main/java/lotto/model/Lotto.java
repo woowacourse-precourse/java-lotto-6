@@ -24,10 +24,19 @@ public class Lotto {
 
     public static void validateInputPurchaseAmount(int price) {
         if(price<1000||price%1000!=0) {
-            throw Exceptions.exceptionInputPurchaseAmount();
+            throw Exceptions.exceptionInputPurchaseAmountNotInRange();
         }
     }
 
+    public static void validateInputPurchaseAmountContainCharacter(String inputPurchaseAmount) {
+
+        for(int i=0;i<inputPurchaseAmount.length();i++){
+            char partOfInputPurchaseAmount=inputPurchaseAmount.charAt(i);
+            if(partOfInputPurchaseAmount-'0'<0||partOfInputPurchaseAmount-'0'>9){
+                throw Exceptions.exceptionInputPurchaseAmountContainCharacter();
+            }
+        }
+    }
 
     public List<Integer> getNumbers() {
         return numbers;

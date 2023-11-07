@@ -1,8 +1,12 @@
 package lotto.exception;
 
 public class Exceptions {
-    public static IllegalArgumentException exceptionInputPurchaseAmount() {
+    public static IllegalArgumentException exceptionInputPurchaseAmountNotInRange() {
         return new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 단위로 입력하세요.");
+    }
+
+    public static IllegalArgumentException exceptionInputPurchaseAmountContainCharacter() {
+        return new IllegalArgumentException("[ERROR] 구매 금액은 문자를 포함할 수 없습니다.");
     }
 
     public static IllegalArgumentException exceptionLottoSize() {

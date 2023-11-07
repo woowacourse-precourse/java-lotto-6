@@ -50,7 +50,6 @@ public class Game {
     }
 
     private void showLotto(List<Integer> uniqueNumbers) {
-        Collections.sort(uniqueNumbers);
         String result = uniqueNumbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
@@ -116,6 +115,8 @@ public class Game {
     }
 
     private double calculateRateOfReturn() {
-        return ((double) result.getWinningPrice() / buying.getBuyingPrice()) * 100;
+        double rateOfReturn = ((double) result.getWinningPrice() / buying.getBuyingPrice()) * 100;
+        double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
+        return refinedRateOfReturn;
     }
 }

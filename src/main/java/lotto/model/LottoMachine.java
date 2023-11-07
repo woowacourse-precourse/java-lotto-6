@@ -1,17 +1,10 @@
 package lotto.model;
 
-import static lotto.constant.LottoConstant.FIFTH_PLACE_MATCH_COUNT;
-import static lotto.constant.LottoConstant.FIRST_PLACE_MATCH_COUNT;
-import static lotto.constant.LottoConstant.FOURTH_PLACE_MATCH_COUNT;
-import static lotto.constant.LottoConstant.SECOND_THIRD_PLACE_MATCH_COUNT;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import lotto.constant.LottoConstant;
 import lotto.constant.NumberConstant;
 
 public class LottoMachine {
@@ -30,7 +23,8 @@ public class LottoMachine {
     private List<Lotto> createLottos(int count){
         List<Lotto> newLottos = new ArrayList<>();
         for(int i = NumberConstant.DEFAULT_VALUE; i < count; i++){
-            Lotto lotto = new Lotto(makeRandomLotto());
+            List<Integer> numbers = sortNumbers(makeRandomNumbers());
+            Lotto lotto = new Lotto(numbers);
             newLottos.add(lotto);
         }
         return newLottos;
@@ -40,7 +34,12 @@ public class LottoMachine {
         return money / NumberConstant.LOTTO_PRICE;
     }
 
-    private List<Integer> makeRandomLotto(){
+    private List<Integer> makeRandomNumbers(){
         return Randoms.pickUniqueNumbersInRange(NumberConstant.MIN_NUMBER, NumberConstant.MAX_NUMBER, NumberConstant.LOTTO_RANGE);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers){
+        Collections.sort(numbers);
+        return numbers;
     }
 }

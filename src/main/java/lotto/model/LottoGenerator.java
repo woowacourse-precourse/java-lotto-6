@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.controller.GameConstants.LOTTO_NUMBER_SIZE;
-import static lotto.controller.GameConstants.MAX_NUMBER;
-import static lotto.controller.GameConstants.MIN_NUMBER;
+import static lotto.util.GameConstants.LOTTO_NUMBER_SIZE;
+import static lotto.util.GameConstants.MAX_NUMBER;
+import static lotto.util.GameConstants.MIN_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

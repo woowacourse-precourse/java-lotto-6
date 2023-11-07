@@ -30,6 +30,6 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printGameProfit(double profit) {
-        System.out.println("총 수익률은 " + profit + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
 }

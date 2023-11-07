@@ -12,10 +12,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 public class LottoService {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
-
+    private static final int SECOND_AND_THIRD_MATCH_COUNT = 5;
     private static final Map<Rank, Integer> lottoResult = new HashMap<>();
     private static final LottoService instance = new LottoService();
     public static LottoService getInstance() {
@@ -33,7 +30,7 @@ public class LottoService {
     public List<Lotto> getLottoNumbers(int buyAmount) {
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < buyAmount; ++i) {
-            List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT);
+            List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_COUNT);
             List<Integer> numbers = new ArrayList<>(generatedNumbers);
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
@@ -63,13 +60,13 @@ public class LottoService {
     }
 
     private void checkRemain(Rank rank) {
-        if (rank.matchCount != 5) {
+        if (rank.matchCount != SECOND_AND_THIRD_MATCH_COUNT) {
             addResult(rank);
         }
     }
 
     private void checkSecondOrThird(Rank rank, boolean isMatchBonusNumber) {
-        if (rank.matchCount == 5 && rank.isMatchBonusNumber == isMatchBonusNumber) {
+        if (rank.matchCount == SECOND_AND_THIRD_MATCH_COUNT && rank.isMatchBonusNumber == isMatchBonusNumber) {
             addResult(rank);
         }
     }
@@ -99,7 +96,7 @@ public class LottoService {
             Rank rank = keys.next();
             totalRevenue += lottoResult.get(rank) * rank.reward;
         }
-        double revenueRate = ((double) totalRevenue / ((double) buyAmount * 1000)) * 100;
+        double revenueRate = ((double) totalRevenue / ((double) buyAmount * Lotto.LOTTO_PRICE)) * 100;
         return Convert.formatWithCommaAndRound(revenueRate);
     }
 }

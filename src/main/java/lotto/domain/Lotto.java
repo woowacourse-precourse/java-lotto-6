@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int LOTTO_COUNT = 6;
+    public static final int MIN_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
     private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "[ERROR] 중복된 번호는 입력할 수 없습니다.";
     private static final String SIZE_ERROR_MESSAGE = "[ERROR] 번호의 개수는 6개입니다.";
     private static final String OUT_OF_RANGE_NUMBER_ERROR_MESSAGE = "[ERROR] 번호는 1~45 사이의 숫자여야합니다.";

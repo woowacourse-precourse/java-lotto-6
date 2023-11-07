@@ -9,9 +9,9 @@ public interface LottoService {
 
     Lotto parseWinningNumbers(String input);
 
-    int parseBonusNumber(String input, Lotto winningNumbers);
+    int parseBonusNumber(String input, Lotto winningLotto);
 
-    List<Integer> lotteryMatch(List<Lotto> lotteries, Lotto winningNumbers, int bonusNumber);
+    List<Integer> lotteryMatch(List<Lotto> lotteries, Lotto winningLotto, int bonusNumber);
 
     int calculateReward(List<Integer> matchResult);
 

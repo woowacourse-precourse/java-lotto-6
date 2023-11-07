@@ -67,7 +67,7 @@ public class SimpleBeanFactoryProxy extends SimpleBeanFactory {
 
 
     private void log(String message) {
-        System.out.println("[" + this.getClass().getSimpleName() +"] " + message);
+        System.out.println("[" + this.getClass().getSimpleName() + "] " + message);
     }
 
     private void log() {

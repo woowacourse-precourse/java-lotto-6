@@ -18,60 +18,76 @@ public class LottoControllerImpl implements LottoController {
 
     @Override
     public void play() {
-        int payment = 0;
-        int lotteryCount;
         List<Lotto> purchasedLotteries = new ArrayList<>();
-        Lotto winningNumbers = null;
-        int bonusNumber = 0;
+        int payment = getPayment();
+        int lotteryCount = payment / 1000;
 
-        // 구입 금액\n
-        while ( payment == 0 ) {
+        addPurchasedLotteries(purchasedLotteries, lotteryCount);
+        displayPurchasedLotteries(purchasedLotteries);
+
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber(winningLotto);
+        List<Integer> matchResult = lottoService.lotteryMatch(purchasedLotteries, winningLotto, bonusNumber);
+        double rateOfReturn = lottoService.getRateOfReturn(payment, lottoService.calculateReward(matchResult));
+
+        console.displayResult(matchResult, rateOfReturn);
+    }
+
+    private int getPayment() {
+        int payment = 0;
+
+        while (payment == 0) {
             try {
                 payment = lottoService.parsePayment(console.inputPayment());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        lotteryCount = payment / 1000;
 
-        // 구입한 복권 생성
-        for (int i = 0; i < lotteryCount; i++) {
-            purchasedLotteries.add(lottoService.generatePurchasedLottery());
+        return payment;
+    }
+
+    private Lotto getWinningLotto() {
+        Lotto winningLotto = null;
+
+        while (winningLotto == null) {
+            try {
+                winningLotto = lottoService.parseWinningNumbers(console.inputWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
-        // n개를 구입했습니다.\n
-        console.displayPurchasedLotteryCount(lotteryCount);
+        return winningLotto;
+    }
 
-        // 로또 번호 출력
+    private int getBonusNumber(Lotto winningLotto) {
+        int bonusNumber = 0;
+
+        while (bonusNumber == 0) {
+            try {
+                bonusNumber = lottoService.parseBonusNumber(console.inputBonusNumber(), winningLotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return bonusNumber;
+    }
+
+    private void displayPurchasedLotteries(List<Lotto> purchasedLotteries) {
         for (Lotto lottery : purchasedLotteries) {
             console.displayPurchasedLottery(lottery.getNumbers());
         }
+
         System.out.println();
+    }
 
-        // 당첨 번호를 입력해주세요.\n
-        while (winningNumbers == null) {
-            try {
-                winningNumbers = lottoService.parseWinningNumbers(console.inputWinningNumbers());
-            } catch(IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    private void addPurchasedLotteries(List<Lotto> purchasedLotteries, int lotteryCount) {
+        console.displayPurchasedLotteryCount(lotteryCount);
+
+        for (int i = 0; i < lotteryCount; i++) {
+            purchasedLotteries.add(lottoService.generatePurchasedLottery());
         }
-
-        // 보너스 번호를 입력해주세요.\n
-        // 당첨 번호에 이미 보너스 번호가 있으면 안됨
-        while (bonusNumber == 0) {
-            try {
-                bonusNumber = lottoService.parseBonusNumber(console.inputBonusNumber(), winningNumbers);
-            } catch(IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        // 대조 결과
-        List<Integer> matchResult = lottoService.lotteryMatch(purchasedLotteries, winningNumbers, bonusNumber);
-        double rateOfReturn = lottoService.getRateOfReturn(payment, lottoService.calculateReward(matchResult));
-
-        // 당첨 통계
-        console.displayResult(matchResult, rateOfReturn);
     }
 }

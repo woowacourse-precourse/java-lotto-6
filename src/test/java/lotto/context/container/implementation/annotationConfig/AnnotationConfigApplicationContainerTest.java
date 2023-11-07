@@ -2,6 +2,7 @@ package lotto.context.container.implementation.annotationConfig;
 
 import lotto.context.beanFactory.SimpleBeanFactoryProxy;
 import lotto.context.exception.UndefinedBeanConfigurationException;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -61,14 +61,14 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public int parseBonusNumber(String input, Lotto winningNumbers) {
+    public int parseBonusNumber(String input, Lotto winningLotto) {
         int parsedNumber = numberParser.parse(input);
 
         if (!validator.isInRange(parsedNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
         }
 
-        if (winningNumbers.getNumbers().contains(parsedNumber)) {
+        if (winningLotto.getNumbers().contains(parsedNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
 
@@ -76,11 +76,11 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public List<Integer> lotteryMatch(List<Lotto> lotteries, Lotto winningNumbers, int bonusNumber) {
+    public List<Integer> lotteryMatch(List<Lotto> lotteries, Lotto winningLotto, int bonusNumber) {
         List<Integer> matchResult = initMatchResult();
 
         for (Lotto lottery : lotteries) {
-            int matchCount = numbersMatcher.matches(lottery.getNumbers(), winningNumbers.getNumbers());
+            int matchCount = numbersMatcher.matches(lottery.getNumbers(), winningLotto.getNumbers());
             updateMatchResult(matchResult, lottery.getNumbers(), matchCount, bonusNumber);
         }
 

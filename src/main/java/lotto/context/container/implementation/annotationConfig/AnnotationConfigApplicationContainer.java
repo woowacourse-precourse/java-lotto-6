@@ -81,14 +81,11 @@ public class AnnotationConfigApplicationContainer implements ApplicationContaine
         if (factory.contains(beanName)) {
             return;
         }
-
         Method method = findBeanCreationMethod(beanName);
-
         Object[] args = Arrays.stream(method.getParameters())
                 .map(param -> prefix(param.getType().getSimpleName()))
                 .map(this::getBean)
                 .toArray();
-
         factory.registerBean(beanName, () -> {
             try {
                 return method.invoke(getBean(method.getDeclaringClass()), args);

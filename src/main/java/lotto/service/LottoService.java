@@ -13,7 +13,7 @@ public class LottoService {
     public void buyLotto(Money money) {
         LottoMarket lottoMarket = new LottoMarket(new RandomNumbersGenerator());
         List<Lotto> lottos = lottoMarket.sellLotto(money);
-        lottoBuyer = new LottoBuyer(lottos);
+        lottoBuyer = new LottoBuyer(lottos, money);
     }
 
     public List<Lotto> findBoughtLottos() {
@@ -30,13 +30,13 @@ public class LottoService {
         lottoCompare.compareAllLottoToWinning(findBoughtLottos(), winningNumbers);
     }
 
-    public Map<WinningGrade, Integer> getWinningResult() {
-        return lottoCompare.getWinningResult();
-    }
-
     public double calculateLottoYield() {
         LottoYieldStatistics lottoYieldStatistics = new LottoYieldStatistics();
         return lottoYieldStatistics.calculate(getPaidMoney(), getWinningResult());
+    }
+
+    public Map<WinningGrade, Integer> getWinningResult() {
+        return lottoCompare.getWinningResult();
     }
 
     private Money getPaidMoney() {

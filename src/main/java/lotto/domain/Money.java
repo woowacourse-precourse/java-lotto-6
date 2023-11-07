@@ -20,4 +20,8 @@ public class Money {
     public int convertMoneyToCount() {
         return value / LOTTO_PRICE;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

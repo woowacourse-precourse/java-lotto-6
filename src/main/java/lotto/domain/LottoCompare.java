@@ -14,7 +14,6 @@ public class LottoCompare {
 
     private void init() {
         Arrays.stream(WinningGrade.values())
-                .filter(winningGrade -> winningGrade != WinningGrade.DEFAULT)
                 .forEach(value -> winningMap.put(value, 0));
     }
 
@@ -38,10 +37,8 @@ public class LottoCompare {
     }
 
     private void addWinningGradeResult(WinningGrade grade) {
-        if (grade != WinningGrade.DEFAULT) {
         int plusCount = winningMap.get(grade) + 1;
         winningMap.put(grade, plusCount);
-        }
     }
 
     private boolean hasBonusNumber(List<Integer> lotto, WinningNumbers winningNumbers) {

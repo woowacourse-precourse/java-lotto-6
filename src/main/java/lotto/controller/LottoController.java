@@ -19,6 +19,7 @@ public class LottoController {
         buy();
         setWinning();
         compare();
+        calculateYield();
     }
 
     private void buy() {
@@ -42,6 +43,11 @@ public class LottoController {
         lottoService.compareAllLotto();
         outputView.printWinningResult(getWinningResult());
     }
+
+    private void calculateYield() {
+        outputView.printLottoYield(getCalculatedLottoYield());
+    }
+
     private Map<WinningGrade, Integer> getWinningResult() {
         return lottoService.getWinningResult();
     }

@@ -45,3 +45,8 @@ public class OutputView {
                 .filter(result -> result.getKey() != WinningGrade.DEFAULT)
                 .forEach(result -> System.out.println(result.getKey().toString() + result.getValue() + "개"));
     }
+
+    public void printLottoYield(double v) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", v);
+    }
+}

@@ -18,16 +18,21 @@ public enum PrizeMoney {
         this.prizeMoney = prizeMoney;
     }
 
-    public static String getPrizeMoney(Integer prize) {
+    public static Integer getPrizeMoney(Integer prize) {
         for (PrizeMoney prizeMoney : PrizeMoney.values()) {
             if (prizeMoney.prize.equals(prize)) {
-                return getFormattedPrizeMoney(prizeMoney.prizeMoney);
+                return prizeMoney.prizeMoney;
             }
         }
         return null;
     }
 
-    private static String getFormattedPrizeMoney(Integer prizeMoney) {
-        return NumberFormat.getNumberInstance(Locale.KOREAN).format(prizeMoney);
+    public static String getFormattedPrizeMoney(Integer prize) {
+        for (PrizeMoney prizeMoney : PrizeMoney.values()) {
+            if (prizeMoney.prize.equals(prize)) {
+                return NumberFormat.getNumberInstance(Locale.KOREAN).format(prizeMoney.prizeMoney);
+            }
+        }
+        return null;
     }
 }

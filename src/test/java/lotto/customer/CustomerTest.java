@@ -13,14 +13,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 class CustomerTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"0", "d123", "123d", "1000.", "!1000"})
+    @CsvSource(value = {"0", "d123", "123d", "1000.", "!1000", "1000j"})
     @DisplayName("자연수가 아닌 값을 넣을 때 에러가 발생한다.")
-    void 가격입력_숫자이외의값_입력() {
-        String conatinNotInteger = "ㅇ1234";
-
-        assertThatThrownBy(() -> new Customer(conatinNotInteger))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 자연수 형태의 값을 입력해주세요.");
+    void 가격입력_숫자이외의값_입력(String containNotInteger) {
+        assertThatThrownBy(() -> new Customer(containNotInteger))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 자연수 형태의 값을 입력해주세요.");
     }
 
     @ParameterizedTest
@@ -28,8 +26,8 @@ class CustomerTest {
     @DisplayName("1000으로 나누어 떨어지지 않는 값을 넣을 때 에러가 발생한다.")
     void 가격입력_1000의_배수가_아닌값_체크(String value) {
         assertThatThrownBy(() -> new Customer(value))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 0으로 나누어 떨어지는 수를 입력해주세요.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 1000으로 나누어 떨어지는 수를 입력해주세요.");
     }
 
     @Test
@@ -37,8 +35,8 @@ class CustomerTest {
     void 구매() {
         Customer customer = new Customer("1000");
 
-        customer.buy(new Lotto(List.of(1,2,3,4,5,6)));
-        
+        customer.buy(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
         Assertions.assertEquals(customer.getLottoSize(), 1);
     }
 }

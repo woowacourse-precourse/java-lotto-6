@@ -14,7 +14,6 @@ public class LottoInputGenerator {
             possibleAddNumbers(number, numbers);
         }
 
-        numbers.sort((o1, o2) -> o1 - o2);
         return new Lotto(numbers);
     }
 

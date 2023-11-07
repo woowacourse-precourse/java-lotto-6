@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Jackpot;
 import lotto.domain.Lotto;
 import lotto.view.Output;
 
@@ -10,6 +11,7 @@ public class GameService {
 
     private Setting setting;
     private List<Lotto> lottos;
+    private Jackpot jackpot;
 
     public GameService() {
         setting = new Setting();
@@ -20,5 +22,6 @@ public class GameService {
         int repetitions = setting.purchaseLotto();
 
         lottos = setting.pickLottos(repetitions);
+        jackpot = setting.pickJackpot();
     }
 }

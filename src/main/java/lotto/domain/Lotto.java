@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private LottoException lottoException = LottoException.getLottoException();
+    protected LottoException lottoException = LottoException.getLottoException();
 
     public Lotto(List<Integer> numbers) {
         manageException(numbers);
@@ -24,14 +24,14 @@ public class Lotto {
         }
     }
 
-    protected void validateDuplication(List<Integer> numbers) {
+    private void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
             lottoException.duplicateNumber();
         }
 
     }
 
-    private boolean isDuplication(List<Integer> numbers) {
+    protected boolean isDuplication(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .count() != numbers.size();

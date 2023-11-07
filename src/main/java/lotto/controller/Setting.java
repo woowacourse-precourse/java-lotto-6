@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.constant.Announcer;
 import lotto.constant.LottoAnnouncer;
+import lotto.domain.Jackpot;
 import lotto.domain.Lotto;
 import lotto.exception.PurchaseException;
 import lotto.view.Input;
@@ -54,7 +55,7 @@ public class Setting {
     }
 
     public List<Lotto> pickLottos(int repetitions) {
-        List<Integer> numbers=new ArrayList<>();
+        List<Integer> numbers;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < repetitions; i++) {
@@ -63,10 +64,21 @@ public class Setting {
             lottos.add(lotto);
 
             output.printMessage(LottoAnnouncer.LOTTO_LIST.getListFormat(numbers));
-
         }
 
         return lottos;
     }
 
+    public Jackpot pickJackpot() {
+        output.printMessage(Announcer.LOTTO_NUMBER.getMessage());
+        List<Integer> jackpot = input.splitSeperator();
+        Lotto lotto = new Lotto(jackpot);
+
+        return new Jackpot(jackpot, pickbonus());
+    }
+
+    private int pickbonus() {
+        output.printMessage(Announcer.LOTTO_BONUS_NUMBER.getMessage());
+        return Integer.parseInt(input.inputFromUser());
+    }
 }

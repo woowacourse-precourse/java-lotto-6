@@ -20,4 +20,8 @@ public class LottoException {
     public void duplicateNumber() {
         throw new IllegalArgumentException(Error.DUPLICATED_NUMBER.getMessage());
     }
+
+    public void duplicateBonusNumber() {
+        throw new IllegalArgumentException(Error.DUPLICATED_BONUS_NUMBER.getMessage());
+    }
 }

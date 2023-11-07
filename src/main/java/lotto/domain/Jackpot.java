@@ -19,6 +19,8 @@ public class Jackpot extends Lotto{
     private void validateDuplicationOfBonus(List<Integer> numbers, int bonus) {
         numbers.add(bonus);
 
-        super.validateDuplication(numbers);
+        if(super.isDuplication(numbers)) {
+            lottoException.duplicateBonusNumber();
+        }
     }
 }

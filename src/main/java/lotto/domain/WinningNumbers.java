@@ -11,7 +11,7 @@ public class WinningNumbers extends UserNumbers {
     }
 
     @Override
-    public void validate(List<Integer> numbers) {
+    protected void validate(List<Integer> numbers) {
         super.validate(numbers);
         DomainValidate.validateNumberOfWinningNumbers(numbers);
     }

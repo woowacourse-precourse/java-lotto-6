@@ -36,16 +36,11 @@ public class UserConsoleInputAdapter implements UserInputPort {
     }
 
     private int getLottoBuyPriceWithInput() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String input = Console.readLine();
-                validateLottoBuyPrice(input);
-                return toInt(input);
-            } catch (LottoException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+
+        validateLottoBuyPrice(input);
+        return toInt(input);
     }
 
     private List<Integer> getLottoNumber() {

@@ -1,6 +1,9 @@
 package lotto.util;
 
+import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
+import lotto.dto.request.BonusNumberDto;
+import lotto.dto.request.WinningNumbersDto;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,64 +14,69 @@ public class Validator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력이 정수가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
         }
     }
 
-
-
-    public static void validateMoneyInput(List<Integer> numbers) {
-
-
-    }
-
-    public static void validateLottoNumbers(List<Integer> numbers) {
-
-        if (new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-        }
-    }
-
-    public static void validateWinningNumbers(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            validateNotNull(number);
-        }
-
-        if (numbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-        }
-        validateNumbersInRange(numbers);
-    }
-
-    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
-    }
-
-    private static void validateNotNull(Object value) {
+    public static void validateNotNull(Object value) {
         if (value == null) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 입력되지 않았습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_PRESENT.getMessage());
         }
     }
 
-    private static void validateNumberInRange(int number) {
+    public static void validateNumberInRange(int number) {
         if (number < LottoConfig.START_OF_LOTTO_NUMBER.getValue()
                 || number > LottoConfig.END_OF_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(
+                    ErrorMessage.NUMBER_RANGE_ERROR.getFormattedMessage(
+                            LottoConfig.START_OF_LOTTO_NUMBER.getValue(),
+                            LottoConfig.END_OF_LOTTO_NUMBER.getValue()
+                    ));
         }
     }
 
-    private static void validateNumbersInRange(List<Integer> numbers) {
+    public static void validateNumbersInRange(List<Integer> numbers) {
         if (!numbers.stream().allMatch(num -> num >= LottoConfig.START_OF_LOTTO_NUMBER.getValue()
                 && num <= LottoConfig.END_OF_LOTTO_NUMBER.getValue())) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(
+                    ErrorMessage.NUMBER_RANGE_ERROR.getFormattedMessage(
+                            LottoConfig.START_OF_LOTTO_NUMBER.getValue(),
+                            LottoConfig.END_OF_LOTTO_NUMBER.getValue()
+                    ));
         }
     }
 
-    private static void validateUniqueNumbers(List<Integer> numbers) {
+    public static void validateUniqueNumbers(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateWinningNumbers(WinningNumbersDto winningNumbersDto) {
+        List<Integer> winningNumbers = winningNumbersDto.getNumbers();
+        validateNotNull(winningNumbers);
+
+        if (winningNumbers.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.MISSING_WINNING_NUMBERS.getMessage());
+        }
+        if (winningNumbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_SIZE_ERROR
+                    .getFormattedMessage(LottoConfig.LOTTO_NUMBER_COUNT.getValue()));
+        }
+
+        validateUniqueNumbers(winningNumbers);
+        validateNumbersInRange(winningNumbers);
+    }
+
+    public static void validateBonusNumber(WinningNumbersDto winningNumbersDto, BonusNumberDto bonusNumberDto) {
+        List<Integer> winningNumbers = winningNumbersDto.getNumbers();
+        int bonusNumber = bonusNumberDto.getBonus();
+
+        validateNotNull(bonusNumber);
+        validateNumberInRange(bonusNumber);
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.getMessage());
         }
     }
 }

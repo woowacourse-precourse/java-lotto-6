@@ -1,5 +1,6 @@
 package lotto.common;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,6 +12,7 @@ public abstract class ConsoleTest {
     @BeforeEach
     final void init() {
         System.setOut(new PrintStream(outputStreamCaptor));
+        Console.close();
     }
 
     protected void setStdin(String input) {

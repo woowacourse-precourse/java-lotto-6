@@ -14,7 +14,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String WINNING_PRIZE_MESSAGE = "%d개 일치 (%,d원) - %d개";
     private static final String WINNING_SECOND_PRIZE_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    private static final String RETURN_ON_LOTTO_MESSAGE = "총 수익률은 %.1f입니다.";
+    private static final String RETURN_ON_LOTTO_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String DASH = "-";
     private static final int RESULT_DASH_COUNT = 3;
 

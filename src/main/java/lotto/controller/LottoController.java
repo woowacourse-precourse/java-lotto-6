@@ -53,9 +53,10 @@ public class LottoController {
 
     private void statisticLotto() {
         OutputView.printStatistics();
-        List<Lotto> lottos = lottoContainer.getLottos();
-        for (Lotto lotto : lottos) {
+        List<Lotto> savedLotto = lottoContainer.getLottos();
+        for (Lotto lotto : savedLotto) {
             lottoContainer.countMatchingNumbers(lotto, winningLotto.getWinningNumbers());
+            lottoContainer.countMatchingBonusNumber(lotto, bonusLotto.getBonusNumber());
         }
     }
 }

@@ -1,11 +1,12 @@
 package lotto.domain;
 
 public enum Rank {
-    FIRST(6,0,2000000000),
-    SECOND(5,1,30000000),
-    THIRD(5,0,1500000),
-    FOURTH(4,0,50000),
     FIFTH(3,0,5000),
+    FOURTH(4,0,50000),
+    THIRD(5,0,1500000),
+    SECOND(5,1,30000000),
+    FIRST(6,0,2000000000),
+    FAIL(0, 0, 0),
     ;
 
     private final int winningNumber;
@@ -27,5 +28,28 @@ public enum Rank {
 
     public int getWinningMoney() {
         return winningMoney;
+    }
+
+    public static Rank getRank(int winningCount, int bonusCount){
+        if (winningCount == Rank.THIRD.getWinningNumber()) {
+            return THIRD;
+        }
+
+        if (winningCount == Rank.FOURTH.getWinningNumber()){
+            return FOURTH;
+        }
+
+        if (winningCount == Rank.THIRD.getWinningNumber() && bonusCount == Rank.THIRD.getBonusNumber()) {
+            return THIRD;
+        }
+
+        if (winningCount == Rank.THIRD.getWinningNumber() && bonusCount == Rank.SECOND.getBonusNumber()) {
+            return SECOND;
+        }
+
+        if (winningCount == Rank.FIRST.getWinningNumber()){
+            return FIRST;
+        }
+        return FAIL;
     }
 }

@@ -9,4 +9,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.ONE_WORD_AND_OVER.getMessage());
         }
     }
+
+    public void multipleOfThousand(int price) {
+        if (price <= 0 || price % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.MULTIPLE_OF_1000.getMessage());
+        }
+    }
 }

@@ -24,7 +24,21 @@ class ValidationTest {
                 .hasMessageContaining("[ERROR] 한 글자 이상 입력해 주세요.");
     }
 
+    @DisplayName("입력값이 1000의 배수가 아니면 예외가 발생한다.")
+    @Test
+    void inputNotMultipleOf1000() {
+        assertThatThrownBy(() -> validation.multipleOfThousand(2500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구매금액은 1,000원 단위로 입력해 주세요.");
+    }
 
+    @DisplayName("입력값이 음수면 예외가 발생한다.")
+    @Test
+    void inputNegative() {
+        assertThatThrownBy(() -> validation.multipleOfThousand(-2500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구매금액은 1,000원 단위로 입력해 주세요.");
+    }
 
 
 }

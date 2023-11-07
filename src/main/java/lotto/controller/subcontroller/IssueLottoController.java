@@ -3,6 +3,7 @@ package lotto.controller.subcontroller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.repository.LottoRepository;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,14 +21,20 @@ public class IssueLottoController implements Controllable {
 
     @Override
     public void process() {
-        int purchase = inputView.inputPurchaseLotto();
-        int amount = getLottoAmount(purchase);
-        issueLotto(amount);
+        PurchaseAmount purchaseAmount = inputPurchaseAmount();
+        int count = purchaseAmount.calculateLottoCount();
+        issueLotto(count);
         outputView.outputLottoNumbers(LottoRepository.lotties());
     }
 
-    private int getLottoAmount(int purchase) {
-        return purchase / LOTTO_UNIT;
+    private PurchaseAmount inputPurchaseAmount() {
+        try {
+            int amount = inputView.inputPurchaseAmount();
+            return new PurchaseAmount(amount);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return inputPurchaseAmount();
+        }
     }
 
     private void issueLotto(int amount) {

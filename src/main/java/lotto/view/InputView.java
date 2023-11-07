@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.util.Util;
-import lotto.util.validator.PurchaseValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -12,16 +11,9 @@ public class InputView {
         return instance;
     }
 
-    public int inputPurchaseLotto() {
-        try {
-            System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
-            String input = Console.readLine();
-            new PurchaseValidator().validate(input);
-            return Util.convertStringToInt(input);
-        } catch (IllegalArgumentException exception) {
-            OutputView.getInstance().printExceptionMessage(exception);
-            return inputPurchaseLotto();
-        }
+    public int inputPurchaseAmount() {
+        System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
+        return Util.convertStringToInt(Console.readLine());
     }
 
     public List<Integer> inputWinningNumber() {

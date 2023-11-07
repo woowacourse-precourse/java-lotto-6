@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
 
 public enum LottoPrize {
     FIFTH(3, 5_000),
@@ -34,5 +36,11 @@ public enum LottoPrize {
                 .filter(it -> it.prizeRank == matchCount)
                 .findFirst()
                 .orElse(ETC);
+    }
+
+    @Override
+    public String toString() {
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+        return "(" + formatter.format(prizeMoney) + "원)";
     }
 }

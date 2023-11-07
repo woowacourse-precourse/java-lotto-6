@@ -13,23 +13,23 @@ public class InputView {
 
     private static List<Integer> winningNumbers;
 
-    public static String inputPlayerAmount(){
+    public static String inputPlayerAmount() {
         System.out.println(INPUT_LOTTO_AMOUNT);
         return Console.readLine();
     }
 
-    public static List<Integer> inputWinningNumbers(){
+    public static List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
-        return  convertToList(Console.readLine());
+        return convertToList(Console.readLine());
 
     }
 
-    private static List<Integer> convertToList(String inputNumbers){
-        String [] result= inputNumbers.split(",");
-        winningNumbers= new ArrayList<>();
+    private static List<Integer> convertToList(String inputNumbers) {
+        String[] result = inputNumbers.split(",");
+        winningNumbers = new ArrayList<>();
 
-        for(int i=0; i<result.length; i++){
-            int num=checkNumber(result[i]);
+        for (int i = 0; i < result.length; i++) {
+            int num = checkNumber(result[i]);
             checkRange(num);
             winningNumbers.add(num);
         }
@@ -38,10 +38,10 @@ public class InputView {
     }
 
 
-    public static int inputBonusNumber(){
+    public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
-        String input= Console.readLine();
-        int num=checkNumber(input);
+        String input = Console.readLine();
+        int num = checkNumber(input);
         checkRange(num);
         return num;
     }

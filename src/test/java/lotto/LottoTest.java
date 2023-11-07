@@ -31,23 +31,23 @@ class LottoTest {
     */
     // 아래에 추가 테스트 작성 가능
     @Test
-    void 음수금액_test(){
-        assertThrows(IllegalArgumentException.class, ()-> {
-            LottoAmount lotto=new LottoAmount("-1000");
+    void 음수금액_test() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoAmount lotto = new LottoAmount("-1000");
         });
     }
 
     @Test
-    void 단위불일치_test(){
-        assertThrows(IllegalArgumentException.class, ()-> {
-            LottoAmount lotto=new LottoAmount("2100");
+    void 단위불일치_test() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoAmount lotto = new LottoAmount("2100");
         });
     }
 
     @Test
-    void 로또숫자생성기(){
-        LottoNumbers lottoNumbers= new LottoNumbers();
-        List<Integer> lottoTest= lottoNumbers.setLottoNumbers();
+    void 로또숫자생성기() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        List<Integer> lottoTest = lottoNumbers.setLottoNumbers();
         assertEquals(lottoTest.size(), 6);
 
     }
@@ -85,10 +85,10 @@ class LottoTest {
 //    }
 
     @Test
-    void 중복번호_test(){
-        assertThrows(IllegalArgumentException.class, ()-> {
-            List<Integer> lottonum= List.of(1,2,3,4,5,5);
-            Lotto newlotto =new Lotto(lottonum);
+    void 중복번호_test() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            List<Integer> lottonum = List.of(1, 2, 3, 4, 5, 5);
+            Lotto newlotto = new Lotto(lottonum);
         });
     }
 

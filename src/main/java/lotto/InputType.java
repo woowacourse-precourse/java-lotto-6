@@ -1,7 +1,7 @@
 package lotto;
 
 public enum InputType { purchaseMoney(0), catchNumber(1);
-    private int value;
+    private final int value;
     InputType(int value) {
         this.value = value;
     }

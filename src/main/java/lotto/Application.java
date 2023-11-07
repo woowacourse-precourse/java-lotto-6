@@ -17,6 +17,11 @@ public class Application {
         printLottos(lottos);
 
         System.out.println(InputMessage.WINNING_NUMBER);
+        validateWinningNumber(Console.readLine());
+    }
+
+    private static void validateWinningNumber(String winningNumber) {
+        checkNull(winningNumber);
     }
 
     public static int inputPurchaseAmount() {

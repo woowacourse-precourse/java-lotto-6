@@ -21,6 +21,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.io.read.InputReader;
+import lotto.io.write.OutputWriter;
 import lotto.validation.LottoValidator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +49,8 @@ class LottoInputReaderTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        lottoInputReader = new LottoInputReader(mockReader, spyValidator);
+        LottoOutputWriter writer = LottoOutputWriter.of(new OutputWriter());
+        lottoInputReader = LottoInputReader.of(mockReader, writer, spyValidator);
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 

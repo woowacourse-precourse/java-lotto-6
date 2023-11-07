@@ -2,13 +2,17 @@ package lotto.domain.result;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.io.write.OutputWriter;
+import lotto.service.LottoOutputWriter;
 
 public class Statistics {
 
     private List<GradeCount> gradeCounts = new ArrayList<>();
 
-    public Statistics() {
+    public static Statistics of() {
+        return new Statistics();
+    }
+
+    private Statistics() {
         for (Grade grade : Grade.values()) {
             gradeCounts.add(new GradeCount(grade));
         }
@@ -22,12 +26,12 @@ public class Statistics {
         }
     }
 
-    public void print() {
+    public void print(LottoOutputWriter writer) {
         for (GradeCount gradeCount : gradeCounts) {
             if (gradeCount.getGrade() == Grade.NONE) {
                 continue;
             }
-            OutputWriter.showStatistics(gradeCount.getGrade(), gradeCount.getCount());
+            writer.showStatistics(gradeCount.getGrade(), gradeCount.getCount());
         }
     }
 

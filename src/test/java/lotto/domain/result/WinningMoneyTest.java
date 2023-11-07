@@ -23,7 +23,7 @@ class WinningMoneyTest {
                 .add(BigDecimal.valueOf(FIFTH.getWinningMoney()))
                 .add(BigDecimal.valueOf(FIFTH.getWinningMoney()));
 
-        Statistics statistics = new Statistics();
+        Statistics statistics = Statistics.of();
         statistics.apply(FIRST);
         statistics.apply(SECOND);
         statistics.apply(THIRD);
@@ -32,7 +32,7 @@ class WinningMoneyTest {
         statistics.apply(FIFTH);
 
         // Act
-        WinningMoney winningMoney = new WinningMoney(statistics);
+        WinningMoney winningMoney = WinningMoney.of(statistics);
 
         // Assert
         Assertions.assertThat(winningMoney.getMoney()).isEqualTo(expected);

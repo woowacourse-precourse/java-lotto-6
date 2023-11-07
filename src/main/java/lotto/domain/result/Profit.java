@@ -2,13 +2,17 @@ package lotto.domain.result;
 
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
-import lotto.io.write.OutputWriter;
+import lotto.service.LottoOutputWriter;
 
 public class Profit {
 
     private final double percentage;
 
-    public Profit(WinningMoney winningMoney, int purchaseCount) {
+    public static Profit of(WinningMoney winningMoney, int size) {
+        return new Profit(winningMoney, size);
+    }
+
+    private Profit(WinningMoney winningMoney, int purchaseCount) {
         this.percentage = winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT);
     }
 
@@ -16,7 +20,7 @@ public class Profit {
         return percentage;
     }
 
-    public void print() {
-        OutputWriter.showProfit(this.percentage);
+    public void print(LottoOutputWriter writer) {
+        writer.showProfit(this.percentage);
     }
 }

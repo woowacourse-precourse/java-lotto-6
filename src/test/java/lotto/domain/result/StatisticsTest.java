@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import lotto.io.write.OutputWriter;
+import lotto.service.LottoOutputWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +32,7 @@ class StatisticsTest {
     @Test
     void 통계를_생성할때_등수_카운트를_초기화한다() {
         //Arrange
-        Statistics statistics = new Statistics();
+        Statistics statistics = Statistics.of();
 
         //Act
         List<GradeCount> gradeCounts = statistics.getGradeCounts();
@@ -45,7 +47,7 @@ class StatisticsTest {
     @Test
     void 등수를_통계에_반영한다() {
         //Arrange
-        Statistics statistics = new Statistics();
+        Statistics statistics = Statistics.of();
         Grade expectedGrade = FIFTH;
 
         //Act
@@ -62,12 +64,12 @@ class StatisticsTest {
     @Test
     void 통계를_출력한다() {
         //Arrange
-        Statistics statistics = new Statistics();
+        Statistics statistics = Statistics.of();
         statistics.apply(FIRST);
         statistics.apply(THIRD);
 
         //Act
-        statistics.print();
+        statistics.print(LottoOutputWriter.of(new OutputWriter()));
 
         //Assert
         assertThat(outputStreamCaptor.toString())

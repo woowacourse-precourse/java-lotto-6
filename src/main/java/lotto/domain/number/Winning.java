@@ -6,12 +6,16 @@ import java.util.List;
 import java.util.Objects;
 import lotto.domain.result.Grade;
 
-public class Win {
+public class Winning {
 
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public Win(List<Integer> numbers, int bonusNumber) {
+    public static Winning of(List<Integer> numbers, int bonusNumber) {
+        return new Winning(numbers, bonusNumber);
+    }
+
+    private Winning(List<Integer> numbers, int bonusNumber) {
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }

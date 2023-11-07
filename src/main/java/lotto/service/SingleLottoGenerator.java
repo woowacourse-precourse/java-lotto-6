@@ -21,6 +21,6 @@ public class SingleLottoGenerator {
                 .sorted()
                 .toList();
 
-        return new Lotto(numbers);
+        return Lotto.of(numbers);
     }
 }

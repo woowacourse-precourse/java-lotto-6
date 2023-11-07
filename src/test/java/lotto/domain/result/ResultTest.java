@@ -15,7 +15,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.number.Lotto;
-import lotto.domain.number.Win;
+import lotto.domain.number.Winning;
+import lotto.io.write.OutputWriter;
+import lotto.service.LottoOutputWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,21 +41,21 @@ class ResultTest {
         //Arrange
         List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        Win win = new Win(winNumbers, bonusNumber);
+        Winning winning = Winning.of(winNumbers, bonusNumber);
 
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
-                new Lotto(List.of(1, 2, 3, 4, 8, 9)),
-                new Lotto(List.of(1, 2, 3, 8, 9, 10)),
-                new Lotto(List.of(1, 2, 8, 9, 10, 11))
+                Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
+                Lotto.of(List.of(1, 2, 3, 4, 5, 7)),
+                Lotto.of(List.of(1, 2, 3, 4, 5, 8)),
+                Lotto.of(List.of(1, 2, 3, 4, 8, 9)),
+                Lotto.of(List.of(1, 2, 3, 8, 9, 10)),
+                Lotto.of(List.of(1, 2, 8, 9, 10, 11))
         );
 
         List<Integer> expected = List.of(1, 1, 1, 1, 1, 1);
 
         //Act
-        Result result = Result.of(win, lottos);
+        Result result = Result.of(winning, lottos);
 
         //Assert
         Statistics statistics = result.getStatistics();
@@ -69,15 +71,15 @@ class ResultTest {
         //Arrange
         List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        Win win = new Win(winNumbers, bonusNumber);
+        Winning winning = Winning.of(winNumbers, bonusNumber);
 
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
-                new Lotto(List.of(1, 2, 3, 4, 8, 9)),
-                new Lotto(List.of(1, 2, 3, 8, 9, 10)),
-                new Lotto(List.of(1, 2, 8, 9, 10, 11))
+                Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
+                Lotto.of(List.of(1, 2, 3, 4, 5, 7)),
+                Lotto.of(List.of(1, 2, 3, 4, 5, 8)),
+                Lotto.of(List.of(1, 2, 3, 4, 8, 9)),
+                Lotto.of(List.of(1, 2, 3, 8, 9, 10)),
+                Lotto.of(List.of(1, 2, 8, 9, 10, 11))
         );
 
         long expected = FIRST.getWinningMoney() +
@@ -87,7 +89,7 @@ class ResultTest {
                 FIFTH.getWinningMoney();
 
         //Act
-        Result result = Result.of(win, lottos);
+        Result result = Result.of(winning, lottos);
 
         //Assert
         assertThat(result.getWinningMoney().longValue())
@@ -99,17 +101,17 @@ class ResultTest {
         //Arrange
         List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        Win win = new Win(winNumbers, bonusNumber);
+        Winning winning = Winning.of(winNumbers, bonusNumber);
 
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+                Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
+                Lotto.of(List.of(1, 2, 3, 4, 5, 7))
         );
 
         double expectedProfit =
                 (FIRST.getWinningMoney() + SECOND.getWinningMoney()) / ((double) lottos.size() * PURCHASE_AMOUNT_UNIT);
 
-        Result result = Result.of(win, lottos);
+        Result result = Result.of(winning, lottos);
 
         //Act
         double profitPercentage = result.getProfit();
@@ -123,17 +125,17 @@ class ResultTest {
         //Arrange
         List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        Win win = new Win(winNumbers, bonusNumber);
+        Winning winning = Winning.of(winNumbers, bonusNumber);
 
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+                Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
+                Lotto.of(List.of(1, 2, 3, 4, 5, 7))
         );
 
-        Result result = Result.of(win, lottos);
+        Result result = Result.of(winning, lottos);
 
         //Act
-        result.print();
+        result.print(LottoOutputWriter.of(new OutputWriter()));
 
         //Assert
         assertThat(outputStreamCaptor.toString())

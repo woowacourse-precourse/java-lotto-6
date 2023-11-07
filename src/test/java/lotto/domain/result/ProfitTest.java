@@ -11,6 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import lotto.io.write.OutputWriter;
+import lotto.service.LottoOutputWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,17 +36,17 @@ class ProfitTest {
         // Arrange
         int purchaseCount = 5;
 
-        Statistics statistics = new Statistics();
+        Statistics statistics = Statistics.of();
         statistics.apply(FIRST);
         statistics.apply(SECOND);
         statistics.apply(THIRD);
         statistics.apply(FOURTH);
         statistics.apply(FIFTH);
 
-        WinningMoney winningMoney = new WinningMoney(statistics);
+        WinningMoney winningMoney = WinningMoney.of(statistics);
 
         // Act
-        Profit profit = new Profit(winningMoney, purchaseCount);
+        Profit profit = Profit.of(winningMoney, purchaseCount);
 
         // Assert
         double expected = winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT);
@@ -55,19 +57,19 @@ class ProfitTest {
     void 수익률을_출력한다() {
         int purchaseCount = 5;
 
-        Statistics statistics = new Statistics();
+        Statistics statistics = Statistics.of();
         statistics.apply(FIRST);
         statistics.apply(SECOND);
         statistics.apply(THIRD);
         statistics.apply(FOURTH);
         statistics.apply(FIFTH);
 
-        WinningMoney winningMoney = new WinningMoney(statistics);
-        
-        Profit profit = new Profit(winningMoney, purchaseCount);
+        WinningMoney winningMoney = WinningMoney.of(statistics);
+
+        Profit profit = Profit.of(winningMoney, purchaseCount);
 
         // Act
-        profit.print();
+        profit.print(LottoOutputWriter.of(new OutputWriter()));
 
         // Assert
         String expected = String.format(LOTTO_PROFIT_MESSAGE.getMessage(), profit.getPercentage());

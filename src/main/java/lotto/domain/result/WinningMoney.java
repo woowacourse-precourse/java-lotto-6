@@ -6,7 +6,11 @@ public class WinningMoney {
 
     private BigDecimal money;
 
-    public WinningMoney(Statistics statistics) {
+    public static WinningMoney of(Statistics statistics) {
+        return new WinningMoney(statistics);
+    }
+
+    private WinningMoney(Statistics statistics) {
         this.money = BigDecimal.ZERO;
 
         for (GradeCount gradeCount : statistics.getGradeCounts()) {

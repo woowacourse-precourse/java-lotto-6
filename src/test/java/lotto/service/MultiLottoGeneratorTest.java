@@ -1,6 +1,5 @@
 package lotto.service;
 
-import static lotto.io.write.OutputMessage.LOTTO_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
@@ -32,15 +31,12 @@ class MultiLottoGeneratorTest {
     void 로또를_여러개_생성하여_반환한다() {
         //Arrange
         int lottoCount = 10;
-        MultiLottoGenerator generator = new MultiLottoGenerator(new SingleLottoGenerator(), lottoCount);
+        MultiLottoGenerator generator = MultiLottoGenerator.of(new SingleLottoGenerator(), lottoCount);
 
         //Act
         List<Lotto> lottos = generator.generate();
 
         //Assert
-        assertThat(outputStreamCaptor.toString())
-                .contains(String.format("%d%s", lottoCount, LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage()));
-
         assertThat(lottos).hasSize(lottoCount);
 
         for (Lotto lotto : lottos) {
@@ -50,33 +46,4 @@ class MultiLottoGeneratorTest {
                     .isSorted();
         }
     }
-
-    @Test
-    void 생성한_로또들을_출력한다() {
-        //Arrange
-        int lottoCount = 10;
-        MultiLottoGenerator generator = new MultiLottoGenerator(new SingleLottoGenerator(), lottoCount);
-
-        //Act
-        List<Lotto> lottos = generator.generate();
-
-        //Assert
-        String output = outputStreamCaptor.toString();
-        assertThat(lottos).hasSize(lottoCount);
-
-        assertThat(output).contains(String.format("%d%s\n", lottoCount, LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage()));
-
-        lottos.forEach(lotto ->
-                assertThat(output).contains(lottoToString(lotto.getNumbers()))
-        );
-    }
-
-    private String lottoToString(List<Integer> numbers) {
-        return "[" +
-                String.join(", ", numbers.stream()
-                        .map(String::valueOf)
-                        .toArray(String[]::new))
-                + "]";
-    }
-
 }

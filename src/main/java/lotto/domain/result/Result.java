@@ -3,8 +3,8 @@ package lotto.domain.result;
 import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.number.Lotto;
-import lotto.domain.number.Win;
-import lotto.io.write.OutputWriter;
+import lotto.domain.number.Winning;
+import lotto.service.LottoOutputWriter;
 
 public class Result {
 
@@ -12,28 +12,28 @@ public class Result {
     private final WinningMoney winningMoney;
     private final Profit profit;
 
-    public static Result of(Win win, List<Lotto> lottos) {
-        return new Result(win, lottos);
+    public static Result of(Winning winning, List<Lotto> lottos) {
+        return new Result(winning, lottos);
     }
 
-    private Result(Win win, List<Lotto> lottos) {
-        this.statistics = new Statistics();
-        applyLottos(win, lottos);
-        this.winningMoney = new WinningMoney(statistics);
-        this.profit = new Profit(winningMoney, lottos.size());
+    private Result(Winning winning, List<Lotto> lottos) {
+        this.statistics = Statistics.of();
+        aggregate(winning, lottos);
+        this.winningMoney = WinningMoney.of(statistics);
+        this.profit = Profit.of(winningMoney, lottos.size());
     }
 
-    private void applyLottos(Win win, List<Lotto> lottos) {
+    private void aggregate(Winning winning, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            Grade grade = win.match(lotto);
+            Grade grade = winning.match(lotto);
             statistics.apply(grade);
         }
     }
 
-    public void print() {
-        OutputWriter.showResult();
-        statistics.print();
-        profit.print();
+    public void print(LottoOutputWriter writer) {
+        writer.showResult();
+        statistics.print(writer);
+        profit.print(writer);
     }
 
     public Statistics getStatistics() {

@@ -1,5 +1,8 @@
 package lotto.model.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Rank {
     OTHER(0, false, 0),
     FIFTH(3, false, 5_000),
@@ -29,6 +32,16 @@ public enum Rank {
 
     public static boolean isThirdCount(int count) {
         return count == THIRD.count;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public static List<Rank> getRanks() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != OTHER)
+                .toList();
     }
 
     public int getPrizeMoney() {

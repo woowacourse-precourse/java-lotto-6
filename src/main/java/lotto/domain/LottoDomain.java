@@ -5,13 +5,17 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.util.LottoConstants;
+import lotto.view.OutputView;
 import lotto.view.viewArgument.LottoPrizeMoney;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class LottoDomain {
+    OutputView outputView = new OutputView();
+    LottoPrizeMoney lottoPrizeMoney;
 
     public Lottos createLottos(int purchaseCount) {
         Lotto lotto;
@@ -44,7 +48,23 @@ public class LottoDomain {
         return lottoStats;
     }
 
+    public float printLottoStats(Map<String, Integer> resultStats, int purchaseCount) {
+        float purchaseAmount = (float) purchaseCount * LottoConstants.DIVISION_THOUSAND;
+        int earningMoney = 0;
 
+        for (Entry<String, Integer> entrySet : resultStats.entrySet()) {
+            outputView.printWinningDetail(entrySet.getKey(), entrySet.getValue());
+
+            earningMoney += getMoney(entrySet.getKey());
+        }
+        System.out.println(earningMoney + " / " + purchaseAmount);
+        return (earningMoney / purchaseAmount) * 100;
+    }
+
+    private int getMoney(String correctCount) {
+        LottoPrizeMoney prizeMoney = lottoPrizeMoney.valueOfCorrectCount(correctCount);
+        return prizeMoney.getPrizeMoney();
+    }
 
     private Map<String, Integer> createLottoStats() {
         Map<String, Integer> lottoStats = new HashMap<>();

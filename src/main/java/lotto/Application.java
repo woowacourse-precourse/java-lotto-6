@@ -5,7 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Application {
     static ArrayList<Lotto> lottoTickets = new ArrayList<>();
@@ -18,6 +21,7 @@ public class Application {
         getWinningNumbers(Console.readLine());
         System.out.println("보너스 번호를 입력해주세요.");
         getBonusNumber(Console.readLine());
+        compareLottoWithWinning();
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -55,5 +59,16 @@ public class Application {
     }
     public static void getBonusNumber(String inputBonusNumber) {
         Integer bonusNumber = Integer.valueOf(inputBonusNumber);
+    }
+    public static void compareLottoWithWinning() {
+        for(Lotto lottoTicket : lottoTickets) {
+            List<Integer> resultList = winningNumbers.stream()
+                    .filter(old -> lottoTicket.getNumbers().stream()
+                            .anyMatch(Predicate.isEqual(old)))
+                    .collect(Collectors.toList());
+            Integer sameNumber = resultList.size();
+            //5개면 보너스가 맞는지
+            //enum 어떻게 쓰지?
+        }
     }
 }

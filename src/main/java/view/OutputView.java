@@ -16,6 +16,14 @@ public class OutputView {
         System.out.println(numbers);
     }
 
+    public static void printResultMessage() {
+        System.out.println(OutputMessage.SHOW_TOTAL_RESULT.getOutputMessage());
+        System.out.println(OutputMessage.DIVIDER.getOutputMessage());
+    }
+    public static void printEachLottoResult(String msg, int count) {
+        System.out.println(msg + count + "개");
+    }
+
     public static void printEmptyLine() {
         System.out.println();
     }

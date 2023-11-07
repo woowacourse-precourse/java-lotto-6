@@ -32,7 +32,7 @@ public class LottoGame {
 
         saveGeneratedLottosAndPrint(saveNumOfLotto());
 
-        saveWinningNumbersAndBonusNumber();
+        generateLottoSystem();
 
         saveWinningResultAndPrint();
 
@@ -51,16 +51,22 @@ public class LottoGame {
     }
 
     private int saveNumOfLotto(){
+        try{
+            printSystem.printAskPaymentAccountMessage();
+            int paymentAccount = inputSystem.inputPaymentAccount();
 
-        printSystem.printAskPaymentAccountMessage();
-        int paymentAccount = inputSystem.inputPaymentAccount();
+            validateSystem.validatePaymentAccount(paymentAccount);
 
-        validateSystem.validatePaymentAccount(paymentAccount);
+            player.savePaymentAccount(paymentAccount);
+            printSystem.printResultNumOfLotto(paymentAccount/LOTTO_PRICE);
 
-        player.savePaymentAccount(paymentAccount);
-        printSystem.printResultNumOfLotto(paymentAccount/LOTTO_PRICE);
+            return paymentAccount/LOTTO_PRICE;
 
-        return paymentAccount/LOTTO_PRICE;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return saveNumOfLotto();
+        }
+
     }
 
     private void saveGeneratedLottosAndPrint(int lottoCount){
@@ -72,18 +78,39 @@ public class LottoGame {
         printSystem.printResultGeneratedLottos(this.lottos);
     }
 
-    private void saveWinningNumbersAndBonusNumber(){
+    private void generateLottoSystem(){
 
-        printSystem.printAskWinningNumbersMessage();
-        List<Integer> winningNumbers = inputSystem.inputWinningNumbers();
-        validateSystem.validateWinningNumbers(winningNumbers);
+        List<Integer> winningNumbers = saveWinningNumbers();
+        this.lottoSystem = new LottoSystem(winningNumbers, saveBonusNumber(winningNumbers));
 
-        printSystem.printAskBonusNumberMessage();
-        int bonusNumber = inputSystem.inputBonusNumber();
-        validateSystem.validateBonusNumber(winningNumbers,bonusNumber);
+    }
 
-        this.lottoSystem = new LottoSystem(winningNumbers, bonusNumber);
+    private List<Integer> saveWinningNumbers(){
 
+        try{
+            printSystem.printAskWinningNumbersMessage();
+            List<Integer> winningNumbers = inputSystem.inputWinningNumbers();
+            validateSystem.validateWinningNumbers(winningNumbers);
+
+            return winningNumbers;
+
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return saveWinningNumbers();
+        }
+    }
+
+    private int saveBonusNumber(List<Integer> winningNumbers){
+        try{
+            printSystem.printAskBonusNumberMessage();
+            int bonusNumber = inputSystem.inputBonusNumber();
+            validateSystem.validateBonusNumber(winningNumbers,bonusNumber);
+
+            return bonusNumber;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return saveBonusNumber(winningNumbers);
+        }
     }
 
     private void saveWinningResultAndPrint(){

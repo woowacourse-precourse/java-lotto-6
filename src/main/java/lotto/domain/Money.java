@@ -1,13 +1,30 @@
 package lotto.domain;
 
+import lotto.validation.Validation;
+import lotto.validation.money.MoneyDivisionCondition;
+import lotto.validation.money.MoneyRangeCondition;
+import lotto.validation.money.MoneyValidation;
+import lotto.validation.money.NumberCondition;
+
 import java.util.Objects;
 
 public class Money {
     private int amount;
+    private static Validation validation;
     public static final Money ZERO = Money.wons(0);
+    public static final Money LOTTO_PRICE = Money.wons(1000);
 
     public Money(String amount){
+        validation.validate(amount);
         this.amount = Integer.parseInt(amount);
+    }
+
+    static {
+        validation = new MoneyValidation(
+                new NumberCondition(),
+                new MoneyDivisionCondition(Money.LOTTO_PRICE),
+                new MoneyRangeCondition()
+        );
     }
 
     public Money(int amount){

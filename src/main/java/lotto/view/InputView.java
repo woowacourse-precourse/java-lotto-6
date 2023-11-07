@@ -10,7 +10,7 @@ import lotto.constant.MessageConstant;
 
 public class InputView {
     public int inputMoney(){
-        System.out.println(MessageConstant.BUY_MESSAGE.getMessage());
+        System.out.println(MessageConstant.BUY_LOTTO_MESSAGE.getMessage());
 
         while(true){
             try{

@@ -21,14 +21,14 @@ public class LotteryAnswerController {
         return new LottoAnswer(answer, bonus);
     }
 
-    Integer getBonus() {
-        InputView.getBonusAnswer();
-        return lotteryBonusNumberService.getBonusAnswer();
-    }
-
     Lotto getLottoAnswer() {
         InputView.getLottoAnswer();
         return lotteryAnswerNumberService.getLottoAnswer();
+    }
+
+    Integer getBonus() {
+        InputView.getBonusAnswer();
+        return lotteryBonusNumberService.getBonusAnswer();
     }
 
     public void getResult(User user, LottoAnswer lottoAnswer) {

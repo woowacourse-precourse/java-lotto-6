@@ -19,7 +19,7 @@ class LottoAnswerValidatorTest {
         // THEN
         assertDoesNotThrow(() -> {
             // WHEN
-            LottoAnswerValidator.validNumberRange(answer);
+            LottoAnswerValidator.validNumberRange.accept(answer);
         });
     }
 
@@ -31,7 +31,7 @@ class LottoAnswerValidatorTest {
         // THEN
         assertThrows(IllegalArgumentException.class, () -> {
             // WHEN
-            LottoAnswerValidator.validNumberRange(answer);
+            LottoAnswerValidator.validNumberRange.accept(answer);
         });
     }
 
@@ -39,7 +39,7 @@ class LottoAnswerValidatorTest {
     @ValueSource(strings = {"1,2,3,4,5,6"})
     @DisplayName("당첨번호의 길이가 6이라면 정상처리를 합니다.")
     void 당첨번호_길이_6인경우(String lottoAnswerInput) {
-        LottoAnswerValidator.validSize(lottoAnswerInput);
+        LottoAnswerValidator.validSize.accept(lottoAnswerInput);
     }
 
     @ParameterizedTest
@@ -49,7 +49,7 @@ class LottoAnswerValidatorTest {
         // THEN
         assertThrows(IllegalArgumentException.class, () -> {
             // WHEN
-            LottoAnswerValidator.validSize(lottoAnswerInput);
+            LottoAnswerValidator.validSize.accept(lottoAnswerInput);
         });
     }
 
@@ -57,17 +57,13 @@ class LottoAnswerValidatorTest {
     @ValueSource(strings = {"1", "45"})
     @DisplayName("보너스 번호 범위 내인 경우 정상처리를 합니다.")
     void 보너스번호_범위_정상인경우(String bonusInput) {
-        assertDoesNotThrow(() -> {
-            LottoAnswerValidator.validateBonusInput(bonusInput);
-        });
+        assertDoesNotThrow(() -> LottoAnswerValidator.validateBonusInput.accept(bonusInput));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "46"})
     @DisplayName("보너스 번호 범위를 벗어난 경우 예외처리를 합니다.")
     void 보너스번호_범위_벗어난경우(String bonusInput) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            LottoAnswerValidator.validateBonusInput(bonusInput);
-        });
+        assertThrows(IllegalArgumentException.class, () -> LottoAnswerValidator.validateBonusInput.accept(bonusInput));
     }
 }

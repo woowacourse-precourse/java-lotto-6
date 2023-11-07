@@ -18,7 +18,7 @@ public class LottoController {
         this.outputView = new OutputView();
     }
 
-    public void purchaseLotto() {
+    private void purchaseLotto() {
         while (true) {
             try {
                 int purchaseMoney = inputView.readPurchaseMoney();
@@ -30,7 +30,7 @@ public class LottoController {
         }
     }
 
-    public void makeResultLotto() {
+    private void makeResultLotto() {
         while (true) {
             try {
                 List<Integer> winningNumbers = inputView.readWinningNumbers();
@@ -41,5 +41,11 @@ public class LottoController {
             } catch (IllegalArgumentException ignored) {
             }
         }
+    }
+
+    private void result() {
+        List<Lotto> userLottoBundle = userLotto.getLottoBundle();
+        List<Integer> winning = resultLotto.calculateResult(userLottoBundle);
+        outputView.printWinning(winning, userLottoBundle.size() * 1000);
     }
 }

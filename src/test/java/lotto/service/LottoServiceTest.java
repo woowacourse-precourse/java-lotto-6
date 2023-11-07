@@ -9,7 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Set;
 
 
 class LottoServiceTest {
@@ -178,6 +179,32 @@ class LottoServiceTest {
         // then
         assertThat(result).startsWith("5개를 구매했습니다.");
         assertThat(executionCount).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("기능36 테스트 : Ranking에 있는 값들로 winningResult를 초기화한다.")
+    void winningResultInitByRankingEnum() {
+        // when
+        Map<Ranking, Integer> winnerResult = lottoService.initWinningResult();
+
+        // then
+        Set<Ranking> keySet = winnerResult.keySet();
+
+        assertThat(keySet)
+                .hasSize(6)
+                .contains(Ranking.values());
+    }
+
+    @Test
+    @DisplayName("기능36 테스트 : winningResult의 모든 원소의 value는 0으로 초기화된다.")
+    void EveryWinningResultElementHaveValueZero() {
+        // when
+        Map<Ranking, Integer> winnerResult = lottoService.initWinningResult();
+
+        // then
+        for (Ranking ranking : winnerResult.keySet()) {
+            assertThat(winnerResult.get(ranking)).isEqualTo(0);
+        }
     }
 
 }

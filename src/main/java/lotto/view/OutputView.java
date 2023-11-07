@@ -41,4 +41,7 @@ public class OutputView {
         double divTotal = (double) (total - price) / price;
         System.out.printf("총 수익률은 %.1f%%입니다.", (100 + divTotal * 100));
     }
+    public static void printPrice(int priceINt) {
+        System.out.println(priceINt);
+    }
 }

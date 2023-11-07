@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoPlayer {
     private final List<Lotto> lottos = new ArrayList<>();
@@ -11,7 +13,10 @@ public class LottoPlayer {
     public void buyLottos(int number) {
         System.out.printf("%d개를 구매했습니다.\n", number);
         for (int i = 0; i < number; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)); // naturalOrder 적용 필요
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)
+                    .stream()
+                    .sorted(Comparator.naturalOrder())
+                    .collect(Collectors.toList()));
             printLotto(lotto);
             lottos.add(lotto);
         }

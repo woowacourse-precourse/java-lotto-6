@@ -33,6 +33,7 @@ public class Controller {
         Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus, buyer);
         view.output(statistics.toString());
 
+        view.output(String.format(REVENUE_RATE, statistics.calculateRevenueRate()));
     }
 
     private Buyer getCost() {

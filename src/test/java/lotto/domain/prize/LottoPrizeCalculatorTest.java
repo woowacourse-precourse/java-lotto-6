@@ -15,12 +15,12 @@ public class LottoPrizeCalculatorTest {
     void first() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 5, 6), 7);
 
         LottoPrizeCalculator calculator = new LottoPrizeCalculator();
 
         // when
-        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto);
+        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto).get();
 
         // then
         assertThat(result).isEqualTo(LottoPrizeType.FIRST);
@@ -33,12 +33,12 @@ public class LottoPrizeCalculatorTest {
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, bonusNumber));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 45), bonusNumber);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 5, 45), bonusNumber);
 
         LottoPrizeCalculator calculator = new LottoPrizeCalculator();
 
         // when
-        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto);
+        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto).get();
 
         // then
         assertThat(result).isEqualTo(LottoPrizeType.SECOND);
@@ -49,12 +49,12 @@ public class LottoPrizeCalculatorTest {
     void third() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 45), 7);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 5, 45), 7);
 
         LottoPrizeCalculator calculator = new LottoPrizeCalculator();
 
         // when
-        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto);
+        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto).get();
 
         // then
         assertThat(result).isEqualTo(LottoPrizeType.THIRD);
@@ -65,12 +65,12 @@ public class LottoPrizeCalculatorTest {
     void fourth() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 35, 36), 6);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 35, 36), 6);
 
         LottoPrizeCalculator calculator = new LottoPrizeCalculator();
 
         // when
-        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto);
+        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto).get();
 
         // then
         assertThat(result).isEqualTo(LottoPrizeType.FOURTH);
@@ -81,12 +81,12 @@ public class LottoPrizeCalculatorTest {
     void fifth() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 34, 35, 36), 6);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 34, 35, 36), 6);
 
         LottoPrizeCalculator calculator = new LottoPrizeCalculator();
 
         // when
-        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto);
+        LottoPrizeType result = calculator.calculatePrize(winningNumbers, lotto).get();
 
         // then
         assertThat(result).isEqualTo(LottoPrizeType.FIFTH);

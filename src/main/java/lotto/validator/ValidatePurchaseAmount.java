@@ -7,14 +7,14 @@ public class ValidatePurchaseAmount {
     public static void validatePurchaseAmount(String buyerInput){
         validateEmpty(buyerInput);
         validateConvertable(buyerInput);
-        validateDividableThousand(buyerInput);
         validateSmallThanThousand(buyerInput);
+        validateDividableThousand(buyerInput);
 
     }
 
     private static void validateDividableThousand(String buyerInput) {
         if(!canDivide(buyerInput)){
-            throw new IllegalArgumentException("[ERROR] 로또의 한장 가격은 1000원 입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또의 한장 가격은 1000원 입니다. 1000원 단위로 입력하십시오.");
         }
     }
 

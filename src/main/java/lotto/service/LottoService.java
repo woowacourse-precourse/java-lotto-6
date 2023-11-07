@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.Prize;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -50,6 +51,15 @@ public class LottoService {
             totalWinningTimes.add(String.valueOf(winningResult.get(i)));
         }
         return totalWinningTimes;
+    }
+
+    public int calculateTotalWinningAmount(List<Integer> winningResult) {
+        int totalWinningAmount = 0;
+        for (Prize value : Prize.values()) {
+            int prizeCount = winningResult.get(value.getNumber());
+            totalWinningAmount += (value.getWinningAmount() * prizeCount);
+        }
+        return totalWinningAmount;
     }
 
     public List<Integer> sortNumbersByAsc(List<Integer> integerList) {

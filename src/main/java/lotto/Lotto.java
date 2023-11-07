@@ -3,17 +3,12 @@ package lotto;
 import java.util.List;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
+import lotto.exception.LottoNumberOutOfRangeException;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    public Lotto(LottoNumbers lottoNumbers) {
-        List<Integer> numbers = lottoNumbers.convertToIntegerList();
         validate(numbers);
         this.numbers = numbers;
     }
@@ -25,6 +20,12 @@ public class Lotto {
 
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new DuplicateNumberException();
+        }
+
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new LottoNumberOutOfRangeException();
+            }
         }
     }
 
@@ -50,5 +51,10 @@ public class Lotto {
 
     public boolean hasBonusNumber(final LottoNumber bonusNumber) {
         return bonusNumber.isMatched(numbers);
+    }
+
+
+    public int size() {
+        return numbers.size();
     }
 }

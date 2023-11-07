@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.LottoNumberOutOfRangeException;
-import lotto.fixtures.LottoNumbersFixtures;
+import lotto.fixtures.LottoFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(LottoNumbersFixtures.createDuplicateLottoNumbers()))
+        assertThatThrownBy(LottoFixtures::createDuplicateLotto)
                 .isInstanceOf(DuplicateNumberException.class);
     }
 
@@ -35,14 +35,14 @@ class LottoTest {
         @DisplayName("넘어가면 예외가 발생한다.")
         @Test
         void createLottoByOverSize() {
-            assertThatThrownBy(() -> new Lotto(LottoNumbersFixtures.createOverSizeLottoNumbers()))
+            assertThatThrownBy(LottoFixtures::createOverSizeLotto)
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("미만이라면 예외가 발생한다.")
         @Test
         void createLottoByUnderSize() {
-            assertThatThrownBy(() -> new Lotto(LottoNumbersFixtures.createUnderSizeLottoNumbers()))
+            assertThatThrownBy(LottoFixtures::createUnderSizeLotto)
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

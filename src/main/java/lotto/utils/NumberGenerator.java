@@ -1,8 +1,8 @@
 package lotto.utils;
 
-import lotto.LottoNumbers;
+import lotto.Lotto;
 
 public interface NumberGenerator {
 
-    LottoNumbers generate();
+    Lotto generate();
 }

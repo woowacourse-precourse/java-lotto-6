@@ -12,6 +12,6 @@ public class ParserTest {
     void splitWithComma() {
         String numbers = "1,2,3,4,5,6";
         Parser parser = new CommaParser();
-        Assertions.assertThat(parser.split(numbers)).isEqualTo(List.of("1","2","3","4","5","6"));
+        Assertions.assertThat(parser.split(numbers)).isEqualTo(List.of("1", "2", "3", "4", "5", "6"));
     }
 }

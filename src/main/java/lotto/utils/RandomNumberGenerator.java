@@ -1,8 +1,10 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.LottoNumber;
-import lotto.LottoNumbers;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import lotto.Lotto;
 
 public class RandomNumberGenerator implements NumberGenerator {
 
@@ -15,16 +17,13 @@ public class RandomNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public LottoNumbers generate() {
-        LottoNumbers numbers = new LottoNumbers();
+    public Lotto generate() {
+        Set<Integer> numbers = new HashSet<>();
         while (numbers.size() != 6) {
             int randomNumber = pickRandomNumber();
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(new LottoNumber(randomNumber));
-            }
+            numbers.add(randomNumber);
         }
-
-        return numbers;
+        return new Lotto(new ArrayList<>(numbers));
     }
 
     private int pickRandomNumber() {

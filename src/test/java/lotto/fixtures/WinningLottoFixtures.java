@@ -1,24 +1,15 @@
 package lotto.fixtures;
 
+import java.util.List;
 import lotto.Lotto;
 import lotto.LottoNumber;
-import lotto.LottoNumbers;
 import lotto.WinningLotto;
 
 public class WinningLottoFixtures {
 
 
     public static WinningLotto createWinningLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
-
-        lottoNumbers.add(new LottoNumber(1));
-        lottoNumbers.add(new LottoNumber(2));
-        lottoNumbers.add(new LottoNumber(3));
-        lottoNumbers.add(new LottoNumber(4));
-        lottoNumbers.add(new LottoNumber(5));
-        lottoNumbers.add(new LottoNumber(6));
-
-        Lotto lotto = new Lotto(lottoNumbers);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
 
         return new WinningLotto(lotto, bonusNumber);

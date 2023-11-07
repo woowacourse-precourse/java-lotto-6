@@ -2,6 +2,8 @@ package lotto.view;
 
 import lotto.dto.LottoNumbers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -18,14 +20,14 @@ public class OutputView {
 
     public static void printBuyLottoResultMessage(List<LottoNumbers> lottoNumbers) {
         printBuyLottoCount(lottoNumbers.size());
-        lottoNumbers.forEach(numbers -> printBuyLottoNumbers(numbers.numbers()));
+        lottoNumbers.forEach(numbers -> printLottoNumbers(numbers.numbers()));
     }
 
     private static void printBuyLottoCount(int buyLottoCount) {
         System.out.println(buyLottoCount + PRINT_BOUGHT_LOTTO_COUNT_MESSAGE);
     }
 
-    private static void printBuyLottoNumbers(List<Integer> lottoNumbers) {
+    private static void printLottoNumbers(List<Integer> lottoNumbers) {
         System.out.print(PRINT_BOUGHT_LOTTO_NUMBER_START_BOX
                 + convertNumberToOutputValue(lottoNumbers)
                 + PRINT_BOUGHT_LOTTO_NUMBER_END_BOX
@@ -34,6 +36,7 @@ public class OutputView {
     }
 
     private static String convertNumberToOutputValue(List<Integer> numbers) {
+        Collections.sort(new ArrayList<>(numbers));
         List<String> convertValues = numbers.stream()
                 .map(String::valueOf)
                 .toList();

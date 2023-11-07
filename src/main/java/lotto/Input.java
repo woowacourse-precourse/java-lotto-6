@@ -14,8 +14,8 @@ public class Input {
         String inputStr;
         List<Integer> inputResult;
         Print.printInputMessage(inputtype);
-        inputStr = Utils.input();
         do {
+            inputStr = Utils.input();
             inputResult = inputTypeSelect(inputStr, inputtype);
         } while (inputResult == null);
         return inputResult;

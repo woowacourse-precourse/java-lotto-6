@@ -13,16 +13,11 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
-    private static final String COMMAS = ",";
     private static final Integer START_NUMBER = 1;
     private static final Integer LAST_NUMBER = 45;
     private static final Integer COUNT = 6;
 
-    public List<Integer> convertToLottoIntegerList(String userInput) {
-        return Arrays.stream(userInput.split(COMMAS))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
+
 
     public List<List<Integer>> generateRandomLottoNumbers(Long length) {
 
@@ -46,17 +41,6 @@ public class LottoService {
         }
 
         return countValue;
-    }
-
-    public void repeatCompare() {
-
-        Lotto lotto = new Lotto(convertToLottoIntegerList("1,2,3,4,5,6"));
-        List<Integer> winningLotto = lotto.getLotto();
-        List<List<Integer>> myLotto = generateRandomLottoNumbers(8L);
-
-        for (int i = 0; i < 8; i++) {
-            countMatchingWinningNumbers(winningLotto, myLotto.get(i));
-        }
     }
 
     public boolean countMatchingBonusNumbers(List<Integer> winningLotto, Integer bonusNumber) {

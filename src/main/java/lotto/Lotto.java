@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.util.Constants.LOTTO_COUNT;
 import static lotto.util.Constants.MAX_RANGE;
 import static lotto.util.Constants.MIN_RANGE;
 import static lotto.util.ErrorConstants.DUPLICATE_NUMBER;
@@ -21,7 +22,7 @@ public class Lotto {
     }
 
     public static Lotto generate() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_COUNT));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
@@ -30,14 +31,17 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(OVER_SIZE);
         }
-        if (new HashSet<>(numbers).size() != 6) {
+
+        if (new HashSet<>(numbers).size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER);
         }
-        for (int number : numbers) {
-            if ((number < MIN_RANGE) || (number > MAX_RANGE)) {
-                throw new IllegalArgumentException(OVER_RANGE);
-            }
-        }
+        
+        numbers.stream()
+                .filter(number -> number < MIN_RANGE || number > MAX_RANGE)
+                .findAny()
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException(OVER_RANGE);
+                });
     }
 
     public List<Integer> getNumbers() {

@@ -36,5 +36,12 @@ public class LottoService {
         return user.getLottoTickets();
     }
 
+    public void inputWinnerNumbers() {
+        winningNumber.inputWinnerNumbers();
+    }
+
+    public void inputBonusNumber() {
+        winningNumber.inputBonusNum();
+    }
 
 }

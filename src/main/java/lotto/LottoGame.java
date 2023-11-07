@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class LottoGame {
 
     public void start() {
@@ -9,5 +12,21 @@ public class LottoGame {
         // TODO: 보너스 번호 입력
         // TODO: 당첨 내역 출력
         // TODO: 수익률 출력
+    }
+
+    public HashMap<LottoRank, Integer> getWinningHistory(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        HashMap<LottoRank, Integer> winningHistory = new HashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            winningHistory.put(rank, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.countMatchingNumbers(winningNumbers);
+            boolean bonusNumberHit = lotto.hasBonusNumber(bonusNumber);
+            LottoRank rank = LottoRank.selectRankByMatchCount(matchCount, bonusNumberHit);
+            winningHistory.put(rank, winningHistory.get(rank) + 1);
+        }
+
+        return winningHistory;
     }
 }

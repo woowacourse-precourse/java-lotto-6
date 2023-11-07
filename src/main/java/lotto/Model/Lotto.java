@@ -1,18 +1,20 @@
 package lotto.Model;
 
+import static lotto.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.Constants.MAX_LOTTO_NUMBER;
+import static lotto.Constants.MIN_LOTTO_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int MAX_LOTTO_NUMBER = 45;
-    public static final String ERROR_LOTTO_NUMBER_COUNT = "[ERROR] 번호를 6개 입력해 주세요.";
+    public static final String ERROR_LOTTO_NUMBER_COUNT =
+            String.format("[ERROR] 번호를 %d개 입력해 주세요.", LOTTO_NUMBER_COUNT);
     public static final String ERROR_LOTTO_NUMBER_DUPLICATE = "[ERROR] 번호는 중복될수 없습니다.";
-    public static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 번호는 1~45의 숫자만 가능합니다.";
-
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    public static final String ERROR_LOTTO_NUMBER_RANGE =
+            String.format("[ERROR] 번호는 %d~%d의 숫자만 가능합니다.", MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
 
     private final List<Integer> numbers;
 

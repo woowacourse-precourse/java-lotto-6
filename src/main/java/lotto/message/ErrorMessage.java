@@ -8,7 +8,9 @@ public enum ErrorMessage {
     INPUT_CONTAINS_WHITE_CHAR("[ERROR] 입력에는 공백 문자가 포함되면 안됩니다."),
     INPUT_IS_EMPTY("[ERROR] 입력이 비어있습니다."),
     INPUT_IS_NOT_NUMBER("[ERROR] 숫자를 입력해야 합니다."),
-    PURCHASE_AMOUNT_IS_LESS_THAN_LOTTO_PRICE("[ERROR] 로또 구입 금액은 로또 가격보다 커야 합니다.");
+    PURCHASE_AMOUNT_IS_LESS_THAN_LOTTO_PRICE("[ERROR] 로또 구입 금액은 로또 가격보다 커야 합니다."),
+    WINNING_NUMBERS_CONTAINS_BONUS_NUMBER("[ERROR] 당첨 번호에는 보너스 번호가 포함될 수 없습니다.");
+
     private final String message;
 
     ErrorMessage(String message) {

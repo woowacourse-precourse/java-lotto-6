@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.LottoPurchase;
-import lotto.domain.LottoWinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,6 +20,7 @@ public class LottoController {
         List<Lotto> lottoTickets = publishLotto(lottoAmount);
         List<Integer> winningNumbers = winningNumberLotto();
         int bonusNumber = bonusNumberLotto(winningNumbers);
+        ResultLotto(lottoTickets, winningNumbers, bonusNumber, lottoAmount);
     }
 
     public int purchaseLotto() {
@@ -79,6 +77,12 @@ public class LottoController {
             }
         }
 
+    }
+    public void ResultLotto(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber, int lottoAmount) {
+        OutputView.lottoStatisticsOutputMessage();
+        OutputView.graphUnderBar();
+        LottoResult lottoResult = new LottoResult(lottoTickets, winningNumbers, bonusNumber, lottoAmount);
+        lottoResult.LottoPrizeResult();
     }
 
 }

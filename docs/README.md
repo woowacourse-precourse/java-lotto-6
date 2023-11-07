@@ -7,21 +7,23 @@
 출력
 
 Lotto
-- [ ] 로또 발행
+- [x] 로또 발행(생성자)
 - [ ] 로또 번호와 당첨 번호 비교
 
 RandomNumberGenerator
-- [ ] 중복되지 않는 숫자 6개 생성
-- [ ] 보너스 번호 1개 생성
+- [x] 중복되지 않는 숫자 6개 생성
+- [x] 보너스 번호 1개 생성
 
-LottoGame
-- [ ] 당첨 번호 선정
-
-Winners
+WinnersSelector
 - [ ] 당첨자 선정
 
+LottoNumberComparator
+- [x] 몇개의 번호가 일치하는지 검증
 
-
+LottoGame
+- [ ] 로또 게임 시작
+- [ ] 로또 게임 종료
+- [ ] 당첨 번호 선정
 
 
 

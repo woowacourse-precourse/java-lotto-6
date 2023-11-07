@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLottoNumbers;
 import lotto.service.LottoService;
@@ -28,7 +29,10 @@ public class LottoController {
 
         WinningLottoNumbers winningLottoNumbers = inputView.getWinningLottoNumbers();
 
-        System.out.println(winningLottoNumbers.toString());
+        Bonus bonus = inputView.getBonusLottoNumber();
+
+        System.out.println(bonus.toString());
+
     }
 
 

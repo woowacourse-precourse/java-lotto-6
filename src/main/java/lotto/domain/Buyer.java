@@ -11,6 +11,10 @@ public class Buyer {
         this.cost = cost;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
     public int getBuyCount() {
         return this.cost / price;
     }

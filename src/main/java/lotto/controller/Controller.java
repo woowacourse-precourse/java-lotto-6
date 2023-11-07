@@ -30,7 +30,7 @@ public class Controller {
         int bonus = getBonus(winningLotto);
 
         view.output(WINNING_STATISTICS);
-        Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus);
+        Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus, buyer);
         view.output(statistics.toString());
 
     }

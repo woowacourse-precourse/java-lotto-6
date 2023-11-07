@@ -1,26 +1,32 @@
 package lotto.domain;
 
-public class Budget {
+import static lotto.constants.Constants.Integers.LOTTO_PRICE;
+import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE;
+import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE;
+
+public class PurchaseBudget {
     private final int budget;
-    private static final int LOTTO_PRICE = 1000;
 
-    public Budget(int budget) {
+    public PurchaseBudget(int budget) {
         validate(budget);
-
         this.budget = budget;
     }
 
     private void validate(int budget) {
-        if (budget < LOTTO_PRICE) {
-            throw new IllegalArgumentException();
+        if (budget < LOTTO_PRICE.getValue()) {
+            throw new IllegalArgumentException(HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE.getMessage());
         }
 
-        if (isNotPurchasingUnit(budget)) {
-            throw new IllegalArgumentException();
+        if (!isMultipleOfLottoPrice(budget)) {
+            throw new IllegalArgumentException(HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
         }
     }
 
-    private boolean isNotPurchasingUnit(int budget) {
-        return false;
+    private boolean isMultipleOfLottoPrice(int budget) {
+        return budget % LOTTO_PRICE.getValue() == 0;
+    }
+
+    public int getBudget() {
+        return budget;
     }
 }

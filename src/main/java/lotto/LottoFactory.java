@@ -6,8 +6,8 @@ import java.util.List;
 public class LottoFactory {
     public static final int LOTTO_PRICE = 1000;
     private static final PrintOut printOut = new PrintOut();
-    private static final InputHandler inputHandler = new InputHandler();
-    private static final LottoResult lottoResult = new LottoResult();
+    private static final InputService inputService = new ConsoleInputService();
+    private static final InputHandler inputHandler = new InputHandler(inputService);
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
     private static final Validation validation = new Validation();
 
@@ -37,14 +37,14 @@ public class LottoFactory {
         return purchasedLottos;
     }
 
-    public Lotto getWinningLotto(String inputNumber) {
+    public Lotto getWinningLotto() {
         boolean validInputNumber = false;
         List<Integer> winningNumber = new ArrayList<>();
         Lotto lotto = null;
         printOut.inputWinningNumber();
         while (!validInputNumber) {
             try {
-                winningNumber = inputHandler.getWinningNumber(inputNumber);
+                winningNumber = inputHandler.getWinningNumber();
                 lotto = new Lotto(winningNumber);
                 validInputNumber = true;
             } catch (IllegalArgumentException e) {

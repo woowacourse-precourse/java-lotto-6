@@ -1,15 +1,19 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputHandler {
+    private final InputService inputService;
 
-    public List<Integer> getWinningNumber(String inputNumber) {
+    public InputHandler(InputService inputService) {
+        this.inputService = inputService;
+    }
+
+    public List<Integer> getWinningNumber() {
+        String inputNumber = inputService.readLine();
         List<Integer> winningNumber = new ArrayList<>();
         try {
             winningNumber = Arrays.stream(inputNumber.split(","))
@@ -23,9 +27,10 @@ public class InputHandler {
     }
 
     public int getInputNumber() {
+        String inputNumber = inputService.readLine();
         int number = 0;
         try {
-            number = Integer.parseInt(Console.readLine());
+            number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }

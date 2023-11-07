@@ -16,7 +16,7 @@ public class Application {
 
         List<Lotto> purchasedLottos = lottoFactory.getPurchasedLottos(numberOfLottos);
 
-        Lotto winningNumber = lottoFactory.getWinningLotto(Console.readLine());
+        Lotto winningNumber = lottoFactory.getWinningLotto();
         int bonusNumber = lottoFactory.getBonusNumber(winningNumber);
 
         lottoFactory.calculateResults(purchasedLottos, winningNumber, bonusNumber, lottoResult);

@@ -187,16 +187,16 @@ public class LottoController {
         HashMap<String, Integer> countByPrize = new HashMap<>();
 
         countByPrize.put(Config.FIRST_PRIZE_REWARD,
-                countByMatchNumber(checkMatchCountResult, Config.FIRST_PRIZE_HAS_WINNING));
+                checkMatchCountByLotto(checkMatchCountResult, Config.FIRST_PRIZE_HAS_WINNING));
         countByPrize.put(Config.SECOND_PRIZE_REWARD,
-                countByMatchNumber(checkMatchCountResult, Config.SECOND_PRIZE_HAS_WINNING,
+                checkMatchCountByLotto(checkMatchCountResult, Config.SECOND_PRIZE_HAS_WINNING,
                         Config.SECOND_PRIZE_HAS_BONUS));
         countByPrize.put(Config.THIRD_PRIZE_REWARD,
-                countByMatchNumber(checkMatchCountResult, Config.THIRD_PRIZE_HAS_WINNING));
+                checkMatchCountByLotto(checkMatchCountResult, Config.THIRD_PRIZE_HAS_WINNING));
         countByPrize.put(Config.FOURTH_PRIZE_REWARD,
-                countByMatchNumber(checkMatchCountResult, Config.FOURTH_PRIZE_HAS_WINNING));
+                checkMatchCountByLotto(checkMatchCountResult, Config.FOURTH_PRIZE_HAS_WINNING));
         countByPrize.put(Config.FIFTH_PRIZE_REWARD,
-                countByMatchNumber(checkMatchCountResult, Config.FIFTH_PRIZE_HAS_WINNING));
+                checkMatchCountByLotto(checkMatchCountResult, Config.FIFTH_PRIZE_HAS_WINNING));
 
         return countByPrize;
     }

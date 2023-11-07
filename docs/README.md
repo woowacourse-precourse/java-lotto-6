@@ -8,7 +8,7 @@
 
 1. LottoMoney
 
-- [x] LottoMoney 객체 생성
+- [x] LottoMoney 생성자 생성
 - validate()
   - [x] 로또 구매 금액이 숫자인지 확인
   - [x] 로또 구매 금액이 1,000단위인지 확인
@@ -33,6 +33,7 @@
 
 3. LuckeyLotto
 
+- [ ] LuckeyLotto 생성자 생성
 - luckyBonusNumbers: 보너스 당첨 로또 번호 저장
 - luckyNumbers: 당첨 로또 번호(보너스 로또 번호 포함) 저장
 

@@ -30,6 +30,7 @@ public class LottoResult {
                     return ranking.getTotalPrize(count);
                 })
                 .sum();
+
         return Math.round(((double) totalPrize / purchasedAmount) * 100 * 100) / 100.0;
     }
 

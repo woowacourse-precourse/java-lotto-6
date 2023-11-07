@@ -32,7 +32,7 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<LottoRanking> calculateRanking(WinningLotto winningLotto) {
+    public List<LottoRanking> calculateRankings(WinningLotto winningLotto) {
         return lottos.stream()
                 .map(winningLotto::calculateRanking)
                 .toList();

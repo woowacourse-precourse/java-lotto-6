@@ -2,10 +2,13 @@ package lotto;
 
 import lotto.Controller.LottoController;
 import lotto.Controller.RaffleController;
+import lotto.Controller.StaticsController;
 import lotto.Model.Service.LottoService;
 import lotto.Model.Service.RaffleService;
+import lotto.Model.Service.StaticsService;
 import lotto.Model.Util.LottoUtil;
 import lotto.Model.Util.RaffleUtil;
+import lotto.Model.Util.StaticsUtil;
 import lotto.View.LottoInput;
 import lotto.View.LottoOutput;
 
@@ -24,11 +27,20 @@ public class LottoProcessor {
     private final RaffleController raffleController = new RaffleController(raffleService,
             lottoInput, lottoOutput);
 
+    private final StaticsUtil staticsUtil = new StaticsUtil();
+    private final StaticsService staticsService = new StaticsService(staticsUtil, lottoService,
+            raffleService);
+    private final StaticsController staticsController = new StaticsController(staticsService, lottoOutput);
+
     public LottoController getLottoController() {
         return lottoController;
     }
 
     public RaffleController getRaffleController() {
         return raffleController;
+    }
+
+    public StaticsController getStaticsController() {
+        return staticsController;
     }
 }

@@ -7,6 +7,6 @@ public class Application {
 
         lottoProcessor.getLottoController().purchaseLotto();
         lottoProcessor.getRaffleController().setRaffle();
-        lottoProcessor.getRaffleController().doRaffle();
+        lottoProcessor.getStaticsController().setStatics();
     }
 }

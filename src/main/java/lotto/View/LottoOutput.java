@@ -3,6 +3,7 @@ package lotto.View;
 import System.Message;
 import java.util.List;
 import lotto.Model.Domain.Lotto;
+import lotto.Model.Domain.Statics;
 
 public class LottoOutput {
 
@@ -18,20 +19,25 @@ public class LottoOutput {
         }
     }
 
-    public void printResult() {
+    public void printResult(Statics statics) {
         System.out.println(
                 Message.LINE_BREAK.getMessage() + Message.OUTPUT_WINNING_RESULT.getMessage());
         System.out.println(Message.OUTPUT_SOLID_LINE.getMessage());
-        printStatics();
-        System.out.printf(Message.REVENUE_RESULT.getMessage(), 62.55);
+
+        printStatics(Message.FIFTH_STATICS.getMessage(), statics.getFifthCount());
+        printStatics(Message.FOURTH_STATICS.getMessage(), statics.getFourthCount());
+        printStatics(Message.THIRD_STATICS.getMessage(), statics.getThirdCount());
+        printStatics(Message.SECOND_STATICS.getMessage(), statics.getSecondCount());
+        printStatics(Message.FIRST_STATICS.getMessage(), statics.getFirstCount());
+        printStatics(Message.REVENUE_RESULT.getMessage(), statics.getRevenue());
     }
 
-    public void printStatics() {
-        System.out.printf(Message.FIFTH_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
-        System.out.printf(Message.FOURTH_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
-        System.out.printf(Message.THIRD_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
-        System.out.printf(Message.SECOND_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
-        System.out.printf(Message.FIRST_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
+    public void printStatics(String message, int count) {
+        System.out.printf(message + Message.LINE_BREAK.getMessage(), count);
     }
+    public void printStatics(String message, float count) {
+        System.out.printf(message + Message.LINE_BREAK.getMessage(), count);
+    }
+
 
 }

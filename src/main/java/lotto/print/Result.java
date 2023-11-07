@@ -64,7 +64,7 @@ public class Result {
         if (lottoRank.getRank() == 2){
             System.out.print(", 보너스 볼 일치");
         }
-        System.out.println(" (" + prize + ") - " + rankCount + "개");
+        System.out.println(" (" + prize + "원) - " + rankCount + "개");
     }
 
     public String formatNumber(int number) {
@@ -77,10 +77,11 @@ public class Result {
     }
 
     public void printTotalProfit(){
-        System.out.println("총 수익률은 " + getTotalProfit() + "%입니다.");
+        System.out.println("총 수익률은 " + getTotalProfit() + "입니다.");
     }
 
     public String getTotalProfit() {
-        return String.format("%.1f", (double) totalPrize / user.getPaymentAmount());
+        double TotalProfit = ((double) totalPrize / user.getPaymentAmount()) * 100;
+        return String.format("%.1f%%", TotalProfit);
     }
 }

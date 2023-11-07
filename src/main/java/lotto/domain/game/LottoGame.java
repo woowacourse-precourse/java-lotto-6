@@ -5,6 +5,8 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningNumber;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.stream.IntStream;
 
 public class LottoGame {
@@ -34,8 +36,23 @@ public class LottoGame {
         return new Prizes(lottos.calculatePrizes(winningNumber));
     }
 
-    public long calculateProfit(final Prizes prizes) {
-        return prizes.getSumOfMoney() / lottos.getPurchasingCost();
+    public BigDecimal calculateProfit(final Prizes prizes) {
+        BigDecimal totalPrizeMoney = convertToBigDecimal(prizes.getSumOfMoney());
+        BigDecimal totalPurchasingCost = convertToBigDecimal(lottos.getPurchasingCost());
+        return calculateProfitPercentage(totalPrizeMoney, totalPurchasingCost);
+    }
+
+    private BigDecimal convertToBigDecimal(long value) {
+        return BigDecimal.valueOf(value);
+    }
+
+    private BigDecimal calculateProfitPercentage(BigDecimal totalPrizeMoney, BigDecimal totalPurchasingCost) {
+        BigDecimal profitRatio = totalPrizeMoney.divide(totalPurchasingCost, 2, RoundingMode.HALF_UP);
+        return convertToPercentage(profitRatio);
+    }
+
+    private BigDecimal convertToPercentage(BigDecimal value) {
+        return value.multiply(BigDecimal.valueOf(100));
     }
 
 }

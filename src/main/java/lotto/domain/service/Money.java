@@ -1,4 +1,4 @@
-package lotto.usecase;
+package lotto.domain.service;
 
 public interface Money {
     int getTicketAmount(int givenMoney) ;

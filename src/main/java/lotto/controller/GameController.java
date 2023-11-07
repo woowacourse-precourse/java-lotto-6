@@ -4,8 +4,8 @@ import java.util.List;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Lottos;
 import lotto.domain.model.LottosResult;
-import lotto.usecase.Money;
-import lotto.usecase.User;
+import lotto.domain.service.Money;
+import lotto.domain.service.User;
 import lotto.view.OutputView;
 
 public class GameController {

@@ -3,7 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.usecase.Money;
+import lotto.domain.service.Money;
 import lotto.view.OutputView;
 
 public class InputController {

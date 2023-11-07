@@ -1,8 +1,8 @@
-package lotto.usecase;
+package lotto.domain.service;
 
+import lotto.domain.model.LottosResult;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Lottos;
-import lotto.domain.model.LottosResult;
 
 public interface User {
     Lottos buyLottos(int ticketAmount) ;

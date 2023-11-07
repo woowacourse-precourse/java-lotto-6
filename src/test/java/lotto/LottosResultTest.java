@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.domain.model.LottoResult;
 import lotto.domain.model.LottosResult;
 import lotto.domain.service.KoreanMoneyService;
-import lotto.usecase.Money;
+import lotto.domain.service.Money;
 import org.junit.jupiter.api.Test;
 
 public class LottosResultTest {

@@ -1,6 +1,6 @@
 package lotto.domain.service;
 
-import lotto.usecase.Money;
+import lotto.domain.service.Money;
 
 public class KoreanMoneyService implements Money {
     private Integer money;

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.MessageFormat;
 import java.util.Arrays;
 
 public class LottoEnum {
@@ -27,9 +28,16 @@ public class LottoEnum {
 
         public static LottoRank valueOf(int matchCount, boolean matchBonus) {
             return Arrays.stream(LottoRank.values())
-                    .filter(rank -> rank.matchCount == matchCount && rank.bonusMatch == matchBonus)
-                    .findAny()
+                    .filter(rank -> rank.matchCount == matchCount)
+                    .sorted((rank1, rank2) -> Boolean.compare(rank2.bonusMatch, rank1.bonusMatch))
+                    .findFirst()
                     .orElse(MISS);
+        }
+        public String toString() {
+            if (this == MISS) {
+                return "꽝";
+            }
+            return MessageFormat.format("{0}개 일치{1}({2}원)", matchCount, (bonusMatch ? ", 보너스 볼 일치" : ""), prizeMoney);
         }
     }
 

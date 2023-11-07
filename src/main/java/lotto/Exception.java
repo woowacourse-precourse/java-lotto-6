@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.PatternSyntaxException;
 
 public class Exception {
 
@@ -33,6 +34,14 @@ public class Exception {
         int money = Integer.parseInt(input);
         notPositiveNumber(money);
         notDividedWithThousand(money);
+    }
+
+    public static void validateSeparator(String input) {
+        try {
+            input.split(",");
+        } catch (PatternSyntaxException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호의 구분자가 ,가 아닙니다.");
+        }
     }
 
     private static void notSixNumbers(List<Integer> numbers) {

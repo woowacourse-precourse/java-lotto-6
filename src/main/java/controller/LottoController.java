@@ -61,6 +61,7 @@ public class LottoController {
         boolean bonusState = false;
         for (int matchNumber = START_WINNER_NUMBER; matchNumber <= END_WINNER_NUMBER; matchNumber++) {
             bonusMessage = isBonusMessage(matchNumber, bonusMessage, bonusState);
+            matchNumber = isBonusMatchNumber(matchNumber, bonusState);
         }
     }
 
@@ -70,5 +71,12 @@ public class LottoController {
             bonusMessage = ", 보너스 볼 일치";
         }
         return bonusMessage;
+    }
+
+    private int isBonusMatchNumber(int matchNumber, boolean bonusState) {
+        if (bonusState == true) {
+            matchNumber--;
+        }
+        return matchNumber;
     }
 }

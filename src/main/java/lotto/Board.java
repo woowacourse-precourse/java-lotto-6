@@ -55,7 +55,7 @@ public class Board {
         }
         int principal = THOUSAND * count;
         double profitRate = ((double) profit / principal) * PERCENTAGE;
-        BigDecimal roundedProfitRate = BigDecimal.valueOf(profitRate).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedProfitRate = BigDecimal.valueOf(profitRate).setScale(SECOND, RoundingMode.HALF_UP);
         return String.format("%.1f", roundedProfitRate);
     }
 

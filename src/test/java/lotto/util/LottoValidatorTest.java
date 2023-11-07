@@ -2,6 +2,7 @@ package lotto.util;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +27,40 @@ class LottoValidatorTest {
     }
 
     @Test
-    void validateWinningNumber() {
+    @DisplayName("유효한 당첨번호 유효성 검증")
+    void validateWinningNumber_유효한_당첨번호() {
+        List<Integer> numbers = List.of(35, 1, 4, 24, 40, 17);
+        LottoValidator.validateWinningNumber(numbers);
+    }
+
+    @Test
+    @DisplayName("6개가 아닌 당첨번호 유효성 검증 시 예외 발생")
+    void validateWinningNumber_6개가_아닌_당첨번호() {
+        List<Integer> numbers = List.of(35, 1, 24, 40, 17);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoValidator.validateWinningNumber(numbers);
+        });
+    }
+
+    @Test
+    @DisplayName("정상범위 밖의 당첨번호 유효성 검증 시 예외 발생")
+    void validateWinningNumber_범위_밖_당첨번호() {
+        List<Integer> numbers = List.of(35, 1, 4, 24, 46, 17);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoValidator.validateWinningNumber(numbers);
+        });
+    }
+
+    @Test
+    @DisplayName("중복된 당첨번호 유효성 검증 시 예외 발생")
+    void validateWinningNumber_중복된_당첨번호() {
+        List<Integer> numbers = List.of(35, 1, 4, 24, 40, 24);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoValidator.validateWinningNumber(numbers);
+        });
     }
 
     @Test

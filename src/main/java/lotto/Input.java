@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.NoSuchElementException;
 
+import static lotto.Error.*;
+
 public class Input {
     public int inputPurchaseAmount() {
         try {
@@ -11,7 +13,7 @@ public class Input {
             validatePurchaseAmount(purchaseAmount);
             return Integer.parseInt(purchaseAmount);
         } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_EMPTY.getErrMsg());
         }
     }
 
@@ -20,10 +22,10 @@ public class Input {
         try {
             temp = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_INTEGER_PURCHASE_AMOUNT.getErrMsg());
         }
         if ((temp / 1000) != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UNDIVIDED_PURCHASE_AMOUNT.getErrMsg());
         }
     }
 }

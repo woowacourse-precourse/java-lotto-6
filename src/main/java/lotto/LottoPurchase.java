@@ -5,7 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import lotto.lottoUI.ERRORUI;
 import lotto.lottoUI.LottoUI;
 
-public class BuyLotto {
+public class LottoPurchase {
     private static int Purchase_amount;
 
     public static void Set_amount() {
@@ -22,7 +22,7 @@ public class BuyLotto {
                 System.out.println(e.getMessage());
             }
         }
-        PublishLotto.PrintLotto(GetPurchase_amount());
+        LottoPublisher.PrintLotto(GetPurchase_amount());
     }
 
     public static int GetPurchase_amount() {

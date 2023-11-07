@@ -1,7 +1,14 @@
 package lotto;
 
+import domain.LottoPurchaseManager;
+import ui.LottoPurchaseConsoleUI;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoPurchaseManager purchaseManager = new LottoPurchaseManager();
+        LottoPurchaseConsoleUI purchaseConsole = new LottoPurchaseConsoleUI(purchaseManager);
+        int numOfLottos = purchaseConsole.startPurchaseProcess();
+
+
     }
 }

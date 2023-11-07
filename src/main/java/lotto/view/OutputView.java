@@ -77,4 +77,9 @@ public class OutputView {
         String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
         System.out.println("총 수익률은 "+formattedProfitPercentage+"입니다.");
     }
+
+    public static void errorCatch(IllegalArgumentException e) {
+        System.out.println();
+        System.out.println(e.getMessage());
+    }
 }

@@ -10,11 +10,14 @@ import java.util.stream.Collectors;
 
 public class Game {
 
+    private Lottos lottos;
+
     public Lottos createLottos(int buyAmount) {
-        return Lottos.from(buyAmount);
+        lottos = Lottos.from(buyAmount);
+        return this.lottos;
     }
 
-    public LottoRankInfo createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public LottoRankInfo createResult(List<Integer> winningNumbers, int bonusNumber) {
         LottoChecker lottoChecker = new LottoChecker();
         return lottoChecker.createResult(lottos, winningNumbers, bonusNumber);
     }

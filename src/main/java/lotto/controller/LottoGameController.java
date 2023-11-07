@@ -46,7 +46,7 @@ public class LottoGameController {
         OutputView.printRequestBonusNumber();
         bonusNumber = Integer.parseInt(InputView.readBonusNumber());
 
-        LottoRankInfo lottoRankinfo = game.createResult(lottos, winningNumbers, bonusNumber);
+        LottoRankInfo lottoRankinfo = game.createResult(winningNumbers, bonusNumber);
         OutputView.printStartResult();
         OutputView.printWinningResult(lottoRankinfo.getLottoRankInfo());
 

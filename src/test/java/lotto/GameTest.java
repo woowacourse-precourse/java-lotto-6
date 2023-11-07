@@ -11,6 +11,8 @@ import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -44,14 +46,12 @@ public class GameTest {
     @Test
     void createResult_EqualResult_Success() {
         Game game = new Game();
-        List<Lotto> lottoList = new ArrayList<>();
-        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
-        Lottos lottos = new Lottos(lottoList);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
         int bonusNumber = 6;
 
-        LottoRankInfo lottoRankInfo = game.createResult(lottos, winningNumbers, bonusNumber);
+        game.createLottos(1);
+        LottoRankInfo lottoRankInfo = game.createResult(winningNumbers, bonusNumber);
 
         assertThat(lottoRankInfo.getLottoRankInfo().size()).isEqualTo(6);
 
@@ -63,12 +63,12 @@ public class GameTest {
         Game game = new Game();
 
         Map<LottoRank, Integer> lottoRankInfo = new EnumMap(LottoRank.class);
-        lottoRankInfo.put(LottoRank.NONE,0);
-        lottoRankInfo.put(LottoRank.FIRST,1);
-        lottoRankInfo.put(LottoRank.SECOND,0);
-        lottoRankInfo.put(LottoRank.THIRD,0);
-        lottoRankInfo.put(LottoRank.FOURTH,0);
-        lottoRankInfo.put(LottoRank.FIFTH,0);
+        lottoRankInfo.put(LottoRank.NONE, 0);
+        lottoRankInfo.put(LottoRank.FIRST, 1);
+        lottoRankInfo.put(LottoRank.SECOND, 0);
+        lottoRankInfo.put(LottoRank.THIRD, 0);
+        lottoRankInfo.put(LottoRank.FOURTH, 0);
+        lottoRankInfo.put(LottoRank.FIFTH, 0);
         float buyAmount = 8000;
 
         int profitRate = Math.round(game.createProfit(buyAmount, lottoRankInfo));

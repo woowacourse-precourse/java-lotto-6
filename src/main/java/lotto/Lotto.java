@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public record Lotto(Set<LottoNumber> lottoNumbers) {
+public class Lotto {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
 
+    private final Set<LottoNumber> lottoNumbers;
 
-    public Lotto(Set<LottoNumber> lottoNumbers) {
+    private Lotto(Set<LottoNumber> lottoNumbers) {
         validateLottoSize(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
     public static Lotto issueAutoPickNumbersLotto() {
@@ -23,12 +25,16 @@ public record Lotto(Set<LottoNumber> lottoNumbers) {
         return new Lotto(lottoNumbers);
     }
 
-    public static Lotto issueChooseNumbersLotto(List<Integer> userChooseNumbers) {
-        Set<LottoNumber> lottoNumbers = userChooseNumbers.stream()
+    public static Lotto issueChooseNumbersLotto(List<Integer> userChoosedNumbers) {
+        Set<LottoNumber> lottoNumbers = userChoosedNumbers.stream()
             .map(LottoNumber::new)
             .collect(Collectors.toSet());
 
         return new Lotto(lottoNumbers);
+    }
+
+    public Set<LottoNumber> getLottoNumbers() {
+        return Set.copyOf(lottoNumbers);
     }
 
     private void validateLottoSize(Set<LottoNumber> lottoNumbers) {

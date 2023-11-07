@@ -22,15 +22,15 @@ public class Lotteries {
         return new Lotteries(lotteries);
     }
 
-    public List<Integer> matchCount(final Lotto winningLotto) {
+    public List<Integer> countMatchedNumbers(final Lotto winningLotto) {
         return lotteries.stream()
-                .map(lotto -> lotto.countMatchedNumber(winningLotto))
+                .map(lotto -> lotto.countMatchedNumbers(winningLotto))
                 .toList();
     }
 
-    public List<Boolean> bonusCount(final BonusNumber bonusNumber) {
+    public List<Boolean> checkBonusNumberContain(final BonusNumber bonusNumber) {
         return lotteries.stream()
-                .map(lotto -> lotto.isContainBonusNumber(bonusNumber))
+                .map(lotto -> lotto.checkBonusNumberContain(bonusNumber))
                 .toList();
     }
 

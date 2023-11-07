@@ -30,7 +30,7 @@ class ProfitRateTest {
         BuyAmount buyAmount = new BuyAmount(ONE_LOTTO_PRICE.getValue() * 100);
 
         // when
-        ProfitRate profitRate = ProfitRate.from(result, buyAmount);
+        ProfitRate profitRate = ProfitRate.createProfitRate(result, buyAmount);
         double expectedRate = (1 * FIRST_RANK.getPrizeMoney() +
                 2 * SECOND_RANK.getPrizeMoney() +
                 3 * THIRD_RANK.getPrizeMoney() +

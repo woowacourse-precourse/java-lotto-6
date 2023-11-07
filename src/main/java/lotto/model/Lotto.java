@@ -66,13 +66,13 @@ public class Lotto {
                 .anyMatch(number -> (number < LottoInfo.LOTTO_MIN_NUMBER.getValue()));
     }
 
-    public int countMatchedNumber(final Lotto lotto) {
+    public int countMatchedNumbers(final Lotto lotto) {
         return (int) numbers.stream()
                 .filter(number -> lotto.contain(number))
                 .count();
     }
 
-    public boolean isContainBonusNumber(final BonusNumber bonusNumber) {
+    public boolean checkBonusNumberContain(final BonusNumber bonusNumber) {
         return this.contain(bonusNumber.number());
     }
 

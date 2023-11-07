@@ -13,20 +13,20 @@ public class ProfitRate {
         this.rate = rate;
     }
 
-    public static ProfitRate from(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
-        return new ProfitRate(calculateRateOfProfit(result, buyAmount));
+    public static ProfitRate createProfitRate(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
+        return new ProfitRate(calculateProfitRate(result, buyAmount));
     }
 
-    private static Double calculateRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
+    private static Double calculateProfitRate(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
         double reward = result.keySet()
                 .stream()
-                .mapToDouble(lottoRank -> getEachRankReward(result, lottoRank))
+                .mapToDouble(lottoRank -> calculateEachRankReward(result, lottoRank))
                 .sum();
 
         return (reward / (double) buyAmount.amount()) * PERCENTAGE;
     }
 
-    private static Long getEachRankReward(Map<LottoRank, Integer> result, LottoRank lottoRank) {
+    private static Long calculateEachRankReward(Map<LottoRank, Integer> result, LottoRank lottoRank) {
         return lottoRank.getPrizeMoney() * result.get(lottoRank);
     }
 

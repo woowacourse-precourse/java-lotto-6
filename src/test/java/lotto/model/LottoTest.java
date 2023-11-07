@@ -86,7 +86,7 @@ class LottoTest {
         Lotto otherLotto = Lotto.createWinningLotto(numbers);
 
         // when
-        int count = lotto.countMatchedNumber(otherLotto);
+        int count = lotto.countMatchedNumbers(otherLotto);
 
         // then
         assertEquals(6, count);
@@ -101,7 +101,7 @@ class LottoTest {
 
         // when
         BonusNumber bonusNumber = new BonusNumber(6);
-        boolean isContained = lotto.isContainBonusNumber(bonusNumber);
+        boolean isContained = lotto.checkBonusNumberContain(bonusNumber);
 
         assertTrue(isContained);
     }

@@ -56,7 +56,7 @@ class LotteriesTest {
         Lotto winningLotto = Lotto.createWinningLotto(winningNumbers);
 
         // when
-        List<Integer> matchCounts = lotteries.matchCount(winningLotto);
+        List<Integer> matchCounts = lotteries.countMatchedNumbers(winningLotto);
 
         // then
         matchCounts.forEach(count -> {
@@ -72,7 +72,7 @@ class LotteriesTest {
         BonusNumber bonusNumber = new BonusNumber(7);
 
         // when
-        List<Boolean> bonusCounts = lotteries.bonusCount(bonusNumber);
+        List<Boolean> bonusCounts = lotteries.checkBonusNumberContain(bonusNumber);
 
         // then
         bonusCounts.forEach(include -> assertFalse(include.booleanValue()));
@@ -85,7 +85,7 @@ class LotteriesTest {
         BonusNumber bonusNumber = new BonusNumber(6);
 
         // when
-        List<Boolean> bonusCounts = lotteries.bonusCount(bonusNumber);
+        List<Boolean> bonusCounts = lotteries.checkBonusNumberContain(bonusNumber);
 
         // then
         bonusCounts.forEach(include -> assertTrue(include.booleanValue()));

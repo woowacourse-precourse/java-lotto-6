@@ -17,7 +17,7 @@ class StatisticTest {
         List<Boolean> containBonusNumber = List.of(false, true, false, true, false, true, true);
 
         // when
-        Statistic statistic = Statistic.from(matchedNumberCount, containBonusNumber);
+        Statistic statistic = Statistic.createStatistic(matchedNumberCount, containBonusNumber);
         Map<LottoRank, Integer> rank = statistic.getRank();
 
         // then

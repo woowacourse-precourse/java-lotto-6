@@ -17,12 +17,13 @@ public class Statistic {
         this.rank = rank;
     }
 
-    public static Statistic from(final List<Integer> matchedNumberCount, final List<Boolean> containBonusNumber) {
-        return new Statistic(makeResult(matchedNumberCount, containBonusNumber));
+    public static Statistic createStatistic(final List<Integer> matchedNumberCount,
+                                            final List<Boolean> containBonusNumber) {
+        return new Statistic(compileStatistic(matchedNumberCount, containBonusNumber));
     }
 
-    private static Map<LottoRank, Integer> makeResult(final List<Integer> matchedNumberCount,
-                                                      final List<Boolean> includeBonusNumber) {
+    private static Map<LottoRank, Integer> compileStatistic(final List<Integer> matchedNumberCount,
+                                                            final List<Boolean> includeBonusNumber) {
         int lottoCount = matchedNumberCount.size();
 
         Map<LottoRank, Integer> playerRank = new EnumMap<>(LottoRank.class);

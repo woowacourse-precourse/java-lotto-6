@@ -64,14 +64,14 @@ public class LottoController {
 
     private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
                                       final BonusNumber bonusNumber) {
-        List<Integer> matchedCount = lotteries.matchCount(winningLotto);
-        List<Boolean> includeBonus = lotteries.bonusCount(bonusNumber);
-        
-        return Statistic.from(matchedCount, includeBonus);
+        List<Integer> matchedCount = lotteries.countMatchedNumbers(winningLotto);
+        List<Boolean> containBonusNumber = lotteries.checkBonusNumberContain(bonusNumber);
+
+        return Statistic.createStatistic(matchedCount, containBonusNumber);
     }
 
     private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
-        return ProfitRate.from(statistic.getRank(), buyAmount);
+        return ProfitRate.createProfitRate(statistic.getRank(), buyAmount);
     }
 
     private void showTicketCount(final TicketCount ticketCount) {

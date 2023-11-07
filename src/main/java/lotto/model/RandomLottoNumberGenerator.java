@@ -11,8 +11,10 @@ public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 
     @Override
     public List<Integer> pickNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getValue(),
-                LOTTO_MAX_NUMBER.getValue(), LOTTO_SIZE.getValue());
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                LOTTO_MIN_NUMBER.getValue(),
+                LOTTO_MAX_NUMBER.getValue(),
+                LOTTO_SIZE.getValue());
 
         return numbers;
     }

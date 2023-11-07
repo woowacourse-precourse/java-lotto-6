@@ -32,9 +32,23 @@ public class InputVerification {
     }
 
     public boolean isNumberDuplicated(int existingNumber, int newNumber) {
-        if(existingNumber == newNumber)
-            return true;
+        return existingNumber == newNumber;
+    }
 
-        throw new IllegalArgumentException("[ERROR]" + newNumber + ": 중복되는 수입니다.");
+    public boolean isNumbersDuplicated(List<Integer> numbers, int newNumber) {
+        for(Integer number : numbers) {
+            if (isNumberDuplicated(number, newNumber)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 수가 있습니다.");
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isInputSizeCorrect(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 입력 개수가 옳지 않습니다.");
+        }
+        return true;
     }
 }

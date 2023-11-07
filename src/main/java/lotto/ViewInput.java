@@ -8,12 +8,21 @@ import java.util.StringTokenizer;
 
 public class ViewInput {
     private static StringTokenizer tokens;
+    private static InputVerification inputVerification = new InputVerification();
 
     public int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        boolean isValid = false;
+        int purchaseAmount = 0;
 
-        int purchaseAmount = Integer.parseInt(Console.readLine());
-        // 입력 검증
+        while(!isValid) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                purchaseAmount = Integer.parseInt(Console.readLine());
+                isValid = inputVerification.isMultipleOfThousand(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return purchaseAmount;
     }
 

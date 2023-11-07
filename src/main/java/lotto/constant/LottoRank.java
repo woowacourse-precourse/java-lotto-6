@@ -33,9 +33,8 @@ public enum LottoRank {
         return prize;
     }
 
-    @Override
-    public String toString() {
-        return String.format(string, prize);
+    public String toString(int count) {
+        return String.format(string, prize) + String.format(" - %d개", count);
     }
 
 }

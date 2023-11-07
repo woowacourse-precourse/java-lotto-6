@@ -36,7 +36,7 @@ public class LottoStatistics {
     }
 
     private String buildLine(LottoRank rank, Integer count) {
-        return rank.toString() + String.format(" - %d개", count);
+        return rank.toString(count);
     }
 
     public int calculateIncome() {

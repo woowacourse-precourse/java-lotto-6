@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoService {
-    private static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
+    public static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
+    public static final String WINNING_STATISTICS = "당첨 통계";
 
     private Map<Ranking, Integer> winningResult;
 
@@ -94,17 +95,52 @@ public class LottoService {
         }
     }
 
-    public double calculateProfitRate(int inputMoney) {
+    public double calculateProfitRate() {
         int totalPrizeMoney = 0;
+        int totalCount = 0;
 
         for (Ranking ranking : winningResult.keySet()) {
             int curCount = winningResult.get(ranking);
+            totalCount += curCount;
             totalPrizeMoney += (ranking.getPrizeMoney() * curCount);
         }
 
-        double profitRate =  (totalPrizeMoney / (double) inputMoney) *100;
+        int inputMoney = totalCount * 1000;
+
+        double profitRate = (totalPrizeMoney / (double) inputMoney) * 100;
 
         return roundToDecimalPlace(profitRate, 1);
+    }
+
+    public String makeWinningResultOutputStatement(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+        // winningResult에 경기 결과 기록하기
+        makeWinningResult(lottoList, answer, bonusNumber);
+
+        StringBuilder result = new StringBuilder();
+
+        result.append(WINNING_STATISTICS).append("\n");
+        result.append("---").append("\n");
+
+        // 등수별 당첨 수 나타내는 부분
+        result.append(winningResultToOutputStatement());
+
+        // 수익률 계산하고 원하는 형태로 표시하는 부분
+        result.append(String.format("총 수익률은 %.1f%%입니다.", calculateProfitRate()));
+
+        return result.toString();
+    }
+
+    private String winningResultToOutputStatement() {
+        StringBuilder result = new StringBuilder();
+
+        Ranking[] rankingsArr = new Ranking[]{FIFTH, FORTH, THIRD, SECOND, FIRST};
+
+        for (Ranking ranking : rankingsArr) {
+            result.append(ranking.getLotteryResult()).append(" - ");
+            result.append(winningResult.get(ranking)).append("개").append("\n");
+        }
+
+        return result.toString();
     }
 
 

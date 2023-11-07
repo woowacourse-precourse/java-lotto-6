@@ -66,5 +66,8 @@ public class Lotto {
         Lotto lotto = (Lotto) o;
         return Objects.equals(numbers, lotto.numbers);
     }
-// TODO: 추가 기능 구현
+
+    public boolean contains(int value) {
+        return numbers.contains(value);
+    }
 }

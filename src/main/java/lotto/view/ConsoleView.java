@@ -25,6 +25,14 @@ public class ConsoleView implements View {
     }
 
     @Override
+    public String getBonusNumber() {
+        System.out.println();
+        System.out.println(BONUS_NUMBER_PROMPT);
+        return Console.readLine();
+    }
+
+
+    @Override
     public void displayException(String message) {
         System.out.println();
         System.out.printf(EXCEPTION_MESSAGE, message);

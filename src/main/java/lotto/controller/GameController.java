@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.concurrent.Callable;
 import lotto.model.Game;
+import lotto.util.converter.BonusNumberConverter;
 import lotto.util.converter.PurchaseAmountConverter;
 import lotto.util.converter.WinningNumberConverter;
 import lotto.view.View;
@@ -20,6 +21,7 @@ public class GameController {
         // TODO: 게임 로직 작성
         retryUntilValidInput(this::handlePurchaseLottoTickets);
         retryUntilValidInput(this::handleWinningNumbers);
+        retryUntilValidInput(this::handleBonusNumber);
     }
 
     private void retryUntilValidInput(Callable<Boolean> containUserInput) {
@@ -55,5 +57,16 @@ public class GameController {
     private List<Integer> inputWinningNumbers() {
         String input = view.getWinningNumbers();
         return WinningNumberConverter.convert(input);
+    }
+
+    private boolean handleBonusNumber() {
+        int bonusNumber = inputBonusNumber();
+        game.setBonusNumber(bonusNumber);
+        return true;
+    }
+
+    private int inputBonusNumber() {
+        String input = view.getBonusNumber();
+        return BonusNumberConverter.convertAndValidate(input);
     }
 }

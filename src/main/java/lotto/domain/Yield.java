@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.constants.Prize;

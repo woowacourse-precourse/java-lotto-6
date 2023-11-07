@@ -3,6 +3,7 @@ package lotto.ui;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.Constants;
 
 public class InputConverter {
     public long convertToMoney(String input) {
@@ -17,7 +18,7 @@ public class InputConverter {
 
     private void isOnlyNumber(String input) {
         if (!input.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
         }
     }
 
@@ -38,7 +39,7 @@ public class InputConverter {
     private void hasOnlyNumbers(List<String> numbers) {
         for (String number : numbers) {
             if (!number.matches("^[0-9]*$")) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
             }
         }
     }

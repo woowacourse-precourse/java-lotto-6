@@ -2,6 +2,7 @@ package lotto.ui;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ public class Output {
     private final String PURCHASE_AMOUNT = "%s개를 구매했습니다.";
     private final String FIFTH_WINNING = "3개 일치 (5,000원) - %s개";
     private final String FOURTH_WINNING = "4개 일치 (50,000원) - %s개";
-    private final String THIRD_WINNING = "5개 일치 (150,000원) - %s개";
+    private final String THIRD_WINNING = "5개 일치 (1,500,000원) - %s개";
     private final String SECOND_WINNING = "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개";
     private final String FIRST_WINNING = "6개 일치 (2,000,000,000원) - %s개";
     private final String YEILD = "총 수익률은 %s%s입니다.";
@@ -21,10 +22,15 @@ public class Output {
         System.out.println();
         System.out.println(String.format(PURCHASE_AMOUNT, howManyLotto));
         for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            Collections.sort(numbers);
-            System.out.println(numbers);
+            List<Integer> sortedNumbers = sortNumbers(lotto.getNumbers());
+            System.out.println(sortedNumbers);
         }
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort((sortedNumbers));
+        return sortedNumbers;
     }
 
     public void printWinning(Map<Integer, Integer> winningByRank) {

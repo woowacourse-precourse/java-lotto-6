@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constants.Constants;
 import lotto.constants.LottoStatus;
 
 public class Lotto {
@@ -15,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
         }
     }
 
@@ -23,13 +24,13 @@ public class Lotto {
     private void checkRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number ->
                 number < LottoStatus.MIN_VALUE || number > LottoStatus.MAX_VALUE)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
         }
     }
 
     private void checkSameNumber(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
         }
     }
 

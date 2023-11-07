@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.Constants;
 import lotto.constants.LottoStatus;
 
 public class Money {
@@ -15,13 +16,13 @@ public class Money {
 
     private void isMoreThanPrice(long money) {
         if (money < 1000) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
         }
     }
 
     private void isDividedByPrice(long money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
         }
     }
 

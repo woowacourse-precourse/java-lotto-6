@@ -12,11 +12,15 @@ public class LottoNumber {
 
     public LottoNumber(String lottoNumber) {
         validate(lottoNumber);
-        validateInRange(lottoNumber);
         this.lottoNumber = Integer.parseInt(lottoNumber);
     }
 
     private void validate(String lottoNumber) {
+        validateIsNumber(lottoNumber);
+        validateInRange(lottoNumber);
+    }
+
+    private void validateIsNumber(String lottoNumber) {
         if (!lottoNumber.matches(NUMBER_PATTERN)) {
             throw new IllegalArgumentException(Constant.ERROR_PREFIX + NOT_NUMBER_MESSAGE);
         }

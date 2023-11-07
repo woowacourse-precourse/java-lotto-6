@@ -49,7 +49,8 @@ public class LottoController {
 
     private void purchaseLottoNumberOutputLogic() {
 
-        OutputValue.lottoCountMessage(lottoCount);
+        int lottoPurchaseQuantity = priceService.getLottoPurchaseQuantity();
+        OutputValue.lottoCountMessage(lottoPurchaseQuantity);
 
         for (Lotto lotto : lottoService.getPurchaseLotto()) {
             OutputValue.purchaseLottoMessage(lotto.getLotto());

@@ -1,14 +1,13 @@
-package lotto.service.impl;
+package lotto.service;
 
 import static lotto.config.LottoPrice.LOTTO_PRICE;
 
 import lotto.config.AppConfig;
-import lotto.service.Payment;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PaymentImplTest {
+class PaymentTest {
     Payment payment;
 
     @BeforeEach

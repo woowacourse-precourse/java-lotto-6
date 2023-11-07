@@ -4,6 +4,8 @@ import static lotto.ErrorMessage.BONUS_AND_PAYMENT_WRONG_INPUT_ERROR_MESSAGE;
 import static lotto.ErrorMessage.PARSE_INT_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.util.parser.BonusAndPaymentInputParser;
+import lotto.util.parser.InputParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

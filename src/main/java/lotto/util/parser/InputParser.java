@@ -1,10 +1,10 @@
-package lotto.domain.parser;
+package lotto.util.parser;
 
 import java.util.List;
 
 public abstract class InputParser {
 
-    abstract List<Integer> parse(String input);
+    public abstract List<Integer> parse(String input);
 
     abstract void validate(String input);
 

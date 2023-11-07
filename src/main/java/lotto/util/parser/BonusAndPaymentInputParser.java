@@ -1,4 +1,4 @@
-package lotto.domain.parser;
+package lotto.util.parser;
 
 import static lotto.ErrorMessage.BONUS_AND_PAYMENT_WRONG_INPUT_ERROR_MESSAGE;
 import static lotto.ErrorMessage.PARSE_INT_ERROR_MESSAGE;
@@ -34,7 +34,7 @@ public class BonusAndPaymentInputParser extends InputParser {
             int value = Integer.parseInt(input);
             result.add(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(PARSE_INT_ERROR_MESSAGE.get());
+            throwException(PARSE_INT_ERROR_MESSAGE.get());
         }
         return result;
     }

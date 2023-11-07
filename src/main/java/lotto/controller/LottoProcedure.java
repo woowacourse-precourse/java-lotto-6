@@ -83,9 +83,7 @@ public class LottoProcedure {
         double result = 0;
 
         for (int i = 1; i < user.rankCountSize(); i++) {
-            if (user.getRankCount(i) != 0) {
-                result += this.reward.get(i) * user.getRankCount(i);
-            }
+            result += this.reward.get(i) * user.getRankCount(i);
         }
         return result;
     }

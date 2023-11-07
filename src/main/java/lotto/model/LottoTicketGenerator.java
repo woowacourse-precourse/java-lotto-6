@@ -30,6 +30,6 @@ public class LottoTicketGenerator {
     }
 
     private List<Integer> getLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_SIZE);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_SIZE));
     }
 }

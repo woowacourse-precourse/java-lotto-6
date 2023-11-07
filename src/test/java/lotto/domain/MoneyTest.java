@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class MoneyTest {
@@ -36,4 +37,14 @@ class MoneyTest {
         assertEquals(expectedPurchasableLottosCount, actualPurchasableLottosCount);
     }
 
+    @DisplayName("수익률을 계산한다.")
+    @ParameterizedTest
+    @CsvSource({"1000,50000,5000", "3000,2000000,66666.7"})
+    void calculateRateOfReturn(long money, long winningPrize, double actualRateOfReturn) {
+        Money purchaseMoney = new Money(money);
+        Money totalWinningPrize = new Money(winningPrize);
+
+        double expectedRateOfReturn = purchaseMoney.calculateRateOfReturn(totalWinningPrize);
+        assertEquals(actualRateOfReturn, expectedRateOfReturn);
+    }
 }

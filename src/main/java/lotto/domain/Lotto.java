@@ -19,6 +19,9 @@ public class Lotto {
     public void setBonusNumber(int bonusNumber) {
         lottoException.validateBonusNumber(numbers, bonusNumber);
     }
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 
 }
 

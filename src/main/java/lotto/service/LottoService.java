@@ -31,8 +31,6 @@ public class LottoService {
                 count++;
             }
         }
-
         return count;
     }
-
 }

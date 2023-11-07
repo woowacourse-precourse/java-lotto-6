@@ -22,6 +22,7 @@ public class User {
     }
 
     public List<Integer> winningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> numbers = new ArrayList<>();
         while(numbers.size() < 6) {
             int num = Integer.parseInt(Console.readLine());
@@ -39,6 +40,7 @@ public class User {
     }
 
     public int bonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 
         try {

@@ -39,4 +39,10 @@ public class LottoValidator {
         }
         return false;
     }
+
+    public static void validateDuplicateWinningAndBonusNumbers(List<Integer> winningLottoNumbers, int bonusLottoNumber) {
+        if (winningLottoNumbers.contains(bonusLottoNumber)) {
+            throw new IllegalArgumentException("보너스 번호가 입력한 당첨 번호들 중 하나와 중복된 숫자입니다.");
+        }
+    }
 }

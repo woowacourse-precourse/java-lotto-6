@@ -1,10 +1,6 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.awt.image.LookupTable;
-import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoGenerator;
 import lotto.Validator.LottoValidator;
 
 public class LottoManager {
@@ -12,8 +8,7 @@ public class LottoManager {
     private final List<Integer> winningLottoNumbers;
     private List<Integer> matchingCounts;
 
-    public LottoManager(List<Integer> winningLottoNumbers) {
-        LottoValidator.isValidWinningLottoNumbers(winningLottoNumbers);
+    public LottoManager(List<Integer> winningLottoNumbers, int bonusLottoNumber) {
         this.winningLottoNumbers = winningLottoNumbers;
         this.matchingCounts = List.of();
     }

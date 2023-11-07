@@ -14,9 +14,9 @@ public enum Ranking {
     private int[] score;
     private int reward;
 
-    Ranking(int[] score, int point) {
+    Ranking(int[] score, int reward) {
         this.score = score;
-        this.reward = point;
+        this.reward = reward;
     }
 
     public static Ranking getRank(int[] score) {

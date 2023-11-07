@@ -16,7 +16,7 @@ public class InputView {
         String[] numbers = Console.readLine().split(",");
         ValidationView.checkConsecutiveCommas(numbers);
         List<Integer> winningNumbers = Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
-        ValidationView.checkWinningNumbers(winningNumbers);
+        ValidationView.checkNumberSize(winningNumbers);
         ValidationView.checkInRange(winningNumbers);
         ValidationView.checkDuplicateNumbers(winningNumbers);
         System.out.println();

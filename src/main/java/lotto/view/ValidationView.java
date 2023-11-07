@@ -28,7 +28,7 @@ public class ValidationView {
         }
     }
 
-    public static void checkWinningNumbers(List<Integer> numbers) {
+    public static void checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }

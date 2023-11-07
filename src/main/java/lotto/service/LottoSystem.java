@@ -1,7 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.WinningResult;
+import lotto.type.WinningResultType;
 import lotto.model.Lotto;
 import lotto.model.Player;
 
@@ -25,23 +25,22 @@ public class LottoSystem {
 
     }
 
-    public WinningResult checkWinning(Lotto lotto){
+    public WinningResultType checkWinning(Lotto lotto){
 
         int howMatch = checkMatchCount(lotto);
 
         if(howMatch<3){
-            return WinningResult.WINNING_RESULT_NOTHING;
+            return WinningResultType.WINNING_RESULT_NOTHING;
         }
 
         if(howMatch==5&&checkMatchBonus(lotto)){
-            return WinningResult.WINNING_RESULT_5_MATCH_AND_BONUS_MATCH;
+            return WinningResultType.WINNING_RESULT_5_MATCH_AND_BONUS_MATCH;
         }
 
-        return WinningResult.values()[howMatch-2];
+        return WinningResultType.values()[howMatch-2];
     }
 
     private int checkMatchCount(Lotto lotto){
-        validLottoSystem();
         int checkHowMatchCount = 0;
 
         for(Integer winningNumber:winningNumbers){
@@ -59,8 +58,8 @@ public class LottoSystem {
         return false;
     }
 
-    public void giveWinningAccountToPlayer(WinningResult winningResult, Player player){
-        player.receiveWinningAccount(winningResult.getWinningPrice());
+    public void giveWinningAccountToPlayer(WinningResultType winningResultType, Player player){
+        player.receiveWinningAccount(winningResultType.getWinningPrice());
     }
 
 

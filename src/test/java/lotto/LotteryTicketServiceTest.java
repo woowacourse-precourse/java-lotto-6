@@ -1,15 +1,19 @@
 package lotto;
 
-import static lotto.DrawResult.FIFTH_PRIZE;
-import static lotto.DrawResult.FIRST_PRIZE;
-import static lotto.DrawResult.FOURTH_PRIZE;
-import static lotto.DrawResult.NO_PRIZE;
-import static lotto.DrawResult.SECOND_PRIZE;
-import static lotto.DrawResult.THIRD_PRIZE;
+import static lotto.core.DrawResult.FIFTH_PRIZE;
+import static lotto.core.DrawResult.FIRST_PRIZE;
+import static lotto.core.DrawResult.FOURTH_PRIZE;
+import static lotto.core.DrawResult.NO_PRIZE;
+import static lotto.core.DrawResult.SECOND_PRIZE;
+import static lotto.core.DrawResult.THIRD_PRIZE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import lotto.core.BonusNumber;
+import lotto.core.DrawResult;
+import lotto.core.LotteryPortfolio;
+import lotto.core.LotteryTicket;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,10 @@
-package lotto;
+package lotto.core;
 
-import static lotto.DrawResult.FIFTH_PRIZE;
-import static lotto.DrawResult.FIRST_PRIZE;
-import static lotto.DrawResult.FOURTH_PRIZE;
-import static lotto.DrawResult.SECOND_PRIZE;
-import static lotto.DrawResult.THIRD_PRIZE;
+import static lotto.core.DrawResult.FIFTH_PRIZE;
+import static lotto.core.DrawResult.FIRST_PRIZE;
+import static lotto.core.DrawResult.FOURTH_PRIZE;
+import static lotto.core.DrawResult.SECOND_PRIZE;
+import static lotto.core.DrawResult.THIRD_PRIZE;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

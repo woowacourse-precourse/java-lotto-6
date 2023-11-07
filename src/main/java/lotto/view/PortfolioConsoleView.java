@@ -1,14 +1,14 @@
 package lotto.view;
 
-import static lotto.DrawResult.FIFTH_PRIZE;
-import static lotto.DrawResult.FIRST_PRIZE;
-import static lotto.DrawResult.FOURTH_PRIZE;
-import static lotto.DrawResult.SECOND_PRIZE;
-import static lotto.DrawResult.THIRD_PRIZE;
+import static lotto.core.DrawResult.FIFTH_PRIZE;
+import static lotto.core.DrawResult.FIRST_PRIZE;
+import static lotto.core.DrawResult.FOURTH_PRIZE;
+import static lotto.core.DrawResult.SECOND_PRIZE;
+import static lotto.core.DrawResult.THIRD_PRIZE;
 
-import lotto.LotteryPortfolio;
-import lotto.LotteryTicket;
-import lotto.PortfolioReport;
+import lotto.core.LotteryPortfolio;
+import lotto.core.LotteryTicket;
+import lotto.core.PortfolioReport;
 
 public class PortfolioConsoleView {
 

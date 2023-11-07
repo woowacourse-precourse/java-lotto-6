@@ -1,4 +1,4 @@
-package lotto;
+package lotto.core;
 
 public enum DrawResult {
 

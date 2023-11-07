@@ -1,11 +1,11 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.BonusNumber;
-import lotto.DrawResult;
-import lotto.LotteryPortfolio;
-import lotto.LotteryTicket;
-import lotto.PortfolioReport;
+import lotto.core.BonusNumber;
+import lotto.core.DrawResult;
+import lotto.core.LotteryPortfolio;
+import lotto.core.LotteryTicket;
+import lotto.core.PortfolioReport;
 
 public class LottoService {
 

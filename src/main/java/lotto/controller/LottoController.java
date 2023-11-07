@@ -4,13 +4,13 @@ import static lotto.view.Prompt.WAIT_FOR_BONUS_NUMBER;
 import static lotto.view.Prompt.WAIT_FOR_PURCHASE_AMOUNT;
 import static lotto.view.Prompt.WAIT_FOR_WINNING_NUMBERS;
 
-import lotto.BonusNumber;
-import lotto.LotteryTicket;
+import lotto.core.BonusNumber;
+import lotto.core.LotteryTicket;
 import lotto.io.ConsoleUserInterface;
-import lotto.LotteryPortfolio;
+import lotto.core.LotteryPortfolio;
 import lotto.service.LottoService;
-import lotto.PurchaseAmount;
-import lotto.RandomLotteryNumberProvider;
+import lotto.core.PurchaseAmount;
+import lotto.core.RandomLotteryNumberProvider;
 import lotto.io.UserInputReader;
 import lotto.view.PortfolioConsoleView;
 

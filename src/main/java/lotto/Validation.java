@@ -5,7 +5,7 @@ import java.util.List;
 public class Validation {
     public static void validateAmount(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -18,7 +18,14 @@ public class Validation {
 
     public static void validateNumberRange(int num){
         if (num > 45 || num < 1) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateBonusNumber(int num, List<String> winningNums){
+        validateNumberRange(num);
+        if (winningNums.contains(Integer.toString(num))){
+            throw new IllegalArgumentException();
         }
     }
 }

@@ -10,6 +10,7 @@ public class InputRequirement {
     static List<String> winningNums = new ArrayList<>();
 
     public static int inputLottoAmount() {
+        PrintInstructions.printAmountInstruction();
         try {
             int amount = Integer.parseInt(Console.readLine());
             Validation.validateAmount(amount);
@@ -23,21 +24,8 @@ public class InputRequirement {
         }
     }
 
-    public static int inputBonusNumber() {
-        try{
-            int bonus = Integer.parseInt(Console.readLine());
-            Validation.validateNumberRange(bonus);
-            return bonus;
-        } catch (NumberFormatException e1) {
-            System.out.println("[ERROR] 숫자를 입력하세요.");
-            return inputBonusNumber();
-        } catch (IllegalArgumentException e2) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            return inputBonusNumber();
-        }
-    }
-
     public static Lotto inputWinningNumbers() {
+        PrintInstructions.printWinningNumberInstruction();
         winningNums = (Arrays.asList(Console.readLine().split(",")));
         try {
             Validation.isAllValidNumbers(winningNums);
@@ -58,5 +46,20 @@ public class InputRequirement {
             convert.add(num);
         }
         return convert;
+    }
+
+    public static int inputBonusNumber() {
+        PrintInstructions.printBonusInstruction();
+        try{
+            int bonus = Integer.parseInt(Console.readLine());
+            Validation.validateBonusNumber(bonus, winningNums);
+            return bonus;
+        } catch (NumberFormatException e1) {
+            System.out.println("[ERROR] 숫자를 입력하세요.");
+            return inputBonusNumber();
+        } catch (IllegalArgumentException e2) {
+            System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자여야 합니다.");
+            return inputBonusNumber();
+        }
     }
 }

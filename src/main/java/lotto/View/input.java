@@ -14,7 +14,7 @@ public class input {
         return Console.readLine();
     }
 
-    public static String readBonusNumbers() {
+    public static String readBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }

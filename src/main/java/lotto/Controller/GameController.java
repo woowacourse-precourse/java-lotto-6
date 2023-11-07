@@ -16,13 +16,26 @@ public class GameController {
         List<Lotto> lottoTickets = LottoTicket.generateLottoTickets(purchaseAmount);
         output.printLotto(lottoTickets);
         List<Integer> winningNumbers = this.readWinningNumbers();
-        //int bonusNumber = Console.readBonusNumber();
+        int bonusNumber = this.readBonusNumber();
 
         //Result result = lottoService.calculateResult(lottoTickets, winningNumbers, bonusNumber);
 
         //Console.printResults(result);
     }
-
+    private int readPurchaseAmount(){
+        while (true) {
+            try {
+                String purchaseAmountString = input.readPurchaseAmount();
+                int purchaseAmount = Integer.parseInt(purchaseAmountString);
+                if (purchaseAmount % 1000 == 0) {
+                    return purchaseAmount;
+                }
+                error.not_valid_purchaseAmount();
+            } catch (NumberFormatException e) {
+                error.NAN();
+            }
+        }
+    }
     private List<Integer> readWinningNumbers() {
         while (true) {
             try {
@@ -35,7 +48,7 @@ public class GameController {
                     return winningNumbers;
                 }
                 if (trigger == 1) {
-                    error.not_valid_winningNumber();
+                    error.not_valid_winningNumber_length();
                 }
             } catch (NumberFormatException e) {
                 error.NAN();
@@ -62,15 +75,15 @@ public class GameController {
         return trigger;
     }
 
-    private int readPurchaseAmount(){
+    private int readBonusNumber(){
         while (true) {
             try {
-                String purchaseAmountString = input.readPurchaseAmount();
-                int purchaseAmount = Integer.parseInt(purchaseAmountString);
-                if (purchaseAmount % 1000 == 0) {
-                    return purchaseAmount;
+                String bonusNumberString = input.readBonusNumber();
+                int bonusNumber = Integer.parseInt(bonusNumberString);
+                if (1 <= bonusNumber && bonusNumber <= 45 ) {
+                    return bonusNumber;
                 }
-                error.not_valid_purchaseAmount();
+                error.not_valid_bonusNumber();
             } catch (NumberFormatException e) {
                 error.NAN();
             }

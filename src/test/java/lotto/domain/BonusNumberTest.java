@@ -21,17 +21,15 @@ public class BonusNumberTest {
     @CsvSource({"0", "-1", "46"})
     void getNullByNotBetweenStartAndEndInclusive(int bonusNumber) {
         BonusNumber actual = BonusNumber.of(bonusNumber, winningNumbers);
-        BonusNumber expected = null;
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(null);
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 null이 반환된다.")
     @ParameterizedTest
     @CsvSource({"1", "5", "6"})
-    void getNullMessageByDuplicateNumber(int bonusNumber) {
+    void getNullByDuplicateNumber(int bonusNumber) {
         BonusNumber actual = BonusNumber.of(bonusNumber, winningNumbers);
-        BonusNumber expected = null;
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(null);
     }
 
     @DisplayName("보너스 번호가 1~45 사이 수이고, 당첨 번호와 중복되지 않으면 해당 번호를 가지는 BonusNumber가 생성된다.")

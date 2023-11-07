@@ -21,6 +21,22 @@ public class LottoGame {
         return purchaseAmount;
     }
 
+    public static void startGame() {
+        try {
+            int purchaseAmount = inputPurchaseAmount();
+            int lottoCount = purchaseAmount / LOTTO_PRICE;
+
+            List<Lotto> lottos = purchaseLottos(lottoCount);
+            printLottos(lottos);
+
+            List<Integer> winningNumbers = inputWinningNumbers();
+            int bonusNumber = inputBonusNumbers(winningNumbers);
+
+            showResults(lottos, winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     private static List<Lotto> purchaseLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {

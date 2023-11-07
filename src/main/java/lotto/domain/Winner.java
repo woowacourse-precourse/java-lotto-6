@@ -32,16 +32,15 @@ public class Winner {
         return Integer.parseInt(lottoWinningBonus);
     }
 
-    public void compareWithUserLottoAndWinningLotto(User user) {
+    public void compareWithUserLottoAndWinningLotto(List<Lotto> userLottos, int userMoney) {
         lottoResult = new LottoResult();
-        List<Lotto> userLottos = user.getLottos();
         for (Lotto userLotto : userLottos) {
             int sameNumberCount = checkUserLottoNumberCount(userLotto);
 
             lottoResult.addWinningCount(sameNumberCount);
             lottoResult.addTotalWinningMoney(sameNumberCount);
         }
-        lottoResult.calculateProfitMargin(user.getMoney());
+        lottoResult.calculateProfitMargin(userMoney);
     }
 
     private int checkUserLottoNumberCount(Lotto userLotto) {

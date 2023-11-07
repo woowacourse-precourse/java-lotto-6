@@ -33,8 +33,9 @@ public class InputView {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = readLine();
 
-                List<Integer> winningNumbers = Arrays.stream(input.split(",")).
-                        mapToInt(Integer::parseInt).boxed().toList();
+                List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                        .map(InputValidate::validateInputFormat)
+                        .toList();
 
                 validateRangeInputLottoNumbers(winningNumbers);
                 validateAmountInputLottoNumbers(winningNumbers);

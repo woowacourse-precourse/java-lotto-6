@@ -24,7 +24,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if(number<1 || number>45){
+            if (number<1 || number>45){
                 throw new IllegalArgumentException(INVALID_RANGE.getMessage());
             }
         }
@@ -32,27 +32,27 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers) {
         int uniqueSize = numbers.stream().distinct().toList().size();
-        if(numbers.size() != uniqueSize){
+        if (numbers.size() != uniqueSize){
             throw new IllegalArgumentException(DUPLICATE_NUM.getMessage());
         }
     }
 
     public int matching(Lotto buyLotto) {
-        int cnt=0;
+        int correctNum=0;
         List<Integer> buyNumbers = buyLotto.getNumbers();
-        for (Integer nuyNumber : buyNumbers) {
-            if (numbers.contains(nuyNumber)) {
-                cnt++;
+        for (Integer buyNumber : buyNumbers) {
+            if (has(buyNumber)) {
+                correctNum++;
             }
         }
-        return cnt;
+        return correctNum;
     }
-
+    //맞춘번호 갯수에 따른 등수를 Lotto가 관리
     public int findRank(int correctNum,int bonusNum){
-        if(correctNum ==3) return 5;
-        else if(correctNum ==4) return 4;
-        else if(correctNum ==5){
-            if(numbers.contains(bonusNum)) return 2;
+        if (correctNum ==3) return 5;
+        else if (correctNum ==4) return 4;
+        else if (correctNum ==5){
+            if (has(bonusNum)) return 2;
             return 3;
         } else if (correctNum ==6) {
             return 1;

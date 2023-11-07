@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.collaboration.lottos.dto.PlayerLotto;
-import lotto.io.lottos.SuccessLottosRandoms;
 import org.junit.jupiter.api.Test;
 
 class LottosTest {
@@ -45,7 +44,7 @@ class LottosTest {
 
         Lottos lottos = new Lottos();
         lottos.purchase(1000);
-        List<PlayerLotto> actual = lottos.make(new SuccessLottosRandoms());
+        List<PlayerLotto> actual = lottos.make(() -> List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(actual.size()).isEqualTo(1);
         assertThat(actual.get(0).toString()).isEqualTo(expected.toString());

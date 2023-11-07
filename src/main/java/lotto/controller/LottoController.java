@@ -21,5 +21,6 @@ public class LottoController {
 		new LottoBonusNumberScanController().scanLottoBonusNumber(lotto, lottoBonus);
 		LottoWinningStatus lottoWinningStatus = new LottoWinningStatus();
 		new LottoWinningStatusCheckingController().checkLottoWinningStatus(lotto, lottoBonus, lottoTicketList, lottoWinningStatus);
+		new LottoWinningStatusPrinterController().printLottoWinningStatus(lottoWinningStatus);
 	}
 }

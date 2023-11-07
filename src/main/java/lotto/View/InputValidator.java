@@ -2,23 +2,23 @@ package lotto.View;
 
 public class InputValidator {
     public static void validateInsertInteger(String inputValue){
-        if(validateBlank(inputValue)){
+        if(isBlank(inputValue)){
             throw new IllegalArgumentException("입력이 없습니다");
         }
 
-        if(validateNumber(inputValue)){
+        if(isNumber(inputValue)){
             throw new IllegalArgumentException("입력은 숫자여야 합니다.");
         };
 
     }
 
     public static void validateInsertString(String inputValue){
-        if(validateBlank(inputValue)){
+        if(isBlank(inputValue)){
             throw new IllegalArgumentException("[ERROR] 입력이 없습니다.");
         }
     }
 
-    private static boolean validateNumber(String inputData){
+    private static boolean isNumber(String inputData){
         char charAt;
         for(int i=0; i< inputData.length();i++){
             charAt = inputData.charAt(i);
@@ -29,7 +29,7 @@ public class InputValidator {
         return false;
     }
 
-    private static boolean validateBlank(String inputData){
+    private static boolean isBlank(String inputData){
         return inputData.isBlank();
     }
 }

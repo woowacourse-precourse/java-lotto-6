@@ -26,6 +26,10 @@ public class GameModel {
         lottoHost.initAnswerLotto(answerNumbers);
     }
 
+    public void initBonus(Integer insertNumber){
+        lottoHost.initBonusNumber(insertNumber);
+    }
+
 
     private void validateIntegerList(List<String> insertDatas){
        if(isContainsChar(insertDatas)){

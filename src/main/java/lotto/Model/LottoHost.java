@@ -16,10 +16,10 @@ public class LottoHost {
         AnswerLotto = new Lotto(numbers);
     }
     public void validateLotto(List<Integer> numbers){
-        if(validateNumbersInRange(numbers)){
+        if(isNumbersOutOfRange(numbers)){
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
         }
-        if(validateNumbersDuplicate(numbers)){
+        if(isNumbersDuplicate(numbers)){
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 서로 다른 숫자여야 합니다.");
         }
     }
@@ -29,12 +29,12 @@ public class LottoHost {
         bonusNumber = number;
     }
     private void validateLottoNumber(Integer number){
-        if(validateNumberOutRange(number)){
+        if(isNumberOutOfRange(number)){
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
         }
     }
 
-    private boolean validateNumbersDuplicate(List<Integer> numbers){
+    private boolean isNumbersDuplicate(List<Integer> numbers){
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (!set.add(number)) {
@@ -44,15 +44,15 @@ public class LottoHost {
         return false;
     }
 
-    private boolean validateNumbersInRange(List<Integer> numbers){
+    private boolean isNumbersOutOfRange(List<Integer> numbers){
         for(Integer number:numbers){
-            if(validateNumberOutRange(number))
+            if(isNumberOutOfRange(number))
                 return true;
         }
         return false;
     }
 
-    private boolean validateNumberOutRange(Integer number){
+    private boolean isNumberOutOfRange(Integer number){
         return number < 1  || 35 < number;
     }
 

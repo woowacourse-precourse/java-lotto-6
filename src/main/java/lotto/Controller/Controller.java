@@ -35,6 +35,7 @@ public class Controller {
 
         Output.printInsertBonusNumber();
         Integer insertBonusNumber = Input.insertInteger();
+        gameModel.initBonus(insertBonusNumber);
 
     }
 }

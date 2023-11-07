@@ -21,5 +21,9 @@ public class Lotto {
         }
     }
 
+    public boolean checkBonusballContain(LottoNumber bonusBall) {
+        return numbers.contains(bonusBall);
+    }
+
     // TODO: 추가 기능 구현
 }

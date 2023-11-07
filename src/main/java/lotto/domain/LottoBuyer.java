@@ -6,17 +6,14 @@ public class LottoBuyer {
     private final Payment payment;
     private final LottoTickets lottoTickets;
 
-    public LottoBuyer(int money) {
-        this.payment = new Payment(money);
-        this.lottoTickets = new LottoTickets(payment);
-    }
-
-    public LottoTickets getLottoTickets() {
-        return lottoTickets;
+    public LottoBuyer(Payment payment, LottoTickets lottoTickets) {
+        this.payment = payment;
+        this.lottoTickets = lottoTickets;
     }
 
     public double getRateOfReturn(List<LottoRank> lottoRanks) {
-        return Math.round(getTotalRevenue(lottoRanks) / (double) payment.get()) / 100.0;
+        double originValue = getTotalRevenue(lottoRanks) / (double) payment.get() * (double) 100;
+        return Math.round(originValue * 10) / (double) 10;
     }
 
     private double getTotalRevenue(List<LottoRank> lottoRanks) {

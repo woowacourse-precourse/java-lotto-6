@@ -12,10 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CompareNumberTest {
     private CompareNumber compareNumber;
+    private MakeTestRandomNumber makeTestRandomNumber;
 
     @BeforeEach
     void setUp(){
-        CompareNumber compareNumber = new CompareNumber();
+     compareNumber = new CompareNumber();
+     makeTestRandomNumber = new MakeTestRandomNumber(List.of(1,2,3,4,5,6));
     }
 
     @Test
@@ -23,9 +25,9 @@ class CompareNumberTest {
     void compareWinnerNumber(){
         //given
         List<Integer> userWin = Arrays.asList(1,3,9,18,30,45);
-        List<Integer> randomWin = (List<Integer>) new MakeTestRandomNumber(List.of(1,2,3,4,5,6));
+        List<Integer> randomWin = makeTestRandomNumber.getRandomNumber();
         //when
-        int result = compareNumber.compareWinnerNum(userWin,randomWin);
+        int result = compareNumber.compareWinnerNum(userWin, randomWin);
         //then
         assertEquals(result, 2);
     }

@@ -10,10 +10,8 @@ public class Application {
         List<Lotto> lottos = lottoService.lottoIssuance(lottoService.lottoCount(moneyInput));
         lottoService.lottosPrint(lottos);
         int[] winningNumberInput = lottoService.winningNumberInput();
-        lottoService.bonusNumberInput();
-        lottoService.lottoResult(lottos, winningNumberInput);
+        int bonusNumber = lottoService.bonusNumberInput();
+        lottoService.lottoResult(lottos, winningNumberInput, bonusNumber);
         lottoService.lottoResultPrint(moneyInput);
-
-
     }
 }

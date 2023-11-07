@@ -37,7 +37,7 @@ public class PurchasedLottos {
     }
 
     private boolean isNotMultipleOfLottoPurchaseUnit(int purchaseAmount) {
-        return Values.LOTTO_PURCHASE_UNIT != 0 && purchaseAmount % Values.LOTTO_PURCHASE_UNIT != 0;
+        return Values.LOTTO_PURCHASE_UNIT != Values.ZERO && purchaseAmount % Values.LOTTO_PURCHASE_UNIT != Values.NO_REMAINDER;
     }
 
     public int getPurchaseAmount() {

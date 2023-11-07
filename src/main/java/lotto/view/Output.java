@@ -1,9 +1,11 @@
 package lotto.view;
 
+import lotto.Lotto;
 import lotto.values.ExceptionMessage;
 import lotto.values.WinningResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static lotto.values.ExceptionMessage.ERROR;
 import static lotto.values.GuideMessage.*;
@@ -42,6 +44,12 @@ public class Output {
 
     public void printEarnings(float earningsRate) {
         System.out.printf(TOTAL_EARNINGS_RATE_MESSAGE.getMessage(), earningsRate);
+    }
+
+    public void printLotto(List<Lotto> lottoPackage){
+        for(Lotto lotto : lottoPackage) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
 }

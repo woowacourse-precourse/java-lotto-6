@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.service.LottoService;
+
 import java.util.List;
 
 public class Lotto {
@@ -7,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = LottoService.sortLottoOrder(numbers);
     }
 
     public List<Integer> getNumbers() {

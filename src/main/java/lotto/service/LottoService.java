@@ -6,6 +6,8 @@ import lotto.model.Customer;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -15,17 +17,17 @@ public class LottoService {
     private static final int lottoStopNumber = 45;
     private static final int lottoLength = 6;
 
+    private int buyLottoTicket(int money) {
+        exceptions.isInvalidPurchaseMoneyAmount(money, 1000);
+        int lottoTicket = money / 1000;
+        return lottoTicket;
+    }
+
     public void buyLottoByTicket(Customer customer) {
         int ticket = buyLottoTicket(customer.getPurchaseMoney());
         for (int i = ticket; i > 0; i--) {
             buyOneLotto(customer);
         }
-    }
-
-    private int buyLottoTicket(int money) {
-        exceptions.isInvalidPurchaseMoneyAmount(money, 1000);
-        int lottoTicket = money / 1000;
-        return lottoTicket;
     }
 
     private void buyOneLotto(Customer customer) {
@@ -41,6 +43,12 @@ public class LottoService {
     private List<Integer> lottoNumberGenerator(int start, int end, int length) {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(start, end, length);
         return numbers;
+    }
+
+    public static List<Integer> sortLottoOrder(List<Integer> list) {
+        List<Integer> sortLotto = new ArrayList<Integer>(list);
+        Collections.sort(sortLotto);
+        return sortLotto;
     }
 
 }

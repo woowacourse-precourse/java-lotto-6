@@ -1,4 +1,4 @@
-package util;
+package lotto.util;
 
 public class ControllerOutputManager {
     private final String START_PRINT = "구입금액을 입력해 주세요.";

@@ -18,7 +18,7 @@ public class BonusNumberInputValidator {
     }
 
     private static void validateIsInRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < Constants.LOTTO_NUM_MIN || number > Constants.LOTTO_NUM_MAX) {
             throw new IllegalArgumentException(Constants.INVALID_BONUS_NUMBER_MSG);
         }
     }

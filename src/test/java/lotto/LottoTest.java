@@ -44,6 +44,4 @@ class LottoTest {
         assertNotEquals(notExpectedCountMath, score.getCountMatch());
         assertNotEquals(notExpectedCheckBonus, score.isCheckBonus());
     }
-
-
 }

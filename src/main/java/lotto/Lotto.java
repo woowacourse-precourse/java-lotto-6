@@ -43,4 +43,14 @@ public class Lotto {
         return unDuplicatedNumbers.size() < 6;
     }
 
+    public int getSameNumberCount(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }

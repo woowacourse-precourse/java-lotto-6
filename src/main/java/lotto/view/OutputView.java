@@ -1,15 +1,14 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.PurchasedLottos;
-
+import lotto.domain.*;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String LOTTO_PURCHASE_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
     private static final String[] LOTTO_PRINT_FORMAT = {"[", "]"};
+    private static final String LOTTO_WINNING_STATICS_START_MESSAGE = "\n당첨 통계\n---";
     private static final String DELIMITER = ", ";
 
     public static void printPurchaseLottoCounts(PurchaseAmount purchaseAmount) {
@@ -29,5 +28,14 @@ public class OutputView {
                 .map(number -> String.format("%d", number))
                 .collect(Collectors.joining(DELIMITER, LOTTO_PRINT_FORMAT[0], LOTTO_PRINT_FORMAT[1]));
         System.out.println(singleLotto);
+    }
+
+    public static void printWinningStatistics(WinningStatistics winningStatistics) {
+        System.out.println(LOTTO_WINNING_STATICS_START_MESSAGE);
+
+        Map<WinningRecord, Integer> winningResult = winningStatistics.getWinningStatistics();
+        for (WinningRecord winningRecord : WinningRecord.getResultValues()) {
+            System.out.println(winningRecord.getResultMessage(winningResult.get(winningRecord)));
+        }
     }
 }

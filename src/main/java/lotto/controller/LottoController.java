@@ -15,6 +15,7 @@ public class LottoController {
         purchaseLotto();
         receiveWinningLotto();
         receiveBonusLotto();
+        printResult();
     }
 
     private void purchaseLotto() {
@@ -51,5 +52,14 @@ public class LottoController {
             System.out.println(exception.getMessage());
             receiveBonusLotto();
         }
+    }
+
+    private void printResult() {
+        printWinningStatistics();
+    }
+
+    private void printWinningStatistics() {
+        lottoService.calculateWinningStatistics();
+        OutputView.printWinningStatistics(lottoService.getWinningStatistics());
     }
 }

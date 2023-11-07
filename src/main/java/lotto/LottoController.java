@@ -20,7 +20,7 @@ public class LottoController {
         WinningNumber winningNumber = inputValueToWinningNumber();
         BonusNumber bonusNumber = inputValueToBonusNumber(winningNumber);
         HashMap<Integer, List<Integer>> compareLottoNumResult =
-                compareLottoNumber(lottoNumbers, winningNumber, bonusNumber);
+                compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
 
         printResult(checkRewardByLotto(compareLottoNumResult), lottoCost.getCost());
     }
@@ -231,7 +231,7 @@ public class LottoController {
         return count;
     }
 
-    private HashMap<Integer, List<Integer>> compareLottoNumber(HashMap<Integer, Lotto> allLotto,
+    private HashMap<Integer, List<Integer>> compareLottoToNumber(HashMap<Integer, Lotto> allLotto,
                                                                WinningNumber winningNumber, BonusNumber bonusNumber) {
         HashMap<Integer, List<Integer>> countSameNumbers = new HashMap<>();
         int countWinningInLotto;

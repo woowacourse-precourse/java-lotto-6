@@ -90,9 +90,12 @@ public class LottoService {
             if(correctNum > 9){
                 continue;
             }
+            if (correctNum == 6) {
+                correctNum = 5;
+            }
             if (correctNum == 7) {
                 if (lotto.contains(bonusNum)) {
-                    correctNum = 5;
+                    correctNum = 6;
                 }
             }
             result.set(correctNum, result.get(correctNum)+1);

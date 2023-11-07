@@ -7,7 +7,9 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.Application.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -55,13 +57,42 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 구매금액_1000배수_아닐경우_테스트(){
-        assertSimpleTest(() -> {
-            runException("1001");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    void 구매금액_divideThousand_테스트(){
+        String[] errorMessage = new String[1];
+        assertThat(divideThousand(1001,errorMessage)).isEqualTo(false);
+        assertThat(divideThousand(1000,errorMessage)).isEqualTo(true);
     }
-    
+    @Test
+    void 사용자_입력에_따른_범위_테스트(){
+        String[] errorMessage = new String[1];
+        String inpType1 = "purchaseMoney";
+        String inpType2 = "catchNumber";
+        assertThat(checkInRange(-1,inpType1,errorMessage)).isEqualTo(false);
+        assertThat(checkInRange(0,inpType1,errorMessage)).isEqualTo(false);
+        assertThat(checkInRange(8000,inpType1,errorMessage)).isEqualTo(true);
+
+        assertThat(checkInRange(-1,inpType2,errorMessage)).isEqualTo(false);
+        assertThat(checkInRange(46,inpType2,errorMessage)).isEqualTo(false);
+        assertThat(checkInRange(20,inpType2,errorMessage)).isEqualTo(true);
+    }
+
+    @Test
+    void 사용자입력_숫자가_아닐경우_테스트(){
+        String[] errorMessage = new String[1];
+        assertThatThrownBy(()-> isInteger("abs",errorMessage))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또번호_생성_테스트(){
+        List<Integer> test = createLotto();
+        assertThat(test.size()).isEqualTo(6);
+
+        for(int i = 0; i < 6; i++){
+            assertThat((test.get(i) >= 1 && test.get(i) <= 45)).isEqualTo(true);
+        }
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

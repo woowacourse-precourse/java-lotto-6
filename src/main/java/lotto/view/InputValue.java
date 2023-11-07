@@ -14,9 +14,6 @@ public class InputValue {
     private static final String NUMBER_CHECK_REGEX = "\\d*";
     private static final Integer PRICE_UNIT = 1000;
     private static final String SEPARATOR = ",";
-    private static final Integer START_NUMBER = 1;
-    private static final Integer END_NUMBER = 45;
-    private static final Integer LOTTO_SIZE = 6;
 
     public static int getPurchasePrice() {
 
@@ -47,14 +44,7 @@ public class InputValue {
         return Integer.parseInt(input);
     }
 
-    private static void priceUnitCheck(int price) {
-        if (price % PRICE_UNIT != 0) {
-            throw new IllegalArgumentException(ErrorCode.INCORRECT_UNIT.getMessage());
-        }
-    }
-
-
-    public static List<Integer> setWinningLottoNumbers() {
+    public static List<Integer> getWinningLottoNumbers() {
 
         String input = removeInputSpaces();
 
@@ -68,37 +58,13 @@ public class InputValue {
         return numbers;
     }
 
-    public static int getBonusNumber(List<Integer> winLotto) {
-        try {
-            String input = removeInputSpaces();
+    public static int getBonusNumber() {
 
-            emptyValueCheck(input);
+        String input = removeInputSpaces();
 
-            int bonusNumber = numberCheck(input);
+        emptyValueCheck(input);
 
-            validateBonusNumber(bonusNumber);
-
-            duplicateBonusNumber(winLotto, bonusNumber);
-
-            return bonusNumber;
-
-        } catch (IllegalArgumentException e) {
-
-            System.out.println(e.getMessage());
-            return getBonusNumber(winLotto);
-        }
-    }
-
-    private static void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber > END_NUMBER || bonusNumber < START_NUMBER) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private static void duplicateBonusNumber(List<Integer> winLotto, int bonusNumber) {
-        if (winLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
-        }
+        return numberCheck(input);
     }
 
 }

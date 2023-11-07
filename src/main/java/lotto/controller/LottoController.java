@@ -61,13 +61,8 @@ public class LottoController {
     }
 
     private void lottoProcess() {
-
         winningLottoNumbersInputLogic();
-
-        OutputValue.bonusNumberMessage();
-        //lottoService.setBonusNumber(InputValue.getBonusNumber(InputValue.getBonusNumber()));
-
-        OutputValue.changeLine();
+        bonusNumberInputLogic();
     }
 
     private void winningLottoNumbersInputLogic() {
@@ -75,7 +70,7 @@ public class LottoController {
         OutputValue.winningLottoNumbersMessage();
 
         try {
-            lottoService.setWinningLottoNumbers(InputValue.setWinningLottoNumbers());
+            lottoService.setWinningLottoNumbers(InputValue.getWinningLottoNumbers());
             OutputValue.changeLine();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -83,6 +78,22 @@ public class LottoController {
             winningLottoNumbersInputLogic();
         }
     }
+
+    private void bonusNumberInputLogic() {
+
+        OutputValue.bonusNumberMessage();
+
+        try {
+            lottoService.setBonusNumber(InputValue.getBonusNumber());
+            OutputValue.changeLine();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            OutputValue.changeLine();
+            bonusNumberInputLogic();
+        }
+    }
+
+
 
 //    private void lottoEnd() {
 //

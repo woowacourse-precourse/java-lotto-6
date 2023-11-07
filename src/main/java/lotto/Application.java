@@ -23,13 +23,34 @@ public class Application {
         Lotto winningNumber = createWinningNumber(inputWinningNumber());
 
         System.out.println(InputMessage.BONUS_NUMBER);
-        validateBonusNumber((Console.readLine());
+        int bonusNumber = inputBonusNumber();
     }
 
-    private static void validateBonusNumber(String input) {
-        checkNull(input);
-        checkEmpty(input);
-        checkNumber(input);
+    private static int inputBonusNumber() {
+        int result = validateBonusNumber(Console.readLine());
+        if (result == -1) {
+            inputBonusNumber();
+        }
+        return result;
+    }
+
+    private static int validateBonusNumber(String input) {
+        try {
+            checkNull(input);
+            checkEmpty(input);
+            int number = checkNumber(input);
+            checkRange(number);
+            return number;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
+    public static void checkRange(int number) {
+        if (number < LottoNumbers.START_LOTTO_NUMBER || number > LottoNumbers.END_LOTT0_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE);
+        }
     }
 
     private static String inputWinningNumber() {
@@ -122,7 +143,7 @@ public class Application {
         return lottos;
     }
 
-    public static void  printPurchaseCount() {
+    public static void printPurchaseCount() {
         System.out.println(OuputMessage.purchaseCount);
     }
 

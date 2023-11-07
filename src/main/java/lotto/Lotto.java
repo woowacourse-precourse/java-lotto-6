@@ -29,12 +29,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         numbers.stream()
-                .filter((number) -> number < LottoNumbers.START_LOTTO_NUMBER
-                        || number > LottoNumbers.END_LOTT0_NUMBER)
-                .findAny()
-                .ifPresent((text) -> {
-                    throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE);
-                });
+                .forEach(number -> Application.checkRange(number));
     }
 
     public String toString() {

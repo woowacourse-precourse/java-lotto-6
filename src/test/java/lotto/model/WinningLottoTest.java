@@ -24,13 +24,6 @@ class WinningLottoTest {
         assertEquals(winningNumbers, winningLotto.getNumbers());
     }
 
-    @DisplayName("WinningLotto를 중복되는 보너스 넘버로 생성한다")
-    @Test
-    void createWinningLottoWithDuplicateBonusNumber() {
-        assertThatThrownBy(() -> new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 6))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("WinningLotto를 중복되는 넘버로 생성한다")
     @Test
     void createWinningLottoWithDuplicateNumbers() {

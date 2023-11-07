@@ -35,6 +35,10 @@ public class LottoService {
         }
     }
 
+    public int calculateNumberOfLottoTickets(int purchaseAmount) {
+        return purchaseAmount / 1000;
+    }
+
     // public void validateLotto(Lotto lotto) {
     // // TODO: 로또의 유효성을 검사하는 로직 구현
     // }

@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import lotto.ApplicationConfig;
-import lotto.model.LottoBuyer;
-import lotto.model.LottoSeller;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
+import lotto.model.trade.LottoBuyer;
+import lotto.model.trade.LottoSeller;
+import lotto.model.lotto.Lottos;
+import lotto.model.rank.WinningLotto;
 import lotto.service.LottoGameService;
 
 public class LottoGameController {

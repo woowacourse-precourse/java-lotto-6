@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.rank;
 
 import static java.util.Collections.synchronizedMap;
 
@@ -10,6 +10,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.model.lotto.Lotto;
 
 public class LottoRankResult {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;

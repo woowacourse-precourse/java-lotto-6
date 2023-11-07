@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.trade;
 
 import static lotto.exception.LottoException.LESS_THAN_MINIMUM_PURCHASE_AMOUNT;
 import static lotto.exception.LottoException.MORE_THAN_MAXIMUM_PURCHASE_AMOUNT;

@@ -1,9 +1,10 @@
-package lotto.model;
+package lotto.model.trade;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.model.lotto.Lotto;
 
-public class AutoLottoGenerator implements LottoGenerator{
+public class AutoLottoGenerator implements LottoGenerator {
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;

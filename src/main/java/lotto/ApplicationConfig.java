@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.model.AutoLottoGenerator;
-import lotto.model.LottoBuyer;
-import lotto.model.LottoGenerator;
-import lotto.model.LottoRankResult;
-import lotto.model.LottoSeller;
+import lotto.model.trade.AutoLottoGenerator;
+import lotto.model.trade.LottoBuyer;
+import lotto.model.trade.LottoGenerator;
+import lotto.model.rank.LottoRankResult;
+import lotto.model.trade.LottoSeller;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

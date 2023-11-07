@@ -1,7 +1,7 @@
 package lotto.dto;
 
-import lotto.model.LottoRank;
-import lotto.model.LottoRankResult;
+import lotto.model.rank.LottoRank;
+import lotto.model.rank.LottoRankResult;
 
 public record LottoRankResultDTO(LottoRank rank, LottoRankResult result) {
     public String getRankMessage() {

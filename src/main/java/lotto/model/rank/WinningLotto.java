@@ -1,8 +1,10 @@
-package lotto.model;
+package lotto.model.rank;
 
 import static lotto.exception.LottoException.DUPLICATED_BONUS_NUMBER;
 import static lotto.exception.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
 import static lotto.exception.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
+
+import lotto.model.lotto.Lotto;
 
 public class WinningLotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.exception.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.exception.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;

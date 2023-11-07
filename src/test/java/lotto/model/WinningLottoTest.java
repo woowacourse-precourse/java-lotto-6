@@ -6,6 +6,9 @@ import static lotto.exception.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import lotto.model.lotto.Lotto;
+import lotto.model.rank.LottoRank;
+import lotto.model.rank.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

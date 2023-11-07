@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.rank;
 
 import java.math.BigInteger;
 import java.util.Arrays;

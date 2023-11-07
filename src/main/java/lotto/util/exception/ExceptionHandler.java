@@ -53,7 +53,7 @@ public class ExceptionHandler {
     }
 
     private void invalidWinningNumbersFormat(ValidatorStatus validatorStatus) {
-        throw new IllegalArgumentException(", 를 이용해서 숫자를 나눠주세요.");
+        throw new IllegalArgumentException("유효하지 않은 형식입니다.");
     }
 
     private void invalidBonusNumber(ValidatorStatus validatorStatus) {

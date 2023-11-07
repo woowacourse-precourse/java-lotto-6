@@ -9,19 +9,22 @@ import java.util.List;
 
 public class LottoController {
     private static int amount;
-    private static Lotto winningNumbers;
+    private static Lotto winningLotto;
     private static int bonusNumber;
 
     List<Lotto> lottos = new ArrayList<>();
 
     //amount 입력 받아서 모델에서 validation 처리 -> amount 모델 생성
     public void getLottoAmount() {
-        InputView.purchaseAmount();
         LottoAmount lottoAmount = new LottoAmount(InputView.purchaseAmount());
         amount = lottoAmount.getAmount();
     }
 
     //winning 입력 받아서 모델에서 validation 처리 -> Lotto에서
+    public void getWinningLotto(){
+        InputView.winningNumber();
+        Lotto lotto = new Lotto();
+    }
     //bonusNumber 입력 받아서 모델에서 validation 처리 -> bonusNum 모델 생성?
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장

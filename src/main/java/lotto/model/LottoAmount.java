@@ -7,7 +7,7 @@ public class LottoAmount {
     private final int amount;
 
     public LottoAmount(String amount) {
-        validation(amount);
+        validate(amount);
         this.amount = Integer.parseInt(amount);
     }
 
@@ -15,7 +15,7 @@ public class LottoAmount {
         return amount;
     }
 
-    private void validation(String amount){
+    private void validate(String amount){
         Validator.isDigit(amount);
         Validator.notSeparatedBy1000(Integer.parseInt(amount));
     }

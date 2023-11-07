@@ -5,10 +5,10 @@ import java.util.List;
 import lotto.enums.LottoStatus;
 import lotto.service.LottoDto;
 
-public class LottoTicket {
+public class Lottos {
     private final List<Lotto> lottos;
 
-    public LottoTicket() {
+    public Lottos() {
         lottos = new ArrayList<>();
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
-import lotto.model.LottoTicket;
+import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
 import lotto.util.Converter;
@@ -12,7 +12,7 @@ import lotto.util.RandomNumberGenerator;
 
 public class LottoService {
     private PurchaseAmount purchaseAmount;
-    private LottoTicket lottoTicket = new LottoTicket();
+    private Lottos lottos = new Lottos();
     private Lotto winningLotto;
     private WinningNumbers winningNumbers;
     private LottoResult lottoResult;
@@ -23,11 +23,11 @@ public class LottoService {
 
     public void purchaseLotto() {
         IntStream.range(0, purchaseAmount.getMaxLottoCountForBudget())
-                .forEach(i -> lottoTicket.addLotto(RandomNumberGenerator.createUniqueNumbers()));
+                .forEach(i -> lottos.addLotto(RandomNumberGenerator.createUniqueNumbers()));
     }
 
     public List<LottoDto> getLottoDtos() {
-        return lottoTicket.toDto();
+        return lottos.toDto();
     }
 
     public void initWinningLotto(List<String> inputNumbers) {
@@ -39,7 +39,7 @@ public class LottoService {
     }
 
     public void compareNumbers() {
-        lottoResult = new LottoResult(lottoTicket.compareLotto(winningNumbers));
+        lottoResult = new LottoResult(lottos.compareLotto(winningNumbers));
     }
 
     public LottoResultDto getLottoResultDto() {

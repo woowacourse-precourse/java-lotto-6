@@ -7,31 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+    static int price = 0;
+
     static List<Lotto> lottoes = new ArrayList<>();
+    
     public static void main(String[] args) {
         startLotto();
     }
 
     public static void startLotto() {
-        int price = inputPrice();
+        inputPrice();
         System.out.println();
         makeLottoes(price / 1000);
         printLottoes();
     }
 
-    public static int inputPrice() {
+    public static void inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        int price = Integer.parseInt(input);
+        int input = Integer.parseInt(Console.readLine());
 
         try {
-            Exception.priceValidate(price);
+            Exception.priceValidate(input);
+            price = input;
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
             inputPrice();
         }
-
-        return price;
     }
 
     public static void makeLottoes(int count) {

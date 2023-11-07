@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static java.util.Arrays.stream;
+import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
+import static lotto.message.ErrorMessage.FOUNT_MATCH_RANKING;
 
 import java.util.Arrays;
 import java.util.Stack;
@@ -38,6 +40,6 @@ public enum Ranking {
         return Arrays.stream(values())
                 .filter(ranking -> ranking.getMatchCount() == matchCount)
                 .findAny()
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(() -> new IllegalStateException(FOUNT_MATCH_RANKING.errorMessage()));
     }
 }

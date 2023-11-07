@@ -8,10 +8,10 @@ import java.util.List;
 
 public class MakeLotto {
 
-    public List<Lotto> makeLottoList(int tickets){
-        OutputView.ticketCountMessage(tickets);
+    public List<Lotto> makeLottoList(int lottoTickets){
+        OutputView.ticketCountMessage(lottoTickets);
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i=0; i<tickets; i++){
+        for (int i=0; i<lottoTickets; i++){
             Lotto lotto = new Lotto(MakeRandomNumbers.getRandomNumbers());
             System.out.println(lotto.getLottoNumbers());
             lottoList.add(lotto);

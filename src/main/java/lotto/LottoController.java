@@ -25,24 +25,30 @@ public class LottoController {
 
         Lotto winLotto = getWinNumber();
         int bonusNumber = getBonusNumber(winLotto);
+        System.out.println(winLotto.getNumbers() + ", " + bonusNumber);
     }
 
     private int buyLotto() {
-        OUTPUT_VIEW.printPriceMessage();
-        String inputPrice = Console.readLine();
-        return validationPrice(inputPrice);
+        int price = 0;
+
+        while (true) {
+            try {
+                OUTPUT_VIEW.printPriceMessage();
+                String inputPrice = Console.readLine();
+                price = validationPrice(inputPrice);
+                break;
+            } catch (IllegalArgumentException e) {}
+        }
+        return price;
     }
 
     private int validationPrice(String inputPrice) {
         int price = 0;
 
-        try {
-            Error.CHECK.isAllInteger(inputPrice);
-            price = Integer.parseInt(inputPrice);
-            Error.CHECK.isUnder1000Price(price);
-        } catch (IllegalArgumentException e) {
-            buyLotto();
-        }
+        Error.CHECK.isAllInteger(inputPrice);
+        price = Integer.parseInt(inputPrice);
+        Error.CHECK.isUnder1000Price(price);
+
         return price;
     }
 
@@ -79,8 +85,7 @@ public class LottoController {
                 String[] inputNumbers = input.split(",");
                 winnerNumbers = validationWinNumber(inputNumbers);
                 break;
-            } catch (IllegalArgumentException e) {
-            }
+            } catch (IllegalArgumentException e) {}
         }
         return new Lotto(winnerNumbers);
     }
@@ -111,16 +116,16 @@ public class LottoController {
 
     public int getBonusNumber(Lotto number) {
         int bonusNumber = 0;
-
-        try {
-            OUTPUT_VIEW.printInsertBonusMessage();
-            String input = Console.readLine();
-            Error.CHECK.isAllInteger(input);
-            bonusNumber = Integer.parseInt(input);
-            Error.CHECK.isDuplicate(number, bonusNumber);
-            Error.CHECK.isRange45(List.of(bonusNumber));
-        } catch (IllegalArgumentException e) {
-            getBonusNumber(number);
+        while (true) {
+            try {
+                OUTPUT_VIEW.printInsertBonusMessage();
+                String input = Console.readLine();
+                Error.CHECK.isAllInteger(input);
+                bonusNumber = Integer.parseInt(input);
+                Error.CHECK.isDuplicate(number, bonusNumber);
+                Error.CHECK.isRange45(List.of(bonusNumber));
+                break;
+            } catch (IllegalArgumentException e) {}
         }
         return bonusNumber;
     }

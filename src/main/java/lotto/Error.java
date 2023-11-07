@@ -13,8 +13,7 @@ public class Error {
 
     static final Error CHECK = new Error();
 
-    private Error() {
-    }
+    private Error() {}
 
     public void isUnder1000Price(int price) {
         if (price < 1000) {

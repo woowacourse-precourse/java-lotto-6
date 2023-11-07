@@ -1,9 +1,12 @@
 package lotto.handler;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.*;
-import lotto.manager.LottoManager;
+import lotto.domain.LottoRankings;
+import lotto.domain.Lottos;
+import lotto.domain.Payment;
+import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
+import lotto.manager.LottoManager;
 import lotto.view.*;
 
 import java.util.Arrays;
@@ -27,6 +30,7 @@ public class LottoHandler {
     public void run() {
         Payment payment = getPayment();
         Lottos lottos = lottoManager.createLottos(payment);
+
         showPaidLottos(lottos);
 
         List<Integer> winningNumbers = getWinningNumbers();
@@ -34,6 +38,7 @@ public class LottoHandler {
         WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
         LottoRankings winningRankings = lottoManager.createWinningRankings(lottos, winningLotto);
         double profitPercentage = lottoManager.calculateProfitPercentage(payment, winningRankings);
+
         showResult(winningRankings, profitPercentage);
     }
 

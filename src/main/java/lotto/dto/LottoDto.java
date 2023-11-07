@@ -1,6 +1,9 @@
 package lotto.dto;
 
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRanking;
+import lotto.domain.LottoRankings;
+import lotto.domain.Lottos;
 
 import java.util.List;
 import java.util.Map;

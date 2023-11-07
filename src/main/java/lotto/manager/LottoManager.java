@@ -18,10 +18,8 @@ public class LottoManager {
     }
 
     public Lottos createLottos(Payment payment) {
-
         int affortableLottoCount = payment.countAffortable(DEFAULT_LOTTO_PRICE);
         List<Lotto> lottos = issueLottosByCount(affortableLottoCount);
-
         return new Lottos(lottos);
     }
 
@@ -41,7 +39,6 @@ public class LottoManager {
 
     public LottoRankings createWinningRankings(Lottos lottos, WinningLotto winningLotto) {
         List<LottoRanking> winRankings = lottos.calculateRankings(winningLotto);
-
         return new LottoRankings(winRankings);
     }
 

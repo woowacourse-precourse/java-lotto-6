@@ -15,9 +15,7 @@ public class RandomLottoGenerator {
 
     public static List<Lotto> generate(int size) {
         validate(size);
-        return IntStream.range(0, size)
-                .mapToObj(index -> RandomLottoGenerator.generate())
-                .toList();
+        return generateRandomLottos(size);
     }
 
     private static void validate(int size) {
@@ -30,7 +28,13 @@ public class RandomLottoGenerator {
         return number <= 0;
     }
 
-    private static Lotto generate() {
+    private static List<Lotto> generateRandomLottos(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(index -> RandomLottoGenerator.generateRandomLotto())
+                .toList();
+    }
+
+    private static Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE);
         return new Lotto(randomNumbers);
     }

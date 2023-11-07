@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.lotto.Lottos;
 import lotto.domain.winningNumber.BonusNumber;
 import lotto.domain.winningNumber.FinalWinningNumber;
 import lotto.domain.winningNumber.WinningNumber;

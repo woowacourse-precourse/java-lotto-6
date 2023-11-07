@@ -18,6 +18,12 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     public List<Integer> getLotto(){
         return numbers;
     }

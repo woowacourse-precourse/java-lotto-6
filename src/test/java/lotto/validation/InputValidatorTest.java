@@ -24,12 +24,9 @@ class InputValidatorTest {
     }
 
     @DisplayName("구매가격과 보너스 번호에 숫자가 아닌 값을 입력하면 예외가 발생한다.")
-    @Test
-    void validateIsNumber() {
-        // given
-        String input = "a";
-
-        // then
+    @ParameterizedTest
+    @ValueSource(strings = {"-10", "a"})
+    void validateIsNumber(String input) {
         assertThatThrownBy(() -> InputValidator.validatePurchasePrice(input))
                 .isInstanceOf(IllegalArgumentException.class);
 

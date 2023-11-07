@@ -3,8 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.domain.constant.ExceptionMessage.INCLUDE_CHAR;
-import static lotto.domain.constant.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
+import static lotto.domain.constant.ExceptionMessage.*;
 
 public class WinningLotto {
 
@@ -51,7 +50,7 @@ public class WinningLotto {
 
     private static void duplicateNumbersAndBonusNumber(List<Integer> numbers, int bonusNum) {
         if (numbers.contains(bonusNum)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getErrorMessage());
         }
     }
 

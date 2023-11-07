@@ -4,20 +4,19 @@ import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.utils.LottoNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoTicketMachine {
     public static LottoTicket issue(Integer amount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            Lotto lotto = createSingleLotto();
-            lottos.add(lotto);
-        }
-        return new LottoTicket(lottos);
+        return new LottoTicket(
+                IntStream.range(0, amount)
+                        .mapToObj(i -> issueSingleLotto())
+                        .collect(Collectors.toList())
+        );
     }
 
-    private static Lotto createSingleLotto() {
+    private static Lotto issueSingleLotto() {
         return new Lotto(LottoNumberGenerator.pickLottoNumbers());
     }
 }

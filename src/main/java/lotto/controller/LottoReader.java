@@ -1,44 +1,37 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.model.LottoTicket;
-import lotto.model.WinningNumbers;
 import lotto.utils.PrizeType;
 
 import java.util.List;
 import java.util.Objects;
 
 public class LottoReader {
+    private static final Integer ALL_MATCHED_NUMBER = 6;
+
     public static List<PrizeType> read(
-            WinningNumbers winningNumbers,
-            BonusNumber bonusNumber,
-            LottoTicket lottoTicket
+            List<Integer> winningNumbers,
+            Integer bonusNumber,
+            List<Lotto> lottos
     ) {
-        return lottoTicket.getLottos().stream()
+        return lottos.stream()
                 .map(lotto -> match(winningNumbers, bonusNumber, lotto))
                 .filter(Objects::nonNull)
                 .toList();
     }
 
     public static PrizeType match(
-            WinningNumbers winningNumbers,
-            BonusNumber bonusNumber,
+            List<Integer> winningNumbers,
+            Integer bonusNumber,
             Lotto lotto
     ) {
-        Integer matchedCount = lotto.compare(winningNumbers.getWinningNumbers());
-        if (matchedCount.equals(6)) {
-            return PrizeType.FIRST_PLACE;
-        }
-
-        if (lotto.contains(bonusNumber.getBonusNumber())) {
+        Integer matchedCount = lotto.compare(winningNumbers);
+        if (matchedCount.equals(ALL_MATCHED_NUMBER)) {
             matchedCount++;
         }
-
-        return PrizeType.getTypeByCode(mapToPrizeCode(matchedCount));
-    }
-
-    private static Integer mapToPrizeCode(Integer value) {
-        return 8 - value;
+        if (lotto.contains(bonusNumber)) {
+            matchedCount++;
+        }
+        return PrizeType.getTypeByCode(matchedCount);
     }
 }

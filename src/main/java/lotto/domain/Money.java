@@ -2,9 +2,6 @@ package lotto.domain;
 
 import lotto.constraints.ErrorMessage;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import static lotto.domain.NumberConstraints.LOTTO_PER_PRICE;
 
 public record Money(
@@ -33,7 +30,6 @@ public record Money(
     }
 
     public double calculateProfitRate(long totalPrizeMoney) {
-        double profitRate = ((double) totalPrizeMoney / this.money) * 100 - 100;
-        return new BigDecimal(profitRate).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        return ((double) totalPrizeMoney / this.money) * 100;
     }
 }

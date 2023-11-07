@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.exception.Validator;
 import lotto.domain.Lotto;
 import lotto.domain.Parser;
 
@@ -13,6 +14,7 @@ public class InputView {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             amount = readLine();
+            Validator.validatePurchaseAmount(amount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPurchaseAmount();

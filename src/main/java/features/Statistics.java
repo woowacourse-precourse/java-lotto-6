@@ -28,9 +28,9 @@ public class Statistics {
 	}
 	
 	public double getRateOfReturn(int winnings) {
-		int howMuchDidIBought=data.getLottoList().size();
+		int howManyDidIBought=data.getLottoList().size();
 		
-		return winnings*PARSING_TO_DOUBLE_PERCENTAGE/(howMuchDidIBought*UNIT_PRICE);
+		return winnings*PARSING_TO_DOUBLE_PERCENTAGE/(howManyDidIBought*UNIT_PRICE);
 	}
 	
 	public int getProfitAmount(int [] classify) {
@@ -71,5 +71,48 @@ public class Statistics {
 			return true;
 		}
 		return false;
+	}
+	
+	
+	//test용도
+	public int forMathcingTest(List<Integer> test_list,List<Integer> compared) {
+		int cnt=INIT_CNT;
+		
+		for(int n:compared) {
+			if(test_list.contains(n)) {
+				cnt++;
+			}
+		}
+		return cnt;
+	}
+	public boolean forBonusTest(List<Integer> test_list) {
+		if(test_list.contains(data.getBonus())) {
+			return true;
+		}
+		return false;
+	}
+	public int [] forCountingTest(int test_cnt,boolean bonus_existence,int [] test_arr) {
+		if(test_cnt==3) {test_arr[0]=test_arr[0]+1;}
+		if(test_cnt==4) {test_arr[1]=test_arr[1]+1;}
+		if(test_cnt==5&&!bonus_existence) {test_arr[2]=test_arr[2]+1;}
+		if(test_cnt==5&&bonus_existence) {test_arr[3]=test_arr[3]+1;}
+		if(test_cnt==6) {test_arr[4]=test_arr[4]+1;}
+		
+		return test_arr;
+	}
+	public int forProfitTest(int [] test_arr) {
+		int test_get=INIT_CNT;
+		test_get+=test_arr[0]*MATCHING_THREE;
+		test_get+=test_arr[1]*MATCHING_FOUR;
+		test_get+=test_arr[2]*MATCHING_FIVE;
+		test_get+=test_arr[3]*WITH_BONUS;
+		test_get+=test_arr[4]*MATCHING_ALL;
+		
+		return test_get;
+	}
+	public double forRateTest(int test_get) {
+		int test_bought=data.getLottoList().size();
+		
+		return test_get*PARSING_TO_DOUBLE_PERCENTAGE/(test_bought*UNIT_PRICE);
 	}
 }

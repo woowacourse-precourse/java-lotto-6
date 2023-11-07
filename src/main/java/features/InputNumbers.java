@@ -13,7 +13,7 @@ public class InputNumbers {
     			return validatedInputValue_lotto();
 	    		//break;
     		} catch(IllegalArgumentException e) {
-    			CREATOR.warnning().warning(e);
+    			CREATOR.warning().warning(e);
     		}
     	}
     }
@@ -24,7 +24,7 @@ public class InputNumbers {
 	    		return validatedInputValue_bonus();
 	    		//break;
     		} catch(IllegalArgumentException e) {
-    			CREATOR.warnning().warning(e);
+    			CREATOR.warning().warning(e);
     		}
     	}
     }

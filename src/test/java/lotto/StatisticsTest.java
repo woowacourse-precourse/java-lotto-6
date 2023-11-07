@@ -1,69 +1,85 @@
 package lotto;
 
+import static model.FixedValues.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import features.Statistics;
 import model.Data;
-import static model.FixedValues.*;
 
 public class StatisticsTest {
-
-	/*@DisplayName("생성된 로또번호와 입력한 로또번호 간 정확한 일치 종류로 분류된다.")
-    @Test
-    void correctlyClassfied() {
-		List<List<Integer>> lottery_list=new ArrayList<List<Integer>>();
-		
-		List<Integer> l1=List.of(8, 21, 23, 41, 42, 43);
-		List<Integer> l2=List.of(1, 2, 43, 30, 44, 12);//4
-		List<Integer> l3=List.of(24, 12, 29, 10, 30, 8);//3
-		List<Integer> l4=List.of(6, 28, 16, 8, 44, 2);
-		List<Integer> l5=List.of(8, 12, 4, 44, 30, 2);//3
-		
-		Lotto lotto=new Lotto(l5);
-		
-		Data testdata=CREATOR.dataCreator()
-		
-		Statistics stat=new Statistics(lottery_list, 7, lotto);
-		
-		lottery_list.add(l1);
-		lottery_list.add(l2);
-		lottery_list.add(l3);
-		lottery_list.add(l4);
-		
-		int [] arr= {2,1,0,0,0};
-    	assertArrayEquals(arr, stat.compareNumbers());
-    }
 	
-	@DisplayName("당첨번호에 따라 정확한 수익률이 계산된다.")
+	private final List<List<Integer>> test_list=Arrays.asList(
+														Arrays.asList(1,2,3,4,5,6),
+														Arrays.asList(1,5,6,27,28,29),
+														Arrays.asList(2,5,6,14,15,42),
+														Arrays.asList(1,2,5,6,14,42)
+														);
+	private final List<Integer> test=Arrays.asList(1,2,5,6,14,29);
+	private final int tbonus=42;
+	
+	private class TestData extends Data {
+		public List<List<Integer>> getLottoList() {
+			return test_list;
+		}
+		public List<Integer> getLottoNumbers() {
+			return test;
+		}
+		public int getBonus() {
+			return tbonus;
+		}
+	}
+	
+	@DisplayName("당첨 번호와 발행 번호를 비교하여 일치하는 번호의 개수를 정확히 구한다.")
 	@Test
-	void correctReturnRate() {
-		List<List<Integer>> lottery_list2=new Vector<List<Integer>>();
+	void correctMatch() {
+		Statistics teststat=CREATOR.statCreator(new TestData());
+		int testresult=teststat.forMathcingTest(Arrays.asList(2,6,14,19,30,45),
+												Arrays.asList(6,14,35,42,45));
 		
-		List<Integer> l12=List.of(8, 21, 23, 41, 42, 43);
-		List<Integer> l22=List.of(1, 2, 43, 30, 44, 12);//4
-		List<Integer> l32=List.of(24, 12, 29, 10, 30, 8);//3
-		List<Integer> l42=List.of(6, 28, 16, 8, 44, 2);
-		List<Integer> l52=List.of(8, 12, 4, 44, 30, 2);//3
+		assertEquals(3, testresult);
+	}
+	
+	@DisplayName("보너스 번호가 있을 경우 true,없을 경우 false를 반환한다.")
+	@Test
+	void isThereABonusNum() {
+		Statistics teststat=CREATOR.statCreator(new TestData());
+		boolean testresult=teststat.forBonusTest(Arrays.asList(37,38,39,40,41,43));
 		
-		Lotto lotto=new Lotto(l52);
+		assertFalse(testresult);
+	}
+	
+	@DisplayName("일치하는 번호 개수에 따라 배열의 정확한 위치의 인덱스가 증가한다.")
+	@Test
+	void correctIndex() {
+		Statistics teststat=CREATOR.statCreator(new TestData());
+		int [] testresult=teststat.forCountingTest(6, true, new int[] {3,4,0,0,1});
 		
-		Statistics stat=new Statistics(lottery_list2, 7, lotto);
+		assertArrayEquals(new int[] {3,4,0,0,2}, testresult);
+	}
+	
+	@DisplayName("일치하는 번호 개수에 따라 정확한 상금을 출력한다.")
+	@Test
+	void noFraud() {
+		Statistics teststat=CREATOR.statCreator(new TestData());
+		int testresult=teststat.forProfitTest(new int[] {1,2,1,1,0});
 		
-		lottery_list2.add(l12);
-		lottery_list2.add(l22);
-		lottery_list2.add(l32);
-		lottery_list2.add(l42);
+		assertEquals(31605000, testresult);
+	}
+	
+	@DisplayName("상금을 수익률로 전환한다.")
+	@Test
+	void howManyTimes() {
+		Statistics teststat=CREATOR.statCreator(new TestData());
+		double testresult=teststat.forRateTest(30055000);
 		
-		int [] classify=stat.compareNumbers();
-		
-		assertSame(1500.0, stat.getRateOfReturn(stat.getProfitAmount(classify)));
-	}*/
+		assertEquals(751375.0, testresult);
+	}
 }

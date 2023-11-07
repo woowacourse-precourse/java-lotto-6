@@ -55,7 +55,7 @@ public class ObjectCreator {
 		return new Validator_Lotto();
 	}
 	
-	public Validator_Lotto warnning() {
+	public Validator_Lotto warning() {
 		return new Validator_Lotto();
 	}
 }

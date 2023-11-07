@@ -11,7 +11,7 @@ public class InputMoney {
 				return validatedInputValue_money();
 				//break;
 			} catch(IllegalArgumentException e) {
-				CREATOR.warnning().warning(e);;
+				CREATOR.warning().warning(e);;
 			}
 		}
 	}

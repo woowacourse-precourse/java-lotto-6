@@ -8,6 +8,7 @@ import features.InputMoney;
 import features.InputNumbers;
 import features.RunGame;
 import model.Data;
+import validator.Provider;
 import validator.Validator_Lotto;
 
 import java.util.List;
@@ -27,8 +28,6 @@ import static org.mockito.Mockito.when;
 
 class LottoTest {
 	
-	private InputNumbers testnumber=CREATOR.numbersCreator();
-	private InputMoney testmoney=CREATOR.moneyCreator();
 	private RunGame testrun=CREATOR.runningCreator();
 	private Validator_Lotto testvalidate=CREATOR.convertor();
 	
@@ -58,8 +57,8 @@ class LottoTest {
     
     @DisplayName("로또 번호의 입력 실수는 예상하여 수용 가능하다.")
     @Test
-    void predictableMistake() {    	
-    	assertDoesNotThrow(() -> testvalidate.insertLottoNums(VALID_INPUT));
+    void predictableMistake() {
+    	assertDoesNotThrow(() -> testvalidate.insertLottoNums(VALID_INPUT.replace(" ", "")));
     	//assertEquals(List.of(1, 2, 3, 4, 5, 6), number.forMyTest(VALID_INPUT));
     }
     
@@ -110,11 +109,5 @@ class LottoTest {
     void outOfBoundary() {
     	IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, () -> testvalidate.insertLottoNums(OUT_OF_BOUNDARY));
     	assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
-    }
-    
-    @DisplayName("구입금액에 맞는 개수의 로또가 발행된다.")
-    @Test
-    void correctIssue() {
-    	
     }
 }

@@ -12,9 +12,9 @@ public class ResultView {
     private static final String COUNT_MESSAGE = "개";
 
 
-    public void lottoResultPrint(Map<Rank, Integer> result, double earningRate) {
+    public void lottoResultPrint(Map<Rank, Integer> lottoResult, double earningRate) {
         System.out.println(WINNING_STATISTICS);
-        result.forEach(ResultView::missCheck);
+        lottoResult.forEach(ResultView::missCheck);
         earningRatePrint(earningRate);
     }
 

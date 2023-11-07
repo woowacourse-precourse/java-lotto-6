@@ -17,20 +17,20 @@ public class LottoMatch {
 
 
     public Map<Rank, Integer> initializeLottoResult() {
-        Map<Rank, Integer> result = new LinkedHashMap<>();
+        Map<Rank, Integer> lottoResult = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
-            result.put(rank, ZERO);
+            lottoResult.put(rank, ZERO);
         }
-        return result;
+        return lottoResult;
     }
 
     public Map<Rank, Integer> scoreBoard(List<Lotto> lottoNumbers, WinningLotto winningLotto) {
-        Map<Rank, Integer> result = initializeLottoResult();
+        Map<Rank, Integer> lottoResult = initializeLottoResult();
         for (Lotto lotto : lottoNumbers) {
             Rank rank = lottoMatch(lotto, winningLotto);
-            result.put(rank, result.get(rank) + ONE);
+            lottoResult.put(rank, lottoResult.get(rank) + ONE);
         }
-        return result;
+        return lottoResult;
     }
 
     private Rank lottoMatch(Lotto lotto, WinningLotto winningLotto) {
@@ -55,14 +55,15 @@ public class LottoMatch {
                 .orElseThrow(() -> new IllegalArgumentException(countOfMatch + VALIDATE_MESSAGE));
     }
 
-    public double earningRateMain(Map<Rank, Integer> result, int lottoAmount) {
-        double EarningRate = result.keySet().stream()
-                .mapToDouble(rank -> earningRateSub(result, lottoAmount, rank))
+    public double earningRateMain(Map<Rank, Integer> lottoResult, int lottoAmount) {
+        double EarningRate = lottoResult.keySet().stream()
+                .mapToDouble(rank -> earningRateSub(lottoResult, lottoAmount, rank))
                 .sum();
         return EarningRate;
     }
 
-    public double earningRateSub(Map<Rank, Integer> result, int lottoAmount, Rank rank) {
-        return ((rank.getWinningMoney()) / (lottoAmount * lottoConfig.TICKET_PRICE)) * result.get(rank) * PERCENTAGE;
+    public double earningRateSub(Map<Rank, Integer> lottoResult, int lottoAmount, Rank rank) {
+        return ((rank.getWinningMoney()) / (lottoAmount * lottoConfig.TICKET_PRICE)) * lottoResult.get(rank)
+                * PERCENTAGE;
     }
 }

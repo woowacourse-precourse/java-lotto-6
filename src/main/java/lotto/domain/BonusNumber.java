@@ -9,17 +9,22 @@ public class BonusNumber {
     }
 
     public BonusNumber(String input) {
-        try {
-            int number = Integer.parseInt(input);
-            validate(number);
-            this.number = number;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요");
-        }
+        int number = isNum(input);
+        validate(number);
+        this.number = number;
+
     }
 
     private void validate(int number) {
         isInRange(number);
+    }
+
+    private int isNum(String input){
+        try{
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("숫자를 입력해주세요");
+        }
     }
 
     private void isInRange(int number) {

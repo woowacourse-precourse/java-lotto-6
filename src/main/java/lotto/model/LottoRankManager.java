@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.model.enums.LottoRank;
+import lotto.model.enums.Rank;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,12 +38,12 @@ public class LottoRankManager {
     }
 
     private int getRankByMatchData(int matchingNumber, boolean bonusMatch) {
-        for (LottoRank rank : LottoRank.values()) {
+        for (Rank rank : Rank.values()) {
             if (rank.isMatch(matchingNumber, bonusMatch)) {
                 return rank.getRank();
             }
         }
-        return -1;
+        return Rank.NO_RANK.getRank();
     }
 
     private void increaseRank(int rank) {

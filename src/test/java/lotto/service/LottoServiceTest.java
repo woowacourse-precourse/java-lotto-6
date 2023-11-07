@@ -1,6 +1,6 @@
-package lotto.domain.lottery;
+package lotto.service;
 
-import lotto.service.LottoService;
+import lotto.domain.lottery.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,9 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DisplayName("[Domain Layer] LottoService")
+@DisplayName("[Service Layer] LottoService")
 class LottoServiceTest {
 
     @Nested
@@ -46,7 +47,7 @@ class LottoServiceTest {
             // then
             assertAll(
                     () -> assertThat(lottoList).hasSize(expectTicketCount),
-                    () -> assertThat(expectTrue).isTrue()
+                    () -> assertTrue(expectTrue)
             );
         }
     }

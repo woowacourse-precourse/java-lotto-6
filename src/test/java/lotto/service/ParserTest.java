@@ -1,6 +1,5 @@
-package lotto.domain.lottery;
+package lotto.service;
 
-import lotto.service.Parser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-@DisplayName("[Domain Layer] Parser")
+@DisplayName("[Service Layer] Parser")
 class ParserTest {
 
     @Nested

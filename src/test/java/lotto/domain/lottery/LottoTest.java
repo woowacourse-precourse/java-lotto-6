@@ -12,7 +12,7 @@ import static lotto.exception.ErrorMessage.*;
 import static lotto.fixture.NumberFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("[Domain Layer] Lotto")
 class LottoTest {
@@ -110,7 +110,7 @@ class LottoTest {
             final Prize prize = CONTAIN_BONUS_1.toPrizeEntity();
 
             // then
-            assertThat(lotto.hasBonusNumber(prize)).isTrue();
+            assertTrue(lotto.hasBonusNumber(prize));
         }
 
         @Test
@@ -121,7 +121,7 @@ class LottoTest {
             final Prize prize = CONTAIN_BONUS_45.toPrizeEntity();
 
             // then
-            assertThat(lotto.hasBonusNumber(prize)).isFalse();
+            assertFalse(lotto.hasBonusNumber(prize));
         }
     }
 
@@ -137,7 +137,7 @@ class LottoTest {
             final int includedNumber = 1;
 
             // then
-            assertThat(lotto.hasNumber(includedNumber)).isTrue();
+            assertTrue(lotto.hasNumber(includedNumber));
         }
 
         @Test
@@ -148,7 +148,7 @@ class LottoTest {
             final int includedNumber = 45;
 
             // then
-            assertThat(lotto.hasNumber(includedNumber)).isFalse();
+            assertFalse(lotto.hasNumber(includedNumber));
         }
     }
 }

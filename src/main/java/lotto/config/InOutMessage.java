@@ -7,8 +7,8 @@ public enum InOutMessage {
     BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요.\n");
 
     private final String message;
-    private InOutMessage(String str) {
-        this.message = str;
+    private InOutMessage(String message) {
+        this.message = message;
     }
     public String getMessage() {
         return message;

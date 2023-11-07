@@ -25,10 +25,14 @@ public class LottoController {
     public void gameStart() {
         int lottoPurchase = lottoPurchaseInputView.readLottoPurchaseValidator();
         createLotto(lottoPurchase);
+
         List<Integer> winningNumbers = lottoWinningNumberInputView.readLottoWinningNumber();
+
         int bonusNumberValue = lottoBonusNumberInputView.readLottoBonusNumber();
+
         Map<Integer, Integer> winningDetails = lottoRepository.printLottoResult(winningNumbers, bonusNumberValue);
         lottoResultOutputView.showWinningResult(winningDetails);
+
         double lottoProfit = lottoProfitCalculator.calculateLottoProfit(winningDetails, lottoPurchase);
         lottoResultOutputView.showLottoProfit(lottoProfit);
     }

@@ -20,7 +20,7 @@ public enum Rank {
 
     Rank(int matchNumberCount, int winningAmount, boolean hasBonus) {
         this.matchNumberCount = matchNumberCount;
-        WinningAmount = winningAmount;
+        this.WinningAmount = winningAmount;
         this.hasBonus = hasBonus;
     }
 

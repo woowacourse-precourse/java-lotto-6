@@ -1,6 +1,11 @@
 package lotto.domain.game;
 
 import static lotto.ExceptionHandler.handle;
+import static lotto.constant.GameGuideText.ENTER_BONUS_NUMBER;
+import static lotto.constant.GameGuideText.ENTER_PURCHASE_AMOUNT;
+import static lotto.constant.GameGuideText.ENTER_WINNING_LOTTO;
+import static lotto.constant.GameGuideText.PURCHASE_LOTTO;
+import static lotto.constant.GameGuideText.WINNING_STATISTICS;
 
 import lotto.domain.computer.Computer;
 import lotto.input.Input;
@@ -32,12 +37,12 @@ public class Game {
     }
 
     private void getMoneyByInput() {
-        output.print("구입금액을 입력해 주세요.");
+        output.print(ENTER_PURCHASE_AMOUNT);
         computer.setMoney(input.readNumber());
     }
 
     private void printUserLottos(User user) {
-        output.print(user.lottos().lottoList().size() + "개를 구매했습니다.");
+        output.print(String.valueOf(user.lottos().lottoList().size()) + PURCHASE_LOTTO);
         output.print(user.lottos());
     }
 
@@ -47,17 +52,17 @@ public class Game {
     }
 
     private void setWinningLotto() {
-        output.print("당첨 번호를 입력해 주세요.");
+        output.print(ENTER_WINNING_LOTTO);
         computer.setLottoNumber(input.readList());
     }
 
     private void setBonusNumber() {
-        output.print("보너스 번호를 입력해 주세요.");
+        output.print(ENTER_BONUS_NUMBER);
         computer.setBonusNumber(input.readNumber());
     }
 
     private void printResult(User user) {
-        output.print("당첨 통계\n---\n");
+        output.print(WINNING_STATISTICS);
         output.print(computer.createResult(user.lottos()));
     }
 }

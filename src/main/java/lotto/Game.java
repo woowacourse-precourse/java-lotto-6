@@ -110,16 +110,22 @@ public class Game {
 
     public void prizeNumber(Lotto lotto, List<Integer> prizes){
         List<Integer> numbers = lotto.getNumbers();
-        int count = 0;
         CHECK_PRIZE = 0;
-        //버그 발생
+
         for (int number : numbers) {
-            if(prizes.get(count++) == number){
+            repetitionPrize(prizes, number);
+        }
+
+        int prize = checkBonus(CHECK_PRIZE, lotto);//보너스 확인
+        checkCount.add(prize);
+    }
+
+    public void repetitionPrize(List<Integer> prizes, int number){
+        for (int prize : prizes) {
+            if(prize == number){
                 CHECK_PRIZE++;
             }
         }
-        int prize = checkBonus(CHECK_PRIZE, lotto);//보너스 확인
-        checkCount.add(prize);
     }
 
     public int checkBonus(int CHECK_PRIZE, Lotto lotto){

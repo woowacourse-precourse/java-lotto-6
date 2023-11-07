@@ -1,5 +1,6 @@
 package lotto.ui;
 
+import static lotto.constants.Message.PURCHASE_LOTTO;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,6 +36,25 @@ class OutputTest {
         assertThat(out.toString())
                 .contains("[ERROR] 예외 처리 메시지");
     }
+
+    @DisplayName("구매한 로또 개수 출력")
+    @Test
+    void printCount(){
+        // given
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        // when
+        Integer lottoCount = 8;
+        Output.printCount(lottoCount);
+
+
+        // then
+        assertThat(out.toString())
+                .contains(lottoCount+PURCHASE_LOTTO.getMessage());
+    }
+
+
 
     @DisplayName("로또 번호를 오름차순으로 정렬하여 구매한 로또 전체 출력")
     @Test

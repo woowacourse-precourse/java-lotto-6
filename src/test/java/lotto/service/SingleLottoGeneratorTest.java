@@ -5,7 +5,7 @@ import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.Lotto;
+import lotto.domain.number.Lotto;
 import org.junit.jupiter.api.RepeatedTest;
 
 class SingleLottoGeneratorTest {

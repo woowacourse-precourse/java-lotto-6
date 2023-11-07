@@ -5,12 +5,12 @@ import lotto.model.enums.LottoRank;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoComparator {
+public class LottoRankManager {
     private WinningLotto winningLotto;
 
     private LottoRankResult rankResult;
 
-    public LottoComparator(WinningLotto winningLotto, LottoRankResult rankResult) {
+    public LottoRankManager(WinningLotto winningLotto, LottoRankResult rankResult) {
         this.winningLotto = winningLotto;
         this.rankResult = rankResult;
     }

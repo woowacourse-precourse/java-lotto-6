@@ -5,7 +5,7 @@ public class Converter {
         try {
             return Integer.parseInt(rawValue);
         } catch (NumberFormatException wrongType) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("정수를 입력해주세요");
         }
     }
 }

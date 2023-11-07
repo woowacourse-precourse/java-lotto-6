@@ -2,12 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Input {
 
-    public int price() {
+    public int ticket() {
+        return priceInput()/1000;
+    }
+
+    private int priceInput() {
         int price = 0;
         boolean validPrice = false;
 
@@ -16,7 +18,7 @@ public class Input {
                 price = inputprice();
                 validPrice = true;
             } catch (IllegalArgumentException wrongPrice) {
-                System.out.println("[ERROR] 1000원 단위의 정수로 입력해주세요");
+                System.out.println("[ERROR] " + wrongPrice.getMessage());
             }
         } while (!validPrice);
         return price;
@@ -25,9 +27,7 @@ public class Input {
     private int inputprice() {
         String rawPrice = Console.readLine();
         checkPrice(rawPrice);
-        int convertPrice = Integer.parseInt(rawPrice);
-
-        return convertPrice;
+        return Integer.parseInt(rawPrice);
     }
 
     private void checkPrice(String rawPrice) {

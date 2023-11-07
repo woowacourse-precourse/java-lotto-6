@@ -7,8 +7,6 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
-    Generator generator = new Generator();
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

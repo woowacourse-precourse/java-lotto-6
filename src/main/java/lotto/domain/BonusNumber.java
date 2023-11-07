@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.enums.Constants.*;
-import static lotto.utils.NumberUtil.removeSpace;
+import static lotto.utils.LottoNumberUtil.removeSpace;
 
 import lotto.enums.ExceptionMessages;
 

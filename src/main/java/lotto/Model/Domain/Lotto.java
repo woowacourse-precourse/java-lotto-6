@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model.Domain;
 
 import java.util.List;
 

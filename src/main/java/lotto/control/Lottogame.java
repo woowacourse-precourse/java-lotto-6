@@ -1,4 +1,17 @@
-package lotto.control;public class Lottogame {
+package lotto.control;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lotto.View.Lottogameview;
+import lotto.model.Lotto;
+import lotto.model.LottoResult;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
+
+
+public class Lottogame {
   Lottogameview view = new Lottogameview();
 
     public void runLottoGame() {

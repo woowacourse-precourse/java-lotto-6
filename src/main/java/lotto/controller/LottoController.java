@@ -26,17 +26,24 @@ public class LottoController {
 
     public void run() {
         IssuedLottos issuedLottos = buyLottoTickets();
+        printLottoTickets(issuedLottos);
         determineWinning(issuedLottos);
     }
 
     private IssuedLottos buyLottoTickets() {
-        PurchaseAmountRequest purchaseAmount = inputView.getPurchaseAmount();
-        IssuedLottos lottos = lottoService.generateLottos(purchaseAmount);
+        while(true) {
+            try {
+                PurchaseAmountRequest purchaseAmount = inputView.getPurchaseAmount();
+                return lottoService.generateLottos(purchaseAmount);
+            } catch (Exception e) {
+                outputView.informErrorMessage(e.getMessage());
+            }
+        }
+    }
 
-        List<LottoResponse> lottoResponses = lottos.convertToResponse();
+    private void printLottoTickets(IssuedLottos issuedLottos) {
+        List<LottoResponse> lottoResponses = issuedLottos.convertToResponse();
         outputView.informIssuedLottos(lottoResponses);
-
-        return lottos;
     }
 
     private void determineWinning(IssuedLottos issuedLottos) {

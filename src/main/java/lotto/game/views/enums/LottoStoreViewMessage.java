@@ -2,7 +2,7 @@ package lotto.game.views.enums;
 
 import lotto.enums.GlobalMessage;
 
-public enum LottosViewMessage {
+public enum LottoStoreViewMessage {
 
     ASK_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     ANNOUNCE_PURCHASE_LOTTOS_COUNT("개를 구매했습니다."),
@@ -10,7 +10,7 @@ public enum LottosViewMessage {
 
     private final String message;
 
-    LottosViewMessage(String message) {
+    LottoStoreViewMessage(String message) {
         this.message = message;
     }
 

@@ -1,7 +1,7 @@
 package lotto.collaboration.lottos;
 
-import static lotto.collaboration.lottos.enums.LottosMessage.makeMessageForIndivisible;
-import static lotto.collaboration.lottos.enums.LottosMessage.makeMessageForOutOfRange;
+import static lotto.collaboration.lottos.enums.LottoStoreMessage.makeMessageForIndivisible;
+import static lotto.collaboration.lottos.enums.LottoStoreMessage.makeMessageForOutOfRange;
 
 import java.util.List;
 import java.util.stream.IntStream;

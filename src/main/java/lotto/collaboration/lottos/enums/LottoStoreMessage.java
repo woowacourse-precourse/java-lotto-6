@@ -1,6 +1,6 @@
 package lotto.collaboration.lottos.enums;
 
-public enum LottosMessage {
+public enum LottoStoreMessage {
 
     EXCEPTION_INDIVISIBLE("원 단위로 입력해 주세요"),
     EXCEPTION_PRE_OUT_OF_RANGE("로또 구매 금액은 "),
@@ -10,7 +10,7 @@ public enum LottosMessage {
 
     private final String message;
 
-    LottosMessage(String message) {
+    LottoStoreMessage(String message) {
         this.message = message;
     }
 

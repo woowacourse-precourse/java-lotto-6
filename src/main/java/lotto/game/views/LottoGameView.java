@@ -7,20 +7,20 @@ import lotto.collaboration.lottos.dto.PlayerLotto;
 
 public class LottoGameView {
 
-    public final LottosView lottosView;
+    public final LottoStoreView lottoStoreView;
     public final WinningLottoView winningLottoView;
 
-    public LottoGameView(final LottosView lottosView, final WinningLottoView winningLottoView) {
-        this.lottosView = lottosView;
+    public LottoGameView(final LottoStoreView lottoStoreView, final WinningLottoView winningLottoView) {
+        this.lottoStoreView = lottoStoreView;
         this.winningLottoView = winningLottoView;
     }
 
     public int askPurchaseAmount() {
-        return lottosView.askPurchaseAmount();
+        return lottoStoreView.askPurchaseAmount();
     }
 
     public void announcePurchaseLottos(final List<PlayerLotto> purchaseLottos) {
-        lottosView.announcePurchaseLottos(purchaseLottos);
+        lottoStoreView.announcePurchaseLottos(purchaseLottos);
     }
 
     public List<Integer> askWinningNumbers() {

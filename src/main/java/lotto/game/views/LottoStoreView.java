@@ -1,20 +1,20 @@
 package lotto.game.views;
 
-import static lotto.game.views.enums.LottosViewMessage.ASK_PURCHASE_AMOUNT;
+import static lotto.game.views.enums.LottoStoreViewMessage.ASK_PURCHASE_AMOUNT;
 
 import java.util.List;
 import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Input;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Output;
-import lotto.game.views.enums.LottosViewMessage;
+import lotto.game.views.enums.LottoStoreViewMessage;
 
-public class LottosView implements InteractionRepeatable {
+public class LottoStoreView implements InteractionRepeatable {
 
     public final Input input;
     public final Output output;
 
-    public LottosView(final Input input, final Output output) {
+    public LottoStoreView(final Input input, final Output output) {
         this.input = input;
         this.output = output;
     }
@@ -27,7 +27,7 @@ public class LottosView implements InteractionRepeatable {
     }
 
     public void announcePurchaseLottos(final List<PlayerLotto> purchaseLottos) {
-        output.println(LottosViewMessage.showNumberOfPurchaseLottos(purchaseLottos.size()));
+        output.println(LottoStoreViewMessage.showNumberOfPurchaseLottos(purchaseLottos.size()));
         for (PlayerLotto purchaseLotto : purchaseLottos) {
             output.println(purchaseLotto);
         }

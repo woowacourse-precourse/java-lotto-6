@@ -5,7 +5,7 @@ import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
 import lotto.collaboration.lottos.LottoStore;
 import lotto.game.LottoGame;
 import lotto.game.views.LottoGameView;
-import lotto.game.views.LottosView;
+import lotto.game.views.LottoStoreView;
 import lotto.game.views.WinningLottoView;
 import lotto.io.ConsoleInput;
 import lotto.io.ConsoleOutput;
@@ -34,7 +34,7 @@ public class Application {
         ConsoleOutput output = new ConsoleOutput();
         return new LottoGame(
                 new LottoGameView(
-                        new LottosView(input, output),
+                        new LottoStoreView(input, output),
                         new WinningLottoView(input, output)
                 ),
                 new LottosRandoms(),

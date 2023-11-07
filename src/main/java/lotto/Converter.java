@@ -24,8 +24,9 @@ public class Converter {
         return winnigNumbers;
     }
 
-    public static Integer convertStringToMoney(String value){
+    public static Integer convertStringToMoney(String value)throws IllegalArgumentException{
         Integer money = convertStringToPositiveInteger(value);
+        MoneyValidator.isDividedInto1000(money);
         return money;
     }
 

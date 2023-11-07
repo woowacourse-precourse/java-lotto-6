@@ -19,4 +19,14 @@ public class ValidateUtil {
                 .collect(Collectors.toList());
         return numbers;
     }
+
+    public static void isInRange(int number, int startRange, int endRange) {
+        if (number < startRange || number > endRange) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static boolean isContain(int number, List<Integer> numbers) {
+        return numbers.contains(number);
+    }
 }

@@ -1,10 +1,8 @@
 package lotto;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum Prize {
-    // Enum constants, constructors, and other methods
 
     NONE(0, 0, false),
     FIFTH(3, 5000, false),
@@ -24,12 +22,15 @@ public enum Prize {
     }
 
     public static Prize determinePrize(int matchCount, boolean bonusMatch) {
-        Optional<Prize> prize = Arrays.stream(Prize.values())
-                .filter(p -> p.matchingNumbers == matchCount && (!bonusMatch || p.bonusMatch))
-                .findFirst();
-
-        return prize.orElse(Prize.NONE);
+        if (matchCount == 5 && bonusMatch) {
+            return SECOND;
+        }
+        return Arrays.stream(Prize.values())
+                .filter(p -> p.matchingNumbers == matchCount && (!p.bonusMatch || bonusMatch == p.bonusMatch))
+                .findFirst()
+                .orElse(NONE);
     }
+
 
     public int getMatchingNumbers() {
         return matchingNumbers;

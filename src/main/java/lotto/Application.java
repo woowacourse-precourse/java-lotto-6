@@ -66,4 +66,12 @@ public class Application {
         }
     }
 
+    private static void validateWinningNumbersSize(String[] winningNumbers) {
+        if (winningNumbers.length != LOTTO_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 여섯자리의 숫자를 입력해야 합니다.");
+        }
+    }
+
+
+
 }

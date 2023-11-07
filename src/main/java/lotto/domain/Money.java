@@ -20,7 +20,7 @@ public class Money {
         }
 
         if (value % AMOUNT_PER_UNIT != 0) {
-            throw new IllegalArgumentException(String.format("[ERROR] 1,000원으로 나누어 떨어지지 않는 금액입니다. %s", value));
+            throw new IllegalArgumentException(String.format("[ERROR] %s원은 1,000원으로 나누어 떨어지지 않는 금액입니다.", value));
         }
     }
 
@@ -28,7 +28,7 @@ public class Money {
         return this.value / AMOUNT_PER_UNIT;
     }
 
-    public long getAmount() {
+    public long getValue() {
         return this.value;
     }
 

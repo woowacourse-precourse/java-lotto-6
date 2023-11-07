@@ -23,22 +23,51 @@ public class LottoController {
 
     public void run() {
         Money money = getMoney();
-        List<Lotto> lottos = lottoService.generateWith(money);
-        outputView.print(lottos);
-
+        List<Lotto> lottos = generateLottos(money);
         WinLotto winLotto = getWinLotto();
-        LottoResult lottoResult = LottoResult.of(lottos, winLotto);
-        Profit profit = Profit.of(money.getAmount(), lottoResult.getTotalPrize());
-
-        outputView.printResult(lottoResult);
-        outputView.printProfit(profit);
+        showResults(lottos, winLotto, money);
     }
 
     private Money getMoney() {
-        return Money.from(inputView.getMoneyInput());
+        while (true) {
+            try {
+                return Money.from(inputView.getPurchaseAmount());
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private List<Lotto> generateLottos(Money money) {
+        while (true) {
+            try {
+                List<Lotto> lottos = lottoService.generateWith(money);
+                outputView.print(lottos);
+                return lottos;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 
     private WinLotto getWinLotto() {
-        return lottoService.createWinLottoWith(inputView.getWinLottoNumber(), inputView.getBonusBall());
+        while (true) {
+            try {
+                return lottoService.createWinLottoWith(
+                        inputView.getWinLottoNumber(),
+                        inputView.getBonusBall()
+                );
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private void showResults(List<Lotto> lottos, WinLotto winLotto, Money money) {
+        LottoResult lottoResult = lottoService.calculateResult(lottos, winLotto);
+        Profit profit = lottoService.calculateProfit(lottoResult, money);
+
+        outputView.printResult(lottoResult);
+        outputView.printProfit(profit);
     }
 }

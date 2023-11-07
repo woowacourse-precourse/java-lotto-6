@@ -6,23 +6,23 @@ import java.util.stream.Stream;
 
 public class InputView {
 
-    private final static String GET_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private final static String PURCHASE_AMOUNT_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WIN_NUMBERS_REQUEST_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String NUMBER_REGEX = "^[0-9]+$";
-    private static final String GET_WIN_LOTTO_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String WIN_LOTTO_REGEX = "^\\d+,\\d+,\\d+,\\d+,\\d+,\\d+$";
     private static final String WIN_LOTTO_FORMAT_EXCEPTION_MESSAGE = "[ERROR] 1,2,3,4,5,6 형식으로 입력해주세요. %s";
     private static final String SPLIT_REGEX = ",";
-    private static final String GET_BONUS_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
-    public int getMoneyInput() {
+    public long getPurchaseAmount() {
         try {
-            System.out.println(GET_MONEY_MESSAGE);
+            System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
             String input = Console.readLine();
             validate(input);
-            return Integer.parseInt(input);
+            return Long.parseLong(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getMoneyInput();
+            return getPurchaseAmount();
         }
     }
 
@@ -33,12 +33,17 @@ public class InputView {
     }
 
     public List<Integer> getWinLottoNumber() {
-        System.out.println(GET_WIN_LOTTO_MESSAGE);
-        String input = Console.readLine();
-        validateWinLotto(input);
-        return Stream.of(input.split(SPLIT_REGEX))
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            System.out.println(WIN_NUMBERS_REQUEST_MESSAGE);
+            String input = Console.readLine();
+            validateWinLotto(input);
+            return Stream.of(input.split(SPLIT_REGEX))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinLottoNumber();
+        }
     }
 
     private static void validateWinLotto(String input) {
@@ -48,9 +53,14 @@ public class InputView {
     }
 
     public int getBonusBall() {
-        System.out.println(GET_BONUS_MESSAGE);
-        String input = Console.readLine();
-        validate(input);
-        return Integer.parseInt(input);
+        try {
+            System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
+            String input = Console.readLine();
+            validate(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusBall();
+        }
     }
 }

@@ -28,4 +28,8 @@ public class OutputView {
     public void printProfit(Profit profit) {
         System.out.printf(PROFIT_MESSAGE, profit);
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

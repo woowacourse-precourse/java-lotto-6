@@ -6,7 +6,6 @@
     - [x] [ERROR] 숫자가 아닌 경우.
 
 
-
 - [x] 당첨 번호를 입력 받는 기능.
     - [x] [ERROR] 중복된 값이 있는 경우.
     - [x] [ERROR] 1보다 작거나 45보다 큰 값이 있는 경우.
@@ -23,8 +22,8 @@
 - [x] 입력 받은 로또 구입 금액  `Money` 생성
   - [x] [ERROR] 1000으로 나눠 떨어지는 값이 아닌 경우.
   - [x] [ERROR] 1000보다 작은 값인 경우
-    <br/>
-    <br>
+
+
 - [x] (로또 구입 금액 / 1000) 개의 `Lotto`를 생성.
     - [x] `Randoms.pickUniqueNumbersInRange()` 메서드로 `LottoNumber` 생성
     - [x] `LottoNumber`를 가지는 Lotto 생성
@@ -32,26 +31,29 @@
     - [x] [ERROR] 로또의 번호가 1보다 작거나 45보다 큰 경우.
     - [x] [ERROR] 로또의 번호가 중첩됬을 경우.
     - [x] [ERROR] 로또의 번호가 6개로 이루어져있지 않는 경우.
-      <br/>
-      <br>
+
+
 - [x] 당첨 번호와 보너스 번호를 가지고 있는 `WinLotto` 생성.
   - [x] [ERROR] 당첨번호와 보너스 번호가 중첩됬을 경우
-<br/>
-<br/>
+
 
 - [x] `Lotto`마다 `WinLotto`와 비교.
     - [x] 일치하는 번호의 갯수와 상금을 가지는 enum 타입의 `Rank`를 생성
     - [x] 일치하는 번호의 갯수와 보너스 번호의 유무를 기준으로 `Lotto` 마다 `Rank` 생성.
         - [x] `Lotto` 마다 `WinLotto`와 일치하는 번호의 갯수를 리턴하는 메서드 생성.
         - [x] `Lotto` 마다 `WinLotto`의 보너스 번호 존재의 유무를 리턴하는 메서드 생성.
-<br/>
-<br/>
+
+
 - [x] 각 로또의 총 당첨 내역을 계산한다.
     - [x] `Rank`(일치 하는 번호 갯수)별로 당첨된 로또갯수를 가지는 `Result`객체 생성. 
     - [x] `Result`가 가지고 있는 `Rank` 전체의 상금을 계산한다. 
 
+
 - [x] 로또 구입 금액에 비례하는 수익률을 계산한다.
     - [x] `Result`가 가지고 있는 `Rank` 전체의 상금과 `Money`로 `ReturnRate` 생성.
+
+
+
 ### ✅ 출력
 
 - [x] 발행한 로또 수량과 수량 만큼 랜덤으로 생성된 `Lotto` 를 출력 하는 기능.
@@ -83,3 +85,9 @@
 ```text
 총 수익률은 62.5%입니다.
 ```
+
+### ✅ 공통 요구사항
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고,
+  `[ERROR]로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+
+- `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.

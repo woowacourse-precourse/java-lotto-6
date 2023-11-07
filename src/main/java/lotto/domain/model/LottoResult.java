@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain.model;
 
 public enum LottoResult {
     UNDER_THREE(0, "2개 이하 일치",0),

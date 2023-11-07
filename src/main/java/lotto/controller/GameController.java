@@ -1,28 +1,32 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.LottosResult;
-import lotto.model.Money;
-import lotto.model.User;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.Lottos;
+import lotto.domain.model.LottosResult;
+import lotto.usecase.Money;
+import lotto.usecase.User;
 import lotto.view.OutputView;
 
 public class GameController {
     private User user;
+    private Money money;
     private Lotto answer;
     private int bonusNumber;
     private int ticketAmount;
     private final InputController inputController;
     private final OutputView outputView;
 
-    public GameController(InputController inputController, OutputView outputView) {
+    public GameController(InputController inputController, OutputView outputView ,User user, Money money) {
+        this.user = user;
         this.inputController = inputController;
         this.outputView = outputView;
+        this.money = money;
     }
 
     public void startGame() {
-        user = new User(buyLottos());
+        money = buyLottos();
+        user = user.newInstance(money);
         Lottos userLottos = generateUserLottos(ticketAmount);
         outputView.showUserLottoMessage(userLottos);
     }
@@ -30,9 +34,10 @@ public class GameController {
     public Money buyLottos() {
         outputView.showInputMoneyMessage();
         int givenMoney = inputController.getMoney();
-        this.ticketAmount = Money.getTicketAmount(givenMoney);
+        this.money.saveMoney(givenMoney);
+        this.ticketAmount = money.getTicketAmount(givenMoney);
         outputView.showLottoAmountMessage(this.ticketAmount);
-        return new Money(givenMoney);
+        return this.money;
     }
 
     private Lottos generateUserLottos(int ticketAmount) {

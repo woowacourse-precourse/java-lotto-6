@@ -2,10 +2,10 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.Lottos;
-import lotto.model.LottosResult;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoResult;
+import lotto.domain.model.Lottos;
+import lotto.domain.model.LottosResult;
 
 public class OutputView {
     public static void showErrorMessage(String e){

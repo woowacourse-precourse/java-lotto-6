@@ -3,9 +3,10 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.model.LottoResult;
-import lotto.model.LottosResult;
-import lotto.model.Money;
+import lotto.domain.model.LottoResult;
+import lotto.domain.model.LottosResult;
+import lotto.domain.service.KoreanMoneyService;
+import lotto.usecase.Money;
 import org.junit.jupiter.api.Test;
 
 public class LottosResultTest {
@@ -17,7 +18,9 @@ public class LottosResultTest {
         LottosResult lottosResult = new LottosResult(givenLottoResults);
 
         double expectedProfit = ((LottoResult.FOUR_MATCHES.getPrizeAmount() + LottoResult.SIX_MATCHES.getPrizeAmount()) / (double) moneySpent) * 100;
-        lottosResult.countProfitable(new Money(moneySpent));
+        Money money = new KoreanMoneyService();
+        money.saveMoney(moneySpent);
+        lottosResult.countProfitable(money);
 
         assertThat(lottosResult.getTotalProfit()).isEqualTo(expectedProfit);
     }

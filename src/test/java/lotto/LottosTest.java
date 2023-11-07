@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoResult;
-import lotto.model.Lottos;
-import lotto.model.LottosResult;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoResult;
+import lotto.domain.model.Lottos;
+import lotto.domain.model.LottosResult;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest extends NsTest {
@@ -60,7 +60,7 @@ public class LottosTest extends NsTest {
     @Test
     public void lottosMatchUpResult() {
         lottos = setUP();
-        Lotto answerLotto = new Lotto(List.of(1, 2, 5, 17, 22, 45));
+        Lotto answerLotto = Lotto.newInstance(List.of(1, 2, 5, 17, 22, 45));
         int bonusNumber = 3;
         List<LottoResult> target = new ArrayList<>(Arrays.asList(LottoResult.FOUR_MATCHES,LottoResult.SIX_MATCHES));
         assertThat(lottos.matchUp(answerLotto,bonusNumber)).isEqualTo(target);
@@ -69,7 +69,7 @@ public class LottosTest extends NsTest {
     @Test
     public void lottosMatchUpResultMessage() {
         lottos = setUP();
-        Lotto answerLotto = new Lotto(List.of(1, 2, 5, 17, 22, 45));
+        Lotto answerLotto = Lotto.newInstance(List.of(1, 2, 5, 17, 22, 45));
         int bonusNumber = 3;
 
         List<LottoResult> lottoResults= lottos.matchUp(answerLotto,bonusNumber);
@@ -85,8 +85,8 @@ public class LottosTest extends NsTest {
 
         List<Integer> lotto1 = List.of(1, 3, 5, 14, 22, 45);
         List<Integer> lotto2 = List.of(1, 2, 5, 17, 22, 45);
-        userLottos.add(new Lotto(lotto1));
-        userLottos.add(new Lotto(lotto2));
+        userLottos.add(Lotto.newInstance(lotto1));
+        userLottos.add(Lotto.newInstance(lotto2));
         return new Lottos(userLottos);
     }
 }

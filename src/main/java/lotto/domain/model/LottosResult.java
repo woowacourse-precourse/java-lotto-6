@@ -1,9 +1,10 @@
-package lotto.model;
+package lotto.domain.model;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import lotto.usecase.Money;
 
 public class LottosResult {
     private final List<LottoResult> lottoResults;

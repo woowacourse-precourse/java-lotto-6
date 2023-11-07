@@ -27,7 +27,7 @@ public class InputValidator {
 
     public static void validateInputFormat(String input) {
         if (!input.matches("\\d+(," + "\\d+)+")) {
-            LottoException.of(INVALID_DELIMITER);
+           throw LottoException.of(INVALID_DELIMITER);
         }
     }
 

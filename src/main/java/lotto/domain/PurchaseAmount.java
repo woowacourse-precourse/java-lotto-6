@@ -19,14 +19,19 @@ public class PurchaseAmount {
 
     private PurchaseAmount(final String input) {
 
-        validateNumber(input);
         validateEmpty(input);
+        validateNumber(input);
 
         this.purchaseAmount = Parser.parseInt(input);
 
         ValidateMultipleOfThousand(purchaseAmount);
 
         this.count = calculateLottoCount(purchaseAmount);
+    }
+
+
+    public static int getPurchaseAmount(){
+        return purchaseAmount;
     }
 
     // 1000원 단위로 입력되었는지 검증

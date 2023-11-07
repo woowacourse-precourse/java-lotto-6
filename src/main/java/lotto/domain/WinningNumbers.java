@@ -4,6 +4,7 @@ import static lotto.exception.ErrorMessage.DUPLICATE_NUMBERS;
 import static lotto.exception.ErrorMessage.INVALID_RANGE;
 import static lotto.exception.ErrorMessage.IS_NOT_ONE_NUMBER;
 import static lotto.exception.ErrorMessage.IS_NOT_SIX_NUMBERS;
+import static lotto.parser.Parser.parseWinningNumbers;
 import static lotto.validator.InputValidator.validateEmpty;
 import static lotto.validator.InputValidator.validateNumber;
 
@@ -30,9 +31,7 @@ public class WinningNumbers {
         InputValidator.validateEmpty(input);
         InputValidator.validateInputFormat(input);
 
-        List<Integer> inputWinningNumbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<Integer> inputWinningNumbers = parseWinningNumbers(input);
         return new WinningNumbers(inputWinningNumbers);
     }
     private static void validateLength(List<Integer> winningNumbers) {
@@ -51,26 +50,6 @@ public class WinningNumbers {
             if (number < 1 || number > 45) {
                 throw LottoException.of(INVALID_RANGE);
             }
-        }
-    }
-
-    public static List<Integer> addBonusNumber(String input){
-        validateEmpty(input);
-        validateNumber(input);
-
-        int bonusNumber = Integer.parseInt(input);
-        winningNumbers.add(bonusNumber);
-
-        validateFinalLength(winningNumbers);
-        validateDuplicateNumbers(winningNumbers);
-        validateRange(winningNumbers);
-
-        return winningNumbers;
-    }
-
-    private static void validateFinalLength(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 7) {
-            throw LottoException.of(IS_NOT_ONE_NUMBER);
         }
     }
 

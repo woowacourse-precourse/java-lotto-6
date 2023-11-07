@@ -20,7 +20,15 @@ public class Application {
         printLottos(lottos);
 
         System.out.println(InputMessage.WINNING_NUMBER);
-        validateWinningNumber(Console.readLine());
+        String input = inputWinningNumber();
+    }
+
+    private static String inputWinningNumber() {
+        String result = validateWinningNumber(Console.readLine());
+        if (result == null) {
+            inputWinningNumber();
+        }
+        return result;
     }
 
     private static String validateWinningNumber(String winningNumber) {
@@ -121,7 +129,7 @@ public class Application {
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
-            throw new IllegalArgumentException("입력 값은 숫자와 쉼표만 올 수 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT);
         }
     }
 }

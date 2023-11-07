@@ -12,7 +12,7 @@ public class WinningLotto {
     private final LottoNumber bonusBall;
 
     public WinningLotto(Lotto winningLotto, LottoNumber bonusBall) {
-        validateBonusBallDistinct(winningLotto, bonusBall);
+        validate(winningLotto, bonusBall);
         this.winningLotto = winningLotto;
         this.bonusBall = bonusBall;
     }
@@ -27,7 +27,7 @@ public class WinningLotto {
         return new WinningLotto(lotto, lottoNumber);
     }
 
-    private void validateBonusBallDistinct(Lotto winningLotto, LottoNumber bonusBall) {
+    private void validate(Lotto winningLotto, LottoNumber bonusBall) {
         if (winningLotto.contains(bonusBall)) {
             throw new IllegalArgumentException(INVALID_DISTINCT_ERROR_MESSAGE);
         }

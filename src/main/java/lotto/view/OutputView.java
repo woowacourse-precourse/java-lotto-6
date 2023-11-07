@@ -34,12 +34,12 @@ public class OutputView {
     }
 
     public void outputLottoMatchResult(LottoMatchResult lottoMatchResult) {
-        outputMessage();
+        outputLottoStatisticPrompt();
         outputLottoStatistic(lottoMatchResult.toDto());
         outputProfitRate(lottoMatchResult.toDto());
     }
 
-    private void outputMessage() {
+    private void outputLottoStatisticPrompt() {
         System.out.println(LOTTO_STATISTIC_HEADER);
         System.out.println(LOTTO_STATISTIC_SEPARATOR);
     }

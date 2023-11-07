@@ -4,7 +4,6 @@ import static lotto.util.NumbersValidator.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.LottoStatistics.PrizeInformation;

@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -8,8 +9,13 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        Lotto lotto = new Lotto(test);
-        System.out.println(lotto.getNumbers());
+        int money = Integer.parseInt(Console.readLine());
+        int count = countLotto(money);
+        List<Lotto> lottos = new ArrayList<>();
+
+        for(int i=0;i<count;i++){
+            lottos.add(new Lotto(makeRandom()));
+        }
     }
 
     //랜던값 만들기
@@ -22,5 +28,10 @@ public class Application {
             }
         }
         return resRand;
+    }
+
+    //해당 돈으로 얼마의 로또를 살 수 있는가
+    public static int countLotto(int money){
+        return money/1000;
     }
 }

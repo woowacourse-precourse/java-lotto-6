@@ -17,6 +17,7 @@ public class LottoDrawMachine {
 
     private void validate(int number) {
         checkValidRange(number);
+        checkDuplicate(number);
     }
 
     private void checkValidRange(int number) {
@@ -25,6 +26,12 @@ public class LottoDrawMachine {
         }
         if (number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE_HIGH.getMessage());
+        }
+    }
+
+    private void checkDuplicate(int number){
+        if (this.lottoNumber.getNumbers().contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_LOTTO.getMessage());
         }
     }
 

@@ -24,20 +24,64 @@ public class LottoGameController {
 
     private Integer purchaseAmount(){
         outputView.getAmount();
-        return inputView.purchaseAmount();
+        while(true){
+            try{
+                return inputView.purchaseAmount();
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private LottoTicket buyTicket(Integer amount){
-        LottoTicket lottoTicket = ticketVendingMachine.buyTicket(amount);
-        outputView.ticketResult(lottoTicket.getCount(), lottoTicket.getLottoTickets());
-        return lottoTicket;
+        while(true){
+            try{
+                LottoTicket lottoTicket = ticketVendingMachine.buyTicket(amount);
+                outputView.ticketResult(lottoTicket.getCount(), lottoTicket.getLottoTickets());
+                return lottoTicket;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                amount = purchaseAmount();
+            }
+        }
     }
 
     private void setThisWeekLotto(){
-        Lotto lotto = winningNumbers();
-        int bonus = bonusNumber();
-        lottoDrawMachine  = new LottoDrawMachine(lotto, bonus);
+        Lotto lotto = getWinningNumbers();
+        int bonus = getBonusNumber();
+        lottoDrawMachine  = setDrawMachine(lotto, bonus);
         prizeCalculator = new PrizeCalculator(lotto, bonus);
+    }
+
+    private Lotto getWinningNumbers(){
+        while(true){
+            try{
+                return winningNumbers();
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber(){
+        while(true){
+            try{
+                return bonusNumber();
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private LottoDrawMachine setDrawMachine(Lotto lotto, int bonus){
+        while(true){
+            try{
+                return new LottoDrawMachine(lotto, bonus);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                bonus = getBonusNumber();
+            }
+        }
     }
 
     private void prizeResult(LottoTicket lottoTicket, int purchaseAmount){
@@ -46,14 +90,26 @@ public class LottoGameController {
     }
 
     private Lotto winningNumbers(){
-        outputView.getWinningNumbers();
-        List<Integer> lotto = inputView.winningNumbers();
-        return new Lotto(lotto);
+        while(true){
+            try{
+                outputView.getWinningNumbers();
+                List<Integer> lotto = inputView.winningNumbers();
+                return new Lotto(lotto);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int bonusNumber(){
-        outputView.getBonusNumber();
-        int bonus = inputView.bonusNumber();
-        return bonus;
+        while(true){
+            try{
+                outputView.getBonusNumber();
+                int bonus = inputView.bonusNumber();
+                return bonus;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.constant.IllegalStateExceptionType;
 import lotto.domain.model.Lotto;
 
-public class LottoManualGenerator implements LottoGenerator {
+public class LottoManualGenerator implements LottoGenerateStrategy {
     private final List<Lotto> lottos;
     private int index = 0;
 

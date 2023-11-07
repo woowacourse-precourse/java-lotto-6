@@ -2,7 +2,7 @@ package lotto.domain.model;
 
 import java.util.List;
 import lotto.constant.IllegalStateExceptionType;
-import lotto.domain.LottoGenerator;
+import lotto.domain.LottoGenerateStrategy;
 import lotto.domain.LottoManualGenerator;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,10 +16,10 @@ class LottoDispenserTest {
     List<Integer> numbers3 = List.of(5, 10, 20, 30, 40, 45);
     @BeforeEach
     void setUp() {
-        LottoGenerator lottoGenerator = new LottoManualGenerator(List.of(numbers1, numbers2, numbers3));
+        LottoGenerateStrategy lottoManualGenerator = new LottoManualGenerator(List.of(numbers1, numbers2, numbers3));
         LottoPurchaseCost lottoPurchaseCost = new LottoPurchaseCost(3000L);
 
-        lottoDispenser = new LottoDispenser(lottoGenerator, lottoPurchaseCost);
+        lottoDispenser = new LottoDispenser(lottoManualGenerator, lottoPurchaseCost);
     }
 
     @Test

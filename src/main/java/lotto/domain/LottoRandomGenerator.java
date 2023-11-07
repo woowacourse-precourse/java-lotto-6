@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.model.Lotto;
 
-public class LottoRandomGenerator implements LottoGenerator {
+public class LottoRandomGenerator implements LottoGenerateStrategy {
     private static final int RANGE_START = 1;
     private static final int RANGE_END = 45;
     private static final int NUMBER_COUNT = 6;

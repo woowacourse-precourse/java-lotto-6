@@ -3,15 +3,15 @@ package lotto.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.IllegalStateExceptionType;
-import lotto.domain.LottoGenerator;
+import lotto.domain.LottoGenerateStrategy;
 
 public final class LottoDispenser {
-    private final LottoGenerator lottoGenerator;
+    private final LottoGenerateStrategy lottoGenerateStrategy;
     private final LottoPurchaseCost lottoPurchaseCost;
     private boolean isDispensed;
 
-    public LottoDispenser(LottoGenerator lottoGenerator, LottoPurchaseCost lottoPurchaseCost) {
-        this.lottoGenerator = lottoGenerator;
+    public LottoDispenser(LottoGenerateStrategy lottoGenerateStrategy, LottoPurchaseCost lottoPurchaseCost) {
+        this.lottoGenerateStrategy = lottoGenerateStrategy;
         this.lottoPurchaseCost = lottoPurchaseCost;
         isDispensed = false;
     }
@@ -23,7 +23,7 @@ public final class LottoDispenser {
     }
 
     private Lotto generateLotto() {
-        return lottoGenerator.generate();
+        return lottoGenerateStrategy.generate();
     }
 
     private List<Lotto> generateLottos(int lottoAmount) {

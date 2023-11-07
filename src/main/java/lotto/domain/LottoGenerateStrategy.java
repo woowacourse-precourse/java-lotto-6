@@ -2,6 +2,6 @@ package lotto.domain;
 
 import lotto.domain.model.Lotto;
 
-public interface LottoGenerator {
+public interface LottoGenerateStrategy {
     Lotto generate();
 }

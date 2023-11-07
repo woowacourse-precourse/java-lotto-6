@@ -18,23 +18,22 @@
 ---
 
 ### 로또 플레이 기능
-- [ ] 수익률은 소수점 둘째 자리에서 반올림하여 계산한다. - rateOfReturn()
-- [ ] 당첨된 로또의 내역을 확인한다. - getWinningDetails()
-- [ ] 당첨 내역의 총 수익률을 구한다. - getTotalReturnWinningDetails()
+- [ ] 당첨 내역의 총 수익률은 소수점 둘째 자리에서 반올림하여 계산한다. - calculateRateReturn()
+- [ ] 당첨된 로또의 내역을 확인한다. - checkWinningDetails()
 
 ---
 
 ## 도메인 모델
 
 ### Lotto - 로또 번호를 관리하는 역할
-  - [x] 로또 번호는 1~45 범위 내의 숫자만 가능한지 체크하는 함수 - validateLottoNumberRange()
-  - [x] 로또 발행 시, 중복되지 않는 6개의 숫자를 체크하는 함수 - validateLottoNumbersDuplication()
-  - [x] 로또 번호의 개수가 6개가 넘어가면 예외가 발생하는 함수 - validate()
-  - [x] 로또 번호 출력 함수 - toString()
+ - [x] 로또 번호는 1~45 범위 내의 숫자만 가능한지 체크하는 함수 - validateLottoNumberRange()
+ - [x] 로또 발행 시, 중복되지 않는 6개의 숫자를 체크하는 함수 - validateLottoNumbersDuplication()
+ - [x] 로또 번호의 개수가 6개가 넘어가면 예외가 발생하는 함수 - validate()
+ - [x] 로또 번호 출력 함수 - toString()
 
 ### ReadPurchaseAmount - 구매 금액을 관리하는 역할
-  - [x] 로또 구입 금액의 입력 받은 값이 빈 값인지 체크하는 함수 - nullCheckPurchaseAmount()
-  - [x] 로또 구입 금액이 1,000원 단위가 아닐 경우 예외를 처리하는 함수 - invalidLottoPurchaseAmount()
+ - [x] 로또 구입 금액의 입력 받은 값이 빈 값인지 체크하는 함수 - nullCheckPurchaseAmount()
+ - [x] 로또 구입 금액이 1,000원 단위가 아닐 경우 예외를 처리하는 함수 - invalidLottoPurchaseAmount()
 
 ### LottoRamdomNumbers - 랜덤 로또 번호 관리하는 역할
  - [x] 구입금액에 따른 로또 번호를 랜덤으로 생성하는 함수 - generateRandomLottoNumbers()

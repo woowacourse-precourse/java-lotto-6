@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRamdomNumbers;
-import lotto.domain.ReadPurchaseAmount;
+import lotto.domain.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,6 +18,7 @@ public class LottoController {
         outputView.printIssuedLottoNumbersInAscendingOrder(lottoNumbers);
         Lotto winningLottoNumber = inputView.enterWinningNumbers();
         Integer readBonusNumber = inputView.enterBonusNumber(winningLottoNumber);
+        LottoMachine lottoMachine = new LottoMachine(winningLottoNumber, lottoNumbers, readBonusNumber);
     }
 
 }

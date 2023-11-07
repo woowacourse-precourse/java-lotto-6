@@ -44,14 +44,18 @@ public class Lotto {
         });
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
     public void duplictionLottoBonusNumberAndWinNumber(Integer lottoBonusNumber) {
         if (numbers.contains(lottoBonusNumber)) {
             throw new IllegalArgumentException(OVERLAP_EXCEPTION.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

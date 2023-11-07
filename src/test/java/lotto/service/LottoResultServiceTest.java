@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,8 +41,35 @@ class LottoResultServiceTest {
         }
     }
 
+    @DisplayName("로또 결과를 통해 몇 등인지와 당첨 금액을 반환하는지")
     @Test
     void confirmRewardLottos() {
+        // given
+        List<LottoResult> lottoResults = createLottoResultsTestObject();
+
+        // when
+        Map<LottoReward, Integer> rewardCount = lottoResultService.confirmRewardLottos(lottoResults);
+
+        // then
+        assertThat(rewardCount).isNotNull();
+        assertThat(rewardCount.size()).isEqualTo(lottoResults.size());
+
+        for (Map.Entry<LottoReward, Integer> entry : rewardCount.entrySet()) {
+            assertThat(entry.getKey()).isInstanceOf(LottoReward.class);
+            assertThat(entry.getValue()).isInstanceOf(Integer.class);
+        }
+    }
+
+    private List<LottoResult> createLottoResultsTestObject() {
+        List<LottoResult> lottoResults = new ArrayList<>();
+
+        lottoResults.add(new LottoResult(6, false));
+        lottoResults.add(new LottoResult(5, true));
+        lottoResults.add(new LottoResult(5, false));
+        lottoResults.add(new LottoResult(4, false));
+        lottoResults.add(new LottoResult(3, false));
+
+        return lottoResults;
     }
 
     @Test

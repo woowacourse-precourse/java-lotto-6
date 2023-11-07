@@ -25,7 +25,6 @@ public class Application {
         int bonus = 0;
         winningBonusNum(numbers, bonus);
 
-        //numbers.add(bonus);
         int[] rank;
         rank = rank(lottoTickets, allTickets, bonus, numbers);
         rate(rank, purchaseAmount);
@@ -41,19 +40,25 @@ public class Application {
     }
 
     public static void winningBonusNum(List<Integer> numbers, int bonus) {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String a = Console.readLine();
-        String[] winningNumbers = a.split(",");
+        while (true) {
+            try {
+                numbers.clear();
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String a = Console.readLine();
+                String[] winningNumbers = a.split(",");
 
-
-        for (int i = 0; i < winningNumbers.length; i++) {
-            int x = Integer.parseInt(winningNumbers[i]);
-            if (!numbers.contains(x)) {
-                numbers.add(x);
+                for (int i = 0; i < winningNumbers.length; i++) {
+                    int x = Integer.parseInt(winningNumbers[i]);
+                    if (!numbers.contains(x)) {
+                        numbers.add(x);
+                    }
+                }
+                Lotto lotto = new Lotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
-        Lotto lotto = new Lotto(numbers);
-
         //나중에 보너스 번호가 당첨 번호와 중복 될 경우의
         //예외처리로 변경할 것.
         System.out.println("\n보너스 번호를 입력해 주세요.");

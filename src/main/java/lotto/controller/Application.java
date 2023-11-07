@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domin.Bonus;
 import lotto.domin.Lotto;
 import lotto.domin.LottoNumbers;
 import lotto.domin.PlayerLottoAmount;
@@ -27,6 +28,7 @@ public class Application {
             getLottoList(lottoList, lotto);
         }
         List<Integer> selectLottoNumber = getSelectLottoNumbers();
+        int bonus = getbonus(selectLottoNumber);
 
 
     }
@@ -77,5 +79,17 @@ public class Application {
         return Arrays.stream(InputLotto.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 
+    private static int getbonus(List<Integer> selectLottoNumber) {
+        int bonus;
+        while (true) {
+            try {
+                String inputBonusNumber = InputView.getInputBonusNumber();
+                return bonus = new Bonus(inputBonusNumber, selectLottoNumber).getBonus();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+            }
+        }
+    }
 
 }

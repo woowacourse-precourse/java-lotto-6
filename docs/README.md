@@ -93,7 +93,8 @@
 #### 메소드
 - `public String getErrorMsg()`
   - 에러 메시지를 반환한다.
-
+- `public boolean isError(String input)`
+  - `Predicate<String>`의 `test(String s)`를 사용해 각 상수에 저장된 람다식에 넣고 결과를 반환한다.
 ### `enum` Procedure
 
 ---

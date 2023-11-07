@@ -45,15 +45,17 @@ public class Input {
         conversionResult.add(Integer.parseInt(inputStr));
         return conversionResult;
     }
-
     private void purchaseAmountValidate(String inputStr){
         if (inputStr.isEmpty()){
+            Print.printMessage(ErrorMessage.NULL_STRING.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
         }
         if (Utils.isNumeric(inputStr) == false) {
+            Print.printMessage(ErrorMessage.NON_NUMERIC_STR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_STR.getMessage());
         }
         if (Integer.parseInt(inputStr) % 1000 != 0){
+            Print.printMessage(ErrorMessage.NOT_DIVIED_1000.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIED_1000.getMessage());
         }
     }
@@ -67,12 +69,15 @@ public class Input {
 
     private void bonusNumberValidate(String inputStr){
         if (inputStr.isEmpty()){
+            Print.printMessage(ErrorMessage.NULL_STRING.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
         }
         if (Utils.isNumeric(inputStr) == false){
+            Print.printMessage(ErrorMessage.NON_NUMERIC_STR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_STR.getMessage());
         }
         if (Integer.parseInt(inputStr) < 1 || 45 < Integer.parseInt(inputStr)){
+            Print.printMessage(ErrorMessage.NOT_IN_1_TO_45.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NOT_IN_1_TO_45.getMessage());
         }
     }

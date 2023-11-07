@@ -65,4 +65,14 @@ public class User {
         winLottoCheck = new LottoCheck();
         this.bonusNumber = winLottoCheck.bonusLottoErrorCheck(bonusLotto);
     }
+
+    public void countResult() {
+        for(Lotto lotto: lottos){
+            compareToLotto(winLotto, lotto);
+        }
+    }
+
+    private void compareToLotto(Lotto winLotto, Lotto lotto) {
+
+    }
 }

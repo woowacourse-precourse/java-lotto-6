@@ -22,6 +22,8 @@ public class MainController {
         user.getWinLotto();
         user.getBonusNumber();
 
+        user.countResult();
+
     }
 
 }

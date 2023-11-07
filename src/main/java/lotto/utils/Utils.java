@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,6 +46,10 @@ public class Utils {
 			count += countIfSame(number, list2);
 		}
 		return count;
+	}
+	
+	public static double rounding(double number) {
+		return Math.round(number * 10D) / 10D ;
 	}
 
 }

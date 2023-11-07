@@ -1,7 +1,9 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -52,5 +54,36 @@ public class TestStringClass {
 
         // then
         assertThat(substring).isEqualTo("1,2");
+    }
+
+    @Nested
+    @DisplayName("asdf")
+    class TestCharAt {
+        @Test
+        @DisplayName("index 순서에 해당하는 character를 반환한다.")
+        void success() {
+            // given
+            String input = "abcde";
+
+            // when
+            char character = input.charAt(3);
+
+            // then
+            assertThat(character).isEqualTo('d');
+        }
+
+        @Test
+        @DisplayName("문자열의 길이를 벗어난 인덱스가 주어지면 StringIndexOutOfBoundsException 예외가 발생한다.")
+        void failToIndexOutOfBounds() {
+            // given
+            String input = "abc";
+
+            // when
+            ThrowingCallable target = () -> input.charAt(3);
+
+            // then
+            assertThatThrownBy(target).isInstanceOf(StringIndexOutOfBoundsException.class)
+                    .hasMessage("String index out of range: 3");
+        }
     }
 }

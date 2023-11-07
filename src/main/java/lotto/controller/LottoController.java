@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.view.OutputView.printProfit;
+import static lotto.view.OutputView.printResult;
 import static lotto.view.OutputView.printUserLotto;
 
 import lotto.model.Lotto;
@@ -13,6 +15,7 @@ public class LottoController {
     public void startGame() {
         setUser();
         setWinningLotto();
+        showResult();
     }
 
     private void setUser() {
@@ -25,4 +28,11 @@ public class LottoController {
         winningLotto = InputController.makeWinningLotto(winningNumbers);
     }
 
+    private void showResult() {
+        user.compareWinningLotto(winningLotto);
+        printResult();
+
+        double profit = user.calculateProfit(user.getMoney());
+        printProfit(profit);
+    }
 }

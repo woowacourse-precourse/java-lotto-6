@@ -39,7 +39,7 @@ public class LottoLogic implements Logic {
         bonusNumber = inputController.getBonusNumber(winningNumber);
 
         List ranks = controller.getTotalRanking(winningNumber, bonusNumber);
-        
+
         view.printScoreDetails(ranks);
         view.printTotalReturn(((float) getTotalRewards(ranks) / (float) payment) * 100);
 

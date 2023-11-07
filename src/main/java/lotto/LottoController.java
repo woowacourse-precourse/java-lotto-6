@@ -17,9 +17,9 @@ public class LottoController {
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
         output.printRandomLottoNumbers(randomLottoNumbers);
 
-        Lotto lotto = createWinningNumber();
-        LottoBonus lottoBonus = createBonusNumber(lotto);
-        HashMap<Integer, List<Integer>> compareLottoNumResult = compareLottoNumber(lottoGenerate, lotto, lottoBonus);
+        WinningNumber winningNumber = createWinningNumber();
+        LottoBonus lottoBonus = createBonusNumber(winningNumber);
+        HashMap<Integer, List<Integer>> compareLottoNumResult = compareLottoNumber(lottoGenerate, winningNumber, lottoBonus);
         printResult(checkPrizeByLotto(compareLottoNumResult), lottoCost.getCost());
     }
 
@@ -53,22 +53,23 @@ public class LottoController {
         }
     }
 
-    private Lotto createWinningNumber() {
-        Lotto lotto = null;
+    private WinningNumber createWinningNumber() {
+        WinningNumber winningNumber = null;
         boolean loop = true;
 
         while (loop) {
             List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(Config.SPLIT_SYMBOL));
             try {
                 isNumber(inputWinningNumbers);
-                lotto = new Lotto(inputWinningNumbers.stream().map(Integer::valueOf).toList());
+                Lotto lotto = new Lotto(inputWinningNumbers.stream().map(Integer::valueOf).toList());
+                winningNumber = new WinningNumber(lotto);
                 loop = false;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
         }
 
-        return lotto;
+        return winningNumber;
     }
 
     public void isNumber(List<String> numbers) {
@@ -82,7 +83,7 @@ public class LottoController {
         }
     }
 
-    private LottoBonus createBonusNumber(Lotto lotto) {
+    private LottoBonus createBonusNumber(WinningNumber winningNumber) {
         LottoBonus lottoBonus = null;
         boolean loop = true;
 
@@ -90,7 +91,7 @@ public class LottoController {
             String inputBonusNumber = input.bonusNumber();
             try {
                 int bonusNumber = toNumber(inputBonusNumber);
-                hasSameNumberBetweenWinningAndBonusNumber(lotto.getLotto(), bonusNumber);
+                hasSameNumberBetweenWinningAndBonusNumber(winningNumber.getWinningNumber(), bonusNumber);
                 lottoBonus = new LottoBonus(bonusNumber);
                 loop = false;
             } catch (IllegalArgumentException e) {
@@ -222,7 +223,7 @@ public class LottoController {
     }
 
     private HashMap<Integer, List<Integer>> compareLottoNumber(LottoGenerate lottoGenerate,
-                                                               Lotto lotto, LottoBonus lottoBonus) {
+                                                               WinningNumber winningNumber, LottoBonus lottoBonus) {
         HashMap<Integer, List<Integer>> countSameNumbers = new HashMap<>();
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
         int winningNumberMatchCount; //countWinningInLotto
@@ -230,7 +231,7 @@ public class LottoController {
 
         for (int key : lottoGenerate.getRandomLottoNumbers().keySet()) {
             List<Integer> randomLottoNumber = randomLottoNumbers.get(key);
-            winningNumberMatchCount = compareWinningAndLottoNumber(randomLottoNumber, lotto.getLotto());
+            winningNumberMatchCount = compareWinningAndLottoNumber(randomLottoNumber, winningNumber.getWinningNumber());
             bonusNumberMatchCount = compareBonusAndLottoNumber(randomLottoNumber, lottoBonus.getBonusNumber());
 
             countSameNumbers.put(key, List.of(winningNumberMatchCount, bonusNumberMatchCount));

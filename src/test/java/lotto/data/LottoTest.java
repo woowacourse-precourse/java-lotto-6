@@ -1,4 +1,4 @@
-package lotto;
+package lotto.data;
 
 import static lotto.message.ErrorMessage.LOTTO_IS_NOT_SIX_DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;

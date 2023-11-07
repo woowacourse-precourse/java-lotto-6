@@ -51,7 +51,7 @@ public class LottoView {
         printProfitRate(finalResult,price);
     }
     public static void printResult(FinalResult finalResult) {
-        List<Integer> countList = finalResult.lottoResult().testDTO().getCountList();
+        List<Integer> countList = finalResult.lottoResult().lottoMatchNumberDTO().getCountList();
         printVariableMessage(THREE_GRADE.getComment(countList.get(0)));
         printVariableMessage(FOUR_GRADE.getComment(countList.get(1)));
         printVariableMessage(FIVE_GRADE.getComment(countList.get(2)));
@@ -59,7 +59,7 @@ public class LottoView {
         printVariableMessage(SIX_GRADE.getComment(countList.get(4)));
     }
     public static void printProfitRate(FinalResult finalResult, Integer price) {
-        List<Integer> countList = finalResult.lottoResult().testDTO().getCountList();
+        List<Integer> countList = finalResult.lottoResult().lottoMatchNumberDTO().getCountList();
         int sum = countList.get(0) * THREE_GRADE.getPrize()
                 + countList.get(1) * FOUR_GRADE.getPrize()
                 + countList.get(2) * FIVE_GRADE.getPrize()

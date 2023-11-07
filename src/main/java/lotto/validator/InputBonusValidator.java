@@ -16,7 +16,7 @@ public class InputBonusValidator {
             throw new EmptyException();
         }
     }
-    public static void validateBonusNumberIsNumeric(final String bonusNumber) {
+    public static void validateBonusNumberFormat(final String bonusNumber) {
         try {
             Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
@@ -30,13 +30,13 @@ public class InputBonusValidator {
         }
     }
     public static void validateBonusInLotto(final Lotto winningLotto, final String input) {
-        if (winningLotto.numbers().contains(Integer.parseInt(input))) {
+        if (winningLotto.getNumbers().contains(Integer.parseInt(input))) {
             throw new DuplicatedNumberException();
         }
     }
     public static void validateBonus(final Lotto winningLotto, final String bonusNumber){
         validateEmpty(bonusNumber);
-        validateBonusNumberIsNumeric(bonusNumber);
+        validateBonusNumberFormat(bonusNumber);
         validateBonusNumberRange(bonusNumber);
         validateBonusInLotto(winningLotto, bonusNumber);
     }

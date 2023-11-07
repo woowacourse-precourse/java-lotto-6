@@ -11,19 +11,19 @@ import lotto.parser.FinalResult;
 import lotto.parser.LottoParser;
 import lotto.view.LottoView;
 
-import static lotto.service.LottoService.checkMatchingCount;
+import static lotto.service.LottoService.checkTotalMatchCount;
 
 public class LottoController {
     public static void play() {
         String price = LottoView.requestInputPrice();
-        Lottos randomLottos = LottoService.generate(price);
+        Lottos randomLottos = LottoService.create(price);
         LottoView.printResponsePurchaseAmount(randomLottos.getLottoLength());
         LottoView.printRandomLottos(randomLottos);
         String winningNumbers = LottoView.requestInputWinningNumbers();
         Lotto winningLotto = LottoParser.parse(winningNumbers);
         String bonusNumber = LottoView.requestInputBonusNumber();
         BonusNumber bonus = BonusNumberParser.parse(winningLotto, bonusNumber);
-        LottoMatchNumberDTO lottoMatchNumberDTO = checkMatchingCount(randomLottos, bonus,winningLotto);
+        LottoMatchNumberDTO lottoMatchNumberDTO = checkTotalMatchCount(randomLottos, bonus,winningLotto);
         LottoResult lottoResult = createLottoResult(lottoMatchNumberDTO);
         LottoView.printResultMessages();
         FinalResult finalResult = createFinalResult(lottoResult);

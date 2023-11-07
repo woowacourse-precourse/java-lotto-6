@@ -26,28 +26,28 @@ public class LottoService {
     private static final int DIVIDE_BY = 1000;
     public LottoService() {
     }
-    public static Lottos generate(String price) {
+    public static Lottos create(String price) {
         try {
             InputPriceValidator.validatePrice(price);
         } catch (InvalidPriceTypeException | InvalidInputException | EmptyException | InvalidPriceRangeException | InvalidInputPriceException e) {
-            return generate(LottoView.requestInputPrice());
+            return create(LottoView.requestInputPrice());
         }
         Integer priceInt = Integer.parseInt(price);
-        return new Lottos(getLottos(priceInt));
+        return new Lottos(getLottosList(priceInt));
     }
-    private static List<LottoInfoDTO> getLottos(Integer priceInt) {
+    private static List<LottoInfoDTO> getLottosList(Integer priceInt) {
         return IntStream.range(START_INDEX, priceInt / DIVIDE_BY)
-                .mapToObj(i -> generateLotto())
+                .mapToObj(i -> createRandomeLottoInfoDTO())
                 .collect(Collectors.toList());
     }
-    private static LottoInfoDTO generateLotto() {
+    private static LottoInfoDTO createRandomeLottoInfoDTO() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_SIZE);
-        return new LottoInfoDTO(new Lotto(sortingNumbers(numbers)));
+        return new LottoInfoDTO(new Lotto(sortingLottoNumbers(numbers)));
     }
-    private static List<Integer> sortingNumbers(List<Integer> numbers) {
+    private static List<Integer> sortingLottoNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
-    public static LottoMatchNumberDTO checkMatchingCount(Lottos randomLottos, BonusNumber bonusNumber, Lotto winningLotto) {
+    public static LottoMatchNumberDTO checkTotalMatchCount(Lottos randomLottos, BonusNumber bonusNumber, Lotto winningLotto) {
         int countOf3 = countMatches(randomLottos,winningLotto, MATCH_COUNT_3);
         int countOf4 = countMatches(randomLottos,winningLotto, MATCH_COUNT_4);
         int countOf5 = countMatches(randomLottos,winningLotto, MATCH_COUNT_5);

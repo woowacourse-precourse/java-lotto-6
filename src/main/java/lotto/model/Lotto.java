@@ -1,15 +1,20 @@
 package lotto.model;
 import lotto.exception.*;
 import java.util.List;
-public record Lotto(List<Integer> numbers) {
-    public Lotto {
-        validateDuplicated(numbers);
+public class Lotto {
+    protected final List<Integer> numbers;
+    public Lotto(List<Integer> numbers) {
         validateLength(numbers);
+        validateDuplicated(numbers);
+        this.numbers = numbers;
     }
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new InvalidLottoLengthException();
         }
+    }
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
     private void validateDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {

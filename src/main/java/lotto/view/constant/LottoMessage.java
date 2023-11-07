@@ -10,7 +10,7 @@ public enum LottoMessage {
     COMMENT_SUFFIX("개"),
     SHOW_STATISTICS_YIELD("총 수익률은 "),
     SHOW_STATISTICS_YIELD_SUFFIX("%입니다.");
-    private String message;
+    private final String message;
     LottoMessage(String message) {
         this.message = message;
     }

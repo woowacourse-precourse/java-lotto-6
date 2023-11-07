@@ -20,10 +20,10 @@ public class LottoInfoDTO {
         return this.matchBonus;
     }
     private boolean contain(Integer number) {
-        return this.lotto.numbers().contains(number);
+        return this.lotto.getNumbers().contains(number);
     }
     public Integer countMatch(Lotto winningLotto) {
-        winningLotto.numbers().stream().filter(this::contain).forEach(number -> this.matchCount++);
+        winningLotto.getNumbers().stream().filter(this::contain).forEach(number -> this.matchCount++);
         return this.matchCount;
     }
     public void resetMatchCount(){

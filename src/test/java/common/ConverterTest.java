@@ -1,5 +1,6 @@
-package lotto;
+package common;
 
+import common.Converter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -2,7 +2,7 @@ package lotto.view.constant;
 
 public enum OutputConstant {
 	PURCHASE_RESULT("개를 구매했습니다."),
-	WINNING_RESULT("당첨통계\n---"),
+	WINNING_RESULT("\n당첨통계\n---"),
 	PRIZE_PATTERN("#,###");
 
 	private final String value;

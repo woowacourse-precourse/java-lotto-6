@@ -22,5 +22,28 @@ public final class Utils {
                 .collect(Collectors.toList());
     }
 
+    public static boolean countContainNumber(List<Integer> list, int number) {
+        if (list.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public static int countSameElements(List<Integer> list1, List<Integer> list2) {
+        int count = 0;
+        for (int number : list2) {
+            count += countContainNum(list1, number);
+        }
+        return count;
+    }
+    private static int countContainNum(List<Integer> list, int number) {
+        if (list.contains(number)) {
+            return 1;
+        }
+        return 0;
+    }
+
 
 }

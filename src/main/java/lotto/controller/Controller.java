@@ -14,10 +14,12 @@ import lotto.view.OutputView;
 
 public class Controller {
     private int lottoCnt;
-
+    private int userPrice;
 
     public void run() {
         Map<Result,Integer> score = new HashMap<>();
+        int totalProfit = 0;
+        int totalInvestment = 0;
         part1();
         Lotties lotties = part2();
         WinningNumber winningNumber = part3();
@@ -27,8 +29,10 @@ public class Controller {
             int resultCnt = score.getOrDefault(result,0);
             score.put(result,resultCnt + 1);
         }
-
+        totalInvestment = userPrice;
+        double profitPercentage = (totalProfit) / (double) totalInvestment * 100;
         OutputView.printScore(score);
+        OutputView.printProfit(profitPercentage);
 
     }
 

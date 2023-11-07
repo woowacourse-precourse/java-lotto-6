@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.common.exception.ExceptionMessages;
+import static lotto.common.exception.ExceptionMessages.OUT_OF_RANGE_LOTTO_NUMBER;
 
 public record LottoNumber(int number) implements Comparable<LottoNumber> {
     public static final int MIN_NUMBER = 1;
@@ -12,7 +12,7 @@ public record LottoNumber(int number) implements Comparable<LottoNumber> {
 
     private void validate(int number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException(ExceptionMessages.OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 

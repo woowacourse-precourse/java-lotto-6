@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.common.exception.ExceptionMessages;
+import static lotto.common.exception.ExceptionMessages.INVALID_PURCHASE_AMOUNT;
+import static lotto.common.exception.ExceptionMessages.NOT_DIVISIBLE_PURCHASE_AMOUNT;
 
 public record PurchaseAmount(long amount) {
     public static final int unit = 1000;
@@ -16,14 +17,14 @@ public record PurchaseAmount(long amount) {
 
     private void validateIsZero(long amount) {
         if (amount == 0L) {
-            throw new IllegalArgumentException(ExceptionMessages.INVALID_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     private void validateDivisible(long amount) {
         if (amount % unit != 0L) {
             throw new IllegalArgumentException(
-                    String.format(ExceptionMessages.NOT_DIVISIBLE_PURCHASE_AMOUNT.getMessage(), unit));
+                    String.format(NOT_DIVISIBLE_PURCHASE_AMOUNT.getMessage(), unit));
         }
     }
 

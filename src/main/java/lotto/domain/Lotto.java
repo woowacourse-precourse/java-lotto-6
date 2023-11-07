@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import static lotto.common.exception.ExceptionMessages.DUPLICATE_LOTTO_NUMBER;
+import static lotto.common.exception.ExceptionMessages.INVALID_LOTTO_SIZE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import lotto.common.exception.ExceptionMessages;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -28,7 +30,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessages.INVALID_LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
@@ -36,7 +38,7 @@ public class Lotto {
         HashSet<Integer> distinctNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!distinctNumbers.add(number)) {
-                throw new IllegalArgumentException(ExceptionMessages.DUPLICATE_LOTTO_NUMBER.getMessage());
+                throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
             }
         }
     }

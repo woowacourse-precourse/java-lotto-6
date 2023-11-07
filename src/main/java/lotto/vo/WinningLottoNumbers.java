@@ -13,9 +13,4 @@ public record WinningLottoNumbers(List<Integer> value) {
         return value;
     }
 
-    public void add(String bonus_number) {
-        NumberValidator.validate(bonus_number);
-        value.add(Integer.parseInt(bonus_number));
-        LottoNumberValidator.validate_MAX_SIZE(value);
-    }
 }

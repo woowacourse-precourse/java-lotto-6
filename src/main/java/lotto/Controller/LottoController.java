@@ -10,14 +10,16 @@ public class LottoController {
     private final LottoInput lottoInput;
     private final LottoOutput lottoOutput;
 
-    public LottoController(LottoService lottoService) {
+    public LottoController(LottoService lottoService, LottoInput lottoInput,
+            LottoOutput lottoOutput) {
         this.lottoService = lottoService;
-        this.lottoInput = new LottoInput();
-        this.lottoOutput = new LottoOutput();
+        this.lottoInput = lottoInput;
+        this.lottoOutput = lottoOutput;
     }
 
     public void purchaseLotto() {
         lottoService.createLotto(lottoInput.inputPurchaseAmount());
         lottoOutput.printTotalPurchaseAmount(lottoService.getLottos());
     }
+
 }

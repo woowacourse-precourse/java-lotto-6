@@ -3,6 +3,7 @@ package lotto.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lotto.Lotto;
 import lotto.config.LottoGameRule;
@@ -19,15 +20,10 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public Lotto generate() {
-        Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() != LottoGameRule.LOTTO_SIZE.value()) {
-            int randomNumber = pickRandomNumber();
-            numbers.add(randomNumber);
-        }
-        return new Lotto(new ArrayList<>(numbers));
+        return new Lotto(pickRandomNumber());
     }
 
-    private int pickRandomNumber() {
-        return Randoms.pickNumberInRange(min, max);
+    private List<Integer> pickRandomNumber() {
+        return Randoms.pickUniqueNumbersInRange(min, max, LottoGameRule.LOTTO_SIZE.value());
     }
 }

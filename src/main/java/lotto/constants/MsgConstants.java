@@ -9,7 +9,7 @@ public enum MsgConstants {
         this.message = message;
     }
 
-    public String getMessage() {
+    public String getData() {
         return message;
     }
 }

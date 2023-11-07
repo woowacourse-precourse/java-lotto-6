@@ -12,4 +12,8 @@ public enum AppConstants {
     AppConstants(String str) {
         this.constants =  str;
     }
+
+    public String getData() {
+        return constants;
+    }
 }

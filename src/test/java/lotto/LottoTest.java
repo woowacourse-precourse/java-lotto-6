@@ -33,7 +33,7 @@ class LottoTest {
 
     @DisplayName("구입금액이 숫자가 0 인 경우")
     @Test
-    void isZeroInput() {
+    void isZeroInputTest() {
         assertThatThrownBy(() -> new LottoAmount("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -41,7 +41,7 @@ class LottoTest {
 
     @DisplayName("구입금액이 1,000원으로 나누어떨어지지 않는 경우")
     @Test
-    void isNotDivisibleByThousand() {
+    void isNotDivisibleByThousandTest() {
         assertThatThrownBy(() -> new LottoAmount("1001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

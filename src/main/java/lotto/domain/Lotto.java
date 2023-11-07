@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import lotto.common.ErrorType;
 
@@ -41,6 +42,10 @@ public class Lotto {
 	@Override
 	public String toString() {
 		return "" + numbers;
+	}
+
+	public List<Integer> getNumbers() {
+		return numbers;
 	}
 
 }

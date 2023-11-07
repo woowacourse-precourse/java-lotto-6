@@ -7,7 +7,8 @@ import java.util.stream.IntStream;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.common.ErrorType;
 import lotto.domain.Lotto;
-
+import lotto.domain.LottoResult;
+import lotto.domain.WinningRank;
 
 public class LottoService {
 
@@ -21,6 +22,21 @@ public class LottoService {
 		return IntStream.range(0, lottoAmount)
 			.mapToObj(i -> generateRandomLotto())
 			.collect(Collectors.toList());
+	}
+
+	public LottoResult resultLotto(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
+		return new LottoResult(compareLottoNumbers(lotto, winningNumbers),
+			containsBonusNumber(lotto, bonusNumber));
+	}
+
+	private int compareLottoNumbers(Lotto lotto, Lotto winningNumbers) {
+		return (int)lotto.getNumbers().stream()
+			.filter(number -> winningNumbers.getNumbers().contains(number))
+			.count();
+	}
+
+	private boolean containsBonusNumber(Lotto lotto, int bonusNumber) {
+		return lotto.getNumbers().contains(bonusNumber);
 	}
 
 	private void validate(int price) {

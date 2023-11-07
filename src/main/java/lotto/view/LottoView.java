@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lottos;
+import lotto.parser.FinalResult;
 import lotto.view.constant.LottoMessage;
 
 
@@ -29,10 +30,14 @@ public class LottoView {
         printConstantMessage(LottoMessage.REQUEST_BONUS_NUMBER);
         return Console.readLine();
     }
-    public static void responseResultMessages(){
+    public static void printResultMessages(){
         printWhiteSpace();
         printConstantMessage(LottoMessage.SHOW_STATISTICS);
         printConstantMessage(LottoMessage.SHOW_STATISTICS_DELIMITER);
+    }
+    public static void printResultMessage(FinalResult finalResult, int price){
+        finalResult.printResult();
+        finalResult.printProfitRate(price);
     }
     private static void printWhiteSpace() {
         System.out.println();

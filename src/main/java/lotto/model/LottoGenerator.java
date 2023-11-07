@@ -28,8 +28,7 @@ public class LottoGenerator {
             return generate(LottoView.requestInputPrice());
         }
         Integer priceInt = Integer.parseInt(price);
-        List<LottoInfo> randomLottosList = getLottos(priceInt);
-        return new Lottos(randomLottosList);
+        return new Lottos(getLottos(priceInt));
     }
     private static List<LottoInfo> getLottos(Integer priceInt) {
         return IntStream.range(START_INDEX, priceInt / DIVIDE_BY).mapToObj(i -> generateLotto()).collect(Collectors.toList());

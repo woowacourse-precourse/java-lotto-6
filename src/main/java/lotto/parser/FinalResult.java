@@ -1,15 +1,9 @@
 package lotto.parser;
-
 import lotto.model.LottoResult;
-import lotto.view.constant.LottoGrade.*;
-import lotto.view.constant.LottoMessage.*;
-
 import java.util.List;
-
-import static lotto.view.constant.LottoGrade.*;
+import static lotto.view.constant.LottoGradeMessage.*;
 import static lotto.view.constant.LottoMessage.SHOW_STATISTICS_YIELD;
 import static lotto.view.constant.LottoMessage.SHOW_STATISTICS_YIELD_SUFFIX;
-
 public class FinalResult {
     private final Integer PERCENT = 100;
     private final LottoResult lottoResult;
@@ -24,7 +18,6 @@ public class FinalResult {
         this.lottoResult.matchingCount(5);
         this.lottoResult.matchingCount(6);
     }
-    // 당첨 금액 출력
     public void printResult() {
         List<Integer> countList = this.lottoResult.getCountList();
         System.out.println(THREE_GRADE.getComment(countList.get(0)));
@@ -33,7 +26,6 @@ public class FinalResult {
         System.out.println(FIVE_GRADE_AND_BONUS.getComment(countList.get(3)));
         System.out.println(SIX_GRADE.getComment(countList.get(4)));
     }
-
     public void printProfitRate(Integer price) {
         Integer sum = this.lottoResult.getCountList().get(0) * THREE_GRADE.getPrize()
                 + this.lottoResult.getCountList().get(1) * FOUR_GRADE.getPrize()

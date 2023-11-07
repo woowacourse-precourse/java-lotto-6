@@ -17,11 +17,15 @@ public class LottoController {
         String winningNumbers = LottoView.requestInputWinningNumbers();
         Lotto winningLotto = LottoParser.parse(winningNumbers);
         String bonusNumber = LottoView.requestInputBonusNumber();
-        LottoResult lottoResult = new LottoResult(randomLottos, winningLotto, Integer.parseInt(bonusNumber));
-        LottoView.responseResultMessages();
-        FinalResult finalResult = new FinalResult(lottoResult);
-        finalResult.printResult();
-        finalResult.printProfitRate(Integer.parseInt(price));
-
+        LottoResult lottoResult = createLottoResult(randomLottos, winningLotto, bonusNumber);
+        LottoView.printResultMessages();
+        FinalResult finalResult = createFinalResult(lottoResult);
+        LottoView.printResultMessage(finalResult,Integer.parseInt(price));
+    }
+    private static LottoResult createLottoResult(Lottos randomLottos, Lotto winningLotto, String bonusNumber) {
+        return new LottoResult(randomLottos, winningLotto, bonusNumber);
+    }
+    private static FinalResult createFinalResult(LottoResult lottoResult) {
+        return new FinalResult(lottoResult);
     }
 }

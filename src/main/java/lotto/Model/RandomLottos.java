@@ -1,8 +1,9 @@
 package lotto.Model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RandomLottos {
     private int counting;
@@ -22,11 +23,9 @@ public class RandomLottos {
     }
 
     private List<Lotto> createRandomLottos(int counting) {
-        List<Lotto> randomLottos = new ArrayList<>();
-        for (int i = 0; i < counting; i++) {
-            randomLottos.add(createRandomLotto());
-        }
-        return randomLottos;
+        return IntStream.range(0, counting)
+                .mapToObj(lotto -> createRandomLotto())
+                .collect(Collectors.toList());
     }
 
     private Lotto createRandomLotto() {

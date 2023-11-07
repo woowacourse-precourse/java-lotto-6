@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoBonusPairTest {
-    private static final Lotto TEST_LOTTO_INSTANCE = new Lotto(List.of(1,2,3,4,5,6));
+    private static final Lotto TEST_LOTTO_INSTANCE = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     private static final Integer VALID_BONUS_NUMBER = 7;
     private static final Integer INVALID_BONUS_NUMBER = 6;
     private static final Integer THREE_LOTTO = 3000;
@@ -45,9 +45,9 @@ class LottoBonusPairTest {
 
                     assertEquals(expected, testInstance.getResults(testPublishedInstance));
                 },
-                List.of(1,2,3,4,5,6),
-                List.of(2,3,4,5,6,7),
-                List.of(4,5,6,7,8,9)
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(2, 3, 4, 5, 6, 7),
+                List.of(4, 5, 6, 7, 8, 9)
         );
     }
 }

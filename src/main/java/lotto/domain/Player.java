@@ -10,7 +10,7 @@ import java.util.Set;
 public class Player {
     final static int LOTTO_SIZE = 6;
     private List<Integer> numbers;
-
+    private Lotto lotto;
     private InputController inputController = new InputController();
 
     Integer bonus; // 메소드 호출
@@ -38,12 +38,10 @@ public class Player {
             }
         }
 
+        lotto = new Lotto(numbers);
         bonus = InputController.bonusInput();
     }
-
-    public void setBonus(Integer bonus) {
-        this.bonus = bonus;
-    }
+    
 
     public List<Integer> getNumbers() {
         return numbers;

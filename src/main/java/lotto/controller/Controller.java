@@ -25,35 +25,56 @@ public class Controller {
     }
 
     public void execute() {
+        int input = readInputMoney();
+        List<Lotto> lottos = generateLotto(input);
+
+        Lotto winningLotto = readWinningLotto();
+        int bonus = readBonus();
+        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonus);
+
+        lottoResultService = new LottoResultService(winningNumbers, new RankCounter());
+        EnumMap<Rank, Integer> result = lottoResultService.rank(lottos);
+
+        printStats(result);
+        printRateOfReturn(input, result);
+    }
+
+    private int readInputMoney() {
         outputView.printEnterAmountMessage();
-        int amount = inputView.readAmount();
+        return inputView.readAmount();
+    }
+
+    private List<Lotto> generateLotto(int amount) {
         Money money = new Money(amount);
         List<List<Integer>> lottoNumbers = lottoMachineService.generateLotto(money);
         outputView.printLottoPurchases(lottoNumbers);
-        List<Lotto> lottos = lottoMachineService.getLottos();
+        return lottoMachineService.getLottos();
+    }
 
+    private Lotto readWinningLotto() {
         outputView.printEnterWinningNumbersMessage();
         List<Integer> winningLottoNumbers = inputView.readWinningLottoNumbers();
-        Lotto winningLotto = new Lotto(winningLottoNumbers);
+        return new Lotto(winningLottoNumbers);
+    }
 
+    private int readBonus() {
         outputView.printEnterBonusMessage();
-        int bonus = inputView.readBonus();
+        return inputView.readBonus();
+    }
 
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonus);
-        lottoResultService = new LottoResultService(winningNumbers, new RankCounter());
-
-        EnumMap<Rank, Integer> result = lottoResultService.rank(lottos);
-
+    private void printStats(EnumMap<Rank, Integer> result) {
         outputView.printStatsTitle();
         result.keySet()
                 .stream()
                 .filter(rank -> rank != Rank.BLANK)
                 .forEach(rank -> outputView.printStats(rank.getDescription(),
-                        rank.getAmount(),
-                        result.get(rank)
-                )
+                                rank.getAmount(),
+                                result.get(rank)
+                        )
                 );
+    }
 
+    private void printRateOfReturn(int amount, EnumMap<Rank, Integer> result) {
         double rateOfReturn = lottoResultService.getRateOfReturn(amount, result);
         outputView.printRateOfReturn(rateOfReturn);
     }

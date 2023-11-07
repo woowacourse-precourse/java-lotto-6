@@ -36,7 +36,8 @@ public class LottoController {
     private void initPurchaseAmount() {
         while (true) {
             try {
-                purchaseAmount = new PurchaseAmount(InputView.readPurchaseAmount());
+                int inputPurchaseAmount = LottoUtil.parseInputToNumber(InputView.readPurchaseAmount());
+                purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.displayExceptionMessage(e.getMessage());

@@ -27,15 +27,15 @@ public class Money {
         }
     }
 
-    public boolean canPurchaseLotto() {
-        return amount >= LottoOption.LOTTO_PRICE;
-    }
-
     public void payLotto() {
         if (canPurchaseLotto()) {
             this.amount -= LottoOption.LOTTO_PRICE;
             return;
         }
         throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_MONEY);
+    }
+
+    public boolean canPurchaseLotto() {
+        return amount >= LottoOption.LOTTO_PRICE;
     }
 }

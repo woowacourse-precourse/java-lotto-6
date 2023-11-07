@@ -12,7 +12,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class AnswerLottoTest {
+@DisplayName("정답 로또에 대한 테스트")
+public class WinningLottoTest {
     @DisplayName("정상 정답 로또인 경우 예외가 발생하지 않는다.")
     @ParameterizedTest
     @MethodSource("validAnswerLottoProvider")
@@ -26,7 +27,8 @@ public class AnswerLottoTest {
                 Arguments.of(new Lotto(List.of(20, 39, 22, 40, 17, 32)), new BonusNumber(13),
                         Arguments.of(new Lotto(List.of(45, 1, 26, 12, 21, 8)), new BonusNumber(4)),
                         Arguments.of(new Lotto(List.of(7, 37, 19, 43, 5, 29)), new BonusNumber(35))
-                ));
+                )
+        );
     }
 
     @DisplayName("보너스 숫자가 1~45 숫자가 아닌 경우 예외가 발생한다.")

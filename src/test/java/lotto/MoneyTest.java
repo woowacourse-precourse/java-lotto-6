@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class WalletTest {
+public class MoneyTest {
 
-    @DisplayName("천 단위로 입력된 금액이면 wallet 객체를 생성한다.")
+    @DisplayName("천 단위로 입력된 금액이면 money 객체를 생성한다.")
     @ParameterizedTest
     @ValueSource(ints = {1_000, 2_000, 3_000, 4_000, 5_000, 100_000, 100_000_000})
     void createThousandUnitMoneyByThousandUnit(int thousandUnit) {
@@ -27,24 +27,40 @@ public class WalletTest {
                 .hasMessage(ExceptionMessage.INVALID_UNIT);
     }
 
-    @DisplayName("지갑의 금액이 부족하면 지불 시 예외가 발생한다.")
+    @DisplayName("돈이 부족하면 지불 시 예외가 발생한다.")
     @Test
     void purchaseLottoSuccessTest() {
-        Money wallet = new Money(1_000);
+        Money money = new Money(1_000);
 
         Assertions.assertThatNoException()
-                .isThrownBy(wallet::payLotto);
+                .isThrownBy(money::payLotto);
     }
 
-    @DisplayName("지갑의 금액이 부족하면 지불 시 예외가 발생한다.")
+    @DisplayName("돈이 부족하면 지불 시 예외가 발생한다.")
     @Test
     void purchaseLottoFailTest() {
-        Money wallet = new Money(1_000);
+        Money money = new Money(1_000);
 
-        wallet.payLotto();
+        money.payLotto();
 
-        Assertions.assertThatThrownBy(wallet::payLotto)
+        Assertions.assertThatThrownBy(money::payLotto)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.NOT_ENOUGH_MONEY);
+    }
+
+    @Test
+    void canPurchaseLottoSuccessTest() {
+        Money money = new Money(1_000);
+
+        Assertions.assertThat(money.canPurchaseLotto()).isTrue();
+    }
+
+    @Test
+    void canPurchaseLottoFailTest() {
+        Money money = new Money(1_000);
+
+        money.payLotto();
+
+        Assertions.assertThat(money.canPurchaseLotto()).isFalse();
     }
 }

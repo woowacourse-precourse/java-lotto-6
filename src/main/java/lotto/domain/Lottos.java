@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottoItems;
-    private int count;
 
-    private Lottos(List<Lotto> lottos, int count) {
+    private Lottos(List<Lotto> lottos) {
         this.lottoItems = lottos;
-        this.count = count;
     }
 
     public static Lottos purchaseLottos(Money wallet) {
@@ -19,7 +17,7 @@ public class Lottos {
             Lotto newLotto = Lotto.createRandomLotto(wallet);
             lottoItems.add(newLotto);
         }
-        return new Lottos(lottoItems, lottoItems.size());
+        return new Lottos(lottoItems);
     }
 
 
@@ -33,7 +31,7 @@ public class Lottos {
         return lottoItems;
     }
 
-    public int getCount() {
-        return count;
+    public int size() {
+        return lottoItems.size();
     }
 }

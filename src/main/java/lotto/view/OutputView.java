@@ -13,7 +13,7 @@ import lotto.message.ExceptionMessage;
 
 public class OutputView {
     public static void printLottos(Lottos purchasedLotto) {
-        System.out.printf(OUTPUT_PURCHASE_COUNT, purchasedLotto.getCount());
+        System.out.printf(OUTPUT_PURCHASE_COUNT, purchasedLotto.size());
         System.out.println(purchasedLotto.getLottosNumber());
     }
 

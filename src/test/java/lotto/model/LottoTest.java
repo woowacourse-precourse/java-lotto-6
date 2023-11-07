@@ -153,4 +153,31 @@ class LottoTest {
                 Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 6)
         );
     }
+
+    @DisplayName("1등 로또 번호와 겹치는게 몇개인지 확인")
+    @ParameterizedTest
+    @MethodSource("provideGetMatchingNumberCountNeed")
+    void test_getMatchingNumberCount(Lotto myLotto, Lotto firstPrizeLotto, int expect) {
+        int result = myLotto.getMatchingNumberCount(firstPrizeLotto);
+        assertThat(result).isEqualTo(expect);
+
+    }
+
+    private static Stream<Arguments> provideGetMatchingNumberCountNeed() {
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        return Stream.of(
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                        new Lotto(Arrays.asList(1, 12, 13, 14, 15, 16)), 1),
+                Arguments.of(new Lotto(Arrays.asList(11, 2, 13, 14, 15, 6)),
+                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 2),
+                Arguments.of(new Lotto(Arrays.asList(1, 12, 3, 14, 5, 16)),
+                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 3),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 13, 14, 5, 6)),
+                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 4),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 14, 5, 6)),
+                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 5),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                        new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 6)
+        );
+    }
 }

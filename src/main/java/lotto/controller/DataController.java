@@ -66,7 +66,7 @@ public class DataController {
         return totalPrizeAmount;
     }
 
-    public static double calcGainPercentage(long totalPrizeAmount, long money) {
-        return Math.round(((double) totalPrizeAmount / money * 100 * 10)) / 10.0;
+    public static double calcGainPercentage(long totalPrizeAmount, long moneyAmount) {
+        return Math.round(((double) totalPrizeAmount / moneyAmount * 100 * 10)) / 10.0;
     }
 }

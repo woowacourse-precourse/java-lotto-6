@@ -22,9 +22,9 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    public static LottoRank get(WiningLottoNumbers winingLottoNumbers, Lotto lotto) {
-        int winingCount = winingLottoNumbers.countWining(lotto);
-        boolean winingBonus = winingLottoNumbers.isWiningBonus(lotto);
+    public static LottoRank get(WinningLottoNumbers winningLottoNumbers, Lotto lotto) {
+        int winingCount = winningLottoNumbers.countWining(lotto);
+        boolean winingBonus = winningLottoNumbers.isWiningBonus(lotto);
         List<LottoRank> lottoRanks = Arrays.stream(values())
                 .filter(lottoRank -> lottoRank.getMatchingCount() == winingCount).toList();
         if (winingCount == LottoConstance.SECOND_AND_THIRD_WINING_COUNT.get()) {

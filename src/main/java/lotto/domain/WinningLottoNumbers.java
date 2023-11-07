@@ -2,11 +2,11 @@ package lotto.domain;
 
 import static lotto.ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE;
 
-public class WiningLottoNumbers {
+public class WinningLottoNumbers {
     private final Lotto winingLotto;
     private final Bonus bonus;
 
-    public WiningLottoNumbers(Lotto winingLotto, Bonus bonus) {
+    public WinningLottoNumbers(Lotto winingLotto, Bonus bonus) {
         validate(winingLotto, bonus);
         this.winingLotto = winingLotto;
         this.bonus = bonus;

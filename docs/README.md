@@ -43,9 +43,13 @@
   #### OutputView
     - Controller의 출력 로직을 처리한다.
 
-  
-- 크게 *Model*, *View*, *Controller*로 3개로 나누어 *MVC* 패턴으로 기능을 구현한다.
-    - *util* 등 *MVC*로 분류하기 어렵다면 디렉토리 경로를 분리한다.
+  #### EnumType
+  - 로또 번호는 Lotto Enum Type으로 분류한다.
+  - 랭킹, 수익률 등 결과 산출과 관련된 상수는 Referee Enum Type으로 분류한다.
+
+
+- *Model*, *View*, *Controller*로 3개로 나누어 *MVC* 패턴으로 기능을 구현한다.
+    - *util*, *parsing*, *constant* 등 *MVC*로 분류하기 어렵다면 디렉토리 경로를 분리한다.
 ## 📌 예외처리 목록
 
 - 예외는 Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
@@ -62,6 +66,9 @@
 - 구입 금액
   - 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
   - 0원 또는 음수일 경우 예외 처리한다.
+- Referee
+  - 1등 ~ 5등 사이의 랭킹이 아닐 경우 IllegalStateException() 예외처리한다.
+  - 수익률 계산 시 로또 구매 금액이 0이하일 경우, DivideByZeroException() 처리 전 IllegalArgumentException() 예외처리한다. 
 ## 📌 테스트 검증
 
 

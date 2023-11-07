@@ -2,14 +2,22 @@ package domain;
 
 public enum Rank {
     FIRST(6, false, 2_000_000_000),
+
     SECOND(5, true, 30_000_000),
+
     THIRD(5, false, 1_500_000),
+
     FOURTH(4, false, 50_000),
+
     FIFTH(3, false, 5_000);
+
+    private static final String RESULT_MESSAGE = "%d개 일치 (%s)원 - %d개";
+    private static final String SECOND_RANK_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개";
 
     private final int winningNumberCount;
     private final boolean hasBonusNumber;
     private final int prize;
+
 
     Rank(int winningNumberCount, boolean hasBonusNumber, int prize) {
         this.winningNumberCount = winningNumberCount;
@@ -37,5 +45,13 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public String getMessageFormat() {
+        if (this == SECOND) {
+            return SECOND_RANK_RESULT_MESSAGE;
+        }
+
+        return RESULT_MESSAGE;
     }
 }

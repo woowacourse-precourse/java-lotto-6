@@ -46,4 +46,34 @@ class LottoValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 1,000원 단위로 입력해주세요.");
     }
+
+    @Test
+    void validateCommaDivision() {
+        LottoValidation lottoValidation = new LottoValidation();
+        String input = "1.2.3.4.5.6";
+
+        assertThatThrownBy(() -> lottoValidation.validateCommaDivision(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 쉼표(,)를 기준으로 구분해주세요.");
+    }
+
+    @Test
+    void validateBetween1And45() {
+        LottoValidation lottoValidation = new LottoValidation();
+        String input = "1,2,3,4,5,46";
+
+        assertThatThrownBy(() -> lottoValidation.validateBetween1And45(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+    }
+
+    @Test
+    void validateDuplicateNumber() {
+        LottoValidation lottoValidation = new LottoValidation();
+        String input = "1,2,3,4,33,33";
+
+        assertThatThrownBy(() -> lottoValidation.validateDuplicateNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
 }

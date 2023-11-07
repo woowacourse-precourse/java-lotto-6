@@ -6,6 +6,7 @@ import lotto.validation.LottoValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -18,6 +19,24 @@ public class Application {
 
         int purchaseAmount = ioPurchaseAmount(outputView, inputView, lottoValidation);
         List<UserLotto> userLottos = outputPurchasedUserLotto(purchaseAmount, outputView, userLottoGenerator);
+        List<Integer> winningNumber = ioWinningNumber(outputView, inputView, lottoValidation);
+
+    }
+
+    private static List<Integer> ioWinningNumber(OutputView outputView, InputView inputView, LottoValidation lottoValidation) {
+        List<Integer> winningNumber = new ArrayList<>();
+        outputView.printInputWinningNumberMessage();
+        while (true) {
+            try {
+                List<Integer> numbers = inputView.readWinningNumber(lottoValidation);
+                Lotto lotto = new Lotto(numbers);
+                winningNumber.addAll(lotto.getNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumber;
     }
 
     private static List<UserLotto> outputPurchasedUserLotto(int purchaseAmount, OutputView outputView, UserLottoGenerator userLottoGenerator) {

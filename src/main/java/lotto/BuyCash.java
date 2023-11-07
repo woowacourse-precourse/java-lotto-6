@@ -3,9 +3,10 @@ package lotto;
 import lotto.util.ExceptionMessageGenerator;
 
 public class BuyCash {
-    private static final String NOT_DIVIDED_MESSAGE = "구매금액이 1000원으로 나눠지지 않습니다.";
-    private static final String NOT_POSITIVE_MESSAGE = "구매금액은 양수여야 합니다.";
     private static final int BUY_UNIT = 1000;
+    private static final String NOT_DIVIDED_MESSAGE = String.format("구매금액이 %d원으로 나눠지지 않습니다.", BUY_UNIT);
+    private static final String NOT_POSITIVE_MESSAGE = "구매금액은 양수여야 합니다.";
+
     private final long buyCash;
 
     public BuyCash(long buyCash) {

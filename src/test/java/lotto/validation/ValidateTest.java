@@ -34,4 +34,14 @@ class ValidateTest {
         assertDoesNotThrow(() -> Validator.validateWinningNumber(number1));
         assertThrows(IllegalArgumentException.class, () -> Validator.validateWinningNumber(number2));
     }
+
+    @DisplayName("당첨 번호 6개를 입력했는지 테스트")
+    @Test
+    void 당첨_번호_개수_테스트() {
+        List<Integer> number1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> number2 = Arrays.asList(1, 2, 3, 3);
+
+        assertDoesNotThrow(() -> Validator.validateWinningNumber(number1));
+        assertThrows(IllegalArgumentException.class, () -> Validator.validateWinningNumber(number2));
+    }
 }

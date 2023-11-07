@@ -23,7 +23,6 @@ public class Application {
 
         System.out.println();
         getLottoNumberPromptMessage();
-        DongHangLottery commander = new DongHangLottery();
-        commander.drawWinningNumbers();
+        DongHangLottery lottoMatcher = new DongHangLottery();
     }
 }

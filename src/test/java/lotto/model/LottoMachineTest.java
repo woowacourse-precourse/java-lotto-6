@@ -1,9 +1,6 @@
 package lotto.model;
 
-import lotto.model.Lotto;
-import lotto.model.LottoMachine;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
+import lotto.utils.LottoCompare;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,5 +53,11 @@ public class LottoMachineTest {
     @Test
     void lottoMachine_수익률_계산() {
         assertThat(lottoMachine.calcProfit(money)).isEqualTo((float) 500);
+    }
+
+    @DisplayName("비교 결과를 제대로 저장하는가?")
+    @Test
+    void lottoMachine_순위_계산() {
+        assertThat(lottoMachine.getLottoCompares()).isEqualTo(List.of(LottoCompare.FIFTH));
     }
 }

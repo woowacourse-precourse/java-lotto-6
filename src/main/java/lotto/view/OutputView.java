@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.dto.NumbersParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,12 @@ public class OutputView {
     }
 
     public static void printBoughtLottos(List<Lotto> lottos) {
-        lottos.stream()
-                .map(Object::toString)
-                .forEach(System.out::println);
+        List<NumbersParam> numbersParams = lottos.stream()
+                .map(lotto -> NumbersParam.from(lotto.getNumbers()))
+                .toList();
+        for (NumbersParam param : numbersParams) {
+            System.out.println("[" + String.join(", ", param.numbers()) + "]");
+        }
     }
 
     public static void printAskWinningNumbersMessage() {

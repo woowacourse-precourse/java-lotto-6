@@ -30,10 +30,6 @@ public class Lotto {
         return matchCount;
     }
 
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-
     protected static void validateLottoNum(int num) {
         if (num < 1) {
             throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());

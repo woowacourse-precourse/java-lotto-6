@@ -79,11 +79,6 @@ class User {
         return number;
     }
 
-    public List<Integer> getLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
-    }
-
     public int getBonusNumber(Lotto winningLotto){
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNum =0;
@@ -100,6 +95,11 @@ class User {
         return bonusNum;
     }
 
+    public List<Integer> getLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers;
+    }
+    
     public List<Lotto> getLottoAsMuchAsVolume(int volume) {
         List<Lotto> allLotto = new ArrayList<>();
         for (int i = 0; i < volume; i++) {

@@ -17,6 +17,10 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validateNumber(String input) {
         if (GameUtils.isNotNumber(input)) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);

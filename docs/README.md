@@ -7,7 +7,9 @@
     - [x] `예외상황` : 금액이 양수가 아닌 경우
     - [x] `예외상황` : 금액이 로또 가격으로 나누어 떨어지지 않는 경우 (로또 1장 가격 : 1,000원)
 - [ ] 구입 금액에 해당하는 만큼 로또 발행
-    - [ ] 1개의 로또 발행할 때마다 중복되지 않는 6개의 숫자 뽑기 (로또 번호 숫자 범위 : 1~45)
+    - [x] `예외상황` : 뽑은 숫자 개수가 정해진 개수가 아닌 경우 (로또 숫자 개수 : 6개)
+    - [x] `예외상황` : 뽑은 숫자가 같은 로또 내에서 중복되는 경우
+    - [ ] `예외상황` : 뽑은 숫자가 범위 내에 존재하지 않는 경우 (로또 숫자 범위 : 1~45)
 - [ ] 발행한 로또 수량 및 번호 출력
     - [ ] 오름차순 정렬
 
@@ -59,12 +61,15 @@
 - `PurchaseAmount`
 - `AllLottoNumbers`
 - `AllWinningNumbers`
+- `LottoGenerator`
 
 ### PurchaseAmount
 - int
 
 ### AllLottoNumbers
 - List\<Lotto>
+
+### LottoGenerator
 
 ### Lotto
 - List\<Integer>
@@ -75,3 +80,5 @@
 
 ### WinningNumbers
 - List\<Integer>
+
+### GameUtils

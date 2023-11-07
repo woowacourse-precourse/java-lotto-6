@@ -33,4 +33,12 @@ public class WinNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("1부터 45 사이의 수를 입력해야 합니다.");
     }
+
+    @DisplayName("당첨 번호가 중복 한다면 예외를 발생한다.")
+    @Test
+    void should_throwException_when_isDuplicated() {
+        Assertions.assertThatThrownBy(() -> WinNumber.of("1,2,3,1,2,3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 숫자를 입력할 수 없습니다.");
+    }
 }

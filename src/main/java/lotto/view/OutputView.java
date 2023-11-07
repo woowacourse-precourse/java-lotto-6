@@ -11,6 +11,14 @@ public class OutputView {
     public OutputView() {
     }
 
+    public static OutputView getInstance() {
+        return OutputView.LazyHolder.INSTANCE;
+    }
+
+    private static class LazyHolder {
+        private static final OutputView INSTANCE = new OutputView();
+    }
+
     public void printEnterPurchaseAmount() {
         printMessage(LottoMessage.ENTER_PURCHASE_AMOUNT.getMessage());
     }
@@ -52,14 +60,4 @@ public class OutputView {
     private static void printMessage(Object message) {
         System.out.println(message);
     }
-
-    public static OutputView getInstance() {
-        return OutputView.LazyHolder.INSTANCE;
-    }
-
-
-    private static class LazyHolder {
-        private static final OutputView INSTANCE = new OutputView();
-    }
-
 }

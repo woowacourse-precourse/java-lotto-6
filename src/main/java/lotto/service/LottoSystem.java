@@ -5,7 +5,6 @@ import lotto.type.WinningResultType;
 import lotto.model.Lotto;
 import lotto.model.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoSystem {

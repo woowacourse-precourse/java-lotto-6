@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.util.Lists.list;
-
 public class InputSystem {
 
     public int inputPaymentAccount(){

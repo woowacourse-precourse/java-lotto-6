@@ -16,9 +16,9 @@ public class RankTest {
         Assertions.assertEquals(Rank.MATCH_6, Rank.calculateRank(6, false));
     }
 
-    @DisplayName("getPrizeMoney 일치 여부 테스트")
+    @DisplayName("rank와 getPrizeMoney 일치 여부 테스트")
     @Test
-    void 해당_rank와_getPrizeMoney의_결과가_일치하지_않으면_예외가_발생한다() {
+    void 해당_rank와_상금이_일치하지_않으면_예외가_발생한다() {
         Rank rank = Rank.MATCH_3;
         Assertions.assertEquals(5000, rank.getPrizeMoney());
 
@@ -26,19 +26,22 @@ public class RankTest {
         Assertions.assertEquals(1_500_000, rank.getPrizeMoney());
     }
 
-    @DisplayName("getCountOfWin 일치 여부 테스트")
+    @DisplayName("rank와 getCountOfWin 일치 여부 테스트")
     @Test
-    void 해당_rank와_getCountOfWin_결과가_일치하지_않으면_예외가_발생한다() {
+    void 해당_rank와_초기_승리횟수가_일치하지_않으면_예외가_발생한다() {
         Rank rank = Rank.MATCH_3;
-        Assertions.assertEquals(1, rank.getCountOfWin());
+        Assertions.assertEquals(0, rank.getCountOfWin());
 
-        rank = Rank.MATCH_4;
+        rank = Rank.MATCH_5_BONUS;
+        Assertions.assertEquals(0, rank.getCountOfWin());
+
+        rank = Rank.MATCH_5;
         Assertions.assertEquals(0, rank.getCountOfWin());
     }
 
-    @DisplayName("isMatchBonus 일치 여부 테스트")
+    @DisplayName("rank와 isMatchBonus 일치 여부 테스트")
     @Test
-    void 해당_rank와_isMatchBonus_결과가_일치하지_않으면_예외가_발생한다() {
+    void 해당_rank와_isMatchBonus_값이_일치하지_않으면_예외가_발생한다() {
         Rank rank = Rank.MATCH_5_BONUS;
         Assertions.assertTrue(rank.isMatchBonus());
 

@@ -30,4 +30,13 @@ public class PrizeNumberValidator {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_DUPLICATED_ERROR);
         }
     }
+
+    private void validateSixNumbers(List<Integer> winNumber) {
+
+        if (winNumber.size() != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.PRIZE_NUMBER_FORMAT_ERROR);
+        }
+    }
+
+
 }

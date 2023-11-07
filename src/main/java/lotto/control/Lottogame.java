@@ -112,4 +112,19 @@ package lotto.control;public class Lottogame {
         System.out.println(message);
         return Console.readLine();
     }
+
+    private List<Lotto> generateLottos(int purchaseAmount) {
+        int numberOfLotto = purchaseAmount / 1000;
+        List<Lotto> lottos = generateRandomLottos(numberOfLotto);
+        return lottos;
+    }
+
+    private List<Lotto> generateRandomLottos(int numberOfLotto) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLotto; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
 }

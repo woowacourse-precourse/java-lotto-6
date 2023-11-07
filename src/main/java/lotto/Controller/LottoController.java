@@ -24,7 +24,7 @@ public class LottoController {
         // Return -> is successful
     }
 
-    public String printPurchaseHistory() {
-        return human.toString();
+    public int getPurchasedCnt() {
+        return human.getLottosLength();
     }
 }

@@ -1,6 +1,5 @@
 package lotto.Domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -31,11 +30,8 @@ public class Human {
     }
 
     public int getLottosLength() {
-        return Array.getLength(lottos);
+        return lottos.size();
     }
 
-    @Override
-    public String toString() {
-        return "개를 구매했습니다.";
-    }
+
 }

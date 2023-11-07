@@ -13,16 +13,26 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningLottoValidator {
+public class WinningNumber {
 
-    public List<String> validateDelimiterComma(String numbers) {
+    private final List<Integer> numbers;
+
+    public WinningNumber(String numbers) {
+        List<String> inputDividedByComma = validateDelimiterComma(numbers);
+        validateSixElements(inputDividedByComma);
+        List<Integer> integerNumbers = validateWinningNumberIsNumeric(inputDividedByComma);
+        validateNumberBetweenInRange(integerNumbers);
+        this.numbers = integerNumbers;
+    }
+
+    private List<String> validateDelimiterComma(String numbers) {
         if (!numbers.matches(".*,.*")) {
             throw new IllegalArgumentException(WINNING_NUMBER_INVALID_DELIMITER.getMessage());
         }
         return List.of(numbers.split(","));
     }
 
-    public void validateSixElements(List<String> numbers) {
+    private void validateSixElements(List<String> numbers) {
         Set<String> set = new HashSet<>(numbers);
         if(set.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(WINNING_NUMBER_INVALID_SIZE.format(NUMBERS_SIZE));
@@ -50,4 +60,8 @@ public class WinningLottoValidator {
         }
     }
 
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }

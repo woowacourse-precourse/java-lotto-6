@@ -2,6 +2,7 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import lotto.enums.Rank;
@@ -73,5 +74,28 @@ class ServiceTest {
         assertEquals(Rank.FIRST, rankList.get(0));
         assertEquals(Rank.SECOND, rankList.get(1));
         assertEquals(Rank.FAIL, rankList.get(2));
+    }
+
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void 수익률_계산_테스트() {
+        List<Integer> winNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        int lottoCount = 10;
+
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        Lotto lotto3 = new Lotto(Arrays.asList(8, 9, 10, 11, 12, 13));
+        List<Lotto> lottoList = Arrays.asList(lotto1, lotto2, lotto3);
+
+        List<Rank> rankList = gameService.checkWinNumbers(winNumbers, lottoList, bonusNumber);
+
+        String realReturn = gameService.calculateReturnRate(rankList, lottoCount);
+        int totalPrize = Rank.FIRST.getPrize() + Rank.SECOND.getPrize();
+        double expectedReturnRate = ((double) totalPrize / (lottoCount * 1000)) * 100;
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        String expectedReturn = decimalFormat.format(expectedReturnRate) + "%입니다.";
+
+        assertEquals(expectedReturn, realReturn);
     }
 }

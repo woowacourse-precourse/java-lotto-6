@@ -66,9 +66,8 @@ public class Application {
             System.out.println("당첨 번호를 입력해 주세요.");
             List<String> winningNumberOfString = List.of(Console.readLine().split(","));
             List<Integer> winningNumber = new ArrayList<>();
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; i++)
                 winningNumber.add(Integer.parseInt(winningNumberOfString.get(i)));
-            }
             if(!isWinningNumberValid(winningNumber))
                 throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
             System.out.println(winningNumber);
@@ -85,6 +84,8 @@ public class Application {
             System.out.println("보너스 번호를 입력해 주세요.");
             int bonusNumber = Integer.parseInt(Console.readLine());
             System.out.println(bonusNumber);
+            if ( bonusNumber < 1 || bonusNumber > 45 )
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
             return bonusNumber;
         }catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");

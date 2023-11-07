@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.element.Lotto;
+import lotto.element.WinningDetails;
 import java.util.*;
 
 public class Output {
@@ -8,6 +9,13 @@ public class Output {
         System.out.printf("\n%d개를 구매했습니다.\n", lottoes.size());
         for (Lotto lotto : lottoes) {
             System.out.println(lotto);
+        }
+    }
+
+    void printWinnings(int[] winCount) {
+        for (WinningDetails wd : WinningDetails.values()) {
+            System.out.print(wd);
+            System.out.printf("- %d개\n", winCount[wd.ordinal()]);
         }
     }
 }

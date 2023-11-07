@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ResultDto;
 
 public class OutputView {
     private static final String PURCHASE_COUNT_FORMAT = "%d개를 구매했습니다.";
@@ -21,6 +22,10 @@ public class OutputView {
     public static void printLottos(LottosDto lottosDto) {
         printMessage(toMessage(lottosDto.getCountOfPurchase()));
         lottosDto.getLottoDtos().forEach(OutputView::printLottoNumbers);
+    }
+
+    public static void printResult(ResultDto resultDto) {
+        
     }
 
     private static String toMessage(Integer numberOfPurchase) {

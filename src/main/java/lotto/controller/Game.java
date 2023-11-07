@@ -55,5 +55,8 @@ public class Game {
         WinningNumber winningNumber = lottoService.getWinningNumber();
         BonusNumber bonusNumber = lottoService.getBonusNumber();
         resultService.calculateWinningStatistics(purchasedLottos, winningNumber, bonusNumber);
+        resultService.calculateReturnRate(purchasedLottos);
+        OutputView.printResult(resultService.getLottoResult());
+
     }
 }

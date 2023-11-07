@@ -1,6 +1,8 @@
 package lotto.view;
 import lotto.model.Player;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,9 @@ public class OutputView {
     public static void printBuyLotto(List<List<Integer>> mainLotto, int count) {
         System.out.println(count + "개를 구매했습니다.");
         for (List<Integer> lotto: mainLotto) {
-            System.out.println(lotto);
+            List<Integer> mutableLotto = new ArrayList<>(lotto);
+            mutableLotto.sort(Comparator.naturalOrder());
+            System.out.println(mutableLotto);
         }
         System.out.println();
     }

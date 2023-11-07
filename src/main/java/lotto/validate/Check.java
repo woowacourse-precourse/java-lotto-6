@@ -2,9 +2,7 @@ package lotto.validate;
 
 import lotto.util.ErrorMessage;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Check {
 

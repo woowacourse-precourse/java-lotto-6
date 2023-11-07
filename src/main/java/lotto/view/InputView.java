@@ -16,10 +16,9 @@ public class InputView {
                 LottoPrice = Integer.parseInt(Console.readLine());
                 CustomizedException.notDivisibleByThousandException(LottoPrice);
                 break;
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println(CustomizedException.ERROR_MESSAGE_INIT + "유효한 구입금액을 입력해주세요.");
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -44,20 +43,23 @@ public class InputView {
                 break;
             } catch (NumberFormatException e) {
                 System.out.println(CustomizedException.ERROR_MESSAGE_INIT + "유효한 번호를 입력해주세요.");
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return WinningNumbers;
     }
-    public static int getBonusNumber(){
+
+    public static int getBonusNumber() {
         int bonusNumber;
-        while(true){
+        while (true) {
             try {
-                bonusNumber= Integer.parseInt(Console.readLine());
+                bonusNumber = Integer.parseInt(Console.readLine());
                 CustomizedException.bonusNumbersNotRange(bonusNumber);
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (NumberFormatException e) {
+                System.out.println(CustomizedException.ERROR_MESSAGE_INIT + "유효한 번호를 입력해주세요.");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

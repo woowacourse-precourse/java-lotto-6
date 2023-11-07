@@ -14,11 +14,12 @@ public class LottoResultTest {
     private static final int THIRD_PRIZE = 1_500_000;
     @DisplayName("구입한 로또들에 대한 총 상금을 알 수 있다.")
     @Test
-    void totalPrizeTest() {
+    void checkTotalPrize() {
         result.put(Rank.FIRST,1);
         result.put(Rank.SECOND,1);
         result.put(Rank.THIRD,2);
         int totalPrize = FIRST_PRIZE + SECOND_PRIZE + (THIRD_PRIZE * 2);
         Assertions.assertThat(lottosResult.calculateTotalPrize(result)).isEqualTo(totalPrize);
     }
+
 }

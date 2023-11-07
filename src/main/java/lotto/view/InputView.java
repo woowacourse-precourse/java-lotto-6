@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
+import lotto.model.Lotto;
 import lotto.util.converter.IntegerConverter;
 import lotto.util.converter.IntegerListConverter;
 import lotto.util.validator.BlankValidator;
@@ -14,10 +14,10 @@ public class InputView {
         return IntegerConverter.convert(input);
     }
 
-    public List<Integer> readWinningNumbers() {
+    public Lotto readWinningNumbers() {
         String input = Console.readLine();
         validate(input);
-        return IntegerListConverter.convert(input);
+        return new Lotto(IntegerListConverter.convert(input));
     }
 
     public Integer readBonusNumber() {

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.UserMoney;
 import lotto.model.WinningNumbers;
 import lotto.view.UserIoManager;
@@ -14,8 +14,8 @@ public class LottoController {
 
     public void run() {
         UserMoney userMoney = userIoManager.readUserMoney();
-        List<Integer> numbers = userIoManager.readWinningNumbers();
+        Lotto lotto = userIoManager.readWinningNumbers();
         Integer bonusNumber = userIoManager.readBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(lotto, bonusNumber);
     }
 }

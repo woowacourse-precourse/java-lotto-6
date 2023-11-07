@@ -1,6 +1,6 @@
 package lotto.view;
 
-import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.UserMoney;
 
 public class UserIoManager {
@@ -24,7 +24,7 @@ public class UserIoManager {
         }
     }
 
-    public List<Integer> readWinningNumbers() {
+    public Lotto readWinningNumbers() {
         while (true) {
             try {
                 outputView.printWinningNumbersGuide();

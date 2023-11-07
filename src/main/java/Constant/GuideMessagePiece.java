@@ -15,4 +15,6 @@ public class GuideMessagePiece {
     public static final String COMMA = ",";
     public static final String LINE_BREAK = "\n";
 
+    public static final String EMPTY_VALUE = "";
+
 }

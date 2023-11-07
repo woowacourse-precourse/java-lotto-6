@@ -41,7 +41,7 @@
 - (Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 - 숫자 입력 예외 처리
     - [x] 입력이 0을 포함한 양의 정수가 아닌 경우
-    - [ ] 공백이 입력될 경우
+    - [x] 공백이 입력될 경우
  
 - 구입 금액 예외 처리
     - [ ] 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우

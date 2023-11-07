@@ -1,14 +1,10 @@
 package VIew;
 
-import camp.nextstep.edu.missionutils.Console;
+import Interface.MessagePrinter;
 
-public class InputView {
+public class InputView implements MessagePrinter {
     public void printMessage(String message) {
         System.out.println(message);
-    }
-
-    public String getUserInput() {
-       return Console.readLine();
     }
 
 }

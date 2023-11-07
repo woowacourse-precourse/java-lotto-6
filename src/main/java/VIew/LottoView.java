@@ -1,32 +1,47 @@
 package VIew;
 
+import Interface.MessagePrinter;
 import Utils.LottoRank;
 import Utils.Messages;
-import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class LottoView {
+public class LottoView implements MessagePrinter {
 
-    /*public Lotto promptForWinningNumbers() {
-        System.out.println(Messages.INPUT_WINNING_NUMBERS);
-        return new Lotto(Console.readLine());
-    }*/
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
 
-    public int promptForBonusNumber() {
-        System.out.println(Messages.INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+    public void displayPurchasedLottoTickets(int countOfLotto, List<Lotto> lottoNumbers) {
+        printMessage(countOfLotto + "개를 구매했습니다.");
+        lottoNumbers.forEach(lotto -> printMessage(formatLottoNumbers(lotto.getLottoArray())));
+    }
+
+    private String formatLottoNumbers(List<Integer> lottoNumbers) {
+        return "[" + lottoNumbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")) + "]";
     }
 
     public void printWinningStatistics(Map<LottoRank, Integer> statistics) {
-        System.out.println(Messages.WINNING_STATISTICS);
-        System.out.println(Messages.UNDER_BAR);
-        statistics.forEach((rank, value) -> {
-            if (rank != LottoRank.NONE) {
-                System.out.println(rank.getDescription() + " - " + value + "개");
-            }
-        });
+        printMessage(Messages.WINNING_STATISTICS);
+        printMessage(Messages.UNDER_BAR);
+
+        Arrays.stream(LottoRank.values())
+                .filter(rank -> rank != LottoRank.NONE) // NONE 등수는 제외
+                .forEach(rank -> {
+                    String description = rank.getDescription();
+                    int count = statistics.getOrDefault(rank, 0);
+                    printMessage(description + " - " + count + "개");
+                });
     }
+
+    public void printTotalEarnings(String earningsRateText) {
+        printMessage("총 수익률은 " + earningsRateText + "입니다.");
+    }
+
 }

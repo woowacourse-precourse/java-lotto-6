@@ -6,133 +6,93 @@ import Utils.LottoRank;
 import Utils.Messages;
 import VIew.LottoView;
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoController {
-    List<Integer> winningLottoNumber;
-    Map<LottoRank, Integer> correctLottoNumber = new EnumMap<>(LottoRank.class);
-    Map<LottoRank, Integer> statistics;
-    List<Lotto> lottoNumbers = new ArrayList<>();
-    int payment, countOfLotto, bonusNumber;
-    double total;
 
     private final InputManager inputManager;
     private final LottoModel lottoModel;
-    private LottoView lottoView;
+    private final LottoView lottoView;
 
-    public LottoController(InputManager inputManger, LottoView lottoView) {
-        initializeCorrectLottoNumberMap();
+    public LottoController(InputManager inputManger) {
+
         this.inputManager = inputManger;
         this.lottoModel = new LottoModel();
-        this.lottoView = lottoView;
+        this.lottoView = new LottoView();
     }
 
     public void run() {
-        promptForPurchaseAmount();
-        generateLottoTickets();
-        promptForWinningNumbers();
-        promptForBonusNumber();
-        statistics = checkWinningStatistics(lottoNumbers, winningLottoNumber, bonusNumber);
-        printWinningStatistics(statistics);
-        printTotalEarnings();
+        inputPaymentAndUpdateModel();
+        displayPurchasedLottoTickets();
+        updateModelWithWinningNumbers();
+        requestAndAddBonusNumber();
+        printWinningStatistics();
+        displayTotalEarnings();
     }
 
-    private Map<LottoRank, Integer> checkWinningStatistics(List<Lotto> lottoNumbers, List<Integer> winningLottoNumber, int bonusNumber) {
-        Map<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
-        for (Lotto lotto : lottoNumbers) {
-            LottoRank rank = checkLottoNumber(lotto, winningLottoNumber, bonusNumber);
-            statistics.merge(rank, 1, Integer::sum);
-            total += rank.getPrizeMoney();
-        }
-        return statistics;
-    }
-
-    private void promptForPurchaseAmount() {
-        payment = inputManager.promptForPayment(Messages.INPUT_MONEY);
+    private void inputPaymentAndUpdateModel() {
+        int payment = inputManager.promptForPayment(Messages.INPUT_MONEY);
         lottoModel.setPayment(payment);
-        countOfLotto = lottoModel.getCountOfLotto();
     }
 
-    private void generateLottoTickets() {
-        for (int i = 0; i < countOfLotto; i++) {
-            lottoNumbers.add(createLotto());
-        }
-        System.out.println(countOfLotto + "개를 구매했습니다.");
-        lottoNumbers.forEach(lotto -> System.out.println(lotto.getLottoArray()));
+    private void displayPurchasedLottoTickets() {
+        int countOfLotto = lottoModel.getCountOfLotto();
+        List<Lotto> lottoNumbers = lottoModel.generateLottoTickets();
+        lottoView.displayPurchasedLottoTickets(countOfLotto, lottoNumbers);
     }
 
-    private void promptForWinningNumbers() {
-        System.out.println(Messages.INPUT_WINNING_NUMBERS);
-        Lotto lotto = gettingLottoWinningNumbers(Console.readLine());
-        winningLottoNumber = lotto.getLottoArray();
-    }
-
-    private void promptForBonusNumber() {
-        System.out.println(Messages.INPUT_BONUS_NUMBER);
-        bonusNumber = Integer.parseInt(Console.readLine());
-        winningLottoNumber.add(bonusNumber);
-    }
-
-    private void printWinningStatistics(Map<LottoRank, Integer> statistics) {
-        System.out.println(Messages.WINNING_STATISTICS);
-        System.out.println(Messages.UNDER_BAR);
-
-        // 당첨 통계를 출력합니다. 여기서는 계산된 통계 맵을 사용합니다.
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank != LottoRank.NONE) { // NONE을 제외한 모든 등수에 대해 출력
-                String description = rank.getDescription();
-                int count = statistics.getOrDefault(rank, 0); // 등수에 해당하는 티켓 수가 없으면 기본값으로 0을 사용
-                System.out.println(description + " - " + count + "개");
-            }
+    private void updateModelWithWinningNumbers() {
+        inputManager.displayMessage(Messages.INPUT_WINNING_NUMBERS);
+        try {
+            Lotto lotto = gettingLottoWinningNumbers(Console.readLine());
+            lottoModel.updateWinningLottoNumbers(lotto.getLottoArray());
+        } catch (IllegalArgumentException e) {
+            lottoView.printMessage(e.getMessage());
+            updateModelWithWinningNumbers();
         }
     }
 
 
-
-    private void printTotalEarnings() {
-        System.out.println("총 수익률은 " + calculateAverage(total) + "%입니다.");
-    }
-
-    private String calculateAverage(double total) {
-        double earningsRate = (total / payment ) * 100;
-        return String.format("%.1f", earningsRate);
-    }
-
-    private LottoRank checkLottoNumber(Lotto lotto, List<Integer> winningNumbers, int bonusNum) {
-        int matchCount = 0;
-        boolean bonusMatch = false;
-
-        for (int number : lotto.getLottoArray()) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-            if (number == bonusNum) {
-                bonusMatch = true;
-            }
-        }
-
-        // 이제 당첨 등수를 LottoRank.valueOf를 사용하여 계산합니다.
-        return LottoRank.valueOf(matchCount, bonusMatch);
-    }
-
-
-
-    public void initializeCorrectLottoNumberMap() {
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank != LottoRank.NONE) { // NONE은 맵에 포함시키지 않음
-                correctLottoNumber.put(rank, 0);
-            }
+    private void requestAndAddBonusNumber() {
+        inputManager.displayMessage(Messages.INPUT_BONUS_NUMBER);
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            lottoModel.validateRange(bonusNumber);
+            lottoModel.addBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            lottoView.printMessage(Messages.LottoNumberOutOfRangeException);
+            requestAndAddBonusNumber();
         }
     }
 
-    private Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numbers);
+
+    private void printWinningStatistics() {
+        Map<LottoRank, Integer> statistics = lottoModel.checkWinningStatistics();
+        lottoView.printWinningStatistics(statistics);
     }
+
+    private void displayTotalEarnings() {
+        double total = lottoModel.getTotal();
+        int payment = lottoModel.getPayment();
+        String earningsRateText = calculateAndFormatEarningsRate(total, payment);
+        lottoView.printTotalEarnings(earningsRateText);
+    }
+
+    private String calculateAndFormatEarningsRate(double total, int payment) {
+        double earningsRate = calculateEarningsRate(total, payment);
+        return formatEarningsRate(earningsRate);
+    }
+
+    private double calculateEarningsRate(double total, int payment) {
+        return (total / payment) * 100;
+    }
+
+    private String formatEarningsRate(double earningsRate) {
+        return String.format("%.1f%%", earningsRate);
+    }
+
 
     public Lotto gettingLottoWinningNumbers(String lottoNumbers) {
         List<Integer> lottoNumbersArray = Arrays.stream(lottoNumbers.split(","))

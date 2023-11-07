@@ -1,30 +1,29 @@
 package Controller;
 
+import Utils.Messages;
 import VIew.InputView;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputManager {
-    private InputView inputView;
+    private final InputView inputView;
 
-    public InputManager(InputView inputView) {
-        this.inputView = inputView;
+    public InputManager() {
+        this.inputView = new InputView();
     }
-
-
 
     public int promptForPayment(String message) {
-        int payment = 0;
-        boolean isValidInput = false;
-        while (!isValidInput) {
-            try {
-                payment = getValidPayment(message);
-                isValidInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
+        try {
+            return getValidPayment(message);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return promptForPayment(message);
         }
-        return payment;
     }
+
 
     private int getValidPayment(String message) throws IllegalArgumentException {
         System.out.println(message);
@@ -34,23 +33,21 @@ public class InputManager {
             validatePayment(payment);
             return payment;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(Messages.NumberInputError);
         }
     }
 
-    private void validatePayment(int payment) {
+    public void displayMessage(String message) {
+        inputView.printMessage(message);
+    }
+
+    public void validatePayment(int payment) {
         if (payment <= 0) {
-            throw new IllegalArgumentException("금액은 0 이상이어야 합니다.");
+            throw new IllegalArgumentException(Messages.NonPositiveAmountException);
         }
         if (payment % 1000 != 0) {
-            throw new IllegalArgumentException("금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(Messages.NonMultipleOfThousandException);
         }
     }
-
-    public String promptForInput(String message) {
-        inputView.printMessage(message);
-        return inputView.getUserInput();
-    }
-
 
 }

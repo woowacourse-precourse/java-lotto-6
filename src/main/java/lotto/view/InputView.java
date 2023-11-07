@@ -47,9 +47,9 @@ public class InputView {
 
                 return winningNumbers;
             } catch (DuplicateInputException e) {
-                System.out.println(e.getMessage());
+                outputView.printExceptionMessage(e.getMessage());
             } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
+                outputView.printExceptionMessage(e.getMessage());
             } catch (HasNotCommaException e) {
                 outputView.printExceptionMessage(e.getMessage());
             }
@@ -75,7 +75,7 @@ public class InputView {
             try {
                 return convertInputToBonusNumber(bonusNumber);
             } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
+                outputView.printExceptionMessage(e.getMessage());
             }
         }
     }

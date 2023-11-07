@@ -2,7 +2,7 @@ package lotto.utils;
 
 import lotto.constants.Message;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
+import lotto.constants.Rank;
 
 import java.util.List;
 import java.util.Map;

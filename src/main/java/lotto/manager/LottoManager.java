@@ -3,7 +3,7 @@ package lotto.manager;
 import lotto.constants.ErrorMessage;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
+import lotto.constants.Rank;
 import lotto.domain.WinningLotto;
 import lotto.utils.RandomUtils;
 
@@ -21,9 +21,9 @@ public class LottoManager {
 
     private final RandomUtils randomUtils = new RandomUtils();
 
-    private static final Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
+    private final Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
 
-    static {
+    public LottoManager() {
         lottoResults.put(Rank.FIFTH, 0);
         lottoResults.put(Rank.FOURTH, 0);
         lottoResults.put(Rank.THIRD, 0);

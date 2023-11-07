@@ -1,7 +1,9 @@
 package lotto.view;
 
 public enum InputMessage {
-    HOW_MUCH_MONEY_FOR_LOTTO_PURCHASE("구입금액을 입력해 주세요.");
+    ENTER_TOTAL_PURCHASE_MONEY("구입금액을 입력해 주세요."),
+    ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    ENTER_WINNING_LOTTO_NUMBER("당첨 번호를 입력해 주세요.");
 
 
 

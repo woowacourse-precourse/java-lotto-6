@@ -46,5 +46,8 @@ public class Lotto {
         return count;
     }
 
+    public String getStatus() {
+        return this.numbers.toString();
+    }
 
 }

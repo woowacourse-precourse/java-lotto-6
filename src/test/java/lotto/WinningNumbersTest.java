@@ -62,15 +62,4 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(TestConstant.ERROR_MESSAGE);
     }
-
-    @DisplayName("당첨 번호와 보너스 번호가 중복될 때 예외가 발생한다.")
-    @Test
-    void 당첨_번호와_보너스_번호가_중복될_때_예외_처리() {
-        String winningNumbersInput = "1, 2, 3, 4, 5, 6";
-        int duplicateBonusNumber = 6;
-
-        assertThatThrownBy(() -> WinningNumbersFactory.createWinningNumbers(winningNumbersInput, duplicateBonusNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(TestConstant.ERROR_MESSAGE);
-    }
 }

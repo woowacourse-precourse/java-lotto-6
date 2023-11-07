@@ -33,10 +33,10 @@ public class Controller {
         int bonus = getBonus(winningLotto);
 
         view.output(WINNING_STATISTICS);
-        Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus, buyer);
+        Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus);
         view.output(statistics.toString());
 
-        view.output(String.format(REVENUE_RATE, statistics.calculateRevenueRate()));
+        view.output(String.format(REVENUE_RATE, statistics.calculateRevenueRate(buyer)));
     }
 
     private Buyer getCost() {

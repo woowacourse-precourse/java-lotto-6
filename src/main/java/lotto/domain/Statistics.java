@@ -9,14 +9,12 @@ import static lotto.domain.Rank.LOSE;
 
 public class Statistics {
     private final Map<Rank, Integer> results;
-    private final Buyer buyer;
 
-    private Statistics(Map<Rank, Integer> results, Buyer buyer) {
+    private Statistics(Map<Rank, Integer> results) {
         this.results = results;
-        this.buyer = buyer;
     }
 
-    public static Statistics calculate(List<Lotto> lottos, WinningLotto winningLotto, int bonus, Buyer buyer) {
+    public static Statistics calculate(List<Lotto> lottos, WinningLotto winningLotto, int bonus) {
         Map<Rank, Integer> results = initResults();
         for (Lotto lotto : lottos) {
             boolean hasBonus = lotto.contains(bonus);
@@ -26,7 +24,7 @@ public class Statistics {
             int count = results.get(rank) + 1;
             results.put(rank, count);
         }
-        return new Statistics(results, buyer);
+        return new Statistics(results);
     }
 
     private static Map<Rank, Integer> initResults() {
@@ -37,7 +35,7 @@ public class Statistics {
         return initialResults;
     }
 
-    public String calculateRevenueRate() {
+    public String calculateRevenueRate(Buyer buyer) {
         long totalPrize = 0;
         for (Rank rank : results.keySet()) {
             totalPrize += rank.getPrize() * results.get(rank);

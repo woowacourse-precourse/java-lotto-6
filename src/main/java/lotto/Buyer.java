@@ -19,7 +19,7 @@ public class Buyer {
         List<Integer> lottoNumbers = numbers.getLottoNumbers();
 
         return (int) lottoNumbers.stream()
-                .filter(numbers::contain)
+                .filter(this.lotto::contain)
                 .count();
     }
 

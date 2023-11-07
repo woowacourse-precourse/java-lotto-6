@@ -12,16 +12,16 @@ import lotto.validator.ValidateWinningNumber;
 
 public class InputView {
 
-    private String console(){
+    private static String console(){
        return Console.readLine();
     }
-    public int requestPurchaseAmount(){
+    public static int requestPurchaseAmount(){
         String buyerInput = console();
         ValidatePurchaseAmount.validatePurchaseAmount(buyerInput);
         return Integer.parseInt(buyerInput);
     }
 
-    public List<Integer> requestWinningNumber(){
+    public static List<Integer> requestWinningNumber(){
         String buyerInput = console();
         ValidateWinningNumber.validateWinningNumber(buyerInput);
         return Arrays.stream(buyerInput.split(","))
@@ -29,7 +29,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int requestBonusNumber(){
+    public static int requestBonusNumber(){
         String buyerInput = console();
         ValidateBonusNumber.validateBonusNumber(buyerInput);
         return Integer.parseInt(buyerInput);

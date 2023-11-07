@@ -4,13 +4,16 @@ import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 
+import java.util.List;
+
 public class Controller {
+    List<Integer> winnings;
     Lottos lottos = new Lottos();
     WinningNumbers winningNumbers = new WinningNumbers();
 
     public void lottoGame() {
-//        buyLottos();
-//        showHowmanyLottosBuy();
+        buyLottos();
+        showHowmanyLottosBuy();
         putWinningNumber();
 //        checkWinningList()
 //        calculateRate();
@@ -18,7 +21,7 @@ public class Controller {
 
     public void buyLottos() {
         InputView.requestPurchaseAmount();
-        lottos.makeLottoGame();
+        lottos.payForLottoGame();
     }
 
     public void showHowmanyLottosBuy(){
@@ -27,7 +30,11 @@ public class Controller {
 
     public void putWinningNumber(){
         InputView.requestWinningNumbers();
-        winningNumbers.generateWinningNumbers();
+        winningNumbers.askWinningNumbers();
+        InputView.requestBonusNumber();
+        winningNumbers.askBonusNumber();
 
+        this.winnings = winningNumbers.getWinningNumbers();
+        winningNumbers.validateWinningNumbers(winnings);
     }
 }

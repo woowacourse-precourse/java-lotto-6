@@ -11,24 +11,23 @@ public class PurchaseAmount {
     }
 
     public void generateLottoCount(){
-        int inputPrice = parseInputAmount();
-        PurchaseAmountValidate(inputPrice);
-        purchaseCount = calculateLottoCount(inputPrice);
+        int inputPrice = tryToParseToInteger();
+        this.purchaseCount = calculateLottoCount(inputPrice);
     }
 
-    private int parseInputAmount() {
-        String purchaseAmount = Console.readLine();
-        return tryToParse(purchaseAmount);
+    private String askPurchaseAmount() {
+        return Console.readLine();
     }
 
-    private int tryToParse(String purchaseAmount) {
-        try{
-            Integer.parseInt(purchaseAmount);
-        }catch (IllegalArgumentException e){
-            System.out.println("[Error] 구매 금액은 숫자형으로 입력해주세요");
-            generateLottoCount();
+    private int tryToParseToInteger() {
+        while(true) {
+            String purchaseAmount = askPurchaseAmount();
+            try {
+                return Integer.parseInt(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 구매 금액은 숫자형으로 입력해주세요");
+            }
         }
-        return Integer.parseInt(purchaseAmount);
     }
 
     private void PurchaseAmountValidate(int inputPrice) {
@@ -40,7 +39,7 @@ public class PurchaseAmount {
         try {
             IsInputPriceDividedPurchasePrice(inputPrice);
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error] 1000단위로 구매 금액을 입력해주세요 ");
+            System.out.println("[ERROR] 1000단위로 구매 금액을 입력해주세요 ");
             generateLottoCount();
         }
     }
@@ -49,7 +48,7 @@ public class PurchaseAmount {
         try {
             IsNotZero(inputPrice);
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error] 구매 금액은 0이 아닌 금액을 입력해주세요.");
+            System.out.println("[ERROR] 구매 금액은 0이 아닌 금액을 입력해주세요.");
             generateLottoCount();
         }
     }

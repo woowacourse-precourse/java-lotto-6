@@ -20,7 +20,7 @@ public class Lottos {
 
     public Lottos() {}
 
-    public void makeLottoGame(){
+    public void payForLottoGame(){
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.generateLottoCount();
         this.lottoCount = purchaseAmount.purchaseCount;

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDto;
 import lotto.domain.lotto.LottoRank;
@@ -43,14 +42,6 @@ public class LottoWinnerService {
             count = Collections.frequency(rankResult, lottoRank);
             lottoResult.put(lottoRank, count);
         }
-
-        for (Entry<LottoRank, Integer> lottoRankIntegerEntry : lottoResult.entrySet()) {
-            System.out.println(
-                "lottoRankIntegerEntry.getKey() = " + lottoRankIntegerEntry.getKey());
-            System.out.println(
-                "lottoRankIntegerEntry.getValue() = " + lottoRankIntegerEntry.getValue());
-        }
-
         return lottoResult;
     }
 

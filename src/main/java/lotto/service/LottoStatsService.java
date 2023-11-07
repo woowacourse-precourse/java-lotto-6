@@ -16,7 +16,7 @@ public class LottoStatsService {
         for (Entry<LottoRank, Integer> lotto : lottoResult.entrySet()) {
             int prize = lotto.getKey().getLottoRankPrize();
             int winner = lotto.getValue();
-            lottoAmount += lotto.getValue();
+            lottoAmount += winner;
             totalMoney += prize * winner;
         }
         int purchaseMoney = lottoAmount * LOTTO_PRICE;

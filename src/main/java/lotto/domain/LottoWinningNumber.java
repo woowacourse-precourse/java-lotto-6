@@ -39,4 +39,8 @@ public class LottoWinningNumber {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int equalLottoNumbersWithWinningNumbers(Lotto lotto) {
+        return lotto.countEqualNumbers(numbers);
+    }
 }

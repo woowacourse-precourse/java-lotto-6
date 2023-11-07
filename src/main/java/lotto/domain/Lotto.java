@@ -39,4 +39,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int countEqualNumbers(List<Integer> comparedNumbers) {
+        return (int) numbers.stream()
+                .filter(comparedNumbers::contains)
+                .count();
+    }
+
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
 }

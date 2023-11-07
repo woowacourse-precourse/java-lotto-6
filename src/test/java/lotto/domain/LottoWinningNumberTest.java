@@ -58,4 +58,18 @@ class LottoWinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 당첨 번호입니다.");
     }
+
+    @DisplayName("입력된 로또 번호와 비교해서 당첨 번호와 일치하는 숫자 개수를 반환한다.")
+    @Test
+    void countEqualNumberAndReturn() throws Exception {
+        // Given
+        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(List.of(1, 2, 3, 20, 12, 24));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // When
+        int equalNumberCount = lottoWinningNumber.equalLottoNumbersWithWinningNumbers(lotto);
+
+        // Then
+         assertThat(equalNumberCount).isEqualTo(3);
+    }
 }

@@ -1,13 +1,18 @@
 package lotto.service;
 
+import lotto.constant.LottoWinningRank;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoBuyPrice;
+import lotto.domain.LottoWinningNumber;
 import lotto.dto.LottoNumbers;
+import lotto.dto.LottoWinningResult;
 import lotto.repository.LottoRepository;
 import lotto.util.RandomNumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class LottoService {
 
@@ -48,6 +53,35 @@ public class LottoService {
     private List<LottoNumbers> convertLottoToLottoNumbers(List<Lotto> lottos) {
         return lottos.stream()
                 .map(lotto -> new LottoNumbers(lotto.getNumbers()))
+                .toList();
+    }
+
+    public LottoWinningResult checkLottoWinningResult(LottoWinningNumber winningNumber, LottoBonusNumber bonusNumber) {
+        List<Lotto> lottos = lottoRepository.getAll();
+
+        List<LottoWinningRank> lottoWinningRanks = checkLottoWinningRank(
+                lottos,
+                winningNumber,
+                bonusNumber
+        );
+
+        return null;
+    }
+
+    private List<LottoWinningRank> checkLottoWinningRank(
+            List<Lotto> lottos,
+            LottoWinningNumber winningNumber,
+            LottoBonusNumber bonusNumber
+    ) {
+        Function<Lotto, LottoWinningRank> checkLottoWinningRankProcess = lotto -> {
+            int equalNumberCount = winningNumber.equalLottoNumbersWithWinningNumbers(lotto);
+            boolean hasBonusNumber = bonusNumber.checkLottoHasBonusNumber(lotto);
+
+            return LottoWinningRank.checkWinningResult(equalNumberCount, hasBonusNumber);
+        };
+
+        return lottos.stream()
+                .map(checkLottoWinningRankProcess)
                 .toList();
     }
 }

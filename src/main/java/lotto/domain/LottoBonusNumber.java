@@ -25,4 +25,8 @@ public class LottoBonusNumber {
     public int getNumber() {
         return number;
     }
+
+    public boolean checkLottoHasBonusNumber(Lotto lotto) {
+        return lotto.hasNumber(number);
+    }
 }

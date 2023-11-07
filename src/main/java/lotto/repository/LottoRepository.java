@@ -27,4 +27,14 @@ public class LottoRepository {
     public int count() {
         return store.size();
     }
+
+    public List<Lotto> getAll() {
+        return store.values()
+                .stream()
+                .toList();
+    }
+
+    public void clear() {
+        store.clear();
+    }
 }

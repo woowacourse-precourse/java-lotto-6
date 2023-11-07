@@ -8,4 +8,14 @@ public class InputFormValidation {
             throw new IllegalArgumentException(ErrorConstants.IS_NOT_NUMBER_ERROR);
         }
     }
+
+    public void areNumbers(String[] split) {
+        try {
+            for (String number : split) {
+                Integer.parseInt(number);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorConstants.IS_NOT_NUMBER_ERROR);
+        }
+    }
 }

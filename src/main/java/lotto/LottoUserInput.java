@@ -146,25 +146,20 @@ public class LottoUserInput {
     }
 
     public List<Integer> getWinningNumber() {
+        Lotto lotto = new Lotto();
         System.out.println();
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 String[] numberList = input.split(",");
-                HashSet<Integer> winningNumber = new HashSet<>();
-
+                List<Integer> winningNumber = new ArrayList<>();
                 for (String numberValue : numberList) {
                     int number = Integer.parseInt(numberValue.trim());
-
-                    if (number < 1 || number > 45) {
-                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                    }
-                    if (!winningNumber.add(number)) {
-                        throw new IllegalArgumentException("[ERROR] 중복된 번호가 입력되었습니다.");
-                    }
+                    winningNumber.add(number);
                 }
-                return new ArrayList<>(winningNumber);
+                lotto.validate(winningNumber);
+                return winningNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

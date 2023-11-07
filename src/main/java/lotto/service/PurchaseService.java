@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
+import lotto.domain.LottoReceipt;
 import lotto.exception.IllegalMoneyAmountException;
 import lotto.service.generator.LottoGenerator;
 
@@ -14,11 +15,14 @@ public class PurchaseService {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public List<Lotto> purchaseLotto(int money) {
+    public LottoReceipt purchaseLotto(int money) {
         int lottoAmount = calculateLottoAmount(money);
-        return IntStream.rangeClosed(1, lottoAmount)
+
+        List<Lotto> drawnLotteries = IntStream.rangeClosed(1, lottoAmount)
                 .mapToObj(i -> generateLotto())
                 .toList();
+
+        return new LottoReceipt(drawnLotteries);
     }
 
     private Lotto generateLotto() {

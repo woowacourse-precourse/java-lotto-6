@@ -2,8 +2,7 @@ package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.LottoReceipt;
 import lotto.service.generator.RandomLottoGenerator;
 import lotto.service.generator.RandomNumbersGenerator;
 import org.assertj.core.api.Assertions;
@@ -30,10 +29,10 @@ class PurchaseServiceTest {
         int money = 1_000;
 
         // when
-        final List<Lotto> purchased = purchaseService.purchaseLotto(money);
+        LottoReceipt lottoReceipt = purchaseService.purchaseLotto(money);
 
         // then
-        assertThat(purchased).hasSize(1);
+        assertThat(lottoReceipt.getLotteryCount()).isEqualTo(1);
     }
 
     @Test
@@ -43,9 +42,9 @@ class PurchaseServiceTest {
         int money = 5_000;
 
         // when
-        final List<Lotto> purchased = purchaseService.purchaseLotto(money);
+        LottoReceipt lottoReceipt = purchaseService.purchaseLotto(money);
 
         // then
-        assertThat(purchased).hasSize(5);
+        assertThat(lottoReceipt.getLotteryCount()).isEqualTo(5);
     }
 }

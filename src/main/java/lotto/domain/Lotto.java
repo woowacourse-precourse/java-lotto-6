@@ -1,7 +1,13 @@
 package lotto.domain;
 
+import static lotto.util.InputValidator.validateNumberInRange;
+
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.enums.ErrorMessages;
+import lotto.enums.GlobalConstant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,8 +18,27 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateNumberCount(numbers.size());
+        for (int number : numbers) {
+            validateNumberInRange(number);
+        }
+        Set<Integer> duplicateRemovedNumbers = makeSetFromNumbers(numbers);
+        validateDuplicatedNumber(duplicateRemovedNumbers.size());
+    }
+
+    private void validateNumberCount(int numberCount) {
+        if (numberCount != GlobalConstant.LOTTO_NUMBER_SIZE.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.ANSWER_AMOUNT_EXCEPTION_MSG.getMsg());
+        }
+    }
+
+    private Set<Integer> makeSetFromNumbers(List<Integer> numbers) {
+        return new HashSet<>(numbers);
+    }
+
+    private void validateDuplicatedNumber(int size) {
+        if (size != GlobalConstant.LOTTO_NUMBER_SIZE.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.ANSWER_DUPLICATED_EXCEPTION_MSG.getMsg());
         }
     }
 
@@ -31,6 +56,10 @@ public class Lotto {
         }
 
         return new Result(hitResult, bonusResult);
+    }
+
+    public boolean findNumber(int number) {
+        return numbers.contains(number);
     }
 
     private int searchHitNumbers(Answer answer, int number) {

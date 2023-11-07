@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import lotto.domain.HitNumbers;
 
 public class InputHandler {
     private static final String SEPARATOR = ",";
@@ -57,22 +56,22 @@ public class InputHandler {
         return input;
     }
 
-    public int inputBonusNumber(HitNumbers hitNumbers) {
+    public int inputBonusNumber() {
         String input = "";
         boolean flag = true;
         while (flag) {
-            input = inputBonusNumberExceptionHandler(hitNumbers);
+            input = inputBonusNumberExceptionHandler();
             flag = detectErrorOccurring(input);
         }
 
         return Integer.parseInt(input);
     }
 
-    private String inputBonusNumberExceptionHandler(HitNumbers hitNumbers) {
+    private String inputBonusNumberExceptionHandler() {
         String input;
         try {
             input = Console.readLine();
-            validator.validateBonusNumber(input, hitNumbers);
+            validator.validateBonusNumber(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return "ERROR";

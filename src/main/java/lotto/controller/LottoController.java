@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Answer;
-import lotto.domain.HitNumbers;
+import lotto.domain.Lotto;
 import lotto.domain.Tickets;
 import lotto.domain.TotalResult;
 import lotto.util.InputHandler;
@@ -17,7 +17,10 @@ public class LottoController {
         int money = receiveInputAndGetMoney();
         Tickets tickets = createTickets(money);
         view.printLottoInfo(tickets);
-        Answer answer = createAnswer();
+        view.winningNumberInputGuideMsg();
+        Lotto hitNumbers = createHitNumbers();
+        view.bonusNumberInputGuideMsg();
+        Answer answer = createAnswer(hitNumbers);
 
         TotalResult totalResult = calcHitResult(tickets, answer);
         view.hitResultTitle();
@@ -36,21 +39,38 @@ public class LottoController {
         return machine.generateTickets(money);
     }
 
-    private Answer createAnswer() {
-        view.winningNumberInputGuideMsg();
-        HitNumbers hitNumbers = receiveInputAndCreateHitNumbers();
-        view.bonusNumberInputGuideMsg();
-        int bonusNumber = receiveInputAndCreateBonusNumber(hitNumbers);
-        return new Answer(hitNumbers, bonusNumber);
+    private Answer createAnswer(Lotto hitNumbers) {
+        Answer answer = null;
+        try {
+            int bonusNumber = receiveInputAndCreateBonusNumber();
+            answer = new Answer(hitNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createAnswer(hitNumbers);
+        }
+
+        return answer;
     }
 
-    private HitNumbers receiveInputAndCreateHitNumbers() {
-        List<Integer> rawHitNumbers = inputHandler.inputHitNumbers();
-        return new HitNumbers(rawHitNumbers);
+    private Lotto createHitNumbers() {
+        Lotto hitNumbers = null;
+        try {
+            hitNumbers = receiveInputAndCreateHitNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createHitNumbers();
+        }
+
+        return hitNumbers;
     }
 
-    private int receiveInputAndCreateBonusNumber(HitNumbers hitNumbers) {
-        return inputHandler.inputBonusNumber(hitNumbers);
+    private Lotto receiveInputAndCreateHitNumbers() {
+        List<Integer> numbers = inputHandler.inputHitNumbers();
+        return new Lotto(numbers);
+    }
+
+    private int receiveInputAndCreateBonusNumber() {
+        return inputHandler.inputBonusNumber();
     }
 
     private TotalResult calcHitResult(Tickets tickets, Answer answer) {

@@ -20,7 +20,7 @@ public enum LottoPlace {
         this.prizeAmount = prizeAmount;
     }
 
-    public Optional<LottoPlace> judgeLottoPlace(int countCorrectNumber, boolean isBonusNumberCorrect) {
+    public static Optional<LottoPlace> judgeLottoPlace(int countCorrectNumber, boolean isBonusNumberCorrect) {
         return Arrays.stream(LottoPlace.values())
                 .filter((lottoPlace) -> lottoPlace.isRightPlace(countCorrectNumber, isBonusNumberCorrect))
                 .findAny();

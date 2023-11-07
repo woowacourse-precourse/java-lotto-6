@@ -5,7 +5,7 @@ import java.util.Arrays;
 import static lotto.constant.NumberConstants.*;
 
 public enum LottoRank {
-    NO_RANK(0, 0, false),
+    NO_RANK(ZERO, ZERO, false),
     FIFTH_RANK(FIFTH_RANK_MATCH, FIFTH_PRIZE_MONEY, false),
     FORTH_RANK(FOURTH_RANK_MATCH, FORTH_PRIZE_MONEY, false),
     THIRD_RANK(THIRD_RANK_MATCH, THIRD_PRIZE_MONEY, false),

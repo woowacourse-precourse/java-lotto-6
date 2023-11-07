@@ -1,6 +1,9 @@
 package lotto.domain;
 
 
+
+import static lotto.constant.NumberConstants.*;
+
 public class ProfitCalculator {
     public static int calculateProfit(LottoResult lottoResult) {
         return lottoResult.getLOTTO_RESULT().entrySet().stream()
@@ -12,7 +15,7 @@ public class ProfitCalculator {
 
     public static double calculateProfitMargin(int profit, int amount) {
         double result = (double) profit / amount;
-        return result * 100;
+        return result * HUNDRED;
     }
 
     public static double totalProfitMargin(LottoResult lottoResult, PurchaseLotto purchaseLottoAmount) {

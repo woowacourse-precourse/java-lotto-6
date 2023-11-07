@@ -16,4 +16,7 @@ public class NumberConstants {
     public static final int FORTH_PRIZE_MONEY = 50_000;
     public static final int FIFTH_PRIZE_MONEY = 5_000;
     public static final int LEGAL_AMOUNT = 1_000_000;
+    public static final int PRIZE_RAISE_COUNT = 1;
+    public static final int HUNDRED = 100;
+    public static final int ZERO = 0;
 }

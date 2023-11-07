@@ -1,9 +1,12 @@
 package lotto.domain;
 
+
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+
+import static lotto.constant.NumberConstants.*;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> LOTTO_RESULT = new EnumMap<>(LottoRank.class);
@@ -17,13 +20,13 @@ public class LottoResult {
         List<LottoRank> lottoRanks = Arrays.stream(LottoRank.values())
                 .toList();
         for (LottoRank rank : lottoRanks) {
-            LOTTO_RESULT.put(rank, 0);
+            LOTTO_RESULT.put(rank, ZERO);
         }
     }
 
     private void calculateLottoResult(List<LottoRank> lottoRanks) {
         for (LottoRank rank : lottoRanks) {
-            int prizeCount = LOTTO_RESULT.get(rank) + 1;
+            int prizeCount = LOTTO_RESULT.get(rank) + PRIZE_RAISE_COUNT;
             LOTTO_RESULT.put(rank, prizeCount);
         }
     }

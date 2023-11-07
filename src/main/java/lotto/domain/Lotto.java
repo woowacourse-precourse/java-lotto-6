@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != WINNING_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

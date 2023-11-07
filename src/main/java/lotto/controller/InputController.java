@@ -13,8 +13,11 @@ public class InputController {
     private static String inputBonusNumber;
 
     public static void inputLottoPurchaseAmount(LottoDto lottoDto) {
-        while (!lottoPurchaseAmountValidator(getInputPurchase())) {
+        boolean validFlag;
+        do {
+            validFlag = lottoPurchaseAmountValidator(getInputPurchase());
         }
+        while (!validFlag);
         lottoDto.setLottoPurchaseAmount(inputLottoPurchaseAmount);
     }
 
@@ -23,8 +26,11 @@ public class InputController {
     }
 
     public static void inputWinningNumbers(LottoDto lottoDto) {
-        while (!lottoNumberValidator(getInputWinning())) {
+        boolean validFlag;
+        do {
+            validFlag = lottoNumberValidator(getInputWinning());
         }
+        while (!validFlag);
         lottoDto.setWinningNumbers(inputWinningNumbers);
     }
 
@@ -33,8 +39,11 @@ public class InputController {
     }
 
     public static void inputBonusNumber(LottoDto lottoDto) {
-        while (!bonusNumberValidator(getInputBonus(), lottoDto.getWinningNumbers())) {
+        boolean validFlag;
+        do {
+            validFlag = bonusNumberValidator(getInputBonus(), lottoDto.getWinningNumbers());
         }
+        while (!validFlag);
         lottoDto.setBonusNumber(inputBonusNumber);
     }
 

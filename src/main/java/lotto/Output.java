@@ -20,7 +20,7 @@ public class Output {
         System.out.println(sb);
     }
     
-    public static void resultPrint(ArrayList<LottoResult> lottoResults,int priceAmount) {
+    public static void resultPrint(ArrayList<LottoResult> lottoResults) {
         LottoResult[] allLottoResults = LottoResult.values();
 
         System.out.println("당첨 통계\n" + //
@@ -29,8 +29,22 @@ public class Output {
         for (int i = 3; i < allLottoResults.length; i++) {
             isMatch(allLottoResults[i], lottoResults);
         }
+    }
 
-        calculateLottoEarnings(lottoResults, priceAmount);
+
+    public static double calculateLottoEarnings(ArrayList<LottoResult> lottoResults, double priceAmount) {
+        int totalPrice = 0;
+        double benefit = 0;
+        for (LottoResult lottoResult : lottoResults) {
+            totalPrice += lottoResult.getPrice();
+        }
+
+        if (totalPrice != 0) 
+            benefit = Math.round(totalPrice / priceAmount * 1000) / 10.0;
+
+         System.out.println("총 수익률은 " + benefit + "%입니다.");
+
+         return benefit;
     }
 
 
@@ -51,17 +65,5 @@ public class Output {
         System.out.println(selectedResult.getMatch() + "개 일치 (" + selectedResult.getStringPrize() + "원) - " + matchCount +"개");
     }
 
-    private static void calculateLottoEarnings(ArrayList<LottoResult> lottoResults, double priceAmount) {
-        int totalPrice = 0;
-        double benefit = 0;
-        for (LottoResult lottoResult : lottoResults) {
-            totalPrice += lottoResult.getPrice();
-        }
-
-        if (totalPrice != 0) 
-            benefit = Math.round(totalPrice / priceAmount * 1000) / 10.0;
-
-         System.out.println("총 수익률은 " + benefit + "%입니다.");
-    }
 }
 

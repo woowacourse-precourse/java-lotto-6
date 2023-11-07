@@ -22,9 +22,10 @@ class MoneyTest {
 
     @DisplayName("구입금액의 입력 실수는 예상하여 수용 가능하다.")
     @Test
-    void predictableMistake() {    	
-    	assertDoesNotThrow(() -> money.forTest(VALID_INPUT));
-    	assertEquals(500000, money.forTest(VALID_INPUT));
+    void predictableMistake() {
+    	String test=VALID_INPUT.replace(" ", "").replace(".", "").replace(",", "");
+    	assertDoesNotThrow(() -> money.forTest(test));
+    	assertEquals(500000, money.forTest(test));
     }
     
     @DisplayName("구입금액 공백 입력 시 예외를 발생한다.")

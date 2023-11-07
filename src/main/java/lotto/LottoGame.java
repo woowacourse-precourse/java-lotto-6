@@ -1,12 +1,14 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoGame {
     private static final InputResolver inputResolver = new InputResolver();
-//    LottoGenerator lottoGenerator;
+    private static final LottoGenerator lottoGenerator = new LottoGenerator();
+    private static List<Lotto> lottoList = new ArrayList<>();
     WinningNumber winningNumber;
     public static void play() {
-        inputResolver.inputLottoBuy();
+        lottoList = lottoGenerator.buyLotto(inputResolver.inputLottoBuy());
     }
 }

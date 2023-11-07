@@ -1,8 +1,5 @@
 package lotto;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum LottoEnum {
     FIFTH(5,"3개 일치", "(5,000원)", 5000),
     FOURTH(4,"4개 일치", "(50,000원)", 50000),
@@ -22,7 +19,7 @@ public enum LottoEnum {
         this.prizeMoney = prizeMoney;
     }
 
-    public static LottoEnum getRankByMatchCount(final int matchCount) {}
+//    public static LottoEnum getRankByMatchCount(final int matchCount) {}
 
     public String getMatching() {
         return matching;

@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.data.Lotto;
 import lotto.data.LottoResult;
 import lotto.data.WinningNumber;
-import lotto.provider.BonusProvider;
 import lotto.provider.LottoProvider;
 import lotto.provider.PrizeProvider;
 import lotto.provider.WinningNumberProvider;
@@ -18,7 +17,6 @@ public class LottoProgram {
     private final InputUtil inputUtil = new InputUtil();
     private final LottoProvider lottoProvider = new LottoProvider();
     private final WinningNumberProvider winningNumberProvider = new WinningNumberProvider();
-    private final BonusProvider bonusProvider = new BonusProvider();
     private final PrizeProvider prizeProvider = new PrizeProvider();
 
     public List<Lotto> buyLottos() {
@@ -42,12 +40,12 @@ public class LottoProgram {
         return winningNumberProvider.getWinningNumber(winningNumberInput);
     }
 
-    public int inputBonus(List<Integer> winningNumbers) {
+    public int inputBonus(List<Integer> winningNumber) {
         PrintUtil.printInputBonusNumberMessage();
 
-        String bonusInput = Console.readLine();
+        String bonusInput = inputUtil.inputBonus(winningNumber);
 
-        return bonusProvider.getBonus(winningNumbers, bonusInput);
+        return Integer.parseInt(bonusInput);
     }
 
     public void showLottoResult(WinningNumber winningNumber, List<Lotto> lottos) {

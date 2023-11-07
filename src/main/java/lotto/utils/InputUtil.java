@@ -9,16 +9,15 @@ import java.util.Set;
 
 public class InputUtil {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
-    private static final int WINNING_START_NUMBER = 1;
-    private static final int WINNING_END_NUMBER = 45;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
     private static final String SPLIT_MARK = ",";
 
     public String inputPurchaseAmount() {
         while (true) {
             String input = Console.readLine();
             try {
-                validateInteger(input);
-                validateUnit(input);
+                validatePurchaseAmount(input);
                 return input;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -39,6 +38,24 @@ public class InputUtil {
         }
     }
 
+    public String inputBonus(List<Integer> winningNumber) {
+        while (true) {
+            String input = Console.readLine();
+            try {
+                validateBonus(winningNumber, input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validatePurchaseAmount(String input) {
+        validateInteger(input);
+        validateUnit(input);
+    }
+
+
     private void validateWinningNumber(String[] inputs) {
         validateSize(inputs);
         for (String input : inputs) {
@@ -47,6 +64,13 @@ public class InputUtil {
         }
         Set<String> inputSet = new HashSet<>(List.of(inputs));
         validateDuplication(inputSet, inputs);
+    }
+
+    private void validateBonus(List<Integer> winningNumber, String input) {
+        validateInteger(input);
+        int bonus = Integer.parseInt(input);
+        validateRange(bonus);
+        validateDuplication(winningNumber, bonus);
     }
 
 
@@ -71,7 +95,7 @@ public class InputUtil {
     }
 
     private void validateRange(int input) {
-        if (WINNING_START_NUMBER > input || input > WINNING_END_NUMBER) {
+        if (START_NUMBER > input || input > END_NUMBER) {
             throw new IllegalArgumentException(Error.WINNING_NUMBER_RANGE_ERROR.getMessage());
         }
     }
@@ -79,6 +103,12 @@ public class InputUtil {
     private void validateSize(String[] input) {
         if (input.length != 6) {
             throw new IllegalArgumentException(Error.WINNING_NUMBER_SIZE_ERROR.getMessage());
+        }
+    }
+
+    private void validateDuplication(List<Integer> winningNumber, int input) {
+        if (winningNumber.contains(input)) {
+            throw new IllegalArgumentException(Error.BONUS_DUPLICATE_ERROR.getMessage());
         }
     }
 }

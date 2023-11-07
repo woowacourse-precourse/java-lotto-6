@@ -1,8 +1,14 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoPurchase;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoController {
     
@@ -20,6 +26,9 @@ public class LottoController {
         
         int ticketCount = lottoPurchase.calculateTicketCount();
         outputView.printTicketCount(ticketCount);
+        
+        List<Lotto> lottoTickets = buyTickets(ticketCount);
+        outputView.printTickets(lottoTickets);
     }
     
     private LottoPurchase inputAmount() {
@@ -29,5 +38,11 @@ public class LottoController {
             outputView.printErrorMessage(e);
             return inputAmount();
         }
+    }
+    
+    private List<Lotto> buyTickets(int ticketCount) {
+        return IntStream.range(0, ticketCount)
+                .mapToObj(i -> new Lotto(LottoNumberGenerator.generateRandomNumbers()))
+                .collect(Collectors.toList());
     }
 }

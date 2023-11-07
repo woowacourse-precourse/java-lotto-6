@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static lotto.domain.LottoPrice.*;
+import static lotto.domain.LottoPrize.*;
 
 public class LottoResult {
 
-    private List<LottoPrice> lottoPrices = new ArrayList<>();
+    private final List<LottoPrize> lottoPrizes = new ArrayList<>();
 
-    public List<LottoPrice> getLottoPrices(){
-        return lottoPrices;
+    public List<LottoPrize> getLottoPrizes() {
+        return lottoPrizes;
     }
 
-    public void addPrice(LottoPrice lottoPrice){
-        if(!lottoPrice.equals(NONE))
-            lottoPrices.add(lottoPrice);
+    public void addPrize(LottoPrize lottoPrize) {
+        if (!lottoPrize.equals(NONE))
+            lottoPrizes.add(lottoPrize);
     }
 
-    public int getPriceMoney(){
+    public int getPrizeMoney() {
         AtomicInteger resultMoney = new AtomicInteger(0);
-        lottoPrices.forEach(lottoPrice -> resultMoney.addAndGet(lottoPrice.getPriceMoney()));
+        lottoPrizes.forEach(lottoPrize -> resultMoney.addAndGet(lottoPrize.getPrizeMoney()));
 
         return resultMoney.get();
     }

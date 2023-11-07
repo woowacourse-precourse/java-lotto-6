@@ -29,6 +29,19 @@ public class InputValidator {
         }
     }
 
+    public static void validateBonusNumberInput(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_INPUT_ERROR_MESSAGE.getMessage());
+        }
+        int bonusNumber = Integer.parseInt(input);
+        if (bonusNumber < Unit.LOTTERY_MINIMUM_NUMBER.getUnit() ||
+                Unit.LOTTERY_MAXIMUM_NUMBER.getUnit() < bonusNumber) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_INPUT_ERROR_MESSAGE.getMessage());
+        }
+    }
+
     private static boolean isValidLengthOfWinningNumbersInput(String[] winningNumbers) {
         if (winningNumbers.length != Unit.LOTTERY_NUMBER_COUNT.getUnit()) {
             return false;

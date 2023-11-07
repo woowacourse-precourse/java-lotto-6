@@ -42,4 +42,19 @@ public class InputView {
             }
         }
     }
+
+    public static int getBonusNumberInput() {
+        while (true) {
+            OutputView.printBonusNumberInputMessage();
+            String input = Console.readLine();
+            System.out.println();
+            try {
+                InputValidator.validateBonusNumberInput(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
 }

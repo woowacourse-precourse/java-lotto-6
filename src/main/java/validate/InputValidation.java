@@ -1,5 +1,7 @@
 package validate;
 
+import java.util.List;
+
 import static constants.LottoErrorMessageConstants.*;
 
 public class InputValidation {
@@ -20,4 +22,11 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_LOTTO_NUMBER_COUNT);
         }
     }
+
+    public static void validateLottoNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_LOTTO_NUMBER);
+        }
+    }
+
 }

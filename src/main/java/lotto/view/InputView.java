@@ -32,9 +32,22 @@ public class InputView {
             List<Integer> winningNumbers = Arrays.stream(input.split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
+            validateWinningNumbers(winningNumbers);
             return winningNumbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자열이 입력되었습니다.");
+        }
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (validator.containsDuplicatedNumbers(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
+        if (!validator.checkNumbersSize(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
+        }
+        if (!validator.checkRangeValidity(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

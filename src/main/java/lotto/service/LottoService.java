@@ -4,7 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.RandomLottoGenerator;
 import lotto.domain.Rank;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,5 +49,19 @@ public class LottoService {
         return (int) purchasedLotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    public double calculateProfit(List<Lotto> purchasedLottos, Map<Rank, Long> results) {
+        long purchaseAmount = purchasedLottos.size() * LOTTO_PRICE;
+        long totalPrize = calculateTotalPrize(results);
+        return ((double) totalPrize / purchaseAmount) * 100;
+    }
+
+    private long calculateTotalPrize(Map<Rank, Long> results) {
+        long totalPrize = 0;
+        for (Map.Entry<Rank, Long> entry : results.entrySet()) {
+            totalPrize += entry.getValue() * entry.getKey().getPrizeMoney();
+        }
+        return totalPrize;
     }
 }

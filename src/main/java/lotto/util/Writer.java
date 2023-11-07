@@ -35,6 +35,10 @@ public class Writer {
         System.out.println(BONUS_NUMBERS);
     }
 
+    public static void exception(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
     public static void result(Map<Grade, Integer> result) {
         System.out.println(WINNING_RESULT);
         System.out.println(LINE);

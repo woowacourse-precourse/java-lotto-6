@@ -43,4 +43,12 @@ public class LottoGame {
         LottoGamePrinter.println("보너스 번호를 입력해 주세요.");
         return LottoGameInputer.inputToInteger();
     }
+
+    // 당첨 번호 및 보너스 번호 WinningLotto 생성
+    public WinningLotto createWinningLotto() {
+        List<Integer> numbers = inputWinningLottoNumbers();
+        Integer bonusNumber = inputWinningBonusNumber();
+        return WinningLotto.of(numbers, bonusNumber);
+    }
+
 }

@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     public void printPurchase(int number) {
-        System.out.println(number + "개를 구매했습니다.");
+        System.out.println("\n" + number + "개를 구매했습니다.");
     }
 
     public void printLottos(Lottos lottos) {
@@ -25,22 +25,22 @@ public class OutputView {
     }
 
     public void printWinningInput() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public void printBonusInput() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public void printResults(Result result) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         for (Rank rank : Rank.values()) {
             if (rank.getCorrectNumbers() > 0) {
                 String isBonus = "";
                 if (rank == Rank.SECOND) {
                     isBonus = ", 보너스 볼 일치 ";
                 }
-                System.out.printf("%d개 일치%s(%d원)- %d개\n",
+                System.out.printf("%d개 일치%s(%,d원)- %d개\n",
                         rank.getCorrectNumbers(), isBonus, rank.getWinnings(),
                         result.getResult().getOrDefault(rank, 0));
             }

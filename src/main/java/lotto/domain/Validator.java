@@ -14,6 +14,9 @@ public class Validator {
     }
 
     public void validatePositiveInteger(int lottoPurchaseCost) {
+        if(lottoPurchaseCost<1){
+            throw new IllegalArgumentException("양의 정수를 입력해야 합니다.");
+        }
     }
 
     public void validateAmountInThousands(int lottoPurchaseCost) {

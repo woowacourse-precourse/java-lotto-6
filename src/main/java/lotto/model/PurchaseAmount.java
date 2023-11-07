@@ -1,7 +1,7 @@
 package lotto.model;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoConstant;
+import lotto.constant.LottoNumConstant;
 import lotto.validator.PurchaseAmountValidator;
 
 public class PurchaseAmount {
@@ -23,6 +23,9 @@ public class PurchaseAmount {
     }
 
     public int getLottoNum() {
-        return purchaseAmount / LottoConstant.LOTTO_AMOUNT_UNIT.getValue();
+        return purchaseAmount / LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue();
+    }
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

@@ -13,11 +13,15 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    public String getLottos() {
+    public String getLottoNumbers() {
         StringBuilder sb = new StringBuilder();
         for (Lotto lotto : lottos) {
             sb.append(lotto.getLottoNumbers());
         }
         return sb.toString();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

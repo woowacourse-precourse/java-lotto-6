@@ -25,9 +25,10 @@ public class LottoController {
 
     public void run() {
         generateLottoUsePurchaseAmount();
-        printLottoNumbers(getLottoNumbers());
-        getWinningLotto();
-        getBonusNumber();
+        printLottoNumbers(getLottoNumbers(), getLottoNum());
+        makeWinningLotto(getWinningLotto(), getBonusNumber());
+        compareLottoWithWinningLotto();
+        printLottoRate(generateLottoRate(), getLottoWinningRate());
     }
 
     private void generateLottoUsePurchaseAmount() {
@@ -40,25 +41,25 @@ public class LottoController {
         }
     }
 
-    private void getWinningLotto() {
+    private String getWinningLotto() {
         try {
-            readWinningLotto();
+            return readWinningLotto();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getWinningLotto();
+            return getWinningLotto();
         }
     }
 
-    private void getBonusNumber() {
+    private String getBonusNumber() {
         try {
-            readBonusNumber();
+            return readBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getBonusNumber();
+            return getBonusNumber();
         }
     }
 
-    private int readPurchaseAmount() throws IllegalArgumentException{
+    private int readPurchaseAmount() throws IllegalArgumentException {
         return inputView.readPurchaseAmount();
     }
 
@@ -66,14 +67,17 @@ public class LottoController {
         lottoService.makeLottoByPurchaseAmount(purchaseAmount);
     }
 
-    private void printLottoNumbers(String lottos) {
-        outputView.printLottos(lottos);
+    private void printLottoNumbers(String lottos, int lottoNum) {
+        outputView.printLottos(lottos, lottoNum);
     }
 
     private String getLottoNumbers() {
         return lottoService.getLottoNumbers();
     }
 
+    private int getLottoNum() {
+        return lottoService.getLottoNum();
+    }
     private String readWinningLotto() throws IllegalArgumentException {
         return inputView.readWinningLotto();
     }
@@ -84,5 +88,21 @@ public class LottoController {
 
     private void makeWinningLotto(String winningLotto, String bonusNumber) {
         lottoService.makeWinningLotto(winningLotto, bonusNumber);
+    }
+
+    private void compareLottoWithWinningLotto() {
+        lottoService.compareLottoWithWinningLotto();
+    }
+
+    private String generateLottoRate() {
+        return lottoService.generateLottoRate();
+    }
+
+    private double getLottoWinningRate() {
+        return lottoService.getLottoWinningRate();
+    }
+
+    private void printLottoRate(String lottoRate, double lottoWinningRate) {
+        outputView.printLottoRate(lottoRate, lottoWinningRate);
     }
 }

@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoConstant;
+import lotto.constant.LottoNumConstant;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,20 +59,20 @@ public class WinningNumberValidator extends Validator {
     }
 
     private boolean isValidNumberBound(int winningNumber) {
-        if (winningNumber < LottoConstant.MIN_LOTTO_NUMBER_BOUND.getValue() || winningNumber > LottoConstant.MAX_LOTTO_NUMBER_BOUND.getValue()) {
+        if (winningNumber < LottoNumConstant.MIN_LOTTO_NUMBER_BOUND.getValue() || winningNumber > LottoNumConstant.MAX_LOTTO_NUMBER_BOUND.getValue()) {
             return false;
         }
         return true;
     }
 
     private void validateWinningLottoNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if(winningNumbers.size() != LottoConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
+        if(winningNumbers.size() != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NUM_ERROR.getMessage());
         }
     }
 
     private void validateDupleWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if (countNotDupleLottoNumber(winningNumbers) != LottoConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
+        if (countNotDupleLottoNumber(winningNumbers) != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLE_NUM_ERROR.getMessage());
         }
     }

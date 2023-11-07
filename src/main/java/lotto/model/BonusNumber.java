@@ -10,4 +10,8 @@ public class BonusNumber {
     public static BonusNumber getInstance(int bonusNumber) {
         return new BonusNumber(bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

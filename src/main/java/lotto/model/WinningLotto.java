@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.validator.WinningNumberValidator;
 
+import java.util.Collections;
 import java.util.List;
 
 public class WinningLotto {
@@ -17,5 +18,11 @@ public class WinningLotto {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    // 당첨로또와 비교하여 등수 내는 메서드 필요함
+    public List<Integer> getWinningNumbers() {
+        return Collections.unmodifiableList(winningNumbers);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getBonusNumber();
+    }
 }

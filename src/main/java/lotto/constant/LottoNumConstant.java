@@ -1,6 +1,7 @@
 package lotto.constant;
 
-public enum LottoConstant {
+public enum LottoNumConstant {
+    ZERO(0),
     MIN_LOTTO_NUMBER_BOUND(1),
     MAX_LOTTO_NUMBER_BOUND(45),
     LOTTO_AMOUNT_UNIT(1000),
@@ -8,7 +9,7 @@ public enum LottoConstant {
 
     private int value;
 
-    LottoConstant(int value) {
+    LottoNumConstant(int value) {
         this.value = value;
     }
 

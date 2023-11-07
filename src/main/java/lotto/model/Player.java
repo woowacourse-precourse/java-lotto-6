@@ -10,7 +10,6 @@ public class Player {
     private int count;
 
     public void updatePrice(int price) {
-        System.out.println(price);
         this.price = price;
         updateCount(price);
     }

@@ -28,17 +28,13 @@ public enum ExceptionMessages {
 
     public void throwException(int param1) {
         String message = String.format(exceptionMessage, param1);
+        System.out.println(message);
         throw new IllegalArgumentException(message);
     }
 
     public void throwException(int param1, int param2) {
         String message = String.format(exceptionMessage, param1, param2);
+        System.out.println(message);
         throw new IllegalArgumentException(message);
     }
-
-    public void throwException(int param1, int param2, int param3) {
-        String message = String.format(exceptionMessage, param1, param2, param3);
-        throw new IllegalArgumentException(message);
-    }
-
 }

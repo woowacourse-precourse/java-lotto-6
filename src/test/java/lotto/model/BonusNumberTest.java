@@ -3,8 +3,6 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
@@ -20,6 +18,13 @@ class BonusNumberTest {
     @Test
     void createBonusNumberByDuplicateNumber() {
         assertThatThrownBy(() -> new BonusNumber(winningNumber, "3"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("공백 입력시 예외 발생")
+    @Test
+    void createBonusNumberByEmpty() {
+        assertThatThrownBy(() -> new BonusNumber(winningNumber, ""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

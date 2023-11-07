@@ -1,13 +1,12 @@
 package lotto.domain;
 
-import static lotto.constant.ConstantInteger.*;
+import static lotto.constant.ConstantInteger.LOTTO_MAX_NUMBER;
+import static lotto.constant.ConstantInteger.LOTTO_MIN_NUMBER;
 import static lotto.exception.ExceptionMessage.DUPLICATED_NUMBER_MESSAGE;
-import static lotto.exception.ExceptionMessage.NOT_NUMBER_INPUT_MESSAGE;
+import static lotto.exception.ExceptionMessage.NOT_IN_RANGE_NUMBER_INPUT_MESSAGE;
 import static lotto.exception.ExceptionMessage.UNAVAILABLE_NUMBER_COUNT;
 
 import java.util.List;
-
-import lotto.constant.ConstantInteger;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,9 +17,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-       validateCount(numbers);
-       validateDuplicate(numbers);
-       validateNumberRange(numbers);
+        validateCount(numbers);
+        validateDuplicate(numbers);
+        validateNumberRange(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -42,7 +41,7 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers){
         if(!isInRangeAllNumber(numbers)){
-            throw new IllegalArgumentException(NOT_NUMBER_INPUT_MESSAGE.getMessage());
+            throw new IllegalArgumentException(NOT_IN_RANGE_NUMBER_INPUT_MESSAGE.getMessage());
         }
     }
 

@@ -3,6 +3,7 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.User;
@@ -57,6 +58,23 @@ public class LottoServiceTest {
         assertEquals(4, winningNumbers.get(3));
         assertEquals(5, winningNumbers.get(4));
         assertEquals(6, winningNumbers.get(5));
+
+    }
+
+    @DisplayName("보너스번호가 정상적으로 생성되는가?")
+    @Test
+    void testInitBonusNumber() {
+        List<Integer> winningNumbers = new ArrayList<>();
+        winningNumbers.add(1);
+        winningNumbers.add(2);
+        winningNumbers.add(3);
+        winningNumbers.add(4);
+        winningNumbers.add(5);
+        winningNumbers.add(6);
+
+        int bonusNumber = lottoService.initBonusNumber(winningNumbers, "7");
+
+        assertEquals(7, bonusNumber);
 
     }
 

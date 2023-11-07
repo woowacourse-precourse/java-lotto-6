@@ -39,7 +39,7 @@ public class LottoGenerator {
         return new ArrayList<>(numbers.stream().toList());
     }
 
-    public Lottos generateMyTickets() {
+    public Lottos generateMyLottos() {
         Lottos lottos = new Lottos();
         for (int i = 0; i < numberOfTickets; i++) {
             lottos.add(new Lotto(generateLottoNumber()));

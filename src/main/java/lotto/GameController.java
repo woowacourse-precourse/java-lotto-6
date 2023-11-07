@@ -40,7 +40,7 @@ public class GameController {
         lottoList = makeLottoList(ticketCnt);
         winningResult = validateNums();
 
-        printResult(result, winningResult, ticketCnt);
+        printResult(winningResult, ticketCnt);
     }
 
     public int amountToCnt(){
@@ -96,7 +96,6 @@ public class GameController {
     }
 
     private void calcResult(WinningLotto winningLotto){
-        result = setResult();
         Rank rank;
 
         for (int i = 0; i < lottoList.size(); i++) {
@@ -105,7 +104,8 @@ public class GameController {
         }
     }
 
-    private void printResult(Map<Rank, Integer> result, WinningLotto winningLotto, int amount){
+    private void printResult(WinningLotto winningLotto, int amount){
+        result = setResult();
         calcResult(winningLotto);
 
         OutputView.printSuccessResult();

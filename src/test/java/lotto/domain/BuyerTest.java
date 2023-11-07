@@ -12,12 +12,12 @@ class BuyerTest {
 
     @DisplayName("6개의 사용자 로또 발행")
     @Test
-    void createLottoByOverSize() {
+    void createRandomLotto() {
 
         List<Lotto> lottos = IntStream.range(0, 6)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .toList();
-        
+
         Buyer buyer = new Buyer(lottos);
 
         assertThat(buyer.getLottos()).hasSize(6);

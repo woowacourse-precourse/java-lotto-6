@@ -25,17 +25,24 @@ public class LottoService {
         return this.lottoTicket.getTicketCount();
     }
 
-    public List<Lotto> generateLottoTickets() {
-        List<Lotto> generatedLottos = new ArrayList<>();
+    public List<Lotto> generateLottoNumbers() {
+        List<Lotto> lottoNumbers = new ArrayList<>();
         int lottoCount = getTicketCount();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto newLotto = new Lotto(lottoNumbers);
-            generatedLottos.add(newLotto);
+            lottoNumbers.add(createSingleGameLottoNumbers());
         }
-        this.lottos.addAll(generatedLottos);
-        return generatedLottos;
+        return lottoNumbers;
     }
+
+    private Lotto createSingleGameLottoNumbers() {
+        List<Integer> singleGameLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(singleGameLottoNumbers);
+    }
+
+    public void storeLottoNumbers (List<Lotto> lottoNumbers) {
+        this.lottos.addAll(lottoNumbers);
+    }
+
 
     public List<Lotto> purchaseLottoTickets() {
         return this.lottos;

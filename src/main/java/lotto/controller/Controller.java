@@ -23,7 +23,7 @@ public class Controller {
     public void run() {
         lottoTicketSetting();
         showTicketCount();
-        lottoGameSetting();
+        lottoNumberSetting();
         WinningNumbers winningNumbers = winningNumberSetting();
         BonusNumber bonusNumber = bonusNumberSetting(winningNumbers);
         showSystemMessage();
@@ -46,9 +46,10 @@ public class Controller {
         OutputView.displayTicket_Count(lottoService.getTicketCount());
     }
 
-    private void lottoGameSetting() {
-        List<Lotto> purchasedLottos = lottoService.generateLottoTickets();
-        OutputView.displayLottoNumbers(purchasedLottos);
+    private void lottoNumberSetting() {
+        List<Lotto> lottoNumbers = lottoService.generateLottoNumbers();
+        lottoService.storeLottoNumbers(lottoNumbers);
+        OutputView.displayLottoNumbers(lottoNumbers);
     }
 
     private WinningNumbers winningNumberSetting() {

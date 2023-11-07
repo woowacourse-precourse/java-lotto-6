@@ -42,12 +42,10 @@
 ## 설계 방법
 - MVC 모델을 이용한 설계
     - Contorller
-        - 
-    - Model
-        - 
-        - 
-        - 
+        - LottoController
     - view
-        - 
-        - 
-    - 추후 추가 예정
+        - InputView
+        - OutputView
+        - ExceptionView
+    - Application
+    - Lotto

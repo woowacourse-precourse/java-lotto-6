@@ -3,6 +3,7 @@ import lotto.Utils;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
+import lotto.model.ProfitCalculator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,5 +74,6 @@ public class LottoGameManager {
         this.bonusNumber = bonusNumber();
         checkResult();
         printResult();
+        ProfitCalculator profitCalculator = new ProfitCalculator(Purchase.getPurchasePrice(), matchCounts);
     }
 }

@@ -4,7 +4,7 @@ import static lotto.Utils.convertStringToInt;
 
 public class Purchase {
     private static final int LOTTOPRICE = 1000;
-    private int purchasePrice;
+    private static int purchasePrice;
     private int lottoCount;
 
     public Purchase(String purchasePriceInput) {
@@ -18,5 +18,9 @@ public class Purchase {
 
     public int getLottoCount() {
         return lottoCount;
+    }
+
+    public static int getPurchasePrice() {
+        return purchasePrice;
     }
 }

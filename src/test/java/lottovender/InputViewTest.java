@@ -1,6 +1,7 @@
 package lottovender;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.InputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -8,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
@@ -32,9 +31,8 @@ class InputViewTest {
         InputStream inputPrice = setReadLine(" ");
         System.setIn(inputPrice);
 
-        InputView iv = new InputView();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            iv.inputLottoPrice();
+            InputView.inputLottoPrice();
         });
     }
 
@@ -44,9 +42,8 @@ class InputViewTest {
         InputStream inputPrice = setReadLine("error");
         System.setIn(inputPrice);
 
-        InputView iv = new InputView();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            iv.inputLottoPrice();
+            InputView.inputLottoPrice();
         });
     }
 
@@ -56,9 +53,8 @@ class InputViewTest {
         InputStream inputPrice = setReadLine("1004");
         System.setIn(inputPrice);
 
-        InputView iv = new InputView();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            iv.inputLottoPrice();
+            InputView.inputLottoPrice();
         });
     }
 }

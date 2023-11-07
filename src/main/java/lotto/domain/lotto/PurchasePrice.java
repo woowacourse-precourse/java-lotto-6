@@ -1,4 +1,4 @@
-package lotto.domain.lotto.userLotto;
+package lotto.domain.lotto;
 
 import static lotto.domain.lotto.LottoCondition.PRICE;
 

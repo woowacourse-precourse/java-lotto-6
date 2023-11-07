@@ -1,8 +1,10 @@
 package lotto.service;
 
 import lotto.domain.Ranking;
+import lotto.domain.generator.RandomNumberGenerator;
 import lotto.domain.lotto.AnswerLotto;
-import lotto.domain.lotto.userLotto.UserLotto;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.WinningResult;
 import lotto.dto.LottoDto;
 import lotto.dto.RankingDto;
@@ -14,27 +16,29 @@ import java.util.Map;
 
 public class LottoService {
 
-    private UserLotto userLotto;
+    private PurchasePrice purchasePrice;
+    private Lottos lottos;
     private AnswerLotto answerLotto;
     private WinningResult winningResult;
 
     public void buyLottos(int purchasePrice) {
-        userLotto = new UserLotto(purchasePrice);
+        this.purchasePrice = new PurchasePrice(purchasePrice);
+        this.lottos = new Lottos(RandomNumberGenerator.getInstance(), purchasePrice);
     }
 
-    public List<LottoDto> getUserLottoDto() {
-        List<LottoDto> lottoDtos = userLotto.getLottos().stream()
+    public List<LottoDto> getLottoDtos() {
+        return lottos.getLottos().stream()
                 .map(lotto -> new LottoDto(lotto.getNumbers()))
                 .toList();
-        return lottoDtos;
     }
 
-    public void drawLotto(List<Integer> winningNumbers, int bonusNumber) {
-        answerLotto = new AnswerLotto(winningNumbers, bonusNumber);
+    public void drawAnswerLotto(List<Integer> lottoNumbers, int bonusNumber) {
+        answerLotto = new AnswerLotto(lottoNumbers, bonusNumber);
     }
 
     public void calculateWinningResult() {
-        winningResult = userLotto.calculateWinningResult(answerLotto);
+        List<Ranking> rankings = lottos.calculateWinningResult(answerLotto);
+        winningResult = new WinningResult(rankings, purchasePrice.getPurchasePrice());
     }
 
     public WinningResultDto getWinningResultDto() {

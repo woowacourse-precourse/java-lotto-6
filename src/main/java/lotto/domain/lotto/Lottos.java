@@ -1,9 +1,7 @@
-package lotto.domain.lotto.userLotto;
+package lotto.domain.lotto;
 
 import lotto.domain.generator.NumberGenerator;
 import lotto.domain.Ranking;
-import lotto.domain.lotto.AnswerLotto;
-import lotto.domain.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +13,9 @@ public class Lottos {
     private final NumberGenerator numberGenerator;
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(NumberGenerator numberGenerator, int lottoAmount) {
+    public Lottos(NumberGenerator numberGenerator, int purchasePrice) {
         this.numberGenerator = numberGenerator;
-        generateLottos(lottoAmount);
+        generateLottos(purchasePrice / LottoCondition.PRICE.getValue());
     }
 
     private void generateLottos(int lottoAmount) {

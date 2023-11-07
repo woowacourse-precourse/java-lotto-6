@@ -23,41 +23,41 @@ public class LottoController {
     }
 
     public void startLotto() {
-        buyUserLottos();
+        buyLottos();
         announceUserLotto();
         drawAnswerLotto();
         calculateWinningResult();
         announceWinningResult();
     }
 
-    private void buyUserLottos() {
+    private void buyLottos() {
         try {
             String inputPurchasePrice = inputView.askPurchasePrice();
             int purchasePrice = inputValidator.validateNumber(inputPurchasePrice);
             lottoService.buyLottos(purchasePrice);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            buyUserLottos();
+            buyLottos();
         }
     }
 
     private void announceUserLotto() {
-        List<LottoDto> lottoDtos = lottoService.getUserLottoDto();
-        outputView.printUserLotto(lottoDtos);
+        List<LottoDto> lottoDtos = lottoService.getLottoDtos();
+        outputView.printLottos(lottoDtos);
     }
 
     private void drawAnswerLotto() {
         try {
-            List<Integer> winningNumbers = drawWinningNumbers();
+            List<Integer> lottoNumbers = drawLottoNumbers();
             int bonusNumber = drawBonusNumber();
-            lottoService.drawLotto(winningNumbers, bonusNumber);
+            lottoService.drawAnswerLotto(lottoNumbers, bonusNumber);
         } catch (IllegalArgumentException e)  {
             outputView.printErrorMessage(e.getMessage());
             drawAnswerLotto();
         }
     }
 
-    private List<Integer> drawWinningNumbers() {
+    private List<Integer> drawLottoNumbers() {
         String inputWinningNumbers = inputView.askWinningNumbers();
         List<String> splitWinningNumbers = Arrays.stream(inputWinningNumbers.split(",")).toList();
         List<String> trimWinningNumbers = splitWinningNumbers.stream().map(String::trim).toList();

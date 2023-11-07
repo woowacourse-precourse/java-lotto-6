@@ -22,7 +22,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printUserLotto(List<LottoDto> lottoDtos) {
+    public void printLottos(List<LottoDto> lottoDtos) {
         print(OutputMessage.getUserLottoCountMessage(lottoDtos.size()));
         lottoDtos.stream()
                 .forEach(lottoDto -> print(lottoDto.numbers()));

@@ -3,7 +3,6 @@ package lotto.controller.validator;
 import static lotto.model.LottoGenerator.LOTTO_TICKET_PRICE;
 
 public class BudgetValidator implements InputValidator {
-    // Singleton
     private static BudgetValidator budgetValidator;
 
     private BudgetValidator() {

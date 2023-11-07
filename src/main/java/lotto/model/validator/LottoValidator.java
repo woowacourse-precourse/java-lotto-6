@@ -5,7 +5,6 @@ import lotto.constant.LottoConstants;
 import lotto.model.Lotto;
 
 public class LottoValidator implements ModelValidator {
-    // Singleton
     private static LottoValidator lottoValidator;
 
     private LottoValidator() {

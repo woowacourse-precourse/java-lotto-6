@@ -6,7 +6,6 @@ import lotto.constant.LottoConstants;
 import lotto.utils.Parser;
 
 public class WinningNumbersValidator implements InputValidator {
-    // Singleton
     private static WinningNumbersValidator winningNumbersValidator;
 
     private WinningNumbersValidator() {

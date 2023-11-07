@@ -5,7 +5,6 @@ import lotto.model.Lotto;
 import lotto.model.WinningLotto;
 
 public class WinningLottoValidator implements ModelValidator {
-    // Singleton
     private static WinningLottoValidator winningLottoValidator;
 
     private WinningLottoValidator() {

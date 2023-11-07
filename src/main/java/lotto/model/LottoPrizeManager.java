@@ -28,4 +28,8 @@ public class LottoPrizeManager {
         }
         return Prize.NO_PRIZE.getPrize();
     }
+
+    public long getTotalPrize() {
+        return prizeResult.getTotalPrize();
+    }
 }

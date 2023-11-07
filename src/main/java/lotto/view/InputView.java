@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.global.ErrorMessage.*;
+
 public class InputView {
     private InputView(){}
     private static class InputViewHolder{
@@ -25,9 +27,11 @@ public class InputView {
         try {
             int payment = Integer.parseInt(input);
             if(payment%1000!=0)
-                throw new IllegalArgumentException();
-        }catch (Exception e){
-            throw new IllegalArgumentException("1000원 단위의 숫자로 입력해주세요");
+                throw new IllegalArgumentException(PAYMENT_ERROR.toString());
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(NUMBER_ERROR.toString());
+        } catch (IllegalArgumentException e){
+            throw e;
         }
     }
 
@@ -41,12 +45,14 @@ public class InputView {
         try {
             String[] stringNums = input.split(",");
             if(stringNums.length!=6)
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(SIZE_ERROR.toString());
             for(String num : stringNums){
                 validNumber(num);
             }
-        }catch (Exception e){
-            throw new IllegalArgumentException("1~45 사이의 숫자 6개를 ,으로 구분하여 입력해주세요");
+        } catch (IllegalArgumentException e){
+            throw e;
+        } catch (Exception e){
+            throw new IllegalArgumentException(ERROR_MESSAGE.toString());
         }
     }
     public int inputNumber(){
@@ -59,9 +65,11 @@ public class InputView {
         try {
             int payment = Integer.parseInt(input);
             if(payment<1 || payment>45)
-                throw new IllegalArgumentException();
-        }catch (Exception e){
-            throw new IllegalArgumentException("1~45 사이의 숫자로 입력해주세요");
+                throw new IllegalArgumentException(RANGE_ERROR.toString());
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(NUMBER_ERROR.toString());
+        }catch (IllegalArgumentException e){
+            throw e;
         }
     }
 }

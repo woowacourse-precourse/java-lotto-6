@@ -16,9 +16,9 @@ public class ResultTest {
     @Test
     @DisplayName("Result 배열에 Rank가 올바르게 저장된다")
     void lottoOrderedTest() {
-        Result result = new Result();
+        Result result = new Result(Rank.valueOf(5, false));
         Rank rank = Rank.valueOf(6, true);
-        result.add(rank);
+        result.getResults().add(rank);
 
         Assertions.assertThat(result.getResults()).contains(Rank.valueOf(6, true));
     }

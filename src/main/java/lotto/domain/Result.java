@@ -19,4 +19,12 @@ public class Result {
     public int getCount(int rank) {
         return this.countsOfEachRank[rank - 1];
     }
+
+    public int calculateTotalReward() {
+        int sum = 0;
+        for (int i = 0; i < this.countsOfEachRank.length; i++) {
+            sum += DomainConfiguration.REWARD_PER_RANK.get(i + 1) * this.countsOfEachRank[i];
+        }
+        return sum;
+    }
 }

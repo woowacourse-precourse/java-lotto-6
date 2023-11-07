@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.constant.LottoProfitConstant.FIFTH_PRIZE_AMOUNT;
 import static lotto.domain.constant.LottoProfitConstant.FIRST_PRIZE_AMOUNT;
 import static lotto.domain.constant.LottoProfitConstant.FOURTH_PRIZE_AMOUNT;
+import static lotto.domain.constant.LottoProfitConstant.LOTTO_PRICE;
 import static lotto.domain.constant.LottoProfitConstant.SECOND_PRIZE_AMOUNT;
 import static lotto.domain.constant.LottoProfitConstant.THIRD_PRIZE_AMOUNT;
 
@@ -22,6 +23,7 @@ public class LottoProfit {
 
     public void createLottoProfit(LottoPrize lottoPrize, LottoPurchase lottoPurchase) {
         int totalWinningAmount = createTotalWinningAmount(lottoPrize);
+        int totalPurchaseAmount = createTotalPurchaseAmount(lottoPurchase);
     }
 
     public int createTotalWinningAmount(LottoPrize lottoPrize) {
@@ -32,5 +34,9 @@ public class LottoProfit {
         totalWinningAmount += lottoPrize.getSecondRankCount() * SECOND_PRIZE_AMOUNT.getNumber();
         totalWinningAmount += lottoPrize.getFirstRankCount() * FIRST_PRIZE_AMOUNT.getNumber();
         return totalWinningAmount;
+    }
+
+    public int createTotalPurchaseAmount(LottoPurchase lottoPurchase) {
+        return lottoPurchase.getPurchaseCount().getCount() * LOTTO_PRICE.getNumber();
     }
 }

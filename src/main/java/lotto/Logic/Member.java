@@ -8,12 +8,11 @@ import java.util.List;
 
 public class Member {
     private final static int dividePrice=1000;
-    int price;
-    int count;
-    List<Lotto> memberLotto=new ArrayList<>();
-
-    List<Integer> result=new ArrayList<>();
-    List<Prize> prize=new ArrayList<>();
+    private int price;
+    private int count;
+    private List<Lotto> memberLotto=new ArrayList<>();
+    private List<Prize> prize=new ArrayList<>();
+    private List<Integer> result=new ArrayList<>();
 
 
     public Member() {
@@ -29,6 +28,10 @@ public class Member {
         return this.prize;
     }
 
+    public int getPrice(){
+        return this.price;
+    }
+
     public List<Lotto> getMemberLotto(){
         return this.memberLotto;
     }
@@ -41,6 +44,12 @@ public class Member {
         this.prize.add(prize);
     }
 
+    public void setCount(int price){
+        this.count=price/dividePrice;
+
+        createMemberLotto(this.getCount());
+    }
+
     public void setPriceValid(String prices) throws IllegalArgumentException{
         try{
             this.price=Integer.parseInt(prices);
@@ -49,7 +58,7 @@ public class Member {
             throw new IllegalArgumentException("[ERROR] 구매금액는 숫자로 표현해야 한다");
         }
 
-        priceValid(this.price);
+        priceValid(this.getPrice());
     }
 
     public void priceValid(int price) throws IllegalArgumentException{
@@ -62,14 +71,6 @@ public class Member {
             setCount(price);
 
     }
-
-    public void setCount(int price){
-        this.count=price/dividePrice;
-
-        createMemberLotto(this.count);
-    }
-
-
 
     public String getProfit(){
         double totalPrice=0;
@@ -95,7 +96,7 @@ public class Member {
     public void createMemberLotto(int count){
 
         for(int i=0;i<count;i++)
-            this.memberLotto.add(new Lotto(randomNumber()));
+            this.getMemberLotto().add(new Lotto(randomNumber()));
     }
 
     public List<Integer> prizeResult(){

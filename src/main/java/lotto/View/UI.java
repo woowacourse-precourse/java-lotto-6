@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UI {
-    Member member=new Member();
-    WinningNumber winningNumber=new WinningNumber();
+    private Member member=new Member();
+    private WinningNumber winningNumber=new WinningNumber();
 
 
     public UI() {

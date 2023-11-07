@@ -4,13 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumber {
-    Lotto lotto;
-    int bonus;
+    private Lotto lotto;
+    private int bonus;
 
 
     public WinningNumber(){
     }
 
+    public Lotto getLotto(){
+        return this.lotto;
+    }
+
+    public int getBonus(){
+        return this.bonus;
+    }
 
     public void splitValid(String number) throws IllegalArgumentException{
         String[] checkNumber=number.split(",",-1);
@@ -55,13 +62,6 @@ public class WinningNumber {
 
         this.lotto=new Lotto(checkNumbers);
     }
-    public Lotto getLotto(){
-        return this.lotto;
-    }
-
-    public int getBonus(){
-        return this.bonus;
-    }
 
     public void setBonusValid(String bonus) throws IllegalArgumentException{
         try{
@@ -70,7 +70,7 @@ public class WinningNumber {
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 표현해야 한다");
         }
-        bonusValid(this.bonus);
+        bonusValid(this.getBonus());
     }
 
     public void bonusValid(int bonusNumber) throws IllegalArgumentException{
@@ -88,9 +88,9 @@ public class WinningNumber {
 
         for (int i=0;i<memberLotto.size();i++){
             List<Integer> winNumbers=new ArrayList<>();
-            winNumbers.addAll(this.getLotto().getNumbers());
+            winNumbers.addAll(this.lotto.getNumbers());
 
-            List<Integer> correct=correctBonus(memberLotto.get(i),winNumbers,this.getBonus());
+            List<Integer> correct=correctBonus(memberLotto.get(i),winNumbers,this.bonus);
 
             member.setPrize(Prize.sixth.prizeDetermine(correct));
         }

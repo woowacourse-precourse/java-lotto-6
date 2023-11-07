@@ -80,10 +80,6 @@ public class LottoController {
         );
 
         customer.checkWinningNumber(lottoChecker);
-//        lottoChecker.saveLottosResult();
-//        lottoChecker.calculateTotalPrize();
-//        lottoChecker.calculateProfitRate();
-
         Map<Prize, Integer> result = lottoChecker.getResult();
         String profitRate = lottoChecker.getProfitRate();
 

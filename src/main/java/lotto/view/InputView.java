@@ -13,7 +13,7 @@ public class InputView {
     private static final String READ_WINNING_NO = "당첨 번호를 입력해 주세요.";
     private static final String READ_BONUS_NO = "보너스 번호를 입력해 주세요.";
 
-    public Token readAmount() {
+    public Token readToken() {
         System.out.println(READ_AMOUNT_MSG);
         int amount = TypeConverter.toInt(readLine());
         return new Token(amount);

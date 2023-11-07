@@ -20,6 +20,12 @@ public class InputWinnerNumbers extends InputList<Integer> {
         return new InputWinnerNumbers(input);
     }
 
+    @Override
+    public Lotto sendInputData() {
+        return new Lotto(list);
+    }
+
+    @Override
     public void validate() {
         if (notLottoNumbers()) {
             throw LottoException.of(INVALID_LOTTO_NUMBER);
@@ -27,8 +33,8 @@ public class InputWinnerNumbers extends InputList<Integer> {
     }
 
     @Override
-    public Lotto sendInputData() {
-        return new Lotto(list);
+    public String toString() {
+        return list.toString();
     }
 
     protected List<Integer> convertElements(List<String> input) {

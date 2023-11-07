@@ -1,10 +1,16 @@
 package lotto;
 
+import lotto.common.PureNumber;
+
 public class PurchaseAmount {
 
     private static int LOTTERY_TICKET_PRICE = 1000;
 
     private int amount;
+
+    public static PurchaseAmount amountOf(PureNumber number) throws IllegalArgumentException {
+        return new PurchaseAmount(number.getNumber());
+    }
 
     public PurchaseAmount(int amount) throws IllegalArgumentException {
         validate(amount);

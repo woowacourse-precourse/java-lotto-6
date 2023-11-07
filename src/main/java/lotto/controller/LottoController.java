@@ -8,7 +8,7 @@ import lotto.BonusNumber;
 import lotto.LotteryTicket;
 import lotto.io.ConsoleUserInterface;
 import lotto.LotteryPortfolio;
-import lotto.LottoService;
+import lotto.service.LottoService;
 import lotto.PurchaseAmount;
 import lotto.RandomLotteryNumberProvider;
 import lotto.io.UserInputReader;
@@ -27,7 +27,7 @@ public class LottoController {
 
     public void readPurchaseAmount() throws IllegalArgumentException {
         ConsoleUserInterface.prompt(WAIT_FOR_PURCHASE_AMOUNT);
-        purchaseAmount = new PurchaseAmount(UserInputReader.readPureNumber());
+        purchaseAmount = PurchaseAmount.amountOf(UserInputReader.readPureNumber());
     }
 
     public void issueRequiredAmountOfLottery() {
@@ -48,12 +48,12 @@ public class LottoController {
 
     public void readWinningNumbers() throws IllegalArgumentException {
         ConsoleUserInterface.prompt(WAIT_FOR_WINNING_NUMBERS);
-        winningLotteryTicket = new LotteryTicket(UserInputReader.readMultiplePureNumbers());
+        winningLotteryTicket = LotteryTicket.create(UserInputReader.readMultiplePureNumbers());
     }
 
     public void readBonusNumber() throws IllegalArgumentException {
         ConsoleUserInterface.prompt(WAIT_FOR_BONUS_NUMBER);
-        bonusNumber = new BonusNumber(winningLotteryTicket, UserInputReader.readPureNumber());
+        bonusNumber = BonusNumber.create(winningLotteryTicket, UserInputReader.readPureNumber());
     }
 
     public void showPortfolioResult() {

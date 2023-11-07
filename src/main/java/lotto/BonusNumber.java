@@ -1,10 +1,17 @@
 package lotto;
 
+import lotto.common.PureNumber;
+
 public class BonusNumber {
 
     private static final int MIN_INCLUDE = 1;
     private static final int MAX_INCLUDE = 45;
     private int bonusNumber;
+
+    public static BonusNumber create(LotteryTicket winningLotteryTicket, PureNumber number)
+            throws IllegalArgumentException {
+        return new BonusNumber(winningLotteryTicket, number.getNumber());
+    }
 
     public BonusNumber(LotteryTicket winningLotteryTicket, int bonusNumber) throws IllegalArgumentException {
         validate(winningLotteryTicket, bonusNumber);

@@ -1,7 +1,10 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.common.MultiplePureNumbers;
+import lotto.common.PureNumber;
 import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidSizeException;
 
@@ -11,6 +14,10 @@ public class LotteryTicket {
     private static final int LOTTO_NUMBER_MIN_INCLUDE = 1;
     private static final int LOTTO_NUMBER_MAX_INCLUDE = 45;
     private final List<Integer> numbers;
+
+    public static LotteryTicket create(MultiplePureNumbers numbers) throws IllegalArgumentException {
+        return new LotteryTicket(numbers);
+    }
 
     public LotteryTicket(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
@@ -24,6 +31,15 @@ public class LotteryTicket {
                 hit++;
         }
         return hit;
+    }
+
+    private LotteryTicket(MultiplePureNumbers multiplePureNumbers) throws IllegalArgumentException {
+        List<Integer> numbers = new ArrayList<>();
+        for (PureNumber pureNumber : multiplePureNumbers.getPureNumbers()) {
+            numbers.add(pureNumber.getNumber());
+        }
+        validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException {

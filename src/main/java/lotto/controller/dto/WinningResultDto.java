@@ -1,10 +1,8 @@
 package lotto.controller.dto;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.domain.result.WinningRank;
-import lotto.domain.result.WinningResult;
 
 public class WinningResultDto {
 

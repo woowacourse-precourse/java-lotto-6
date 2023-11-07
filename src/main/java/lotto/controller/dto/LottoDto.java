@@ -6,7 +6,7 @@ import lotto.domain.lotto.Lotto;
 
 public class LottoDto {
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     private LottoDto(List<Integer> numbers) {
         this.numbers = numbers;

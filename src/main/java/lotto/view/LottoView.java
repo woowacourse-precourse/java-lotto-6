@@ -6,10 +6,6 @@ import lotto.controller.dto.LottoDto;
 import lotto.controller.dto.LottoInfoDto;
 import lotto.controller.dto.LottosDto;
 import lotto.controller.dto.WinningResultDto;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Lottos;
-import lotto.domain.result.WinningRank;
-import lotto.domain.result.WinningResult;
 import lotto.io.Input;
 import lotto.io.Output;
 

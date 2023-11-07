@@ -7,7 +7,7 @@ import lotto.domain.lotto.Lottos;
 
 public class LottosDto {
 
-    private List<LottoDto> lottos;
+    private final List<LottoDto> lottos;
 
     private LottosDto(List<LottoDto> lottos) {
         this.lottos = lottos;

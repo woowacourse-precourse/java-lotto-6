@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,8 +54,22 @@ class LottoServiceTest {
 
     }
 
+    @DisplayName("보너스 번호가 당첨번호에 포함되어 있으면 true 를 반환 그렇지 않으면 false 를 반환")
     @Test
     void countMatchingBonusNumbers() {
+        //given
+        List<Integer> winLotto1 = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winLotto2 = List.of(8, 2, 3, 4, 5, 6);
+        int bonusNumber = 1;
+        LottoService lottoService = new LottoService();
+
+        //when
+        boolean result1 = lottoService.countMatchingBonusNumbers(winLotto1,bonusNumber);
+        boolean result2 = lottoService.countMatchingBonusNumbers(winLotto2,bonusNumber);
+        //then
+        org.assertj.core.api.Assertions.assertThat(result1).isEqualTo(true);
+        org.assertj.core.api.Assertions.assertThat(result2).isEqualTo(false);
+
     }
 
     @Test

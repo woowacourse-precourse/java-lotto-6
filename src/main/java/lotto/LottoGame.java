@@ -9,21 +9,51 @@ import java.util.*;
 public class LottoGame {
     // 로또 발행
     public int buyLotto() {
-        System.out.println("구입금액을 입력해주세요.");
-        int amount = Integer.parseInt(Console.readLine().strip());
-        int buy = amount/1000;
-        System.out.println("\n"+buy+"개를 구매했습니다.");
-        return buy;
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해주세요.");
+                int amount = parseInteger(Console.readLine().strip());
+                if (amount % 1000 != 0) {
+                    throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해주세요.");
+                }
+                int buy = amount / 1000;
+                System.out.println("\n" + buy + "개를 구매했습니다.");
+                return buy;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     // 당첨 번호 추첨
     public Lotto drawLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        System.out.println(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        bubbleSort(sortedNumbers);
 
-        return new Lotto(numbers);
+        System.out.println(sortedNumbers);
+
+        return new Lotto(sortedNumbers);
     }
+
+    private void bubbleSort(List<Integer> list) {
+        int n = list.size();
+        boolean swapped;
+
+        do {
+            swapped = false;
+            for (int i = 1; i < n; i++) {
+                if (list.get(i - 1) > list.get(i)) {
+                    int temp = list.get(i - 1);
+                    list.set(i - 1, list.get(i));
+                    list.set(i, temp);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+
+
 
     // 당첨 번호
     public Lotto inputWinningNumbers() {
@@ -34,21 +64,9 @@ public class LottoGame {
                 List<Integer> numbers = Arrays.stream((input.split(",")))
                         .map(this::parseInteger)
                         .toList();
-                winHasDuplicates(numbers);
-                rangeCheck(numbers);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-    }
-
-    // 당첨 번호끼리 중복되지 않는지 확인
-    public void winHasDuplicates(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for (Integer number : numbers) {
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("중복되는 번호가 존재합니다.");
             }
         }
     }
@@ -75,26 +93,18 @@ public class LottoGame {
         }
     }
 
+    public void rangeCheck(int number) {
+        if (number > 45 || number < 1) {
+            throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해주세요.");
+        }
+    }
+
     // 문자열 Integer 변환
     private Integer parseInteger(String s) {
         try {
             return Integer.valueOf(s);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수를 입력해주세요.");
-        }
-    }
-
-    // 숫자 범위 체크
-    public void rangeCheck(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number > 45 || number < 1) {
-                throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해주세요.");
-            }
-        }
-    }
-    public void rangeCheck(int number) {
-        if (number > 45 || number < 1) {
-            throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해주세요.");
         }
     }
 
@@ -159,7 +169,7 @@ public class LottoGame {
         System.out.println("\n당첨 통계\n---");
         for (Prize prize : Prize.values()) {
             int count = winningList[prize.ordinal()];
-            System.out.printf("%s - %d\n", prize.getDescription(), count);
+            System.out.printf("%s - %d개\n", prize.getDescription(), count);
         }
     }
 
@@ -170,7 +180,7 @@ public class LottoGame {
             int count = winningList[prize.ordinal()];
             total += prize.getPrizeAmount() * count;
         }
-        double rate = (total / (buy * 1000));
+        double rate = (total / (buy * 1000)) * 100;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String formattedRate = decimalFormat.format(rate);
 

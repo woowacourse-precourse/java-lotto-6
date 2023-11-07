@@ -5,6 +5,7 @@ import java.util.List;
 public class WinningLotto {
     final Lotto lotto;
     final int bonusNumber;
+
     public WinningLotto(Lotto lotto, int bonusNumber) {
         validateBonusNumber(lotto, bonusNumber);
         this.lotto = lotto;

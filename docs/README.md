@@ -19,7 +19,7 @@
   - [x] 당첨 내역을 출력한다. - OutputView#printNumberOfWins()
   - [x] 수익률을 출력한다. - OutputView#printEarningRate()
     - 수익률은 소수점 둘째 자리에서 반올림한다.
-- [ ] 예외 상황 시 에러 메시지를 출력해야 한다.
+- [x] 예외 상황 시 에러 메시지를 출력해야 한다. - 각 기능들이 처리
   - 에러 문구는 "[ERROR]"로 시작해야 한다.
 
 

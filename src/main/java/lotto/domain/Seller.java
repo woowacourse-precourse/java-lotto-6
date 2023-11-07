@@ -17,7 +17,7 @@ public class Seller {
 
     private void validatePayment(final int payment) {
         final int PRICE = LottoSetting.PRICE.getValue();
-        if (payment % PRICE != 0)  {
+        if (payment % PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 "
                     + PRICE + "원으로 나누어 떨어져야 합니다.");
         }

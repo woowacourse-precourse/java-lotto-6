@@ -50,10 +50,6 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    private void validateWinningLottoNumbersInput() {
-
-    }
-
     public int requestBonusNumber() {
         printBonusNumberMessage();
         String input = readMessage();

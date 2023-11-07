@@ -8,6 +8,7 @@ public enum LottoSetting {
     WINNING_TYPE_COUNT(5);
 
     private final int value;
+
     LottoSetting(int value) {
         this.value = value;
     }

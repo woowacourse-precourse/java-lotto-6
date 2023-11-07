@@ -13,6 +13,12 @@ public class InputView {
         return NumberUtil.toListInteger(inputNumber);
     }
 
+    public static Integer inputBonusNumber() {
+        String input = input();
+        ValidateInput.validateBonusNumber(input);
+        return Integer.parseInt(input);
+    }
+
     public static String input() {
         return Console.readLine();
     }

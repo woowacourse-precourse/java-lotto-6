@@ -5,7 +5,8 @@ public enum ErrorMessage {
     WINNING_NUMBER_SIZE_ERROR("[ERROR] 당첨 번호는 6개의 숫자를 가지고 있어야합니다."),
     NUMBER_DUPLICATE_ERROR("[ERROR] 6개의 숫자는 중복된 값을 가질 수 없습니다."),
     WINNING_NUMBER_DUPLICATE_ERROR("[ERROR] 당첨번호는 중복된 값을 가질 수 없습니다."),
-    RANGE_ERROR("[ERROR] 1에서 45 범위의 숫자를 입력해주세요");
+    RANGE_ERROR("[ERROR] 1에서 45 범위의 숫자를 입력해주세요"),
+    BONUS_NUMBER_DUPLICATE_ERROR("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
 
     private final String errorMessage;
 

@@ -45,4 +45,7 @@ public class WinningNumbers {
         return number >= 1 && number <= 45;
     }
 
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
+    }
 }

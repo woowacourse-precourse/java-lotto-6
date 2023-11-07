@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.BonusNumber;
+import lotto.model.GameNumbers;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
@@ -21,7 +23,9 @@ public class LottoController {
         Lottos lottos = new Lottos(LottoMachine.createLotto(lottoCount));
         lottos.printLottos(OutputView::printEachLotto);
 
-        WinningNumbers winningNumbers = fetchWinningNumbers();
+        GameNumbers gameNumbers = new GameNumbers(fetchWinningNumbers());
+
+        tryFetchBonusNumbers(gameNumbers);
 
     }
 
@@ -45,6 +49,22 @@ public class LottoController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return fetchWinningNumbers();
+        }
+    }
+
+    private BonusNumber fetchBonusNumber() {
+        OutputView.printBonusNumberInputAnnounce();
+        int inputNumber = InputView.inputBonusNumber();
+        return new BonusNumber(inputNumber);
+    }
+
+    private GameNumbers tryFetchBonusNumbers(final GameNumbers gameNumbers) {
+        try {
+            gameNumbers.addBonusNumber(fetchBonusNumber());
+            return gameNumbers;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return tryFetchBonusNumbers(gameNumbers);
         }
     }
 }

@@ -26,6 +26,12 @@ public class ValidateInput {
         validateIsIntegerList(inputString);
     }
 
+    public static void validateBonusNumber(String input) {
+        validateIsEmpty(input);
+        validateHasBlank(input);
+        validateIsInteger(input);
+    }
+
     private static void validateIsIntegerList(List<String> inputString) {
         try {
             inputString.forEach(Integer::parseInt);
@@ -68,4 +74,5 @@ public class ValidateInput {
     private static int remainDivide(int amount) {
         return amount % LOTTO_PRICE;
     }
+
 }

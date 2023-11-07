@@ -3,6 +3,7 @@ package lotto.ui;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.ui.ConsoleMessage.PRINT_LOTTOS;
 import static lotto.ui.ConsoleMessage.REQUEST_PURCHASE_AMOUNT;
+import static lotto.ui.ConsoleMessage.REQUEST_WINNING_NUMBERS;
 
 import java.util.List;
 import lotto.error.exception.InvalidInputException;
@@ -20,7 +21,7 @@ public class ConsoleUI {
         List<Lotto> lottos = lottoVendor.generateLottos(purchaseAmount);
         printLottosInfo(lottos);
 
-
+        List<Integer> winningNumbers = inputWinningNumbers();
     }
 
     private Integer inputPurchaseAmount() {
@@ -43,5 +44,19 @@ public class ConsoleUI {
             System.out.println(lotto.getNumbers().toString());
         }
         System.out.println();
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        System.out.println(REQUEST_WINNING_NUMBERS.getMessage());
+        while (true) {
+            String input = readLine();
+            try {
+                List<Integer> winningNumbers = inputProcessor.processWinningNumbers(input);
+                System.out.println();
+                return winningNumbers;
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

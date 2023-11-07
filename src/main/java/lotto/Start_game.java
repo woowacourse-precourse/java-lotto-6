@@ -12,6 +12,7 @@ public class Start_game {
     private Display_function display_function = new Display_function();
     private List<List<Integer>> all_lotto_numbers = new ArrayList<>();
     private int[] scoreBoard = {0,0,0,0,0,0,0,0};
+    private int totalPrize = 0;
     
     public void run() {
         money = input_function.get_money();
@@ -22,8 +23,8 @@ public class Start_game {
         calculation.get_all_score(all_lotto_numbers, lotto_number.get_lotto_numbers(), bonus_number, scoreBoard);
         
         display_function.displayUserLottonumbers(all_lotto_numbers,game_count);
-        
-        
         display_function.displayScore(scoreBoard);
+
+        totalPrize = calculation.getAllPrize(scoreBoard);
     }
 }

@@ -56,4 +56,31 @@ public class Calculation {
             get_score(user_number, lotto_number, bonus_number, scoreBoard);
         }
     }
+
+    public int getAllPrize(int[] scoreBoard) {
+        int prize = 0;
+        prize = prize + getFifthPrize(scoreBoard[3]);
+        prize = prize + getFourthPrize(scoreBoard[4]);
+        prize = prize + getThirdPrize(scoreBoard[5]);
+        prize = prize + getSecondPrize(scoreBoard[7]);
+        prize = prize + getFirstPrize(scoreBoard[6]);
+
+        return prize;
+
+    }
+    public int getFifthPrize(int grade) {
+        return 5000*grade;
+    }
+    public int getFourthPrize(int grade) {
+        return 50000*grade;
+    }
+    public int getThirdPrize(int grade) {
+        return 1500000*grade;
+    }
+    public int getSecondPrize(int grade) {
+        return 30000000*grade;
+    }
+    public int getFirstPrize(int grade) {
+        return 2000000000*grade;
+    }
 }

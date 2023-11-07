@@ -32,7 +32,7 @@ public class Lotto {
         }
     }
 
-    private void isValidDuplication(List<LottoNumber> numbers) {
+    public void isValidDuplication(List<LottoNumber> numbers) {
         boolean hasDuplicateLottoNumber = numbers.stream()
                 .anyMatch(lottoNumber -> Collections.frequency(lottoNumbers, lottoNumber) != 1);
         if (hasDuplicateLottoNumber) {

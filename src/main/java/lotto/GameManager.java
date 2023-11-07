@@ -24,25 +24,52 @@ public class GameManager {
     }
 
     public void run() {
+        int numberOfLottos = purchase();
+        List<Lotto> lottos = issueLottos(numberOfLottos);
+
+        showLottos(lottos);
+
+        List<Integer> winningNumbers = chooseWinningNumbers();
+        int bonusNumber = chooseBonusNumber();
+
+        Game game = new Game(winningNumbers, bonusNumber, lottos);
+        processResult(game);
+    }
+
+    private void processResult(Game game) {
+        WinningInformation winningInformation = WinningInformation.of(game.calculateRanks());
+        outputProcessor.outputWinningInformation(winningInformation);
+    }
+
+    private int chooseBonusNumber() {
+        outputProcessor.outputBonusNumberInputMessage();
+        // BonusNumber의 중복 여부를 여기서 직접 확인하지 않아서 try문에 안잡힘
+        int bonusNumber = requestRepeatedly(inputProcessor::getBonusNumber);
+        outputProcessor.outputNewLine();
+        return bonusNumber;
+    }
+
+    private List<Integer> chooseWinningNumbers() {
+        outputProcessor.outputWinningNumberInputMessage();
+        List<Integer> winningNumbers = requestRepeatedly(inputProcessor::getWinningNumbers);
+        outputProcessor.outputNewLine();
+        return winningNumbers;
+    }
+
+    private int purchase() {
         outputProcessor.outputPurchaseMoneyInputMessage();
         int purchaseMoney = requestRepeatedly(inputProcessor::getUserPurchaseMoney);
         int numberOfLottos = purchaseMoney / PURCHASE_MONEY_UNIT;
         outputProcessor.outputNewLine();
-        outputProcessor.outputNumberOfLottos(numberOfLottos);
-        List<Lotto> lottos = issueLottos(numberOfLottos);
+        return numberOfLottos;
+    }
+
+    private void showLottos(List<Lotto> lottos) {
+        outputProcessor.outputNumberOfLottos(lottos.size());
         for (Lotto lotto : lottos) {
             outputProcessor.outputLotto(lotto);
         }
         outputProcessor.outputNewLine();
-        outputProcessor.outputWinningNumberInputMessage();
-        List<Integer> winningNumbers = requestRepeatedly(inputProcessor::getWinningNumbers);
-        outputProcessor.outputNewLine();
-        outputProcessor.outputBonusNumberInputMessage();
-        int bonusNumber = requestRepeatedly(inputProcessor::getBonusNumber);
-        outputProcessor.outputNewLine();
-        Game game = new Game(winningNumbers, bonusNumber, lottos);
-        WinningInformation winningInformation = WinningInformation.of(game.calculateRanks());
-        outputProcessor.outputWinningInformation(winningInformation);
     }
 
     private <T> T requestRepeatedly(Supplier<T> supplier) {

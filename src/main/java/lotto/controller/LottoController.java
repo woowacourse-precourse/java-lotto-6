@@ -43,6 +43,19 @@ public class LottoController {
         return new PurchaseAmount(purchaseAmountDto.amount());
     }
 
+    private LottosDto mapToLottosDto(final Lottos lottos) {
+        List<LottoDto> lottoStore = new ArrayList<>();
+
+        List<Lotto> lottosContents = lottos.getLottos();
+
+        for (Lotto lotto : lottosContents) {
+            LottoDto lottoDto = new LottoDto(lotto.getNumbers());
+            lottoStore.add(lottoDto);
+        }
+
+        return new LottosDto(lottoStore);
+    }
+
     private DrawingResultDto drawLotto(final LottosDto lottosDto) {
         WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
         BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();

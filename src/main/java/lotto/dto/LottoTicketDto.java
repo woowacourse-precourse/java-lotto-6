@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoTicketDto {
-
     private List<Integer> lottoNumbers;
 
     public LottoTicketDto(LottoTicket lottoTicket) {

@@ -45,7 +45,7 @@ class LottoTicketTest {
         List<LottoNumber> lottoNumbers = lotto.getLottoNumbers();
         LottoNumber lottoNumber = lottoNumbers.get(FIRST_INDEX);
 
-        //then
+        // then
         Assertions.assertThat(lottoNumber.getNumber()).isEqualTo(expected);
     }
 

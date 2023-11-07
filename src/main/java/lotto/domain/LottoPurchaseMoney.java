@@ -3,8 +3,8 @@ package lotto.domain;
 public class LottoPurchaseMoney {
     private static final int MINIMUM_AMOUNT = 1000;
     private static final int UNIT_OF_MONEY = 1000;
-    private int money;
 
+    private int money;
 
     public LottoPurchaseMoney(int money) {
         validateAmount(money);

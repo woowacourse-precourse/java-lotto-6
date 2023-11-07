@@ -40,4 +40,7 @@ public class LottoTicket {
     public List<Lotto> getLottoList() {
         return lottoList;
     }
+    public int getPurchaseQuantity() {
+        return purchaseQuantity;
+    }
 }

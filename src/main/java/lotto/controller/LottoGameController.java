@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import lotto.StringConstants;
 import lotto.port.InputPort;
 import lotto.port.OutputPort;
@@ -42,28 +43,47 @@ public class LottoGameController {
     }
 
     private List<List<Integer>> buyLottoTickets() {
-        outputPort.printLine(StringConstants.INPUT_PURCHASEAMOUNT_MESSAGE);
-        String purchaseAmount = inputPort.readLine();
-        outputPort.printEmptyLine();
-        int lottoTicketsCount = lottoPurchaseService.calculateNumberOfLottoTickets(purchaseAmount);
-
-        return lottoNumberGenerationService.generateLottoNumbers(lottoTicketsCount);
+        return getInputWithValidation(
+                () -> {
+                    outputPort.printLine(StringConstants.INPUT_PURCHASEAMOUNT_MESSAGE);
+                    String purchaseAmount = inputPort.readLine();
+                    outputPort.printEmptyLine();
+                    int lottoTicketsCount = lottoPurchaseService.calculateNumberOfLottoTickets(purchaseAmount);
+                    return lottoNumberGenerationService.generateLottoNumbers(lottoTicketsCount);
+                }
+        );
     }
 
     private List<Integer> inputWinningNumber() {
-        outputPort.printEmptyLine();
-        outputPort.printLine(StringConstants.INPUT_WINNING_NUMBER_MESSAGE);
-        String winningNumbers = inputPort.readLine();
-
-        return lottoWinningNumberService.addLottoNumberToWinningNumbers(winningNumbers);
+        return getInputWithValidation(
+                () -> {
+                    outputPort.printEmptyLine();
+                    outputPort.printLine(StringConstants.INPUT_WINNING_NUMBER_MESSAGE);
+                    String winningNumbers = inputPort.readLine();
+                    return lottoWinningNumberService.addLottoNumberToWinningNumbers(winningNumbers);
+                }
+        );
     }
 
     private int inputBonusNumber(List<Integer> winningNumbers) {
-        outputPort.printEmptyLine();
-        outputPort.printLine(StringConstants.INPUT_BONUS_NUMBER_MESSAGE);
-        String bonusNumber = inputPort.readLine();
-        lottoWinningNumberService.validateBonusNumber(winningNumbers, bonusNumber);
+        return getInputWithValidation(
+                () -> {
+                    outputPort.printEmptyLine();
+                    outputPort.printLine(StringConstants.INPUT_BONUS_NUMBER_MESSAGE);
+                    String bonusNumber = inputPort.readLine();
+                    lottoWinningNumberService.validateBonusNumber(winningNumbers, bonusNumber);
+                    return Integer.parseInt(bonusNumber);
+                }
+        );
+    }
 
-        return Integer.parseInt(bonusNumber);
+    private <T> T getInputWithValidation(Supplier<T> inputSupplier) {
+        while (true) {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                outputPort.printLine(e.getMessage());
+            }
+        }
     }
 }

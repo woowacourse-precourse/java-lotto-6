@@ -1,7 +1,5 @@
 package lotto.view;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 import lotto.constant.PrizeConstant;
 

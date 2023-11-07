@@ -22,7 +22,7 @@ public class Lotto {
         return (int)sameNumberCount;
     }
 
-    public boolean checkContains(int bonusNumber) {
+    public boolean checkContainsSameNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             return true;
         }

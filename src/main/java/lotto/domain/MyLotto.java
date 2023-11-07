@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static java.util.Collections.nCopies;
-import static lotto.constant.CostConstant.UNIT;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MAX_SCORE;
@@ -58,9 +57,6 @@ public class MyLotto {
         return statistics;
     }
 
-    private int getQuantity(int cost) {
-        return cost / UNIT.getValue();
-    }
     private Lotto generateMyLotto() {
         return new Lotto(generateLottoNumber());
     }

@@ -21,7 +21,7 @@ public class WinningLotto {
     private int calculateScore(Lotto myLotto, int sameCount) {
         int score = sameCount;
 
-        if (myLotto.checkContains(bonusNumber) && score == 5 || score == 6) {
+        if (myLotto.checkContainsSameNumber(bonusNumber) && score == 5 || score == 6) {
             score++;
         }
 
@@ -29,7 +29,7 @@ public class WinningLotto {
     }
 
     private void validate(int bonusNumber) {
-        if (winningLottoNumbers.checkContains(bonusNumber)) {
+        if (winningLottoNumbers.checkContainsSameNumber(bonusNumber)) {
             System.out.println(DUPLICATE_BONUSE_NUMBER.getMessage());
             throw new IllegalArgumentException();
         }

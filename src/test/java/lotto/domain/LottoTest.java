@@ -41,7 +41,7 @@ class LottoTest {
         int bonusNumber = 1;
 
         //when
-        boolean isContain = lotto.checkContains(bonusNumber);
+        boolean isContain = lotto.checkContainsSameNumber(bonusNumber);
 
         //then
         assertThat(isContain).isEqualTo(true);

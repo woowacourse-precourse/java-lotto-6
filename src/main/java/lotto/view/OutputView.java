@@ -1,7 +1,6 @@
 package lotto.view;
 
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import lotto.model.LottoPaper;

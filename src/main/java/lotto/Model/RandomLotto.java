@@ -1,13 +1,13 @@
 package lotto.Model;
 
 public class RandomLotto {
-    private int count;
+    private int counting;
 
     public RandomLotto(Price price) {
-        this.count = price.divideWithOneThousands();
+        this.counting = price.countPurchasedLotto();
     }
 
-    public int getCount() {
-        return count;
+    public int getCounting() {
+        return counting;
     }
 }

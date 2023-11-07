@@ -8,11 +8,11 @@ public enum Constants {
 
     private final int value;
 
-    Constants(int value){
+    Constants(int value) {
         this.value = value;
     }
 
-    public int getValues(){
+    public int getValues() {
         return value;
     }
 }

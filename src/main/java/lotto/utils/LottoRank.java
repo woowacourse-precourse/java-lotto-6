@@ -17,11 +17,11 @@ public enum LottoRank {
         this.resultMessage = resultMessage;
     }
 
-    public String getResult(){
+    public String getResult() {
         return resultMessage;
     }
 
-    public long getPrize(){
+    public long getPrize() {
         return prize;
     }
 

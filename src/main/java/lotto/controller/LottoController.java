@@ -25,18 +25,18 @@ public class LottoController {
         Lotto winningLotto = getWinningLotto();
         int bonus = getBonusNumber(winningLotto);
         lottoService.calculrateResult(lottos, winningLotto, bonus);
-        outputView.printResult(lottoService.getFinalPrize(money));
+        outputView.printLottoResult(lottoService.getFinalPrize(money));
     }
 
     private long getMoney(){
         while(true){
             try {
-                outputView.inputMoney();
+                outputView.printMoneyPrompt();
                 long money = Long.parseLong(inputView.inputMoney());
-                outputView.announceMoney(money);
+                outputView.printLottoPurchaseMessage(money);
                 return money;
             } catch (IllegalArgumentException e){
-                outputView.printError(e);
+                outputView.printErrorMessage(e);
             }
         }
     }
@@ -45,10 +45,10 @@ public class LottoController {
         while(true){
             try{
                 Lottos lottos = new Lottos(money);
-                outputView.printLottos(lottos);
+                outputView.printUserLottos(lottos);
                 return lottos;
             } catch (IllegalArgumentException e){
-                outputView.printError(e);
+                outputView.printErrorMessage(e);
             }
         }
     }
@@ -56,7 +56,7 @@ public class LottoController {
     private Lotto getWinningLotto(){
         while(true){
             try {
-                outputView.inputWinningNumbers();
+                outputView.printWinningLottoPrompt();
                 String numbers = inputView.inputWinningNumbers();
                 List<Integer> winningNumbers = Arrays.stream(numbers.split(","))
                         .mapToInt(Integer::parseInt)
@@ -64,7 +64,7 @@ public class LottoController {
                         .toList();
                 return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e){
-                outputView.printError(e);
+                outputView.printErrorMessage(e);
             }
         }
     }
@@ -72,12 +72,12 @@ public class LottoController {
     private int getBonusNumber(Lotto winningLotto){
         while(true){
             try {
-                outputView.inputBonusNumber();
+                outputView.printBonusNumberPrompt();
                 int bonus = Integer.parseInt(inputView.inputBonus());
                 winningLotto.validateBonusNumber(bonus);
                 return bonus;
             } catch (IllegalArgumentException e){
-                outputView.printError(e);
+                outputView.printErrorMessage(e);
             }
         }
     }

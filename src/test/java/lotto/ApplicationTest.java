@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.utils.ErrorCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,8 +11,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -50,7 +49,23 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorCode.IS_NOT_NUMBERIC.getMessage());
+        });
+    }
+
+    @Test
+    void 로또_입력_공백_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4, 5,6");
+            assertThat(output().matches(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage()));
+        });
+    }
+
+    @Test
+    void 로또_입력_문자_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,a5,6");
+            assertThat(output().matches(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage()));
         });
     }
 

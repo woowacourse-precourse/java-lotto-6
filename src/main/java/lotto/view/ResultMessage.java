@@ -28,8 +28,8 @@ public class ResultMessage {
         printReturnRate(result, amount);
     }
 
-    public static void printExceptionMessage(String errorMesaage){
-        System.out.println(errorMesaage);
+    public static void printExceptionMessage(String errorMessage){
+        System.out.println(errorMessage);
         System.out.println();
     }
 

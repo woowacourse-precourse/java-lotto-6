@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.util.ErrorMessage;
+import lotto.util.Parser;
 
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
@@ -8,7 +9,7 @@ public class PurchaseAmount {
     int amount;
 
     public PurchaseAmount(String inputAmount) {
-        int amount = parseInput(inputAmount);
+        int amount = Parser.parseNumber(inputAmount);
         validate(amount);
         this.amount = amount;
     }
@@ -20,15 +21,6 @@ public class PurchaseAmount {
     public String getResult() {
         int quantity = getQuantity();
         return String.format(FORMAT_QUANTITY, quantity);
-    }
-
-    private int parseInput(String input) {
-        try {
-            int amount = Integer.parseInt(input);
-            return amount;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT.toString());
-        }
     }
 
     private void validate(int amount) {

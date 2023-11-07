@@ -8,7 +8,7 @@ public class LottoResult {
     private final int lottoPurchaseCnt;
     private final List<Integer> numbers;
     private final List<List<Integer>> randomNumbers;
-    private final List<Integer> LottoResult;
+    private final List<Integer> lottoResult;
 
     private final List<Boolean> bonusCheck;
 
@@ -20,12 +20,12 @@ public class LottoResult {
         this.randomNumbers = randomNumbers;
         this.bounsNumber = bonusNumber;
 
-        this.LottoResult = cmpLotto();
+        this.lottoResult = cmpLotto();
         this.bonusCheck = bounusNumberCheck();
     }
 
     private List<Integer> cmpLotto() {
-        List<Integer> LottoResult = new ArrayList<>();
+        List<Integer> lottoResult = new ArrayList<>();
 
         for(int i = 0; i < lottoPurchaseCnt; i++) {
             int result = 0;
@@ -34,10 +34,10 @@ public class LottoResult {
                     result++;
                 }
             }
-            LottoResult.add(result);
+            lottoResult.add(result);
         }
 
-        return LottoResult;
+        return lottoResult;
     }
 
     private List<Boolean> bounusNumberCheck() {

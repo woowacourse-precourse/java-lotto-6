@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
 import lotto.Ranking;
 import lotto.WinningStatistics;
@@ -32,13 +33,14 @@ public class OutputView {
         println(WINNING_STATISTICS);
         println(SEPARATOR_LINE);
 
-        winningStatistics.rankingNumber().forEach(OutputView::printRankingDetails);
-
+        printRankingDetails(winningStatistics.rankingNumber());
         printReturnRate(winningStatistics);
     }
 
-    private static void printRankingDetails(Ranking ranking, int count) {
-        println(ranking.getCriteria() + " - " + count + "개");
+    private static void printRankingDetails(Map<Ranking, Integer> rankingNumber) {
+        for (Ranking ranking : Ranking.values()) {
+            println(ranking.getCriteria() + " - " + rankingNumber.getOrDefault(ranking, 0) + "개");
+        }
     }
 
     private static void printReturnRate(WinningStatistics winningStatistics) {

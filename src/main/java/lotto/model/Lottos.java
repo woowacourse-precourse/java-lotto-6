@@ -46,4 +46,8 @@ public class Lottos {
         }
         return sb.toString();
     }
+
+    public Integer size() {
+        return lottos.size();
+    }
 }

@@ -14,6 +14,14 @@ public class RankCounter {
         }
     }
 
+    public Double computeBenefit(Integer numberOfLottos) {
+        Long result = 0L;
+        for (Rank rank : ranks) {
+            result += rank.computePrice(rankCounter.get(rank));
+        }
+        return Double.valueOf(result) / Double.valueOf(numberOfLottos * 1000);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

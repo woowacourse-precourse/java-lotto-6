@@ -13,8 +13,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
+
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
+        }
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
     }
 
     @Override
@@ -24,7 +32,6 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
-
 
     public boolean contains(int number) {
         return numbers.contains(number);

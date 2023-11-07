@@ -4,16 +4,18 @@ import lotto.domain.Lotto;
 
 import java.util.List;
 
+import static lotto.view.ViewMessage.*;
+
 public class LottoView {
 
 
     public void inputMoneyView() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_MONEY_PRINT.getMessage());
     }
 
     public void outputBuyLottoTicketsView(int ticketCount) {
         System.out.println();
-        System.out.println(ticketCount + "개를 구매했습니다.");
+        System.out.println(ticketCount + OUTPUT_BUY_TICKET_PRINT.getMessage());
     }
 
     public void outputLottoTicketNumbersView(List<Lotto> lottoTickets) {
@@ -22,15 +24,15 @@ public class LottoView {
     }
 
     public void inputWinnerNumbersView() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNER_NUMBERS_PRINT.getMessage());
     }
 
     public void inputBonusNumberView() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_PRINT.getMessage());
     }
 
     public void outputWinningStatisticsView() {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println(OUTPUT_WINNING_STATISTICS_PRINT.getMessage());
     }
 
     public void outputWinningDescription(String description) {
@@ -39,7 +41,9 @@ public class LottoView {
 
 
     public void outputRevenueView(double revenue) {
-        System.out.println("총 수익률은 " + String.format("%.1f", revenue) + "%입니다.");
+        System.out.println(OUTPUT_REVENUE_PREFIX_PRINT.getMessage()
+                + String.format("%.1f", revenue)
+                + OUTPUT_REVENUE_POSTFIX_PRINT.getMessage());
     }
 
 }

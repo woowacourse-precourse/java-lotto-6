@@ -12,6 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumbers();
     }
 
     private void validate(List<Integer> numbers) {
@@ -28,5 +29,9 @@ public class Lotto {
     public int matchCount(List<Integer> winningNumbers) {
         // TODO: 당첨 번호와 일치하는 번호 개수 확인 로직 구현
         return 0;
+    }
+
+    private void sortNumbers() {
+        Collections.sort(numbers);
     }
 }

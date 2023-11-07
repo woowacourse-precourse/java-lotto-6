@@ -16,7 +16,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new LottoValidationException(LottoError.INVALID_PURCHASE_AMOUNT.toString());
+            throw new LottoValidationException(LottoError.INVALID_NUMBER.toString());
         }
     }
 

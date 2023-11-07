@@ -28,6 +28,7 @@ public class Output {
     }
 
     public void printBonusNumberPrompt() {
+        System.out.println();
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
     }
 

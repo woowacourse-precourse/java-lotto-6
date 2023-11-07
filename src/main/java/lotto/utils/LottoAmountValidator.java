@@ -30,4 +30,10 @@ public class LottoAmountValidator {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER_ERROR);
         }
     }
+
+    private void validateDivisible(int amount) {
+        if (amount % LOTTO_MIN_AMOUNT != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_NUMBER_ERROR);
+        }
+    }
 }

@@ -8,19 +8,15 @@ import controller.InputNumbers;
 import controller.RunGame;
 import controller.Statistics;
 import lotto.Lotto;
+import model.Data;
 
-import static model.Data.*;
+import static model.FixedValues.*;
 
 public class Viewer {
 	
+	private Data data=new Data();
 	private RunGame run=new RunGame();
 	private Announcer announcer=new Announcer();
-	private InputMoney money_in=new InputMoney();
-	private InputNumbers numbers_in=new InputNumbers();
-
-	private List<List<Integer>> lottery_list;
-	private Lotto lotto;
-	private int bonus;
 	
 	private Statistics stat;
 	
@@ -34,16 +30,16 @@ public class Viewer {
 	
 	private void purchaseGuide() {
 		announcer.purchase_guidance();
-		int lotto_count=money_in.purchase_lotto()/UNIT_PRICE;
-		announcer.feedback_purchase(lotto_count);
+		data.setLottoCount();
+		announcer.feedback_purchase(data.getLottoCount());
 		
-		issueGuide(lotto_count);
+		issueGuide();
 	}
 	
-	private void issueGuide(int lotto_count) {
-		lottery_list=run.issueGuide(lotto_count);
+	private void issueGuide() {
+		data=run.issueGuide(data);
 		
-		for(List<Integer> lottery:lottery_list) {
+		for(List<Integer> lottery:data.getLottoList()) {
 			System.out.println(lottery);
 		}
 	}
@@ -51,13 +47,13 @@ public class Viewer {
 	private void numbersGuide() {
 		announcer.winning_num_guidance();
 		String num_input=Console.readLine();
-		lotto=numbers_in.select_numbers(num_input);
+		data.setLotto(num_input);
 		
 		announcer.bonus_guidance();
 		String bonus_input=Console.readLine();
-		bonus=numbers_in.select_bonus(bonus_input);
+		data.setBonus(bonus_input);
 		
-		stat=new Statistics(lottery_list, bonus, lotto);
+		stat=new Statistics(data);
 	}
 	
 	private void statisticsGuide() {

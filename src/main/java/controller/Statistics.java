@@ -3,26 +3,20 @@ package controller;
 import java.util.List;
 
 import lotto.Lotto;
+import model.Data;
 
-import static model.Data.*;
+import static model.FixedValues.*;
 
 public class Statistics {
 
-	private List<List<Integer>> lottery_list;
-	//private List<Integer> winning_nums;
-	private int bonus;
-	private Lotto lotto;
+	private Data data;
 	
 	private static int [] classify= {0,0,0,0,0};
 	
-	public Statistics(List<List<Integer>> lottery_list,int bonus,Lotto lotto) {
-		this.lottery_list=lottery_list;
-		//this.winning_nums=winning_nums;
-		this.bonus=bonus;
-		this.lotto=lotto;
+	public Statistics(Data data) {
+		this.data=data;
 		//getStatistics();
 	}
-	
 	/*private void getStatistics() {
 		compareNumbers();
 		//announceResult();
@@ -37,11 +31,10 @@ public class Statistics {
 			classifyWinningTypes(cnt, lucky);
 		}
 	}*/
-	
 	public int [] compareNumbers() {	
 		int [] mathcing_types=new int[CORRECT_CNT];
 		
-		for(List<Integer> nums:lottery_list) {
+		for(List<Integer> nums:data.getLottoList()) {
 			int cnt=countMatchingNums(nums);
 			boolean lucky=luckyThough(nums);
 			mathcing_types=classifyWinningTypes(cnt, lucky);
@@ -50,7 +43,7 @@ public class Statistics {
 	}
 	
 	public double getRateOfReturn(int winnings) {
-		double rate=winnings*100.0/(lottery_list.size()*UNIT_PRICE);
+		double rate=winnings*100.0/(data.getLottoList().size()*UNIT_PRICE);
 		
 		return rate;
 	}
@@ -77,19 +70,11 @@ public class Statistics {
 		
 		return classify;
 	}
-	
-	/*private void announceResult() {
-		System.out.println("3개 일치 (5,000원) - "+classify[0]+"개");
-		System.out.println("4개 일치 (50,000원) - "+classify[1]+"개");
-		System.out.println("5개 일치 (1,500,000원) - "+classify[2]+"개");
-		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+classify[3]+"개");
-		System.out.println("6개 일치 (2,000,000,000원) - "+classify[4]+"개");
-	}*/
-	
+
 	private int countMatchingNums(List<Integer> nums) {
 		int cnt=INIT_CNT;
 		
-		for(int n:lotto.getLottoNumbers()) {
+		for(int n:data.getLotto().getLottoNumbers()) {
 			if(nums.contains(n)) {
 				cnt++;
 			}
@@ -98,7 +83,7 @@ public class Statistics {
 	}
 	
 	private boolean luckyThough(List<Integer> nums) {
-		if(nums.contains(bonus)) {
+		if(nums.contains(data.getBonus())) {
 			return true;
 		}
 		return false;

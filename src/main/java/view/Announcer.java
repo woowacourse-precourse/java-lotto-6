@@ -1,6 +1,6 @@
 package view;
 
-import static model.Data.*;
+import static model.FixedValues.*;
 
 public class Announcer {
 

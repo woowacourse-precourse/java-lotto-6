@@ -8,7 +8,7 @@ import controller.RunGame;
 
 import java.util.List;
 
-import static model.Data.*;
+import static model.FixedValues.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

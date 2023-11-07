@@ -1,22 +1,10 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
-
-import static model.Data.*;
+import model.Data;
 
 public class RunGame {
 	
-	private static int lotto_count;
-	private static List<List<Integer>> lottery_list=new ArrayList<List<Integer>>();
-	//private static List<Integer> winning_nums;
-	private static int bonus;
-	
-	private Lotto lotto;
+	private Data data;
 	
 	/*public RunGame() {
 		guidance();
@@ -33,19 +21,19 @@ public class RunGame {
 		lotto_count=money_in.purchase_lotto()/UNIT_PRICE;
 	}*/
 	
-	public List<List<Integer>> issueGuide(int lotto_count) {		
-		for(int i=0;i<lotto_count;i++) {
-			issueTickets();
+	public Data issueGuide(Data data) {		
+		for(int i=0;i<data.getLottoCount();i++) {
+			data.addLottoList();
 		}
-		return lottery_list;
+		return data;
 	}
 	
-	private void issueTickets() {
+	/*private void issueTickets() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, CORRECT_CNT);
 		//Collections.sort(numbers);
 		
 		lottery_list.add(numbers);
-	}
+	}*/
 	
 	/*public void numbersGuide() {
 		System.out.println("당첨 번호를 입력해 주세요.");

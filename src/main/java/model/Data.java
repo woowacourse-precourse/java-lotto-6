@@ -1,39 +1,50 @@
 package model;
 
+import static model.FixedValues.CORRECT_CNT;
+import static model.FixedValues.MAX_NUM;
+import static model.FixedValues.MIN_NUM;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import controller.InputMoney;
+import controller.InputNumbers;
+import lotto.Lotto;
+
+import static model.FixedValues.*;
+
 public class Data {
 
-	public static final int UNIT_PRICE=Constants.UNIT_PRICE.getConstants();
-	public static final int INIT_CNT=Constants.INIT_CNT.getConstants();
+	private Lotto lotto;
+	private List<List<Integer>> lotto_list=new ArrayList<List<Integer>>();
+	private int bonus;
 	
-	public static final int MIN_NUM=Constants.MIN_NUM.getConstants();
-	public static final int MAX_NUM=Constants.MAX_NUM.getConstants();
-	public static final int CORRECT_CNT=Constants.CORRECT_CNT.getConstants();
+	private int lotto_count;
 	
-	public static final int MATCHING_THREE=LottoCorresponding.THREE.getWinnings();
-	public static final int MATCHING_FOUR=LottoCorresponding.FOUR.getWinnings();
-	public static final int MATCHING_FIVE=LottoCorresponding.FIVE.getWinnings();
-	public static final int WITH_BONUS=LottoCorresponding.BONUS.getWinnings();
-	public static final int MATCHING_ALL=LottoCorresponding.ALL.getWinnings();
-	
-	public static final String EMPTY=MoneyError.EMPTY.getErrorMsg();
-	public static final String NUM_FORM=MoneyError.NUM_FORM.getErrorMsg();
-	public static final String CHANGES=MoneyError.CHANGES.getErrorMsg();
-	
-	public static final String MORE_OR_LESS=NumberError.MORE_OR_LESS.getErrorMsg();
-	public static final String DUPLICATE=NumberError.DUPLICATE.getErrorMsg();
-	public static final String NAN=NumberError.NAN.getErrorMsg();
-	public static final String BOUNDARY=NumberError.BOUNDARY.getErrorMsg();
-	
-	public static final String PURCHASE_GUIDE=Announcement.PURCHASE_GUIDE.getAnnouncement();
-	public static final String FEEDBACK_PURCHASE=Announcement.FEEDBACK_PURCHASE.getAnnouncement();
-	
-	public static final String WINNGIN_NUM_GUIDE=Announcement.WINNGIN_NUM_GUIDE.getAnnouncement();
-	public static final String BONUS_GUIDE=Announcement.BONUS_GUIDE.getAnnouncement();
-	
-	public static final String STATISTICS_START=Announcement.STATISTICS_START.getAnnouncement();
-	public static final String CORRES_THREE=Announcement.CORRES_THREE.getAnnouncement();
-	public static final String CORRES_FOUR=Announcement.CORRES_FOUR.getAnnouncement();
-	public static final String CORRES_FIVE=Announcement.CORRES_FIVE.getAnnouncement();
-	public static final String CORRES_BONUS=Announcement.CORRES_BONUS.getAnnouncement();
-	public static final String CORRES_ALL=Announcement.CORRES_ALL.getAnnouncement();
+	public Lotto getLotto() {
+		return lotto;
+	}
+	public void setLotto(String input) {
+		this.lotto=new InputNumbers().select_numbers(input);
+	}
+	public List<List<Integer>> getLottoList(){
+		return lotto_list;
+	}
+	public void addLottoList() {
+		List<Integer> random=Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, CORRECT_CNT);
+		this.lotto_list.add(random);
+	}
+	public int getBonus() {
+		return bonus;
+	}
+	public void setBonus(String input) {
+		this.bonus=new InputNumbers().select_bonus(input);
+	}
+	public int getLottoCount() {
+		return lotto_count;
+	}
+	public void setLottoCount() {
+		this.lotto_count=new InputMoney().purchase_lotto()/UNIT_PRICE;
+	}
 }

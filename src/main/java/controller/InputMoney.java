@@ -2,7 +2,7 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static model.Data.*;
+import static model.FixedValues.*;
 
 public class InputMoney {
 

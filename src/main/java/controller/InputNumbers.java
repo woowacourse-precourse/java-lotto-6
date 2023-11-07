@@ -52,7 +52,7 @@ public class InputNumbers {
     private int convert_bonus_number(String bonusStr) {
     	//String bonusStr=Console.readLine();
 		int bonus=naN(bonusStr);
-		lotto.valueOutOfBoundary(bonus);
+		valueOutOfBoundary(bonus);
 		
 		return bonus;
     }
@@ -137,10 +137,10 @@ public class InputNumbers {
     	return num;
     }
     
-    /*private void valueOutOfBoundary(int num) {
+    private void valueOutOfBoundary(int num) {
     	if(num<1||num>45) {
     		System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     		throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     	}
-    }*/
+    }
 }

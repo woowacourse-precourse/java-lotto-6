@@ -22,6 +22,18 @@ public class WinningRate {
         calculateProfit();
     }
 
+    public static WinningRate makeWinningRate(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        return new WinningRate(lottos, winningNumbers);
+    }
+
+    public Map<Integer, Integer> getWinningCount() {
+        return this.winningCount;
+    }
+
+    public int getProfit() {
+        return this.profit;
+    }
+
     // 각 등수에 몇 개의 로또가 들었는지 갯수를 세는 메서드 입니다.
     private void countWinning(List<Lotto> lottos, Lotto winningNumber, BonusNumber bonusNumber) {
         WinningCalculator winningCalculator = new WinningCalculator();
@@ -39,17 +51,5 @@ public class WinningRate {
         profit += winningCount.get(Ranking.THIRD.getRanking()) * WinningMoney.THIRD_WIN.getWinningMoney();
         profit += winningCount.get(Ranking.FOURTH.getRanking()) * WinningMoney.FOURTH_WIN.getWinningMoney();
         profit += winningCount.get(Ranking.FIFTH.getRanking()) * WinningMoney.FIFTH_WIN.getWinningMoney();
-    }
-
-    public Map<Integer, Integer> getWinningCount() {
-        return this.winningCount;
-    }
-
-    public int getProfit() {
-        return this.profit;
-    }
-
-    public static WinningRate makeWinningRate(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        return new WinningRate(lottos, winningNumbers);
     }
 }

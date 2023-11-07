@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.service;
 
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.view.impl.LottoBuyView;
 
 import static lotto.service.LottoGenerator.generateAutoLotto;
@@ -40,6 +42,6 @@ public class Store {
     }
 
     private int countLotto(Money money) {
-        return money.calculateCount(money);
+        return money.calculateCount(Money.LOTTO_PRICE);
     }
 }

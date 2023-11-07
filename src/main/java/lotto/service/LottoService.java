@@ -13,6 +13,10 @@ import static lotto.util.TypeConversionUtil.StringToIntegerList;
 
 public class LottoService {
 
+    private static final int THOUSAND_VALUE = 1000;
+    private static final int HUNDRED_VALUE = 100;
+    private static final int ZERO_VALUE = 0;
+
     private final LottoGame lottoGame = new LottoGame();
 
     private List<Integer> winnerLottoNumber = new ArrayList<>();
@@ -63,7 +67,7 @@ public class LottoService {
     private List<List<Integer>> generateLottoNumbers() {
         List<List<Integer>> purchaseLottoNumbers = new ArrayList<>();
         int lottoCount = lottoGame.getLottoCount();
-        for (int i = 0; i < lottoCount; i ++) {
+        for (int i = ZERO_VALUE; i < lottoCount; i ++) {
             List<Integer> lottoNumber = generateLottoNumber();
 
             purchaseLottoNumbers.add(lottoNumber);
@@ -75,19 +79,19 @@ public class LottoService {
         Map<Ranking, Integer> result = new LinkedHashMap<>();
 
         for (Ranking rank : Ranking.values()) {
-            result.put(rank, 0);
+            result.put(rank, ZERO_VALUE);
         }
         return result;
     }
 
     public double getRevenueRate(Map<Ranking, Integer> result) {
-        int totalMoney = lottoGame.getLottoCount() * 1000;
+        int totalMoney = lottoGame.getLottoCount() * THOUSAND_VALUE;
 
-        double earningRate = 0;
+        double earningRate = ZERO_VALUE;
         for (Ranking rank : result.keySet()) {
             earningRate =
                     earningRate + ((double) (rank.getWinningAmount()) / totalMoney * (result.get(
-                            rank)) * (100));
+                            rank)) * (HUNDRED_VALUE));
         }
         return earningRate;
     }

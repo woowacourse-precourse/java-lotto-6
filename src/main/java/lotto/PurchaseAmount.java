@@ -12,6 +12,10 @@ public class PurchaseAmount {
         return purchaseAmount / LOTTO_PRICE;
     }
 
+    public double getTotalReturn(int totalPrize) {
+        return (double) totalPrize / purchaseAmount;
+    }
+
     private PurchaseAmount(int purchaseAmount) {
         validateIsDividableWithLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class MainController {
 
@@ -24,6 +25,9 @@ public class MainController {
 
         Map<Rank, Integer> result = winningResult.getResult();
         outputView.printResult(result);
+
+        int totalPrize = winningResult.getTotalPrize();
+        double totalReturn = purchaseAmount.getTotalReturn(totalPrize);
     }
 
     private PurchaseAmount getPurchaseAmount() {

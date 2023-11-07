@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -19,6 +20,13 @@ public class WinningResult {
 
     public Map<Rank, Integer> getResult() {
         return Collections.unmodifiableMap(result);
+    }
+
+    public int getTotalPrize() {
+        return result.keySet().stream()
+                .map(rank -> rank.getPrize() * result.get(rank))
+                .reduce(Integer::sum)
+                .orElse(0);
     }
 
     private void init() {

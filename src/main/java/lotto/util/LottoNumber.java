@@ -11,7 +11,7 @@ public enum LottoNumber {
 
     int value;
 
-    private LottoNumber(int value) {
+    LottoNumber(int value) {
         this.value = value;
     }
 

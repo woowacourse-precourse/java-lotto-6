@@ -12,7 +12,7 @@ public enum ProgramMessage {
 
     String message;
 
-    private ProgramMessage(String message) {
+    ProgramMessage(String message) {
         this.message = message;
     }
 

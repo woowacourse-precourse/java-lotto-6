@@ -11,7 +11,7 @@ public enum WinnerRank {
     int prizeMoney;
     int sameNumberCount;
 
-    private WinnerRank(int rankKey, int prizeMoney, int sameNumberCount) {
+    WinnerRank(int rankKey, int prizeMoney, int sameNumberCount) {
         this.rankKey = rankKey;
         this.prizeMoney = prizeMoney;
         this.sameNumberCount = sameNumberCount;

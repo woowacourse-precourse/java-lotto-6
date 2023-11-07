@@ -20,6 +20,7 @@ public class Lotto {
         List<List<Integer>> allNumbers = new ArrayList<>();
         money = purchaseResult(purchaseNumber, money, allNumbers);
         winnersNumber();
+        bonusNumber();
 
     }
 
@@ -115,5 +116,24 @@ public class Lotto {
         }
 
         return true;
+    }
+
+    private void bonusNumber() {
+        System.out.println();
+        message.bonusNumberMessage();
+        try {
+            int bonusInput = Integer.parseInt(Console.readLine());
+            //중복 검사
+            if (numbers.contains(bonusInput)) {
+                throw new IllegalArgumentException();
+            }
+            // 숫자 범위 지정
+            if (bonusInput < 0 || bonusInput > 45) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            bonusNumber();
+        }
     }
 }

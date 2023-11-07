@@ -44,6 +44,6 @@ public class DisplayOutput {
     }
 
     public void outputWinningReward(Double winningReward) {
-        System.out.printf("총 수익률은 %s%c입니다.", winningReward.toString(), '%');
+        System.out.printf("총 수익률은 %s%c입니다.", String.format("%.1f", winningReward), '%');
     }
 }

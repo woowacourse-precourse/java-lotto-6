@@ -20,6 +20,7 @@ public class WinningReward {
     public Double calculateRateOfReturn(HashMap<String, Integer> winningStatics, Integer lottoAmountofMoney) {
         Long totalWinningAward = calculateWinningReward(winningStatics);
         rateOfReturn = totalWinningAward.doubleValue() / lottoAmountofMoney.doubleValue();
+        rateOfReturn = rateOfReturn*100;
         return rateOfReturn;
     }
 

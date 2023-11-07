@@ -5,6 +5,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.WinningLotto;
+import lotto.util.LottoGenerator;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -26,17 +27,17 @@ public class InputController {
         }
     }
 
-    public Lotto getWinningNumbers() {
+    public Lotto getWinningNumbers(LottoGenerator lottoGenerator) {
         Optional<Lotto> lotto;
         do {
-            lotto = checkLotto();
+            lotto = checkLotto(lottoGenerator);
         } while (lotto.isEmpty());
         return lotto.get();
     }
 
-    private Optional<Lotto> checkLotto() {
+    private Optional<Lotto> checkLotto(LottoGenerator lottoGenerator) {
         try {
-            return Optional.of(new Lotto(Input.inputWinningNumbersGuide()));
+            return Optional.of(lottoGenerator.lottoGenerator());
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return Optional.empty();
@@ -61,5 +62,4 @@ public class InputController {
             return Optional.empty();
         }
     }
-
 }

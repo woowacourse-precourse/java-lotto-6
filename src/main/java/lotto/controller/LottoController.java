@@ -10,6 +10,7 @@ import lotto.model.LottoResult;
 import lotto.model.LottoTickets;
 import lotto.model.Money;
 import lotto.model.WinningLotto;
+import lotto.util.ManualLottoGenerator;
 import lotto.util.RandomLottoGenerator;
 import lotto.view.Output;
 
@@ -37,7 +38,7 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        Lotto winningLotto = inputController.getWinningNumbers();
+        Lotto winningLotto = inputController.getWinningNumbers(new ManualLottoGenerator());
         BonusNumber bonusNumber = inputController.getBonusNumber(winningLotto);
         return new WinningLotto(winningLotto, bonusNumber);
     }

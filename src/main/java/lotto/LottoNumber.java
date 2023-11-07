@@ -12,10 +12,17 @@ public class LottoNumber {
 
 
     private LottoNumber(String input) {
+        isBlank(input);
         input = input.trim();
         isDigit(input);
     }
 
+    private void isBlank(String input) {
+        if (input != null && !input.isBlank()) {
+            return;
+        }
+        throw new IllegalArgumentException(ERROR_NO_INPUT_BLANK);
+    }
 
     private void isDigit(String input) {
         if (!input.matches(DIGIT_REGEX)) {

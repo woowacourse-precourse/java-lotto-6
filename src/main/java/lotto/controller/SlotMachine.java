@@ -1,23 +1,30 @@
 package lotto.controller;
 
 import lotto.domain.BuyPrice;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Tickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class SlotMachine {
 
     public static void run() {
-        BuyPrice price = requestValidBuyPrice();
+        BuyPrice price = requestUntilValidated(() -> BuyPrice.from(InputView.askBuyPrice()));
         int count = price.getBuyCount();
         Tickets lottos = Tickets.generate(count);
         OutputView.printBuyLottos(count, lottos.toString());
+
+        Lotto winning = requestUntilValidated(() -> Lotto.from(InputView.askWinningNumbers()));
+        LottoNumber bonus = requestUntilValidated(() -> LottoNumber.from(InputView.askBonusNumber()));
     }
 
-    private static BuyPrice requestValidBuyPrice() {
+    private static <T> T requestUntilValidated(Supplier<T> supplier) {
         while (true) {
             try {
-                return BuyPrice.from(InputView.askBuyPrice());
+                return supplier.get();
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

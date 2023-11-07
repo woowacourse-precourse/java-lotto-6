@@ -27,6 +27,7 @@ public class LottoController {
         purchaseLotto();
         Lotto winningNumber = inputWinningNumber();
         Bonus bonus = inputBounusNumber(winningNumber);
+        lottoView.printWinningMessage();
         processWinningResult(winningNumber,lottos,bonus);
     }
 

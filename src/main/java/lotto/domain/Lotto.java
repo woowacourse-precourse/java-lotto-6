@@ -13,5 +13,6 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         numbers.forEach(Validator::validateInputRange);
+        Validator.validateLottoCount(numbers);
     }
 }

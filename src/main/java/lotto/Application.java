@@ -11,57 +11,28 @@ public class Application {
     private static final int LOTTO_COUNT = 6;
     private static final int RANKING = 5;
 
-    private static final Rank[] ranks = Rank.values();
+    public static final Rank[] ranks = Rank.values();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
-        int paid;
-
-        while(true) {
-            try {
-                paid = Integer.parseInt(Console.readLine());
-                if(paid % LOTTO_PRICE != 0) {
-                    throw new IllegalArgumentException();
-                }
-
-                break;
-            }
-            catch(IllegalArgumentException e) {
-                System.out.println("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
-            }
-        }
-
-        System.out.println();
-
+        int paid = getPaid();
         int bought = paid / LOTTO_PRICE;
         System.out.println(bought + "개를 구매했습니다.");
 
-        Lotto[] lottoNum = new Lotto[bought];
-        for(int i = 0; i < bought; i++) {
-            lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
-            Collections.sort(lottoNum[i].getNumbers());
-        }
-
-        for(Lotto l : lottoNum) {
-            System.out.println(l.getNumbers().toString());
-        }
+        Lotto[] lottos = getLottos(bought);
+        showLottos(lottos);
 
         List<Integer> userNum = new ArrayList<>();
         while(true) {
             System.out.println("당첨 번호를 입력해 주세요.");
 
             try {
-                String[] str = Console.readLine().split(",");
-                if (str.length != LOTTO_COUNT) {
-                    throw new IllegalArgumentException("당첨 번호는 " + LOTTO_COUNT + "개를 입력해야 합니다.");
-                }
+                String[] str = getUserNum();
 
                 for (String s : str) {
                     int n = Integer.parseInt(s);
-                    if (n < LOTTO_MIN || n > LOTTO_MAX) {
-                        throw new IllegalArgumentException("당첨 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.");
-                    }
+                    checkLottoRange(n);
                     userNum.add(n);
                 }
 
@@ -95,6 +66,9 @@ public class Application {
 
                 break;
             }
+            catch(NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력하세요.");
+            }
             catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
@@ -106,7 +80,7 @@ public class Application {
 
         long earned = 0;
         int[] lottoWinsCount = new int[RANKING];
-        for(Lotto l : lottoNum) {
+        for(Lotto l : lottos) {
             int winsCount = 0;
             boolean bonusCount = false;
 
@@ -116,12 +90,6 @@ public class Application {
                 }
 
                 bonusCount = l.getNumbers().contains(bonusNum);
-            }
-
-            if(winsCount == Rank.FIRST.getWins()) {
-                lottoWinsCount[Rank.FIRST.ordinal()]++;
-                earned += Rank.FIRST.getPrize();
-                continue;
             }
 
             if(winsCount == Rank.SECOND.getWins() && bonusCount) {
@@ -147,8 +115,6 @@ public class Application {
                 earned += Rank.FIFTH.getPrize();
             }
         }
-
-
 
         for (int i = RANKING - 1; i >= 0; i--)  {
             Rank rank = ranks[i];

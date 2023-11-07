@@ -8,8 +8,6 @@ import java.util.*;
 
 public class Application {
 
-    private static final int NUMBER_OF_WINNING_CASE = 6;
-    private static final int FIFTH_NUMBER_OF_SAME = 3;
     private static int purchasePieces;
     private static List<Integer> winNum;
     private static int bonusNum;
@@ -42,12 +40,11 @@ public class Application {
     public static List<Integer> convertNum(String numbers) {
         String[] wordNum = numbers.split(",");
         List<Integer> convertedNum = new ArrayList<>();
-        for (String beforeNum : wordNum) {
-            convertedNum.add(Integer.parseInt(beforeNum));
-        }
+            for (String beforeNum : wordNum) {
+                convertedNum.add(Integer.parseInt(beforeNum));
+            }
         return convertedNum;
     }
-
 
     public static void winLottoNum(List<Integer> numbers) {
         try {
@@ -71,17 +68,10 @@ public class Application {
         }
     }
 
-    public static void initialize() {
-        for (int i = FIFTH_NUMBER_OF_SAME; i < NUMBER_OF_WINNING_CASE+FIFTH_NUMBER_OF_SAME; i++) {
-            result.put(i,0);
-        }
-    }
-
     public static void intersectionNum() {
         List<Boolean> bonusNumContainCheck  = intersection.checkBonusNumber(bonusNum, lottoNum);
         List<Integer> intersectionCount = intersection.countMatchingNumbers(winNum, lottoNum);
-        initialize();
-        new LottoResult(result);
+        LottoResult.initialize();
         for (int i = 0; i<intersectionCount.size(); i++) {
            result = LottoResult.statistics(intersectionCount.get(i), bonusNumContainCheck.get(i));
         }

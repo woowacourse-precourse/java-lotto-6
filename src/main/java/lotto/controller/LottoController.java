@@ -12,15 +12,19 @@ public class LottoController {
     private final InputView input = new InputView();
     private final OutputView output = new OutputView();
     private LottoManager manager = new LottoManager();
+    private int purchaseAmount;
 
     public void run() {
         purchaseLotto();
         determineWinningLotto();
-        calculateResult();
+        calculateMatched();
+        calculateRateOfRefund();
     }
 
+
     private void purchaseLotto() {
-        int numberOfLottos = input.readPurchaseAmount() / Lotto.PRICE;
+        purchaseAmount = input.readPurchaseAmount();
+        int numberOfLottos = purchaseAmount / Lotto.PRICE;
         output.printPurchaseAmount(numberOfLottos);
 
         manager.makeLottos(numberOfLottos, new RandomLottoGenerator());
@@ -35,9 +39,14 @@ public class LottoController {
     }
 
 
-    private void calculateResult(){
+    private void calculateMatched(){
         output.printWinningHeader();
         LottoResult lottoResult = manager.calculateLottoResult();
         output.printWinnerStatus(lottoResult);
+    }
+
+    private void calculateRateOfRefund(){
+        double rateOfReturn = manager.calculateRateOfReturn(purchaseAmount);
+        output.printTotalRateOfReturn(rateOfReturn);
     }
 }

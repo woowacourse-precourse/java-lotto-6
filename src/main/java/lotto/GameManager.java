@@ -1,15 +1,15 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class GameManager {
     private static Map<Prize, Integer> prizeStatistics;
     private WinningNumbers winningNumbers;
 
     public GameManager() {
-        prizeStatistics = new HashMap<>();
+        prizeStatistics = new TreeMap<>();
         for (Prize prize : Prize.values()) {
             prizeStatistics.put(prize, 0);
         }

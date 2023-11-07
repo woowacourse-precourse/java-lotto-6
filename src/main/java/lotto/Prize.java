@@ -1,12 +1,12 @@
 package lotto;
 
 public enum Prize {
-    FIRST(1, 6, false, 2000000000),
-    SECOND(2, 5, true, 30000000),
-    THIRD(3, 5, false, 1500000),
-    FOURTH(4, 4, false, 50000),
+    NONE(0, 0, false, 0),
     FIFTH(5, 3, false, 5000),
-    NONE(0, 0, false, 0);
+    FOURTH(4, 4, false, 50000),
+    THIRD(3, 5, false, 1500000),
+    SECOND(2, 5, true, 30000000),
+    FIRST(1, 6, false, 2000000000);
 
     Prize(int rank, int matchedCount, boolean isBonusMatched, int prizeMoney) {
         this.rank = rank;

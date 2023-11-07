@@ -1,9 +1,13 @@
 package lotto.global.util;
 
+import lotto.domain.lotto.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,4 +59,21 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("입력된 숫자가 6개를 초과하면 예외가 발생한다.")
+    @Test
+    void inputMoreThanSixNumbers() {
+        assertThatThrownBy(() -> validation.isSixNumbers(Arrays.asList(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 6개의 숫자만 입력해 주세요.");
+    }
+
+    @DisplayName("입력된 숫자가 6개 미만이면 예외가 발생한다.")
+    @Test
+    void inputLessThanSixNumbers() {
+        assertThatThrownBy(() -> validation.isSixNumbers(Arrays.asList(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 6개의 숫자만 입력해 주세요.");
+    }
+
 }

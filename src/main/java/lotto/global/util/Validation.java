@@ -2,6 +2,8 @@ package lotto.global.util;
 
 import lotto.global.common.ErrorMessage;
 
+import java.util.List;
+
 public class Validation {
 
     public void oneWordAndOver(String input) {
@@ -25,6 +27,12 @@ public class Validation {
     public void isInRangeOf1To45(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorMessage.RANGE_1_45.getMessage());
+        }
+    }
+
+    public void isSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.SIX_NUMBERS.getMessage());
         }
     }
 }

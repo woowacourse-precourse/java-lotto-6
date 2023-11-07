@@ -175,7 +175,6 @@ public class LottoGame {
 //                .append("개");
 //        return printer.toString();
 //    }
-    //todo: sameNumbercount count 이런 모호한 이름 더 좋은 것으로 바꿔보기
     private BigInteger calculateSumEach(int sameNumberCount, String quantity){
         ArrayList<String> prizes = Statistic.getPrizeList();
         ArrayList<Integer> counts = Statistic.getSameNumberCountList();

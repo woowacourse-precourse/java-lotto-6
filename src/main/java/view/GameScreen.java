@@ -95,7 +95,6 @@ public class GameScreen {
         validateWinNumberRange(inputNumbers);
     }
 
-    //todo: 반복되는 에러처리 refactor하기
     private void validateWinNumberLength(String[] inputNumbers)
             throws IllegalArgumentException{
         int length = inputNumbers.length;
@@ -147,7 +146,6 @@ public class GameScreen {
         validateBonusNumberRange(number);
     }
 
-    //todo: 반복되는 에러처리 refactor하기
     private void validateBonusNumberLength(String inputNumber)
             throws IllegalArgumentException{
         int length = inputNumber.length();

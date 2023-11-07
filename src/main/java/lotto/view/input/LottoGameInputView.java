@@ -44,7 +44,6 @@ public class LottoGameInputView implements ConsoleInput {
         printRequestWinningLottoNumbers();
 
         List<Integer> numbers = getNumbers();
-        validateWiningLottoNumbers(numbers);
         newLine();
 
         return LottoFactory.createLotto(numbers);
@@ -58,11 +57,6 @@ public class LottoGameInputView implements ConsoleInput {
         return Arrays.stream(readLine().split(","))
                 .map(numberValidator::parseInt)
                 .toList();
-    }
-
-    private void validateWiningLottoNumbers(List<Integer> numbers) {
-        numberValidator.validateLottoSize(numbers);
-        numberValidator.validateLottoNumberRange(numbers);
     }
 
     @Override

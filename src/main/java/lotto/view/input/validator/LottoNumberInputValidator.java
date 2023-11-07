@@ -17,12 +17,6 @@ public class LottoNumberInputValidator {
         return number;
     }
 
-    public void validateLottoNumberRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            validateLottoNumberRange(number);
-        }
-    }
-
     public void validateLottoNumberRange(int number) {
         if (isLottoNumberRange(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
@@ -31,12 +25,6 @@ public class LottoNumberInputValidator {
 
     private boolean isLottoNumberRange(int number) {
         return number < LottoRule.STANDARD.getStartNumber() || number > LottoRule.STANDARD.getLastNumber();
-    }
-
-    public void validateLottoSize(List<Integer> lotto) {
-        if (LottoRule.STANDARD.getLottoSize() != lotto.size()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
-        }
     }
 
     public void validateBonusNumberMatch(int bonusNumber, List<Integer> numbers){

@@ -26,17 +26,6 @@ class LottoNumberInputValidatorTestView {
     }
 
     @Test
-    @DisplayName("번호들이 1~45사이의 숫자가 아니면 예외가 발생한다.")
-    public void validateLottoNumbersRange() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 46, 5, 6);
-        // when // then
-        assertThatThrownBy(() -> validator.validateLottoNumberRange(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
-    }
-
-    @Test
     @DisplayName("번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
     public void validateLottoNumberRange() {
         // given
@@ -45,17 +34,6 @@ class LottoNumberInputValidatorTestView {
         assertThatThrownBy(() -> validator.validateLottoNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
-    }
-
-    @Test
-    @DisplayName("로또 번호의 개수가 6이 아니면 예외가 발생한다.")
-    public void validateLottoSize() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
-        // when // then
-        assertThatThrownBy(() -> validator.validateLottoSize(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
     }
 
     @Test

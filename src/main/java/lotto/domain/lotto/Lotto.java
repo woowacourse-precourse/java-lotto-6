@@ -9,15 +9,16 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoSize(numbers);
+        validateLottoNumberRange(numbers);
         validateDuplicateNumbers(numbers);
         validateSortedAscending(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LottoRule.STANDARD.getLottoSize()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
@@ -65,6 +66,18 @@ public class Lotto {
 
     private boolean isNotSort(List<Integer> numbers, List<Integer> sortedNumber) {
         return !sortedNumber.equals(numbers);
+    }
+
+    public void validateLottoNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (isLottoNumberRange(number)) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
+        }
+    }
+
+    private boolean isLottoNumberRange(int number) {
+        return number < LottoRule.STANDARD.getStartNumber() || number > LottoRule.STANDARD.getLastNumber();
     }
 
     public List<Integer> getNumbers() {

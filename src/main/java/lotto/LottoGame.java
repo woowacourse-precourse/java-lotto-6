@@ -60,6 +60,6 @@ public class LottoGame {
         for (int i = 3; i <= 7; i++){
             winningAmount += lottoAmountByRank.get(i) * winningCount[i];
         }
-        Print.printWinningStatistics(winningAmount.floatValue() / purchaseAmount.floatValue(), winningCount);
+        Print.printWinningStatistics(winningAmount.floatValue() / purchaseAmount.floatValue() * 100, winningCount);
     }
 }

@@ -38,5 +38,10 @@ public class PrizeNumberValidator {
         }
     }
 
-
+    private void validateNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER_RANGE_ERROR);
+        }
+    }
+    
 }

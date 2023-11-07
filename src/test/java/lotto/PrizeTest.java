@@ -53,8 +53,19 @@ class PrizeTest {
         assertThat(Prize.earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase)).isEqualTo("3000000.0");
     }
 
+    @DisplayName("당첨 목록 저장 확인 테스트")
     @Test
     void countPrizeHistory() {
+        //given
+        List<Long> matchWinningNumber = new ArrayList<>();
+        List<Long> matchBonusNumber = new ArrayList<>();
 
+        //when
+        matchWinningNumber.add(5L);
+        matchBonusNumber.add(1L);
+        List<String> prizeHistory = Prize.countPrizeHistory(matchWinningNumber, matchBonusNumber);
+
+        //then
+        assertThat(prizeHistory.get(0)).isEqualTo("SECOND");
     }
 }

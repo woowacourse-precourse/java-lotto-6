@@ -27,7 +27,10 @@ public class LottoController {
         Lottos lottos = buyLotto(money);
         Customer customer = new Customer(money, lottos);
 
+        WinningNumbers winningNumbers = drawWinningNumbers();
+        BonusNumber bonusNumber = drawBonusNumber(winningNumbers);
 
+        showLottoResult(customer, winningNumbers, bonusNumber);
     }
 
     private Money payMoney() {
@@ -40,5 +43,14 @@ public class LottoController {
         OutputView.printLottos(LottosDto.from(lottos));
         return lottos;
     }
+
+    private WinningNumbers drawWinningNumbers() {
+        return lottoStore.drawWinningNumbers(read(InputView::inputWinningNumbers));
+    }
+
+    private BonusNumber drawBonusNumber(WinningNumbers winningNumbers) {
+        return lottoStore.drawBonusNumber(read(InputView::inputBonusNumber), winningNumbers);
+    }
+
 
 }

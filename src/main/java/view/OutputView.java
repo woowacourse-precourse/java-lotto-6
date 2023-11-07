@@ -9,8 +9,8 @@ public class OutputView {
     private static final String LOTTO_TICKET_MESSAGE = "개를 구매했습니다.";
     private static final String LUCKEY_WINNING_STATSICS_MESSAGE = "당첨 통계";
     private static final String STICK = "-";
-    private static final String[] REWARD = { " (5,000원) ", " (50,000원) ",
-            " (1,500,000원) ", " (30,000,000원) ", " (2,000,000,000원) " };
+    private static final String[] REWARD = { " (5,000원) ", " (50,000원) ", " (1,500,000원) ", " (30,000,000원) ",
+            " (2,000,000,000원) " };
 
     public void printLottoTicketMessage(LottoMoney lottoMoney) {
         System.out.println(LINEBREAK + lottoMoney.getLottoTicket() + LOTTO_TICKET_MESSAGE);

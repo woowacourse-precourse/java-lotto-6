@@ -27,10 +27,10 @@ public class LottoView {
     }
     public static void printResponsePurchaseAmount(int lottoCount){
         printWhiteSpace();
-        System.out.println(lottoCount + LottoMessage.RESPONSE_PURCHASE_AMOUNT.getMessage());
+        printVariableMessage(lottoCount + LottoMessage.RESPONSE_PURCHASE_AMOUNT.getMessage());
     }
     public static void printRandomLottos(Lottos randomLottos){
-        System.out.println(randomLottos.toString());
+        printVariableMessage(randomLottos.toString());
     }
     public static String requestInputWinningNumbers(){
         printConstantMessage(LottoMessage.REQUEST_WINNING_NUMBER);
@@ -51,7 +51,7 @@ public class LottoView {
         printProfitRate(finalResult,price);
     }
     public static void printResult(FinalResult finalResult) {
-        List<Integer> countList = finalResult.lottoResult().getCountList();
+        List<Integer> countList = finalResult.lottoResult().testDTO().getCountList();
         printVariableMessage(THREE_GRADE.getComment(countList.get(0)));
         printVariableMessage(FOUR_GRADE.getComment(countList.get(1)));
         printVariableMessage(FIVE_GRADE.getComment(countList.get(2)));
@@ -59,13 +59,13 @@ public class LottoView {
         printVariableMessage(SIX_GRADE.getComment(countList.get(4)));
     }
     public static void printProfitRate(FinalResult finalResult, Integer price) {
-        List<Integer> countList = finalResult.lottoResult().getCountList();
+        List<Integer> countList = finalResult.lottoResult().testDTO().getCountList();
         int sum = countList.get(0) * THREE_GRADE.getPrize()
                 + countList.get(1) * FOUR_GRADE.getPrize()
                 + countList.get(2) * FIVE_GRADE.getPrize()
                 + countList.get(3) * FIVE_GRADE_AND_BONUS.getPrize()
                 + countList.get(4) * SIX_GRADE.getPrize();
-        System.out.println(SHOW_STATISTICS_YIELD.getMessage() + (float)sum / price * PERCENT + SHOW_STATISTICS_YIELD_SUFFIX.getMessage());
+        printVariableMessage(SHOW_STATISTICS_YIELD.getMessage() + (float)sum / price * PERCENT + SHOW_STATISTICS_YIELD_SUFFIX.getMessage());
     }
     private static void printWhiteSpace() {
         System.out.println();

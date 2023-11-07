@@ -2,13 +2,17 @@ package lotto.contorller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.domain.Tickets;
+import lotto.domain.Result;
 import lotto.domain.WinningLotto;
+import lotto.enumeration.WinningType;
 import lotto.service.TicketsService;
+
+import java.util.List;
 
 public class WinningLottoController {
     WinningLotto winningLotto;
-    Tickets tickets;
+    List<Lotto> tickets;
+    int amount;
     private final TicketsService ticketsService = new TicketsService();
     public Lotto getLottoInput() {
         String lottoInput = Console.readLine();
@@ -26,13 +30,20 @@ public class WinningLottoController {
     }
 
     public void init() {
-        winningLotto = ticketsService.getUserLotto(getLottoInput(), getBonusNumInput());
-        tickets = new Tickets(getAmountInput());
-        issueWinningLotto(tickets.calcTicketCount());
+        winningLotto = ticketsService.getWinningLotto(getLottoInput(), getBonusNumInput());
+        amount = getAmountInput();
+        issueWinningLotto();
     }
-    private final TicketsService winningLottoService = new TicketsService();
-    public void issueWinningLotto(int count) {
-        tickets = winningLottoService.issue(tickets);
-        tickets.printWinningLotto();
+    public void issueWinningLotto() {
+        tickets = ticketsService.issue(amount);
+    }
+
+    public Result getResult() {
+        Result result = ticketsService.compare(tickets, winningLotto);
+//        for(WinningType winningType : WinningType.values()) {
+//            System.out.println(winningType.getMatchedCount() + " " +
+//                    result.getResult().get(winningType));
+//        }
+        return result;
     }
 }

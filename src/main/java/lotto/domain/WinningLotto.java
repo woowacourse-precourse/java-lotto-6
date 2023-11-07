@@ -11,4 +11,12 @@ public class WinningLotto {
     public void printNumbers() {
         numbers.printNumbers();
     }
+
+    public Lotto getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNum() {
+        return bonusNum;
+    }
 }

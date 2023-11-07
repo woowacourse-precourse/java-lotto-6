@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import lotto.domain.Lotto;
+
 public enum Ranking {
     BLANK(0, 2, false, "낙첨"),
     FIFTH(5_000, 3, false, "3개 일치 (5,000원) - "),
@@ -9,12 +11,16 @@ public enum Ranking {
 
     FIRST(2_000_000_000, 6, false, "6개 일치 (2,000,000,000원) - ");
 
+    private static final int ZERO = 0;
     private final int prize;
     private final int corrects;
     private final boolean bonus;
     private final String result;
 
     public static Ranking findRanking(int corrects, boolean bonus) {
+        validateCorrectsRange(corrects);
+        validateCorrectsBonus(corrects, bonus);
+
         if (FIRST.corrects == corrects) {
             return FIRST;
         }
@@ -33,6 +39,18 @@ public enum Ranking {
             return FIFTH;
         }
         return BLANK;
+    }
+
+    private static void validateCorrectsRange(int corrects) {
+        if (corrects < ZERO || corrects > Lotto.getNumbersSize()) {
+            throw new IllegalStateException();
+        }
+    }
+
+    private static void validateCorrectsBonus(int corrects, boolean bonus) {
+        if (corrects == Lotto.getNumbersSize() && bonus) {
+            throw new IllegalStateException();
+        }
     }
 
     Ranking(int prize, int corrects, boolean bonus, String result) {

@@ -13,9 +13,9 @@ class LottosConverterTest {
         LottosConverter converter = new LottosConverter();
         List<List<Integer>> lottos = List.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6));
         String expected = """
-            [1, 2, 3, 4, 5, 6]
-            [1, 2, 3, 4, 5, 6]
-        """;
+                [1, 2, 3, 4, 5, 6]
+                [1, 2, 3, 4, 5, 6]
+                """;
 
         assertEquals(expected, converter.convert(lottos));
     }

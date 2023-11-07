@@ -17,7 +17,6 @@ public class Application {
 	static int bonus;
 	
     public static void main(String[] args) {
- 
     	int number = purchase();
     	
     	RandomGenerator generator = new RandomGenerator(number);
@@ -28,8 +27,8 @@ public class Application {
     	lotto.validateBonus(bonus);
     	
     	List<Integer> result = lotto.compare(generator.myLotto, bonus);
-    	
-    	System.out.println(result);
+    	lotto.printResult(result);
+    	lotto.rateOfReturn(result, number*1000);
     	
     }
     
@@ -44,7 +43,7 @@ public class Application {
 			System.out.println("[ERROR] 구입 금액은 1,000원의 배수여야 합니다.");
 			purchase();
 		}
-    	return money/1000; //발행할 로또 개수 반환
+    	return money/1000;
     }
     
     public static List<Integer> inputNumbers() {
@@ -63,7 +62,7 @@ public class Application {
     
     public static int inputBonus() {
     	System.out.println("\n보너스 번호를 입력해 주세요.");
-    	try { //숫자인지 예외처리
+    	try {
     		bonus = Integer.parseInt(Console.readLine());
     	}catch(NumberFormatException e) {
     		System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -71,6 +70,4 @@ public class Application {
     	}
     	return bonus;
     }
-    
-    
 }

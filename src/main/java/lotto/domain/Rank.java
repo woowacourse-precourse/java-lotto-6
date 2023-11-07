@@ -10,6 +10,7 @@ public enum Rank {
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (%s원) - %d개"),
     FIRST(6, 2_000_000_000, "6개 일치 (%s원) - %d개");
 
+    private static final int FIVE = 5;
     private final int match;
     private final long prize;
     private final String message;
@@ -21,7 +22,7 @@ public enum Rank {
     }
 
     public static Rank getRank(int matchCount, boolean hasBonus) {
-        if (matchCount != 5) {
+        if (matchCount != FIVE) {
             return getRankWithoutBonus(matchCount);
         }
         if (hasBonus) {

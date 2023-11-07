@@ -9,6 +9,10 @@ import static lotto.domain.Rank.LOSE;
 
 public class Statistics {
     private final Map<Rank, Integer> results;
+    private static final int ONE = 1;
+    private static final int ZERO = 0;
+    private static final double ONE_HUNDRED = 100.0;
+    private static final String ENTER = "\n";
 
     private Statistics(Map<Rank, Integer> results) {
         this.results = results;
@@ -21,7 +25,7 @@ public class Statistics {
             int matchCount = lotto.countMatch(winningLotto);
             Rank rank = Rank.getRank(matchCount, hasBonus);
 
-            int count = results.get(rank) + 1;
+            int count = results.get(rank) + ONE;
             results.put(rank, count);
         }
         return new Statistics(results);
@@ -30,7 +34,7 @@ public class Statistics {
     private static Map<Rank, Integer> initResults() {
         Map<Rank, Integer> initialResults = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
-            initialResults.put(rank, 0);
+            initialResults.put(rank, ZERO);
         }
         return initialResults;
     }
@@ -41,7 +45,7 @@ public class Statistics {
             totalPrize += rank.getPrize() * results.get(rank);
         }
         DecimalFormat rateFormat = new DecimalFormat("#,##0.0");
-        return rateFormat.format(totalPrize / (float) buyer.getCost() * 100.0);
+        return rateFormat.format(totalPrize / (float) buyer.getCost() * ONE_HUNDRED);
     }
 
     @Override
@@ -53,7 +57,7 @@ public class Statistics {
             if (rank != LOSE) {
                 String prize = moneyFormat.format(rank.getPrize());
                 String message = String.format(rank.getMessage(), prize, count);
-                stringBuilder.append(message).append("\n");
+                stringBuilder.append(message).append(ENTER);
             }
         });
         return stringBuilder.toString();

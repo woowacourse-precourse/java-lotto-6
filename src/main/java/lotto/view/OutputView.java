@@ -10,24 +10,30 @@ import lotto.domain.Lotto;
 import lotto.dto.WinningResult;
 
 public class OutputView {
+    private final OutputDevice outputDevice;
+
+    public OutputView(OutputDevice outputDevice) {
+        this.outputDevice = outputDevice;
+    }
+
     public void printLottoTickets(List<Lotto> lottoTickets) {
-        System.out.printf(Message.PURCHASE_AMOUNT.getMessage(), lottoTickets.size());
+        outputDevice.printByFormat(Message.PURCHASE_AMOUNT.getMessage(), lottoTickets.size());
         for (Lotto lottoTicket : lottoTickets) {
-            System.out.println(lottoTicket.toString());
+            outputDevice.printLine(lottoTicket.toString());
         }
     }
 
     public void printWinningResult(WinningResult lottoResult) {
-        System.out.println(WINNING_HEADER.getMessage());
-        System.out.println(CONTOUR.getMessage());
-        System.out.println(lottoResult.toString());
+        outputDevice.printLine(WINNING_HEADER.getMessage());
+        outputDevice.printLine(CONTOUR.getMessage());
+        outputDevice.printLine(lottoResult.toString());
     }
 
     public void printProfitRate(double profit) {
-        System.out.printf(PROFIT_RATE.getMessage(), profit);
+        outputDevice.printByFormat(PROFIT_RATE.getMessage(), profit);
     }
 
     public void printErrorCode(String message) {
-        System.out.println(message);
+        outputDevice.printLine(message);
     }
 }

@@ -20,7 +20,7 @@ public class Player {
     }
 
     public List<Integer> compareWinningAndLottoNumbers(List<Integer> winningNumbers) {
-        Lottos lottos = new Lottos(buyLottos().lottosNumbers());
+        Lottos lottos = getLottos();
         List<Lotto> userLotto = lottos.getLottos();
         List<Integer> results = new ArrayList<>();
 
@@ -28,8 +28,12 @@ public class Player {
             int result = compareLotto(lotto, winningNumbers);
             results.add(result);
         }
-        System.out.println(results);
         return results;
+    }
+
+    private Lottos getLottos() {
+        LottosInfoDto lottosInfoDto = buyLottos();
+        return new Lottos(lottosInfoDto.lottosNumbers());
     }
 
     private int compareLotto(Lotto lotto, List<Integer> winningNumbers) {

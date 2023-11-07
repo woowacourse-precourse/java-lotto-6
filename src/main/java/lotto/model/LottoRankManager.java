@@ -49,4 +49,8 @@ public class LottoRankManager {
     private void increaseRank(int rank) {
         rankResult.increaseRankCount(rank);
     }
+
+    public List<Integer> getRankResult() {
+        return rankResult.getRankResult();
+    }
 }

@@ -2,9 +2,10 @@ package lotto.view;
 
 import java.util.EnumMap;
 
+import lotto.converter.RewardFormatConverter;
+import lotto.converter.YieldFormatConverter;
 import lotto.domain.Rank;
 import lotto.dto.LottoNumbersDto;
-import lotto.converter.PrintFormatConverter;
 
 public final class OutputView {
 
@@ -75,11 +76,13 @@ public final class OutputView {
     }
 
     private static String applyRewardFormat(final Rank rank) {
-        return PrintFormatConverter.convertToRewardFormat(rank.reward());
+        RewardFormatConverter rewardFormatConverter = new RewardFormatConverter();
+        return rewardFormatConverter.convert(rank.reward());
     }
 
     public static void printTotalYield(final double yield) {
-        String formattedYield = PrintFormatConverter.convertToYieldFormat(yield);
+        YieldFormatConverter yieldFormatConverter = new YieldFormatConverter();
+        String formattedYield = yieldFormatConverter.convert(yield);
         System.out.printf(TOTAL_YIELD_GUIDE, formattedYield);
     }
 

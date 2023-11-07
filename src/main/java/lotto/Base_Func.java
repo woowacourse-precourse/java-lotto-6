@@ -37,7 +37,7 @@ public class Base_Func {
     }
 
     public static List<Integer> Input_Win_Lotto_List() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
 
         String tmp_input = Console.readLine();
         String[] tmp_arr = tmp_input.split(",");
@@ -55,7 +55,7 @@ public class Base_Func {
     }
 
     public static int Input_Win_Lotto_Bonus_number() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String tmp_input = Console.readLine();
         int price = -1;
         try {
@@ -64,5 +64,14 @@ public class Base_Func {
             System.out.println("[ERROR] 입력 오류 입니다.");
         }
         return price;
+    }
+
+    public static void Print_Jackpot_List(int[] Jackpot_list) {
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + Jackpot_list[3] + "개");
+        System.out.println("4개 일치 (50,000원) - " + Jackpot_list[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + Jackpot_list[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Jackpot_list[7]+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + Jackpot_list[6] + "개");
     }
 }

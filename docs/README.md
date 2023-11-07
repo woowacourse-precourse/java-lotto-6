@@ -23,6 +23,7 @@
   3. Print_Purchased_Lotto_list(ArrayList<Lotto> Buy_lotto) -> 구매한 모든 로또의 번호 6개를 출력
   4. Input_Win_Lotto_List() -> 당첨 로또번호 입력 받아 List<Integer> 타입으로 리턴
   5. Input_Win_Lotto_Bonus_number() 
+  6. Print_Jackpot_List() -> 당첨 내역 출력
 
 - Application.java 클래스
   1. main()

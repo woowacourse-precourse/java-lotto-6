@@ -22,8 +22,9 @@ public class Application {
         //4. 구매한 로또 당첨 여부를 확인.
         //index 0,1,2는 사용하지 않고, 7은 2등 당첨을 3,4,5,6은 일치 갯수를 저장 한다.
         int[] Jackpot_list = Make_Jackpot_List(Buy_lotto, Win_lotto_list, bonus_number);
-        for(int i=0; i<purchase_num; i++)
-            System.out.println(i+"개: "+Jackpot_list[i]);
+
+        //5. 당첨 내역을 출력
+        Base_Func.Print_Jackpot_List(Jackpot_list);
     }
 
     public static ArrayList<Lotto> Make_Buy_Lotto_List(int purchase_num) {

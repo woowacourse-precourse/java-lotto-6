@@ -90,5 +90,11 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
             }
         }
+
+        // 당첨 번호 배열 Int값으로 변경
+        int[] intLottoNumber = new int[lottoNumber.length];
+        for (int i = 0; i < lottoNumber.length; i++) {
+            intLottoNumber[i] = Integer.parseInt(lottoNumber[i]);
+        }
     }
 }

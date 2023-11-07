@@ -1,11 +1,13 @@
 package lotto.util.mapper;
 
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.MainNumbers;
 import lotto.model.PurchaseAmount;
 import lotto.util.converter.ListConverter;
+import lotto.view.dto.BonusNumberRequestDto;
 import lotto.view.dto.LottosResponseDto;
 import lotto.view.dto.MainNumbersRequestDto;
 import lotto.view.dto.PurchaseAmountRequestDto;
@@ -34,4 +36,7 @@ public class DtoModelMapper {
         return MainNumbers.from(ListConverter.splitStringByComma(requestDto.mainNumbers()));
     }
 
+    public static BonusNumber dtoToBonusNumbers(BonusNumberRequestDto requestDto) {
+        return BonusNumber.from(requestDto.bonusNumber());
+    }
 }

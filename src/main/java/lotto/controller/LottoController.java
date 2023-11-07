@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import java.util.stream.Stream;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.MainNumbers;
@@ -29,6 +30,7 @@ public class LottoController {
         printLottosIssued(lottos);
 
         MainNumbers mainNumbers = getValidMainNumbers();
+        BonusNumber bonusNumber = getValidBonusNumbers();
     }
 
     private PurchaseAmount getValidPurchaseAmount() {
@@ -55,6 +57,16 @@ public class LottoController {
         while (true) {
             try {
                 return DtoModelMapper.dtoToMainNumbers(inputView.readMainNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber getValidBonusNumbers() {
+        while (true) {
+            try {
+                return DtoModelMapper.dtoToBonusNumbers(inputView.readBonusNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

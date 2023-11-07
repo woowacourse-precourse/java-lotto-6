@@ -16,7 +16,7 @@ public class WinningNumberTest {
         // when
 
         // then
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
     }
@@ -30,7 +30,7 @@ public class WinningNumberTest {
         // when
 
         // then
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
     }
@@ -44,7 +44,7 @@ public class WinningNumberTest {
         // when
 
         // then
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
     }
@@ -58,7 +58,7 @@ public class WinningNumberTest {
         // when
 
         // then
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
     }
@@ -72,7 +72,7 @@ public class WinningNumberTest {
         // when
 
         // then
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1에서 45 사이의 숫자만 가능합니다.");
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class WinningServiceTest {
         WinningService winningService = new WinningService();
         // then
         assertThatCode(() -> {
-            WinningNumber winningNumber = winningService.createWinningNumber(winningNumbers, bonusNumber);
+            WinningLotto winningLotto = winningService.createWinningNumber(winningNumbers, bonusNumber);
         }).doesNotThrowAnyException();
     }
 
@@ -36,10 +36,10 @@ public class WinningServiceTest {
         Lotto lottoTicket1 = new Lotto(lottoNumbers);
         lottoTickets.add(lottoTicket1);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 8);
-        WinningNumber winningNumber = new WinningNumber(winningNumbers, 7);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
         // when
         WinningService winningService = new WinningService();
-        WinningResult winningResult = winningService.calculateResults(lottoTickets, winningNumber);
+        WinningResult winningResult = winningService.calculateResults(lottoTickets, winningLotto);
         // then
         assertThat(winningResult.getCount(Rank.SECOND)).isEqualTo(1);
     }

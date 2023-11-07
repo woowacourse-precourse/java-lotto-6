@@ -3,18 +3,20 @@ package lotto.service;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.domain.Ranking.*;
 
-
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
     private static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
 
     public String makePurchaseResultOutputStatement(int count) {
         StringBuilder result = new StringBuilder();
-        result.append(count).append(PURCHASE_X_COUNT+"\n");
+        result.append(count).append(PURCHASE_X_COUNT + "\n");
 
         List<Lotto> lottoList = generateLottoList(count);
 
@@ -70,6 +72,16 @@ public class LottoService {
         }
 
         return SIXTH;
+    }
+
+    public Map<Ranking, Integer> initWinningResult() {
+        Map<Ranking, Integer> winningResult = new HashMap<>();
+
+        for (Ranking ranking : Ranking.values()) {
+            winningResult.put(ranking, 0);
+        }
+
+        return winningResult;
     }
 
 }

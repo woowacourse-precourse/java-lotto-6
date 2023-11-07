@@ -45,9 +45,13 @@ public class LottoController {
     }
 
     private long inputLottoAmount() {
-        LottoAmount lottoAmountCount = new LottoAmount(InputView.inputAmount());
-        long amount = lottoAmountCount.getLottoAmount();
-        return lottoAmountCount.calculateLottoAmount((int) amount);
+           try {
+            LottoAmount lottoAmountCount = new LottoAmount(InputView.inputAmount());
+            long amount = lottoAmountCount.getLottoAmount();
+            return lottoAmountCount.calculateLottoAmount((int) amount);
+        } catch (IllegalArgumentException e) {
+            return inputLottoAmount();
+        }
     }
 
     private void printBoughtLotto(long lottoAmount) {
@@ -101,7 +105,7 @@ public class LottoController {
         double yield = (sum * PERCENT) / (lottoAmount * LOTTO_PRICE);
         double roundYield = Math.round(yield * CONVERT_DOUBLE_CONSTANT) / CONVERT_DOUBLE_CONSTANT;
 
-        DecimalFormat df = new DecimalFormat("#,###.0");
+        DecimalFormat df = new DecimalFormat("#,##0.0");
         System.out.println("총 수익률은 " + df.format(roundYield) + "%입니다.");
     }
 }

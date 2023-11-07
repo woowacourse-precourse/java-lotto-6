@@ -55,11 +55,19 @@ public class InputView {
         }
     }
 
+    private static void validateNumberBlank(String number) {
+        if (number.contains(" ")) {
+            System.out.println("[ERROR] 공백 없이 입력이 필요합니다.");
+            throw new IllegalArgumentException("[ERROR] 공백 없이 입력이 필요합니다.");
+        }
+    }
+
     private static List<Integer> StringToIntConversion(String input) {
         String[] stringWinningNumber = input.split(",");
         intWinningNumber.clear();
         for (String number : stringWinningNumber) {
-            validateStringToNumericConversion(number.trim());
+            validateNumberBlank(number);
+            validateStringToNumericConversion(number);
             intWinningNumber.add(Integer.parseInt(number));
         }
         Collections.sort(intWinningNumber);

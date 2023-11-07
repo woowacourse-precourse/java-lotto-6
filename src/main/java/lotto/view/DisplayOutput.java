@@ -25,7 +25,7 @@ public class DisplayOutput {
     }
 
     public void outputRandomLottos(RandomLottos randomLottos, LottoAmountofMoney lottoAmountofMoney) {
-        System.out.printf("%d개를 구매했습니다.\n", lottoAmountofMoney.getLottoAmountofMoney()/1000);
+        System.out.printf("%d개를 구매했습니다.\n", lottoAmountofMoney.getLottoAmountofMoney() / 1000);
         int randomLottoNumbers = randomLottos.getRandomLottos().size();
         List<Lotto> randomLotto = randomLottos.getRandomLottos();
         for (int i = 0; i < randomLottoNumbers; i++) {
@@ -38,8 +38,8 @@ public class DisplayOutput {
 //            System.out.println(grade + " " + winningStatics.get(grade).toString());
 //        }
         System.out.println("당첨 통계\n---");
-        System.out.printf("3개 일치 (5,000원) - %s개\n" , winningStatics.get("FIFTH"));
-        System.out.printf("4개 일치 (50,000원) - %s개\n" , winningStatics.get("FOURTH"));
+        System.out.printf("3개 일치 (5,000원) - %s개\n", winningStatics.get("FIFTH"));
+        System.out.printf("4개 일치 (50,000원) - %s개\n", winningStatics.get("FOURTH"));
         System.out.printf("5개 일치 (1,500,000원) - %s개\n", winningStatics.get("THIRD"));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개\n", winningStatics.get("SECOND"));
         System.out.printf("6개 일치 (2,000,000,000원) - %s개\n", winningStatics.get("FIRST"));

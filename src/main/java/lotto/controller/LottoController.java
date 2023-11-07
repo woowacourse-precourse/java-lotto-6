@@ -32,8 +32,8 @@ public class LottoController {
                 winningRewardChecker);
     }
 
-    private LottoAmountofMoney controlLottoAmountOfMoney(){
-        while(EXCEPTIONLOOPCHECKER) {
+    private LottoAmountofMoney controlLottoAmountOfMoney() {
+        while (EXCEPTIONLOOPCHECKER) {
             try {
                 LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
                 return lottoAmountofMoney;

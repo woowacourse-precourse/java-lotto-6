@@ -11,6 +11,7 @@ public class WinningReward {
     private final Long THIRDAWARD = 1500000L;
     private final Long FOURTHAWARD = 50000L;
     private final Long FIFTHAWARD = 5000L;
+    private final Long FORPERCENT = 100L;
 
     public WinningReward() {
         this.winningReward = 0L;
@@ -20,7 +21,7 @@ public class WinningReward {
     public Double calculateRateOfReturn(HashMap<String, Integer> winningStatics, Integer lottoAmountofMoney) {
         Long totalWinningAward = calculateWinningReward(winningStatics);
         rateOfReturn = totalWinningAward.doubleValue() / lottoAmountofMoney.doubleValue();
-        rateOfReturn = rateOfReturn*100;
+        rateOfReturn = rateOfReturn * FORPERCENT;
         return rateOfReturn;
     }
 

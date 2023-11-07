@@ -29,13 +29,7 @@ public class RandomLottos {
     }
 
     private Lotto generateLotto() {
-//        while (lottoNumbers.size() < NUMBERSPERLOTTO) {
-//            Integer randomInt = Randoms.pickNumberInRange(LOTTONUMBERSTART, LOTTONUMBEREND);
-//            if (!lottoNumbers.contains(randomInt)) {
-//                lottoNumbers.add(randomInt);
-//            }
-//        }
-        List<Integer> numbers = pickUniqueNumbersInRange(LOTTONUMBERSTART, LOTTONUMBEREND, 6);
+        List<Integer> numbers = pickUniqueNumbersInRange(LOTTONUMBERSTART, LOTTONUMBEREND, NUMBERSPERLOTTO);
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
         System.out.println(lottoNumbers.toString());
         lottoNumbers.sort(Comparator.naturalOrder());

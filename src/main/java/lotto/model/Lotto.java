@@ -19,12 +19,14 @@ public class Lotto {
     public List<Integer> getLotto() {
         return numbers;
     }
-    private void validateDuplicatedNumbers(List<Integer> numbers){
-        if(numbers.size() != numbers.stream().distinct().count()){
+
+    private void validateDuplicatedNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException();
         }
     }
-    private void validateListSize(List<Integer> numbers){
+
+    private void validateListSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

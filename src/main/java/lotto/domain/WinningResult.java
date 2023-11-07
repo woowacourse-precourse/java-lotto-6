@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 
 public class WinningResult {
@@ -21,11 +22,9 @@ public class WinningResult {
     }
 
     public int calculateTotalPrizeMoney() {
-        int totalPrizeMoney = 0;
-        for (Rank rank : Rank.values()) {
-            totalPrizeMoney += rank.getPrizeMoney() * results.get(rank);
-        }
-        return totalPrizeMoney;
+        return Arrays.stream(Rank.values())
+                .mapToInt(rank -> rank.getPrizeMoney() * results.get(rank))
+                .sum();
     }
 
     public double calculateYield(int totalPurchaseAmount) {

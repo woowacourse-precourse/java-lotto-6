@@ -5,8 +5,10 @@ import static lotto.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.Prize;
 import lotto.model.WinningLotto;
 import lotto.model.number.LottoNumber;
 import lotto.model.number.LottoNumbers;
@@ -36,6 +38,7 @@ public class LottoController {
         printPurchasedLottos();
 
         WinningLotto winningLotto = getWinningLotto();
+        displayWinningStatistics(winningLotto, purchaseAmount);
     }
 
     /**
@@ -105,6 +108,28 @@ public class LottoController {
         lottoInputView.printInputBonusNumber();
         int bonusNumber = Integer.parseInt(Console.readLine());
         return LottoNumber.of(bonusNumber);
+    }
+
+    /**
+     * Description: 당첨 통계와 수익률을 출력한다.
+     */
+    private void displayWinningStatistics(WinningLotto winningLotto, int purchaseAmount) {
+        Map<Prize, Integer> statistics = LottoUtil.calculatePrizeCounts(purchasedLottos.getLottos(), winningLotto);
+        double totalPrizeAmount = LottoUtil.calculateTotalPrizeAmount(statistics);
+
+        lottoOutputView.printStatistics();
+        displayPrizeCounts(statistics);
+        double yield = LottoUtil.calculateProfitPercentage(totalPrizeAmount, purchaseAmount);
+        lottoOutputView.printTotalYield(yield);
+    }
+
+    /**
+     * Description: 당첨 통계를 출력한다.
+     */
+    private void displayPrizeCounts(Map<Prize, Integer> prizeCounts) {
+        prizeCounts.keySet().forEach(prize -> {
+            prizeOutputView.printPrize(prize, prizeCounts.get(prize));
+        });
     }
 }
 

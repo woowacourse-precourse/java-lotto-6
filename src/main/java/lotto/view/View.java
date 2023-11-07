@@ -18,7 +18,7 @@ public class View {
 
     public void BuyingLottoOutput(List<Lotto> lottoList){
         for (Lotto lotto : lottoList) {
-            System.out.println(lotto.toString());
+            System.out.println(lotto);
         }
     }
 

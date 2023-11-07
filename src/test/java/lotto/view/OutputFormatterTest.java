@@ -43,15 +43,7 @@ public class OutputFormatterTest {
     }
 
     @Test
-    void 등수에_대한_당첨_개수를_포맷팅한다() {
-        WinningResult winningResult = new WinningResult(WinningRule.THIRD_PRIZE, 2);
-
-        assertThat(OutputFormatter.formatWinningResult(winningResult))
-                .isEqualTo("5개 일치 (1,500,000원) - 2개\n");
-    }
-
-    @Test
-    void 모든_등수에_대한_당첨_결과를_하위등수부터_정렬해_포맷팅한다() {
+    void 등수_별_당첨_개수를_하위등수부터_정렬해_포맷팅한다() {
         String expectedWinningResults = """
                 3개 일치 (5,000원) - 1개
                 4개 일치 (50,000원) - 0개
@@ -60,16 +52,16 @@ public class OutputFormatterTest {
                 6개 일치 (2,000,000,000원) - 0개
                 """;
 
-        String formattedWinningResults = OutputFormatter.formatWinningResults(analyzerWinningStatistics);
+        String formattedWinningResults = OutputFormatter.formatAnalyzerWinningResults(analyzerWinningStatistics);
 
         assertThat(formattedWinningResults).isEqualTo(expectedWinningResults);
     }
 
     @Test
-    void 수익률을_소수점_둘째_자리에서_반올림해_포맷팅한다() {
+    void 총_수익률을_소수점_둘째_자리에서_반올림해_포맷팅한다() {
         String expectedWinningYield = "총 수익률은 62.5%입니다.";
 
-        String formattedWinningYield = OutputFormatter.formatWinningYield(analyzerWinningStatistics);
+        String formattedWinningYield = OutputFormatter.formatAnalyzerWinningYield(analyzerWinningStatistics);
 
         assertThat(formattedWinningYield).isEqualTo(expectedWinningYield);
     }

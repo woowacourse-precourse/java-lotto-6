@@ -26,26 +26,26 @@ public class OutputFormatter {
                 .collect(Collectors.joining(LOTTOS_DELIMITER));
     }
 
+    public static String formatAnalyzerWinningResults(AnalyzerWinningStatistics analyzerWinningStatistics) {
+        return analyzerWinningStatistics.winningResults().stream()
+                .map(OutputFormatter::formatWinningResult)
+                .collect(Collectors.joining(""));
+    }
+
+    public static String formatAnalyzerWinningYield(AnalyzerWinningStatistics analyzerWinningStatistics) {
+        return String.format(YIELD_FORMAT, analyzerWinningStatistics.yield());
+    }
+
     private static String formatLottoNumbers(Lotto lotto) {
         return lotto.getNumbers().stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(LOTTO_NUMBERS_DELIMITER, LOTTO_NUMBERS_PREFIX, LOTT_NUMBERS_SUFFIX));
     }
 
-    public static String formatWinningResult(WinningResult winningResult) {
+    private static String formatWinningResult(WinningResult winningResult) {
         return winningResult.winningRule().getDescription()
                 + COUNT_PREFIX
                 + winningResult.winningCount()
                 + COUNT_SUFFIX;
-    }
-
-    public static String formatWinningResults(AnalyzerWinningStatistics analyzerWinningStatistics) {
-        return analyzerWinningStatistics.winningResults().stream()
-                .map(OutputFormatter::formatWinningResult)
-                .collect(Collectors.joining(""));
-    }
-
-    public static String formatWinningYield(AnalyzerWinningStatistics analyzerWinningStatistics) {
-        return String.format(YIELD_FORMAT, analyzerWinningStatistics.yield());
     }
 }

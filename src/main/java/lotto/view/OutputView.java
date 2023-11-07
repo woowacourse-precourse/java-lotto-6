@@ -25,7 +25,7 @@ public class OutputView {
 
     public static void printBuyerLottoHistory(BuyerLottoHistory buyerLottoHistory) {
         printBuyerLottoCount(buyerLottoHistory);
-        printBuyerLottoNumbers(buyerLottoHistory);
+        printBuyerLottos(buyerLottoHistory);
     }
 
     public static void printAnalyzerWinningStatistics(AnalyzerWinningStatistics analyzerWinningStatistics) {
@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(OutputFormatter.formatBuyerLottoCount(buyerLottoHistory));
     }
 
-    private static void printBuyerLottoNumbers(BuyerLottoHistory buyerLottoHistory) {
+    private static void printBuyerLottos(BuyerLottoHistory buyerLottoHistory) {
         System.out.println(OutputFormatter.formatBuyerLottos(buyerLottoHistory));
     }
 
@@ -49,10 +49,10 @@ public class OutputView {
     }
 
     private static void printWinningResults(AnalyzerWinningStatistics analyzerWinningStatistics) {
-        System.out.println(OutputFormatter.formatWinningResults(analyzerWinningStatistics));
+        System.out.println(OutputFormatter.formatAnalyzerWinningResults(analyzerWinningStatistics));
     }
 
     private static void printWinningYield(AnalyzerWinningStatistics analyzerWinningStatistics) {
-        System.out.println(OutputFormatter.formatWinningYield(analyzerWinningStatistics));
+        System.out.println(OutputFormatter.formatAnalyzerWinningYield(analyzerWinningStatistics));
     }
 }

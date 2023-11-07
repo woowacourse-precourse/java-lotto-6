@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,34 +17,6 @@ public class LottoStoreTest {
     private final int LOTTO_END_NUM = 45;
     private final int LOTTO_NUM_COUNT = 6;
 
-    @DisplayName("로또를 사기 위한 금액이 숫자가 아니면 예외가 발생한다")
-    @Test
-    void validateMoneyInput() {
-        //given
-        LottoStore lottoStore = new LottoStore();
-
-        //when
-        String englishInMoney = "100a";
-        String koreanInMoney = "100ㅁ";
-        String specialSignInMoney = "100%";
-
-        //then
-        assertThatThrownBy(() -> lottoStore.validateMoneyInput(englishInMoney))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력해주세요.")
-                .hasMessageContaining("[ERROR]");
-
-        assertThatThrownBy(() -> lottoStore.validateMoneyInput(koreanInMoney))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력해주세요.")
-                .hasMessageContaining("[ERROR]");
-
-        assertThatThrownBy(() -> lottoStore.validateMoneyInput(specialSignInMoney))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력해주세요.")
-                .hasMessageContaining("[ERROR]");
-    }
-
     @DisplayName("로또를 사기 위한 금액이 1000원 미만이면 예외가 발생한다")
     @Test
     void chargedMoneyLessThan1000() {
@@ -51,8 +24,7 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         //when
-        String money = "0";
-        lottoStore.validateMoneyInput(money);
+        long money = 0;
         lottoStore.chargeMoney(money);
 
         //then
@@ -69,8 +41,7 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         //when
-        String money = "10001";
-        lottoStore.validateMoneyInput(money);
+        long money = 10001;
         lottoStore.chargeMoney(money);
 
         //then
@@ -87,14 +58,12 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         //when
-        String money = "13000";
-        lottoStore.validateMoneyInput(money);
+        long money = 13000;
         lottoStore.chargeMoney(money);
         lottoStore.validateChargedMoney();
 
         //then
-        long moneyExpected = Long.parseLong(money);
-        assertThat(lottoStore.getChargedMoney()).isEqualTo(moneyExpected);
+        assertThat(lottoStore.getChargedMoney()).isEqualTo(money);
     }
 
     @DisplayName("로또 구매 금액 조회")
@@ -104,16 +73,14 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         //when
-        String money = "13000";
-        lottoStore.validateMoneyInput(money);
+        long money = 13000;
         lottoStore.chargeMoney(money);
         lottoStore.validateChargedMoney();
 
         long chargedMoney = lottoStore.getChargedMoney();
 
         //then
-        long moneyExpected = Long.parseLong(money);
-        assertThat(chargedMoney).isEqualTo(moneyExpected);
+        assertThat(chargedMoney).isEqualTo(money);
     }
 
     @DisplayName("로또 판매 갯수 계산")
@@ -122,7 +89,7 @@ public class LottoStoreTest {
         //given
         LottoStore lottoStore = new LottoStore();
         final int LOTTO_PRICE = 1000;
-        String money = "20000";
+        long money = 20000;
 
         //when
         lottoStore.getMoney(money);
@@ -158,7 +125,7 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         //when
-        String money = "250000";
+        long money = 250000;
         lottoStore.getMoney(money);
         lottoStore.calculateLottoAmount();
         lottoStore.generateAllLottos();

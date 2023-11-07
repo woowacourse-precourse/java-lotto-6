@@ -281,8 +281,7 @@ public class Lotto {
 ### controller
 - [ ] LottoController
 
-### repository
-- [ ] LottoRepository 
+
 
 
 ## 추가된 요구사항 

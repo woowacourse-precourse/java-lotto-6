@@ -3,8 +3,6 @@ package lotto.domain;
 import lotto.validator.WinningLottoValidator;
 
 public class WinningLotto {
-    private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
-
     private Lotto winLotto;
     private int bonusLottoNum;
 
@@ -18,6 +16,7 @@ public class WinningLotto {
     }
 
     private void validateBonusLottoNum(Lotto winLotto, int bonusLottoNum) {
+        WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
         winningLottoValidator.checkRange(bonusLottoNum);
         winningLottoValidator.checkDuplicateWinningNumbers(winLotto, bonusLottoNum);
     }

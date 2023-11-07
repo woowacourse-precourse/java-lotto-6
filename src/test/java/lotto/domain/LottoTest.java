@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,6 +43,6 @@ class LottoTest {
     void hasNotLottoSameNumber(int number) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThat(lotto.hasSameNumber(number)).isTrue();
+        assertThat(lotto.hasSameNumber(number)).isFalse();
     }
 }

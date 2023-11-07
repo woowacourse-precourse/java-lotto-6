@@ -1,6 +1,10 @@
 package lotto.validator;
 
+import static lotto.util.ErrorMessage.*;
+
 public class InputValidator {
+    private static final String numbersInputRegex = "([0-9]+,)+[0-9]+";
+    private static final String BLANK = " ";
     private boolean isNotInteger(String number) {
         try {
             Integer.parseInt(number);
@@ -12,29 +16,27 @@ public class InputValidator {
 
     public void checkInteger(String number) {
         if(isNotInteger(number)) {
-            throw new IllegalArgumentException("[ERROR] 정수를 입력 해야 합니다.");
+            throw new IllegalArgumentException(NOT_INTEGER.getErrorMessage());
         }
     }
 
     private boolean hasBlank(String numbers) {
-        return numbers.contains(" ");
+        return numbers.contains(BLANK);
     }
 
     public void checkBlank(String numbers) {
         if(hasBlank(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력에 공백은 허용되지 않습니다.");
+            throw new IllegalArgumentException(BLANK_ERROR.getErrorMessage());
         }
     }
 
     private boolean hasNotOnlyNumberAndDelimiterComma(String numbers) {
-        String numbersInputRegex = "([0-9]+,)+[0-9]+";
-
         return !numbers.matches(numbersInputRegex);
     }
 
     public void checkOnlyNumberAndDelimiterCommaContain(String numbers) {
         if(hasNotOnlyNumberAndDelimiterComma(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력은 숫자와 ,로만 이루어 져야 합니다.");
+            throw new IllegalArgumentException(INPUT_FORMAT_ERROR.getErrorMessage());
         }
     }
 }

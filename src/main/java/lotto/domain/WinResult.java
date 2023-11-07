@@ -1,12 +1,18 @@
 package lotto.domain;
 
-import lotto.util.Number;
-import lotto.util.WinnerRank;
+import lotto.util.LottoNumber;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static lotto.util.LottoNumber.LOTTO_SAME_NUMBER_FIVE;
+import static lotto.util.LottoNumber.LOTTO_SAME_NUMBER_TWO;
+import static lotto.util.WinnerRank.*;
+
 public class WinResult {
+    private final int winResultInit = 0;
+    private final int incrementWinResult = 1;
+
     private Map<Integer, Integer> winResult;
 
     public WinResult() {
@@ -15,11 +21,11 @@ public class WinResult {
     }
 
     private void initWinResult() {
-        winResult.put(WinnerRank.THREE.getValue(), 0);
-        winResult.put(WinnerRank.FOUR.getValue(), 0);
-        winResult.put(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue(), 0);
-        winResult.put(WinnerRank.FIVE_WITH_BONUS.getValue(), 0);
-        winResult.put(WinnerRank.SIX.getValue(), 0);
+        winResult.put(THREE.getValue(), winResultInit);
+        winResult.put(FOUR.getValue(), winResultInit);
+        winResult.put(FIVE_WITHOUT_BOUNUS.getValue(), winResultInit);
+        winResult.put(FIVE_WITH_BONUS.getValue(), winResultInit);
+        winResult.put(SIX.getValue(), winResultInit);
     }
 
     public Integer getWinResultValue(int rankValue) {
@@ -27,14 +33,14 @@ public class WinResult {
     }
 
     public void increaseWinResultValue(int rankValue) {
-        winResult.put(rankValue, winResult.get(rankValue) + Number.PLUS_ONE.getValue());
+        winResult.put(rankValue, winResult.get(rankValue) + incrementWinResult);
     }
 
     public boolean isOverTwo(int rankValue) {
-        return rankValue > 2;
+        return rankValue > LOTTO_SAME_NUMBER_TWO.getValue();
     }
 
     public boolean isFiveSame(int rankValue) {
-        return rankValue == 5;
+        return rankValue == LOTTO_SAME_NUMBER_FIVE.getValue();
     }
 }

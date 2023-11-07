@@ -2,8 +2,9 @@ package lotto.domain;
 
 import lotto.validator.PurchasePriceValidator;
 
+import static lotto.util.LottoNumber.PURCHASE_MIN_PRICE;
+
 public class PurchasePrice {
-    private final int THOUSAND = 1000;
     private int price;
 
     public PurchasePrice(int price) {
@@ -23,6 +24,6 @@ public class PurchasePrice {
     }
 
     public int getLottoAmount() {
-        return price / THOUSAND;
+        return price / PURCHASE_MIN_PRICE.getValue();
     }
 }

@@ -13,14 +13,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class WinningLottoValidatorTest {
-    private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
+    private WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void 보너스_넘버_범위_에외_테스트(int bonusNum) {
         assertThatThrownBy(() -> winningLottoValidator.checkRange(bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContainingAll("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContainingAll("[ERROR] 입력 가능한 로또 숫자 범위는 1 ~ 45입니다.");
 
     }
 

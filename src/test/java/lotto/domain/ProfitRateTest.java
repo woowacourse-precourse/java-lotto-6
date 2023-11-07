@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProfitTest {
-    private Profit profit = new Profit();
+public class ProfitRateTest {
+    private ProfitRate profitRate = new ProfitRate();
     private final PurchasePrice purchasePrice;
     private final WinResult winResult;
 
-    private ProfitTest() {
+    private ProfitRateTest() {
         int price = 7000;
         this.purchasePrice = new PurchasePrice(price);
         this.winResult = new WinResult();
@@ -20,9 +20,11 @@ public class ProfitTest {
     @DisplayName("수익률 계산 확인")
     @Test
     void calculateProfitRate() {
-        winResult.increaseWinResultValue(WinnerRank.FOUR.getValue());//four
+        String expectedProfitRate = "22142.86";
+
+        winResult.increaseWinResultValue(WinnerRank.FOUR.getValue());
         winResult.increaseWinResultValue(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue());
 
-        assertThat(profit.calculateProfitRate(purchasePrice, winResult)).isEqualTo(22142.86);
+        assertThat(profitRate.calculateProfitRate(purchasePrice, winResult)).isEqualTo(expectedProfitRate);
     }
 }

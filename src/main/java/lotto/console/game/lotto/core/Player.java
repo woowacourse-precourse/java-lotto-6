@@ -9,11 +9,11 @@ import java.util.List;
 public class Player {
     private final int playerMoney;
     private final List<Lotto> lottos;
+    private PrizeDetail prizeDetail;
 
-
-    public Player(int playerMoney) {
-        this.playerMoney = playerMoney;
-        lottos = new ArrayList<>();
+    public Player(int money) {
+        this.playerMoney = money;
+        this.lottos = new ArrayList<>();
     }
 
     public void issueLottoTickets() {
@@ -39,4 +39,13 @@ public class Player {
         return lottos;
     }
 
+    public void receivePrizeDetail(PrizeDetail prizeDetail) {
+        this.prizeDetail = prizeDetail;
+    }
+    public String getProfitRate() {
+        double profitRate = (double) prizeDetail.getPrizeMoney() / playerMoney * 100;
+        double roundedRate = Math.round(profitRate * 10) / 10.0; // 소수 첫째 자리까지 반올림
+
+        return String.format("%.1f%%", roundedRate);
+    }
 }

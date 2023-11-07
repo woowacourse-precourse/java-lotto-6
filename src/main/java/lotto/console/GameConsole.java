@@ -24,9 +24,7 @@ public class GameConsole {
     }
 
     public void start() {
-        System.out.println("콘솔 스타뜨");
         games.forEach(Game::start);
-        System.out.println("콘솔 끝");
     }
 }
 

@@ -5,12 +5,14 @@ import lotto.console.game.Game;
 import lotto.console.game.lotto.constants.GameMessages;
 import lotto.console.game.lotto.core.Lotto;
 import lotto.console.game.lotto.core.Player;
+import lotto.console.game.lotto.core.PrizeDetail;
+import lotto.console.game.lotto.core.PrizeHandler;
 
 import java.util.List;
 
 public class LottoGame implements Game {
     private Player player;
-    //private PrizeHandler prizeHandler;
+    private PrizeHandler prizeHandler;
 
     public LottoGame() {
 
@@ -20,9 +22,9 @@ public class LottoGame implements Game {
         this.player = player;
     }
 
-    //public void createPrizeHandler(PrizeHandler prizeHandler) {
-        //this.prizeHandler = prizeHandler;
-    //}
+    public void createPrizeHandler(PrizeHandler prizeHandler) {
+        this.prizeHandler = prizeHandler;
+    }
 
     @Override
     public void start(){
@@ -30,9 +32,17 @@ public class LottoGame implements Game {
         player.issueLottoTickets();
         printPurchasedCount(player.getIssuedQuantity());
         printIssuedLottos(player.getIssuedLottos());
-        System.out.println(enterWinningNumbers());
-        System.out.println(enterBonusNumber());
+
+        createPrizeHandler(new PrizeHandler());
+        prizeHandler.registerWinningNumbers(enterWinningNumbers());
+        prizeHandler.registerBonusNumber(enterBonusNumber());
+
+        PrizeDetail prizeDetail = prizeHandler.generatePrizeDetailByLottos(player.getIssuedLottos());
+        printPrizeDetail(prizeDetail);
+        player.receivePrizeDetail(prizeDetail);
+        printProfitRate(player.getProfitRate());
     }
+
 
 
     private int enterPurchaseMoney() {
@@ -111,7 +121,16 @@ public class LottoGame implements Game {
                 .forEach(System.out::println);
     }
 
+    private void printPrizeDetail(PrizeDetail prizeDetail) {
+        printGameMessage(prizeDetail.exportMessage());
+    }
+
+    private void printProfitRate(String profitRate) {
+        printGameMessage(GameMessages.YOUR_PROFIT_RATE_PREFIX + profitRate + GameMessages.YOUR_PROFIT_RATE_POSTFIX);
+    }
+
     private void printGameMessage(String message){
         System.out.println(message);
     }
+
 }

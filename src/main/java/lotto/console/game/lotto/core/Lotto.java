@@ -1,9 +1,6 @@
 package lotto.console.game.lotto.core;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -11,7 +8,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -25,8 +21,14 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public String indicateNumbers() {
-        return numbers.stream()
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        return sortedList.stream()
                 .map(Objects::toString)
                 .collect(Collectors.joining(", ","[","]"));
     }

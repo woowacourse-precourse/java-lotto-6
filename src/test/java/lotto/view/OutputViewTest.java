@@ -6,6 +6,7 @@ import lotto.domain.Rank;
 import lotto.domain.WinningYield;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -22,7 +23,8 @@ class OutputViewTest {
     }
 
     @Test
-    void test() {
+    @DisplayName("출력 형식에 맞추어 당첨 내역을 출력한다.")
+    void displayWinningDetails() {
         // given
         List<Rank> ranks = new ArrayList<>();
         ranks.add(Rank.FIFTH);

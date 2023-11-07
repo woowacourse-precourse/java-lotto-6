@@ -19,6 +19,7 @@ public class Lotto {
         validateSize(numbers);
         validateNumberRange(numbers);
         validateEachNumberNotOverlap(numbers);
+        sortAscendingOrder(numbers);
         this.numbers = numbers;
     }
 
@@ -42,6 +43,10 @@ public class Lotto {
                 throw new IllegalArgumentException(CHECK_EACH_NUMBER_NOT_OVERLAP_REQUEST_MESSAGE);
             }
         }
+    }
+
+    private void sortAscendingOrder(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     public int countOverlappingNumbers(Lotto other) {

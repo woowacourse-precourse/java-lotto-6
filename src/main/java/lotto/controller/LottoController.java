@@ -4,21 +4,22 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
-import lotto.domain.LottoPayment;
+import lotto.service.LottoPaymentService;
 import lotto.view.InputView;
 import lotto.view.ResultView;
 
 public class LottoController {
     private final InputView inputView;
     private final ResultView resultView;
-    private final LottoPayment lottoPayment;
+    private final LottoPaymentService lottoPaymentService;
     private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoController(final InputView inputView, final ResultView resultView, final LottoPayment lottoPayment,
+    public LottoController(final InputView inputView, final ResultView resultView,
+                           final LottoPaymentService lottoPaymentService,
                            final LottoNumberGenerator lottoNumberGenerator) {
         this.inputView = inputView;
         this.resultView = resultView;
-        this.lottoPayment = lottoPayment;
+        this.lottoPaymentService = lottoPaymentService;
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
@@ -39,7 +40,7 @@ public class LottoController {
     private int findNumberOfLottos() {
         try {
             final int inputMoney = inputView.getInputMoney();
-            return lottoPayment.calculateNumberOfLottos(inputMoney);
+            return lottoPaymentService.calculateNumberOfLottos(inputMoney);
         } catch (IllegalArgumentException e) {
             resultView.println("[ERROR] " + e.getMessage());
             return -1;

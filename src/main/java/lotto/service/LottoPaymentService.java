@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto.service;
 
 import static lotto.domain.constants.LottoConstants.LOTTO_PRICE;
 
-public class LottoPayment {
+public class LottoPaymentService {
 
     public int calculateNumberOfLottos(final int money) {
         validateRange(money);

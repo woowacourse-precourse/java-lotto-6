@@ -1,20 +1,23 @@
 package lotto.Controller;
 
-import lotto.domian.BoughtLotto;
-import lotto.domian.Lotto;
-import lotto.domian.LottoAmount;
+import lotto.domian.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
     private List<List<Integer>> boughtLottos = new ArrayList<>();
     private Lotto lotto;
     private List<Integer> numbers;
-    private int bonusNuber;
+    private WinningCheck winningCheck = new WinningCheck();
+    public Map<String, Integer> rankingCount;
+    private int bonusNumber;
+
     public void run() {
         start();
     }
@@ -25,6 +28,10 @@ public class LottoController {
 
         printBoughtLotto(lottoAmount);
         printWinningAndBonusNumber();
+
+        printWinningStatistic();
+        printYield();
+
     }
 
     private long inputLottoAmount() {
@@ -47,6 +54,21 @@ public class LottoController {
         System.out.println();
         numbers = InputView.inputWinningNumbers();
         System.out.println();
-        bonusNuber = InputView.inputBonusNumber();
+        bonusNumber = InputView.inputBonusNumber();
+        rankingCount = winningCheck.checkCount(boughtLottos, numbers, bonusNumber);
+    }
+
+    private void printWinningStatistic() {
+        System.out.println();
+        OutputView.printStatisicsString();
+        for (WinningTable winningTable : WinningTable.values()) {
+            if (winningTable.getCorrectNumberCount() != 0)
+            System.out.println(winningTable.getMessage() + rankingCount.get(winningTable.name()) + "개");
+        }
+    }
+
+    private void printYield() {
+        System.out.println();
+        OutputView.printYield();
     }
 }

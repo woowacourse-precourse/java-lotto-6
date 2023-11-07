@@ -7,11 +7,11 @@ public class OutputView {
         System.out.println(lottoAmount + lottoAmountString);
     }
 
-    public void printWinningStatisics() {
+    public static void printStatisicsString() {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
 
-    public void printYield() {
+    public static void printYield() {
     }
 }

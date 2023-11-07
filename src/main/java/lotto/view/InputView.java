@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class InputView {
@@ -56,6 +57,7 @@ public class InputView {
             validateStringToNumericConversion(number.trim());
             intWinningNumber.add(Integer.parseInt(number));
         }
+        Collections.sort(intWinningNumber);
         return intWinningNumber;
     }
 }

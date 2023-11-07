@@ -1,56 +1,66 @@
 package lotto.io;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.text.DecimalFormat;
-import java.text.MessageFormat;
+import static lotto.WinningType.NONE;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.WinningType;
+import lotto.io.processor.InputProcessor;
+import lotto.io.processor.OutputProcessor;
 import lotto.vo.Price;
 
 public class ConsoleManager {
 
-    public void closeConsole() {
-        Console.close();
+    private final InputProcessor inputProcessor;
+    private final OutputProcessor outputProcessor;
+
+    public ConsoleManager() {
+        this.inputProcessor = new InputProcessor();
+        this.outputProcessor = new OutputProcessor();
     }
 
-    public void printError(Exception e) {
-        System.out.println(e.getMessage());
+    public void close() {
+        inputProcessor.closeConsole();
     }
 
     public Price inputPurchasePrice() {
         while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
-            String inputPrice = Console.readLine();
+            outputProcessor.printPurchasePriceHint();
+
+            String inputPrice = inputProcessor.inputValue();
 
             try {
                 return new Price(inputPrice);
             } catch (IllegalArgumentException e) {
-                this.printError(e);
+                outputProcessor.outputErrorMessage(e);
             }
         }
     }
 
     public void printLottoCount(final int count) {
-        System.out.println("\n" + count + "개를 구매했습니다.");
+        outputProcessor.outputLottoCount(count);
     }
 
-    public void printLotto(List<Lotto> lottos) {
-        lottos.forEach(System.out::println);
+    public void printLottos(final List<Lotto> lottos) {
+        lottos.forEach(lotto -> {
+            List<Integer> numbers = lotto.getNumbers();
+            outputProcessor.outputLottoNumbers(numbers);
+        });
     }
 
     public Lotto inputWinningLottoNumbers() {
         while (true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String inputWinningNumbers = Console.readLine();
+            outputProcessor.outputWinningNumbersHint();
+
+            String inputWinningNumbers = inputProcessor.inputValue();
 
             try {
                 return new Lotto(inputWinningNumbers);
             } catch (IllegalArgumentException e) {
-                this.printError(e);
+                outputProcessor.outputErrorMessage(e);
             }
         }
     }
@@ -58,34 +68,30 @@ public class ConsoleManager {
     public BonusNumber inputBonusNumber(final Lotto numbers) {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                outputProcessor.outputBonusNumberHint();
 
-                String inputBonusNumber = Console.readLine();
+                String inputBonusNumber = inputProcessor.inputValue();
 
                 return new BonusNumber(inputBonusNumber, numbers);
             } catch (IllegalArgumentException e) {
-                this.printError(e);
+                outputProcessor.outputErrorMessage(e);
             }
         }
     }
 
-    public void printStatics(Map<WinningType, Integer> statics) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+    public void printStatics(final Map<WinningType, Integer> statics) {
+        outputProcessor.outputStaticsHint();
+
         Arrays.stream(WinningType.values())
-                .filter(type -> type != WinningType.NONE)
+                .filter(type -> type != NONE)
                 .forEach(type -> {
-                    Integer count = statics.get(type);
-                    String message = MessageFormat.format("{0}{1}개", type.getMessage(), count);
-                    System.out.println(message);
+                    int count = statics.get(type);
+                    outputProcessor.outputWinningStatics(type, count);
                 });
     }
 
-    public void printProfitRate(float profitRate) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.0");
-
-        String message = "총 수익률은 " + decimalFormat.format(profitRate) + "%입니다.";
-
-        System.out.println(message);
+    public void printProfitRate(final float profitRate) {
+        outputProcessor.outputProfitRate(profitRate);
     }
+
 }

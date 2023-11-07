@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Error {
     final int LOTTO_PRICE = 1000;
 
@@ -26,5 +28,8 @@ public class Error {
     public boolean isRemainder(int number) {
         int remainder = number % LOTTO_PRICE;
         return remainder == 0;
+    }
+    public boolean isDuplicate(List<Integer> numbers, int number) {
+        return numbers.contains(number);
     }
 }

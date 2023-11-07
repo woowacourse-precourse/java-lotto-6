@@ -17,6 +17,6 @@ class PurchaseAmountTest {
         //then
         assertThatThrownBy(() -> {
             PurchaseAmount purchaseAmount = new PurchaseAmount(inputPrice);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 로또 구입 금액이 로또 1장의 가격으로 나누어 떨어지지 않습니다.");
     }
 }

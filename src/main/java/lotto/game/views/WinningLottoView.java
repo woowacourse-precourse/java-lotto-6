@@ -10,6 +10,7 @@ import static lotto.game.views.enums.WinningLottoViewMessage.EXCEPTION_NOT_SIX;
 import static lotto.game.views.enums.WinningLottoViewMessage.EXCEPTION_OUT_OF_RANGE;
 import static lotto.game.views.enums.WinningLottoViewMessage.MAX_NUMBER_RANGE;
 import static lotto.game.views.enums.WinningLottoViewMessage.MIN_NUMBER_RANGE;
+import static lotto.game.views.enums.WinningLottoViewMessage.calculationProfit;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,6 @@ import lotto.collaboration.enums.Prize;
 import lotto.game.io.Input;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Output;
-import lotto.game.views.enums.WinningLottoViewMessage;
 
 public class WinningLottoView implements InteractionRepeatable {
 
@@ -72,19 +72,20 @@ public class WinningLottoView implements InteractionRepeatable {
         });
     }
 
-    public void announceWinningStatistics(final int purchaseAmount, final Map<Prize, List<PlayerLotto>> prizeListMap) {
+    public void announceWinningStatistics(final int purchaseAmount,
+                                          final Map<Prize, List<PlayerLotto>> lottosWithPrize) {
         output.println(ANNOUNCE_WINNING_STATISTICS.get());
         long totalPrizeMoney = 0L;
         for (Prize prize : Prize.valuesByRank()) {
             if (prize == Prize.LOST) {
                 continue;
             }
-            List<PlayerLotto> prizeLottos = prizeListMap.getOrDefault(prize, List.of());
+            List<PlayerLotto> prizeLottos = lottosWithPrize.getOrDefault(prize, List.of());
             output.println(prize.makeCountOfPrizeLottos(prizeLottos.size()));
             totalPrizeMoney += prize.money() * prizeLottos.size();
         }
 
-        output.println(WinningLottoViewMessage.calculationProfit(totalPrizeMoney, purchaseAmount));
+        output.println(calculationProfit(totalPrizeMoney, purchaseAmount));
     }
 
 }

@@ -49,5 +49,21 @@ public class WinningInfo {
         return numbers.contains(bonusNumber);
     }
 
+    public Prize getPrizeResult(Lotto lotto) {
+        int numberOfMatches = getNumberOfMatches(lotto);
+        boolean bonusNumberMatched = isBonusNumberMatched(lotto);
+        return Prize.valueOf(numberOfMatches, bonusNumberMatched);
+    }
+
+    private int getNumberOfMatches(Lotto lotto) {
+        return (int) winningNumbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    private boolean isBonusNumberMatched(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
+
 
 }

@@ -28,6 +28,8 @@ public class Controller {
         gameModel.lottoIssuance();
         ArrayList<LottoData> playerLottos = gameModel.transferPlayerLottoDatas();
         Output.printLottos(playerLottos);
+
         Output.printInsertLottoNumbers();
+        String playerInsert = Input.insertString();
     }
 }

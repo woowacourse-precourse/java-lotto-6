@@ -11,6 +11,13 @@ public class InputValidator {
         };
 
     }
+
+    public static void validateInsertString(String inputValue){
+        if(validateBlank(inputValue)){
+            throw new IllegalArgumentException("[ERROR] 입력이 없습니다.");
+        }
+    }
+
     private static boolean validateNumber(String inputData){
         char charAt;
         for(int i=0; i< inputData.length();i++){

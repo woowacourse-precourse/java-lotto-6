@@ -83,8 +83,8 @@
 `WinningStatistics` 클래스는 로또 게임 당첨 통계를 관리한다.
 - [✅] WinningStatistics` 클래스 생성자는 당첨 통계를 초기화한다.
 - [✅] 당첨 통계를 낸다.
-- [❌] 당첨 통계를 반환한다.
-- [❌] 총 당첨 금액을 반환한다.
+- [✅] 당첨 통계를 반환한다.
+- [✅] 총 당첨 금액을 반환한다.
 ***
 ### LottoGameController 🎮
 `LottoGameController` 클래스는 로또 게임 진행을 관리한다.

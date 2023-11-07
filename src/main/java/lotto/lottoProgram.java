@@ -18,6 +18,7 @@ public class lottoProgram {
         makeAndPrintLottos();
         inputWinningLotto();
         checkMatching();
+        printStaticAndRevenue();
     }
 
     void setPriceAndLottoCount(){
@@ -40,7 +41,10 @@ public class lottoProgram {
     void checkMatching(){
         MatchingLotto matchingLotto = new MatchingLotto(lottoNumber, winningLotto);
         matchingStatus = matchingLotto.getMatchingStatus();
-        System.out.println(matchingStatus);
+    }
+
+    void printStaticAndRevenue(){
+        new PrintStatisticAndRevenue(matchingStatus,price);
     }
 
 }

@@ -18,7 +18,7 @@ public class Lottos {
 
     private void makeLottoNumber() {
         while (lottos.size() < lottoCount) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<Integer>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             checkLottoNumber(numbers);
         }

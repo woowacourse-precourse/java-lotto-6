@@ -13,7 +13,7 @@ public class InputPriceAndCalculateLottoCount {
             validLottoCount(inputPrice);
             price = inputPrice;
         }catch(IllegalArgumentException e) {
-            System.out.println("[Error] 금액은 1000원 단위여야 합니다");
+            System.out.println(ExceptionMessage.NOT_DIVDE_1000.label());
             inputPrice();
         }
         return price;

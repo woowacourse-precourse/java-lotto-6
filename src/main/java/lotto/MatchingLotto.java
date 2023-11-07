@@ -35,7 +35,7 @@ public class MatchingLotto {
             if (checkLotto(lottos.get(i), winningLotto) == 7){
                 update = matchingStatus.get(3);
                 update++;
-                matchingStatus.set(4, update);
+                matchingStatus.set(3, update);
             }
             if (checkLotto(lottos.get(i), winningLotto) == 6){
                 update = matchingStatus.get(4);
@@ -46,7 +46,7 @@ public class MatchingLotto {
     }
 
     private int checkLotto(Lotto lotto, WinningLotto winningLotto){
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = new ArrayList<Integer>(lotto.getNumbers());
         int count = 0;
         for(int i = 0; i < numbers.size(); i++){
             count += checkNumber(numbers.get(i), winningLotto.getNumbers());

@@ -38,7 +38,7 @@ public class InputWinningLotto {
         try {
             legalRange(numbers);
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println(ExceptionMessage.ILLEGAL_RANGE.label());
             return;
         }
 
@@ -46,7 +46,7 @@ public class InputWinningLotto {
             winningLotto = new WinningLotto(numbers);
             input = 1;
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error] 잘못된 입력입니다.");
+            System.out.println(ExceptionMessage.DUPLICATE_OR_NOT6.label());
         }
     }
 

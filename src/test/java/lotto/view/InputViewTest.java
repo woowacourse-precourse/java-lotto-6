@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Cash;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("입력 처리")
 class InputViewTest extends IOTest{
-    final InputView inputView = new InputView();
+    private InputView inputView = new InputView();
 
 
     @DisplayName("현금 생성 성공 테스트")

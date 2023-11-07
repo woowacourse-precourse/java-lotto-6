@@ -29,8 +29,8 @@ public class Lotto {
         return myLottoNumbers.size();
     }
 
-    public boolean hasBonusNumber(int bonusNumber){
-        return numbers.contains(bonusNumber);
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
     }
 
     private void validateLottoLength(List<Integer> numbers) {
@@ -45,11 +45,11 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers){
+    private void validateNumberRange(List<Integer> numbers) {
         boolean isInvalid = numbers.stream()
                 .anyMatch(i -> i < LOTTO_MIN_NUMBER.getValue() || i > LOTTO_MAX_NUMBER.getValue());
 
-        if(isInvalid){
+        if (isInvalid) {
             throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getExceptionMessage());
         }
     }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.Ticket;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,37 @@ class TicketServiceTest {
         Ticket ticket = TicketService.createTicket(10000);
         assertThat(ticket.getLottos().size()).isEqualTo(10);
     }
+
+    @Test
+    void Ticket_당첨_내역_테스트() {
+        // 1등 3개
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        // 2등 2개
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto lotto5 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        // 3등 2개
+        Lotto lotto6 = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        Lotto lotto7 = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        // 4등 3개
+        Lotto lotto8 = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        Lotto lotto9 = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        Lotto lotto10 = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        // 5등 1개
+        Lotto lotto11 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+
+        Ticket ticket = new Ticket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8, lotto9, lotto10, lotto11));
+        List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.FIRST)).isEqualTo(3);
+        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.SECOND)).isEqualTo(2);
+        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.THIRD)).isEqualTo(2);
+        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.FOURTH)).isEqualTo(3);
+        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.FIFTH)).isEqualTo(1);
+    }
+
 
     @Test
     void Ticket_수익률_테스트() {

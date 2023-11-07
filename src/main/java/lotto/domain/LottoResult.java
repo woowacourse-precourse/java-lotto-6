@@ -14,10 +14,14 @@ public class LottoResult {
     private static final Integer INIT_PRIZE_COUNT = 0;
     private final Map<Prize, Integer> prizes;
 
-    public LottoResult(final List<Prize> prizes) {
+    private LottoResult(final List<Prize> lottoResult) {
         this.prizes = new HashMap<>();
         initPrizes();
-        updatePrizes(prizes);
+        updatePrizes(lottoResult);
+    }
+
+    public static LottoResult create(final List<Prize> lottoResult) {
+        return new LottoResult(lottoResult);
     }
 
     private void initPrizes() {

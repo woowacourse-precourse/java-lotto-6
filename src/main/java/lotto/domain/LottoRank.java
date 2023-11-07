@@ -19,7 +19,7 @@ public enum LottoRank {
         this.prizeAmount = prizeAmount;
     }
 
-    public LottoRank findLottoRank(LottoNumberCompareResult compareResult) {
+    public static LottoRank findLottoRank(LottoNumberCompareResult compareResult) {
         LottoRank lottoRank = null;
 
         for (LottoRank rank : LottoRank.values()) {

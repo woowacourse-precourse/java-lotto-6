@@ -38,13 +38,29 @@ public class InputView {
 
     public static String readBonusNumber() {
         String input = Console.readLine();
+        validateSpaceBonusNumber(input);
+        validateNotIntegerBonusNumber(input);
         validateRangeBonusNumber(input);
         return input;
+    }
+
+    private static void validateSpaceBonusNumber(String input) {
+        if (input.equals("")) {
+            throw new IllegalArgumentException(SPACE_ERROR_MESSAGE);
+        }
     }
 
     public static void validateRangeBonusNumber(String input) {
         if (Integer.parseInt(input) < START_NUMBER || Integer.parseInt(input) > END_NUMBER) {
             throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateNotIntegerBonusNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(NONE_INTEGER_ERROR_MESSAGE);
         }
     }
 
@@ -72,7 +88,7 @@ public class InputView {
         for (int i = 0; i < numbers.length; i++) {
             try {
                 Integer.parseInt(numbers[i]);
-            } catch (NumberFormatException e) {
+            } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException(NONE_INTEGER_ERROR_MESSAGE);
             }
         }
@@ -101,7 +117,7 @@ public class InputView {
     public static void validateNotIntegerBuyAmount(String input) {
         try {
             Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(NONE_INTEGER_ERROR_MESSAGE);
         }
     }

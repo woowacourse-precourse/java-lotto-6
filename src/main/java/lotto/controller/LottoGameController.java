@@ -42,19 +42,40 @@ public class LottoGameController {
     }
 
 
+    private String[] getWinningNumbersValidationLoop() {
+        while (true) {
+            try {
+                return InputView.readWinningNumber().split(",");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumberValidationLoop() {
+        while (true) {
+            try {
+                return Integer.parseInt(InputView.readBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
     private void createLottos() {
         OutputView.printCreatedLottos(game.createLottos(buyAmount));
     }
 
     private List<Integer> getWinningNumbers() {
         OutputView.printRequestWinningNumber();
-        String[] numbers = InputView.readWinningNumber().split(",");
+        String[] numbers = getWinningNumbersValidationLoop();
         return Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
     }
 
     private int getBonusNumber() {
         OutputView.printRequestBonusNumber();
-        return Integer.parseInt(InputView.readBonusNumber());
+        return getBonusNumberValidationLoop();
     }
 
     private LottoRankInfo createResult(List<Integer> winningNumbers, int bonusNumber) {

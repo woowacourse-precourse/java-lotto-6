@@ -1,9 +1,13 @@
 <p align="center">
     <img src="./woowacourse.png" alt="우아한테크코스" width="250px">
 </p>
-# 프리코스 3주차 미션 – 로또
+
+# 프리코스 3주차 미션 - 로또
+
 ---
+
 ![Generic badge](https://img.shields.io/badge/precourse-week2-green.svg)
+---
 > 우아한테크코스 6기 3주차 미션, 로또를 구현한 저장소입니다.
 
 # 문제

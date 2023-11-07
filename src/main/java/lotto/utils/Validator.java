@@ -19,7 +19,7 @@ public class Validator {
     }
 
     public static String checkNullValue(String inputValue) throws IllegalArgumentException{
-        if(inputValue == ""){
+        if(inputValue.equals("")){
             throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다 확인해주세요");
         }
         return inputValue;

@@ -19,14 +19,16 @@ public class LottoController {
     private final LottoShop lottoShop;
     private final OutputView outputView;
     private final LottoService lottoService;
-    private Bank bank;
+    private final Bank bank;
     private Player player;
 
-    public LottoController(InputView inputView, LottoShop lottoShop, OutputView outputView, LottoService lottoService) {
+    public LottoController(InputView inputView, LottoShop lottoShop, OutputView outputView, LottoService lottoService,
+                           Bank bank) {
         this.inputView = inputView;
         this.lottoShop = lottoShop;
         this.outputView = outputView;
         this.lottoService = lottoService;
+        this.bank = bank;
     }
 
     public void run() {
@@ -72,7 +74,6 @@ public class LottoController {
     }
 
     private List<Integer> getWinningNumbers() {
-        bank = new Bank();
         String input = getWinningNumberInput();
         List<Integer> winningNumbers = convertStringToWinningNumbers(input);
         setWinningNumbersInBank(winningNumbers);

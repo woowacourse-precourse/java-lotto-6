@@ -14,7 +14,8 @@ public class Application {
         LottoShop lottoShop = new LottoShop();
         OutputView outputView = new OutputView();
         LottoService lottoService = new LottoService();
-        LottoController lottoController = new LottoController(inputView, lottoShop, outputView, lottoService);
+        Bank bank = new Bank();
+        LottoController lottoController = new LottoController(inputView, lottoShop, outputView, lottoService, bank);
         lottoController.run();
     }
 }

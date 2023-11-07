@@ -11,8 +11,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static lotto.view.LottoFormatter.getStatisticsFormat;
-import static lotto.view.LottoFormatter.getStatisticsRateFormat;
+import static lotto.view.LottoFormatter.*;
 
 public class LottoView {
 
@@ -28,7 +27,7 @@ public class LottoView {
     }
 
     private void printLotto(Lotto lotto) {
-        System.out.println("[" + String.join(", ", lotto.getNumbersForString()) + "]");
+        System.out.println(getLottoFormat(lotto));
     }
 
     public void printInputWinningNumber() {

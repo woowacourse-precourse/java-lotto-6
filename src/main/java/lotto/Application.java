@@ -12,7 +12,7 @@ public class Application {
         ui.requireWinningNumbers();
         ui.inputWinningNumbers();
         ui.requireBonusNumber();
-        ui.inputWBonusNumber();
+        ui.inputBonusNumber();
         ui.outputGameResult(1,2,3,4,5, 55.5);
     }
 }

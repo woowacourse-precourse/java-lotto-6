@@ -13,7 +13,7 @@ public interface UI {
     List<Integer> inputWinningNumbers();
 
     void requireBonusNumber();
-    int inputWBonusNumber();
+    int inputBonusNumber();
 
     // TODO : outputGameResult 의 매개 변수는 아직 정해지지 않음
     void outputGameResult(int matchThree, int matchFour, int matchFiveIncludeBonus, int matchFiveExceptBonus, int matchSix, double rateOfReturn);

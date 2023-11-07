@@ -41,6 +41,9 @@ public class Lotto {
         if (check.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
+
+        // 값 순서 정렬
+        Collections.sort(numbers);
     }
 
     public LottoMatchResult matchWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {

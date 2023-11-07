@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.Constants;
+import lotto.domain.UserLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +36,17 @@ public class GenerateLottoNumbersTest {
         sortedList = generateLottoNumbers.sortedList(unsortedList);
         // then
         assertThat(sortedList).isEqualTo(answer);
+    }
+
+    @DisplayName("로또 구매 테스트")
+    @Test
+    public void buyingLottosTest() {
+        // given
+        int quantity = 10;
+        List<UserLotto> lottos = new ArrayList<>();
+        // when
+        lottos = generateLottoNumbers.buyingLottos(quantity);
+        // then
+        assertThat(lottos.size()).isEqualTo(quantity);
     }
 }

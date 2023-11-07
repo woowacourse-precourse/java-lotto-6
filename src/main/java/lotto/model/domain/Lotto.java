@@ -19,4 +19,13 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean containBonusNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public int removeNonCommonNumber(List<Integer> winningNumbers) {
+        numbers.retainAll(winningNumbers);
+        return numbers.size();
+    }
 }

@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import model.Lotto;
 import model.LottoBundle;
 import org.junit.jupiter.api.AfterEach;
@@ -37,5 +38,15 @@ public class LottoBundleTest {
         bundle.addLotto(10);
         //then
         assertThat(bundle.getLottoBundle()).allMatch(element -> element instanceof Lotto);
+    }
+
+    @DisplayName("로또 묶음에 요소를 추가했을 때 예상한 로또 번호인지 확인하는 테스트")
+    @Test
+    void lottoBundleHasCorrectNumber() {
+        // given
+        bundle = LottoBundle.getInstance();
+        // when
+        bundle.getLottoBundle().add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        // then
     }
 }

@@ -21,8 +21,8 @@ public enum Rank {
     }
 
     public static Rank getRank(int matchCount, boolean bonus) {
-        if (matchCount == THIRD.matchCount && !bonus) {
-            return THIRD;
+        if (matchCount == SECOND.matchCount && bonus) {
+            return SECOND;
         }
 
         return Arrays.stream(values())

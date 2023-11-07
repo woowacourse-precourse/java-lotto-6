@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -21,6 +20,8 @@ public class LottoGameController {
         PurchaseAmount purchaseAmount = initPurchaseAmount();
         int purchaseMoney = purchaseAmount.getPurchaseMoney();
         int ticketNumber = purchaseAmount.getTicketNumber();
+        outputView.printBlankLine();
+        outputView.printTicketNumber(ticketNumber);
 
         // 로또 매니저 생성
         LottoManager lottoManager = initLottoManager();
@@ -28,7 +29,7 @@ public class LottoGameController {
         List<Lotto> lottos = lottoManager.getLottos();
 
         // 발행 로또 출력
-
+        outputView.printLottos(lottos);
 
         // 당첨 금액 입력, 검증, 객체 생성
         WinningLotto winningLotto = initWinningLotto();
@@ -45,7 +46,7 @@ public class LottoGameController {
         double rateOfReturn = prizeManager.getRateOfReturn(purchaseMoney);
 
         // 당첨 통계 출력
-
+        outputView.printLottoResult(rankResult, rateOfReturn);
     }
 
     private PurchaseAmount initPurchaseAmount() {
@@ -63,7 +64,9 @@ public class LottoGameController {
         while (true) {
             try {
                 List<Integer> winningNumbers = inputWinningNumbers();
+                outputView.printBlankLine();
                 int bonus = inputWinningBonus();
+                outputView.printBlankLine();
                 return new WinningLotto(winningNumbers, bonus);
             } catch (IllegalArgumentException e) {
                 // output exception

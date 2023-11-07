@@ -78,6 +78,11 @@
 > ### 보너스 숫자와 당첨 번호가 겹치는지 확인
 
 ## LottoController
-> ### OutputView와 InputView를 주입받아 생성
+> ### OutputView와 InputView와 InputValidator를 주입받아 생성
 > ### 실제 로직이 돌아가는 곳
 
+## InputValidator
+> ### 입력 값이 숫자인지 확인하는 메서드
+> ### String을 ','로 구분하여 List<String>으로 나누는 메서드
+> ### List<String>을 List<Integer>로 바꾸는 메서드
+> ### 숫자가 문자열로 감싸져있는 문자를 숫자로 바꾸는 메서드

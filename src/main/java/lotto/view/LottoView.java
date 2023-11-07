@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Function;
 import lotto.constant.LottoMessage;
+import lotto.dto.LottoInfoResponse;
 import lotto.dto.PurchaseAmountRequest;
 
 public class LottoView {
@@ -16,6 +17,11 @@ public class LottoView {
     public PurchaseAmountRequest readPurchaseAmount() {
         write(LottoMessage.getPurchaseAmountInputMessage());
         return readUntilValidInput(inputMapper::inputToPurchaseAmountRequest);
+    }
+
+    public void writeLottosInfo(LottoInfoResponse lottoInfoResponse) {
+        write(LottoMessage.getEmpty());
+        write(LottoMessage.getPurchaseCountMessage(lottoInfoResponse.lottoCount()));
     }
 
     private void write(String output) {

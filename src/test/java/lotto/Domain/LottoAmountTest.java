@@ -15,4 +15,13 @@ class LottoAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("금액이 1000의 배수가 아닌 경우")
+    @Test
+    void validateAmount2(){
+        LottoAmount lottoAmount = new LottoAmount();
+
+        assertThatThrownBy(() -> lottoAmount.initLottoAmount(1200))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

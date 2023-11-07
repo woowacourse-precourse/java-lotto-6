@@ -40,4 +40,8 @@ public class Lotto {
         }
         return count;
     }
+
+    public boolean containsBonusNumber(Integer bonusNumber){
+        return numbers.contains(bonusNumber);
+    }
 }

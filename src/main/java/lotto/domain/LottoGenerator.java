@@ -16,7 +16,7 @@ public class LottoGenerator {
     }
 
     private void generate(int amount) {
-        while (amount > 0) {
+        while (amount > Constants.ZERO) {
             this.numbers = RandomNumberGenerator.getNumbers();
             sort();
             myLotto.add(new Lotto(this.numbers));

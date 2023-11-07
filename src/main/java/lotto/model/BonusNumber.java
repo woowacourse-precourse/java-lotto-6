@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.List;
 import lotto.view.message.Error;
 
 public class BonusNumber {
@@ -39,5 +40,9 @@ public class BonusNumber {
 
     public Integer getBonusNumber() {
         return bonusNumber;
+    }
+
+    public boolean isBonusMatch(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
     }
 }

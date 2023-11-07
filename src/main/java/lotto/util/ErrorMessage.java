@@ -7,4 +7,5 @@ public class ErrorMessage {
     public static final String ERROR_NUMERIC_TYPE = "[ERROR] 숫자를 입력해주세요.";
     public static final String ERROR_MINIMUM_PRICE = "[ERROR] 1,000원 이상의 금액을 입력해주세요.";
     public static final String ERROR_NOT_DIVIDE_LOTTO_PRICE = "[ERROR] 1,000원 단위의 금액을 입력해주세요.";
+    public static final String ERROR_BONUS_OUT_OF_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 }

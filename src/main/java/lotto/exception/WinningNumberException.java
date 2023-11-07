@@ -4,11 +4,10 @@ import static lotto.type.ExceptionMessage.NOT_NUMBER;
 
 public class WinningNumberException {
 
-    public void validate(String[] inputNumbers) {
-        word(inputNumbers);
-    }
-
     public void word(String[] inputNumbers) {
+        if(inputNumbers.length == 0) {
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+        }
         for (int i = 0; i < inputNumbers.length; i++) {
             if (!isInteger(inputNumbers[i])) {
                 throw new IllegalArgumentException(NOT_NUMBER.getMessage());

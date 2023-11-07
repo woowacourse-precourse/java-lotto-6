@@ -17,6 +17,9 @@ public class BonusNumberException {
 
     public void word(String bonusNumber) {
         int idx = 0;
+        if(bonusNumber.equals("")) {
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+        }
         if (bonusNumber.charAt(idx) == '-') {
             idx++;
         }
@@ -25,13 +28,13 @@ public class BonusNumberException {
         }
     }
 
-    private void conditionalNumber(String bonusNumber) {
+    public void conditionalNumber(String bonusNumber) {
         if (Integer.parseInt(bonusNumber) < 1 || Integer.parseInt(bonusNumber) > 45) {
             throw new IllegalArgumentException(NOT_CONDITIONAL_NUMBER.getMessage());
         }
     }
 
-    private void duplicated(String bonusNumber, Lotto winningLotto) {
+    public void duplicated(String bonusNumber, Lotto winningLotto) {
         List<Integer> numbers = winningLotto.getNumbers();
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) == Integer.parseInt(bonusNumber)) {

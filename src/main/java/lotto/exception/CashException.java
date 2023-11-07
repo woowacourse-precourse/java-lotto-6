@@ -17,7 +17,7 @@ public class CashException {
         char[] cashUnit = cash.toCharArray();
         for (int i = 0; i < cashUnit.length; i++) {
             if (cashUnit[i] < 48 || cashUnit[i] > 57) {
-                throw new IllegalArgumentException(NOT_PRICE_UNIT.getMessage());
+                throw new IllegalArgumentException(NOT_NUMBER.getMessage());
             }
         }
     }

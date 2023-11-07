@@ -16,4 +16,24 @@ public class WinningResultTest {
         // then
         assertThat(winningResult.getCount(Rank.FIRST)).isEqualTo(1);
     }
+
+    @DisplayName("당첨 결과가 저장된 대로 출력되는지 확인한다.")
+    @Test
+    void getCount() {
+        // given
+        WinningResult winningResult = new WinningResult();
+        // when
+        winningResult.addResult(Rank.FIRST);
+        winningResult.addResult(Rank.FIRST);
+        winningResult.addResult(Rank.SECOND);
+        winningResult.addResult(Rank.THIRD);
+        winningResult.addResult(Rank.FOURTH);
+        winningResult.addResult(Rank.FIFTH);
+        // then
+        assertThat(winningResult.getCount(Rank.FIRST)).isEqualTo(2);
+        assertThat(winningResult.getCount(Rank.SECOND)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.THIRD)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(1);
+        assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(1);
+    }
 }

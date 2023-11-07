@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.domain.player.Player;
-import lotto.domain.result.Results;
 import lotto.utils.Prints;
+import lotto.utils.Utils;
 
 public class LottoGameService {
 
@@ -18,9 +18,8 @@ public class LottoGameService {
         player.createWinLotto();
 
         Prints.SHOW_GAME_RESULT.show();
-        Results results = new Results(player.getLottos(), player.getWinLotto());
-        results.calculate();
-        results.showResult();
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", player.getRateOfReturn()));
+        player.calculate();
+        Utils.showResult();
+        Prints.SHOW_RATE_OF_RETURN.showFormat(player.getRateOfReturn());
     }
 }

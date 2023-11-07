@@ -76,4 +76,12 @@ public class Player {
     public double getRateOfReturn() {
         return (Utils.getRateOfReturn() / (double) lottoAmount.getLottoAmount()) * 100;
     }
+
+    public void calculate() {
+        lottos.stream().forEach(e -> {
+            int count = e.containsCount(winLotto);
+            boolean bonusByContains = e.contains(winLotto.getBonusNumber().getBounsNumber());
+            Utils.plusCount(count, bonusByContains);
+        });
+    }
 }

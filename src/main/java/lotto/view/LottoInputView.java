@@ -1,23 +1,24 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.Message;
 
 public class LottoInputView {
 
     public String readPurchaseAmount() {
-        System.out.println("구입 금액을 입력해 주세요.");
+        System.out.println(Message.INPUT_PURCHASE.getMessage());
         return Console.readLine();
     }
 
     public String readWinningNumber() {
         LottoOutputView.lineBreak();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(Message.INPUT_WINNING_NUMBER.getMessage());
         return Console.readLine();
     }
 
     public String readBonusNumber() {
         LottoOutputView.lineBreak();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
         return Console.readLine();
     }
 }

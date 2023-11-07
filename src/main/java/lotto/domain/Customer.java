@@ -8,15 +8,14 @@ public class Customer {
 
     private int money;
 
-    public Customer() {
-        int inputMoney = input();
-        validateDigit(inputMoney);
-        validateRange(inputMoney);
-        this.money = inputMoney;
+    public Customer(String StringMoney) {
+        int numberMoney = validateNumber(StringMoney);
+        validateDigit(numberMoney);
+        validateRange(numberMoney);
+        this.money = numberMoney;
     }
 
-    private int input() {
-        String money = Console.readLine();
+    private int validateNumber(String money) {
         try {
             Integer.parseInt(money);
         } catch (NumberFormatException e) {

@@ -45,4 +45,8 @@ public class LottoPurchase {
         validateDivideLottoPrice(totalPrice);
         this.lottoPurchaseCount = getLottoPurchaseCount(totalPrice);
     }
+
+    public int getLottoCount() {
+        return lottoPurchaseCount;
+    }
 }

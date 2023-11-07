@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoTicketGenerator;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,9 @@ public class LottoTicketGeneratorTest {
 
     @Test
     public void testGenerateLottoTicket() {
-        LottoTicketGenerator generator = new LottoTicketGenerator();
-        List<List<Integer>> lottoTicket = generator.generateLottoTicket(8000);
+        LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
+        LottoTicketGenerator ticketGenerator = LottoTicketGenerator.create(numberGenerator);
+        List<List<Integer>> lottoTicket = ticketGenerator.generateLottoTicket(8000);
 
         assertNotNull(lottoTicket);
         assertEquals(8, lottoTicket.size());

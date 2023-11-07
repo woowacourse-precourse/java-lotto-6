@@ -6,9 +6,7 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        MainController mainController = new MainController(
-                new InputView(), new OutputView()
-        );
+        MainController mainController = new MainController(new InputView(), new OutputView());
         mainController.start();
     }
 }

@@ -25,10 +25,10 @@ public class InputView {
     public Lotto inputWinningLotto() {
         System.out.println(NEW_LINE + "당첨 번호를 입력해 주세요.");
         String[] splitNumber = Console.readLine().replaceAll(SPACE, NO_SPACE).split(COMMA);
-        if(splitNumber.length != 6) {
+        if (splitNumber.length != 6) {
             throw new IllegalArgumentException("[ERROR] 6자리의 숫자를 입력해 주세요.");
         }
-        for(String number : splitNumber) {
+        for (String number : splitNumber) {
             winningLottoValidator.validate(number);
         }
         return new Lotto(

@@ -9,7 +9,7 @@ public class PrizeStorage {
     private Map<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
 
     public PrizeStorage(List<Prize> prizes) {
-        for(Prize prize : prizes) {
+        for (Prize prize : prizes) {
             addPrize(prize);
         }
     }
@@ -20,7 +20,7 @@ public class PrizeStorage {
 
     public List<Integer> getPrizeCount() {
         List<Integer> count = new ArrayList<>();
-        for(Prize prize : Prize.values()) {
+        for (Prize prize : Prize.values()) {
             count.add(prizeCount.getOrDefault(prize, 0));
         }
         return count;

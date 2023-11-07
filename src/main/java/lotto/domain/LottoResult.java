@@ -7,6 +7,7 @@ import lotto.config.LottoConfig;
 
 public class LottoResult {
     private final Map<Prize, Long> result;
+    private static final Double PERCENTAGE = 100.0;
 
     private LottoResult(final Map<Prize, Long> result) {
         this.result = Collections.unmodifiableMap(result);
@@ -21,13 +22,11 @@ public class LottoResult {
         return result;
     }
 
-    //FIXME: REFACTORING POINT
     public double calculateProfit() {
         long totalWinning = calculateTotalWinning();
         Money totalMoney = calculateTotalMoney();
-
-        double profit = ((double) totalWinning / totalMoney.getBudget()) * 100;
-        return Math.round(profit * 100.0) / 100.0;
+        double profit = ((double) totalWinning / totalMoney.getBudget()) * PERCENTAGE;
+        return Math.round(profit * PERCENTAGE) / PERCENTAGE;
     }
 
     private long calculateTotalWinning() {

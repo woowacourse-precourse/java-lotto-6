@@ -16,6 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        //
         if (numbers.size() != LottoConfig.MAX_BALLS) {
             throw Errors.INVALID_SIZE.getLottoException();
         }

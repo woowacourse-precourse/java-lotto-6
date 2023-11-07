@@ -10,11 +10,6 @@ public class OutputView {
     private static final String MSG_RESULT = "당첨 통계";
     private static final String MSG_DIVISION = "---";
     private static final String MSG_PURCHASE = "%d개를 구매했습니다.";
-    private static final String MSG_FIRST_PLACE = "6개 일치 (2,000,000,000원)";
-    private static final String MSG_SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원)";
-    private static final String MSG_THIRD_PLACE = "5개 일치 (1,500,000원)";
-    private static final String MSG_FOURTH_PLACE = "4개 일치 (50,000원)";
-    private static final String MSG_FIFTH_PLACE = "3개 일치 (5,000원)";
     private static final String MSG_PROFIT = "총 수익률은 %.1f%%입니다.";
 
     private static final String COUNT_NOUN = "개";
@@ -34,22 +29,18 @@ public class OutputView {
     }
 
     public void printResult(LottoResult result) {
-        System.out.println(MSG_RESULT);
-        System.out.println(MSG_DIVISION);
-
-        printPrizeFormat(Prize.FIRST, MSG_FIRST_PLACE, result);
-        printPrizeFormat(Prize.SECOND, MSG_SECOND_PLACE, result);
-        printPrizeFormat(Prize.THIRD, MSG_THIRD_PLACE, result);
-        printPrizeFormat(Prize.FOURTH, MSG_FOURTH_PLACE, result);
-        printPrizeFormat(Prize.FIFTH, MSG_FIFTH_PLACE, result);
+        StringBuilder output = new StringBuilder();
+        output.append(MSG_RESULT).append(NEW_LINE).append(MSG_DIVISION).append(NEW_LINE);
+        for (Prize prize : Prize.values()) {
+            long prizeCount = result.getResult().getOrDefault(prize, 0L);
+            if (prize != Prize.NO_LUCK) {
+                output.append(String.format("%s%s%d%s%s", prize.getMessage(), DASH, prizeCount, COUNT_NOUN, NEW_LINE));
+            }
+        }
+        System.out.print(output.toString());
     }
 
-    private void printPrizeFormat(Prize prize, String message, LottoResult result) {
-        long prizeCount = result.getResult().getOrDefault(prize, 0L);
-        System.out.printf("%s%s%d%s%s", message, DASH, prizeCount, COUNT_NOUN, NEW_LINE);
-    }
-
-    public void printProfit(double roundedProfit) {
-        System.out.printf(MSG_PROFIT + NEW_LINE, roundedProfit);
+    public void printProfit(double profit) {
+        System.out.printf(MSG_PROFIT + NEW_LINE, profit);
     }
 }

@@ -8,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        ValidateUniqueNumbers(numbers);
+        validateUniqueNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void ValidateUniqueNumbers(List<Integer> numbers) {
+    private void validateUniqueNumbers(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
             throw new IllegalArgumentException();
         }

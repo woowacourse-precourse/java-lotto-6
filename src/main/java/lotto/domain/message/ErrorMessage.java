@@ -2,8 +2,6 @@ package lotto.domain.message;
 
 import static lotto.domain.lotto.LottoRule.*;
 
-import lotto.domain.lotto.LottoRule;
-
 public enum ErrorMessage {
 
     ERROR("[ERROR] "),
@@ -12,7 +10,7 @@ public enum ErrorMessage {
     NUMBERS_SIZE_EXCEPTION_MESSAGE("숫자의 개수는 " + LOTTO_NUMBER_COUNT.getValue() + "개여야 합니다."),
     DUPLICATION_EXCEPTION_MESSAGE("번호끼리 중복이 있으면 안됩니다."),
     PRICE_EXCEPTION_MESSAGE("LottoMoney는 " + LOTTO_PRICE.getValue() + "단위어야 합니다");
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;

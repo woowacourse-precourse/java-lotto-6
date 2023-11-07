@@ -29,6 +29,7 @@ public class LottoController {
         printResult(winningResult, lottoMoney);
 
     }
+
     private LottoMoney createLottoMoney() {
         while (true) {
             try {
@@ -46,6 +47,7 @@ public class LottoController {
         lottoView.printLottos(LottosDto.from(lottos));
         return lottos;
     }
+
     private WinningLotto createWinningLotto() {
         while (true) {
             try {
@@ -56,6 +58,7 @@ public class LottoController {
             }
         }
     }
+
     private WinningResult createWinningResultWith(Lottos lottos, WinningLotto winningLotto) {
         return lottos.calculateWinningResult(winningLotto);
     }

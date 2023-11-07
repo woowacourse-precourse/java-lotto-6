@@ -15,7 +15,7 @@ public enum WinningRank {
     private final boolean bonusNumber;
     private final int money;
 
-    private final BiPredicate<Integer,Boolean> isMatch;
+    private final BiPredicate<Integer, Boolean> isMatch;
 
     WinningRank(int matchCount, boolean bonusNumber, int money,
             BiPredicate<Integer, Boolean> isMatch) {

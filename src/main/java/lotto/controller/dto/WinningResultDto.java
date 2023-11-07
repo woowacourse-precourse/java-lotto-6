@@ -21,7 +21,7 @@ public class WinningResultDto {
         winningResult.put("fourth", LottoInfoDto.of(result, WinningRank.FOURTH));
         winningResult.put("third", LottoInfoDto.of(result, WinningRank.THIRD));
         winningResult.put("second", LottoInfoDto.of(result, WinningRank.SECOND));
-        winningResult.put("first", LottoInfoDto.of(result, WinningRank.FIRST) );
+        winningResult.put("first", LottoInfoDto.of(result, WinningRank.FIRST));
         return new WinningResultDto(winningResult);
     }
 

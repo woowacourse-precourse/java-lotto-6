@@ -54,10 +54,10 @@ public class Lotteries {
 
         double profitPercentage = (totalReturn / (double) inputMoney) * RegularConstant.PERCENT;
 
-        return roundToTwoDecimalPlaces(profitPercentage);
+        return roundToFirstDecimalPlaces(profitPercentage);
     }
 
-    protected double roundToTwoDecimalPlaces(double number) {
+    private double roundToFirstDecimalPlaces(double number) {
         BigDecimal bd = new BigDecimal(number);
         bd = bd.setScale(RegularConstant.FIRST_DECIMAL_PLACE, RoundingMode.HALF_UP);
         return bd.doubleValue();

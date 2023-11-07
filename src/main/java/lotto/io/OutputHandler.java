@@ -1,6 +1,7 @@
 package lotto.io;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 
@@ -16,8 +17,9 @@ public class OutputHandler {
     public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
-            Collections.sort(numbers);
-            System.out.println(numbers);
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            sortedNumbers.sort(Comparator.naturalOrder());
+            System.out.println(sortedNumbers);
         }
         System.out.println("");
     }

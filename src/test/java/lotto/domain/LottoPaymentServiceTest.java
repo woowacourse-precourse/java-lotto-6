@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoPaymentServiceTest {
-    LottoPaymentService lottoPaymentService = new LottoPaymentService();
+    private final LottoPaymentService lottoPaymentService = new LottoPaymentService();
 
     @ParameterizedTest
     @CsvSource({"1000,1", "2000,2", "9000,9", "100000,100"})

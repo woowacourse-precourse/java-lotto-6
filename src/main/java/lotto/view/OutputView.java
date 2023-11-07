@@ -13,4 +13,12 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public static void printResult() {
+        System.out.println("\n당첨 통계\n---");
+    }
+
+    public static void printTotalRate(double rate) {
+        System.out.println("총 수익률은 " + rate + "%입니다.");
+    }
 }

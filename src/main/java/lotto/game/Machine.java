@@ -31,7 +31,7 @@ public class Machine {
         try {
             money = Integer.parseInt(moneyInput);
         } catch (IllegalArgumentException e){
-            UserInterface.printOut(ErrorCode.INVALID_MONEY_TO_BUY.getDescription());
+            System.out.println((ErrorCode.INVALID_MONEY_TO_BUY.getDescription()));
         }
         return money;
     }
@@ -42,7 +42,7 @@ public class Machine {
         );
     }
 
-    List<Lotto> createLottoNumbers() {
+    public List<Lotto> createLottoNumbers() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < this.count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
@@ -52,19 +52,18 @@ public class Machine {
         return lottos;
     }
 
-    List<Integer> createWinningNumber(String numInput) {
+    public List<Integer> createWinningNumber(String numInput) {
         List<String> numbers = stream(numInput.split(",")).toList();
-        List<Integer> winningNumber = numbers.stream()
+        return numbers.stream()
                 .map((num -> Integer.parseInt(num)))
                 .toList();
-        return winningNumber;
     }
 
-    Numbers createBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+    public Numbers createBonusNumber(List<Integer> winningNumber, int bonusNumber) {
         return new Numbers(winningNumber, bonusNumber);
     }
 
-    int[] createMatchResult(List<Lotto> lottos, Numbers numbers) {
+    public int[] createMatchResult(List<Lotto> lottos, Numbers numbers) {
         List<int[]> results = new ArrayList<>();
         for (Lotto lotto : lottos) {
             int matchCount;
@@ -99,11 +98,12 @@ public class Machine {
         return countResult;
     }
 
-    double calculateInvestmentResult(int[] matchResult) {
-        LottoPayout[] lottoPayout = LottoPayout.values();
+    public double calculateInvestmentResult(int[] matchResult) {
+        List<LottoPayout> lottoPayouts = new ArrayList<>(List.of(LottoPayout.values()));
+//        LottoPayout[] lottoPayout = LottoPayout.values();
         double investmentSum = 0;
-        for (int i = 0; i < matchResult.length; i++) {
-            investmentSum += (double) (matchResult[i] * lottoPayout[i].getAmount()) / (PRICE * this.count);
+        for (int index = 0; index < matchResult.length; index++) {
+            investmentSum += (double) (matchResult[index] * lottoPayouts.get(index).getAmount()) / (PRICE * this.count);
         }
         return investmentSum * 100;
     }

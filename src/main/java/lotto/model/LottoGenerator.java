@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
+    public static final int LOTTO_PRICE = 1000;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
-
-    public static final int LOTTO_PRICE = 1000;
 
     public static Lotto generateLotto() {
         List<Integer> numbers = pickUniqueLottoNumbers();

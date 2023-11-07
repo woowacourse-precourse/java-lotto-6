@@ -52,6 +52,10 @@ public class OutputView {
         printMessage(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
+    public static void printWinningStatusMessage() {
+        printMessage(WINNING_STATISTICS_OUTPUT_MESSAGE);
+    }
+
     private static void printMessage(String message) {
         System.out.println(message);
     }

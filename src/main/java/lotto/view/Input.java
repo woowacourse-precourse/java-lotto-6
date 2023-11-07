@@ -9,16 +9,30 @@ import lotto.validator.InputValidator;
 public class Input {
 
     public static Integer receiveOneNumber() {
-        String input = Console.readLine().trim();
-        InputValidator.isInteger(input);
-
+        String input;
+        while (true) {
+            try {
+                input = Console.readLine().trim();
+                InputValidator.isNull(input);
+                InputValidator.isInteger(input);
+                break;
+            } catch (IllegalArgumentException e) {
+            }
+        }
         return Integer.parseInt(input);
     }
 
     public static List<Integer> receiveNumbersSeparatedByCommas() {
-        String[] inputs = Console.readLine().trim().split(",");
-        InputValidator.isInteger(inputs);
-
+        String[] inputs;
+        while (true) {
+            try {
+                inputs = Console.readLine().trim().split(",");
+                InputValidator.isNull(inputs);
+                InputValidator.isInteger(inputs);
+                break;
+            } catch (IllegalArgumentException e) {
+            }
+        }
         return Arrays.stream(inputs).map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

@@ -28,9 +28,9 @@ public class Lotto {
         }
     }
 
-    public int compareNumbers(Lotto lotto) {
+    public int compareNumbers(List<Integer> winningNumbers) {
         return (int) numbers.stream().flatMap(
-                number -> lotto.getNumbers()
+                number -> winningNumbers
                         .stream()
                         .filter(number::equals)
         ).count();
@@ -38,5 +38,12 @@ public class Lotto {
 
     public boolean compareNumber(int number) {
         return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return "Lotto{" +
+                "numbers=" + numbers +
+                '}';
     }
 }

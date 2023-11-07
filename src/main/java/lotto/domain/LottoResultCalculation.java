@@ -3,10 +3,17 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoResultCalculation {
-    public int caculateLottoTicket(int money) {
+    private int inputMoney;
+
+    public LottoResultCalculation() {
+        this.inputMoney = 0;
+    }
+
+    public int caculateLottoTicket(int money) throws IllegalArgumentException {
         if(money % 1000 != 0) {
             throw new IllegalArgumentException();
         }
+        this.inputMoney = money;
         int ticket = money / 1000;
         return ticket;
     }
@@ -22,5 +29,10 @@ public class LottoResultCalculation {
     public boolean checkBounsNumber(List<Integer> target, int bouns) {
         boolean result = target.contains(bouns);
         return result;
+    }
+
+    public double calculateReturn(int totalWinningMoney) {
+        double result = (double) totalWinningMoney / inputMoney;
+        return Math.round((result * 1000)) / 1000.0 * 100;
     }
 }

@@ -2,14 +2,15 @@ package lotto.data;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
 import lotto.message.LottoPrize;
 
 public class LottoResult {
-    private final HashMap<LottoPrize, BigDecimal> lottoRank;
+    private final Map<LottoPrize, BigDecimal> lottoRank;
     private final BigDecimal totalPrize;
     private final float profitPercent;
 
-    public LottoResult(HashMap<LottoPrize, BigDecimal> lottoRank, BigDecimal purchaseAmount) {
+    public LottoResult(Map<LottoPrize, BigDecimal> lottoRank, BigDecimal purchaseAmount) {
         this.lottoRank = lottoRank;
         this.totalPrize = calculateTotalPrize(lottoRank);
         this.profitPercent = calculateProfitPercent(totalPrize, purchaseAmount);
@@ -23,7 +24,7 @@ public class LottoResult {
         return profitPercent;
     }
 
-    private static BigDecimal calculateTotalPrize(HashMap<LottoPrize, BigDecimal> lottoRank) {
+    private static BigDecimal calculateTotalPrize(Map<LottoPrize, BigDecimal> lottoRank) {
         BigDecimal totalPrize = BigDecimal.ZERO;
         for (LottoPrize lottoResult : lottoRank.keySet()) {
             BigDecimal count = lottoRank.get(lottoResult);

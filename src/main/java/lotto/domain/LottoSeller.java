@@ -3,6 +3,7 @@ package lotto.domain;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.data.Lotto;
 import lotto.data.LottoResult;
 import lotto.data.WinningCombination;
@@ -23,7 +24,7 @@ public class LottoSeller {
 
         WinningCombination winningNumbers = LottoPurchaseInput.inputWinningNumbers();
 
-        HashMap<LottoPrize, BigDecimal> lottoRank = winningNumbers.getResultWith(lottos);
+        Map<LottoPrize, BigDecimal> lottoRank = winningNumbers.getResultWith(lottos);
         LottoResult lottoResult = new LottoResult(lottoRank, purchaseAmount);
         OutputMessage.printWinningStatistics(lottoResult);
     }

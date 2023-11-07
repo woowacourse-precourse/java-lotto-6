@@ -3,6 +3,7 @@ package lotto.data;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.message.ErrorMessage;
 import lotto.message.LottoPrize;
 
@@ -16,8 +17,8 @@ public class WinningCombination extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public HashMap<LottoPrize, BigDecimal> getResultWith(List<Lotto> lottos) {
-        HashMap<LottoPrize, BigDecimal> result = initResult();
+    public Map<LottoPrize, BigDecimal> getResultWith(List<Lotto> lottos) {
+        Map<LottoPrize, BigDecimal> result = initResult();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCountWith(getNumbers());
             LottoPrize lottoResult = LottoPrize.of(matchCount, lotto.contains(bonusNumber));

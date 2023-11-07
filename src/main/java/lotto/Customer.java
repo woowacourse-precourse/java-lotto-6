@@ -5,33 +5,32 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ticket {
+public class Customer {
     public List<List<Integer>> tickets = new ArrayList<>();
-    public int price;
+    public int inputPrice;
     private static final int TICKET_PRICE = 1000;
     public int amount;
 
-    public Ticket(int price) {
-        validate(price);
-        this.price = price;
+    public Customer(int inputPrice) {
+        validate(inputPrice);
+        this.inputPrice = inputPrice;
         setAmount();
         purchaseTicket();
     }
 
-    private void validate(int price) {
-        if (price % TICKET_PRICE != 0) {
+    private void validate(int inputPrice) {
+        if (inputPrice % TICKET_PRICE != 0) {
             throw new IllegalArgumentException();
         }
-        this.price = price;
+        this.inputPrice = inputPrice;
     }
 
     private void setAmount() {
-        this.amount = this.price / TICKET_PRICE;
+        this.amount = this.inputPrice / TICKET_PRICE;
     }
 
     private List<Integer> generateTicket() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private void purchaseTicket() {

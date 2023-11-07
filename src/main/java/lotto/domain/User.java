@@ -6,7 +6,7 @@ public class User {
     int payment;
     List<List<Integer>> userLottos;
     public User(String payment) {
-        this.payment = convertStringToInteger(payment);
+        this.payment = InputHandler.convertStringToInteger(payment);
         userLottos = Lotto.publish(this.payment);
     }
 
@@ -14,8 +14,4 @@ public class User {
         return new User(null);
     }
 
-    private static int convertStringToInteger(String input) {
-        return Integer.parseInt(input);
-
-    }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constants.LottoNumberConstants.LOTTO_NUMBER_RANGE;
+import static lotto.constants.LottoNumberConstants.LOTTO_WINNING_NUMBER_RANGE;
 
 public class LottoStatisticsDomain {
     private List<Lotto> purchaseLotto;
@@ -36,7 +37,7 @@ public class LottoStatisticsDomain {
     }
 
     private boolean isAdditionNumber(List<Integer> oneLotto) {
-        if (oneLotto.contains(winningLottoNumber.get(winningLottoNumber.size() - 1))) {
+        if (oneLotto.contains(winningLottoNumber.get(LOTTO_WINNING_NUMBER_RANGE - 1))) {
             return true;
         }
         return false;

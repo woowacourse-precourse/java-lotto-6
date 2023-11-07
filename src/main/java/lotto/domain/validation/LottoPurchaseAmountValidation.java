@@ -21,7 +21,7 @@ public class LottoPurchaseAmountValidation {
         try {
             return parseInt(amountStr);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : The provided lotto purchase amount is not a valid integer: " + amountStr, e);
+            throw new IllegalArgumentException("[ERROR] : The provided lotto purchase amount is not a valid integer: ", e);
         }
     }
 

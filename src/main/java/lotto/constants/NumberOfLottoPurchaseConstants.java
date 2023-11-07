@@ -7,4 +7,5 @@ public class NumberOfLottoPurchaseConstants {
     public static final String COMMA = ",";
     public static final String LEFT_BRACKET = "[";
     public static final String RIGHT_BRACKET = "]";
+    public static final int ONE_LOTTO_AMOUNT = 1000;
 }

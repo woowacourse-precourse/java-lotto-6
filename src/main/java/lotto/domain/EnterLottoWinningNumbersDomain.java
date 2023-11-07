@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.validation.LottoAdditionNumberValidation;
 import lotto.domain.validation.LottoWinningNumberValidation;
 import lotto.view.EnterLottoWinningNumberView;
 
@@ -13,36 +14,52 @@ import static lotto.constants.NumberOfLottoPurchaseConstants.COMMA;
 public class EnterLottoWinningNumbersDomain {
     private final EnterLottoWinningNumberView enterLottoWinningNumberView;
     private final LottoWinningNumberValidation lottoWinningNumberValidation;
+    private final LottoAdditionNumberValidation lottoAdditionNumberValidation;
+    private List<Integer> lottoWinningNumber;
 
     public EnterLottoWinningNumbersDomain() {
         this.enterLottoWinningNumberView = new EnterLottoWinningNumberView();
         this.lottoWinningNumberValidation = new LottoWinningNumberValidation();
+        this.lottoAdditionNumberValidation = new LottoAdditionNumberValidation();
     }
 
     public List<Integer> userSetWinningNumberLogic() {
-        String winningNumber = inputAndValidateLottoWinningNumbers();
-        String additionNumber = inputAndValidateLottoAdditionNumbers();
-        List<Integer> lottoWinningNumber = parseWinningNumbers(winningNumber, additionNumber);
+        repeatUntilUserInputsValidWinningNumbers();
+        repeatUntilUserInputsValidAdditionNumbers();
         return List.copyOf(lottoWinningNumber);
     }
 
-    private String inputAndValidateLottoWinningNumbers() {
+    private void repeatUntilUserInputsValidWinningNumbers(){
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                lottoWinningNumber = inputAndValidateLottoWinningNumbers();
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void repeatUntilUserInputsValidAdditionNumbers() {
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                lottoWinningNumber = inputAndValidateLottoAdditionNumbers();
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> inputAndValidateLottoWinningNumbers() {
         String winningNumber = enterLottoWinningNumberView.enterLottoWinningNumber();
-        lottoWinningNumberValidation.winningNumberValidation(winningNumber);
-        return winningNumber;
+        return lottoWinningNumberValidation.winningNumberValidation(winningNumber);
     }
 
-    private String inputAndValidateLottoAdditionNumbers() {
+    private List<Integer> inputAndValidateLottoAdditionNumbers() {
         String additionNumber = enterLottoWinningNumberView.enterAdditionNumber();
-        lottoWinningNumberValidation.additionLottoWinningNumberValidation(additionNumber);
-        return additionNumber;
-    }
-
-    private List<Integer> parseWinningNumbers(String winningNumber, String additionNumber) {
-        List<Integer> numbers = Arrays.stream(winningNumber.split(COMMA))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        numbers.add(parseInt(additionNumber));
-        return numbers;
+        return lottoAdditionNumberValidation.additionLottoWinningNumberValidation(additionNumber, lottoWinningNumber);
     }
 }

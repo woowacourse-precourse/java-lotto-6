@@ -40,4 +40,12 @@ public class Lotto {
         List<Integer> randomNumbers = RandomNumbersGenerator.create();
         return new Lotto(randomNumbers);
     }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }

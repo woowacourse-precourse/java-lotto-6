@@ -20,4 +20,9 @@ public class View {
     public void printLottoTickets(String tickets){
         printMessage(tickets);
     }
+
+    public String askWinningNumbers(){
+        printMessage("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }

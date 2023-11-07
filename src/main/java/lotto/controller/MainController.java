@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.LottoTickets;
 import lotto.model.OrderAmount;
+import lotto.model.WinningNumber;
 import lotto.view.View;
 
 public class MainController {
@@ -12,6 +13,7 @@ public class MainController {
     public void run() {
         LottoTickets lottoTickets = purchaseLottoTickets();
         view.printLottoTickets(lottoTickets.printTickets());
+        WinningNumber winningNumber = new WinningNumber(view.askWinningNumbers());
         Console.close();
     }
 

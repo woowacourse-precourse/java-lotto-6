@@ -26,14 +26,11 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) {
-            return true;
+        if (object instanceof LottoNumber) {
+            LottoNumber otherLottoNumber = (LottoNumber) object;
+            return lottoNumber == otherLottoNumber.lottoNumber;
         }
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-        LottoNumber otherLottoNumber = (LottoNumber) object;
-        return lottoNumber == otherLottoNumber.lottoNumber;
+        return false;
     }
 
     @Override

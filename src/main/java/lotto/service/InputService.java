@@ -21,11 +21,11 @@ public class InputService {
 
     public int readPurchasingAmount() {
         while(true) {
+            String purchasingAmount = inputView.readInput();
+
             try {
-                String purchasingAmount = inputView.readInput();
-                if (inputValidation.validatePurchasingAmount(purchasingAmount)) {
-                    return getPurchaseCount(purchasingAmount);
-                }
+                inputValidation.validatePurchasingAmount(purchasingAmount);
+                return getPurchaseCount(purchasingAmount);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -37,10 +37,8 @@ public class InputService {
         while(true) {
             try {
                 String winningNumbers = inputView.readInput();
-
-                if (inputValidation.validateWinningNumber(winningNumbers)) {
-                    return getWinningNumber(winningNumbers);
-                }
+                inputValidation.validateWinningNumber(winningNumbers);
+                return getWinningNumber(winningNumbers);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -53,9 +51,8 @@ public class InputService {
             try {
                 String bonusNumber = inputView.readInput();
 
-                if (inputValidation.validateBonusNumber(winningNumbers, bonusNumber)) {
-                    return Integer.parseInt(bonusNumber);
-                }
+                inputValidation.validateBonusNumber(winningNumbers, bonusNumber);
+                return Integer.parseInt(bonusNumber);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

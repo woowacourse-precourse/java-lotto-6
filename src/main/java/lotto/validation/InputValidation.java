@@ -17,7 +17,7 @@ public class InputValidation {
 
     IllegalArgumentException exception;
 
-    public boolean validatePurchasingAmount(String purchasingAmount) {
+    public void validatePurchasingAmount(String purchasingAmount) {
         exception = new IllegalArgumentException(ERROR_PURCHASING_AMOUNT);
 
         if (!checkNumberOnly(purchasingAmount)) {
@@ -29,10 +29,9 @@ public class InputValidation {
         if (!checkLimitAmount(purchasingAmount)) {
             throw exception;
         }
-        return true;
     }
 
-    public boolean validateWinningNumber(String winningNumbers) {
+    public void validateWinningNumber(String winningNumbers) {
         exception = new IllegalArgumentException(ERROR_WINNING_NUMBERS);
 
         if (!checkNumberAndComa(winningNumbers)) {
@@ -44,10 +43,9 @@ public class InputValidation {
         if (!checkDuplicateNumber(winningNumbers)) {
             throw exception;
         }
-        return true;
     }
 
-    public boolean validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+    public void validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
         exception = new IllegalArgumentException(ERROR_BONUS_NUMBER);
 
         if (!checkDuplicateWithWinningNumber(winningNumbers, bonusNumber)) {
@@ -56,8 +54,6 @@ public class InputValidation {
         if (!checkLimitLottoNumber(bonusNumber)) {
             throw exception;
         }
-
-        return true;
     }
 
     private boolean checkDuplicateWithWinningNumber(List<Integer> winningNumbers, String bonusNumber) {

@@ -34,4 +34,25 @@ public class Lotto {
 
         return lottoNumbers;
     }
+
+    public String lottoResult(List<Integer> winningNumber, int bonusNumber) {
+        String correctCount = compareNumbers(winningNumber);
+
+        if (correctCount.equals(LottoConstants.CORRECT_FIVE)) {
+            return LottoConstants.CORRECT_FIVE_WITH_BONUS;
+        }
+
+        return correctCount;
+    }
+
+    private String compareNumbers(List<Integer> winningNumber) {
+        int containCount = 0;
+
+        for (int number : numbers) {
+            if (winningNumber.contains(number)) {
+                containCount++;
+            }
+        }
+        return String.valueOf(containCount);
+    }
 }

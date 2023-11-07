@@ -23,4 +23,8 @@ public class Lottos {
 
         return purchasedNumbers;
     }
+
+    public Lotto getLotto(int index) {
+        return lottos.get(index);
+    }
 }

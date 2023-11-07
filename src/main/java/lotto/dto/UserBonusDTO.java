@@ -20,7 +20,6 @@ public class UserBonusDTO {
     }
 
     public Bonus toBonus(Lotto lotto) {
-        return Bonus.from(Parser.inputToNumber(inputBonus), lotto);
+        return Bonus.of(Parser.inputToNumber(inputBonus), lotto);
     }
-
 }

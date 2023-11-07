@@ -8,7 +8,7 @@ public enum ExceptionMessage {
     NOT_MATCHES_LOTTO_PATTERN("로또 번호는 (,) 로 구분해서 입력해야 합니다.", ModifyingType.LOTTO_NUMBER),
 
     SAME_NUMBER_WITH_LOTTO_NUMBER("로또 번호와 중복된 보너스 번호입니다.", ModifyingType.BONUS_NUMBER),
-    OUT_OF_RANGE_BONUS_NUMBER("범위에서 벗어난 수를 입력했습니다. 보너스 번호 범위는 1~45까지입니다",
+    OUT_OF_RANGE_BONUS_NUMBER("범위에서 벗어난 수를 입력했습니다. 보너스 번호 범위는 1~45까지입니다.",
             ModifyingType.BONUS_NUMBER),
 
     NULL_INPUT("아무것도 입력하지 않았습니다.", ModifyingType.EVERY_NUMBER),

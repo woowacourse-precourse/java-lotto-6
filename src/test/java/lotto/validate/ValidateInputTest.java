@@ -99,4 +99,15 @@ class ValidateInputTest {
                 .hasMessage(WRONG_TYPE_INPUT_MESSAGE);
     }
 
+    @DisplayName("입력한 보너스 번호가 정수가 아니면 예외가 발생한다.")
+    @Test
+    void 보너스번호_입력_예외_처리() {
+        //given
+        final String input = "kiki";
+
+        //when,then
+        assertThatThrownBy(() -> ValidateInput.validateBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WRONG_TYPE_INPUT_MESSAGE);
+    }
 }

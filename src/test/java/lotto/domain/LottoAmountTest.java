@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.exception.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.LottoAmount;
 import org.junit.jupiter.api.Test;
 
 class LottoAmountTest {
@@ -13,5 +12,4 @@ class LottoAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ONLY_DIVISIBLE_BY_THOUSAND.getMessage());
     }
-
 }

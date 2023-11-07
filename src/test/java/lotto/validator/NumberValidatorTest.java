@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 class NumberValidatorTest {
     @Test
-    void 보너스번호가_1부터_45_범위에_벗어난_경우() {
-        int outRangeNumbers = 50;
+    void 번호가_1부터_45_범위에_벗어난_경우() {
+        int outRangeNumber = 50;
 
-        assertThatThrownBy(() -> validateRange(outRangeNumbers))
+        assertThatThrownBy(() -> validateRange(outRangeNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER_RANGE.getMessage());
     }

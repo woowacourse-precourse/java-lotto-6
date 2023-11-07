@@ -1,25 +1,38 @@
 package lotto.contorller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Tickets;
 import lotto.domain.WinningLotto;
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.List;
+import lotto.service.TicketsService;
 
 public class WinningLottoController {
-    final int START_DIGIT = 1;
-    final int END_DIGIT = 45;
-    final int LOTTO_NUM = 6;
     WinningLotto winningLotto;
+    Tickets tickets;
+    private final TicketsService ticketsService = new TicketsService();
+    public Lotto getLottoInput() {
+        String lottoInput = Console.readLine();
+        return ticketsService.stringToLotto(lottoInput);
+    }
+
+    public int getAmountInput() {
+        String amountInput = Console.readLine();
+        return Integer.parseInt(amountInput);
+    }
+
+    public int getBonusNumInput() {
+        String bonusNumInput = Console.readLine();
+        return Integer.parseInt(bonusNumInput);
+    }
+
+    public void init() {
+        winningLotto = ticketsService.getUserLotto(getLottoInput(), getBonusNumInput());
+        tickets = new Tickets(getAmountInput());
+        issueWinningLotto(tickets.calcTicketCount());
+    }
+    private final TicketsService winningLottoService = new TicketsService();
     public void issueWinningLotto(int count) {
-        List<Lotto> winningLottoList = new ArrayList<>();
-
-        for(int i=0;i<count;i++) {
-            List<Integer> nums = Randoms.pickUniqueNumbersInRange(START_DIGIT, END_DIGIT, LOTTO_NUM);
-            winningLottoList.add(new Lotto(nums));
-        }
-
-        winningLotto = new WinningLotto(winningLottoList);
+        tickets = winningLottoService.issue(tickets);
+        tickets.printWinningLotto();
     }
 }

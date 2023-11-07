@@ -28,7 +28,7 @@ public class LottoController {
     }
 
     private Long inputPurchaseAmount() {
-        OutputView.inputViewPurchaseAmount();
+        InputView.inputViewPurchaseAmount();
         while (true) {
             try {
                 Money money = new Money(getInputAmount());
@@ -48,7 +48,7 @@ public class LottoController {
     }
 
     private List<Integer> inputWinningLottoNumber() {
-        OutputView.inputViewWinningNumber();
+        InputView.inputViewWinningNumber();
         while (true) {
             try {
                 Lotto lotto = new Lotto(getInputWinningNumber());
@@ -59,7 +59,7 @@ public class LottoController {
     }
 
     private Integer inputBonusNumber() {
-        OutputView.inputViewBonusNumber();
+        InputView.inputViewBonusNumber();
         while (true) {
             try {
                 BonusNumber bonusNumber = new BonusNumber(getInputBonusNumber());

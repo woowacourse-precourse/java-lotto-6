@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import lotto.dto.ResultDto;
 import lotto.embedded.LottoResult;
 import lotto.model.Lotto;
@@ -34,7 +33,6 @@ public class LottoController {
         int bonusNumber = inputView.receiveBonusNumber(winning);
 
         ResultDto result = calculateTotalResult(winning, bonusNumber, totalPrice, lottoList);
-
         outputView.printResult(result);
     }
 

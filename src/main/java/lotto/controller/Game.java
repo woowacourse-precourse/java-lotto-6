@@ -6,10 +6,8 @@ import static lotto.view.OutputView.printReceipt;
 import static lotto.view.OutputView.printStatistic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import lotto.domain.CalculateResult;
 import lotto.domain.ComPareNumber;
 import lotto.domain.Purchase;
 import lotto.domain.RandomNumber;
@@ -47,7 +45,6 @@ public class Game {
         lottoMethod();
         allCalculator();
 
-
     }
 
     private void allRandomNumbers() {
@@ -74,8 +71,8 @@ public class Game {
 
     private void allCalculator() {
         List<ComPareNumber> compareNumbers = generateCompareNumbers(numbers, bonusNumber);
-        long totalMoneySum = calculateTotalMoneySum(compareNumbers);
-        List<Integer> totalWinCount = calculateTotalWinCounts(compareNumbers);
+        long totalMoneySum = CalculateResult.calculateTotalMoneySum(compareNumbers);
+        List<Integer> totalWinCount = CalculateResult.calculateTotalWinCounts(compareNumbers);
 
         printCalculationResults(totalWinCount, totalMoneySum);
     }
@@ -91,26 +88,6 @@ public class Game {
         return ComPareNumber.generateCompareNumbers(winningNumbers, bonusNumber, allRandomNumbers);
     }
 
-
-    private long calculateTotalMoneySum(List<ComPareNumber> compareNumbers) {
-        return compareNumbers.stream()
-                .mapToLong(ComPareNumber::getMoneySum)
-                .sum();
-    }
-
-
-    private List<Integer> calculateTotalWinCounts(List<ComPareNumber> compareNumbers) {
-        List<Integer> totalWinCount = Arrays.asList(0, 0, 0, 0, 0);
-        compareNumbers.forEach(compareNumber ->
-                addWinCounts(totalWinCount, compareNumber.getWinCount())
-        );
-        return totalWinCount;
-    }
-
-    private void addWinCounts(List<Integer> totalWinCount, List<Integer> winCount) {
-        IntStream.range(0, winCount.size())
-                .forEach(i -> totalWinCount.set(i, totalWinCount.get(i) + winCount.get(i)));
-    }
 
     private void printTotalResults(List<Integer> totalWinCount) {
         OutputView.printAllWinPrices(totalWinCount);

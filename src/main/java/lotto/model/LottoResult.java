@@ -9,11 +9,11 @@ public enum LottoResult {
     NONE(0, 0);
 
     private final int countOfMatch;
-    private final int winningMoney;
+    private final int prizeMoney;
 
     LottoResult(int countOfMatch, int winningMoney) {
         this.countOfMatch = countOfMatch;
-        this.winningMoney = winningMoney;
+        this.prizeMoney = winningMoney;
     }
 
     public static LottoResult calculate(int countOfMatch, boolean matchBonus) {
@@ -35,11 +35,7 @@ public enum LottoResult {
         return NONE;
     }
 
-    public int getWinningMoney() {
-        return winningMoney;
-    }
-
-    public int getCountOfMatch() {
-        return countOfMatch;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

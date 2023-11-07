@@ -10,6 +10,7 @@ import lotto.model.WinningLotto;
 public class LottoGameService {
     private LottoFactory lottoFactory;
     private UserLotto userLotto;
+    private Money money;
     private int lottoCount;
     private Lotto winningLottoNumber;
     private WinningLotto winningLotto;
@@ -19,7 +20,7 @@ public class LottoGameService {
     }
 
     public String buyLotto(String inputMoney) {
-        Money money = new Money(inputMoney);
+        money = new Money(inputMoney);
         lottoCount = money.calculateLottoCount();
         return String.valueOf(lottoCount);
     }
@@ -38,7 +39,14 @@ public class LottoGameService {
         winningLotto = lottoFactory.makeWinningLottoWithBonusNumber(winningLottoNumber, bonusNumber);
     }
 
-    public void calculateResult() {
+    public String calculateResult() {
         List<LottoResult> lottoResults = userLotto.calculateResult(winningLotto);
+        return String.valueOf(calculateTotalYield(lottoResults));
+    }
+
+    private double calculateTotalYield(List<LottoResult> lottoResults) {
+        return money.calculateYield(lottoResults.stream()
+                .mapToDouble(LottoResult::getPrizeMoney)
+                .sum());
     }
 }

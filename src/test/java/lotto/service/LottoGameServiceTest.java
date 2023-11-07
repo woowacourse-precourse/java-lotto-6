@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.Money;
 import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,5 +63,22 @@ class LottoGameServiceTest {
                         LottoResult.NONE
                 )
         );
+    }
+    @Test
+    void 수익률_계산_로직_테스트() {
+        Money money = new Money("3000");
+        List<LottoResult> lottoResults = List.of(
+                LottoResult.FIRST,
+                LottoResult.SECOND,
+                LottoResult.THIRD
+        );
+
+        double totalProfit = money.calculateYield(lottoResults.stream()
+                .mapToDouble(LottoResult::getPrizeMoney)
+                .sum());
+        double prizeMoney = 2_000_000_000 + 30_000_000 + 1_500_000;
+        double expected = (prizeMoney / 3000) * 100.0;
+
+        assertThat(totalProfit).isEqualTo(expected);
     }
 }

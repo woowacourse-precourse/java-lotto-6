@@ -2,9 +2,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static lotto.Lotto.*;
 
@@ -15,21 +19,26 @@ public class Input {
     public static int bonus_num = 0;
     public static int input_price = 0;
 
-    public static void input_price(){
-        try{
-            lotto_count = 0;
-            input_price = 0;
-            System.out.println("구입금액을 입력해 주세요.");
-            String input = Console.readLine();
-            input_price = Integer.parseInt(input);
-            if(input_price % 1000 != 0 || input_price == 0){
-                throw new IllegalArgumentException();
+    public static void input_val(){
+        while(true){
+            try{
+                input_price();
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 0보다 큰 1000으로 나누어 떨어지는 금액을 입력해 주세요.");
             }
-            lotto_count = input_price / 1000;
-        }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 0보다 큰 1000으로 나누어 떨어지는 금액을 입력해 주세요.");
-            input_price();
         }
+    }
+
+    public static void input_price(){
+        lotto_count = 0;
+        input_price = 0;
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        input_price = Integer.parseInt(input);
+        if(input_price % 1000 != 0 || input_price == 0){
+            throw new IllegalArgumentException();}
+        lotto_count = input_price / 1000;
     }
 
     public static void input_winner(){

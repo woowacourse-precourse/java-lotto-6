@@ -6,7 +6,7 @@ import static lotto.Output.*;
 
 public class Application {
     public static void main(String[] args) {
-        input_price();
+        input_val();
         lotto_random(lotto_count);
         output_price(lotto_count);
         output_lotto(numbers_list);

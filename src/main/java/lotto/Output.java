@@ -1,4 +1,5 @@
 package lotto;
+import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,9 @@ public class Output {
         }
         System.out.println("총 금액 : " + total_price);
         double final_price = Math.round(((double)total_price/(double)input_price)*1000.0)/1000.0;
-        System.out.println("총 수익률은 " + final_price * 100.0 +"%입니다.");
+        DecimalFormat decFormat = new DecimalFormat("###,###.#");
+        String str = decFormat.format(final_price * 100.0);
+        System.out.println("총 수익률은 " + str +"%입니다.");
 
     }
 

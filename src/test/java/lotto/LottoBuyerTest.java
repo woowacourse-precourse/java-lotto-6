@@ -25,7 +25,7 @@ class LottoBuyerTest {
         int price = 8_000;
 
         // When
-        int lottoCount = lottoBuyer.getLottoCount(price);
+        int lottoCount = lottoBuyer.getPurchaseAmount(price);
 
         // Then
         assertThat(lottoCount).isEqualTo(price / 1000);

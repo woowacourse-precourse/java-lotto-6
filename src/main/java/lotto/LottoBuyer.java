@@ -3,25 +3,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.io.ConsoleManager;
+import lotto.vo.PurchaseAmount;
+import lotto.vo.PurchasePrice;
 
 public class LottoBuyer {
 
-    private static final int PRICE_UNIT = 1_000;
-
-    private final ConsoleManager consoleManager;
-
-    public LottoBuyer(ConsoleManager consoleManager) {
-        this.consoleManager = consoleManager;
-    }
-
-    protected int payLotto() {
-        return consoleManager.inputPurchasePrice()
-                .getValue();
-    }
-
-    protected int getLottoCount(final int price) {
-        return price / PRICE_UNIT;
+    protected PurchaseAmount getPurchaseAmount(final PurchasePrice purchasePrice) {
+        return new PurchaseAmount(purchasePrice.getPrice());
     }
 
     protected List<Lotto> purchaseLottos(final int count) {

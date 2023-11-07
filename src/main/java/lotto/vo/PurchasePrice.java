@@ -9,19 +9,19 @@ public class PurchasePrice {
     private static final int THOUSAND_UNIT = 1_000;
     private static final int ZERO = 0;
 
-    private final int value;
+    private final int price;
 
-    public PurchasePrice(final String value) {
-        int parsedValue = parseInt(value);
+    public PurchasePrice(final String price) {
+        int parsedValue = parseInt(price);
 
         validatePositive(parsedValue);
         validateThousandUnit(parsedValue);
 
-        this.value = parsedValue;
+        this.price = parsedValue;
     }
 
-    public int getValue() {
-        return value;
+    public int getPrice() {
+        return price;
     }
 
     private int parseInt(final String value) {

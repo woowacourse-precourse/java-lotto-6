@@ -57,7 +57,7 @@ class PurchasePriceTest {
         PurchasePrice result = new PurchasePrice(value);
 
         // Then
-        assertThat(result.getValue())
+        assertThat(result.getPrice())
                 .isEqualTo(Long.parseLong(value));
     }
 

@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 import lotto.io.ConsoleManager;
+import lotto.vo.PurchaseAmount;
 import lotto.vo.PurchasePrice;
 
 public class LottoManager {
@@ -13,18 +14,17 @@ public class LottoManager {
 
     protected LottoManager() {
         this.consoleManager = new ConsoleManager();
-        this.lottoBuyer = new LottoBuyer(consoleManager);
+        this.lottoBuyer = new LottoBuyer();
         this.lottoCalculator = new LottoCalculator();
     }
 
     protected void buyLotto() {
         PurchasePrice purchasePrice = consoleManager.inputPurchasePrice();
-        int lottoPrice = purchasePrice.getValue();
 
-        int lottoCount = lottoBuyer.getLottoCount(lottoPrice);
-        consoleManager.printLottoCount(lottoCount);
+        PurchaseAmount purchaseAmount = lottoBuyer.getPurchaseAmount(purchasePrice);
+        consoleManager.printLottoCount(purchaseAmount.getAmount());
 
-        List<Lotto> lottos = lottoBuyer.purchaseLottos(lottoCount);
+        List<Lotto> lottos = lottoBuyer.purchaseLottos(purchaseAmount.getAmount());
         consoleManager.printLottos(lottos);
 
         Lotto winningLotto = consoleManager.inputWinningLottoNumbers();
@@ -37,7 +37,7 @@ public class LottoManager {
 
         int profit = lottoCalculator.getLottosProfit(statics);
 
-        float profitRate = lottoCalculator.getProfitRate(profit, lottoPrice);
+        float profitRate = lottoCalculator.getProfitRate(profit, purchasePrice.getPrice());
 
         consoleManager.printProfitRate(profitRate);
 

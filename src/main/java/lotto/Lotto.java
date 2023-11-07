@@ -10,7 +10,7 @@ public class Lotto {
     // TODO 인스턴스 변수를 추가할 수 없다
     public static final Integer LOTTO_PRICE = 1_000;
 
-    public static List<Lotto> createLottos(int count) {
+    public static List<Lotto> createLottos(long count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = NumberGenerator.generateNumbers();

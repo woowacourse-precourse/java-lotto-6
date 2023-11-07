@@ -2,7 +2,7 @@ package lotto.ui;
 
 import static lotto.Lotto.LOTTO_PRICE;
 
-public record UserInputMoney(Integer amount) {
+public record UserInputMoney(Long amount) {
 
     public UserInputMoney {
         validatePositiveAmount(amount);
@@ -10,25 +10,25 @@ public record UserInputMoney(Integer amount) {
         isValidateAmount(amount);
     }
 
-    private void validatePositiveAmount(Integer amount) {
+    private void validatePositiveAmount(Long amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("");
         }
     }
 
-    private void validateZeroAmount(Integer amount) {
+    private void validateZeroAmount(Long amount) {
         if (amount == 0) {
             throw new IllegalArgumentException("");
         }
     }
 
-    private void isValidateAmount(Integer amount) {
+    private void isValidateAmount(Long amount) {
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("");
         }
     }
 
-    public Integer getAmount() {
+    public Long getAmount() {
         return amount;
     }
 

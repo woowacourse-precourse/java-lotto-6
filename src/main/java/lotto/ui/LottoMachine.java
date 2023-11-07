@@ -18,7 +18,7 @@ public class LottoMachine {
 
     public List<Lotto> generateLottos() {
         checkMoney();
-        int lottoCount = inputMoney.amount() / LOTTO_PRICE;
+        long lottoCount = inputMoney.amount() / LOTTO_PRICE;
         System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> newLottos = Lotto.createLottos(lottoCount);
         newLottos.forEach(System.out::println);
@@ -34,19 +34,23 @@ public class LottoMachine {
     public void insertMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String readLine = inputReader.readInput();
-        Integer inputAmount = validateAndConvertInt(readLine);
+        Long inputAmount = validateAndConvertInt(readLine);
         this.inputMoney = new UserInputMoney(inputAmount);
     }
 
-    private static Integer validateAndConvertInt(String inputMoney) {
-        Integer inputAmount;
+    private static Long validateAndConvertInt(String inputMoney) {
+        Long inputAmount;
         try {
-            inputAmount = Integer.parseInt(inputMoney);
+            inputAmount = Long.parseLong(inputMoney);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException();
         }
         return inputAmount;
+    }
+
+    public long getInputAmount() {
+        return inputMoney.getAmount();
     }
 }

@@ -16,8 +16,8 @@ public enum Rank {
     private final boolean isBonusNumberMatching;
     private final String description;
 
-    private Rank(int rank, long prizeAmount, int numberOfMatching, boolean isBonusNumberMatching) {
-        this.number = rank;
+    private Rank(int number, long prizeAmount, int numberOfMatching, boolean isBonusNumberMatching) {
+        this.number = number;
         this.prizeAmount = prizeAmount;
         this.numberOfMatching = numberOfMatching;
 
@@ -45,6 +45,10 @@ public enum Rank {
 
     public int getNumber() {
         return number;
+    }
+
+    public int getNumberOfMatching() {
+        return numberOfMatching;
     }
 
     public long getPrizeAmount() {

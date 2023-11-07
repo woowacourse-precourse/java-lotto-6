@@ -24,15 +24,15 @@ public class Result {
             }
         }
 
-        isBonusMatching = (matchingNumbersCounter == 5) && lottoNumbers.contains(bonusNumber);
+        isBonusMatching = (matchingNumbersCounter == Rank.SECOND.getNumberOfMatching()) && lottoNumbers.contains(bonusNumber);
     }
 
     private void decideRank() {
-        if (matchingNumbersCounter == 6) {
+        if (matchingNumbersCounter == Rank.FIRST.getNumberOfMatching()) {
             rank = Rank.FIRST;
         }
 
-        if (matchingNumbersCounter == 5) {
+        if (matchingNumbersCounter == Rank.THIRD.getNumberOfMatching()) {
             rank = Rank.THIRD;
 
             if (isBonusMatching) {
@@ -40,11 +40,11 @@ public class Result {
             }
         }
 
-        if (matchingNumbersCounter == 4) {
+        if (matchingNumbersCounter == Rank.FOURTH.getNumberOfMatching()) {
             rank = Rank.FOURTH;
         }
 
-        if (matchingNumbersCounter == 3) {
+        if (matchingNumbersCounter == Rank.FIFTH.getNumberOfMatching()) {
             rank = Rank.FIFTH;
         }
     }

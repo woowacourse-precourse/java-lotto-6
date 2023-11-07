@@ -15,7 +15,6 @@ import view.ResultView;
 
 public class LottoController {
     public void start() {
-
         Amount amount = new Amount(inputLottoPurchaseAmount());
         amount.outputLottoPurchaseAmount();
 

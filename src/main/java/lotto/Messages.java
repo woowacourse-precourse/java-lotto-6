@@ -38,7 +38,8 @@ public class Messages {
         WIN_4_MATCH("4개 일치 (50,000원) - %d개"),
         WIN_5_MATCH("5개 일치 (1,500,000원) - %d개"),
         WIN_5_BONUS_MATCH("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-        WIN_6_MATCH("6개 일치 (2,000,000,000원) - %d개");
+        WIN_6_MATCH("6개 일치 (2,000,000,000원) - %d개"),
+        TOTAL_AMOUNT("총 수익률은 %.1f입니다.");
 
         private String winningStatisticsMessage;
         private WinningStatistics(String message){

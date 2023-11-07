@@ -2,8 +2,10 @@ package lotto;
 
 import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
 
+import lotto.collaboration.lottos.Lottos;
 import lotto.game.LottoGame;
 import lotto.game.io.views.LottoGameView;
+import lotto.game.io.views.LottosView;
 import lotto.io.ConsoleInput;
 import lotto.io.ConsoleOutput;
 import lotto.io.lottos.LottosRandoms;
@@ -21,11 +23,14 @@ public class Application {
     }
 
     private static LottoGame getLottoGame() {
+        ConsoleInput input = new ConsoleInput();
+        ConsoleOutput output = new ConsoleOutput();
         return new LottoGame(
                 new LottoGameView(
-                        new ConsoleInput(), new ConsoleOutput()
+                        input, output, new LottosView(input, output)
                 ),
-                new LottosRandoms()
+                new LottosRandoms(),
+                new Lottos()
         );
     }
 

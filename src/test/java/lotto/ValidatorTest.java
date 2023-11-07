@@ -88,4 +88,11 @@ class ValidatorTest {
         numberTestCases = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 5});
         assertThatThrownBy(() -> Validator.checkDuplicated(numberTestCases));
     }
+
+    @Test
+    @DisplayName("기존 리스트에 존재하는 숫자일경우 예외 발생")
+    void checkNumberInListTest() {
+        numberTestCases = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
+        assertThatThrownBy(() -> Validator.checkNumberInList(3, numberTestCases));
+    }
 }

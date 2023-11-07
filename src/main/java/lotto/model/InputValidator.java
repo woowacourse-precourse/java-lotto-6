@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.views.MessageManager.*;
 
 public class InputValidator {
+    private static String COMMA_SEPARATOR = ",";
+
     public static void validateNonInteger(String input) {
         try {
             Integer.parseInt(input);
@@ -24,6 +26,6 @@ public class InputValidator {
     }
 
     private static boolean containsCommaSeparator(String input) {
-        return input.contains(",");
+        return input.contains(COMMA_SEPARATOR);
     }
 }

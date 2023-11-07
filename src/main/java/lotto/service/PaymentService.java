@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import static lotto.view.OutputView.printEnterPurchaseAmount;
 import static lotto.view.OutputView.printErrorMessage;
@@ -7,7 +7,7 @@ import lotto.domain.Payment;
 import lotto.exception.LottoGameException;
 import lotto.view.InputView;
 
-public class PaymentController {
+public class PaymentService {
     
     public Payment receivePayment() {
         printEnterPurchaseAmount();

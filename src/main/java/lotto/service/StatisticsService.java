@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import static lotto.view.OutputView.printResultsProfitability;
 import static lotto.view.OutputView.printResultsSummary;
@@ -13,7 +13,7 @@ import lotto.domain.RankingResult;
 import lotto.domain.WinningLotto;
 import lotto.domain.enums.WinningGrade;
 
-public class StatisticsController {
+public class StatisticsService {
 
     public void receiveGameResult(
             final Payment payment, final Lotteries lotteries, final WinningLotto winningLotto) {

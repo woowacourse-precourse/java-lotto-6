@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import static lotto.utils.Converter.convertToInt;
 import static lotto.utils.Converter.splitBySeparator;
@@ -12,7 +12,7 @@ import lotto.domain.WinningLotto;
 import lotto.exception.LottoGameException;
 import lotto.view.InputView;
 
-public class WinningLottoController {
+public class WinningLottoService {
 
     public WinningLotto receiveWinningLotto() {
         try {

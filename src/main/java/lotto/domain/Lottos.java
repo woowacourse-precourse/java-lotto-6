@@ -15,6 +15,9 @@ public class Lottos {
         return new Lottos(createLottos(number, lottoNumberGenerator));
     }
 
+    public int getLottosSize() {
+        return this.lottos.size();
+    }
     private static List<Lotto> createLottos(int number, LottoNumberGenerator lottoTicketGenerator) {
         List<Lotto> lottos = new ArrayList<>();
 

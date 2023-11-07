@@ -16,6 +16,10 @@ public class Money {
         this.money = money;
     }
 
+    public long getMoney() {
+        return money;
+    }
+
     private void validate(long money) {
         validateNegativePurchaseMoney(money);
         validateMinimumPurchaseMoney(money);

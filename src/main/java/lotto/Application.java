@@ -22,19 +22,15 @@ public class Application {
 
     static Lotto inputWinningNumbers(){
         Lotto winning_numbers;
-        String input_winning_numbers;
-        System.out.println("당첨 번호를 입력해 주세요");
-
         while(true){
             try {
-                input_winning_numbers = Console.readLine();
+                String input_winning_numbers = inputMethod("당첨 번호를 입력해 주세요");
                 winning_numbers = new Lotto(stringToIntArray(input_winning_numbers));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
         return winning_numbers;
     }
 
@@ -60,12 +56,9 @@ public class Application {
 
     static int inputLottoPurchase(){
         int lotto_purchase_amount;
-        String input_lotto_purchase;
-        System.out.println("구입금액을 입력해 주세요");
-
         while(true){
             try {
-                input_lotto_purchase = Console.readLine();
+                String input_lotto_purchase = inputMethod("구입금액을 입력해 주세요.");
                 lotto_purchase_amount = stringToInt(input_lotto_purchase);
                 checkMultiple1000(lotto_purchase_amount);
                 break;
@@ -106,7 +99,7 @@ public class Application {
     }
 
     static String inputMethod(String announcement){
-        System.out.println(announcement);
+        System.out.println("\n" + announcement);
         return Console.readLine();
     }
 }

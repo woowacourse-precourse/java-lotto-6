@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -221,23 +222,80 @@ class LottoHandlerTest {
                 .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
     }
 
-    @DisplayName("발행한 로또와 당첨 로또를 비교하여 당첨 결과를 리턴한다.")
+    @DisplayName("winningResultTest")
     @Test
-    void calculateWinningResult(){
+    void winningResultTest(){
         //given
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(6, 12, 23, 34, 35, 45));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 41));
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 43));
         lottos.add(lotto1);
         lottos.add(lotto2);
+        lottos.add(lotto3);
+        lottos.add(lotto4);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 45;
 
         //when
-        Map<WinningKind, Integer> winningKinds = lottoHandler.calculateWinningResult(lottos, winningLotto, bonusNumber);
+        lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
+
+        //then
+    }
+
+    @DisplayName("로또와 당첨 로또를 비교하여 당첨 결과를 리턴한다.")
+    @Test
+    void calculateResult(){
+        //given
+        List<Lotto> lottos = new ArrayList<>();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 41));
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 43));
+        lottos.add(lotto1);
+        lottos.add(lotto2);
+        lottos.add(lotto3);
+        lottos.add(lotto4);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 45;
+
+        //when
+        Map<WinningKind, Integer> winningKinds = lottoHandler.calculateResult(lottos, winningLotto, bonusNumber);
 
         //then
         assertThat(winningKinds.get(WinningKind.FIRST)).isEqualTo(1);
+        assertThat(winningKinds.get(WinningKind.SECOND)).isEqualTo(1);
+        assertThat(winningKinds.get(WinningKind.THIRD)).isEqualTo(2);
     }
 
+    @DisplayName("당첨 번호와 발행된 로또 번호를 비교해서 당첨 결를 반환한다.")
+    @Test
+    void calculateWinning(){
+        //given
+        int winningNumberCount = 5;
+        boolean bonusMatch = true;
+        Map<WinningKind, Integer> winningResult = new HashMap<>();
+
+        //when
+        lottoHandler.calculateWinning(winningNumberCount, bonusMatch, winningResult);
+
+        //then
+        assertThat(winningResult.get(WinningKind.SECOND)).isEqualTo(1);
+    }
+
+
+    @DisplayName("로또 번호와 당첨 번호를 비교해서 당첨 번호와 일치하는 숫자의 개수를 반환한다.")
+    @Test
+    void winningNumberCount(){
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 3, 5, 7, 8, 9));
+
+        //when
+        int winningNumberCount = lottoHandler.winningNumberCount(lotto, winningLotto);
+
+        //then
+        assertThat(winningNumberCount).isEqualTo(3);
+    }
 }

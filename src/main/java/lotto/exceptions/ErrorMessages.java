@@ -1,4 +1,4 @@
 package lotto.exceptions;
 
-public enum ErrorMessage {
+public enum ErrorMessages {
 }

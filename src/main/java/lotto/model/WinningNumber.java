@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class WinningNumber {
@@ -13,19 +14,23 @@ public class WinningNumber {
         this.bonusNumber = LottoNumber.generateLottoNumber(bonusNumber);
     }
 
-    public int countMatchingNumbers(Lotto lotto) {
+    public MatchResult matchLotto(Lotto lotto) {
         final AtomicInteger count = new AtomicInteger(0);
+        final AtomicBoolean isMatchBonusBall = new AtomicBoolean(false);
+
+        compareLotto(lotto, count, isMatchBonusBall);
+        return new MatchResult(count.get(), isMatchBonusBall.get());
+    }
+
+    private void compareLotto(Lotto lotto, AtomicInteger count, AtomicBoolean isMatchBonusBall) {
         lotto.compare(lottoNumber -> {
             winningNumbers.compare(winNumber -> {
-                if(lottoNumber.equals(winNumber)) {
+                if (lottoNumber.equals(winNumber)) {
                     count.incrementAndGet();
                 }
             });
-            if(lottoNumber.equals(bonusNumber)) {
-                count.incrementAndGet();
-            }
+            isMatchBonusBall.compareAndSet(false, lottoNumber.equals(bonusNumber));
         });
-        return count.get();
     }
 
     private void validateDuplicateBonusAndWinning(List<Integer> winningNumbers, Integer bonusNumber) {

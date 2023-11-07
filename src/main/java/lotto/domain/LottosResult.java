@@ -10,13 +10,13 @@ public class LottosResult {
     public static long calculateTotalPrize(Map<Rank, Integer> results) {
         int totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
-            totalPrize += calculateOncePrize(entry);
+            totalPrize += calculateLottoPrize(entry);
         }
 
         return totalPrize;
     }
 
-    private static long calculateOncePrize(Map.Entry<Rank, Integer> entry) {
+    private static long calculateLottoPrize(Map.Entry<Rank, Integer> entry) {
         Rank rank = entry.getKey();
         int count = entry.getValue();
         int prize = rank.getPrizeMoney();

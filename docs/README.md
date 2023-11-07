@@ -34,7 +34,7 @@
     - 3등: 5개 번호 일치 / 1,500,000원
     - 4등: 4개 번호 일치 / 50,000원
     - 5등: 3개 번호 일치 / 5,000원
-  - [ ] 등수 별로 정리 - WinningResult
+  - [x] 등수 별로 정리 - WinningResult#winningCountsToWinningResult
   - [x] 당첨 번호와 같은 숫자가 있는지 판별 - Lotto#countWinningNumbers()
   - [x] 보너스 번호와 같은 숫자가 있는지 판별 - Lotto#hasSameNumber()
   

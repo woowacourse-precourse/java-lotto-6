@@ -11,6 +11,8 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.MainNumbers;
+import lotto.domain.Prize;
+import lotto.domain.PrizeCounter;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoTicket;
 
@@ -22,10 +24,15 @@ public class LottoService {
     private WinningNumbers winningNumbers;
 
     public void init(int size) {
-        this.lottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() < size) {
             lottos.add(new Lotto(createLottoNumbers()));
         }
+        init(lottos);
+    }
+
+    public void init(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public void initMainNumbers(List<Integer> mainNumbers) {
@@ -37,7 +44,7 @@ public class LottoService {
     }
 
     public void initWinningNumbers() {
-        this.winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
+        this.winningNumbers = new WinningNumbers(this.mainNumbers, this.bonusNumber);
     }
 
     public List<LottoTicket> tickets() {
@@ -49,6 +56,23 @@ public class LottoService {
                 LOTTO_NUMBER_COUNT.value());
         numbers.sort(Comparator.naturalOrder());
         return numbers;
+    }
+
+
+    public PrizeCounter countPrize() {
+        PrizeCounter prizeCounter = new PrizeCounter();
+        lottos.stream()
+                .map(this::findPrize)
+                .filter(p -> p.rank() > 0)
+                .map(Enum::name)
+                .forEach(prizeCounter::addCount);
+        return prizeCounter;
+    }
+
+    private Prize findPrize(Lotto lotto) {
+        int nMatchingMainNumber = (int) lotto.countMatchingMainNumbers(winningNumbers);
+        boolean isBonusMatched = lotto.isBonusMatched(winningNumbers);
+        return Prize.findFrom(nMatchingMainNumber, isBonusMatched);
     }
 
 }

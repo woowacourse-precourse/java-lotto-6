@@ -33,7 +33,7 @@ public class OutputView {
      * @Method : printLottoNums()
      */
     public void printLottoNums(ArrayList<Integer> LottoNums){
-        System.out.print(LottoNums);
+        System.out.println(LottoNums);
     }
     /**
      * Description : 당청 번호 요청메세지 출력

@@ -18,7 +18,7 @@ public enum LottoRank {
     private final int prize;
     private final String message;
 
-    LottoRank(final int matchCount, final boolean bonusNumberExists, final int prize, String message) {
+    LottoRank(final int matchCount, final boolean bonusNumberExists, final int prize, final String message) {
         this.matchCount = matchCount;
         this.bonusNumberExists = bonusNumberExists;
         this.prize = prize;

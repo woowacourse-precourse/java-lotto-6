@@ -6,7 +6,7 @@ public enum LottoGameMessage {
     REQUEST_WINNING_LOTTO_NUMBERS("당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_LOTTO_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계\n---"),
-    TOTAL_RETURN("총 수익률은 %.1f%%입니다.");
+    TOTAL_RETURN("총 수익률은 %s%%입니다.");
 
     private final String message;
 

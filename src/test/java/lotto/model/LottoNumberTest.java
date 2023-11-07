@@ -23,7 +23,7 @@ public class LottoNumberTest {
     }
 
     @Nested
-    @DisplayName("보너스 번호 예외 테스트")
+    @DisplayName("로또 번호 예외 테스트")
     class BonusNumberExceptionTest {
 
         @ParameterizedTest

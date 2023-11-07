@@ -1,15 +1,20 @@
 package lotto.view;
 
+import static lotto.common.constant.ErrorConstant.ERROR_PREFIX;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.constant.LottoNumberConstant;
 import lotto.mock.FakePrinter;
 import lotto.mock.FakeReader;
 import lotto.view.printer.Printer;
 import lotto.view.reader.Reader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -61,6 +66,49 @@ class InputViewTest {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(inputView::inputLottoPurchaseAmount);
+    }
+
+    @DisplayName("당첨 번호 입력 시 번호가 6개가 아니면 예외를 발생한다.")
+    @Test
+    void inputWinningNumbers() {
+        // given
+        Reader reader = new FakeReader("1,2,3,4,5,6,7");
+        InputView view = new InputView(reader, this.printer);
+
+        // when
+        assertThatThrownBy(view::inputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("%s 당첨 숫자는 %d개 입력해야합니다.".formatted(ERROR_PREFIX, Lotto.DEFAULT_NUMBER_SIZE));
+    }
+
+    @DisplayName("당첨 번호 입력 시 번호가 1~45 사이가 아니면 예외를 발생한다.")
+    @Test
+    void inputWinningNumbersRange() {
+        // given
+        Reader reader = new FakeReader("-1,2,3,4,5,46");
+        InputView view = new InputView(reader, this.printer);
+
+        // when
+        assertThatThrownBy(view::inputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("%s 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.".formatted(
+                        ERROR_PREFIX,
+                        LottoNumberConstant.MIN_LOTTO_NUMBER,
+                        LottoNumberConstant.MAX_LOTTO_NUMBER
+                ));
+    }
+
+    @DisplayName("당첨 번호 입력 시 번호가 중복되면 예외를 발생한다.")
+    @Test
+    void inputWinningNumbers_duplicated() {
+        // given
+        Reader reader = new FakeReader("1,1,3,4,5,45");
+        InputView view = new InputView(reader, this.printer);
+
+        // when
+        assertThatThrownBy(view::inputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("%s 당첨 번호는 중복될 수 없습니다.".formatted(ERROR_PREFIX));
     }
 
 }

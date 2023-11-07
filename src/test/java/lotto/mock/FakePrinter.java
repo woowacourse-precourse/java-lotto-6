@@ -8,4 +8,8 @@ public class FakePrinter implements Printer {
     public void printLine(String message) {
     }
 
+    @Override
+    public void printEmptyLine() {
+    }
+
 }

@@ -1,4 +1,4 @@
-package lotto.print;
+package lotto.view;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.StringJoiner;
 import lotto.Lotto;
 import lotto.enums.LottoRank;
 import lotto.enums.Message;
-import lotto.util.User;
+import lotto.model.User;
 
-public class Result {
+public class OutputView {
     User user = new User();
     int totalPrize = 0;
 

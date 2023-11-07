@@ -1,47 +1,44 @@
 package lotto.controller;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.enums.Message;
-import lotto.print.Result;
+import lotto.model.Result;
+import lotto.model.User;
+import lotto.view.OutputView;
 import lotto.util.Computer;
-import lotto.util.User;
+import lotto.util.InputCheck;
+import lotto.view.InputView;
 
 public class LottoMachine {
-    HashMap<Integer, Integer> winningCount = new HashMap<>();
-    List<Lotto> lottoNumbers = new ArrayList<>();
-    User user = new User();
-    Computer computer = new Computer();
     Result result = new Result();
+    Computer computer = new Computer();
+    OutputView outputView = new OutputView();
+    InputView inputView = new InputView();
+    User user = new User();
 
     public void startLottoGame() {
         buyLotto();
+        getManyLottoTicket();
         drawLottoNumber();
         drawWinningNumber();
         drawBonusNumber();
         getWinningStatistics();
     }
 
+    public void getManyLottoTicket() {
+        user.setManyLottoTicket(user.getPaymentAmount() / 1000);
+    }
+
     public void buyLotto() {
-        Message.AMOUNT_INPUT.getMessage();
-        while (true) {
-            try {
-                user.inputPaymentAmount();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        inputView.inputPaymentAmount();
     }
 
     public void drawLottoNumber() {
         for (int i = 0; i < user.getManyLottoTicket(); i++) {
             getLottoNumber();
         }
-        result.printLottoNumber(lottoNumbers);
+        outputView.printLottoNumber(result.getLottoTicket());
     }
 
     public void getLottoNumber() {
@@ -49,7 +46,7 @@ public class LottoMachine {
             try {
                 List<Integer> numbers = computer.getRandomNumber();
                 Lotto lotto = new Lotto(numbers);
-                lottoNumbers.add(lotto);
+                result.addLottoTicket(lotto);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -58,39 +55,23 @@ public class LottoMachine {
     }
 
     public void drawWinningNumber() {
-        Message.WINNING_NUMBERS_INPUT.getMessage();
-        while (true) {
-            try {
-                user.inputWinningNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        inputView.inputWinningNumber();
     }
 
     public void drawBonusNumber() {
-        Message.BONUS_INPUT.getMessage();
-        while (true) {
-            try {
-                user.inputBonusNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        inputView.inputBonusNumber();
     }
 
     public void getWinningStatistics() {
         Message.WINNING_STATISTICS.getMessage();
         System.out.println("---");
         compareLottoTicket();
-        result.printWinningStatistics(winningCount);
-        result.printTotalProfit(winningCount);
+        outputView.printWinningStatistics(result.getWinningCount());
+        outputView.printTotalProfit(result.getWinningCount());
     }
 
     public void compareLottoTicket() {
-        for (Lotto lotto : lottoNumbers) {
+        for (Lotto lotto : result.getLottoTicket()) {
             compareNumber(lotto.getNumbers(), user.getWinningNumber().getNumbers());
         }
     }
@@ -117,21 +98,21 @@ public class LottoMachine {
 
     public void addLottoWinning(int matchCount) {
         if (matchCount == 6) {
-            winningCount.merge(1, 1, Integer::sum);
+            result.addWinningCount(1);
         }
         if (matchCount == 4) {
-            winningCount.merge(4, 1, Integer::sum);
+            result.addWinningCount(4);
         }
         if (matchCount == 3) {
-            winningCount.merge(5, 1, Integer::sum);
+            result.addWinningCount(5);
         }
     }
 
     public void addSecondWinning(List<Integer> lottoNumbers) {
         if (lottoNumbers.contains(user.getBonusNumber())) {
-            winningCount.merge(2, 1, Integer::sum);
+            result.addWinningCount(2);
             return;
         }
-        winningCount.merge(3, 1, Integer::sum);
+        result.addWinningCount(3);
     }
 }

@@ -81,4 +81,52 @@ public class IntegerValidatorTest {
 
     }
 
+    @Test
+    public void 정수가_특정수보다_작으면_예외발생() {
+        // Given
+        int smallerNumber = 0;
+
+        // When && Then
+        assertThatThrownBy(() -> IntegerValidator.validateSmaller(
+                smallerNumber, minRange))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+    }
+
+    @Test
+    public void 정수가_특정수보다_작지않으면_정상통과() {
+        // Given
+        int nonSmallerNumber = 2;
+
+        // When
+        IntegerValidator.validateSmaller(nonSmallerNumber, minRange);
+
+        // Then
+
+    }
+
+    @Test
+    public void 정수가_특정수보다_크면_예외발생() {
+        // Given
+        int biggerNumber = 101;
+
+        // When && Then
+        assertThatThrownBy(() -> IntegerValidator.validateBigger(
+                biggerNumber, maxRange))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+    }
+
+    @Test
+    public void 정수가_특정수보다_크지않으면_정상통과() {
+        // Given
+        int nonBiggerNumber = 99;
+
+        // When
+        IntegerValidator.validateBigger(nonBiggerNumber, maxRange);
+
+        // Then
+
+    }
+
 }

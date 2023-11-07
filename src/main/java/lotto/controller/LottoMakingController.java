@@ -9,6 +9,7 @@ import lotto.view.LottoView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class LottoMakingController {
     private static final LottoView view = new LottoView();
@@ -58,6 +59,7 @@ public class LottoMakingController {
                 String input = view.inputWinningNumber();
                 ArrayList<Integer> inputNumbers = new ArrayList<Integer>(Arrays.asList(changeStringToInteger(input)));
                 validateBoundaryNumbers(inputNumbers);
+                validateOverlapNumber(inputNumbers);
                 Lotto winningNumber = new Lotto(inputNumbers);
                 return winningNumber;
             } catch (NumberFormatException e) {
@@ -94,18 +96,24 @@ public class LottoMakingController {
         }
     }
 
-    public void validateBoundaryNumber(int input) {
+    private void validateBoundaryNumber(int input) {
         if (input < LOTTO_START || input > LOTTO_END)
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
     }
 
-    public void validateBoundaryNumbers(ArrayList<Integer> input) {
+    private void validateBoundaryNumbers(ArrayList<Integer> input) {
         try {
             for (int i = 0; i < input.size(); i++)
                 validateBoundaryNumber(input.get(i));
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
+    }
+
+    private void validateOverlapNumber(ArrayList<Integer> input) {
+        for(Integer i : input)
+            if(Collections.frequency(input, i) > 1)
+                throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
     }
 
 }

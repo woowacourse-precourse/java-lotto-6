@@ -1,7 +1,5 @@
 package lotto.view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,7 @@ public class OutputView {
         }
     }
 
-    public void printWinningLotteryTickets(Map<Integer, Integer> winningTicketsCount) {
+    public void printWinningStatistics(Map<Integer, Integer> winningTicketsCount) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + winningTicketsCount.get(5) + "개");
@@ -27,6 +25,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + winningTicketsCount.get(1) + "개");
 
     }
+
     public void printRevenueRate(String revenueRate) {
         System.out.println("총 수익률은 " + revenueRate + "%입니다.");
     }

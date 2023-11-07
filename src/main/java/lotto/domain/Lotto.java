@@ -36,9 +36,11 @@ public class Lotto {
             int minIndex = i;
 
             for (int j = i + 1; j < 6; j++) {
-                if (arr[j] < arr[minIndex]) {
-                    minIndex = j;
-                }
+
+                minIndex = setMinIndex(arr[j], arr[minIndex], minIndex, j);
+//                if (arr[j] < arr[minIndex]) {
+//                    minIndex = j;
+//                }
             }
             int temp = arr[i];
             arr[i] = arr[minIndex];
@@ -49,6 +51,13 @@ public class Lotto {
             orderNumbers.add(tmp);
         }
         return orderNumbers;
+    }
+
+    private int setMinIndex(int number1, int number2, int minIndex, int j) {
+        if(number1<number2) {
+            minIndex = j;
+        }
+        return minIndex;
     }
 
     public List<Integer> getNumbers() {

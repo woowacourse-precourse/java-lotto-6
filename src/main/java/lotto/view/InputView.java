@@ -15,11 +15,6 @@ public class InputView {
         String input = Console.readLine();
         return input;
     }
-    public String askPayment() {
-        String input = Console.readLine();
-        System.out.println();
-        return input;
-    }
 
     public List<Integer> askWinningTicketNumbers() {
         List<Integer> winningTicketNumbers = new ArrayList<Integer>();

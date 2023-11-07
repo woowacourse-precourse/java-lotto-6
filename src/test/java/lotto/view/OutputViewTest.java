@@ -4,7 +4,6 @@ import lotto.domain.IssueLottery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,12 +22,14 @@ public class OutputViewTest {
         issueLottery = new IssueLottery();
         winningTicketsCount = new HashMap<>();
     }
+
     @Test
     void 로또를_발행하고_출력하는_기능_테스트() {
         ticketCount = 7;
         lotteryTickets = issueLottery.issueTickets(ticketCount);
         outputView.printLotteryTickets(ticketCount, lotteryTickets);
     }
+
     @Test
     void 등수별_로또_당첨_티켓_개수를_출력하는_기능_테스트() {
         winningTicketsCount.put(1, 0);
@@ -37,6 +38,6 @@ public class OutputViewTest {
         winningTicketsCount.put(4, 0);
         winningTicketsCount.put(5, 2);
 
-        outputView.printWinningLotteryTickets(winningTicketsCount);
+        outputView.printWinningStatistics(winningTicketsCount);
     }
 }

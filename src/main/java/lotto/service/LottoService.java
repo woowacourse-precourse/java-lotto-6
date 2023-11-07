@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.exception.LottoError;
 import lotto.exception.LottoValidationException;
 import lotto.utils.NumberGenerator;
 
@@ -17,7 +18,6 @@ public class LottoService {
 
     public Lotto generateSingleLotto() {
         List<Integer> numbers = numberGenerator.generateUniqueNumbers();
-        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
@@ -32,7 +32,7 @@ public class LottoService {
 
     public void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
-            throw new LottoValidationException("로또 구매 금액은 1000원 단위로 입력해야 합니다.");
+            throw new LottoValidationException(LottoError.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.toString());
         }
     }
 

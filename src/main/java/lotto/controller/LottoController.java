@@ -11,7 +11,6 @@ import lotto.domain.WinningStatistics;
 import lotto.domain.WinningStatisticsCalculator;
 import lotto.utils.InputProcessor;
 import lotto.utils.generator.LottsGenerator;
-import lotto.utils.generator.RandomLottosGenerator;
 import lotto.view.OutputView;
 
 public class LottoController {

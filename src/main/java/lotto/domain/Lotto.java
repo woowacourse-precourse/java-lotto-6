@@ -9,17 +9,25 @@ import java.util.Set;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
+    private static final Integer START_NUMBER = 1;
+    private static final Integer END_NUMBER = 45;
+    private static final Integer LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        //sortLotto(numbers);
+
+        validateSize(numbers);
+        validateNumbersRange(numbers);
+        validateLottoSize(numbers);
+        validateDuplicateNumber(numbers);
+
+        sortAscendingLotto(numbers);
+
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_SIZE.getMessage());
         }
@@ -31,9 +39,38 @@ public class Lotto {
         return this.numbers;
     }
 
-    private void sortLotto(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private static void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            validateNumber(number);
+        }
     }
 
+    private static void validateNumber(int number) {
+        if (number > END_NUMBER || number < START_NUMBER) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
 
+    private static void validateLottoSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_SIZE.getMessage());
+        }
+    }
+
+    private static void validateDuplicateNumber(List<Integer> numbers) {
+
+        Set<Integer> notDuplicateNumbers = new HashSet<>();
+
+        for (int number : numbers) {
+            notDuplicateNumbers.add(number);
+        }
+
+        if (notDuplicateNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
+    private static void sortAscendingLotto(List<Integer> numbers) {
+        Collections.sort(numbers);
+    }
 }

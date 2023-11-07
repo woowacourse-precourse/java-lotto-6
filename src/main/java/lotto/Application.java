@@ -107,5 +107,17 @@ public class Application {
 
         return printResultSet;
     }
+    public static void printResult(PrintResultSet printResultSet, LottoInit lottoInit) {
+        double earningRate = (double) printResultSet.getProfitSum() * 100 / lottoInit.purchaseAmount;
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + printResultSet.getPrintThree() + "개");
+        System.out.println("4개 일치 (50,000원) - " + printResultSet.getPrintFour() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + printResultSet.getPrintFive() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + printResultSet.getPrintFivePlusBonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + printResultSet.getPrintSix() + "개");
+        System.out.print("총 수익률은 ");
+        System.out.print(String.format("%.1f", earningRate));
+        System.out.print("%입니다.");
+    }
 
 }

@@ -1,6 +1,9 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,7 +14,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberSize(numbers);
+        validateDuplicateNumbers(numbers);
+    }
+
+    private static void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException();
         }
     }
@@ -25,7 +40,8 @@ public class Lotto {
     }
 
     public int removeNonCommonNumber(List<Integer> winningNumbers) {
-        numbers.retainAll(winningNumbers);
-        return numbers.size();
+        ArrayList<Integer> integers = new ArrayList<>(numbers);
+        integers.retainAll(winningNumbers);
+        return integers.size();
     }
 }

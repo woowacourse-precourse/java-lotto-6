@@ -15,6 +15,12 @@ public class WinningNumber {
         this.lotto = new Lotto(lottoNumbers);
     }
 
+    public LottoRanking calculateLottoRanking(Lotto purchaseLotto, BonusNumber bonusNumber) {
+        int count = purchaseLotto.countMatchingLottoNumbers(lotto);
+        boolean isBonus = purchaseLotto.containsNumber(bonusNumber.getBonus());
+        return LottoRanking.valueOf(count, isBonus);
+    }
+
     public Lotto getLotto() {
         return lotto;
     }

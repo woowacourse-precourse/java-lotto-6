@@ -7,6 +7,8 @@ import lotto.constant.LottoGameMessage;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.domain.Prize.SECOND;
+
 public class OutputView {
 
     public void lottoAmount(final long lottoAmount) {
@@ -23,7 +25,7 @@ public class OutputView {
         this.prizeWinCount(Prize.FIFTH, result.get(Prize.FIFTH));
         this.prizeWinCount(Prize.FOURTH, result.get(Prize.FOURTH));
         this.prizeWinCount(Prize.THIRD, result.get(Prize.THIRD));
-        this.prizeWinCount(Prize.SECOND, result.get(Prize.SECOND));
+        this.prizeWinCount(SECOND, result.get(SECOND));
         this.prizeWinCount(Prize.FIRST, result.get(Prize.FIRST));
     }
 
@@ -32,8 +34,15 @@ public class OutputView {
     }
 
     public void prizeWinCount(Prize prize, int count) {
-        System.out.println(Prize.prizeInfo(prize) + LottoGameMessage.DASH.message
+        System.out.println(prizeInfo(prize) + LottoGameMessage.DASH.message
                 + count + LottoGameMessage.COUNT.message);
+    }
+
+    public String prizeInfo(Prize prize) {
+        if (prize == SECOND) {
+            return prize.matches + "개 일치, 보너스 볼 일치 " + "(" + prize.price+ ")";
+        }
+        return prize.matches + "개 일치 " + "(" + prize.price + ")";
     }
 
     public void exceptionMessage(final IllegalArgumentException illegalArgumentException) {

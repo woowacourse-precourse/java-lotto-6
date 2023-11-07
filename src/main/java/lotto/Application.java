@@ -40,8 +40,13 @@ public class Application {
     public static List<Integer> convertNum(String numbers) {
         String[] wordNum = numbers.split(",");
         List<Integer> convertedNum = new ArrayList<>();
-        for (String beforeNum : wordNum) {
-            convertedNum.add(Integer.parseInt(beforeNum));
+        try {
+            for (String beforeNum : wordNum) {
+                convertedNum.add(Integer.parseInt(beforeNum));
+            }
+        } catch (NumberFormatException e) {
+            outputView.errorMessage("[ERROR] 숫자만 입력 가능합니다.");
+            return convertNum(inputView.winNum());
         }
         return convertedNum;
     }

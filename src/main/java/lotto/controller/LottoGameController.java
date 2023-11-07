@@ -24,8 +24,7 @@ public class LottoGameController {
         outputView.printRequestWinNumbers();
         Lotto winLotto = getWinLotto();
         outputView.printRequestBonusNumber();
-        DrawResult drawResult = getDrawResult(winLotto);
-        lottoGame.calculationResult(drawResult);
+        lottoGame.calculationResult(getDrawResult(winLotto));
         outputView.printResult(lottoGame);
         outputView.printRateOfReturn(lottoGame.getRateOfReturn());
     }

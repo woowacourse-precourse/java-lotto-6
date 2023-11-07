@@ -26,7 +26,7 @@ class LottoResultCalculatorServiceTest {
         List<Lotto> lottos = List.of(issuedLotto1);
 
         LottoResultCalculatorService lottoResultCalculatorService = new LottoResultCalculatorService();
-        LottoResult result = lottoResultCalculatorService.calculateRanks(lottos, winningNumbers);
+        LottoResult result = lottoResultCalculatorService.calculateResult(lottos, winningNumbers);
         Assertions.assertThat(result.getCountByRank(LottoRank.FIRST)).isEqualTo(1);
     }
 

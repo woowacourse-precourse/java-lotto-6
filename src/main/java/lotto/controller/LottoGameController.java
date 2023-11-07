@@ -29,7 +29,7 @@ public class LottoGameController {
         List<Lotto> lottos = lottoStoreService.purchaseLotto(purchaseAmount);
         outputView.showPurchasedLottosInformation(lottos);
         WinningNumbers winningNumbers = inputView.requestWinningNumbers();
-        LottoResult lottoResult = lottoResultCalculatorService.calculateRanks(lottos, winningNumbers);
+        LottoResult lottoResult = lottoResultCalculatorService.calculateResult(lottos, winningNumbers);
         outputView.showResults(lottoResult);
         outputView.showProfitRate(lottoResult.calculateProfitRate(purchaseAmount));
     }

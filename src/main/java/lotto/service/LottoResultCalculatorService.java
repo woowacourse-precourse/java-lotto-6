@@ -8,7 +8,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.WinningNumbers;
 
 public class LottoResultCalculatorService {
-    public LottoResult calculateRanks(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    public LottoResult calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
         EnumMap<LottoRank, Integer> ranks = new EnumMap<>(LottoRank.class);
         lottos.stream()
                 .map(lotto -> LottoRank.of(

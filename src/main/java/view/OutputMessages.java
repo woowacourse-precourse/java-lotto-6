@@ -7,7 +7,8 @@ public enum OutputMessages {
     SECOND_PLACE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     THIRD_PLACE("5개 일치 (1,500,000원) - %d개"),
     FOURTH_PLACE("4개 일치 (50,000원) - %d개"),
-    FIFTH_PLACE("3개 일치 (5,000원) - %d개");
+    FIFTH_PLACE("3개 일치 (5,000원) - %d개"),
+    RATE_OF_RETURN("총 수익률은 %.1f%%입니다.");
 
     private String message;
 

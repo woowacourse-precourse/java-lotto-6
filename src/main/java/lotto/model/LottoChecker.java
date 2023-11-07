@@ -14,9 +14,8 @@ public class LottoChecker {
     private final int bonus;
 
     public LottoChecker(List<Integer> winningNumbers, int bonus) {
-        Lotto winningLotto = new Lotto(winningNumbers);
+        this.winningLotto = new Lotto(winningNumbers);
         validateBonusNumber(bonus);
-        this.winningLotto = winningLotto;
         this.bonus = bonus;
     }
 

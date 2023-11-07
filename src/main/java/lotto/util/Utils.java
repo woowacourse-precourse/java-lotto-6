@@ -35,6 +35,7 @@ public class Utils {
     }
 
     public static int stringToInteger(String string) {
+        Validation.verifyEmptyBonusNumber(string);
         Validation.verifyStringToInteger(string);
         return Integer.parseInt(string);
 

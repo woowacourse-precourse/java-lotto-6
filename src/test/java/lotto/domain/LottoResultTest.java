@@ -81,18 +81,13 @@ public class LottoResultTest {
             List<Integer> numbers = List.of(1, 2, 8, 9, 10, 11);
             List<Integer> numbers2 = List.of(1, 8, 9, 10, 11, 12);
             List<Integer> numbers3 = List.of(8, 9, 10, 11, 12, 13);
+            List<List<Integer>> numbersAsset = List.of(numbers, numbers2, numbers3);
 
-            LottoResult lottoResult = new LottoResult(new Lotto(numbers));
-            lottoResult.calculateResult(winningLotto);
-            assertThat(lottoResult.getWinningType()).isEqualTo(WinningType.OTHER);
-
-            lottoResult = new LottoResult(new Lotto(numbers2));
-            lottoResult.calculateResult(winningLotto);
-            assertThat(lottoResult.getWinningType()).isEqualTo(WinningType.OTHER);
-
-            lottoResult = new LottoResult(new Lotto(numbers3));
-            lottoResult.calculateResult(winningLotto);
-            assertThat(lottoResult.getWinningType()).isEqualTo(WinningType.OTHER);
+            for (int index = 0; index < 3; index++) {
+                LottoResult lottoResult = new LottoResult(new Lotto(numbersAsset.get(index)));
+                lottoResult.calculateResult(winningLotto);
+                assertThat(lottoResult.getWinningType()).isEqualTo(WinningType.OTHER);
+            }
         }
     }
 }

@@ -15,17 +15,7 @@ public class LottoResultManagerTest {
     @DisplayName("각 당첨 로또 수만큼 저장된다.")
     @Test
     void should_save_when_calculateResult() {
-        LottoResultManager lottoResultManager = new LottoResultManager(
-                new LottoResults(List.of(
-                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
-                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 7))),
-                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 8))),
-                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 7, 8))),
-                        new LottoResult(new Lotto(List.of(1, 2, 3, 7, 8, 9))),
-                        new LottoResult(new Lotto(List.of(1, 2, 7, 8, 9, 10))),
-                        new LottoResult(new Lotto(List.of(1, 7, 8, 9, 10, 11))),
-                        new LottoResult(new Lotto(List.of(7, 8, 9, 10, 11, 12))))),
-                new LottoStatistics(new HashMap<>()));
+        LottoResultManager lottoResultManager = createLottoResultManager();
 
         lottoResultManager.calculateResult(winningLotto);
 
@@ -36,5 +26,19 @@ public class LottoResultManagerTest {
         Assertions.assertThat(statistics.get(WinningType.FOURTH)).isEqualTo(1);
         Assertions.assertThat(statistics.get(WinningType.FIFTH)).isEqualTo(1);
         Assertions.assertThat(statistics.get(WinningType.OTHER)).isEqualTo(3);
+    }
+
+    private LottoResultManager createLottoResultManager() {
+        return new LottoResultManager(
+                new LottoResults(List.of(
+                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
+                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 7))),
+                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 8))),
+                        new LottoResult(new Lotto(List.of(1, 2, 3, 4, 7, 8))),
+                        new LottoResult(new Lotto(List.of(1, 2, 3, 7, 8, 9))),
+                        new LottoResult(new Lotto(List.of(1, 2, 7, 8, 9, 10))),
+                        new LottoResult(new Lotto(List.of(1, 7, 8, 9, 10, 11))),
+                        new LottoResult(new Lotto(List.of(7, 8, 9, 10, 11, 12))))),
+                new LottoStatistics(new HashMap<>()));
     }
 }

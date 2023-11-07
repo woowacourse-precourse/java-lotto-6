@@ -24,17 +24,21 @@ public class UserInputView {
     private static final String PURCHASE_RANGE_OVER = "[ERROR] 구입 범위는 1개에서 50개까지 입니다.";
     private static final String LOTTO_NUMBERS_SIZE_ERROR = "[ERROR] 로또번호를 정확히 입력해주세요.";
     private static final String LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String LOTTO_BONUS_NUMBER_DUPLICATE = "[ERROR] 로또 번호와 중복되는 번호를 고를 수 없습니다.";
+
 
     private int convertedLine;
-    private List<Integer> DummyLottos = new ArrayList<>();
+
+    /**
+     * 보너스 번호를 입력받을 때 사용할 WinnerLottoNumbers
+     */
+    private List<Integer> bonusNumbersValidate = new ArrayList<>();
 
     public int userMoneyInput() {
-
         System.out.println(BUY_MONEY_INFO);
         String inputLine = Console.readLine();
 
         return moneyInputLineValidate(inputLine);
-
     }
 
     public List<Integer> winLottoNumberInput() {
@@ -45,26 +49,35 @@ public class UserInputView {
         List<Integer> convertedNumber = winLottoNumberConvertInteger(inputLine);
         winLottoNumberValidate(convertedNumber);
 
-        return convertedNumber;
+        return bonusNumbersValidate = convertedNumber.stream()
+                .toList();
     }
 
     public int bonusNumberInput() {
-        return bonusNumberValidate();
+        System.out.println(LOTTO_BONUS_NUM_INPUT_INFO);
+        String inputLine = Console.readLine();
+
+        return bonusNumberValidate(inputLine);
     }
 
 
-    private int bonusNumberValidate() {
-        System.out.println(LOTTO_BONUS_NUM_INPUT_INFO);
-        String inputLine = Console.readLine();
+    private int bonusNumberValidate(String inputLine) {
         try{
             validStringToInteger(inputLine);
-            int convertedLine = Integer.parseInt(inputLine);
+            convertedLine = Integer.parseInt(inputLine);
+            availableBonusNumber(convertedLine);
             eachNumberValidate(convertedLine);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bonusNumberInput();
         }
         return convertedLine;
+    }
+
+    private void availableBonusNumber(int convertedLine){
+        if(bonusNumbersValidate.contains(convertedLine)){
+            throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_DUPLICATE);
+        }
     }
 
     private List<Integer> winLottoNumberConvertInteger(List<String> inputLine) {
@@ -141,6 +154,4 @@ public class UserInputView {
             throw new IllegalArgumentException(PURCHASE_RANGE_OVER);
         }
     }
-
-
 }

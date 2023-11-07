@@ -4,28 +4,33 @@ import lotto.exception.LottoMoneyDivideException;
 import lotto.exception.LottoMoneyLessException;
 import lotto.exception.LottoNumNotNumException;
 
-public class LottoMoney {
-    private static final int LOTTO_MONEY_DIVIDE = 1000;
-    private static int lottoMoney;
+public class LottoAmount {
+    private static final int LOTTO_AMOUNT_DIVIDE = 1000;
+    private static int amount;
 
-    public LottoMoney(String lottoMoneyString) {
-        int lottoMoney = validateNumber(lottoMoneyString);
-        validate(lottoMoney);
-        this.lottoMoney = lottoMoney;
+    public LottoAmount(String amountString) {
+        int amountNum = validateNumber(amountString);
+        validate(amountNum);
+        this.amount = amountNum;
     }
 
-    public int changeToLottoCnt(){
-        return lottoMoney / LOTTO_MONEY_DIVIDE;
+    public int amountChangeToLottoCnt(){
+        return amount / LOTTO_AMOUNT_DIVIDE;
     }
 
-    private static void validate(int lottoMoney) {
-        if (lottoMoney <= 0) {
-            throw new IllegalArgumentException();
-        }
-        if (lottoMoney < LOTTO_MONEY_DIVIDE) {
+    private static void validate(int amount) {
+        validatePositive(amount);
+        validateRaminder(amount);
+    }
+
+    private static void validatePositive(int amount) {
+        if(amount <= 0){
             throw new LottoMoneyLessException();
         }
-        if (lottoMoney % LOTTO_MONEY_DIVIDE != 0) {
+    }
+
+    private static void validateRaminder(int amount) {
+        if (amount % LOTTO_AMOUNT_DIVIDE != 0) {
             throw new LottoMoneyDivideException();
         }
     }

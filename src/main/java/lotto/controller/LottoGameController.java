@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoDispenser;
+import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,5 +26,17 @@ public class LottoGameController {
 
     private void printIssuedLottos(Lottos lottos) {
         OutputView.printIssuedLottosInformation(lottos);
+    }
+
+    private WinningLotto issueWinningLotto() {
+        try {
+            Lotto lotto = new Lotto(InputView.inputLottoWinningNumber());
+            OutputView.printNewEmptyLine();
+            LottoNumber bonusNumber = new LottoNumber(InputView.inputBonusNumber());
+            return new WinningLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            OutputView.printExceptionMessage(illegalArgumentException);
+            return issueWinningLotto();
+        }
     }
 }

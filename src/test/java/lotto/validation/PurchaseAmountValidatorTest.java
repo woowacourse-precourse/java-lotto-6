@@ -3,6 +3,7 @@ package lotto.validation;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,12 +11,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseAmountValidatorTest {
 
+    private PurchaseAmountValidator purchaseAmountValidator;
+
+    @BeforeEach
+    void createPurchaseAmountValidator() {
+        this.purchaseAmountValidator = new PurchaseAmountValidator();
+    }
+
     @DisplayName("입력 값이 공백으로만 이루어진 문자열이면 예외를 발생시킨다")
     @Test
     void blankStringThrowIllegalArgumentException() {
-        //given
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount("  "))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -25,9 +30,6 @@ class PurchaseAmountValidatorTest {
     @DisplayName("입력 값이 빈 문자열이면 예외를 발생시킨다.")
     @Test
     void emptyStringThrowIllegalArgumentException() {
-        //given
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(""))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -38,9 +40,6 @@ class PurchaseAmountValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"500", "1300", "2100"})
     void notDivisibleByThousandThrowIllegalArgumentException(String purchaseAmount) {
-        //given
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -52,9 +51,6 @@ class PurchaseAmountValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"money", "2000원", "hello"})
     void notNumberThrowIllegalArgumentException(String purchaseAmount) {
-        //given
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -65,9 +61,6 @@ class PurchaseAmountValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1000", "2000", "15000"})
     void NumberThrowIllegalArgumentException(String purchaseAmount) {
-        //given
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-
         //when, then
         assertDoesNotThrow(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount));
     }
@@ -76,9 +69,6 @@ class PurchaseAmountValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1000", "-2000", "-3300"})
     void ZeroOrLessNumberThrowException(String purchaseAmount) {
-        //given
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-
         //when, then
         assertThatThrownBy(() -> purchaseAmountValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)

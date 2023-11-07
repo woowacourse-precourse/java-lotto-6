@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningResult {
+    private static final int INITIALIZED_COUNT = 0;
+    private static final int ADD_COUNT = 1;
     private final Map<WinningStandard, Integer> winningResult = new HashMap<>();
 
     public WinningResult(Lottos lottos, WinningLotto winningLotto) {
@@ -18,7 +20,7 @@ public class WinningResult {
 
     private void initialized() {
         for (WinningStandard standard : WinningStandard.values()) {
-            winningResult.put(standard, 0);
+            winningResult.put(standard, INITIALIZED_COUNT);
         }
     }
 
@@ -26,7 +28,7 @@ public class WinningResult {
         List<Lotto> purchasedLottos = lottos.getLottos();
         for (Lotto lotto : purchasedLottos) {
             WinningStandard ranking = WinningStandard.checkMatchNumbers(lotto, winningLotto);
-            addResult(ranking, 1);
+            addResult(ranking, ADD_COUNT);
         }
     }
 

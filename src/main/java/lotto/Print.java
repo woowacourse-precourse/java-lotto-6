@@ -16,6 +16,7 @@ public class Print {
         System.out.println(printStr);
     }
     public static void printPurchase(Integer purchaseAmount){
+        Print.printMessage("");
         System.out.printf((MainMessage.NUMBER_OF_ITEMS_PURCHASE.getMessage()) + "%n", purchaseAmount / 1000);
     }
     public static void printInputMessage(InputType inputType){
@@ -23,9 +24,11 @@ public class Print {
             Print.printMessage(MainMessage.INPUT_PURCHASE_AMOUNT.getMessage());
         }
         if (inputType == InputType.BONUS_NUMBER){
+            Print.printMessage("");
             Print.printMessage(MainMessage.BONUS_NUMBER.getMessage());
         }
         if (inputType == InputType.WINNING_NUMBERS){
+            Print.printMessage("");
             Print.printMessage(MainMessage.WINNING_NUMBER.getMessage());
         }
     }
@@ -39,6 +42,8 @@ public class Print {
     }
 
     public static void printWinningStatistics(Float rateOfReturn, int[] winningCount){
+        Print.printMessage("");
+        Print.printMessage(MainMessage.WINNING_STATISTICS.getMessage());
         System.out.printf((WinningStatistics.WIN_3_MATCH.getMessage()) + "%n", winningCount[RANK_5]);
         System.out.printf((WinningStatistics.WIN_4_MATCH.getMessage()) + "%n", winningCount[RANK_4]);
         System.out.printf((WinningStatistics.WIN_5_MATCH.getMessage()) + "%n", winningCount[RANK_3]);

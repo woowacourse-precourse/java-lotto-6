@@ -9,6 +9,30 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputConverterTest {
+    @DisplayName("입력된 금액 문자열을 숫자로 변환한다.")
+    @Test
+    void convertToMoneyTest() {
+        InputConverter converter = new InputConverter();
+        long numberLong = converter.convertToMoney("30000000000");
+        assertThat(numberLong).isEqualTo(30_000_000_000L);
+    }
+
+    @DisplayName("금액 입력값이 숫자가 아닐 경우 예외가 발생한다.")
+    @Test
+    void createInputWithNonNumber_Money() {
+        InputConverter converter = new InputConverter();
+        assertThatThrownBy(() -> converter.convertToMoney("1st"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("금액 입력값에 공백이 있을 경우 예외가 발생한다.")
+    @Test
+    void createInputWithBlank_Money() {
+        InputConverter converter = new InputConverter();
+        assertThatThrownBy(() -> converter.convertToMoney("1 000 0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("입력된 당첨 번호 문자열을 쉼표로 구분된 숫자들로 변환한다.")
     @Test
     void convertToNumbersTest() {
@@ -33,27 +57,27 @@ class InputConverterTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 금액 또는 보너스 숫자 문자열을 숫자로 변환한다.")
+    @DisplayName("입력된 보너스 숫자 문자열을 숫자로 변환한다.")
     @Test
     void convertToMoneyOrBonusNumberTest() {
         InputConverter converter = new InputConverter();
-        int number = converter.convertToMoneyOrBonusNumber("45");
+        int number = converter.convertToBonusNumber("45");
         assertThat(number).isEqualTo(45);
     }
 
-    @DisplayName("금액 또는 보너스 숫자 입력값이 숫자가 아닐 경우 예외가 발생한다.")
+    @DisplayName("보너스 숫자 입력값이 숫자가 아닐 경우 예외가 발생한다.")
     @Test
-    void createInputWithNonNumber() {
+    void createInputWithNonNumber_Bonus() {
         InputConverter converter = new InputConverter();
-        assertThatThrownBy(() -> converter.convertToMoneyOrBonusNumber("1st"))
+        assertThatThrownBy(() -> converter.convertToBonusNumber("1st"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("금액 또는 보너스 숫자 입력값에 공백이 있을 경우 예외가 발생한다.")
+    @DisplayName("보너스 숫자 입력값에 공백이 있을 경우 예외가 발생한다.")
     @Test
-    void createInputWithBlank() {
+    void createInputWithBlank_Bonus() {
         InputConverter converter = new InputConverter();
-        assertThatThrownBy(() -> converter.convertToMoneyOrBonusNumber("1 000 0"))
+        assertThatThrownBy(() -> converter.convertToBonusNumber("1 000 0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -3,33 +3,33 @@ package lotto.domain;
 import lotto.constants.LottoStatus;
 
 public class Money {
-    private final int money;
-    private final int howManyLotto;
+    private final long money;
+    private final long howManyLotto;
 
-    public Money(int money) {
+    public Money(long money) {
         isMoreThanPrice(money);
         isDividedByPrice(money);
         this.money = money;
         this.howManyLotto = money / LottoStatus.PRICE;
     }
 
-    private void isMoreThanPrice(int money) {
+    private void isMoreThanPrice(long money) {
         if (money < 1000) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void isDividedByPrice(int money) {
+    private void isDividedByPrice(long money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException();
         }
     }
 
-    public int getMoney() {
+    public long getMoney() {
         return money;
     }
 
-    public int getHowManyLotto() {
+    public long getHowManyLotto() {
         return howManyLotto;
     }
 

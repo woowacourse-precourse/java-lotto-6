@@ -5,6 +5,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputConverter {
+    public long convertToMoney(String input) {
+        isOnlyNumber(input);
+        return Long.parseLong(input);
+    }
+
+    public int convertToBonusNumber(String input) {
+        isOnlyNumber(input);
+        return Integer.parseInt(input);
+    }
+
+    private void isOnlyNumber(String input) {
+        if (!input.matches("^[0-9]*$")) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public List<Integer> convertToWinningNumbers(String input) {
         List<String> splitInput = splitByComma(input);
         hasOnlyNumbers(splitInput);
@@ -24,17 +40,6 @@ public class InputConverter {
             if (!number.matches("^[0-9]*$")) {
                 throw new IllegalArgumentException();
             }
-        }
-    }
-
-    public int convertToMoneyOrBonusNumber(String input) {
-        isOnlyNumber(input);
-        return Integer.parseInt(input);
-    }
-
-    private void isOnlyNumber(String bonusNumber) {
-        if (!bonusNumber.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException();
         }
     }
 }

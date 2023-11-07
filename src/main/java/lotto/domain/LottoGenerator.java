@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    public List<Lotto> generateLotto(int howManyLotto) {
+    public List<Lotto> generateLotto(long howManyLotto) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < howManyLotto; i++) {
             Lotto lotto = new Lotto(generateNumbers());

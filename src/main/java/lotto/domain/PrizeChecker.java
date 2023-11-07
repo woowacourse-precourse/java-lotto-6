@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constants.Prize;
@@ -10,7 +11,7 @@ public class PrizeChecker {
     public Map<Integer, Integer> recordWinningByRank(
             List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
         List<Integer> lottoRank = recordRank(lottos, winningNumber, bonusNumber);
-        Map<Integer, Integer> winningByRank = new HashMap<>();
+        Map<Integer, Integer> winningByRank = new LinkedHashMap<>();
         for (int i = Prize.FIRST.getRank(); i <= Prize.FIFTH.getRank(); i++) {
             winningByRank.put(i, 0);
         }

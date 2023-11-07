@@ -25,6 +25,7 @@ public class OutputView {
     }
 
     public void printWinningStatistics(EnumMap<LottoRank, Integer> lottoRakingMap) {
+        System.out.println();
         System.out.println(OUTPUT_WINNING_STATISTICS_MESSAGE.getMessage());
         System.out.println(OUTPUT_DIVIDING_LINE.getMessage());
 

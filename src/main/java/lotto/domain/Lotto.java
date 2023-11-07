@@ -1,6 +1,11 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
+
+import java.util.Collections;
 import java.util.List;
+import lotto.util.RandomNumbersGenerator;
+import lotto.view.ErrorConstants;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -31,4 +36,8 @@ public class Lotto {
         return numbers.stream().distinct().count() != numbers.size();
     }
 
+    public static Lotto createRandomLotto() {
+        List<Integer> randomNumbers = RandomNumbersGenerator.create();
+        return new Lotto(randomNumbers);
+    }
 }

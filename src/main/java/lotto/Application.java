@@ -243,6 +243,15 @@ public class Application {
 	}
 	
 	private int cntWinningNumber(ArrayList<Integer> lst) {
+		int result=0;
+		for (int i=0; i<6; i++) {
+			int value = lst.get(i);
+			result += isContainedWinning(value);
+		}
+		return result;
+	}
+	
+	private int isContainedWinning(int v) {
 		return 0;
 	}
 	

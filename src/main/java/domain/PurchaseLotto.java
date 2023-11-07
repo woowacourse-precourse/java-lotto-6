@@ -6,6 +6,10 @@ import java.util.List;
 public class PurchaseLotto {
 	private final List<Lotto> lottos = new ArrayList<>();
 
+	public PurchaseLotto() {
+
+	}
+
 	public PurchaseLotto(PurchaseAmount purchaseAmount) {
 		generateLottosForPurchaseCount(purchaseAmount.getLottoPurchaseCount());
 	}

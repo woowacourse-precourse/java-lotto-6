@@ -11,9 +11,10 @@ public class Input {
     }
 
     public List<Integer> input(InputType inputtype){
-        String inputStr = Utils.input();
+        String inputStr;
         List<Integer> inputResult;
-        System.out.println(MainMessage.INPUT_PURCHASE_AMOUNT);
+        Print.printInputMessage(inputtype);
+        inputStr = Utils.input();
         do {
             inputResult = inputTypeSelect(inputStr, inputtype);
         } while (inputResult == null);

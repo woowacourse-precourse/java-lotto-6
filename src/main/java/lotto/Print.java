@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.Input.InputType;
 import lotto.Messages.MainMessage;
 
 public class Print {
@@ -11,5 +12,16 @@ public class Print {
     }
     public static void printStatistics(Integer winningAmount){
 
+    }
+    public static void printInputMessage(InputType inputType){
+        if (inputType == InputType.PURCHASE_AMOUNT){
+            Print.printMessage(MainMessage.INPUT_PURCHASE_AMOUNT.getMessage());
+        }
+        if (inputType == InputType.BONUS_NUMBER){
+            Print.printMessage(MainMessage.BONUS_NUMBER.getMessage());
+        }
+        if (inputType == InputType.WINNING_NUMBERS){
+            Print.printMessage(MainMessage.WINNING_NUMBER.getMessage());
+        }
     }
 }

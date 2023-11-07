@@ -4,6 +4,7 @@ import lotto.model.Money;
 import lotto.service.CalculateLotteryService;
 import lotto.service.OrderLottoService;
 import lotto.service.SelectWinningLottoService;
+import lotto.view.InputView;
 
 public class LottoController {
     private Money money;
@@ -24,5 +25,14 @@ public class LottoController {
         requestOrderLotto();
         requestSelectWinningLotto();
         requestCalculateLottery();
+    }
+
+    private void requestMoney() {
+        try {
+            String inputMoney = InputView.getAmountOfMoney();
+            money = new Money(inputMoney);
+        } catch (IllegalArgumentException e) {
+            requestMoney();
+        }
     }
 }

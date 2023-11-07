@@ -3,6 +3,7 @@ package lotto.repository;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
@@ -17,6 +18,7 @@ public class LottoRepository {
 
     public LottoRepository() {
         this.purchaseAmount = 0;
+        this.myTickets = new ArrayList<>();
     }
 
     /**

@@ -16,6 +16,8 @@ public class Output {
     private static final String RESULT_START_PREFIX = "[";
     private static final String RESULT_END_PREFIX = "]";
     private static final String DELIMITER = ",";
+    private static final String EMPTY = " ";
+
 
     private static Output output;
 
@@ -30,25 +32,26 @@ public class Output {
     }
 
     public void printPurchaseAmountMessage() {
-        System.out.println(PURCHASE_AMOUNT_MESSAGE);
+        System.out.print(PURCHASE_AMOUNT_MESSAGE + LINEBREAK);
     }
 
     public void printBuyingMessage(int count) {
-        System.out.println(String.format(BUYING_MESSAGE, count));
+        System.out.print(String.format(BUYING_MESSAGE, count) + LINEBREAK);
     }
 
     public void printLottoTickets(List<Lotto> tickets) {
         for (Lotto ticket : tickets) {
-            System.out.println(TicketResult(ticket));
+            System.out.print(TicketResult(ticket) + LINEBREAK);
         }
     }
 
-    public String TicketResult(Lotto ticket) {
+    private String TicketResult(Lotto ticket) {
         StringBuilder sb = new StringBuilder();
         sb.append(RESULT_START_PREFIX);
         for (int lottoNumber : ticket.getNumbers()) {
-            sb.append(lottoNumber).append(DELIMITER);
+            sb.append(lottoNumber).append(DELIMITER).append(EMPTY);
         }
+        sb.deleteCharAt(sb.length() - 1);
         sb.deleteCharAt(sb.length() - 1);
         sb.append(RESULT_END_PREFIX);
         return sb.toString();
@@ -56,11 +59,11 @@ public class Output {
 
 
     public void printWinningNumbersMessage() {
-        System.out.println(WINNING_NUMBERS_MESSAGE);
+        System.out.print(WINNING_NUMBERS_MESSAGE + LINEBREAK);
     }
 
     public void printBonusNumberMessage() {
-        System.out.println(BONUS_NUMBER_MESSAGE);
+        System.out.print(BONUS_NUMBER_MESSAGE + LINEBREAK);
     }
 
     public void printWinningStatistics() {

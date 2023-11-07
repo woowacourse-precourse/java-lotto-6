@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.domain.Calculator;
 import lotto.domain.LottoGenerator;
+import lotto.domain.UserLotto;
 import lotto.view.SystemInput;
 
 import java.util.ArrayList;
@@ -40,5 +42,6 @@ public class LottoController {
         }
         String userBonus = SystemInput.readBonusNumber();
         int userBonusNumber = Integer.parseInt(userBonus);
+        UserLotto userLotto = new UserLotto(userPickNumber, userBonusNumber);
     }
 }

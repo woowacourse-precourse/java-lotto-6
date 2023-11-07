@@ -1,6 +1,5 @@
 package lotto.io;
 
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.domain.WinningNumbers;

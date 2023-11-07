@@ -13,13 +13,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     private String paymentInput;
+    private String bonusNumberInput;
     private ValidInput validInput;
 
     public InputView() {
         validInput = new ValidInput();
     }
 
-    public String getUserInput() {
+    private String getUserInput() {
         String input = Console.readLine();
         return input;
     }
@@ -33,6 +34,17 @@ public class InputView {
             askPayment();
         }
         return paymentInput;
+    }
+
+    public String askBonusNumber() {
+        bonusNumberInput = getUserInput();
+        try {
+            validInput.validBonusNumber(bonusNumberInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            askBonusNumber();
+        }
+        return bonusNumberInput;
     }
 
 }

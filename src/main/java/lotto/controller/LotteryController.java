@@ -109,21 +109,8 @@ public class LotteryController {
         System.out.println();
     }
 
-    private String bonusNumberInput;
-
-    private String setValidBonusNumber() {
-        bonusNumberInput = inputView.getUserInput();
-        try {
-            validInput.validBonusNumber(bonusNumberInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setValidBonusNumber();
-        }
-        return bonusNumberInput;
-    }
-
     private void setBonusNumber() {
-        String input = setValidBonusNumber();
+        String input = inputView.askBonusNumber();
         bonusNumber = Integer.parseInt(input);
     }
 

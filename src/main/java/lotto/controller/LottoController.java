@@ -5,6 +5,7 @@ import lotto.service.LottoService;
 import lotto.view.LottoView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     public static void playLotto() {
@@ -18,6 +19,7 @@ public class LottoController {
         Lotto winningNumbers = LottoService.inputWinningNumbers();
         Integer bonusNumber = LottoService.inputBonusNumber(winningNumbers);
 
+        Map<Integer, Integer> rank = LottoService.checkWinning(lottoList, winningNumbers, bonusNumber);
 
     }
 }

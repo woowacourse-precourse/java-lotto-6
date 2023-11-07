@@ -44,6 +44,6 @@ public class LottoController {
         outputView.printWinningStatistics();
         lottoService.calculateWinningStatistics();
         lottoService.calculateTotalRate();
-        outputView.printLottoStaticsResult(lottoService.getStatistics());
+        outputView.printGameResult(lottoService.getGameResult());
     }
 }

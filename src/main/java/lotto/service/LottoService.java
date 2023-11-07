@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.*;
-import lotto.formatter.LottoStatisticsResultFormatter;
+import lotto.formatter.GameResultFormatter;
 import lotto.formatter.PlayerLottosFormatter;
 
 public class LottoService {
@@ -43,7 +43,7 @@ public class LottoService {
         totalRate.calculateRate(lottosPrice, winningSum);
     }
 
-    public LottoStatisticsResultFormatter getStatistics() {
-        return new LottoStatisticsResultFormatter(lottoStatistics.getStatistics(), totalRate.getRate());
+    public GameResultFormatter getGameResult() {
+        return new GameResultFormatter(lottoStatistics.getStatistics(), totalRate.getRate());
     }
 }

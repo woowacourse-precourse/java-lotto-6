@@ -2,7 +2,7 @@ package lotto.io;
 
 import lotto.constants.ProgressMessage;
 import lotto.formatter.PlayerLottosFormatter;
-import lotto.formatter.LottoStatisticsResultFormatter;
+import lotto.formatter.GameResultFormatter;
 
 public class OutputView {
 
@@ -29,7 +29,7 @@ public class OutputView {
         System.out.println(lottoResultFormatter.toResultLottoMessage());
     }
 
-    public void printLottoStaticsResult(LottoStatisticsResultFormatter lottoStatisticsResultFormatter) {
+    public void printGameResult(GameResultFormatter lottoStatisticsResultFormatter) {
         System.out.println(lottoStatisticsResultFormatter.toStatisticsResultMessage());
         System.out.println(lottoStatisticsResultFormatter.toTotalRateMessage());
     }
@@ -44,6 +44,7 @@ public class OutputView {
     }
 
     public void printWinningStatistics() {
+        printNextLine();
         System.out.println(ProgressMessage.WINNING_STATISTICS);
     }
 

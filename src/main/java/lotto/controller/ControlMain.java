@@ -75,8 +75,6 @@ public class ControlMain {
         for (int i = 0; i < mainLotto.size(); i++) {
             int cnt = getLottoNumTotal(mainLotto.get(i), lottoNumber);
             player.updateMatchCountAndTotal(EnumRanking.Ranking.matchPoint(cnt, mainLotto.get(i), player));
-
-
         }
     }
 

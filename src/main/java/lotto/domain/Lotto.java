@@ -65,10 +65,14 @@ public class Lotto {
         int numberOfMatching = 0;
 
         for (int number : numbers) {
-            if (otherLotto.getNumbers().contains(number)) {
+            if (otherLotto.contains(number)) {
                 numberOfMatching += 1;
             }
         }
         return numberOfMatching;
+    }
+
+    private boolean contains(final int number) {
+        return numbers.contains(number);
     }
 }

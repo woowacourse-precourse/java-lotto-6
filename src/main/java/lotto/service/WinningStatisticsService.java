@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -15,22 +16,10 @@ public class WinningStatisticsService {
     }
 
     public void setWinningStatistics() {
-        WinningPolicy[] winningPolicies = WinningPolicy.values();
-        for (WinningPolicy winningPolicy : winningPolicies) {
-            if (winningPolicy != WinningPolicy.NONE) {
-                winningStatistics.put(winningPolicy, 0);
-            }
-        }
+        initializeWinningStatistics();
 
         List<Lotto> lottos = lottoService.getLottos();
-        for (Lotto lotto : lottos) {
-            int lottoCount = lotto.match(lottoService.getWinningLotto().lotto());
-            boolean bonusMatch = lotto.matchBonus(lottoService.getWinningLotto().bonusNumber());
-            WinningPolicy winningPolicy = WinningPolicy.of(lottoCount, bonusMatch);
-            if (winningPolicy != WinningPolicy.NONE) {
-                winningStatistics.put(winningPolicy, winningStatistics.get(winningPolicy) + 1);
-            }
-        }
+        lottos.forEach(this::updateWinningStatistics);
     }
 
     public List<WinningStatisticsDto> getWinningStatistics() {
@@ -40,9 +29,26 @@ public class WinningStatisticsService {
     }
 
     public double getEarningRate(int purchasePrice) {
-        return ((Integer) winningStatistics.entrySet().stream()
-                .map(entry -> entry.getKey().getAmount() * entry.getValue())
-                .mapToInt(Integer::intValue).sum())
-                .doubleValue() / purchasePrice * 100;
+        int totalWinningAmount = winningStatistics.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getAmount() * entry.getValue())
+                .sum();
+
+        return (double) totalWinningAmount / purchasePrice * 100;
+    }
+
+    private void initializeWinningStatistics() {
+        Arrays.stream(WinningPolicy.values())
+                .filter(winningPolicy -> winningPolicy != WinningPolicy.NONE)
+                .forEach(winningPolicy -> winningStatistics.put(winningPolicy, 0));
+    }
+
+    private void updateWinningStatistics(Lotto lotto) {
+        int lottoCount = lotto.match(lottoService.getWinningLotto().lotto());
+        boolean bonusMatch = lotto.matchBonus(lottoService.getWinningLotto().bonusNumber());
+        WinningPolicy winningPolicy = WinningPolicy.of(lottoCount, bonusMatch);
+
+        if (winningPolicy != WinningPolicy.NONE) {
+            winningStatistics.put(winningPolicy, winningStatistics.get(winningPolicy) + 1);
+        }
     }
 }

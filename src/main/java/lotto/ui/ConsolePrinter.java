@@ -56,4 +56,8 @@ public class ConsolePrinter {
         System.out.printf(TOTAL_PROFIT.toString(), profit);
     }
 
+    public static void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
+
 }

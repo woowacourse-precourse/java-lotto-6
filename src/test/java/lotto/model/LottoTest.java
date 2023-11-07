@@ -184,5 +184,32 @@ public class LottoTest {
         }
     }
 
+    @Nested
+    @DisplayName("Lotto 동등성 테스트")
+    class LottosEqualityTests {
+
+        @Test
+        @DisplayName("동일한 번호의 로또는 동등해야 한다")
+        void testLottoEquality() {
+            // 준비
+            Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+            Lotto lottoTwo = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+            // 실행 & 검증
+            assertThat(lottoOne).isEqualTo(lottoTwo);
+            assertThat(lottoOne.hashCode()).isEqualTo(lottoTwo.hashCode());
+        }
+
+        @Test
+        @DisplayName("다른 번호의 로또는 동등하지 않아야 한다")
+        void testLottoInequality() {
+            // 준비
+            Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+            Lotto lottoTwo = new Lotto(Arrays.asList(6, 5, 4, 3, 2, 1));
+
+            // 실행 & 검증
+            assertThat(lottoOne).isNotEqualTo(lottoTwo);
+            assertThat(lottoOne.hashCode()).isNotEqualTo(lottoTwo.hashCode());
+        }
     }
 }

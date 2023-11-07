@@ -10,7 +10,7 @@ public enum ViewMessage {
     GET_WINNING_NUMBER("당첨 번호를 입력해 주세요.");
     private final String message;
 
-    ViewMessage(String message) {
+    ViewMessage(final String message) {
         this.message = message;
     }
 

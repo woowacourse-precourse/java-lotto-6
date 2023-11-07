@@ -13,19 +13,19 @@ import lotto.exception.LottoException;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicateNumbers(numbers);
         validateNumbersRange(numbers);
     }
 
-    private void validateNumbersRange(List<Integer> numbers) {
+    private void validateNumbersRange(final List<Integer> numbers) {
         if (numbers.stream()
                 .allMatch
                         (num -> num < LOTTO_NUMBER_MIN.getValue() && num > LOTTO_NUMBER_MAX.getValue())) {
@@ -33,7 +33,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicateNumbers(List<Integer> numbers) {
+    private void validateDuplicateNumbers(final List<Integer> numbers) {
         if (numbers.stream()
                 .distinct().count()
                 != numbers.size()) {
@@ -41,7 +41,7 @@ public class Lotto {
         }
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException();
         }

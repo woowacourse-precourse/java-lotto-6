@@ -14,7 +14,7 @@ public class BuyerPurchaseAmountValidator implements Validator<String> {
         validateDivisibilityByUnitPrice(purchaseAmount);
     }
 
-    private void validateNumeric(String purchaseAmount) {
+    private void validateNumeric(final String purchaseAmount) {
         try {
             Integer.valueOf(purchaseAmount);
         } catch (NumberFormatException e) {
@@ -23,7 +23,7 @@ public class BuyerPurchaseAmountValidator implements Validator<String> {
     }
 
 
-    private void validateDivisibilityByUnitPrice(String purchaseAmount) {
+    private void validateDivisibilityByUnitPrice(final String purchaseAmount) {
         if (Integer.parseInt(purchaseAmount) % LOTTO_UNIT_PRICE.getValue() != 0) {
             throw LottoException.of(INVALID_PURCHASE_AMOUNT);
         }

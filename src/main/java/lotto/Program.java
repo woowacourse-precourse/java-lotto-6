@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constants.LottoConstants;
 import lotto.dao.LottoRepository;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoProfitResult;
@@ -10,6 +11,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+
+import static lotto.constants.Message.*;
 
 public class Program {
 
@@ -42,19 +45,19 @@ public class Program {
         List<LottoDto> lottoDtos = lottoService.getLottos(key);
 
         outputView.showMessage();
-        outputView.showMessage(lottoDtos.size() + "개를 구매했습니다.");
+        outputView.showMessage(lottoDtos.size() + BOUGHT_N_AMOUNT);
         lottoDtos.forEach(outputView::showLotto);
         return key;
     }
 
     private Lottery inputLotteryNumber() {
 
-        outputView.showMessage("당첨 번호를 입력해 주세요.");
+        outputView.showMessage(INPUT_LOTTO_GOAL);
 
         List<Integer> numbers = inputView.inputNumbersSplitByComma();
 
         Lotto goal = new Lotto(numbers);
-        outputView.showMessage("보너스 번호를 입력해 주세요.");
+        outputView.showMessage(INPUT_LOTTO_BONUS);
 
         Integer bonusNumber = inputView.inputNumber();
         return new Lottery(goal, bonusNumber);
@@ -62,7 +65,7 @@ public class Program {
 
 
     private int askMoneyUntilValid() {
-        outputView.showMessage("구입금액을 입력해 주세요.");
+        outputView.showMessage(INPUT_LOTTO_BUYING_MONEY);
         while (true) {
             try {
                 return askMoney();
@@ -73,8 +76,11 @@ public class Program {
     }
 
     private int askMoney() throws IllegalArgumentException {
-        Integer money = inputView.inputNumber();
-        if (money % 1000 != 0) {
+        int money = inputView.inputNumber();
+        if (money < LottoConstants.LOTTO_PRICE) {
+            throw new IllegalArgumentException(LottoErrorCode.NOT_ENOUGH_MONEY.getMessage());
+        }
+        if (money % LottoConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LottoErrorCode.WRONG_PRICE.getMessage());
         }
         return money;

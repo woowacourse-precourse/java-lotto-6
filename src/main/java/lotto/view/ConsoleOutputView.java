@@ -9,6 +9,10 @@ import java.util.List;
 import static java.util.stream.Collectors.joining;
 
 public class ConsoleOutputView implements OutputView {
+
+    private static final String INTEGER_FORMAT = "#,###";
+    private static final String DOUBLE_FORMAT = "#.##";
+
     @Override
     public void showLotto(LottoDto lottoDto) {
         List<Integer> numbersList = lottoDto.numbers();
@@ -55,13 +59,13 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private String formatNumber(Integer value) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        DecimalFormat decimalFormat = new DecimalFormat(INTEGER_FORMAT);
         return decimalFormat.format(value);
     }
 
     private String formatNumber(Double value) {
-        DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(value);
+        DecimalFormat decimalFormat = new DecimalFormat(DOUBLE_FORMAT);
+        return decimalFormat.format(value);
     }
 
 }

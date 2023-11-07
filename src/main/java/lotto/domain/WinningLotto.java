@@ -19,8 +19,8 @@ public class WinningLotto {
 
     public Rank match(Lotto lotto) {
         int matchCount = lotto.countMatchedNumbers(winningLotto);
-        boolean isContainBonus = lotto.contains(bonusNumber);
-        return Rank.findRankByMatchAndBonus(matchCount, isContainBonus);
+        boolean containsBonus = lotto.contains(bonusNumber);
+        return Rank.findRankByMatchAndBonus(matchCount, containsBonus);
     }
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {

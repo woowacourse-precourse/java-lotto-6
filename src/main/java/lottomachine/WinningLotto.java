@@ -7,34 +7,26 @@ import service.Inputter;
 public class WinningLotto {
 
     public Lotto requestWinningLottoNumbers(Inputter inputter) {
-        boolean isValidInput = false;
         Lotto winningLottoNumbers = null;
-        while (!isValidInput) {
-            try {
-                String input = inputter.inputWinningNumbers();
-                System.out.println();
-                List<Integer> lottoNumbers = transformStringtoLottoNumberList(input);
-                winningLottoNumbers = new Lotto(lottoNumbers);
-                isValidInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String input = inputter.inputWinningNumbers();
+            List<Integer> lottoNumbers = transformStringtoLottoNumberList(input);
+            winningLottoNumbers = new Lotto(lottoNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
+
         return winningLottoNumbers;
     }
 
-    public int requestBonusNumber(Inputter inputter){
-        boolean isValidInput = false;
-        int bonusNumber = -1;
-        while (!isValidInput) {
-            try {
-                String input = inputter.inputBonusNumber();
-                System.out.println();
-                bonusNumber = Integer.parseInt(input);
-                isValidInput = true;
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[Error] 유효하지 않은 번호 입니다.");
-            }
+    public int requestBonusNumber(Inputter inputter, Lotto winningLottoNumbers) {
+        int bonusNumber = 0;
+        try {
+            String input = inputter.inputBonusNumber();
+            bonusNumber = transformStringtoBonusNumber(input);
+            validate(bonusNumber, winningLottoNumbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[Error] 유효하지 않은 번호 입니다.");
         }
         return bonusNumber;
     }
@@ -52,16 +44,25 @@ public class WinningLotto {
         return numbers;
     }
 
-    private int transformStringtoBonusNumber(String input){
+    private int transformStringtoBonusNumber(String input) {
         int number;
         try {
             number = Integer.parseInt(input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[Error] 잘못된 보너스 번호입니다.");
         }
-        if (number > 46 && number < 0){
+        if (number > 46 || number < 1) {
             throw new IllegalArgumentException("[Error] 잘못된 보너스 번호입니다.");
         }
         return number;
+    }
+
+    private void validate(int bonusNumber, Lotto winningLottoNumbers) {
+        List<Integer> numbers = winningLottoNumbers.getLottoNumbers();
+        for (int number : numbers) {
+            if (number == bonusNumber) {
+                throw new IllegalArgumentException("[Error] 잘못된 번호를 입력하였습니다.");
+            }
+        }
     }
 }

@@ -20,6 +20,10 @@ public class LottoValidation {
 
     public static final String ERROR_DUPLICATE_NUMBER = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
 
+    public static final String ERROR_BETWEEN_1_AND_45_BONUS = "[ERROR] 보너스 번호는 1~45 사이여야 합니다.";
+
+    public static final String ERROR_OVERLAP_WINNING_NUMBER = "[ERROR] 당첨 번호와 겹치지 않는 숫자여야 합니다.";
+
     public void validatePurchaseAmount(String userInput) {
         validateNull(userInput);
         validateGap(userInput);
@@ -31,8 +35,17 @@ public class LottoValidation {
         validateNull(userInput);
         validateGap(userInput);
         validateCommaDivision(userInput);
+        validateOnlyPositiveIntegerList(userInput);
         validateBetween1And45(userInput);
         validateDuplicateNumber(userInput);
+    }
+
+    public void validateBonusNumber(String userInput, List<Integer> winningNumber) {
+        validateNull(userInput);
+        validateGap(userInput);
+        validateOnlyPositiveInteger(userInput);
+        validateBetween1And45Bonus(userInput);
+        validateOverlapWinningNumber(userInput, winningNumber);
     }
 
     public void validateNull(String userInput) {
@@ -65,6 +78,15 @@ public class LottoValidation {
         }
     }
 
+    public void validateOnlyPositiveIntegerList(String userInput) {
+        List<String> numbers = Arrays.asList(userInput.split(","));
+        for (String number : numbers) {
+            if (!number.matches("\\d+")) {
+                throw new IllegalArgumentException(ERROR_ONLY_POSITIVE_INTEGER);
+            }
+        }
+    }
+
     public void validateBetween1And45(String userInput) {
         List<String> numbers = Arrays.asList(userInput.split(","));
         for (String number : numbers) {
@@ -78,6 +100,18 @@ public class LottoValidation {
         List<String> numbers = Arrays.asList(userInput.split(","));
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER);
+        }
+    }
+
+    public void validateBetween1And45Bonus(String userInput) {
+        if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > 45) {
+            throw new IllegalArgumentException(ERROR_BETWEEN_1_AND_45_BONUS);
+        }
+    }
+
+    public void validateOverlapWinningNumber(String userInput, List<Integer> winningNumber) {
+        if (winningNumber.contains(Integer.parseInt(userInput))) {
+            throw new IllegalArgumentException(ERROR_OVERLAP_WINNING_NUMBER);
         }
     }
 }

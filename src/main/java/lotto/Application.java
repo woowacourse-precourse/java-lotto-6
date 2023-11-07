@@ -20,7 +20,21 @@ public class Application {
         int purchaseAmount = ioPurchaseAmount(outputView, inputView, lottoValidation);
         List<UserLotto> userLottos = outputPurchasedUserLotto(purchaseAmount, outputView, userLottoGenerator);
         List<Integer> winningNumber = ioWinningNumber(outputView, inputView, lottoValidation);
+        int bonusNumber = ioBonusNumber(outputView, inputView, lottoValidation, winningNumber);
+    }
 
+    private static int ioBonusNumber(OutputView outputView, InputView inputView, LottoValidation lottoValidation, List<Integer> winningNumber) {
+        int bonusNumber = 0;
+        outputView.printInputBonusNumberMessage();
+        while (true) {
+            try {
+                bonusNumber = inputView.readBonusNumber(lottoValidation, winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
     private static List<Integer> ioWinningNumber(OutputView outputView, InputView inputView, LottoValidation lottoValidation) {

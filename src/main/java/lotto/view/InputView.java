@@ -25,4 +25,10 @@ public class InputView {
         }
         return winningNumber;
     }
+
+    public int readBonusNumber(LottoValidation lottoValidation, List<Integer> winningNumber) {
+        String userInput = Console.readLine();
+        lottoValidation.validateBonusNumber(userInput, winningNumber);
+        return Integer.parseInt(userInput);
+    }
 }

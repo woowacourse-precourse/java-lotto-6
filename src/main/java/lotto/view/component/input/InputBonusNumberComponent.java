@@ -1,6 +1,6 @@
-package component.input;
+package lotto.view.component.input;
 
-import component.Component;
+import lotto.view.component.Component;
 
 public final class InputBonusNumberComponent implements Component {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";

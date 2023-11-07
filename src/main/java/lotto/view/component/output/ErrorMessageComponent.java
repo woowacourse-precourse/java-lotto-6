@@ -1,6 +1,6 @@
-package component.output;
+package lotto.view.component.output;
 
-import component.Component;
+import lotto.view.component.Component;
 
 public final class ErrorMessageComponent implements Component {
     private final String errorMessage;

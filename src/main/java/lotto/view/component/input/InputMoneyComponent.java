@@ -1,6 +1,6 @@
-package component.input;
+package lotto.view.component.input;
 
-import component.Component;
+import lotto.view.component.Component;
 
 public final class InputMoneyComponent implements Component {
     private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.";

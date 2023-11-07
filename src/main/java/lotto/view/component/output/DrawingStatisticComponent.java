@@ -1,11 +1,11 @@
-package component.output;
+package lotto.view.component.output;
 
-import component.Component;
 import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.view.component.Component;
 
 public final class DrawingStatisticComponent implements Component {
 
-    private static final String TEMPLATE = """
+    private static final String DRAWING_STATISTIC_MESSAGE = """
              
                     당첨 통계
                     ---
@@ -25,7 +25,7 @@ public final class DrawingStatisticComponent implements Component {
     @Override
     public String render() {
         return String.format(
-                TEMPLATE,
+                DRAWING_STATISTIC_MESSAGE,
                 data.fifthCount(),
                 data.fourthCount(),
                 data.thirdCount(),

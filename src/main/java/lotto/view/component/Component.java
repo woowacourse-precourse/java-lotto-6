@@ -1,4 +1,4 @@
-package component;
+package lotto.view.component;
 
 import io.output.Writer;
 

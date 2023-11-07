@@ -1,8 +1,8 @@
-package component.output;
+package lotto.view.component.output;
 
-import component.Component;
 import java.util.stream.Collectors;
 import lotto.controller.dto.output.LottoDto;
+import lotto.view.component.Component;
 
 public final class LottoComponent implements Component {
 

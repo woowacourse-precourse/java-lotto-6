@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.exception.ExceptionMessages;
 
 public class InputView {
 
@@ -16,7 +17,7 @@ public class InputView {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -39,7 +40,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 }

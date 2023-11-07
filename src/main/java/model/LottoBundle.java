@@ -28,4 +28,9 @@ public class LottoBundle {
     public List<Lotto> getLottoBundle() {
         return lottoBundle;
     }
+
+    // 테스트를 위한 인스턴스 상태 초기화 메서드
+    public void clear() {
+        lottoBundle.clear();
+    }
 }

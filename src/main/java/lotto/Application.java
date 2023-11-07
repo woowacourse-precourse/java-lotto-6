@@ -1,11 +1,10 @@
 package lotto;
 
-import java.math.BigDecimal;
-import lotto.domain.LottoPurchaseManager;
+import lotto.domain.LottoSeller;
 
 public class Application {
     public static void main(String[] args) {
-        LottoPurchaseManager lottoPurchaseManager = new LottoPurchaseManager(BigDecimal.valueOf(1000));
-        lottoPurchaseManager.runPurchase();
+        LottoSeller lottoSeller = new LottoSeller();
+        lottoSeller.run();
     }
 }

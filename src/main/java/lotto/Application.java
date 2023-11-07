@@ -180,4 +180,10 @@ public class Application {
                 .toList();
         return winningNum;
     }
+
+    public int findNumberOfMatchingLottoNumbers(List<Integer> userLotto, List<Integer> winningLotto) {
+        return (int) userLotto.stream()
+                .filter(number -> winningLotto.contains(number))
+                .count();
+    }
 }

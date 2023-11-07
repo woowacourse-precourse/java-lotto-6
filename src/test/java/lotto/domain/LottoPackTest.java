@@ -65,37 +65,17 @@ class LottoPackTest {
         private static Stream<Arguments> provideLottoAndResult() {
             Result result = getResult();
             return Stream.of(
-                    Arguments.of(
-                            result,
-                            new LottoPack(1, new FakeNumberGenerator(List.of(40, 41, 42, 43, 44, 45))),
-                            List.of(LottoRank.NOTHING)
-                    ),
-                    Arguments.of(
-                            result,
-                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 43, 44, 45))),
-                            List.of(LottoRank.THREE)
-                    ),
-                    Arguments.of(
-                            result,
-                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 44, 45))),
-                            List.of(LottoRank.FOUR)
-                    ),
-                    Arguments.of(
-                            result,
-                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 5, 45))),
-                            List.of(LottoRank.FIVE)
-                    ),
-                    Arguments.of(
-                            result,
-                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 5, 7))),
-                            List.of(LottoRank.FIVE_BONUS)
-                    ),
-                    Arguments.of(
-                            result,
-                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 5, 6))),
-                            List.of(LottoRank.SIX)
-                    )
+                    Arguments.of(result, getLottoPack(List.of(40, 41, 42, 43, 44, 45)), List.of(LottoRank.NOTHING)),
+                    Arguments.of(result, getLottoPack(List.of(1, 2, 3, 43, 44, 45)), List.of(LottoRank.THREE)),
+                    Arguments.of(result, getLottoPack(List.of(1, 2, 3, 4, 44, 45)), List.of(LottoRank.FOUR)),
+                    Arguments.of(result, getLottoPack(List.of(1, 2, 3, 4, 5, 45)), List.of(LottoRank.FIVE)),
+                    Arguments.of(result, getLottoPack(List.of(1, 2, 3, 4, 5, 7)), List.of(LottoRank.FIVE_BONUS)),
+                    Arguments.of(result, getLottoPack(List.of(1, 2, 3, 4, 5, 6)), List.of(LottoRank.SIX))
             );
+        }
+
+        private static LottoPack getLottoPack(List<Integer> numbers) {
+            return new LottoPack(1, new FakeNumberGenerator(numbers));
         }
 
         private static Result getResult() {

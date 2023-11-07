@@ -62,42 +62,28 @@ class LottoStatisticsTest {
     }
 
     private static Stream<Arguments> provideLottoStatisticsAndResult() {
-        Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
+        Result result = getResult(List.of(1, 2, 3, 4, 5, 6), 7);
         return Stream.of(
-                Arguments.of(
-                        new LottoStatistics(buildLottoPack(List.of(40, 41, 42, 43, 44, 45)), result),
-                        LottoRank.NOTHING
-                ),
-                Arguments.of(
-                        new LottoStatistics(buildLottoPack(List.of(1, 2, 3, 43, 44, 45)), result),
-                        LottoRank.THREE
-                ),
-                Arguments.of(
-                        new LottoStatistics(buildLottoPack(List.of(1, 2, 3, 4, 44, 45)), result),
-                        LottoRank.FOUR
-                ),
-                Arguments.of(
-                        new LottoStatistics(buildLottoPack(List.of(1, 2, 3, 4, 5, 45)), result),
-                        LottoRank.FIVE
-                ),
-                Arguments.of(
-                        new LottoStatistics(buildLottoPack(List.of(1, 2, 3, 4, 5, 7)), result),
-                        LottoRank.FIVE_BONUS
-                ),
-                Arguments.of(
-                        new LottoStatistics(buildLottoPack(List.of(1, 2, 3, 4, 5, 6)), result),
-                        LottoRank.SIX
-                )
+                Arguments.of(getLottoStatistics(List.of(40, 41, 42, 43, 44, 45), result), LottoRank.NOTHING),
+                Arguments.of(getLottoStatistics(List.of(1, 2, 3, 43, 44, 45), result), LottoRank.THREE),
+                Arguments.of(getLottoStatistics(List.of(1, 2, 3, 4, 44, 45), result), LottoRank.FOUR),
+                Arguments.of(getLottoStatistics(List.of(1, 2, 3, 4, 5, 45), result), LottoRank.FIVE),
+                Arguments.of(getLottoStatistics(List.of(1, 2, 3, 4, 5, 7), result), LottoRank.FIVE_BONUS),
+                Arguments.of(getLottoStatistics(List.of(1, 2, 3, 4, 5, 6), result), LottoRank.SIX)
         );
     }
 
-    private static Result buildResult(List<Integer> winningNumberIntegers, int bonusNumberInteger) {
+    private static LottoStatistics getLottoStatistics(List<Integer> numbers, Result result) {
+        return new LottoStatistics(getLottoPack(numbers), result);
+    }
+
+    private static Result getResult(List<Integer> winningNumberIntegers, int bonusNumberInteger) {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(winningNumberIntegers);
         BonusNumber bonusNumber = new BonusNumber(bonusNumberInteger);
         return new Result(winningNumbers, bonusNumber);
     }
 
-    private static LottoPack buildLottoPack(List<Integer> numbers) {
+    private static LottoPack getLottoPack(List<Integer> numbers) {
         INumberGenerator numberGenerator = new FakeNumberGenerator(numbers);
         return new LottoPack(1, numberGenerator);
     }

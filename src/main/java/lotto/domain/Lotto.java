@@ -16,17 +16,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        isValidateLottoNumberRange(numbers);
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_SIX_SIZE.getMessage());
+        }
+    }
+
+
+
+    private static void isValidateLottoNumberRange(List<Integer> numbers) {
         numbers.forEach(number -> {
             if(number < NUMBERS_SIZE_MIN || number > NUMBERS_SIZE_MAX) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE_RANGE_ERROR.getMessage());
             }
         });
-        if( new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_DUPLICATE.getMessage());
-        }
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_SIX_SIZE.getMessage());
-        }
     }
 
     public List<Integer> getNumbers() {

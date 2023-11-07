@@ -35,7 +35,7 @@ public class InputView {
 
     private static void validateIntegerInput(String input) {
         if (!Util.isInteger(input)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NOT_INTEGER_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_NOT_INTEGER_ERROR.getMessage());
         }
     }
 

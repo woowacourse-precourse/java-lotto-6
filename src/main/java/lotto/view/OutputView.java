@@ -23,4 +23,14 @@ public class OutputView {
             System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getCount(), rank.getWinningAmount(), rankIntegerMap.getOrDefault(rank, 0));
         }
     }
+
+    public void printStatisticsMessage() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    }
 }

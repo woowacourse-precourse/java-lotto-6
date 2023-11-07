@@ -2,19 +2,22 @@ package lotto;
 
 import java.util.List;
 
+import static model.FixedValues.*;
+
 public class Lotto {
-    private final List<Integer> numbers;
+	
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
-
+    
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    	CREATOR.validator_lotto(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getLottoNumbers() {
+    	return this.numbers;
+    }
 }

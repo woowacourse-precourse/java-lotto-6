@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 
@@ -22,12 +23,14 @@ public class ProfitCalculator {
             totalPrize += matchCounts.get(i) * prizeMoneyList.get(i);
         }
 
-        // 수익률을 계산합니다. 수익률 = (당첨금 / 사용금액) * 100
+        // 총 상금을 구입 금액으로 나눈 후 100을 곱하여 수익률을 계산합니다.
         BigDecimal profitRate = new BigDecimal(totalPrize)
-                .divide(new BigDecimal(lottoPrice), 2, RoundingMode.HALF_EVEN)
+                .divide(new BigDecimal(lottoPrice), MathContext.DECIMAL128)
                 .multiply(new BigDecimal(100));
 
-        // 소수점 둘째 자리에서 반올림합니다.
-        return profitRate.setScale(2, RoundingMode.HALF_EVEN);
+        // 소수점 첫째 자리까지 표시하고 반올림합니다.
+        return profitRate.setScale(1, RoundingMode.HALF_UP);
     }
+
+
 }

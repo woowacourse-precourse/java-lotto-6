@@ -14,11 +14,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개로 이루어져있습니다.");
+        }
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.indexOf(numbers.get(i)) != numbers.lastIndexOf(numbers.get(i))) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다");
+            }
         }
     }
 
     // TODO: 추가 기능 구현
+
+
     public static Lotto makeLotto() {
         List<Integer> lottoNumbers = makeLottoNumber();
         return new Lotto(lottoNumbers);

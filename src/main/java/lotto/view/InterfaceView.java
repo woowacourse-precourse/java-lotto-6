@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,6 +22,12 @@ public class InterfaceView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public static void printLotto(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
     public static void printResult(List<Integer> matchCounts) {
         System.out.println("당첨 내역");
         System.out.println("3개 일치 (5,000원) - " + matchCounts.get(0) + "개");
@@ -30,6 +38,6 @@ public class InterfaceView {
     }
 
     public static void printProfitRate(BigDecimal profitRate) {
-        System.out.printf("수익률: %.1f%%\n", profitRate.doubleValue());
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate.doubleValue());
     }
 }

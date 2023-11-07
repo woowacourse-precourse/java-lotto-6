@@ -34,7 +34,7 @@ public class LottoGameManager {
         int lottoCount = purchaseLotto();
         InterfaceView.checkMessage(lottoCount);
         createLotto(lottoCount);
-        printLotto();
+        printLotto(userLottos);
         winningNumberInputMessage();
         setWinningLotto();
         bonusNumberInputMessage();
@@ -68,16 +68,6 @@ public class LottoGameManager {
             userLottos.add(Lotto.makeLotto());
         }
     }
-
-    private void printLotto() {
-        userLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-    } // UI로 이동
-
-    private void generateWinningNumber() {
-        winningLotto = Lotto.makeLotto();
-
-    }
-
 
 
     private List<Integer> matchCounts = new ArrayList<>(Collections.nCopies(5, 0));

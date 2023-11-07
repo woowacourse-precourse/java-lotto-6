@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.Constant;
-import lotto.errormessage.LottoErrorMessage;
+import lotto.errormessage.LottoError;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,14 +22,14 @@ public class Lotto {
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(LottoError.LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
 
     private void validateRangeNumber(List<Integer> numbers){
         for(int number:numbers){
             if(number< Constant.LOTTO_START_NUMBER || number>Constant.LOTTO_END_NUMBER){
-                throw new IllegalArgumentException(LottoErrorMessage.LOTTO_RANGE_ERROR_MESSAGE);
+                throw new IllegalArgumentException(LottoError.LOTTO_RANGE_ERROR_MESSAGE);
             }
         }
     }
@@ -37,7 +37,7 @@ public class Lotto {
     private void validateDuplicateNumber(List<Integer> numbers){
         Set<Integer> set = new HashSet<>();
         for(int number:numbers){
-            if(set.contains(number)) throw new IllegalArgumentException(LottoErrorMessage.LOTTO_DUPLICATE_ERROR_MESSAGE);
+            if(set.contains(number)) throw new IllegalArgumentException(LottoError.LOTTO_DUPLICATE_ERROR_MESSAGE);
             set.add(number);
         }
     }

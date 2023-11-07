@@ -1,10 +1,13 @@
-package lotto;
+package lotto.service;
 
-import static lotto.OutputView.*;
+import static lotto.view.OutputView.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Amount;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
 
 public class LottoService {
 

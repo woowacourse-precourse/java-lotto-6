@@ -1,5 +1,6 @@
-package lotto;
+package lotto.view;
 
+import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -43,11 +44,22 @@ public class OutputView {
     }
 
     public static void printResult(float rate) {
-        if (rate % 1 == 0){
-            System.out.printf(result, String.format("%.0f", rate));
-            return;
-        }
         System.out.printf(result, String.format("%.1f", rate));
+    }
+
+    public static void eachResult(List<Integer> matchingLotto) {
+        int match = 3; // 3개 맞은 것부터 출력
+        for (OutputLine outputLine : OutputLine.values()) {
+            if (match == 6) {
+                System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, 10));
+                match++;
+                continue;
+            }
+            if (match > 6) {
+                match = 6;
+            }
+            System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, match++));
+        }
     }
 
 

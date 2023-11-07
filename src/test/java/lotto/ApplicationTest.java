@@ -17,8 +17,8 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @ParameterizedTest
-    @CsvSource({"3#5#11#12#13#14, 38, 62.5","3#5#11#16#13#14, 1, 625", "3#5#11#16#32#14, 38, 375000", "3#5#11#16#32"
-            + "#14, 1, 18750", "3#5#11#16#32#38, 1, 25000000"})
+    @CsvSource({"3#5#11#12#13#14, 38, 62.5","3#5#11#16#13#14, 1, 625.0", "3#5#11#16#32#14, 38, 375000.0", "3#5#11#16#32"
+            + "#14, 1, 18750.0", "3#5#11#16#32#38, 1, 25000000.0"})
     void 기능_테스트(String lotto, String bonus, String rate) {
         String newLotto = lotto.replace('#',',');
         assertRandomUniqueNumbersInRangeTest(

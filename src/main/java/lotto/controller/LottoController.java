@@ -1,16 +1,10 @@
-package lotto;
+package lotto.controller;
 
-import static lotto.OutputView.printAmount;
-import static lotto.OutputView.printBonus;
-import static lotto.OutputView.printBuy;
-import static lotto.OutputView.printDash;
-import static lotto.OutputView.printNumbers;
-import static lotto.OutputView.printResult;
-import static lotto.OutputView.printStats;
+import static lotto.view.OutputView.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Collections;
 import java.util.List;
+import lotto.service.LottoService;
 
 public class LottoController {
 
@@ -31,6 +25,7 @@ public class LottoController {
         rateOfReturn();
     }
 
+    // 금액 입력 및 검증
     private void requestAmount() {
         printAmount();
         try {
@@ -40,6 +35,7 @@ public class LottoController {
         }
     }
 
+    // 로또 번호 입력 및 검증
     private void requestLotto() {
         printNumbers();
         try {
@@ -49,6 +45,7 @@ public class LottoController {
         }
     }
 
+    // 보너스 번호 입력
     private void requestBonus() {
         printBonus();
         try {
@@ -58,32 +55,28 @@ public class LottoController {
         }
     }
 
+    // 내 로또 번호 설정
     private void requestMyLotto() {
         printBuy(lottoService.numberOfPurchase());
         lottoService.setMyLotto();
     }
 
+    // 5등부터 1등까지 한 횟수 저장
     private void matchLotto() {
         matchingLotto = lottoService.resultLotto();
     }
 
+    // 결과 출력
     private void result() {
         printStats();
         printDash();
-        int match = 3; // 3개 맞은 것부터 출력
-        for (OutputLine outputLine : OutputLine.values()) {
-            if (match == 6) {
-                System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, 10));
-                match++;
-                continue;
-            }
-            if (match > 6){ match = 6; }
-            System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, match++));
-        }
+        eachResult(matchingLotto);
     }
 
+    // 총 수익률 출력
     private void rateOfReturn() {
         printResult(lottoService.rateReturn());
     }
+
 
 }

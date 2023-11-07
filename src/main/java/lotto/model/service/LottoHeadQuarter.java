@@ -1,21 +1,20 @@
-package lotto.model;
+package lotto.model.service;
 
+import java.util.List;
+import lotto.controller.dto.NumberDto;
 import lotto.model.vo.BonusNumber;
+import lotto.model.vo.Lotto;
+import lotto.model.vo.Lottos;
 import lotto.model.vo.WinNumber;
 
 public class LottoHeadQuarter {
 
-    private Player player;
-    private WinNumber winNumber;
-    private BonusNumber bonusNumber;
-
     public LottoHeadQuarter() {
     }
 
-    public void pickWinNumber(WinNumber winNumber, BonusNumber bonusNumber) {
+    public NumberDto pickWinNumber(WinNumber winNumber, BonusNumber bonusNumber) {
         validateDuplication(winNumber, bonusNumber);
-        this.winNumber = winNumber;
-        this.bonusNumber = bonusNumber;
+        return NumberDto.toDto(winNumber, bonusNumber);
     }
 
     private void validateDuplication(WinNumber winNumber, BonusNumber bonusNumber) {

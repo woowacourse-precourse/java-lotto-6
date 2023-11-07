@@ -23,7 +23,7 @@ public class Lotto {
 
     private void duplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 값이 존재합니다.");
         }
     }
 

@@ -40,7 +40,7 @@ public class Validator {
         Pattern pattern = Pattern.compile("[^,0-9]+");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find())
-            throw new IllegalArgumentException("[ERROR] 문자가 입력되면 안 됩니다.");
+            throw new IllegalArgumentException("[ERROR] 잘못 입력되었습니다");
     }
     private void checkEachCharSpace(String check_space) {
         if (check_space.contains(" "))

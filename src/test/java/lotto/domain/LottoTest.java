@@ -1,9 +1,9 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,5 +28,12 @@ class LottoTest {
     void createLottoByOverRange() {
         assertThatThrownBy(() -> Lotto.of(List.of(55, 68, 111, -30, 0, 40)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("공 번호 일치 개수 카운트")
+    @Test
+    void countSameBallNumbers() {
+        assertEquals(Lotto.of(List.of(1, 2, 3, 4, 5, 6))
+                .countMatchingNumbers(Lotto.of(List.of(6, 5, 4, 3, 11, 12))), 4);
     }
 }

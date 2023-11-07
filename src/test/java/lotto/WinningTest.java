@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningTest {
 
@@ -34,4 +36,16 @@ public class WinningTest {
 
         assertThat(result).isEqualTo(true);
     }
+
+    @DisplayName("당첨 여부를 확인한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5, 6})
+    void isWinning(int matchingCount) {
+        Application application = new Application();
+
+        boolean result = application.isWinning(matchingCount);
+
+        assertThat(result).isTrue();
+    }
 }
+

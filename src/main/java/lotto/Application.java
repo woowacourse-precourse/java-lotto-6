@@ -195,4 +195,8 @@ public class Application {
         }
         return false;
     }
+
+    public boolean isWinning(int matchingCount) {
+        return matchingCount >= 3;
+    }
 }

@@ -11,32 +11,35 @@ public class Parser {
     private static final String DELIMITER = ",";
 
     public static Integer parseAmountOfMoney(String line) {
+
         checkEmptyString(line);
 
         try {
             Integer amount = Integer.parseInt(line);
 
             return amount;
-
         } catch (NumberFormatException e) {
             throw new InvalidNumberFormatException();
         }
+
     }
 
     public static Integer parseLottoBonusNumber(String line) {
+
         checkEmptyString(line);
 
         try {
             Integer number = Integer.valueOf(line);
 
             return number;
-
         } catch (NumberFormatException e) {
             throw new InvalidNumberFormatException();
         }
+
     }
 
     public static Lotto parseLotto(String line) {
+
         checkEmptyString(line);
 
         List<Integer> numbers = new ArrayList<>();
@@ -60,6 +63,5 @@ public class Parser {
             throw new EmptyStringException();
         }
     }
-
 
 }

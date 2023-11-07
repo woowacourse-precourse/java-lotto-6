@@ -35,6 +35,7 @@ public class LottoGame {
 
         Double earningRate = ((double) result.getTotalPrizeAmount() / purchaseAmount.getMoney());
         ConsoleOutput.printLottoPrizeRateResult(earningRate);
+
     }
 
 
@@ -54,32 +55,39 @@ public class LottoGame {
         return evaluator.getResult();
     }
 
+
+
     private static Money getLottoAmountFromUser() {
+
         while (true) {
             try {
                 ConsoleOutput.askLottoAmount();
                 Integer amount = ConsoleInput.readLottoAmount();
-                return new Money(amount);
 
+                return new Money(amount);
             } catch (IllegalArgumentException e) {
                 ConsoleOutput.printError(e);
             }
         }
+
     }
 
     private static Lotto getLottoNumbersFromUser() {
+
         while (true) {
             try {
-                ConsoleOutput.askWinningLottoNumbers();
-                return ConsoleInput.readLottoNumbers();
+                ConsoleOutput.askLottoNumbers();
 
+                return ConsoleInput.readLottoNumbers();
             } catch (IllegalArgumentException e) {
                 ConsoleOutput.printError(e);
             }
         }
+
     }
 
     private static Integer getLottoBonusNumberFromUser() {
+
         while (true) {
             try {
                 ConsoleOutput.askLottoBonusNumber();
@@ -87,19 +95,21 @@ public class LottoGame {
                 checkNumberScope(bonusNumber);
 
                 return bonusNumber;
-
             } catch (IllegalArgumentException e) {
                 ConsoleOutput.printError(e);
             }
         }
+
     }
 
     private static void checkNumberScope(Integer number) {
+
         if (number < MINIMUM_LOTTO_NUMBER) {
             throw new InvalidNumberScopeException();
         }
         if (number > MAXIMUM_LOTTO_NUMBER) {
             throw new InvalidNumberScopeException();
         }
+
     }
 }

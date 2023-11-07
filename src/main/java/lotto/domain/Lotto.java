@@ -44,6 +44,7 @@ public class Lotto {
                 throw new InvalidNumberScopeException();
             }
         }
+
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {

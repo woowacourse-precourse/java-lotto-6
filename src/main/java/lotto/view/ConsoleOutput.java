@@ -24,31 +24,37 @@ public class ConsoleOutput {
         printConstantMessage(REQUEST_INPUT_BONUS_NUMBER);
     }
 
-    public static void askWinningLottoNumbers() {
+    public static void askLottoNumbers() {
         printConstantMessage(REQUEST_INPUT_LOTTO_NUMBERS);
     }
 
 
     public static void printLottoTickets(LottoTicket lottoTicket) {
+
         Integer numberOfLotto = lottoTicket.getHowManyLotto();
 
         printLottoTickets(numberOfLotto, ALARM_HOW_MANY_BUY_LOTTO);
         for (Lotto lotto : lottoTicket.getLottos()) {
             printLottoNumbers(lotto);
         }
+
     }
 
     public static void printLottoPrizeResult(Prize result) {
+
         printConstantMessage(ALARM_THE_RESULT_STARTING_MESSAGE);
 
         for (PrizeRankConstants rank : PrizeRankConstants.values()) {
+
             Integer count = 0;
 
             if (result.contains(rank)) {
                 count = result.getCount(rank);
             }
             printRankResultMessage(rank, count);
+
         }
+
     }
 
     public static void printLottoPrizeRateResult(Double result) {

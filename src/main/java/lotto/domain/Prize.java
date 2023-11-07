@@ -29,6 +29,7 @@ public class Prize {
             return;
         }
         prizeRankingCountMap.put(rank, 1);
+
     }
 
     public boolean contains(PrizeRankConstants rank) {

@@ -14,6 +14,7 @@ public class Evaluator {
         this.winningLotto = winningLotto;
         this.bonus = bonusNumber;
         this.result = new Prize();
+
     }
 
     public void judgeLottoTicket(LottoTicket lottoTicket) {
@@ -25,6 +26,7 @@ public class Evaluator {
             result.increaseCountOf(rank);
 
         }
+
     }
 
     public Prize getResult() {

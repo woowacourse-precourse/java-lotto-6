@@ -28,7 +28,7 @@ public class Money {
         return amount % unit != 0;
     }
 
-    public long getLottoTicketCount(long amount) {
-        return amount / UNIT;
+    public long getLottoTicketCount(int unit) {
+        return amount / unit;
     }
 }

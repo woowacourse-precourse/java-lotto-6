@@ -58,12 +58,12 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printRateOfProfit(double rateOfProfit) {
+    public static void printRateOfProfit(float rateOfProfit) {
 
         StringBuilder result = new StringBuilder();
 
         result.append("총 수익률은 ");
-        result.append(String.format("%.2f", rateOfProfit));
+        result.append(String.format("%.1f", rateOfProfit));
         result.append("%입니다.");
 
         System.out.println(result);

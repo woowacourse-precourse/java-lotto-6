@@ -11,16 +11,10 @@ import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
-public class LottoPurchaseManager {
-    private final BigDecimal lottoPrice;
 public class LottoSeller {
     public final BigDecimal lottoPrice = BigDecimal.valueOf(1000);
 
-    public LottoPurchaseManager(BigDecimal lottoPrice) {
-        this.lottoPrice = lottoPrice;
-    }
-
-    public void runPurchase() {
+    public void run() {
         BigDecimal purchaseAmount = LottoPurchaseInput.inputPurchaseAmount(lottoPrice);
 
         BigDecimal numberOfLottoPurchased = Util.getHowManyTimes(purchaseAmount, lottoPrice);

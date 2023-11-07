@@ -1,6 +1,8 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import model.Lotto;
+import model.User;
 import validate.Validator;
 import view.InputView;
 
@@ -9,8 +11,12 @@ public class LottoController {
     Validator validator = new Validator();
 
     public void startLotto(){
-        AskPrice();
-        
+        int price = AskPrice();
+        Lotto winning_numbers = new Lotto();
+        User user = new User(price);
+
+
+
     }
     public int AskPrice(){
         inputView.printAskPrice();
@@ -27,4 +33,6 @@ public class LottoController {
         }
         return my_price;
     }
+
+    public
 }

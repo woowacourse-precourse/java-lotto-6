@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
@@ -37,5 +38,23 @@ class LottoTest {
     void validLottoTest() {
         List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
         assertDoesNotThrow(()-> new Lotto(numbers));
+    }
+
+    @Nested
+    @DisplayName("로또 번호 비교 테스트")
+    class lottoCompareTest {
+        @Test
+        void 두_로또번호의_중복되는_수의_개수를_반환한다() {
+            Lotto lotto1 = new Lotto(Arrays.asList(1,2,3,4,5,6));
+            Lotto lotto2 = new Lotto(Arrays.asList(1,2,3,4,5,7));
+            assertEquals(5,lotto1.countMatchingNumbers(lotto2));
+        }
+        @Test
+        void 로또에_보너스_번호가_포함되어있으면_true를_반환한다() {
+            Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+            BonusNumber bonusNumber = new BonusNumber(3);
+            assertEquals(true,lotto.containsNumber(bonusNumber.getNumber()));
+            assertEquals(false, lotto.containsNumber(9));
+        }
     }
 }

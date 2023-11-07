@@ -8,12 +8,13 @@ import org.junit.jupiter.api.Test;
 
 public class ExceptionHandlerTest {
 
-    @DisplayName("구입 금액이 1,000 단위가 아닐 때 예외 발생")
+    @DisplayName("price 검증 테스트")
     @Test
-    void priceUnit() {
-        ExceptionHandler handler = new ExceptionHandler();
-        int wrongPrice = 1050;
-        assertThatThrownBy(() -> handler.checkPriceUnit(wrongPrice))
+    public void inputPrice() {
+        ExceptionHandler exceptionHandler = new ExceptionHandler();
+        int price = 555;
+
+        assertThatThrownBy(() -> exceptionHandler.checkPriceUnit(price))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

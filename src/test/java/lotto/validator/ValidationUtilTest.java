@@ -28,7 +28,7 @@ class ValidationUtilTest {
     }
 
     @Test
-    void isNumber_정상_음수() {
+    void isNumber_숫자_입력_음수() {
         String input = "-45";
         boolean expected = true;
 
@@ -38,7 +38,7 @@ class ValidationUtilTest {
     }
 
     @Test
-    void isNumber_비정상입력() {
+    void isNumber_비정상_입력_문자() {
         String input = "abc";
         boolean expected = false;
 

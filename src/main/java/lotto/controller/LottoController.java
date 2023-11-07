@@ -14,6 +14,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private Lotto winningNumbers;
     private User user;
     private LottoData lottoData;
     private final LottoService lottoService;
@@ -51,17 +52,15 @@ public class LottoController {
     }
 
     private void setLottoData() {
-        setWinningNumbers();
-        setBonusNumber();
-        lottoData = lottoService.setWinningNumbers(lottoData.winningNumbers(), lottoData.bonusNumber());
+        lottoData = lottoService.setWinningNumbers(setWinningNumbers(),setBonusNumber());
     }
 
     private Lotto setWinningNumbers() {
         try {
             outputView.getInputWinningNumbers();
             List<Integer> userInputWinningNumbers = inputProcessor.getUserInputWinningNumbers();
-            lottoData = new LottoData(new Lotto(userInputWinningNumbers),null);
-            return lottoData.winningNumbers();
+            winningNumbers = new Lotto(userInputWinningNumbers);
+            return winningNumbers;
         } catch (IllegalArgumentException e) {
             return setWinningNumbers();
         }
@@ -71,7 +70,7 @@ public class LottoController {
         try {
             outputView.getInputBonusNumber();
             int bonusNumber = inputProcessor.getUserInputBonusNumber();
-            Validation.validateBonusNumberNotInWinningNumber(bonusNumber, lottoData.winningNumbers().getNumbers());
+            Validation.validateBonusNumberNotInWinningNumber(bonusNumber, winningNumbers.getNumbers());
             return new BonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             return setBonusNumber();

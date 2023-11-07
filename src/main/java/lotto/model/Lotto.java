@@ -4,12 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constant.ErrorDetail;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    private static final Integer maxNumber = 45;
-    private static final Integer minNumber = 1;
+    protected static final Integer maxNumber = 45;
+    protected static final Integer minNumber = 1;
     private static final Integer sizeOfNumbers = 6;
 
 
@@ -24,13 +25,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != sizeOfNumbers) {
-            throw new IllegalArgumentException(String.format("로또 번호의 개수는 %d이어야 합니다.", sizeOfNumbers));
+            throw new IllegalArgumentException(ErrorDetail.NUMBER_ERROR.getMessage(sizeOfNumbers));
         }
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("로또 번호는 서로 중복되면 안됩니다.");
+            throw new IllegalArgumentException(ErrorDetail.DUPLICATED_ERROR.getMessage());
         }
         if (Collections.max(numbers) > maxNumber || Collections.min(numbers) < minNumber) {
-            throw new IllegalArgumentException(String.format("로또 번호는 %d부터 %d 사이의 숫자여야 합니다.", minNumber, maxNumber));
+            throw new IllegalArgumentException(ErrorDetail.RANGE_ERROR.getMessage(minNumber, maxNumber));
         }
     }
 

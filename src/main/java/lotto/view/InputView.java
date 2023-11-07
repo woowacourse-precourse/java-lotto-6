@@ -8,9 +8,10 @@ import lotto.model.MoneyToBuy;
 import lotto.model.WinningLotto;
 
 public class InputView {
+    private static final String errorPrefix = "[ERROR] ";
 
     private void printError(Exception e) {
-        System.out.println("[ERROR] " + e.getMessage());
+        System.out.println(errorPrefix + e.getMessage());
     }
 
     public MoneyToBuy requestMoneyToBuy() {
@@ -53,7 +54,6 @@ public class InputView {
             this.printError(e);
             requestBonusNumber(winningLotto);
         }
-        return null;
     }
 
     private List<Integer> convertStringArrToList(String[] string) {

@@ -16,8 +16,8 @@ public class WinningNumbersInputParser extends InputParser {
 
     @Override
     public List<Integer> parse(String input) {
+        input = removeSpaces(input);
         validate(input);
-        removeSpaces(input);
         return parseStringListToIntegerList(split(input));
     }
 

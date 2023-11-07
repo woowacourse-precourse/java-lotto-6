@@ -13,8 +13,8 @@ public class BonusAndPaymentInputParser extends InputParser {
 
     @Override
     public List<Integer> parse(String input) {
+        input = removeSpaces(input);
         validate(input);
-        removeSpaces(input);
         return parseInt(input);
     }
 

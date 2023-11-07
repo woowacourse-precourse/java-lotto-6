@@ -35,10 +35,18 @@ public class InputVerification {
         return existingNumber == newNumber;
     }
 
-    public boolean isNumbersDuplicated(List<Integer> numbers, int newNumber) {
+    public boolean isNumbersDuplicated(List<Integer> numbers) {
+        for(Integer number : numbers) {
+            if(numbers.contains(number))
+                throw new IllegalArgumentException("[ERROR] 중복된 수가 있습니다.");
+        }
+        return false;
+    }
+
+    public boolean isBonusNumbersDuplicated(List<Integer> numbers, int newNumber) {
         for(Integer number : numbers) {
             if (isNumberDuplicated(number, newNumber)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 수가 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 보너스 넘버 중복입니다.");
             }
         }
 
@@ -52,4 +60,16 @@ public class InputVerification {
         return true;
     }
 
+    public boolean verifyWinningNumbers(List<Integer> numbers) {
+        boolean isValid = false;
+        try {
+            isValid = isInputSizeCorrect(numbers);
+            isValid = isNumbersInRange(numbers);
+            isValid = !isNumbersDuplicated(numbers);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return isValid;
+    }
 }

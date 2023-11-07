@@ -6,6 +6,7 @@ import lotto.domain.PrizeTable;
 import lotto.domain.WinningNumbers;
 import lotto.service.Service;
 import lotto.util.Utils;
+import lotto.validation.Validation;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
 
@@ -28,10 +29,10 @@ public class Controller {
     }
 
     private void lottoGameResult() {
-        HashMap<PrizeTable,Integer> result = service.checkMyLotto(buyer, winningNumbers);
-         OutputMessage.showRankResult(result);
-        //결과 출력
-        //수익률 등등
+        HashMap<PrizeTable, Integer> result = service.checkMyLotto(buyer, winningNumbers);
+        OutputMessage.winningStatistics();
+        OutputMessage.showRankResult(result);
+        OutputMessage.showYieldResult(buyer.getYield(result));
     }
 
     private void settingBuyLotto() {
@@ -41,10 +42,17 @@ public class Controller {
     }
 
     private int getInputAmount() {
-        InputMessage.moneyInputMessage();
-        String userInput = readLine();
-        return Utils.stringToInteger(userInput);
+        while (true) {
+            InputMessage.moneyInputMessage();
+            String userInput = readLine();
+            try {
+                Validation.validateInput(userInput);
+                return Utils.stringToInteger(userInput);
+            } catch (IllegalArgumentException e) {
+            }
+        }
     }
+
 
     private void showBuyingResult() {
         int count = buyer.getPurchaseAmount() / MIN_UNIT;
@@ -55,8 +63,16 @@ public class Controller {
     }
 
     private void settingWinningNumber() {
-        this.winningNumbers = new WinningNumbers(getInputWinningNumbers(), getInputBonusNumber());
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                this.winningNumbers = new WinningNumbers(getInputWinningNumbers(), getInputBonusNumber());
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+            }
+        }
     }
+
 
     private List<Integer> getInputWinningNumbers() {
         InputMessage.winningInputMessage();

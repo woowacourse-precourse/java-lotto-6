@@ -27,6 +27,7 @@ public class Application {
         List<Integer> selectLottoNumber = getSelectLottoNumbers();
         int bonus = getbonus(selectLottoNumber);
         int[] lottoPrize = getLottoPrize(lottoList, selectLottoNumber, bonus);
+        OutputView.result(lottoPrize, getRate(lottoPrize));
 
 
     }
@@ -100,6 +101,17 @@ public class Application {
             lottoPrize[(int) lottoCount]++;
         }
         return lottoPrize;
+    }
+
+    public static float getRate(int[] lottoPrize) {
+        float totalPrice = 0;
+        LottoPrice[] values = LottoPrice.values();
+        for (int i = 3; i < values.length; i++) {
+            totalPrice += lottoPrize[i] * values[i].getLottoPriceValue();
+        }
+        totalPrice /= PlayerLottoAmount.getAmount();
+        totalPrice *= 100;
+        return totalPrice;
     }
 
 

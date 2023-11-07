@@ -79,8 +79,8 @@
     - [x]  입력 문자가 중복될 경우 IllegalArgumentException을 반환한다.
     - [x]  입력 문자가 delimiter (현재 `,`)로 구분된다.
 5. 보너스 번호 입력 테스트
-    - [ ]  입력 문자가 숫자일 경우 어떠한 Exception도 감지되지 않는다.
-    - [ ]  입력 문자가 숫자가 아닐 경우 IllegalArgumentException을 반환한다.
+    - [x]  입력 문자가 숫자일 경우 어떠한 Exception도 감지되지 않는다.
+    - [x]  입력 문자가 숫자가 아닐 경우 IllegalArgumentException을 반환한다.
     - [x]  입력 문자가 1 ~ 45내의 숫자라면 어떠한 Exception도 감지되지 않는다.
     - [x]  입력 문자가 1 ~ 45내가 아니라면 IllegalArgumentException을 반환한다.
     - [x]  입력 문자가 로또 당첨 번호와 중복되지 않을 경우 어떠한 Exception도 감지되지 않는다.

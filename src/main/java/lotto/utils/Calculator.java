@@ -9,10 +9,7 @@ public class Calculator {
     public int calculatingRank(WinningLotto winningLotto, List<Integer> purchaseLotto){
         List<Integer> numbers = winningLotto.getNumbers();
         Integer bonusNumber = winningLotto.getBonusNumber();
-        int rank = sameCount(numbers,purchaseLotto);
-        if(checkBonusNumber(bonusNumber,purchaseLotto)){
-            ++rank;
-        }
+        int rank = conversionRank(numbers,bonusNumber,purchaseLotto);
         return rank;
     }
 
@@ -33,5 +30,25 @@ public class Calculator {
             }
         }
         return count;
+    }
+
+    private int conversionRank(List<Integer> numbers, Integer bonusNumber, List<Integer> purchaseLotto){
+        int sameNumber = sameCount(numbers,purchaseLotto);
+        if(sameNumber == 3){
+            return 5;
+        }
+        if(sameNumber == 4){
+            return 4;
+        }
+        if(sameNumber == 5){
+            if(checkBonusNumber(bonusNumber,purchaseLotto)){
+                return 2;
+            }
+            return 3;
+        }
+        if(sameNumber == 6){
+            return 1;
+        }
+        return 6;
     }
 }

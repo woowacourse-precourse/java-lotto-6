@@ -62,11 +62,12 @@ public class Application {
         }
 
         // 로또의 당첨 갯수 계산
-        LottoResult lottoResult = new LottoResult();
+        LottoResult lottoResult = new LottoResult(money);
         for(Lotto lotto: lottos) {
             int correctNumber = lotto.calculateCorrectCount(winningLotto);
             boolean checkBonus = lotto.numberInLotto(bonusNumber);
 
+            // 당첨 갯수와 보너스 번호에 따른 LottoResultType 검색
             LottoResultType lottoResultType = LottoResultType.findByCorrectNumberAndBonus(correctNumber, checkBonus);
 
             if(lottoResultType != null) {
@@ -75,6 +76,14 @@ public class Application {
         }
 
         // 당첨 통계 출력
-        lottoResult.printWinnigStatistics(money);
+        StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n" ).append("---");
+        System.out.println(sb);
+
+        // 전체 당첨 갯수 출력
+        lottoResult.printAllLottoResult();
+
+        // 수익률 출력
+        lottoResult.printRateOfReturn();
     }
 }

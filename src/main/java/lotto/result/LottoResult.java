@@ -6,9 +6,11 @@ import java.util.Map;
 
 public class LottoResult {
     private Map<LottoResultType, Integer> lottoResult;
+    private double money;
 
-    public LottoResult() {
+    public LottoResult(double money) {
         // lottoResult Map의 count 값을 0으로 초기화
+        this.money = money;
         lottoResult = new EnumMap<>(LottoResultType.class);
 
         for(LottoResultType lottoResultType: LottoResultType.values()) {
@@ -24,14 +26,14 @@ public class LottoResult {
         return lottoResult.getOrDefault(resultType, 0);
     }
 
-    public void printAllLottoResultType() {
+    public void printAllLottoResult() {
         for(LottoResultType lottoResultType: lottoResult.keySet()) {
             lottoResultType.print(getCount(lottoResultType));
         }
     }
 
     // 수익률 계산
-    public double calculateRateOfReturn(double money) {
+    public double calculateRateOfReturn() {
         double rateOfReturn = 0;
 
         Long sum = 0L;
@@ -45,21 +47,13 @@ public class LottoResult {
         return rateOfReturn;
     }
 
-    // 당첨 통계 출력
-    public void printWinnigStatistics(int money) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("당첨 통계").append("\n");
-        sb.append("---");
-        System.out.println(sb);
-
-        // 당첨된 갯수 출력
-        printAllLottoResultType();
-
+    // 수익률 출력
+    public void printRateOfReturn() {
+        StringBuilder sb;
         // 수익률 출력 형식에 맞는 DecimalFormat
         DecimalFormat decFormat = new DecimalFormat("###,###.0");
         sb = new StringBuilder();
-        sb.append("총 수익률은 ").append(decFormat.format(calculateRateOfReturn(money))).append("%입니다.");
+        sb.append("총 수익률은 ").append(decFormat.format(calculateRateOfReturn())).append("%입니다.");
 
         System.out.println(sb);
     }

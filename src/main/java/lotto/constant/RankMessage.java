@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum WinningMessage {
+public enum RankMessage {
     RANK_FIFTH("3개 일치 (%s원) - %d개"),
     RANK_FOURTH("4개 일치 (%s원) - %d개"),
     RANK_THIRD("5개 일치 (%s원) - %d개"),
@@ -9,7 +9,7 @@ public enum WinningMessage {
 
     private final String message;
 
-    WinningMessage(String message) {
+    RankMessage(String message) {
         this.message = message;
     }
 

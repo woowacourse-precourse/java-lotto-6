@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.WinningMessage;
+import lotto.constant.RankMessage;
 import org.assertj.core.util.TriFunction;
 
 import static lotto.constant.ErrorMessage.PRICE_NEGATIVE;
@@ -12,7 +12,7 @@ import static lotto.constant.ErrorMessage.PRICE_NEGATIVE;
  *                         Second Lotto: Winning ticket,
  *                         LottoNumber: Bonus number
  */
-public record Rank(WinningMessage message, long reward,
+public record Rank(RankMessage message, long reward,
                    TriFunction<Lotto, Lotto, LottoNumber, Boolean> winningPredicate) {
     public Rank {
         validatePositiveReward(reward);

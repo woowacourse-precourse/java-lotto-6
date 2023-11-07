@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import static lotto.constant.Config.*;
-import static lotto.constant.WinningMessage.*;
+import static lotto.constant.RankMessage.*;
 
 public class SlotMachine {
 
@@ -26,7 +26,7 @@ public class SlotMachine {
         // 당첨 통계 계산 및 출력
         RankMachine rankMachine = createRankMachine();
         rankMachine.applyTickets(tickets, winningTicket, bonusNumber);
-        OutputView.printWinningStatistics(rankMachine.getWinningStatistics(), rankMachine.getRateOfReturn());
+        OutputView.printRankStatistics(rankMachine.getRankStatistics(), rankMachine.getRateOfReturn());
     }
 
     private static <T> T requestUntilValidated(Supplier<T> supplier) {

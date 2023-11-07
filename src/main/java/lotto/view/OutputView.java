@@ -4,7 +4,7 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.GeneralMessage;
 
 import static lotto.constant.GeneralMessage.NOTIFY_BUY_COUNT;
-import static lotto.constant.GeneralMessage.NOTIFY_WINNING_STATISTICS;
+import static lotto.constant.GeneralMessage.NOTIFY_RANK_STATISTICS;
 
 public class OutputView {
     public static void printGeneralMessage(GeneralMessage generalMessage, Object... args) {
@@ -24,10 +24,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinningStatistics(String winningStatistics, String rateOfReturn) {
-        System.out.println(NOTIFY_WINNING_STATISTICS.getMessage());
+    public static void printRankStatistics(String rankStatistics, String rateOfReturn) {
+        System.out.println(NOTIFY_RANK_STATISTICS.getMessage());
         System.out.println();
-        System.out.println(winningStatistics);
+        System.out.println(rankStatistics);
         System.out.println(rateOfReturn);
     }
 }

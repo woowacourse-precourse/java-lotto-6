@@ -10,7 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoNumberValidator.validate(numbers);
-        this.numbers = numbers.stream().sorted().collect(Collectors.toList());;
+        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public int getMatchCount(WinningNumber winningNumber) {

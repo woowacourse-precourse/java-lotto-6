@@ -10,13 +10,13 @@ public class LottoGame {
     }
 
     public void play() {
-        lottoController.buyLotto();
+        lottoController.orderLotto();
 
-        lottoController.readboughtLotto();
+        lottoController.readOrderedLottoInfo();
 
         lottoController.setupWinningLotto();
 
-        lottoController.processWinningResult();
+        lottoController.processWinning();
     }
 
 }

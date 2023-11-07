@@ -41,11 +41,11 @@ public class GameController {
         }
         // 1000보다 작은지 검증
         if(lottoMoney < 1000) {
-            System.out.println("1000이상 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("1000이상 숫자를 입력해주세요.");
         }
         // 1000원 단위인지 검증
         if(lottoMoney % 1000 != 0) {
-            System.out.println("1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }
     }
 

@@ -7,8 +7,8 @@ import static java.lang.Integer.parseInt;
 public class InputView {
     public InputView() {}
 
-    public static int requestPayMoney() {
-        return parseInt(Console.readLine());
+    public static String requestPayMoney() {
+        return Console.readLine();
     }
 
     public static String requestWinnerNumber() {

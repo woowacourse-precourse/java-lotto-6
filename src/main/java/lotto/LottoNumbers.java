@@ -11,13 +11,13 @@ public class LottoNumbers {
         numbers = new ArrayList<>();
     }
 
-    public void add(LottoNumber number) {
+    public void add(final LottoNumber number) {
         numbers.add(number);
     }
 
     public List<Integer> convertToIntegerList() {
         return numbers.stream()
-                .map(LottoNumber::getNum)
+                .map(LottoNumber::num)
                 .toList();
     }
 
@@ -25,8 +25,8 @@ public class LottoNumbers {
         return numbers.size();
     }
 
-    public boolean contains(int num) {
+    public boolean contains(final int num) {
         return numbers.stream()
-                .anyMatch(n -> n.getNum() == num);
+                .anyMatch(n -> n.num() == num);
     }
 }

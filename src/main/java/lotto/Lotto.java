@@ -18,7 +18,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new InvalidSizeException();
         }
@@ -28,7 +28,7 @@ public class Lotto {
         }
     }
 
-    public int countMatchingNumbers(Lotto lotto) {
+    public int countMatchingNumbers(final Lotto lotto) {
         int matchedNumberCount = 0;
         for (Integer number : numbers) {
             matchedNumberCount += getMatchedNumberCount(lotto, number);
@@ -37,7 +37,7 @@ public class Lotto {
         return matchedNumberCount;
     }
 
-    private int getMatchedNumberCount(Lotto lotto, Integer number) {
+    private int getMatchedNumberCount(final Lotto lotto, final Integer number) {
         if (lotto.contain(number)) {
             return 1;
         }
@@ -48,7 +48,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public boolean hasBonusNumber(LottoNumber bonusNumber) {
+    public boolean hasBonusNumber(final LottoNumber bonusNumber) {
         return bonusNumber.isMatched(numbers);
     }
 }

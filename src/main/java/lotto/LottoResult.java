@@ -14,7 +14,7 @@ public class LottoResult {
         }
     }
 
-    public void putRank(Rank rank) {
+    public void putRank(final Rank rank) {
         result.put(rank, result.get(rank) + 1);
     }
 

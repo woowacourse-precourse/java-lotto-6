@@ -9,7 +9,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank match(Lotto lotto) {
+    public Rank match(final Lotto lotto) {
         int matched = this.lotto.countMatchingNumbers(lotto);
         boolean matchedBonus = lotto.hasBonusNumber(bonusNumber);
         return Rank.Of(matched, matchedBonus);

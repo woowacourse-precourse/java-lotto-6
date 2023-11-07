@@ -15,22 +15,25 @@ public class LottoController {
     }
 
     public void execute() {
-        purchaseLotteries();
-        generateLotteries();
+        setPurchaseAmount();
+        setLotteries();
+        setWinningNumbers();
+        setBonusNumber();
+        showResult();
     }
 
-    private void purchaseLotteries() {
+    private void setPurchaseAmount() {
         String amountInput = lottoView.requestInput(InputRequestMessage.PURCHASE_AMOUNT);
         try {
-            String resultOutput = lottoService.setPurchaseAmount(amountInput);
+            String resultOutput = lottoService.createPurchaseAmount(amountInput);
             lottoView.printOutput(resultOutput);
         } catch (IllegalArgumentException illegalArgumentException) {
             lottoView.printError(ErrorMessage.PURCHASE_AMOUNT);
-            purchaseLotteries();
+            setPurchaseAmount();
         }
     }
 
-    private void generateLotteries() {
+    private void setLotteries() {
         String lottoOutput = lottoService.generateByQuantity();
         lottoView.printOutput(lottoOutput);
     }

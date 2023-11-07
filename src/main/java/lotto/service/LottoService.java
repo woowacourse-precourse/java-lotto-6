@@ -16,8 +16,8 @@ public class LottoService {
         lottoRepository = new LottoRepository();
     }
 
-    public String setPurchaseAmount(String amountInput) {
-        return lottoRepository.putPurchaseAmount(amountInput);
+    public String createPurchaseAmount(String amountInput) {
+        return lottoRepository.updatePurchaseAmount(amountInput);
     }
 
     public String generateByQuantity() {

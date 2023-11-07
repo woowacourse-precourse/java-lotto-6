@@ -12,7 +12,7 @@ public class LottoRepository {
         lotteries = new Lotteries();
     }
 
-    public String putPurchaseAmount(String amountInput) {
+    public String updatePurchaseAmount(String amountInput) {
         purchaseAmount = new PurchaseAmount(amountInput);
         return purchaseAmount.getResult();
     }

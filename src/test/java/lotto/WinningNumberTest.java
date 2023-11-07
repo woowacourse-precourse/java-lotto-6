@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,5 +17,25 @@ public class WinningNumberTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> application.checkDelimiter(input))
                 .withMessage("입력 값은 숫자와 쉼표만 올 수 있습니다.");
+    }
+
+
+    @DisplayName("당첨 번호가 6개가 아닐 때 예외 발생")
+    @Test
+    void validateCount() {
+        List<Integer> input = List.of(1, 2, 3, 4, 5);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Lotto(input));
+    }
+
+    @DisplayName("당첨 번호가 중복될 떄 예외 발생")
+    @Test
+    void validateDuplication() {
+        List<Integer> input = List.of(1, 2, 3, 3, 4, 5);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Lotto(input))
+                .withMessage(ErrorMessage.DUPLICATED_LOTTO);
     }
 }

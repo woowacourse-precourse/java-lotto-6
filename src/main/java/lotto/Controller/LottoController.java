@@ -34,7 +34,6 @@ public class LottoController {
 
     {
         lottoRandomNumbers = new ArrayList<>();
-        lottoRankCount = new LottoRankCount();
     }
 
 
@@ -120,33 +119,8 @@ public class LottoController {
     }
 
     public void calculateResult() {
-        calculateEarnings();
-        calculateRank();
-    }
-
-    public void calculateEarnings() {
-        for (Lotto randomNumbers : lottoRandomNumbers) {
-            LottoResult lottoResult = findRank(randomNumbers);
-            if (lottoResult != OUT_OF_RANK) {
-                totalEarnings += lottoResult.getLottoWinningAmount();
-            }
-        }
-    }
-
-    public void calculateRank() {
-        for (Lotto randomNumbers : lottoRandomNumbers) {
-            LottoResult lottoResult = findRank(randomNumbers);
-            if (lottoResult != OUT_OF_RANK) {
-                int currentRank = lottoResult.getRank();
-                lottoRankCount.incrementCount(currentRank);
-            }
-        }
-    }
-
-    public LottoResult findRank(Lotto randomNumbers) {
-        int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
-        boolean isMatchBonusNumber = Judge.compareBonusNumber(randomNumbers, lottoBonusNumber);
-        return LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
+        totalEarnings = Judge.calculateEarnings(lottoRandomNumbers, lottoWinningNumbers, lottoBonusNumber);
+        lottoRankCount = Judge.calculateRank(lottoRandomNumbers, lottoWinningNumbers, lottoBonusNumber);
     }
 
     public void printOutMatchingResult() {
@@ -163,6 +137,5 @@ public class LottoController {
             System.out.printf(messageFormat + "\n", matchCount, addThousandsSeparator(winningAmount), rankCount);
         }
     }
-
 
 }

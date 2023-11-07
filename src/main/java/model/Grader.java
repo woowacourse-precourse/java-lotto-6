@@ -42,21 +42,11 @@ public class Grader {
   // 일치한 번호와 보너스 번호 일치 여부를 받아 등수를 책정한다.
   public Integer checkRank(int sameNumberCount, int sameBonusNumber) {
     int rank = 0;
-    if(sameNumberCount == 6) {
-       rank = 1;
-    }
-    else if(sameNumberCount == 5 && sameBonusNumber == 1) {
-      rank = 2;
-    }
-    else if(sameNumberCount == 5) {
-      rank = 3;
-    }
-    else if(sameNumberCount == 4) {
-      rank = 4;
-    }
-    else if(sameNumberCount == 3) {
-      rank = 5;
-    }
+    if(sameNumberCount == 6) return 1;
+    if(sameNumberCount == 5 && sameBonusNumber == 1)  return 2;
+    if(sameNumberCount == 5) return 3;
+    if(sameNumberCount == 4) return 4;
+    if(sameNumberCount == 3) return 5;
     return rank;
   }
 

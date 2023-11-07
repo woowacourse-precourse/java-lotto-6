@@ -7,10 +7,6 @@ import static lotto.model.LottoResultFormat.*;
 public class LottoResult {
     private final HashMap<LottoResultFormat, Integer> lottoResultHashMap;
 
-//    public LottoResult(HashMap<LottoResultFormat, Integer> lottoResultHashMap) {
-//        this.lottoResultHashMap = lottoResultHashMap;
-//    }
-
     public LottoResult(){
         this.lottoResultHashMap = new HashMap<>();
         for (LottoResultFormat lottoResultFormat : LottoResultFormat.values()){
@@ -19,12 +15,15 @@ public class LottoResult {
     }
 
     public void addHashMap(int numberOfMatchLotto, boolean isBonusMatch) {
+        System.out.println("formatting으로 들어가는 몇개 일치?: "+numberOfMatchLotto);
         lottoResultHashMap.put(formatting(numberOfMatchLotto, isBonusMatch), lottoResultHashMap.getOrDefault(formatting(numberOfMatchLotto, isBonusMatch), 0) + 1);
+        System.out.println("formatting 값(몇개 일치?): "+formatting(numberOfMatchLotto, isBonusMatch).getLottoOfMatching()+"이게 현재 몇개?: "+lottoResultHashMap.getOrDefault(formatting(numberOfMatchLotto, isBonusMatch), 0));
     }
 
     private static LottoResultFormat formatting(int numberOfMatchLotto, boolean isBonusMatch) {
         for (LottoResultFormat lottoResultFormat : LottoResultFormat.values()) {
-            if (numberOfMatchLotto == 5 && isBonusMatch == true) {
+            if (numberOfMatchLotto == 5 && isBonusMatch) {
+                System.out.println("FIVE bonus 리턴!");
                 return FIVE_BONUS;
             }
             if (lottoResultFormat.getLottoOfMatching() == numberOfMatchLotto) {

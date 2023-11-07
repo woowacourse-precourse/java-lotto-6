@@ -34,7 +34,8 @@ public class OutputView {
     }
 
     //총 수익률 출력
-    public static void totalReturnOnLotto(int returnOnLotto) {
-        System.out.println("총 수익률은 " + returnOnLotto + "%입니다.");
+    public static void totalReturnOnLotto(double returnOnLotto) {
+//        System.out.println("총 수익률은 " + returnOnLotto + "%입니다.");
+        System.out.println(String.format("총 수익률은 %,.2f%%입니다.", returnOnLotto));
     }
 }

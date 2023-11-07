@@ -17,22 +17,18 @@ public class LottoController {
     private static int bonusNumber;
 
     List<Lotto> lottos = new ArrayList<>();
-//    List<LottoResult> lottoResults = new ArrayList<>();
 
     public void start() {
         getLottoAmount();
         getLottos();
         getWinningLotto();
         getBonusNumber();
-//        System.out.println(getBonusNumber());
-
         getLottoResults(winningLotto.getNumbers(), lottos, bonusNumber);
     }
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장
     private List<Lotto> getLottos() {
         RandomNumbers randomNumbers = new RandomNumbers();
-//        Lotto lotto = new Lotto();
         for (int i = 0; i < amount / 1000; i++) {
             Lotto lotto = new Lotto(randomNumbers.getRandomNumbers());
             lottos.add(lotto);
@@ -71,30 +67,36 @@ public class LottoController {
     //수익률 출력 -> 당첨금/로또 구입금
     //해쉬 맵 format의 lottoOfMatching * integer 해서 수익금 구하기
     private void getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
+        System.out.println("문제 메소드에 들어온 당첨 번호: "+winningNumbers);
         LottoResult lottoResult = new LottoResult();
+        int matchCount = 0;
 
         for (Lotto lotto : lottos) {
-            int matchCount = (int) lotto.getNumbers().stream()
+            matchCount = (int) lotto.getNumbers().stream()
                     .filter(o -> winningNumbers.stream().anyMatch(Predicate.isEqual(o)))
                     .count();
+
+            if (matchCount < 3) {
+                matchCount = 0;
+            }
 
             lottoResult.addHashMap(matchCount, isMatchBonus(lotto, bonusNumber));
         }
         OutputView.LottoResults(lottoResult.getLottoResultHashMap());
 
-        calculateReturnOnLotto(lottoResult.getLottoResultHashMap());
+        calculateReturnOnLotto(lottoResult.getLottoResultHashMap(), amount);
     }
 
     private boolean isMatchBonus(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults) {
-        int returnOfLotto = 0;
+    private void calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults, int amount) {
+        double returnOfLotto = 0;
         for (LottoResultFormat key : lottoResults.keySet()) {
-            returnOfLotto += key.getLottoOfMatching() * removeCommas(key.getWinningAmount());
+            returnOfLotto += lottoResults.getOrDefault(key, 0) * removeCommas(key.getWinningAmount());
         }
-        OutputView.totalReturnOnLotto(returnOfLotto);
+        OutputView.totalReturnOnLotto(returnOfLotto / amount * 100);
     }
 
     private int removeCommas(String winningAmount) {

@@ -1,11 +1,9 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.constant.PriceConstant;
 import lotto.domain.Lotteries;
-import lotto.domain.Lotto;
 
 public class OutputView {
 

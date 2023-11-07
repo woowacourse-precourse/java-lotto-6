@@ -10,7 +10,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.NumberGenerator;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.RandomNumberGenerator;
 import lotto.domain.WinningLotto;
 
 public class GameService {

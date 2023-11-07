@@ -1,15 +1,14 @@
 package lotto.utils;
 
 import lotto.domain.Lotto;
+import lotto.exception.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static java.lang.Long.parseLong;
-import static lotto.service.OutputService.printError;
 import static lotto.domain.constant.NumberConstant.*;
-import static lotto.domain.constant.StringConstant.*;
 
 public class Validator {
     // Lotto DOMAIN
@@ -21,10 +20,8 @@ public class Validator {
 
 
     public static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            printError(LOTTO_SIZE_ERROR);
-            throw new IllegalArgumentException();
-        }
+        if (numbers.size() != LOTTO_SIZE)
+            throw new InvalidLottoSizeException();
     }
 
 
@@ -32,28 +29,22 @@ public class Validator {
         Set<Integer> uniqueNumbers = new HashSet<>();
 
         for (Integer n : numbers)
-            if (!uniqueNumbers.add(n)) {
-                printError(LOTTO_DUPLICATE_ERROR);
-                throw new IllegalArgumentException();
-            }
+            if (!uniqueNumbers.add(n))
+                throw new DuplicateLottoException();
     }
 
 
     public static void validateNumberInRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(n -> n < LOTTO_NUMBER_START || n > LOTTO_NUMBER_END)) {
-            printError(LOTTO_IN_RANGE_ERROR);
-            throw new IllegalArgumentException();
-        }
+        if (numbers.stream().anyMatch(n -> n < LOTTO_NUMBER_START || n > LOTTO_NUMBER_END))
+            throw new LottoNumOutOfRangeException();
     }
 
 
     // InputService SERVICE
     public static void validateExpenseValue(String input) {
         for (int i = 1; i < 4; i++)
-            if (input.charAt(input.length() - i) != '0') {
-                printError(LOTTO_EXPENSE_VALUE_ERROR);
-                throw new IllegalArgumentException();
-            }
+            if (input.charAt(input.length() - i) != '0')
+                throw new InvalidExpenseValueException();
     }
 
 
@@ -61,24 +52,19 @@ public class Validator {
         try {
             parseLong(input);
         } catch (NumberFormatException e) {
-            printError(LOTTO_NUM_TYPE_ERROR);
-            throw new IllegalArgumentException();
+            throw new InvalidNumberTypeException();
         }
     }
 
 
     public static void validateBonusNumInRange(int bonusNum) {
-        if (bonusNum < LOTTO_NUMBER_START || bonusNum > LOTTO_NUMBER_END)  {
-            printError(LOTTO_IN_RANGE_ERROR);
-            throw new IllegalArgumentException();
-        }
+        if (bonusNum < LOTTO_NUMBER_START || bonusNum > LOTTO_NUMBER_END)
+            throw new LottoNumOutOfRangeException();
     }
 
 
     public static void validateBonusNumDuplicate(int bonusNum, Lotto winningLotto) {
-        if (winningLotto.getNumbers().contains(bonusNum)) {
-            printError(LOTTO_BONUSNUM_DUPLICATE_ERROR);
-            throw new IllegalArgumentException();
-        }
+        if (winningLotto.getNumbers().contains(bonusNum))
+            throw new DuplicateBonusNumException();
     }
 }

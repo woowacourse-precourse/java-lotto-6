@@ -35,7 +35,6 @@ public class InputService {
                 validateNumberType(num);
                 winningNumbers.add(parseInt(num));
             }
-
             winningNumbers.sort(null);
             return Lotto.create(winningNumbers);
         } catch (IllegalArgumentException e) {

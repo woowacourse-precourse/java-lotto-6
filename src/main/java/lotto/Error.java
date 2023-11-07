@@ -9,16 +9,16 @@ public class Error {
     }
 
     public static void errorMessage(ErrorType errorType) {
-        if (errorType.equals("INVALID_AMOUNT")) {
+        if (errorType == ErrorType.INVALID_AMOUNT) {
             System.out.println("[ERROR] 입력값에러");
             throw new IllegalArgumentException();
-        } else if (errorType.equals("INVALID_INPUT_TYPE")) {
+        } else if (errorType == ErrorType.INVALID_INPUT_TYPE) {
             System.out.println("[ERROR] 입력타입에러");
             throw new IllegalArgumentException();
-        } else if (errorType.equals("INVALID_LOTTO_INPUT")) {
+        } else if (errorType == ErrorType.INVALID_LOTTO_INPUT) {
             System.out.println("[ERROR] 로또 값 에러");
             throw new IllegalArgumentException();
-        } else if (errorType.equals("DUPLICATION")) {
+        } else if (errorType == ErrorType.DUPLICATION) {
             System.out.println("[ERROR] 중복 에러");
             throw new IllegalArgumentException();
         }

@@ -5,7 +5,7 @@ import java.util.Map;
 public class EarnMoney {
     public static int getEarnMoney(Map<String, Integer> result) {
         final int THREE_MONEY = 5000;
-        final int FOUR_MONEY = 5000;
+        final int FOUR_MONEY = 50000;
         final int FIVE_MONEY = 1500000;
         final int FIVE_BONUS_MONEY = 30000000;
         final int SIX_MONEY = 2000000000;

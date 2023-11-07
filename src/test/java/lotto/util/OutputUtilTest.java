@@ -36,7 +36,7 @@ class OutputUtilTest {
         int amount = 5;
 
         //when
-        OutputUtil.outputLottoAmount(amount);
+        OutputUtil.formatSystemMessageWithNumber(OUTPUT_PURCHASE_LOTTO_AMOUNT,amount);
 
         //then
         String expectedOutput = String.format(

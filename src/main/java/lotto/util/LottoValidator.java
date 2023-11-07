@@ -1,9 +1,9 @@
 package lotto.util;
 
-import static lotto.constant.ExceptionMessages.BONUS_NUMBER_DUPLICATION_EXCEPTION_MESSAGE;
-import static lotto.constant.ExceptionMessages.MIN_PURCHASE_AMOUNT_EXCEPTION_MESSAGE;
+import static lotto.constant.ExceptionMessages.BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE;
+import static lotto.constant.ExceptionMessages.PURCHASE_AMOUNT_RANGE_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_COUNT_EXCEPTION_MESSAGE;
-import static lotto.constant.ExceptionMessages.WINNING_NUMBER_DUPLICATION_EXCEPTION_MESSAGE;
+import static lotto.constant.ExceptionMessages.WINNING_NUMBER_DUPLICATE_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_RANGE_EXCEPTION_MESSAGE;
 import static lotto.constant.GameOptions.MAX_NUMBER;
 import static lotto.constant.GameOptions.MIN_NUMBER;
@@ -23,13 +23,13 @@ public class LottoValidator {
 
     private static void validateDivisibility(Integer purchaseAmount) {
         if (purchaseAmount % PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(MIN_PURCHASE_AMOUNT_EXCEPTION_MESSAGE.toString());
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_RANGE_EXCEPTION_MESSAGE.toString());
         }
     }
 
     private static void validateOverMinimum(Integer purchaseAmount) {
         if (purchaseAmount < PRICE.getValue()) {
-            throw new IllegalArgumentException(MIN_PURCHASE_AMOUNT_EXCEPTION_MESSAGE.toString());
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_RANGE_EXCEPTION_MESSAGE.toString());
         }
     }
 
@@ -61,7 +61,7 @@ public class LottoValidator {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (set.contains(number)) {
-                throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATION_EXCEPTION_MESSAGE.toString());
+                throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_EXCEPTION_MESSAGE.toString());
             }
             set.add(number);
         }
@@ -74,7 +74,7 @@ public class LottoValidator {
 
     private static void validateBonusNumberDuplication(Integer bonus, WinningNumber winningNumbers) {
         if (winningNumbers.getNumbers().contains(bonus)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION_MESSAGE.toString());
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE.toString());
         }
     }
 

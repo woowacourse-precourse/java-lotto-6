@@ -13,6 +13,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    InputView inputView = new InputView();
 
     public void run() {
         LottosGenerator lottosGenerator = new LottosGenerator();
@@ -31,7 +32,6 @@ public class LottoController {
     }
 
     private Money getMoney() {
-        InputView inputView = new InputView();
         return new Money(inputView.readMoney());
     }
 
@@ -42,7 +42,6 @@ public class LottoController {
     }
 
     private WinnerLotto getWinnerLotto() {
-        InputView inputView = new InputView();
         List<Integer> lottoNumbers = inputView.readLottoNumbers();
         Integer bonusNumber = inputView.readBonusNumber();
         return new WinnerLotto(lottoNumbers, bonusNumber);

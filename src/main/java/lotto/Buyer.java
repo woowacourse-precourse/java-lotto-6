@@ -1,8 +1,8 @@
 package lotto;
 
 public class Buyer {
-    private int receivedAmount;
-    private Ticket ticket;
+    private final int receivedAmount;
+    private final Ticket ticket;
 
     Buyer(int receivedAmount, Ticket ticket) {
         this.receivedAmount = receivedAmount;

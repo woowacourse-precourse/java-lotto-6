@@ -1,8 +1,8 @@
 package lotto;
 
 public class Ticket {
-    private Lotto lotto;
-    private Bonus bonus;
+    private final Lotto lotto;
+    private final Bonus bonus;
 
     Ticket(Lotto lotto, Bonus bonus) {
         validate(lotto, bonus);

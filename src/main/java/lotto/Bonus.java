@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Bonus {
-    private int number;
+    private final int number;
 
     Bonus (int number) {
         validate(number);

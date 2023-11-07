@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.utils.constants.OutputConstants.LOTTO_PRICE;
-import static lotto.view.ServiceConstants.*;
+import static lotto.utils.constants.ServiceConstants.*;
 
 public class LottoResultService {
     public List<LottoResult> countMatchingNumbers(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {

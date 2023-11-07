@@ -20,6 +20,7 @@ public class WinningNumberValidator {
 
         List<String> winningNumbers = Arrays.asList(input.split(","));
         validateEachNumberIsNumeric(winningNumbers);
+        validateEachNumberIsInRange(winningNumbers);
     }
 
     private static void validateBlank(String target) {
@@ -63,4 +64,15 @@ public class WinningNumberValidator {
             return true;
         }
     }
+
+    private static void validateEachNumberIsInRange(List<String> target) {
+        boolean isOutOfRangeNumberExists = target.stream()
+                .map(Integer::parseInt)
+                .anyMatch(element -> element < MIN_WINNING_NUMBER || element > MAX_WINNING_NUMBER);
+
+        if (isOutOfRangeNumberExists) {
+            throw new IllegalArgumentException(WinningInformationExceptionMessage.OUT_OF_RANGE.getError());
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ public class OutputView {
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String MONEY_INPUT_RESULT_MESSAGE = "%d개를 구매했습니다. \n";
     private static final String LOTTO_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public void println(String message){
         System.out.println(message);
@@ -13,6 +14,11 @@ public class OutputView {
 
     public void println(){
         System.out.println();
+    }
+
+    public void printBonusInputMessage(){
+        println();
+        println(BONUS_INPUT_MESSAGE);
     }
 
     public void printLottoInputMessage(){

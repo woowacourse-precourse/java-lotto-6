@@ -12,6 +12,7 @@ public class LottoGameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     int ticket;
+    int bonus;
     private LottoTickets lottoTickets;
     private Lotto correctLotto;
 
@@ -19,6 +20,20 @@ public class LottoGameController {
         getTicket();
         createLottoTickets(ticket);
         createCorrectLotto();
+        createBonusNumber();
+    }
+
+    private void createBonusNumber(){
+        while (true){
+            try {
+                int temp = inputView.inputBonus();
+                correctLotto.bonusCheck(temp);
+                bonus = temp;
+                break;
+            } catch (IllegalArgumentException e){
+                outputView.println(e.getMessage());
+            }
+        }
     }
 
     private void createCorrectLotto(){

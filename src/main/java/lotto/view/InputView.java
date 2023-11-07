@@ -15,6 +15,14 @@ public class InputView {
         return Console.readLine();
     }
 
+    public int inputBonus(){
+        outputView.printBonusInputMessage();
+        String input = userInput();
+        inputValidate.inputBonusRangeValidate(input);
+        int bonus = Integer.parseInt(input);
+        return bonus;
+    }
+
     public List<Integer> inputLotto(){
         outputView.printLottoInputMessage();
         List<Integer> lotto = new ArrayList<>();

@@ -7,7 +7,8 @@ public enum Error {
     LOTTO_DUPLICATE_ERROR("[ERROR] 로또 번호는 중복될 수 없습니다."),
     LOTTO_SIZE_ERROR("[ERROR] 로또 번호는 6자리 이여야 합니다."),
     INPUT_DIGIT_ERROR("[ERROR] 숫자만 입력 가능합니다."),
-    INPUT_BLANK_ERROR("[ERROR] 잘못된 입력입니다.");
+    INPUT_BLANK_ERROR("[ERROR] 잘못된 입력입니다."),
+    BONUS_DUPLICATE_ERROR("[ERROR] 당첨 번호와 중복입니다. ");
 
     private final String message;
 

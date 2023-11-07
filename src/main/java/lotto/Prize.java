@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Prize {
-    THREE(3, 5000, "3개 일치 (5,000원)"),
-    FOUR(4, 50000, "4개 일치 (50,000원)"),
-    FIVE(5, 1500000, "5개 일치 (1,500,000원)"),
-    BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    SIX(6, 2000000000, "6개 일치 (2,000,000,000원)");
+    FIFTH(3, 5000, "3개 일치 (5,000원)"),
+    FOURTH(4, 50000, "4개 일치 (50,000원)"),
+    THIRD(5, 1500000, "5개 일치 (1,500,000원)"),
+    SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    FIRST(6, 2000000000, "6개 일치 (2,000,000,000원)");
 
     private static List<String> prizeHistory = new ArrayList<>();
     private static final String PRINT_WINNING_STATISTICS = "당첨 통계\n---";
     private static final String EARNING_RATE = "총 수익률은 %s%%입니다.";
-    private int count;
-    private int amount;
+    private final int count;
+    private final int amount;
 
-    private String information;
+    private final String information;
 
 
     Prize(int count, int amount, String information) {
@@ -31,11 +31,12 @@ public enum Prize {
 
         countPrizeHistory(matchWinningNumber, matchBonusNumber);
         printWinningStatistics();
-        earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase);
+        String earningRate = earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase);
+        System.out.println(String.format(EARNING_RATE, earningRate));
     }
 
     public static Prize matchPrize(long matchWinningNumber, long matchBonusNumber) {
-        if (matchWinningNumber == Prize.BONUS.count) {
+        if (matchWinningNumber == Prize.SECOND.count) {
             return bonusNumber(matchBonusNumber);
         }
         for (Prize prize : Prize.values()) {
@@ -48,12 +49,13 @@ public enum Prize {
 
     public static Prize bonusNumber(long matchBonusNumber) {
         if (matchBonusNumber > 0) {
-            return Prize.BONUS;
+            return Prize.SECOND;
         }
-        return Prize.FIVE;
+        return Prize.THIRD;
     }
 
-    public static void earningRateCalculator(List<Long> matchWinningNumber, List<Long> matchBonusNumber, int purchase) {
+    public static String earningRateCalculator(List<Long> matchWinningNumber, List<Long> matchBonusNumber,
+                                               int purchase) {
         double totalAmount = 0;
         for (int i = 0; i < matchWinningNumber.size(); i++) {
             Prize prize = Prize.matchPrize(matchWinningNumber.get(i), matchBonusNumber.get(i));
@@ -62,7 +64,7 @@ public enum Prize {
             }
         }
         String earningRate = String.format("%.1f", totalAmount * 100 / purchase);
-        System.out.println(String.format(EARNING_RATE, earningRate));
+        return earningRate;
     }
 
     public static void countPrizeHistory(List<Long> matchWinningNumber, List<Long> matchBonusNumber) {

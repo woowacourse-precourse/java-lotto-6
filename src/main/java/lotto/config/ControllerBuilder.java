@@ -29,7 +29,7 @@ public class ControllerBuilder {
 
     public ControllerBuilder setOperator(LotteryRound round, Collection<? extends LotteryRanking> rankings) {
         if (operator == null) {
-            operator = new LotteryOperator(round, rankings);
+            operator = new LotteryOperator(round, rankings, 1000);
         }
         return this;
     }
@@ -67,6 +67,7 @@ public class ControllerBuilder {
     }
 
     public Controller build() {
+        assert (operator!=null);
         applyWinningLotteryService = new ApplyWinningLotteryService(operator);
         calculateResultService = new CalculateResultService(new LotteryResultsCalculator(operator), userService);
         return new Controller(in, out, username, purchaseLotteryService,

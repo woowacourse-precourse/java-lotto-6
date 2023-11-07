@@ -8,13 +8,15 @@ import java.util.stream.LongStream;
 
 public class LotteryReceipt implements Iterable<PurchasedLottery> {
     private final List<PurchasedLottery> lotteries;
+    private final LotteryOperator operator;
 
     public static LotteryReceipt createLotteryReceipt(LotteryOperator operator, long quantity, LottoRandom random) {
-        return new LotteryReceipt(createPurchasedLotteries(operator, quantity, random));
+        return new LotteryReceipt(createPurchasedLotteries(operator, quantity, random), operator);
     }
 
-    public LotteryReceipt(List<PurchasedLottery> lotteries) {
+    public LotteryReceipt(List<PurchasedLottery> lotteries, LotteryOperator operator) {
         this.lotteries = lotteries;
+        this.operator = operator;
     }
 
     private static List<PurchasedLottery> createPurchasedLotteries(LotteryOperator operator, long quantity,
@@ -33,7 +35,7 @@ public class LotteryReceipt implements Iterable<PurchasedLottery> {
     }
 
     public long getPurchasedAmount() {
-        return LotteryOperator.LOTTO_PRICE * lotteries.size();
+        return operator.getLotteryPrice() * lotteries.size();
     }
 
     @Override

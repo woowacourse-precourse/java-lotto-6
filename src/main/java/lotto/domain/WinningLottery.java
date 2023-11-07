@@ -21,7 +21,7 @@ public class WinningLottery {
         int counts = lotto.matches(lottery.getNumbers());
         boolean isBonusNumberMatch = bonusNumber.matches(lottery.getNumbers());
         LotteryRanking ranking = getRanking(rankings, counts, isBonusNumberMatch);
-        return new LotteryResults(ranking, 1);
+        return new LotteryResults(ranking, 1,rankings);
     }
     private LotteryRanking getRanking(Collection<? extends LotteryRanking> rankings, int counts, boolean isBonusNumberMatch) {
         return rankings.stream()

@@ -1,30 +1,44 @@
 package lotto.domain;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import lotto.CustomLotteryRanking;
 
 
 public class LotteryResults {
+    private static final int MAX_MATCHES = Integer.MAX_VALUE/2;
     private final Map<LotteryRanking, Integer> results;
+    private final Collection<? extends  LotteryRanking> rankings;
 
-    private LotteryResults() {
+    private LotteryResults(Collection<? extends  LotteryRanking> rankings) {
+        this.rankings = Objects.requireNonNull(rankings);
         this.results = createEmptyLotteryRankingMap();
     }
 
-    public LotteryResults(LotteryRanking ranking, int matches) {
-        this();
+    public LotteryResults(LotteryRanking ranking, int matches, Collection<? extends LotteryRanking> rankings) {
+        this(rankings);
+        validateMatches(matches);
         apply(ranking, matches);
     }
 
-    public static LotteryResults emptyResults() {
-        return new LotteryResults();
+    public static LotteryResults emptyResults(Collection<? extends LotteryRanking> rankings) {
+        return new LotteryResults(rankings);
+    }
+
+    private static void validateMatches(int matches){
+        if(matches < 0 || matches > MAX_MATCHES){
+            throw new IllegalArgumentException();
+        }
     }
 
     private void apply(LotteryRanking ranking, int matches) {
+        validateMatches(matches);
         int oldValue = results.getOrDefault(ranking, 0);
+        validateMatches(oldValue+matches);
         results.put(ranking, oldValue + matches);
     }
 
@@ -55,11 +69,12 @@ public class LotteryResults {
 
     private Map<LotteryRanking, Integer> createEmptyLotteryRankingMap() {
         Map<LotteryRanking, Integer> result = new TreeMap<>();
-        for (LotteryRanking ranking : CustomLotteryRanking.values()) {
+        for (LotteryRanking ranking : rankings) {
             result.put(ranking, 0);
         }
         return result;
     }
+
 
     @Override
     public boolean equals(Object obj) {

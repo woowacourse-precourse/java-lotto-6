@@ -9,7 +9,7 @@ public class LotteryRetailer {
     }
 
     public LotteryReceipt purchase(LotteryOperator operator, long amount) {
-        long quantity = amount / LotteryOperator.LOTTO_PRICE;
+        long quantity = amount / operator.getLotteryPrice();
         return LotteryReceipt.createLotteryReceipt(operator, quantity, random);
     }
 }

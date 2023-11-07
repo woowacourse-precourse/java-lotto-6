@@ -30,10 +30,10 @@ public class InputValidator {
     }
 
     private static void checkNumeric(String lottoPayAmount) {
-        for (int i = 0; i < lottoPayAmount.length(); i++) {
-            if (!Character.isDigit(lottoPayAmount.charAt(i))) {
-                throw new IllegalArgumentException(ErrorMessage.NUMERIC_ERROR.getErrorMessage());
-            }
+        try {
+            Integer.parseInt(lottoPayAmount);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(ErrorMessage.NUMERIC_ERROR.getErrorMessage());
         }
     }
 

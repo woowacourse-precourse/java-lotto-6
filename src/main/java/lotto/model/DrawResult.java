@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.ExceptionMessage;
+import lotto.utils.GameNumber;
 
 public record DrawResult(Lotto lotto, Integer bonusNumber) {
 
@@ -17,7 +18,7 @@ public record DrawResult(Lotto lotto, Integer bonusNumber) {
     }
 
     public void validateRange(int number) {
-        if (number > 45 || number < 1) {
+        if (number > GameNumber.MIN_RANGE.getNumber() || number < GameNumber.MIN_RANGE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_SIZE.getMessage());
         }
     }

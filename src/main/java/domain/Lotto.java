@@ -9,6 +9,8 @@ public class Lotto {
 	public Lotto(List<Integer> numbers) {
 		validate(numbers);
 		validateDuplicateNumber(numbers);
+		validateIsBetweenLottoRange(numbers);
+		validateDuplicateNumber(numbers);
 		this.numbers = numbers;
 	}
 

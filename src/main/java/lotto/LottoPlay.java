@@ -1,11 +1,13 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.ErrorMessage;
+import lotto.constant.Rank;
+import lotto.constant.ViewMessage;
 
 public class LottoPlay implements Play{
     private final Controller controller = new Controller();
@@ -25,14 +27,14 @@ public class LottoPlay implements Play{
     private int getPurchaseQuantity() {
         int purchaseQuantity = 0;
 
-        System.out.print(view.getAskPurchaseAmount());
+        view.print(ViewMessage.ASK_PURCHASE_AMOUNT.getMessage());
         do {
             try {
                 purchaseQuantity = controller.getPurchaseQuantity();
             } catch (NumberFormatException e) {
-                System.out.println(ErrorMessage.NOT_A_NUMBER.getErrorMessage());
+                view.print(ErrorMessage.NOT_A_NUMBER.getErrorMessage());
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.NOT_SEPARATED_1000.getErrorMessage());
+                view.print(ErrorMessage.NOT_SEPARATED_1000.getErrorMessage());
             }
         } while (purchaseQuantity == 0);
 
@@ -44,14 +46,14 @@ public class LottoPlay implements Play{
         List<Integer> numbers;
         List<Integer> sortedNumbers;
 
-        System.out.println();
-        System.out.print(view.getPrintPurchaseAmount(purchaseQuantity));
+        view.printLine();
+        view.print(view.getPrintPurchaseAmount(purchaseQuantity));
         for (int i = 0; i < purchaseQuantity; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             sortedNumbers = sortedByAsc(numbers);
             myLotto.add(new Lotto(sortedNumbers));
 
-            System.out.print(view.getPrintPurchaseNumber(myLotto.get(i)));
+            view.print(view.getPrintPurchaseNumber(myLotto.get(i)));
         }
 
         return myLotto;
@@ -60,13 +62,13 @@ public class LottoPlay implements Play{
     private Lotto readWinningNumber() {
         Lotto lotto = null;
 
-        System.out.println();
-        System.out.print(view.getAskWinningNumber());
+        view.printLine();
+        view.print(ViewMessage.ASK_WINNING_NUMBER.getMessage());
         do {
             try {
                 lotto = new Lotto(controller.readWinningNumber());
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.INVALID_WINNING_NUMBER.getErrorMessage());
+                view.print(ErrorMessage.INVALID_WINNING_NUMBER.getErrorMessage());
             }
         } while (lotto == null);
 
@@ -76,14 +78,14 @@ public class LottoPlay implements Play{
     private int readBonusNumber(Lotto winningLotto) {
         int bonusNumber;
 
-        System.out.println();
-        System.out.print(view.getAskBonusNumber());
+        view.printLine();
+        view.print(ViewMessage.ASK_BONUS_NUMBER.getMessage());
         do {
             try {
                 bonusNumber = controller.readBonusNumber();
                 validateBonusNumber(bonusNumber, winningLotto);
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.INVALID_BONUS_NUMBER.getErrorMessage());
+                view.print(ErrorMessage.INVALID_BONUS_NUMBER.getErrorMessage());
                 bonusNumber = 0;
             }
         } while (bonusNumber == 0);
@@ -107,11 +109,11 @@ public class LottoPlay implements Play{
     }
 
     private void printWinningStat(Rank[] ranks) {
-        System.out.println();
-        System.out.print(view.getPrintWinningStat());
+        view.printLine();
+        view.print(ViewMessage.PRINT_WINNING_STAT.getMessage());
         for (Rank rank : ranks) {
             if (rank.getHits() == -1) continue;
-            System.out.print(view.getPrintMatches(rank));
+            view.print(view.getPrintMatches(rank));
         }
     }
 
@@ -123,7 +125,7 @@ public class LottoPlay implements Play{
             sum += rank.getPrize() * (double)rank.getMatchCount();
         }
         yieldRate = sum / ((double)purchaseQuantity * 10);
-        System.out.print(view.getPrintYieldRate(yieldRate));
+        view.print(view.getPrintYieldRate(yieldRate));
     }
 
     private void validateBonusNumber(int bonusNumber, Lotto winningLotto) {

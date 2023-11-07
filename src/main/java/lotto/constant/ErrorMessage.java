@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum ErrorMessage {
     NOT_SEPARATED_1000("1000원 단위의 숫자만 입력해 주세요."),

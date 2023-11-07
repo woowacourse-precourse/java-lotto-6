@@ -86,7 +86,7 @@ public class InputViewTest {
 
     @DisplayName("당첨번호에 1~45를 벗어난 입력이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,66,4,5,5", "200,2,3,,3,3", "3,4,4,500,5,6"})
+    @ValueSource(strings = {"1,2,66,4,5,3", "200,2,1,7,6,5", "3,4,5,500,7,8","-1,-2,-3,-4,-5,-6"})
     void readWinningNumber_IsNotCollectRange_ExceptionThrow(String input) {
         setInputValues(input);
         assertThatThrownBy(() -> InputView.readWinningNumber()).isInstanceOf(IllegalArgumentException.class);

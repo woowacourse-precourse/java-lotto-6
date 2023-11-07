@@ -37,7 +37,7 @@ public class InputView {
     public static void validateRangeWinningNumber(String input) {
         String[] strs = input.split(",");
         for (String str : strs) {
-            if (Integer.parseInt(str) < 0 && Integer.parseInt(str) > 45) {
+            if (Integer.parseInt(str) < 0 || Integer.parseInt(str) > 45) {
                 throw new IllegalArgumentException("[ERROR] 범위를 벗어난 값이 입력되었습니다.");
             }
         }

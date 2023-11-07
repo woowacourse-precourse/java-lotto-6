@@ -5,7 +5,9 @@ import static lotto.constant.Message.LOTTO_PRICE;
 public class LottoMachineValidation {
 
     public void validate_inputMoney(String inputMoney){
-
+        validate_isInputValue(inputMoney);
+        validate_isPositiveNum(inputMoney);
+        validate_isExactlyDividedByPrice(Integer.parseInt(inputMoney));
     }
 
     private void validate_isInputValue(String input){

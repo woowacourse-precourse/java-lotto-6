@@ -6,18 +6,15 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoTicketsGeneratingMachine {
-    public LottoTickets generateRandomLottoTickets(int ticketsSize) {
-        validateTicketsSize(ticketsSize);
-        List<Lotto> lottoTickets = IntStream.range(0, ticketsSize)
+    private LottoTicketsGeneratingMachine() {
+
+    }
+
+    public static LottoTickets generateRandomLottoTickets(TicketSize ticketSize) {
+        List<Lotto> lottoTickets = IntStream.range(0, ticketSize.getTicketSize())
                 .mapToObj(cnt -> Lotto.randomPick())
                 .toList();
 
         return new LottoTickets(lottoTickets);
-    }
-
-    private void validateTicketsSize(int ticketsSize) {
-        if (ticketsSize <= 0) {
-            throw new NotPositiveLottoTicketsSizeException();
-        }
     }
 }

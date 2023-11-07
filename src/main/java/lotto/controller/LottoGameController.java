@@ -8,6 +8,7 @@ public class LottoGameController {
 
     private final String INPUT_PURCHASEAMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private final InputPort inputPort;
     private final LottoService lottoService;
@@ -26,5 +27,8 @@ public class LottoGameController {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
         String winningNumbers = inputPort.readLine();
         lottoService.addLottoNumberToWinningNumbers(winningNumbers);
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        String bonusNumber = inputPort.readLine();
+        lottoService.validateBonusNumber(winningNumbers, bonusNumber);
     }
 }

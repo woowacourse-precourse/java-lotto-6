@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -9,10 +10,15 @@ import lotto.port.LottoNumbersProvider;
 public class LottoService {
 
     private static final int LOTTO_TICKET_PRICE = 1000;
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
     private static final String FIRST_ERROR_MESSAGE = "[ERROR] ";
     private static final String PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE = "로또 구입 금액은 1,000원으로 나누어 떨어져야합니다.";
-    private static final String PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE = "로또 구입 금액은 숫자여야합니다.";
-    private static final String WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE = "당첨 번호는 숫자여야합니다.";
+    private static final String PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE = "로또 구입 금액은 숫자여야 합니다.";
+    private static final String WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE = "당첨 번호는 숫자여야 합니다.";
+    private static final String BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE = "보너스 번호는 숫자여야 합니다.";
+    private static final String BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE = "보너스 번호와 당첨번호가 겹치면 안됩니다.";
 
     private final LottoNumbersProvider lottoNumbersProvider;
 
@@ -83,5 +89,36 @@ public class LottoService {
             }
         }
         return lottoNumbers;
+    }
+
+    public void validateBonusNumber(String lottoWinningNumbers, String bonusNumber) {
+        if (bonusNumberNotDigit(bonusNumber)) {
+            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
+        }
+        if (bonusNumberWrongRange(bonusNumber)) {
+            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE);
+        }
+        if (bonusNumberDuplicateWinningNumbers(lottoWinningNumbers, bonusNumber)) {
+            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
+        }
+    }
+
+    public boolean bonusNumberNotDigit(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
+
+    public boolean bonusNumberWrongRange(String bonusNumber) {
+        int number = Integer.parseInt(bonusNumber);
+        return number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX;
+    }
+
+    public boolean bonusNumberDuplicateWinningNumbers(String lottoWinningNumbers, String bonusNumber) {
+        List<String> winningNumbers = Arrays.asList(lottoWinningNumbers.split(","));
+        return winningNumbers.contains(bonusNumber);
     }
 }

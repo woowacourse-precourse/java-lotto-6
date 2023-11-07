@@ -20,6 +20,11 @@ public class User {
 
     private List<Lotto> purchaseLotto(Integer purchaseAmount) throws IllegalArgumentException{
         List<Lotto> lottos = new ArrayList<>();
+        publishLottos(purchaseAmount, lottos);
+        return lottos;
+    }
+
+    private void publishLottos(Integer purchaseAmount, List<Lotto> lottos) {
         Integer usedAmount = 0;
         while(!usedAmount.equals(purchaseAmount)){
             List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -27,7 +32,6 @@ public class User {
             lottos.add(new Lotto(numbers));
             usedAmount += 1000;
         }
-        return lottos;
     }
 
     public Integer getLottoQuantity() {

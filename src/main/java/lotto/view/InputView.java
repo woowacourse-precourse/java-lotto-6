@@ -1,11 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.LottoMsg;
 import lotto.exception.ErrorMsg;
 
 public class InputView {
 
     public int parseInputFromUserInteger() {
+        System.out.println(LottoMsg.LOTTO_BUY_PRICE.getMsg());
         while (true) {
             try {
                 int price = Integer.parseInt(Console.readLine());

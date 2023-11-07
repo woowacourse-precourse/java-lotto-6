@@ -46,7 +46,9 @@ public enum LottoData {
     }
 
 
-
+    private boolean isFirstPrize(LottoData rankData) {
+        return rankData == FIRST_PRIZE;
+    }
     private boolean isSecondPrize(LottoData rankData) {
         return rankData == SECOND_PRIZE;
     }
@@ -64,7 +66,9 @@ public enum LottoData {
     }
 
     private boolean isRankData(LottoData rankData, int matchNumber, boolean matchBonus){
-        if (isSecondPrize(rankData) && matchBonus){
+        if (isFirstPrize(rankData) && !matchBonus){
+            return isMatchNumber(rankData.matchNumber, matchNumber);
+        } else if (isSecondPrize(rankData) && matchBonus) {
             return isMatchNumber(rankData.matchNumber, matchNumber);
         } else if (isThirdPrize(rankData) && !matchBonus) {
             return isMatchNumber(rankData.matchNumber, matchNumber);

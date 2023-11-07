@@ -25,8 +25,15 @@ public class Application {
 	}
 	
 	private void inputMoney() {
+		String input = Console.readLine();
+		int purchase = Integer.parseInt(input);
+		try {
+			isCorrectMoney(purchase);
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("[ERROR] 로또 1장의 가격은 1000원이므로, 구입 금액은 1000원의 배수여야 합니다.");
+		}
 	}
-	
 	private void isCorrectMoney(int n) throws IllegalArgumentException {
 	}
 	

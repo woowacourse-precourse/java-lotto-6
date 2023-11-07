@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.HashMap;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.enums.OutputMessage;
 import lotto.enums.WinningRank;
 

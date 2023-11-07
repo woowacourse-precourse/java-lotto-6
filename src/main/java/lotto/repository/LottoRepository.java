@@ -2,7 +2,7 @@ package lotto.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class LottoRepository {
     private final List<Lotto> lottos = new ArrayList<>();

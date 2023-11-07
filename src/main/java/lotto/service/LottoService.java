@@ -3,12 +3,11 @@ package lotto.service;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.enums.LottoConfig;
 import lotto.enums.WinningRank;
 import lotto.repository.LottoRepository;
 import lotto.utils.RandomGenerator;
-import lotto.view.OutputView;
 
 public class LottoService {
     private final LottoRepository lottoRepository;
@@ -17,7 +16,7 @@ public class LottoService {
         this.lottoRepository = new LottoRepository();
     }
 
-    public void publishLottos(int payAmount) {
+    public List<Lotto> publishLottos(int payAmount) {
         int lottoCount = calculateLottoCount(payAmount);
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = RandomGenerator.getRandomNumber(
@@ -26,38 +25,14 @@ public class LottoService {
                     LottoConfig.LOTTO_NUMBER_SIZE.getValue());
             lottoRepository.save(new Lotto(lottoNumbers));
         }
-
-        OutputView.printPaySuccessMessageMessage(lottoCount);
-        OutputView.printLottos(lottoRepository.getLottos());
-
+        return lottoRepository.getLottos();
     }
 
-    public int calculateLottoCount(int payAmount) {
-        int lottoCount = payAmount / LottoConfig.LOTTO_AMOUNT.getValue();
-        return lottoCount;
+    private int calculateLottoCount(int payAmount) {
+        return payAmount / LottoConfig.LOTTO_AMOUNT.getValue();
     }
 
-    public long announceWinningResult(List<Integer> jackpotNumbers, int bonusNumber) {
-        OutputView.printWinningStatisticsMessage();
-        HashMap<WinningRank, Integer> winningStatistics = getWinningStatistics(jackpotNumbers, bonusNumber);
-        OutputView.printWinningStatistics(winningStatistics);
-
-        return calculateReturnAmount(winningStatistics);
-    }
-
-    private long calculateReturnAmount(HashMap<WinningRank, Integer> winningStatistics) {
-        long totalReturnAmount = 0;
-        List<WinningRank> ranks = Arrays.stream(WinningRank.values()).toList();
-
-        for (WinningRank rank : ranks) {
-            int rankCount = winningStatistics.get(rank);
-            totalReturnAmount += (long) rankCount * rank.getReturnAmount();
-        }
-
-        return totalReturnAmount;
-    }
-
-    private HashMap<WinningRank, Integer> getWinningStatistics(List<Integer> jackpotNumbers, int bonusNumber) {
+    public HashMap<WinningRank, Integer> getWinningStatistics(List<Integer> jackpotNumbers, int bonusNumber) {
         HashMap<WinningRank, Integer> winningStatistics = new HashMap<>();
         initHashMap(winningStatistics);
 
@@ -95,9 +70,21 @@ public class LottoService {
         return matchCount;
     }
 
-    public void announceRateOfReturn(int payAmount, long returnAmount) {
+    public long calculateReturnAmount(HashMap<WinningRank, Integer> winningStatistics) {
+        long totalReturnAmount = 0;
+        List<WinningRank> ranks = Arrays.stream(WinningRank.values()).toList();
+
+        for (WinningRank rank : ranks) {
+            int rankCount = winningStatistics.get(rank);
+            totalReturnAmount += (long) rankCount * rank.getReturnAmount();
+        }
+
+        return totalReturnAmount;
+    }
+
+    public double getRateOfReturn(int payAmount, long returnAmount) {
         double ratio = (((double) returnAmount / (double) payAmount) * 100);
         double rateOfReturn = Math.round(ratio * 100) / 100.0;
-        OutputView.printRateOfReturn(rateOfReturn);
+        return rateOfReturn;
     }
 }

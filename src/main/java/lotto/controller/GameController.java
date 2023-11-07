@@ -65,7 +65,7 @@ public class GameController {
     private void printGameResult(LottoResult result, Payment payment) {
         OutputView.printWinningResult(result);
 
-        String returnRate = payment.getReturnRate(result.calculateLottoReward());
+        String returnRate = payment.getReturnRate(result.getLottoRewardSum());
         OutputView.printReturnRate(returnRate);
     }
 }

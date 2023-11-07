@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Bonus;
@@ -44,28 +43,25 @@ public class LottoController {
     private void showResult() {
         List<LottoRank> ranks = lottoTickets.getWiningRanks(winningLottoNumbers);
         Map<LottoRank, Integer> countRanks = getCountRanks(ranks);
-        List<String> results = new ArrayList<>();
-        for (Map.Entry<LottoRank, Integer> entry : countRanks.entrySet()) {
-            LottoRank key = entry.getKey();
-            Integer value = entry.getValue();
-            results.add(String.format(key.getMessage(), value.intValue()));
-        }
+
+        List<String> results = countRanks.entrySet().stream()
+                .map(entry -> String.format(entry.getKey().getMessage(), entry.getValue()))
+                .toList();
+
         outputView.printWinningResult(results);
         showRateOfRevenue(ranks);
     }
 
     private Map<LottoRank, Integer> getCountRanks(List<LottoRank> ranks) {
-        Map<LottoRank, Integer> countRanks = new HashMap<>();
-        countRanks.put(LottoRank.FIRST, 0);
-        countRanks.put(LottoRank.SECOND, 0);
-        countRanks.put(LottoRank.THIRD, 0);
-        countRanks.put(LottoRank.FOURTH, 0);
-        countRanks.put(LottoRank.FIFTH, 0);
-        for (int i = 0; i < ranks.size(); i++) {
-            if (ranks.get(i) == LottoRank.NONE) {
-                continue;
-            }
-            countRanks.put(ranks.get(i), countRanks.get(ranks.get(i)) + 1);
+        Map<LottoRank, Integer> countRanks = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.values()) {
+            countRanks.put(rank, 0);
+        }
+        countRanks.remove(LottoRank.NONE);
+        ranks.removeIf(lottoRank -> lottoRank == LottoRank.NONE);
+
+        for (LottoRank rank : ranks) {
+            countRanks.put(rank, countRanks.get(rank) + 1);
         }
         return countRanks;
     }

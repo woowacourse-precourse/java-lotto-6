@@ -86,15 +86,6 @@ public class GameService {
             if (!number.matches("\\d+")) {
                 throw new IllegalArgumentException();
             }
-
-            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
-                throw new IllegalArgumentException();
-            }
-
-            if (uniqueWinningNumber.contains(number)) {
-                throw new IllegalArgumentException();
-            }
-            uniqueWinningNumber.add(Integer.parseInt(number));
         }
     }
 

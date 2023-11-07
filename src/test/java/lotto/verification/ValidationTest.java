@@ -32,6 +32,18 @@ class ValidationTest {
         });
     }
 
+    @DisplayName("구입 금액에 대해 아무것도 입력 안했을 때 예외가 발생한다.")
+    @Test
+    void verifyEmptyInputMoney() {
+        //given
+        final String case1 = "";
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyEmptyInputMoney(case1);
+        });
+    }
+
 
     @DisplayName("구입 금액 입력 값이 숫자가 아니면 예외가 발생한다.")
     @Test
@@ -67,10 +79,6 @@ class ValidationTest {
         assertDoesNotThrow(() -> {
             Validation.verifyStringToLong(case5);
         });
-    }
-
-    @Test
-    void verifyIntegerWinningLottoNumber() {
     }
 
     @Test

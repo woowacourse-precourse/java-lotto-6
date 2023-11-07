@@ -48,6 +48,24 @@ public class InputIntegrationTest extends NsTest {
         );
     }
 
+    @DisplayName("잘못된 보너스 번호를 입력했을 때 예외가 발생하고, 재 입력한다.")
+    @Test
+    void inputWrongBonusNumber() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "1", "a", "46", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

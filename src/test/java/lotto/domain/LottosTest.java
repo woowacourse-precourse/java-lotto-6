@@ -2,7 +2,9 @@ package lotto.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,5 +41,19 @@ class LottosTest {
         lottosB.addLotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertEquals(lottosA, lottosB);
+    }
+
+    @Test
+    void Lottos_내부_필드가_동일하다면_Hash_자료구조에서도_객체로_인식한다() {
+        Set<Lottos> set = new HashSet<>();
+        Lottos lottosA = new Lottos();
+        lottosA.addLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lottos lottosB = new Lottos();
+        lottosB.addLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        set.add(lottosA);
+        set.add(lottosB);
+
+        assertEquals(1, set.size());
     }
 }

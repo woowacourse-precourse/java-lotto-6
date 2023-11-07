@@ -13,13 +13,14 @@ import lotto.constant.LottoRanking;
 public record WinningStatistics(Map<LottoRanking, Integer> lottoResults) {
     private static final DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
-    public String convertOutputTextFormat() {
+    @Override
+    public String toString() {
         return String.format("""
-                %d개 일치 (%s원) - %d개
-                %d개 일치 (%s원) - %d개
-                %d개 일치 (%s원) - %d개
-                %d개 일치, 보너스 볼 일치 (%s원) - %d개
-                %d개 일치 (%s원) - %d개""",
+                        %d개 일치 (%s원) - %d개
+                        %d개 일치 (%s원) - %d개
+                        %d개 일치 (%s원) - %d개
+                        %d개 일치, 보너스 볼 일치 (%s원) - %d개
+                        %d개 일치 (%s원) - %d개""",
                 FIFTH.getSameCount(), decimalFormat.format(FIFTH.getPrize()), lottoResults.get(FIFTH),
                 FOURTH.getSameCount(), decimalFormat.format(FOURTH.getPrize()), lottoResults.get(FOURTH),
                 THIRD.getSameCount(), decimalFormat.format(THIRD.getPrize()), lottoResults.get(THIRD),

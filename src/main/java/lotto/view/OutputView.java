@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
-        printText(winningStatistics.convertOutputTextFormat());
+        printText(winningStatistics.toString());
     }
 
     public void printRateOfReturn(RateOfReturn rateOfReturn) {

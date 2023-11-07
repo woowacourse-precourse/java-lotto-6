@@ -18,7 +18,6 @@ public class InputValidator {
     private static final int LOTTO_SIZE = 6;
     private static final int MIN_LOTTO_NUM = 1;
     private static final int MAX_LOTTO_NUM = 45;
-    private static final int ZERO = 0;
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
     private static final Pattern LOTTO_PATTERN = Pattern.compile("^(\\d*,)*\\d*$");

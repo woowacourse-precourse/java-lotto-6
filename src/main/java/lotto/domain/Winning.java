@@ -30,39 +30,6 @@ public class Winning extends LottoRule {
         return totalPrize;
     }
 
-    public void addPrizeCount(Map<Prize, Integer> totalPrize, Prize prize) {
-        int count = totalPrize.get(prize);
-        totalPrize.put(prize, ++count);
-    }
-
-    public int getMatchNumberCount(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
-
-        return numbers.stream()
-                .filter(this.numbers::contains)
-                .collect(Collectors.toList())
-                .size();
-    }
-
-    public boolean isContainBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    public Prize getPrize(int matchCount, boolean isMatchBonus) {
-        if (matchCount == 6) {
-            return Prize.SIX_MATCH;
-        } else if (matchCount == 5 && isMatchBonus) {
-            return Prize.FIVE_MATCH_BONUS;
-        } else if (matchCount == 5) {
-            return Prize.FIVE_MATCH;
-        } else if (matchCount == 4) {
-            return Prize.FOUR_MATCH;
-        } else if (matchCount == 3) {
-            return Prize.THREE_MATCH;
-        }
-        return null;
-    }
-
     public void validateBonus(int bonusNumber) {
         if (isDuplicateBonusNumber(bonusNumber)) {
             ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
@@ -90,12 +57,46 @@ public class Winning extends LottoRule {
         this.bonusNumber = bonusNumber;
     }
 
+
+    void addPrizeCount(Map<Prize, Integer> totalPrize, Prize prize) {
+        int count = totalPrize.get(prize);
+        totalPrize.put(prize, ++count);
+    }
+
+    int getMatchNumberCount(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        return numbers.stream()
+                .filter(this.numbers::contains)
+                .collect(Collectors.toList())
+                .size();
+    }
+
+    boolean isContainBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    Prize getPrize(int matchCount, boolean isMatchBonus) {
+        if (matchCount == 6) {
+            return Prize.SIX_MATCH;
+        } else if (matchCount == 5 && isMatchBonus) {
+            return Prize.FIVE_MATCH_BONUS;
+        } else if (matchCount == 5) {
+            return Prize.FIVE_MATCH;
+        } else if (matchCount == 4) {
+            return Prize.FOUR_MATCH;
+        } else if (matchCount == 3) {
+            return Prize.THREE_MATCH;
+        }
+        return null;
+    }
+
+    
     private boolean isDuplicateBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             return true;
         }
         return false;
     }
-
 
 }

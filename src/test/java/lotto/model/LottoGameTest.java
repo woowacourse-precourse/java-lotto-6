@@ -19,7 +19,9 @@ class LottoGameTest {
     @Test
     @DisplayName("로또 발행 테스트")
     void issuanceLotto() {
+        assertEquals(1, lottoGame.issuanceLotto(1000).size());
         assertEquals(10, lottoGame.issuanceLotto(10000).size());
+        assertEquals(100, lottoGame.issuanceLotto(100000).size());
     }
 
     @Test

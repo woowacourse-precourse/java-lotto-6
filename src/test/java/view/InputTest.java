@@ -20,5 +20,13 @@ public class InputTest {
                 .isInstanceOf(NullInputException.class);
     }
 
+    @DisplayName("입력이 숫자가 아닐 시 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a","1,a","a,b","1,2,3,a"})
+    void inputNotInteger(String input){
+        assertThatThrownBy(() -> InputValidator.validateInput(input))
+                .isInstanceOf(NotIntegerException.class);
+    }
+
 
 }

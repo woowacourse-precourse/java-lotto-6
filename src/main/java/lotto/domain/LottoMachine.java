@@ -25,7 +25,7 @@ public class LottoMachine {
         return amount / LOTTO_PRICE;
     }
 
-    public Lotto buyLotto() {
+    private Lotto buyLotto() {
         return new Lotto(lottoNumberGenerator.generateLottoNumbers());
     }
 }

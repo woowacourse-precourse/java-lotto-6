@@ -30,7 +30,7 @@ public class GameController {
         printer.countOfLotto(money / CommonUnits.MONEY_UNIT);
         printer.allLotto(pocket.getLottos().stream().map(it -> new LottoNumberDTO(it.getNumbers()))
                 .collect(Collectors.toList()));
-        discriminator.setCorrectNumbers(inputter.lottoNumbers().getLotto());
+        discriminator.setCorrectNumbers(new Lotto(inputter.lottoNumbers().getLotto()));
         discriminator.setBonus(inputter.bonus());
         pocket.getLottos().stream().forEach(it -> discriminator.discriminate(it.getNumbers()));
         printer.statistic(discriminator.getStatistic());

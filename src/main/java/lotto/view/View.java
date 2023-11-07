@@ -62,6 +62,7 @@ public class View {
             winningLotto.validateBonus(bonus);
             return bonus;
         } catch (IllegalArgumentException e) {
+            output(e.getMessage());
             return inputAndValidateBonus(winningLotto);
         }
     }

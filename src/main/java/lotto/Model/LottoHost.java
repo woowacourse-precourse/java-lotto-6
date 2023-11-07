@@ -25,8 +25,15 @@ public class LottoHost {
     }
 
     public void initBonusNumber(Integer number){
+        validateLottoNumber(number);
         bonusNumber = number;
     }
+    private void validateLottoNumber(Integer number){
+        if(validateNumberOutRange(number)){
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
+        }
+    }
+
     private boolean validateNumbersDuplicate(List<Integer> numbers){
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {

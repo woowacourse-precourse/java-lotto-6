@@ -133,4 +133,15 @@ class WinningTest {
         assertThat(prize).isEqualTo(Prize.FIVE_MATCH_BONUS);
     }
 
+    @DisplayName("당첨 통게에서 해당하는 상금의 카운트를 증가시킨다.")
+    @Test
+    void addPrizeCount() {
+        //Given
+        Map<Prize, Integer> totalPrize = Prize.initTotalPrizeMap();
+        Prize prize = Prize.SIX_MATCH;
+        //When
+        winning.addPrizeCount(totalPrize, prize);
+        //Then
+        assertThat(totalPrize.get(prize)).isEqualTo(1);
+    }
 }

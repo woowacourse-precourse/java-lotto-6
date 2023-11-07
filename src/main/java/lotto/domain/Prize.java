@@ -20,7 +20,15 @@ public enum  Prize {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         this.message = message + "(" + decimalFormat.format(price) + "원)";
     }
-    
+
+    public static Map<Prize, Integer> initTotalPrizeMap() {
+        Map<Prize, Integer> totalPrize = new HashMap<>();
+        for (Prize prize : Prize.values()) {
+            totalPrize.put(prize, 0);
+        }
+        return totalPrize;
+    }
+
     public int getPrice() {
         return price;
     }

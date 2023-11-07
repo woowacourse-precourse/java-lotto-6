@@ -17,6 +17,10 @@ public class Winning extends LottoRule {
     public Winning(List<Integer> numbers) {
         this.numbers = numbers;
     }
+    public void addPrizeCount(Map<Prize, Integer> totalPrize, Prize prize) {
+        int count = totalPrize.get(prize);
+        totalPrize.put(prize, ++count);
+    }
 
     public int getMatchNumberCount(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();

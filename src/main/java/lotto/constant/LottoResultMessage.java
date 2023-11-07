@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum ResultMessage {
+public enum LottoResultMessage {
     THREE_MATCH("3개 일치 (5,000원) - %s개"),
     FOUR_MATCH("4개 일치 (50,000원) - %s개"),
     FIVE_MATCH("5개 일치 (1,500,000원) - %s개"),
@@ -8,9 +8,9 @@ public enum ResultMessage {
     SIX_MATCH("6개 일치 (2,000,000,000원) - %s개"),
     Profit("총 수익률은 %s%%입니다.");
 
-    private String message;
+    private final String message;
 
-    ResultMessage(final String message) {
+    LottoResultMessage(final String message) {
         this.message = message;
     }
 

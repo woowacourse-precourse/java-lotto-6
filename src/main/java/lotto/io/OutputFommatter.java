@@ -3,7 +3,7 @@ package lotto.io;
 import java.util.EnumMap;
 import lotto.constant.LottoResultRule;
 import lotto.constant.ProcessMessage;
-import lotto.constant.ResultMessage;
+import lotto.constant.LottoResultMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
@@ -33,24 +33,24 @@ public class OutputFommatter {
     public String toLottoResult(final WinningStatistic winningStatistic) {
         final StringBuilder stringbuilder = new StringBuilder();
         EnumMap<LottoResultRule, Integer> enumMap = winningStatistic.toelements();
-        stringbuilder.append(String.format(ResultMessage.THREE_MATCH.toMessage(),
+        stringbuilder.append(String.format(LottoResultMessage.THREE_MATCH.toMessage(),
                         enumMap.get(LottoResultRule.THREE_MATCH).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());
-        stringbuilder.append(String.format(ResultMessage.FOUR_MATCH.toMessage(),
+        stringbuilder.append(String.format(LottoResultMessage.FOUR_MATCH.toMessage(),
                         enumMap.getOrDefault(LottoResultRule.FOUR_MATCH, 0).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());
-        stringbuilder.append(String.format(ResultMessage.FIVE_MATCH.toMessage(),
+        stringbuilder.append(String.format(LottoResultMessage.FIVE_MATCH.toMessage(),
                         enumMap.getOrDefault(LottoResultRule.FIVE_MATCH, 0).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());
-        stringbuilder.append(String.format(ResultMessage.FIVE_MATCH_WITH_BONUS.toMessage(),
+        stringbuilder.append(String.format(LottoResultMessage.FIVE_MATCH_WITH_BONUS.toMessage(),
                         enumMap.getOrDefault(LottoResultRule.FIVE_MATCH_WITH_BONUS, 0).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());
-        stringbuilder.append(String.format(ResultMessage.SIX_MATCH.toMessage(),
+        stringbuilder.append(String.format(LottoResultMessage.SIX_MATCH.toMessage(),
                 enumMap.getOrDefault(LottoResultRule.SIX_MATCH, 0).toString()));
         return stringbuilder.toString();
     }
 
     public String toLottoProfit(final String profit) {
-        return String.format(ResultMessage.Profit.toMessage(), profit);
+        return String.format(LottoResultMessage.Profit.toMessage(), profit);
     }
 }

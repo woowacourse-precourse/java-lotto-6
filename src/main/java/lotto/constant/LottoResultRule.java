@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum LottoResultRule {
-    THREE_MATCH(3, false, 5000),
-    FOUR_MATCH(4, false, 50000),
-    FIVE_MATCH(5, false, 1500000),
-    FIVE_MATCH_WITH_BONUS(5, true, 30000000),
-    SIX_MATCH(6, false, 2000000000),
+    THREE_MATCH(3, false, 5_000),
+    FOUR_MATCH(4, false, 50_000),
+    FIVE_MATCH(5, false, 1_500_000),
+    FIVE_MATCH_WITH_BONUS(5, true, 30_000_000),
+    SIX_MATCH(6, false, 2_000_000_000),
     NONE(0, false, 0);
 
     private final Integer matchCount;

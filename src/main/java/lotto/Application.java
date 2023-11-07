@@ -252,6 +252,8 @@ public class Application {
 	}
 	
 	private int isContainedWinning(int v) {
+		for (int i=0; i<6; i++)
+			if (winningNumbers.get(i) == v) return 1;
 		return 0;
 	}
 	

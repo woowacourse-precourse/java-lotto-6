@@ -1,13 +1,12 @@
 package lotto.util.validator;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstants;
 
 public abstract class AbstractNumberValidator<T> implements InputValidator<T> {
-    protected static final int MIN_WINNING_NUMBER = 1;
-    protected static final int MAX_WINNING_NUMBER = 45;
 
     protected void validateNumberInRange(Integer number) {
-        if (number < MIN_WINNING_NUMBER || number > MAX_WINNING_NUMBER) {
+        if (number < LottoConstants.MIN_NUMBER || number > LottoConstants.MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_IS_NOT_VALID_RANGE);
         }
     }

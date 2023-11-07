@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validator {
-    private static final Pattern purchaseAmountPattern = Pattern.compile("^[1-9]([0-9])*[05]00$");
+    private static final Pattern purchaseAmountPattern = Pattern.compile("^[1-9]([0-9])*000$");
     private static final Pattern winningNumberPattern = Pattern.compile(
             "(([1-9]|[1-3][0-9]|4[0-5]),){5}[1-9]|[1-3][0-9]|4[0-5]");
     private static final Pattern bonusNumberPattern = Pattern.compile("[1-9]|[1-3][0-9]|4[0-5]");

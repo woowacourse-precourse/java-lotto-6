@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.service.ReturnRateCalculator;
 import lotto.service.TotalStatCalculator;
 import lotto.util.OutputMessage;
-import lotto.util.RewardValue;
 
 public class OutputController {
     private TotalStatCalculator totalStatCalculator;
@@ -27,7 +26,7 @@ public class OutputController {
 
     public void printWinningStatistics(int customerPrice) {
         Map<String, Integer> winningStatistics = totalStatCalculator.getTotalLottoStats();
-        String returnRate = getReturnRate(winningStatistics, customerPrice);
+        String returnRate = ReturnRateCalculator.getReturnRate(winningStatistics, customerPrice);
 
         System.out.println();
         System.out.println(OutputMessage.TOTAL_STATISTICS_TITLE);
@@ -39,28 +38,9 @@ public class OutputController {
         System.out.println(String.format(OutputMessage.TOTAL_RETURN_VALUE_MESSAGE.toString(), returnRate));
     }
 
-    private String getReturnRate(Map<String, Integer> winningStatistics, int customerPrice) {
-
-        List<String> messages = getMessages(winningStatistics,true);
-        List<RewardValue> rewardValues = Arrays.stream(RewardValue.values()).toList();
-        double returnRate = 0.0;
-
-        for (int count = 0; count < messages.size(); count++) {
-            double rewardValue = Double.parseDouble(rewardValues.get(count).toString().replace(",",""));
-            int rewardCount = winningStatistics.get(messages.get(count));
-            returnRate += getProceed(rewardValue, rewardCount);
-        }
-
-        return String.format("%.1f", (returnRate / customerPrice)*100);
-    }
-
-    private static List<String> getMessages(Map<String, Integer> winningStatistics, boolean isReverse) {
+    public static List<String> getMessages(Map<String, Integer> winningStatistics, boolean isReverse) {
         if(isReverse)
             return winningStatistics.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         return winningStatistics.keySet().stream().sorted().collect(Collectors.toList());
-    }
-
-    private double getProceed(double rewardValue, int rewardCount) {
-        return rewardCount * rewardValue;
     }
 }

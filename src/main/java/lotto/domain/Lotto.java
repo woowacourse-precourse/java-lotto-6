@@ -61,7 +61,7 @@ public class Lotto {
         return numbersConverted;
     }
 
-    public int getNumberOfMatching(final Lotto otherLotto) {
+    public int countMatchingWith(final Lotto otherLotto) {
         int numberOfMatching = 0;
 
         for (int number : numbers) {

@@ -1,12 +1,10 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,5 +27,14 @@ class LottoCashierTest {
     public void testInvalidLottoCount(int invalidMoney) {
         LottoCashier cashier = new LottoCashier();
         assertThrows(IllegalArgumentException.class, () -> cashier.getLottoCount(invalidMoney), VALIDATE_UNIT_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"5", "10"})
+    @DisplayName("로또 갯수에 맞게 로또를 생성한다.")
+    public void testCreateLottoList(int count) {
+        LottoCashier cashier = new LottoCashier();
+        List<Lotto> lottos = cashier.createLottoList(count);
+        assertEquals(count, lottos.size());
     }
 }

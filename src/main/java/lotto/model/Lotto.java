@@ -1,4 +1,4 @@
-package lotto.Model;
+package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +19,19 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            result.append(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                result.append(", ");
+            }
+        }
+        result.append("]");
+        return result.toString();
     }
 
     // TODO: 추가 기능 구현

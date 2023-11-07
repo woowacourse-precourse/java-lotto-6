@@ -1,16 +1,20 @@
 package lotto.validate;
 
+import lotto.message.ErrorMessage;
+
+import static lotto.message.ErrorMessage.*;
+
 public class Validator {
     public static void validatePurchaseMoney(String money) {
         if (!isNumeric(money)) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(NOT_NUMERIC_EXCEPTION.getMessage());
         }
         int purchaseMoney = Integer.parseInt(money);
         if (!isMultipleOf1000(purchaseMoney)) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력 가능합니다.");
+            throw new IllegalArgumentException(MULTIPLE_OF_THOUSAND_EXCEPTION.getMessage());
         }
         if (!isThousandOrMore(purchaseMoney)) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 이상만 입력 가능합니다.");
+            throw new IllegalArgumentException(THOUSAND_OR_MORE_EXCEPTION.getMessage());
         }
     }
     public static boolean isNumeric(String str) {

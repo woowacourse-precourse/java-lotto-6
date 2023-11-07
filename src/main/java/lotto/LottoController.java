@@ -51,6 +51,6 @@ public class LottoController {
         for (Result result : Result.values()) {
             totalEarning += results.get(result.ordinal()) * result.getEarnings();
         }
-        return totalEarning / (double) purchaseAmount;
+        return (totalEarning / purchaseAmount) * 100;
     }
 }

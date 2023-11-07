@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Application {
 
-    public static final int LOTTO_PRICE = 1000;
+
 
     public static int getPurchaceAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -46,10 +46,7 @@ public class Application {
         return winNumber;
     }
 
-    public static int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
-    }
+
 
     public static void printLottos(List<Lotto> lottos) {
         System.out.println();

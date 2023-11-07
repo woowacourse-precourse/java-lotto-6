@@ -67,6 +67,4 @@ class LottoPriceValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구매 금엑은 음수로 입력하면 안됩니다.");
     }
-
-
 }

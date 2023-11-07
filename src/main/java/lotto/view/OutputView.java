@@ -55,5 +55,4 @@ public class OutputView {
     public static void printPrizePercentResult(BigDecimal out) {
         System.out.printf(RATE_RETURN_MESSAGE, out);
     }
-
 }

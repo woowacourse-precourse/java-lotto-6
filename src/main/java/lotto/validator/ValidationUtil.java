@@ -3,7 +3,7 @@ package lotto.validator;
 import java.util.List;
 
 public class ValidationUtil {
-    
+
     public static boolean isNumber(String input) {
         if (input.isEmpty()) {
             return false;
@@ -31,8 +31,7 @@ public class ValidationUtil {
         }
         return false;
     }
-
-
+    
     public static boolean isOutOfRange(int start, int end, int num) {
         if (num < start || end < num) {
             return true;

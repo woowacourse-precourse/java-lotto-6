@@ -96,5 +96,4 @@ class ValidationUtilTest {
 
         Assertions.assertThat(result).isEqualTo(expected);
     }
-
 }

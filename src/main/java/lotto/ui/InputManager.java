@@ -1,6 +1,7 @@
 package lotto.ui;
 
 import lotto.LottoGenerator;
+import lotto.WinningLotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,10 @@ public class InputManager {
         while (true) {
             System.out.println("\n구입금액을 입력해 주세요.");
             try {
-                return validatedNumber(readLine());
+                int amount = validatedNumber(readLine());
+                LottoGenerator.from(amount);
+
+                return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -35,21 +39,14 @@ public class InputManager {
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             try {
-                return validateBonus(readLine(), winningNumbers);
+                int bonus = validatedNumber(readLine());
+                WinningLotto.of(winningNumbers, bonus);
+
+                return bonus;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private int validateBonus(String input, List<Integer> winningNumbers) {
-        validatedNumber(input);
-
-        int bonus = Integer.parseInt(input);
-        if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.");
-        }
-        return bonus;
     }
 
     private List<Integer> validateNumbers(String input) {

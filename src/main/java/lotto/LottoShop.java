@@ -36,7 +36,12 @@ public class LottoShop {
 		return this.bonusNumber;
 	}
 	
-	private List<Lotto>generateLotto(){
-		//TODO 로또 generate 구현
+	private ArrayList<Lotto> generateLotto(int numberOfLotto){
+		for (i = 0; i < numberOfLotto; i++) {
+			List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
+			Lotto lotto = new Lotto(numbers);
+			this.lottos.add(lotto);
+		}
+		return this.lottos;
 	}
 }

@@ -1,24 +1,23 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.service.BudgetService;
-import lotto.service.LottoService;
-import lotto.service.WinningNumberService;
-import lotto.service.WinningService;
+import lotto.service.*;
 import lotto.view.GameView;
 
 public class LottoController {
     private final BudgetService budgetService;
     private final LottoService lottoService;
-    private final WinningNumberService winningNumberService;
+    private final WinningNumbersService winningNumbersService;
     private final WinningService winningService;
+    private final BonusNumberService bonusNumberService;
     private final GameView gameView;
 
     public LottoController() {
         budgetService = new BudgetService();
         lottoService = new LottoService();
-        winningNumberService = new WinningNumberService();
+        winningNumbersService = new WinningNumbersService();
         winningService = new WinningService();
+        bonusNumberService = new BonusNumberService();
 
         gameView = new GameView();
     }
@@ -27,8 +26,8 @@ public class LottoController {
         gameView.printInputBudgetMessage();
         Budget budget = budgetService.createBudget();
 
-        //todo: view에서 프린트하는 과정에 책임을 더 주는 건 어떨까? -> 현재에는 단순 출력만 하도록 하는데 역할을 더 줘서 처리를 하게 하는 건 어떨까
         Lottos lottos = lottoService.createLottos(budget);
+        //todo: 해당 과정이 controller에 들어있는 것이 적합한지 고려
         int lottosSize = lottoService.getLottosSize(lottos);
         gameView.printLottosSize(lottosSize);
 
@@ -36,10 +35,11 @@ public class LottoController {
         gameView.printLottosNumbers(lottosNumbers);
 
         gameView.printInputWinningNumbersMessage();
-        WinningNumbers winningNumbers = winningNumberService.createWinningNumbers();
+        WinningNumbers winningNumbers = winningNumbersService.createWinningNumbers();
 
         gameView.printInputBonusNumberMessage();
-        WinningNumber bonusNumber = winningNumberService.createBonusNumber();
+        //todo: winningNumbers와 중복 검사 필요
+        WinningNumber bonusNumber = bonusNumberService.createBonusNumber();
 
         //todo: 이 클래스의 존재가 올바른지?
         WinningManager winningManager = new WinningManager(winningNumbers, bonusNumber);
@@ -48,6 +48,7 @@ public class LottoController {
         gameView.printWinningStatistic(winningScores.toString());
 
         double profit = lottoService.getReturnOfLottos(winningScores, budget);
+        //todo: ROI명 수정
         gameView.printROI(profit);
     }
 }

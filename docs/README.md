@@ -1,9 +1,9 @@
 # 🎰 미션 - 로또
 ## 🔨 구현 기능 목록
-- [ ] 로또번호를 관리하는 객체 구현 - Lotto
-    - [ ] 길이가 6개인지 확인 - Lotto#validateSize()
-    - [ ] 중복된 숫자가 없는지 확인 - Lotto#validateDuplicate()
-    - [ ] 다른 LottoNumber과 겹치는 수 확인 - Lotto#getMachCount()
+- [x] 로또번호를 관리하는 객체 구현 - Lotto
+    - [x] 길이가 6개인지 확인 - Lotto#validateSize()
+    - [x] 중복된 숫자가 없는지 확인 - Lotto#validateDuplicate()
+    - [x] 다른 LottoNumber과 겹치는 수 확인 - Lotto#getMachCount()
 - [ ] 로또티켓(로또번호 + 보너스 번호)를 관리하는 객체 구현 - (i)LottoTicket
     - [ ] 다른 LottoTicket과 대조 결과 획득 - LottoTicket#checkWinning() 
     - [ ] 보너스 번호가 없는 로또 티켓 객체 - NormalLottoTicket (i)LottoTicket

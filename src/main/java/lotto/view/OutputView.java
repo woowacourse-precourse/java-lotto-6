@@ -19,12 +19,12 @@ public class OutputView {
         printBuyMessage(lottosCount);
         for(Lotto lotto : lottos) {
             String lottoNumber = StringHandler.joinBy(lotto.getNumbers(), DELIMITER);
-            System.out.print(ARRAY_BEGIN_STRING + lottoNumber + ARRAY_END_STRING);
+            System.out.println(ARRAY_BEGIN_STRING + lottoNumber + ARRAY_END_STRING);
         }
     }
 
     public void printBuyMessage(int lottosCount) {
-        System.out.printf("%d개를 구매했습니다.", lottosCount);
+        System.out.printf("%d개를 구매했습니다." + System.lineSeparator(), lottosCount);
     }
 
     public void printResultStatistics(List<Integer> result) {
@@ -34,18 +34,18 @@ public class OutputView {
             if(rank == Rank.ZERO) {
                 continue;
             }
-            System.out.printf(rank.getMessage() + RESULT_COUNT, result.get(i));
+            System.out.printf(rank.getMessage() + RESULT_COUNT + System.lineSeparator(), result.get(i));
             i++;
         }
     }
 
     private void printResultStatisticsPhrases() {
-        System.out.print("당첨 통계" + System.lineSeparator() + "---");
+        System.out.print("당첨 통계" + System.lineSeparator() + "---" + System.lineSeparator());
     }
 
     public void printRateOfReturn(int lottoCount, long totalPrize) {
         double rateOfReturn = calculateRateOfReturn(lottoCount, totalPrize);
-        System.out.printf("총 수익률은 %.1f%%입니다.",rateOfReturn);
+        System.out.printf("총 수익률은 %,.1f%%입니다.",rateOfReturn);
     }
 
     public double calculateRateOfReturn(int lottoCount, long totalPrize) {

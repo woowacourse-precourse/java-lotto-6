@@ -49,4 +49,17 @@ public class WinningResultTest {
         // then
         assertThat(winningResult.calculateTotalPrizeMoney()).isEqualTo(1_555_000);
     }
+
+    @DisplayName("로또 당첨금 수익률을 계산해서 반환한다.")
+    @Test
+    void calculateYield() {
+        // given
+        int totalPurchaseAmount = 8_000;
+        double expectedYield = 100 * (double) Rank.THIRD.getPrizeMoney() / totalPurchaseAmount;
+        // when
+        WinningResult winningResult = new WinningResult();
+        winningResult.addResult(Rank.THIRD);
+        // then
+        assertThat(winningResult.calculateYield(totalPurchaseAmount)).isEqualTo(expectedYield);
+    }
 }

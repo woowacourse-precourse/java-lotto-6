@@ -26,7 +26,7 @@ class OutputViewTest {
         OutputView outputView = new OutputView();
         int quantity = 1;
         List<List<Integer>> myLottos = new ArrayList<>();
-        myLottos.add(List.of(1,2,3,4,5,6));
+        myLottos.add(List.of(1,3,2,5,4,6));
 
         //when
         outputView.printLotto(1, myLottos);

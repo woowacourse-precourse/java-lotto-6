@@ -42,7 +42,8 @@ public class MyLotto {
 
     private List<List<Integer>> getMyLottoNumbers() {
         return myLottos.stream()
-                .map(m -> m.getNumbers())
+                .peek(Lotto::sortedLotto)
+                .map(Lotto::getNumbers)
                 .toList();
     }
 

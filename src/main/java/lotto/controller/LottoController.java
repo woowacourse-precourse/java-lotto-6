@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.Lottos;
 import lotto.service.Service;
@@ -25,7 +27,7 @@ public class LottoController {
         outputView.printLottoTicketCount(lottoTicketCount);
         lottos = createLottos(lottoTicketCount);
         outputView.printLottos(lottos);
-        inputView.inputWinningNumbers();
+
     }
 
     private int inputLottoAmount() {
@@ -49,5 +51,17 @@ public class LottoController {
         }
     }
 
+    private List<Integer> inputWinnerNumbers() {
+        Lotto winnerLotto = null;
+        while (true) {
+            try {
+                winnerLotto = new Lotto(service.splitStringToIntegerList(inputView.inputWinningNumbers()));
+                return winnerLotto.getNumbers();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
+
+    }
 
 }

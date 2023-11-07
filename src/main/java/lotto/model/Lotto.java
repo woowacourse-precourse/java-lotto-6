@@ -22,6 +22,10 @@ public class Lotto {
         this.numbers = sortNumbers(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
             throw new InvalidLottoSizeException();

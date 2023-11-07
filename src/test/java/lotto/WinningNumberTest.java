@@ -18,7 +18,7 @@ public class WinningNumberTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> application.checkDelimiter(input))
-                .withMessage("입력 값은 숫자와 쉼표만 올 수 있습니다.");
+                .withMessage("[ERROR]입력 값은 숫자와 쉼표만 올 수 있습니다.");
     }
 
 

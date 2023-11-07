@@ -21,15 +21,16 @@ public class WinningTest {
         assertThat(matchingCount).isEqualTo(3);
     }
 
-    @DisplayName("보너스 볼과 일치하는 수를 가지고 있는지 확인한다.")
+    @DisplayName("일치하는 로또 번호의 개수가 5개일 때 보너스 볼과 일치하는 수를 가지고 있는지 확인한다.")
     @Test
-    void checkMatchingWithBonusNumber() {
+    void isMatchingWithBonusNumberWhenCountIs5() {
         Application application = new Application();
 
         List<Integer> userLotto = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 6;
+        int matcingCount = 5;
 
-        boolean result = application.isMatchingWithBonusNumber(userLotto, bonusNumber);
+        boolean result = application.isMatchingWithBonusNumberWhenCountIs5(userLotto, bonusNumber, matcingCount);
 
         assertThat(result).isEqualTo(true);
     }

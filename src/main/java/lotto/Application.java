@@ -181,13 +181,18 @@ public class Application {
         return winningNum;
     }
 
-    public int findNumberOfMatchingLottoNumbers(List<Integer> userLotto, List<Integer> winningLotto) {
+    public int findNumberOfMatchingLottoNumbers(List<Integer> userLotto,
+            List<Integer> winningLotto) {
         return (int) userLotto.stream()
                 .filter(number -> winningLotto.contains(number))
                 .count();
     }
 
-    public boolean isMatchingWithBonusNumber(List<Integer> userLotto, int bonusNumber) {
-        return userLotto.contains(bonusNumber);
+    public boolean isMatchingWithBonusNumberWhenCountIs5(List<Integer> userLotto, int bonusNumber,
+            int matchingCount) {
+        if (matchingCount == 5) {
+            return userLotto.contains(bonusNumber);
+        }
+        return false;
     }
 }

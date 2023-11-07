@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class LotteriesTest {
 
     @Test
-    void 구매_수량이_따라_로또가_발행되는지_확인() {
+    void 구매_수량에_따라_로또가_발행되는지_확인() {
         int purchaseCount = 5;
         Lotteries lotteries = Lotteries.from(5);
 

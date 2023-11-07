@@ -1,11 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.InputConstant;
 import lotto.constant.StringConstant;
 import lotto.validation.InputValidator;
 
 public class InputView {
+
+    private static final String REQUEST_PURCHASE_AMOUNT_MESSASE = "구매금액을 입력해 주세요.";
+    private static final String REQUEST_WINNING_NUMBER_MESSASE = "당첨 번호를 입력해 주세요.";
+    private static final String REQUEST_BONUS_NUMBER_MESSASE = "보너스 번호를 입력해 주세요.";
 
     private final InputValidator inputValidator;
 
@@ -14,14 +17,14 @@ public class InputView {
     }
 
     public String inputPurchaseAmount() {
-        System.out.println(InputConstant.PURCHASE_AMOUNT.getMessage());
+        System.out.println(REQUEST_PURCHASE_AMOUNT_MESSASE);
         String purchaseAmount = getUserInput();
         inputValidator.validateUserInput(purchaseAmount);
         return purchaseAmount;
     }
 
     public String inputWinningNumber() {
-        System.out.println(InputConstant.WINNING_NUMBER.getMessage());
+        System.out.println(REQUEST_WINNING_NUMBER_MESSASE);
         String userInput = getUserInput();
         String winningNumber = userInput.replaceAll(StringConstant.DIVISION_STANDARD.getMessage(), "");
         inputValidator.validateUserInput(winningNumber);
@@ -29,7 +32,7 @@ public class InputView {
     }
 
     public String inputBonusNumber() {
-        System.out.println(InputConstant.BONUS_NUMBER.getMessage());
+        System.out.println(REQUEST_BONUS_NUMBER_MESSASE);
         String bonusNumber = getUserInput();
         inputValidator.validateUserInput(bonusNumber);
         return bonusNumber;

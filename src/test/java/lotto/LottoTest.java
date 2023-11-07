@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.constant.ExceptionConstant;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

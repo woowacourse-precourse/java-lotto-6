@@ -2,7 +2,6 @@ package lotto.readUserInput;
 
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.regex.Pattern;
 import lotto.validation.ErrorValidation;
 
 public class BonusNumbers implements UserInput {

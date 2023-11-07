@@ -10,8 +10,8 @@ public class BonusNumber {
     private final int value;
 
     public BonusNumber(String number, final Lotto lotto){
-        number = removeSpace(number);
         validate(number,lotto);
+        number = removeSpace(number);
         value = Integer.parseInt(number);
     }
 
@@ -21,6 +21,9 @@ public class BonusNumber {
 
     private void validate(String number, Lotto lotto){
         if(isEmpty(number)) ExceptionMessages.BONUS_NUMBER_IS_EMPTY.throwException();
+
+        number = removeSpace(number);
+
         if(!isDigit(number)) ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.throwException();
 
         int convertNumber = Integer.parseInt(number);
@@ -34,6 +37,7 @@ public class BonusNumber {
     }
 
     private boolean isDigit(String number){
+        number = number.replace("-","");
         return Character.isDigit(number.charAt(0));
     }
 

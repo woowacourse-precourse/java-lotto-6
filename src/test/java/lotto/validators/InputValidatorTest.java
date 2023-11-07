@@ -1,13 +1,10 @@
 package lotto.validators;
 
-import lotto.model.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
 
@@ -56,7 +53,23 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-//    @Test
-//    void validateBonusNumberInput() {
-//    }
+    @DisplayName("입력한 보너스 번호의 범위가 기준에 벗어나면 예외가 발생한다.")
+    @Test
+    void validateBonusNumberInputByWrongRange() {
+        String bonusNumberInput = "46";
+        List<String> winningNumbers = List.of("1", "2", "3", "4", "5", "6");
+
+        assertThatThrownBy(() -> InputValidator.validateBonusNumberInput(bonusNumberInput, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력한 보너스 번호가 당첨 번호와 중복이 있으면 예외가 발생한다.")
+    @Test
+    void validateBonusNumberInputByDuplicatedNumber() {
+        String bonusNumberInput = "6";
+        List<String> winningNumbers = List.of("1", "2", "3", "4", "5", "6");
+
+        assertThatThrownBy(() -> InputValidator.validateBonusNumberInput(bonusNumberInput, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

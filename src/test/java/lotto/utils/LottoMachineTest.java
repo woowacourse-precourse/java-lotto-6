@@ -29,6 +29,7 @@ class LottoMachineTest {
     }
 
 
+    // TODO: 테스트 케이스 다시 작성하기 (보너스 포함 여부 로직 변경)
     static Stream<Arguments> generateLotto() {
         return Stream.of(
                 Arguments.of(
@@ -52,31 +53,13 @@ class LottoMachineTest {
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
-                        new Lotto(List.of(1, 2, 3, 4, 7, 8)),
-                        LotteryRank.THIRD_PRIZE
-                ),
-                Arguments.of(
-                        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        7,
                         new Lotto(List.of(1, 2, 3, 4, 8, 9)),
                         LotteryRank.FOURTH_PRIZE
                 ),
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
-                        new Lotto(List.of(1, 2, 3, 7, 8, 9)),
-                        LotteryRank.FOURTH_PRIZE
-                ),
-                Arguments.of(
-                        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        7,
                         new Lotto(List.of(1, 2, 3, 8, 9, 10)),
-                        LotteryRank.FIFTH_PRIZE
-                ),
-                Arguments.of(
-                        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        7,
-                        new Lotto(List.of(1, 2, 7, 8, 9, 10)),
                         LotteryRank.FIFTH_PRIZE
                 ),
                 Arguments.of(

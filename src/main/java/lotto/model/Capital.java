@@ -2,12 +2,9 @@ package lotto.model;
 
 import lotto.constant.LottoConstant;
 
-public class Money {
-    private final int amount;
-
-    public Money(int amount) {
+public record Capital(int amount) {
+    public Capital {
         validate(amount);
-        this.amount = amount;
     }
 
     private void validate(int amount) {

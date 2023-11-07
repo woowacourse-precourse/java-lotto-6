@@ -2,7 +2,7 @@ package lotto.utils;
 
 import lotto.constant.LottoNumberRange;
 import lotto.model.Lotto;
-import lotto.model.Money;
+import lotto.model.Capital;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public class StringUtil {
 
-    public static Money stringToMoney(String input) {
+    public static Capital stringToMoney(String input) {
         if (containsThousandSeparator(input)) {
             validateCommaAtPosition(input);
             input = removeComma(input);
@@ -26,7 +26,7 @@ public class StringUtil {
             throw new IllegalArgumentException();
         }
 
-        return new Money(amount);
+        return new Capital(amount);
     }
 
     protected static boolean containsThousandSeparator(String input) {

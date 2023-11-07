@@ -13,6 +13,7 @@ import lotto.io.InputNumberImpl;
 import lotto.io.PrintGenerator;
 import lotto.io.PrintGeneratorImpl;
 
+//게임 흐름 진행 클래스
 public class LottoProcessImpl implements LottoProcess {
 
 	private final InputNumber inputNumber;
@@ -30,13 +31,18 @@ public class LottoProcessImpl implements LottoProcess {
 	public void playGame() {
 		PrintGenerator.printInputMent("구입금액을");
 		inputPrice();
+
 		List<List<Integer>> IssuedLotto = generateLotto();
+
 		PrintGenerator.printInputMent("당첨 번호를");
 		inputWinningNumbers();
+
 		PrintGenerator.printInputMent("보너스 번호를");
 		inputBonusNumber();
+
 		lotto.checkLotto(bonus.getNumber(), IssuedLotto, money);
 		PrintGenerator.printWinningStatistics();
+
 		double profitRate = money.calculateProfitRate();
 		PrintGenerator.printBenefit(profitRate);
 	}

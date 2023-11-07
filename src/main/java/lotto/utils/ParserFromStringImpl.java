@@ -1,5 +1,6 @@
 package lotto.utils;
 
+//파싱 관련 기능 클래스
 public class ParserFromStringImpl implements ParserFromString {
 
 	@Override

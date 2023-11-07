@@ -1,6 +1,5 @@
 package lotto.enumContainer;
 
-import lotto.dataObjects.Lotto;
 import lotto.dataObjects.Money;
 
 public enum LottoResult {

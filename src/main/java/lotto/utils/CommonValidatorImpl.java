@@ -2,11 +2,11 @@ package lotto.utils;
 
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.RelateToLotto;
 
+//공통 검증 기능 클래스
 public class CommonValidatorImpl implements CommonValidator {
 
 	private final ParserFromString parser;

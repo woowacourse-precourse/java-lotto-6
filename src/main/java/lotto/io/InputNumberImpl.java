@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.CommonValidator;
 import lotto.utils.CommonValidatorImpl;
 
+//입력 기능 클래스
 public class InputNumberImpl implements InputNumber {
 
 	private final CommonValidator validator;

@@ -1,14 +1,12 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseLottos;
 import lotto.domain.Winner;
 import lotto.exception.ErrorCode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -27,27 +25,25 @@ public class LottoService {
     private static final int FOURTH_PLACE_PRIZE = 50000;
     private static final int FIFTH_PLACE_PRIZE = 5000;
 
-    private List<Lotto> purchaseLotto = new ArrayList<>();
+    private PurchaseLottos purchaseLottos;
     private Winner winners;
     private Lotto winLotto;
     private int bonusNumber;
     private float totalPrize = 0;
 
-    public void repeatPurchase(int lottoCount) {
-        for (int count = 0; count < lottoCount; count++) {
-            generateLotto();
+    public void repeatPurchase(int Quantity) {
+
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int count = 0; count < Quantity; count++) {
+            lottos.add(purchaseLotto());
         }
+
+        this.purchaseLottos = new PurchaseLottos(lottos);
     }
 
-    public List<Lotto> getPurchaseLotto() {
-        return this.purchaseLotto;
-    }
-
-    private void generateLotto() {
-
-        Lotto lotto = new Lotto(pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT));
-
-        purchaseLotto.add(lotto);
+    private Lotto purchaseLotto() {
+        return new Lotto(pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT));
     }
 
     public void setWinLotto(List<Integer> winLottoNumbers) {
@@ -67,30 +63,30 @@ public class LottoService {
         }
     }
 
-    public void winStatistics() {
-
-        winners = new Winner();
-
-        for (Lotto lotto : purchaseLotto) {
-            int win = 0;
-            boolean bonus = false;
-            for (int number : lotto.getLotto()) {
-                if (winLotto.getLotto().contains(number)) {
-                    win++;
-                    continue;
-                }
-                if (number == bonusNumber) {
-                    bonus = true;
-                }
-            }
-
-            winFirstPlace(win);
-            winSecondOrThirdPlace(win, bonus);
-            winFourthPlace(win);
-            winFifthPlace(win);
-        }
-
-    }
+//    public void winStatistics() {
+//
+//        winners = new Winner();
+//
+//        for (Lotto lotto : purchaseLotto) {
+//            int win = 0;
+//            boolean bonus = false;
+//            for (int number : lotto.getLotto()) {
+//                if (winLotto.getLotto().contains(number)) {
+//                    win++;
+//                    continue;
+//                }
+//                if (number == bonusNumber) {
+//                    bonus = true;
+//                }
+//            }
+//
+//            winFirstPlace(win);
+//            winSecondOrThirdPlace(win, bonus);
+//            winFourthPlace(win);
+//            winFifthPlace(win);
+//        }
+//
+//    }
 
     private void winFirstPlace(int win) {
         if (win == SIX_MATCH) {

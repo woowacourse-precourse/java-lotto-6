@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class LottoShop {
-	private static final int LOTTO_PRICE = 1000;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int MIN_LOTTO_NUMBER = 1;
 	private static final int LOTTO_LENGTH = 6;
@@ -37,7 +36,7 @@ public class LottoShop {
 	private int decideBonusNumber() {
 		System.out.println("보너스 번호를 입력해 주세요.");
 		String bonusInput = Console.readLine();
-		return Checker.checkBonusInput(bonusInput);
+		return Checker.checkBonusInput(this.winningNumbers,bonusInput);
 	}
 	
 	private void generateLotto(int numberOfLotto){

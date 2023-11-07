@@ -1,9 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.request.BonusNumberInputDto;
+import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.PurchaseAmountDto;
-import lotto.dto.request.WinningNumbersInputDto;
+import lotto.dto.request.WinningNumbersDto;
 import lotto.util.Validator;
 
 import java.util.Arrays;
@@ -24,14 +24,14 @@ public class InputView {
         return PurchaseAmountDto.from(amount);
     }
 
-    public WinningNumbersInputDto readWinningNumbers() {
+    public WinningNumbersDto readWinningNumbers() {
         List<Integer> numbers = parseNumbers(Console.readLine());
-        return WinningNumbersInputDto.from(numbers);
+        return WinningNumbersDto.from(numbers);
     }
 
-    public BonusNumberInputDto readBonusNumber() {
+    public BonusNumberDto readBonusNumber() {
         int bonus = Validator.validateAndParseInteger(Console.readLine());
-        return BonusNumberInputDto.from(bonus);
+        return BonusNumberDto.from(bonus);
     }
 
     private static List<Integer> parseNumbers(String numbers) {

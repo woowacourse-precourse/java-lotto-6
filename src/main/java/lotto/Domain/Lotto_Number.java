@@ -14,7 +14,7 @@ public class Lotto_Number{
 		this.lotto_Number = InputView.Lotto_Number();
 	}
 	public void Bonus_number() {
-		this.Bonus_Number = InputView.Lotto_Bonus_Number();
+		this.Bonus_Number = InputView.Lotto_Bonus_Number(this.lotto_Number);
 	}
 	
 	public List<Integer> get_Lotto() {

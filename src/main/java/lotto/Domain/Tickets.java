@@ -20,7 +20,8 @@ public class Tickets{
 		for (int i = 0 ; i<Purchase_Number; i++) {
 			Ticket ticket = new Ticket();
 			tickets.add(ticket);
-			System.out.println(tickets.get(i).getNumber());
+			System.out.println(tickets.get(i).getNumber().toString());
+		
 		}
 	}
 	public void Win_Tickets(List<Integer> Lotto_Number, Integer Bonus_Number) {

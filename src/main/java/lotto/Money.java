@@ -1,29 +1,29 @@
 package lotto;
 
+import lotto.config.LottoGameRule;
 import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.LessThanLottoPriceException;
 
 public class Money {
-    private static final int LOTTO_PRICE = 1000;
     private final int num;
 
     public Money(int num) {
-        if (num < LOTTO_PRICE) {
+        if (num < LottoGameRule.LOTTO_PRICE.value()) {
             throw new LessThanLottoPriceException();
         }
 
-        if (num % 1000 != 0) {
+        if (num % LottoGameRule.PURCHASE_AMOUNT_UNIT.value() != 0) {
             throw new InvalidPurchaseAmountException();
         }
         this.num = num;
     }
 
     public int purchase() {
-        return num / LOTTO_PRICE;
+        return num / LottoGameRule.LOTTO_PRICE.value();
     }
 
     public int purchaseMoney() {
         int purchase = purchase();
-        return purchase * LOTTO_PRICE;
+        return purchase * LottoGameRule.LOTTO_PRICE.value();
     }
 }

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.config.LottoGameRule;
 import lotto.exception.InvalidSizeException;
 import lotto.exception.NonNumericAmountException;
 
@@ -24,7 +25,7 @@ public class InputView {
             list.add(convertToInt(number));
         }
 
-        if (list.size() != 6) {
+        if (list.size() != LottoGameRule.LOTTO_SIZE.value()) {
             throw new InvalidSizeException();
         }
 

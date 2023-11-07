@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.config.LottoGameRule;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
 import lotto.exception.LottoNumberOutOfRangeException;
@@ -14,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoGameRule.LOTTO_SIZE.value()) {
             throw new InvalidSizeException();
         }
 
@@ -23,7 +24,8 @@ public class Lotto {
         }
 
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LottoGameRule.LOTTO_MIN_VALUE.value()
+                    || number > LottoGameRule.LOTTO_MAX_VALUE.value()) {
                 throw new LottoNumberOutOfRangeException();
             }
         }

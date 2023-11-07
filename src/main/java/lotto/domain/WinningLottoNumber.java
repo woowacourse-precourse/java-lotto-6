@@ -14,7 +14,7 @@ import lotto.exception.Exception;
 
 public class WinningLottoNumber {
     private static Lotto winLottoNumber;
-    private final int bonusNumber;
+    private static int bonusNumber;
 
     public WinningLottoNumber(Lotto winLottoNumber, int bonusNumber) {
         this.winLottoNumber = winLottoNumber;
@@ -73,7 +73,7 @@ public class WinningLottoNumber {
         return matchNumbers;
     }
 
-    private boolean matchWithBonus(Lotto otherLotto) {
+    private static boolean matchWithBonus(Lotto otherLotto) {
         return otherLotto.containsBonusNumber(bonusNumber);
     }
 }

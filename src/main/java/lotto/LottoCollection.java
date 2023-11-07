@@ -68,7 +68,21 @@ public class LottoCollection {
             System.out.println(rank.getRankMessage() + " - " + count + "개");
         }
     }
+    
+    private double getProfitRate() {
+        double totalPrize = 0.0;
+        for (int i = 5; i > 0; i--){
+            int count = rankingCount.getOrDefault(i, 0);
+            if (count == 0) {
+                continue;
+            }
+            LottoRank rank = getLottoRankByNumber(i);
+            int prize = rank.getRankPrize();
+            totalPrize = totalPrize + (prize * count);
+        }
 
+        return totalPrize / (double) (numberOfLotto * 1000) * 100;
+    }
 
     private LottoRank getLottoRankByNumber(int number) {
         for (LottoRank rank : LottoRank.values()) {

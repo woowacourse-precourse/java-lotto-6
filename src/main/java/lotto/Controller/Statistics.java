@@ -8,10 +8,10 @@ import java.util.List;
 import lotto.Model.Lotto;
 import lotto.View.OutputView;
 
-public class StaisticsResult {
+public class Statistics {
     private HashMap<Integer, Integer> countMap = new HashMap<>();
 
-    public StaisticsResult(){
+    public Statistics(){
         countMap.put(THREE.getNum(), 0);
         countMap.put(FOUR.getNum(), 0);
         countMap.put(FIVE.getNum(), 0);

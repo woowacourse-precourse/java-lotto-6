@@ -8,11 +8,11 @@ import lotto.View.OutputView;
 import lotto.Model.Generator;
 import lotto.Model.Lotto;
 
-public class ProcessLotto {
+public class Process {
     private OutputView outputView;
     private InputView inputView;
 
-    public ProcessLotto(InputView inputView, OutputView outputView){
+    public Process(InputView inputView, OutputView outputView){
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -100,8 +100,8 @@ public class ProcessLotto {
 
 
     private void statistics(List<Lotto> lottos, List<Integer> winningNums, int bonus, int cost){
-        StaisticsResult staisticsResult = new StaisticsResult();
-        staisticsResult.updateResult(new Calculate(), lottos, winningNums, bonus);
-        staisticsResult.printStatistics(outputView, new Calculate(), cost);
+        Statistics statistics = new Statistics();
+        statistics.updateResult(new Calculate(), lottos, winningNums, bonus);
+        statistics.printStatistics(outputView, new Calculate(), cost);
     }
 }

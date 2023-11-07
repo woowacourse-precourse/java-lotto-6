@@ -8,13 +8,13 @@ import lotto.validation.WinningNumbersInputValidator;
 
 public class InputView {
 
-    private final PurchaseInputValidator amountInput;
+    private final PurchaseInputValidator purchaseInput;
     private final WinningNumbersInputValidator winningNumbersInput;
     private final BonusInputValidator bonusNumberInput;
     private final CommonErrorValidator commonErrorValidator;
 
     public InputView() {
-        this.amountInput = new PurchaseInputValidator();
+        this.purchaseInput = new PurchaseInputValidator();
         this.winningNumbersInput = new WinningNumbersInputValidator();
         this.bonusNumberInput = new BonusInputValidator();
         this.commonErrorValidator = new CommonErrorValidator();
@@ -25,7 +25,7 @@ public class InputView {
             try {
                 String input = Console.readLine();
                 commonErrorValidator.validateCommonError(input);
-                amountInput.validateAmountInput(input);
+                purchaseInput.validateAmountInput(input);
                 return input;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

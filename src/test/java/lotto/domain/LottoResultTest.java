@@ -17,7 +17,7 @@ class LottoResultTest {
     @BeforeEach
     void setUp(){
         // given
-        List<LottoRank> rank = Arrays.asList(LottoRank.FAIL, LottoRank.FIFTH, LottoRank.FOURTH);
+        rank = Arrays.asList(LottoRank.FAIL, LottoRank.FIFTH, LottoRank.FOURTH);
     }
 
     @DisplayName("[SUCCESS]구매한 모든 로또에 대한 당첨 금액 합계를 계산한다.")

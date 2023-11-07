@@ -10,6 +10,7 @@ public class LottoGameService {
 
     private List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winningNumbers;
+    private Integer bonusNumber;
 
     public void buyLottosWithBudget(Integer budget) {
         for (int i = 0; i < calculatePurchaseQuantity(budget); i++) {
@@ -36,5 +37,13 @@ public class LottoGameService {
         winningNumbers = Arrays.stream(numbers)
             .map(Integer::parseInt)
             .collect(Collectors.toList());
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public void setBonusNumber(String bonusNumberInput) {
+        bonusNumber = Integer.parseInt(bonusNumberInput);
     }
 }

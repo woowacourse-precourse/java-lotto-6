@@ -40,6 +40,20 @@ public class InputValidator {
         validateDuplicate(numbers);
     }
 
+    public static void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
+
+        try {
+            Integer bonusNumber = Integer.parseInt(bonusNumberInput);
+            validateRange(bonusNumber);
+
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 형식의 보너스 번호 입니다.");
+        }
+    }
+
     public static void validateRange(Integer number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("범위를 벗어난 로또 번호입니다.");

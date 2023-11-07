@@ -31,7 +31,10 @@ public class LottoGameController {
         InputValidator.validateWinningNumber(winningNumberInput);
         lottoGameService.setWinningNumbers(winningNumberInput);
 
-        /// TODO: 보너스 번호 입력
+        /// 보너스 번호 입력
+        String bonusNumberInput = InputView.inputBonusNumber();
+        InputValidator.validateBonusNumber(bonusNumberInput, lottoGameService.getWinningNumbers());
+        lottoGameService.setBonusNumber(bonusNumberInput);
     }
 
 }

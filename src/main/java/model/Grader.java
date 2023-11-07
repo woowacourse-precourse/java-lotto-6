@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,24 +41,30 @@ public class Grader {
     return checkRank(sameNumberCount, sameBonusNumber);
   }
 
-  // 일치한 번호와 보너스 번호 일치 여부를 받아 등수를 책정한다.
+  // 일치한 번호 갯수와 보너스 번호 일치 여부를 받아 등수를 책정한다.
   public Integer checkRank(int sameNumberCount, int sameBonusNumber) {
-    int rank = 0;
     if(sameNumberCount == 6) return 1;
     if(sameNumberCount == 5 && sameBonusNumber == 1)  return 2;
     if(sameNumberCount == 5) return 3;
     if(sameNumberCount == 4) return 4;
     if(sameNumberCount == 3) return 5;
-    return rank;
+    return 0;
   }
 
   // 구입 금액과 등수 내역을 입력 받아 수익률을 계산한다.
-  public double calculateEarningRatio(Integer inputMoney, List<Integer> winningDetails) {
-    double earnMoney = winningDetails.get(5) * 5000 + winningDetails.get(4) * 50000 + winningDetails.get(3) * 1500000
-            + winningDetails.get(2) * 30000000 + winningDetails.get(1) * 2000000000;
-    double earningRatio = (earnMoney / inputMoney) * 100.0;
-    earningRatio = Math.round(earningRatio * 10.0) / 10.0;
-    return earningRatio;
+  public BigDecimal calculateEarningRatio(Integer inputMoney, List<Integer> winningDetails) {
+    //double earnMoney = winningDetails.get(5) * 5000.0 + winningDetails.get(4) * 50000.0 + winningDetails.get(3) * 1500000.0
+    //        + winningDetails.get(2) * 30000000.0 + winningDetails.get(1) * 2000000000.0;
+
+    BigDecimal earnMoneyRatio = new BigDecimal(winningDetails.get(5)).multiply(new BigDecimal("5000.0"))
+            .add(new BigDecimal(winningDetails.get(4)).multiply(new BigDecimal("50000.0")))
+            .add(new BigDecimal(winningDetails.get(3)).multiply(new BigDecimal("1500000.0")))
+            .add(new BigDecimal(winningDetails.get(2)).multiply(new BigDecimal("30000000.0")))
+            .add(new BigDecimal(winningDetails.get(1)).multiply(new BigDecimal("2000000000.0")))
+            .multiply(new BigDecimal("100"))
+            .divide(new BigDecimal(inputMoney), 1, RoundingMode.HALF_UP);
+
+    return earnMoneyRatio;
   }
 
 

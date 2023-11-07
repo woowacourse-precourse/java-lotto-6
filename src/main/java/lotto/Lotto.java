@@ -57,4 +57,15 @@ public class Lotto {
       return FIFTH_PRIZE;
     return FAIL;
   }
+
+  @Override
+  public String toString() {
+    String result = "[";
+    for(int i=0; i<numbers.size(); i++) {
+      result += numbers.get(i) + ", ";
+    }
+    result = result.substring(0, result.length() -2);
+    result += "]";
+    return result;
+  }
 }

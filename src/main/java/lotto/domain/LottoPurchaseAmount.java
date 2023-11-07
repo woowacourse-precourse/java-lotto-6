@@ -18,7 +18,7 @@ public class LottoPurchaseAmount {
     public static LottoPurchaseAmount from(int price) {
         validateDivisible(price);
 
-        int amount = price / Lotto.PRICE;
+        int amount = calculatePurchaseAmount(price);
         return new LottoPurchaseAmount(amount);
     }
 
@@ -26,6 +26,10 @@ public class LottoPurchaseAmount {
         if (price % Lotto.PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구매는 1,000원 단위로만 가능합니다.");
         }
+    }
+
+    private static int calculatePurchaseAmount(int price) {
+        return price / Lotto.PRICE;
     }
 
     public int value() {

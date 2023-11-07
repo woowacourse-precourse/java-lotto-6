@@ -12,7 +12,7 @@ public class Score {
         this.totalProfit = profit(score);
     }
 
-    private static int profit(Map<Result, Integer> score){
+    public static int profit(Map<Result, Integer> score){
         int totalProfit = 0;
         for (Result result : score.keySet()) {
             totalProfit += result.getWinnings() * score.get(result);

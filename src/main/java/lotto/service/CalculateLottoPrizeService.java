@@ -62,12 +62,12 @@ public class CalculateLottoPrizeService {
         return count;
     }
 
-    public boolean isCorrectedFiveWithBonus(List<Integer> userLotto, Lotto lotto, int correctCount) {
-        return correctCount == FIVE_NUM_CORRECT && userLotto.contains(lotto.getBonusNum());
-    }
-
     public boolean isCorrectedFive(List<Integer> userLotto, Lotto lotto, int correctCount) {
         return correctCount == FIVE_NUM_CORRECT && !userLotto.contains(lotto.getBonusNum());
+    }
+
+    public boolean isCorrectedFiveWithBonus(List<Integer> userLotto, Lotto lotto, int correctCount) {
+        return correctCount == FIVE_NUM_CORRECT && userLotto.contains(lotto.getBonusNum());
     }
 
     public boolean isCorrectedNonFive(int correctCount) {

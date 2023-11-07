@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.UserLottos;
 import lotto.service.CalculateLottoPrizeService;
-import lotto.service.CalculateProiftService;
+import lotto.service.CalculateProfitService;
 import lotto.service.GenerateLottosService;
 import lotto.service.InputWinningNumberService;
 import lotto.view.InputBonusView;
@@ -14,7 +14,7 @@ public class GameController {
     GenerateLottosService generateLottosService = new GenerateLottosService();
     InputWinningNumberService inputWinningNumberService = new InputWinningNumberService();
     CalculateLottoPrizeService calculateLottoPrizeService = new CalculateLottoPrizeService();
-    CalculateProiftService calculateProiftService = new CalculateProiftService();
+    CalculateProfitService calculateProiftService = new CalculateProfitService();
     InputPriceView inputPriceView = new InputPriceView();
     InputWinningNumberView inputWinningNumberView = new InputWinningNumberView();
     InputBonusView inputBonusView = new InputBonusView();

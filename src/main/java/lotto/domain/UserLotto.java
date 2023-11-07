@@ -10,7 +10,7 @@ public class UserLotto {
     private static final int END_NUM = 45;
     private static final int GENERATE_NUM = 6;
 
-    List<Integer> numbers;
+    private List<Integer> numbers;
 
     public void setLotto() {
         numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, GENERATE_NUM));

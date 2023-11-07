@@ -2,14 +2,12 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.util.ParseString;
 
 public class UserLottos {
-    ParseString parse = new ParseString();
-    List<UserLotto> lottos = new ArrayList<>();
     private int buyingPrice = 0;
     private int winningPrice = 0;
     private int ammount;
+    private List<UserLotto> lottos = new ArrayList<>();
 
     public void setLottos() {
         UserLotto lotto = new UserLotto();
@@ -26,7 +24,7 @@ public class UserLottos {
     }
 
     public void setAmmount(String ammount) {
-        this.ammount = parse.parseToInt(ammount)/1000;
+        this.ammount = Integer.parseInt(ammount) / 1000;
     }
 
     public List<UserLotto> getLottos() {

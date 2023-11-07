@@ -1,32 +1,25 @@
 package lotto.domain.lotto;
 
-import lotto.exception.LottoNumRangeException;
+import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class LottoNumber {
     private static final int MIN_LOTTO_NUM = 1;
     private static final int MAX_LOTTO_NUM = 45;
+    private static final int LOTTO_CNT = 6;
+
     private static List<Integer> lottoNumbers;
-    private final int num;
 
-    private LottoNumber(int num) {
-        validate(num);
-        lottoNumbers.add(num);
-        this.num = num;
+    public LottoNumber() {
     }
 
-    public static void validate(int num) {
-        if(num < MIN_LOTTO_NUM || num > MAX_LOTTO_NUM){
-            throw new LottoNumRangeException();
-        }
+    public static List<Integer> setLottoNumbers() {
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_CNT);
+        List<Integer> lottoTicketNumbers = new ArrayList<>(lottoNumbers);
+        Collections.sort(lottoTicketNumbers);
+        return lottoTicketNumbers;
     }
-
-    public int getNum(){
-        return this.num;
-    }
-
-
 }

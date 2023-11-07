@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.ErrorMessage;
+
 import static java.lang.Integer.parseInt;
 
 public class LottoPurchasingAmount {
@@ -7,6 +9,20 @@ public class LottoPurchasingAmount {
     private final int lottoAmount;
 
     public LottoPurchasingAmount(String moneyFromUserInput) {
-        this.lottoAmount = parseInt(moneyFromUserInput) / LOTTO_MINIMUM_PRICE;
+        int moneyFromUser = validateNumber(moneyFromUserInput);
+        this.lottoAmount = moneyFromUser / LOTTO_MINIMUM_PRICE;
+    }
+
+    private int validateNumber(String money) {
+        try {
+            return parseInt(money);
+        } catch (NumberFormatException e) {
+            ErrorMessage.numberException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public int getLottoAmount() {
+        return lottoAmount;
     }
 }

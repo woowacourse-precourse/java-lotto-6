@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.view.InputView;
-
 public class Tickets {
 
     private static final int LOTTO_PRICE = 1000;
@@ -26,14 +24,14 @@ public class Tickets {
 
     }
 
-    public int getNumberOfTickets() {
-        return numberOfTickets;
-    }
-
     public static Tickets buyTickets(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         int numberOfTickets = purchaseAmount / LOTTO_PRICE;
         return Tickets.of(numberOfTickets);
+    }
+
+    public int getNumberOfTickets() {
+        return numberOfTickets;
     }
 
     public int getUserMoney() {

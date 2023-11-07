@@ -13,7 +13,7 @@ public class LottoGameController {
     private final LottoGameService lottoGameService = new LottoGameService();
 
     public void run() {
-        Tickets tickets = buyLottos();
+        Tickets tickets = buyTickets();
 
         OutputView.printNumberOfTickets(tickets.getNumberOfTickets());
 
@@ -36,25 +36,25 @@ public class LottoGameController {
         OutputView.printProfitRate(profitRate);
     }
 
-    private Tickets buyLottos() {
+    private Tickets buyTickets() {
         String input = InputView.PurchaseAmount();
         try {
             int userMoney = parseStringToUnsignedInt(input);
-            return lottoGameService.getTickets(userMoney);
+            return Tickets.buyTickets(userMoney);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return buyLottos();
+            return buyTickets();
         }
     }
 
     private int getBonusNumber(Lotto winningLottoNumber) {
         String bonusNumber = InputView.BonusNumber();
         try {
-            int bonusNumberInt = Integer.parseUnsignedInt(bonusNumber);
-            if(winningLottoNumber.checkDuplicate(bonusNumberInt)){
+            int bonusNumberInt = parseStringToUnsignedInt(bonusNumber);
+            if (winningLottoNumber.checkDuplicate(bonusNumberInt)) {
                 throw new IllegalArgumentException("[ERROR]보너스 번호는 당첨 번호와 중복될 수 없습니다");
             }
-            if(bonusNumberInt < 1 || bonusNumberInt > 45) {
+            if (bonusNumberInt < 1 || bonusNumberInt > 45) {
                 throw new IllegalArgumentException("[ERROR]1~45 사이의 숫자만 입력가능합니다");
             }
             return bonusNumberInt;
@@ -68,9 +68,10 @@ public class LottoGameController {
         try {
             return Lotto.of(Arrays.stream(input.split(","))
                 .map(String::trim)
-                .map(Integer::parseInt)
+                .map(this::parseStringToUnsignedInt)
                 .toList());
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return parseStringToLotto(InputView.WinningNumber());
         }
     }
@@ -79,8 +80,7 @@ public class LottoGameController {
         try {
             return Integer.parseUnsignedInt(input);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR]0이상의 숫자만 입력가능합니다");
-            return parseStringToUnsignedInt(InputView.PurchaseAmount());
+            throw new IllegalArgumentException("[ERROR]숫자만 입력 가능합니다");
         }
     }
 }

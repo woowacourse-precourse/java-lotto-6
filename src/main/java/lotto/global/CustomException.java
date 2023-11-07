@@ -7,3 +7,4 @@ public class CustomException extends IllegalArgumentException {
     }
 
 }
+

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum Result {
     FIFTH(3, 5_000, 0),
@@ -20,21 +19,21 @@ public enum Result {
         this.status = status;
     }
 
-    public static List<Result> getResults(){
-        return List.of(Result.values());
-    }
-
     public static Result[] getAllLottoResult(
         Lottos lottos,
         Lotto userLottoNumbers,
         int BonusNumber
     ) {
-            getLottoResults(lottos, userLottoNumbers, BonusNumber);
+        getLottoResults(lottos, userLottoNumbers, BonusNumber);
         return Result.values();
     }
 
-    private static void getLottoResults(Lottos lottos, Lotto userLottoNumbers, int BonusNumber) {
-        for(Lotto lotto : lottos. getLottos()) {
+    private static void getLottoResults(
+        Lottos lottos,
+        Lotto userLottoNumbers,
+        int BonusNumber
+    ) {
+        for (Lotto lotto : lottos.getLottos()) {
             int matchCount = lotto.getMatchCount(userLottoNumbers);
             boolean isBonusNumber = lotto.checkDuplicate(BonusNumber);
             findprize(matchCount, isBonusNumber);
@@ -48,7 +47,7 @@ public enum Result {
         if (SECOND.matchCount == matchCount && bonusNumber) {
             SECOND.status++;
         }
-        if (THIRD.matchCount == matchCount) {
+        if (THIRD.matchCount == matchCount && !bonusNumber) {
             THIRD.status++;
         }
         if (FOURTH.matchCount == matchCount) {
@@ -65,7 +64,6 @@ public enum Result {
             .mapToInt(result -> result.getWinningMoney() * result.getStatus())
             .sum() / userMoney * 100;
     }
-
 
 
     public int getStatus() {

@@ -3,12 +3,13 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.constant.Message;
 import lotto.constant.Winning;
 
 public class LottoOutputView {
 
     public void printLottoPurchaseCount(int count) {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println(count + Message.PURCHASE_COUNT.getMessage());
     }
 
     public void printLottoNumbers(List<Integer> numbers) {
@@ -27,6 +28,10 @@ public class LottoOutputView {
         System.out.println("5개 일치 (1,500,000원) - " + prize.get(Winning.THIRD) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prize.get(Winning.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + prize.get(Winning.FIRST) + "개");
+    }
+
+    private String combineWinningMessage(Message, Winning) {
+        return Message
     }
 
     public void printRateOfReturn(double rate) {

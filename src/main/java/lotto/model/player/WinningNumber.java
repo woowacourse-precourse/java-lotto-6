@@ -3,6 +3,7 @@ package lotto.model.player;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.ErrorMessage;
 
 public class WinningNumber {
     private static List<Integer> winningNumber;
@@ -31,14 +32,14 @@ public class WinningNumber {
             try {
                 Integer.parseInt(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }
         }
     }
 
     private static void validateIsSixNumbers(List<String> numbers) {
         if(numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력하셔야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_COUNT.getMessage());
         }
     }
 
@@ -46,7 +47,7 @@ public class WinningNumber {
         for(String number : numbers) {
             boolean IsNumberInRange = (Integer.parseInt(number) >= 1 && Integer.parseInt(number) <= 45);
             if(!IsNumberInRange) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }
         }
     }

@@ -1,5 +1,7 @@
 package lotto.model.player;
 
+import lotto.constant.ErrorMessage;
+
 public class BuyLotto {
     private static int purchaseAmount;
 
@@ -18,19 +20,19 @@ public class BuyLotto {
         try {
             Double.parseDouble(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NAN.getMessage());
         }
     }
 
     private static void validateIsDivisibleBy1000(String amount) {
         if((Double.parseDouble(amount) % 1000) != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_BY_1000.getMessage());
         }
     }
 
     private static void validateIsPositiveInteger(String amount) {
         if(Double.parseDouble(amount) <= 0) {
-            throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1,000원입니다.");
+            throw new IllegalArgumentException(ErrorMessage.MIN.getMessage());
         }
     }
 

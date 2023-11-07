@@ -29,5 +29,12 @@ public class PrizeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-   
+    @DisplayName("당첨 번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void correctRangeOfPrizeNumber() {
+        assertThatThrownBy(() -> new PrizeNumberValidator(List.of(0, 2, 3, 4, 5, 6),1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    
 }

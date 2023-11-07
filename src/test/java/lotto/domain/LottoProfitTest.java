@@ -34,4 +34,14 @@ class LottoProfitTest {
 
         assertThat(totalWinningAmount).isEqualTo(2030000000);
     }
+
+    @Test
+    @DisplayName("로또 구매 개수에 기반하여 로또 총 구입 금액이 예상값과 일치하는지 테스트")
+    void testLottoPurchaseTotalAmountEqualsExpectedValue() {
+        LottoPurchase lottoPurchase = LottoPurchase.create(23);
+
+        int totalPurchaseAmount = lottoProfit.createTotalPurchaseAmount(lottoPurchase);
+
+        assertThat(totalPurchaseAmount).isEqualTo(23000);
+    }
 }

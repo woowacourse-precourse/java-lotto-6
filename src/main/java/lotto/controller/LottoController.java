@@ -33,7 +33,7 @@ public class LottoController {
         outputView.printLottos(lottos.size(),getLottoNumbers(lottos));
 
         List<Integer> winNumbers=inputView.getWinNumbers();
-        int bonusNumbers=inputView.getBounsNumbers();
+        int bonusNumbers=inputView.getBonusNumbers();
         LottoResult result = lottoMachine.calculateResult(lottos,winNumbers,bonusNumbers);
 
         outputView.printLottoResult(result,purchaseAmount);

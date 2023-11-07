@@ -37,7 +37,7 @@ public class InputView {
         return winNumbers;
     }
 
-    public int getBounsNumbers() {
+    public int getBonusNumbers() {
         System.out.println("보너스 번호를 입력해 주세요");
 
         try {

@@ -31,7 +31,7 @@ public class OutputView {
         resultLines.add(buildResultLine(prizeStatistics, Prize.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)"));
         resultLines.add(buildResultLine(prizeStatistics, Prize.FIRST, "6개 일치 (2,000,000,000원)"));
 
-        resultLines.add("총 수익률은 " + String.format("%.2f%%", result.calculateProfitRate(purchaseAmount))+"입니다.");
+        resultLines.add("총 수익률은 " + String.format("%.1f%%", result.calculateProfitRate(purchaseAmount))+"입니다.");
 
         resultLines.forEach(System.out::println);
     }

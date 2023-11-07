@@ -82,7 +82,7 @@ public class InputViewTest {
         mockConsoleReadLine(input);
 
         // Act
-        int bonusNumber = inputView.getBounsNumbers();
+        int bonusNumber = inputView.getBonusNumbers();
 
         // Assert
         assertEquals(7, bonusNumber);
@@ -92,7 +92,7 @@ public class InputViewTest {
     void 보너스_번호_숫자_입력_테스트() {
         InputView inputView = new InputView();
         System.setIn(new ByteArrayInputStream("42\n".getBytes())); // 보너스 번호를 42로 입력
-        int bonusNumber = inputView.getBounsNumbers();
+        int bonusNumber = inputView.getBonusNumbers();
         assertEquals(42, bonusNumber);
     }
 
@@ -104,7 +104,7 @@ public class InputViewTest {
         mockConsoleReadLine(input);
 
         // Act
-        int bonusNumber = inputView.getBounsNumbers();
+        int bonusNumber = inputView.getBonusNumbers();
 
         // Assert
         assertEquals(7, bonusNumber);
@@ -119,7 +119,7 @@ public class InputViewTest {
 
         // Act and Assert
         assertThrows(IllegalArgumentException.class, () -> {
-            inputView.getBounsNumbers();
+            inputView.getBonusNumbers();
         });
     }
 

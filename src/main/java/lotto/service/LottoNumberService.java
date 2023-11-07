@@ -17,9 +17,14 @@ public class LottoNumberService {
     public Lottos createRandomLottos(Cost cost) {
         Output.lottoPurchase(cost.getDivideCost());
         List<Lotto> lottos = new ArrayList<>();
-        while (cost.buyingLotto()) {
-            Lotto randomLotto = createRandomLotto();
-            lottos.add(randomLotto);
+        while (cost.hasMoney()) {
+            try {
+                Lotto randomLotto = createRandomLotto();
+                lottos.add(randomLotto);
+                cost.buyingLotto();
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
         }
         return new Lottos(lottos);
     }

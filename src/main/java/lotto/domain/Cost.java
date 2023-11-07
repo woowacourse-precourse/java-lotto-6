@@ -16,12 +16,12 @@ public class Cost {
         this.cost = number;
     }
 
-    public boolean buyingLotto() {
-        if (count < (cost / LOTTO_COST)) {
-            count++;
-            return true;
-        }
-        return false;
+    public boolean hasMoney() {
+        return count < (cost / LOTTO_COST);
+    }
+
+    public void buyingLotto() {
+        count++;
     }
 
     public void resetCount() {

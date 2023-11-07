@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -23,8 +22,7 @@ class LottoPrizeBreakdownTest {
             String expectedRate
     ) {
         //given
-        Map<LottoRank, Integer> prizeDetails = new HashMap<>();
-        prizeDetails.put(rank, winCount);
+        Map<LottoRank, Integer> prizeDetails = Map.of(rank, winCount);
         LottoPrizeBreakdown result = new LottoPrizeBreakdown(prizeDetails);
 
         //when

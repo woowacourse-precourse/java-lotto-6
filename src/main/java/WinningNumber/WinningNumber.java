@@ -10,4 +10,12 @@ public class WinningNumber {
         this.numbers = numbers;
         this.bonusNum = bonusNum;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public Integer getBonusNum() {
+        return bonusNum;
+    }
 }

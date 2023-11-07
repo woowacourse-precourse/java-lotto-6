@@ -16,4 +16,20 @@ public enum LottoOutcome {
         this.bonus = bonus;
         this.prize = prize;
     }
+
+    // 보너스에 따라 rank3와 rank2를 결정한다.
+    private static LottoOutcome decideRankUp(LottoOutcome lottoOutcome, int bonus){
+        if(lottoOutcome == rank3 && bonus == 1)
+            return rank2;
+        return lottoOutcome;
+    }
+
+    //숫자들과 보너스 숫자에서 맞춘 개수에 따라서 LottoOutcome을 return한다.
+    public static LottoOutcome getFromNumOfMatchAndBonus(int matchOfNum, int bonus){
+        for(LottoOutcome outcome: LottoOutcome.values()){
+            if(outcome.matchOfNum == matchOfNum)
+                return decideRankUp(outcome, bonus);
+        }
+        return none;
+    }
 }

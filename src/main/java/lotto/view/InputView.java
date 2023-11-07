@@ -30,7 +30,7 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine().replace(" ", ""));
 
         return bonusNumber;
     }

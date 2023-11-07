@@ -22,7 +22,7 @@ public class WinningLotto {
         if (bonus<1||bonus>45) {
             throw new IllegalArgumentException();
         }
-        if (!lotto.hasNumber(bonus)) {
+        if (lotto.hasNumber(bonus)) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,9 +1,15 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
 public class LottoView {
     private int price;
+    private List<Integer> winningNumber = new ArrayList<>();
 
     public void printInputPrice() {
         System.out.println("구입 금액을 입력해 주세요.");
@@ -22,8 +28,22 @@ public class LottoView {
         System.out.println(number + "개를 구매했습니다.");
     }
 
-    public void printLottos(List<Integer> lotto[], int buyCount){
-        for(int i =0; i<buyCount; i++)
-            System.out.println(lotto[i]);
+    public void printLottos(List<Integer> lotto) {
+        Collections.sort(lotto);
+        System.out.println(lotto);
+    }
+
+    public void printWinningNum() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        winningNumber = (Arrays.asList(Console.readLine().split(","))).stream().map(Integer::parseInt
+        ).collect(Collectors.toList());
+    }
+
+    public List<Integer> getWinningNumber(){
+        return winningNumber;
+    }
+
+    public void enter() {
+        System.out.println();
     }
 }

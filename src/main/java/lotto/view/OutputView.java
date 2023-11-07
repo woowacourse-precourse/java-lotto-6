@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
     private static final String STATS_MESSAGE = "당첨 통계";
 
-    public static void printQuantity(int quantity) {
+    public static void printLottoCount(int quantity) {
         System.out.println(quantity + "개를 구매했습니다.");
     }
 

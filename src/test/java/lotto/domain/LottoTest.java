@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import lotto.domain.dto.Purchase;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -169,5 +172,17 @@ class LottoTest {
         Lotto lottoB = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertEquals(lottoA, lottoB);
+    }
+
+    @Test
+    void Lotto_내부_필드가_동일하다면_Hash_자료구조에서도_객체로_인식한다() {
+        Set<Lotto> set = new HashSet<>();
+        Lotto lottoA = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lottoB = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        set.add(lottoA);
+        set.add(lottoB);
+
+        assertEquals(1, set.size());
     }
 }

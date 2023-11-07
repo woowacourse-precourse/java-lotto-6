@@ -4,9 +4,11 @@ import java.util.List;
 
 public class WinningNumbers {
     private final List<Lotto> winningLottoNumbers;
+    private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> numbers) {
+    public WinningNumbers(List<Integer> numbers, int bonusNumber) {
         this.winningLottoNumbers = generate(numbers);
+        this.bonusNumber = bonusNumber;
     }
 
     private List<Lotto> generate(List<Integer> numbers) {
@@ -15,13 +17,17 @@ public class WinningNumbers {
 
     public int compareWith(Lotto lotto) {
         int userMatchedCount = 0;
-        for (Lotto winningLotto : winningLottoNumbers) {
+        for (Lotto winningNumbers : winningLottoNumbers) {
             for (Integer userNumber : lotto.getNumbers()) {
-                if (winningLotto.getNumbers().contains(userNumber)) {
+                if (winningNumbers.getNumbers().contains(userNumber)) {
                     userMatchedCount++;
                 }
             }
         }
         return userMatchedCount;
+    }
+
+    public boolean isBonusNumberMatched(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }

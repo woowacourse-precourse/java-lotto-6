@@ -33,4 +33,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
         }
     }
+
+    private boolean inNumbersValidate(int number){
+        return numbers.contains(number);
+    }
 }

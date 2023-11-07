@@ -5,12 +5,12 @@ public enum ErrorMessage {
 
     INDIVISIBLE_AMOUNT(String.format(
             "%,d원 단위의 금액을 입력해야 합니다.",
-            LottoConstraint.PRICE_PER_LOTTO.getValue()
+            LottoConstraint.LOTTO_PRICE.getValue()
     )),
     OUT_RANGE_AMOUNT(String.format(
             "%,d원 이상, %,d원 이하의 금액을 입력해야 합니다.",
-            (long) LottoConstraint.MIN_PURCHASE_QUANTITY.getValue() * LottoConstraint.PRICE_PER_LOTTO.getValue(),
-            (long) LottoConstraint.MAX_PURCHASE_QUANTITY.getValue() * LottoConstraint.PRICE_PER_LOTTO.getValue()
+            (long) LottoConstraint.MIN_PURCHASE_QUANTITY.getValue() * LottoConstraint.LOTTO_PRICE.getValue(),
+            (long) LottoConstraint.MAX_PURCHASE_QUANTITY.getValue() * LottoConstraint.LOTTO_PRICE.getValue()
     )),
 
     INVALID_LOTTO_NUMBERS_SIZE(String.format(

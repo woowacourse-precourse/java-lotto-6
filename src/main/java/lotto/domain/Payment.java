@@ -23,7 +23,7 @@ public class Payment {
     }
 
     private boolean isIndivisibleAmount(long amount) {
-        return amount % LottoConstraint.PRICE_PER_LOTTO.getValue() != 0;
+        return amount % LottoConstraint.LOTTO_PRICE.getValue() != 0;
     }
 
     private void validateAmountRange(long amount) {
@@ -33,14 +33,14 @@ public class Payment {
     }
 
     private boolean isOutRangeAmount(long amount) {
-        long pricePerLotto = LottoConstraint.PRICE_PER_LOTTO.getValue();
+        long pricePerLotto = LottoConstraint.LOTTO_PRICE.getValue();
         long minAmount = pricePerLotto * LottoConstraint.MIN_PURCHASE_QUANTITY.getValue();
         long maxAmount = pricePerLotto * LottoConstraint.MAX_PURCHASE_QUANTITY.getValue();
         return amount < minAmount || amount > maxAmount;
     }
 
     public int calculatePurchaseLottoCount() {
-        return (int) (amount / LottoConstraint.PRICE_PER_LOTTO.getValue());
+        return (int) (amount / LottoConstraint.LOTTO_PRICE.getValue());
     }
 
     long getAmount() {

@@ -35,7 +35,7 @@ public enum Rank {
     }
 
     private static boolean isDecidedByBonusNumber(int matchedCount) {
-        return matchedCount == LottoConstraint.DECIDED_RANK_BY_BONUS_NUMBER.getValue();
+        return matchedCount == LottoConstraint.BONUS_NUMBER_DEPENDENT_RANK_MATCHED_COUNT.getValue();
     }
 
     private static Rank decideByBonusNumberMatched(boolean bonusNumberMatched) {

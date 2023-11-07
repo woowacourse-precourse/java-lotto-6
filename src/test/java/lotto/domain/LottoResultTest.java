@@ -25,13 +25,13 @@ class LottoResultTest {
     @DisplayName("수익률을 계산한다.")
     @Test
     void calculateProfitRate() {
-        Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
+        Payment payment = new Payment(LottoConstraint.LOTTO_PRICE.getValue());
         lottoResult.increaseLottoRankCount(Rank.THREE_MATCH);
         double profitRate = lottoResult.calculateProfitRate(payment);
 
         assertThat(profitRate).isEqualTo(
         (double) Rank.THREE_MATCH.getPrizeMoney()
-                / LottoConstraint.PRICE_PER_LOTTO.getValue()
+                / LottoConstraint.LOTTO_PRICE.getValue()
                 * 100
         );
     }
@@ -39,7 +39,7 @@ class LottoResultTest {
     @DisplayName("수익률을 계산한다. - int 범위를 초과하는 큰 값")
     @Test
     void calculateProfitRateWhenBigNumber() {
-        Payment payment = new Payment(LottoConstraint.PRICE_PER_LOTTO.getValue());
+        Payment payment = new Payment(LottoConstraint.LOTTO_PRICE.getValue());
         for (int i = 0; i < LottoConstraint.MAX_PURCHASE_QUANTITY.getValue(); i++) {
             lottoResult.increaseLottoRankCount(Rank.SIX_MATCH);
         }
@@ -49,7 +49,7 @@ class LottoResultTest {
         assertThat(profitRate).isEqualTo(
         (double) Rank.SIX_MATCH.getPrizeMoney()
                 * LottoConstraint.MAX_PURCHASE_QUANTITY.getValue()
-                / LottoConstraint.PRICE_PER_LOTTO.getValue()
+                / LottoConstraint.LOTTO_PRICE.getValue()
                 * 100
         );
     }

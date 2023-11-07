@@ -15,7 +15,7 @@ class PaymentTest {
     void createPaymentByIndivisibleAmount() {
         int indivisibleAmount = generateAmount(
                 LottoConstraint.MIN_PURCHASE_QUANTITY.getValue(),
-                LottoConstraint.PRICE_PER_LOTTO.getValue() / 2
+                LottoConstraint.LOTTO_PRICE.getValue() / 2
         );
 
         assertThatThrownBy(() -> new Payment(indivisibleAmount))
@@ -72,6 +72,6 @@ class PaymentTest {
     }
 
     private int generateAmount(int purchaseQuantity, int additionalAmount) {
-        return LottoConstraint.PRICE_PER_LOTTO.getValue() * purchaseQuantity + additionalAmount;
+        return LottoConstraint.LOTTO_PRICE.getValue() * purchaseQuantity + additionalAmount;
     }
 }

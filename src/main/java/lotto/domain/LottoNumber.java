@@ -2,23 +2,22 @@ package lotto.domain;
 
 import lotto.enums.ErrorMessages;
 import lotto.enums.LottoEnum;
+import lotto.utils.StringUtil;
 
 public class LottoNumber {
     private final int number;
 
-    public LottoNumber(String stringNumber) {
-        try {
-            int parsedNumber = Integer.parseInt(stringNumber.trim());
-            validate(parsedNumber);
-            this.number = parsedNumber;
-        } catch (NumberFormatException nfe) {
-            throw new IllegalArgumentException(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
-        }
-    }
-
-    public LottoNumber(int number) {
+    private LottoNumber(int number) {
         validate(number);
         this.number = number;
+    }
+
+    public static LottoNumber valueOf(String stringNumber) {
+        return LottoNumber.valueOf(StringUtil.stringToInt(stringNumber));
+    }
+
+    public static LottoNumber valueOf(int number) {
+        return new LottoNumber(number);
     }
 
     public int getNumber() {

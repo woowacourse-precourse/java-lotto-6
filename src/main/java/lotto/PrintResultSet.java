@@ -43,41 +43,41 @@ final class PrintResultSet {
     }
 
     public int checkMatchThree(int countMatch) {
-        if (countMatch == 3) {
+        if (countMatch == NumberOfMatch.THREE.getMatchCount()) {
             printThree += 1;
-            profitSum += 5000;
+            profitSum += NumberOfMatch.THREE.getWinningPrice();
         }
         return printThree;
     }
 
     public int checkMatchFour(int countMatch) {
-        if (countMatch == 4) {
+        if (countMatch == NumberOfMatch.FOUR.getMatchCount()) {
             printFour += 1;
-            profitSum += 50000;
+            profitSum += NumberOfMatch.FOUR.getWinningPrice();
         }
         return printFour;
     }
 
     public int checkMatchFive(Score score) {
-        if (score.getCountMatch() == 5 && !score.isCheckBonus()) {
+        if (score.getCountMatch() == NumberOfMatch.FIVE.getMatchCount() && !score.isCheckBonus()) {
             printFive += 1;
-            profitSum += 1500000;
+            profitSum += NumberOfMatch.FIVE.getWinningPrice();
         }
         return printFive;
     }
 
     public int checkMatchFivePlus(Score score) {
-        if (score.getCountMatch() == 5 && score.isCheckBonus()) {
+        if (score.getCountMatch() == NumberOfMatch.FIVE_PLUS.getMatchCount() && score.isCheckBonus()) {
             printFivePlusBonus += 1;
-            profitSum += 30000000;
+            profitSum += NumberOfMatch.FIVE_PLUS.getWinningPrice();
         }
         return printFivePlusBonus;
     }
 
     public int checkMatchSix(int countMatch) {
-        if (countMatch == 6) {
+        if (countMatch == NumberOfMatch.SIX.getMatchCount()) {
             printSix += 1;
-            profitSum += 2000000000;
+            profitSum += NumberOfMatch.SIX.getWinningPrice();
         }
         return printSix;
     }

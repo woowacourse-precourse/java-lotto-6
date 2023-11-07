@@ -14,7 +14,7 @@ public class WinningNumbers {
 
     public MatchDetail match(Lotto lotto) {
         return new MatchDetail(
-                lotto.getMatchedCount(winningLotto),
+                winningLotto.getMatchedCount(lotto),
                 lotto.contains(bonusNumber)
         );
     }

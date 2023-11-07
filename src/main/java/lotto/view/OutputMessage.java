@@ -27,8 +27,4 @@ public enum OutputMessage {
     public String getMessage() {
         return message;
     }
-
-    public String format(Object... args) {
-        return String.format(message, args);
-    }
 }

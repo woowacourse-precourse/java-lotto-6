@@ -10,8 +10,8 @@ import lotto.domain.WinningStatistics;
 
 public class Output {
     public static void printWinningStatisticsMessage() {
-        System.out.println(WINNING_STATISTICS.message());
-        System.out.println(SEPARATOR.message());
+        System.out.println("\n" + WINNING_STATISTICS.message());
+        System.out.print(SEPARATOR.message());
     }
 
     public static void printPurchaseAmountMessage() {
@@ -30,22 +30,22 @@ public class Output {
         System.out.println("\n" + BONUS_NUMBER.message());
     }
 
-    public static void printProfitPercentage(int profitPercentage) {
-        System.out.println("총 수익률은 " + profitPercentage + "입니다.");
+    public static void printProfitPercentage(double profitPercentage) {
+        System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
     }
 
     public static void printTotalLotto(List<Lotto> totalLotto) {
         totalLotto.stream().forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    public static void printWinningResult(WinningStatistics winningStatistics){
+    public static void printWinningResult(WinningStatistics winningStatistics) {
         Map<Ranking, Integer> winningResult = winningStatistics.getWinningStatus();
         StringBuilder stringBuilder = new StringBuilder("\n");
 
-        for(Ranking ranking : winningStatistics.getWinningStatus().keySet()){
-            stringBuilder.append(ranking.getWinningMessage()+winningResult.get(ranking)).append("\n");
+        for (Ranking ranking : winningStatistics.getWinningStatus().keySet()) {
+            stringBuilder.append(ranking.getWinningMessage() + winningResult.get(ranking) + "개").append("\n");
         }
 
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 }

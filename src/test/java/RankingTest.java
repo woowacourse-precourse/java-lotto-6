@@ -1,5 +1,3 @@
-package view;
-
 class RankingTest {
 
 }

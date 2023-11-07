@@ -1,9 +1,7 @@
-package view;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static generalexception.GeneralExceptionHandler.validateNumberExceptionHandler;
 
-public class Display {
+public class PurchaseAmount {
 
     private static final String STRING_PURCHASE_AMOUNT_INPUT = "구매금액을 입력해주세요";
     public static final String PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE = "=[ERROR] 구매 금액이 1000원 미만입니다.";
@@ -11,11 +9,11 @@ public class Display {
 
     private int lottoPurchaseAmount;
 
-    public Display() {
+    public PurchaseAmount() {
         setLottoPurchaseAmount();
     }
 
-    public Display(int lottoPurchaseAmount) { //test 코드를 위한 생성자
+    public PurchaseAmount(int lottoPurchaseAmount) { //test 코드를 위한 생성자
         validateMinimumPurchaseAmount(lottoPurchaseAmount);
         validateNotDividePurchaseAmount(lottoPurchaseAmount);
         this.lottoPurchaseAmount = lottoPurchaseAmount;

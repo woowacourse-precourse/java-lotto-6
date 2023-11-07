@@ -1,5 +1,3 @@
-package view;
-
 public enum Ranking {
 
     FIFTH(3, 5_000, "3개 일치 (5,000원) - "), // 5등

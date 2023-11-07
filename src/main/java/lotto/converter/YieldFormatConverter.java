@@ -9,7 +9,7 @@ public class YieldFormatConverter implements Converter<String, Double> {
     @Override
     public String convert(final Double source) {
         DecimalFormat yieldFormat = new DecimalFormat(YIELD_PATTERN);
-        return yieldFormat.format(source);
+        return String.join("", yieldFormat.format(source), "%");
     }
 
 }

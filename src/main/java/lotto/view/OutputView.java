@@ -17,7 +17,7 @@ public final class OutputView {
     private static final String LINE_SEPARATOR = "---";
     private static final String RANK_RESULT_GUIDE = "%d개 일치 (%s) - %d개";
     private static final String SECOND_RANK_RESULT_GUIDE = "%d개 일치, 보너스 볼 일치 (%s) - %d개";
-    private static final String TOTAL_YIELD_GUIDE = "총 수익률은 %s%%입니다.";
+    private static final String TOTAL_YIELD_GUIDE = "총 수익률은 %s입니다.";
 
     private OutputView() {
     }

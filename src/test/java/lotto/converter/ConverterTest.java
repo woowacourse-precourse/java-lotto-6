@@ -37,7 +37,7 @@ class ConverterTest {
     }
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
-    @CsvSource(value = {"0:0.0", "51.5:51.5", "1000:1,000.0", "1000000.0:1,000,000.0"}, delimiter = ':')
+    @CsvSource(value = {"0:0.0%", "51.5:51.5%", "1000:1,000.0%", "1000000.0:1,000,000.0%"}, delimiter = ':')
     @DisplayName("수익률 컨버터: 총 수익률을 출력 형식에 맞게 변환")
     void givenYield_whenConvert_thenReturnFormattedYield(double yield, String expected) {
         // given

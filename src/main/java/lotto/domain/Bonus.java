@@ -23,7 +23,6 @@ public class Bonus {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getErrorDescription());
         }
     }
-
     public int getBonusNumber() {
         return bonusNumber;
     }

@@ -9,6 +9,7 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWithBonus;
+import lotto.util.LottoGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,27 +17,23 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class LottoServiceTest {
     private static Stream<Arguments> userLottoAndGeneratedLotto() {
         return Stream.of(
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), LottoResult.SIX),
+                Arguments.of(LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6)), LottoResult.SIX),
 
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 10)), LottoResult.FIVE_AND_BONUS),
+                Arguments.of(LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 10)),
+                        LottoResult.FIVE_AND_BONUS),
 
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 45)), LottoResult.FIVE),
+                Arguments.of(LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 45)), LottoResult.FIVE),
 
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 2, 3, 4, 44, 45)), LottoResult.FOUR),
+                Arguments.of(LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 44, 45)), LottoResult.FOUR),
 
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 2, 3, 43, 44, 45)), LottoResult.THREE)
+                Arguments.of(LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto(() -> Arrays.asList(1, 2, 3, 43, 44, 45)), LottoResult.THREE)
 
-                );
-    }
-
-    private static List<Integer> convertToNumbers(Integer... values) {
-        return Arrays.stream(values)
-                .toList();
+        );
     }
 
     @ParameterizedTest(name = "결과 : {3}")
@@ -51,14 +48,14 @@ public class LottoServiceTest {
 
     private static Stream<Arguments> generateNonLottoResult() {
         return Stream.of(
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 2, 42, 43, 44, 45)), LottoResult.TWO),
+                Arguments.of(LottoGenerator.generateLotto( () -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto( () -> Arrays.asList(1, 2, 42, 43, 44, 45)), LottoResult.TWO),
 
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(1, 41, 42, 43, 44, 45)), LottoResult.ONE),
+                Arguments.of(LottoGenerator.generateLotto( () -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto( () -> Arrays.asList(1, 41, 42, 43, 44, 45)), LottoResult.ONE),
 
-                Arguments.of(Lotto.from(convertToNumbers(1, 2, 3, 4, 5, 6)), Bonus.from(10),
-                        Lotto.from(convertToNumbers(40, 41, 42, 43, 44, 45)), LottoResult.ZERO)
+                Arguments.of(LottoGenerator.generateLotto( () -> Arrays.asList(1, 2, 3, 4, 5, 6)), Bonus.from(10),
+                        LottoGenerator.generateLotto( () -> Arrays.asList(40, 41, 42, 43, 44, 45)), LottoResult.ZERO)
         );
     }
 

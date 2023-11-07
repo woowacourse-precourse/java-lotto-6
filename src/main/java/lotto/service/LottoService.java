@@ -24,7 +24,8 @@ public class LottoService {
         IntStream.range(START_INCLUSIVE, chances)
                 .forEach((num) -> repository.saveLotto(
                         LottoGenerator.generateLotto(
-                                () -> Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, STANDARD_SIZE))
+                                () -> Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, STANDARD_SIZE)
+                        )
                 ));
     }
 

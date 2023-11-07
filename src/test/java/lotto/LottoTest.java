@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Asset;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,4 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 0일 경우")
+    @Test
+    void createMoneyByDecimal() {
+        assertThatThrownBy(() -> new Asset(2.5F))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호로 소수가 들어올 경우")
+    @
 }

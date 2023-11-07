@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class Asset {
-    private Float money;
+    private final Float money;
     private Float income;
 
     public Asset(Float money) {
@@ -12,6 +12,10 @@ public class Asset {
 
     private void validate(Float money) {
         if(money % 1000 != 0){
+            throw new IllegalArgumentException("wrong money input");
+        }
+
+        if(money != (long) money.floatValue()){
             throw new IllegalArgumentException("wrong money input");
         }
     }

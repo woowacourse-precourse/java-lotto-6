@@ -12,6 +12,10 @@ public class NumberCandidateString {
         this.numericString = numericString.trim();
     }
 
+    public Money toMoney() {
+        return Money.of(getNumber());
+    }
+
     public Integer getNumber() {
         return Integer.parseInt(numericString);
     }

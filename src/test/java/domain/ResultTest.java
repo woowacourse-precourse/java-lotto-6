@@ -3,10 +3,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.Lotto;
-import domain.Lottos;
-import domain.Result;
-import domain.WinningLotto;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

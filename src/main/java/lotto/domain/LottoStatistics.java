@@ -6,8 +6,9 @@ import java.util.List;
 public class LottoStatistics {
     private final List<Integer> rankCounter;
     private long winningMoney;
+    private double rateOfReturn;
 
-    public LottoStatistics(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
+    public LottoStatistics(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus, Amount amount) {
         rankCounter = new ArrayList<>();
         winningMoney = 0;
 
@@ -16,6 +17,7 @@ public class LottoStatistics {
         }
 
         makeResult(lottosPurchased, winningLotto, lottoBonus);
+        rateOfReturn = getRateOfReturn(amount);
     }
 
     private void makeResult(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
@@ -60,5 +62,9 @@ public class LottoStatistics {
             return 5000;
         }
         return 0;
+    }
+
+    private double getRateOfReturn(Amount amount) {
+        return 100.0 * winningMoney / amount.getAmount();
     }
 }

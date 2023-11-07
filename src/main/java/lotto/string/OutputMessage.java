@@ -11,10 +11,15 @@ public enum OutputMessage {
     STATISTIC_MIDDLE_MESSAGE("원) - "),
     STATISTIC_LAST_MESSAGE("개"),
     STATISTIC_RESULT_FRONT_MESSAGE("총 수익률은"),
-    STATISTIC_RESULT_LAST_MESSAGE("%입니다."),
-    ;
+    STATISTIC_RESULT_LAST_MESSAGE("%입니다.");
 
-    OutputMessage(String s) {
+    private String message;
 
+    OutputMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

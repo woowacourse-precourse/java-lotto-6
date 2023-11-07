@@ -30,7 +30,7 @@ public class OutputView {
 
     public void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(OutputMessage.LOTTO_NUMBERS.format(lotto.getNumbers()));
+            System.out.println(OutputMessage.LOTTO_NUMBERS.format(lotto.numbers()));
         }
     }
 

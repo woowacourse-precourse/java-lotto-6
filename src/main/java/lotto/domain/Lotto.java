@@ -9,8 +9,4 @@ public record Lotto(List<Integer> numbers) {
         LottoNumberValidator.isValid(numbers);
         this.numbers = List.copyOf(numbers);
     }
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
 }

@@ -33,6 +33,6 @@ class LottoTest {
 
         Lotto lotto = new Lotto(numbers);
 
-        Assertions.assertThat(lotto.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
+        Assertions.assertThat(lotto.numbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
 }

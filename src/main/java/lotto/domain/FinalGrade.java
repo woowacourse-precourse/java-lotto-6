@@ -13,11 +13,11 @@ public class FinalGrade {
     }
 
     public BigDecimal getPlayerTotalPrize() {
-        BigDecimal totalPrice = BigDecimal.ZERO;
+        BigDecimal totalPrize = BigDecimal.ZERO;
         for (Rank rank : playerLottoResults) {
-            totalPrice = totalPrice.add(rank.getPrice());
+            totalPrize = totalPrize.add(rank.getPrize());
         }
-        return totalPrice;
+        return totalPrize;
     }
 
     public BigDecimal getPlayerTotalPurchaseAmount() {

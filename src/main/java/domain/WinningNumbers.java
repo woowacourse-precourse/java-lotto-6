@@ -10,11 +10,16 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         Validator.validateWinningNumberCount(winningNumbers);
         Validator.validateWinningNumbersInRange(winningNumbers);
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        Validator.validateBonusNumberInRange(bonusNumber);
     }
 }

@@ -65,4 +65,10 @@ public class Validator {
             validateInputIsNumeric(winningNumber);
         }
     }
+
+    public static void validateBonusNumberInRange(int bonusNumber) {
+        if (isLottoNumberOutOfBounds(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 1 이상, 45 이하로 입력해 주세요. ");
+        }
+    }
 }

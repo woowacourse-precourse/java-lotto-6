@@ -32,13 +32,7 @@ public class UserLotto {
     }
 
     private Lotto publishLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }
 

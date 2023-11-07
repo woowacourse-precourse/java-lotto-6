@@ -14,8 +14,6 @@ public class ConsoleLottoOutput implements LottoOutput {
     private final String MESSAGE_RESULT = "당첨 통계\n---";
 
     private final String FORMAT_PROFIT_PERCENTAGE = "총 수익률은 %.01f%%입니다.";
-    private final String FORMAT_RESULT = "%d개 일치 (%,d원) - %d개";
-    private final String FORMAT_RESULT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,lld원) - %d개";
 
     private final String BRACKET_OPEN = "[";
     private final String BRACKET_CLOSE = "]";

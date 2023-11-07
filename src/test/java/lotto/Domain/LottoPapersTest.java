@@ -2,6 +2,9 @@ package lotto.Domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,5 +18,17 @@ class LottoPapersTest {
         assertEquals(amount, lottoPapers.getLottoPapers().size());
     }
 
+    @Test
+    @DisplayName("로또 번호가 유효한 범위 내에 있는지 확인")
+    void shouldGenerateValidLottoNumbers() {
+        int amount = 5;
+        LottoPapers lottoPapers = new LottoPapers(amount);
 
+        for (Lotto lotto : lottoPapers.getLottoPapers()) {
+            // 모든 번호가 유효한 범위 내에 있는지 확인
+            for (int number : lotto.getNumbers()) {
+                assertTrue(number >= 1 && number <= 45);
+            }
+        }
+    }
 }

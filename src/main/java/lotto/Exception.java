@@ -33,4 +33,23 @@ public class Exception {
             throw new IllegalArgumentException("중복된 번호를 입력하셨습니다.");
         }
     }
+
+    public static void bonusNumberValidate(String input, List<Integer> winningNumbers) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("1개의 숫자를 입력하셔야 합니다.");
+        }
+
+        if(bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+
+        for(int number : winningNumbers) {
+            if(number == bonusNumber) {
+                throw new IllegalArgumentException("당첨번호에 중복된 번호가 존재합니다.");
+            }
+        }
+    }
 }

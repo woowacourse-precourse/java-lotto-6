@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class Application {
     static int price = 0;
+    static int bonusNumber = 0;
 
     static List<Lotto> lottoes = new ArrayList<>();
     static List<Integer> winningNumbers = new ArrayList<>();
@@ -25,6 +26,8 @@ public class Application {
         printLottoes();
         System.out.println();
         inputWinningNumbers();
+        System.out.println();
+        inputBonusNumber();
     }
 
     public static void inputPrice() {
@@ -69,6 +72,18 @@ public class Application {
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
             inputWinningNumbers();
+        }
+    }
+
+    public static void inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+
+        try {
+            Exception.bonusNumberValidate(input, winningNumbers);
+        } catch (IllegalArgumentException e) {
+            Exception.printException(e.getMessage());
+            inputBonusNumber();
         }
     }
 }

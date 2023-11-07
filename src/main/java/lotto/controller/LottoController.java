@@ -38,13 +38,16 @@ public class LottoController {
     }
 
     public void requestPurchaseAmount() {
-        OutputView.printPurchaseAmountRequest();
-        try {
-            purchaseAmount = inputView.inputPurchaseAmount();
-            lottoCount = purchaseAmount / InputView.MIN_PURCHASE_AMOUNT;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            requestPurchaseAmount();
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                OutputView.printPurchaseAmountRequest();
+                purchaseAmount = inputView.inputPurchaseAmount();
+                lottoCount = purchaseAmount / InputView.MIN_PURCHASE_AMOUNT;
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -55,22 +58,28 @@ public class LottoController {
     }
 
     public void requestAnswerNumber() {
-        OutputView.printAnswerNumberRequest();
-        try {
-            answerNumber = inputView.inputAnswerNumber();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            requestAnswerNumber();
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                OutputView.printAnswerNumberRequest();
+                answerNumber = inputView.inputAnswerNumber();
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public void requestBonusNumber() {
-        OutputView.printBonusNumberRequest();
-        try {
-            bonusNumber = inputView.inputBonusNumber(answerNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            requestBonusNumber();
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                OutputView.printBonusNumberRequest();
+                bonusNumber = inputView.inputBonusNumber(answerNumber);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

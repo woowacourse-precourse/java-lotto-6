@@ -9,8 +9,10 @@ public class NumberPicker {
 
     private List<Integer> winningNumbers = new ArrayList<>();
 
+
     // 중복되지 않는 6개의 숫자를 뽑는다.
     public List<Integer> stringToNumbers(String input) {
+        ensureCommaDelimiter(input);
         String[] splitNumbers = input.split(",");
         checkDuplicated(splitNumbers);
         checkNumbersLength(splitNumbers);
@@ -20,6 +22,12 @@ public class NumberPicker {
         }
         checkNumbersRange(winningNumbers);
         return winningNumbers;
+    }
+
+    public void ensureCommaDelimiter(String input) {
+        if (input.contains(",") == false) {
+            throw new IllegalArgumentException("[ERROR] 번호는 쉼표(,)를 기준으로 구분해주세요. (ex.1,2,3,4,5,6)");
+        }
     }
 
     public void checkDuplicated(String[] numbers) {

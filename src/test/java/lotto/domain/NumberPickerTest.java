@@ -67,12 +67,19 @@ class NumberPickerTest {
                 .hasMessageContaining("[ERROR] 중복되는 값은 입력할 수 없습니다.");
     }
 
-    @DisplayName("보너스 1개, 숫자 이외의 값이 입력될 경우")
+    @DisplayName("보너스 1개, 숫자 이외의 값이 입력될 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"a", "ㄱ", "o", "@", "!"})
     void checkIsBonusNumberTest(String input) {
         assertThatThrownBy(() -> numberPicker.checkIsBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
+    }
+
+    @DisplayName("번호 입력 구분자가 쉼표(,)가 아닐 경우 예외가 발생한다.")
+    @Test
+    void checkInputFormat() {
+        assertThatThrownBy(() -> numberPicker.ensureCommaDelimiter("1 2 3 4 5 6"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

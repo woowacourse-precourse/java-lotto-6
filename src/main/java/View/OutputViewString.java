@@ -13,7 +13,7 @@ public enum OutputViewString {
 
     private final String SENTENCE;
 
-    private OutputViewString(String sentence) {
+    OutputViewString(String sentence) {
         this.SENTENCE = sentence;
     }
 

@@ -1,4 +1,4 @@
-package lotto.Model;
+package lotto.Validation;
 
 public class InputValidation {
     private static final String ERROR_INPUT_MONEY = "\n[ERROR] 입력 금액은 1000의 배수로 입력해주세요.";

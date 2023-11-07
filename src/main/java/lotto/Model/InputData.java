@@ -1,6 +1,8 @@
 package lotto.Model;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Validation.InputValidation;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

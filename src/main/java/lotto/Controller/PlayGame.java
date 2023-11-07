@@ -13,13 +13,14 @@ public class PlayGame {
     Result winningData = new Result();
     LottoResult lottoResult = new LottoResult(winningData);
     Lotto winningNumbers;
+    List<Lotto> randomLottoNumbers;
 
     public void play() {
         System.out.println(PrintInput.INPUT_MONEY);
         int lottoAmount = inputData.purchase_amount() / 1000;
 
         PrintOutput.printAmount(lottoAmount);
-        List<Lotto> randomLottoNumbers = userLottos.userLottosCreate(lottoAmount);
+        randomLottoNumbers = userLottos.userLottosCreate(lottoAmount);
         PrintOutput.printUserLotto(randomLottoNumbers);
 
         System.out.println("\n" + PrintInput.WINNING_NUMBER);
@@ -28,6 +29,11 @@ public class PlayGame {
         System.out.println("\n" + PrintInput.BONUS_NUMBER);
         int bonusBall = inputData.getBonusNumber();
 
+        storeResult(bonusBall);
+        lottoResult.printResult(lottoAmount * 1000);
+    }
+
+    private void storeResult(int bonusBall){
         for (Lotto userLottoNumbers : randomLottoNumbers) {
             int matchNumber = winningNumbers.matchNumber(userLottoNumbers);
             boolean checkBonusBall = userLottoNumbers.checkBonusBall(bonusBall);
@@ -35,7 +41,5 @@ public class PlayGame {
             Winning winning = Winning.result(matchNumber, checkBonusBall);
             winningData.winningResult(winning);
         }
-
-        lottoResult.printResult(lottoAmount * 1000);
     }
 }

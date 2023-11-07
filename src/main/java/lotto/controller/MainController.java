@@ -60,7 +60,7 @@ public class MainController {
                     winningPolicy.hitBonus(lottoNumbers, weekWinning.bonus())
             );
         }
-        System.out.println(lottoManager.getResultEnumMap());
+
     }
 
     private WeekWinning publishWeekWinning() {

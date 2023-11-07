@@ -4,18 +4,20 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Rewards {
-    FIRST(2_000_000_000, (matchCount, hasBonus) -> matchCount == 6),
-    SECOND(30_000_000, (matchCount, hasBonus) -> matchCount == 5 && hasBonus),
-    THIRD(1_500_000, (matchCount, hasBonus) -> matchCount == 5 && !hasBonus),
-    FOURTH(50_000, (matchCount, hasBonus) -> matchCount == 4),
-    FIFTH(5_000, (matchCount, hasBonus) -> matchCount == 3),
-    LOSE(0, (matchCount, hasBonus) -> matchCount < 3);
+    LOSE(0, 0, (matchCount, hasBonus) -> matchCount < 3),
+    FIFTH(5_000, 3, (matchCount, hasBonus) -> matchCount == 3),
+    FOURTH(50_000, 4, (matchCount, hasBonus) -> matchCount == 4),
+    THIRD(1_500_000, 5, (matchCount, hasBonus) -> matchCount == 5 && !hasBonus),
+    SECOND(30_000_000, 5, (matchCount, hasBonus) -> matchCount == 5 && hasBonus),
+    FIRST(2_000_000_000, 6, (matchCount, hasBonus) -> matchCount == 6);
 
     private final int value;
+    private final int count;
     private final BiPredicate<Integer, Boolean> condition;
 
-    private Rewards(int value, BiPredicate<Integer, Boolean> condition) {
+    private Rewards(int value, int count, BiPredicate<Integer, Boolean> condition) {
         this.value = value;
+        this.count = count;
         this.condition = condition;
     }
 
@@ -28,5 +30,9 @@ public enum Rewards {
 
     public int getValue() {
         return value;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

@@ -20,7 +20,7 @@ public class MainController {
         Player player = playerController.createPlayer();
         playerController.showPlayerLotto(player);
 
-        Lotto winningLotto = winningController.getWinningLotto();
+        Lotto winningLotto = winningController.createWinningLotto();
         Winning winning = winningController.createWinning(winningLotto);
 
         Result result = resultController.createResult(player, winning);

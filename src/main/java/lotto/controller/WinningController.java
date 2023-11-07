@@ -15,12 +15,12 @@ public class WinningController {
         }
     }
 
-    public Lotto getWinningLotto() {
+    public Lotto createWinningLotto() {
         try {
             return new Lotto(InputView.getLottoWinnning());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getWinningLotto();
+            return createWinningLotto();
         }
     }
 }

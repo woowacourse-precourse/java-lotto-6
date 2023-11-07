@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 class WinningControllerTest {
     private final OutputStream outputStream = new ByteArrayOutputStream();
     private WinningController winningController;
+    private Lotto winningLotto;
 
     @BeforeEach
     void setUp() {
@@ -25,12 +26,21 @@ class WinningControllerTest {
     @DisplayName("로또 당첨 번호 컨트롤러를 테스트한다.")
     @Test
     void 로또_당첨_번호_컨트롤러를_테스트() {
+        testCreateWinningLotto();
+        testCreateWinning();
+    }
+
+    private void testCreateWinningLotto() {
         String lotto = "1,2,3,4,5,6";
         String bonus = "7";
         String[] args = {lotto, bonus};
         System.setIn(new ByteArrayInputStream(String.join("\n", args).getBytes()));
 
-        Lotto winningLotto = winningController.getWinningLotto();
+        winningLotto = winningController.createWinningLotto();
+        assertThat(winningLotto).isNotNull();
+    }
+
+    private void testCreateWinning() {
         Winning winning = winningController.createWinning(winningLotto);
 
         assertThat(winning).isNotNull();

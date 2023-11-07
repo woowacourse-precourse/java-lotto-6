@@ -11,9 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PlayerControllerTest {
+public class PlayerControllerTest {
     private final OutputStream outputStream = new ByteArrayOutputStream();
     private PlayerController playerController;
+    private Player player;
 
     @BeforeEach
     void setUp() {
@@ -24,12 +25,19 @@ class PlayerControllerTest {
     @DisplayName("사용자 컨트롤러를 테스트한다.")
     @Test
     void 사용자_컨트롤러_테스트() {
+        testCreatePlayer();
+        testShowPlayerLotto();
+    }
+
+    void testCreatePlayer() {
         String money = "8000";
         System.setIn(new ByteArrayInputStream(money.getBytes()));
 
-        Player player = playerController.createPlayer();
+        player = playerController.createPlayer();
         assertThat(player).isNotNull();
+    }
 
+    void testShowPlayerLotto() {
         playerController.showPlayerLotto(player);
 
         String testResult = outputStream.toString().trim();

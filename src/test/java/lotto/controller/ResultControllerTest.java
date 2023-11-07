@@ -19,6 +19,8 @@ class ResultControllerTest {
     private PlayerController playerController;
     private WinningController winningController;
     private ResultController resultController;
+    private Player player;
+    private Result result;
 
     @BeforeEach
     void setUp() {
@@ -31,17 +33,26 @@ class ResultControllerTest {
     @DisplayName("로또 당첨 결과 컨트롤러를 테스트한다.")
     @Test
     void 로또_당첨_결과_컨트롤러_테스트() {
+        testCreateResult();
+        testShowResult();
+    }
+
+    private void testCreateResult() {
         String money = "8000";
         String lotto = "1,2,3,4,5,6";
         String bonus = "7";
         String[] args = {money, lotto, bonus};
         System.setIn(new ByteArrayInputStream(String.join("\n", args).getBytes()));
 
-        Player player = playerController.createPlayer();
-        Lotto winningLotto = winningController.getWinningLotto();
+        player = playerController.createPlayer();
+        Lotto winningLotto = winningController.createWinningLotto();
         Winning winning = winningController.createWinning(winningLotto);
 
-        Result result = resultController.createResult(player, winning);
+        result = resultController.createResult(player, winning);
+        assertThat(result).isNotNull();
+    }
+
+    private void testShowResult() {
         resultController.showResult(result, player);
 
         String testResult = outputStream.toString().trim();

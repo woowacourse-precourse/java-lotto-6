@@ -1,13 +1,16 @@
 package lotto.controller.user;
 
+import lotto.domain.Lotto;
 import lotto.exception.LottoNumberException;
 import lotto.view.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoDraw {
+    private Lotto lotto;
     private final InputView inputView;
 
     public LottoDraw(InputView inputView) {
@@ -29,17 +32,40 @@ public class LottoDraw {
         return true;
     }
 
-    public void drawLotto () {
-        List<String> inputs;
+    private List<String> inputDrawNumbers() {
+        List<String> numbers;
 
         while (true) {
             inputView.showWinningNumbersInputForm();
-            inputs = List.of(readLine().split(","));
+            numbers = List.of(readLine().split(","));
             inputView.endInput();
 
-            if (isCorrectNumber(inputs)) {
+            if (isCorrectNumber(numbers)) {
                 break;
             }
         }
+
+        return numbers;
+    }
+
+    private List<Integer> creatLotto(List<String> numbers) {
+        List<Integer> drawNumbers = new ArrayList<>();
+
+        for(String number: numbers) {
+            drawNumbers.add(Integer.parseInt(number));
+        }
+
+        return drawNumbers;
+    }
+
+    public void drawLotto () {
+        List<String> numbers = inputDrawNumbers();
+        List<Integer> drawNumbers = creatLotto(numbers);
+
+        lotto = new Lotto(drawNumbers);
+    }
+
+    public Lotto getLotto() {
+        return lotto;
     }
 }

@@ -18,6 +18,7 @@ public class InputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입 금액을 입력해 주세요.";
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String USER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String USER_INPUT_SEPARATOR = ",";
     private static final String NEW_LINE = "\n";
 
@@ -66,5 +67,12 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-
+    public int bonusNumberInput(List<Integer> winningNumber) {
+        String userInput;
+        do {
+            System.out.println(BONUS_NUMBER_MESSAGE);
+            userInput = Console.readLine().trim();
+        } while (false);
+        return Integer.parseInt(userInput.trim());
+    }
 }

@@ -3,7 +3,9 @@ package lotto.view;
 import lotto.domain.Rank;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static constant.MessageList.*;
@@ -14,27 +16,28 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(List<Integer> lottoNumbers) {
-        Collections.sort(lottoNumbers);
-
-        List<String> lotto = lottoNumbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-
-        System.out.println(lotto);
+        System.out.println(lottoNumbers);
     }
 
-    public static void printWinningStatistics(int[] winningCount) {
+    public static void printWinningStatistics(Map<Rank, Integer> prizeCount) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(DIVIDE_LINE);
 
-        System.out.println(FIFTH_PLACE + winningCount[0] + NUMBER);
-        System.out.println(FOURTH_PLACE + winningCount[1] + NUMBER);
-        System.out.println(THIRD_PLACE + winningCount[2] + NUMBER);
-        System.out.println(SECOND_PLACE + winningCount[3] + NUMBER);
-        System.out.println(FIRST_PLACE + winningCount[4] + NUMBER);
+//        Iterator<Rank> iterator = prizeCount.keySet().iterator();
+//
+//        while (iterator.hasNext()) {
+//            Rank key = iterator.next();
+//            int value = (int) prizeCount.get(key);
+//            System.out.println(key.resultMessage + value + NUMBER);
+//        }
+        System.out.println(Rank.FIFTH.resultMessage + prizeCount.get(Rank.FIFTH) + NUMBER);
+        System.out.println(Rank.FOURTH.resultMessage + prizeCount.get(Rank.FOURTH) + NUMBER);
+        System.out.println(Rank.THIRD.resultMessage + prizeCount.get(Rank.THIRD) + NUMBER);
+        System.out.println(Rank.SECOND.resultMessage + prizeCount.get(Rank.SECOND) + NUMBER);
+        System.out.println(Rank.FIRST.resultMessage + prizeCount.get(Rank.FIRST) + NUMBER);
     }
 
     public static void printTotalRateOfReturn(double rateOfReturn) {
-        System.out.println(TOTAL_RATE_OF_RETURN_MESSAGE + String.format("%.1f",rateOfReturn) + FINISH_MESSAGE);
+        System.out.println(TOTAL_RATE_OF_RETURN_MESSAGE + String.format("%.1f", rateOfReturn) + FINISH_MESSAGE);
     }
 }

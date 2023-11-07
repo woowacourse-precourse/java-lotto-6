@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.utils.Validator;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 

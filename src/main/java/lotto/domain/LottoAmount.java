@@ -7,6 +7,7 @@ import static constant.MessageList.ERROR_INPUT_IS_NOT_POSITIVE_NUMBER;
 
 public class LottoAmount {
     Validator validator;
+
     public LottoAmount() {
         validator = new Validator();
     }
@@ -24,11 +25,13 @@ public class LottoAmount {
             throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_POSITIVE_NUMBER);
         }
     }
+
     private void validateDivisible(int purchaseAmount) {
         if (purchaseAmount / PRICE_OF_ONE_LOTTO == 0) {
             throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_DIVISIBLE);
         }
     }
+
     public int getPurchaseQuantityOfLotto(int purchaseAmount) {
         return purchaseAmount / PRICE_OF_ONE_LOTTO;
     }

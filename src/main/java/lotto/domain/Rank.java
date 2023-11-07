@@ -15,8 +15,4 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
         this.resultMessage = resultMessage;
     }
-
-    private void getFirstPlace() {
-
-    }
 }

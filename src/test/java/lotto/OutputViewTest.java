@@ -1,11 +1,14 @@
 package lotto;
 
+import lotto.domain.Rank;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class OutputViewTest {
     @Test
@@ -18,7 +21,13 @@ public class OutputViewTest {
     @Test
     @DisplayName("당첨내역을 출력한다.")
     void printWinningStatistics() {
-        OutputView.printWinningStatistics(new int[]{1, 0, 0, 0, 0});
+        OutputView.printWinningStatistics(new LinkedHashMap<Rank, Integer>() {{
+            put(Rank.FIRST, 1);
+            put(Rank.SECOND, 0);
+            put(Rank.THIRD, 0);
+            put(Rank.FOURTH, 1);
+            put(Rank.FIFTH, 2);
+        }});
     }
 
     @Test

@@ -39,6 +39,7 @@ public class LottoGameTest {
     void calculateProfitRateFromWinningHistory() {
         int purchaseAmount = 8000;
         Map<LottoRank, Integer> winningHistory = Map.of(FIFTH, 1);
+
         assertThat(lottoGame.calculateProfitRateFromWinningHistory(purchaseAmount, winningHistory)).isEqualTo(62.5);
     }
 }

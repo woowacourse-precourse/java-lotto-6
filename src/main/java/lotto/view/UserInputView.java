@@ -1,13 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.LottoController;
 import lotto.domain.LottoTickets;
 
 public class UserInputView {
 
     public static void inputPurchaseAmount(){
         try{
-            LottoTickets.createBuyLottoTickets(Long.parseLong(Console.readLine()));
+            LottoController.createBuyLottoTickets(Long.parseLong(Console.readLine()));
 
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

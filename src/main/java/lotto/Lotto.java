@@ -31,7 +31,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public Grade draw(Lotto winning, Integer bonus) {
+    public Optional<Grade> draw(Lotto winning, Integer bonus) {
         int count = (int) winning.numbers.stream()
                 .filter(number -> contains(number))
                 .count();

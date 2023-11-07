@@ -1,10 +1,7 @@
 package lotto;
 
 import java.lang.invoke.VarHandle;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WinningNumbers {
 
@@ -26,11 +23,13 @@ public class WinningNumbers {
     public Map<Grade, Integer> draw(List<Lotto> tickets) {
         Map<Grade, Integer> winners = new HashMap<>();
         for (Lotto ticket : tickets) {
-            Grade grade = ticket.draw(winning, bonus);
-            int numOfWinners = winners.getOrDefault(grade, 0);
-            winners.put(grade, numOfWinners + 1);
+            Optional<Grade> optionalGrade = ticket.draw(winning, bonus);
+            if (optionalGrade.isPresent()) {
+                Grade grade = optionalGrade.get();
+                int numOfWinners = winners.getOrDefault(grade, 0);
+                winners.put(grade, numOfWinners + 1);
+            }
         }
-        winners.remove(null);
         return winners;
     }
 }

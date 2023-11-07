@@ -20,23 +20,23 @@ public enum Grade {
         this.prize = prize;
     }
 
-    static Grade get(int count, boolean bonus) {
+    static Optional<Grade> get(int count, boolean bonus) {
         if (count == FIRST.count && bonus == FIFTH.bonus) {
-            return FIRST;
+            return Optional.of(FIRST);
         }
         if (count == SECOND.count && bonus == SECOND.bonus) {
-            return SECOND;
+            return Optional.of(SECOND);
         }
         if (count == THIRD.count && bonus == THIRD.bonus) {
-            return THIRD;
+            return Optional.of(THIRD);
         }
         if (count == FOURTH.count) {
-            return FOURTH;
+            return Optional.of(FOURTH);
         }
         if (count == FIFTH.count) {
-            return FIFTH;
+            return Optional.of(FIFTH);
         }
-        return null;
+        return Optional.empty();
     }
 
     public void print(int numOfWinners) {

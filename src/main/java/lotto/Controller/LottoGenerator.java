@@ -1,9 +1,11 @@
-package lotto;
+//LottoGenerator.java
+package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
 
 public class LottoGenerator {
 	public List<Lotto> makeLotto(int lottoCount){

@@ -1,11 +1,15 @@
+//Application.java
 package lotto;
+
+import lotto.Controller.Game;
+import lotto.Controller.LottoGenerator;
+import lotto.Controller.WinningCalculator;
 
 public class Application {
     public static void main(String[] args) {
-        User user = new User();
-        WinningInfo winningInfo = new WinningInfo();
         LottoGenerator lottoGenerator = new LottoGenerator();
-        Game lottoGame = new Game(user, winningInfo, lottoGenerator);
+        WinningCalculator winningCalculator = new WinningCalculator();
+        Game lottoGame = new Game(lottoGenerator, winningCalculator);
 
         lottoGame.run();
     }

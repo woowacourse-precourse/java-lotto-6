@@ -48,7 +48,7 @@ public class MoneyTest {
 	@Test
 	void testCalculateLottoCount() {
 		Money money = new Money("5000");
-		int lottoCount = money.calculateLottoCount();
+		int lottoCount = money.calculateAffordableLottoCount();
 		assertEquals(5, lottoCount);
 	}
 }

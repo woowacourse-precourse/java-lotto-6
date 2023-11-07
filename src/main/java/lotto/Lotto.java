@@ -1,3 +1,4 @@
+//Lotto.java
 package lotto;
 
 import java.util.List;
@@ -32,5 +33,7 @@ public class Lotto {
         return sb.toString();
     }
 
-    // TODO: 추가 기능 구현
+    public boolean have(Integer numberToFind){
+        return this.numbers.contains(numberToFind);
+    }
 }

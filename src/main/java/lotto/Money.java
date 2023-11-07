@@ -1,41 +1,40 @@
+//Money.java
 package lotto;
 
-public class Money {
-	private int money;
+import lotto.Constant.LottoInfo;
+import lotto.Enum.ErrorMessage;
 
-	public Money(String money){
-		validate(money);
-		this.money = Integer.parseInt(money);
+public class Money {
+	private final int money;
+
+	public Money(String input){
+		validate(input);
+		this.money = Integer.parseInt(input);
 	}
 
 	private int validate(String input) {
 		if (!input.matches("\\d+")) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해주세요.");
+			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
 		}
 
 		int pay = Integer.parseInt(input);
 
-		if (pay < 0) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 0보다 큰 값이여야 합니다.");
-		}
-
 		if (pay % 1000 != 0) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.");
+			throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_1000.getMessage());
 		}
 
-		if(pay < 1000) {
-			throw new IllegalArgumentException("[ERROR] 1000 이상의 숫자를 입력해주세요.");
+		if (pay < 1000) {
+			throw new IllegalArgumentException(ErrorMessage.LESS_THAN_1000.getMessage());
 		}
+
 		return pay;
 	}
 
-	public int calculateLottoCount(){
-		//이후에 Constant 추가
-		return this.money/1000;
+	public int calculateAffordableLottoCount(){
+		return money / LottoInfo.getPRICE();
 	}
 
-	//test code 에서만 사용
 	public int getMoney(){
-		return this.money;
+		return money;
 	}
 }

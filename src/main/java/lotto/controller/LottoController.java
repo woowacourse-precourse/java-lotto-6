@@ -21,7 +21,7 @@ public class LottoController {
         final Customer customer = new Customer();
         final LottoStore lottoStore = new LottoStore();
 
-        buyLottos(customer, lottoStore);
+        purchaseLottos(customer, lottoStore);
         sellLottos(customer, lottoStore);
 
         final WinningNumbers winningNumbers = generateWinningNumber();
@@ -29,7 +29,7 @@ public class LottoController {
         result(customer, winningNumbers);
     }
 
-    public void buyLottos(final Customer customer, final LottoStore lottoStore) {
+    public void purchaseLottos(final Customer customer, final LottoStore lottoStore) {
         while (true) {
             try {
                 String moneyInput = inputView.requestLottoMoneyToBuy();
@@ -88,7 +88,7 @@ public class LottoController {
                 winningNumbers.getBonusNumber()
         );
 
-        customer.checkWinningNumber(lottoChecker);
+        customer.checkResult(lottoChecker);
         final Map<Prize, Integer> result = lottoChecker.getResult();
         final String profitRate = lottoChecker.getProfitRate();
 

@@ -1,9 +1,13 @@
 package lotto.model;
 
+import static lotto.common.exception.PurchaseAmountErrorMessage.NOT_DIVIDE_BY_LOTTO_PRICE;
+import static lotto.common.exception.PurchaseAmountErrorMessage.NOT_NULL;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.common.exception.PurchaseAmountException;
 
 public class LottoVendor {
 
@@ -13,6 +17,10 @@ public class LottoVendor {
         validateAmount(paymentAmount);
         int count = calculateLottoCount(paymentAmount);
         return generateRandomLotteries(count);
+    }
+
+    public BigDecimal calculateTotalPrice(int count) {
+        return PRICE_A_LOTTO.multiply(BigDecimal.valueOf(count));
     }
 
     private List<Lotto> generateRandomLotteries(int count) {
@@ -28,13 +36,13 @@ public class LottoVendor {
 
     private void validateNull(BigDecimal paymentAmount) {
         if(paymentAmount == null) {
-            throw new IllegalArgumentException();
+            throw new PurchaseAmountException(NOT_NULL);
         }
     }
 
     private void validatePaymentAmountIsMultipleOf1000(BigDecimal paymentAmount) {
         if(isPaymentNotDivisibleByLottoPrice(paymentAmount)) {
-            throw new IllegalArgumentException();
+            throw new PurchaseAmountException(NOT_DIVIDE_BY_LOTTO_PRICE);
         }
     }
 

@@ -1,13 +1,17 @@
 package domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import validators.AmountValidator;
+import validators.LottoValidator;
 
 public class UserLotto {
 
     private int amount;
     private int lottoCount;
 
-    private Lotto lottoNumber;
+    private Lotto lotto;
 
     private int bonusNumber;
 
@@ -19,7 +23,28 @@ public class UserLotto {
         }
     }
 
+    public void setInputLotto(String inputLotto) throws IllegalArgumentException{
+        LottoValidator.verifyInputLotto(inputLotto);
+
+        List<Integer> numbers = createUserLottoNumbers(inputLotto);
+        LottoValidator.verifyLotto(numbers);
+
+        setLotto(new Lotto(numbers));
+    }
+
+    private List<Integer> createUserLottoNumbers(String inputLotto){
+        return Arrays.stream(inputLotto.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+
     public int getLottoCount() {
         return lottoCount;
     }
+
+    private void setLotto(Lotto lotto) {
+        this.lotto = lotto;
+    }
+
 }

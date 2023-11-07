@@ -9,36 +9,27 @@ import constants.LottoGameMessage;
 import domain.Lotto;
 import domain.LottoGame;
 import domain.UserLotto;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LottoGameService {
     private UserLotto userLotto;
     private LottoGame lottoGame = new LottoGame();
 
     public void runLottoGame(){
-        purchaseLotto();
+        purchaseLottoGame();
 
         printf(LottoGameMessage.PURCHASED_COUNT.toString(), userLotto.getLottoCount());
-        List<Lotto> lottoList = getLottoList(userLotto.getLottoCount());
+        List<Lotto> lottoList = lottoGame.getLottoList(userLotto.getLottoCount());
         lottoList.stream()
                 .forEach(lotto -> print(lotto.getNumbers().toString()));
 
-        print(LottoGameMessage.WINNING_NUMBER.toString());
-    }
-    public List<Lotto> getLottoList(int lottoCount){
-        List<Lotto> lottoList = new ArrayList<>();
-        IntStream.range(0, lottoCount)
-                .forEach(i -> {
-                    List<Integer> lottoNumbers = lottoGame.createLottoNumbers();
-                    lottoList.add(new Lotto(lottoNumbers));
-                });
-        return lottoList;
+        setInputLottoGame();
+
     }
 
-    public void purchaseLotto(){
+    public void purchaseLottoGame(){
         boolean isAmount = false;
+
         while(!isAmount){
             print(LottoGameMessage.PURCHASE_AMOUNT.toString());
             isAmount = isGetUserLotto(readInput());
@@ -54,6 +45,21 @@ public class LottoGameService {
         }
         return true;
     }
+
+    private void setInputLottoGame(){
+        boolean isInputLotto = false;
+
+        while(!isInputLotto){
+            print(LottoGameMessage.WINNING_NUMBER.toString());
+            try{
+                userLotto.setInputLotto(readInput());
+                isInputLotto = true;
+            }catch (IllegalArgumentException iae){
+                errorPrint(iae.getMessage());
+            }
+        }
+    }
+
 
     private String readInput(){
         return Console.readLine();

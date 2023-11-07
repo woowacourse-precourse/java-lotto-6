@@ -18,7 +18,6 @@ public class LottoGameController {
     private LottoMachine lottoMachine;
     private WinningLotto winningLotto;
     private Bonus bonus;
-    private Purchase purchase;
     private final PurchaseService purchaseService = new PurchaseService();
     private final WinningNumberService winningNumberService = new WinningNumberService();
 
@@ -28,29 +27,27 @@ public class LottoGameController {
     }
 
     public void playing() {
-        purchaseLottoTickets();
-        getLottoTickets();
+        Purchase purchase = purchaseLottoTickets();
+        getLottoTickets(purchase);
         getWinningNumbers();
         getBonusNumber();
-        getLotteryStatistics();
+        getLotteryStatistics(purchase);
     }
 
-    private void getLottoTickets() {
+    private void getLottoTickets(Purchase purchase) {
         lottoMachine = new LottoMachine(purchase.getTicketCount());
         outputView.printPurchases(purchase.getTicketCount());
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 
     //TODO: PurchaseService가 Purchase 반환하게 만들기
-    private void purchaseLottoTickets() {
+    private Purchase purchaseLottoTickets() {
+        Purchase purchase = null;
         while(purchase == null) {
             String price = inputView.requestPrice();
-            try {
-                purchase = purchaseService.getPurchaseIfValid(price);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            purchase = purchaseService.getPurchaseIfValid(price);
         }
+        return purchase;
     }
 
 
@@ -88,7 +85,7 @@ public class LottoGameController {
 
     }
 
-    private void getLotteryStatistics() {
+    private void getLotteryStatistics(Purchase purchase) {
         LottoResultChecker resultChecker = new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto, bonus);
         Statistics statistics = new Statistics();
         statistics.makeResultBoard();

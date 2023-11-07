@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessages;
+import lotto.constant.NumberConstants;
 
 import static lotto.constant.NumberConstants.*;
 
@@ -34,7 +35,7 @@ public class PurchaseLotto {
     private void isDivisible(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
-                    ErrorMessages.INVALID_AMOUNT.getMessage() +
+                    ErrorMessages.INVALID_AMOUNT.format(LOTTO_PRICE) +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }

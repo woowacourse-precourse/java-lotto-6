@@ -8,13 +8,17 @@ import java.util.List;
 public class NumberGenerator {
 
     List<Integer> randomNumbers = new ArrayList<>();
-    public List<Integer> generate(){
-        randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
-        sortRandomNumbers(randomNumbers);
+
+    public List<Integer> generateLottoNumber(){
+        generateRandomNumber();
+        sortRandomNumbers();
         return randomNumbers;
     }
+    public void generateRandomNumber(){
+        randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
 
-    public void sortRandomNumbers(List<Integer> randomNumbers){
-        Collections.sort(this.randomNumbers);
+    public void sortRandomNumbers(){
+        Collections.sort(randomNumbers);
     }
 }

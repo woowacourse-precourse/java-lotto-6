@@ -83,25 +83,25 @@ public class Application {
 //        }
 //    }
 
-    public static List<Lotto> generateLottos(int quantity){
-        List<Lotto> allLotto = new ArrayList<>();
-        for (int i = 0; i < quantity; i++){
-            allLotto.add(new Lotto(createRandomNumbers()));
-        }
-        return allLotto;
-    }
+//    public static List<Lotto> generateLottos(int quantity){
+//        List<Lotto> allLotto = new ArrayList<>();
+//        for (int i = 0; i < quantity; i++){
+//            allLotto.add(new Lotto(createRandomNumbers()));
+//        }
+//        return allLotto;
+//    }
+//
+//    public static List<Integer> createRandomNumbers() {
+//        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+//    }
 
-    public static List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
 
-
-    public static void printLottos(List<Lotto> allLotto, int quantity) {
-        System.out.printf("\n%d개를 구매했습니다.\n", quantity);
-        for (Lotto lotto: allLotto){
-            lotto.printNumbers();
-        }
-    }
+//    public static void printLottos(List<Lotto> allLotto, int quantity) {
+//        System.out.printf("\n%d개를 구매했습니다.\n", quantity);
+//        for (Lotto lotto: allLotto){
+//            lotto.printNumbers();
+//        }
+//    }
 
     public static List<Integer> getResult(List<Lotto> allLotto, Lotto winningLotto, int bonus) {
         List<Integer> result = new ArrayList<>();
@@ -148,8 +148,8 @@ public class Application {
     public static void main(String[] args) {
         int amountOfMoney = InputRequirement.inputLottoAmount();
 
-        List<Lotto> allLotto = generateLottos(amountOfMoney/price);
-        printLottos(allLotto, amountOfMoney/price);
+        List<Lotto> allLotto = LottoGenerator.generateLottos(amountOfMoney/price);
+        LottoGenerator.printGeneratedLottos(allLotto, amountOfMoney/price);
 
         Lotto winningLotto = InputRequirement.inputWinningNumbers();
         int bonusNumber = InputRequirement.inputBonusNumber();

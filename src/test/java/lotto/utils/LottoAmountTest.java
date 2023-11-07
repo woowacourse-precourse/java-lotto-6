@@ -13,5 +13,12 @@ public class LottoAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void notContainNumber() {
+        assertThatThrownBy(() -> new LottoAmountValidator("giltaeyeon"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

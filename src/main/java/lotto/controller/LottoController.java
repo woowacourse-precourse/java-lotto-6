@@ -28,29 +28,57 @@ public class LottoController {
     }
 
     private int inputPayment(){
-        outputView.outputPayment();
-        int payment = inputView.inputPayment();
-        System.out.println();
-
-        return payment;
+        while(true) {
+            try {
+                outputView.outputPayment();
+                int payment = inputView.inputPayment();
+                System.out.println();
+                return payment;
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
     private Lottos buyLotto(int payment){
-        Lottos lottos = new Lottos();
-        lottos.buyMultipleAllRandom(payment);
-        outputView.outputBuy(lottos);
-        System.out.println();
-
-        return lottos;
+        while(true) {
+            try {
+                Lottos lottos = new Lottos();
+                lottos.buyMultipleAllRandom(payment);
+                outputView.outputBuy(lottos);
+                System.out.println();
+                return lottos;
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 
     private void setGoal(Lottos lottos){
-        outputView.outputGoal();
-        lottos.setGoal(inputView.inputNumbers());
-        System.out.println();
+        while(true) {
+            try {
+                outputView.outputGoal();
+                lottos.setGoal(inputView.inputNumbers());
+                System.out.println();
+                break;
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
     private void setBonus(Lottos lottos){
-        outputView.outputBonus();
-        lottos.setBonus(inputView.inputNumber());
-        System.out.println();
+        while(true) {
+            try {
+                outputView.outputBonus();
+                lottos.setBonus(inputView.inputNumber());
+                System.out.println();
+                break;
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 }

@@ -17,4 +17,12 @@ class RandomNumbersTest {
         assertThat(sortedNumbers).hasSize(6);
     }
 
+    @Test
+    @DisplayName("범위는 1~45 이다.")
+    void createdRandomNumbersValidRange() {
+        RandomNumbers randomNumbers = new RandomNumbers();
+        List<Integer> sortedNumbers = randomNumbers.createRandomNumbers();
+        assertThat(sortedNumbers).allMatch(n -> n > 0 && n < 46);
+    }
+
 }

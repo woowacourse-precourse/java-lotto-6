@@ -2,6 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BallNumber {
     public static String[] inputWinningBall() {
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -9,11 +12,11 @@ public class BallNumber {
         return winningBall.split(",");
     }
 
-    public static int[] transWinningBall(String[] winningBallNumber) {
-        int[] winningNumber = new int[winningBallNumber.length];
+    public static List<Integer> transWinningBall(String[] winningBallNumber) {
+        List<Integer> winningNumber = new ArrayList<>();
 
-        for (int i = 0; i < winningBallNumber.length; i++) {
-            winningNumber[i] = Integer.parseInt(winningBallNumber[i]);
+        for (String s : winningBallNumber) {
+            winningNumber.add(Integer.parseInt(s));
         }
 
         return winningNumber;

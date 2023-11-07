@@ -108,6 +108,55 @@ public class LottoHandler {
         return bonusNumber;
     }
 
+    public Map<WinningKind, Integer> winningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        Map<WinningKind, Integer> winningResult = calculateResult(lottos, winningLotto, bonusNumber);
+        OutputHandler.printWinningStatistics(winningResult);
+        return winningResult;
+    }
+
+    public double rateOfReturnResult(int numberOfLotto, Map<WinningKind, Integer> winningResult) {
+        int revenue = calculateRevenue(winningResult);
+        return 0;
+    }
+
+    public int calculateLottoTicketCount(String receivedPurchasePrice) {
+        int purchasePrice;
+        try {
+            purchasePrice = Integer.parseInt(receivedPurchasePrice);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
+
+        if (purchasePrice % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] " + LOTTO_PRICE + "원 단위로만 입력해 주세요.");
+        }
+        return purchasePrice / LOTTO_PRICE;
+    }
+
+    private Lotto pickNumbersOrderByAsc() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                LOTTO_START_NUMBER,
+                LOTTO_LAST_NUMBER,
+                LOTTO_NUMBER_COUNT
+        );
+        numbers.sort(Comparator.naturalOrder());
+        return new Lotto(numbers);
+    }
+
+    public Lotto receiveWinningLotto(String receivedWinningLotto) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        String[] separatedWinningLotto = receivedWinningLotto.split(",");
+        try {
+            for (String winningLotto : separatedWinningLotto) {
+                winningNumbers.add(Integer.parseInt(winningLotto));
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
+        winningNumbers.sort(Comparator.naturalOrder());
+        return new Lotto(winningNumbers);
+    }
+
     public int receiveBonusNumber(String receivedBonusNumber) {
         int bonusNumber = 0;
         try {
@@ -125,19 +174,58 @@ public class LottoHandler {
         }
     }
 
-    public void winningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-        OutputHandler.printLineBreakMessage("당첨 통계");
-        OutputHandler.printMessage("---");
-        Map<WinningKind, Integer> winningResult = calculateWinningResult(lottos, winningLotto, bonusNumber);
+    private void winningResultInitialize(Map<WinningKind, Integer> winningResult) {
+        winningResult.put(WinningKind.FIFTH, 0);
+        winningResult.put(WinningKind.FOURTH, 0);
+        winningResult.put(WinningKind.THIRD, 0);
+        winningResult.put(WinningKind.SECOND, 0);
+        winningResult.put(WinningKind.FIRST, 0);
     }
 
-    public Map<WinningKind, Integer> calculateWinningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    public int winningNumberCount(Lotto lotto, Lotto winningLotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+    }
+
+    public Map<WinningKind, Integer> calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         Map<WinningKind, Integer> winningResult = new HashMap<>();
+        winningResultInitialize(winningResult);
+
         for (Lotto lotto : lottos) {
-            if (lotto.equals(winningLotto)) {
-                winningResult.put(WinningKind.FIRST, 1);
-            }
+            int winningNumberCount = winningNumberCount(lotto, winningLotto);
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            calculateWinning(winningNumberCount, bonusMatch, winningResult);
         }
         return winningResult;
+    }
+
+    public void calculateWinning(
+            int winningNumberCount, boolean bonusMatch, Map<WinningKind, Integer> winningResult) {
+        if (winningNumberCount == 3) {
+            winningResult.put(WinningKind.FIFTH, winningResult.get(WinningKind.FIFTH) + 1);
+            return;
+        }
+        if (winningNumberCount == 4) {
+            winningResult.put(WinningKind.FOURTH, winningResult.get(WinningKind.FOURTH) + 1);
+            return;
+        }
+        if (winningNumberCount == 5) {
+            if (bonusMatch) {
+                winningResult.put(WinningKind.SECOND, winningResult.get(WinningKind.SECOND) + 1);
+                return;
+            }
+            winningResult.put(WinningKind.THIRD, winningResult.get(WinningKind.THIRD) + 1);
+            return;
+        }
+        if (winningNumberCount == 6) {
+            winningResult.put(WinningKind.FIRST, winningResult.get(WinningKind.FIRST) + 1);
+        }
+    }
+
+    public int calculateRevenue(Map<WinningKind, Integer> winningResult) {
+
+        return 0;
     }
 }

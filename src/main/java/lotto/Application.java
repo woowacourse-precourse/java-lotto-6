@@ -1,8 +1,7 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     private static final LottoHandler lottoHandler = new LottoHandler();
@@ -12,6 +11,6 @@ public class Application {
         List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
         Lotto winningLotto = lottoHandler.winningLotto();
         int bonusNumber = lottoHandler.bonusNumber();
-        lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
+        Map<WinningKind, Integer> winningResult = lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
     }
 }

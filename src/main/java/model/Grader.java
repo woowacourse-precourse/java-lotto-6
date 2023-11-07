@@ -56,11 +56,11 @@ public class Grader {
     //double earnMoney = winningDetails.get(5) * 5000.0 + winningDetails.get(4) * 50000.0 + winningDetails.get(3) * 1500000.0
     //        + winningDetails.get(2) * 30000000.0 + winningDetails.get(1) * 2000000000.0;
 
-    BigDecimal earnMoneyRatio = new BigDecimal(winningDetails.get(5)).multiply(new BigDecimal("5000.0"))
-            .add(new BigDecimal(winningDetails.get(4)).multiply(new BigDecimal("50000.0")))
-            .add(new BigDecimal(winningDetails.get(3)).multiply(new BigDecimal("1500000.0")))
-            .add(new BigDecimal(winningDetails.get(2)).multiply(new BigDecimal("30000000.0")))
-            .add(new BigDecimal(winningDetails.get(1)).multiply(new BigDecimal("2000000000.0")))
+    BigDecimal earnMoneyRatio = new BigDecimal(winningDetails.get(5)).multiply(new BigDecimal(Prize.FIFTH.getPrize()))
+            .add(new BigDecimal(winningDetails.get(4)).multiply(new BigDecimal(Prize.FOURTH.getPrize())))
+            .add(new BigDecimal(winningDetails.get(3)).multiply(new BigDecimal(Prize.THIRD.getPrize())))
+            .add(new BigDecimal(winningDetails.get(2)).multiply(new BigDecimal(Prize.SECOND.getPrize())))
+            .add(new BigDecimal(winningDetails.get(1)).multiply(new BigDecimal(Prize.FIRST.getPrize())))
             .multiply(new BigDecimal("100"))
             .divide(new BigDecimal(inputMoney), 1, RoundingMode.HALF_UP);
 

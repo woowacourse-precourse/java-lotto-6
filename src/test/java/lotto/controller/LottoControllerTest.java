@@ -203,5 +203,15 @@ class LottoControllerTest {
                 .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
 
+    @Test
+    @DisplayName("기능26 테스트 : 보너스 번호로 1~45 범위에 있지 않은 값을 입력받은 경우 예외가 발생한다.")
+    void registerBonusNumberShouldThrowIllegalArgumentExceptionWhenInputNotInLottoNumRange() {
+        // given
+        System.setIn(createUserInput("0"));
 
+        // when, then
+        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
+    }
 }

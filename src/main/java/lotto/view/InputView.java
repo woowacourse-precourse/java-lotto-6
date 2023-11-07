@@ -15,13 +15,13 @@ public class InputView {
         return new InputMoney(Console.readLine());
     }
 
-    public static InputWinningNumbers inputWinningNumbers(){
+    public static InputWinningNumbers inputWinningNumbers() {
         System.out.println();
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         return new InputWinningNumbers(Console.readLine());
     }
 
-    public static InputBonusNumber inputBonusNumber(){
+    public static InputBonusNumber inputBonusNumber() {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
         return new InputBonusNumber(Console.readLine());

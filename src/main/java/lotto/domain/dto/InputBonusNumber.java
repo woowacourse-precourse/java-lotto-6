@@ -2,10 +2,6 @@ package lotto.domain.dto;
 
 import static lotto.validatior.InputWinningBonusNumberValidator.validateBonusNumberRange;
 import static lotto.validatior.InputWinningBonusNumberValidator.validateOnlyPositiveNumberBonus;
-import static lotto.validatior.InputWinningBonusNumberValidator.validateWinningBonusNumberAlreadyExists;
-
-import java.util.List;
-import lotto.domain.LottoWinningNumbers;
 
 public class InputBonusNumber {
     private final int inputBonusNumber;

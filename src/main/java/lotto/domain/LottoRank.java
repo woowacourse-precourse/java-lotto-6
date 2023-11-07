@@ -4,7 +4,7 @@ public enum LottoRank {
     FIRST(2000000000, "6개 일치"),
     SECOND(30000000, "5개 일치, 보너스 볼 일치"),
     THIRD(1500000, "5개 일치"),
-    FOURTH( 50000, "4개 일치"),
+    FOURTH(50000, "4개 일치"),
     FIFTH(5000, "3개 일치"),
     NO_LUCK(0, "2개 이하");
     private int money;

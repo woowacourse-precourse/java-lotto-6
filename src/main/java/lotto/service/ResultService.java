@@ -8,8 +8,6 @@ import lotto.domain.LottoRank;
 import lotto.domain.LottoWinningBonusNumber;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.PurchasedLottoNumbers;
-import lotto.domain.User;
-import lotto.domain.dto.LottoResultDTO;
 
 public class ResultService {
 

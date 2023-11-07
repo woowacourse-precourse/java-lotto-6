@@ -16,7 +16,6 @@ import lotto.domain.User;
 import lotto.domain.dto.InputBonusNumber;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
-import lotto.domain.dto.LottoResultDTO;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
@@ -38,7 +37,9 @@ public class LottoService {
         return purchasedLottoNumbers;
     }
 
-    public static LottoResult compareLotto(LottoWinningNumbers lottoWinningNumbers, LottoWinningBonusNumber lottoWinningBonusNumber, PurchasedLottoNumbers purchasedLottoNumbers) {
+    public static LottoResult compareLotto(LottoWinningNumbers lottoWinningNumbers,
+                                           LottoWinningBonusNumber lottoWinningBonusNumber,
+                                           PurchasedLottoNumbers purchasedLottoNumbers) {
         ResultService resultService = new ResultService(lottoWinningNumbers, lottoWinningBonusNumber);
         Map<LottoRank, Integer> lottoResult = resultService.lottoGuess(purchasedLottoNumbers);
         return new LottoResult(lottoResult);
@@ -48,7 +49,8 @@ public class LottoService {
         return new LottoWinningNumbers(inputWinningNumbers.getInputWinningNumbers());
     }
 
-    public static LottoWinningBonusNumber inputBonusLotto(LottoWinningNumbers lottoWinningNumbers, InputBonusNumber inputBonusNumber) {
+    public static LottoWinningBonusNumber inputBonusLotto(LottoWinningNumbers lottoWinningNumbers,
+                                                          InputBonusNumber inputBonusNumber) {
         return new LottoWinningBonusNumber(inputBonusNumber.getInputBonusNumber(),
                 lottoWinningNumbers.getWinningNumbers());
     }

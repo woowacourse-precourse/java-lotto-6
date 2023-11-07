@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.validatior.InputWinningBonusNumberValidator.validateBonusNumberRange;
-import static lotto.validatior.InputWinningBonusNumberValidator.validateOnlyPositiveNumberBonus;
 import static lotto.validatior.InputWinningBonusNumberValidator.validateWinningBonusNumberAlreadyExists;
 
 import java.util.List;

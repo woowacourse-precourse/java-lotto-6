@@ -2,7 +2,6 @@ package lotto.domain.dto;
 
 import java.util.Map;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
 
 public class LottoResultDTO {
     private final Map<LottoRank, Integer> lottoResultInfo;

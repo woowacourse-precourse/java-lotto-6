@@ -1,7 +1,7 @@
 package lotto.validatior;
 
 public class InputPurchaseAmountValidator {
-    public static void validatePurchaseAmount(String purchaseAmount){
+    public static void validatePurchaseAmount(String purchaseAmount) {
         validateOnlyNumberAmount(purchaseAmount);
         int purchasedAmount = Integer.parseInt(purchaseAmount);
         validateZeroAmount(purchasedAmount);
@@ -15,7 +15,7 @@ public class InputPurchaseAmountValidator {
     }
 
     private static void validateZeroAmount(int purchasedAmount) {
-        if(purchasedAmount < 1000){
+        if (purchasedAmount < 1000) {
             throw new IllegalArgumentException("[ERROR] 구액 금액은 최소 1000원입니다.");
         }
     }

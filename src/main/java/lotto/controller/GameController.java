@@ -12,7 +12,6 @@ import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.LottoResultDTO;
 import lotto.domain.dto.PurchasedLottoDTO;
 import lotto.service.LottoService;
-import lotto.service.ResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -43,8 +42,8 @@ public class GameController {
         return lottoResultDTO;
     }
 
-    private static double lottoProfit(User user, LottoResultDTO lottoResultDTO){
-        return Calculator.profitCalculator(user,lottoResultDTO);
+    private static double lottoProfit(User user, LottoResultDTO lottoResultDTO) {
+        return Calculator.profitCalculator(user, lottoResultDTO);
     }
 
     private static InputMoney moneyInput() {

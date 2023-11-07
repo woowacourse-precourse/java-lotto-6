@@ -34,7 +34,7 @@ public class LottosService {
         List<Integer> randomNumbers = createRandomNumbers();
         List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(sortedNumbers);
-        return randomNumbers;
+        return sortedNumbers;
     }
 
     private List<Integer> createRandomNumbers() {

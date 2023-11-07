@@ -67,4 +67,8 @@ public class Lotto {
     private void sortDesc(List<Integer> numbers){
         numbers.sort(Comparator.naturalOrder());
     }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }

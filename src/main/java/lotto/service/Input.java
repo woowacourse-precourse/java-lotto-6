@@ -8,15 +8,19 @@ public class Input {
     public static final String MESSAGE_ENTER_BONUS_NUMBER="보너스 번호를 입력해 주세요.";
 
     public static String getPurchaseAmount() {
-        return null;
+        System.out.println(MESSAGE_ENTER_PURCHASE_AMOUNT);
+        return Console.readLine();
     }
 
     public static String getWinningNumber() {
-        return null;
+        System.out.println();
+        System.out.println(MESSAGE_ENTER_WINNING_NUMBERS);
+        return Console.readLine();
     }
 
     public static String getBonusNumber() {
-        return null;
+        System.out.println();
+        System.out.println(MESSAGE_ENTER_BONUS_NUMBER);
+        return Console.readLine();
     }
-
 }

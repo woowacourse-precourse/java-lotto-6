@@ -48,7 +48,7 @@ public class MainController {
     private void makeBonusNumber(){
         while (true){
             try {
-                bonusNumber = new BonusNumber(view.askBonusNumber());
+                bonusNumber = new BonusNumber(winningNumber, view.askBonusNumber());
                 break;
             } catch (IllegalArgumentException exception){
                 System.out.println(exception.getMessage());

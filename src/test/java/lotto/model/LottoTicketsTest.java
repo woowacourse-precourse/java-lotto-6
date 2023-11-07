@@ -56,7 +56,7 @@ class LottoTicketsTest {
                 () -> {
                     LottoTickets lottoTickets = new LottoTickets(8);
                     WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
-                    BonusNumber bonusNumber = new BonusNumber("7");
+                    BonusNumber bonusNumber = new BonusNumber(winningNumber, "7");
 
                     LottoResults expectedResult = new LottoResults( 0, 0, 0, 0, 1);
 

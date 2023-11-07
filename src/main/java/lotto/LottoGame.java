@@ -30,8 +30,7 @@ public class LottoGame {
             System.out.println("\n구입금액을 입력해 주세요");
             String input = Console.readLine();
             try {
-                int input_money = Integer.parseInt(input);
-                Money money = new Money(input_money);
+                Money money = new Money(Integer.parseInt(input));
                 return money;
             } catch (NumberFormatException e) {
                 System.out.println(ExceptionList.MONEYEXCEPTION.content());
@@ -64,9 +63,8 @@ public class LottoGame {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
             try {
-                Integer bonus = Integer.parseInt(input);
-                BonusLotto bonusLotto = new BonusLotto(bonus);
-                bonusLotto.validateDuplicate(lotto, bonus);
+                BonusLotto bonusLotto = new BonusLotto(Integer.parseInt(input));
+                bonusLotto.validateDuplicate(lotto, bonusLotto.getBonus());
                 return bonusLotto;
             } catch (NumberFormatException e) {
                 System.out.println(ExceptionList.BONUSLOTTOEXCETPION.content());

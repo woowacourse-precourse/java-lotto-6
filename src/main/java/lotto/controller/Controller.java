@@ -40,18 +40,22 @@ public class Controller {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchasableLotto; i++) {
-            List<Integer> randomLottoNumber = new ArrayList<>(
-                    Randoms.pickUniqueNumbersInRange(
-                            SMALLEST_LOTTO_NUMBER,
-                            LARGEST_LOTTO_NUMBER,
-                            NUMBER_OF_LOTTO_NUMBERS
-                    )
-            );
+            List<Integer> randomLottoNumber = getRandomLottoNumber();
             Collections.sort(randomLottoNumber);
             Lotto lotto = new Lotto(randomLottoNumber);
             lottoTickets.add(lotto);
         }
         return lottoTickets;
+    }
+
+    private List<Integer> getRandomLottoNumber() {
+        return new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(
+                        SMALLEST_LOTTO_NUMBER,
+                        LARGEST_LOTTO_NUMBER,
+                        NUMBER_OF_LOTTO_NUMBERS
+                )
+        );
     }
 
     private void printLottoNumbers(List<Lotto> lottoTickets) {
@@ -76,7 +80,7 @@ public class Controller {
         }
         return rankList;
     }
-    
+
     private void lottoResult(List<LottoRank> rankList, int money) {
         Statistic statistic = new Statistic(rankList);
         OutputView.lottoResultMessage(statistic, money);

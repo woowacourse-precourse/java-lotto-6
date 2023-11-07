@@ -54,7 +54,7 @@ public class GameController {
                 LottoValidator.validateDuplicateWinningAndBonusNumbers(winningLottoNumbers, bonusLottoNumber);
                 return bonusLottoNumber;
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 번호의 개수는 6개, 범위는 1~45 사이이며 중복된 숫자가 없어야 합니다. 당첨 번호를 다시 입력해주세요.");
+                System.err.println("[ERROR] 보너스 번호는 이미 입력한 당첨 번호들과 중복되어선 안됩니다.");
             }
         }
     }

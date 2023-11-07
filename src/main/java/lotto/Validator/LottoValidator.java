@@ -15,16 +15,16 @@ public class LottoValidator {
     public static void isValidWinningLottoNumbers(List<Integer> winningLottoNumbers) {
         for (Integer number : winningLottoNumbers) {
             if(number < 1 || number > 45) {
-                throw new IllegalArgumentException("로또 당첨 번호의 범위는 1~45 입니다.");
+                throw new IllegalArgumentException();
             }
         }
 
         if(winningLottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("로또 당첨 번호는 숫자 6개를 입력해야 합니다.");
+            throw new IllegalArgumentException();
         }
 
         if(hasDuplicateNumbers(winningLottoNumbers)) {
-            throw new IllegalArgumentException("로또 당첨 번호에는 중복된 숫자가 없어야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -42,7 +42,7 @@ public class LottoValidator {
 
     public static void validateDuplicateWinningAndBonusNumbers(List<Integer> winningLottoNumbers, int bonusLottoNumber) {
         if (winningLottoNumbers.contains(bonusLottoNumber)) {
-            throw new IllegalArgumentException("보너스 번호가 입력한 당첨 번호들 중 하나와 중복된 숫자입니다.");
+            throw new IllegalArgumentException();
         }
     }
 }

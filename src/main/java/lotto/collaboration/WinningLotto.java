@@ -30,11 +30,9 @@ public class WinningLotto {
     }
 
     public Map<Prize, List<PlayerLotto>> matchNumbers(final List<PlayerLotto> buyLottos) {
-        Map<Prize, List<PlayerLotto>> result = buyLottos.stream()
+        return buyLottos.stream()
                 .collect(groupingBy(lotto ->
                         Prize.matchPrize(matchNumbers(lotto), matchBonusNumber(lotto))));
-
-        return result;
     }
 
     private int matchNumbers(PlayerLotto lotto) {

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Input {
 
+    static int bonus;
     final static int LOTTO_WINNING_NUMBER_COUNT = 6;
     public static int money(){
         int money = Integer.parseInt(Console.readLine());
@@ -19,6 +20,7 @@ public class Input {
     }
 
     public static int bonusNumber(){
-        return Integer.parseInt(Console.readLine());
+        bonus = Integer.parseInt(Console.readLine());
+        return bonus;
     }
 }

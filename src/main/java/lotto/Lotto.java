@@ -28,4 +28,27 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public Prize calculatePrize(List<Integer> winningNumbers, int bonusNumber) {
+        long matchingCount = numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        if (matchingCount == 6) {
+            return Prize.FIRST;
+        }
+        if (matchingCount == 5) {
+            if (numbers.contains(bonusNumber)) {
+                return Prize.SECOND;
+            }
+            return Prize.THIRD;
+        }
+        if (matchingCount == 4) {
+            return Prize.FOURTH;
+        }
+        if (matchingCount == 3) {
+            return Prize.FIFTH;
+        }
+        return Prize.NO_PRIZE;
+    }
+
 }

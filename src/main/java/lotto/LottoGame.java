@@ -17,6 +17,7 @@ public class LottoGame {
         List<Integer> winningNumbers = getValidWinningNumbers();
         System.out.println();
         int bonusNumber = getValidBonusNumber(winningNumbers);
+        showWinningStats(lottos, winningNumbers, bonusNumber);
     }
 
     private static int getValidPurchaseAmount() {
@@ -119,6 +120,14 @@ public class LottoGame {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void showWinningStats(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Prize, Integer> stats = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            Prize prize = lotto.calculatePrize(winningNumbers, bonusNumber);
+            stats.put(prize, stats.getOrDefault(prize, 0) + 1);
         }
     }
 

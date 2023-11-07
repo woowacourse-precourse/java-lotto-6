@@ -1,5 +1,6 @@
 package lotto.util;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
-
     @DisplayName("입력값이 숫자가 아닐때 예외처리 테스트")
     @Test
     void validateNumericTest() {
@@ -31,18 +31,27 @@ class InputValidatorTest {
 
     @DisplayName("입력값이 양수일 때 예외처리 테스트")
     @Test
-    void validatePositiveNumberDoesNotThrowException() {
+    void validatePositiveNumberDoesNotThrowExceptionTest() {
         String negativeNumber = "5";
 
-        Assertions.assertThatCode(() -> InputValidator.validatePositiveNumber(negativeNumber))
+        assertThatCode(() -> InputValidator.validatePositiveNumber(negativeNumber))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("입력값이 비어있을때 예외처리 테스트")
     @ParameterizedTest
     @ValueSource(strings = {""," "})
-    void validateEmptyInputTest(String input) {
+    void validateEmptyInputThrowExceptionTest(String input) {
         assertThatThrownBy(() -> InputValidator.validateEmptyInput(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력값이 비어있지 않을때 예외처리 테스트")
+    @Test
+    void validateEmptyInputDoesNotThrowExceptionTest() {
+        String input = "test";
+
+        assertThatCode(() -> InputValidator.validateEmptyInput(input))
+                .doesNotThrowAnyException();
     }
 }

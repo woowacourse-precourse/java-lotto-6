@@ -127,6 +127,8 @@ public class LottoController {
     public void printWinningStatisticsContents() {
         HashMap<WinningCondition, Integer> winningResult = buyer.getWinningStatistics();
         for(WinningCondition winningCondition : WinningCondition.values()){
+            if(winningCondition == WinningCondition.NO_RANK)
+                continue;
             WinningStatisticsView.printContent(winningCondition,winningResult.get(winningCondition));
         }
     }

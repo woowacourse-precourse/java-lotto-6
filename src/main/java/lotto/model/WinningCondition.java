@@ -1,12 +1,12 @@
 package lotto.model;
 
 public enum WinningCondition {
-    RANK_1(6, 0, 2000000000),
-    RANK_2(5, 1, 30000000),
-    RANK_3(5, 0, 1500000),
-    RANK_4(4, 0, 50000),
+    NO_RANK(0, 0, 0),
     RANK_5(3, 0, 5000),
-    NO_RANK(0, 0, 0);
+    RANK_4(4, 0, 50000),
+    RANK_3(5, 0, 1500000),
+    RANK_2(5, 1, 30000000),
+    RANK_1(6, 0, 2000000000);
 
     private final int winningNumberCount;
     private final int bonusNumberCount;
@@ -35,8 +35,9 @@ public enum WinningCondition {
         for (WinningCondition winningCondition : WinningCondition.values()) {
             if (meetCondition(winningCondition, winningNumberCount, bonusNumberCount)) {
                 result = winningCondition;
-                break;
+                continue;
             }
+            break;
         }
         return result;
     }

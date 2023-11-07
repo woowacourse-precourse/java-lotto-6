@@ -6,6 +6,7 @@ import java.util.Properties;
 import lotto.Lotto;
 import lotto.model.Game;
 import lotto.model.LottoGame;
+import lotto.model.Winning;
 
 public class LottoGameView implements GameView {
     private final Properties message = new Properties();
@@ -31,5 +32,36 @@ public class LottoGameView implements GameView {
         for (Lotto lotto : lottoGame.getPurchasedLottos()) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    @Override
+    public void showResultOf(Game game) {
+        LottoGame lottoGame;
+        lottoGame = (LottoGame) game;
+        Winning currentRank = Winning.FIFTH;
+
+        while (currentRank != Winning.LOSE) {
+            System.out.println(matchingResult(currentRank, lottoGame));
+            currentRank = currentRank.minus(1);
+        }
+
+        System.out.print(message.get("all-roi-prefix"));
+        System.out.print(lottoGame.getReturnOnInvestment());
+        System.out.print(message.get("all-roi-postfix"));
+    }
+
+    private String matchingResult(Winning rank, LottoGame game) {
+        StringBuilder resultMessage;
+        resultMessage = new StringBuilder();
+
+        return resultMessage.append(rank.getMatchingNumbers())
+                .append(message.get("matching"))
+                .append(" (")
+                .append(rank.getWinningAmount())
+                .append(message.get("unit"))
+                .append(") - ")
+                .append(game.getWinningLottos().get(rank.getValue()))
+                .append(message.get("count"))
+                .append("\n");
     }
 }

@@ -20,6 +20,7 @@ public class LottoGame implements Game {
     private final List<Lotto> purchasedLottos = new ArrayList<>();
 
     private final List<Integer> winningLottos = new ArrayList<>();
+
     private double returnOnInvestment;
 
     public LottoGame(int lottoPurchasePrice, List<Integer> winningNumbers, int bonusNumber) {
@@ -84,5 +85,13 @@ public class LottoGame implements Game {
 
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
+    }
+
+    public List<Integer> getWinningLottos() {
+        return winningLottos;
+    }
+
+    public double getReturnOnInvestment() {
+        return returnOnInvestment;
     }
 }

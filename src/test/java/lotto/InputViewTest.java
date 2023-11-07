@@ -27,7 +27,8 @@ public class InputViewTest {
     void inputWrongMoney(String input) {
         System.setIn(createUserInput(input));
 
-        int money = InputView.readMoney();
+        InputView inputView = new InputView(new ConsoleReceiver());
+        int money = inputView.getMoney();
         assertThatThrownBy(() -> new Money(money))
                 .isInstanceOf(InvalidPurchaseAmountException.class);
     }
@@ -36,7 +37,8 @@ public class InputViewTest {
     @Test
     void inputInvalidMoney() {
         System.setIn(createUserInput("hello pobi"));
-        assertThatThrownBy(InputView::readMoney)
+        InputView inputView = new InputView(new ConsoleReceiver());
+        assertThatThrownBy(inputView::getMoney)
                 .isInstanceOf(NonNumericAmountException.class);
     }
 
@@ -44,7 +46,8 @@ public class InputViewTest {
     @Test
     void inputInvalidSize() {
         System.setIn(createUserInput("1,2,3,4,5"));
-        assertThatThrownBy(InputView::readWinningNumbers)
+        InputView inputView = new InputView(new ConsoleReceiver());
+        assertThatThrownBy(inputView::getWinningNumbers)
                 .isInstanceOf(InvalidSizeException.class);
     }
 

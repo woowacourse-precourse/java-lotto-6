@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.config.LottoGameRule;
@@ -9,13 +8,28 @@ import lotto.exception.NonNumericAmountException;
 
 public class InputView {
 
-    public static int readMoney() {
-        String money = Console.readLine();
+
+    private final InputReceiver receiver;
+
+    public InputView(InputReceiver receiver) {
+        this.receiver = receiver;
+    }
+
+    private static int convertToInt(String money) {
+        try {
+            return Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw new NonNumericAmountException();
+        }
+    }
+
+    public int getMoney() {
+        String money = receiver.readLine();
         return convertToInt(money);
     }
 
-    public static List<Integer> readWinningNumbers() {
-        String winningNumbers = Console.readLine();
+    public List<Integer> getWinningNumbers() {
+        String winningNumbers = receiver.readLine();
 
         Parser parser = new CommaParser();
         List<String> numbers = parser.split(winningNumbers);
@@ -30,14 +44,6 @@ public class InputView {
         }
 
         return list;
-    }
-
-    private static int convertToInt(String money) {
-        try {
-            return Integer.parseInt(money);
-        } catch (NumberFormatException e) {
-            throw new NonNumericAmountException();
-        }
     }
 }
 

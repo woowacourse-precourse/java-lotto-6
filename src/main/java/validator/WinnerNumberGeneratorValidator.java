@@ -13,4 +13,10 @@ public class WinnerNumberGeneratorValidator {
             }
         }
     }
+
+    void vaildRandomNumberSize(List<Integer> randomNumbers) {
+        if (randomNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 난수가 6개로 생성되지 않았습니다.");
+        }
+    }
 }

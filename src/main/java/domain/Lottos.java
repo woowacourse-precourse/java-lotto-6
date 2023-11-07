@@ -29,7 +29,7 @@ public class Lottos {
         return list;
     }
 
-    private static List<Integer> chooseRandomLottoNumbers() {
+    private List<Integer> chooseRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), LOTTO_SIZE.getNumber());
     }
 }

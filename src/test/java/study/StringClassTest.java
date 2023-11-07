@@ -8,10 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class TestStringClass {
+public class StringClassTest {
     @Nested
     @DisplayName("문자열 분리 테스트")
-    class TestSplit {
+    class SplitTest {
         private static final String REGEX = ",";
 
         @DisplayName("주어진 REGEX를 기준으로 분리한 문자열 배열을 반환한다.")
@@ -58,7 +58,7 @@ public class TestStringClass {
 
     @Nested
     @DisplayName("asdf")
-    class TestCharAt {
+    class CharAtTest {
         @Test
         @DisplayName("index 순서에 해당하는 character를 반환한다.")
         void success() {

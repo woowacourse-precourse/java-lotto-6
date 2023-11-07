@@ -7,6 +7,7 @@
     - [x] 구매 개수 만큼 로또를 생성한다.  -NumberGenerator#createLottoNumbers()
     - [x] 로또 번호는 오름차순으로 정렬해야 한다.   - NumberGenerator#sortAscendingNumbers()
 - [x] 로또 당첨 번호 입력 - NumberGeneartor#InputCorrectLotto()
+    - [x] 로또 당첨 번호 정수형 변환 - NumberGenerator#conversionInputToInteger()
 - [ ] 생성된 수와 구매자 수 6개를 비교할 수 있어야 한다. - Referee#compare()
     - [ ] 몇 개의 숫자가 같은지 알 수 있다. - Judgment#correctCount()
         - [ ] 6개 번호 일치 (1등 / 2,000,000,000원)

@@ -52,6 +52,17 @@ public class NumberGenerator {
         return input;
     }
 
+    public ArrayList<Integer> conversionInputToInteger(String input){
+        ArrayList<Integer> correctNumbers = new ArrayList<>();
+
+        for(String st : input.split(",")){
+            int value = Integer.parseInt(st);
+            correctNumbers.add(value);
+        }
+
+        return correctNumbers;
+    }
+
     public List<Integer> sortAscendingNumbers(List<Integer> sortLottoNumbers){
         Collections.sort(sortLottoNumbers);
         return sortLottoNumbers;

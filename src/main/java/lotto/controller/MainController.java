@@ -38,5 +38,6 @@ public class MainController extends RepeatModule {
 
     private void result() {
         outputView.printScore(lottoManager.calScore());
+        outputView.printEarningRate(lottoManager.calEarningRate());
     }
 }

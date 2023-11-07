@@ -23,6 +23,6 @@ public class OutputView {
     }
 
     public void printEarningRate(EarningRate earningRate) {
-        System.out.println(PREFIX_PRINT_EARNING_RATE + earningRate + POSTFIX_PRINT_EARNING_RATE);
+        System.out.print(PREFIX_PRINT_EARNING_RATE + earningRate + POSTFIX_PRINT_EARNING_RATE);
     }
 }

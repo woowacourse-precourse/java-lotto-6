@@ -7,7 +7,7 @@ public class EarningRate {
     private final String earningRate;
 
     public EarningRate(double amount, List<Score> scores) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###.0%");
+        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0%");
         earningRate = decimalFormat.format(calEarning(scores) / amount);
     }
 

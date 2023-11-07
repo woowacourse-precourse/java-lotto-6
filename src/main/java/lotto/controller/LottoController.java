@@ -15,6 +15,8 @@ import static lotto.view.InputView.inputPlayerAmount;
 
 public class LottoController {
 
+    private static final int TICKET_PRICE=1000;
+    private static final int PERCENTAGE =100;
     private static LottoAmount playerLottoAmount;     //사용자가 구입한 로또 가격치
 
     private static List<Integer> lotto = new ArrayList<>(); // 사용자의 로또
@@ -49,6 +51,13 @@ public class LottoController {
 
     }
 
+    private void printEarningRate(Map<Rank, Integer> result, int lottoAmount){
+        double EarningRate =0;
+        for(Rank rank : result.keySet()){
+            EarningRate = EarningRate + ((double)rank.getWinningMoney())/(lottoAmount*TICKET_PRICE)*(result.get(rank))*(PERCENTAGE);
+        }
+        OutputView.printRevenueRate(EarningRate);
+    }
     private void lottoResult(List<Lotto> lottoList, WinningResult winningLotto, int amount) {
         Map<Rank, Integer> result = setResult();
         Rank rank;

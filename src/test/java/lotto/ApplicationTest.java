@@ -48,14 +48,6 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @Nested
     class invalidWinningNumberTest {
 
@@ -123,6 +115,46 @@ class ApplicationTest extends NsTest {
         void invalidWinningNumbersTest7() {
             assertSimpleTest(() -> {
                 runException("2000", "-1,2,3,4,5,6");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+    }
+
+    @Nested
+    class invalidBonusNumberTest {
+
+        @DisplayName("숫자가 아닌 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest1() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "7a");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("범위를 벗어난 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest2() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "56");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("당첨 번호와 중복되는 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest3() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("음수 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest4() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "-5");
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }

@@ -52,6 +52,12 @@ public class LottoResultAnalyzer {
                 .sum();
     }
 
+    public double calculateTotalReturnRate(long totalWinningPrize, int purchaseAmount) {
+        double result = (double) totalWinningPrize / purchaseAmount * 100.0;
+
+        return Math.round(result * 100.0) / 100.0;
+    }
+
     public EnumMap<PrizeCategory, Integer> getMatchResults() {
         return matchResults;
     }

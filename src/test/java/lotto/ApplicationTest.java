@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +54,14 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("")
+    void 로또_구매() {
+        for (int i = 0; i < 10; i++) {
+            List<Integer> userNumber =  GenerateRandom.getRandomNumbers();
+        }
     }
 
   

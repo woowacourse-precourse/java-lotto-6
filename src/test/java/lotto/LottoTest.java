@@ -19,14 +19,14 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 
     
     @DisplayName("로또 번호에 범위가 벗어나는 숫자가 있으면 에러가 발생한다.")
     @Test
     void createLottoByOutOfNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(31, 24, 43, 44, 94, 86)))
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 24, 43, 44, 94, 86)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

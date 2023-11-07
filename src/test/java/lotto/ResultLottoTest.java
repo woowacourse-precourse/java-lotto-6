@@ -19,5 +19,12 @@ public class ResultLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 45보다 크면 오류가 발생한다.")
+    @Test
+    void checkBonusNumUpRange() {
+        assertThatThrownBy(() -> new ResultLotto(List.of(1, 2, 3, 4, 5), 46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

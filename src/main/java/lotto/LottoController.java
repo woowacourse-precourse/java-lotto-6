@@ -137,7 +137,7 @@ public class LottoController {
                 * countByPrize.get(Config.SECOND_PRIZE_REWARD);
         int totalThirdReward = rewardToNumber(Config.THIRD_PRIZE_REWARD)
                 * countByPrize.get(Config.THIRD_PRIZE_REWARD);
-        int totalFourthReward = rewardToNumber(Config.FIFTH_PRIZE_REWARD)
+        int totalFourthReward = rewardToNumber(Config.FOURTH_PRIZE_REWARD)
                 * countByPrize.get(Config.FOURTH_PRIZE_REWARD);
         int totalFifthReward = rewardToNumber(Config.FIFTH_PRIZE_REWARD)
                 * countByPrize.get(Config.FIFTH_PRIZE_REWARD);

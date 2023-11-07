@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,12 +13,13 @@ public class PrintHandler {
     }
     
     
-    public static void printResults(Result results) {
+    public static void printResults(Result results, Profit profit) {
+        System.out.println("당첨 통계");
         for(Score score : Score.values()) {
             int frequency = Collections.frequency(results.getScores(), score);
             System.out.println(score.getMessage() + " - " + frequency + "개");
         }
-        System.out.println();
+        System.out.println("총 수익률은 " + profit.getProfitRate() + "%입니다.");
     }
     
 }

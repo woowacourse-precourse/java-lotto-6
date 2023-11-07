@@ -12,8 +12,8 @@ class GameManagerTest {
     @Test
     @DisplayName("Lotto number들을 횟수만큼 생성해내는 메서드 정상 작동")
     void testGenerateLotto() {
-        int money = 12000;
-        gameManager.generateLotto(money);
+        gameManager.setMoneyYouPut(12000);
+        gameManager.generateLotto();
         PrintHandler.printLottos(gameManager.getLottos());
         assertThat(gameManager.getGameSize()).isEqualTo(12);
     }

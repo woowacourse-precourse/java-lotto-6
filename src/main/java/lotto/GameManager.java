@@ -7,7 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameManager {
+    private int moneyYouPut;
     private final Result result;
+    private final Profit profit;
     private final List<Lotto> lottos;
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
@@ -17,17 +19,27 @@ public class GameManager {
         this.lottos = new ArrayList<>();
         this.winningNumbers = null;
         this.bonusNumber = null;
+        this.profit = new Profit();
+        this.moneyYouPut = 0;
     }
-    
+    public int getMoneyYouPut() {
+        return this.moneyYouPut;
+    }
+    public void setMoneyYouPut(int money) {
+        this.moneyYouPut = money;
+    }
     public Result getResult() {
         return this.result;
+    }
+    public Profit getProfit() {
+        return this.profit;
     }
     public List<Lotto> getLottos() {
         return this.lottos;
     }
     
-    public void generateLotto(Integer money) {
-        int iterNum = money / Constants.LOTTOCOST;
+    public void generateLotto() {
+        int iterNum = moneyYouPut / Constants.LOTTOCOST;
         for(int i = 0; i < iterNum; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
@@ -55,4 +67,5 @@ public class GameManager {
         this.result.makeScores(winningNumbers,bonusNumber,this.lottos);
     }
     
+    public void updateProfit() { this.profit.findProfitRate(result, moneyYouPut); }
 }

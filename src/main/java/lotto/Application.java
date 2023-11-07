@@ -6,18 +6,17 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         GameManager gameManager = new GameManager();
-        Integer moneyYouPut = null;
 
         // 금액 입력
         System.out.println("구입 금액을 입력해 주세요.");
-        while(moneyYouPut == null) {
+        while(gameManager.getMoneyYouPut() == 0) {
             String input = Console.readLine();
-            moneyYouPut = InputHandler.readCost(input);
+            gameManager.setMoneyYouPut(InputHandler.readCost(input)); 
         }
         System.out.println();
 
         // 로또 추출 및 출력
-        gameManager.generateLotto(moneyYouPut);
+        gameManager.generateLotto();
         System.out.println(gameManager.getGameSize() + "개를 구매했습니다.");
         PrintHandler.printLottos(gameManager.getLottos());
 
@@ -37,7 +36,8 @@ public class Application {
         System.out.println();
         // 당첨 통계 처리 및 출력
         gameManager.updateResult();
-        PrintHandler.printResults(gameManager.getResult());
+        PrintHandler.printResults(gameManager.getResult(), gameManager.getProfit());
+        gameManager.updateProfit();
         
     }
 }

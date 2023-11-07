@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.Budget;
+import lotto.model.machine.LottoMachine;
 
 public class LottoTicket {
     private final List<Lotto> lottoTicket;

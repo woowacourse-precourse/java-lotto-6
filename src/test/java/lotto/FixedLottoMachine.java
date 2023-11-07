@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoMachine;
+import lotto.model.machine.LottoMachine;
 
 public class FixedLottoMachine implements LottoMachine {
     private List<Integer> numbers;

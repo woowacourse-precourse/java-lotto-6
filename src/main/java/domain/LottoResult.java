@@ -32,6 +32,7 @@ public class LottoResult {
     }
 
     private void calculateTotalProfit() {
+        profit = 0L;
         for(ConstOfLottoResult constOfLottoResult : ConstOfLottoResult.values()) {
             int price = constOfLottoResult.getPrice();
             profit += (price * result.get(constOfLottoResult.getRank()));

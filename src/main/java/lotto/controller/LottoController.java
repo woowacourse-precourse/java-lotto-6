@@ -56,7 +56,7 @@ public class LottoController {
         LottoWinningNumbers winningNumbers = getLottoWinningNumbers();
 
         printBonusNumber();
-        LottoBonusNumber bonusNumber = getLottoBonusNumber();
+        LottoBonusNumber bonusNumber = getLottoBonusNumber(winningNumbers);
 
         // 지갑에서 계산할 수 있도록 저장
         lottoWalletService.saveRecentWinningNumbers(winningNumbers, bonusNumber);
@@ -67,11 +67,11 @@ public class LottoController {
      *
      * @return 로또 당첨 보너스 번호 객체
      */
-    private LottoBonusNumber getLottoBonusNumber() {
+    private LottoBonusNumber getLottoBonusNumber(LottoWinningNumbers winningNumbers) {
         while (true) {
             try {
                 String number = LottoInputView.getLottoBonusNumber();
-                LottoBonusNumber bonusNumber = new LottoBonusNumber(number);
+                LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumbers, number);
 
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

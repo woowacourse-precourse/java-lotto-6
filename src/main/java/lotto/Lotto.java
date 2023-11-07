@@ -14,6 +14,16 @@ public class Lotto {
         validateSize(numbers.size());
         validateDuplication(numbers);
     }
+    public String showNumbers() {
+        String numbers = this.numbers.stream()
+            .sorted()
+            .map(String::valueOf)
+            .collect(Collectors.joining(COMMA_BLANK_DELIMITER));
+        return
+            LOTTO_NUMBER_MESSAGE.formatted(numbers);
+    }
+
+
     private void validateSize(int numbers) {
         if (numbers != LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException();

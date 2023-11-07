@@ -12,7 +12,6 @@ public class OutputView {
         for (List<Integer> numbers : lottosResponseDto.lottos()) {
             System.out.println(makeLottoNumberFormat(ListConverter.convertToStringList(numbers)));
         }
-        System.out.println();
     }
 
     private void showLottoCount(int lottoCount) {

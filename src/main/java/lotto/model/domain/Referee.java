@@ -39,8 +39,9 @@ public class Referee {
         int fourth = lottoRank.get(4) * 50_000;
         int fifth = lottoRank.get(5) * 5_000;
 
-        int sum = first + second + third + fourth + fifth;
-        this.lottoBenefit = (double) (sum * 100 / (double) lottoAmount);
+        long sum = first + second + third + fourth + fifth;
+
+        this.lottoBenefit = (sum * 100 / (double) lottoAmount);
     }
 
     public List<Integer> getWinningNumbers() {

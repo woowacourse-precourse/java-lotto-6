@@ -30,7 +30,7 @@ public class LotteryController {
     private Map<Integer, Integer> winningTicketsCount;
     private List<Integer> winningTicketNumbers;
     private Revenue revenue;
-    private String paymentInput;
+
     private String winningTicketNumbersInput;
     private List<Integer> numbersForValidation;
     private List<String> tmp;
@@ -58,19 +58,10 @@ public class LotteryController {
         setRevenue();
     }
 
-    private String setValidPayment() {
-        paymentInput = inputView.getUserInput();
-        try {
-            validInput.validPayment(paymentInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setValidPayment();
-        }
-        return paymentInput;
-    }
+
 
     private void setPayment() {
-        String input = setValidPayment();
+        String input = inputView.askPayment();
         payment = Integer.parseInt(input);
         ticketCount = payment / 1000;
         System.out.println();

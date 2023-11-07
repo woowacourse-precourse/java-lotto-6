@@ -22,16 +22,19 @@ public class LottoGame {
         OutputView.print(Message.PAYMENT_COMPLETE);
         OutputView.print(Message.LINE_BREAK);
 
-        List<Lotto> lottoPaper = new ArrayList<>();
+        List<Lotto> lottoTicket = new ArrayList<>();
         for (int count = 0; count < countOfLotto; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto attempt = new Lotto(numbers);
-            lottoPaper.add(attempt);
+            lottoTicket.add(attempt);
         }
 
-        for (Lotto lotto : lottoPaper) {
-
+        for (Lotto lotto : lottoTicket) {
+            lotto.sort();
+            OutputView.print(lotto.toString());
+            OutputView.print(Message.LINE_BREAK);
         }
+
 
     }
 

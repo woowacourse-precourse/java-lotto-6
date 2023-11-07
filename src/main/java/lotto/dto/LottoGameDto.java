@@ -81,13 +81,15 @@ public class LottoGameDto {
         private final int five;
         private final int fiveAndBonus;
         private  final int six;
+        private final float rate;
 
-        public Result(int three, int four, int five, int fiveAndBonus, int six) {
+        public Result(int three, int four, int five, int fiveAndBonus, int six, float rate) {
             this.three = three;
             this.four = four;
             this.five = five;
             this.fiveAndBonus = fiveAndBonus;
             this.six = six;
+            this.rate = rate;
         }
 
         public int getThree() {

@@ -53,8 +53,13 @@ public class LottoGame {
             }
             result[score] += 1;
         }
+        calculateRate(result);
+        return new LottoGameDto.Result(result[3], result[4], result[5], result[7], result[6], rate);
+    }
 
-        return new LottoGameDto.Result(result[3], result[4], result[5], result[7], result[6]);
+    private void calculateRate(int[] result) {
+        int totalPrize = result[3] * Prize.THREE.getAmount() + result[4] * Prize.FOUR.getAmount() + result[5] * Prize.FIVE.getAmount() + result[7] * Prize.FIVEANDBONUS.getAmount() + result[6] * Prize.SIX.getAmount();
+        rate = (float) totalPrize / (float) budget;
     }
 
     public List<List<Integer>> createLotto() {

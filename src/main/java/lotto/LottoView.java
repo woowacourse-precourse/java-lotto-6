@@ -92,5 +92,4 @@ public class LottoView {
         System.out.println(lottoViewConstantMessages.getMessageByMessageFormat().format(arguments));
     }
 
-
 }

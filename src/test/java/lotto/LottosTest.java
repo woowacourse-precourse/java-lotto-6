@@ -6,6 +6,7 @@ import lotto.enums.LottoPrizeConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static lotto.enums.LottoConstants.LOTTO_PRICE;
 import static lotto.enums.LottoPrizeConstants.BONUS_PRIZE;
 import static lotto.enums.LottoPrizeConstants.FIVE_MATCH_PRIZE;
 import static lotto.enums.LottoPrizeConstants.FOUR_MATCH_PRIZE;
@@ -42,7 +43,9 @@ public class LottosTest {
     @DisplayName("당첨된 로또들을 보고 수익률을 계산할 수 있다.")
     @Test
     void testCreateIncomeRate() {
+        final int percentage = 100;
         int quantity = 5;
+        double spendMoney = LOTTO_PRICE.getConstant() * quantity;
         Map<LottoPrizeConstants, Integer> matchedLottoCount = Map.of(
                 THREE_MATCH_PRIZE, 1,
                 FOUR_MATCH_PRIZE, 1,
@@ -51,6 +54,7 @@ public class LottosTest {
                 SIX_MATCH_PRIZE, 1
         );
         Lottos lottos = Lottos.purchaseLottos(quantity);
-        assertThat(lottos.getIncomeRate(matchedLottoCount)).isEqualTo(2031555000.0 / (double) quantity);
+        assertThat(lottos.getIncomeRate(matchedLottoCount))
+                .isEqualTo((2031555000.0 / spendMoney) * percentage);
     }
 }

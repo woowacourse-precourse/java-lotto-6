@@ -11,6 +11,7 @@ public class LottoApplication {
             Lottos lottos = purchaseLotto();
             List<Integer> winningNumbers = setWinningNumbers();
             int bonusNumber = setBonusNumber(winningNumbers);
+
             // 당첨 번호와 로또 비교
             Map<LottoPrizeConstants, Integer> matchedLottoCount = lottos.checkLottos(winningNumbers, bonusNumber);
 
@@ -26,10 +27,9 @@ public class LottoApplication {
         /* 구입금액 입력 및 구매*/
         String requestPurchasePrice = LottoView.requestPurchasePrice();
         int purchasePrice = LottoParser.readLineToNumber(requestPurchasePrice);
-        int lottoQuantity = purchasePrice / LottoConstants.LOTTO_PRICE.getConstant();
         LottoInputValidator.purchasePriceIsValid(purchasePrice);
+        int lottoQuantity = purchasePrice / LottoConstants.LOTTO_PRICE.getConstant();
         Lottos lottos = Lottos.purchaseLottos(lottoQuantity);
-
 
         /* 로또 구매갯수 및 번호들 출력*/
         LottoView.printPurchasedLottos(lottos);

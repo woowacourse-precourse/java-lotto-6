@@ -1,5 +1,6 @@
 package lotto.enums;
 
+import static lotto.enums.LottoErrorMessageConstants.MATCHING_NUMBER_INVALID;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public enum LottoPrizeConstants {
     NO_MATCH_PRIZE(0, 0);
     private final int matchingNumber;
     private final int prizeMoney;
-    private static final DecimalFormat decimalFormat = new DecimalFormat("###,###");
+    private static final DecimalFormat koreanNumberFormat = new DecimalFormat("###,###");
 
     LottoPrizeConstants(int matchingNumber, int prize) {
         this.matchingNumber = matchingNumber;
@@ -31,13 +32,13 @@ public enum LottoPrizeConstants {
     }
 
     public String getPrizeByDecimal() {
-        return decimalFormat.format(prizeMoney);
+        return koreanNumberFormat.format(prizeMoney);
     }
 
     public static LottoPrizeConstants getPrizeByMatchingNumber(int matchingNumber) {
         return Arrays.stream(values())
                 .filter(prizeConstant -> prizeConstant.matchingNumber == matchingNumber)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[Error] 일치하는 숫자의 입력이 올바르지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(MATCHING_NUMBER_INVALID.getMessage()));
     }
 }

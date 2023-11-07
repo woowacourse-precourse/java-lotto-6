@@ -1,12 +1,13 @@
 package lotto;
 
-import static lotto.enums.LottoPrizeConstants.*;
+import static lotto.enums.LottoConstants.LOTTO_PER_NUMBERS;
+import static lotto.enums.LottoErrorMessageConstants.LOTTO_HAS_DUPLICATE_NUMBER;
+import static lotto.enums.LottoErrorMessageConstants.LOTTO_INVALID_SIZE;
+import static lotto.enums.LottoPrizeConstants.BONUS_PRIZE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.enums.LottoConstants;
-import lotto.enums.LottoErrorMessageConstants;
 import lotto.enums.LottoPrizeConstants;
 
 public class Lotto {
@@ -19,16 +20,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LottoErrorMessageConstants.LOTTO_INVALID_SIZE.getMessage());
+            throw new IllegalArgumentException(LOTTO_INVALID_SIZE.getMessage());
         }
         if (isDuplicate(numbers)) {
-            throw new IllegalArgumentException(LottoErrorMessageConstants.LOTTO_HAS_DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(LOTTO_HAS_DUPLICATE_NUMBER.getMessage());
         }
     }
 
     private boolean isDuplicate(List<Integer> numbers) {
         Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
-        return notDuplicateNumbers.size() != LottoConstants.LOTTO_PER_NUMBERS.getConstant();
+        return notDuplicateNumbers.size() != LOTTO_PER_NUMBERS.getConstant();
     }
 
     public List<Integer> getNumbers() {

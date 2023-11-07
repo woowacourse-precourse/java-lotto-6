@@ -1,23 +1,27 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import lotto.utils.StringUtil;
 
 public class LottoPurchase {
     private final int amount;
 
-    public LottoPurchase(int amount) {
-        validateAmount(amount);
+    private LottoPurchase(int amount) {
+        validatePositive(amount);
+        validateThousand(amount);
         this.amount = amount;
     }
 
-    public LottoPurchase(String amount) {
-        int parsedAmount = stringToInt(amount);
-        validateAmount(parsedAmount);
-        this.amount = parsedAmount;
+    public static LottoPurchase valueOf(int amount) {
+        return new LottoPurchase(amount);
     }
 
-    public LottoTickets generateLottoTickets () {
-        return new LottoTickets(getNumberOfTickets());
+    public static LottoPurchase valueOf(String stringAmount) {
+        return LottoPurchase.valueOf(StringUtil.stringToInt(stringAmount));
+    }
+
+    public LottoTickets generateLottoTickets() {
+        return LottoTickets.createBy(getNumberOfTickets());
     }
 
     public int getAmount() {
@@ -28,18 +32,13 @@ public class LottoPurchase {
         return amount / 1000;
     }
 
-    private int stringToInt(String amount) {
-        try {
-            return Integer.parseInt(amount);
-        } catch (NumberFormatException nfe) {
-            throw new IllegalArgumentException(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
-        }
-    }
-
-    private void validateAmount(int amount) {
+    private void validatePositive(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
         }
+    }
+
+    private void validateThousand(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
         }

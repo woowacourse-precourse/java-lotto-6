@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.Dto.MyLottosDto;
 import lotto.Dto.SingleResultDto;
@@ -38,12 +37,10 @@ public class OutputView {
     }
 
     private void printWonLottos(TotalResultDto totalResultDto) {
-        List<Integer> printOrder = new ArrayList<>();
-        addOrder(printOrder);
-        for (Integer code : printOrder) {
-            SingleResultDto singleResultDto = totalResultDto.getSingleResult(code);
+        for (int i = 0; i < totalResultDto.size(); i++) {
+            SingleResultDto singleResultDto = totalResultDto.get(i);
             System.out.printf(Notification.RESULT_MATCHED.getMessage(), singleResultDto.getMatch());
-            if (code.equals(Prize.FIVE_AND_BONUS_MATCHED.getCode())) {
+            if (singleResultDto.getPrize() == Prize.FIVE_AND_BONUS_MATCHED.getPrize()) {
                 System.out.print(Notification.RESULT_BONUS.getMessage());
             }
             System.out.printf(Notification.RESULT_PRIZE.getMessage(), singleResultDto.getPrize());
@@ -52,17 +49,7 @@ public class OutputView {
         }
     }
 
-    private void addOrder(List<Integer> printOrder) {
-        printOrder.add(Prize.THREE_MATCHED.getCode());
-        printOrder.add(Prize.FOUR_MATCHED.getCode());
-        printOrder.add(Prize.FIVE_MATCHED.getCode());
-        printOrder.add(Prize.FIVE_AND_BONUS_MATCHED.getCode());
-        printOrder.add(Prize.SIX_MATCHED.getCode());
-    }
-
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
-
-
 }

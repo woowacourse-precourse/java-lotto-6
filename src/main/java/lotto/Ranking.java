@@ -1,6 +1,9 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Ranking {
     FIRST(2000000000, 6, false),
@@ -25,5 +28,13 @@ public enum Ranking {
                 .filter(ranking -> ranking.hasBonusNumber == hasBonusNumber)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No matching ranking found."));
+    }
+    public static List<Ranking> sortByPrize() {
+        return Arrays.stream(Ranking.values())
+                .sorted(Comparator.comparingInt(a -> a.prize))
+                .toList();
+    }
+    public long calculate(Integer count) {
+        return (long) prize * count;
     }
 }

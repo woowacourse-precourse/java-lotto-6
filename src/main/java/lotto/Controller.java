@@ -11,17 +11,17 @@ import lotto.service.dto.LotteryReceiptDto;
 public class Controller {
     private InputInterface in;
     private OutputInterface out;
-    private User user;
+    private String username;
     private PurchaseLotteryService purchaseLotteryService;
     private ApplyWinningLotteryService applyWinningLotteryService;
     private CalculateResultService calculateResultService;
 
-    Controller(InputInterface in, OutputInterface out, User user,
+    Controller(InputInterface in, OutputInterface out, String username,
                PurchaseLotteryService purchaseLotteryService,
                ApplyWinningLotteryService applyWinningLotteryService, CalculateResultService calculateResultService) {
         this.in = in;
         this.out = out;
-        this.user = user;
+        this.username = username;
         this.purchaseLotteryService = purchaseLotteryService;
         this.applyWinningLotteryService = applyWinningLotteryService;
         this.calculateResultService = calculateResultService;
@@ -29,7 +29,7 @@ public class Controller {
 
     public void purchaseLotteries() {
         long purchasedAmount = in.getPurchasedAmount();
-       LotteryReceiptDto receipt = purchaseLotteryService.purchase(user, purchasedAmount);
+       LotteryReceiptDto receipt = purchaseLotteryService.purchase(username, purchasedAmount);
         out.printReceipt(receipt);
     }
 
@@ -40,7 +40,7 @@ public class Controller {
     }
 
     public void calculateEarningRate() {
-        LotteryResultsDto result = calculateResultService.calculate(user);
+        LotteryResultsDto result = calculateResultService.calculate(username);
         out.printResults(result.results(), result.earningRate());
     }
 }

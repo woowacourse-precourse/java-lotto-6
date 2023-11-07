@@ -15,12 +15,16 @@ public class PurchaseLotteryService {
     private final LotteryRetailer retailer;
     private final LotteryOperator operator;
 
-    public PurchaseLotteryService(LotteryRetailer retailer, LotteryOperator operator) {
+    private final UserService userService;
+
+    public PurchaseLotteryService(LotteryRetailer retailer, LotteryOperator operator, UserService userService) {
         this.retailer = retailer;
         this.operator = operator;
+        this.userService = userService;
     }
 
-    public LotteryReceiptDto purchase(User user, long purchasedAmount) {
+    public LotteryReceiptDto purchase(String username, long purchasedAmount) {
+        User user = userService.getUser(username);
         LotteryReceipt receipt = retailer.purchase(operator, purchasedAmount);
         user.takeReceipt(receipt);
         return new LotteryReceiptDto(receipt.size(), convertLotteryDto(receipt));

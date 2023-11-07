@@ -14,12 +14,15 @@ import lotto.service.dto.LotteryResultsDto;
 public class CalculateResultService {
 
     private final LotteryResultsCalculator calculator;
+    private final UserService userService;
 
-    public CalculateResultService(LotteryResultsCalculator calculator) {
+    public CalculateResultService(LotteryResultsCalculator calculator, UserService userService) {
         this.calculator = calculator;
+        this.userService = userService;
     }
 
-    public LotteryResultsDto calculate(User user) {
+    public LotteryResultsDto calculate(String username) {
+        User user = userService.getUser(username);
         List<LotteryReceipt> receipts = user.getReceipts();
 
         LotteryResults results = calculator.getTotalResults(receipts);

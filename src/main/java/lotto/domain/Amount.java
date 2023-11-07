@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.BlankException;
-import lotto.exception.amount.IllegalChiperException;
+import lotto.exception.amount.IllegalCipherException;
 import lotto.exception.amount.NumberFormatException;
 import lotto.util.Utils;
 
@@ -42,7 +42,7 @@ public class Amount {
 
     private void validateCipher(int amountNumber) {
         if (amountNumber % 1000 != 0) {
-            throw new IllegalChiperException();
+            throw new IllegalCipherException();
         }
     }
 }

@@ -44,7 +44,7 @@ public class LottoController {
 
     private WinningLotto pickWinningLotto() {
         Lotto answerLotto = getAnswerLotto();
-        while(true) {
+        while (true) {
             try {
                 return new WinningLotto(answerLotto, getBonusNumber());
             } catch (IllegalArgumentException e) {

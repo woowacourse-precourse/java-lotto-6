@@ -21,6 +21,7 @@ public class LottoService {
         for (Lotto lotto : lottos.getLottos()) {
             int correctCount = checkLotto(lotto, winningLotto.getAnswerLotto());
             boolean hasBonus = checkBonusNumber(lotto, winningLotto.getBonusNumber());
+
             LottoResult rank = LottoResult.findRank(correctCount, hasBonus);
             if(rank != null) {
                 resultStorage.put(rank, resultStorage.getOrDefault(rank, INITIAL_ZERO_VALUE) + RESULT_INCREASE_VALUE);

@@ -23,14 +23,14 @@ class UserTest {
 
     @DisplayName("구입 금액이 1000원 단위가 아닐 때 오류 발생")
     @Test
-    void purchaseAmountIsNotThousandUnit_1(){
+    void purchaseAmountIsNotThousandUnit_1() {
         assertThatThrownBy(() -> new User(900))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입 금액이 1000원 단위가 아닐 때 오류 발생")
     @Test
-    void purchaseAmountIsNotThousandUnit_2(){
+    void purchaseAmountIsNotThousandUnit_2() {
         assertThatThrownBy(() -> new User(1001))
                 .isInstanceOf(IllegalArgumentException.class);
     }

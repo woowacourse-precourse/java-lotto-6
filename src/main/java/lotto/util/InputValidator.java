@@ -46,13 +46,13 @@ public class InputValidator {
         Pattern pattern = Pattern.compile(INTEGER_TYPE_VALIDATE_REGEX);
         Matcher matcher = pattern.matcher(input);
 
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             throw new IllegalArgumentException(INPUT_WRONG_INTEGER_TYPE_EXCEPTION_MESSAGE);
         }
     }
 
     private static void validateNotEmpty(String input) {
-        if(input.isEmpty()){
+        if (input.isEmpty()) {
             throw new IllegalArgumentException(INPUT_EMPTY_EXCEPTION_MESSAGE);
         }
     }

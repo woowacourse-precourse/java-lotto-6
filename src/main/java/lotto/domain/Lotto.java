@@ -28,7 +28,8 @@ public class Lotto {
 
     private void validateCorrectRange(List<Integer> numbers) {
         boolean isValid = numbers.stream()
-                .allMatch(number -> (number >= LOTTO_MIN_NUMBER) && (number <= LOTTO_MAX_NUMBER));
+                .allMatch(number -> (number >= LOTTO_MIN_NUMBER)
+                        && (number <= LOTTO_MAX_NUMBER));
 
         if (!isValid) {
             throw new IllegalArgumentException(LOTTO_NUMBER_WRONG_RANGE_EXCEPTION_MESSAGE);

@@ -30,7 +30,7 @@ public class WinningLotto {
     }
 
     private void validateCorrectRange(int bonusNumber) {
-        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
+        if ((bonusNumber < LOTTO_MIN_NUMBER) || (bonusNumber > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(BONUS_NUMBER_WRONG_RANGE_EXCEPTION_MESSAGE);
         }
     }

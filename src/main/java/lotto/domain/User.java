@@ -23,13 +23,13 @@ public class User {
     }
 
     private void validateCorrectRange(int balance) {
-        if(balance < LOTTO_PRICE || balance > MAX_LOTTO_PURCHASE_AMOUNT){
+        if ((balance < LOTTO_PRICE) || (balance > MAX_LOTTO_PURCHASE_AMOUNT)) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_WRONG_RANGE_EXCEPTION_MESSAGE);
         }
     }
 
     private void validateThousandUnit(int balance) {
-        if(balance % LOTTO_PRICE != ZERO_VALUE){
+        if ((balance % LOTTO_PRICE) != ZERO_VALUE) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_WRONG_UNIT_EXCEPTION_MESSAGE);
         }
     }

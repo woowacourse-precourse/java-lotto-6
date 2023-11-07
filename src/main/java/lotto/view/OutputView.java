@@ -35,7 +35,8 @@ public class OutputView {
     }
 
     private static void printJoiningNumber(List<Integer> sortedNumbers) {
-        String formattedString = sortedNumbers.stream().map(String::valueOf)
+        String formattedString = sortedNumbers.stream()
+                .map(String::valueOf)
                 .collect(Collectors.joining(NUMBER_JOIN_DELIMITER, NUMBER_JOIN_PREFIX, NUMBER_JOIN_SUFFIX));
 
         System.out.println(formattedString);
@@ -64,7 +65,7 @@ public class OutputView {
 
     private static String convertToDecimalFormat(int prize) {
         DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT_PATTERN);
-            return decimalFormat.format(prize);
+        return decimalFormat.format(prize);
     }
 
     private static void printResultStartMessage() {

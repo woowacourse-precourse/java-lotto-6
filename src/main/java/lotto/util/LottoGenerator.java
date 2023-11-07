@@ -10,7 +10,7 @@ public class LottoGenerator {
     private static final int MAX_RANDOM_NUMBER = 45;
     private static final int CORRECT_LOTTO_NUMBER_COUNT = 6;
 
-    public static List<Integer> createRandomNumber(){
+    public static List<Integer> createRandomNumber() {
         return Randoms.pickUniqueNumbersInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER, CORRECT_LOTTO_NUMBER_COUNT)
                 .stream()
                 .sorted()

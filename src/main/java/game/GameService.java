@@ -158,8 +158,9 @@ public class GameService {
         System.out.println(ConstantMessage.WINNING_RESULT_SIX.getMessage() + winningResult[4]
                 + ConstantMessage.NUMBER_UNIT.getMessage());
 
-        double rateOfReturn = (5000 * winningResult[0] + 50000 * winningResult[1] + 1_500_000 * winningResult[2]
-                + 30_000_000 * winningResult[3] + 2_000_000_000 * winningResult[4]) * 100.0 / price;
+        double rateOfReturn =
+                Math.round((5000 * winningResult[0] + 50000 * winningResult[1] + 1_500_000 * winningResult[2]
+                        + 30_000_000 * winningResult[3] + 2_000_000_000 * winningResult[4]) * 100.0 / price * 10) / 10;
         System.out.println(
                 ConstantMessage.TOTAL_BENEFIT_FIRST.getMessage() + rateOfReturn
                         + ConstantMessage.TOTAL_BENEFIT_LAST.getMessage());

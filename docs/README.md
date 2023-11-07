@@ -38,6 +38,8 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
   Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 ```
 
+---
+
 ## 기능 목록
 
 ✅ 입력 기능
@@ -54,27 +56,23 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
 
 ✅ 입력 검사 기능
 
-- 구입 금액 검사 기능
+- [x] 구입 금액 검사 기능
     - [x] [ERROR] 숫자가 아닌 경우
     - [x] [ERROR] 1000원 단위가 아닌 경우
     - [x] [ERROR] 20억 이상의 숫자를 입력한 경우
-- 당첨 번호 검사 기능
+- [x] 당첨 번호 검사 기능
     - [x] [ERROR] 숫자가 아닌 경우
     - [x] [ERROR] 1~45 사이의 값이 아닌 경우
     - [x] [ERROR] 6개가 아닌 경우
     - [x] [ERROR] 중복된 경우
-- 보너스 번호 검사 기능
+- [x] 보너스 번호 검사 기능
     - [x] [ERROR] 숫자가 아닌 경우
     - [x] [ERROR] 1~45 사이의 값이 아닌 경우
     - [x] [ERROR] 당첨 번호와 중복된 경우
 
-✅ 보조 기능
-
-- [x] 들어온 String을 List 로 변환하는 기능
-- [ ] 소수점 둘째 자리에서 반올림 하는 기능
-
 ✅ 로또 발행 기능
 
+- [x] 구입 금액에 따른 수량 반환 기능
 - [x] 1-45 사이의 무작위 값 6개 생성 기능
 - [x] 로또 발행 해주는 기능
 - [x] 오름차순으로 정렬 기능
@@ -90,3 +88,52 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
 ✅ 보너스 번호 체크 기능
 
 - [x] 보너스 번호 체크 기능
+
+✅ 보조 기능
+
+- [x] 들어온 String을 int 로 변환하는 기능
+- [x] 들어온 String을 List 로 변환하는 기능
+- [x] 소수점 둘째 자리에서 반올림 하는 기능
+
+---
+
+### 📦 package 구조
+
+- Controller
+    - LottoController
+- Domain
+    - lotto
+        - Lotto
+        - LottoMachine
+        - LottoResult
+        - WinningLotto
+        - Bonus
+    - Cashier
+    - Customer
+- Service
+    - LottoService
+    - LottoDto
+    - ResultDto
+- Util
+    - RandomNumberGenerator
+    - Utils
+    - Validator
+- View
+    - InputView
+    - OutputView
+
+### 🚀 달성 목표
+
+- 단위 테스트부터 돌아가게 만들기
+    - 함수형 인터페이스 사용
+- 객체를 최대한 분리하기
+    - 역할별 나누기
+
+### 📜 피드백 적용 사항
+
+- README
+    - 클래스별이 아닌 구현해야 할 기능 목록을 정리하는 데 집중
+    - 예외적인 상황도 기능 목록에 정리
+- 변수명에 자료형 사용 안하기
+- 매직넘버, 리터럴 사용 안하기
+- 가독성 좋게 메서드 분리하기 (15줄 이하)

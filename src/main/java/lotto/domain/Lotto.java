@@ -54,17 +54,13 @@ public class Lotto {
                 .toList();
     }
 
-    public Rank findRank(Lotto winningLotto, Bonus bonus) {
-        return Rank.find(countWinningNumber(winningLotto), hasBonusNumber(bonus));
-    }
-
-    private int countWinningNumber(Lotto winningLotto) {
+    public int countWinningNumber(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto.numbers::contains)
                 .count();
     }
 
-    private boolean hasBonusNumber(Bonus bonus) {
+    public boolean hasBonusNumber(Bonus bonus) {
         return numbers.contains(bonus.getNumber());
     }
 

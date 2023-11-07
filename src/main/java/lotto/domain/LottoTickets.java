@@ -16,7 +16,7 @@ public class LottoTickets {
         return lottos.stream()
                 .collect(Collectors.toMap(
                         lotto -> lotto,
-                        lotto -> lotto.findRank(winningLotto, bonus)
+                        lotto -> Rank.find(lotto.countWinningNumber(winningLotto), lotto.hasBonusNumber(bonus))
                 ));
     }
 

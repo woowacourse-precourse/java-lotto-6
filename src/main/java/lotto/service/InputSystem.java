@@ -42,7 +42,7 @@ public class InputSystem {
         return Integer.parseInt(bonusNumber);
     }
 
-    private void checkIsDigit(final String inputNum){
+    public void checkIsDigit(final String inputNum){
         try{
             Integer.parseInt(inputNum);
         }catch (NumberFormatException e){

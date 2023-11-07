@@ -20,6 +20,7 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_SIZE_ERROR
                     .getFormattedMessage(LottoConfig.LOTTO_NUMBER_COUNT.getValue()));
         }
+        Validator.validateNumbersInRange(numbers);
         Validator.validateUniqueNumbers(numbers);
     }
 

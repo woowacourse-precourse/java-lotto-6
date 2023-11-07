@@ -60,15 +60,11 @@ public class LottoController {
         }
     }
 
-    private boolean hasDuplicate(int bonusNumber, List<Integer> winningNumbers) {
-        return winningNumbers.contains(bonusNumber);
-    }
-
     private WinningNumber getWinningNumber() {
         try {
-            WinningNumber winningNumber = InputView.getWinningNumbers();
+            List<Integer> numbers = InputView.getWinningNumbers();
             System.out.println();
-            return winningNumber;
+            return new WinningNumber(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumber();
@@ -86,5 +82,9 @@ public class LottoController {
             System.out.println(e.getMessage());
             return getLottos();
         }
+    }
+
+    private boolean hasDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+        return winningNumbers.contains(bonusNumber);
     }
 }

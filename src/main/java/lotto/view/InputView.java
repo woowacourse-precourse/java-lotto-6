@@ -2,12 +2,15 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import lotto.domain.WinningNumber;
+import java.util.Arrays;
+import java.util.List;
 import lotto.message.Error;
 import lotto.message.Input;
 import lotto.util.Validation;
 
 public class InputView {
+
+    private static final String winningNumberDelimiter = ",";
 
     public static int getPrice() {
         Input.PRICE_PROMPT.print();
@@ -22,11 +25,14 @@ public class InputView {
         return price;
     }
 
-    public static WinningNumber getWinningNumbers() {
+    public static List<Integer> getWinningNumbers() {
         Input.WINNING_NUMBER_PROMPT.print();
 
         String input = readLine();
-        return WinningNumber.fromString(input);
+        if (!hasCorrectFormat(input)) {
+            throw new IllegalArgumentException(Error.INVALID_INPUT_FORMAT.getMessage());
+        }
+        return parseString(input);
     }
 
     public static int getBonusNumber() {
@@ -41,5 +47,21 @@ public class InputView {
             throw new IllegalArgumentException(Error.INVALID_NUMBER_RANGE.getMessage());
         }
         return number;
+    }
+
+    private static boolean hasCorrectFormat(String input) {
+        String[] tokens = input.split(winningNumberDelimiter);
+
+        return Arrays.stream(tokens).allMatch(Validation::isNumericValue);
+    }
+
+    private static List<Integer> parseString(String input) {
+        String[] tokens = input.split(winningNumberDelimiter);
+
+        try {
+            return Arrays.stream(tokens).map(Integer::parseInt).toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Error.INVALID_NUMBER_FORMAT.getMessage());
+        }
     }
 }

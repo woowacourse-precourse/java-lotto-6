@@ -18,17 +18,18 @@ public class InputView {
 
     public int inputPurchasePrice() {
         System.out.println(NOTICE_INPUT_PURCHASE_PRICE);
-        String input = Console.readLine();
-        int purchasePrice = 0;
-        try {
-            validatePurchasePriceType(input);
-            purchasePrice = stringToInt(input);
-            validateDividedByLottoPrice(purchasePrice);
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-            inputPurchasePrice();
+        while (true) {
+            String input = Console.readLine();
+            try {
+                validatePurchasePriceType(input);
+                validateDividedByLottoPrice(stringToInt(input));
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+                continue;
+            }
+            System.out.println();
+            return stringToInt(input);
         }
-        return purchasePrice;
     }
 
     public void inputWinningNumber() {

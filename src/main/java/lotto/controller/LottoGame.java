@@ -17,10 +17,10 @@ public class LottoGame {
     private final InputSystem inputSystem = new InputSystem();
     private final PrintSystem printSystem = new PrintSystem();
 
+    private Map<WinningResultType, Integer> winningResult = new HashMap<>();
+    private List<Lotto> lottos = new ArrayList<>();
     private LottoSystem lottoSystem;
     private Player player;
-    private List<Lotto> lottos = new ArrayList<>();
-    private Map<WinningResultType, Integer> winningResult = new HashMap<>();
 
     public void play(){
 
@@ -32,12 +32,12 @@ public class LottoGame {
 
         saveWinningResultAndPrint();
 
+        clear();
+
     }
 
     private void init(){
         this.player = new Player();
-        this.lottos.clear();
-        this.winningResult.clear();
         this.winningResult.put(WinningResultType.WINNING_RESULT_NOTHING, 0);
         this.winningResult.put(WinningResultType.WINNING_RESULT_3_MATCH, 0);
         this.winningResult.put(WinningResultType.WINNING_RESULT_4_MATCH, 0);
@@ -93,6 +93,13 @@ public class LottoGame {
 
         printSystem.printResultWinningStatisticsAndRateOfRevenue(winningResult,player.calculateRateOfRevenue());
 
+    }
+
+    private void clear(){
+        this.lottos.clear();
+        this.winningResult.clear();
+        this.lottoSystem = null;
+        this.player = null;
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 import static lotto.domain.Rank.*;
 
 public class Result {
-    private Map<Rank, Integer> store = new EnumMap<Rank, Integer>(Rank.class);
+    private final Map<Rank, Integer> store = new EnumMap<Rank, Integer>(Rank.class);
 
     public Result(Lotto winningLotto, Lottos lottos, Bonus bonus) {
         initialStore();

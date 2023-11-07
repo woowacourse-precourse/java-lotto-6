@@ -1,13 +1,16 @@
 package lotto.service;
 
+import static org.assertj.core.api.Assertions.*;
+
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
+import lotto.utils.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+
 
 class LottoServiceTest {
     private LottoService lottoService;
@@ -161,4 +164,20 @@ class LottoServiceTest {
         // then
         assertThat(result).isEqualTo(Ranking.FIRST);
     }
+
+    @Test
+    @DisplayName("기능34 테스트 : 로또 구매 결과에는 입력한 숫자값 만큼의 로또의 숫자 조합이 적혀있다.")
+    void purchaseResultOutputStatementHaveLottosAsManyAsInputNumber() {
+        // given
+        int count = 5;
+
+        // when
+        String result = lottoService.makePurchaseResultOutputStatement(count);
+        int executionCount = StringUtils.countOccurrences(result, "[");
+
+        // then
+        assertThat(result).startsWith("5개를 구매했습니다.");
+        assertThat(executionCount).isEqualTo(5);
+    }
+
 }

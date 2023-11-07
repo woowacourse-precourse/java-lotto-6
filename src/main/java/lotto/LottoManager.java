@@ -1,23 +1,32 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.common.Announcement;
+import lotto.common.Constraint;
 import lotto.common.ErrorMessage;
 
 public class LottoManager {
 
-    private int amount;
+    private final List<Lotto> lottos;
 
     LottoManager() {
-        this.amount = 0;
+        lottos = new ArrayList<>();
     }
 
-    public void deposit() {
+    public void purchaseLotto() {
         Announcement.INPUT_AMOUNT.speak();
-        this.amount += getValidAmount();
+        int amount = getAmount();
+        for (int i = 0; i < amount / 1000; i++) {
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, Constraint.LOTTO_MAX_SIZE.getValue());
+            this.lottos.add(new Lotto(randomNumbers));
+        }
+        Announcement.PURCHASE_LOTTOS.speak(lottos.size());
     }
 
-    private int getValidAmount() {
+    private int getAmount() {
         while (true) {
             try {
                 String input = Console.readLine();

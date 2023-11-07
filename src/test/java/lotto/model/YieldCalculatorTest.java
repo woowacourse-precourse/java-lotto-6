@@ -29,7 +29,7 @@ class YieldCalculatorTest {
 
         int purchasedPrice = 20000;
         double expectedValue = 50.0;
-        double actualValue = yieldCalculator.calculateYieldCalculator(winningResults, purchasedPrice) + 100;
+        double actualValue = yieldCalculator.calculateYieldCalculator(winningResults, purchasedPrice);
 
         assertEquals(expectedValue,actualValue);
     }

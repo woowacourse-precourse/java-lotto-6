@@ -2,9 +2,9 @@ package lotto.domain;
 
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoGameException;
+import lotto.util.LottoConstants;
 
 public class Cash {
-    private static final int LOTTO_PRICE = 1000;
 
     private final Integer amount;
 
@@ -20,11 +20,11 @@ public class Cash {
     }
 
     private boolean isAmountNotInMultipleOfLottoPrice(Integer amount) {
-        return amount % LOTTO_PRICE != 0;
+        return amount % LottoConstants.LOTTO_PRICE.getValue() != 0;
     }
 
     public Integer calculateNumberOfLottos() {
-        return amount / LOTTO_PRICE;
+        return amount / LottoConstants.LOTTO_PRICE.getValue();
     }
 
     public Integer getAmount() {

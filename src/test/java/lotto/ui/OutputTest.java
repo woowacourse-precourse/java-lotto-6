@@ -1,6 +1,7 @@
 package lotto.ui;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -15,6 +16,25 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OutputTest {
+
+    @DisplayName("예외 발생 시, 예외 처리 메시지만 출력")
+    @Test
+    void printError() {
+        // given
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        // when
+        try {
+            throw new IllegalArgumentException("[ERROR] 예외 처리 메시지");
+        } catch (IllegalArgumentException ex) {
+            Output.printError(ex);
+        }
+
+        // then
+        assertThat(out.toString())
+                .contains("[ERROR] 예외 처리 메시지");
+    }
 
     @DisplayName("로또 번호를 오름차순으로 정렬하여 구매한 로또 전체 출력")
     @Test
@@ -40,10 +60,10 @@ class OutputTest {
 
     @DisplayName("당첨 통계 출력, 수익률은 둘째 자리에서 반올림")
     @Test
-    void printResultAndRoundingOffEarningsRate () {
+    void printResultAndRoundingOffEarningsRate() {
         // given
         LottoResult lottoResult = new LottoResult();
-        lottoResult.state.replace(Prize.FIFTH,1);   // 5등 5000원, 1개
+        lottoResult.state.replace(Prize.FIFTH, 1);   // 5등 5000원, 1개
 
         Double earningsRate = lottoResult.calculateEarningsRate(9); // 로또 9장, 55.5555...6 %
 
@@ -51,7 +71,7 @@ class OutputTest {
         System.setOut(new PrintStream(out));
 
         // when
-        Output.printResult(lottoResult,earningsRate);
+        Output.printResult(lottoResult, earningsRate);
 
         // then
         assertThat(out.toString())
@@ -70,7 +90,7 @@ class OutputTest {
     void printUsingCommaEarningsRate() {
         // given
         LottoResult lottoResult = new LottoResult();
-        lottoResult.state.replace(Prize.FIRST,1);   // 1등 2,000,000,000원, 1개
+        lottoResult.state.replace(Prize.FIRST, 1);   // 1등 2,000,000,000원, 1개
 
         Double earningsRate = lottoResult.calculateEarningsRate(1); // 로또 1장, 200,000,000.0%
 
@@ -78,7 +98,7 @@ class OutputTest {
         System.setOut(new PrintStream(out));
 
         // when
-        Output.printResult(lottoResult,earningsRate);
+        Output.printResult(lottoResult, earningsRate);
 
         // then
         assertThat(out.toString())

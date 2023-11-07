@@ -11,7 +11,7 @@ public class InputView {
     protected void isDigitValidate(String result) {
         Pattern PATTERN = Pattern.compile("^[0-9]+$");
         if (!PATTERN.matcher(result).matches()) {
-            throw new IllegalArgumentException("[ERROR] 금액을 잘못 입력했습니다.");
+            throw new IllegalArgumentException("[ERROR] 문자를 입력했습니다.");
         }
     }
 

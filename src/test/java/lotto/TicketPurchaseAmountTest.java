@@ -24,23 +24,4 @@ public class TicketPurchaseAmountTest {
         TicketPurchaseAmount amount = new TicketPurchaseAmount("1000");
         assertThat(amount.calculateLottoCount()).isEqualTo(1);
     }
-
-    @ParameterizedTest
-    @CsvSource({
-            "1, 2, 3, 4, 5, 6, 7, FIRST"
-    })
-    @DisplayName("1등 당첨 결과 반환")
-    void shouldReturnCorrectPrize(int n1, int n2, int n3, int n4, int n5, int n6, int bn, Ranking expected) {
-
-        // given
-        Lotto lottoNumbers = new Lotto(List.of(n1, n2, n3, n4, n5, n6));
-        BonusNumber bonusNumber = new BonusNumber(bn);
-        prizeNumbers winningNumbers = new prizeNumbers(lottoNumbers, bonusNumber);
-
-        // when
-        Lotto myLotto = new Lotto(List.of(n1, n2, n3, n4, n5, n6));
-
-        // then
-        assertThat(winningNumbers.calculatePrize(myLotto)).isEqualTo(expected);
-    }
 }

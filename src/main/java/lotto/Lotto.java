@@ -35,9 +35,10 @@ public class Lotto {
 
     public void checkForBonusNumber(BonusNumber bonusNumber) {
         if (bonusNumber.isContainedIn(this.numbers)) {
-          throw new IllegalArgumentException(BONUS_ERROR);
+            throw new IllegalArgumentException(BONUS_ERROR);
         }
     }
+
     public int calculateSameCount(Lotto otherLotto) {
         return compareLottoNumbers(otherLotto.number());
     }
@@ -47,10 +48,14 @@ public class Lotto {
         commonNumbers.retainAll(otherNumbers);
         return commonNumbers.size();
     }
-
+    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+        return bonusNumber.isContainedIn(this.numbers);
+    }
     public List<Integer> number() {
         return numbers;
     }
+
+
 }
 
 

@@ -13,7 +13,18 @@ public class prizeNumbers {
     }
 
     public Ranking calculatePrize(Lotto otherLottoNumbers) {
-        int cnt = lotto.calculateSameCount(otherLottoNumbers);
-        return Ranking.findRankingByCnt(cnt);
+        int count = lotto.calculateSameCount(otherLottoNumbers);
+        boolean hasBonus = otherLottoNumbers.hasBonusNumber(bonusNumber);
+
+        if (count == 6) {
+            return Ranking.FIRST;
+        }
+        if (count == 5 && hasBonus) {
+            return Ranking.SECOND;
+        }
+        if (count == 5) {
+            return Ranking.THIRD;
+        }
+            return Ranking.findRankingByCnt(count);
+        }
     }
-}

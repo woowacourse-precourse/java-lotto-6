@@ -60,7 +60,7 @@
 
 ```
 
-2. Lotto에 각 상황에 맞는 test code 구현
+2. 보너스 번호에 대하여 로또 번호와 중복된 case에 대한 test case 생성
 
 ```java
 

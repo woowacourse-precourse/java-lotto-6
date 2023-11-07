@@ -1,5 +1,3 @@
-package lotto;
-
 import java.util.List;
 
 public class Lotto {
@@ -12,11 +10,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
+
 
     // TODO: 추가 기능 구현
     private void validateRange(List<Integer> numbers) {
@@ -36,8 +39,12 @@ public class Lotto {
             }
         }
     }
-
-    public List<Integer> getNumbers(){
-        return numbers;
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
     }
+
+
 }

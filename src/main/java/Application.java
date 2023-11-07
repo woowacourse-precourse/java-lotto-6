@@ -1,5 +1,3 @@
-package lotto;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -63,7 +61,7 @@ public class Application {
     }
 
     private static void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        WinLotto matchLotto = new WinLotto(lottos, winningNumbers, bonusNumber);
+        Matching matchLotto = new Matching(lottos, winningNumbers, bonusNumber);
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(matchLotto);

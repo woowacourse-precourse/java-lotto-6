@@ -4,6 +4,7 @@ import lotto.congin.LottoConfing;
 
 public class LottoMoney {
     private static final int ZERO = 0;
+    private static final int ONE_HUNDRED_PERCENT = 100;
     private final int value;
 
     public LottoMoney(int value) {
@@ -22,7 +23,7 @@ public class LottoMoney {
     }
 
     public float getLottoYield(int investmentProfit){
-        return ((float) investmentProfit / value) * 100;
+        return ((float) investmentProfit / value) * ONE_HUNDRED_PERCENT;
     }
 
 }

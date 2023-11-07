@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import net.bytebuddy.asm.Advice;
-
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.dataObjects.Money;
 import lotto.utils.CommonValidator;
 import lotto.utils.CommonValidatorImpl;
 
-public class PurchaseTest extends NsTest {
+public class PurchaseInputTest extends NsTest {
 
 	@DisplayName("빈 문자열을 입력하면 예외가 발생한다.")
 	@Test

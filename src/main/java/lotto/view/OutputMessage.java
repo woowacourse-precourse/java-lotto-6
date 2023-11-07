@@ -2,7 +2,7 @@ package lotto.view;
 
 public enum OutputMessage {
     REQUEST_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
-    PURCHASE_RESULT("\n%d개를 구매했습니다.\n"),
+    PURCHASE_RESULT("%d개를 구매했습니다.\n"),
     DELIMITER(", "),
     LEFT_SQUARE_BRACKET("["),
     RIGHT_SQUARE_BRACKET("]"),

@@ -29,6 +29,7 @@ public class OutputView {
     }
 
     public void printPurchaseResult(final int number) {
+        System.out.println();
         System.out.printf(PURCHASE_RESULT.getMessage(), number);
     }
 

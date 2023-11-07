@@ -28,7 +28,7 @@ public class Validator {
         validateThousandUnit(money);
     }
 
-    private static void validateNumber(final String number) {
+    public static void validateNumber(final String number) {
         if (!number.matches(REGEX)) {
             throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }

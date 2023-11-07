@@ -1,11 +1,14 @@
 package lotto.util;
 
+import static lotto.util.Validator.validateNumber;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class Utils {
 
     public static final int stringToInt(final String number) {
+        validateNumber(number);
         return Integer.parseInt(number);
     }
 

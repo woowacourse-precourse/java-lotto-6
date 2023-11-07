@@ -33,7 +33,6 @@ public enum Rate {
             return FIFTH;
         }
         return MISS;
-
     }
 
     public String getRank() {

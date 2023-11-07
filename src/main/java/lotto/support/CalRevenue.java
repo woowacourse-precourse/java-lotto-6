@@ -16,8 +16,8 @@ public class CalRevenue {
     }
 
     public void cal() {
-        int firstMoney = result.size() * 1000;
-        int sum = 0;
+        Long firstMoney = result.size() * 1000L;
+        Long sum = 0L;
         for (Rate now : result) {
             sum += now.getPrize();
             count.put(now.getRank(), count.getOrDefault(now.getRank(), 0) + 1);

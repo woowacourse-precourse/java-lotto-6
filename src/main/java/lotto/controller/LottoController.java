@@ -20,7 +20,7 @@ public class LottoController {
 
     public void execute() {
 
-        int lottoTimes = BuyLotto();
+        Long lottoTimes = BuyLotto();
         List<Lotto> lottos = randomLotto.RandomLottos(lottoTimes);
         WinningLotto winningLotto = setWinningNumbers();
 
@@ -42,7 +42,7 @@ public class LottoController {
     }
 
 
-    private int BuyLotto() {
+    private Long BuyLotto() {
         Customer customer = null;
         try {
             String stringMoney = inputManager.getMoney();

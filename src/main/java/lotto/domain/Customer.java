@@ -4,40 +4,40 @@ import static lotto.constant.CustomerConst.*;
 
 public class Customer {
 
-    private final int money;
+    private final Long money;
 
     public Customer(String StringMoney) {
-        int numberMoney = validateNumber(StringMoney);
+        Long numberMoney = validateNumber(StringMoney);
         validateDigit(numberMoney);
         validateRange(numberMoney);
         this.money = numberMoney;
     }
 
-    private int validateNumber(String money) {
+    private Long validateNumber(String money) {
         try {
-            Integer.parseInt(money);
+            Long.parseLong(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(IS_NOT_NUMBER);
         }
 
-        return Integer.parseInt(money);
+        return Long.parseLong(money);
     }
 
-    private void validateDigit(int money) {
+    private void validateDigit(Long money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException(INDIVISIBLE);
         }
 
     }
 
-    private void validateRange(int money) {
+    private void validateRange(Long money) {
         if (money <= 0) {
             throw new IllegalArgumentException(IS_NOT_POSITIVE);
         }
 
     }
 
-    public int getCount() {
+    public Long getCount() {
         return money / 1000;
     }
 

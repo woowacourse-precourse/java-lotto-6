@@ -9,9 +9,9 @@ import java.util.List;
 
 public class RandomLotto {
 
-    public List<Lotto> RandomLottos(int lottoTimes) {
+    public List<Lotto> RandomLottos(Long lottoTimes) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoTimes; i++) {
+        for (Long i = 0L; i < lottoTimes; i++) {
             Lotto lotto = new Lotto(getRandomLotto());
             lotto.print();
             lottos.add(lotto);

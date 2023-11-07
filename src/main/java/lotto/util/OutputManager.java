@@ -11,7 +11,7 @@ public class OutputManager {
         System.out.println(START_PRINT);
     }
 
-    public static void BUY_PRINT(int count) {
+    public static void BUY_PRINT(Long count) {
         System.out.println(count + BUY_PRINT);
     }
 

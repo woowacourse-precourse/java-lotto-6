@@ -8,18 +8,19 @@ import java.util.Set;
 public class Lotto {
     public static final int LOTTO_MIN_NUMBER = 1;
     public static final int LOTTO_MAX_NUMBER = 45;
+    private static final String CHECK_LOTTO_SIZE_REQUEST_MESSAGE = "로또 번호는 총 6개 여야 합니다.";
     private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoSize(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateLottoSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(CHECK_LOTTO_SIZE_REQUEST_MESSAGE);
         }
     }
 

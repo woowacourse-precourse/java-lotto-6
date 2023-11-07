@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
 
-        @DisplayName("입력된 금액이 1000원 단위가 아니면 예외를 발생시킨다.")
+        @DisplayName("입력된 금액이 1000원 단위가 아니면 예외를 발생")
         @Test
-        void 구매희망_금액_입력값이_1000원_단위가_아닐_때_테스트() {
+        void 구매입력_값_유효_테스트() {
             //given
-            int case1 = 100;
+            int case1 = 30;
             int case2 = 1300;
 
             //when
@@ -40,6 +40,21 @@ class UserTest {
             assertThat(userAMount1).isEqualTo(1000);
 
         }
+    @DisplayName("구매자의 로또 수익률을 계산")
+    @Test
+    void 로또_수익률_계산_테스트() {
+        //given
+        User user = new User(76000);
+        user.getLottoResult().put(Rank.FOURTH,1);
+        user.getLottoResult().put(Rank.FIFTH,1);
+
+        //when
+        double result = user.getRateOfReturn(user);
+
+        //then
+        assertThat(result).isEqualTo(72.4);
+    }
+
 
 
     }

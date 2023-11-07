@@ -25,7 +25,7 @@ class InputViewTest extends IOTest{
     void createCashByInputSuccessTest(String input) {
         assertDoesNotThrow(() -> {
             systemIn(input);
-            inputView.inputCash();
+            inputView.requestCash();
         });
     }
 
@@ -37,7 +37,7 @@ class InputViewTest extends IOTest{
         assertThrows(IllegalArgumentException.class,
                 () -> {
                     systemIn(input);
-                    inputView.inputCash();
+                    inputView.requestCash();
                 }
         );
     }
@@ -49,7 +49,7 @@ class InputViewTest extends IOTest{
         assertThrows(IllegalStateException.class,
                 () -> {
                     systemIn(input);
-                    inputView.inputCash();
+                    inputView.requestCash();
                 }
         );
     }

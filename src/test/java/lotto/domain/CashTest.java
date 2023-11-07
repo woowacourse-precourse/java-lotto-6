@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.dto.RequestCash;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,12 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("현금")
 class CashTest {
+
     @DisplayName("1000원 보다 작은 금액 입력시 예외 발생")
     @ParameterizedTest()
     @ValueSource(ints = {100, 200, 300, 400, 500})
     void createCashSmallerUnitExceptionTest(int amount) {
         assertThrows(IllegalArgumentException.class,
-                () -> new Cash(amount)
+                () -> {
+                    RequestCash requestCash = RequestCash.of(amount);
+                    Cash.create(
+                            requestCash.depositAmount(),
+                            requestCash.spendAmount()
+                    );
+                }
         );
     }
 
@@ -31,15 +39,28 @@ class CashTest {
     @ValueSource(ints = {1001, 2002, 3003, 4004, 5005})
     void createCashNotAvailableAmount(int amount) {
         assertThrows(IllegalArgumentException.class,
-                () -> new Cash(amount)
+                () -> {
+                    RequestCash requestCash = RequestCash.of(amount);
+                    Cash.create(
+                            requestCash.depositAmount(),
+                            requestCash.spendAmount()
+                    );
+                }
         );
     }
+
 
     @DisplayName("생성 성공 테스트")
     @ParameterizedTest()
     @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
     void createCashSuccessTest(int amount) {
-        assertDoesNotThrow(() -> new Cash(amount));
+        assertDoesNotThrow(() -> {
+            RequestCash requestCash = RequestCash.of(amount);
+            Cash.create(
+                    requestCash.depositAmount(),
+                    requestCash.spendAmount()
+            );
+        });
     }
 
 
@@ -61,8 +82,9 @@ class CashTest {
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
     void spendNotSuccessTest(int amount) {
-        final Cash cash = new Cash(amount);
-
+        RequestCash requestCash = RequestCash.of(amount);
+        Cash cash = Cash.create(requestCash.depositAmount(),
+                requestCash.spendAmount());
 
         while (cash.isAfford()) {
             cash.spendOneUnit();
@@ -75,11 +97,11 @@ class CashTest {
     static Stream<Arguments> cashDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(
-                        new Cash(1000),
-                        new Cash(2000),
-                        new Cash(3000),
-                        new Cash(4000),
-                        new Cash(5000))
+                        Cash.create(1000, 0),
+                        Cash.create(2000, 0),
+                        Cash.create(3000, 0),
+                        Cash.create(4000, 0),
+                        Cash.create(5000, 0))
                 )
         );
     }

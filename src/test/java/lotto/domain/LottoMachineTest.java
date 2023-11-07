@@ -23,7 +23,7 @@ class LottoMachineTest {
     @BeforeEach
     void setUp() {
         numberGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
-        cash = new Cash(1000);
+        cash = Cash.create(1000, 0);
         lottoMachine = new LottoMachine(numberGenerator, cash);
     }
 

@@ -8,6 +8,8 @@ import lotto.util.ErrorMessage;
 
 public class InputView {
 
+    public static final String COMMA = ",";
+
     public static int getPurchaseLottoPrice() {
         String cost = Console.readLine();
         return convertToInt(cost);
@@ -36,14 +38,14 @@ public class InputView {
     }
 
     private static String[] getSplit(String input) {
-        if (hasNotCommand(input)){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_NOT_COMMAND_MESSAGE);
+        if (hasNotComma(input)){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_NOT_COMMA_MESSAGE);
         }
-        return input.split(",");
+        return input.split(COMMA);
     }
 
-    private static boolean hasNotCommand(String input) {
-        return !input.contains(",");
+    private static boolean hasNotComma(String input) {
+        return !input.contains(COMMA);
     }
 
     private static List<Integer> mapToInteger(String[] numbers) {

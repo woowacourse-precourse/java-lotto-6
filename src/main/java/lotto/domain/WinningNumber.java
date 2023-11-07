@@ -7,7 +7,6 @@ public class WinningNumber {
     private final int bonusNumber;
 
     public WinningNumber(Lotto winningNumbers, int bonusNumber) {
-        LottoValidator.checkBonusNumber(winningNumbers.getNumbers(), bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }

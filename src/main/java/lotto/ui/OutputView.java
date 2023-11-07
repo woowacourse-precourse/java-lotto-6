@@ -14,6 +14,7 @@ public class OutputView {
     private static String SPACE = " ";
     private static String PRIZE_MESSAGE = "(%,d)";
     private static String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
+    private static String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다";
 
     public static void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
@@ -21,7 +22,7 @@ public class OutputView {
 
     public static void printLottoQuantity(int lottoQuantity) {
         System.out.print(NEW_LINE);
-        System.out.printf(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
+        System.out.println(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
     }
 
     public static void printStatistics(Map<Rank, Integer> finalResult) {
@@ -39,5 +40,9 @@ public class OutputView {
                     .append(String.format(WINNING_LOTTO_NUMBER_MESSAGE, finalResult.get(ranks[i])));
             System.out.println(statistics);
         }
+    }
+
+    public static void printEarningRate(double earningRate) {
+        System.out.println(String.format(EARNING_RATE_NOTIFY_MESSAGE, earningRate));
     }
 }

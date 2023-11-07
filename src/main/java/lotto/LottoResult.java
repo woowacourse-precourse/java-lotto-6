@@ -15,12 +15,12 @@ public class LottoResult {
     }
 
     public double calculateEarningRate(int purchaseMoney) {
-        Map<Rank, Integer> finalResult = getFinalResult();
-        double profit = finalResult.get(Rank.THREE_MATCH) * Rank.THREE_MATCH.getPrize()
-                + finalResult.get(Rank.FOUR_MATCH) * Rank.FOUR_MATCH.getPrize()
-                + finalResult.get(Rank.FIVE_MATCH) * Rank.FIVE_MATCH.getPrize()
-                + finalResult.get(Rank.FIVE_MATCH_AND_BONUS) * Rank.FIVE_MATCH_AND_BONUS.getPrize()
-                + finalResult.get(Rank.SIX_MATCH) * Rank.SIX_MATCH.getPrize();
+        Map<Rank, Integer> result = getFinalResult();
+        double profit = result.get(Rank.THREE_MATCH) * Rank.THREE_MATCH.getPrize()
+                + result.get(Rank.FOUR_MATCH) * Rank.FOUR_MATCH.getPrize()
+                + result.get(Rank.FIVE_MATCH) * Rank.FIVE_MATCH.getPrize()
+                + result.get(Rank.FIVE_MATCH_AND_BONUS) * Rank.FIVE_MATCH_AND_BONUS.getPrize()
+                + result.get(Rank.SIX_MATCH) * Rank.SIX_MATCH.getPrize();
 
         return profit / purchaseMoney * 100;
     }

@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,6 +19,9 @@ public class Lotto {
         return numbers;
     }
     private void validate(List<Integer> numbers) {
+        if (Objects.isNull(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또를 생성할 때 List는 NULL이 될 수 없습니다.");
+        }
         validateNumberCount(numbers);
         validateRangeOfNumbers(numbers);
         validateDuplicateNumber(numbers);

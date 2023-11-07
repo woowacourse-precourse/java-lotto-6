@@ -26,7 +26,7 @@ public class WinningResultTest {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         WinningResult winningResult = new WinningResult(lotto, bonusNumber);
-        
+
         Assertions.assertThat(winningResult.match(testlotto)).isEqualTo(rank);
     }
 }

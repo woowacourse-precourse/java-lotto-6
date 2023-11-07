@@ -7,7 +7,7 @@ public enum ViewMessage {
 
     RESPONSE_PURCHASE_AMOUNT("%d개를 구매했습니다."),
     RESPONSE_WINNING_STATISTICS("당첨 통계\n---"),
-    RESPONSE_WINNING_STATISTICS_DETAIL("%d개 일치%s (%d원) - %d개"),
+    RESPONSE_WINNING_STATISTICS_DETAIL("%d개 일치%s (%s원) - %d개"),
     RESPONSE_TOTAL_EARNINGS("총 수익률은 %.1f%%입니다.");
 
     private final String message;

@@ -26,11 +26,12 @@ public class OutputView {
         System.out.println(DASH_LINE);
     }
 
-    public void printWinnerStatus(LottoResult lottoResult){
-        List<WinningInfo> winningInfos = List.of(WinningInfo.THREE_MATCH, WinningInfo.FOUR_MATCH, WinningInfo.FIVE_MATCH,
+    public void printWinnerStatus(LottoResult lottoResult) {
+        List<WinningInfo> winningInfos = List.of(WinningInfo.THREE_MATCH, WinningInfo.FOUR_MATCH,
+                WinningInfo.FIVE_MATCH,
                 WinningInfo.FIVE_AND_BONUS_MATCH, WinningInfo.SIX_MATCH);
 
-        winningInfos.forEach(winningInfo->{
+        winningInfos.forEach(winningInfo -> {
             int count = lottoResult.getCount(winningInfo);
             System.out.printf(WINNING_STATS_FORMAT, winningInfo.matchedInfo, winningInfo.price, count);
         });

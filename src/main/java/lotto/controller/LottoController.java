@@ -1,10 +1,10 @@
 package lotto.controller;
 
 
-import lotto.model.LottoManager;
-import lotto.model.RandomLottoGenerator;
 import lotto.model.Lotto;
+import lotto.model.LottoManager;
 import lotto.model.LottoResult;
+import lotto.model.RandomLottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -39,13 +39,13 @@ public class LottoController {
     }
 
 
-    private void calculateMatched(){
+    private void calculateMatched() {
         output.printWinningHeader();
         LottoResult lottoResult = manager.calculateLottoResult();
         output.printWinnerStatus(lottoResult);
     }
 
-    private void calculateRateOfRefund(){
+    private void calculateRateOfRefund() {
         double rateOfReturn = manager.calculateRateOfReturn(purchaseAmount);
         output.printTotalRateOfReturn(rateOfReturn);
     }

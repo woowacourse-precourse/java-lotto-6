@@ -3,13 +3,13 @@ package lotto.model;
 import java.util.List;
 
 public class LottoManager {
-    private Lottos lottos;
+    private PurchasedLottos purchasedLottos;
     private WinningLotto winningLotto;
     private LottoResult lottoResult;
 
 
     public void createLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
-        lottos = Lottos.of(numberOfLottos, lottoGenerator);
+        purchasedLottos = PurchasedLottos.of(numberOfLottos, lottoGenerator);
     }
 
     public void createWinningLotto(Lotto lotto, int bonusNumber) {
@@ -17,12 +17,12 @@ public class LottoManager {
     }
 
     public List<String> getPurchaseLottos() {
-        return lottos.getPurchaseLottos();
+        return purchasedLottos.getPurchaseLottos();
     }
 
     public LottoResult calculateLottoResult() {
         lottoResult = LottoResult.of();
-        List<WinningInfo> winningInfos = lottos.getWinnningInfos(winningLotto);
+        List<WinningInfo> winningInfos = purchasedLottos.getWinnningInfos(winningLotto);
         winningInfos.forEach(lottoResult::addResult);
         return lottoResult;
     }

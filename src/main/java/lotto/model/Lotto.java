@@ -24,16 +24,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateInRange(numbers);
-        validateUnique(numbers);
-    }
-
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_SIZE_ERROR);
         }
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateInRange(numbers);
+        validateUnique(numbers);
     }
 
     private void validateInRange(List<Integer> numbers) {

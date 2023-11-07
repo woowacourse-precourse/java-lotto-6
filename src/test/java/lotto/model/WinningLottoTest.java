@@ -10,7 +10,7 @@ class WinningLottoTest {
 
     @DisplayName("WinningLotto가 잘 생성된다.")
     @Test
-    void createWinningLotto(){
+    void createWinningLotto() {
         Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 

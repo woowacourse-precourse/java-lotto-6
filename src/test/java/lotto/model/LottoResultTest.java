@@ -11,7 +11,7 @@ class LottoResultTest {
     WinningInfo winningInfo;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lottoResult = LottoResult.of();
         winningInfo = WinningInfo.THREE_MATCH;
     }

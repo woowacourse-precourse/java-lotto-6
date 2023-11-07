@@ -11,21 +11,31 @@ public enum WinningInfo {
     public final String matchedInfo;
     public final int price;
 
-    WinningInfo(String matchedInfo, int price){
+    WinningInfo(String matchedInfo, int price) {
         this.matchedInfo = matchedInfo;
         this.price = price;
     }
 
-    public static WinningInfo of(int matchedCount, boolean isBonusMatched){
-        if(matchedCount == 6) return SIX_MATCH;
+    public static WinningInfo of(int matchedCount, boolean isBonusMatched) {
+        if (matchedCount == 6) {
+            return SIX_MATCH;
+        }
 
-        if(matchedCount == 5 && isBonusMatched) return FIVE_AND_BONUS_MATCH;
+        if (matchedCount == 5 && isBonusMatched) {
+            return FIVE_AND_BONUS_MATCH;
+        }
 
-        if(matchedCount == 5) return FIVE_MATCH;
+        if (matchedCount == 5) {
+            return FIVE_MATCH;
+        }
 
-        if(matchedCount == 4) return FOUR_MATCH;
+        if (matchedCount == 4) {
+            return FOUR_MATCH;
+        }
 
-        if(matchedCount == 3) return THREE_MATCH;
+        if (matchedCount == 3) {
+            return THREE_MATCH;
+        }
 
         return NONE;
     }

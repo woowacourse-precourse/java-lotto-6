@@ -1,21 +1,17 @@
 package lotto.model;
 
-import java.util.Arrays;
-import java.util.Collections;
-import lotto.model.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 
 class LottoTest {
     @DisplayName("로또가 잘 생성된다")
     @Test
-    void createLotto(){
+    void createLotto() {
         List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
 
         Lotto lotto = new Lotto(validNumbers);
@@ -41,12 +37,11 @@ class LottoTest {
 
     @DisplayName("로또 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
-    void createLottoByOutOfRange(){
-        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
+    void createLottoByOutOfRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-
 
 
 }

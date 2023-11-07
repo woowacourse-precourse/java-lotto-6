@@ -1,16 +1,15 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        try{
+        try {
             LottoController controller = new LottoController();
             controller.run();
-        } catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             ErrorLogger.log(e);
-        } catch(Exception e){
+        } catch (Exception e) {
             ErrorLogger.exceptionLog(e);
         }
 

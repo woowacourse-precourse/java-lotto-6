@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constant;
 
 public enum LottoPrize {
     Three_PRIZE(3, 5000),

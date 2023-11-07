@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.LottoPrize;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 

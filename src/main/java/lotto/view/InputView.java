@@ -11,13 +11,13 @@ import java.util.Arrays;
 public class InputView {
     private final InputValidator validator = new InputValidator();
 
-    public Money readMoneyToBuyLotto() {
+    public Money inputMoneyToBuyLotto() {
         String input = Console.readLine();
         validator.validateIsDigit(input);
         return new Money(Integer.parseInt(input));
     }
 
-    public WinningNumbers readWinningNumbers() {
+    public WinningNumbers inputWinningNumbers() {
         String input = Console.readLine();
         validator.validateIsSplitByComma(input);
         return new WinningNumbers(
@@ -26,7 +26,7 @@ public class InputView {
         );
     }
 
-    public BonusNumber readBonusNumber() {
+    public BonusNumber inputBonusNumber() {
         String input = Console.readLine();
         validator.validateIsDigit(input);
         return new BonusNumber(Integer.parseInt(input));

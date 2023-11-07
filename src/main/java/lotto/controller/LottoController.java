@@ -9,6 +9,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class LottoController {
     private final OutputView outputView = new OutputView();
@@ -24,7 +25,7 @@ public class LottoController {
 
     private void buy() {
         outputView.printInputMoneyToBuyLottoMessage();
-        Money money = inputView.readMoneyToBuyLotto();
+        Money money = readMoneyToBuyLotto();
         lottoService.buyLotto(money);
         outputView.printBoughtLottoCount(money.convertMoneyToCount());
         outputView.printLottos(lottoService.findBoughtLottos());
@@ -32,9 +33,9 @@ public class LottoController {
 
     private void setWinning() {
         outputView.printInputWinningNumbersMessage();
-        WinningNumbers winningNumbers = inputView.readWinningNumbers();
+        WinningNumbers winningNumbers = readWinningNumbers();
         outputView.printInputBonusNumberMessage();
-        BonusNumber bonusNumber = inputView.readBonusNumber();
+        BonusNumber bonusNumber = readBonusNumber();
         lottoService.setWiningNumbers(winningNumbers, bonusNumber);
     }
 
@@ -54,5 +55,30 @@ public class LottoController {
 
     private double getCalculatedLottoYield() {
         return lottoService.calculateLottoYield();
+    }
+
+    private Money readMoneyToBuyLotto() {
+        Supplier<Money> method = inputView::inputMoneyToBuyLotto;
+        return retryUntilSuccess(method);
+    }
+
+    private WinningNumbers readWinningNumbers() {
+        Supplier<WinningNumbers> method = inputView::inputWinningNumbers;
+        return retryUntilSuccess(method);
+    }
+
+    private BonusNumber readBonusNumber() {
+        Supplier<BonusNumber> method = inputView::inputBonusNumber;
+        return retryUntilSuccess(method);
+    }
+
+    static <T> T retryUntilSuccess(Supplier<T> supplier) {
+        while(true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

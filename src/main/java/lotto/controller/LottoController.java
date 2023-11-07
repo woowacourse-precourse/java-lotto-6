@@ -1,8 +1,12 @@
 package lotto.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Bank;
+import lotto.domain.Lotto;
 import lotto.domain.Player;
+import lotto.domain.Prize;
 import lotto.dto.response.LottosInfoDto;
 import lotto.domain.LottoShop;
 import lotto.service.LottoService;
@@ -18,6 +22,7 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoService lottoService;
     private Bank bank;
+    private Player player;
 
     public LottoController(InputView inputView, LottoShop lottoShop, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
@@ -57,7 +62,7 @@ public class LottoController {
     }
 
     private void createLottos(String input) {
-        Player player = new Player(input, lottoShop);
+        player = new Player(input, lottoShop);
         LottosInfoDto lottosInfoDto = player.buyLottos();
         printLottosNumberAndTicket(lottosInfoDto);
     }
@@ -143,5 +148,11 @@ public class LottoController {
     private void calculateWinningStatistics() {
         ConsoleOutput.printNewLine();
         ConsoleOutput.displayWinningStatistics();
+        Map<Prize, Integer> prizeCountMap = bank.calculatePrizeCountMap(player);
+        int totalPrizeMoney = bank.calculateTotalPrizeMoney(prizeCountMap);
+        double earningRate = bank.calculateEarningRate(totalPrizeMoney, player);
+
+        outputView.displayWinningStatistics(prizeCountMap);
+        outputView.displayEarningRate(earningRate);
     }
 }

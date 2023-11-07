@@ -1,54 +1,31 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 
-	private ArrayList<Lotto> lotto = new ArrayList<>();
-
 	public static void UserInput() {
+
+		int matching = 0;
 
 		String usermoney = moneyInput();
 
 		int lottocount = processNumsInput(usermoney);
 
-		Lotto.printLotto(lottocount);
+		Lotto.printLottocount(lottocount);
 
-		Lotto.Create(lottocount);
+		List<List<Integer>> lottos = Lotto.Create(lottocount);
+
+		Lotto.printLottoNum(lottos);
 
 		String usernums = numsInput();
-
 		String bonusnum = bonusInput();
 
-		checkNum(usernums, bonusnum);
+		Lotto.checkNum(lottos, usernums);
+		System.out.println(matching);
 
-	}
-
-	private static void checkNum(String usernums, String strbonusnum) {
-
-		int bonusnum = Integer.parseInt(strbonusnum);
-		String[] numslist = usernums.split(",");
-
-		for (int i = 0; i < numslist.length; i++) {
-			int num = Integer.parseInt(numslist[i]);
-		}
-
-	}
-
-	private static String numsInput() {
-
-		System.out.println("당첨 번호를 입력해주세요.");
-
-		return Console.readLine();
-	}
-
-	private static String bonusInput() {
-
-		System.out.println("보너스 번호를 입력해 주세요.");
-
-		return Console.readLine();
 	}
 
 	private static int processNumsInput(String strusermoney) {
@@ -59,6 +36,20 @@ public class Input {
 
 		return lottocount;
 
+	}
+
+	private static String numsInput() {
+		System.out.println();
+		System.out.println("당첨 번호를 입력해주세요.");
+
+		return Console.readLine();
+	}
+
+	private static String bonusInput() {
+		System.out.println();
+		System.out.println("보너스 번호를 입력해 주세요.");
+
+		return Console.readLine();
 	}
 
 	private static String moneyInput() {

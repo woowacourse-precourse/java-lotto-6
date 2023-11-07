@@ -7,12 +7,13 @@ import java.util.List;
 import static lotto.view.ErrorMessage.duplicatedWinningNumbers;
 import static lotto.view.ErrorMessage.notEnoughLengthOfWinningNumbersExceptionMessage;
 
-public class WinningException extends CommonException {
+public class WinningException extends NumberException {
     public static WinningNumber winningException(List<Integer> winningNumbers) throws IllegalArgumentException {
         try {
             winningNumRangeRotate(winningNumbers);
             winningNumLengthException(winningNumbers);
-            winningNumDuplicate(winningNumbers);
+            duplicateException(winningNumbers);
+            //winningNumDuplicate(winningNumbers);
             return new WinningNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
@@ -27,7 +28,7 @@ public class WinningException extends CommonException {
             throw new IllegalArgumentException();
         }
     }
-
+/*
     private static void winningNumDuplicate(List<Integer> winningNumbers) throws IllegalArgumentException{
         try {
             WinningNumber.checkDuplicate(winningNumbers);
@@ -35,11 +36,11 @@ public class WinningException extends CommonException {
             duplicatedWinningNumbers();
             throw new IllegalArgumentException();
         }
-    }
+    }*/
 
     private static void winningNumRangeRotate(List<Integer> winningNumbers) {
         for (int number : winningNumbers) {
-            checkNumberException(number);
+            numberRangeException(number);
         }
     }
 }

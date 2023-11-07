@@ -6,7 +6,7 @@ import java.util.Set;
 
 import static lotto.view.ErrorMessage.*;
 
-public class WinningNumber extends Number{
+public class WinningNumber {
     private final List<Integer> winningNumbers;
     private static final int size = 6;
 

@@ -13,7 +13,7 @@ public class BonusNumber {
 
     private int validate(String bonusNumber, List<Integer> winningNumbers) {
         int intBonusNumber = Validator.isDigit(bonusNumber);
-        Validator.notSeparatedBy1000(intBonusNumber);
+        Validator.outOfRange(intBonusNumber);
         Validator.duplicateNumber(winningNumbers, intBonusNumber);
         return intBonusNumber;
     }

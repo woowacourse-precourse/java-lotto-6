@@ -21,15 +21,19 @@ public class LottoController {
     public void start() {
         getLottoAmount();
         getLottos();
-        getWinningLotto();
-        getBonusNumber();
+//        getWinningLotto();
+        System.out.println(getWinningLotto());
+//        getBonusNumber();
+        System.out.println(getBonusNumber());
     }
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장
     private List<Lotto> getLottos(){
         RandomNumbers randomNumbers = new RandomNumbers();
+//        Lotto lotto = new Lotto();
         for (int i = 0; i < amount; i++) {
-            lottos.add((Lotto) randomNumbers.getRandomNumbers());
+            Lotto lotto = new Lotto(randomNumbers.getRandomNumbers());
+            lottos.add(lotto);
         }
         OutputView.IssuedLottoNumbers(amount, lottos);
         return lottos;
@@ -42,9 +46,14 @@ public class LottoController {
     }
 
     //winning 입력 받아서 모델에서 validation 처리 -> Lotto에서
-    private void getWinningLotto() {
+//    private void getWinningLotto() {
+//        Lotto lotto = new Lotto(lottoStringtoIntegerList());
+//        winningLotto = lotto;
+//    }
+    private Lotto getWinningLotto() {
         Lotto lotto = new Lotto(lottoStringtoIntegerList());
         winningLotto = lotto;
+        return winningLotto;
     }
 
     private List<Integer> lottoStringtoIntegerList() {
@@ -53,9 +62,14 @@ public class LottoController {
     }
 
     //bonusNumber 입력 받아서 모델에서 validation 처리 -> bonusNum 모델 생성?
-    private void getBonusNumber(){
+//    private void getBonusNumber(){
+//        BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
+//        bonusNumber = bonus.getBonusNumber();
+//    }
+    private int getBonusNumber(){
         BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
         bonusNumber = bonus.getBonusNumber();
+        return bonusNumber;
     }
 
     //각 로또가 몇개 맞았는지 확인, lottos, amount, winningNumbers, bonusNumber 등등 활용,

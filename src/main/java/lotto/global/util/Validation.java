@@ -35,6 +35,12 @@ public class Validation {
         }
     }
 
+    public void isNumbersInRangeOf1To45(List<Integer> numbers) {
+        for (int number : numbers) {
+            isInRangeOf1To45(number);
+        }
+    }
+
     public void isSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             errorMessage = ErrorMessage.SIX_NUMBERS;

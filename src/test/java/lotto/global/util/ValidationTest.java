@@ -56,20 +56,20 @@ class ValidationTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
     }
 
-    @DisplayName("입력된 숫자가 6개를 초과하면 예외가 발생한다.")
+    @DisplayName("로또 번호가 6개를 초과하면 예외가 발생한다.")
     @Test
-    void inputMoreThanSixNumbers() {
+    void moreThanSixNumbers() {
         assertThatThrownBy(() -> validation.isSixNumbers(Arrays.asList(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 6개의 숫자만 입력해 주세요.");
+                .hasMessageContaining("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
     }
 
-    @DisplayName("입력된 숫자가 6개 미만이면 예외가 발생한다.")
+    @DisplayName("로또 번호가 6개 미만이면 예외가 발생한다.")
     @Test
-    void inputLessThanSixNumbers() {
+    void lessThanSixNumbers() {
         assertThatThrownBy(() -> validation.isSixNumbers(Arrays.asList(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 6개의 숫자만 입력해 주세요.");
+                .hasMessageContaining("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
     }
 
     @DisplayName("입력된 숫자에 중복값이 있으면 예외가 발생한다.")

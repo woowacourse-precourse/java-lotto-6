@@ -53,4 +53,16 @@ public class StringUtilTest {
         // Then
         assertThat(formatted).isEqualTo("12,345,678");
     }
+
+    @Test
+    public void 문자의_모든_공백_제거() {
+        // Given
+        String withSpaces = " 1 h e l l o  @   ";
+
+        // When
+        String result = StringUtil.deleteAllSpaces(withSpaces);
+
+        // Then
+        assertThat(result).isEqualTo("1hello@");
+    }
 }

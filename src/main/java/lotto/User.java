@@ -13,6 +13,7 @@ public class User {
 		this.lottos = lottos;
 	}
 
+	public Money getMoney(){return this.pay;}
 	public List<Lotto> getLottos(){
 		return this.lottos;
 	}

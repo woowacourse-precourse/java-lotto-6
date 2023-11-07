@@ -31,7 +31,7 @@ public class LottoController {
         return result;
     }
 
-    private static double searchSameNum(List<Integer> numbers, List<Integer> winningNum, int bonusNum) {
+    static double searchSameNum(List<Integer> numbers, List<Integer> winningNum, int bonusNum) {
         double count = 0;
         for (Integer number : numbers) {
             if (winningNum.contains(number)) {

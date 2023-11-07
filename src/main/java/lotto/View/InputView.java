@@ -34,7 +34,7 @@ public class InputView {
         return stringToInteger(inputList);
     }
 
-    public static void printInsertBonusNumber() {
+    public void printInsertBonusNumber() {
         System.out.println(InputConstants.ENTER_BONUS_NUMBER.getMessage());
     }
 

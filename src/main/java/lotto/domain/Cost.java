@@ -7,23 +7,21 @@ import lotto.exception.InvalidInput;
 public class Cost {
     private final int paidCost;
 
-    public Cost(String paidCost) {
-        this.paidCost = validate(paidCost);;
+    public Cost(int paidCost) {
+        validate(paidCost);
+        this.paidCost = paidCost;;
     }
 
     public int getQuantity() {
         return paidCost / UNIT.getValue();
     }
 
-    private int validate(String cost) {
+    private void validate(int paidCost) {
         InvalidInput invalidInput = new InvalidInput();
 
-        if (invalidInput.notIntegerValueException(cost)) {
-            throw new IllegalArgumentException();
-        } else if (invalidInput.notThousandUnitException(Integer.parseInt(cost))) {
+        if (invalidInput.notThousandUnitException(paidCost)) {
             throw new IllegalArgumentException();
         }
-
-        return Integer.parseInt(cost);
     }
+
 }

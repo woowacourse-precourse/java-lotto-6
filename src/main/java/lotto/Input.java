@@ -18,8 +18,8 @@ public class Input {
 
     public int cost() {
         try {
-            Cost cost = new Cost(inputView.inputBuyingCost());
-            return cost.getQuantity();
+            int cost = stringConverter.covertToInteger(inputView.inputBuyingCost());
+            return new Cost(cost).getQuantity();
         } catch (IllegalArgumentException e) {
             return cost();
         }

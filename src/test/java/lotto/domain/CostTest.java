@@ -24,7 +24,7 @@ class CostTest {
     @Test
     void getQuantity(){
         //given
-        Cost cost = new Cost("13000");
+        Cost cost = new Cost(13000);
 
         //when
         int quantity = cost.getQuantity();
@@ -33,22 +33,11 @@ class CostTest {
         assertThat(quantity).isEqualTo(13);
     }
 
-    @DisplayName("주어진 금액이 숫자가 아니면 예외가 발생한다.")
-    @Test
-    void createCostWithNotIntegerCost(){
-        //given
-        String cost = "12000j";
-
-        //when //then
-        assertThatThrownBy(() -> new Cost(cost))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("주어진 금액익 1000단위가 아니면 예외가 발생한다")
     @Test
     void createCostWithNotThousandUnit(){
         //given
-        String cost = "1200";
+        int cost = 1200;
 
         //when //then
         assertThatThrownBy(() -> new Cost(cost))

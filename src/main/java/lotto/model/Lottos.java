@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
 
 public class Lottos {
     private final List<Lotto> lottos;
+    private List<Integer> goal;
+    private Integer bonus;
+
     public Lottos(){
         lottos = new ArrayList<>();
     }
@@ -27,6 +30,12 @@ public class Lottos {
         return lottos;
     }
 
+    public void setGoal(List<Integer> goal){
+        this.goal = goal;
+    }
+    public void setBonus(int bonus){
+        this.bonus = bonus;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -21,14 +21,30 @@ public class LottoController {
         return (LottoController) SingletonRegistry.getInstance(key);
     }
     public void run(){
-        buyLotto();
+        Lottos lottos = buyLotto();
+        setGoal(lottos);
     }
 
-    private void buyLotto(){
+    private Lottos buyLotto(){
         outputView.outputPayment();
         int payment = inputView.inputPayment();
+        System.out.println();
+
         Lottos lottos = new Lottos();
         lottos.buyMultipleAllRandom(payment);
         outputView.outputBuy(lottos);
+        System.out.println();
+
+        return lottos;
+    }
+
+    private void setGoal(Lottos lottos){
+        outputView.outputGoal();
+        lottos.setGoal(inputView.inputNumbers());
+        System.out.println();
+
+        outputView.outputBonus();
+        lottos.setBonus(inputView.inputNumber());
+        System.out.println();
     }
 }

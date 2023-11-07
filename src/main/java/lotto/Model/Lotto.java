@@ -25,7 +25,7 @@ public class Lotto {
     }
 
     public Integer countBonusWinningMatches(Integer bonusWinningNum){
-        boolean isContained = numbers.contains(bonusWinningNum)
+        boolean isContained = numbers.contains(bonusWinningNum);
         return Boolean.compare(isContained, true) + 1;
     }
 

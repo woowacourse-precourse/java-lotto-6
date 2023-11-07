@@ -15,6 +15,7 @@ import lotto.view.OutputView;
 public class Controller {
     private int lottoCnt;
 
+
     public void run() {
         Map<Result,Integer> score = new HashMap<>();
         part1();
@@ -26,6 +27,8 @@ public class Controller {
             int resultCnt = score.getOrDefault(result,0);
             score.put(result,resultCnt + 1);
         }
+
+        OutputView.printScore(score);
 
     }
 

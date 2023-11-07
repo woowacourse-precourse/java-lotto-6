@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static java.lang.String.format;
 import static java.util.function.Predicate.isEqual;
 import static java.util.stream.Collectors.toList;
 import static lotto.domain.constants.NumberConstant.LAST_INDEX_FOR_INSERT_SEPARATOR;
@@ -8,6 +9,7 @@ import static lotto.domain.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
 import static lotto.domain.constants.NumberConstant.VALIDATE_LOTTO_SIZE;
 import static lotto.domain.constants.NumberConstant.ZERO;
 import static lotto.domain.constants.SeparatorConstant.LOTTO_NUMBERS_SEPARATOR;
+import static lotto.domain.enums.ConsoleMessage.LOTTO_PRINT_FORMAT;
 import static lotto.exception.ExceptionMessage.DUPLICATE_NUMBER_ERROR;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.ExceptionMessage.WINNING_NUMBERS_SIZE_ERROR;
@@ -97,6 +99,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return String.format("[%s]", appendLottoNumbers());
+        return format(LOTTO_PRINT_FORMAT.getMessage(), appendLottoNumbers());
     }
 }

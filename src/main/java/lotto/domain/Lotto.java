@@ -8,6 +8,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateRange(numbers);
+        validateUnique(numbers);
+
         this.numbers = numbers;
     }
 
@@ -17,13 +20,25 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateUnique(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            ValidateUtil.isInRange(number, Constant.LOTTO_MINIMUM_NUMBER.getValue(),
+                    Constant.LOTTO_MAXIMUM_NUMBER.getValue());
+        }
+    }
+
     public List<Integer> getLottoNumbers() {
         return numbers;
     }
 
     public static Lotto createLotto(String inputLottoNumbers) {
-        List<Integer> lottoNumbers = Util.stringToArrayList(inputLottoNumbers);
+        List<Integer> lottoNumbers = ValidateUtil.stringToArrayList(inputLottoNumbers);
         Lotto lotto = new Lotto(lottoNumbers);
         return lotto;
     }

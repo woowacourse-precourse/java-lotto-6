@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,7 @@ class InputViewTest {
     @AfterEach
     void after() {
         System.setIn(System.in);
+        Console.close();
     }
 
     @Test

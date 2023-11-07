@@ -1,6 +1,6 @@
 package lotto.validator.input;
 
-import com.sun.jdi.request.DuplicateRequestException;
+import lotto.exception.input.DuplicatedNumberException;
 import lotto.exception.input.EmptyInputException;
 import lotto.exception.input.NumberFormatException;
 
@@ -38,7 +38,7 @@ public class BonusNumberValidator {
 
     private void validateDuplicationWithWinningNumbers(int validatedNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(validatedNumber)) {
-            throw new DuplicateRequestException(INPUT_DUPLICATE_WITH_WINNING.getMessage());
+            throw new DuplicatedNumberException(INPUT_DUPLICATE_WITH_WINNING.getMessage());
         }
     }
 }

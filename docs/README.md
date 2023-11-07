@@ -69,6 +69,6 @@
   - [x] 당첨 번호의 갯수가 총 6개가 아니면 `IllegalArgumentException` 예외처리
   - [x] 예외 발생 시 다시 입력받는 기능
 - [x] 보너스 번호를 입력받는 기능
-  - [ ] 보너스 번호가 1~45의 숫자가 아니면 `IllegalArgumentException` 예외처리
+  - [x] 보너스 번호가 1~45의 숫자가 아니면 `IllegalArgumentException` 예외처리
   - [x] 보너스 번호가 숫자가 아니면 `IllegalArgumentException` 예외처리
   - [x] 예외 발생 시 다시 입력받는 기능

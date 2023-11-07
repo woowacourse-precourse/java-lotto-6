@@ -29,7 +29,6 @@ class LottoTest {
     @DisplayName("로또 번호가 1과 45 사이 숫자가 아닐 때")
     @Test
     void createLottoByNoTNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, -1, 47)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

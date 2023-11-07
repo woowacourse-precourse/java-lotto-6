@@ -15,4 +15,8 @@ public class BonusNumber {
     private static boolean hasValidRange(int number) {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

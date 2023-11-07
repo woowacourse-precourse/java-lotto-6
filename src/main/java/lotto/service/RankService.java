@@ -59,7 +59,7 @@ public class RankService {
         }
 
         BigDecimal result = sum.multiply(BigDecimal.valueOf(Config.PERCENT))
-                .divide(totalSpent, 2, RoundingMode.HALF_UP);
+                .divide(totalSpent, 1, RoundingMode.HALF_UP);
 
         return result;
     }

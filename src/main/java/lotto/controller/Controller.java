@@ -7,6 +7,7 @@ import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchasedLottos;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.utils.RandomLottoNumbersGenerator;
 import lotto.view.InputView;
@@ -24,11 +25,12 @@ public class Controller {
         LottoNumber lottoNumber = tryBonusBall(lotto);
 
         WinningLotto winningLotto = new WinningLotto(lotto, lottoNumber);
-        tryPrintLottoStatistics()
+        tryPrintLottoStatistics(purchasedlottos, winningLotto);
+
     }
 
     private void tryPrintLottoStatistics(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
-
+        List<Rank> lottoRanks = purchasedLottos.matchLottos(winningLotto);
     }
 
     private LottoNumber tryBonusBall(Lotto lotto) {

@@ -16,4 +16,10 @@ public class WinningLotto {
         }
     }
 
+    public Rank matchLotto(Lotto lotto) {
+        int matchingNumbers = lotto.matchNumbers(winningLotto);
+        boolean isContainBonusBall = lotto.contains(bonusBall);
+
+        return Rank.calculate(matchingNumbers, isContainBonusBall);
+    }
 }

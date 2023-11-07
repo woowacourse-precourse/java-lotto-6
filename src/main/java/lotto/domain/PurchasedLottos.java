@@ -26,4 +26,10 @@ public class PurchasedLottos {
     public int purchasedLottosCount() {
         return purchasedLottos.size();
     }
+
+    public List<Rank> matchLottos(WinningLotto winningLotto) {
+        return purchasedLottos.stream()
+                .map(purchasedLotto -> winningLotto.matchLotto(purchasedLotto))
+                .collect(Collectors.toList());
+    }
 }

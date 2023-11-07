@@ -9,11 +9,14 @@ public class GameResult {
     private static final int INITIAL_AMOUNT = 0;
     private static final int DECIMAL_POINT = 2;
     private static final int PERCENTAGE_CONVERSION = 100;
+    private static final int ARRAY_INDEX_SIZE = 7;
+    private final int[] lottoRankResult;
     private final List<Lotto> playerLotto;
     private final List<LottoRank> lottoResult;
 
     private GameResult(List<Lotto> playerLotto) {
         this.playerLotto = playerLotto;
+        lottoRankResult = new int[ARRAY_INDEX_SIZE];
         lottoResult = new ArrayList<>();
     }
 
@@ -27,6 +30,14 @@ public class GameResult {
         }
 
         return lottoResult;
+    }
+
+    public int[] calculateLottoRankResult() {
+        for (LottoRank eachRank : lottoResult) {
+            lottoRankResult[eachRank.getMatchNumbers()]++;
+        }
+
+        return lottoRankResult;
     }
 
     public long calculateWinningMoney() {

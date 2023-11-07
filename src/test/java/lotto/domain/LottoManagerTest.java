@@ -23,7 +23,7 @@ public class LottoManagerTest {
     @DisplayName("로또들에 대한 등수와 로또들이 몇 등에 몇 개 당첨 됐는지 알 수 있다.")
     @Test
     void checkLottoRanks() {
-        Map<Rank,Integer> ranks = lottoManager.getLottosRanks(lottos);
+        Map<Rank,Integer> ranks = lottoManager.calculateLottosRanks(lottos);
 
         assertThat(ranks.get(Rank.FIRST)).isEqualTo(1);
         assertThat(ranks.get(Rank.SECOND)).isEqualTo(2);

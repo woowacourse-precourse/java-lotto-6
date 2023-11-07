@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.message.ExceptionMessage;
 
-public class Lotto {
-    private final List<Integer> numbers;
-
+public record Lotto(List<Integer> numbers) {
     public Lotto(List<Integer> numbers) {
         List<Integer> orderedNumbers = new ArrayList<>(numbers);
         orderedNumbers.sort(Integer::compareTo);

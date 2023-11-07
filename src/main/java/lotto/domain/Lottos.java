@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lottos {
-    private final List<Lotto> lottoItems;
-
-    private Lottos(List<Lotto> lottos) {
-        this.lottoItems = lottos;
-    }
+public record Lottos(List<Lotto> lottoItems) {
 
     public static Lottos purchaseLottos(Money wallet) {
         List<Lotto> lottoItems = new ArrayList<>();

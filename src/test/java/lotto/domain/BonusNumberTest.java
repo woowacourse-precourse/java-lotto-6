@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
 
-    @DisplayName("보너스 번호를 정상적으로 입력했을 때 보너스 넘버 객체가 반환된다.")
+    @DisplayName("보너스 번호가 정상적으로 들어왔을 때 보너스 넘버 객체가 반환된다.")
     @Test
     void bonusNumberCreateTest() {
         Integer number = 5;

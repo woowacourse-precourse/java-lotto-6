@@ -19,11 +19,11 @@ public class LottoTickets {
         return new LottoTickets(purchaseTickets);
     }
 
-    public List<Lotto> getTickets() {
-        return Collections.unmodifiableList(purchaseTickets);
-    }
-
     private LottoTickets(List<Lotto> purchaseTickets) {
         this.purchaseTickets = purchaseTickets;
+    }
+
+    public List<Lotto> getTickets() {
+        return Collections.unmodifiableList(purchaseTickets);
     }
 }

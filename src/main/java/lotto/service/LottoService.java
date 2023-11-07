@@ -27,8 +27,12 @@ public class LottoService {
 
     public List<PurchaseResult> purchaseLottos(PurchasePrice money) {
         Integer purchaseLottoAmount = money.getPurchaseLottoAmount();
-        return Stream.generate(() -> new PurchaseResult(RandomNumbersGenerator.generate()))
+        List<Lotto> generateLotto = Stream.generate(() -> Lotto.of(RandomNumbersGenerator.generate()))
                 .limit(purchaseLottoAmount)
+                .toList();
+
+        return generateLotto.stream()
+                .map(lotto -> new PurchaseResult(lotto.getNumbers()))
                 .collect(Collectors.toList());
     }
 

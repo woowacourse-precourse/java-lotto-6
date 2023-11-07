@@ -1,21 +1,15 @@
 package lotto.View;
 
 import java.util.Map;
-import lotto.Model.Lottos;
-import lotto.Model.RandomLotto;
+import lotto.Model.RandomLottos;
 import lotto.Model.Rank;
-import lotto.Model.Rate;
 import lotto.Model.Result;
 
 public class OutputView {
 
-    public static void printLottoPurChaseMessage(RandomLotto randomLotto) {
-        System.out.println();
-        System.out.println(randomLotto.getCount() + "개를 구매했습니다.");
-    }
-
-    public static void printRandomLottoNumbers(Lottos lottos) {
-        lottos.getLottos().forEach(System.out::println);
+    public static void printRandomLottosNumberAndCounting(RandomLottos lottos) {
+        System.out.println(lottos.getCounting() + "개를 구매했습니다.");
+        lottos.getRandomLottos().forEach(System.out::println);
     }
 
     public static void printWinningResult(Result result) {
@@ -30,6 +24,14 @@ public class OutputView {
 
     public static void printWinningRate(double winningRate) {
         System.out.println("총 수익률은 " + winningRate+"%입니다.");
+    }
+
+    public static void newLine() {
+        System.out.println();
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
 

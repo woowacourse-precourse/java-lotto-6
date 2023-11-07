@@ -5,7 +5,6 @@ import static lotto.constant.ConstantString.FINAL_REVENUE_MESSAGE;
 import static lotto.constant.ConstantString.PURCHASE_COUNT_MESSAGE;
 import static lotto.constant.ConstantString.RESULT_MESSAGE;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,17 +18,12 @@ public class OutputView {
     public void printLottoTicket(List<Lotto> purchaseLotto) {
         this.purchaseLotto = purchaseLotto;
         printTicketCount(purchaseLotto.size());
-        sortNumbers();
         printLottoTicketNumbers();
     }
 
     private void printTicketCount(Integer numberOfTickets) {
         printWhiteSpace();
         System.out.printf(PURCHASE_COUNT_MESSAGE, numberOfTickets);
-    }
-
-    private void sortNumbers(){
-        purchaseLotto.forEach(lotto -> lotto.getNumbers().sort(Comparator.naturalOrder()));
     }
 
     private void printLottoTicketNumbers() {

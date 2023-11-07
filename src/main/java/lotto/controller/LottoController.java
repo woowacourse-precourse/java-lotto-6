@@ -1,9 +1,12 @@
 package lotto.controller;
 
 
+import static lotto.domain.LottoConfig.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.domain.LottoConfig;
 import lotto.view.InputHandler;
 import lotto.domain.model.Lotto;
 import lotto.domain.generator.LottoGenerator;
@@ -21,7 +24,6 @@ import lotto.view.Output;
 
 public class LottoController {
 
-    private final Input input;
     private final Output output;
     private final LottoGenerator lottoGenerator;
 
@@ -35,7 +37,6 @@ public class LottoController {
 
     public LottoController(NumberGenerationStrategy numberGenerationStrategy, Input input,
             Output output) {
-        this.input = input;
         this.output = output;
         this.lottoGenerator = new LottoGenerator(numberGenerationStrategy);
         this.inputHandler = new InputHandler(input, output);
@@ -63,7 +64,7 @@ public class LottoController {
     }
 
     private int calculateLottoCount(Money money) {
-        return LottoPurchaseCalculator.calculateLottoCount(1000, money);
+        return LottoPurchaseCalculator.calculateLottoCount(LOTTO_PRICE.getValue(), money);
     }
 
     private List<Lotto> generateLottos(int count) {

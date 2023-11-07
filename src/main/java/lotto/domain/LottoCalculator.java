@@ -26,7 +26,7 @@ public class LottoCalculator {
         return df.format(profit);
     }
 
-    public long calculateTotalPrize() {
+    private long calculateTotalPrize() {
         return result.entrySet()
                 .stream()
                 .mapToLong(entry ->
@@ -34,7 +34,7 @@ public class LottoCalculator {
                 .sum();
     }
 
-    public int calculateTotalSpent() {
+    private int calculateTotalSpent() {
         int count = result.values()
                 .stream()
                 .mapToInt(Integer::intValue)

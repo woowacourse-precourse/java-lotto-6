@@ -6,10 +6,11 @@ import lotto.model.domain.BonusValidator;
 import lotto.model.domain.LottoMachine;
 import lotto.model.domain.LottoResultChecker;
 import lotto.model.domain.Purchase;
-import lotto.model.domain.PurchaseValidator;
 import lotto.model.domain.Statistics;
 import lotto.model.domain.WinningLotto;
 import lotto.model.domain.WinningLottoValidator;
+import lotto.service.PurchaseService;
+import lotto.service.WinningNumberService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,6 +21,8 @@ public class LottoGameController {
     private WinningLotto winningLotto;
     private Bonus bonus;
     private Purchase purchase;
+    private final PurchaseService purchaseService = new PurchaseService();
+    private final WinningNumberService winningNumberService = new WinningNumberService();
 
     public LottoGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -40,25 +43,18 @@ public class LottoGameController {
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
     }
 
-    //TODO: 메서드 리팩토링
+    //TODO: PurchaseService가 Purchase 반환하게 만들기
     private void purchaseLottoTickets() {
-        boolean isValidInput = false;
-        PurchaseValidator validator = new PurchaseValidator();
-        while (!isValidInput) {
+        while(purchase == null) {
+            String price = inputView.requestPrice();
             try {
-                String price = inputView.requestPrice();
-                int priceInteger = validator.validateIntegerInput(price);
-                int lottoCount = validator.validatePriceInThousandUnit(priceInteger);
-                purchase = new Purchase(priceInteger, lottoCount);
+                purchase = purchaseService.getPurchaseIfValid(price);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            } finally {
-                if(purchase != null) {
-                    isValidInput = true;
-                }
             }
         }
     }
+
 
     //TODO: 메서드 리팩토링
     private void getWinningNumbers() {

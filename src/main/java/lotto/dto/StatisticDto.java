@@ -13,6 +13,8 @@ import lotto.model.Statistic;
 
 public class StatisticDto {
 
+    private static final Integer DEFAULT_COUNT = 0;
+
     private Map<LottoRank, Integer> rank;
 
     private StatisticDto(Map<LottoRank, Integer> rank) {
@@ -25,23 +27,23 @@ public class StatisticDto {
     }
 
     public Integer getFifthRankCount() {
-        return getRank().getOrDefault(FIFTH_RANK, 0);
+        return getRank().getOrDefault(FIFTH_RANK, DEFAULT_COUNT);
     }
 
     public Integer getFourthRankCount() {
-        return getRank().getOrDefault(FOURTH_RANK, 0);
+        return getRank().getOrDefault(FOURTH_RANK, DEFAULT_COUNT);
     }
 
     public Integer getThirdRankCount() {
-        return getRank().getOrDefault(THIRD_RANK, 0);
+        return getRank().getOrDefault(THIRD_RANK, DEFAULT_COUNT);
     }
 
     public Integer getSecondRankCount() {
-        return getRank().getOrDefault(SECOND_RANK, 0);
+        return getRank().getOrDefault(SECOND_RANK, DEFAULT_COUNT);
     }
 
     public Integer getFirstRankCount() {
-        return getRank().getOrDefault(FIRST_RANK, 0);
+        return getRank().getOrDefault(FIRST_RANK, DEFAULT_COUNT);
     }
 
     public Map<LottoRank, Integer> getRank() {

@@ -60,4 +60,5 @@ class LottoTest {
         //then
         assertThat(sameNumberCount).isEqualTo(3);
     }
+
 }

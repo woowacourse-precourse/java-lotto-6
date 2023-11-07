@@ -20,4 +20,12 @@ public enum WinningCriteria {
         this.matchBonusNumber = matchBonusNumber;
         this.prizeAmount = prizeAmount;
     }
+
+    public Integer getMatchingNumberCount() {
+        return matchingNumberCount;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import static lotto.output.Constants.BonusNumberConstants.BONUS_NUMBER_INPUT_MESSAGE;
 import static lotto.output.Constants.BonusNumberConstants.ONE_LENGTH_ERROR_MESSAGE;
+import static lotto.output.Constants.NumbersValidatorConstants.DUPLICATE_ERROR_MESSAGE;
 
 public class BonusNumber extends NumbersValidator {
     public static int bonusInput(Set<Integer> winningNumbers) {
@@ -35,4 +36,10 @@ public class BonusNumber extends NumbersValidator {
         }
     }
 
+    protected static void validateDuplicate(int number, Set<Integer> winningNumbers) {
+        if (winningNumbers.contains(number)) {
+            System.out.println();
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+        }
+    }
 }

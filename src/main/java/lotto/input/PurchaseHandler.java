@@ -14,6 +14,7 @@ public class PurchaseHandler {
                 return convertedInt;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }

@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.output.Constants.LottoConstants.LOTTO_DUPLICATE_ERROR_MESSAGE;
 import static lotto.output.Constants.LottoConstants.LOTTO_SIX_NUMBERS;
@@ -14,7 +11,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicates(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -35,6 +31,13 @@ public class Lotto {
                 throw new IllegalArgumentException(LOTTO_DUPLICATE_ERROR_MESSAGE);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return numbers.toString();
     }
 
 }

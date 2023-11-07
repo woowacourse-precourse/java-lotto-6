@@ -1,14 +1,19 @@
 package lotto.output;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
+
 public class Constants {
-    public class PurchaseHandlerConstants{
+    public class PurchaseHandlerConstants {
         public static final String AMOUNT_INPUT = "구입금액을 입력해 주세요.";
         public static final String THOUSAND_FORMAT_ERROR_MESSAGE = "[ERROR] 올바른 형식이 아닙니다. 1000원 단위로 다시 입력해주세요.";
         public static final String MINIMUM_AMOUNT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1000원 이상이어야 합니다.";
 
     }
 
-    public class WinningNumbersConstants{
+    public class WinningNumbersConstants {
         public static final String SIX_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
         public static final String SIX_LENGTH_ERROR_MESSAGE = "[ERROR] 6개의 서로 다른 숫자를 입력하세요.";
     }

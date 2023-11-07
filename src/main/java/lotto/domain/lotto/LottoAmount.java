@@ -20,7 +20,7 @@ public class LottoAmount {
 
     private static void validate(int amount) {
         validatePositive(amount);
-        validateRaminder(amount);
+        validateRemainder(amount);
     }
 
     private static void validatePositive(int amount) {
@@ -29,7 +29,7 @@ public class LottoAmount {
         }
     }
 
-    private static void validateRaminder(int amount) {
+    private static void validateRemainder(int amount) {
         if (amount % LOTTO_AMOUNT_DIVIDE != 0) {
             throw new LottoMoneyDivideException();
         }

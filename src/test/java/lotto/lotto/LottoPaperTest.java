@@ -15,7 +15,7 @@ public class LottoPaperTest {
     void createRankingResults() {
         LottoPaper lottoPaper = new LottoPaper(getTestLottos());
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
-        BonusNumber bonusNumber = new BonusNumber("7", winningLotto);
+        BonusNumber bonusNumber = BonusNumber.of("7", winningLotto);
 
         List<Ranking> rankings = lottoPaper.calculateRankings(winningLotto, bonusNumber);
 

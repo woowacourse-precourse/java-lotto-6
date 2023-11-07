@@ -21,7 +21,7 @@ class BonusNumberTest {
     @ValueSource(strings = {"12.1", "abc"})
     @ParameterizedTest
     void createBonusNumberByNotInteger(String number) {
-        Assertions.assertThatThrownBy(() -> new BonusNumber(number, winningLotto))
+        Assertions.assertThatThrownBy(() -> makeBonusNumber(number, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class BonusNumberTest {
     @ValueSource(strings = {"-1", "0", "46"})
     @ParameterizedTest
     void createBonusNumberByWrongRangeNumber(String number) {
-        Assertions.assertThatThrownBy(() -> new BonusNumber(number, winningLotto))
+        Assertions.assertThatThrownBy(() -> makeBonusNumber(number, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,7 +37,11 @@ class BonusNumberTest {
     @Test
     void creatBonusNumberByDuplicateWinningNumber() {
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
-        Assertions.assertThatThrownBy(() -> new BonusNumber("1", winningLotto))
+        Assertions.assertThatThrownBy(() -> makeBonusNumber("1", winningLotto))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private void makeBonusNumber(String number, WinningLotto winningLotto) {
+        BonusNumber.of(number, winningLotto);
     }
 }

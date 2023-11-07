@@ -16,6 +16,6 @@ public class InputView {
     }
 
     public static BonusNumber getBonusNumber(WinningLotto winningLotto) {
-        return new BonusNumber(Console.readLine(), winningLotto);
+        return BonusNumber.of(Console.readLine(), winningLotto);
     }
 }

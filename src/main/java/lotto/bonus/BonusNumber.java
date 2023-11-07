@@ -10,27 +10,27 @@ public class BonusNumber {
     public static final String DUPLICATE_BONUS_MESSAGE = "보너스 번호가 당첨 번호와 중복되었습니다.";
     private final Integer bonus;
 
-    public BonusNumber(String bonus, WinningLotto winningLotto) {
-        this.bonus = validate(bonus, winningLotto);
+    public BonusNumber(String bonus) {
+        Integer bonusNumber = validateInteger(bonus);
+        validateNumberRange(bonusNumber);
+        this.bonus = bonusNumber;
     }
 
+    public static BonusNumber of(String bonus, WinningLotto winningLotto) {
+        BonusNumber bonusNumber = new BonusNumber(bonus);
+        validateDuplicateWinningNumber(winningLotto, bonusNumber);
+        return bonusNumber;
+    }
 
-    private Integer validate(String number, WinningLotto winningLotto) {
-        Integer bonus = validateInteger(number);
-        validateNumberRange(bonus);
-        validateDuplicateWinningNumber(winningLotto, bonus);
-        return bonus;
+    private static void validateDuplicateWinningNumber(WinningLotto winningLotto, BonusNumber bonus) {
+        if (winningLotto.hasBonusNumber(bonus)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_MESSAGE);
+        }
     }
 
     private void validateNumberRange(Integer bonus) {
         if (bonus < LottoConstants.MIN_LOTTO_NUMBER || bonus > LottoConstants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(WRONG_RANGER_NUMBER_MESSAGE);
-        }
-    }
-
-    private void validateDuplicateWinningNumber(WinningLotto winningLotto, Integer bonus) {
-        if (winningLotto.containsNumber(bonus)) {
-            throw new IllegalArgumentException(DUPLICATE_BONUS_MESSAGE);
         }
     }
 

@@ -2,6 +2,7 @@ package Model;
 
 import Controller.ModelHandler;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ public class Domain {
     private List<Lotto> myLotto;
     private List<Integer> duplicatedNumberCount;
     private List<Integer> winningRanking;
+    private List<Boolean> duplicatedBonusNumber;
     private int bonusNumber;
     private int price;
     private int winnings;
@@ -21,6 +23,7 @@ public class Domain {
     private Domain() {
         myLotto = new ArrayList<>();
         duplicatedNumberCount = new ArrayList<>();
+        duplicatedBonusNumber = new ArrayList<>();
         winningRanking = new ArrayList<>();
         bonusNumber = 0;
         price = 0;
@@ -61,15 +64,26 @@ public class Domain {
     //로또 당첨 횟수 = 총 myLotto 사이즈 만큼 나옴
     public void compareNumbers() {
         for (var e : myLotto) {
-            duplicatedNumberCount.add(numberFrequencyCount(e.getNumbers()));
+            duplicatedBonusNumber.add(bonusNumberDuplicateCount(e.getNumbers()));
+            duplicatedNumberCount.add(numberDuplicateCount(e.getNumbers()));
         }
     }
 
-    private int numberFrequencyCount(List<Integer> list) {
+    private int numberDuplicateCount(List<Integer> list) {
         Set<Integer> set = new HashSet<>(lottoWinningNumber);
+
         return (int) list.stream()
                 .filter(set::contains)
                 .count();
+    }
+
+    private boolean bonusNumberDuplicateCount(List<Integer> list) {
+        for(int number : list) {
+            if(number == bonusNumber){
+                return true;
+            }
+        }
+        return false;
     }
 
     //중복된 숫자 만큼 등수 계산

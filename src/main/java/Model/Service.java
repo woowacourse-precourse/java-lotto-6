@@ -49,5 +49,15 @@ public class Service {
     }
 
     public int calWinningsRank(int count) {
+        if(count == 3) {
+            return WinningRanks.FIFTH_RANK.getValue();
+        } else if(count == 4) {
+            return WinningRanks.FOURTH_RANK.getValue();
+        } else if(count == 5) {
+            return WinningRanks.THIRD_RANK.getValue();
+        } else if(count == 6) {
+            return WinningRanks.FIRST_RANK.getValue();
+        }
+        throw new IllegalArgumentException("잘못된 값이 들어감");
     }
 }

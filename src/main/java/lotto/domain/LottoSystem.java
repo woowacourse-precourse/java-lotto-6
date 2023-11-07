@@ -90,11 +90,11 @@ public class LottoSystem {
                 .anyMatch(lottoNumber -> Objects.equals(lottoNumber.getLottoNumber(), player.getBonusNumber()));
     }
 
-    public double calculateProfitRate(List<Prize> prizes) {
+    public double calculateProfitRate(List<PrizeResponse> prizeResponses) {
         int purchaseAmount = player.getPurchaseAmount();
         int totalProfit = 0;
-        for (Prize prize : prizes) {
-            totalProfit += prize.getPrizeMoney();
+        for (PrizeResponse prizeResponse : prizeResponses) {
+            totalProfit += prizeResponse.getPrizeMoney();
         }
         return ((double) totalProfit / purchaseAmount) * 100;
     }

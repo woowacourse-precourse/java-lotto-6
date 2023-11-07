@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.model.Lotto;
@@ -42,6 +43,15 @@ class LottoTest {
     void createLottoByInvalidSeparator() {
         assertThatThrownBy(() -> new Lotto("1.2.3.4.5.6"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("일치하는 로또 번호의 개수를 반환한다.")
+    @Test
+    void countMatchingNumber() {
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+        Lotto userLotto = new Lotto("1,2,3,4,5,6");
+
+        assertThat(lotto.countMatchingNumber(userLotto)).isEqualTo(6);
     }
 
 }

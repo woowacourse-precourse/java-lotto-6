@@ -30,9 +30,9 @@ public class ResultTest {
     @DisplayName("당첨 등수에 따른 당첨 금액 계산 테스트")
     @Test
     void calculateTotalWinningPrize() {
-        Map<Rank, Integer> actualResult = result.getWinningRankAndCounting();
-        actualResult.put(Rank.FIFTH, 1);
-        actualResult.put(Rank.FOURTH, 2);
+        Map<Rank, Integer> defaultResult = result.getWinningRankAndCounting();
+        defaultResult.put(Rank.FIFTH, 1);
+        defaultResult.put(Rank.FOURTH, 2);
 
         int expectedResult = 105000;
         Assertions.assertThat(result.calculateTotalWinningPrize()).isEqualTo(expectedResult);

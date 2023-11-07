@@ -1,10 +1,10 @@
 package lotto.dto;
 
+import static lotto.model.LottoRank.FIFTH_RANK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-import lotto.model.LottoRank;
 import lotto.model.Statistic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,6 +37,6 @@ class StatisticDtoTest {
     @DisplayName("순위 정보 불변 테스트")
     @Test
     void unmodifiable_test() {
-        assertThrows(UnsupportedOperationException.class, () -> statisticDto.getRank().put(LottoRank.FIFTH_RANK, 5));
+        assertThrows(UnsupportedOperationException.class, () -> statisticDto.getRank().put(FIFTH_RANK, 5));
     }
 }

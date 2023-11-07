@@ -1,10 +1,10 @@
 package lotto.vo;
 
 import static lotto.model.LottoInfo.LOTTO_MAX_NUMBER;
+import static lotto.model.LottoInfo.LOTTO_MIN_NUMBER;
 
 import lotto.exception.ExceedsMaxLottoNumberException;
 import lotto.exception.LessThanMinLottoNumberException;
-import lotto.model.LottoInfo;
 
 public record BonusNumber(Integer number) {
 
@@ -22,7 +22,7 @@ public record BonusNumber(Integer number) {
     }
 
     private boolean isLessThanMinNumber(final Integer number) {
-        return number < LottoInfo.LOTTO_MIN_NUMBER.getValue();
+        return number < LOTTO_MIN_NUMBER.getValue();
     }
 
     private boolean isLargerThanMaxNumber(final Integer number) {

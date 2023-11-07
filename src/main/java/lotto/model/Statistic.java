@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.model.LottoRank.NON_RANK;
+import static lotto.model.LottoRank.SECOND_RANK;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -38,13 +41,13 @@ public class Statistic {
 
     private static LottoRank determineRank(final Integer matchedCount, final Boolean includeBonus) {
         if (isSecondRank(matchedCount, includeBonus)) {
-            return LottoRank.SECOND_RANK;
+            return SECOND_RANK;
         }
 
         return Arrays.stream(LottoRank.values())
                 .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isContainBonusNumber())
                 .findFirst()
-                .orElse(LottoRank.NON_RANK);
+                .orElse(NON_RANK);
     }
 
     private static boolean isSecondRank(final Integer matchedCount, final Boolean includeBonus) {

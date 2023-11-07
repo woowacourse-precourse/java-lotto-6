@@ -25,7 +25,7 @@ class ProfitRateTest {
         result.put(SECOND_RANK, 2);
         result.put(THIRD_RANK, 3);
         result.put(FOURTH_RANK, 4);
-        result.put(LottoRank.FIFTH_RANK, 10);
+        result.put(FIFTH_RANK, 10);
         BuyAmount buyAmount = new BuyAmount(ONE_LOTTO_PRICE.getValue() * 100);
 
         // when

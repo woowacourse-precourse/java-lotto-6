@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Util.Size;
-import lotto.Util.TBD;
+import lotto.Util.LottoValue;
 import lotto.controller.Validation;
 
 public class User {
@@ -45,21 +45,21 @@ public class User {
     }
 
     public void increaseRankCount(int rank) {
-        if (rank == TBD.FIFTH_PLACE.getRank()) {
-            this.rankCount.set(TBD.FIFTH_PLACE.getRank(),
-                    this.rankCount.get(TBD.FIFTH_PLACE.getRank()) + 1);
-        } else if (rank == TBD.FOURTH_PLACE.getRank()) {
-            this.rankCount.set(TBD.FOURTH_PLACE.getRank(),
-                    this.rankCount.get(TBD.FOURTH_PLACE.getRank()) + 1);
-        } else if (rank == TBD.THIRD_PLACE.getRank()) {
-            this.rankCount.set(TBD.THIRD_PLACE.getRank(),
-                    this.rankCount.get(TBD.THIRD_PLACE.getRank()) + 1);
-        } else if (rank == TBD.SECOND_PLACE.getRank()) {
-            this.rankCount.set(TBD.SECOND_PLACE.getRank(),
-                    this.rankCount.get(TBD.SECOND_PLACE.getRank()) + 1);
-        } else if (rank == TBD.FIRST_PLACE.getRank()) {
-            this.rankCount.set(TBD.FIRST_PLACE.getRank(),
-                    this.rankCount.get(TBD.FIRST_PLACE.getRank()) + 1);
+        if (rank == LottoValue.FIFTH_PLACE.getRank()) {
+            this.rankCount.set(LottoValue.FIFTH_PLACE.getRank(),
+                    this.rankCount.get(LottoValue.FIFTH_PLACE.getRank()) + 1);
+        } else if (rank == LottoValue.FOURTH_PLACE.getRank()) {
+            this.rankCount.set(LottoValue.FOURTH_PLACE.getRank(),
+                    this.rankCount.get(LottoValue.FOURTH_PLACE.getRank()) + 1);
+        } else if (rank == LottoValue.THIRD_PLACE.getRank()) {
+            this.rankCount.set(LottoValue.THIRD_PLACE.getRank(),
+                    this.rankCount.get(LottoValue.THIRD_PLACE.getRank()) + 1);
+        } else if (rank == LottoValue.SECOND_PLACE.getRank()) {
+            this.rankCount.set(LottoValue.SECOND_PLACE.getRank(),
+                    this.rankCount.get(LottoValue.SECOND_PLACE.getRank()) + 1);
+        } else if (rank == LottoValue.FIRST_PLACE.getRank()) {
+            this.rankCount.set(LottoValue.FIRST_PLACE.getRank(),
+                    this.rankCount.get(LottoValue.FIRST_PLACE.getRank()) + 1);
         }
     }
 

@@ -1,6 +1,6 @@
 package lotto.Util;
 
-public enum TBD {
+public enum LottoValue {
     // (일치하는 번호 개수, 등 수, 상금)
     FIRST_PLACE(6, 1, 200000000.0),
     SECOND_PLACE(5.5, 2, 30000000.0),
@@ -12,7 +12,7 @@ public enum TBD {
     private final int rank;
     private final double reward;
 
-    TBD(double numberOfMatch, int rank, double reward) {
+    LottoValue(double numberOfMatch, int rank, double reward) {
         this.numberOfMatch = numberOfMatch;
         this.rank = rank;
         this.reward = reward;

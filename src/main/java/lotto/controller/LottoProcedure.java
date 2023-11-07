@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Util.Size;
-import lotto.Util.TBD;
+import lotto.Util.LottoValue;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.User;
@@ -17,12 +17,12 @@ public class LottoProcedure {
     BonusNumber bonusNumber;
 
     public LottoProcedure() {
-        List<Double> reward = List.of(TBD.NONE.getReward(),
-                TBD.FIRST_PLACE.getReward(),
-                TBD.SECOND_PLACE.getReward(),
-                TBD.THIRD_PLACE.getReward(),
-                TBD.FOURTH_PLACE.getReward(),
-                TBD.FIFTH_PLACE.getReward());
+        List<Double> reward = List.of(LottoValue.NONE.getReward(),
+                LottoValue.FIRST_PLACE.getReward(),
+                LottoValue.SECOND_PLACE.getReward(),
+                LottoValue.THIRD_PLACE.getReward(),
+                LottoValue.FOURTH_PLACE.getReward(),
+                LottoValue.FIFTH_PLACE.getReward());
         this.reward.addAll(reward);
     }
 
@@ -58,23 +58,23 @@ public class LottoProcedure {
 
 
     public int calculateRank(double count) {
-        if (count == TBD.FIFTH_PLACE.getNumberOfMatch()) {
-            return TBD.FIFTH_PLACE.getRank();
-        } else if (count == TBD.FOURTH_PLACE.getNumberOfMatch()) {
-            return TBD.FOURTH_PLACE.getRank();
-        } else if (count == TBD.THIRD_PLACE.getNumberOfMatch()) {
-            return TBD.THIRD_PLACE.getRank();
-        } else if (count == TBD.SECOND_PLACE.getNumberOfMatch()) {
-            return TBD.SECOND_PLACE.getRank();
-        } else if (count == TBD.FIRST_PLACE.getNumberOfMatch()) {
-            return TBD.FIRST_PLACE.getRank();
+        if (count == LottoValue.FIFTH_PLACE.getNumberOfMatch()) {
+            return LottoValue.FIFTH_PLACE.getRank();
+        } else if (count == LottoValue.FOURTH_PLACE.getNumberOfMatch()) {
+            return LottoValue.FOURTH_PLACE.getRank();
+        } else if (count == LottoValue.THIRD_PLACE.getNumberOfMatch()) {
+            return LottoValue.THIRD_PLACE.getRank();
+        } else if (count == LottoValue.SECOND_PLACE.getNumberOfMatch()) {
+            return LottoValue.SECOND_PLACE.getRank();
+        } else if (count == LottoValue.FIRST_PLACE.getNumberOfMatch()) {
+            return LottoValue.FIRST_PLACE.getRank();
         }
-        return TBD.NONE.getRank();
+        return LottoValue.NONE.getRank();
     }
 
     public double checkBonusNumber(double count, List<Integer> winningNumbers, int bonusNumber) {
-        if (count == TBD.THIRD_PLACE.getNumberOfMatch() & winningNumbers.contains(bonusNumber)) {
-            return TBD.SECOND_PLACE.getNumberOfMatch();
+        if (count == LottoValue.THIRD_PLACE.getNumberOfMatch() & winningNumbers.contains(bonusNumber)) {
+            return LottoValue.SECOND_PLACE.getNumberOfMatch();
         }
         return count;
     }

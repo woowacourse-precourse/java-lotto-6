@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-public enum LottoMatchResult {
+public enum LottoMatchType {
     MATCH_NONE,
     MATCH_THREE,
     MATCH_FOUR,

@@ -53,7 +53,7 @@ class LottoTest {
     }
 
     @Test
-    void 유효_로또_번호_생성() {
+    void 유효한_로또_번호를_생성한다() {
         //given
         List<Integer> lottoNumber = lottoNumberGenerator.generate();
 
@@ -63,7 +63,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호는_오름차순() {
+    void 로또_번호는_오름차순으로_정렬된다() {
         //given
         List<Integer> lottoNumber = lottoNumberGenerator.generate();
 

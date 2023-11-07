@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
@@ -28,6 +29,7 @@ public class LottoManager {
 
 
     public LottoResult calculateLottoResult() {
+        lottoResult = LottoResult.of();
         List<WinningInfo> winningInfos = lottos.toLottoDTOs()
                 .stream()
                 .map(lottoDTO -> winningLotto.compare(lottoDTO))

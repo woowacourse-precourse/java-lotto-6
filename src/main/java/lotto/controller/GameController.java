@@ -4,7 +4,6 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.utils.Generator;
-import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,7 +30,12 @@ public class GameController {
     }
 
     private Payment getPaymentFromUser() {
-        return new Payment(InputView.getPaymentFromUserInput());
+        try {
+            return new Payment(InputView.getPaymentFromUserInput());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getPaymentFromUser();
+        }
     }
 
     private Lottos createLottos(int amount) {
@@ -40,12 +44,22 @@ public class GameController {
     }
 
     private WinningNumber getWinningNumberFromUser() {
-        return new WinningNumber(InputView.getWinningNumbersFromUserInput());
+        try {
+            return new WinningNumber(InputView.getWinningNumbersFromUserInput());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getWinningNumberFromUser();
+        }
     }
 
     private BonusNumber getBonusNumberFromUser(WinningNumber winningNumber) {
-        int bonNum = InputView.getBonusNumberFromUserInput();
-        return new BonusNumber(winningNumber, bonNum);
+        try{
+            int bonNum = InputView.getBonusNumberFromUserInput();
+            return new BonusNumber(winningNumber, bonNum);
+        }catch(IllegalArgumentException e){
+            OutputView.printErrorMessage(e.getMessage());
+            return getBonusNumberFromUser(winningNumber);
+        }
     }
 
     private void printGameResult(LottoResult result, Payment payment) {

@@ -13,12 +13,6 @@ import lotto.common.utils.Utils;
 import lotto.common.validate.Validate;
 
 public class View {
-    private final Utils utils;
-
-    public View() {
-        utils = new Utils();
-    }
-
     public String inputConsole() {
         String input = Console.readLine();
         Validate.consoleBlank(input);
@@ -49,9 +43,9 @@ public class View {
     }
 
     public List<Integer> inputSixHitNumber() {
-        List<String> inputSixNumber = utils.stringToStringList(inputConsole());
+        List<String> inputSixNumber = Utils.stringToStringList(inputConsole());
         Validate.inputSixHitLottoNumberValidate(inputSixNumber);
-        return utils.stringListToIntegerList(inputSixNumber);
+        return Utils.stringListToIntegerList(inputSixNumber);
     }
 
     public void bonusHitNumberMessage() {

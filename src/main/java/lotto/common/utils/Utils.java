@@ -6,19 +6,25 @@ import java.util.stream.Collectors;
 import lotto.common.constants.Symbol;
 
 public class Utils {
-    public List<String> stringToStringList(String inputString) {
+    public static List<String> stringToStringList(String inputString) {
         return Arrays.stream(inputString.split(Symbol.COMMA.getSymbol()))
                 .map(String::trim)
                 .toList();
     }
 
-    public List<Integer> stringListToIntegerList(List<String> inputStringList) {
+    public static List<Integer> stringListToIntegerList(List<String> inputStringList) {
         return inputStringList.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public double percentage(double total, double value) {
+    public static List<String> integerListToStringList(List<Integer> inputIntegerList) {
+        return inputIntegerList.stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
+    }
+
+    public static double percentage(double total, double value) {
         return (value / total) * 100.0;
     }
 }

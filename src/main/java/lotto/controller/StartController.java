@@ -25,10 +25,9 @@ public class StartController {
     }};
 
     View view = new View();
-    Utils utils = new Utils();
 
     private Buy buy;
-    private Ticket ticket = new Ticket();
+    private final Ticket ticket = new Ticket();
     private Lotto lotto;
     private Bonus bonus;
 
@@ -55,7 +54,7 @@ public class StartController {
         view.prizeStatsMessage();
         compareTicketsAndLotto(ticket.getLottoTicket(), lotto.getNumbers(), bonus.getNumber());
         view.outputPrizeStats(matchRecords);
-        view.outputProfitRate(utils.percentage(buy.getBuyPrice(), calculateTotalProfitPrice()));
+        view.outputProfitRate(Utils.percentage(buy.getBuyPrice(), calculateTotalProfitPrice()));
     }
 
     private void buyPrice() {

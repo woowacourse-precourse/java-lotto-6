@@ -8,9 +8,6 @@ import lotto.common.constants.Symbol;
 public class Validate {
     private static final int ZERO = 0;
 
-
-    // 프로그램 내에서 직접 사용하는 에러처리 메서드
-
     public static void consoleBlank(String input) {
         inBlank(input);
     }

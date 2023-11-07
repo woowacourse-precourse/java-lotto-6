@@ -26,4 +26,10 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
+    // 입력 받은 문자를 숫자로 변환 (보너스 번호 입력)
+    public static int stringToInteger(String string) {
+        Validation.validateParseInt(string);
+        return Integer.parseInt(string);
+    }
+
 }

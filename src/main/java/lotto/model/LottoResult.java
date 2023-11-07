@@ -1,7 +1,10 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.enums.LottoStatus;
+import lotto.service.LottoResultDto;
 
 public class LottoResult {
     private static final int LOTTO_PRICE = 1000;
@@ -11,6 +14,16 @@ public class LottoResult {
 
     public LottoResult(List<LottoStatus> lottoResult) {
         this.lottoResult = lottoResult;
+    }
+    public LottoResultDto getLottoResultDto() {
+        Map<LottoStatus, Integer> statusCounts = new HashMap<>();
+
+        for (LottoStatus lottoStatus : LottoStatus.values()) {
+            int count = statusCount(lottoStatus);
+            statusCounts.put(lottoStatus, count);
+        }
+
+        return new LottoResultDto(statusCounts);
     }
 
     public int statusCount(LottoStatus lottoStatus) {

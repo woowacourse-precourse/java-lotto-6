@@ -59,9 +59,8 @@ public class LottoGame {
         OutputView.showRateOfReturn(returnRate());
     }
 
-    private String returnRate() {
-        DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
-        return decFormat.format(((double) reward / getAmount()) * PERCENT);
+    private Double returnRate() {
+        return ((double) reward / getAmount()) * PERCENT;
     }
 
     private long getAmount() {

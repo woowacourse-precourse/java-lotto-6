@@ -1,6 +1,6 @@
 package lotto.element;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -8,6 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +17,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    int countMatch(Lotto other) {
+        List<Integer> otherNumbers = new List<>(other.getLottoNumbers());
+        otherNumbers.retainAll(numbers);
+        return otherNumbers.size();
+    }
 }

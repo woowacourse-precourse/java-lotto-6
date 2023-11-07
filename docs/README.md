@@ -17,6 +17,9 @@
 ##### int countMatch(Lotto)
 + retainAll 메소드를 사용해 당첨 번호와 일치하는 번호 개수 반환
 
+##### List getLottoNumbers() 
++ numbers List를 반환함
+
 ##### String toString
 + toString 오버라이드해서 출력 형식 맞춤
 

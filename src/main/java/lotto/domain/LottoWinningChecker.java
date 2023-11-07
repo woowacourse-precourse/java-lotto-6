@@ -36,4 +36,17 @@ public class LottoWinningChecker {
                 .filter(winningNumbers::contains)
                 .count();
     }
+
+    public static long calculateTotalPrize(List<Lotto> lottos, WinningNumber winningNumber) {
+        int[] matchCounts = calculateMatchCounts(lottos, winningNumber);
+
+        int totalPrize = 0;
+        totalPrize += matchCounts[3] * 5000;
+        totalPrize += matchCounts[4] * 50000;
+        totalPrize += matchCounts[5] * 1500000;
+        totalPrize += matchCounts[7] * 30000000;
+        totalPrize += matchCounts[6] * 2000000000;
+
+        return totalPrize;
+    }
 }

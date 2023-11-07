@@ -9,7 +9,8 @@ import lotto.view.BonusNumberInputView;
 import lotto.view.LottoNumberOutputView;
 import lotto.view.LottoPurchaseInputView;
 import lotto.view.WinningNumbersInputView;
-import lotto.view.WinningResultOutputVieiw;
+import lotto.view.WinningPrizeOutputView;
+import lotto.view.WinningResultOutputView;
 
 public class GameController {
     private static final int LOTTO_PRICE = 1000;
@@ -25,7 +26,8 @@ public class GameController {
         int bonusNumber = BonusNumberInputView.getBonusNumber();
 
         WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
-        WinningResultOutputVieiw.printResult(lottos, winningNumber);
+        WinningResultOutputView.printResult(lottos, winningNumber);
+        WinningPrizeOutputView.printTotalPrize(lottos, winningNumber, purchaseAmount);
     }
 
     private List<Lotto> getLottos(int purchaseAmount) {

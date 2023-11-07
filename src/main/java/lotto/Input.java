@@ -9,25 +9,26 @@ public class Input {
 
     public static int purchaseAmount() throws IllegalArgumentException {
         String amount = Console.readLine();
-
         Exception.notNumber(amount);
-        Exception.notThousandWon(amount);
 
-        return Integer.parseInt(amount);
+        int purchaseAmount = Integer.parseInt(amount);
+        Exception.notThousandWon(purchaseAmount);
+
+        return purchaseAmount;
     }
 
     public static List<Integer> winNumbers() {
-        final int limitCount = 6;
         String[] numbers = Console.readLine().split(",");
         winNumbers = new ArrayList<>();
-
+        
         for (String number : numbers) {
             Exception.notNumber(number);
-            Exception.overLimitNumberRange(Integer.parseInt(number));
-            winNumbers.add(Integer.parseInt(number));
-        }
 
-        Exception.overLimitCount(numbers.length, limitCount);
+            int winNumber = Integer.parseInt(number);
+            Exception.overLimitNumberRange(winNumber);
+            winNumbers.add(winNumber);
+        }
+        Exception.overLimitCount(winNumbers.size());
         Exception.duplicateWinNumbers(winNumbers);
 
         return winNumbers;

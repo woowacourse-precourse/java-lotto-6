@@ -1,23 +1,21 @@
-package lotto.input.console;
+package lotto.input;
 
 import lotto.common.LottoException;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAnswer;
 import lotto.domain.exception.*;
-import lotto.input.UserInputPort;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class UserConsoleInputAdapter implements UserInputPort {
+public class UserInputAdapter {
     private final Supplier<String> userInputFunction;
 
-    public UserConsoleInputAdapter(Supplier<String> userInputFunction) {
+    public UserInputAdapter(Supplier<String> userInputFunction) {
         this.userInputFunction = userInputFunction;
     }
 
-    @Override
     public int getLottoBuyPrice() {
         return doLoop(() -> {
             String input = getInputWithMessage("구입금액을 입력해 주세요.");
@@ -27,7 +25,6 @@ public class UserConsoleInputAdapter implements UserInputPort {
         });
     }
 
-    @Override
     public LottoAnswer getLottoAnswer() {
         List<Integer> lottoNumber = getLottoNumber();
         int bonusNumber = getBonusNumber(lottoNumber);

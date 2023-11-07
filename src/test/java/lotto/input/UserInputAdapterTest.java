@@ -1,4 +1,4 @@
-package lotto.input.console;
+package lotto.input;
 
 import lotto.domain.LottoAnswer;
 import org.junit.jupiter.api.DisplayName;
@@ -11,8 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@DisplayName("UserConsoleInputAdapter 클래스는")
-class UserConsoleInputAdapterTest {
+@DisplayName("UserInputPort 클래스는")
+class UserInputAdapterTest {
     @Nested
     @DisplayName("getLottoBuyPrice로")
     class GetLottoBuyPriceTest {
@@ -21,7 +21,7 @@ class UserConsoleInputAdapterTest {
         void getLottoBuyPrice() {
             // given
             String input = "1000";
-            UserConsoleInputAdapter adapter = new UserConsoleInputAdapter(() -> input);
+            UserInputAdapter adapter = new UserInputAdapter(() -> input);
 
             // when
             int lottoBuyPrice = adapter.getLottoBuyPrice();
@@ -45,7 +45,7 @@ class UserConsoleInputAdapterTest {
                     .thenReturn(notNumber)
                     .thenReturn("1000");
 
-            UserConsoleInputAdapter adapter = new UserConsoleInputAdapter(inputFunction);
+            UserInputAdapter adapter = new UserInputAdapter(inputFunction);
 
             // when
             int lottoBuyPrice = adapter.getLottoBuyPrice();
@@ -70,7 +70,7 @@ class UserConsoleInputAdapterTest {
                     .thenReturn(input)
                     .thenReturn(bonusInput);
 
-            UserConsoleInputAdapter adapter = new UserConsoleInputAdapter(inputFunction);
+            UserInputAdapter adapter = new UserInputAdapter(inputFunction);
 
             // when
             LottoAnswer lottoAnswer = adapter.getLottoAnswer();
@@ -101,7 +101,7 @@ class UserConsoleInputAdapterTest {
                     .thenReturn(notNumber)
                     .thenReturn("7");
 
-            UserConsoleInputAdapter adapter = new UserConsoleInputAdapter(inputFunction);
+            UserInputAdapter adapter = new UserInputAdapter(inputFunction);
 
             // when
             LottoAnswer lottoAnswer = adapter.getLottoAnswer();

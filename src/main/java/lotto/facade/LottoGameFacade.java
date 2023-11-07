@@ -1,24 +1,24 @@
 package lotto.facade;
 
 import lotto.domain.*;
-import lotto.input.UserInputPort;
+import lotto.input.UserInputAdapter;
 import lotto.output.LottoGameViewOutputPort;
 
 import java.util.Map;
 
 public class LottoGameFacade {
-    private final UserInputPort userInputPort;
+    private final UserInputAdapter userInputAdapter;
     private final LottoGameViewOutputPort lottoGameViewOutputPort;
     private final LottoMarket lottoMarket;
     private final LottoProfitRateCalculator lottoProfitRateCalculator;
 
     public LottoGameFacade(
-            UserInputPort userInputPort,
+            UserInputAdapter userInputAdapter,
             LottoGameViewOutputPort lottoGameViewOutputPort,
             LottoMarket lottoMarket,
             LottoProfitRateCalculator lottoProfitRateCalculator
     ) {
-        this.userInputPort = userInputPort;
+        this.userInputAdapter = userInputAdapter;
         this.lottoGameViewOutputPort = lottoGameViewOutputPort;
         this.lottoMarket = lottoMarket;
         this.lottoProfitRateCalculator = lottoProfitRateCalculator;
@@ -31,7 +31,7 @@ public class LottoGameFacade {
     }
 
     private LottoTicket buyLotto() {
-        int lottoBuyPrice = userInputPort.getLottoBuyPrice();
+        int lottoBuyPrice = userInputAdapter.getLottoBuyPrice();
         LottoTicket ticket = lottoMarket.buyLotto(lottoBuyPrice);
         lottoGameViewOutputPort.printLottoCount(lottoBuyPrice);
         lottoGameViewOutputPort.printGeneratedLottoList(ticket);
@@ -40,7 +40,7 @@ public class LottoGameFacade {
     }
 
     private Map<LottoGrade, Integer> getStatistics(LottoTicket ticket) {
-        LottoAnswer lottoAnswer = userInputPort.getLottoAnswer();
+        LottoAnswer lottoAnswer = userInputAdapter.getLottoAnswer();
         Map<LottoGrade, Integer> statistics = ticket.getLottoStatistics(lottoAnswer);
         lottoGameViewOutputPort.printLottoResult(statistics);
 

@@ -7,7 +7,7 @@ import lotto.domain.NumberGenerator;
 import lotto.domain.RandomNumberGenerator;
 import lotto.domain.LottoProfitRateCalculator;
 import lotto.facade.LottoGameFacade;
-import lotto.input.console.UserConsoleInputAdapter;
+import lotto.input.UserInputAdapter;
 import lotto.output.console.LottoGameViewConsoleOutputPort;
 
 public class Application {
@@ -16,7 +16,7 @@ public class Application {
         LottoFactory lottoFactory = new LottoFactory(numberGenerator);
 
         LottoGameFacade lottoGameFacade = new LottoGameFacade(
-                new UserConsoleInputAdapter(Console::readLine),
+                new UserInputAdapter(Console::readLine),
                 new LottoGameViewConsoleOutputPort(),
                 new LottoMarket(lottoFactory),
                 new LottoProfitRateCalculator()

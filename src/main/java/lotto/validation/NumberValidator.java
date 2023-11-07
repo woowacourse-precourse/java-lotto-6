@@ -7,7 +7,7 @@ public class NumberValidator {
     private NumberValidator() {
     }
 
-    public void validateNumber(String number) {
+    public static void validateNumber(String number) {
         isPositiveDigit(number);
     }
 

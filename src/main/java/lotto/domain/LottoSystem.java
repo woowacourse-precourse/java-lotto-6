@@ -2,7 +2,9 @@ package lotto.domain;
 
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
+import lotto.dto.response.PrizeResponse;
 import lotto.util.RandomUtil;
 
 import java.util.*;
@@ -60,28 +62,21 @@ public class LottoSystem {
     private int getMatchingNumberCount(Lotto winningLotto) {
         return (int) winningLotto.getLottoNumbers()
                 .stream()
-                .filter(winningLottoNumber ->
-                        player.getLotto().getLottoNumbers()
-                                .stream()
-                                .anyMatch(lottoNumber -> isNumberMatch(lottoNumber.getLottoNumber(), winningLottoNumber.getLottoNumber())))
+                .filter(winningLottoNumber -> player.getLotto().getLottoNumbers().contains(winningLottoNumber))
                 .count();
     }
 
     private int getMatchingBonusNumberCount(Lotto winningLotto) {
-        return (int) winningLotto.getLottoNumbers()
-                .stream()
-                .filter(winningLottoNumber -> isNumberMatch(player.getBonusNumber(), winningLottoNumber.getLottoNumber()))
-                .count();
+        if (hasBonusNumber(winningLotto)) {
+            return 1;
+        }
+        return 0;
     }
 
     private boolean hasBonusNumber(Lotto winningLotto) {
         return winningLotto.getLottoNumbers()
                 .stream()
-                .anyMatch(lottoNumber -> isNumberMatch(lottoNumber.getLottoNumber(), player.getBonusNumber()));
-    }
-
-    private boolean isNumberMatch(Integer number1, Integer number2) {
-        return Objects.equals(number1, number2);
+                .anyMatch(lottoNumber -> Objects.equals(lottoNumber.getLottoNumber(), player.getBonusNumber()));
     }
 
     public double calculateProfitRate(List<Prize> prizes) {

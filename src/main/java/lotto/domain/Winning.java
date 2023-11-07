@@ -27,6 +27,11 @@ public class Winning {
     public void addTicketCount() {
         this.ticketCount ++;
     }
+
+    public int getTicketCount() {
+        return ticketCount;
+    }
+
     public int calculatePrize() {
         return ticketCount * prize;
     }

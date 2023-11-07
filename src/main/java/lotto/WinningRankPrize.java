@@ -24,8 +24,6 @@ public enum WinningRankPrize {
         return matchCount;
     }
 
-    public String getPrizeAmount() {
-        return prizeAmount;
-    }
+    public String getPrizeAmount() { return prizeAmount; }
 
 }

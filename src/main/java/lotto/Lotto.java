@@ -1,20 +1,28 @@
 package lotto;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Lotto {
-    private final List<Integer> numbers;
+public record Lotto(Set<LottoNumber> lottoNumbers) {
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+
+    public Lotto {
+        validateLottoSize(lottoNumbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    public static Lotto issueLotto() {
+        Set<LottoNumber> lottoNumbers = new HashSet<>();
+        while (lottoNumbers.size() < LOTTO_NUMBERS_SIZE) {
+            LottoNumber randomLottoNumber = LottoNumber.createRandomLottoNumber();
+            lottoNumbers.add(randomLottoNumber);
+        }
+        return new Lotto(lottoNumbers);
+    }
+
+    private void validateLottoSize(Set<LottoNumber> lottoNumbers) {
+        if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

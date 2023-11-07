@@ -1,0 +1,118 @@
+package lotto;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import camp.nextstep.edu.missionutils.Console;
+import java.io.ByteArrayInputStream;
+import org.junit.jupiter.api.Test;
+
+public class UserInputLottoNumberTest {
+    @Test
+    void 로또_번호_입력_테스트() {
+        String input = "1,2,3,4,5,6";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        userInput.lottoNumber().forEach(lottoNumber -> assertThat(lottoNumber).isInstanceOf(Integer.class));
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 로또_번호_입력_테스트_공백포함() {
+        String input = "1, 2, 3 ,4 ,5, 6";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        userInput.lottoNumber().forEach(lottoNumber -> assertThat(lottoNumber).isInstanceOf(Integer.class));
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 범위를_벗어난_숫자_초과() {
+        String input = "1,2,3,4,5,46";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        assertThatThrownBy(userInput::lottoNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 숫자는 1부터 45까지 입력 가능합니다.");
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 범위를_벗어난_숫자_미만() {
+        String input = "1,2,3,4,5,0";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        assertThatThrownBy(userInput::lottoNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 숫자는 1부터 45까지 입력 가능합니다.");
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 번호_갯수가_6이_아님_초과() {
+        String input = "1,2,3,4,5,6,7";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        assertThatThrownBy(userInput::lottoNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 6개의 숫자를 입력 해주세요");
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 번호_갯수가_6이_아님_부족() {
+        String input = "1,2,3,4,5";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        assertThatThrownBy(userInput::lottoNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 6개의 숫자를 입력 해주세요");
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 중복된_숫자() {
+        String input = "1,2,3,4,5,1";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        assertThatThrownBy(userInput::lottoNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 중복되지 않는 숫자를 입력 해주세요.");
+        System.setIn(System.in);
+        Console.close();
+    }
+
+    @Test
+    void 숫자가_아님() {
+        String input = "1,o,3,4,5,6";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        UserInput userInput = new UserInput();
+        assertThatThrownBy(userInput::lottoNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 숫자만 입력 해주세요.");
+        System.setIn(System.in);
+        Console.close();
+    }
+}

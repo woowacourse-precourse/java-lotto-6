@@ -17,5 +17,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
     // 당첨번호 매칭 & 등수 결정 메서드
 }

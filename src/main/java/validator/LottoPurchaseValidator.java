@@ -1,6 +1,14 @@
 package validator;
 
 public class LottoPurchaseValidator {
+    int validPurchaseAmount(String purchaseAmount) {
+        vaildIntegerPurchasAmount(purchaseAmount);
+        int purchaseAmountPrice = Integer.parseInt(purchaseAmount);
+        validMinimumPurchaseAmount(purchaseAmountPrice);
+        validPurchaseDivideUp1000(purchaseAmountPrice);
+        return purchaseAmountPrice;
+    }
+
     void validMinimumPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < 1000) {
             throw new IllegalArgumentException("[ERROR] 로또 최소 구입금액은 1000원 입니다.");

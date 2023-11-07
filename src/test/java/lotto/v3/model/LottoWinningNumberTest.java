@@ -55,4 +55,12 @@ class LottoWinningNumberTest {
                 .hasMessageContaining("[ERROR] 당첨 번호는 1부터 45 사이의 값이어야 합니다.");
     }
 
+    @Test
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외를 발생시킨다")
+    void throwExceptionIfNumbersContainDuplicates() {
+        assertThatThrownBy(() -> new LottoWinningNumber(Arrays.asList(1, 2, 3, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+    }
+
 }

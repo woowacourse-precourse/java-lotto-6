@@ -7,6 +7,8 @@ import lotto.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusNumberTest {
 
@@ -18,16 +20,18 @@ public class BonusNumberTest {
     }
 
     @DisplayName("보너스 번호가 입력한 당첨 번호에 포함되면 예외가 발생한다.")
-    @Test
-    void createBonusNumberExistInLotto() {
-        assertThatThrownBy(() -> new User(lotto, "5"))
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "5"})
+    void createBonusNumberExistInLotto(String bonus) {
+        assertThatThrownBy(() -> new User(lotto, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
-    @Test
-    void createLottoByString() {
-        assertThatThrownBy(() -> new User(lotto, "a"))
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "가", "."})
+    void createBonusNumberByString(String bonus) {
+        assertThatThrownBy(() -> new User(lotto, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -18,5 +18,8 @@ public class YieldRate {
         yieldRate = Math.round(total / amountToBuy * THOUSAND) / TEN_DOUBLE;
     }
 
-
+    public String getRateMessage() {
+        return
+            TOTAL_YIELD_RATE.formatted(yieldRate);
+    }
 }

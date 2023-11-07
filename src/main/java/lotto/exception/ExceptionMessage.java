@@ -1,7 +1,8 @@
 package lotto.exception;
 
 public enum ExceptionMessage {
-    INVALID_PURCHASE_PRICE("[ERROR] 로또 구입 금액은 숫자만 입력이 가능합니다."),
+    INVALID_NUMERIC("[ERROR] 숫자만 입력이 가능합니다."),
+    INVALID_NUMBER_COMMA("[ERROR] 숫자와 콤마 구분자를 다시 확인해 주세요."),
     INVALID_PURCHASE_PRICE_UNIT("[ERROR] 로또 구입 금액은 1,000원 단위로 입력이 가능합니다."),
     INVALID_SIZE_LOTTO_NUMBER("[ERROR] 로또 번호의 개수는 6개만 가능합니다."),
     INVALID_RANGE_LOTTO_NUMBER("[ERROR] 로또 번호는 1~45까지 숫자만 가능합니다."),

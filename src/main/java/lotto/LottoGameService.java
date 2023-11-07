@@ -2,11 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGameService {
 
     private List<Lotto> lottos = new ArrayList<>();
+    private List<Integer> winningNumbers;
 
     public void buyLottosWithBudget(Integer budget) {
         for (int i = 0; i < calculatePurchaseQuantity(budget); i++) {
@@ -25,5 +28,13 @@ public class LottoGameService {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public void setWinningNumbers(String winningNumberInput) {
+        String[] numbers = winningNumberInput.split(",");
+
+        winningNumbers = Arrays.stream(numbers)
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
     }
 }

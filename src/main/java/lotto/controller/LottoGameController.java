@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import lotto.LottoGameService;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
@@ -14,17 +15,22 @@ public class LottoGameController {
     }
 
     public void run() {
+        /// 로또 구입 금액 입력
         String budgetInput = InputView.inputBudget();
         InputValidator.validateBudget(budgetInput);
 
         Integer budget = Integer.parseInt(budgetInput);
 
-        /// TODO: 로또 생성 및 출력
+        /// 로또 생성 및 출력
         lottoGameService.buyLottosWithBudget(budget);
         OutputView.printPurchasedLottoCount(lottoGameService.getLottoCount());
         OutputView.printPurchasedLottos(lottoGameService.getLottos());
 
-        /// TODO: 당첨 번호 입력
+        /// 당첨 번호 입력
+        String winningNumberInput = InputView.inputWinningNumbers();
+        InputValidator.validateWinningNumber(winningNumberInput);
+        lottoGameService.setWinningNumbers(winningNumberInput);
+
         /// TODO: 보너스 번호 입력
     }
 

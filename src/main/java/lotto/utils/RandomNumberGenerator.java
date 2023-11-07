@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import lotto.Lotto;
+import lotto.config.LottoGameRule;
 
 public class RandomNumberGenerator implements NumberGenerator {
 
@@ -19,7 +20,7 @@ public class RandomNumberGenerator implements NumberGenerator {
     @Override
     public Lotto generate() {
         Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() != 6) {
+        while (numbers.size() != LottoGameRule.LOTTO_SIZE.value()) {
             int randomNumber = pickRandomNumber();
             numbers.add(randomNumber);
         }

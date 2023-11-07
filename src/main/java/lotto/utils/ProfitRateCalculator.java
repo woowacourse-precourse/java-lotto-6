@@ -2,5 +2,5 @@ package lotto.utils;
 
 public interface ProfitRateCalculator {
 
-    double calcualteProfitRate(long profit, int invested);
+    double calculateProfitRate(long profit, int invested);
 }

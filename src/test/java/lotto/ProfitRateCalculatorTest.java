@@ -21,7 +21,7 @@ public class ProfitRateCalculatorTest {
         LottoResult lottoResult = new LottoResult();
         lottoResult.putRank(Rank.FIFTH);
 
-        double profitRate = profitRateCalculator.calcualteProfitRate(lottoResult.getTotalProfit(), invested);
+        double profitRate = profitRateCalculator.calculateProfitRate(lottoResult.getTotalProfit(), invested);
         Assertions.assertThat(profitRate).isEqualTo(expectedProfitRate);
     }
 
@@ -37,7 +37,7 @@ public class ProfitRateCalculatorTest {
         LottoResult lottoResult = new LottoResult();
         lottoResult.putRank(Rank.FIFTH);
 
-        double profitRate = profitRateCalculator.calcualteProfitRate(lottoResult.getTotalProfit(), invested);
+        double profitRate = profitRateCalculator.calculateProfitRate(lottoResult.getTotalProfit(), invested);
         Assertions.assertThat(profitRate).isNotEqualTo(expectedProfitRate);
     }
 
@@ -53,7 +53,7 @@ public class ProfitRateCalculatorTest {
         LottoResult lottoResult = new LottoResult();
         lottoResult.putRank(Rank.FIFTH);
 
-        double profitRate = profitRateCalculator.calcualteProfitRate(lottoResult.getTotalProfit(), invested);
+        double profitRate = profitRateCalculator.calculateProfitRate(lottoResult.getTotalProfit(), invested);
         Assertions.assertThat(profitRate).isNotEqualTo(expectedProfitRate);
     }
 

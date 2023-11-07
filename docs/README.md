@@ -95,4 +95,4 @@ NumberGenerator
 
 AppConfig
 
--[ ] 객체들을 생성하는 역할을 담당한다
+-[x] 객체들을 생성하는 역할을 담당한다

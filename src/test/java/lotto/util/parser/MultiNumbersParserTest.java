@@ -1,12 +1,11 @@
 package lotto.util.parser;
 
+import java.util.List;
 import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-
-import java.util.List;
 
 public class MultiNumbersParserTest {
 

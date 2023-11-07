@@ -1,18 +1,17 @@
 package lotto.util.validator;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.List;
+import java.util.stream.Stream;
 import lotto.constant.ErrorMessage;
 import lotto.vo.WinningNumbers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
-
-import java.util.List;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class BonusNumberValidatorTest {
 
@@ -20,6 +19,20 @@ public class BonusNumberValidatorTest {
         return Stream.of(
                 Arguments.of(1, List.of(2, 3, 4, 5, 6, 7)),
                 Arguments.of(45, List.of(8, 9, 10, 11, 12, 13))
+        );
+    }
+
+    static Stream<Arguments> bonusNumberDuplicatedWithWinningNumbersProvider() {
+        return Stream.of(
+                Arguments.of(2, List.of(2, 3, 4, 5, 6, 7)),
+                Arguments.of(6, List.of(1, 3, 4, 5, 6, 8))
+        );
+    }
+
+    static Stream<Arguments> bonusNumberOutOfRangeProvider() {
+        return Stream.of(
+                Arguments.of(0, List.of(2, 3, 4, 5, 6, 7)),
+                Arguments.of(46, List.of(1, 3, 4, 5, 6, 8))
         );
     }
 
@@ -32,13 +45,6 @@ public class BonusNumberValidatorTest {
         assertDoesNotThrow(() -> validator.validate(bonusNumber));
     }
 
-    static Stream<Arguments> bonusNumberDuplicatedWithWinningNumbersProvider() {
-        return Stream.of(
-                Arguments.of(2, List.of(2, 3, 4, 5, 6, 7)),
-                Arguments.of(6, List.of(1, 3, 4, 5, 6, 8))
-        );
-    }
-
     @ParameterizedTest
     @MethodSource("bonusNumberDuplicatedWithWinningNumbersProvider")
     @DisplayName("보너스 숫자가 당첨 번호와 겹칠 경우 IllegalArgumentException을 던져야 한다.")
@@ -47,13 +53,6 @@ public class BonusNumberValidatorTest {
         BonusNumberValidator validator = new BonusNumberValidator(winningNumbers);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> validator.validate(bonusNumber));
         Assertions.assertEquals(ErrorMessage.BONUS_IS_DUPLICATED, exception.getMessage());
-    }
-
-    static Stream<Arguments> bonusNumberOutOfRangeProvider() {
-        return Stream.of(
-                Arguments.of(0, List.of(2, 3, 4, 5, 6, 7)),
-                Arguments.of(46, List.of(1, 3, 4, 5, 6, 8))
-        );
     }
 
     @ParameterizedTest

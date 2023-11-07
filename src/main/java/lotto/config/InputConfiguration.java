@@ -1,7 +1,6 @@
 package lotto.config;
 
 import java.util.List;
-import lotto.vo.WinningNumbers;
 import lotto.util.handler.InputHandler;
 import lotto.util.parser.MultiNumbersParser;
 import lotto.util.parser.SingleNumberParser;
@@ -11,8 +10,12 @@ import lotto.util.validator.WinningNumbersValidator;
 import lotto.view.facade.AmountViewFacade;
 import lotto.view.facade.BonusNumberViewFacade;
 import lotto.view.facade.WinningNumbersViewFacade;
+import lotto.vo.WinningNumbers;
 
 public class InputConfiguration {
+    private InputConfiguration() {
+    }
+
     public static InputHandler<Integer> createAmountInputHandler() {
         return new InputHandler<>(
                 new SingleNumberParser(),

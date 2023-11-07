@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 
-public class LottoIssueResultDTO {
+public final class LottoIssueResultDTO {
     private final int ticketCount;
     private final List<Lotto> lottos;
 

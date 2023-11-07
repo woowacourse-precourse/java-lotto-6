@@ -16,17 +16,18 @@ public class IssueController {
         return new IssueController(purchase);
     }
 
-    public void issueTickets() {
-        LottoIssueResultDTO result = buyLottoTickets();
-        displayLottoTickets(result);
+    public LottoTickets issueTickets() {
+        LottoTickets tickets = buyLottoTickets();
+        displayLottoTickets(tickets);
+        return tickets;
     }
 
-    private LottoIssueResultDTO buyLottoTickets() {
-        LottoTickets tickets = purchase.generateLottoTickets();
-        return LottoIssueResultDTO.of(purchase.getTicketCount(), tickets.getTickets());
+    private LottoTickets buyLottoTickets() {
+        return purchase.generateLottoTickets();
     }
 
-    private void displayLottoTickets(LottoIssueResultDTO result) {
+    private void displayLottoTickets(LottoTickets tickets) {
+        LottoIssueResultDTO result = LottoIssueResultDTO.of(purchase.getTicketCount(), tickets.getTickets());
         OutputView.printLottoIssueResult(result);
     }
 }

@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.vo.BonusNumber;
+import lotto.vo.WinningNumbers;
 
 public class LottoTickets {
     private final List<Lotto> tickets;
@@ -16,5 +18,13 @@ public class LottoTickets {
 
     public List<Lotto> getTickets() {
         return Collections.unmodifiableList(tickets);
+    }
+
+    public RankResult evaluateWinningStatus(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        RankResult rankResult = new RankResult();
+        tickets.stream()
+                .map(lotto -> lotto.matchRank(winningNumbers, bonusNumber))
+                .forEach(rankResult::add);
+        return rankResult;
     }
 }

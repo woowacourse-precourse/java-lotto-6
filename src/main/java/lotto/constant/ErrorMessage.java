@@ -12,4 +12,8 @@ public class ErrorMessage {
     public static final String WINNING_NUMBERS_IS_NOT_VALID_RANGE = "당첨 번호는 1부터 45사이의 숫자로 입력하셔야 합니다!\n";
 
     public static final String BONUS_IS_DUPLICATED = "보너스 번호는 당첨 번호와 중복되면 안됩니다!\n";
+
+    private ErrorMessage() {
+
+    }
 }

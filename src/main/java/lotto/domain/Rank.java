@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 public enum Rank {
     UNRANKED(0, 0),
@@ -22,9 +23,6 @@ public enum Rank {
         if (isMatchedSecondRankCondition(matchingCount, bonusNumberExistence)) {
             return SECOND;
         }
-        if (isThird(matchingCount, bonusNumberExistence)) {
-            return THIRD;
-        }
         return findByMatchingCount(matchingCount);
     }
 
@@ -32,12 +30,9 @@ public enum Rank {
         return matchingCount == SECOND.matchingCount && bonusNumberExistence;
     }
 
-    private static boolean isThird(final int matchingCount, final boolean bonusNumberExistence) {
-        return matchingCount == THIRD.matchingCount && !bonusNumberExistence;
-    }
-
     private static Rank findByMatchingCount(final int matchingCount) {
         return Arrays.stream(Rank.values())
+                .filter(Predicate.not(Rank::isSecond))
                 .filter(rank -> matchingCount == rank.matchingCount)
                 .findFirst()
                 .orElse(UNRANKED);

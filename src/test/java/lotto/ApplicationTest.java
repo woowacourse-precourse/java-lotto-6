@@ -121,14 +121,18 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 보너스_입력_예외1() {
-        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("15a"));
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("15a",new Lotto(List.of(1,2,3,4,5,6))));
     }
 
     @Test
     void 보너스_입력_예외2() {
-        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("-1"));
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("-1",new Lotto(List.of(1,2,3,4,5,6))));
     }
 
+    @Test
+    void 보너스_입력_예외3(){
+        assertThrows(IllegalArgumentException.class, () -> Validator.checkBonusNumber("1",new Lotto(List.of(1,2,3,4,5,6))));
+    }
     @Test
     void 가격_입력_메소드() {
         String priceString = "17000";

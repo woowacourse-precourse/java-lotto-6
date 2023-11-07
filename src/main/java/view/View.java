@@ -41,12 +41,12 @@ public class View {
         return answer;
     }
 
-    public static int getBonus() {
+    public static int getBonus(Lotto answer) {
         int bonus;
         while (true) {
             try {
                 printInputMessage(GET_BOUNS_NUMBER);
-                bonus = LottoInput.makeBonusNumber();
+                bonus = LottoInput.makeBonusNumber(answer);
                 break;
             } catch (IllegalArgumentException e) {
                 printInputMessage(LOTTO_ERROR_MESSAGE);

@@ -1,5 +1,7 @@
 package validator;
 
+import lotto.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +25,7 @@ public class Validator {
         if (checkset.size() != checklist.size()) throw new IllegalArgumentException();
     }
 
-    public static void checkBonusNumber(String input) {
+    public static void checkBonusNumber(String input, Lotto answer) {
         int bonus;
         try {
             bonus = Integer.parseInt(input);
@@ -31,6 +33,10 @@ public class Validator {
             throw new IllegalArgumentException();
         }
         if (bonus < 0 || bonus > 45) {
+            throw new IllegalArgumentException();
+        }
+        List<Integer> answerList = answer.getNumbers();
+        if (answerList.contains(bonus)) {
             throw new IllegalArgumentException();
         }
     }

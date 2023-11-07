@@ -1,13 +1,17 @@
 package lotto.view;
 
 import static lotto.view.constants.ConstantMessage.ALARM_HOW_MANY_BUY_LOTTO;
+import static lotto.view.constants.ConstantMessage.ALARM_THE_RESULT_STARTING_MESSAGE;
 import static lotto.view.constants.ConstantMessage.REQUEST_INPUT_BONUS_NUMBER;
 import static lotto.view.constants.ConstantMessage.REQUEST_INPUT_LOTTO_NUMBERS;
 import static lotto.view.constants.ConstantMessage.REQUEST_INPUT_PRICE;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
+import lotto.domain.Prize;
+import lotto.domain.PrizeRankConstants;
 import lotto.view.constants.ConstantMessage;
 
 public class ConsoleOutput {
@@ -31,6 +35,35 @@ public class ConsoleOutput {
         for (Lotto lotto : lottoTicket.getLottos()) {
             printLottoNumbers(lotto);
         }
+    }
+
+    public static void printLottoPrizeResult(Prize result) {
+        printConstantMessage(ALARM_THE_RESULT_STARTING_MESSAGE);
+        for (PrizeRankConstants rank : PrizeRankConstants.values()) {
+            Integer numOfRank = 0;
+
+            if (result.contains(rank)) {
+                numOfRank = result.getCount(rank);
+            }
+            printRankResultMessage(rank, numOfRank);
+        }
+    }
+
+    public static void printLottoPrizeRateResult(Double result) {
+        printLottoPrizeRateResultMessage(result);
+    }
+
+    private static void printLottoPrizeRateResultMessage(Double result) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##%");
+        System.out.println("총 수익률은"+ decimalFormat.format(result) + "입니다.");
+    }
+
+    private static void printRankResultMessage(
+            PrizeRankConstants rank,
+            Integer numOfRank
+    ) {
+        System.out.print(rank.getMessage());
+        System.out.printf(" - %d개\n", numOfRank);
     }
 
     private static void printConstantMessage(ConstantMessage message) {

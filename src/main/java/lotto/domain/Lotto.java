@@ -50,4 +50,8 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.EXIST_DUPLICATE_NUMBER);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

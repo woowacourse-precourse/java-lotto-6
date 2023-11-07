@@ -8,11 +8,17 @@ import lotto.view.PrintMessage;
 
 public class InputWinningLotto {
     public static WinningLotto setInputWinningLotto() {
-        Lotto lotto = InputLotto.setInputLotto();
-        PrintMessage.printBonusNumber();
-        int bonusNumber = setBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-        return winningLotto;
+        try {
+            Lotto lotto = InputLotto.setInputLotto();
+            PrintMessage.printBonusNumber();
+            int bonusNumber = setBonusNumber();
+            WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+            return winningLotto;
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.printErrorMessage(e);
+            return setInputWinningLotto();
+        }
+
     }
 
     public static int setBonusNumber() {

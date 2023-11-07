@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+    private final static int LOTTO_UNIT_PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,5 +17,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    int countPurchasedLotto(int totalPrice){
+        int count = totalPrice/LOTTO_UNIT_PRICE;
+        return count;
+    }
 }

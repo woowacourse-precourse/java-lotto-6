@@ -15,16 +15,16 @@ public class InputBonusNumber extends InputNumber {
     public static InputBonusNumber getInstance(String input) {
         return new InputBonusNumber(input);
     }
+    @Override
+    public Integer sendInputData() {
+        return this.number;
+    }
 
+    @Override
     public void validate() {
         if (notLottoNumber()) {
             throw LottoException.of(INVALID_LOTTO_NUMBER);
         }
-    }
-
-    @Override
-    public Integer sendInputData() {
-        return this.number;
     }
 
     private boolean notLottoNumber() {

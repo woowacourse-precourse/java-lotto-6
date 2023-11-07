@@ -21,7 +21,7 @@ public abstract class InputList<T> implements InputValidator {
 
     private void checkBlank(List<String> stringList) {
         for (String element:stringList) {
-            if (element.isBlank()) {
+            if (element.isEmpty()) {
                 throw LottoException.of(BLANK_ELEMENT);
             }
         }

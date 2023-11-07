@@ -2,7 +2,7 @@ package lotto.util.exception;
 
 public enum ErrorMessage {
     INVALID_LOTTO_NUMBER("이 숫자는 1 이상 45 이하 여야 합니다."),
-    NEGATIVE_NUMBER("이 숫자는 음수일 수 없습니다."),
+    NONNEGATIVE_NUMBER("이 숫자는 양수여야 합니다."),
     NOT_DIVISIBLE_BY_UNIT("로또 한 장의 가격으로 나누어 떨어지지 않습니다."),
     NOT_INTEGER("정수가 아닙니다."),
     NOT_SIX_NUMBERS("6개의 숫자가 필요합니다."),

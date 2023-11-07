@@ -22,13 +22,9 @@ public class Lotto {
     }
 
     public Integer countSameNumbers(Lotto other) {
-        Integer count = 0;
-        for (Integer number:other.numbers) {
-            if (this.contains(number)) {
-                count++;
-            }
-        }
-        return count;
+        return Math.toIntExact(other.numbers.stream()
+                .filter(this::contains)
+                .count());
     }
 
     @Override

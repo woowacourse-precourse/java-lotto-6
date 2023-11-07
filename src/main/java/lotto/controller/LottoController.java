@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
-import lotto.utils.ErrorCode;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

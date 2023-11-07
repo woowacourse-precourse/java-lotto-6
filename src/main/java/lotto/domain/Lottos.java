@@ -25,19 +25,19 @@ public class Lottos {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        lottos.stream()
-                .forEach(lotto->sb.append(lotto+"\n"));
-        return sb.toString();
-    }
-
     private void validateMoneyUnit(long money){
         if(money%1000!=0) throw new IllegalArgumentException(ErrorCode.INVALID_MONEY.getMessage());
     }
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        lottos.stream()
+                .forEach(lotto->sb.append(lotto+"\n"));
+        return sb.toString();
     }
 }

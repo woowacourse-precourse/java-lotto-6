@@ -1,11 +1,8 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.utils.Constants;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LottoGenerator {
     public static List<Integer> generateLotto(){

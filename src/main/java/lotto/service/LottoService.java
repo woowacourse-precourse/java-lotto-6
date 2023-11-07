@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LottoService {
-    Map<LottoRank, Integer> totalPrize;
+    private final Map<LottoRank, Integer> totalPrize;
 
     public LottoService() {
         this.totalPrize = generateTotalPrize();

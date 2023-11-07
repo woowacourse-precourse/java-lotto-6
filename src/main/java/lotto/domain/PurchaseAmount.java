@@ -3,6 +3,7 @@ package lotto.domain;
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENTAGE = 100;
+    private static final String NOT_DIVIDABLE_WITH_LOTTO_PRICE = "[ERROR] 구입 금액은 1,000원 단위로 입력해주세요.\n";
     private final int purchaseAmount;
 
     public static PurchaseAmount from(int purchaseAmount) {
@@ -24,7 +25,7 @@ public class PurchaseAmount {
 
     private void validateIsDividableWithLottoPrice(int purchaseAmount) {
         if (!isDividableWithLottoPrice(purchaseAmount)) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(NOT_DIVIDABLE_WITH_LOTTO_PRICE);
         }
     }
 

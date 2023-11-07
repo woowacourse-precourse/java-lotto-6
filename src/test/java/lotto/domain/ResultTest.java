@@ -41,4 +41,8 @@ class ResultTest {
         assertEquals(Result.FOUR_MATCH, Result.of(4, true));
     }
 
+    @Test
+    void 보너스_번호를_포함하더라도_세개_일치인_경우_그에_맞는_객체를_반환한다() {
+        assertEquals(Result.THREE_MATCH, Result.of(3, true));
+    }
 }

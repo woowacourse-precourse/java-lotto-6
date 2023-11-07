@@ -18,12 +18,14 @@ public class Application {
     private static int String_to_Int(String str){      // Input을 String으로 받아서 Int로 반환
         try{
             return Integer.parseInt(str);
-        }catch (NumberFormatException e){  // 변환 포멧 안맞으면 IllegalArgumentException 발생
+        }catch (NumberFormatException e){
+            System.out.print("[ERROR] 로또 구입 금액은 정수여야 합니다.\n");
             throw new IllegalArgumentException();
         }
     }
     private static int Affordable_LottoNum(Integer money) { // money를 받아 구매할 로또 개수 반환
-        if (money % 1000 != 0){            // 나누어 떨어지지 않으면 IllegalArgumentException 발생
+        if (money % 1000 != 0 || money < 0){
+            System.out.print("[ERROR] 로또 구입 금액은 1,000원으로 나누어 떨어지는 양의 정수여야 합니다.\n");
             throw new IllegalArgumentException();
         }
         return money / 1000;

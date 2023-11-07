@@ -8,31 +8,29 @@ public class PrintError {
     private static final String INPUT_RANGE_ERROR = "[ERROR] 유효하지 않은 로또 번호입니다.(1~45)";
     private static final String INPUT_COUNT_ERROR = "[ERROR] 올바른 개수에 맞춰 입력해 주세요";
 
-    public PrintError(){
+
+    public String nullException(){
+        return INPUT_NULL_ERROR;
     }
 
-    private void nullException(){
-        System.out.println(INPUT_NULL_ERROR);
+    public String decimalException(){
+        return INPUT_DECIMAL_ERROR;
     }
 
-    private void decimalException(){
-        System.out.println(INPUT_DECIMAL_ERROR);
+    public String priceError(){
+        return INPUT_PRICE_ERROR;
     }
 
-    private void priceError(){
-        System.out.println(INPUT_PRICE_ERROR);
+    public String duplicateError(){
+        return INPUT_DUPLICATE_ERROR;
     }
 
-    private void duplicateError(){
-        System.out.println(INPUT_DUPLICATE_ERROR);
+    public String rangeError(){
+        return INPUT_RANGE_ERROR;
     }
 
-    private void rangeError(){
-        System.out.println(INPUT_RANGE_ERROR);
-    }
-
-    private void countERROR(){
-        System.out.println(INPUT_COUNT_ERROR);
+    public String countERROR(){
+        return INPUT_COUNT_ERROR;
     }
 
 }

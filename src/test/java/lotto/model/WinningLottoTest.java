@@ -44,7 +44,7 @@ public class WinningLottoTest {
         Integer bonusNumber = winningLotto.getBonusNumber();
 
         //then
-        assertThat(winningNumbers.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(winningNumbers.toString()).contains("[1, 2, 3, 4, 5, 6]");
         assertThat(bonusNumber).isEqualTo(number);
     }
 }

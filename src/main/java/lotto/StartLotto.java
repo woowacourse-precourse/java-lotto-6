@@ -206,13 +206,13 @@ public class StartLotto {
      */
     private Lotto generateLotto() {
         List<Integer> temp = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sortLottoNumber(temp);
+        temp = convertLottoNumberToModified(temp);
+        Collections.sort(temp);
         return new Lotto(temp);
     }
 
-    private void sortLottoNumber(List<Integer> lottoNumbers) {
-        List<Integer> modifiedList = new ArrayList<Integer>(lottoNumbers);  //lottoNumbers가 unmodified일 경우 modified로 변환
-        Collections.sort(modifiedList);
+    private List<Integer> convertLottoNumberToModified(List<Integer> lottoNumbers) {
+        return new ArrayList<Integer>(lottoNumbers);  //lottoNumbers가 unmodified일 경우 modified로 변환
     }
 
     public void printPurchaseLottoAmount() {

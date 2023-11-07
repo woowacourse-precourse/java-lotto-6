@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class WinningNumbersGenerator {
+public class WinningNumbers {
     private static final int START_NUM = 1;
     private static final int END_NUM = 45;
     private static final int NUM_COUNT = 6;
@@ -21,7 +21,6 @@ public class WinningNumbersGenerator {
         validateDividedInput(winningNumbersInput);
         saveWinningNumbers(winningNumbersInput);
     }
-
 
     public void validateEachWinningNumberInput(final String[] winningNumbersInput) {
         if (winningNumbersInput.length != NUM_COUNT) {

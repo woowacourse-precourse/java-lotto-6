@@ -14,6 +14,7 @@ public class Lotto {
         Collections.sort(this.numbers);
     }
 
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             System.out.println("[ERROR] 숫자 6개를 입력해 주세요.");
@@ -39,5 +40,16 @@ public class Lotto {
 
     public List<Integer> getRandomNumber() {
         return numbers;
+    }
+
+    public int getNumber(int index) {
+        if (index < 0 || index >= numbers.size()) {
+            throw new IllegalArgumentException("유효하지 않은 인덱스입니다.");
+        }
+        return numbers.get(index);
+    }
+
+    public boolean isSameNumber(int number) {
+        return numbers.contains(number);
     }
 }

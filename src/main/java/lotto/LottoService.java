@@ -45,10 +45,11 @@ public class LottoService {
 		return userNumbers;
 	}
 
-	public int checkBonusNumber(String inputBonusNumber) throws IllegalArgumentException{
+	public int checkBonusNumber(List<Integer> userNumbers, String inputBonusNumber)
+			throws IllegalArgumentException {
 		validator.isComposedOfNumbers(inputBonusNumber);
 		validator.isInRange(inputBonusNumber);
-
+		validator.containNumber(userNumbers, inputBonusNumber);
 		return 0;
 	}
 }

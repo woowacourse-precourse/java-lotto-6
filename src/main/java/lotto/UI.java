@@ -54,7 +54,7 @@ public class UI {
 	private int inputBonusNumber(List<Integer> userNumbers) {
 		System.out.println("\n보너스 번호를 입력해 주세요.");
 		String inputBonusNumber = Console.readLine();
-		int userBonusNumber = lottoService.checkBonusNumber(inputBonusNumber);
+		int userBonusNumber = lottoService.checkBonusNumber(userNumbers, inputBonusNumber);
 		return userBonusNumber;
 	}
 }

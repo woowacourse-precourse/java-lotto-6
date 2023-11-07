@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -21,10 +22,17 @@ public class Validator {
 		}
 	}
 
-	public void isInRange(String number) throws IllegalArgumentException{
+	public void isInRange(String number) throws IllegalArgumentException {
 		int checkNumber = Integer.parseInt(number);
 		if (!(1 <= checkNumber && checkNumber <= 45)) {
 			throw new IllegalArgumentException(ErrorCode.NOT_IN_RANGE.getErrorMessage());
+		}
+	}
+
+	public void containNumber(List<Integer> userNumbers, String inputBonusNumber) throws IllegalArgumentException {
+		int checkNumber = Integer.parseInt(inputBonusNumber);
+		if (userNumbers.contains(checkNumber)) {
+			throw new IllegalArgumentException(ErrorCode.NOT_ALLOW_DUPLICATE.getErrorMessage());
 		}
 	}
 }

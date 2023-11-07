@@ -13,6 +13,7 @@ public class LottoController {
         System.out.println(numberOfLotto + "개를 구매했습니다.");
 
         List<Lotto> lottoList = LottoService.generateLottoList(numberOfLotto);
+        LottoView.printLottoList(lottoList);
 
     }
 }

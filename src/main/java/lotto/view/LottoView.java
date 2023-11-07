@@ -1,7 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
 import lotto.service.LottoService;
+
+import java.util.List;
 
 public class LottoView {
 
@@ -14,6 +17,12 @@ public class LottoView {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public static void printLottoList(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {
+            System.out.println(lotto.toString());
         }
     }
 }

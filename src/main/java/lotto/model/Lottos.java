@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.util.Validator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Lottos {
     }
 
     public static Lottos from(List<Lotto> lottos) {
+        Validator.validateNotNull(lottos);
         return new Lottos(lottos);
     }
 

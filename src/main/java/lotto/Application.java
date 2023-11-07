@@ -14,6 +14,7 @@ public class Application {
         int number = input / 1000;
         outputLottoNumber(number);
         winningNumber();
+        bonusNumber();
     }
 
     private static int buyLotto() {
@@ -75,6 +76,13 @@ public class Application {
         String str = Console.readLine();
 
         return str;
+    }
+
+    private static int bonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String str = Console.readLine();
+
+        return Integer.parseInt(str);
     }
 
 }

@@ -3,6 +3,7 @@ package lotto.exception;
 public enum LottoErrorCode implements ErrorCode {
 
     DUPLICATED_NUMBER("로또 숫자는 중복된 로또 번호가 없어야 합니다."),
+    NOT_ENOUGH_MONEY("로또 구입 최소 가격은 1000원입니다."),
     WRONG_PRICE("로또 구입 가격은 정확히 나누어 떨어져야 합니다."),
 
     INVALID_LENGTH("로또 숫자는 총 6 개여야 합니다."),

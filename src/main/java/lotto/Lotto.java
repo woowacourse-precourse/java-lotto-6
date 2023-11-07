@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.exception.LottoErrorCode.DUPLICATED_NUMBER;
-import static lotto.exception.LottoErrorCode.INVALID_LENGTH;
+import static lotto.exception.LottoErrorCode.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,6 +38,19 @@ public class Lotto {
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
         }
+    }
+
+    private void validateInbound(List<Integer> numbers) {
+        boolean isAllValidLottoNumber = numbers.stream()
+                .allMatch(this::isLottoNumber);
+
+        if (!isAllValidLottoNumber) {
+            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private boolean isLottoNumber(Integer number) {
+        return 1 <= number && number <= 45;
     }
 
     public boolean contains(int number) {

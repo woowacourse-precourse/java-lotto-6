@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum Rank {
     LOSE(0, 0, "낙첨 (%d원) - %d개"),
     FIFTH(3,5_000, "3개 일치 (%d원) - %d개"),
@@ -17,4 +19,22 @@ public enum Rank {
         this.prize = prize;
         this.message = message;
     }
+
+    public static Rank getRank(int matchCount, boolean hasBonus) {
+        if (matchCount != 5) {
+            return getRankWithoutBonus(matchCount);
+        }
+        if (hasBonus) {
+            return Rank.SECOND;
+        }
+        return Rank.THIRD;
+    }
+
+    private static Rank getRankWithoutBonus(int matchCount) {
+        return Arrays.stream(Rank.values())
+                .filter(value -> value.match == matchCount)
+                .findFirst()
+                .orElse(LOSE);
+    }
+
 }

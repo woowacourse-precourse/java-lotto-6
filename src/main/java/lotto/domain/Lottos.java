@@ -17,9 +17,9 @@ public class Lottos {
     }
 
     public LottosDto toLottosDto() {
-        List<LottoDto> lottoTickets = this.lottoTickets.stream()
+        List<LottoDto> lottoNumbers = lottoTickets.stream()
                 .map(Lotto::toLottoDto)
                 .toList();
-        return new LottosDto(lottoTickets, lottoTickets.size());
+        return new LottosDto(lottoNumbers, lottoTickets.size());
     }
 }

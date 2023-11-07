@@ -61,13 +61,30 @@ public class Application {
         System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
 
+    public enum Prize {
+        FIRST(2000000000),
+        SECOND(30000000),
+        THIRD(1500000),
+        FOURTH(50000),
+        FIFTH(5000);
+        private final int prizeAmount;
+
+        Prize(int prizeAmount) {
+            this.prizeAmount = prizeAmount;
+        }
+
+        public int getPrizeAmount() {
+            return prizeAmount;
+        }
+    }
+
     public static int getTotalMoney() {
         int total = 0;
-        total += first * 2000000000;
-        total += second * 30000000;
-        total += third * 1500000;
-        total += fourth * 50000;
-        total += fifth * 5000;
+        total += first * Prize.FIRST.getPrizeAmount();
+        total += second * Prize.SECOND.getPrizeAmount();
+        total += third * Prize.THIRD.getPrizeAmount();
+        total += fourth * Prize.FOURTH.getPrizeAmount();
+        total += fifth * Prize.FIFTH.getPrizeAmount();
         return total;
     }
 

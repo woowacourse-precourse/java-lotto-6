@@ -8,7 +8,7 @@ import lotto.domain.LottoTickets;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.RankResult;
 import lotto.domain.WinningTicket;
-import lotto.dto.Result;
+import lotto.dto.WinningResult;
 
 public class LottoService {
     public LottoTickets purchase(PurchaseAmount purchaseAmount) {
@@ -16,9 +16,9 @@ public class LottoService {
         return new LottoTickets(lottoTickets, purchaseAmount);
     }
 
-    public Result getWinningResult(LottoTickets lottoTickets, WinningTicket winningTicket) {
+    public WinningResult getWinningResult(LottoTickets lottoTickets, WinningTicket winningTicket) {
         RankResult rankResult = lottoTickets.getRankResult(winningTicket);
         BigDecimal rateOfReturn = lottoTickets.getRateOfReturn(rankResult.getTotalPrize());
-        return new Result(rankResult, rateOfReturn);
+        return new WinningResult(rankResult, rateOfReturn);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 import lotto.domain.Rank;
 import lotto.domain.RankResult;
 
-public record Result(RankResult rankResult, BigDecimal rateOfReturn) {
+public record WinningResult(RankResult rankResult, BigDecimal rateOfReturn) {
     public Set<Entry<Rank, Integer>> entrySet() {
         return rankResult.entrySet();
     }

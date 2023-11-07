@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
-import lotto.dto.Result;
+import lotto.dto.WinningResult;
 
 public class OutputView {
     public static final String PURCHASED = "\n%d개를 구매했습니다.\n";
@@ -36,7 +36,7 @@ public class OutputView {
         message.append(sortedNumbers).append("\n");
     }
 
-    public void printWinningResult(Result winningResult) {
+    public void printWinningResult(WinningResult winningResult) {
         StringBuilder message = new StringBuilder();
         message.append(WINNING_RESULT);
         appendStatistics(winningResult, message);
@@ -44,7 +44,7 @@ public class OutputView {
         System.out.print(message);
     }
 
-    private void appendStatistics(Result winningResult, StringBuilder message) {
+    private void appendStatistics(WinningResult winningResult, StringBuilder message) {
         for (Entry<Rank, Integer> rankIntegerEntry : winningResult.entrySet()) {
             message.append(rankIntegerEntry.getKey().getMatchCount()).append(MATCH_COUNT);
 
@@ -58,7 +58,7 @@ public class OutputView {
         }
     }
 
-    private void appendRateOfReturn(Result winningResult, StringBuilder message) {
+    private void appendRateOfReturn(WinningResult winningResult, StringBuilder message) {
         BigDecimal rateOfReturn = winningResult.rateOfReturn();
         message.append(String.format(RATE_OF_RETURN, rateOfReturn.toPlainString()));
     }

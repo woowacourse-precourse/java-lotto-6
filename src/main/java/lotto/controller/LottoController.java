@@ -7,7 +7,7 @@ import lotto.domain.LottoTickets;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningTicket;
 import lotto.domain.service.LottoService;
-import lotto.dto.Result;
+import lotto.dto.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,7 +28,7 @@ public class LottoController {
         outputView.printPurchasedLottos(lottoTickets.lottos());
 
         WinningTicket winningTicket = repeat(this::getWinningTicket);
-        Result winningResult = lottoService.getWinningResult(lottoTickets, winningTicket);
+        WinningResult winningResult = lottoService.getWinningResult(lottoTickets, winningTicket);
         outputView.printWinningResult(winningResult);
     }
 

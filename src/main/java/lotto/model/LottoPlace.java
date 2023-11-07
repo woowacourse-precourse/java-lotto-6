@@ -4,35 +4,29 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum LottoPlace {
-    FIRST(6, false, new Money(5000)),
-    SECOND(5, true, new Money(5000)),
-    THIRD(5, false, new Money(5000)),
-    FOURTH(4, false, new Money(5000)),
-    FIFTH(3, false, new Money(5000));
+    FIRST(new LottoStatus(6), new Money(5000), false),
+    SECOND(new LottoStatus(5, true), new Money(5000), true),
+    THIRD(new LottoStatus(5), new Money(5000), false),
+    FOURTH(new LottoStatus(4), new Money(5000), false),
+    FIFTH(new LottoStatus(3), new Money(5000), false);
 
-    private final int countCorrectNumber;
-    private final Boolean isBonusNumberCorrect;
+    private final LottoStatus lottoStatus;
     private final Money prizeAmount;
+    private final boolean isBonusRequired;
 
-    LottoPlace(int countCorrectNumber, Boolean isBonusNumberCorrect, Money prizeAmount) {
-        this.countCorrectNumber = countCorrectNumber;
-        this.isBonusNumberCorrect = isBonusNumberCorrect;
+    LottoPlace(LottoStatus lottoStatus, Money prizeAmount, boolean isBonusRequired) {
+        this.lottoStatus = lottoStatus;
         this.prizeAmount = prizeAmount;
+        this.isBonusRequired = isBonusRequired;
     }
 
-    public static Optional<LottoPlace> judgeLottoPlace(int countCorrectNumber, boolean isBonusNumberCorrect) {
+    public static Optional<LottoPlace> judgeLottoPlace(LottoStatus lottoStatus) {
         return Arrays.stream(LottoPlace.values())
-                .filter((lottoPlace) -> lottoPlace.isRightPlace(countCorrectNumber, isBonusNumberCorrect))
+                .filter((lottoPlace) -> lottoPlace.isRightPlace(lottoStatus))
                 .findAny();
     }
 
-    private boolean isRightPlace(int countCorrectNumber, boolean isBonusNumberCorrect) {
-        if (this.countCorrectNumber != countCorrectNumber) {
-            return false;
-        }
-        if (this.countCorrectNumber == 5) {
-            return this.isBonusNumberCorrect == isBonusNumberCorrect;
-        }
-        return true;
+    private boolean isRightPlace(LottoStatus lottoStatus) {
+        return this.lottoStatus.isSameStatus(lottoStatus, this.isBonusRequired);
     }
 }

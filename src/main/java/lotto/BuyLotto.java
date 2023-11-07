@@ -4,7 +4,6 @@ import Output.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BuyLotto {
@@ -14,6 +13,7 @@ public class BuyLotto {
     public void buyAllLotto(int money) {
         for (int i = 0; i < money; i++) {
             Lotto paper = new Lotto(pickNumber());
+            paper.lottoascending();
             lotto.add(paper);
         }
         output.lottoAllPaperPrint(lotto);

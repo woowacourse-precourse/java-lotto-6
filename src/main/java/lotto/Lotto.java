@@ -16,5 +16,29 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int run(List<Integer> players){
+        // 로또 번호 비교하기
+        int computerIndex = 0;
+        int playerIndex = 0;
+
+        int count = 0;
+        while (computerIndex < 6 & playerIndex < 6) {
+            Integer computerNumber = this.numbers.get(computerIndex);
+            Integer playerNumber = players.get(playerIndex);
+
+            if (computerNumber == playerNumber){
+                count ++;
+                computerIndex ++;
+                playerIndex ++;
+            }
+            else if (computerNumber > playerNumber) {
+                playerIndex ++;
+            }
+            else {
+                computerIndex ++;
+            }
+        }
+
+        return count;
+    }
 }

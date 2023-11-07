@@ -8,12 +8,18 @@ import java.util.ArrayList;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요");
-        int receivedMoney = Manager.receiveMoney();
+        Manager lottoManager = new Manager();
+        int receivedMoney = lottoManager.receiveMoney();
 
         Customer customer = new Customer(receivedMoney);
-        System.out.println(customer);
+
+        // TODO: 로또 번호 출력
+        lottoManager.printTickets(customer.NUMBER_OF_TICKETS);
+
+        // TODO: 로또 당첨 통계 출력
+
+        // TODO: 로또 수익률 출654
     }
 
 }

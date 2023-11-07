@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -18,5 +19,11 @@ public class Application {
         System.out.println();
 
         System.out.println(number/1000+"개를 구매했습니다.");
+
+        for (int i=0; i<number/1000 ; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
     }
 }

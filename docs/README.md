@@ -25,7 +25,7 @@ lotto(model) 생성
 - [X] 검증 : **'숫자 생성기'는 숫자에 관련한 검증만 수행**
   - [X] stringToInt
   - [X] parsing
-- [ ] controller 에게 숫자 리스트 넘겨서 lotto model 하나 생성 및 반환
+- [X] controller 에게 숫자 리스트 넘겨서 lotto model 하나 생성 및 반환
 - [X] 생성할 때 정렬 수행
 - [X] 검증 : lotto 모델은 로또 관련 비즈니스 로직만 검증
   - [X] 각 숫자가 1 ~ 45인지 범위 체크

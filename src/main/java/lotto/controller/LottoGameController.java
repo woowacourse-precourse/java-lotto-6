@@ -30,7 +30,7 @@ public class LottoGameController {
     }
 
     private List<List<Integer>> buyLottoTickets() {
-        System.out.println(StringConstants.INPUT_PURCHASEAMOUNT_MESSAGE);
+        outputPort.printLine(StringConstants.INPUT_PURCHASEAMOUNT_MESSAGE);
         String purchaseAmount = inputPort.readLine();
         int lottoTicketsCount = lottoService.calculateNumberOfLottoTickets(purchaseAmount);
 
@@ -38,14 +38,14 @@ public class LottoGameController {
     }
 
     private List<Integer> inputWinningNumber() {
-        System.out.println(StringConstants.INPUT_WINNING_NUMBER_MESSAGE);
+        outputPort.printLine(StringConstants.INPUT_WINNING_NUMBER_MESSAGE);
         String winningNumbers = inputPort.readLine();
 
         return lottoService.addLottoNumberToWinningNumbers(winningNumbers);
     }
 
     private int inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println(StringConstants.INPUT_BONUS_NUMBER_MESSAGE);
+        outputPort.printLine(StringConstants.INPUT_BONUS_NUMBER_MESSAGE);
         String bonusNumber = inputPort.readLine();
         lottoService.validateBonusNumber(winningNumbers, bonusNumber);
 

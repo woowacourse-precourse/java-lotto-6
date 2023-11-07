@@ -22,7 +22,9 @@ public class LottoManager {
             try {
                 String input = Console.readLine();
                 validateNumericInput(input);
-                return Integer.parseInt(input);
+                int amount = Integer.parseInt(input);
+                validateInputAmountUnit(amount);
+                return amount;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.printExceptionMessage(e);
             }
@@ -34,6 +36,12 @@ public class LottoManager {
             Integer.parseInt(input);
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_NOT_NUMERIC.getMessage());
+        }
+    }
+
+    private void validateInputAmountUnit(int input) {
+        if (input % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_INVALID_UNIT.getMessage());
         }
     }
 }

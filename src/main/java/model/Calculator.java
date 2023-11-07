@@ -12,8 +12,8 @@ public class Calculator {
     private static final int DIVIDING_UNIT = 1000;
     private static final double PERCENTAGE_FACTOR = 100;
 
-    public int calculateMoneyToLottoCount(int money) {
-        return money / DIVIDING_UNIT;
+    public int calculateMoneyToLottoCount(int purchaseAmount) {
+        return purchaseAmount / DIVIDING_UNIT;
     }
 
     public void calculatePrizeStatistics(List<Integer> prizeNumber, int bonusNumber) {
@@ -59,11 +59,11 @@ public class Calculator {
     }
 
     private int getMatchedNumberCount(Lotto lottoNumber, List<Integer> prizeNumber) {
-        Set<Integer> lottoNumberChangeToSet = new HashSet<>(lottoNumber.getNumbers());
-        Set<Integer> prizeNumberChangeToSet = new HashSet<>(prizeNumber);
+        Set<Integer> lottoNumberDeleteDuplicate = new HashSet<>(lottoNumber.getNumbers());
+        Set<Integer> prizeNumberDeleteDuplicate = new HashSet<>(prizeNumber);
 
-        lottoNumberChangeToSet.retainAll(prizeNumberChangeToSet);
-        return lottoNumberChangeToSet.size();
+        lottoNumberDeleteDuplicate.retainAll(prizeNumberDeleteDuplicate);
+        return lottoNumberDeleteDuplicate.size();
     }
 
     private boolean isLottoNumberContainBonusNumber(Lotto lotto, int bonusNumber) {

@@ -15,6 +15,7 @@
 - [x] get메서드 생성
 - lottoMoney: 로또 금액 저장
 - lottoTiket: 로또 개수 저장
+- [ ] 에러 메시지 Java Enum 적용
 
 2. Lotto
 
@@ -31,6 +32,7 @@
   - isDifferentLottoNumber()
     - [x] 로또 번호가 중복되지 않는 숫자인지 확인
   - [x] get 메서드 생성
+  - [ ] 에러 메시지 Java Enum 적용
 
 3. LuckeyLotto
 
@@ -43,6 +45,7 @@
   - [x] 보너스 로또 번호 중복여부 판단
   - [x] 보너스 로또 번호 1부터 45범위인지 확인
 - [x] get 메서드 생성
+- [ ] 에러 메시지 Java Enum 적용
 
 **View**
 

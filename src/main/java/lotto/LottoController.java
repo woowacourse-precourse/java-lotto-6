@@ -20,6 +20,13 @@ public class LottoController {
         this.outputMaker = new OutputMaker();
         this.isvalid = false;
     }
+    public void run() {
+        insertCoin();
+        buyLotto();
+        setWinner();
+        setBonus();
+        resultLotto();
+    }
 
     public void insertCoin() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -32,7 +39,7 @@ public class LottoController {
                 isvalid = true;
                 this.cs = new Customer(coin);
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 금액은 1000단위 숫자로 다시 입력해주세요.");
+                System.out.println("[ERROR] 금액은 1000단위 숫자로 다시 입력해주세요.");
             }
         }
     }
@@ -58,7 +65,7 @@ public class LottoController {
                 ticketMaster.setWinningNum(winner);
                 isvalid = true;
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 다시 입력하세요.");
+                System.out.println("[ERROR] 다시 입력하세요.");
             }
         }
     }
@@ -74,7 +81,7 @@ public class LottoController {
                 isvalid = true;
                 ticketMaster.setBonusNum(bonusNum);
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 다시 입력하세요.");
+                System.out.println("[ERROR] 다시 입력하세요.");
             } finally {
                 Console.close();
             }

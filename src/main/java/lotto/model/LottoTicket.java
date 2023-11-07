@@ -1,6 +1,5 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class LottoTicket {
     public LottoTicket(int numberOfTickets) {
         tickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
-            List<Integer> lottoNumbers = generateRandomLottoNumbers();
+            List<Integer> lottoNumbers = LottoNumberGenerator.generateRandomLottoNumbers();
             Lotto lotto = new Lotto(lottoNumbers);
             tickets.add(lotto);
         }
@@ -18,11 +17,6 @@ public class LottoTicket {
 
     public List<Lotto> getTickets() {
         return tickets;
-    }
-
-    private List<Integer> generateRandomLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return lottoNumbers;
     }
 }
 

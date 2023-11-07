@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.WinningResult;
 import lotto.model.LottoNumberGenerator;
+import lotto.model.LottoGame;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,14 +12,14 @@ import camp.nextstep.edu.missionutils.Console;
 public class LottoView {
     public void startNewGame() {
         int purchaseAmount = getPurchaseAmount();
-        int numberOfTickets = purchaseAmount / Lotto.TICKET_PRICE;
-        List<List<Integer>> purchasedTickets = generatePurchasedTickets(numberOfTickets);
+        List<Lotto> purchasedLottos = generatePurchasedLottos(purchaseAmount);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
 
-        List<WinningResult> winningResults = calculateWinningResults(purchasedTickets, winningNumbers, bonusNumber);
-
-        printNumberOfPurchasedTickets(numberOfTickets);
+        LottoGame lottoGame = new LottoGame();
+        List<WinningResult> winningResults = lottoGame.calculateWinningResults(purchasedLottos, winningNumbers, bonusNumber);
+        int count = purchasedLottos.size();
+        printNumberOfPurchasedTickets(count, purchasedLottos);
         printWinningResults(winningResults);
     }
 
@@ -27,14 +28,13 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<List<Integer>> generatePurchasedTickets(int count) {
-        List<List<Integer>> purchasedTickets = new ArrayList<>();
+    public List<Lotto> generatePurchasedLottos(int count) {
+        List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> lottoNumbers = LottoNumberGenerator.generateRandomLottoNumbers();
-            Collections.sort(lottoNumbers);
-            purchasedTickets.add(lottoNumbers);
+            purchasedLottos.add(new Lotto(lottoNumbers));
         }
-        return purchasedTickets;
+        return purchasedLottos;
     }
 
     public List<Integer> getWinningNumbers() {
@@ -50,30 +50,12 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<WinningResult> calculateWinningResults(List<List<Integer>> purchasedTickets, List<Integer> winningNumbers, int bonusNumber) {
-        List<WinningResult> results = new ArrayList<>();
-        for (List<Integer> ticket : purchasedTickets) {
-            int matchingCount = calculateMatchingCount(ticket, winningNumbers);
-            boolean hasBonusNumber = ticket.contains(bonusNumber);
-
-            results.add(new WinningResult(matchingCount, hasBonusNumber));
-        }
-        return results;
-    }
-
-    private int calculateMatchingCount(List<Integer> ticket, List<Integer> winningNumbers) {
-        long matchingCount = ticket.stream()
-                .filter(winningNumbers::contains)
-                .count();
-        return (int) matchingCount;
-    }
-
-    public void printNumberOfPurchasedTickets(int count) {
+    public void printNumberOfPurchasedTickets(int count, List<Lotto> purchasedLottos) {
         System.out.printf("%d개를 구매했습니다.%n", count);
         if (count > 0) {
-            System.out.println("구매한 로또 번호는 다음과 같습니다:");
-            for (List<Integer> ticket : generatePurchasedTickets(count)) {
-                System.out.println(ticket);
+            for (Lotto lotto : purchasedLottos) {
+                List<Integer> lottoNumbers = lotto.getNumbers(); // Lotto 클래스에서 삭제한 부분 수정
+                System.out.println(lottoNumbers);
             }
         }
     }
@@ -82,24 +64,33 @@ public class LottoView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        int[] matchCounts = new int[7]; // 0부터 6까지의 인덱스를 가질 배열 생성
+        int[] matchCounts = new int[7];
         for (WinningResult result : results) {
             int matchingCount = result.getMatchingCount();
-            matchCounts[matchingCount]++; // 매칭 카운트에 따른 배열 인덱스 증가
+            matchCounts[matchingCount]++;
         }
 
         for (int i = 3; i <= 6; i++) {
             int winningAmount = calculateWinningAmount(i, false);
-            System.out.printf("%d개 일치 (%,d원) - %d개%n", i, winningAmount, matchCounts[i]);
+            int matchingCount = matchCounts[i];
+            System.out.printf("%d개 일치 (%,d원) - %d개%n", i, winningAmount, matchingCount);
+            if (i == 5) {
+                int bonusMatchingCount = matchCounts[5];
+                int bonusWinningAmount = calculateWinningAmount(5, true);
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", i, bonusWinningAmount, bonusMatchingCount);
+            }
         }
 
-        int bonusMatchingCount = matchCounts[5];
-        if (bonusMatchingCount > 0) {
-            int winningAmount = calculateWinningAmount(5, true);
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", 5, winningAmount, bonusMatchingCount);
+        // 6개 일치에 대한 내용 출력
+        int matchingCount6 = matchCounts[6];
+        if (matchingCount6 > 0) {
+            int winningAmount6 = calculateWinningAmount(6, false);
+            System.out.printf("6개 일치 (%,d원) - %d개%n", winningAmount6, matchingCount6);
         }
+    }
 
-        System.out.println("총 수익률은 " + calculateTotalProfitRate(results) + "%입니다.");
+    public void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f%%", profitRate) + "입니다.");
     }
 
     private int calculateWinningAmount(int matchingCount, boolean hasBonusNumber) {
@@ -123,7 +114,6 @@ public class LottoView {
 
         return winningAmount;
     }
-
 
     private double calculateTotalProfitRate(List<WinningResult> results) {
         int totalWinningAmount = results.stream()

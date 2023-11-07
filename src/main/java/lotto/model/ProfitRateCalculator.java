@@ -13,16 +13,16 @@ public class ProfitRateCalculator {
 
     public double calculateProfitRate() {
         int totalWinningAmount = winningResults.stream()
-                .mapToInt(this::calculateWinningAmount)
+                .mapToInt(result -> calculateWinningAmount(result.getMatchingCount(), result.hasBonusNumber()))
                 .sum();
 
-        return (double) totalWinningAmount / totalPurchasePrice;
+        return (double) totalWinningAmount / totalPurchasePrice * 100;
     }
 
-    private int calculateWinningAmount(WinningResult winningResult) {
-        return switch (winningResult.getMatchingCount()) {
+    private int calculateWinningAmount(int matchingCount, boolean hasBonusNumber) {
+        return switch (matchingCount) {
             case 6 -> 2_000_000_000;
-            case 5 -> winningResult.hasBonusNumber() ? 30_000_000 : 1_500_000;
+            case 5 -> hasBonusNumber ? 30_000_000 : 1_500_000;
             case 4 -> 50_000;
             case 3 -> 5_000;
             default -> 0;

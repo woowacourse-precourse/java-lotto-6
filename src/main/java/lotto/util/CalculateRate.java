@@ -7,7 +7,6 @@ public class CalculateRate {
 
     public Double getRate(int purchaseAmount, int money) {
         double result = (double) money / purchaseAmount * 100;
-        result = Math.round(result * 100.0) / 100.0;
         String rate = formatNumberWithComma(result);
         Double resultRate = Double.parseDouble(rate);
         return resultRate;

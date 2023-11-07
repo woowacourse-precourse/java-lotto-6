@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class Money {
-    public final int amount;
+    private int amount;
 
     public Money(String input) {
         isNum(input);
@@ -30,5 +30,13 @@ public class Money {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자를 입력해주세요");
         }
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

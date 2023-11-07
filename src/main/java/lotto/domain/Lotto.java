@@ -10,6 +10,7 @@ public class Lotto {
     public static final int MAX_NUMBERS = 6;
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
+    public static final int PRICE = 1_000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

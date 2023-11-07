@@ -3,7 +3,9 @@ package lotto.controller;
 import lotto.constants.MsgConstants;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoPurchaseService;
+import lotto.service.WinningNumbersService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,22 +19,21 @@ public class LottoController {
         String purchaseAmount = getPurchaseAmount();
         LottoTicket lottoTicket = getLottoTicket(purchaseAmount);
         printPurchasedLottoNumber(lottoTicket);
-        String winningNumber = getWinningNumber();
-
+        WinningNumbers winningInformation = getWinningInformation();
 
     }
 
     private String getPurchaseAmount() {
-        try{
+        try {
             OutputView.printEnterPurchaseAmount();
             return InputView.getInputPurchaseAmount();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             OutputView.printErrorMessage(ex.getMessage());
             return getPurchaseAmount();
         }
 
     }
+
     private LottoTicket getLottoTicket(String purchaseAmount) {
         LottoPurchaseService lottoPurchaseService = new LottoPurchaseService();
         return lottoPurchaseService.purchaseLottoTicket(purchaseAmount);
@@ -44,13 +45,14 @@ public class LottoController {
                 lottoTicket.getPurchaseQuantity()));
         List<Lotto> lottoList = lottoTicket.getLottoList();
 
-        for(Lotto lotto: lottoList) {
+        for (Lotto lotto : lottoList) {
             List<Integer> lottoNumber = lotto.getLotto();
             stringBuilder.append("[").append(convertLottoNumToString(lottoNumber)).append("]").append("\n");
         }
         OutputView.printPurchasedLottoNumber(stringBuilder.toString());
 
     }
+
     private String convertLottoNumToString(List<Integer> lottoNumber) {
         Collections.sort(lottoNumber);
         return lottoNumber.stream()
@@ -58,24 +60,34 @@ public class LottoController {
                 .collect(Collectors.joining(", "));
     }
 
+    private WinningNumbers getWinningInformation() {
+        String winningNumber = getWinningNumber();
+        WinningNumbersService winningNumbersService = new WinningNumbersService();
+        WinningNumbers winningNumbers = winningNumbersService.generateWinningNumbers(winningNumber);
+
+        String bonusNumber = getBonusNumber();
+        winningNumbersService.setBonusNumber(winningNumbers, bonusNumber);
+        return winningNumbers;
+    }
+
     private String getWinningNumber() {
-        try{
+        try {
             OutputView.printEnterPurchaseAmount();
             return InputView.getInputPurchaseAmount();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             OutputView.printErrorMessage(ex.getMessage());
             return getWinningNumber();
         }
     }
+
     private String getBonusNumber() {
-        try{
+        try {
             OutputView.printEnterBonusNumber();
             return InputView.getInputBonusNumber();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             OutputView.printErrorMessage(ex.getMessage());
-            return getWinningNumber();
+            return getBonusNumber();
         }
     }
+
 }

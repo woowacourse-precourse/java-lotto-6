@@ -17,6 +17,7 @@ public class Application {
         List<Integer> eachLottoNumber = null;
         List<List<Integer>> lottos = new ArrayList<>();
 
+        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
 
         //구입 금액 입력
         UserInput userInput = new UserInput();
@@ -65,18 +66,19 @@ public class Application {
 
 
         ///
-        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
-        Integer firstPlaceCount = Integer.valueOf(0);
-        Integer secondPlaceCount = Integer.valueOf(0);
-        Integer thirdPlaceCount = Integer.valueOf(0);
-        Integer fourthPlaceCount = Integer.valueOf(0);
-        Integer fifthPlaceCount = Integer.valueOf(0);
-
-        winRecordBoard.put(1, firstPlaceCount);
-        winRecordBoard.put(2, secondPlaceCount);
-        winRecordBoard.put(3, thirdPlaceCount);
-        winRecordBoard.put(4, fourthPlaceCount);
-        winRecordBoard.put(5, fifthPlaceCount);
+        createWinRecordBoard();
+//        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
+//        Integer firstPlaceCount = Integer.valueOf(0);
+//        Integer secondPlaceCount = Integer.valueOf(0);
+//        Integer thirdPlaceCount = Integer.valueOf(0);
+//        Integer fourthPlaceCount = Integer.valueOf(0);
+//        Integer fifthPlaceCount = Integer.valueOf(0);
+//
+//        winRecordBoard.put(1, firstPlaceCount);
+//        winRecordBoard.put(2, secondPlaceCount);
+//        winRecordBoard.put(3, thirdPlaceCount);
+//        winRecordBoard.put(4, fourthPlaceCount);
+//        winRecordBoard.put(5, fifthPlaceCount);
 
         ///
 
@@ -128,4 +130,24 @@ public class Application {
 
 
     }
+
+    private static Map<Integer, Integer> createWinRecordBoard(){
+        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
+
+        Integer firstPlaceCount = Integer.valueOf(0);
+        Integer secondPlaceCount = Integer.valueOf(0);
+        Integer thirdPlaceCount = Integer.valueOf(0);
+        Integer fourthPlaceCount = Integer.valueOf(0);
+        Integer fifthPlaceCount = Integer.valueOf(0);
+
+        winRecordBoard.put(1, firstPlaceCount);
+        winRecordBoard.put(2, secondPlaceCount);
+        winRecordBoard.put(3, thirdPlaceCount);
+        winRecordBoard.put(4, fourthPlaceCount);
+        winRecordBoard.put(5, fifthPlaceCount);
+
+        return winRecordBoard;
+    }
+
+
 }

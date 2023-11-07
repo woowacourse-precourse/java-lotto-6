@@ -116,11 +116,9 @@ public class LottoGameService {
 
     public double calculateProfitRate(int[] winningData) {
         int totalProfit = 0;
-        totalProfit += WinningDataCategory.THREE_MATCH.getPrize() * winningData[0];
-        totalProfit += WinningDataCategory.FOUR_MATCH.getPrize() * winningData[1];
-        totalProfit += WinningDataCategory.FIVE_MATCH.getPrize() * winningData[2];
-        totalProfit += WinningDataCategory.BONUS_MATCH.getPrize() * winningData[3];
-        totalProfit += WinningDataCategory.SIX_MATCH.getPrize() * winningData[4];
+        for (int i = 0; i < winningData.length - 1; i++) {
+            totalProfit += WinningDataCategory.values()[i].getPrize() * winningData[i];
+        }
 
         double buyerPay = 1000.0 * buyer.getPurchasedLottoCount();
         return (totalProfit / buyerPay) * 100.0;

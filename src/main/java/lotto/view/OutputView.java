@@ -28,17 +28,17 @@ public class OutputView {
     }
 
     public static void printGetWinNumberMessage() {
-        System.out.println(GET_WIN_NUMBER_MESSAGE);
+        System.out.println(GET_WIN_NUMBER_MESSAGE.getMessage());
     }
 
     public static void printGetBonusNumberMessage() {
-        System.out.println(GET_BONUS_NUMBER_MESSAGE);
+        System.out.println(GET_BONUS_NUMBER_MESSAGE.getMessage());
     }
 
     public static void printWinningStatistics(HashMap<String, Integer> finalScore, double yield) {
         System.out.println();
-        System.out.println(WIN_STATS_MESSAGE);
-        System.out.println(LINE_MESSAGE);
+        System.out.println(WIN_STATS_MESSAGE.getMessage());
+        System.out.println(LINE_MESSAGE.getMessage());
         System.out.println(WIN_MESSAGE_5.getMessage() + finalScore.get("5등") + "개");
         System.out.println(WIN_MESSAGE_4.getMessage() + finalScore.get("4등") + "개");
         System.out.println(WIN_MESSAGE_3.getMessage() + finalScore.get("3등") + "개");

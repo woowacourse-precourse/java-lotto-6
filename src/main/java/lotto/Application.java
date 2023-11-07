@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+
         // 구입 금액 입력
         double money = 0;
         System.out.println("구입금액을 입력해 주세요.");
@@ -54,10 +55,12 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+
         // 숫자 범위 미달, 초과 예외 처리
         if (lottoNumber.length != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호를 다시 입력해주세요.");
         }
+
         // 숫자 중복 예외 처리
         for (int p = 0; p < 5; p++) {
             if (lottoNumber[p].equals(lottoNumber[p + 1])) {

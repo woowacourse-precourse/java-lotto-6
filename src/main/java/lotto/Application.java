@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Application {
+    private static final int LOTTO_PRICE = 1000;
     private static final String MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
     private static final String MESSAGE_FOR_WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
     private static final String MESSAGE_FOR_BONUS_NUMBERS_INPUT = "보너스 번호를 입력해 주세요.";
@@ -25,9 +27,11 @@ public class Application {
     private static int purchaseAmount;
     private static int bonusNumber;
     private static List<Integer> winningNumbers;
+    private static List<Lotto> lottos;
 
     public static void main(String[] args) {
         purchaseAmount = getPurchaseAmountWithInput();
+        lottos = purchaseLottos(purchaseAmount);
         winningNumbers = getWinningNumbersWithInput();
         bonusNumber = getBonusNumberWithInput();
     }
@@ -55,6 +59,22 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static List<Lotto> purchaseLottos(int purchaseAmount) {
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        while (purchaseAmount > 0) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto;
+            try {
+                lotto = new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            purchasedLottos.add(lotto);
+            purchaseAmount -= LOTTO_PRICE;
+        }
+        return purchasedLottos;
     }
 
     private static List<Integer> getWinningNumbersWithInput() {

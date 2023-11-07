@@ -48,9 +48,19 @@ public class InputView {
     public int parseBonusNumber(String input, List<Integer> winningNumbers) {
         try {
             int bonusNumber = Integer.parseInt(input);
+            validateBonusNumber(bonusNumber, winningNumbers);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자열이 입력되었습니다.");
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 보너스 번호가 입력되었습니다.");
+        }
+        if (!validator.checkRangeValidity(List.of(bonusNumber))) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

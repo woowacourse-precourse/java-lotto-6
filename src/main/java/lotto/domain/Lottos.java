@@ -18,18 +18,18 @@ public class Lottos {
         }
     }
 
-    public  void addLotto(List<Integer> lotto) {
-        lottos.add((Lotto) lotto);
-    }
 
     // 각 Lotto를 순회하며 Rank enum과 매칭
     public void matchRank(Lotto lotto) {
     }
-    public Map<Rank, Long> getResults(WinningLottoNumbers winningLottoNumbers) {
+    public List<Rank> getResults(WinningLottoNumbers winningLottoNumbers) {
         return lottos.stream()
-                .collect(Collectors.groupingBy(
-                        lotto -> Rank.valueOf(lotto.matchNumber(winningLottoNumbers)),
-                        Collectors.counting()
-                ));
+                .map(lotto -> lotto.matchNumber(winningLottoNumbers.getWinningLotto()))
+                .map(Rank::valueOfMatchCount)
+                .collect(Collectors.toList());
     }
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
 }

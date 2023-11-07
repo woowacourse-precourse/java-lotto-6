@@ -9,7 +9,7 @@ import java.util.List;
 
 import static lotto.constants.ServiceConstants.*;
 
-public class LottoService {
+public class LottoPurchaseService {
     public Long calculateNumberOfLotto(Long inputMoney) {
         validateInputMoney(inputMoney);
         return inputMoney / DIVIDE_STANDARD;

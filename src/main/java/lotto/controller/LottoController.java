@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.exception.InvalidInputException;
 import lotto.service.LottoResultService;
-import lotto.service.LottoService;
+import lotto.service.LottoPurchaseService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,13 +14,13 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
+    private final LottoPurchaseService lottoPurchaseService;
     private final LottoResultService lottoResultService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, LottoResultService lottoResultService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoResultService lottoResultService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoService = lottoService;
+        this.lottoPurchaseService = lottoPurchaseService;
         this.lottoResultService = lottoResultService;
     }
 
@@ -52,7 +52,7 @@ public class LottoController {
         PurchasedLotto purchasedLotto = new PurchasedLotto();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNumbers = lottoService.generateRandomLottoNumbers();
+            List<Integer> randomNumbers = lottoPurchaseService.generateRandomLottoNumbers();
             purchasedLotto.addLotto(new Lotto(randomNumbers));
         }
 
@@ -66,7 +66,7 @@ public class LottoController {
             Long userMoney = inputView.purchaseLotto();
 
             try {
-                Long lottoCount = lottoService.calculateNumberOfLotto(userMoney);
+                Long lottoCount = lottoPurchaseService.calculateNumberOfLotto(userMoney);
                 outputView.purchaseLottoCountMessage(lottoCount);
 
                 return lottoCount;

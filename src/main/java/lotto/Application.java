@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.service.LottoResultService;
-import lotto.service.LottoService;
+import lotto.service.LottoPurchaseService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,7 +11,7 @@ public class Application {
         // TODO: 프로그램 구현
         LottoController lottoController = new LottoController(new InputView(),
                 new OutputView(),
-                new LottoService(),
+                new LottoPurchaseService(),
                 new LottoResultService());
         lottoController.run();
     }

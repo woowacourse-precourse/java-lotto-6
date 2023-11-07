@@ -27,10 +27,10 @@ class LottoResultServiceTest {
     void countMatchingNumbers() {
         // given
         WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), new BonusNumber("7"));
-        LottoService lottoService = new LottoService();
+        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService();
         PurchasedLotto purchasedLotto = new PurchasedLotto();
 
-        List<Integer> randomNumbers = lottoService.generateRandomLottoNumbers();
+        List<Integer> randomNumbers = lottoPurchaseService.generateRandomLottoNumbers();
         purchasedLotto.addLotto(new Lotto(randomNumbers));
 
         // when

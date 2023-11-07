@@ -17,13 +17,13 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LottoServiceTest {
+class LottoPurchaseServiceTest {
 
-    private LottoService lottoService;
+    private LottoPurchaseService lottoPurchaseService;
 
     @BeforeEach
     void setUp() {
-        this.lottoService = new LottoService();
+        this.lottoPurchaseService = new LottoPurchaseService();
     }
 
     @DisplayName("가격을 입력받고 가격만큼 로또를 구매하는지")
@@ -31,7 +31,7 @@ class LottoServiceTest {
     @CsvSource({"1000, 1", "2000, 2", "3000, 3", "4000, 4", "200000000, 200000"})
     void purchaseLottoWithValidPriceTest(Long inputMoney, Long expectedLottoCount) {
         // given && when
-        Long lottoCount = lottoService.calculateNumberOfLotto(inputMoney);
+        Long lottoCount = lottoPurchaseService.calculateNumberOfLotto(inputMoney);
 
         // then
         assertTrue(lottoCount.equals(expectedLottoCount));
@@ -42,7 +42,7 @@ class LottoServiceTest {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8})
     void createLottoListTest(Integer lottoCount) {
         // given
-        List<Integer> randomNumbers = lottoService.generateRandomLottoNumbers();
+        List<Integer> randomNumbers = lottoPurchaseService.generateRandomLottoNumbers();
         PurchasedLotto purchasedLotto = new PurchasedLotto();
 
         // when
@@ -59,7 +59,7 @@ class LottoServiceTest {
     void invalidInputMoneyTest(Long inputMoney) {
         // given & when & then
         assertThatThrownBy(
-                () -> lottoService.calculateNumberOfLotto(inputMoney))
+                () -> lottoPurchaseService.calculateNumberOfLotto(inputMoney))
                 .isInstanceOf(InvalidInputException.class);
     }
 
@@ -71,7 +71,7 @@ class LottoServiceTest {
 
         // when & then
         assertThatThrownBy(
-                () -> lottoService.calculateNumberOfLotto(inputMoney))
+                () -> lottoPurchaseService.calculateNumberOfLotto(inputMoney))
                 .isInstanceOf(InvalidInputException.class);
     }
 
@@ -79,7 +79,7 @@ class LottoServiceTest {
     @Test
     void createRandomNumbersSortTest() {
         // given & when
-        List<Integer> createdNumbers = lottoService.generateRandomLottoNumbers();
+        List<Integer> createdNumbers = lottoPurchaseService.generateRandomLottoNumbers();
 
         // then
         for (int i = 0; i < createdNumbers.size()-1; i++) {

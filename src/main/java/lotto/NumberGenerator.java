@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberGenerator {
-    private final int NUMBER_OF_GENERATION = 6;
-
     public List<Integer> numberGenerator() {
         List<Integer> lottoNumbers = new ArrayList<>();
         int number;
-        while (lottoNumbers.size() < NUMBER_OF_GENERATION) {
-            number = Randoms.pickNumberInRange(1, 45);
+        while (lottoNumbers.size() < Number.LOTTO_SIZE.getNumber()) {
+            number = Randoms.pickNumberInRange(Number.MIN_NUMBER.getNumber(), Number.MAX_NUMBER.getNumber());
             if (!lottoNumbers.contains(number)) {
                 lottoNumbers.add(number);
             }

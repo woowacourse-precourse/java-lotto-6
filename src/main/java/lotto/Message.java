@@ -1,6 +1,6 @@
 package lotto;
 
-public enum Output {
+public enum Message {
 	RESULT_MESSAGE("등 ㅊㅋ"),
 	PURCHASE_MESSAGE("구입할 금액을 입력해 주세요."),
 	PURCHASE_COUNT_MESSAGE("\n개를 구매했습니다.\n"),
@@ -14,24 +14,16 @@ public enum Output {
 	MATCH_SIX("6개 일치 (2,000,000,000원) - ");
 
 	private final String message;
-	Output(String message) {
+	Message(String message) {
 		this.message = message;
 	}
 	public void getMessage() {
 		System.out.println(message);
 	}
 	public void getMessage(int number) {
-		System.out.println(number + message);
+		System.out.println(message + number);
 	}
 	public static void printMessage(String message) {
 		System.out.println(message);
-	}
-	public void ResultMessage(int number) {
-		if (number == 3)
-			System.out.println(MATCH_THREE.message);
-		if (number == 4)
-			System.out.println("4등 ㅊㅋ");
-		if (number == 5)
-			System.out.println("5등 ㅊㅋ");
 	}
 }

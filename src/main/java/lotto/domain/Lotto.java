@@ -25,4 +25,9 @@ public class Lotto {
     public boolean contains(BounsNumber bounsNumber) {
         return numbers.contains(bounsNumber.getBounsNumber());
     }
+
+
+    public void showLotto() {
+        System.out.println(numbers);
+    }
 }

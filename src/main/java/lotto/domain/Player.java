@@ -22,6 +22,12 @@ public class Player {
                                 Randoms.pickUniqueNumbersInRange(START_NUM_RANGE, END_NUM_RANGE, LOTTO_NUM_COUNT))));
     }
 
+    public void showLottos() {
+        lottos.stream().forEach(e -> {
+            e.showLotto();
+        });
+    }
+
     public void setLottoAmount() {
         this.lottoAmount = new LottoAmount(Utils.parseIntValidate(Console.readLine()));
     }

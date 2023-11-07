@@ -17,13 +17,13 @@ public final class LottoInput implements InputPort{
 
     @Override
     public int receiveMoney() {
-        String input = Console.readLine();
+        String input = reader.readLine();
         return mapToInt(input);
     }
 
     @Override
     public List<Integer> receiveLottos() {
-        String input = Console.readLine();
+        String input = reader.readLine();
         return Arrays.stream(input.split(delimiter, -1))
                 .map(it -> mapToInt(it))
                 .collect(Collectors.toList());
@@ -31,7 +31,7 @@ public final class LottoInput implements InputPort{
 
     @Override
     public int receiveBonus() {
-        String input = Console.readLine();
+        String input = reader.readLine();
         return mapToInt(input);
     }
 

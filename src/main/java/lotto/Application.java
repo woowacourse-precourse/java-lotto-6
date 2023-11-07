@@ -10,6 +10,8 @@ import lotto.io.LottoOutput;
 
 public class Application {
     public static void main(String[] args) {
+
+        // 의존성 주입
         LottoServer server = new LottoServer(
                 new LottoInput(new ConsoleInputReader()),
                 new LottoOutput(new LottosConverter(), new StatisticsConverter()),

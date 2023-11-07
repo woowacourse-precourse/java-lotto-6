@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.PurchaseLotto;
@@ -15,12 +16,14 @@ public class PlayLotto {
     PurchaseAmount purchaseAmount;
     PurchaseLotto purchaseLotto;
     Lotto lotto;
+    BonusNumber bonusNumber;
 
     public void playLotto() {
         int purchaseLottoCount = getPurchaseLottoCount(input, output);
         int purchaseLottoAmount = getPurchaseLottoAmount();
         ArrayList<List<Integer>> purchaseLottoNumbers = getPurchaseLottoNumbers(output, purchaseLottoCount);
         List<Integer> winningNumbers = getWinningNumbers(input);
+        int bonusNumber = getBonusNumber(input, winningNumbers);
     }
 
     private int getPurchaseLottoCount(Input input, Output output) {
@@ -71,5 +74,22 @@ public class PlayLotto {
         String winningNumberInput = input.winningNumber();
         lotto = new Lotto(winningNumberInput);
         return lotto.getNumbers();
+    }
+
+    private int getBonusNumber(Input input, List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                int bonusNumber = handleBonusNumber(input, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int handleBonusNumber(Input input, List<Integer> winningNumbers) {
+        String bonusNumberInput = input.bonusNumber();
+        bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers);
+        return bonusNumber.getBonusNumber();
     }
 }

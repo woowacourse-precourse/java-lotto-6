@@ -44,10 +44,22 @@
 - [x] 입력된 금액에 따라 로또를 발행 - **purchaseLotto**
 
 
-## 로또 - Lotto
+## 당첨 로또 - Lotto
 
-- 1~45 사이의 숫자로 이루어진 중복되지 않는 6개의 로또 번호를 생성 - **createLottoNumbers**
-- 입력된 금액에 따라 로또를 발행 - **purchaseLotto**
+- 예외 처리 - **validate**
+  - [x] null 값 확인
+  - [x] 숫자인지
+  - [x] 중복값 확인
+  - [x] 6개의 숫자인지
+  - [x] 1~45 사이의 값인지
+
+## 보너스 번호 - BonusNumber
+
+- 예외 처리 - **validate**
+  - [x] null 값 확인
+  - [x] 숫자인지
+  - [x] 당첨 번호와 중복값 확인
+  - [x] 1~45 사이의 값인지
 
 ## 당첨 - Match
 

@@ -19,10 +19,9 @@ public class LottoController {
     public void run() {
         LottosGenerator lottosGenerator = new LottosGenerator();
 
-        Money money = getMoney();
-        int numberOfLottos = getNumberOfPurchasedLottos(money);
+        Money money = getMoney();;
 
-        Lottos lottos = lottosGenerator.generateLottos(numberOfLottos);
+        Lottos lottos = lottosGenerator.generateLottos(getNumberOfPurchasedLottos(money));
         OutputView.printGeneratedLottos(lottos);
 
         Lotto lotto = getLotto();

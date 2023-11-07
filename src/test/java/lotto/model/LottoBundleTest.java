@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.util.enums.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoBundleTest {
@@ -32,8 +33,9 @@ class LottoBundleTest {
         lottoBundle = new LottoBundle(bundles);
     }
 
+    @DisplayName("로또 번호 DTO 생성 테스트")
     @Test
-    void 생성된_로또_번호로_DTO_생성() {
+    void 로또_번호로_DTO_생성() {
         List<LottoDTO> lottoDTOList = lottoBundle.generateLottoTicketReport();
         LottoDTO lottoDTO1 = lottoDTOList.get(0);
         LottoDTO lottoDTO2 = lottoDTOList.get(1);
@@ -44,8 +46,9 @@ class LottoBundleTest {
         assertThat(lottoDTO3.getNumbers()).containsExactlyElementsOf(List.of(3, 4, 5, 6, 7, 8));
     }
 
+    @DisplayName("당첨 번호와 보너스 번호를 로또 번호와 비교하는 테스트")
     @Test
-    void compareLotto() {
+    void 로또_번호_비교() {
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
         BonusNumber bonusNumber = new BonusNumber("7", winningNumbers);
 

@@ -29,25 +29,25 @@ class WinningNumbersTest {
     @Test
     void 예외_최대_숫자_테스트() {
         Assertions.assertThatThrownBy(() -> new WinningNumbers("1,2,3,46,5,6"))
-           .isInstanceOf(NumberGreaterException.class);
+                .isInstanceOf(NumberGreaterException.class);
     }
 
     @Test
     void 예외_입력_문자_음수_테스트() {
         Assertions.assertThatThrownBy(() -> new WinningNumbers("-1,2,3,4,5,6"))
-            .isInstanceOf(NumbersNegativeException.class);
+                .isInstanceOf(NumbersNegativeException.class);
     }
 
     @Test
     void 예외_입력_문자_개_수_테스트() {
         Assertions.assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,6,7"))
-             .isInstanceOf(WinningNumbersLengthMatchException.class);
+                .isInstanceOf(WinningNumbersLengthMatchException.class);
     }
 
     @Test
     void 예외_중복_문자_입력_테스트() {
         Assertions.assertThatThrownBy(() -> new WinningNumbers("1,1,2,3,4,5"))
-              .isInstanceOf(DuplicationNumberException.class);
+                .isInstanceOf(DuplicationNumberException.class);
     }
 
     @Test

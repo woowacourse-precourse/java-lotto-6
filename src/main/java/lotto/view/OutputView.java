@@ -10,7 +10,7 @@ import static lotto.constants.ResponseMessages.*;
 public class OutputView {
 
     public static void printStartBuyMessage() {
-        System.out.println(START_BUY_MESSAGE);
+        System.out.println(START_BUY_MESSAGE.getMessage());
     }
 
     public static void printLottoCount(int lottoCount) {

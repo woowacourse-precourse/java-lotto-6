@@ -18,13 +18,38 @@ public class LottoServiceTest {
     private LottoService service = new LottoService();
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5", "6,7,8,9,10"})
+    @ValueSource(strings = {"1,2,3,4,5", "6,7,8,9,10,11"})
     @DisplayName("콤마로 구분된 입력 문자열을 List으로 변환")
     void convertToDifferentType(String input) {
         List<Integer> winningNumber = service.reshapeWinningNumber(input);
         assertThat(winningNumber).hasSize(input.length() / 2 + 1)
                 .contains(input.charAt(0) - '0')
                 .contains(input.charAt(input.length() - 1) - '0');
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,hello", "a,b,c,d,e,f"})
+    @DisplayName("로또 번호중 문자 또는 문자열이 들어왔을 때의 테스트")
+    void alphabetInLottoNumbers(String input) {
+        assertThatThrownBy(() -> service.reshapeWinningNumber(input))
+                .isInstanceOf(NumberFormatException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",1,2,3,,4"})
+    @DisplayName("로또 번호중 연속된 쉼표 존재할 경우의 테스트")
+    void consequentCommaInLottoNumber(String input) {
+        assertThatThrownBy(() -> service.reshapeWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 3000, 8000})
+    @DisplayName("구매 가능한 복권 장수 계산 테스트")
+    void calculateAvailableLottoNumberTest(int spentFee) {
+        int numberLotteryTickets = service.calculateAvailableNumberOfLotteryTickets(spentFee);
+        assertThat(spentFee).isEqualTo(spentFee / 1000);
     }
 
     @ParameterizedTest
@@ -75,7 +100,7 @@ public class LottoServiceTest {
         int prev = service.getCaseNum(lottoWinCase);
         service.increaseTotalIncomeTest(lottoWinCase);
         int current = service.getCaseNum(lottoWinCase);
-        assertThat(prev).isEqualTo(current-1);
+        assertThat(prev).isEqualTo(current - 1);
     }
 
     @ParameterizedTest

@@ -1,20 +1,33 @@
 package lotto.controller;
 
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 
 public class Controller {
+    Lottos lottos = new Lottos();
+    WinningNumbers winningNumbers = new WinningNumbers();
 
     public void lottoGame() {
-        buyLottos();
-//        putWinningNumber();
+//        buyLottos();
+//        showHowmanyLottosBuy();
+        putWinningNumber();
 //        checkWinningList()
 //        calculateRate();
     }
 
     public void buyLottos() {
         InputView.requestPurchaseAmount();
-        Lottos lottos = new Lottos();
+        lottos.makeLottoGame();
+    }
+
+    public void showHowmanyLottosBuy(){
         lottos.howManyLottos();
+    }
+
+    public void putWinningNumber(){
+        InputView.requestWinningNumbers();
+        winningNumbers.generateWinningNumbers();
+
     }
 }

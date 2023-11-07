@@ -11,12 +11,16 @@ import java.util.ArrayList;
 
 public class Lottos {
     int lottoCount;
+
     int lottoNumberCount = LottoRules.LOTTO_NUMBER_COUNT.getValue();
     int startNumber = LottoRules.START_NUMBER.getValue();
     int endNumber = LottoRules.END_NUMBER.getValue();
     List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos() {
+
+    public Lottos() {}
+
+    public void makeLottoGame(){
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.generateLottoCount();
         this.lottoCount = purchaseAmount.purchaseCount;
@@ -54,9 +58,9 @@ public class Lottos {
         return number;
     }
 
-    private boolean isUnique(int number, List<Integer> RandomNumbers) {
-        for (int i = 0; i < RandomNumbers.size(); i++) {
-            if (RandomNumbers.get(i) == number) {
+    public boolean isUnique(int number, List<Integer> RandomNumbers) {
+        for (int randomNumber : RandomNumbers) {
+            if (randomNumber == number) {
                 return false;
             }
         }

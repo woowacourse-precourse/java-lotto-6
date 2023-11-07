@@ -1,9 +1,7 @@
 package lotto.model;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -27,6 +25,13 @@ public class PurchaseAmountTest {
             purchaseAmount.IsNotZero(0);
         })
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구매금액에맞는_구매개수계산확인(){
+        PurchaseAmount purchaseAmount = new PurchaseAmount();
+        int lottoCount =  purchaseAmount.calculateLottoCount(3000);
+        assertThat(3).isEqualTo(lottoCount);
     }
 
 }

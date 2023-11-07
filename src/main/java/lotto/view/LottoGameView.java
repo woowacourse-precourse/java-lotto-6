@@ -25,7 +25,8 @@ public class LottoGameView implements GameView {
 
     @Override
     public void showProgressOf(Game game) {
-        LottoGame lottoGame = (LottoGame) game;
+        LottoGame lottoGame;
+        lottoGame = (LottoGame) game;
         System.out.println(lottoGame.getLottoPurchaseAmount() + message.get("purchased"));
         for (Lotto lotto : lottoGame.getPurchasedLottos()) {
             System.out.println(lotto.getNumbers());

@@ -6,8 +6,7 @@ public enum SystemConstant {
     WINNING_STATS_START(1),
     WINNING_STATS_SIZE(SystemConstant.LOTTO_RANK_COUNT.value + SystemConstant.WINNING_STATS_START.getValue()),
     NOTHING(0),
-    MULT_FACTOR(10000),
-    DIV_FACTOR(100);
+    CUNVERT_PERCENTAGE_FACTOR(100);
 
     private final int value;
 

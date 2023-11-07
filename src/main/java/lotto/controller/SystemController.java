@@ -27,6 +27,6 @@ public class SystemController {
 
     public void showResult() {
         OutputView.printWinningStats(winningStats);
-        OutputView.printProfitMargin(purchasedAmount.getProfitMargin(winningStats));
+        OutputView.printProfitMargin(purchasedAmount.getProfitMarginAsFormat(winningStats));
     }
 }

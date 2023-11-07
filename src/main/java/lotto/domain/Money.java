@@ -54,11 +54,11 @@ public class Money {
         return (int) (value / SystemConstant.LOTTO_TICKET_PRICE.getValue());
     }
 
-    public double getProfitMargin(WinningStats winningStats) {
-        return getProfitMarginNumerator(winningStats.getProfit()) / SystemConstant.DIV_FACTOR.getValue();
+    public double getProfitMarginAsFormat(WinningStats winningStats) {
+        return getProfitMargin(winningStats.getProfit()) * SystemConstant.CUNVERT_PERCENTAGE_FACTOR.getValue();
     }
 
-    private double getProfitMarginNumerator(long profit) {
-        return (((double) profit / value) * SystemConstant.MULT_FACTOR.getValue());
+    private double getProfitMargin(long profit) {
+        return (double) profit / value;
     }
 }

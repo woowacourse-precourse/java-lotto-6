@@ -6,8 +6,11 @@ import lotto.Model.UserLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -28,6 +31,15 @@ class LottoTest extends NsTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("로또 번호의 길이 예외발생 코드")
+    @Test
+    void duplicationCheckTest(){
+        // when
+        assertThatThrownBy(() -> {
+            new Lotto(List.of(1, 45, 3, 2, 4, 7, 8));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Override
     protected void runMain() {

@@ -4,10 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoUtil {
-    final String NUM_COMMA_REG = "^[0-9,]+$";
+    final String NUM_REG = "[0-9]+";
 
     public String getUserInput() {
         return Console.readLine();
@@ -22,11 +23,8 @@ public class LottoUtil {
         return lottos;
     }
 
-    public boolean validateWinningNumber(String winningNumber) {
-        if(winningNumber.matches(NUM_COMMA_REG)) {
-            return true;
-        }
-        return false;
+    public boolean validateNumberCheck(String number) {
+        String deleteCommaNumber = number.replaceAll(",", "").replaceAll(" ", "");
+        return deleteCommaNumber.matches(NUM_REG);
     }
-
 }

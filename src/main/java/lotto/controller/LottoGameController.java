@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.domain.Bonus;
 import lotto.model.domain.LottoMachine;
-import lotto.model.domain.LottoResultChecker;
+import lotto.model.domain.Ranking;
+import lotto.service.LottoResultCheckService;
 import lotto.model.domain.Purchase;
 import lotto.model.domain.Statistics;
 import lotto.model.domain.WinningLotto;
@@ -18,6 +20,7 @@ public class LottoGameController {
     private final PurchaseService purchaseService = new PurchaseService();
     private final WinningNumberService winningNumberService = new WinningNumberService();
     private final BonusNumberService bonusNumberService = new BonusNumberService();
+    private final LottoResultCheckService lottoResultCheckService = new LottoResultCheckService();
 
     public LottoGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -25,11 +28,15 @@ public class LottoGameController {
     }
 
     public void playing() {
+        //로또를 발급하고, 당첨번호와 보너스 번호를 입력한다.
         Purchase purchase = purchaseLottoTickets();
         LottoMachine lottoTickets = getLottoTickets(purchase);
         WinningLotto winningNumbers = getWinningNumbers();
         Bonus bonusNumber = getBonusNumber(winningNumbers);
-        getLotteryStatistics(lottoTickets, purchase, winningNumbers, bonusNumber);
+
+        //발급된 로또와 당첨번호,보너스 번호를 비교하여 랭킹 리스트를 가져온다.
+        List<Ranking> rankings = getLottoRanking(lottoTickets, winningNumbers, bonusNumber);
+        getLotteryStatistics(rankings, purchase);
     }
 
     private LottoMachine getLottoTickets(Purchase purchase) {
@@ -39,7 +46,6 @@ public class LottoGameController {
         return lottoMachine;
     }
 
-    //TODO: PurchaseService가 Purchase 반환하게 만들기
     private Purchase purchaseLottoTickets() {
         Purchase purchase = null;
         while(purchase == null) {
@@ -49,7 +55,6 @@ public class LottoGameController {
         return purchase;
     }
 
-    //TODO: 메서드 리팩토링
     private WinningLotto getWinningNumbers() {
         WinningLotto winningLotto = null;
         while (winningLotto == null) {
@@ -59,7 +64,6 @@ public class LottoGameController {
         return winningLotto;
     }
 
-    //TODO: 메서드 리팩토링
     private Bonus getBonusNumber(WinningLotto winningLotto) {
         Bonus bonus = null;
         while (bonus == null) {
@@ -69,11 +73,14 @@ public class LottoGameController {
         return bonus;
     }
 
-    private void getLotteryStatistics(LottoMachine lottoMachine, Purchase purchase, WinningLotto winningLotto, Bonus bonus) {
-        LottoResultChecker resultChecker = new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto, bonus);
+    private List<Ranking> getLottoRanking(LottoMachine lottoMachine, WinningLotto winningLotto, Bonus bonus) {
+        return lottoResultCheckService.checkResult(lottoMachine.getIssuedLotto(), winningLotto, bonus);
+    }
+
+    private void getLotteryStatistics(List<Ranking> rankings, Purchase purchase) {
         Statistics statistics = new Statistics();
         statistics.makeResultBoard();
-        statistics.createData(resultChecker.checkResult());
+        statistics.createData(rankings);
 
         outputView.printLotteryStatistics();
         outputView.printStatisticsResult(statistics.getResults());

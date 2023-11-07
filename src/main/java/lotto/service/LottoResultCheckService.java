@@ -1,20 +1,16 @@
-package lotto.model.domain;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.domain.Bonus;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Ranking;
+import lotto.model.domain.Result;
+import lotto.model.domain.WinningLotto;
 
-public class LottoResultChecker {
-    private final List<Lotto> issuedLotto;
-    private final WinningLotto winningLotto;
-    private final Bonus bonus;
+public class LottoResultCheckService {
 
-    public LottoResultChecker(List<Lotto> issuedLotto, WinningLotto winningLotto, Bonus bonus) {
-        this.issuedLotto = issuedLotto;
-        this.winningLotto = winningLotto;
-        this.bonus = bonus;
-    }
-
-    public List<Ranking> checkResult() {
+    public List<Ranking> checkResult(List<Lotto> issuedLotto, WinningLotto winningLotto, Bonus bonus) {
         List<Ranking> results = new ArrayList<>();
         for(Lotto lotto : issuedLotto) {
             List<Integer> issuedNumbers = lotto.getNumbers();

@@ -56,6 +56,15 @@ public class Validator {
         }
     }
 
+    public static void validateAscending(List<Integer> numbers){
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i) > numbers.get(i + 1)) {
+                System.out.println(SORT_ERROR_MESSAGE);
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     public static void validateIsNumberInRange(int winningNumber){
         if ( !(winningNumber >= MIX_LOTTO_NUMBER && winningNumber <= MAX_LOTTO_NUMBER) ){
             System.out.println(INPUT_ERROR_MESSAGE);

@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.core.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -99,6 +100,17 @@ public class ValidatorTest {
     void 구매금액_단위_테스트(){
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> Validator.validatePriceModIsZero("1900"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @DisplayName("숫자열 오름차순 정렬 테스트")
+    @Test
+    void 오름차순_정렬_테스트(){
+        List<Integer> numbers = List.of(21,6,12,4,1,2);
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> Validator.validateAscending(numbers))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }

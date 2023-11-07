@@ -1,6 +1,7 @@
 package lotto.core;
 
 import lotto.utils.UserInput;
+import lotto.utils.Validator;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -43,7 +44,9 @@ public class Lottery {
     private void getRandomLottoNumbers(){
         printLottoCount(countOfLotto);
         for(int i=0;i<countOfLotto;i++){
-            setLottos(getRandomNumbers());
+            List<Integer> newRandomNumbers = getRandomNumbers();
+            Validator.validateAscending(newRandomNumbers);
+            setLottos(newRandomNumbers);
         }
         printNewLine();
     }

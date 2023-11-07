@@ -1,4 +1,4 @@
-package Enum;
+package enums;
 
 public enum LottoError {
     NUMBER_FORMAT_ERROR("로또 번호는 숫자로만 이루어져야 합니다."),

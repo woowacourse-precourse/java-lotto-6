@@ -1,4 +1,4 @@
-package Enum;
+package enums;
 
 public enum LottoScore {
     FIRST(6, false, 2000000000),

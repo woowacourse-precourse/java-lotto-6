@@ -1,12 +1,10 @@
 package lotto.model;
 
 public class TotalProfitCalculator {
-    private static final double SECOND_DECIMAL_NUMBER = 10.0;
-    private final double totalProfit;
+    private static final double SECOND_DECIMAL_NUMBER = 100.0;
     private final int payment;
 
-    public TotalProfitCalculator(LottoStatistics lottoStatistics, int payment) {
-        this.totalProfit = calculateTotalProfit(lottoStatistics);
+    public TotalProfitCalculator(int payment) {
         this.payment = payment;
     }
 
@@ -31,6 +29,7 @@ public class TotalProfitCalculator {
     }
 
     private double roundToTwoDecimal(double value) {
+        value *= SECOND_DECIMAL_NUMBER;
         return Math.round(value * SECOND_DECIMAL_NUMBER) / SECOND_DECIMAL_NUMBER;
     }
 }

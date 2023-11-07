@@ -54,7 +54,7 @@ public class LottoGameController {
     }
 
     private void outputTotalProfit(int payment) {
-        totalProfitCalculator = new TotalProfitCalculator(lottoStatistics, payment);
+        totalProfitCalculator = new TotalProfitCalculator(payment);
         outputView.showTotalProfit(totalProfitCalculator.calculateTotalProfit(lottoStatistics));
     }
 }

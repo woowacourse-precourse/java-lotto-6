@@ -3,7 +3,6 @@ import lotto.validator.MoneyValidator;
 
 public class Money {
 
-    private int lottoTickets;
     private String money;
 
     public Money(String money){

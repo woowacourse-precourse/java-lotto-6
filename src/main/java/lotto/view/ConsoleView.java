@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.Ranking;
 
 import java.util.List;
 
@@ -44,12 +45,12 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void printScoreDetails(int[] scores) {
-        out("3개 일치 (5,000원) - " + scores[0] + "개");
-        out("4개 일치 (50,000원) - " + scores[1] + "개");
-        out("5개 일치 (1,500,000원) - " + scores[2] + "개");
-        out("5개 일치, 보너스 볼 일치 (30,000,000원) - " + scores[3] + "개");
-        out("6개 일치 (2,000,000,000원) - " + scores[4] + "개");
+    public void printScoreDetails(List rankings) {
+        out("3개 일치 (5,000원) - " + Ranking.getCount(rankings, Ranking.FIFTH) + "개");
+        out("4개 일치 (50,000원) - " + Ranking.getCount(rankings, Ranking.FORTH) + "개");
+        out("5개 일치 (1,500,000원) - " + Ranking.getCount(rankings, Ranking.THIRD) + "개");
+        out("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Ranking.getCount(rankings, Ranking.SECOND) + "개");
+        out("6개 일치 (2,000,000,000원) - " + Ranking.getCount(rankings, Ranking.FIRST) + "개");
     }
 
     @Override

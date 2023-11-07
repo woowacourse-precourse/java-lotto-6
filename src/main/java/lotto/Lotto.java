@@ -18,5 +18,8 @@ public class Lotto {
         }
     }
 
+    public void printLottoPaper(Lotto lotto) {
+        System.out.println(lotto.numbers);
+    }
 
 }

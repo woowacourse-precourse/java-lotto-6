@@ -54,7 +54,7 @@ class LottoTest {
     @Test
     void When_CreateLotto_Then_NotEqual() {
         //given
-        Lotto lotto = Lotto.from(List.of(1,2,3,4,5,6));
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         List<Integer> lotto1Numbers = lotto.getNumbers();

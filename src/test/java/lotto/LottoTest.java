@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,7 @@ class LottoTest {
     @DisplayName("로또 번호를 저장할 때 정렬하는지 확인한다.")
     @Test
     void sortLottoNumberSave() {
-        List<Lotto> lottos = Lotto.generator(LOTTO_PURCHASE_COUNT);
+        List<Lotto> lottos = Lottos.generator(LOTTO_PURCHASE_COUNT);
 
         lottos.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();

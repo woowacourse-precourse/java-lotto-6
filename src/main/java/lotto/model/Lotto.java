@@ -4,29 +4,15 @@ import static lotto.util.Validation.validateDuplication;
 import static lotto.util.Validation.validateRange;
 import static lotto.util.Validation.validateSize;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import lotto.util.RandomNumber;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    public static List<Lotto> generator(int count) {
-        List<Lotto> result = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            List<Integer> number = RandomNumber.generate();
-            Collections.sort(number);
-
-            result.add(new Lotto(number));
-        }
-        return result;
     }
 
     public List<Integer> getNumbers() {

@@ -7,9 +7,7 @@ import static lotto.util.message.Guide.PURCHASE_AMOUNT;
 import static lotto.util.message.Guide.WINNING_NUMBER;
 import static lotto.view.InputView.input;
 
-import java.util.List;
 import lotto.model.BonusNumber;
-import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
 import lotto.model.WinningNumber;
@@ -44,10 +42,9 @@ public class LottoController {
     private void buyLottos() {
         int count = purchase.getCount();
 
-        List<Lotto> lotto = Lotto.generator(count);
+        lottos = new Lottos(Lottos.generator(count));
 
-        lottos = new Lottos(lotto);
-        OutputView.printLottoInfo(lotto, count);
+        OutputView.printLottoInfo(lottos.getLottos(), count);
     }
 
     private void getWinningLotto() {

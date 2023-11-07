@@ -4,17 +4,17 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.util.Converter;
+import lotto.util.InputConverter;
 import lotto.validation.InputValidator;
 
 public class InputView {
 
   private final InputValidator inputValidator;
-  private final Converter converter;
+  private final InputConverter inputConverter;
 
-  public InputView(InputValidator inputValidator, Converter converter) {
+  public InputView(InputValidator inputValidator, InputConverter inputConverter) {
     this.inputValidator = inputValidator;
-    this.converter = converter;
+    this.inputConverter = inputConverter;
   }
 
   private enum InputMessage {
@@ -34,13 +34,13 @@ public class InputView {
     String input = Console.readLine();
     validatePurchaseMoney(input);
 
-    return converter.toNumber(input);
+    return inputConverter.inputToNumber(input);
   }
 
   public List<Integer> inputWinningNumbers() {
     System.out.println(InputMessage.WINNING_NUMBER.message);
     String input = Console.readLine();
-    String[] inputNumbers = converter.toSplit(input);
+    String[] inputNumbers = inputConverter.inputToSplit(input);
     validateWinningNumbers(input, inputNumbers);
 
     return Arrays.stream(inputNumbers)

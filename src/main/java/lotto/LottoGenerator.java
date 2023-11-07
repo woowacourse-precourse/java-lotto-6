@@ -15,10 +15,10 @@ public class LottoGenerator {
 
     public static LottoGenerator from(int amount) {
         if (amount < 1000) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또의 최소 구매 가능 금액은 1,000원입니다.");
         }
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로만 구매 가능합니다.");
         }
         return new LottoGenerator(amount);
     }

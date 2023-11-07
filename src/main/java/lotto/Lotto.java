@@ -17,7 +17,7 @@ public class Lotto {
                 .toList();
 
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 중복없이 입력하세요.");
         }
     }
 
@@ -29,7 +29,7 @@ public class Lotto {
 
     private static void validateRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력하세요.");
         }
     }
 

@@ -162,3 +162,93 @@ classDiagram
 		SIXTH
 	}
 ```
+
+## sequence Diagram
+```mermaid
+sequenceDiagram
+    title 로또 구매
+	actor 사용자
+	participant GameManager
+	participant GameView
+	사용자 -->> +GameManager : 로또 구매
+	GameManager->>+GameView: puchaseAmountView()
+	GameView->>OutputView: printGetPurchaseAmount()
+	GameView->>+InputView: readPurchaseAmount()
+	InputView->>InputView: validation()
+	InputView-->>-GameView: money: int
+	GameView-->>-GameManager: 
+	GameManager->>User: setMoney(money)
+	GameManager->>+User: buyLotteries(machine)
+	loop enough money
+			User->>+Machine: newLottery()
+			Machine->>+Lotto: Lotto()
+			Lotto-->>-Machine: lotto
+			Machine-->>-User: lotto
+	end
+	User-->>-GameManager: 
+	GameManager->>+User: getLotteries()
+	User-->>-GameManager: lotteries
+	GameManager->>+GameView: lotteriesView(lotteries)
+	GameView->>OutputView: printLotteries(lotteries)
+	GameView-->>-GameManager: 
+	GameManager -->> -사용자: 
+	
+```
+```mermaid
+sequenceDiagram
+    title 당첨 번호 입력
+	actor 사용자
+	participant GameManager
+	participant GameView
+	사용자 -->> +GameManager : 당첨 번호 입력
+	GameManager->>+GameView: winningNumberView()
+	GameView->>OutputView: printGetWinningNumber()
+	GameView->>+InputView: readWinningNumber()
+	InputView->>InputView: validation()
+	InputView-->>-GameView: numbers
+	GameView-->>-GameManager: numbers
+	GameManager->>+GameView: bonusNumberView()
+	GameView->>OutputView: printGetBonusNumber()
+	GameView ->> +InputView: readBonusNumber()
+	InputView->>InputView: validation()
+	InputView-->>-GameView: bonus
+	GameView-->>-GameManager: bonus
+	GameManager->>Machine: setNumbers(numbers, bonus)
+	GameManager -->> -사용자: 
+	
+```
+```mermaid
+sequenceDiagram
+    title 보상금 수령
+	actor 사용자
+	participant GameManager
+	사용자 --> +GameManager : 보상금 수령
+	GameManager ->> +User : collectPrize(machine: Machine)
+	loop All lotteries
+		User ->> +Machine : payPrize(lottery: Lotto)
+		Machine ->> +Lotto : getComparisionScore(lottery: Lotto)
+		Lotto -->> -Machine : comparisionScore
+		Machine -->> -User : prize
+	end
+	User -->> -GameManager : 
+	GameManager --> -사용자: 
+```
+```mermaid
+sequenceDiagram
+	actor 사용자
+	사용자 --> +GameManager : 결과 출력
+	GameManager ->>  +GameView : resultView(user)
+	GameView ->> +User : getPrize()
+	User -->> -GameView : prizes
+	GameView ->> +OutputView : printPrizes(prizes)
+	OutputView -->> -GameView : 
+	GameView ->> +User : getRateOfAmount()
+	User -->> -GameView : rateOfAmount
+	GameView ->> +OutputView : printRateOfAmount()
+	OutputView -->> -GameView : 
+	GameView -->> -GameManager : 
+	
+	GameManager --> -사용자 : 
+	
+	
+```

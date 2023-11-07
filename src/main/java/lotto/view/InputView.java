@@ -2,6 +2,9 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -13,6 +16,36 @@ public class InputView {
             validateNumber();
         }
         return purchaseAmount;
+    }
+
+    public static List<Integer> inputWinningNum() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] winningNum = readLine().split(",");
+
+        List<Integer> nums = new ArrayList<>();
+        try {
+            for (String num : winningNum) {
+                int number = Integer.parseInt(num);
+                validateLottoNum(number);
+                validateDuplicateNum(number, nums);
+                nums.add(number);
+            }
+        } catch (NumberFormatException e) {
+            validateNumber();
+        }
+        return nums;
+    }
+
+    public static void validateDuplicateNum(int number, List<Integer> nums) {
+        if (nums.contains(number)) {
+            throw new IllegalArgumentException("중복된 번호가 존재합니다.");
+        }
+    }
+
+    public static void validateLottoNum(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("각 번호는 1~45사이 값이여야 합니다.");
+        }
     }
 
     public static void validateNumber() {

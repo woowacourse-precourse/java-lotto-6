@@ -19,19 +19,8 @@ public class InputAdaptor {
      */
     public static int readPurchasePrice() throws IllegalArgumentException {
         String rawStr = Console.readLine();
-        validateRawStringOfPurchasePrice(rawStr);
-        int parsedPurchasePrice = StringConverter.toInt(rawStr);
-        validateParsedPurchasePrice(parsedPurchasePrice);
-        return parsedPurchasePrice;
-    }
-
-    private static void validateRawStringOfPurchasePrice(String rawStr) {
         Validator.validateStringToBeInteger(rawStr);
-    }
-
-    private static void validateParsedPurchasePrice(int num) {
-        Validator.validateSign(num);
-        Validator.validateDivisibility(num);
+        return StringConverter.toInt(rawStr);
     }
 
     /**
@@ -45,35 +34,13 @@ public class InputAdaptor {
      */
     public static List<Integer> readWinningNumbers() throws IllegalArgumentException {
         String rawStr = Console.readLine();
-        validateRawStringOfWinningNumbers(rawStr);
-        List<Integer> parsedWinningNumbers = StringConverter.convertWinningNumbers(rawStr);
-        validateParsedWinningNumbers(parsedWinningNumbers);
-        return parsedWinningNumbers;
-    }
-
-    private static void validateRawStringOfWinningNumbers(String rawStr) {
         Validator.validateStringToBeMultipleIntegers(rawStr);
-    }
-
-    private static void validateParsedWinningNumbers(List<Integer> parsedWinningNumbers) {
-        Validator.validateRangeOfWinningNumbers(parsedWinningNumbers);
-        Validator.validateDuplicate(parsedWinningNumbers);
-        Validator.validateNumOfWinningNumbers(parsedWinningNumbers);
+        return StringConverter.convertWinningNumbers(rawStr);
     }
 
     public static int readBonusNumber() {
         String rawStr = Console.readLine();
-        validateRawStringOfBonusNumber(rawStr);
-        int parsedBonusNumber = StringConverter.toInt(rawStr);
-        validateParsedBonusNumber(parsedBonusNumber);
-        return parsedBonusNumber;
-    }
-
-    private static void validateRawStringOfBonusNumber(String rawStr) {
         Validator.validateStringToBeInteger(rawStr);
-    }
-
-    private static void validateParsedBonusNumber(int parsedBonusNumber) {
-        Validator.validateRangeOfBonusNumber(parsedBonusNumber);
+        return StringConverter.toInt(rawStr);
     }
 }

@@ -15,15 +15,6 @@ public enum WinningHistory {
         this.prizeMoney = prizeMoney;
     }
 
-    public static WinningHistory getWinningHistoryType(int matchNumbers, boolean isMatchBonusNumber) {
-        for (WinningHistory rank : values()) {
-            if (rank.matches(matchNumbers, isMatchBonusNumber)) {
-                return rank;
-            }
-        }
-        return null;
-    }
-
 
     public int getMatchNumbers() {
         return matchNumbers;

@@ -22,14 +22,14 @@ public class Money {
         return new Money(money + operand.money);
     }
 
-    public static Money of(Integer money) {
+    public Integer getMoney() {
+        return money;
+    }
+
+    public static Money from(Integer money) {
         validateRemainMoney(money);
         validateMinimumAmount(money);
         return new Money(money);
-    }
-
-    public Integer getMoney() {
-        return money;
     }
 
     private static void validateMinimumAmount(Integer money) {

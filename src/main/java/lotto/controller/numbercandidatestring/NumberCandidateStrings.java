@@ -16,7 +16,7 @@ public class NumberCandidateStrings {
         return numberCandidateStrings.stream().map(NumberCandidateString::toNumber).map(LottoNumber::new).toList();
     }
 
-    public static NumberCandidateStrings valueOf(String numberCandiate){
+    public static NumberCandidateStrings from(String numberCandiate){
         List<NumberCandidateString> numberCandidateStrings = Arrays.stream(toSplit(numberCandiate))
                 .map(NumberCandidateString::new)
                 .toList();

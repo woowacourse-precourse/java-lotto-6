@@ -41,7 +41,7 @@ public class LottoController {
 
     private void confirmWinning(Lottos lottos, Money purchaseAmount) {
         WinnerLotto winnerLotto= winnerLottoFactory.generate(
-                NumberCandidateStrings.valueOf(InputView.receiveWinningNumber())
+                NumberCandidateStrings.from(InputView.receiveWinningNumber())
                 ,new NumberCandidateString(InputView.receiveBonusNumber()));
 
         List<Rank> confirmResult = lottos.chargeResult(winnerLotto);

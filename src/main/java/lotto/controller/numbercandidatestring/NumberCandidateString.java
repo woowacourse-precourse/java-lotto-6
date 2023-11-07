@@ -13,7 +13,7 @@ public class NumberCandidateString {
     }
 
     public Money toMoney() {
-        return Money.of(toNumber());
+        return Money.from(toNumber());
     }
 
     public Integer toNumber() {

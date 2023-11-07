@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.*;
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,6 +57,21 @@ class LottoResultServiceTest {
                 .forEach(reward -> assertThat(rewardCount.get(reward)).isEqualTo(1));
     }
 
+    @DisplayName("로또 결과와 로또 구매 개수를 입력받아 이익률을 계산하는지")
+    @Test
+    void countEarnRate() {
+        // given
+        List<LottoResult> lottoResults = createLottoResultsTestObject();
+        Map<LottoReward, Integer> reward = lottoResultService.confirmRewardLottos(lottoResults);
+        Integer lottoCount = 10;
+
+        // when
+        Double earnRate = lottoResultService.countEarnRate(reward, lottoCount);
+
+        // then
+        assertThat(earnRate).isCloseTo(20315550, Offset.offset(0.01));
+    }
+
     private List<LottoResult> createLottoResultsTestObject() {
         List<LottoResult> lottoResults = new ArrayList<>();
 
@@ -67,9 +83,5 @@ class LottoResultServiceTest {
         lottoResults.add(new LottoResult(0, false));
 
         return lottoResults;
-    }
-
-    @Test
-    void countEarnRate() {
     }
 }

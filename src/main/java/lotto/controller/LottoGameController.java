@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.PlayerLotto;
+import lotto.dto.PurchaseLottoDto;
 import lotto.service.LottoGameService;
 import lotto.utils.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
@@ -26,5 +30,11 @@ public class LottoGameController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private PlayerLotto purchasePlayerLotto(final int purchaseTotalCount) {
+        List<Lotto> purchaseLotto = lottoGameService.createPlayerLotto(purchaseTotalCount);
+        outputView.printPurchaseLotto(new PurchaseLottoDto(purchaseLotto));
+        return new PlayerLotto(purchaseLotto);
     }
 }

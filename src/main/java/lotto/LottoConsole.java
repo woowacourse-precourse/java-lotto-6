@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Prize.*;
 
 public class LottoConsole {
   private Integer spendMoney;
@@ -85,6 +86,24 @@ public class LottoConsole {
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       getBonusNumber();
+    }
+  }
+
+  private void getScores() {
+    for(Lotto lotto : paidLottos) {
+      Prize prize = lotto.getScore(winningLotto, bonusNumber);
+      if(prize == FIRST_PRIZE)
+          scores.set(0, scores.get(0) + 1);
+      if(prize == SECOND_PRIZE)
+        scores.set(1, scores.get(1) + 1);
+      if(prize == THIRD_PRIZE)
+        scores.set(2, scores.get(2) + 1);
+      if(prize == FOURTH_PRIZE)
+        scores.set(3, scores.get(3) + 1);
+      if(prize == FIFTH_PRIZE)
+        scores.set(4, scores.get(4) + 1);
+      if(prize == FAIL)
+        scores.set(5, scores.get(5) + 1);
     }
   }
 }

@@ -15,7 +15,7 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
                         Collectors.collectingAndThen(Collectors.counting(), Long::intValue))));
     }
 
-    public List<Integer> calculateWinningCounts() {
+    public List<Integer> getSortedRewardCounts() {
         return Arrays.stream(LottoRewardCondition.values())
                 .filter(LottoRewardCondition::isNotFail)
                 .map(condition -> results.getOrDefault(condition, 0))

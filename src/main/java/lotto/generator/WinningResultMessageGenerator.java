@@ -34,9 +34,9 @@ public class WinningResultMessageGenerator {
     }
 
     private static String createWinningCountMessage(final WinningResults winningResults) {
-        List<Integer> winningCounts = winningResults.calculateWinningCounts();
-        return IntStream.range(0, winningCounts.size())
-                .mapToObj(i -> String.format(WINNING_COUNT_FORMATS.get(i), winningCounts.get(i)))
+        List<Integer> sortedRewardCounts = winningResults.getSortedRewardCounts();
+        return IntStream.range(0, sortedRewardCounts.size())
+                .mapToObj(i -> String.format(WINNING_COUNT_FORMATS.get(i), sortedRewardCounts.get(i)))
                 .collect(Collectors.joining());
     }
 }

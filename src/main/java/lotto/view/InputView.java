@@ -37,6 +37,7 @@ public class InputView {
                         mapToInt(Integer::parseInt).boxed().toList();
 
                 validateRangeInputLottoNumbers(winningNumbers);
+                validateAmountInputLottoNumbers(winningNumbers);
                 validateUniqueInputLottoNumbers(winningNumbers);
 
                 return winningNumbers;

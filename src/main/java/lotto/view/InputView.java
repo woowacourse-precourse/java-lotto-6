@@ -27,6 +27,7 @@ public class InputView {
         try{
             result = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e){
+            System.out.println(INVALID_MONEY_FORMAT);
             throw new IllegalArgumentException(INVALID_MONEY_FORMAT);
         }
 

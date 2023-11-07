@@ -3,11 +3,12 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.InputMessage;
 
 public class InputView {
     public List<Integer> inputWinningLottoStandardNumber() {
         List<Integer> lottoNumbers;
-        System.out.println("당첨 번호를 입력해주세요.");
+        System.out.println(InputMessage.RECEIVE_LOTTO_NUMBER.getMessage());
         try {
             lottoNumbers = stringListToIntList(Arrays.stream(Console.readLine().split(",")).toList());
         } catch (IllegalArgumentException e) {
@@ -18,7 +19,7 @@ public class InputView {
     }
 
     public int inputWinningLottoBonusNumber() {
-        System.out.println("보너스 번호를 입력해주세요");
+        System.out.println(InputMessage.RECEIVE_BONUS_NUMBER.getMessage());
         try {
             return Integer.parseInt(Console.readLine().trim());
         } catch(IllegalArgumentException e) {
@@ -28,7 +29,7 @@ public class InputView {
     }
 
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(InputMessage.RECEIVE_MONEY.getMessage());
         try {
             return Integer.parseInt(Console.readLine().trim());
         } catch(IllegalArgumentException e) {

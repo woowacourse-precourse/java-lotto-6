@@ -21,8 +21,12 @@ import lotto.domain.Lotto;
 public class Censor {
 
     public static void validateLotto(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.getValue()) {
+        if (!isValidLottoNumberSize(numbers)) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getContent());
+        }
+
+        if (!hasUniqueNumbers(numbers)) {
+            throw new IllegalArgumentException(UNIQUE_NUMBER_ERROR.getContent());
         }
     }
 
@@ -33,13 +37,11 @@ public class Censor {
     }
 
     public static void validateAnnouncementNumber(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
+        if (!hasUniqueNumbers(numbers)) {
             throw new IllegalArgumentException(UNIQUE_NUMBER_ERROR.getContent());
         }
 
-        if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_RANGE.getValue()
-                || number > MAX_LOTTO_RANGE.getValue())) {
+        if (numbers.stream().anyMatch(number -> !isValidLottoNumber(number))) {
             throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getContent());
         }
     }
@@ -83,6 +85,18 @@ public class Censor {
         if (input.startsWith(",") || input.endsWith(",")) {
             throw new IllegalArgumentException(INPUT_COMMA_ERROR.getContent());
         }
+    }
+
+    private static boolean hasUniqueNumbers(List<Integer> numbers) {
+        return numbers.size() == new HashSet<>(numbers).size();
+    }
+
+    private static boolean isValidLottoNumberSize(List<Integer> numbers) {
+        return numbers.size() == LOTTO_SIZE.getValue();
+    }
+
+    private static boolean isValidLottoNumber(int number) {
+        return number >= MIN_LOTTO_RANGE.getValue() && number <= MAX_LOTTO_RANGE.getValue();
     }
 
 }

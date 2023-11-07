@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResultStore {
-    private final Map<Integer, Integer> lottoResultStore = new HashMap<>();
     private static final int FIFTH_AWARD_REWARD_MONEY = 5_000;
     private static final int FOURTH_AWARD_REWARD_MONEY = 50_000;
     private static final int THIRD_AWARD_REWARD_MONEY = 1_500_000;
     private static final int SECOND_AWARD_REWARD_MONEY = 30_000_000;
     private static final int FIRST_AWARD_REWARD_MONEY = 2_000_000_000;
+    private final Map<Integer, Integer> lottoResultStore = new HashMap<>();
 
     public void resetLottoResultStore() {
         for (LottoWinningStatus status : LottoWinningStatus.values()) {

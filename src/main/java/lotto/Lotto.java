@@ -27,7 +27,7 @@ public class Lotto {
         lotteryNumbers.append(Symbol.OPEN_SQUARE_BRACKET.getSymbol());
         lotteryNumbers.append(numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(Symbol.COMMA.getSymbol())));
+                .collect(Collectors.joining(Symbol.COMMA.getSymbol() + Symbol.SPACE.getSymbol())));
         lotteryNumbers.append(Symbol.CLOSE_SQUARE_BRACKET.getSymbol());
         return lotteryNumbers.toString();
     }

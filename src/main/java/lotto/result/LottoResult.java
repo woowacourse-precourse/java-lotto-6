@@ -51,7 +51,7 @@ public class LottoResult {
     public void printRateOfReturn() {
         StringBuilder sb;
         // 수익률 출력 형식에 맞는 DecimalFormat
-        DecimalFormat decFormat = new DecimalFormat("###,###.0");
+        DecimalFormat decFormat = new DecimalFormat("###,##0.0");
         sb = new StringBuilder();
         sb.append("총 수익률은 ").append(decFormat.format(calculateRateOfReturn())).append("%입니다.");
 

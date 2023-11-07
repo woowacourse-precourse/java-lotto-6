@@ -27,13 +27,19 @@ public class LottoShop {
         int token = money / LottoConstants.PRICE_FOR_ONE_LOTTO;
         System.out.println(token + "개를 구매했습니다.");
 
+        List<Lotto> lottos = publishLottos(token);
+
+        return lottos;
+    }
+
+    // 로또 발행
+    public List<Lotto> publishLottos(int token) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < token; i++) {
             // 로또 발행
             lottos.add(lottoGenerator.getLotto());
             lottos.get(i).print();
         }
-
         return lottos;
     }
 }

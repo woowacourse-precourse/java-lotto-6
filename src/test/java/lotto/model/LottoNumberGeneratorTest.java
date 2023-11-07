@@ -15,7 +15,7 @@ class LottoNumberGeneratorTest extends NsTest {
 
     @DisplayName("숫자 생성기가 1~45 사이 정수 6개를 생성하는지 확인.")
     @Test
-    public void createNumbers_test() {
+    public void createNumbersTest() {
         assertThat(LottoNumberGenerator.createNumbers()).hasSize(SIZE)
                 .allMatch(number -> number >= START && number <= END);
     }

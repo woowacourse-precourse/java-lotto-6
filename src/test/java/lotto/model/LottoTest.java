@@ -27,14 +27,14 @@ class LottoTest extends NsTest {
 
     @DisplayName("당첨 번호 생성 시 형식을 지키지 않으면 예외 발생.")
     @Test
-    void Lotto_constructor_test() {
+    void createLottoByIllegalFormat() {
         assertThatThrownBy(() -> new Lotto("1, 2, 3, 4, 5, 6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호와 발행한 로또 번호 중 같은 번호 개수를 테스트.")
     @Test
-    void countMatch_test() {
+    void countMatchTest() {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
                 .countMatch(new Lotto(List.of(1, 2, 3, 4, 5, 6)))
         ).isEqualTo(6);

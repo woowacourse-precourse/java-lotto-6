@@ -6,12 +6,12 @@ public class Picker {
     private List<Integer> winNumbers;
     private Integer winBonusNumber;
 
-    public List<Integer> generateWinNumbers(List<Integer> winNumbers){
+    public List<Integer> generateWinNumbers(){
         Random random = new Random();
         return random.generateLottoNumbers();
     }
 
-    public int getWinBonusNumber(){
+    public int generateWinBonusNumber(){
         Random random = new Random();
         int startNumber = 1;
         int endNumber = 45;

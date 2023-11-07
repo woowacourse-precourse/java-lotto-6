@@ -64,4 +64,26 @@ public class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("중복된 값은 입력할 수 없습니다.");
     }
+
+    @Test
+    public void 로또의_숫자개수가_6보다작으면_예외처리() {
+        // Given
+        String unrefinedNumbers = "1,2,3,4,5";
+
+        // When && Then
+        assertThatThrownBy(() -> Lotto.create(unrefinedNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 개수의 숫자를 입력하세요.");
+    }
+
+    @Test
+    public void 로또의_숫자개수가_6보다많으면_예외처리() {
+        // Given
+        String unrefinedNumbers = "1,2,3,4,5,6,7";
+
+        // When && Then
+        assertThatThrownBy(() -> Lotto.create(unrefinedNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 개수의 숫자를 입력하세요.");
+    }
 }

@@ -2,10 +2,12 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.Result;
 import lotto.parser.Parser;
-import lotto.util.Computer;
+import lotto.util.Counter;
 import lotto.util.Generator;
+import lotto.util.Matcher;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,6 +28,13 @@ public class Game {
         String bonusNumber = InputView.requestBonusNumber();
         int bonusLotto = Parser.parseBonusNumber(bonusNumber, winnigLotto);
 
-        List<Result> results = Computer.computeResult(tickets, winnigLotto, bonusLotto);
+        // 로또 번호 맞추기
+        List<Result> results = Matcher.matchResult(tickets, winnigLotto, bonusLotto);
+
+        // 당첨된 등수 세기
+        Rank rank = Counter.countRank(results);
+
+        // 당첨 통계 발표
+        OutputView.responseWinningStatics(rank);
     }
 }

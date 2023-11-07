@@ -12,6 +12,7 @@ import static lotto.view.constants.ConstantMessage.RESPONSE_WINNING_STATISTICS;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.view.constants.ConstantMessage;
 
 public class OutputView {
@@ -20,14 +21,14 @@ public class OutputView {
         printTickets(tickets);
     }
 
-    public static void responseWinningStatics() {
+    public static void responseWinningStatics(Rank rank) {
         ConstantMessage.printNotice(RESPONSE_WINNING_STATISTICS);
         ConstantMessage.printNotice(RESPONSE_HYPHEN_SEPARATOR);
-        ConstantMessage.printNotice(RESPONSE_FIFTH, 0);
-        ConstantMessage.printNotice(RESPONSE_FOURTH, 0);
-        ConstantMessage.printNotice(RESPONSE_THIRD, 0);
-        ConstantMessage.printNotice(RESPONSE_SECOND, 0);
-        ConstantMessage.printNotice(RESPONSE_FIRST, 0);
+        ConstantMessage.printNotice(RESPONSE_FIFTH, rank.getFifth());
+        ConstantMessage.printNotice(RESPONSE_FOURTH, rank.getFourth());
+        ConstantMessage.printNotice(RESPONSE_THIRD, rank.getThird());
+        ConstantMessage.printNotice(RESPONSE_SECOND, rank.getSecond());
+        ConstantMessage.printNotice(RESPONSE_FIRST, rank.getFirst());
         ConstantMessage.printNotice(RESPONSE_PROFIT_RATE, 0);
     }
 

@@ -1,21 +1,6 @@
 package lotto.domain;
 
-public class Result {
-    private final int matchWinningNumbers;
-    private final boolean matchBonusNumber;
-
-    public Result(int matchWinningNumbers, boolean matchBonusNumber) {
-        this.matchWinningNumbers = matchWinningNumbers;
-        this.matchBonusNumber = matchBonusNumber;
-    }
-
-    public int getMatchWinningNumbers() {
-        return matchWinningNumbers;
-    }
-
-    public boolean isMatchBonusNumber() {
-        return matchBonusNumber;
-    }
+public record Result(int matchWinningNumbers, boolean matchBonusNumber) {
 
     @Override
     public String toString() {

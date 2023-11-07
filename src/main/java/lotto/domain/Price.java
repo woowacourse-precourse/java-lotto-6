@@ -18,7 +18,7 @@ public class Price {
 
     private void validateZERO(int purchaseAmount){
         if(purchaseAmount == ZERO){
-            throw new IllegalArgumentException("금액이 0원입니다.");
+            throw new IllegalArgumentException("[ERROR] 금액이 0원입니다.");
         }
     }
 

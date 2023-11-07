@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.controller.NumberGenerator;
 
 public class Application {
+    static Lotto lotto;
     public static void main(String[] args) {
         NumberGenerator numbergenerator = new NumberGenerator();
         final int num = numbergenerator.inputBuyCost();
@@ -15,9 +16,17 @@ public class Application {
             System.out.println(st);
         }
 
-        String[] num3 = numbergenerator.InputCorrectLotto();
-        final List<Integer> num4 = numbergenerator.conversionInputToInteger(num3);
-
-        System.out.println(num4);
+        boolean end = true;
+        while(end){
+            try{
+                String[] num3 = numbergenerator.InputCorrectLotto();
+                final List<Integer> num4 = numbergenerator.conversionInputToInteger(num3);
+                lotto = new Lotto(num4);
+                end = false;
+            }catch (IllegalArgumentException e){
+                System.out.println(e);
+            }
+            
+        }
     }
 }

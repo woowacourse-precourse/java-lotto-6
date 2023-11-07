@@ -33,7 +33,7 @@ public class Lotto {
 
     private boolean numberSizeVaildation(List<Integer> numbers){
         for(int num : numbers){
-            if(num > 45 && num < 1){
+            if(num > 45 || num < 1){
                 return true;
             }
         }

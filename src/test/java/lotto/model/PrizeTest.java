@@ -22,4 +22,12 @@ public class PrizeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void notContainNumbers() {
+        assertThatThrownBy(() -> InputView.numberList("1,d,3,4"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+   
 }

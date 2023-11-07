@@ -1,6 +1,6 @@
 package lotto.validation.constant;
 
-public enum CommonInputConstant {
+public enum CommonErrorConstant {
 
     NULL_MESSAGE("[ERROR] 값에 null이 들어올 수 없습니다."),
     EMPTY_MESSAGE("[ERROR] 값에 빈 값이 들어올 수 없습니다."),
@@ -9,7 +9,7 @@ public enum CommonInputConstant {
 
     private String message;
 
-    CommonInputConstant(final String message) {
+    CommonErrorConstant(final String message) {
         this.message = message;
     }
 

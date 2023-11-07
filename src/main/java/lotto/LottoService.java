@@ -55,6 +55,11 @@ public class LottoService {
         }
     }
 
+    private void validateOneNumber(String input) {
+        containsNonNumericCharacters(input);
+        isNumberOverLimit(input);
+    }
+
     private void containsNonNumericCharacters(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());

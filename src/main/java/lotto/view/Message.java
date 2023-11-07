@@ -3,7 +3,6 @@ package lotto.view;
 public class Message {
     public static void  messageAboutPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        System.out.println();
     }
 
     public static void messageAboutUserLottoNumber() {

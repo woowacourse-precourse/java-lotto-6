@@ -38,7 +38,7 @@ public class Play {
 
     public static void inputWinning() {
         winningNumbers = createWinningNumber();
-        createBonusNumber(winningNumbers.getWinningNumbers());
+        bonus = createBonusNumber(winningNumbers.getWinningNumbers());
     }
 
     public static void winningResult() {

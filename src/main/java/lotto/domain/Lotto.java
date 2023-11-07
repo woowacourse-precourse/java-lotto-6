@@ -2,11 +2,11 @@ package lotto.domain;
 
 import static lotto.message.ErrorMessage.LOTTO_IS_NOT_SIX_DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
+import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.utils.LottoUtil;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -38,11 +38,20 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public static void validate(List<Integer> numbers) {
+    protected static void validateLottoNum(int num) {
+        if (num < 1) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
+        }
+        if (num > 45) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
+        }
+    }
+
+    private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
         }
-        numbers.forEach(LottoUtil::validateLottoNum);
+        numbers.forEach(Lotto::validateLottoNum);
         validateDuplication(numbers);
     }
 

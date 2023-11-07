@@ -13,8 +13,7 @@ public class LottoStore {
     public List<Lotto> sellLottos(int money) {
         int lottoCount = calculateLottoCount(money);
         return IntStream.range(0, lottoCount)
-                .mapToObj(i -> generateRandomLottoNumbers())
-                .map(Lotto::new)
+                .mapToObj(i -> generateRandomLotto())
                 .collect(Collectors.toList());
     }
 
@@ -22,7 +21,8 @@ public class LottoStore {
         return money / LOTTO_PRICE;
     }
 
-    private List<Integer> generateRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_RANGE, MAX_LOTTO_RANGE, LOTTO_NUMBERS_SIZE);
+    private Lotto generateRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_RANGE, MAX_LOTTO_RANGE, LOTTO_NUMBERS_SIZE);
+        return new Lotto(randomNumbers);
     }
 }

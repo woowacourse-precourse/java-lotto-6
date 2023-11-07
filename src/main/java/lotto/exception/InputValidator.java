@@ -1,6 +1,6 @@
 package lotto.exception;
 
-public class InputException {
+public class InputValidator {
 
     private final static String DIGIT_REGEX = "^[0-9]+$";
     private final static long LOTTO_TICKET_PRICE = 1000L;

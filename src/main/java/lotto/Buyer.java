@@ -22,4 +22,8 @@ public class Buyer {
                 .filter(numbers::contain)
                 .count();
     }
+
+    private boolean hasBonus(Lotto numbers) {
+        return numbers.contain(bonus);
+    }
 }

@@ -12,12 +12,13 @@ public class InputView {
 
     public int askPurchaseAmount() {
         boolean isNotCorrectInput = true;
-        while(isNotCorrectInput) {
+        String purchaseAmount = "";
+        while (isNotCorrectInput) {
             System.out.println("구입금액을 입력해 주세요.");
-            String purchaseAmount = Console.readLine();
+            purchaseAmount = Console.readLine();
             isNotCorrectInput = validatePurchaseAmount(purchaseAmount);
         }
-        return Integer.parseInt(Console.readLine());
+        return Integer.parseInt(purchaseAmount);
     }
 
     public boolean validatePurchaseAmount(String purchaseAmount) {
@@ -34,31 +35,56 @@ public class InputView {
     }
 
     public WinningNumbers askWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String numbers = Console.readLine();
-        validateWinningNumbers(numbers);
-        List<Integer> winningNumbers = Stream.of(numbers.split(","))
-            .map(Integer::parseInt)
-            .toList();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        validateBonusNumber(bonusNumber);
-        return new WinningNumbers(new Lotto(winningNumbers), Integer.parseInt(bonusNumber));
+        Lotto lotto = askWinningLotto();
+        int bonusNumber = askBonusNumber();
+        return new WinningNumbers(lotto, bonusNumber);
     }
 
-    public void validateWinningNumbers(String winningNumbers) {
-        List<String> winningNumber = List.of(winningNumbers.split(","));
-        validateNotBlank(winningNumbers);
-        validateNotEndWithDelimiter(winningNumbers);
-        winningNumber.forEach(this::validateInputIsNumeric);
-        winningNumber.forEach(this::validateInputIsPositiveNumber);
+    public Lotto askWinningLotto() {
+        boolean isNotCorrectInput = true;
+        String numbers = "";
+        while (isNotCorrectInput) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            numbers = Console.readLine();
+            isNotCorrectInput = validateNumbers(numbers);
+        }
+        return new Lotto(Stream.of(numbers.split(","))
+                .map(Integer::parseInt)
+                .toList());
     }
 
-    public void validateBonusNumber(String bonusNumber) {
-        validateNotBlank(bonusNumber);
-        validateInputIsNumeric(bonusNumber);
-        validateInputIsPositiveNumber(bonusNumber);
+    private int askBonusNumber() {
+        boolean isNotCorrectInput = true;
+        String bonusNumber = "";
+        while (isNotCorrectInput) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            bonusNumber = Console.readLine();
+            isNotCorrectInput = validateNumber(bonusNumber);
+        }
+        return Integer.parseInt(bonusNumber);
+    }
+
+    public boolean validateNumbers(String numbers) {
+        try {
+            validateNotEndWithDelimiter(numbers);
+            List.of(numbers.split(",")).forEach(this::validateNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validateNumber(String number) {
+        try {
+            validateNotBlank(number);
+            validateInputIsNumeric(number);
+            validateInputIsPositiveNumber(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
     }
 
     private void validateNotBlank(String input) throws IllegalArgumentException {
@@ -88,14 +114,14 @@ public class InputView {
         }
     }
 
-    private void validateInputIsMultipleOfThousand(String input) throws IllegalArgumentException{
+    private void validateInputIsMultipleOfThousand(String input) throws IllegalArgumentException {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000 단위로 입력해 주세요.");
         }
     }
 
-    private void validateNotEndWithDelimiter(String input) {
+    private void validateNotEndWithDelimiter(String input) throws IllegalArgumentException {
         if (input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 구분자(,)로 끝날 수 없습니다.");
         }

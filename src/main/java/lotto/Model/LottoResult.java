@@ -1,20 +1,13 @@
 package lotto.Model;
 
+import lotto.DTO.Result;
 import lotto.View.PrintOutput;
-import java.util.Arrays;
-import java.util.EnumMap;
 
-public class Result {
-    private final EnumMap<Winning, Integer> result = new EnumMap<>(Winning.class);
+public class LottoResult {
+    private final Result result;
 
-    public Result() {
-        Arrays.stream(Winning.values())
-                .forEach(value -> result.put(value, 0));
-    }
-
-    public void winningResult(int match, boolean bonusBall) {
-        Winning winning = Winning.result(match, bonusBall);
-        result.put(winning, result.get(winning) + 1);
+    public LottoResult(Result result){
+        this.result = result;
     }
 
     public void printResult(int purchasePrice) {
@@ -22,7 +15,7 @@ public class Result {
         System.out.println("\n" + PrintOutput.RESURLT_LOTTO + "\n---");
 
         for (Winning winning : Winning.values()) {
-            totalPrice += winning.getWinningPrice() * result.get(winning);
+            totalPrice += winning.getWinningPrice() * result.getCountLottoResult(winning);
             printMatch(winning);
         }
 
@@ -34,7 +27,7 @@ public class Result {
                 "%d개 일치 (%s원) - %d개",
                 winning.getMatchNumber(),
                 String.format("%,d", winning.getWinningPrice()),
-                result.get(winning));
+                result.getCountLottoResult(winning));
 
         if (winning != Winning.No_Match) {
             if (winning == Winning.SECOND) {

@@ -1,6 +1,6 @@
 package lotto.Controller;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.DTO.Result;
 import lotto.Model.*;
 import lotto.View.PrintInput;
 import lotto.View.PrintOutput;
@@ -11,6 +11,7 @@ public class PlayGame {
     InputData inputData = new InputData();
     UserLotto userLottos = new UserLotto();
     Result winningData = new Result();
+    LottoResult lottoResult = new LottoResult(winningData);
     Lotto winningNumbers;
 
     public void play() {
@@ -31,9 +32,10 @@ public class PlayGame {
             int matchNumber = winningNumbers.matchNumber(userLottoNumbers);
             boolean checkBonusBall = userLottoNumbers.checkBonusBall(bonusBall);
 
-            winningData.winningResult(matchNumber, checkBonusBall);
+            Winning winning = Winning.result(matchNumber, checkBonusBall);
+            winningData.winningResult(winning);
         }
 
-        winningData.printResult(lottoAmount * 1000);
+        lottoResult.printResult(lottoAmount * 1000);
     }
 }

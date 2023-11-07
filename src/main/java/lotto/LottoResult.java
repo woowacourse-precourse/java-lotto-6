@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +21,16 @@ public class LottoResult {
 
     public List<String> getResultStrings() {
         List<String> resultStrings = new ArrayList<>();
+        NumberFormat nf = NumberFormat.getInstance();
         for (LottoPrize prize : LottoPrize.values()) {
             int count = results.get(prize);
-            String resultString = prize.getMatchingNumbers() + "개 일치 (" + prize.getPrizeAmount() + "원) - " + count + "개";
+            String prizeAmountFormatted = nf.format(prize.getPrizeAmount()); // 숫자를 형식화
+            if(prize == LottoPrize.MATCH_5_BONUS){
+                String resultString = prize.getMatchingNumbers() + "개 일치, 보너스 볼 일치 (" + prizeAmountFormatted + "원) - " + count + "개";
+                resultStrings.add(resultString);
+                continue;
+            }
+            String resultString = prize.getMatchingNumbers() + "개 일치 (" + prizeAmountFormatted + "원) - " + count + "개";
             resultStrings.add(resultString);
         }
         return resultStrings;

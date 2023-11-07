@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+import java.util.ArrayList;
 import lotto.model.Budget;
+import lotto.model.Lotto;
 import lotto.model.Policy;
 import lotto.model.User;
 import lotto.service.LottoAnswerService;
@@ -37,6 +40,7 @@ public class LottoController {
 
     public void start() {
         payMoney();
+        issueLottos(this.budget);
     }
 
     private void payMoney() {
@@ -58,6 +62,14 @@ public class LottoController {
             return false;
         }
         return true;
+    }
+
+    private void issueLottos(Budget budget) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < budget.getLottoCount(); i++) {
+            lottos.add(lottoService.createLotto());
+        }
+        user = new User(budget.getLottoCount(), lottos);
     }
 
 

@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.LottoNumber.COUNT_UNIT;
 import static lotto.constant.LottoNumber.PERCENT;
+import static lotto.constant.LottoNumber.ZERO;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -16,7 +18,7 @@ public class WinningResult {
     }
 
     private void putMatchCount(List<LottoRank> ranks) {
-        ranks.forEach(rank -> winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1));
+        ranks.forEach(rank -> winningResult.put(rank, winningResult.getOrDefault(rank, ZERO.getNumber()) + COUNT_UNIT.getNumber()));
     }
 
     private void calculateProfitRate(int money) {

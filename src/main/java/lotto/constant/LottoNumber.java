@@ -6,6 +6,7 @@ public enum LottoNumber {
     MINIMUM_LOTTO_NUMBER(1),
     MAXIMUM_LOTTO_NUMBER(45),
     PURCHASE_UNIT(1000),
+    COUNT_UNIT(1),
     PERCENT(100);
 
     private final int number;

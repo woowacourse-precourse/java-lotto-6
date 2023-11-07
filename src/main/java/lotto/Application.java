@@ -145,7 +145,40 @@ class winning_number{
 }
 
 class bonus_number{
+    public static List<Integer> addBonus(List<Integer> winNumbers, String bonus){
+        int bonusNumber = intgerBonus(bonus);
+        checkBonusRange(bonusNumber);
+        circulationForCheck(winNumbers, bonusNumber);
+        winNumbers.add(bonusNumber);
+        return winNumbers;
+    }
 
+    public static int intgerBonus(String bonus){
+        try {
+            Integer.parseInt(bonus);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력");
+        }
+        return Integer.parseInt(bonus);
+    }
+
+    public static void checkBonusRange(int number){
+        if(number<1||number>45){
+            throw new IllegalArgumentException("[ERROR] 범위가 다름");
+        }
+    }
+
+    public static void circulationForCheck(List<Integer> criterias, int number){
+        for(int criteria : criterias){
+            checkDuplication(criteria, number);
+        }
+    }
+
+    public static void checkDuplication(int criteria, int number){
+        if(criteria == number){
+            throw new IllegalArgumentException("[ERROR] 당첨 숫자 외 번호를 입력");
+        }
+    }
 }
 
 public class Application {
@@ -160,6 +193,7 @@ public class Application {
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
+        bonus_number.addBonus(winningNumber, bonusNumber);
 
     }
 }

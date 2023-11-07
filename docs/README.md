@@ -92,3 +92,7 @@ LottoScore
 NumberGenerator
 
 -[x] 랜덤 숫자 리스트를 반환해준다.
+
+AppConfig
+
+-[ ] 객체들을 생성하는 역할을 담당한다

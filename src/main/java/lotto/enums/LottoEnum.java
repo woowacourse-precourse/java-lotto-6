@@ -4,7 +4,7 @@ public enum LottoEnum {
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45),
     SELECTED_NUMBERS_SIZE(6),
-    BONUS_NUMBERS_SIZE(1);
+    PURCHASE_RULE(1000);
 
     private final int value;
 

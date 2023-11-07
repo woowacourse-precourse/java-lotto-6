@@ -14,6 +14,10 @@ public class WinLotto {
         lotto.lottoByDuplicateNumber();
     }
 
+    public void createBonusNumber() {
+        bounsNumber = new BounsNumber(inputBonusNumber());
+    }
+
     private List<Integer> inputWinNumber() {
         try {
             return Arrays.stream(Console.readLine().split(","))
@@ -22,6 +26,9 @@ public class WinLotto {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(",로 구분하여 입력해주세요.");
         }
+    }
 
+    private int inputBonusNumber() {
+        return Integer.parseInt(Console.readLine());
     }
 }

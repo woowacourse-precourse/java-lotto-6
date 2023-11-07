@@ -18,5 +18,7 @@ public class LottoGameService {
         WinLotto winLotto = new WinLotto();
         Prints.print_input_winLotto();
         winLotto.createLotto();
+        Prints.print_input_bonusnumber();
+        winLotto.createBonusNumber();
     }
 }

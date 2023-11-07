@@ -27,4 +27,10 @@ public class Lottos {
         return lottos.size();
     }
 
+    @Override
+    public String toString() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
+    }
 }

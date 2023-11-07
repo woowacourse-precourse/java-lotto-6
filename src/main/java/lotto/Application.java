@@ -112,11 +112,11 @@ public class Application {
         System.out.println();
 
         // 당첨 결과 추출
-        int firstPrice = 0;
-        int secondPrice = 0;
-        int thirdPrice = 0;
-        int fourthPrice = 0;
-        int fifthPrice = 0;
+        int firstPrize = 0;
+        int secondPrize = 0;
+        int thirdPrize = 0;
+        int fourthPrize = 0;
+        int fifthPrize = 0;
 
         for (int i=0; i<lottoTicket; i++) {
             int lucky = 0;
@@ -148,33 +148,33 @@ public class Application {
             }
 
             if (lucky == 6) {
-                firstPrice ++;
+                firstPrize ++;
             }
             if (lucky == 5 && bonus == 1) {
-                secondPrice ++;
+                secondPrize ++;
             }
             if (lucky == 5 && bonusFailed == 1) {
-                thirdPrice ++;
+                thirdPrize ++;
             }
             if (lucky == 4) {
-                fourthPrice ++;
+                fourthPrize ++;
             }
             if (lucky == 3) {
-                fifthPrice ++;
+                fifthPrize ++;
             }
         }
 
         // 수익률 추출
-        double earningRate = (firstPrice*2000000000 + secondPrice*30000000 + thirdPrice*1500000 + fourthPrice*50000 + fifthPrice*5000)/money*100;
+        double earningRate = (firstPrize*2000000000 + secondPrize*30000000 + thirdPrize*1500000 + fourthPrize*50000 + fifthPrize*5000)/money*100;
 
         // 당첨 통계 출력
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + fifthPrice + "개");
-        System.out.println("4개 일치 (50,000원) - " + fourthPrice + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + thirdPrice + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondPrice + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + firstPrice + "개");
+        System.out.println("3개 일치 (5,000원) - " + fifthPrize + "개");
+        System.out.println("4개 일치 (50,000원) - " + fourthPrize + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + thirdPrize + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondPrize + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + firstPrize + "개");
         System.out.print("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
     }
 }

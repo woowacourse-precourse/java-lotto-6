@@ -9,6 +9,7 @@ import lotto.service.LottoResultDto;
 public class LottoResult {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENTAGE_FACTOR = 100;
+    private static final double ROUND_DIGITS = 10.0;
 
     private final List<LottoStatus> lottoResult;
 
@@ -38,7 +39,8 @@ public class LottoResult {
         for (LottoStatus lottoStatus : lottoResult) {
             totalPrize += lottoStatus.getPrize();
         }
-        return ((double) totalPrize / (lottoResult.size() * LOTTO_PRICE)) * PERCENTAGE_FACTOR;
+        double profitRate = ((double) totalPrize / (lottoResult.size() * LOTTO_PRICE)) * PERCENTAGE_FACTOR;
+        return Math.round(profitRate * ROUND_DIGITS) / ROUND_DIGITS;
     }
 
 }

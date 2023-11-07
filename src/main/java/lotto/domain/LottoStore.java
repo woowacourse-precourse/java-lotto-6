@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.LongStream;
 
@@ -76,6 +77,6 @@ public class LottoStore {
     }
 
     public List<Lotto> showLottoPapers() {
-        return this.lottoPapers;
+        return Collections.unmodifiableList(this.lottoPapers);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Customer {
@@ -19,6 +20,6 @@ public class Customer {
     }
 
     public List<Lotto> showLottoPapers() {
-        return new ArrayList<>(this.lottoPapers);
+        return Collections.unmodifiableList(this.lottoPapers);
     }
 }

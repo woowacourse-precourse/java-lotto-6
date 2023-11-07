@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -74,7 +75,7 @@ public class WinningNumbersGenerator {
     }
 
     public List<Integer> getWinningNumbers() {
-        return this.winningNumbers;
+        return Collections.unmodifiableList(winningNumbers);
     }
 
     public int getBonusNumber() {

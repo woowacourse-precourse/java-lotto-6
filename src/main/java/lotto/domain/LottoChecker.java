@@ -2,10 +2,7 @@ package lotto.domain;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoChecker {
 
@@ -87,7 +84,7 @@ public class LottoChecker {
     }
 
     public Map<Prize, Integer> getResult() {
-        return this.result;
+        return Collections.unmodifiableMap(this.result);
     }
 
     public void calculateTotalPrize() {

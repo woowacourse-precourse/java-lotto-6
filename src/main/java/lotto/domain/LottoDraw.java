@@ -16,7 +16,7 @@ public class LottoDraw {
         this.lottoTicketsNumber = lottoTicketsNumber;
     }
 
-    public void configureLottoNumbers() {
+    public void configureNumbers() {
         for (int i = 0; i < this.lottoTicketsNumber; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             numbers.sort(Comparator.naturalOrder());
@@ -26,7 +26,7 @@ public class LottoDraw {
 
     public void printPurchaseHistory() {
         System.out.print("\n" + this.lottoTicketsNumber + "개를 구매했습니다.\n");
-        this.lottos.forEach(Lotto::printLottoNumbers);
+        this.lottos.forEach(Lotto::printNumbers);
     }
 
     public List<Lotto> getLottos() {

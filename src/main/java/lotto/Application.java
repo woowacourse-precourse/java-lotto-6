@@ -9,7 +9,7 @@ public class Application {
         // TODO: 프로그램 구현
         Input input = new Input();
         LottoDraw lottoDraw = new LottoDraw(input.purchasePrice());
-        lottoDraw.configureLottoNumbers();
+        lottoDraw.configureNumbers();
         lottoDraw.printPurchaseHistory();
         input.winningNumbers();
         input.BonusNumber();

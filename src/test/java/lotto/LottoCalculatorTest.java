@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.model.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,11 +25,12 @@ class LottoCalculatorTest {
         // Given
         Lotto winningLotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
         BonusNumber bonusNumber = new BonusNumber("11", winningLotto);
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(8, 21, 23, 41, 42, 43)),
-                new Lotto(List.of(3, 5, 11, 16, 32, 38)),
-                new Lotto(List.of(7, 11, 16, 35, 36, 44)),
-                new Lotto(List.of(1, 8, 11, 31, 41, 42)));
+        Lottos lottos = new Lottos(
+                List.of(
+                        new Lotto(List.of(8, 21, 23, 41, 42, 43)),
+                        new Lotto(List.of(3, 5, 11, 16, 32, 38)),
+                        new Lotto(List.of(7, 11, 16, 35, 36, 44)),
+                        new Lotto(List.of(1, 8, 11, 31, 41, 42))));
 
         // When
         Map<WinningType, Integer> result = lottoCalculator.getMatchStatics(lottos, winningLotto, bonusNumber);

@@ -2,7 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
+import lotto.model.Lottos;
+import lotto.model.PurchaseAmount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,15 +21,16 @@ class LottoBuyerTest {
     @DisplayName("구입 수량 만큼 로또를 구입한다.")
     void purchaseLottos_AsMuchAsLottoCount() {
         // Given
-        final int lottoCount = 3;
+        final int purchasePrice = 8_000;
+        final PurchaseAmount purchaseAmount = new PurchaseAmount(purchasePrice);
 
         // When
-        List<Lotto> result = lottoBuyer.purchaseLottos(lottoCount);
+        Lottos result = lottoBuyer.purchaseLottos(purchaseAmount);
 
         // Then
-        assertThat(result)
+        assertThat(result.getLottos())
                 .isNotEmpty()
-                .hasSize(lottoCount);
+                .hasSize(purchaseAmount.getAmount());
     }
 
 }

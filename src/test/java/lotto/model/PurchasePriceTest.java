@@ -1,4 +1,4 @@
-package lotto.vo;
+package lotto.model;
 
 import static lotto.error.ErrorMessage.NEGATIVE_PRICE;
 import static lotto.error.ErrorMessage.NOT_DIGIT_PRICE;

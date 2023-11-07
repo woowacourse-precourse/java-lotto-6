@@ -2,16 +2,16 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.model.Lottos;
 
 public class LottoCalculator {
 
     private static final int PERCENT_FACTOR = 100;
 
     public Map<WinningType, Integer> getMatchStatics(
-            List<Lotto> lottos,
+            Lottos lottos,
             Lotto winningLotto,
             BonusNumber bonusNumber
     ) {
@@ -20,7 +20,7 @@ public class LottoCalculator {
         Arrays.stream(WinningType.values())
                 .forEach(type -> statics.put(type, 0));
 
-        lottos.forEach(lotto -> {
+        lottos.getLottos().forEach(lotto -> {
             int matchingCount = lotto.getMatchingCount(winningLotto);
             boolean matchedBonusNumber = lotto.getMatchingBonusNumber(bonusNumber.getNumber());
 

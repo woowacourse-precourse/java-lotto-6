@@ -10,7 +10,7 @@ import lotto.Lotto;
 import lotto.WinningType;
 import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
-import lotto.vo.PurchasePrice;
+import lotto.model.PurchasePrice;
 
 public class ConsoleManager {
 

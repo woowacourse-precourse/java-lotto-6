@@ -1,10 +1,10 @@
 package lotto;
 
-import java.util.List;
 import java.util.Map;
 import lotto.io.ConsoleManager;
-import lotto.vo.PurchaseAmount;
-import lotto.vo.PurchasePrice;
+import lotto.model.Lottos;
+import lotto.model.PurchaseAmount;
+import lotto.model.PurchasePrice;
 
 public class LottoManager {
 
@@ -24,8 +24,8 @@ public class LottoManager {
         PurchaseAmount purchaseAmount = lottoBuyer.getPurchaseAmount(purchasePrice);
         consoleManager.printLottoCount(purchaseAmount.getAmount());
 
-        List<Lotto> lottos = lottoBuyer.purchaseLottos(purchaseAmount.getAmount());
-        consoleManager.printLottos(lottos);
+        Lottos lottos = lottoBuyer.purchaseLottos(purchaseAmount);
+        consoleManager.printLottos(lottos.getLottos());
 
         Lotto winningLotto = consoleManager.inputWinningLottoNumbers();
 

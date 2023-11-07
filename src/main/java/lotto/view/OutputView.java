@@ -17,7 +17,7 @@ public class OutputView {
         return INSTANCE;
     }
 
-    public void displayLottoCount(TicketCount TicketCount) {
+    public void displayTicketCount(TicketCount TicketCount) {
         System.out.printf(Message.LOTTO_COUNT.getMessage() + System.lineSeparator(), TicketCount.getTicketCount());
     }
 

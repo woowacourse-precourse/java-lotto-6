@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,18 +11,25 @@ public class Lotto {
     public static final String BONUS_ERROR = "보너스 번호는 로또 번호에 포함될 수 없습니다.";
     private final List<Integer> numbers;
 
+
     public Lotto(List<Integer> numbers) {
+
         validateSize(numbers);
         validateDuplicates(numbers);
         this.numbers = numbers;
     }
-
+    public Lotto() {
+        this(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(SIZE_ERROR);
         }
     }
-
+    private static Lotto generate() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(randomNumbers);
+    }
     private void validateDuplicates(List<Integer> numbers) {
         if (hasDuplicates(numbers)) {
             throw new IllegalArgumentException(DUPLICATE_ERROR);
@@ -54,8 +62,6 @@ public class Lotto {
     public List<Integer> number() {
         return numbers;
     }
-
-
 }
 
 

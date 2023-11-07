@@ -48,7 +48,7 @@ public class LottoController {
                 lottoCost = new LottoCost(toNumber(cost));
                 loop = false;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
 
@@ -67,7 +67,7 @@ public class LottoController {
                 winningNumber = new WinningNumber(lotto);
                 loop = false;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
 
@@ -86,7 +86,7 @@ public class LottoController {
                 lottoBonus = new BonusNumber(bonusNumber);
                 loop = false;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
 

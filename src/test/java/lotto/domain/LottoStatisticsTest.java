@@ -15,12 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("LottoStatistics 테스트")
 class LottoStatisticsTest {
 
-    private final LottoStatisticsBuilder lottoStatisticsBuilder;
-
-    LottoStatisticsTest() {
-        lottoStatisticsBuilder = new LottoStatisticsBuilder();
-    }
-
     @DisplayName("toString 테스트")
     @Nested
     class toString {
@@ -28,7 +22,7 @@ class LottoStatisticsTest {
         @DisplayName("3개 미만 당첨 검사")
         @Test
         void checkNOTHING() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsNOTHING();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsNOTHING();
             assertThat(lottoStatistics.toString())
                     .doesNotContain("1개");
         }
@@ -36,7 +30,7 @@ class LottoStatisticsTest {
         @DisplayName("3개 당첨 검사")
         @Test
         void checkTHREE() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsTHREE();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsTHREE();
             assertThat(lottoStatistics.toString())
                     .contains(LottoRank.THREE.toString(1));
         }
@@ -44,7 +38,7 @@ class LottoStatisticsTest {
         @DisplayName("4개 당첨 검사")
         @Test
         void checkFOUR() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsFOUR();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsFOUR();
             assertThat(lottoStatistics.toString())
                     .contains(LottoRank.FOUR.toString(1));
         }
@@ -52,7 +46,7 @@ class LottoStatisticsTest {
         @DisplayName("5개 당첨 검사")
         @Test
         void checkFIVE() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsFIVE();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsFIVE();
             assertThat(lottoStatistics.toString())
                     .contains(LottoRank.FIVE.toString(1));
         }
@@ -60,7 +54,7 @@ class LottoStatisticsTest {
         @DisplayName("5개, 보너스 당첨 검사")
         @Test
         void checkFIVE_BONUS() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsFIVE_BONUS();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsFIVE_BONUS();
             assertThat(lottoStatistics.toString())
                     .contains(LottoRank.FIVE_BONUS.toString(1));
         }
@@ -68,7 +62,7 @@ class LottoStatisticsTest {
         @DisplayName("6개 당첨 검사")
         @Test
         void checkSIX() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsSIX();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsSIX();
             assertThat(lottoStatistics.toString())
                     .contains(LottoRank.SIX.toString(1));
         }
@@ -82,35 +76,35 @@ class LottoStatisticsTest {
         @DisplayName("3개 미만 당첨 가격 검사")
         @Test
         void checkNOTHING() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsNOTHING();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsNOTHING();
             assertEquals(lottoStatistics.calculateIncome(), LottoRank.NOTHING.getPrize());
         }
 
         @DisplayName("3개 당첨 가격 검사")
         @Test
         void checkTHREE() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsTHREE();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsTHREE();
             assertEquals(lottoStatistics.calculateIncome(), LottoRank.THREE.getPrize());
         }
 
         @DisplayName("4개 당첨 가격 검사")
         @Test
         void checkFOUR() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsFOUR();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsFOUR();
             assertEquals(lottoStatistics.calculateIncome(), LottoRank.FOUR.getPrize());
         }
 
         @DisplayName("5개 당첨 가격 검사")
         @Test
         void checkFIVE() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsFIVE();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsFIVE();
             assertEquals(lottoStatistics.calculateIncome(), LottoRank.FIVE.getPrize());
         }
 
         @DisplayName("5개, 보너스 당첨 가격 검사")
         @Test
         void checkFIVE_BONUS() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsFIVE_BONUS();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsFIVE_BONUS();
             assertEquals(lottoStatistics.calculateIncome(), LottoRank.FIVE_BONUS.getPrize());
 
         }
@@ -118,7 +112,7 @@ class LottoStatisticsTest {
         @DisplayName("6개 당첨 가격 검사")
         @Test
         void checkSIX() {
-            LottoStatistics lottoStatistics = lottoStatisticsBuilder.getLottoStatisticsSIX();
+            LottoStatistics lottoStatistics = LottoStatisticsBuilder.getLottoStatisticsSIX();
             assertEquals(lottoStatistics.calculateIncome(), LottoRank.SIX.getPrize());
         }
 
@@ -128,48 +122,51 @@ class LottoStatisticsTest {
 
 class LottoStatisticsBuilder {
 
-    private Result buildResult(List<Integer> winningNumberIntegers, int bonusNumberInteger) {
+    private LottoStatisticsBuilder() {
+    }
+
+    private static Result buildResult(List<Integer> winningNumberIntegers, int bonusNumberInteger) {
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(winningNumberIntegers);
         BonusNumber bonusNumber = new BonusNumber(bonusNumberInteger);
         return new Result(winningNumbers, bonusNumber);
     }
 
-    public LottoStatistics getLottoStatisticsNOTHING() {
+    private static LottoPack buildLottoPack(List<Integer> numbers) {
+        INumberGenerator numberGenerator = new FakeNumberGenerator(numbers);
+        return new LottoPack(1, numberGenerator);
+    }
+
+    public static LottoStatistics getLottoStatisticsNOTHING() {
         Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPack lottoPack = buildLottoPack(List.of(40, 41, 42, 43, 44, 45));
         return new LottoStatistics(lottoPack, result);
     }
 
-    private LottoPack buildLottoPack(List<Integer> numbers) {
-        INumberGenerator numberGenerator = new FakeNumberGenerator(numbers);
-        return new LottoPack(1, numberGenerator);
-    }
-
-    public LottoStatistics getLottoStatisticsTHREE() {
+    public static LottoStatistics getLottoStatisticsTHREE() {
         Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPack lottoPack = buildLottoPack(List.of(1, 2, 3, 43, 44, 45));
         return new LottoStatistics(lottoPack, result);
     }
 
-    public LottoStatistics getLottoStatisticsFOUR() {
+    public static LottoStatistics getLottoStatisticsFOUR() {
         Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPack lottoPack = buildLottoPack(List.of(1, 2, 3, 4, 44, 45));
         return new LottoStatistics(lottoPack, result);
     }
 
-    public LottoStatistics getLottoStatisticsFIVE() {
+    public static LottoStatistics getLottoStatisticsFIVE() {
         Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPack lottoPack = buildLottoPack(List.of(1, 2, 3, 4, 5, 45));
         return new LottoStatistics(lottoPack, result);
     }
 
-    public LottoStatistics getLottoStatisticsFIVE_BONUS() {
+    public static LottoStatistics getLottoStatisticsFIVE_BONUS() {
         Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPack lottoPack = buildLottoPack(List.of(1, 2, 3, 4, 5, 7));
         return new LottoStatistics(lottoPack, result);
     }
 
-    public LottoStatistics getLottoStatisticsSIX() {
+    public static LottoStatistics getLottoStatisticsSIX() {
         Result result = buildResult(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPack lottoPack = buildLottoPack(List.of(1, 2, 3, 4, 5, 6));
         return new LottoStatistics(lottoPack, result);

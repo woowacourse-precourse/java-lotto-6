@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println();
         System.out.println(quantity + PURCHASE_RESULT.getMessage());
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.toString());
+            System.out.println(lotto);
         }
     }
 

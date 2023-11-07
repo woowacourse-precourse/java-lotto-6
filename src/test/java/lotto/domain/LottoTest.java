@@ -84,6 +84,21 @@ class LottoTest {
         // then
         assertEquals(expectedResult, result);
     }
+
+    @DisplayName("당첨 번호와 일치하는 로또 번호의 개수를 센다.")
+    @Test
+    void countMatchedLottoNumber() {
+        // given
+        Lotto playerNumbers = Lotto.validate(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = Lotto.validate(List.of(1, 2, 3, 4, 7, 9));
+
+        // when
+        int count = playerNumbers.countMatch(winningNumbers);
+
+        // then
+        assertEquals(4, count);
+    }
+
 }
 
 

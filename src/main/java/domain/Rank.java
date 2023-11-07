@@ -27,13 +27,20 @@ public enum Rank {
 
     public static Rank getRank(int winningNumberCount, boolean hasBonusNumber) {
         for (Rank rank : Rank.values()) {
-            if (rank.winningNumberCount == winningNumberCount && hasBonusNumber) {
+            if (rank.winningNumberCount == winningNumberCount && rank.hasBonusNumber == hasBonusNumber) {
+                return rank;
+            }
+        }
+
+        for (Rank rank : Rank.values()) {
+            if (rank.winningNumberCount == winningNumberCount) {
                 return rank;
             }
         }
 
         return null;
     }
+
 
     public int getWinningNumberCount() {
         return winningNumberCount;

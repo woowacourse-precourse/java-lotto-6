@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class WinningStatistics {
 
@@ -13,9 +13,15 @@ public class WinningStatistics {
 
 
     private WinningStatistics(List<Rank> winningRanks) {
-
+        initRankCount();
         winningRanks.forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1));
 
+    }
+
+    private void initRankCount() {
+        for (Rank rank : Rank.values()) {
+            rankCount.put(rank, 0);
+        }
     }
 
     public static WinningStatistics from(List<Rank> ranks) {
@@ -37,12 +43,14 @@ public class WinningStatistics {
         return revenue;
     }
 
-    public List<Entry<Rank, Integer>> showRankCount() {
+    public List<Entry<Rank, Integer>> showRankCountsPair() {
 
         return rankCount.entrySet()
                 .stream()
-                .toList();
+                .collect(Collectors.toList());
     }
+
+
 
 
 }

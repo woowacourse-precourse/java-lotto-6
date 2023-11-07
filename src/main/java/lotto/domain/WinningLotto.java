@@ -58,7 +58,6 @@ public class WinningLotto {
         }
     }
 
-
     private void checkLength(List<Integer> lottoNumbers) {
 
         if (lottoNumbers.size() != LENGTH) {

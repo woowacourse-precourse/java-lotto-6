@@ -1,7 +1,10 @@
 package lotto.view;
 
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
 
@@ -19,10 +22,17 @@ public class LottoStaticsOutputView {
 
         System.out.println(LOTTO_STATICS_MESSAGE);
 
-        for (Map.Entry<Rank, Integer> rankCount : statistics.showRankCount()) {
+        List<Entry<Rank, Integer>> rankCountsPair = statistics.showRankCountsPair();
+        Collections.reverse(rankCountsPair);
+
+        for (Map.Entry<Rank, Integer> rankCount : rankCountsPair) {
 
             Rank rank = rankCount.getKey();
             int count = rankCount.getValue();
+
+            if (rank.equals(Rank.NONE)) {
+                continue;
+            }
 
             String message = createStatisticsMessageFrom(rank, count);
             System.out.printf(message);
@@ -34,17 +44,16 @@ public class LottoStaticsOutputView {
 
         statisticsMessage.append(String.format(MATCHED_LOTTO_NUMBER_COUNT, rank.showMatchCount()));
 
-        statisticsMessage.append(String.format(PRIZE_UNIT, rank.showMatchCount()));
-
         if (rank.equals(Rank.SECOND)) {
 
             statisticsMessage.append(BONUS_BALL_MATCH);
 
         }
 
-        statisticsMessage.append(RANK_LOTTO_COUNT);
+        statisticsMessage.append(String.format(PRIZE_UNIT, rank.showPrize()));
 
-        statisticsMessage.append(String.format(MATCHED_LOTTO_NUMBER_COUNT, rank.showPrize()));
+        statisticsMessage.append(String.format(RANK_LOTTO_COUNT, count));
+
         return statisticsMessage.toString();
 
     }

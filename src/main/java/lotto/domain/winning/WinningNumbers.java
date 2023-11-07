@@ -1,9 +1,9 @@
 package lotto.domain.winning;
 
+import static lotto.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR;
+
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-
-import static lotto.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR;
 
 public final class WinningNumbers {
     private final Lotto winningNumbers;

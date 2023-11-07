@@ -1,11 +1,10 @@
 package lotto.domain.winning;
 
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 
 public final class WinningStatistics {
     private final Map<WinningResult, Integer> statistics;

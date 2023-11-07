@@ -1,8 +1,11 @@
 package lotto.service;
 
-import lotto.domain.*;
-
 import java.util.List;
+import lotto.domain.LottoMachine;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
+import lotto.domain.NumbersCreator;
 
 public class GameService {
     private final NumbersCreator numbersCreator;

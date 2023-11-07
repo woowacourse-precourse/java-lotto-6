@@ -1,9 +1,6 @@
 package lotto.view;
 
-import lotto.domain.winning.WinningStatistics;
-
 import java.util.List;
-import java.util.function.Consumer;
 
 public class OutputView {
     private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";

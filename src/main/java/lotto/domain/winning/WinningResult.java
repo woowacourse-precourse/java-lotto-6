@@ -1,8 +1,7 @@
 package lotto.domain.winning;
 
-import lotto.domain.Money;
-
 import java.util.Arrays;
+import lotto.domain.Money;
 
 public enum WinningResult {
     FIRST(6, BonusMatchStatus.IRRELEVANT, 2_000_000_000),

@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import lotto.domain.winning.WinningNumbers;
-import lotto.domain.winning.WinningResult;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.winning.WinningNumbers;
+import lotto.domain.winning.WinningResult;
 
 public final class Lottos {
     private final List<Lotto> lottos;

@@ -8,4 +8,5 @@ public class Message {
     public static final String MESSAGE_FOURTH = "4개 일치 (%s원) - %d개\n";
     public static final String MESSAGE_FIFTH = "3개 일치 (%s원) - %d개\n";
 
+
 }

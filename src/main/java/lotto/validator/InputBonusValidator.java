@@ -24,7 +24,7 @@ public class InputBonusValidator {
         }
     }
     public static void validateBonusNumberRange(final String bonusNumber){
-        Integer integerBonusNumber = Integer.parseInt(bonusNumber);
+        int integerBonusNumber = Integer.parseInt(bonusNumber);
         if(integerBonusNumber < START_NUMBER || integerBonusNumber > END_NUMBER){
             throw new InvalidLottoNumberRangeException();
         }

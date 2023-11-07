@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import lotto.exception.InvalidFormatException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class InputViewTest {
 
     InputView inputView = new InputView();
+    String validNumber = "10000";
+    String validAmountInvalidForMoney = "100";
+    String letterAndNumber = "1000j";
+    String negativeNumber = "-100";
 
     @AfterEach
     void closeConsole() {
@@ -24,22 +29,29 @@ public class InputViewTest {
     @Test
     @DisplayName("구입 금액을 성공적으로 입력받는다.")
     void readMoney() {
-       System.setIn(createInput("10000"));
-       assertThat(inputView.readMoney()).isEqualTo(10000);
+       System.setIn(createInput(validNumber));
+       assertThat(inputView.readMoney()).isEqualTo(Integer.parseInt(validNumber));
+    }
+
+    @Test
+    @DisplayName("구입 금액이 Money 클래스의 검증 로직을 통과하지 않더라도 성공적으로 입력받는다.")
+    void readMoneyNotValidForMoney() {
+        System.setIn(createInput(validAmountInvalidForMoney));
+        assertThat(inputView.readMoney()).isEqualTo(Integer.parseInt(validAmountInvalidForMoney));
     }
 
     @Test
     @DisplayName("구입 금액을 숫자가 아닌 문자로 입력하면 예외가 발생한다.")
     void readMoneyByNotNumber() {
-        System.setIn(createInput("10000j"));
+        System.setIn(createInput(letterAndNumber));
         assertThatThrownBy(() -> inputView.readMoney())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidFormatException.class);
     }
 
     @Test
     @DisplayName("구입 금액을 음수로 입력하면 예외가 발생한다.")
     void readMoneyByNegativeNumber() {
-        System.setIn(createInput("-10000"));
+        System.setIn(createInput(negativeNumber));
         assertThatThrownBy(() -> inputView.readMoney())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -70,7 +82,7 @@ public class InputViewTest {
     @Test
     @DisplayName("보너스 숫자에 숫자가 아닌 문자로 입력하면 예외가 발생한다.")
     void readBonusNumberByNotNumber() {
-        System.setIn(createInput("1j"));
+        System.setIn(createInput(letterAndNumber));
         assertThatThrownBy(() -> inputView.readBonusNumber())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -78,7 +90,7 @@ public class InputViewTest {
     @Test
     @DisplayName("보너스 숫자에 음수를 입력하면 예외가 발생한다.")
     void readBonusNumberByNegativeNumber() {
-        System.setIn(createInput("-1"));
+        System.setIn(createInput(negativeNumber));
         assertThatThrownBy(() -> inputView.readBonusNumber())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -86,8 +98,8 @@ public class InputViewTest {
     @Test
     @DisplayName("보너스 숫자를 성공적으로 입력 받는다.")
     void readBonusNumber() {
-        System.setIn(createInput("1"));
-        assertThat(inputView.readBonusNumber()).isEqualTo(1);
+        System.setIn(createInput(validNumber));
+        assertThat(inputView.readBonusNumber()).isEqualTo(Integer.parseInt(validNumber));
     }
 
     InputStream createInput(String input) {

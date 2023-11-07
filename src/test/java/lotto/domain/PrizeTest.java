@@ -7,61 +7,67 @@ import org.junit.jupiter.api.Test;
 
 public class PrizeTest {
 
+    int perfectMatch = 6, fiveMatch = 5, fourMatch = 4, threeMatch = 3, twoMatch = 2, oneMatch = 1, zeroMatch = 0;
+    boolean bonusMatched = true;
+    boolean bonusNotMatched = false;
+
     @Test
     @DisplayName("당첨 번호 6개 성공했으면 보너스 번호 일치 여부와 상관없이 1등")
     void firstPrize() {
-        assertThat(Prize.findPrize(6, false))
+        assertThat(Prize.findPrize(perfectMatch, bonusMatched))
                 .isEqualTo(Prize.FIRST_PLACE);
-        assertThat(Prize.findPrize(6, true))
+        assertThat(Prize.findPrize(perfectMatch, bonusNotMatched))
                 .isEqualTo(Prize.FIRST_PLACE);
     }
 
     @Test
     @DisplayName("당첨 번호 5개와 보너스 번호 성공했으면 2등")
     void secondPrize() {
-        assertThat(Prize.findPrize(5, true))
+        int fiveMatch = 5;
+
+        assertThat(Prize.findPrize(fiveMatch, bonusMatched))
                 .isEqualTo(Prize.SECOND_PLACE);
     }
 
     @Test
     @DisplayName("당첨 번호 5개 성공했고 보너스 번호 일치 실패했으면 3등")
     void thirdPrize() {
-        assertThat(Prize.findPrize(5, false))
+        assertThat(Prize.findPrize(fiveMatch, bonusNotMatched))
                 .isEqualTo(Prize.THIRD_PLACE);
     }
 
     @Test
     @DisplayName("당첨 번호 4개 성공했으면 보너스 번호 일치 여부와 상관없이 4등")
     void fourthPrize() {
-        assertThat(Prize.findPrize(4, true))
+        assertThat(Prize.findPrize(fourMatch, bonusNotMatched))
                 .isEqualTo(Prize.FOURTH_PLACE);
-        assertThat(Prize.findPrize(4, false))
+        assertThat(Prize.findPrize(fourMatch, bonusMatched))
                 .isEqualTo(Prize.FOURTH_PLACE);
     }
 
     @Test
     @DisplayName("당첨 번호 3개 성공했으면 보너스 번호 일치 여부와 상관없이 5등")
     void fifthPrize() {
-        assertThat(Prize.findPrize(3, true))
+        assertThat(Prize.findPrize(threeMatch, bonusNotMatched))
                 .isEqualTo(Prize.FIFTH_PLACE);
-        assertThat(Prize.findPrize(3, false))
+        assertThat(Prize.findPrize(threeMatch, bonusMatched))
                 .isEqualTo(Prize.FIFTH_PLACE);
     }
 
     @Test
     @DisplayName("2개 이하 성공은 모두 실패")
     void elsePrize() {
-        assertThat(Prize.findPrize(2, true))
+        assertThat(Prize.findPrize(twoMatch, bonusMatched))
                 .isEqualTo(Prize.NO_PRIZE);
-        assertThat(Prize.findPrize(2, false))
+        assertThat(Prize.findPrize(twoMatch, bonusNotMatched))
                 .isEqualTo(Prize.NO_PRIZE);
-        assertThat(Prize.findPrize(1, true))
+        assertThat(Prize.findPrize(oneMatch, bonusNotMatched))
                 .isEqualTo(Prize.NO_PRIZE);
-        assertThat(Prize.findPrize(1, false))
+        assertThat(Prize.findPrize(oneMatch, bonusMatched))
                 .isEqualTo(Prize.NO_PRIZE);
-        assertThat(Prize.findPrize(0, true))
+        assertThat(Prize.findPrize(zeroMatch, bonusMatched))
                 .isEqualTo(Prize.NO_PRIZE);
-        assertThat(Prize.findPrize(0, false))
+        assertThat(Prize.findPrize(zeroMatch, bonusNotMatched))
                 .isEqualTo(Prize.NO_PRIZE);
     }
 }

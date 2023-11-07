@@ -1,7 +1,7 @@
 package lotto.exception;
 
-import lotto.domain.LottoPrice;
-import lotto.domain.LottoRule;
+import lotto.domain.lotto.LottoPrice;
+import lotto.domain.lotto.LottoRule;
 
 public enum ExceptionMessage {
     LOTTO_MISMATCH_LENGTH("로또 번호의 길이는 " + LottoRule.LENGTH + "자리 입니다."),

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
 import lotto.exception.ExceptionMessage;
@@ -27,7 +27,7 @@ public class LottoRule {
         }
         return false;
     }
-    
+
     private boolean isMismatchLength(List<Integer> numbers) {
         if (numbers.size() != LENGTH) {
             return true;

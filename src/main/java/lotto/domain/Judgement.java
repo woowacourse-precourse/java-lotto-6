@@ -74,7 +74,7 @@ public class Judgement {
         }
     }
 
-    public float calculateEarningRate(List<Integer> ranks, Money money) {
+    public static float calculateEarningRate(List<Integer> ranks, Money money) {
         float earningRate = 0;
         for (int i = 0; i < 5; i++) {
             earningRate += RANK_MONEY[i] * ranks.get(i);

@@ -113,6 +113,7 @@ public class Draw {
         for (Lotto lotto : lottos) {
             int matchCount = calculateMatchCount(winning, lotto);
             boolean bonus = hasBonus(lotto, bonusNum);
+            Rank rank = Rank.getRank(matchCount, bonus);
         }
         return drawResult;
     }

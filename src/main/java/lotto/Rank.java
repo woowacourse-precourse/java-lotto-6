@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+
 public enum Rank {
 
     FIRST(6, false, 2000000000, "6개 일치 (2,000,000,000원) - "),
@@ -19,5 +21,13 @@ public enum Rank {
         this.bonus = bonus;
         this.cashPrize = cashPrize;
         this.message = message;
+    }
+
+    public static Rank getRank(int matchCount, boolean bonus) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> rank.bonus == bonus)
+                .findAny()
+                .orElse(NO_RANK);
     }
 }

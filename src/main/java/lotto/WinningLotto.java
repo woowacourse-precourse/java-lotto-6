@@ -3,40 +3,32 @@ package lotto;
 import java.util.List;
 
 public class WinningLotto {
-    private final List<Integer> numbers;
+    private final Lotto lotto;
     private final int bonus;
 
-    private WinningLotto(List<Integer> numbers, int bonus) {
-        this.numbers = numbers;
+    private WinningLotto(Lotto lotto, int bonus) {
+        this.lotto = lotto;
         this.bonus = bonus;
     }
 
-    public WinningLotto of(List<Integer> numbers, int bonus) {
-        validate(numbers);
-        validateBonus(numbers, bonus);
+    public WinningLotto of(List<Integer> winningNumbers, int bonus) {
+        Lotto winningLotto = new Lotto(winningNumbers);
+        validateBonus(winningLotto, bonus);
 
-        return new WinningLotto(numbers, bonus);
+        return new WinningLotto(winningLotto, bonus);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateBonus(Lotto lotto, int bonus) {
+        if (bonus<1||bonus>45) {
             throw new IllegalArgumentException();
         }
-        if (numbers.stream().distinct().count() != 6) {
+        if (!lotto.hasNumber(bonus)) {
             throw new IllegalArgumentException();
         }
-        if (numbers.stream().anyMatch(number -> number<1 || number>45)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateBonus(List<Integer> numbers, int bonus) {
-        if (bonus<1||bonus>45) throw new IllegalArgumentException();
-        if (numbers.contains(bonus)) throw new IllegalArgumentException();
     }
 
     public List<Integer> getNumbers() {
-        return numbers.stream().sorted().toList();
+        return lotto.getNumbers().stream().sorted().toList();
     }
 
     public int getBonus() {

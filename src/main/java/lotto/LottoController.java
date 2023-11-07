@@ -22,7 +22,7 @@ public class LottoController {
         HashMap<Integer, List<Integer>> compareLottoNumResult =
                 compareLottoNumber(lottoNumbers, winningNumber, bonusNumber);
 
-        printResult(checkPrizeByLotto(compareLottoNumResult), lottoCost.getCost());
+        printResult(checkRewardByLotto(compareLottoNumResult), lottoCost.getCost());
     }
 
     private void printAllLotto(HashMap<Integer, Lotto> allLotto) {
@@ -183,19 +183,20 @@ public class LottoController {
     }
 
     //이 아래는 추후 LottoService 클래스로 이동(일부 메서드 접근 제어자 수정 필요)
-    private HashMap<String, Integer> checkPrizeByLotto(HashMap<Integer, List<Integer>> countMatchByLotto) {
+    private HashMap<String, Integer> checkRewardByLotto(HashMap<Integer, List<Integer>> checkMatchCountResult) {
         HashMap<String, Integer> countByPrize = new HashMap<>();
 
         countByPrize.put(Config.FIRST_PRIZE_REWARD,
-                countByMatchNumber(countMatchByLotto, Config.FIRST_PRIZE_HAS_WINNING));
+                countByMatchNumber(checkMatchCountResult, Config.FIRST_PRIZE_HAS_WINNING));
         countByPrize.put(Config.SECOND_PRIZE_REWARD,
-                countByMatchNumber(countMatchByLotto, Config.SECOND_PRIZE_HAS_WINNING, Config.SECOND_PRIZE_HAS_BONUS));
+                countByMatchNumber(checkMatchCountResult, Config.SECOND_PRIZE_HAS_WINNING,
+                        Config.SECOND_PRIZE_HAS_BONUS));
         countByPrize.put(Config.THIRD_PRIZE_REWARD,
-                countByMatchNumber(countMatchByLotto, Config.THIRD_PRIZE_HAS_WINNING));
+                countByMatchNumber(checkMatchCountResult, Config.THIRD_PRIZE_HAS_WINNING));
         countByPrize.put(Config.FOURTH_PRIZE_REWARD,
-                countByMatchNumber(countMatchByLotto, Config.FOURTH_PRIZE_HAS_WINNING));
+                countByMatchNumber(checkMatchCountResult, Config.FOURTH_PRIZE_HAS_WINNING));
         countByPrize.put(Config.FIFTH_PRIZE_REWARD,
-                countByMatchNumber(countMatchByLotto, Config.FIFTH_PRIZE_HAS_WINNING));
+                countByMatchNumber(checkMatchCountResult, Config.FIFTH_PRIZE_HAS_WINNING));
 
         return countByPrize;
     }

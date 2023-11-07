@@ -24,6 +24,7 @@ public class Lotto {
             throw new IllegalArgumentException(ERROR_LOTTO_SIZE);
         }
         validateDuplicate(numbers);
+        validateRangeOfNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현

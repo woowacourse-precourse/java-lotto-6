@@ -10,6 +10,7 @@ import lotto.domain.InputMoney;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.MoneyValidator;
+import lotto.exception.LottoException;
 import lotto.exception.MoneyException;
 import lotto.view.InputView;
 
@@ -51,8 +52,15 @@ public class Controller {
 	}
 
 	private List<Lotto> createLottos(int numbers) {
-		return Stream.generate(Lotto::createLotto)
-			.limit(numbers)
-			.collect(Collectors.toList());
+		while(true) {
+			try {
+				return Stream.generate(Lotto::createLotto)
+					.limit(numbers)
+					.collect(Collectors.toList());
+			} catch(LottoException e) {
+				System.out.println(e.getMessage());
+				createLottos(numbers);
+			}
+		}
 	}
 }

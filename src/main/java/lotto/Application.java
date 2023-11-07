@@ -6,6 +6,7 @@ import lotto.collaboration.lottos.Lottos;
 import lotto.game.LottoGame;
 import lotto.game.io.views.LottoGameView;
 import lotto.game.io.views.LottosView;
+import lotto.game.io.views.WinningLottoView;
 import lotto.io.ConsoleInput;
 import lotto.io.ConsoleOutput;
 import lotto.io.lottos.LottosRandoms;
@@ -27,7 +28,10 @@ public class Application {
         ConsoleOutput output = new ConsoleOutput();
         return new LottoGame(
                 new LottoGameView(
-                        input, output, new LottosView(input, output)
+                        input,
+                        output,
+                        new LottosView(input, output),
+                        new WinningLottoView(input, output)
                 ),
                 new LottosRandoms(),
                 new Lottos()

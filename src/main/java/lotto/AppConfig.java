@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.repository.LottoRepository;
+import lotto.repository.MemoryLottoRepository;
+import lotto.repository.MemoryWinningLottoRepository;
 import lotto.repository.WinningLottoRepository;
 import lotto.service.CalculateLotteryService;
 import lotto.service.CalculateLotteryServiceImpl;
@@ -17,9 +19,9 @@ public class AppConfig {
     private SelectWinningLottoService selectWinningLottoService;
     private CalculateLotteryService calculateLotteryService;
 
-    public AppConfig(LottoRepository lottoRepository, WinningLottoRepository winningLottoRepository) {
-        this.lottoRepository = lottoRepository;
-        this.winningLottoRepository = winningLottoRepository;
+    public AppConfig() {
+        this.lottoRepository = new MemoryLottoRepository();
+        this.winningLottoRepository = new MemoryWinningLottoRepository();
     }
 
     public OrderLottoService getOrderLottoServiceInstance() {

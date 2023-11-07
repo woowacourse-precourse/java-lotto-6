@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class WinningLottoNumber {
+public class WinningLotto {
 
     private static int treeSameNumLotto = 0;
     private static int fourSameNumLotto = 0;

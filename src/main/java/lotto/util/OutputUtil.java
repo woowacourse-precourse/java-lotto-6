@@ -18,7 +18,7 @@ public class OutputUtil {
         return joiner.toString();
     }
 
-    private static StringJoiner joinNumber(StringJoiner joiner, LottoNumber lottoNumber) {
-        return joiner.add(String.valueOf(lottoNumber.getLottoNumber()));
+    private static void joinNumber(StringJoiner joiner, LottoNumber lottoNumber) {
+        joiner.add(String.valueOf(lottoNumber.getLottoNumber()));
     }
 }

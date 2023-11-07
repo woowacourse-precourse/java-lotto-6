@@ -20,8 +20,8 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    protected static void printPurchasedLottoCountMessage(int purchaseLottoCount) {
-        System.out.printf("%d개를 구매했습니다.%n", purchaseLottoCount);
+    protected static void printPurchasedLottoCountMessage(int purchasedLottoCount) {
+        System.out.printf("%d개를 구매했습니다.%n", purchasedLottoCount);
     }
 
     protected static void printWinningLottos(List<Lotto> winningLottos) {
@@ -86,7 +86,7 @@ public class OutputView {
         System.out.printf(PrizeMessage.WINNING_COUNT.getMessage(), winningCount);
     }
 
-    private static void printLineBreak() {
+    public static void printLineBreak() {
         System.out.println();
     }
 

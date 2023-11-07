@@ -25,4 +25,9 @@ class ResultTest {
     void 네개_일치인_경우_그에_맞는_객체를_반환한다() {
         assertEquals(Result.FOUR_MATCH, Result.of(4, false));
     }
+
+    @Test
+    void 세개_일치인_경우_그에_맞는_객체를_반환한다() {
+        assertEquals(Result.THREE_MATCH, Result.of(3, false));
+    }
 }

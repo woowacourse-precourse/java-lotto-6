@@ -43,5 +43,16 @@
     - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
     - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
-구현 class
+## 💡 구현 로직
+
+- 일단 강제로 종료 하는 방식으로 만든 다음 그 코드를 수정한다.
+- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는 방식으로 변경
+
+~~~
+
+---
+
+## 🔍 소감
+
+
 

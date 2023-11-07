@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.Utils;
 import lotto.model.Lotto;
 import lotto.model.User;
+import lotto.model.WinningResult;
 
 public class OutputView {
     public static void printUserLotto(User user) {
@@ -14,5 +15,9 @@ public class OutputView {
             String userLotto = String.join(", ", userLottos);
             System.out.println("[" + userLotto + "]");
         }
+    }
+
+    public static void printResult() {
+        WinningResult.showResult();
     }
 }

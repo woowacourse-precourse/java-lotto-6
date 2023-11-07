@@ -1,4 +1,4 @@
-package lotto.domain.view;
+package lotto.view;
 
 import static lotto.ViewMessage.BONUS_PROMPT_MESSAGE;
 import static lotto.ViewMessage.PAYMENT_PROMPT_MESSAGE;

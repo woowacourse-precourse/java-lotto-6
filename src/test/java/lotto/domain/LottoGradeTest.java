@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGradeTest {
@@ -87,5 +89,20 @@ public class LottoGradeTest {
         LottoGrade lottoGrade = LottoGrade.getLottoGrade(matchNumberCount, isMatchBonus);
 
         assertThat(lottoGrade).isEqualTo(LottoGrade.FIRST);
+    }
+
+    @Test
+    @DisplayName("총 당첨 금액 구하기 테스트")
+    void 총_당첨_금액_구하기() {
+        Map<LottoGrade, Integer> result = Map.of(
+                LottoGrade.FIRST, 1,
+                LottoGrade.SECOND, 1,
+                LottoGrade.THIRD, 1,
+                LottoGrade.FOURTH, 1,
+                LottoGrade.FIFTH, 1
+        );
+        int totalPrize = LottoGrade.getTotalPrize(result);
+
+        assertThat(totalPrize).isEqualTo(2031555000);
     }
 }

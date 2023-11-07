@@ -1,6 +1,7 @@
 package lotto.domain.money;
 
 import lotto.domain.Money;
+import lotto.global.constant.message.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,6 +20,6 @@ public class MoneyTest {
         int amount = 0;
         Assertions.assertThatThrownBy(() -> new Money(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] ");
+                .hasMessageContaining(ErrorMessage.MONEY_AMOUNT_ERROR.getText());
     }
 }

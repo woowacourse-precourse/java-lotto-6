@@ -1,53 +1,33 @@
 package lotto.domain;
 
-import static lotto.constants.LottoValue.LOTTO_RANGE_IN_END_VALUE;
-import static lotto.constants.LottoValue.LOTTO_RANGE_IN_START_VALUE;
-import static lotto.constants.LottoValue.LOTTO_SIZE;
-
-import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    public static final int LOTTO_SIZE = 6;
     public static final String OUT_OF_LOTTO_NUMBERS_SIZE = "[ERROR] 로또 번호는 6개입니다.";
     public static final String LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 입력 값은 중복을 허용하지 않습니다.";
-    public static final String OUT_OF_LOTTO_VALUE_RANGE = "[ERROR] 로또 입력 값은 1이상 45이하의 값만 가능합니다.";
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validateLength(numbers);
-        validateUniqueElements(numbers, uniqueNumberSet(numbers));
-        validationInRange(numbers);
-        this.numbers = numbers;
+    private final List<LottoNumber> lottoNumbers;
+
+    public Lotto(List<LottoNumber> lottoNumbers) {
+        validateUniqueElements(lottoNumbers);
+        validateLength(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
-    private void validateLength(List<Integer> numbers) {
+    public boolean contains(LottoNumber number) {
+        return lottoNumbers.contains(number);
+    }
+
+    private void validateLength(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBERS_SIZE);
         }
     }
 
-    private void validateUniqueElements(List<Integer> numbers, HashSet<Integer> uniqueNumberSet) {
-        if (numbers.size() != uniqueNumberSet.size()) {
+    private void validateUniqueElements(List<LottoNumber> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
-    }
-
-    private HashSet<Integer> uniqueNumberSet(List<Integer> numbers) {
-        return new HashSet<>(numbers);
-    }
-
-    private void validationInRange(List<Integer> lotto) {
-        if (!lotto.stream().allMatch(this::range)) {
-            throw new IllegalArgumentException(OUT_OF_LOTTO_VALUE_RANGE);
-        }
-    }
-
-    private boolean range(Integer number) {
-        return LOTTO_RANGE_IN_START_VALUE <= number
-                && number <= LOTTO_RANGE_IN_END_VALUE;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

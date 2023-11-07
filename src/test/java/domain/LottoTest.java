@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("로또 번호가 6개가 아니면 예외 처리")
     @Test
     void createLottoByOverSize() {

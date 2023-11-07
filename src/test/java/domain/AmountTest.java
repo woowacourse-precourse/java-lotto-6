@@ -13,6 +13,7 @@ import java.util.List;
 
 class AmountTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("금액으로 음수가 들어오면 예외 발생.")
     @Test
     void createAmountByNegative() {

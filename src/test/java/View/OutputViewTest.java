@@ -39,8 +39,8 @@ class OutputViewTest extends NsTest {
                             "총 수익률은 2750.0%입니다."
                     );
                 },
-                List.of(1,2,3,9,10,11),
-                List.of(1,2,3,4,10,11)
+                List.of(1, 2, 3, 9, 10, 11),
+                List.of(1, 2, 3, 4, 10, 11)
         );
     }
 

@@ -16,16 +16,16 @@ public class Amount {
     }
 
     private int validate(int amount) {
-        if(!checkIsPositive(amount)){
+        if (!checkIsPositive(amount)) {
             return 0;
         }
-        if(!checkDividedByPrice(amount)){
+        if (!checkDividedByPrice(amount)) {
             return 0;
         }
         return amount / LOTTO_PRICE.get();
     }
 
-    private boolean checkIsPositive(int amount){
+    private boolean checkIsPositive(int amount) {
         try {
             if (amount < 0) {
                 throw new IllegalArgumentException();
@@ -36,6 +36,7 @@ public class Amount {
         }
         return true;
     }
+
     private boolean checkDividedByPrice(int amount) {
         try {
             if (amount % LOTTO_PRICE.get() != 0) {

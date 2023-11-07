@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class UserInputServiceTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("입력한 금액이 숫자가 아니면 예외 처리")
     @Test
     void createAmountByNoNumber() {

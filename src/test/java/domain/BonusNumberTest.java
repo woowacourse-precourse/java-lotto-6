@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class BonusNumberTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("보너스 번호가 1 ~ 45 숫자가 아니면 예외 처리")
     @Test
     void createBonusNumberByInvalidRange() {

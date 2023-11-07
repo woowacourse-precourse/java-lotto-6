@@ -62,7 +62,7 @@ public class Lotto {
 
     private boolean checkValidNumberRange(List<Integer> numbers) {
         try {
-            if(!checkRange(numbers)){
+            if (!checkRange(numbers)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

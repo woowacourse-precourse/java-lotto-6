@@ -24,6 +24,7 @@ public class OutputView {
 
     private static final int PERCENTAGE = 100;
     private static final double FOR_ROUND_OFF = 100;
+
     public static void buyMessage(Amount amount) {
         amount.printAmount();
         System.out.println(OUTPUT_BUY_NUMBER.get());
@@ -77,7 +78,7 @@ public class OutputView {
     }
 
     private static double calculateRateOfReturn(int revenue, Amount amount) {
-        double result = ((double)revenue / (amount.getAmount() * LOTTO_PRICE.get())) * PERCENTAGE;
+        double result = ((double) revenue / (amount.getAmount() * LOTTO_PRICE.get())) * PERCENTAGE;
         return Math.round(result * FOR_ROUND_OFF) / FOR_ROUND_OFF;
     }
 }

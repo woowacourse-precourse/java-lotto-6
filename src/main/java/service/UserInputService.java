@@ -12,6 +12,7 @@ import java.util.List;
 public class UserInputService {
 
     private static final String SEPERATOR = ",";
+
     private static String input() {
         return Console.readLine();
     }

@@ -41,10 +41,6 @@ public class Input {
     }
 
     public int getBonusNumber() {
-        return validationBonusNumber();
-    }
-
-    private int validationBonusNumber() {
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
             validationBonusNumberRange(bonusNumber);

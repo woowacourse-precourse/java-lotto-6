@@ -28,7 +28,7 @@ public class LottoGameView implements GameView {
     public void showProgressOf(Game game) {
         LottoGame lottoGame;
         lottoGame = (LottoGame) game;
-        System.out.println(lottoGame.getLottoPurchaseAmount() + message.get("purchased"));
+        System.out.println(lottoGame.getLottoPurchaseAmount() + ((String) message.get("purchased")));
         for (Lotto lotto : lottoGame.getPurchasedLottos()) {
             System.out.println(lotto.getNumbers());
         }
@@ -50,7 +50,7 @@ public class LottoGameView implements GameView {
         System.out.print(message.get("all-roi-postfix"));
     }
 
-    private String matchingResult(Winning rank, LottoGame game) {
+    private StringBuilder matchingResult(Winning rank, LottoGame game) {
         StringBuilder resultMessage;
         resultMessage = new StringBuilder();
 

@@ -1,3 +1,5 @@
+package lotto.model;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -5,29 +7,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.Lotto;
-import lotto.model.Game;
-import lotto.model.Winning;
 
 public class LottoGame implements Game {
     private static final int lottoNumbers = 6;
     private static final int lottoPirce = 1000;
-
-    private final int lottoPurchaseAmount;
-
-    private final Lotto winningLotto;
-    private final int bonusNumber;
+    private int lottoPurchaseAmount;
+    private Lotto winningLotto;
+    private int bonusNumber;
 
     private final List<Lotto> purchasedLottos = new ArrayList<>();
 
     private final List<Integer> winningLottos = new ArrayList<>();
 
     private double returnOnInvestment;
-
-    public LottoGame(int lottoPurchasePrice, List<Integer> winningNumbers, int bonusNumber) {
-        this.lottoPurchaseAmount = validateLottoPurchaseAmount(lottoPurchasePrice);
-        winningLotto = new Lotto(validateDuplicates(winningNumbers));
-        this.bonusNumber = validateBonusNumber(winningNumbers, bonusNumber);
-    }
 
     public void checkWinningLottos() {
         int profit = 0;
@@ -44,6 +36,16 @@ public class LottoGame implements Game {
         returnOnInvestment = Math.round(((double) profit / lottoPurchaseAmount) * 10) / 10.0D;
     }
 
+    @Override
+    public void play() {
+        createLottoTickets(lottoPurchaseAmount);
+    }
+
+    @Override
+    public boolean continues() {
+        return false;
+    }
+
     public void createLottoTickets(int lottoPurchaseAmount) {
         for (int i = 0; i < lottoPurchaseAmount; i++) {
             List<Integer> purchasedLottoNumbers;
@@ -53,7 +55,9 @@ public class LottoGame implements Game {
         }
     }
 
-    private int validateLottoPurchaseAmount(int lottoPurchasePrice) {
+    private int validateLottoPurchaseAmount(String input) {
+        int lottoPurchasePrice;
+        lottoPurchasePrice = validateNumber(input);
         if (lottoPurchasePrice % lottoPirce != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + lottoPirce + "원 단위입니다.");
         }
@@ -71,12 +75,26 @@ public class LottoGame implements Game {
         return winningNumbers;
     }
 
-    private int validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    private Lotto validateWinningNumbers(String winningNumbers) {
+        List<Integer> numberArray;
+        String[] winningNumbersArray;
+        numberArray = new ArrayList<>();
+        winningNumbersArray = winningNumbers.split(",");
+        for (String number : winningNumbersArray) {
+            numberArray.add(validateNumber(number));
+        }
+        validateDuplicates(numberArray);
+
+        return new Lotto(numberArray);
+    }
+
+    private int validateNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력은 숫자여야합니다.", e);
         }
 
-        return bonusNumber;
     }
 
     public int getLottoPurchaseAmount() {
@@ -93,5 +111,17 @@ public class LottoGame implements Game {
 
     public double getReturnOnInvestment() {
         return returnOnInvestment;
+    }
+
+    public void setLottoPurchaseAmount(String lottoPurchaseAmount) {
+        this.lottoPurchaseAmount = validateLottoPurchaseAmount(lottoPurchaseAmount);
+    }
+
+    public void setWinningLotto(String winningNumbers) {
+        this.winningLotto = validateWinningNumbers(winningNumbers);
+    }
+
+    public void setBonusNumber(String bonusNumber) {
+        this.bonusNumber = validateNumber(bonusNumber);
     }
 }

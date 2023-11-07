@@ -16,14 +16,14 @@ public class OutputProcessor {
     private static final String LEFT_BRACKET = "[";
     private static final String RIGHT_BRACKET = "]";
     private static final String WINNING_INFORMATION_PROMPT = "%d개 일치 (%s원) - %d개";
-    private static final String WINNING_INFORMATION_HEADER_PROMPT = "당첨통계\n---";
+    private static final String WINNING_INFORMATION_HEADER_PROMPT = "당첨 통계\n---";
     private static final String AMOUNT_PATTERN = "#,###";
-    private static final String PROFITABILITY_PATTERN = "#,##0.00";
+    private static final String PROFITABILITY_PATTERN = "#,##0.0";
     private static final String PURCHASE_MONEY_INPUT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBER_INPUT_PROMPT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
-    private static final String PROFITABILITY_PROMPT = "총 수익률은 %s원입니다.";
-    private static final String NEW_LINE = "\n";
+    private static final String PROFITABILITY_PROMPT = "총 수익률은 %s%%입니다.";
+    public static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     private final OutputSender outputSender;
 
     public OutputProcessor(OutputSender outputSender) {
@@ -68,11 +68,11 @@ public class OutputProcessor {
     }
 
     public void outputError(String errorMessage) {
-        outputSender.send("[ERROR] " + errorMessage);
+        outputSender.send(ERROR_MESSAGE_HEADER + errorMessage);
     }
 
     public void outputNewLine() {
-        outputSender.send(NEW_LINE);
+        outputSender.send("");
     }
 
     private void outputWinningDetails(Map<Rank, Integer> winningCounts) {

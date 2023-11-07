@@ -18,7 +18,7 @@ public class NumberGenerator {
         return numbers;
     }
 
-    private List<Integer> createRandomNumbersInRange(int min, int max, int count) {
+    private static List<Integer> createRandomNumbersInRange(int min, int max, int count) {
         return new ArrayList<>(Randoms.pickUniqueNumbersInRange(min, max, count));
     }
 

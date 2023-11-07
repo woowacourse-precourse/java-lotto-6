@@ -21,11 +21,7 @@ public class Statistician {
         int matchCount = matchCount(lotto, winningLotto.getNumbers());
         boolean matchBonus = matchBonusNumber(lotto, winningLotto.getBonusNumber());
 
-        if (matchCount >=3) {
-            return Optional.of(Ranking.of(matchCount, matchBonus));
-        }
-
-        return Optional.empty();
+        return Optional.ofNullable(Ranking.of(matchCount, matchBonus));
     }
 
     private int matchCount(Lotto lotto, List<Integer> numbers) {

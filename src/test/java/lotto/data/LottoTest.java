@@ -5,14 +5,15 @@ import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.data.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
@@ -58,6 +59,14 @@ class LottoTest {
 
         assertThat(given.getMatchCountWith(winningNumbers))
                 .isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 번호에 해당 숫자가 포함되는지 확인한다.")
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:true", "5:true", "6:true", "7:false"}, delimiter = ':')
+    void containsNumber(int number, boolean expected) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertEquals(expected, lotto.contains(number));
     }
 
     private static Stream<Arguments> provideNotSixDigitsLottos() {

@@ -45,7 +45,7 @@ public class OutputViewer {
 
     public static void printLastMessageWith(double profitRatio) {
         if (profitRatio == Double.POSITIVE_INFINITY) {
-            System.out.println("총 수익률은 " + profitRatio + "입니다.");
+            System.out.println("총 수익률은 무한대입니다.");
         }
         System.out.println("총 수익률은 " + String.format("%.1f", profitRatio) + "%입니다.");
     }

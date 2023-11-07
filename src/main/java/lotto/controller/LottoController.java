@@ -21,6 +21,7 @@ public class LottoController {
         WinningLotto winningLotto = inputView.winningLottoInput();
 
         Map<Rank, Integer> result = lottoMatch.scoreBoard(lottoNumbers, winningLotto);
-        System.out.println("result = " + result);
+        double earningRates = lottoMatch.earningRateMain(result, amount);
+        System.out.println("earningRates = " + earningRates);
     }
 }

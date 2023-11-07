@@ -4,12 +4,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import lotto.LottoConfig;
 
 public class LottoMatch {
 
+    private final LottoConfig lottoConfig = new LottoConfig();
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int WINNING_MIN_COUNT = 3;
+    private static final int PERCENTAGE = 100;
     private static final String VALIDATE_MESSAGE = "는 유효하지 않은 값입니다.";
 
 
@@ -50,5 +53,16 @@ public class LottoMatch {
                 .filter(rank -> rank.matchCount(countOfMatch) && rank != Rank.SECOND)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(countOfMatch + VALIDATE_MESSAGE));
+    }
+
+    public double earningRateMain(Map<Rank, Integer> result, int lottoAmount) {
+        double EarningRate = result.keySet().stream()
+                .mapToDouble(rank -> earningRateSub(result, lottoAmount, rank))
+                .sum();
+        return EarningRate;
+    }
+
+    public double earningRateSub(Map<Rank, Integer> result, int lottoAmount, Rank rank) {
+        return ((rank.getWinningMoney()) / (lottoAmount * lottoConfig.TICKET_PRICE)) * result.get(rank) * PERCENTAGE;
     }
 }

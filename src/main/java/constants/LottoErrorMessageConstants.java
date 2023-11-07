@@ -10,4 +10,6 @@ public class LottoErrorMessageConstants {
     public static final String ERROR_MESSAGE_ZERO_NOT_ALLOWED = "[ERROR] 입력된 값에 0이 포함되어 있습니다.";
 
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBER = "[ERROR] 입력된 번호에 중복된 값이 있습니다.";
+
+    public static final String ERROR_AMOUNT_LESS_THAN_MINIMUM = "[ERROR] 입력된 금액은 로또를 구매할 수 없습니다.";
 }

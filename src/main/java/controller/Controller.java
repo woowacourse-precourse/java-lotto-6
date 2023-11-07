@@ -154,8 +154,4 @@ public class Controller {
         OutputView.printRandomLotto(lottoList);
         return lottoList;
     }
-
-    private List<Lottos> getUserInputLottoList() {
-        return lottoRepository.findAll();
-    }
 }

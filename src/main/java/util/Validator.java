@@ -1,8 +1,5 @@
 package util;
 
-import repository.LottoRepository;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,10 +10,6 @@ public class Validator {
 
     public void checkMoneyInput(String input) {
         checkAllMoneyInput(input);
-    }
-
-    public void checkLottoInput(List<Integer> input) {
-        checkAllLottoInput(input);
     }
 
     public void checkBonusLottoInput(String input) {

@@ -6,10 +6,10 @@ import java.util.Optional;
 public enum LottoRank {
 
     FIFTH(3, false, 5_000L, PrintMessages.MATCH_3.getMessage()),
-            FOURTH(4, false, 50_000L, PrintMessages.MATCH_4.getMessage()),
-            THIRD(5, false, 1_500_000L, PrintMessages.MATCH_5.getMessage()),
-            SECOND(5, true, 30_000_000L, PrintMessages.MATCH_5_BONUS.getMessage()),
-            FIRST(6, false, 2_000_000_000L, PrintMessages.MATCH_6.getMessage());
+    FOURTH(4, false, 50_000L, PrintMessages.MATCH_4.getMessage()),
+    THIRD(5, false, 1_500_000L, PrintMessages.MATCH_5.getMessage()),
+    SECOND(5, true, 30_000_000L, PrintMessages.MATCH_5_BONUS.getMessage()),
+    FIRST(6, false, 2_000_000_000L, PrintMessages.MATCH_6.getMessage());
 
     private final int matchCount;
     private final boolean matchBonus;
@@ -34,7 +34,7 @@ public enum LottoRank {
     public static Optional<LottoRank> valueOf(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.matchCount == matchCount)
-                .filter(rank -> !rank.matchBonus || matchBonus)
+                .filter(rank -> rank.matchBonus == matchBonus)
                 .findFirst();
     }
 }

@@ -24,9 +24,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateEmptyLottoNumbers(numbers);
         validateNumbersSize(numbers);
         validateDuplicatedNumbers(numbers);
         validateNumbersInRange(numbers);
+    }
+
+    private void validateEmptyLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() == 0) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_LOTTO_NUMBERS.getMessage());
+        }
     }
 
     private void validateNumbersSize(List<Integer> numbers) {

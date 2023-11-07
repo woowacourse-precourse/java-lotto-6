@@ -31,6 +31,10 @@ public class Lottos {
         OutputView.printNewLine();
     }
 
+    public int lottoCount() {
+        return lottos.size();
+    }
+
     private void generateLottos(int count) {
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(generateLottoNumbers()));

@@ -16,4 +16,8 @@ public class Info {
         statistics[grade.getGrade()]++;
         rewards += grade.price;
     }
+
+    public int[] getStatistics() {
+        return statistics;
+    }
 }

@@ -11,11 +11,19 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         int number = 0;
-        try {
-            number = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR]");
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                number = Integer.parseInt(Console.readLine());
+                if (number % 1000 != 0) throw new IllegalArgumentException();
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력하실 수 있습니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 1,000원 단위로 입력하세요.");
+            }
         }
+
         System.out.println();
 
         System.out.println(number/1000+"개를 구매했습니다.");

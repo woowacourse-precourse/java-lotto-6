@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.domain.Calculator;
 import lotto.domain.LottoGenerator;
+import main.java.lotto.domain.WinningLottos;
 import lotto.domain.UserLotto;
 import lotto.view.SystemInput;
 
@@ -34,6 +35,8 @@ public class LottoController {
         int gameAmount = money / 1000;
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Lotto> winlottos = lottoGenerator.lottoGenerateWinningLotto(gameAmount);
+        WinningLottos winningLottos = new WinningLottos(winlottos);
+
         String userPickLotto = SystemInput.readPickLotto();
         List<Integer> userPickNumber = new ArrayList<>();
         String[] userPickLottoSplit = userPickLotto.split(",");
@@ -43,5 +46,8 @@ public class LottoController {
         String userBonus = SystemInput.readBonusNumber();
         int userBonusNumber = Integer.parseInt(userBonus);
         UserLotto userLotto = new UserLotto(userPickNumber, userBonusNumber);
+
+        Calculator calculator = new Calculator();
+        calculator.match(userLotto, winningLottos);
     }
 }

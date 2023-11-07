@@ -4,7 +4,7 @@ import lotto.model.Lotto;
 
 import java.util.List;
 
-import static lotto.constant.Constant.ERROR_MESSAGE_FRONT;
+import static lotto.constant.ErrorMessage.*;
 
 public class GameView {
 

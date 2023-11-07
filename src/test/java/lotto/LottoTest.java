@@ -1,10 +1,9 @@
 package lotto;
 
+import java.util.List;
 import lotto.domain.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static lotto.domain.constant.ErrorConst.LOTTO_COUNT_NOT_SIX;
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
@@ -30,7 +29,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호의 개수가 6개 미만이면 예외가 발생한다")
     void createLottoByUnderSize() {
-        assertThatIllegalArgumentException().isThrownBy(() ->{
+        assertThatIllegalArgumentException().isThrownBy(() -> {
             new Lotto(List.of(1, 2, 3, 4, 5));
         }).withMessage(LOTTO_COUNT_NOT_SIX);
     }
@@ -38,7 +37,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호 중 45보다 큰 번호가 있으면 예외가 발생한다")
     void createLottoByOutOfMaximumNumber() {
-        assertThatIllegalArgumentException().isThrownBy(() ->{
+        assertThatIllegalArgumentException().isThrownBy(() -> {
             new Lotto(List.of(1, 2, 3, 4, 5, 46));
         }).withMessage(LOTTO_OUT_OF_RANGE);
     }
@@ -46,7 +45,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호 중 1보다 작은 번호가 있으면 예외가 발생한다")
     void createLottoByOutOfMinimumNumber() {
-        assertThatIllegalArgumentException().isThrownBy(() ->{
+        assertThatIllegalArgumentException().isThrownBy(() -> {
             new Lotto(List.of(1, 2, 3, 0, 5, 6));
         }).withMessage(LOTTO_OUT_OF_RANGE);
     }

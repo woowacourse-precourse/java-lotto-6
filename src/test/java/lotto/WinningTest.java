@@ -1,12 +1,11 @@
 package lotto;
 
+import java.util.List;
 import lotto.domain.model.Bonus;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Winning;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static lotto.domain.constant.ErrorConst.WINNING_HAS_DUPLICATE;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,13 +1,12 @@
 package lotto;
 
+import java.util.stream.Stream;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.CorrectResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
 
 import static lotto.domain.constant.Rank.FIFTH;
 import static lotto.domain.constant.Rank.FIRST;

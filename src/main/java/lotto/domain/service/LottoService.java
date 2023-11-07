@@ -1,17 +1,16 @@
 package lotto.domain.service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.Bonus;
 import lotto.domain.model.CorrectResult;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Winning;
 import lotto.domain.util.NumberGenerator;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 import static lotto.domain.constant.ErrorConst.PRICE_LESS_THAN_THOUSAND;
 import static lotto.domain.constant.ErrorConst.PRICE_NOT_DIVIDED_BY_THOUSAND;

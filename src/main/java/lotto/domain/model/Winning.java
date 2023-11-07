@@ -21,8 +21,8 @@ public class Winning {
      *
      * @param lotto 발행한 로또
      * @return CorrectResult 객체
-     *      <p>sameCount: 당첨 번호 6개와 발행한 로또 번호 6개중 일치하는 번호의 개수(int)<br>
-     *      existBonus: 발행한 로또 번호 6개 중 보너스 번호가 있는지 여부(boolean)
+     * <p>sameCount: 당첨 번호 6개와 발행한 로또 번호 6개중 일치하는 번호의 개수(int)<br>
+     * existBonus: 발행한 로또 번호 6개 중 보너스 번호가 있는지 여부(boolean)
      */
     public CorrectResult countSameNumber(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();

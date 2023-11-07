@@ -1,14 +1,13 @@
 package lotto.controller;
 
+import java.util.List;
+import java.util.Map;
 import lotto.controller.handler.LottoHandler;
 import lotto.controller.handler.WinningHandler;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.Lotto;
 import lotto.domain.service.LottoService;
 import lotto.ui.output.OutputView;
-
-import java.util.List;
-import java.util.Map;
 
 import static lotto.ui.constant.MessageConst.PURCHASE_REQUEST;
 import static lotto.ui.constant.MessageConst.WINNING_BONUS_REQUEST;

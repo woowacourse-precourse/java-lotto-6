@@ -5,30 +5,32 @@
 이름엔 자료형, 자료구조 넣지 말 것
 게임컨트롤러 클래스
 당첨 번호 입력 클래스 gameinput
-- consol 사용 금액 입력
+v consol 사용 금액 입력
 v>>14000 % 1000 확인메소드 => 리턴
 
 당첨 번호를 입력 받는 것
-> 무조건 6자리, 범위 1~45 아니면 오류 A hashset
-> 번호 스플릿
+v 무조건 6자리, 
+> 범위 1~45 아니면 오류 A hashset 
+v 번호 스플릿
 
 보너스 번호 입력 받는 것
-> 보너스 번호 B hashset >> A hashset에 포함이 되어있는지 확인 => 만약 포함되어있으면 오류발생
+v 보너스 번호 B hashset >> A hashset에 포함이 되어있는지 확인 
+- => 만약 포함되어있으면 오류발생
 
 
 randomLottoNumbers 뽑는 클래스
-- hashset 사용 6개 randompicknumber로 가져오기
+v hashset 사용 6개 randompicknumber로 가져오기
 - 출력, 리스트 배열로 출력 가능한가? 아니면 더 좋은방법 확인
-- lotto 사용해서 구현 numbers List형태 반환. 검증부가 안에 있음
+v lotto 사용해서 구현 numbers List형태 반환. 검증부가 안에 있음
 
 - 외부검증(뷰) 내부검증(도메인) 2회 작업할 것
 
 
 
 gameoutput
-- 발행한 로또 출력 구매내역
-- 당첨 내역 출력
-- 수익률 소수점 둘째 자리에서 반올림
+v 발행한 로또 출력 구매내역
+v 당첨 내역 출력
+v 수익률 소수점 둘째 자리에서 반올림
 - 에러처리 부분 => case 1, 2 ,3 등등 Enum 등록해서 처리 if if if 스위치 케이스 X
 
 예외처리(익셉셔널) 클래스

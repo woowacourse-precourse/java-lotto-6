@@ -13,7 +13,11 @@ public class WinningLottoNumbers {
     InputValidation inputValidation = new InputValidation();
 
     public WinningLottoNumbers(String numbers, String bouns) {
+        validateWinningNumbers(numbers);
+        isDuplicateNumbers(numbers);
         this.winningLotto = convertWinningNumbers(numbers);
+
+        validateBonusNumber(numbers);
         this.bouns = convertBonus(bouns);
     }
 

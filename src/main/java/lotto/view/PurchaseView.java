@@ -43,7 +43,7 @@ public class PurchaseView {
     }
 
     public static void validateAmountIsZero(String input) throws IllegalArgumentException {
-        if(input.contains(Constants.ZERO)) {
+        if(input.equals(Constants.ZERO)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_BUY_MORE_THAN_ONE.getMessage());
         }
     }

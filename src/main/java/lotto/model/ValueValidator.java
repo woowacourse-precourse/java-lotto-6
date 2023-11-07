@@ -28,6 +28,20 @@ public class ValueValidator {
     }
 
     public boolean validateWinningInputValue(List<Integer> winningNumbers) {
+        if (validateWinningInputValueSize(winningNumbers) && validateDuplicateWinningInputValue(winningNumbers)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateWinningInputValueSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_SIZE.getMessage());
+        }
+        return true;
+    }
+
+    private boolean validateDuplicateWinningInputValue(List<Integer> winningNumbers) {
         winningNumbers.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .forEach((number, count) -> {

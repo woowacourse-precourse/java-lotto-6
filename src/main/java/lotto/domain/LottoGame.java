@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class LottoGame {
@@ -11,16 +12,17 @@ public class LottoGame {
 
     private int bonusNumber;
 
+    private final EnumMap<LottoStatistic, Integer> lottoResult;
     public LottoGame(Long purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+        lottoResult = new EnumMap<>(LottoStatistic.class);
+        for (LottoStatistic ls : LottoStatistic.values()) {
+            lottoResult.put(ls, 0);
+        }
     }
 
     public Long getPurchaseAmount() {
         return purchaseAmount;
-    }
-
-    public void setPurchaseAmount(Long purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
     }
 
     public List<Lotto> getLottos() {
@@ -45,5 +47,9 @@ public class LottoGame {
 
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    public void setStatisticMap(LottoStatistic lottoStatistic) {
+        this.lottoResult.put(lottoStatistic, lottoResult.get(lottoStatistic)+1);
     }
 }

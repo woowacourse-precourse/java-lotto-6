@@ -58,16 +58,23 @@ public class Game {
 
         addAllRandomNumbers();
     }
-    private void addAllRandomNumbers() {
-        List<List<Integer>> allRandomNumbers = randomNumber.generateAllRandomNumbers(ticket.getTicket());
-        randomNumberView.printAllRandomNumbers(allRandomNumbers);
-    }
 
     private void lottoMethod() {
         this.numbers = checkValidator.validateLotto().getNumbers();
         this.bonusNumber = checkValidator.validateBonusNumber(numbers).getBonusNumber();
         OutputView.printSpace();
     }
+
+
+    private void addAllRandomNumbers() {
+        for (int i = 0; i < ticket.getTicket(); i++) {
+            List<Integer> randomNumbers = randomNumber.randomNumbers();
+            AllRandomNumbers.add(randomNumbers);
+            randomNumberView.printRandomNumber(randomNumbers);
+        }
+        OutputView.printSpace();
+    }
+
 
     private void AllCalculator() {
         List<ComPareNumber> compareNumbers = generateCompareNumbers(numbers, bonusNumber);

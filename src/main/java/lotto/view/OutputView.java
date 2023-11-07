@@ -40,8 +40,7 @@ public class OutputView {
 
     public static void printAllWinPrices(List<Integer> winCounts) {
         for (WinPriceMessage winPrice : WinPriceMessage.values()) {
-            int index = winPrice.ordinal();
-            String message = formatWinPriceMessage(winPrice, winCounts.get(index));
+            String message = formatWinPriceMessage(winPrice, winCounts.get(winPrice.getIndex()));
             System.out.println(message);
         }
     }

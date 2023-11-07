@@ -2,8 +2,6 @@ package lotto;
 
 import lotto.Service.GameService;
 
-import javax.imageio.metadata.IIOInvalidTreeException;
-
 public class Controller {
 
     GameService gameService = new GameService();

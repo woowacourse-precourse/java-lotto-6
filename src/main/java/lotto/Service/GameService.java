@@ -5,8 +5,6 @@ import lotto.Domain.Rank;
 import lotto.Domain.Referee;
 import lotto.View.InputLottoUI;
 import lotto.View.OutputLottoUI;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

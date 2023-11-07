@@ -12,12 +12,6 @@ public class OutputLottoUI {
         System.out.println("\n" +lottoCount + "개를 구매했습니다.");
     }
 
-    public static void lottoNumbersView(List<Integer> lotto) {
-        for (int number : lotto) {
-            System.out.print(number + " ");
-        }
-    }
-
     public static void answerLottoView() {
         System.out.println(("\n당첨 번호를 입력해 주세요."));
     }

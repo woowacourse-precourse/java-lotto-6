@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public class User {
     private final int count;
     private final LottoTickets lottoTickets;
@@ -15,5 +17,9 @@ public class User {
 
     public LottoTickets getLottoTickets() {
         return lottoTickets;
+    }
+
+    public List<Lotto> getLottoList() {
+        return lottoTickets.getLotto();
     }
 }

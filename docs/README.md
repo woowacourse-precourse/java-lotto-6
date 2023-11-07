@@ -38,7 +38,7 @@ bonus(model) 생성
 - [X] inputView 로 string 입력 받기
 - [X] '숫자 생성기'가 숫자로 변환
 - [X] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
-- [ ] controller 에게 숫자와 Lotto 를 넘겨 bonus model 생성
+- [X] controller 에게 숫자와 Lotto 를 넘겨 bonus model 생성
 - [X] bonus 모델에게 생성자로 숫자와 Lotto 를 넘겨 bonus model 생성
 - [X] 검증 : bonus 모델은 비즈니스 로직만 검증 수행
   - [X] 숫자가 1 ~ 45인지 범위 체크

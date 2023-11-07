@@ -1,6 +1,7 @@
 package lotto.configuration;
 
 import lotto.GameManager;
+import lotto.controller.BonusController;
 import lotto.controller.LottoController;
 import lotto.controller.LottosController;
 import lotto.domain.NumberGenerator;
@@ -30,12 +31,16 @@ public class AppConfig {
         return new LottosController();
     }
 
-    private LottoController lottoController(){
+    private LottoController lottoController() {
         return new LottoController();
     }
 
+    private BonusController bonusController() {
+        return new BonusController();
+    }
+
     public GameManager gameManager() {
-        return new GameManager(inputView(), outputView(), numberGenerator(), moneyController(), lottosController(), lottoController());
+        return new GameManager(inputView(), outputView(), numberGenerator(), moneyController(), lottosController(), lottoController(), bonusController());
     }
 
 }

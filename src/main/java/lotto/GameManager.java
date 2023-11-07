@@ -1,12 +1,10 @@
 package lotto;
 
+import lotto.controller.BonusController;
 import lotto.controller.LottoController;
 import lotto.controller.LottosController;
-import lotto.domain.Lotto;
-import lotto.domain.NumberGenerator;
+import lotto.domain.*;
 import lotto.controller.MoneyController;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,6 +21,7 @@ public class GameManager {
     private final MoneyController moneyController;
     private final LottosController lottosController;
     private final LottoController lottoController;
+    private final BonusController bonusController;
 
 
     public GameManager(InputView inputView,
@@ -30,19 +29,22 @@ public class GameManager {
                        NumberGenerator numberGenerator,
                        MoneyController moneyController,
                        LottosController lottosController,
-                       LottoController lottoController) {
+                       LottoController lottoController,
+                       BonusController bonusController) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
         this.moneyController = moneyController;
         this.lottosController = lottosController;
         this.lottoController = lottoController;
+        this.bonusController = bonusController;
     }
 
     public void play() {
         Money money = getMoney();
         Lottos lottos = getLottos(money.getLottoCount());
         Lotto winningLotto = getWinningLotto();
+        Bonus bonus = getBonus(winningLotto);
     }
 
     private Money getMoney() {
@@ -74,6 +76,19 @@ public class GameManager {
                 List<Integer> numbers = numberGenerator.createNumbers(input);
                 winningLotto = lottoController.create(numbers);
                 return winningLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Bonus getBonus(Lotto winningLotto) {
+        while (true) {
+            try {
+                outputView.println(Message.NEED_BONUS_NUMBER);
+                String input = inputView.readOne();
+                int bonusNumber = numberGenerator.createOne(input);
+                return bonusController.create(bonusNumber, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

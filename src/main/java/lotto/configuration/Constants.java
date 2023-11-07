@@ -24,6 +24,7 @@ public class Constants {
         public static final String NEED_PURCHASE_MONEY = "구입금액을 입력해 주세요.";
         public static final String BUY_LOTTO = "개를 구매했습니다.\n";
         public static final String ENTER_WINNING_LOTTO = "당첨 번호를 입력해 주세요.";
+        public static final String NEED_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
     }
 
 }

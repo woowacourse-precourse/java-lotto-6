@@ -8,6 +8,7 @@ import lotto.dto.PurchaseLottoDto;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoGameService;
 import lotto.utils.GameUtils;
+import lotto.utils.validator.BonusNumberValidator;
 import lotto.utils.validator.PurchaseAmountValidator;
 import lotto.utils.validator.WinningInfoValidator;
 import lotto.utils.validator.WinningNumberValidator;
@@ -68,7 +69,9 @@ public class LottoGameController {
     private LottoNumber openBonusNumber(final Lotto winningNumbers) {
         while (true) {
             try {
-                LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(inputView.readBonusNumber()));
+                String bonusNumberInput = inputView.readBonusNumber();
+                BonusNumberValidator.validate(bonusNumberInput);
+                LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(bonusNumberInput));
                 WinningInfoValidator.validate(winningNumbers, bonusNumber);
 
                 return bonusNumber;

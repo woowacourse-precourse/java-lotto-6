@@ -67,7 +67,7 @@ public class WinningNumbers{
     public int compare(Lotto lotto){
         int matchCount = 0;
         for (int winningNum : numbers){
-            if (lotto.match(winningNum) != -1){
+            if (lotto.match(winningNum) > -1){
                 matchCount++;
             }
         }

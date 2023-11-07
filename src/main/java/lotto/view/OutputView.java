@@ -17,8 +17,8 @@ public class OutputView {
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
     private static final String LOTTO_STATISTIC_HEADER = "당첨 통계";
     private static final String LOTTO_STATISTIC_SEPARATOR = "---";
-    private static final String LOTTO_STATISTIC_FORMAT = "%d개 일치 (%s원) - %d개";
-    private static final String LOTTO_STATISTIC_SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String LOTTO_STATISTIC_FORMAT = "%d개 일치 (%,d원) - %d개";
+    private static final String LOTTO_STATISTIC_SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
 
     public void outputPurchasedLottos(PurchasedLottos purchasedLottos) {
         outputPurchasedLottosCount(purchasedLottos);
@@ -57,13 +57,11 @@ public class OutputView {
         LottoRank rank = entry.getKey();
         int ticketCount = entry.getValue();
 
-        NumberFormat prizeFormat = NumberFormat.getInstance();
-        String prize = prizeFormat.format(rank.getPrize());
         String printFormat = LOTTO_STATISTIC_FORMAT;
         if (rank == LottoRank.SECOND) {
             printFormat = LOTTO_STATISTIC_SECOND_RANK_FORMAT;
         }
-        return String.format(printFormat, rank.getMatchCount(), prize, ticketCount);
+        return String.format(printFormat, rank.getMatchCount(), rank.getPrize(), ticketCount);
     }
 
     private void outputProfitRate(LottoMatchResultDto lottoMatchResultDto) {

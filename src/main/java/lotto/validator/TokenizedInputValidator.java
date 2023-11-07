@@ -14,9 +14,13 @@ public class TokenizedInputValidator {
     private final static String WRONG_FORMAT_MSG = "[ERROR] 1 ~ 45 사이의 숫자와 쉼표만 입력 가능합니다.";
 
     public static void check(String[] input) {
-        checkFormat(input);
-        checkSize(input);
-        checkUnique(input);
+        String[] trimmedInputs = Arrays.stream(input)
+                .map(String::trim)
+                .toArray(String[]::new);
+
+        checkFormat(trimmedInputs);
+        checkSize(trimmedInputs);
+        checkUnique(trimmedInputs);
     }
 
     private static void checkSize(String[] splitNumbers) {

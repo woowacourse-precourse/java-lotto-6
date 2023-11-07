@@ -28,11 +28,23 @@ public enum WinningResult {
                 .orElse(LOSING);
     }
 
-    public boolean matches(int matchCount, boolean bonusMatch) {
+    private boolean matches(int matchCount, boolean bonusMatch) {
         return matchCount == this.matchCount && needBonusMatch.matches(bonusMatch);
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean needBonusMatch() {
+        return needBonusMatch == BonusMatchStatus.MATCHED;
     }
 
     public Money getWinningMoney() {
         return winningMoney;
+    }
+
+    public int getWinningAmount() {
+        return winningMoney.getAmount();
     }
 }

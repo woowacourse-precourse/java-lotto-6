@@ -42,4 +42,8 @@ public final class WinningStatistics {
 
         return winningMoney.multiply(winningCount);
     }
+
+    public Map<WinningResult, Integer> getStatistics() {
+        return new EnumMap<>(statistics);
+    }
 }

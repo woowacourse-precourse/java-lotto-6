@@ -4,7 +4,7 @@ import static lotto.ErrorMessage.MONEY_NEGATIVE_ERROR;
 
 import java.util.Objects;
 
-public final class Money {
+public final class Money implements Comparable<Money> {
     private final int amount;
 
     public Money(int amount) {
@@ -52,5 +52,14 @@ public final class Money {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
+    }
+
+    @Override
+    public int compareTo(Money otherMoney) {
+        return Integer.compare(this.amount, otherMoney.amount);
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

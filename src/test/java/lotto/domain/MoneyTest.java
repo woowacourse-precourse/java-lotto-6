@@ -27,4 +27,9 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
+
+    @Test
+    void 천원단위의_구입금액인_경우_예외가_던져지지_않는다() {
+        assertDoesNotThrow(() -> new Money(50000));
+    }
 }

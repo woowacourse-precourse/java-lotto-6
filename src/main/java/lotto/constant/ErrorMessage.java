@@ -10,7 +10,8 @@ public enum ErrorMessage {
                     LottoRule.MIN_NUMBER.toValue(), LottoRule.MAX_NUMBER.toValue())),
     INVALID_PURCHASE_AMOUNT("구매 금액이 잘못되었습니다."),
     NOT_POSITIVE_PROFIT("수익이 음수가 될 수 없습니다."),
-    DUPLICATE_LOTTO_NUMBER("로또는 중복 숫자가 포함되어 발행될 수 없습니다.");
+    DUPLICATE_LOTTO_NUMBER("로또는 중복 숫자가 포함되어 발행될 수 없습니다."),
+    INVALID_INDEX("인덱스의 최솟값은 0입니다.");
 
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;

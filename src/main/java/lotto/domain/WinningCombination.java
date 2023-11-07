@@ -34,21 +34,13 @@ public final class WinningCombination {
     private WinningDetails checkSecondWinning(
             final Lottos lottos, final WinningDetails winningDetails) {
         return IntStream.range(START_INDEX, winningDetails.numOfValues())
-                .mapToObj(index -> convertIfSecondWinning(lottos, winningDetails, index))
+                .mapToObj(index -> convertIfSecondWinning(lottos, winningDetails.getByIndex(index)))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), WinningDetails::new));
     }
 
     private WinningDetail convertIfSecondWinning(
-            final Lottos lottos, final WinningDetails winningDetails, final int index) {
-        final WinningDetail winningDetail = winningDetails.getByIndex(index);
-        return checkBonusNumber(lottos.getByWinningDetail(winningDetail), winningDetail);
-    }
-
-    private WinningDetail checkBonusNumber(final Lotto lotto, final WinningDetail winningDetail) {
-        if (winningDetail.isPossibleSecondWinner()) {
-            return new WinningDetail(
-                    bonusNumber.checkSecondWinning(lotto), winningDetail.toIndex());
-        }
-        return winningDetail;
+            final Lottos lottos, final WinningDetail winningDetail) {
+        return winningDetail.convertIfSecondWinning(
+                lottos.getByWinningDetail(winningDetail), bonusNumber);
     }
 }

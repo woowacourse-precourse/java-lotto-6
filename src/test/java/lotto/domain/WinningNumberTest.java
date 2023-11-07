@@ -29,7 +29,7 @@ class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("당첨번호에 해당 숫자가 포함되면 true, 아니면 false를 반환한다.")
     @Test
     void isContains() {
         // given

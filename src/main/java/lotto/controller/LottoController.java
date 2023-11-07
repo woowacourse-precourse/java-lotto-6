@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputMoneyView;
 import lotto.view.OutputLottoCountView;
 
@@ -9,7 +10,7 @@ public class LottoController {
 
     public void start() {
         Money money = getMoney();
-        createLotto(money);
+        Lottos lottos = createLotto(money);
     }
 
     private Money getMoney() {
@@ -18,9 +19,12 @@ public class LottoController {
         return new Money(money);
     }
 
-    private void createLotto(Money money) {
+    private Lottos createLotto(Money money) {
         OutputLottoCountView outputLottoCountView = new OutputLottoCountView();
         outputLottoCountView.OutputLottoCount(money);
+        int lottoCount = money.getLottoCount();
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        return new Lottos(lottoGenerator.generateLottos(lottoCount));
     }
 
     private void getNumber() {

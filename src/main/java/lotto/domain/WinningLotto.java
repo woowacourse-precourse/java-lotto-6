@@ -1,12 +1,16 @@
 package lotto.domain;
 
 import lotto.util.LottoUtils;
+import lotto.validator.LottoValidator;
 
 public class WinningLotto {
     private Lotto lotto;
     private int bonus;
 
     public WinningLotto(String winningLottoStr, String winningBonusStr) {
+        LottoValidator.winningLottoValidator(winningLottoStr);
+        LottoValidator.inputWinningBonusValidator(winningBonusStr);
+
         this.lotto = convertWinningLotto(winningLottoStr);
         this.bonus = convertWinningBonus(winningBonusStr);
     }

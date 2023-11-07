@@ -2,6 +2,8 @@ package lotto.utils;
 
 public enum ErrorMessage {
     USER_INSERT_ONLY_NUMBER("[ERROR] 숫자만 입력 가능합니다"),
+    USER_INSERT_WINNING_NUMBER_ONLY_NUMBER("[ERROR] 당첨번호는 숫자만 입력 가능합니다"),
+    USER_INSERT_BONUS_ONLY_NUMBER("[ERROR] 숫자만 입력 가능합니다"),
     LOTTO_NUMBER_SIZE_RANGE_ERROR("[ERROR] 로또 번호의 범위는 1-45 입니다"),
     LOTTO_NUMBER_NOT_DUPLICATE("[ERROR] 로또 번호는 중복 될수 없습니다"),
     LOTTO_NUMBER_NOT_SIX_SIZE("[ERROR] 로또 번호는 6자리 입니다"),

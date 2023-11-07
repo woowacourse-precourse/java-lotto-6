@@ -15,5 +15,8 @@ public class LottoController {
         List<Lotto> lottoList = LottoService.generateLottoList(numberOfLotto);
         LottoView.printLottoList(lottoList);
 
+        Lotto winningNumbers = LottoService.inputWinningNumbers();
+
+
     }
 }

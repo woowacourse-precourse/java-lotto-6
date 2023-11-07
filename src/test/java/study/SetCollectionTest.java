@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetCollectionTest {
@@ -38,7 +39,7 @@ public class SetCollectionTest {
     @ParameterizedTest(name = "{0}을 조회한 결과는 true다.")
     @ValueSource(ints = {1, 2, 3})
     @DisplayName("추가된 숫자 조회 테스트")
-    void testContainsInt(int existElement) {
+    void testContainsTrue(int existElement) {
         // given
 
         // when
@@ -46,5 +47,18 @@ public class SetCollectionTest {
 
         // then
         assertThat(hasElement).isTrue();
+    }
+
+    @ParameterizedTest(name = "{0}을 조회한 결과는 {1}다.")
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiterString = ":")
+    @DisplayName("숫자 조회 테스트")
+    void testContains(int input, boolean expected) {
+        // given
+
+        // when
+        boolean actual = numbers.contains(input);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 }

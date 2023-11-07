@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Arrays;
 
 import static lotto.constant.NumberConstants.*;
 

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessages;
-import lotto.constant.NumberConstants;
 
 import static lotto.constant.NumberConstants.*;
 
@@ -17,27 +16,39 @@ public class PurchaseLotto {
     }
 
     private void isAvailableNumber(int purchaseAmount) {
-        if (purchaseAmount <= ZERO) {
+        if (isNotAvailableAmount(purchaseAmount)) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.NEGATIVE_AMOUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }
 
+    private static boolean isNotAvailableAmount(int purchaseAmount) {
+        return purchaseAmount <= ZERO;
+    }
+
     private void isLegalValue(int purchaseAmount) {
-        if (purchaseAmount > LEGAL_AMOUNT) {
+        if (isIllegalAmount(purchaseAmount)) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.ILLEGAL_AMOUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
     }
 
+    private static boolean isIllegalAmount(int purchaseAmount) {
+        return purchaseAmount > LEGAL_AMOUNT;
+    }
+
     private void isDivisible(int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != ZERO) {
+        if (isNotDivisibleAmount(purchaseAmount)) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.INVALID_AMOUNT.format(LOTTO_PRICE) +
                     ErrorMessages.SUFFIX.getMessage());
         }
+    }
+
+    private static boolean isNotDivisibleAmount(int purchaseAmount) {
+        return purchaseAmount % LOTTO_PRICE != ZERO;
     }
 
     public int calculateLottoCount() {

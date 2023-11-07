@@ -17,19 +17,29 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != WINNING_NUMBER) {
-            throw new IllegalArgumentException();
+        if (isIncorrectNumberSize(numbers)) {
+            throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
+                    ErrorMessages.INVALID_COUNT.getMessage() +
+                    ErrorMessages.SUFFIX.getMessage());
         }
+    }
+
+    private static boolean isIncorrectNumberSize(List<Integer> numbers) {
+        return numbers.size() != WINNING_NUMBER;
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
-        if (uniqueNumbers.size() != WINNING_NUMBER) {
+        if (isDuplicatedNumber(uniqueNumbers)) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.DUPLICATE_NUMBER.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());
         }
+    }
+
+    private static boolean isDuplicatedNumber(Set<Integer> uniqueNumbers) {
+        return uniqueNumbers.size() != WINNING_NUMBER;
     }
 
     private void validateNumberRange(List<Integer> numbers) {
@@ -37,11 +47,15 @@ public class Lotto {
                 .filter(num -> num >= NUMBER_RANGE_MIN && num <= NUMBER_RANGE_MAX)
                 .count();
 
-        if (count != WINNING_NUMBER) {
+        if (isNotEnoughNumber(count)) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.INVALID_RANGE.format(NUMBER_RANGE_MIN, NUMBER_RANGE_MAX) +
                     ErrorMessages.SUFFIX.getMessage());
         }
+    }
+
+    private static boolean isNotEnoughNumber(long count) {
+        return count != WINNING_NUMBER;
     }
 
     public int calculateMatchNumber(List<Integer> winningNumber) {

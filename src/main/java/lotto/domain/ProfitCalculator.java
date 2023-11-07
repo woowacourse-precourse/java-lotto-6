@@ -1,7 +1,6 @@
 package lotto.domain;
 
 
-
 import static lotto.constant.NumberConstants.*;
 
 public class ProfitCalculator {

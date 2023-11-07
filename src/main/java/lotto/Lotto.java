@@ -19,4 +19,9 @@ public class Lotto {
     public boolean isNumberInLotto(int Number) {
         return numbers.contains(Number);
     }
+    public int countMatchingNumbers(Lotto otherLotto) {
+        return (int) this.numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
+    }
 }

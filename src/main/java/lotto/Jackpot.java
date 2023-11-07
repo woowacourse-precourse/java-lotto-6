@@ -10,6 +10,14 @@ public class Jackpot {
     private Lotto winningNumbers;
     private int bonusNumber;
 
+    public int countNumberOfHits(Lotto lotto) {
+        return winningNumbers.countMatchingNumbers(lotto);
+    }
+
+    public boolean isBonusBallHit(Lotto lotto) {
+        return lotto.isNumberInLotto(this.bonusNumber);
+    }
+
     public Jackpot() {
         this.winningNumbers = askForWinningNumbers();
         this.bonusNumber = askForBonusNumber();

@@ -13,12 +13,12 @@ public enum Prize {
     FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - %d개");
 
     private final int count;
-    private final int prizeMoney;
+    private final int money;
     private final String message;
 
-    Prize(int count, int prizeMoney, String message) {
+    Prize(int count, int money, String message) {
         this.count = count;
-        this.prizeMoney = prizeMoney;
+        this.money = money;
         this.message = message;
     }
 
@@ -30,7 +30,7 @@ public enum Prize {
     }
 
     private static boolean isSecond(int count, boolean isBonus) {
-        return count == 5 && isBonus;
+        return count == SECOND.count && isBonus;
     }
 
     private static Prize findPrizeByCount(int count) {
@@ -50,11 +50,11 @@ public enum Prize {
                 .collect(Collectors.toList());
     }
 
-    public int getPrizeMoney() {
-        return prizeMoney;
-    }
-
     public String formatMessage(int value) {
         return String.format(message, value);
+    }
+    
+    public int getMoney() {
+        return money;
     }
 }

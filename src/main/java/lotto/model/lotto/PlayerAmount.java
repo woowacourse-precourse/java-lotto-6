@@ -28,4 +28,9 @@ public class PlayerAmount {
     public int getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(amount);
+    }
 }

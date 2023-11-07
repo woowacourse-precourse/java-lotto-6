@@ -33,4 +33,18 @@ public class Player {
     public List<Lotto> getPlayerLotto() {
         return lotto;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("사용자 객체\n");
+        builder.append("로또 구입 수량: ").append(playerAmount).append("\n");
+        builder.append("구입한 로또:\n");
+        for (int i = 0; i < lotto.size(); i++) {
+            builder.append(lotto.get(i));
+            if (i < lotto.size() - 1) {
+                builder.append("\n");
+            }
+        }
+        return builder.toString();
+    }
 }

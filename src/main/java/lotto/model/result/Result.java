@@ -33,7 +33,7 @@ public class Result {
     public double calculatePrizeMoney() {
         return prizeResult.entrySet()
                 .stream()
-                .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .mapToDouble(entry -> entry.getKey().getMoney() * entry.getValue())
                 .sum();
     }
 
@@ -43,5 +43,14 @@ public class Result {
 
     private int calculateMoneyFromAmount(int amount) {
         return amount * MIN_MONEY.getValue();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("로또 당첨 결과 객체\n");
+        for (Map.Entry<Prize, Integer> entry : prizeResult.entrySet()) {
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("개\n");
+        }
+        return builder.toString();
     }
 }

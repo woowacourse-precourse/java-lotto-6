@@ -17,8 +17,8 @@ public class OutputView {
         System.out.println(OUTPUT_LOTTO_RESULT);
     }
 
-    public static void printPrizeMoney(String message) {
-        System.out.println(message);
+    public static void printPrizeCount(String lottoCount) {
+        System.out.println(lottoCount);
     }
 
     public static void printPrizeProfit(double rate) {

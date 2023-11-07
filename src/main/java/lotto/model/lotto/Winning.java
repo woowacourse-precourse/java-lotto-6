@@ -30,11 +30,10 @@ public class Winning {
         return bonus;
     }
 
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Prize\n");
+        sb.append("로또 당첨 번호 객체\n");
         sb.append("로또 당첨 번호: ").append(lotto).append("\n");
         sb.append("보너스 번호: ").append(bonus).append("\n");
         return sb.toString();

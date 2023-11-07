@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.type.Win.*;
+
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.Lotto;
@@ -8,7 +10,8 @@ import lotto.type.Win;
 public class Print {
 
     private static final String BUY_MASSAGE = "개를 구매했습니다.";
-    private static final String RESULT_MESSAGE = "당첨 통계\n---";
+    private static final String RESULT_MESSAGE1 = "당첨 통계\n---";
+    private static final String RESULT_MESSAGE2 = "개";
     private static final String PROFIT_MESSAGE1 = "총 수익률은 ";
     private static final String PROFIT_MESSAGE2 = "%입니다.";
 
@@ -21,16 +24,16 @@ public class Print {
     }
 
     public void result(int[] result) {
-        System.out.println(RESULT_MESSAGE);
-        System.out.println(Win.FIFTH.getMessage() + result[Win.FIFTH.getCollectCount()]);
-        System.out.println(Win.FOURTH.getMessage() + result[Win.FOURTH.getCollectCount()]);
-        System.out.println(Win.THIRD.getMessage() + result[Win.THIRD.getCollectCount()]);
-        System.out.println(Win.SECOND.getMessage() + result[Win.SECOND.getCollectCount()]);
-        System.out.println(Win.FIRST.getMessage() + result[Win.FIRST.getCollectCount()]);
+        System.out.println(RESULT_MESSAGE1);
+        System.out.println(FIFTH.getMessage() + result[FIFTH.getCollectCount()] + RESULT_MESSAGE2);
+        System.out.println(FOURTH.getMessage() + result[FOURTH.getCollectCount()] + RESULT_MESSAGE2);
+        System.out.println(THIRD.getMessage() + result[THIRD.getCollectCount()] + RESULT_MESSAGE2);
+        System.out.println(SECOND.getMessage() + result[SECOND.getCollectCount()] + RESULT_MESSAGE2);
+        System.out.println(FIRST.getMessage() + result[FIRST.getCollectCount()] + RESULT_MESSAGE2);
     }
 
     public void profit(double profit) {
-        DecimalFormat formatter = new DecimalFormat("###,###.0");
+        DecimalFormat formatter = new DecimalFormat("###,##0.0");
         System.out.println(PROFIT_MESSAGE1 + formatter.format(profit) + PROFIT_MESSAGE2);
     }
 }

@@ -40,7 +40,7 @@ public class MoneyTest {
                 .hasMessage(INVALID_NEGATIVE_INPUT.getException().getMessage());
     }
 
-    @DisplayName("구입 금액아 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
+    @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
     @ParameterizedTest(name = "[{index}] input {0} " )
     @ValueSource(strings = {"1999", "1258", "2101"})
     void createMoneyByInvalidDivision(String inputValue) {

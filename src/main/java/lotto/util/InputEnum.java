@@ -1,6 +1,6 @@
 package lotto.util;
 
-public enum InputEnum{
+public enum InputEnum {
 
     PURCHASE_AMOUNT_INPUT("구입 금액을 입력해주세요."),
     WINNING_NUMBERS_INPUT("당첨 번호를 입력해 주세요."),
@@ -8,11 +8,11 @@ public enum InputEnum{
 
     private String message;
 
-    InputEnum(String message){
+    InputEnum(String message) {
         this.message = message;
     }
 
-    public String message(){
+    public String message() {
         return this.message;
     }
 

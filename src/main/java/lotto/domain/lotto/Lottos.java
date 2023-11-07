@@ -3,24 +3,24 @@ package lotto.domain.lotto;
 import java.util.List;
 import lotto.domain.WinningResult;
 
-public class Lottos{
+public class Lottos {
 
     List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos){
+    public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public WinningResult determineWinnings(Lotto lotto, Bonus bonus){
-        return null;
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
-    public int getSize(){
+    public int getSize() {
         return lottos.size();
     }
 
-    public List<Lotto> getLottos(){
-        return lottos;
+    public WinningResult determineWinnings(Lotto lotto, Bonus bonus) {
+        return null;
     }
 
 }

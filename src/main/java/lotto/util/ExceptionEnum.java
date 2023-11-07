@@ -1,6 +1,6 @@
 package lotto.util;
 
-public enum ExceptionEnum{
+public enum ExceptionEnum {
 
     NOT_NUMBER_FORMAT("Your price Input is not a number format."),
     INVALID_PURCHASE_PRICE_UNIT("The purchase price should be in 1000 units."),
@@ -12,11 +12,11 @@ public enum ExceptionEnum{
 
     private String message;
 
-    ExceptionEnum(String message){
+    ExceptionEnum(String message) {
         this.message = NOTICE + message;
     }
 
-    public String message(){
+    public String message() {
         return this.message;
     }
 

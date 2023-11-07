@@ -5,6 +5,7 @@ import lotto.config.LottoGameRule;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.InvalidSizeException;
 import lotto.exception.LottoNumberOutOfRangeException;
+import lotto.utils.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,20 +16,9 @@ public class Lotto {
     }
 
     private void validate(final List<Integer> numbers) {
-        if (numbers.size() != LottoGameRule.LOTTO_SIZE.value()) {
-            throw new InvalidSizeException();
-        }
-
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new DuplicateNumberException();
-        }
-
-        for (Integer number : numbers) {
-            if (number < LottoGameRule.LOTTO_MIN_VALUE.value()
-                    || number > LottoGameRule.LOTTO_MAX_VALUE.value()) {
-                throw new LottoNumberOutOfRangeException();
-            }
-        }
+        Validator.validateDuplicate(numbers);
+        Validator.validateInRange(numbers);
+        Validator.validateSize(numbers);
     }
 
     public int countMatchingNumbers(final Lotto lotto) {

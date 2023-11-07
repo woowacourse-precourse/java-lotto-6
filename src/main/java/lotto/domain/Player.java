@@ -52,6 +52,5 @@ public class Player {
                     this.setState(grade);
                     this.setAsset(grade);
                 });
-
     }
 }

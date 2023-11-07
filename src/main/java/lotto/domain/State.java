@@ -18,6 +18,7 @@ public class State {
     }
     public void setGradeState(Grade grade) {
         Integer currentState = gradeState.get(grade);
+
         gradeState.put(grade, currentState  + 1);
     }
     public Map<Grade, Integer> getGradeState(){

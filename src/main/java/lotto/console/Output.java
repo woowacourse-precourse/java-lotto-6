@@ -15,7 +15,7 @@ public class Output {
         Output.printRate(player.getAsset());
     }
     public static void printTickets(List<Lotto> tickets, long ticketNum){
-        System.out.printf("%d개를 구매했습니다. \n", ticketNum);
+        System.out.printf("%d개를 구매했습니다.\n", ticketNum);
         Stream<Lotto> ticketBuffer = tickets.stream();
 
         ticketBuffer.forEach( it -> System.out.println(it.getNumbers()));

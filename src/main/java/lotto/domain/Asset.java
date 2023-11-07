@@ -6,6 +6,7 @@ public class Asset {
 
     public Asset(Double money) {
         validate(money);
+
         this.money = money;
         this.income = 0D;
     }
@@ -27,11 +28,13 @@ public class Asset {
 
     public void increaseIncome(Grade grade){
         income += grade.getPrize();
+
         validateRange(income);
     }
 
     public Double getRate(){
         if (money == 0) return 0D;
+
         return (income / money) * 100;
     }
 
@@ -43,6 +46,7 @@ public class Asset {
 
     public void setIncome(Double income) {
         validateRange(income);
+
         this.income = income;
     }
 }

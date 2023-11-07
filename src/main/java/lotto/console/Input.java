@@ -33,6 +33,7 @@ public class Input {
             return new Lotto(numbers);
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] : " + e.getMessage());
+
             return askWinningNum();
         }
     }
@@ -40,9 +41,11 @@ public class Input {
     public static Integer askBonusNum(){
         try{
             System.out.println("보너스 번호를 입력해 주세요.");
+
             return Integer.valueOf(Console.readLine());
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] : " + e.getMessage());
+
             return askBonusNum();
         }
     }

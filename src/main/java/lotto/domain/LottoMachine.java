@@ -1,10 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.console.Output;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -20,6 +17,7 @@ public class LottoMachine {
     public static Lotto generate(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         numbers = numbers.stream().sorted().collect(Collectors.toList());
+
         return new Lotto(numbers);
     }
 

@@ -1,5 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -19,6 +22,8 @@ public class InputViewTest{
     @Test
     void 범위_외의_당첨_번호_입력_테스트() {
         command("46,1,2,3,4,5", "0,1,2,3,4,5");
+        assertThatThrownBy(() -> view.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> view.inputWinningNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -54,7 +59,12 @@ public class InputViewTest{
     }
 
     private void command(final String... args) {
-        final byte[] buf = String.join("\n", args).getBytes();
+        byte[] buf = String.join("\n", args).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
+    }
+
+    @AfterEach
+    private void closeConsole() {
+        Console.close();
     }
 }

@@ -39,7 +39,7 @@ public class InputView {
     private int inputInteger(int startInclusive, int endInclusive) {
         int number = inputInteger();
         validateRange(number, startInclusive, endInclusive);
-        return inputInteger();
+        return number;
     }
 
     private List<Integer> getNumbers(String s) {

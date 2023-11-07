@@ -19,6 +19,8 @@ public class LottoController {
         showTickets(tickets);
         Lotto userLotto = getUserLotto();
         int bonusNumber = getBonusNumber(userLotto);
+        LottoStatistics statistics = new LottoStatistics(tickets, userLotto, bonusNumber);
+        showResult(statistics);
     }
 
     private List<Lotto> buyLotto() {
@@ -58,6 +60,11 @@ public class LottoController {
             outputView.printErrorMessage(exception.getMessage());
             return getBonusNumber(userLotto);
         }
+    }
+
+    private void showResult(LottoStatistics statistics) {
+        outputView.printResult(statistics.toString());
+        outputView.printProfitRate(statistics.getProfit());
     }
 
     private void validateBonusNumber(Lotto userLotto, int bonusNumber) {

@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -48,7 +50,12 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> sorted = new ArrayList<>();
+        for (int number : numbers) {
+            sorted.add(number);
+        }
+        Collections.sort(sorted);
+        return sorted.toString();
     }
 
     public boolean contains(int number) {

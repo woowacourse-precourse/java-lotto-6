@@ -1,20 +1,16 @@
 package lotto.model;
 
-import static lotto.utils.ExceptionMessage.NEGATIVE_NUMBER;
-import static lotto.utils.ExceptionMessage.UNIT_IS_INCORRECT;
-import static lotto.utils.GameNumber.LOTTO_SIZE;
-import static lotto.utils.GameNumber.MAX_RANGE;
-import static lotto.utils.GameNumber.MIN_RANGE;
-import static lotto.utils.GameNumber.UNIT;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.utils.ExceptionMessage;
+import lotto.utils.GameNumber;
 import lotto.utils.Match;
 
 public class LottoGame {
+    private final static int ZREO = 0;
 
     private final User user;
 
@@ -31,20 +27,21 @@ public class LottoGame {
     private void generateMatchResults() {
         matchResults = new HashMap<>();
         for (Match match : Match.values()) {
-            matchResults.put(match.getMessage(), 0);
+            matchResults.put(match.getMessage(), ZREO);
         }
     }
 
     public List<Lotto> issuanceLotto(Integer amount) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < amount / UNIT.getNumber(); i++) {
+        for (int i = ZREO; i < amount / GameNumber.UNIT.getNumber(); i++) {
             lottos.add(new Lotto(getNumbers()));
         }
         return lottos;
     }
 
     public List<Integer> getNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_RANGE.getNumber(), MAX_RANGE.getNumber(), LOTTO_SIZE.getNumber());
+        return Randoms.pickUniqueNumbersInRange(GameNumber.MIN_RANGE.getNumber(), GameNumber.MAX_RANGE.getNumber(),
+                GameNumber.LOTTO_SIZE.getNumber());
     }
 
     public User getUser() {
@@ -76,23 +73,23 @@ public class LottoGame {
     }
 
     public void updateMatch(int matchNumber, Lotto lotto, DrawResult drawResult) {
-        if (matchNumber == 3) {
+        if (matchNumber == GameNumber.THREE_MATCH.getNumber()) {
             updateMatchCount(Match.THREE_MATCH.getMessage());
         }
-        if (matchNumber == 4) {
+        if (matchNumber == GameNumber.FOUR_MATCH.getNumber()) {
             updateMatchCount(Match.FOUR_MATCH.getMessage());
         }
-        if (matchNumber == 5) {
+        if (matchNumber == GameNumber.FIVE_MATCH.getNumber()) {
             updateMatchCount(Match.FIVE_MATCH.getMessage());
         }
-        if (matchNumber == 6) {
+        if (matchNumber == GameNumber.SIX_MATCH.getNumber()) {
             updateMatchCount(Match.SIX_MATCH.getMessage());
         }
         updateBonusCount(matchNumber, lotto, drawResult);
     }
 
     public void updateBonusCount(int matchNumber, Lotto lotto, DrawResult drawResult) {
-        if (matchNumber == 5 && lotto.getNumbers().contains(drawResult.bonusNumber())) {
+        if (matchNumber == GameNumber.FIVE_MATCH.getNumber() && lotto.getNumbers().contains(drawResult.bonusNumber())) {
             updateMatchCount(Match.BONUS_MATCH.getMessage());
         }
     }
@@ -102,7 +99,7 @@ public class LottoGame {
     }
 
     public int countMatch(Lotto lotto, DrawResult drawResult) {
-        int count = 0;
+        int count = ZREO;
         for (Integer number : drawResult.lotto().getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
                 count++;
@@ -117,14 +114,14 @@ public class LottoGame {
     }
 
     public void validateUnit(int amount) {
-        if (amount % UNIT.getNumber() != 0) {
-            throw new IllegalArgumentException(UNIT_IS_INCORRECT.getMessage());
+        if (amount % GameNumber.UNIT.getNumber() != ZREO) {
+            throw new IllegalArgumentException(ExceptionMessage.UNIT_IS_INCORRECT.getMessage());
         }
     }
 
     public void validateNegative(int amount) {
-        if (amount < 0) {
-            throw new IllegalStateException(NEGATIVE_NUMBER.getMessage());
+        if (amount < ZREO) {
+            throw new IllegalStateException(ExceptionMessage.NEGATIVE_NUMBER.getMessage());
         }
     }
 }

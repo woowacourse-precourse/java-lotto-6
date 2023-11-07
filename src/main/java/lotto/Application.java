@@ -15,6 +15,10 @@ public class Application {
 	private boolean vaildMoney = false, validWinningNum = false, validBonusNum = false;
 	private ArrayList<Integer> winningNumbers, rankCnt;
 	private ArrayList<ArrayList<Integer>> lotto;
+	private enum Result{
+		rank1, rank2, rank3, rank4, rank5, nothing;
+	}
+	
 	public void start() {
 		System.out.println("구입금액을 입력해 주세요.");	
 		while (!vaildMoney)inputMoney();
@@ -192,7 +196,21 @@ public class Application {
 	}
 	
 	private void makeResult() {
+		rankCnt = new ArrayList<>(5);
+		for (int i=0; i<5; i++) 
+			rankCnt.add(0);
 		
+		for (ArrayList<Integer> lst : lotto) {
+			resultArr(findResult(lst));
+		}
+	}
+	
+	private void resultArr(Result r) {
+		
+	}
+	
+	private Result findResult(ArrayList<Integer> lst) {
+		return Result.nothing;
 	}
 	
 	private void printResult() {

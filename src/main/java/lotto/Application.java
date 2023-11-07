@@ -13,17 +13,31 @@ public class Application {
         List<Lotto> lottos;
         Lotto winning_numbers;
         int bonus_number;
+        Map<LottoRank, Integer> winning_lottos;
         
         lotto_purchase_amount = inputLottoPurchase() / Lotto_Price ;
         lottos = lottoIssuance(lotto_purchase_amount);
         printLottos(lottos, lotto_purchase_amount);
         winning_numbers = inputWinningNumbers();
         bonus_number = inputBonusNumber(winning_numbers);
-        printResult(lottos, winning_numbers, bonus_number);
+        winning_lottos = rankingJudgement(lottos, winning_numbers, bonus_number);
     }
 
-    static void printResult(List<Lotto> lottos, Lotto winning_numbers, int bonus_number){
-        
+    static Map<LottoRank, Integer> rankingJudgement(List<Lotto> lottos, Lotto winning_numbers, int bonus_number){
+        Map<LottoRank, Integer> winning_lottos = makeLottoRankMap();
+        for (Lotto lotto : lottos) {
+            LottoRank lottoRank = lotto.rankJudgement(winning_numbers, bonus_number);
+            winning_lottos.put(lottoRank, winning_lottos.get(lottoRank)+1);
+        }
+        return winning_lottos;
+    }
+
+    static Map<LottoRank, Integer> makeLottoRankMap(){
+        Map<LottoRank, Integer> lottos_ranks = new HashMap<LottoRank, Integer>();
+        for (LottoRank rank : LottoRank.values()) {
+            lottos_ranks.put(rank, 0);
+        }
+        return lottos_ranks;
     }
 
     static int inputBonusNumber(Lotto winning_numbers){

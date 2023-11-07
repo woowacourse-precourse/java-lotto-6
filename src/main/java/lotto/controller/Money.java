@@ -50,8 +50,8 @@ public class Money {
 
     public boolean validateThousand(String number) {
         try {
-            int num = Integer.parseInt(number);
-            if(num % MIN_MONEY != 0 || num < MIN_MONEY) {
+            int convertNum = Integer.parseInt(number);
+            if(convertNum % MIN_MONEY != 0 || convertNum < MIN_MONEY) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

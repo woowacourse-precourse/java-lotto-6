@@ -1,10 +1,10 @@
 package lotto.utility;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RetryLogicTest {
@@ -18,20 +18,21 @@ class RetryLogicTest {
     @DisplayName("재시도 기능이 지정한 5회만큼 정상적으로 작동한다.")
     @Test
     void retryTest() {
-        RetryLogic.retryCount(new Retry() {
+        assertThatThrownBy(() -> RetryLogic.retryCount(new Retry() {
             @Override
             public void run() {
                 plusCount();
             }
-        });
-        Assertions.assertThat(count).isEqualTo(5);
+        })).isInstanceOf(IllegalArgumentException.class);
+        assertThat(count).isEqualTo(5);
     }
 
     @DisplayName("재시도 기능이 지정한 5회만큼 정상적으로 작동한다. -람다")
     @Test
     void retryLamdaTest() {
-        RetryLogic.retryCount(() -> plusCount());
-        Assertions.assertThat(count).isEqualTo(5);
+        assertThatThrownBy(() -> RetryLogic.retryCount(() -> plusCount()))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(count).isEqualTo(5);
     }
 
     private void plusCount() {

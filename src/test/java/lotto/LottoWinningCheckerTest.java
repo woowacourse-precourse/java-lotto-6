@@ -14,27 +14,15 @@ public class LottoWinningCheckerTest {
 
     @BeforeEach
     void createLottoChecker() {
-        checker = new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6), 7);
+        Lotto winningsLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(winningsLotto, 7);
+        checker = new LottoWinningChecker(winningsLotto, bonusNumber);
     }
     @DisplayName("당첨 번호와 보너스 번호가 중복인 경우")
     @Test
     void createLottoWinningCheckerByDuplicateBonusNumber(){
-        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6), 6))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @DisplayName("당첨 번호 중복인 경우")
-    @Test
-    void createLottoWinningCheckerByDuplicateNumber(){
-        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 5), 7))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @DisplayName("당첨 번호 갯수 6개 아닐 때")
-    @Test
-    void createLottoWinningCheckerByOverSize() {
-        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5), 7))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> new LottoWinningChecker(List.of(1, 2, 3, 4, 5, 6, 8), 7))
+        Lotto winningsLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> new BonusNumber(winningsLotto, 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -25,9 +25,11 @@ class PurchaseAmountTest {
     void getLottoCount() {
         //given
         int inputPrice = 14000;
-        int lottoCount = new PurchaseAmount(inputPrice).getLottoCount();
+
         //when
-        assertThat(lottoCount).isEqualTo(14);
+        int lottoCount = new PurchaseAmount(inputPrice).getLottoCount();
+
         //then
+        assertThat(lottoCount).isEqualTo(14);
     }
 }

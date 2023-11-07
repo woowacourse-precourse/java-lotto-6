@@ -10,6 +10,7 @@ public class InputValidator {
         isOneNaturalNumber(number);
         hasBlank(number);
     }
+
     public static void isOneNaturalNumber(String number) {
         if (!Pattern.matches(REGEXP_PATTERN_NUMBER, number)) {
             throw new IllegalArgumentException();

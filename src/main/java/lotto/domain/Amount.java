@@ -15,7 +15,7 @@ public class Amount {
 
     private void validateDivisibilityByThousand(final Integer value) {
         if (isDivideByThousand(value)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_DIVIDE_THOUSAND.toValue());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DIVIDE_THOUSAND.toMessage());
         }
     }
 

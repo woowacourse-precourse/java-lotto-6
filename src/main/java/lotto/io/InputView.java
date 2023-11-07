@@ -20,6 +20,7 @@ public class InputView {
     public String readWinningLottoNumber() {
         final String input = Console.readLine();
         inputValidator.validateNull(input);
+        inputValidator.validateHasDelimiter(input);
         return input;
     }
 

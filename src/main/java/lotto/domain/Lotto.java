@@ -24,13 +24,13 @@ public class Lotto {
 
     private void validateLottoLength(List<Integer> numbers) {
         if (isLengthSix(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_LENGTH.toValue());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_LENGTH.toMessage());
         }
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         if (isHaveDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATE_NUMBER.toValue());
+            throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATE_NUMBER.toMessage());
         }
     }
 

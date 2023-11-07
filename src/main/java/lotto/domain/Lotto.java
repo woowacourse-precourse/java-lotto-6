@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,7 +21,8 @@ public class Lotto {
 
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != NUM_OF_LOTTO) {
+        HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != NUM_OF_LOTTO) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개로 구성되어야합니다.");
         }
     }

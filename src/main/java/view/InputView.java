@@ -11,7 +11,9 @@ public class InputView {
     }
 
     public static String inputWinningNumbers() {
-        return Console.readLine();
+        String winningNumbers = Console.readLine();
+        Validator.validateSeparatedByComma(winningNumbers);
+        return winningNumbers;
     }
 
     public static int inputSpend() {

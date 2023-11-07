@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.data.Lotto;
 import lotto.data.LottoResult;
-import lotto.data.WinningNumbers;
+import lotto.data.WinningCombination;
 import lotto.message.LottoPrize;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
@@ -21,7 +21,7 @@ public class LottoSeller {
         List<Lotto> lottos = LottoUtil.generateLottos(numberOfLottoPurchased, () -> LottoUtil.generateLotto());
         OutputMessage.printLottos(lottos);
 
-        WinningNumbers winningNumbers = LottoPurchaseInput.inputWinningNumbers();
+        WinningCombination winningNumbers = LottoPurchaseInput.inputWinningNumbers();
 
         HashMap<LottoPrize, BigDecimal> lottoRank = winningNumbers.getResultWith(lottos);
         LottoResult lottoResult = new LottoResult(lottoRank, purchaseAmount);

@@ -6,10 +6,10 @@ import java.util.List;
 import lotto.message.ErrorMessage;
 import lotto.message.LottoPrize;
 
-public class WinningNumbers extends Lotto {
+public class WinningCombination extends Lotto {
     private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> numbers, int bonusNumber) {
+    public WinningCombination(List<Integer> numbers, int bonusNumber) {
         super(numbers);
         validateLottoNum(bonusNumber);
         validateContains(numbers, bonusNumber);

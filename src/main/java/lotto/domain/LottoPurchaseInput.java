@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.data.WinningNumbers;
+import lotto.data.WinningCombination;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
@@ -26,7 +26,7 @@ public class LottoPurchaseInput {
         }
     }
 
-    public static WinningNumbers inputWinningNumbers() {
+    public static WinningCombination inputWinningNumbers() {
         try {
             OutputMessage.ASK_WINNING_LOTTO_NUMBER.printMessage();
             String inputNumbers = Console.readLine().trim();
@@ -38,7 +38,7 @@ public class LottoPurchaseInput {
             Util.validateInteger(inputBonusNumber);
 
             List<Integer> numbers = Util.convertToIntegerList(inputNumbers, ",");
-            return new WinningNumbers(numbers, Integer.parseInt(inputBonusNumber));
+            return new WinningCombination(numbers, Integer.parseInt(inputBonusNumber));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNumbers();

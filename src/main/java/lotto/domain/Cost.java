@@ -31,4 +31,8 @@ public class Cost {
     public int getCost() {
         return cost;
     }
+
+    public int getDivideCost() {
+        return cost / LOTTO_COST;
+    }
 }

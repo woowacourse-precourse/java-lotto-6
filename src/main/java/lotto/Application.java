@@ -1,7 +1,18 @@
 package lotto;
 
+
+import lotto.controller.LottoController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        AppConfig config = new AppConfig();
+        LottoController controller = config.setLottoController();
+
+        try {
+            controller.run();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 }

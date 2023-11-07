@@ -18,21 +18,33 @@ public class Application {
         lottos = lottoIssuance(lotto_purchase_amount);
         printLottos(lottos, lotto_purchase_amount);
         winning_numbers = inputWinningNumbers();
-        bonus_number = inputBonusNumber();
+        bonus_number = inputBonusNumber(winning_numbers);
+        printResult(lottos, winning_numbers, bonus_number);
     }
 
-    static int inputBonusNumber(){
+    static void printResult(List<Lotto> lottos, Lotto winning_numbers, int bonus_number){
+        
+    }
+
+    static int inputBonusNumber(Lotto winning_numbers){
         int bonus_number;
         while(true){
             try {
                 String input_bonus_number = inputMethod("보너스 번호를 입력해 주세요.");
                 bonus_number = stringToInt(input_bonus_number);
+                bonusNumberCheck(winning_numbers, bonus_number);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return bonus_number;
+    }
+
+    static void bonusNumberCheck(Lotto winning_numbers, int bonus_number){
+        if (winning_numbers.numberCheck(bonus_number)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 겹칩니다.");
+        }
     }
 
     static Lotto inputWinningNumbers(){

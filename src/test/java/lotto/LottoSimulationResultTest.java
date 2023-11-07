@@ -14,7 +14,7 @@ class LottoSimulationResultTest {
                 5개 일치 (1,500,000원) - 0개
                 5개 일치, 보너스 볼 일치 (30,000,000원) - 1개
                 6개 일치 (2,000,000,000원) - 0개
-                총 수익률은 300050.00%입니다.""";
+                총 수익률은 300050.0%입니다.""";
 
         LottoSimulationResult result = new LottoSimulationResult();
         result.add(LottoMatchResult.UNMATCHED);

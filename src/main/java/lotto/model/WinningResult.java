@@ -27,4 +27,11 @@ public enum WinningResult {
                 .filter(value -> value.matchCount == correctCnt && value.matchBonus == correctBonus)
                 .forEach(value -> value.countResult++);
     }
+
+    public static void showResult() {
+        for (WinningResult value : WinningResult.values()) {
+            String singleMessage = String.format(value.message, value.countResult);
+            System.out.println(singleMessage);
+        }
+    }
 }

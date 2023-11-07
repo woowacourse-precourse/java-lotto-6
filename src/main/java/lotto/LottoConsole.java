@@ -114,4 +114,14 @@ public class LottoConsole {
     earnedMoney += FOURTH_PRIZE.getPrizePrice() * scores.get(3);
     earnedMoney += FIFTH_PRIZE.getPrizePrice() * scores.get(4);
   }
+
+  private void showTotalScore() {
+    System.out.println("\n당첨 통계\n---");
+    System.out.println("3개 일치 (5,000원) - " + scores.get(4) + "개");
+    System.out.println("4개 일치 (50,000원) - " + scores.get(3) + "개");
+    System.out.println("5개 일치 (1,500,000원) - " + scores.get(2) + "개");
+    System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + scores.get(1) + "개");
+    System.out.println("6개 일치 (2,000,000,000원) - " + scores.get(0) + "개");
+    System.out.println("총 수익률은 " + ((double)earnedMoney / (double)spendMoney) * 100 + "%입니다.");
+  }
 }

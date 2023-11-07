@@ -17,10 +17,17 @@ public class Lottery {
 
     public LottoResult createLottoResult() {
         Map<Rank, Integer> result = new EnumMap<>(Rank.class);
-        for (Lotto lotto : lottoTicket.getLottoTicket()) {
-            Rank rank = Rank.findRank(winningNumber, bonusNumber, lotto);
-            result.put(rank, result.getOrDefault(rank, 0) + 1);
-        }
+        countRank(result);
         return new LottoResult(result, lottoTicket.getLottoCount());
+    }
+
+    private void countRank(Map<Rank, Integer> result) {
+        lottoTicket.getLottoTicket().stream()
+                .map(lotto -> Rank.findRankMatchesThat(winningNumber, bonusNumber, lotto))
+                .forEach(rank -> increaseRankCount(result, rank));
+    }
+
+    private void increaseRankCount(Map<Rank, Integer> result, Rank rank) {
+        result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
 }

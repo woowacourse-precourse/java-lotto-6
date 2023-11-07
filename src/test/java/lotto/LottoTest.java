@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -27,5 +28,18 @@ class LottoTest {
     void createLottoByNumberOutOfRange() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주어지는 로또 번호가 존재한다면 true를 반환한다.")
+    @Test
+    void existsInLotto() {
+        //given
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        //when
+        boolean bool = lotto.contains(3);
+
+        //then
+        assertThat(bool).isTrue();
     }
 }

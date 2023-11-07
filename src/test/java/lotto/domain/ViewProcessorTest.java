@@ -18,6 +18,16 @@ import java.util.stream.Stream;
 class ViewProcessorTest {
     private ViewProcessor viewProcessor;
 
+    static Stream<Arguments> parameterProviderMoneyEdit() {
+        return Stream.of(
+                arguments(Rewards.FIRST, "(2,000,000,000원)"),
+                arguments(Rewards.SECOND, "(30,000,000원)"),
+                arguments(Rewards.THIRD, "(1,500,000원)"),
+                arguments(Rewards.FOURTH, "(50,000원)"),
+                arguments(Rewards.FIFTH, "(5,000원)")
+        );
+    }
+
     @BeforeEach
     void setUp() {
         viewProcessor = new ViewProcessor();
@@ -93,15 +103,11 @@ class ViewProcessorTest {
         assertThat(viewProcessor.moneyEdit(reward)).isEqualTo(expect);
     }
 
-    static Stream<Arguments> parameterProviderMoneyEdit() {
-        return Stream.of(
-                arguments(Rewards.FIRST, "(2,000,000,000원)"),
-                arguments(Rewards.SECOND, "(30,000,000원)"),
-                arguments(Rewards.THIRD, "(1,500,000원)"),
-                arguments(Rewards.FOURTH, "(50,000원)"),
-                arguments(Rewards.FIFTH, "(5,000원)")
-        );
+    @DisplayName("구입 금액 처리가 성공하면 SUCESS, 예외 발생시 FAILDURE 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"10000,SUCESS","15,FAILDURE","만원,FAILDURE","-10,FAILDURE"})
+    void purchase(String tempCost, String state) {
+        boolean expect = state.equals("FAILDURE");
+        assertThat(viewProcessor.purchase(tempCost)).isEqualTo(expect);
     }
-
-
 }

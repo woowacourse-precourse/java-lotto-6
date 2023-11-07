@@ -6,6 +6,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+enum Error{
+    ERROR("[ERROR] 올바른 입력을 하세요");
+
+    private final String error;
+
+    Error(String error){
+        this.error = error;
+    }
+
+    public String getError(){
+        return error;
+    }
+}
+
 class money_for_lotto{
     public static int realNumber;
 
@@ -38,6 +52,25 @@ class money_for_lotto{
 
     public static int repeatTime(int realNumber){
         return realNumber/1000;
+    }
+
+    public static int exceptionRepeat(){
+        int result = 0;
+        while (result == 0) {
+            result = readLine(result);
+        }
+        return result;
+    }
+
+    public static int readLine(int result) {
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            String inputMoney = Console.readLine();
+            result = money_for_lotto.realMoney(inputMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(Error.ERROR.getError());
+        }
+        return result;
     }
 }
 
@@ -93,9 +126,7 @@ class winning_number{
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-        String inputMoney = Console.readLine();
-        int realMoney = money_for_lotto.realMoney(inputMoney);
+        int realMoney = money_for_lotto.exceptionRepeat();
         int repeatTime = money_for_lotto.repeatTime(realMoney);
 
         System.out.println("\n" + repeatTime + "개를 구매했습니다.");

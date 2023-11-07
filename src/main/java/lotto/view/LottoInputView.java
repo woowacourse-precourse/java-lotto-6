@@ -4,7 +4,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoInputView {
     private static final String DELIMITER = ",";
@@ -13,8 +12,9 @@ public class LottoInputView {
     public List<Integer> readLottoInput() {
         try {
             String line = readLine();
-            return Arrays.stream(line.split(DELIMITER)).map(Integer::valueOf)
-                    .collect(Collectors.toList());
+            return Arrays.stream(line.split(DELIMITER))
+                    .map(Integer::parseInt)
+                    .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(FORMAT_ERROR_MESSAGE);
         }

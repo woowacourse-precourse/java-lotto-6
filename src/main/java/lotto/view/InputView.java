@@ -34,4 +34,16 @@ public class InputView {
             return getWinningNumbers();
         }
     }
+
+    public int getBonusNumber(Lotto winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = readLine();
+        try {
+            System.out.println();
+            return Integer.parseInt(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber(winningNumbers);
+        }
+    }
 }

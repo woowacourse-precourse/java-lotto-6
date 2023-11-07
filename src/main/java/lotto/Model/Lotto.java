@@ -1,21 +1,26 @@
 package lotto.Model;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final String ERROR_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호를 6개 입력해 주세요.";
+    private static final String ERROR_LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 번호는 중복될수 없습니다.";
+    private static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1~45의 숫자만 가능합니다.";
+
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        //Collections.sort(numbers);
         this.numbers = numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        //this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
@@ -24,8 +29,9 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers +"";
+        return numbers.toString();
     }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -33,23 +39,23 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 입력해 주세요.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicate = new HashSet<>(numbers);
 
-        if (nonDuplicate.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될수 없습니다.");
+        if (nonDuplicate.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_DUPLICATE);
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (1 > number || 45 < number) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45의 숫자만 가능합니다.");
+            if (number < MIN_LOTTO_NUMBER || MAX_LOTTO_NUMBER < number) {
+                throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
             }
         }
     }

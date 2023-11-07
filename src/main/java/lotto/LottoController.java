@@ -33,6 +33,12 @@ public class LottoController {
 		}
 	}
 
+	public void getWinNumbers() {
+		String[] numbers = LottoView.getWinLotto();
+		winNumbers = setWinNumbers(numbers);
+		bonusNumber = getBonusNumber();
+	}
+
 	public List<Integer> setWinNumbers(String[] input) {
 		List<Integer> winNumbers = new ArrayList<>();
 
@@ -46,12 +52,6 @@ public class LottoController {
 		}
 		Lotto winLotto = new Lotto(winNumbers);
 		return winLotto.getNumbers();
-	}
-
-	public void getWinNumbers() {
-		String[] numbers = LottoView.getWinLotto();
-		winNumbers = setWinNumbers(numbers);
-		bonusNumber = getBonusNumber();
 	}
 
 	public int getBonusNumber() {

@@ -22,7 +22,7 @@ public class LottoGenerator {
 
     private static void keepLottoInStorage(List<Integer> randomNumbers) {
         Lotto newLotto = new Lotto(randomNumbers);
-        UserLotto.addLotto(newLotto);
+        LottoStorage.addLotto(newLotto);
     }
 
     private static List<Integer> pickRandomNumbers() {

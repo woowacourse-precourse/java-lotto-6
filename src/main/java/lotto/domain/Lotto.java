@@ -18,7 +18,7 @@ public class Lotto {
      * @param numbers 로또 번호가 담긴 리스트. 번호의 개수는 6개여야 한다.
      *                번호에 중복이 없어야 한다. 각 번호의 범위는 1~45에 속해야 한다.
      */
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalStateException {
         this.numbers = numbers;
         validate(numbers);
         Collections.sort(numbers);

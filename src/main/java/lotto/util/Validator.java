@@ -73,9 +73,9 @@ public class Validator {
      * 당첨 번호의 개수가 DomainConfiguration에 정의된 LENGTH_OF_LOTTO와 일치하는지 검증한다.
      * winningNumbers의 사이즈가 정확히 LENGTH_OF_LOTTO가 아닐 경우 예외가 발생한다.
      * @param winningNumbers 당첨 번호가 담긴 리스트.
-     * @throws IllegalArgumentException winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO일 경우 발생한다.
+     * @throws IllegalStateException winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO일 경우 발생한다.
      */
-    public static void validateNumOfWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
+    public static void validateNumOfWinningNumbers(List<Integer> winningNumbers) throws IllegalStateException {
         if (winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO) {
             throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_ARE_NOT_PROPER.get());
         }
@@ -84,10 +84,10 @@ public class Validator {
     /**
      * 당첨 번호에 중복이 없는지 검증한다.
      * @param winningNumbers 당첨 번호가 담긴 리스트.
-     * @throws IllegalArgumentException 중복된 번호가 있을 경우 발생한다.
+     * @throws IllegalStateException 중복된 번호가 있을 경우 발생한다.
      */
     public static void validateDuplicate(List<Integer> winningNumbers)
-            throws IllegalArgumentException {
+            throws IllegalStateException {
         int numOfElements = winningNumbers.size();
         Set<Integer> notAllowDuplicate = new HashSet<>(winningNumbers);
         if (numOfElements > notAllowDuplicate.size()) {
@@ -100,10 +100,10 @@ public class Validator {
      * 당첨 번호의 최댓값과 최솟값은 각각 lotto.configure.LottoConfigure 클래스에 정의된 두 상수,
      * LOTTO_NUMBER_MAX, LOTTO_NUMBER_MIN이다.
      * @param winningNumbers 당첨 번호가 담긴 리스트.
-     * @throws IllegalArgumentException 단 하나의 번호라도 로또 번호 범위에 포함되지 않을 경우 발생한다.
+     * @throws IllegalStateException 단 하나의 번호라도 로또 번호 범위에 포함되지 않을 경우 발생한다.
      */
     public static void validateRangeOfWinningNumbers(List<Integer> winningNumbers)
-            throws IllegalArgumentException {
+            throws IllegalStateException {
         winningNumbers.forEach((n) ->
                 checkIfRangeOfNumberIsProper(n, ErrorMessages.WINNING_NUMBERS_NOT_IN_PROPER_RANGE.get()));
     }

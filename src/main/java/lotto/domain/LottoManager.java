@@ -7,10 +7,12 @@ import java.util.List;
 public class LottoManager {
     private final WinningNumbers winningNumbers;
     private final List<Lotto> lottoPurchased;
+    private final int purchasePrice;
 
     public LottoManager(WinningNumbers winningNumbers, List<Lotto> lottoPurchased) {
         this.winningNumbers = winningNumbers;
         this.lottoPurchased = lottoPurchased;
+        this.purchasePrice = lottoPurchased.size() * DomainConfiguration.PRICE_OF_LOTTO;
     }
 
     /**
@@ -40,5 +42,9 @@ public class LottoManager {
             return 1;
         }
         return 0;
+    }
+
+    public int getPurchasePrice() {
+        return this.purchasePrice;
     }
 }

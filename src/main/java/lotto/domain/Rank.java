@@ -10,7 +10,6 @@ public enum Rank {
     FIFTH(3, 5_000, (count, bonus) -> count == 3),
     NONE(0, 0, (count, bonus) -> count <= 2);
 
-
     private final int count;
     private final long prize;
     private final BiFunction<Integer, Boolean, Boolean> expression;
@@ -28,6 +27,7 @@ public enum Rank {
     public long getPrize() {
         return prize;
     }
+
     public boolean result(int count, boolean bonus) {
         return expression.apply(count, bonus);
     }

@@ -15,10 +15,9 @@ public class GenerateLotto {
         while (lottos.size() < count) {
             lottos.add(generateLotto());
         }
-
         return lottos;
-
     }
+
     private List<Integer> generateLottoNumbers() {
          return Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, PICK_NUMBERS);
     }

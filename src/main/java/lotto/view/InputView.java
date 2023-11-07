@@ -15,9 +15,6 @@ public class InputView {
     public static final String PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     public static final String WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-
-
-
     public Money inputMoney() {
         String input = Console.readLine();
         return parseMoney(input);
@@ -60,6 +57,7 @@ public class InputView {
             throw new LottoNumberRangeException();
         }
     }
+
     private void printMessage(String message) {
         System.out.println(message);
     }

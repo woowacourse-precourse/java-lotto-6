@@ -39,6 +39,5 @@ public class OutputView {
         double rate = (totalPrize / money.getMoney()) * 100;
 
         System.out.printf(RATE, rate);
-
     }
 }

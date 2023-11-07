@@ -16,7 +16,6 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -56,7 +55,6 @@ public class Lotto {
         return numbers;
     }
     @Override
-
     public String toString() {
         return numbers.toString();
     }

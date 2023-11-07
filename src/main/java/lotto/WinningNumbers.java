@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.ErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+
 import java.util.List;
 
 public record WinningNumbers(Lotto winningLotto, int bonusNumber) {
@@ -23,14 +26,14 @@ public record WinningNumbers(Lotto winningLotto, int bonusNumber) {
 
     private void validateNumberInRange(Integer number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
     private void validateNotDuplicated(Lotto numbers, int bonusNumber) {
         List<Integer> winningNumbers = numbers.getNumbers();
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER);
         }
     }
 }

@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
+import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.ErrorMessage.INVALID_LOTTO_SIZE;
+
 import java.util.List;
 
 public class Lotto {
@@ -18,19 +22,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
     private void validateDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER);
         }
     }
 

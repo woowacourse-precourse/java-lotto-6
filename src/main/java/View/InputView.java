@@ -1,5 +1,11 @@
 package View;
 
+import static lotto.ErrorMessage.CONTAINS_WHITESPACE;
+import static lotto.ErrorMessage.ENDS_WITH_DELIMITER;
+import static lotto.ErrorMessage.INVALID_NUMBER_FORMAT;
+import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT;
+import static lotto.ErrorMessage.NEGATIVE_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -77,7 +83,7 @@ public class InputView {
 
     private void validateNotBlank(String input) {
         if (input == null || input.isBlank() || containsWhitespace(input)) {
-            throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(CONTAINS_WHITESPACE);
         }
     }
 
@@ -91,27 +97,27 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT);
         }
     }
 
     private void validateInputIsPositiveNumber(String input) {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount < 1) {
-            throw new IllegalArgumentException("[ERROR] 0 이상의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(NEGATIVE_NUMBER);
         }
     }
 
     private void validateInputIsMultipleOfThousand(String input) {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }
 
     private void validateNotEndWithDelimiter(String input) {
         if (input.endsWith(",")) {
-            throw new IllegalArgumentException("[ERROR] 구분자(,)로 끝날 수 없습니다.");
+            throw new IllegalArgumentException(ENDS_WITH_DELIMITER);
         }
     }
 }

@@ -7,14 +7,17 @@ public class Winning extends LottoRule {
     private List<Integer> numbers;
     private int bonusNumber;
 
-    public void validateBonus(int bonusNumber){
-        if(isDuplicateBonusNumber(bonusNumber)){
+    public void validateBonus(int bonusNumber) {
+        if (isDuplicateBonusNumber(bonusNumber)) {
             ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
+        }
+        if (isOutOfRange(bonusNumber)){
+            ExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
         }
     }
 
-    private boolean isDuplicateBonusNumber(int bonusNumber){
-        if(numbers.contains(bonusNumber)){
+    private boolean isDuplicateBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             return true;
         }
         return false;

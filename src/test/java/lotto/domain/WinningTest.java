@@ -69,4 +69,24 @@ class WinningTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
+
+    @DisplayName("보너스 번호가 45보다 크면 예외가 발생한다.")
+    @Test
+    void saveBonusNumberByOverRange() {
+        Winning winning = new Winning();
+        winning.setNumbers(List.of(1,2,3,4,5,6));
+        assertThatThrownBy(() -> winning.setBonusNumber(46))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
+    }
+
+    @DisplayName("보너스 번호가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void saveBonusNumberBByUnderRange() {
+        Winning winning = new Winning();
+        winning.setNumbers(List.of(1,2,3,4,5,6));
+        assertThatThrownBy(() -> winning.setBonusNumber(0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
+    }
 }

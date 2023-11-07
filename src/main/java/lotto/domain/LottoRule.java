@@ -37,11 +37,17 @@ public class LottoRule {
 
     protected boolean isOutOfRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < MIN_RANGE || number > MAX_RANGE) {
+            if (isOutOfRange(number)) {
                 return true;
             }
         }
         return false;
     }
 
+    protected boolean isOutOfRange(int number) {
+        if (number < MIN_RANGE || number > MAX_RANGE) {
+            return true;
+        }
+        return false;
+    }
 }

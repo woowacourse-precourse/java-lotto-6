@@ -55,7 +55,7 @@ public class UserOutputView {
     }
 
     public static void winningLottoRateResult(){
-        System.out.println("총 수익률은 " + LottoCompareController.winningLottoRate()+"입니다.");
+        System.out.println("총 수익률은 " + LottoCompareController.winningLottoRate()+"%입니다.");
     }
 
 

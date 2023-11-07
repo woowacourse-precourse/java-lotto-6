@@ -20,6 +20,7 @@ public class RunLotto {
 
         UserOutputView.winningStatistics();
         UserOutputView.winningStatisticsResult();
+        UserOutputView.winningLottoRateResult();
 
 
 

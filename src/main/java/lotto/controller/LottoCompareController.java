@@ -15,10 +15,12 @@ public class LottoCompareController {
     }
 
     public static double winningLottoRate(){
-        long purchaseAmount = LottoTickets.getBuyLottoTicketsNum() * 1000;
-        long winningMoney =  winningMoney();
-        double resultRate = purchaseAmount/winningMoney;
-        return Math.round(resultRate*10000)/100.0;
+        double purchaseAmount = LottoTickets.getBuyLottoTicketsNum() * 1000;
+        double winningMoney =  winningMoney();
+        System.out.println(purchaseAmount);
+        System.out.println(winningMoney);
+        double resultRate = winningMoney/purchaseAmount * 100;
+        return Math.round(resultRate*100)/100.0;
     }
 
     private static void lottoCompareNum(Lotto lotto){

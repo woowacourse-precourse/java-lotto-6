@@ -3,14 +3,13 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.nio.channels.FileLockInterruptionException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class InputWinningNumberView {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
     private static final String BLANK = " ";
     private static final String SEPARATOR = ",";
     private static final String ERROR_MESSAGE = "[ERROR] ";
@@ -48,6 +47,7 @@ public class InputWinningNumberView {
     }
 
     private void validateWinningNumber(List<Integer> numbers) {
+        validateDuplicate(numbers);
         for (int number : numbers) {
             validateRangeNumber(number);
         }
@@ -61,6 +61,13 @@ public class InputWinningNumberView {
 
     private void validateBlank(String input) {
         if (input.contains(BLANK)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumber = new HashSet<>(numbers);
+        if (uniqueNumber.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }

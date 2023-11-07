@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.utils.Validator;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,7 +23,6 @@ public class Lotto {
 
 
     public static Lotto create(List<Integer> numbers) {
-        Validator.validateLotto(numbers);
         return new Lotto(numbers);
     }
 
@@ -37,7 +35,13 @@ public class Lotto {
 
     private static Lotto generateRandomLotto() {
         List<Integer> randomLotto = pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE);
-        randomLotto.sort(Integer::compareTo);
+
+        try {
+            randomLotto.sort(null);
+        } catch (UnsupportedOperationException e) {
+            randomLotto = new ArrayList<>(randomLotto);
+            randomLotto.sort(null);
+        }
 
         return create(randomLotto);
     }

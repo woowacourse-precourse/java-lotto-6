@@ -25,4 +25,8 @@ public class PrizeCalculaor {
         int totalPrize = prizes.stream().reduce(0, Integer::sum);
         return totalPrize;
     }
+
+    float calculateProfitRate(int totalPrize, int purchasingPrice){
+        return ((float) totalPrize / purchasingPrice) * 100;
+    }
 }

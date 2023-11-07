@@ -18,4 +18,8 @@ public class Lotto {
             InputValidator.validateIsLottoNumber(number);
         }
     }
+
+    public List<Integer> getWinningNumber() {
+        return numbers;
+    }
 }

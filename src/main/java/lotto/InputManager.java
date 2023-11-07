@@ -15,6 +15,28 @@ public class InputManager {
         return input.replaceAll(" ", "");
     }
 
+    public static int bonusNumberInput(Lotto winningLotto) {
+        String input = InputManager.receiveUserInput();
+
+        InputValidator.validateIsNumeric(input);
+        int bonusNumber = Integer.parseInt(input);
+        InputValidator.validateIsLottoNumber(bonusNumber);
+        InputValidator.validateBonusNumberNoDuplicate(winningLotto.getWinningNumber(), bonusNumber);
+
+        return bonusNumber;
+    }
+
+    public static int purchaseAmountInput() {
+        String input = InputManager.receiveUserInput();
+
+        InputValidator.validateIsNumeric(input);
+        int purchaseAmount = Integer.parseInt(input);
+        InputValidator.validateDivision1000(purchaseAmount);
+
+        return purchaseAmount / 1000;
+
+    }
+
     public static List<Integer> winningLottoInput() {
         List<String> input = List.of(receiveUserInput().split(","));
 

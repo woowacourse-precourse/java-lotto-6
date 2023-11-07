@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import exception.BusinessException;
-import exception.ErrorCode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,7 @@ public class LottoApp {
     public void playGame() {
         player.buyLottos(getPurchaseMoney() / PRICE_LOTTO);
         admin.setWinningNumbers(getWinningNumbers());
-        admin.setBonusNumber(getBonusNumber());
+        admin.setBonusNumber(getBonusNumber(admin.getWinningNumbers()));
 
         admin.checkLottos(player);
         admin.printPrize(player);
@@ -47,11 +46,7 @@ public class LottoApp {
         System.out.println("당첨 번호를 입력해 주세요.");
         try {
             String[] strings = Console.readLine().split(",");
-            if (strings.length != 6) throw new BusinessException(ErrorCode.WinningNumberInputError);
-            return Arrays.stream(strings)
-                    .map(Integer::parseInt)
-                    .map(this::validateLottoNumber)
-                    .collect(Collectors.toList());
+            return validateWinningNumbers(strings);
         } catch (NumberFormatException ne) {
             System.out.println("[ERROR]숫자를 입력해야 합니다.");
         } catch (IllegalArgumentException ie) {
@@ -60,18 +55,34 @@ public class LottoApp {
         return getWinningNumbers();
     }
 
-    private Integer getBonusNumber() {
+    private Integer getBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
-            validateLottoNumber(bonusNumber);
-            return bonusNumber;
+            return validateBonusNumber(winningNumbers, bonusNumber);
         } catch (NumberFormatException ne) {
             System.out.println("[ERROR]숫자를 입력해야 합니다.");
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
         }
-        return getBonusNumber();
+        return getBonusNumber(winningNumbers);
+    }
+
+    private List<Integer> validateWinningNumbers(String[] strings) throws IllegalArgumentException {
+        long distinctSize = Arrays.stream(strings)
+                .distinct()
+                .count();
+        if (distinctSize != 6) throw new IllegalArgumentException("[ERROR]6개의 중복되지 않은 수를 입력해야 합니다.");
+
+        return Arrays.stream(strings)
+                .map(Integer::parseInt)
+                .map(this::validateLottoNumber)
+                .collect(Collectors.toList());
+    }
+
+    private int validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
+        if (winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR]당첨 번호와 중복됩니다.");
+        return validateLottoNumber(bonusNumber);
     }
 
     private int validateLottoNumber(int number) throws IllegalArgumentException {

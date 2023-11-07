@@ -16,7 +16,6 @@ import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_BETWEE
 import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT;
 import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -27,25 +26,33 @@ import lotto.exception.InvalidWinningNumbersException;
 
 public class InputInterface {
 
+    private Input in;
+    private Output out;
+
+    public InputInterface(Input input, Output output) {
+        this.in = input;
+        this.out = output;
+    }
+
     public long getPurchasedAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT_TEXT);
+        out.println(INPUT_PURCHASE_AMOUNT_TEXT);
 
         return getValidPurchasedAmount();
     }
 
     public List<Integer> getWinningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBERS_TEXT);
+        out.println(INPUT_WINNING_NUMBERS_TEXT);
         return getValidWinningNumbers();
     }
 
     public int getBonusNumber(List<Integer> numbers) {
-        System.out.println(INPUT_BONUS_NUMBER_TEXT);
+        out.println(INPUT_BONUS_NUMBER_TEXT);
         return getValidBonusNumber(numbers);
     }
 
     private long getValidPurchasedAmount() {
         try {
-            String input = Console.readLine();
+            String input = in.readLine();
             long purchaseAmount = convertToPurchasedAmount(input);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
@@ -68,7 +75,7 @@ public class InputInterface {
 
     private List<Integer> getValidWinningNumbers() {
         try {
-            String input = Console.readLine();
+            String input = in.readLine();
             return convertToWinningNumbers(input);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
@@ -96,9 +103,9 @@ public class InputInterface {
         }
     }
 
-    private static int getValidBonusNumber(List<Integer> numbers) {
+    private int getValidBonusNumber(List<Integer> numbers) {
         try {
-            String input = Console.readLine();
+            String input = in.readLine();
             return convertToBonusNumber(input, numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));

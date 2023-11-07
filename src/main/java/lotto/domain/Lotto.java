@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validation.DuplicateNumberValidator;
+
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +16,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        DuplicateNumberValidator.validateDuplicateNumbers(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

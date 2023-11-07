@@ -24,7 +24,7 @@ public class LottoController {
     public void play() {
         LottoCount lottoCount = setLottoCount();
         UserLotto userLotto = setUserLotto(lottoCount);
-        userLotto.create(randomNumberGenerator); //이것도 파라미터로?
+        userLotto.create(randomNumberGenerator);
 
         output.userLotto(userLotto);
 

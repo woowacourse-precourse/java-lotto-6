@@ -29,7 +29,7 @@ class LottoTest {
 
     @DisplayName("입력 금액이 1000원 단위가 아니라면 예외가 발생한다.")
     @Test
-    void countingTheNumberOfLottos(){
+    void countingTheNumberOfLottos() {
         int price = 15300;
         InputPriceAndCalculateLottoCount count = new InputPriceAndCalculateLottoCount();
         assertThatThrownBy(() -> count.validLottoCount(price))
@@ -38,11 +38,24 @@ class LottoTest {
 
     @DisplayName("중복되지 않은 로또 번호는 추가된다.")
     @Test
-    void addLottoNumber(){
+    void addLottoNumber() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         ArrayList<Lotto> lottos = new ArrayList<Lotto>();
         lottos.add(lotto);
         assertThat(lottos.get(0).getNumbers()).isEqualTo(lotto.getNumbers());
     }
 
+    @DisplayName("문자열을 정수로 바꾸어 저장.")
+    @Test
+    void changeStringtoInteger() {
+        String[] str = {"1", "2", "3", "4", "5"};
+        List<Integer> answer = new ArrayList<Integer>(List.of(1, 2, 3, 4, 5));
+        List<Integer> result = new ArrayList<Integer>();
+
+        for (int i = 0; i < str.length; i++){
+            result.add(Integer.parseInt(str[i]));
+        }
+
+        assertThat(result).isEqualTo(answer);
+    }
 }

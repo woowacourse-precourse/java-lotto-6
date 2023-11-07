@@ -3,6 +3,8 @@ package lotto;
 public class lottoProgram {
     int price;
     int lottoCount;
+    Lottos lottos;
+    WinningLotto winningLotto;
 
     public lottoProgram(){
         start();
@@ -10,6 +12,7 @@ public class lottoProgram {
     void start(){
         setPriceAndLottoCount();
         makeAndPrintLottos();
+        inputWinningLotto();
     }
 
     void setPriceAndLottoCount(){
@@ -19,7 +22,12 @@ public class lottoProgram {
     }
 
     void makeAndPrintLottos(){
-        Lottos lottos = new Lottos(lottoCount);
+        lottos = new Lottos(lottoCount);
         lottos.showLottoNumber();
+    }
+
+    void inputWinningLotto(){
+        InputWinningLotto inputWinningLotto = new InputWinningLotto();
+        winningLotto = inputWinningLotto.inputLotto();
     }
 }

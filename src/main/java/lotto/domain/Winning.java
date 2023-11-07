@@ -22,13 +22,4 @@ public enum Winning {
     public int getWinningAmount() {
         return winningAmount;
     }
-
-    public Winning valueOf(int matchCount) {
-        for(Winning winning : Winning.values()) {
-            if(winning.matchCount == matchCount) {
-                return winning;
-            }
-        }
-        return DEFAULT;
-    }
 }

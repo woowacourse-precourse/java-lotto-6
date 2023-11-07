@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.Rank;
-import lotto.WinningStatistics;
+import lotto.WinningResult;
 
 public class OutputView {
     public void printUserLottoNumbers(List<Lotto> lottos) {
@@ -12,11 +12,11 @@ public class OutputView {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    public void printStatistics(WinningStatistics winningStatistics) {
+    public void printStatistics(WinningResult winningResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printWinningResult(winningStatistics.getWinningResult());
-        printWinningRate(winningStatistics.getWinningRate());
+        printWinningResult(winningResult.getWinningResult());
+        printWinningRate(winningResult.getWinningRate());
     }
 
     private void printWinningResult(Map<Rank, Integer> winningResult) {

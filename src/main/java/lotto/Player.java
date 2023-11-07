@@ -26,10 +26,10 @@ public class Player {
         return lottos;
     }
 
-    public WinningStatistics calculateStatistics(WinningNumbers winningNumbers) {
+    public WinningResult calculateResult(WinningNumbers winningNumbers) {
         Calculator calculator = new Calculator(lottos, winningNumbers);
-        Map<Rank, Integer> winningResults = calculator.calculateResults();
-        Double winningRate = calculator.calculateWinningRate(winningResults, money);
-        return new WinningStatistics(winningResults, winningRate);
+        Map<Rank, Integer> winningStatistics = calculator.calculateStatistics();
+        Double winningRate = calculator.calculateWinningRate(winningStatistics, money);
+        return new WinningResult(winningStatistics, winningRate);
     }
 }

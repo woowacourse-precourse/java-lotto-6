@@ -13,27 +13,27 @@ public class Calculator {
         this.winningNumbers = winningNumbers;
     }
 
-    public Map<Rank, Integer> calculateResults() {
-        Map<Rank, Integer> winningResults = new EnumMap<>(Rank.class);
+    public Map<Rank, Integer> calculateStatistics() {
+        Map<Rank, Integer> winningStatistics = new EnumMap<>(Rank.class);
         Lotto winningLotto = winningNumbers.getLottoNumbers();
         int bonusNumber = winningNumbers.getBonusNumber();
         for (Rank rank : Rank.values()) {
-            winningResults.put(rank, 0);
+            winningStatistics.put(rank, 0);
         }
         for (Lotto lotto : userLottos) {
-            int hitCount = lotto.matchCountWith(winningLotto);
+            int matchCount = lotto.matchCountWith(winningLotto);
             boolean isBonusNumberMatched = lotto.contains(bonusNumber);
-            Rank rank = Rank.valueOf(hitCount, isBonusNumberMatched);
-            winningResults.put(rank, winningResults.get(rank) + 1);
+            Rank rank = Rank.valueOf(matchCount, isBonusNumberMatched);
+            winningStatistics.put(rank, winningStatistics.get(rank) + 1);
         }
-        return winningResults;
+        return winningStatistics;
     }
 
     public Double calculateWinningRate(Map<Rank, Integer> winningResults, int money) {
-        return calculateTotalPrize(winningResults) / (double) money * 100;
+        return sumTotalPrize(winningResults) / (double) money * 100;
     }
 
-    private Long calculateTotalPrize(Map<Rank, Integer> winningResults) {
+    private Long sumTotalPrize(Map<Rank, Integer> winningResults) {
         return winningResults.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();

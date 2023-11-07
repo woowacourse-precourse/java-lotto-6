@@ -4,7 +4,7 @@ import View.InputView;
 import View.OutputView;
 import lotto.Player;
 import lotto.WinningNumbers;
-import lotto.WinningStatistics;
+import lotto.WinningResult;
 
 public class LottoController {
     private final InputView inputView;
@@ -23,7 +23,7 @@ public class LottoController {
 
         WinningNumbers winningNumbers = inputView.askWinningNumbers();
 
-        WinningStatistics winningStatistics = player.calculateStatistics(winningNumbers);
-        outputView.printStatistics(winningStatistics);
+        WinningResult winningResult = player.calculateResult(winningNumbers);
+        outputView.printStatistics(winningResult);
     }
 }

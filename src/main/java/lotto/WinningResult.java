@@ -2,11 +2,11 @@ package lotto;
 
 import java.util.Map;
 
-public class WinningStatistics {
+public class WinningResult {
     private final Map<Rank, Integer> winningResult;
     private final Double winningRate;
 
-    public WinningStatistics(Map<Rank, Integer> winningResult, Double winningRate) {
+    public WinningResult(Map<Rank, Integer> winningResult, Double winningRate) {
         this.winningResult = winningResult;
         this.winningRate = winningRate;
     }

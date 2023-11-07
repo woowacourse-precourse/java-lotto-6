@@ -1,17 +1,17 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoTickets;
 
-import java.util.List;
+public class UserInputView {
 
-public class User {
-
-    public static LottoTickets inputPurchaseAmount(){
+    public static void inputPurchaseAmount(){
         try{
-            return LottoTickets.crateBuyLottoTickets(Long.parseLong(Console.readLine()));
+            LottoTickets.createBuyLottoTickets(Long.parseLong(Console.readLine()));
+
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return inputPurchaseAmount();
+            inputPurchaseAmount();
         }
     }
 

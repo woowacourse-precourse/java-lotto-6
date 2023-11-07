@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.view.ExceptionMessage;
 
@@ -12,7 +12,7 @@ public class LottoTickets {
         this.lottoTickets = lottoTickets;
     }
 
-    public static LottoTickets crateBuyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
+    public static LottoTickets createBuyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
         if(purchaseAmount%1000!=0){
              throw new IllegalArgumentException(ExceptionMessage.inputPurchaseAmountError.getErrorMessage());
         }

@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class WinningDetails {
-    private Map<Prize, Integer> winningDetails;
+    private final Map<Prize, Integer> winningDetails;
 
     private WinningDetails(final Map<Prize, Integer> winningDetails) {
         this.winningDetails = winningDetails;

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Prize {
-    NO_PRIZE(0,0,false),
+    NO_PRIZE(0, 0, false),
     FIFTH_PLACE(5_000, 3, false),
     FOURTH_PLACE(50_000, 4, false),
     THIRD_PLACE(1_500_000, 5, false),

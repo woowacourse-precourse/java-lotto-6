@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.GameConfig.*;
+import static lotto.input.InputValidator.*;
 
-//todo :
 /*
  * todo
  *  1. 도메인과 관련된 validate 로직들은 LottoGame 또는 다른 클래스로 역할 분리할 필요 있음.
@@ -33,85 +33,11 @@ public class InputProcessor {
     }
 
     public Integer getBonusNumber() {
-        String input = inputProvider.read();
+        String input = inputReader.read();
         validateBonusNumberInput(input);
         return Integer.valueOf(input);
     }
 
-    private void validateBonusNumberInput(String input) {
-        validateIsInteger(input);
-        validateRangeOfNumber(Integer.parseInt(input));
-    }
-
-    private void validatePurchaseMoneyInput(String input) {
-        validateIsInteger(input);
-        validatePurchaseMoneyUnit(input);
-    }
-
-    private void validateWinningNumberInput(String input) {
-        String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
-
-        validateNumberOfBalls(separatedInput);
-        Arrays.stream(separatedInput)
-                .forEach(this::validateIsInteger);
-        Arrays.stream(separatedInput)
-                .forEach((numberString) -> {
-                    int number = Integer.parseInt(numberString);
-                    validateRangeOfNumber(number);
-                });
-        validateDuplication(separatedInput);
-    }
-
-    private void validateDuplication(String[] separatedInput) {
-        if (containsDuplication(separatedInput)) {
-            throw new IllegalArgumentException("중복된 숫자가 존재할 수 없습니다.");
-        }
-    }
-
-    private static void validateRangeOfNumber(int number) {
-        if (hasInvalidRange(number)) {
-            throw new IllegalArgumentException("1에서 45 사이의 정수를 입력해주십시오.");
-        }
-    }
-
-    private void validateNumberOfBalls(String[] separatedInput) {
-        if (!hasValidNumberOfBalls(separatedInput)) {
-            throw new IllegalArgumentException("','으로 구분된 여섯 개의 숫자를 입력해주십시오.");
-        }
-    }
-
-    private boolean containsDuplication(String[] separatedInput) {
-        long distinctNumberCount = Arrays.stream(separatedInput)
-                .distinct()
-                .count();
-        return distinctNumberCount != separatedInput.length;
-    }
-
-    private static boolean hasInvalidRange(int number) {
-        return number < LOTTO_NUMBER_LOWER_BOUND || number > LOTTO_NUMBER_UPPER_BOUND;
-    }
-
-    private boolean hasValidNumberOfBalls(String[] input) {
-        return input.length == NUMBER_OF_LOTTO_NUMBERS;
-    }
-
-    private void validatePurchaseMoneyUnit(String input) {
-        if (!isMultipleOfUnit(Integer.parseInt(input))) {
-            throw new IllegalArgumentException("최소 단위는 ~입니다.");
-        }
-    }
-
-    private boolean isMultipleOfUnit(int input) {
-        return input % PURCHASE_MONEY_UNIT == 0;
-    }
-
-    private void validateIsInteger(String str) {
-        try {
-            Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수를 입력해주십시오");
-        }
-    }
 
     private List<Integer> parseWinningNumberInputToList(String input) {
         String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
@@ -120,4 +46,3 @@ public class InputProcessor {
                 .toList();
     }
 }
-

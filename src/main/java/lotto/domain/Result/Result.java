@@ -3,21 +3,16 @@ package lotto.domain.Result;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.WinningNumber.WinningNumber;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Result {
-    private static final int INITIAL_VALUE = 0;
-    private static final int FIRST_PRIZE = 2000000000;
-    private static final int SECOND_PRIZE = 30000000;
-    private static final int THIRD_PRIZE = 1500000;
-    private static final int FORTH_PRIZE = 50000;
-    private static final int FIFTH_PRIZE = 5000;
 
-    private int firstRank = INITIAL_VALUE;
-    private int secondRank = INITIAL_VALUE;
-    private int thirdRank = INITIAL_VALUE;
-    private int forthRank = INITIAL_VALUE;
-    private int fifthRank = INITIAL_VALUE;
+    private static final int INITIAL_VALUE = 0;
+
+    List<Integer> rankWinner = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+    Rank rank;
 
     private List<Lotto> lotties;
     private WinningNumber winningNumber;
@@ -57,23 +52,23 @@ public class Result {
 
     private void setRankDetail(int matchNumberCount, boolean matchBonus) {
         if (matchNumberCount == 6) {
-            firstRank++;
+            rankWinner.set(0, rankWinner.get(0) + 1);
             return;
         }
         if (matchNumberCount == 5 && matchBonus) {
-            secondRank++;
+            rankWinner.set(1, rankWinner.get(1) + 1);
             return;
         }
         if (matchNumberCount == 5) {
-            thirdRank++;
+            rankWinner.set(2, rankWinner.get(2) + 1);
             return;
         }
         if (matchNumberCount == 4) {
-            forthRank++;
+            rankWinner.set(3, rankWinner.get(3) + 1);
             return;
         }
         if (matchNumberCount == 3) {
-            fifthRank++;
+            rankWinner.set(4, rankWinner.get(4) + 1);
             return;
         }
     }
@@ -94,16 +89,17 @@ public class Result {
     }
 
     private void printRankResult() {
-        System.out.println("3개 일치 (5,000원) - " + fifthRank + "개");
-        System.out.println("4개 일치 (50,000원) - " + forthRank + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + thirdRank + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondRank + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + firstRank + "개");
+        int i = 0;
+        for (Rank rank : Rank.values()) {
+            System.out.printf(rank.getRankOutput(), rankWinner.get(i));
+            i++;
+        }
     }
 
     private void calculateProfit() {
+
         int totalProfit =
-                firstRank * FIRST_PRIZE + secondRank * SECOND_PRIZE + thirdRank * THIRD_PRIZE + forthRank * FORTH_PRIZE + fifthRank * FIFTH_PRIZE;
+                rankWinner.get(0) * rank.FIRSTRANK.getRankPrize()  + rankWinner.get(1) * rank.SECONDRANK.getRankPrize() + rankWinner.get(2) * rank.THIRDRANK.getRankPrize() + rankWinner.get(3) * rank.FORTHRANK.getRankPrize() + rankWinner.get(4) * rank.FIFTHRANK.getRankPrize();
         int totalExpenditure = lotties.size() * 1000;
         this.profit = ((double)totalProfit / totalExpenditure) * 100;
     }

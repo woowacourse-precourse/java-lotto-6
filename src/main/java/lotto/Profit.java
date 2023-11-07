@@ -28,7 +28,9 @@ public class Profit {
 
 	private static double calculateProfitPercentage(int WinningMoney, int userMoney) {
 
-		return (double) WinningMoney / userMoney * 100;
+		double profit = (double) WinningMoney / userMoney * 100;
+
+		return Math.round(profit * 100.0) / 100.0;
 	}
 
 	private static void printResult(double profit) {

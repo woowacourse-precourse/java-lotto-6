@@ -2,12 +2,25 @@ package lotto.domain.wrapper;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static lotto.handler.ErrorHandler.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
+
+    private static Stream<Arguments> generateBasicLotto() {
+        return Stream.of(
+                Arguments.of(Lotto.create(List.of(1, 20, 10, 45, 40, 30)), List.of(1, 10, 20, 30, 40, 45)),
+                Arguments.of(Lotto.create(List.of(1, 3, 6, 5, 11, 10)), List.of(1, 3, 5, 6, 10, 11))
+        );
+    }
 
     @DisplayName("로또 번호에 숫자로 변환될 수 없는 타입이 들어가면 예외가 발생한다.")
     @ParameterizedTest(name = "[{index}] input {0} " )
@@ -43,5 +56,12 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.from(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_RANGE.getException().getMessage());
+    }
+
+    @DisplayName("로또 번호가 오름차순으로 정상적으로 반환된다.")
+    @ParameterizedTest(name = "[{index}] input {0} " )
+    @MethodSource("generateBasicLotto")
+    void createLotto(Lotto lotto, List<Integer> expected) {
+        assertThat(lotto.sortLottoNumbers()).isEqualTo(expected);
     }
 }

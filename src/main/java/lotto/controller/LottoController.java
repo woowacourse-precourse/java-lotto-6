@@ -3,12 +3,13 @@ package lotto.controller;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.InputMoneyView;
+import lotto.view.OutputLottoCountView;
 
 public class LottoController {
 
     public void start() {
         Money money = getMoney();
-        Lottos lottos = createLotto();
+        createLotto(money);
     }
 
     private Money getMoney() {
@@ -17,8 +18,9 @@ public class LottoController {
         return new Money(money);
     }
 
-    private Lottos createLotto() {
-
+    private void createLotto(Money money) {
+        OutputLottoCountView outputLottoCountView = new OutputLottoCountView();
+        outputLottoCountView.OutputLottoCount(money);
     }
 
     private void getNumber() {

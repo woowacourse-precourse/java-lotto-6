@@ -16,4 +16,5 @@ public class OutputView {
             System.out.println(numbers.toString());
         }
     }
+
 }

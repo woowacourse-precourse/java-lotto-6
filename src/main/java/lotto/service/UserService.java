@@ -20,10 +20,14 @@ public class UserService {
             List<Integer> randomNumbers = RnadomNumberGenerator.generateUniqueSixNumber();
             lottos.add(new Lotto(randomNumbers));
         }
-        return LottosDto.create(lottos);
+        return getLottosDto();
     }
 
     private Integer calculateNumberOfPurchase() {
         return purchaseAmount.getPurchaseAmount() / Lotto.PRICE;
+    }
+
+    public LottosDto getLottosDto() {
+        return LottosDto.create(lottos);
     }
 }

@@ -2,15 +2,13 @@ package lotto;
 
 import java.util.List;
 import java.util.Set;
+import lotto.common.Constraint;
 
 public class Lotto {
 
-    private final int MAX_COUNT = 6;
-    private final int MIN_NUMBER = 1;
-    private final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers){
         validateOverSize(numbers);
         validateDuplicated(numbers);
         validateOutOfRange(numbers);
@@ -18,7 +16,7 @@ public class Lotto {
     }
 
     private void validateOverSize(List<Integer> numbers) {
-        if (numbers.size() != this.MAX_COUNT) {
+        if (numbers.size() != Constraint.LOTTO_MAX_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_OVER_SIZE.getValue());
         }
     }
@@ -31,7 +29,7 @@ public class Lotto {
 
     private void validateOutOfRange(List<Integer> numbers) {
         for (Integer i : numbers) {
-            if (i < MIN_NUMBER || i > MAX_NUMBER) {
+            if (i < Constraint.LOTTO_MIN_NUMBER.getValue() || i > Constraint.LOTTO_MAX_NUMBER.getValue()) {
                 throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_OUT_OF_RANGE.getValue());
             }
         }

@@ -1,16 +1,13 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import lotto.domain.LottoOption;
-import lotto.domain.Rank;
-import lotto.domain.ResultSheet;
-import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoOption;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.ResultSheet;
+import lotto.domain.WinningLotto;
 import lotto.message.ViewMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,21 +24,11 @@ public class MainController {
     private static Lottos initLottos() {
         try {
             Money money = new Money(InputView.readInteger(ViewMessage.INPUT_PURCHASE_MONEY));
-            List<Lotto> lottoItems = purchaseLotto(money);
-            return new Lottos(lottoItems, lottoItems.size());
+            return Lottos.purchaseLottos(money);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return initLottos();
         }
-    }
-
-    private static List<Lotto> purchaseLotto(Money wallet) {
-        List<Lotto> lottoItems = new ArrayList<>();
-        while (wallet.canPurchaseLotto()) {
-            Lotto newLotto = Lotto.createRandomLotto(wallet);
-            lottoItems.add(newLotto);
-        }
-        return lottoItems;
     }
 
     private static WinningLotto initAnswerLotto() {

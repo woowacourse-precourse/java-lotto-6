@@ -26,7 +26,7 @@ class LotteryCountServiceTest {
     @ValueSource(strings = {"1000"})
     void 천원단위_1이상_정수_금액(String cashInput) {
         // WHEN
-        Integer lottoCount = lotteryCountService.getLottoTicketCount(cashInput);
+        Integer lottoCount = lotteryCountService.getTicketCountFromCash(cashInput);
 
         // THEN
         assertEquals(1, lottoCount);

@@ -12,4 +12,7 @@ public class LottoAnswer {
         this.bonus = bonus;
     }
 
+    public int getAnswerSize() {
+        return answer.getSize();
+    }
 }

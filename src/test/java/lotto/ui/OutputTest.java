@@ -17,18 +17,24 @@ import lotto.constants.Prize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoManager;
 import lotto.domain.LottoResult;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OutputTest {
+    private OutputStream out;
+
+    @BeforeEach
+    void beforeEach() {
+        // given
+        out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+    }
 
     @DisplayName("예외 발생 시, 예외 처리 메시지만 출력")
     @Test
     void printError() {
-        // given
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         // when
         try {
             throw new IllegalArgumentException("[ERROR] 예외 처리 메시지");
@@ -41,13 +47,10 @@ class OutputTest {
                 .contains("[ERROR] 예외 처리 메시지");
     }
 
+
     @DisplayName("구매한 로또 개수 출력")
     @Test
     void printCount() {
-        // given
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         // when
         Integer lottoCount = 8;
         Output.printCount(lottoCount);
@@ -60,10 +63,6 @@ class OutputTest {
     @DisplayName("금액 입력할 때, 출력")
     @Test
     void printPurchase() {
-        // given
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         // when
         Output.printPurchase();
 
@@ -75,10 +74,6 @@ class OutputTest {
     @DisplayName("당첨 번호 입력할 때, 출력")
     @Test
     void printWinningNumber() {
-        // given
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         // when
         Output.printWinningNumber();
 
@@ -90,10 +85,6 @@ class OutputTest {
     @DisplayName("보너스 번호 입력할 때, 출력")
     @Test
     void printBonusNumber() {
-        // given
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         // when
         Output.printBonusNumber();
 
@@ -110,9 +101,6 @@ class OutputTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(6, 5, 4, 3, 2, 1)));
         lottos.add(new Lotto(List.of(20, 30, 10, 40, 1, 45)));
-
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
         // when
         List<Lotto> sortedLottos = LottoManager.sortLottos(lottos);
@@ -133,9 +121,6 @@ class OutputTest {
         lottoResult.state.replace(Prize.FIFTH, 1);   // 5등 5000원, 1개
 
         Double earningsRate = lottoResult.calculateEarningsRate(9); // 로또 9장, 55.5555...6 %
-
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
         // when
         Output.printResult(lottoResult, earningsRate);
@@ -160,9 +145,6 @@ class OutputTest {
         lottoResult.state.replace(Prize.FIRST, 1);   // 1등 2,000,000,000원, 1개
 
         Double earningsRate = lottoResult.calculateEarningsRate(1); // 로또 1장, 200,000,000.0%
-
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
         // when
         Output.printResult(lottoResult, earningsRate);

@@ -16,7 +16,8 @@ public class Application {
         List<Lotto> lottos = createLottos(purchasedPrice);
         printLottoNumbers(lottos);
 
-
+        List<Integer> winningNumbers = readWinningNumbers();
+        int bonusNumber = readBonusNumber();
     }
 
     public static void readPurchasedPrice() {
@@ -44,4 +45,20 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    private static List<Integer> readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (int i = 0; i < LOTTO_SIZE; i++) {
+            winningNumbers.add(Integer.parseInt(Console.readLine()));
+        }
+        return winningNumbers;
+    }
+
+    private static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonus = Integer.parseInt(Console.readLine());
+        return bonus;
+    }
+
 }

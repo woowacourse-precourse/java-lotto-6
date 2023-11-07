@@ -2,7 +2,8 @@ package lotto.constant;
 
 public enum InputConstant {
     BLANK(" "),
-    SEPERATOR(",");
+    SEPERATOR(","),
+    DASH("-");
 
     private final String value;
 

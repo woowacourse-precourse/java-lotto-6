@@ -12,14 +12,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.constant.LottoConstant;
 import lotto.constant.NumberConstant;
 
 public class Bank {
-    private final int rankRange = 5;
-    private final double rateRange = 10.0;
-
     public List<Integer> getRanks(List<Lotto> lottos, List<Integer> userNumbers, int bonusNumber){
-        int[] ranks = new int[5];
+        int[] ranks = new int[NumberConstant.RANK_RANGE];
         for (Lotto lotto : lottos){
             List<Integer> lottoNumbers = lotto.getNumbers();
             int index = getRankIndex(lottoNumbers, userNumbers, bonusNumber);
@@ -30,10 +28,28 @@ public class Bank {
         return Arrays.stream(ranks).boxed().collect(Collectors.toList());
     }
 
+    public int getProfit(List<Integer> ranks){
+        int profit = NumberConstant.DEFAULT_VALUE;
+        for (int i = NumberConstant.DEFAULT_VALUE; i < ranks.size(); i++){
+            profit += ranks.get(i) * getPrizeByIndex(i);
+        }
+        return profit;
+    }
+
     public double getFormatProfitRate(int money, int profit){
         double profitRate = getProfitRate(money, profit);
-        return Math.round(profitRate * rateRange) / rateRange;
+        return Math.round(profitRate * NumberConstant.RATE_FORMAT_NUMBER) / NumberConstant.RATE_FORMAT_NUMBER;
     }
+
+    private int getPrizeByIndex(int index){
+        for(LottoConstant constant : LottoConstant.values()){
+            if (constant.getIndex() == index){
+                return constant.getPrize();
+            }
+        }
+        return NumberConstant.DEFAULT_VALUE;
+    }
+
     private int getRankIndex(List<Integer> lottoNumbers, List<Integer> userNumbers, int bonusNumber){
         int rightCount = getRightCount(lottoNumbers, userNumbers);
         boolean bonus = checkBonus(lottoNumbers, bonusNumber);

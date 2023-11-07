@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static common.ErrorCode.LOTTO_NUMBERS_INVALID_RANGE;
 import static common.ErrorCode.LOTTO_NUMBERS_INVALID_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,5 +35,27 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void 로또_번호_45초과_번호_포함_예외() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
+
+        // when
+        // then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBERS_INVALID_RANGE.getMessage());
+    }
+
+    @Test
+    void 로또_번호_1미만_번호_포함_예외() {
+        // given
+        List<Integer> numbers = List.of(0, 2, 3, 4, 5, 6);
+
+        // when
+        // then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBERS_INVALID_RANGE.getMessage());
+    }
 }

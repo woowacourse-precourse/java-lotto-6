@@ -5,8 +5,10 @@ import lotto.ui.ConsoleInput;
 import lotto.ui.ConsoleOutput;
 import lotto.ui.Input;
 import lotto.ui.Output;
+import lotto.util.GetNumber;
 import lotto.util.PriceValidator;
 import lotto.util.ReturnCalculator;
+import lotto.util.Validator;
 
 public class LottoManager {
     private Input input;
@@ -41,17 +43,20 @@ public class LottoManager {
 
     private int getPrice() {
         output.printLottoPriceRequest();
-        Integer price = getPriceRepeatedly();
+        Integer price = getNumberRepeatedly(
+                () -> input.getPrice(),
+                (input) -> PriceValidator.validatePrice(input)
+        );
 
         return price;
     }
 
-    private Integer getPriceRepeatedly() {
+    private Integer getNumberRepeatedly(GetNumber getNumber, Validator validator) {
         while (true) {
             try {
-                Integer inputPrice = input.getPrice();
-                PriceValidator.validatePrice(inputPrice);
-                return inputPrice;
+                Integer inputNumber = getNumber.get();
+                validator.validate(inputNumber);
+                return inputNumber;
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
@@ -82,19 +87,10 @@ public class LottoManager {
 
     private void getBonusNumber() {
         output.printBonusNumberRequest();
-        getBonusNumberRepeatedly();
-    }
-
-    private void getBonusNumberRepeatedly() {
-        while (true) {
-            try {
-                Integer inputBonusNumber = input.getBonusNumbers();
-                winningNumbersManager.inputBonusNumber(inputBonusNumber);
-                break;
-            } catch (IllegalArgumentException e) {
-                output.printError(e.getMessage());
-            }
-        }
+        getNumberRepeatedly(
+                () -> input.getBonusNumbers(),
+                (input) -> winningNumbersManager.inputBonusNumber(input)
+        );
     }
 
     public void getWinningStatus(List<Lotto> lottos) {

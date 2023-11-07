@@ -8,9 +8,10 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_END_NUMBER = 45;
-
     private static final String DELIMITER = ",";
+
     private final List<Integer> numbers;
+
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -21,7 +22,11 @@ public class Lotto {
     public Lotto(String number) {
         validate(number);
         validate(number.trim());
-        this.numbers = stringListConvertToIntegerList(stringArrayToStringListByDelimiter(number));
+        this.numbers = convertToIntegerList(splitByDelimiter(number));
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -40,7 +45,15 @@ public class Lotto {
         if (StringValidator.isBlank(number)) {
             throw new IllegalArgumentException(ExceptionStatus.LOTTO_COMMON_EMPTY.getMessage());
         }
-        // TODO: 숫자검증
+        List<String> splitNumbers = splitByDelimiter(number);
+        if (!isNumber(splitNumbers)) {
+            throw new IllegalArgumentException(ExceptionStatus.LOTTO_COMMON_EMPTY.getMessage());
+        }
+        validate(convertToIntegerList(splitNumbers));
+    }
+
+    private boolean isNumber(List<String> numbers) {
+        return numbers.stream().allMatch(number -> number.chars().allMatch(Character::isDigit));
     }
 
     private boolean isDuplicated(List<Integer> numbers) {
@@ -51,13 +64,11 @@ public class Lotto {
         return numbers.stream().allMatch(number -> LOTTO_START_NUMBER <= number && LOTTO_END_NUMBER <= number);
     }
 
-    private List<String> stringArrayToStringListByDelimiter(String number) {
+    private List<String> splitByDelimiter(String number) {
         return List.of(number.split(DELIMITER));
     }
 
-    private List<Integer> stringListConvertToIntegerList(List<String> numbers) {
+    private List<Integer> convertToIntegerList(List<String> numbers) {
         return numbers.stream().map(Integer::parseInt).collect(Collectors.toList());
     }
-
-    // TODO: 추가 기능 구현
 }

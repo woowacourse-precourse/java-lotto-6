@@ -1,12 +1,12 @@
 package lotto.controller;
 
 import lotto.model.domain.Bonus;
-import lotto.model.domain.BonusValidator;
 import lotto.model.domain.LottoMachine;
 import lotto.model.domain.LottoResultChecker;
 import lotto.model.domain.Purchase;
 import lotto.model.domain.Statistics;
 import lotto.model.domain.WinningLotto;
+import lotto.service.BonusNumberService;
 import lotto.service.PurchaseService;
 import lotto.service.WinningNumberService;
 import lotto.view.InputView;
@@ -15,10 +15,9 @@ import lotto.view.OutputView;
 public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private WinningLotto winningLotto;
-    private Bonus bonus;
     private final PurchaseService purchaseService = new PurchaseService();
     private final WinningNumberService winningNumberService = new WinningNumberService();
+    private final BonusNumberService bonusNumberService = new BonusNumberService();
 
     public LottoGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -29,8 +28,8 @@ public class LottoGameController {
         Purchase purchase = purchaseLottoTickets();
         LottoMachine lottoTickets = getLottoTickets(purchase);
         WinningLotto winningNumbers = getWinningNumbers();
-        getBonusNumber(winningNumbers);
-        getLotteryStatistics(lottoTickets, purchase);
+        Bonus bonusNumber = getBonusNumber(winningNumbers);
+        getLotteryStatistics(lottoTickets, purchase, winningNumbers, bonusNumber);
     }
 
     private LottoMachine getLottoTickets(Purchase purchase) {
@@ -50,7 +49,6 @@ public class LottoGameController {
         return purchase;
     }
 
-
     //TODO: 메서드 리팩토링
     private WinningLotto getWinningNumbers() {
         WinningLotto winningLotto = null;
@@ -62,28 +60,16 @@ public class LottoGameController {
     }
 
     //TODO: 메서드 리팩토링
-    private void getBonusNumber(WinningLotto winningLotto) {
-        boolean isValidInput = false;
-        BonusValidator validator = new BonusValidator();
-        while (!isValidInput) {
-            try {
-                String bonusNumber = inputView.requestBonusNumber();
-                int bonusInteger = validator.validateBonusIsNumeric(bonusNumber);
-                validator.validateNumberBetweenInRange(bonusInteger);
-                validator.validateWinningNumbersContainBonusNumber(winningLotto.getNumbers(), bonusInteger);
-                bonus = new Bonus(bonusInteger);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            } finally {
-                if(bonus != null) {
-                    isValidInput = true;
-                }
-            }
+    private Bonus getBonusNumber(WinningLotto winningLotto) {
+        Bonus bonus = null;
+        while (bonus == null) {
+            String bonusNumber = inputView.requestBonusNumber();
+            bonus = bonusNumberService.getBonusNumberIfValid(winningLotto, bonusNumber);
         }
-
+        return bonus;
     }
 
-    private void getLotteryStatistics(LottoMachine lottoMachine, Purchase purchase) {
+    private void getLotteryStatistics(LottoMachine lottoMachine, Purchase purchase, WinningLotto winningLotto, Bonus bonus) {
         LottoResultChecker resultChecker = new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto, bonus);
         Statistics statistics = new Statistics();
         statistics.makeResultBoard();

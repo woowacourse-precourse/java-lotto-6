@@ -1,4 +1,4 @@
-package lotto.computer.result;
+package lotto.computer;
 
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
@@ -8,13 +8,17 @@ public class ResultGenerator {
     private Lotto winningLotto;
     private int bonusNumber;
 
-    public Result createResult(Lottos lottos, int money) {
-        Result result = new Result(money);
+    public Result createResult(Lottos lottos) {
+        Result result = new Result(getUserMoney(lottos));
         lottos.lottoList().forEach(lotto ->
                 setRank(result, lotto, winningLotto.compare(lotto))
         );
 
         return result;
+    }
+
+    private int getUserMoney(Lottos lottos) {
+        return lottos.lottoList().size() * 1000;
     }
 
     private void setRank(Result result, Lotto lotto, int compare) {

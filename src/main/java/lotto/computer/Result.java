@@ -1,4 +1,4 @@
-package lotto.computer.result;
+package lotto.computer;
 
 public class Result {
 
@@ -34,7 +34,7 @@ public class Result {
         fifth++;
     }
 
-    public double getRateOfReturn() {
+    private double getRateOfReturn() {
         return (double) ((first * 2000000000) +
                 (second * 30000000) +
                 (third * 1500000) +

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
-
     private static final String COMMAS = ",";
 
     public static long stringToLong(String string) {

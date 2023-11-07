@@ -25,14 +25,14 @@ public class Validator {
     }
     public static void validateSameNumberCheckFinish(Integer num1, Integer num2){
         if(num1 == num2){
-            throw new IllegalArgumentException("로또의 숫자가 중복되었습니다. 프로그램 오류입니다");
+            throw new IllegalArgumentException("[ERROR] : 로또의 숫자가 중복되었습니다. 프로그램 오류입니다");
         }
     }
 
     public static void validateLottoNumLimit(List<String> selectedNumbers){
         for(String num: selectedNumbers){
             if(Integer.parseInt(num) < 1 || Integer.parseInt(num) >45){
-                throw new IllegalArgumentException("1~45의 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException("[ERROR] : 1~45의 숫자만 입력 가능합니다.");
             }
         }
 
@@ -47,12 +47,12 @@ public class Validator {
         try{
             Integer.parseInt(num);
         }catch (Exception e){
-            throw new IllegalArgumentException("숫자와 쉼표를 입력하세요");
+            throw new IllegalArgumentException("[ERROR] : 숫자와 쉼표를 입력하세요");
         }
     }
     public static void validateBonusNumLimit(String bonusNum){
         if(Integer.parseInt(bonusNum) < 1 || Integer.parseInt(bonusNum) >45){
-                throw new IllegalArgumentException("1~45의 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException("[ERROR] : 1~45의 숫자만 입력 가능합니다.");
         }
     }
 
@@ -60,13 +60,23 @@ public class Validator {
         try{
             Integer.parseInt(bonusNum);
         }catch (Exception e){
-            throw new IllegalArgumentException("숫자를 입력하세요");
+            throw new IllegalArgumentException("[ERROR] : 숫자를 입력하세요");
         }
     }
 
     // 보너스 숫자와 당첨 숫자 인자로 받아 보너스 숫자가 중복되지 않았는지 검증하는 함수
         // 당첨숫자 정수 형변환
         // 반복하며 정수와 비교
+    public static void validateWinningAndBonus(Integer bonusBall, List<Integer> winningBalls){
+        for(int winningBall : winningBalls){
+            if (bonusBall == winningBall){
+                throw new IllegalArgumentException("[ERROR] : 보너스 숫자가 기존 당첨 숫자의 번호와 같습니다.");
+            }
+        }
+
+    }
+
+
 
 
 

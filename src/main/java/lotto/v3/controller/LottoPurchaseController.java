@@ -12,11 +12,12 @@ public class LottoPurchaseController {
         this.lottoPurchaseView = lottoPurchaseView;
     }
 
-    public void startPurchaseProcess() {
+    public int startPurchaseProcess() {
         int purchaseAmount = lottoPurchaseView.requestPurchaseAmount();
         validatePurchaseAmount(purchaseAmount);
         int numberOfLottoTickets = calculateLottoTicketsPurchasable(purchaseAmount);
         lottoPurchaseView.displayNumberOfLottoTicketsPurchased(numberOfLottoTickets);
+        return numberOfLottoTickets;
     }
 
 

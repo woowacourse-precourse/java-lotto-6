@@ -16,12 +16,12 @@ public class LottoMachine {
         return new Lotto(numbers);
     }
 
-    public List<Lotto> generateTicket(int count) {
-        List<Lotto> ticket = new ArrayList<>();
+    public List<Lotto> generateTickets(int count) {
+        List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            ticket.add(generateLottoNumbers());
+            tickets.add(generateLottoNumbers());
         }
-        return ticket;
+        return tickets;
     }
 
 }

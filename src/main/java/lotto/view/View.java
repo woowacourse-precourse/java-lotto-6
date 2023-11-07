@@ -1,5 +1,9 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+
+import java.util.List;
+
 public class View {
     private static final String INPUT_MONEY = "구입금액을 입력해 주세요.";
     private static final String INPUT_LOTTO_NUMBERS = "당첨 번호를 입력해 주세요.";
@@ -22,6 +26,12 @@ public class View {
 
     public void print_PurchasedLottoNumbers(int purchasedLottoNum){
         System.out.println(purchasedLottoNum + OUTPUT_PURCHASED_LOTTO_NUMBERS);
+    }
+
+    public void print_purchasedLotto(List<Lotto> purchasedLotto){
+        purchasedLotto.stream()
+                .map(Lotto::getNumbers)
+                .forEach(System.out::println);
     }
 
     public void print_Exception(String errorMessage){

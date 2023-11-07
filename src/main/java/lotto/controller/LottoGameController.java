@@ -17,41 +17,72 @@ public class LottoGameController {
 
     private Game game;
     private Lottos lottos;
-
+    private LottoRankInfo lottoRankInfo;
     private List<Integer> winningNumbers;
-
     private int bonusNumber = 0;
+    private int buyAmount = 0;
+
+    public LottoGameController(Game game) {
+        this.game = game;
+    }
 
 
     public void start() {
         game = new Game();
+        getBuyAmount();
+        createLottos();
+        getWinningNumbers();
+        getBonusNumber();
+        createResult();
+        printRank();
+        printProfit();
+    }
+
+    private void getBuyAmount() {
         OutputView.printRequestBuyAmount();
-        int buyAmount = 0;
+        getBuyAmountValidationLoop();
+        OutputView.printBuyCount(buyAmount);
+    }
+
+    private void getBuyAmountValidationLoop() {
         while (true) {
             try {
                 buyAmount = Integer.parseInt(InputView.readBuyAmount());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                System.out.println(e.getMessage());
             }
         }
+    }
 
-        OutputView.printBuyCount(buyAmount);
+
+    private void createLottos() {
         lottos = game.createLottos(buyAmount);
         OutputView.printCreatedLottos(lottos);
+    }
 
+    private void getWinningNumbers() {
         OutputView.printRequestWinningNumber();
         String[] numbers = InputView.readWinningNumber().split(",");
         winningNumbers = Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
+    }
 
+    private void getBonusNumber() {
         OutputView.printRequestBonusNumber();
         bonusNumber = Integer.parseInt(InputView.readBonusNumber());
+    }
 
-        LottoRankInfo lottoRankinfo = game.createResult(winningNumbers, bonusNumber);
+    private void createResult() {
+        lottoRankInfo = game.createResult(winningNumbers, bonusNumber);
+    }
+
+    private void printRank() {
         OutputView.printStartResult();
-        OutputView.printWinningResult(lottoRankinfo.getLottoRankInfo());
+        OutputView.printWinningResult(lottoRankInfo.getLottoRankInfo());
+    }
 
-        OutputView.printProfitRate(game.createProfit(buyAmount, lottoRankinfo.getLottoRankInfo()));
+    private void printProfit() {
+        OutputView.printProfitRate(game.createProfit(buyAmount, lottoRankInfo.getLottoRankInfo()));
     }
 
 

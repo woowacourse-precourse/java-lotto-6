@@ -5,13 +5,13 @@ import lotto.domain.Lotto;
 import java.util.List;
 
 public class OutputView {
-    public void printInputPurchaseAmountMessage() {
+    public void printInputMoneyToBuyLottoMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printPurchasedLottoCount(int purchasedCount) {
+    public void printBoughtLottoCount(int numberOfLottoBought) {
         printNewLine();
-        System.out.printf(String.format("%d개를 구매했습니다.", purchasedCount));
+        System.out.printf(String.format("%d개를 구매했습니다.", numberOfLottoBought));
     }
 
     public void printLottos(List<Lotto> lottos) {

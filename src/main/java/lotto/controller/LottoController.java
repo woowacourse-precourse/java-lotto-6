@@ -19,11 +19,11 @@ public class LottoController {
     }
 
     private void buy() {
-        outputView.printInputPurchaseAmountMessage();
-        Money money = inputView.readPurchaseAmount();
+        outputView.printInputMoneyToBuyLottoMessage();
+        Money money = inputView.readMoneyToBuyLotto();
         lottoService.buyLotto(money);
-        outputView.printPurchasedLottoCount(money.convertMoneyToCount());
-        outputView.printLottos(lottoService.findLottos());
+        outputView.printBoughtLottoCount(money.convertMoneyToCount());
+        outputView.printLottos(lottoService.findBoughtLottos());
     }
 
     private void setWinning() {

@@ -3,7 +3,7 @@ package lotto.domain.constant;
 public enum LottoNumberConstant {
     LOTTO_SIZE(6),
     LOTTO_NUMBER_MIN_SIZE(1),
-    LOTTO_NUMBER_MAX_SIZE(6),
+    LOTTO_NUMBER_MAX_SIZE(45),
     LOTTO_PRICE(1000),
     ;
     private final int number;

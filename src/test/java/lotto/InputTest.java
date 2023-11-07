@@ -77,7 +77,7 @@ public class InputTest {
         // 정상적인 경우 테스트
         assertThat(input.winningNumbersInput("1,2,3,4,5,6"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
-        assertThat(input.bonusNumberInput("10,14,18,22,26,30"))
+        assertThat(input.winningNumbersInput("10,14,18,22,26,30"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(10,14,18,22,26,30)));
 
         // 비정상적인 경우 테스트

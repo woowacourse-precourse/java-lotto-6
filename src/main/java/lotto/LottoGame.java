@@ -7,26 +7,26 @@ import java.util.stream.Collectors;
 
 public class LottoGame {
     public void lottoStart() {
-        Money money = inputMoney();
+        Money money = inputMoney(); //구입 금액
 
-        LottoList lottoList = randomLotto(money.getLottoCount());
+        LottoList lottoList = randomLotto(money.getLottoCount()); //로또 발행
 
-        Lotto input_lotto = inputLotto();
+        Lotto input_lotto = inputLotto(); //당첨 로또
         List<Integer> compare_lotto = lottoList.compareLotto(input_lotto);
 
-        BonusLotto bonus_lotto = inputBonusLotto(input_lotto);
+        BonusLotto bonus_lotto = inputBonusLotto(input_lotto); //보너스 로또
         List<Boolean> compare_bonus_lotto = lottoList.compareBonusLotto(bonus_lotto);
 
         Result result = new Result(compare_lotto, compare_bonus_lotto);
-        result.calculateRateOfReturn(money.getMoney());
-        result.printResult();
+        result.calculateRateOfReturn(money.getMoney()); //수익률
+        result.printResult(); //당첨 결과
     }
 
     private LottoList randomLotto(int lottoCount) {
         LottoNumbers lottoNumbers = new LottoNumbers();
         LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(lottoCount));
-        lottoList.printLottoCount();
-        lottoList.printLottoList();
+        lottoList.printLottoCount(); //로또 발행 횟수
+        lottoList.printLottoList(); //로또 발행 결과
         return lottoList;
     }
 

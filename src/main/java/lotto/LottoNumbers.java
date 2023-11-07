@@ -19,13 +19,13 @@ public class LottoNumbers {
 
     private List<Integer> makeLotto() {
         return Randoms.pickUniqueNumbersInRange(Range.START.content(), Range.END.content(), Range.COUNT.content());
-    }
+    } //start(1)에서 end(45)까지의 랜덤하면서 유일한 숫자 count(6)개 발행
 
     private List<Integer> sortLotto() {
         return makeLotto().stream()
                 .sorted()
                 .collect(Collectors.toList());
-    }
+    } //오름차순 정렬
 
     private Lotto makeToLotto() {
         return new Lotto(sortLotto());

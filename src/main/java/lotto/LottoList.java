@@ -22,7 +22,7 @@ public class LottoList {
             List<String> lottoNumbers = currentLotto.getNumbers()
                     .stream().map(x -> String.valueOf(x)).collect(Collectors.toList());
             System.out.println("[" + String.join(", ", lottoNumbers) + "]");
-        }
+        } //발행한 로또 출력
     }
 
     public List<Integer> compareLotto(Lotto lotto) {
@@ -33,7 +33,7 @@ public class LottoList {
             compare_count.add(count);
         }
         return compare_count;
-    }
+    } //당첨 로또와 발행한 로또를 비교한 개수 반환
 
     private int countMatchNumbers(List<Integer> lotto, Lotto currentLotto) {
         int count = 0;
@@ -43,7 +43,7 @@ public class LottoList {
             }
         }
         return count;
-    }
+    } //당첨 로또와 발행한 로또가 일치하는 지 검사하고, 개수 count
 
     public List<Boolean> compareBonusLotto(BonusLotto bonusLotto) {
         List<Boolean> compare_count = new ArrayList<>();
@@ -53,12 +53,12 @@ public class LottoList {
             compare_count.add(isMatch);
         }
         return compare_count;
-    }
+    } //당첨 로또와 보너스 로또를 비교한 여부 반환
 
     private Boolean countMatchBonus(Lotto currentLotto, int bonus) {
         if (currentLotto.getNumbers().contains(bonus)) {
             return true;
         }
         return false;
-    }
+    } //당첨 로또와 보너스 로또가 일치하는지 검사
 }

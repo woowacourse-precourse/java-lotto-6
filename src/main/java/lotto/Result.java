@@ -16,11 +16,11 @@ public class Result {
 
     private Integer count3Match() {
         return Collections.frequency(countLotto, Range.THREE.content());
-    }
+    } //3개가 일치하는 로또 개수
 
     private Integer count4Match() {
         return Collections.frequency(countLotto, Range.FOUR.content());
-    }
+    } //4개가 일치하는 로또 개수
 
     private Integer count5Match() {
         int count = 0;
@@ -30,7 +30,7 @@ public class Result {
             }
         }
         return count;
-    }
+    } //5개가 일치하는 로또 개수
 
     private Integer count5MatchWithBonus() {
         int count = 0;
@@ -40,11 +40,11 @@ public class Result {
             }
         }
         return count;
-    }
+    } //5개가 일치하면서 보너스 로또가 일치하는 로또 개수
 
     private Integer count6Match() {
         return Collections.frequency(countLotto, Range.SIX.content());
-    }
+    } //6개가 일치하는 로또 개수
 
     public void calculateRateOfReturn(int money) {
         rateOfReturn += count3Match() * Range.MATCH3PRICE.content();
@@ -52,7 +52,7 @@ public class Result {
         rateOfReturn += count5Match() * Range.MATCH5PRICE.content();
         rateOfReturn += count5MatchWithBonus() * Range.MATCH5WITHBONUSPRICE.content();
         rateOfReturn += count6Match() * Range.MATCH6PRICE.content();
-        rateOfReturn = (rateOfReturn / money) * 100;
+        rateOfReturn = (rateOfReturn / money) * 100; //수익률 = 당청금 / 구입 금액 * 100(%)
     }
 
     public void printResult() {

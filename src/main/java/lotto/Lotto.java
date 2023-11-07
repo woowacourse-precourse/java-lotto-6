@@ -18,15 +18,15 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Range.COUNT.content()) {
             throw new IllegalArgumentException(ExceptionList.LOTTOCOUNTEXCETION.content());
-        }
+        } //로또 번호 개수 검사
 
         if (numbers.stream().distinct().collect(Collectors.toList()).size() != 6) {
             throw new IllegalArgumentException(ExceptionList.LOTTODUPLICATIONEXCEPTION.content());
-        }
+        } //로또 번호 중복 검사
 
         if (!validateNumber(numbers)) {
             throw new IllegalArgumentException(ExceptionList.LOTTORANGEEXCEPTION.content());
-        }
+        } //로또 번호 범위 검사
     }
 
     private Boolean validateNumberRange(int number) {

@@ -15,7 +15,7 @@ public class BonusLotto {
     private void validate(int bonus) {
         if (validateBonusRange(bonus)) {
             throw new IllegalArgumentException(ExceptionList.BONUSLOTTORANGEEXCEPTION.content());
-        }
+        } //보너스 로또 번호 범위 검사
     }
 
     private Boolean validateBonusRange(int bonus) {
@@ -28,6 +28,6 @@ public class BonusLotto {
     public void validateDuplicate(Lotto lotto, int bonus) {
         if (lotto.getNumbers().contains(bonus)) {
             throw new IllegalArgumentException(ExceptionList.BONUSLOTTODUPLICATIONEXCEPTION.content());
-        }
+        } //보너스 로또 번호 중복 검사
     }
 }

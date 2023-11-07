@@ -54,4 +54,9 @@ public class WinningLottoNumbers {
                 .map(LottoNumber::of)
                 .toList();
     }
+
+    public List<LottoNumber> getWinningLottoNumbers() {
+        return this.winningLottoNumbers;
+    }
+
 }

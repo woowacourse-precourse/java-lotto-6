@@ -2,8 +2,7 @@ package lotto.view.parser;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.UserMoney;
-import lotto.domain.WinningLottoNumbers;
+import java.util.stream.Collectors;
 import lotto.view.constant.InputConstant;
 import lotto.view.validator.BonusNumberValidator;
 import lotto.view.validator.UserMoneyInputValidator;
@@ -20,16 +19,16 @@ public class InputParser {
         bonusNumberValidator = new BonusNumberValidator();
     }
 
-    public UserMoney parseUserMoney(String userMoney) {
+    public String parseUserMoney(String userMoney) {
         userMoney = removeBlank(userMoney);
         userMoneyInputValidator.validate(userMoney);
-        return UserMoney.of(userMoney);
+        return userMoney;
     }
 
-    public WinningLottoNumbers parseWinningLottoNumbers(String winningLottoNumbers) {
+    public List<String> parseWinningLottoNumbers(String winningLottoNumbers) {
         winningLottoNumbersInputValidator.validate(winningLottoNumbers);
-        List<String> numbers = removeBlankInWinningLottoNumbers(winningLottoNumbers);
-        return WinningLottoNumbers.from(numbers);
+        winningLottoNumbers = removeBlankInEachSeperatedItems(winningLottoNumbers);
+        return mapToStringList(winningLottoNumbers);
     }
 
     public String parseBonusNumber(String bonusNumber) {
@@ -44,10 +43,20 @@ public class InputParser {
         return userInput;
     }
 
-    private List<String> removeBlankInWinningLottoNumbers(String winningLottoNumbers) {
-        String[] numbers = winningLottoNumbers.split(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER);
+    private String removeBlankInEachSeperatedItems(String winningLottoNumbers) {
+        String[] numbers = splitItemsWithDelimiter(winningLottoNumbers);
         return Arrays.stream(numbers)
                 .map(this::removeBlank)
+                .collect(Collectors.joining(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER));
+    }
+
+    private List<String> mapToStringList(String userInput) {
+        String[] numbers = splitItemsWithDelimiter(userInput);
+        return Arrays.stream(numbers)
                 .toList();
+    }
+
+    private String[] splitItemsWithDelimiter(String userInput) {
+        return userInput.split(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER);
     }
 }

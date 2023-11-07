@@ -13,6 +13,13 @@ public class OutputView {
     /**
      * 메세지 상수로 관리
      */
+    private static final String REQUEST_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String PURCHASE_LOTTO_QUANTITY_MESSAGE = "개를 구매했습니다.";
+    private static final String REQUEST_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String REQUEST_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
+    private static final String DELIMITER = "---";
+    private static final String PRIZE_RATIO_MESSAGE = "총 수익률은 %s%%입니다.";
 
     private final StringBuilder stringBuilder;
 
@@ -21,11 +28,11 @@ public class OutputView {
     }
 
     public void printRequestPurchasePrice() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(REQUEST_PURCHASE_PRICE_MESSAGE);
     }
     
     public void printLottoQuantity(int lottoQuantity) {
-        String message = stringBuilder.append(lottoQuantity).append("개를 구매했습니다.").toString();
+        String message = stringBuilder.append(lottoQuantity).append(PURCHASE_LOTTO_QUANTITY_MESSAGE).toString();
 
         System.out.println(message);
     }
@@ -37,16 +44,16 @@ public class OutputView {
     }
 
     public void printRequestLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(REQUEST_LOTTO_NUMBER_MESSAGE);
     }
 
     public void printRequestBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
     }
 
     public void printLotteryResult(EnumMap<LottoRank, Integer> lottoResult) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_STATISTICS_MESSAGE);
+        System.out.println(DELIMITER);
 
         for (Map.Entry<LottoRank, Integer> rank : lottoResult.entrySet()) {
             System.out.println(rank.getKey().getMessage() + rank.getValue());
@@ -54,6 +61,7 @@ public class OutputView {
     }
 
     public void printPrizeRatio(double ratio) {
-        System.out.println("총 수익률은 " + ratio + "%입니다.");
+        String message = String.format(PRIZE_RATIO_MESSAGE, ratio);
+        System.out.println(message);
     }
 }

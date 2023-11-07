@@ -13,5 +13,6 @@ public class LottoController {
     public void start(){
         UserController userController = UserController.getInstance();
         userController.purchaseInput();
+        userController.lottoNumberInput();
     }
 }

@@ -47,12 +47,16 @@ public class LottoController {
         OutputHandler.requirePaymentPrice();
         String paymentPriceInput = InputHandler.getInput();
         long paymentPrice = Converter.pay(paymentPriceInput);
+        if (paymentPrice <= 0) {
+            OutputHandler.requirePositiveInteger();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
+        }
         OutputHandler.printEmptyLine();
         return paymentPrice;
     }
 
     long getTicketCount(long paymentPrice) throws IllegalArgumentException {
-        if (paymentPrice < 0) {
+        if (paymentPrice <= 0) {
             OutputHandler.requirePositiveInteger();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
         }

@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.domain.LottoNumbers;
 import lotto.domain.Unit;
 
 public class NumberValidator {
@@ -10,7 +11,13 @@ public class NumberValidator {
 
     public void validateInputDataIsNumber(String inputData) {
         if (!Pattern.matches(NUMBER, inputData)) {
-            throw new IllegalArgumentException("로또 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public void validateInputDataLengthIsSix(String[] inputData){
+        if(inputData.length != LottoNumbers.LOTTO_SIZE.getNumber()){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력해야 합니다.");
         }
     }
 

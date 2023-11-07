@@ -12,7 +12,7 @@ public class ResultService {
     public void checkLottoNumbers(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto){
         View.winningStatistics();
 
-        // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단 && 등수 당 몇개인지 확인
+        // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단 && 등수안에 들면 해당등수의 인원 증가시킴
         lotteryTracker.matching(buyLottos,winningLotto);
         lotteryTracker.printResultByRank();
     }

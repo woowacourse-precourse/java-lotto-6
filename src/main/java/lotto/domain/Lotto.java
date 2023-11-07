@@ -47,6 +47,13 @@ public class Lotto {
         }
     }
 
+    protected void isUnique(List<Integer> numbers, int bonusNumber) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호가 중복됩니다.");
+        }
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

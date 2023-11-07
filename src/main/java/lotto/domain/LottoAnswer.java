@@ -12,6 +12,7 @@ public class LottoAnswer extends Lotto {
     public LottoAnswer(String input, int bonusNumber) {
         parseInteger(input);
         validate(getNumbers());
+        isUnique(getNumbers(), bonusNumber);
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 

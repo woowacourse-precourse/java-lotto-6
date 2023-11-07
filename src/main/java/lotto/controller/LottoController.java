@@ -2,7 +2,6 @@ package lotto.controller;
 
 import lotto.dto.LottoesDto;
 import lotto.dto.MoneyDto;
-import lotto.dto.ResultDto;
 import lotto.dto.WinNumbersDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -18,22 +17,6 @@ public class LottoController {
     public void run() {
         purchaseLottoes();
         WinNumbersDto winNumbersDto = createWinNumbers();
-        ResultDto resultDto = lottoService.generateResult(winNumbersDto);
-    }
-
-    private void purchaseLottoes() {
-        MoneyDto moneyDto = getMoneyFromClient();
-        createLottoes(moneyDto);
-    }
-
-    private MoneyDto getMoneyFromClient() {
-        outputView.beforeInputMoney();
-        return new MoneyDto(inputView.inputMoney());
-    }
-
-    private void createLottoes(MoneyDto moneyDto) {
-        LottoesDto lottoesDto = lottoService.purchaseLottoes(moneyDto);
-        outputView.printPurchasedLottoes(lottoesDto);
     }
 
     private WinNumbersDto createWinNumbers() {
@@ -50,5 +33,20 @@ public class LottoController {
     private int getBonusNumber() {
         outputView.beforeInputBonusNumber();
         return inputView.inputBonusNumber();
+    }
+
+    private void purchaseLottoes() {
+        MoneyDto moneyDto = getMoneyFromClient();
+        createLottoes(moneyDto);
+    }
+
+    private MoneyDto getMoneyFromClient() {
+        outputView.beforeInputMoney();
+        return new MoneyDto(inputView.inputMoney());
+    }
+
+    private void createLottoes(MoneyDto moneyDto) {
+        LottoesDto lottoesDto = lottoService.purchaseLottoes(moneyDto);
+        outputView.printPurchasedLottoes(lottoesDto);
     }
 }

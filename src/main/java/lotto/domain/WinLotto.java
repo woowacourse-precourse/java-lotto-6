@@ -17,6 +17,8 @@ public class WinLotto {
 
     public void createBonusNumber() {
         bounsNumber = new BounsNumber(inputBonusNumber());
+        bounsNumber.bonusnumNyRange();
+        lotto.contains(bounsNumber);
     }
 
     private List<Integer> inputWinNumber() {

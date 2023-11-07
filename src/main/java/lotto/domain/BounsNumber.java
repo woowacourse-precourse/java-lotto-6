@@ -10,4 +10,10 @@ public class BounsNumber {
     public int getBounsNumber() {
         return bounsNumber;
     }
+
+    public void bonusnumNyRange() {
+        if (bounsNumber > 45 || bounsNumber < 1) {
+            throw new IllegalArgumentException("1 ~ 45 사이의 숫자를 입력해주세요.");
+        }
+    }
 }

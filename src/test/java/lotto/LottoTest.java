@@ -32,11 +32,7 @@ class LottoTest {
         // 보너스 번호
         BounsNumber bounsNumber = new BounsNumber(4);
 
-        assertThatThrownBy(() -> {
-            if (winningLotto.contains(bounsNumber)) {
-                throw new IllegalArgumentException("이미 당첨번호에 포함된 숫자입니다.");
-            }
-        })
+        assertThatThrownBy(() -> winningLotto.contains(bounsNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

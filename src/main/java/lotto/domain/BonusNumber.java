@@ -12,18 +12,18 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(List<Integer> winningNumber, int bonusNumber) {
+    public BonusNumber(WinningNumber winningNumber, int bonusNumber) {
         validateBonusNumber(winningNumber, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+    private void validateBonusNumber(WinningNumber winningNumber, int bonusNumber) {
         validateBonusNumberDuplicate(winningNumber, bonusNumber);
         validateBonusNumberRange(bonusNumber);
     }
 
-    private void validateBonusNumberDuplicate(List<Integer> winningNumber, int bonusNumber) {
-        if (winningNumber.contains(bonusNumber)) {
+    private void validateBonusNumberDuplicate(WinningNumber winningNumber, int bonusNumber) {
+        if (winningNumber.isContainNumber(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_VALUE.getMessage());
         }
     }
@@ -34,8 +34,7 @@ public class BonusNumber {
         }
     }
 
-
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean isHitBonusNumber(Lotto lotto){
+        return lotto.isContainNumber(bonusNumber);
     }
 }

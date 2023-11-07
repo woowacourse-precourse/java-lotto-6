@@ -2,49 +2,51 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.exception.ErrorMessage.INVALID_BONUS_NUMBER_FORM;
-import static lotto.exception.ErrorMessage.INVALID_BONUS_NUMBER_VALUE;
+import static lotto.exception.ErrorMessage.INVALID_WINNING_NUMBER;
 
-public class WinningLotto {
+public class WinningNumber {
+    private static final int LOTTO_NUMBER_SIZE = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
 
-    private final Lotto winningNumber;
-    private final int bonusNumber;
+    private final List<Integer> winningNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        this.winningNumber = new Lotto(numbers);
-
-        //validateBonusNumber(winningNumber, bonusNumber);
-        this.bonusNumber = bonusNumber;
+    public WinningNumber(List<Integer> numbers) {
+        validateWinningNumber(numbers);
+        this.winningNumber = numbers;
     }
 
-//    private void validateBonusNumber(Lotto winningNumber, int bonusNumber){
-//        validateBonusNumberDuplicate(winningNumber, bonusNumber);
-//        validateBonusNumberRange(bonusNumber);
-//    }
-//
-//    private void validateBonusNumberDuplicate(Lotto winningNumber, int bonusNumber){
-//        if(winningNumber.isContainNumber(bonusNumber)){
-//            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_VALUE.getMessage());
-//        }
-//    }
-//
-//    private void validateBonusNumberRange(int number){
-//        if(number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER ){
-//            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_FORM.getMessage());
-//        }
-//    }
-
-    public LottoRank calculateLottoRank(Lotto lotto){
-        // same number cnt
-        int count =0;
-
-        return LottoRank.findLottoRank(count, isContainBonusNumber(lotto));
+    private void validateWinningNumber(List<Integer> numbers) {
+        if (isWrongSize(numbers) || isWrongRange(numbers) || isDuplicated(numbers)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER.getMessage());
+        }
     }
 
-    private boolean isContainBonusNumber(Lotto lotto){
-        return lotto.isContainNumber(bonusNumber);
+    private boolean isWrongSize(List<Integer> numbers) {
+        return numbers.size() != LOTTO_NUMBER_SIZE;
     }
 
+    private boolean isWrongRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> number < LOTTO_MIN_NUMBER
+                        || number > LOTTO_MAX_NUMBER);
+    }
+
+    private boolean isDuplicated(List<Integer> numbers) {
+        long distinctNumber = numbers.stream()
+                .distinct()
+                .count();
+
+        return distinctNumber < numbers.size();
+    }
+
+    public boolean isContainNumber(int number){
+        return winningNumber.contains(number);
+    }
+
+    public int hitCount(Lotto lotto) {
+        return (int) winningNumber.stream()
+                .filter(number -> lotto.isContainNumber(number))
+                .count();
+    }
 }

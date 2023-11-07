@@ -7,10 +7,10 @@ import lotto.domain.BonusNumber;
 import lotto.domain.DrawingResults;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.ProfitRate;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
-import lotto.domain.dto.ProfitRateDto;
 
 public class LottoMachine {
 
@@ -36,7 +36,7 @@ public class LottoMachine {
         return drawingResults;
     }
 
-    public ProfitRateDto calculateProfitRate(final Lottos lottos, final DrawingResults drawingResult) {
+    public ProfitRate calculateProfitRate(final Lottos lottos, final DrawingResults drawingResult) {
         Set<Entry<Rank, Integer>> results = drawingResult.getResults().entrySet();
         long totalRevenue = 0;
 
@@ -44,7 +44,7 @@ public class LottoMachine {
             totalRevenue += (long) result.getKey().getWinningAmount() * result.getValue();
         }
 
-        return toProfitRateDto(getProfitRate(lottos, (double) totalRevenue));
+        return new ProfitRate(getProfitRate(lottos, totalRevenue));
     }
 
     private double getProfitRate(Lottos lottos, double totalRevenue) {
@@ -52,9 +52,5 @@ public class LottoMachine {
         double profitRate = totalRevenue / totalCost * 100;
 
         return profitRate;
-    }
-
-    private ProfitRateDto toProfitRateDto(final double profitRate) {
-        return new ProfitRateDto(profitRate);
     }
 }

@@ -16,6 +16,14 @@ public class Lotto {
         if (numbers.size() != 6 || !isAllUnique(numbers) || !isWithinRange(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자 중 중복되지 않게 6개를 입력해야 합니다.");
         }
+        if (duplicate(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않게 입력해야 합니다.");
+        }
+    }
+
+    public boolean duplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumber = new HashSet<>(numbers);
+        return uniqueNumber.size() != numbers.size();
     }
 
     private boolean isAllUnique(List<Integer> numbers) {

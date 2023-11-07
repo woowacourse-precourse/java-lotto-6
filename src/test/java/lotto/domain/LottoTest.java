@@ -162,4 +162,12 @@ class LottoTest {
 
         assertNull(actual);
     }
+
+    @Test
+    void Lotto_내부_필드가_동일하다면_같은_객체로_인식한다() {
+        Lotto lottoA = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lottoB = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertEquals(lottoA, lottoB);
+    }
 }

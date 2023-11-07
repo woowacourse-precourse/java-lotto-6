@@ -13,7 +13,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
@@ -158,14 +157,14 @@ class ApplicationTest extends NsTest {
     @Test
     void 로또_등수_확인() {
         LottoService lottoService = new LottoService();
-        Lotto lotto1 = new Lotto(new ArrayList<>(List.of(1, 2, 3, 10, 20, 30)));
-        Lotto lotto2=new Lotto(new ArrayList<>(List.of(1,2,3,5,20,30)));
-        Lotto lotto3=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,10)));
-        Lotto lotto4=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,6)));
-        Lotto lotto5=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,8)));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 10, 20, 30));
+        Lotto lotto2=new Lotto(List.of(1,2,3,5,20,30));
+        Lotto lotto3=new Lotto(List.of(1,2,3,5,7,10));
+        Lotto lotto4=new Lotto(List.of(1,2,3,5,7,6));
+        Lotto lotto5=new Lotto(List.of(1,2,3,5,7,8));
         Lotto[] lottos=new Lotto[]{lotto1,lotto2,lotto3,lotto4,lotto5};
         int bonus=6;
-        Lotto answer=new Lotto(new ArrayList<>(List.of(1,2,3,5,7,8)));
+        Lotto answer=new Lotto(List.of(1,2,3,5,7,8));
         int[] result=lottoService.compareAllLotto(lottos,answer,bonus);;
         assertThat(result).isEqualTo(new int[]{1,1,1,1,1});
     }

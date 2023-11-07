@@ -13,6 +13,7 @@ public class LottoGame {
 
     public void gameStart(){
         lottoGameInput();
+        lottoGameResult();
     }
     private void lottoGameInput(){
         LottoService lottoService=new LottoService();
@@ -21,5 +22,10 @@ public class LottoGame {
         bonus=View.getBonus();
         consumerAnswer=lottoService.makeLottoList(total);
         View.showTotalLotto(consumerAnswer);
+    }
+    private void lottoGameResult(){
+        LottoService lottoService=new LottoService();
+        int[] result=lottoService.compareAllLotto(consumerAnswer,answer,bonus);
+        View.showLottoResult(result,total*1000);
     }
 }

@@ -45,10 +45,10 @@ public class UserInputService {
     public static Lotto lotto() {
         List<Integer> numbers = new ArrayList<>();
 
-        while(true){
-            if(checkIsNumberList(input().split(INPUT_SEPERATOR.get()),numbers)){
+        while (true) {
+            if (checkIsNumberList(input().split(INPUT_SEPERATOR.get()), numbers)) {
                 Lotto lotto = MakeObjectService.lotto(numbers);
-                if(lotto.isValid()){
+                if (lotto.isValid()) {
                     return lotto;
                 }
             }
@@ -56,13 +56,13 @@ public class UserInputService {
         }
     }
 
-    private static boolean checkIsNumberList(String[] input, List<Integer> numbers){
+    private static boolean checkIsNumberList(String[] input, List<Integer> numbers) {
         int count = 0;
-        while(count < input.length){
-            try{
+        while (count < input.length) {
+            try {
                 numbers.add(Integer.parseInt(input[count]));
                 count++;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(ONLY_INPUT_NUMBER.get());
                 numbers.clear();
                 return false;
@@ -72,11 +72,11 @@ public class UserInputService {
     }
 
     public static BonusNumber bonusNumber(Lotto lotto) {
-        while(true){
+        while (true) {
             try {
                 int number = Integer.parseInt(input());
                 BonusNumber bonusNumber = MakeObjectService.bonusNumber(number, lotto);
-                if(bonusNumber.isValid()){
+                if (bonusNumber.isValid()) {
                     return bonusNumber;
                 }
             } catch (IllegalArgumentException e) {

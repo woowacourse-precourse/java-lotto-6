@@ -11,14 +11,14 @@ import java.util.Map;
 public class Rank {
     private List<Integer> rank;
 
-    public Rank(List<Integer> rank){
+    public Rank(List<Integer> rank) {
         this.rank = rank;
     }
 
     public Map<Integer, Integer> count() {
         Map<Integer, Integer> rankCount = new HashMap<>();
-        for(int rankNumber = FIRST.get(); rankNumber <= FIFTH.get(); rankNumber++){
-            rankCount.put(rankNumber,Collections.frequency(rank,rankNumber));
+        for (int rankNumber = FIRST.get(); rankNumber <= FIFTH.get(); rankNumber++) {
+            rankCount.put(rankNumber, Collections.frequency(rank, rankNumber));
         }
         return rankCount;
     }

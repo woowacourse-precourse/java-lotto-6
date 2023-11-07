@@ -43,7 +43,7 @@ public class LottoController {
         InputView.bonusNumberMessage();
         BonusNumber bonusNumber = UserInputService.bonusNumber(lotto);
 
-        return  MakeObjectService.winningNumbers(lotto, bonusNumber);
+        return MakeObjectService.winningNumbers(lotto, bonusNumber);
     }
 
 }

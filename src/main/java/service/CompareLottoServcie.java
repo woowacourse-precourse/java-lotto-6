@@ -25,7 +25,7 @@ public class CompareLottoServcie {
 
         List<Integer> lottoRank = new ArrayList<>();
         for (int i = 0; amount.isLargerThen(i); i++) {
-            if(isBonusNumberEqual.get(i)){
+            if (isBonusNumberEqual.get(i)) {
                 lottoRank.add(haveBonusNumberRank(countLottoNumberEqual.get(i)));
                 continue;
             }
@@ -35,8 +35,8 @@ public class CompareLottoServcie {
         return MakeObjectService.rank(lottoRank);
     }
 
-    private static int haveBonusNumberRank(int countEqual){
-        if(countEqual < FIFTH_EQUAL_NUMBER.get() - 1){
+    private static int haveBonusNumberRank(int countEqual) {
+        if (countEqual < FIFTH_EQUAL_NUMBER.get() - 1) {
             return rankCalculator(countEqual);
         }
         return rankCalculator(countEqual) + 1;
@@ -46,17 +46,17 @@ public class CompareLottoServcie {
         return rankCalculator(countEqual);
     }
 
-    private static int rankCalculator(int countEqual){
-        if(countEqual == FIFTH_EQUAL_NUMBER.get()){
+    private static int rankCalculator(int countEqual) {
+        if (countEqual == FIFTH_EQUAL_NUMBER.get()) {
             return FIFTH.get();
         }
-        if(countEqual == FORTH_EQUAL_NUMBER.get()){
+        if (countEqual == FORTH_EQUAL_NUMBER.get()) {
             return FOURTH.get();
         }
-        if(countEqual == THIRD_EQUAL_NUMBER.get()){
+        if (countEqual == THIRD_EQUAL_NUMBER.get()) {
             return THIRD.get();
         }
-        if(countEqual == FIRST_EQUAL_NUMBER.get()){
+        if (countEqual == FIRST_EQUAL_NUMBER.get()) {
             return FIRST.get();
         }
         return OTHER.get();

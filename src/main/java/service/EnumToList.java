@@ -8,19 +8,19 @@ import util.LottoWinningPrice;
 
 public class EnumToList {
 
-    public static List<Integer> equalNumberAccordRankToList(){
+    public static List<Integer> equalNumberAccordRankToList() {
         List<Integer> enumTolist = new ArrayList<>();
 
-        for(EqualNumberAccordRank value : EqualNumberAccordRank.values()){
+        for (EqualNumberAccordRank value : EqualNumberAccordRank.values()) {
             enumTolist.add(value.get());
         }
         return enumTolist;
     }
 
-    public static List<Integer> lottoWiningPriceToList(){
+    public static List<Integer> lottoWiningPriceToList() {
         List<Integer> enumTolist = new ArrayList<>();
 
-        for(LottoWinningPrice value : LottoWinningPrice.values()){
+        for (LottoWinningPrice value : LottoWinningPrice.values()) {
             enumTolist.add(value.get());
         }
         return enumTolist;
@@ -29,7 +29,7 @@ public class EnumToList {
     public static List<Integer> lottoRankNumberToList() {
         List<Integer> enumTolist = new ArrayList<>();
 
-        for(LottoRankNumber value : LottoRankNumber.values()){
+        for (LottoRankNumber value : LottoRankNumber.values()) {
             enumTolist.add(value.get());
         }
         return enumTolist;

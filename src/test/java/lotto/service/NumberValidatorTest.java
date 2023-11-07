@@ -43,4 +43,16 @@ public class NumberValidatorTest {
                 () -> Assertions.assertDoesNotThrow(() -> numberValidator.validatePurchasePrice(2000))
         );
     }
+
+    @DisplayName("로또 번호가 6개인지 확인한다. 6개가 아니면 예외를 발생시킨다")
+    @Test
+    void isSixNumber() {
+        Assertions.assertAll(
+                () -> Assertions.assertThrows(IllegalArgumentException.class,
+                        () -> numberValidator.validateInputDataLengthIsSix(
+                                new String[]{"1", "2"})),
+                () -> Assertions.assertDoesNotThrow(
+                        () -> numberValidator.validateInputDataLengthIsSix(new String[]{"1", "2", "3", "4", "5", "6"}))
+        );
+    }
 }

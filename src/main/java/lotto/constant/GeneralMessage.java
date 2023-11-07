@@ -2,7 +2,7 @@ package lotto.constant;
 
 public enum GeneralMessage {
     ASK_BUY_PRICE("구입금액을 입력해 주세요."),
-    NOTIFY_BUY_COUNT(System.lineSeparator() + "%d개를 구매했습니다.");
+    NOTIFY_BUY_COUNT("%d개를 구매했습니다.");
 
     private final String message;
 

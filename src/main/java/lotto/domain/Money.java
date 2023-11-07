@@ -11,12 +11,7 @@ public class Money {
     public Money(long amount) {
         validateRange(amount);
         validateDivisibleBy1000(amount);
-
         this.amount = amount;
-    }
-
-    public long getAmount() {
-        return amount;
     }
 
     public int getDividedBy1000() {
@@ -36,8 +31,10 @@ public class Money {
         int fourthPlaceCount = resultOfLottos.getOrDefault(4, 0);
         int fifthPlaceCount = resultOfLottos.getOrDefault(5, 0);
 
-        return Reward.FIRST_PLACE.calculate(firstPlaceCount) + Reward.SECOND_PLACE.calculate(secondPlaceCount)
-                + Reward.THIRD_PLACE.calculate(thirdPlaceCount) + Reward.FOURTH_PLACE.calculate(fourthPlaceCount)
+        return Reward.FIRST_PLACE.calculate(firstPlaceCount)
+                + Reward.SECOND_PLACE.calculate(secondPlaceCount)
+                + Reward.THIRD_PLACE.calculate(thirdPlaceCount)
+                + Reward.FOURTH_PLACE.calculate(fourthPlaceCount)
                 + Reward.FIFTH_PLACE.calculate(fifthPlaceCount);
     }
 

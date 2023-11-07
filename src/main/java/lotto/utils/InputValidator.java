@@ -94,7 +94,7 @@ public class InputValidator {
     }
 
     public static void checkBonusNumberInput(String bonusNumberInput) {
-        // TODO : 아무것도 입력하지 않았을 경우
+        checkNoInput(bonusNumberInput);
         checkNumeric(bonusNumberInput);
         // TODO : 1~45 이외의 범위의 숫자을 입력했을 경우.
         // TODO : 중복된 숫자를 입력했을 경우

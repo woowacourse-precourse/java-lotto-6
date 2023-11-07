@@ -43,9 +43,13 @@ public class LottoViewV2 {
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
+        return parseBonusNumber(Console.readLine(), winningNumbers);
+    }
+
+    private int parseBonusNumber(String input, List<Integer> winningNumbers) {
         try {
-            int bonusNumber = Integer.parseInt(Console.readLine());
-            LottoValidationUtilsV1.checkValidBonusNumber(bonusNumber, winningNumbers);
+            int bonusNumber = Integer.parseInt(input);
+            LottoValidationUtilsV2.checkValidBonusNumber(bonusNumber, winningNumbers);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호로 숫자를 입력해야 합니다.");

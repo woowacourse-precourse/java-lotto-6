@@ -3,6 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.LottoNumber;
 
 public class InputUtil {
 
@@ -56,12 +57,12 @@ public class InputUtil {
     }
 
     //로또 보너스 당첨번호 입력 메소드
-    public int inputBonusNumber() {
-        String bonusNumbersInput = "";
+    public LottoNumber inputBonusNumber() {
+        String bonusNumberInput = "";
         do {
-            bonusNumbersInput = Console.readLine();
-        } while (!validateBonusNumber(bonusNumbersInput));
-        return Integer.parseInt(bonusNumbersInput);
+            bonusNumberInput = Console.readLine();
+        } while (!validateBonusNumber(bonusNumberInput));
+        return new LottoNumber(Integer.parseInt(bonusNumberInput));
     }
 
     private boolean validateBonusNumber(String moneyInput) {

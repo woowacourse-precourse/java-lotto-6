@@ -1,34 +1,39 @@
 package lotto.view;
 
 public class Output {
-    private static final String Input_Purchase_Amount = "구입금액을 입력해 주세요.";
-    private static final String Count_Lotto = "개를 구매했습니다";
-    private static final String Input_Winning_Number = "당첨 번호를 입력해 주세요.";
-    private static final String Input_Bonus_Number = "보너스 번호를 입력해 주세요.";
-    private static final String Print_statistics = "당첨 통계";
+    private static final String inputPurchaseAmount = "구입금액을 입력해 주세요.";
+    private static final String countLotto = "개를 구매했습니다";
+    private static final String inputWinningNumber = "당첨 번호를 입력해 주세요.";
+    private static final String inputBonusNumber = "보너스 번호를 입력해 주세요.";
+    private static final String printStatistics = "당첨 통계";
+    private static final String printEnter = "\n";
 
-    public static void input_Purchase_Amount(int count) {
-        System.out.println(count + Count_Lotto);
+    public static void inputPurchaseAmount() {
+        System.out.println(inputPurchaseAmount);
     }
 
-    public static void input_Winning_Number() {
-        System.out.println(Input_Winning_Number);
+    public static void printLottoCount(int count) {
+        System.out.println(printEnter + count + countLotto);
     }
 
-    public static void input_Bonus_Number() {
-        System.out.println(Input_Bonus_Number);
+    public static void inputWinningNumber() {
+        System.out.println(printEnter + inputWinningNumber);
+    }
+
+    public static void inputBonusNumber() {
+        System.out.println(printEnter + inputBonusNumber);
     }
 
     public static void statistics() {
-        System.out.println(Print_statistics);
+        System.out.println(printEnter + printStatistics);
         System.out.println("---");
     }
 
-    public static void result_match(int matchCount) {
-        System.out.println(matchCount + "개");
+    public static void result_match(String matchMessage, int matchCount) {
+        System.out.println(matchMessage + matchCount + "개");
     }
 
-    public static void total_return(double rate) {
-        System.out.println("총 수익률은 " + String.valueOf(rate) + "%입니다.");
+    public static void total_EarningRate(double rate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
     }
 }

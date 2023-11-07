@@ -59,4 +59,16 @@ class LottoTest {
         assertThatThrownBy(() -> Check.numberDuplicate(winningNumber,bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 1~45를 벗어나면 예외가 발생한다.")
+    @Test
+    void createBonusByRange() {
+
+        List<Integer> bonusNumber = List.of(46);
+
+        assertThatThrownBy(() -> Check.rightRange(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }

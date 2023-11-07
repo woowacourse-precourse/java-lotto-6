@@ -1,10 +1,14 @@
 package lotto;
 
+import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -30,5 +34,19 @@ class LottoTest {
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    @DisplayName("로또 안에 같은 공이 들어가있는지 여부를 올바르게 출력한다.")
+    public void lottoContains(int number){
+        // given
+        List<LottoBall> balls = IntStream.rangeClosed(1, 6)
+                .mapToObj(LottoBall::new)
+                .toList();
+        Lotto lotto = new Lotto(balls);
+
+        // when, then
+        Assertions.assertDoesNotThrow(() -> {
+            lotto.contains(new LottoBall(number));
+        });
+    }
 }

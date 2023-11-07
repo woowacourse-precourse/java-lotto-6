@@ -14,6 +14,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean contains(LottoBall number) {
+        return numbers.stream()
+                .anyMatch(lottoBall -> lottoBall.equals(number));
+    }
+
     private void validate(List<LottoBall> numbers) {
         validateLength(numbers);
         validateDuplicateNumber(numbers);

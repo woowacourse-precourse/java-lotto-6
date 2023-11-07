@@ -13,6 +13,10 @@ public class LottoBall {
         this.number = number;
     }
 
+    public boolean equals(LottoBall ball) {
+        return this.number == ball.getNumber();
+    }
+
     public Integer getNumber() {
         return number;
     }

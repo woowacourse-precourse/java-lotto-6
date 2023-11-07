@@ -28,12 +28,12 @@
         - [x]  🚨 이미 로또 당첨 번호에 존재하는 숫자가 입력된 경우
         - [x]  🚨 입력된 보너스 번호가 1~45 범위 내의 숫자가 아닌 경우
 - 예외처리
-    - [ ]  입력에 대한 예외 발생 시, 발생 시점부터 다시 입력 받기
-    - [ ]  `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리
+    - [x]  입력에 대한 예외 발생 시, 발생 시점부터 다시 입력 받기
+    - [x]  `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리
     - 공통
-        - [ ]  🚨 입력값의 처음과 끝, 중간에 공백이 포함된 경우
-        - [ ]  🚨 입력값이 공백인 경우
-        - [ ]  🚨 입력값에 숫자 외의 타입이 들어온 경우
+        - [x]  🚨 입력값의 처음과 끝, 중간에 공백이 포함된 경우
+        - [x]  🚨 입력값이 공백인 경우
+        - [x]  🚨 입력값에 숫자 외의 타입이 들어온 경우
 
 - 출력
     - [x]  기본 출력 문구
@@ -101,24 +101,24 @@
 
             - [x]  소수점 둘째 자리에서 반올림 (ex. 100.0%, 51.5%, 1,000,000.0%)
 
-    - [ ]  예외 상황 시 에러 문구
+    - [x]  예외 상황 시 에러 문구
 
        ```
        [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
        ```
 
-        - [ ]  `[ERROR]` 로 시작
+        - [x]  `[ERROR]` 로 시작
 
 ## ☑️ 체크리스트
 
 ### 라이브러리
 
-- [ ]  JDK에서 제공하는 Random 및 Scanner API 대신 `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
+- [x]  JDK에서 제공하는 Random 및 Scanner API 대신 `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
     - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
-- [ ]  사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-- [ ]  `Lotto` 클래스를 활용하여 구현
-    - [ ]  numbers의 접근 제어로 지정된 private은 그대로 유지
-    - [ ]  Lotto 클래스에 새로운 필드(인스턴스 변수) 추가 X
+- [x]  사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+- [x]  `Lotto` 클래스를 활용하여 구현
+    - [x]  numbers의 접근 제어로 지정된 private은 그대로 유지
+    - [x]  Lotto 클래스에 새로운 필드(인스턴스 변수) 추가 X
 
   *패키지는 변경해도 무관
 
@@ -127,27 +127,27 @@
 
 *[Java 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/master/styleguide/java) 가이드를 준수 / Git 커밋 컨벤션 및 커밋 단위 준수
 
-- [ ]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
     - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
     - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 **함수(또는 메서드)를 분리**하면 된다.
-- [ ]  3항 연산자 사용 X
-- [ ]  변수명에 자료형, 자료구조 사용 X (ex. carNameList (X) carNames(O))
-- [ ]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들기
-- [ ]  JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인 → 매 기능 구현 이후, 테스트 코드를 작성하여 정상 동작 확인할 것
-- [ ]  Git의 커밋 단위는 위에 정리한 **기능 목록 단위**로 추가
-- [ ]  메서드의 길이가 15라인을 넘어가지 않도록 구현 → 메서드가 한 가지의 일만 하도록!
-- [ ]  else 예약어 사용 X
+- [x]  3항 연산자 사용 X
+- [x]  변수명에 자료형, 자료구조 사용 X (ex. carNameList (X) carNames(O))
+- [x]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들기
+- [x]  JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인 → 매 기능 구현 이후, 테스트 코드를 작성하여 정상 동작 확인할 것
+- [x]  Git의 커밋 단위는 위에 정리한 **기능 목록 단위**로 추가
+- [x]  메서드의 길이가 15라인을 넘어가지 않도록 구현 → 메서드가 한 가지의 일만 하도록!
+- [x]  else 예약어 사용 X
     - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
-- [ ]  Java Enum 적용
-- [ ]  도메인 로직에 단위 테스트 구현  *UI (System.out, [System.in](http://system.in/), Scanner) 로직은 제외
+- [x]  Java Enum 적용
+- [x]  도메인 로직에 단위 테스트 구현  *UI (System.out, [System.in](http://system.in/), Scanner) 로직은 제외
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
 ### 주의 사항
 
-- [ ]  JDK 17버전에서 동작
-- [ ]  `build.gradle` 파일 수정 X
-- [ ]  외부 라이브러리 사용 X
-- [ ]  프로그램 종료 시 `System.exit()`를 호출 X
-- [ ]  사용자가 잘못된 값을 입력할 경우 *IllegalArgumentException*을 발생시킴
+- [x]  JDK 17버전에서 동작
+- [x]  `build.gradle` 파일 수정 X
+- [x]  외부 라이브러리 사용 X
+- [x]  프로그램 종료 시 `System.exit()`를 호출 X
+- [x]  사용자가 잘못된 값을 입력할 경우 *IllegalArgumentException*을 발생시킴

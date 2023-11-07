@@ -52,7 +52,7 @@ public class LottoController {
 
     private List<LottoPrize> collectWinners(List<Lotto> boughtLotto, WinningLotto winningLotto) {
         return boughtLotto.stream()
-                .map(winningLotto::compare)
+                .map(winningLotto::getLottoPrize)
                 .filter(Objects::nonNull)
                 .toList();
     }

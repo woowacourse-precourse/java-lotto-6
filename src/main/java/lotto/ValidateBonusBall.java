@@ -10,4 +10,10 @@ public class ValidateBonusBall {
             throw new IllegalArgumentException("[ERROR] 45보다 큰 숫자는 입력 할 수 없습니다.");
         }
     }
+
+    public static void isDuplicate(int bonusBall, Lotto lotto) {
+        if (lotto.hasNumber(bonusBall)) {
+            throw new IllegalArgumentException("[ERROR] 보너스볼의 숫자와 같은 숫자가 존재합니다.");
+        }
+    }
 }

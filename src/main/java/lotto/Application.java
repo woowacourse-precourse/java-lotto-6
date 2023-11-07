@@ -35,9 +35,10 @@ public class Application {
             System.out.println(l.getNumbers().toString());
         }
 
+        List<Integer> userNum = new ArrayList<>();
         while(true) {
             System.out.println("당첨 번호를 입력해 주세요.");
-            List<Integer> userNum = new ArrayList<>();
+
             try {
                 String[] str = Console.readLine().split(",");
                 if (str.length != 6) {
@@ -58,11 +59,34 @@ public class Application {
                 }
 
                 break;
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
 
+        System.out.println();
+        while(true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
 
+            try {
+                int n = Integer.parseInt(Console.readLine());
+                if(n < 1 || n > 45) {
+                    throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+
+                userNum.add(n);
+                Set<Integer> userSet = new HashSet<>(userNum);
+                if (userNum.size() != userSet.size()) {
+                    userNum.remove(userNum.size() - 1);
+                    throw new IllegalArgumentException("당첨 번호와 보너스 번호는 서로 중복되지 않아야 합니다.");
+                }
+
+                break;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 }

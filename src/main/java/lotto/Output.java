@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Output {
@@ -21,6 +22,14 @@ public class Output {
 
     private void getBonusNumMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public static void viewResult() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            System.out.println(rank.getMatchStandard() + " (" + decimalFormat.format(rank.getPrice()) + "원) - " + rank.getCount() + "개");
+        }
     }
 
     private void viewRate(double rate) {

@@ -1,12 +1,35 @@
 package lotto;
 
 public enum Rank {
-    FIRST(1, "6개 번호 일치", 2000000000),
-    SECOND(2, "5개 번호 + 보너스 번호 일치", 30000000),
-    THIRD(3, "5개 번호 일치", 1500000),
-    FOURTH(4, "4개 번호 일치", 50000),
-    FIFTH(5, "3개 번호 일치", 5000);
+    FIFTH(5, "3개 번호 일치", 5000, 0),
+    FOURTH(4, "4개 번호 일치", 50000, 0),
+    THIRD(3, "5개 번호 일치", 1500000, 0),
+    SECOND(2, "5개 번호 + 보너스 번호 일치", 30000000, 0),
+    FIRST(1, "6개 번호 일치", 2000000000, 0);
 
-    Rank(int rank, String matchCnt, int price) {
+    private String matchStandard;
+    private int price;
+    private int count;
+
+    Rank(int rank, String matchStandard, int price, int count) {
+        this.matchStandard = matchStandard;
+        this.price = price;
+        this.count = 0;
+    }
+
+    public String getMatchStandard() {
+        return matchStandard;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

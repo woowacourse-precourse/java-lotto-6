@@ -9,30 +9,23 @@ import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 public class LottoController {
+    private LottoOrder lottoOrder;
+    private WinningLotto winningLotto;
 
     public LottoController() {
     }
 
-    public void play() {
-        LottoOrder lottoOrder = createLottoOrder();
-        printLottoOrderInfo(lottoOrder);
-
-        WinningLotto winningLotto = createWinningLotto();
-
-        processWinningStatistics(lottoOrder, winningLotto);
-    }
-
-    private LottoOrder createLottoOrder() {
+    public void orderLotto() {
         try {
             int purchasePrice = LottoInputView.inputPurchasePrice();
-            return LottoOrder.orderAutoLotto(purchasePrice);
+            lottoOrder = LottoOrder.orderAutoLotto(purchasePrice);
         } catch (IllegalArgumentException e) {
             LottoOutputView.printErrorMessage(e.getMessage());
-            return createLottoOrder();
+            orderLotto();
         }
     }
 
-    private void printLottoOrderInfo(LottoOrder lottoOrder) {
+    public void readOrderedLottoInfo() {
         int lottoCount = lottoOrder.getLottoCount();
         LottoOutputView.printLottoCount(lottoCount);
 
@@ -40,22 +33,35 @@ public class LottoController {
         LottoOutputView.printLottoNumbers(lottoNumbers);
     }
 
-    private WinningLotto createWinningLotto() {
-        try {
-            List<Integer> numbers = LottoInputView.inputWinningLottoNumbers();
-            Lotto winningLotto = LottoGenerator.manualGenerate(numbers);
-            int bonusNumber = LottoInputView.inputBonusNumber();
-            return new WinningLotto(winningLotto, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            LottoOutputView.printErrorMessage(e.getMessage());
-            return createWinningLotto();
-        }
+    public void setupWinningLotto() {
+        Lotto lotto = getLotto();
+        winningLotto = createWinningLotto(lotto);
     }
 
-    private void processWinningStatistics(LottoOrder lottoOrder, WinningLotto winningLotto) {
+    public void processWinning() {
         List<Long> countByAllRank = lottoOrder.calculateCountByAllRank(winningLotto);
         double gainRatio = lottoOrder.calculateGainRatio(winningLotto);
         LottoOutputView.printWinningStatistics(countByAllRank, gainRatio);
+    }
+
+    private Lotto getLotto() {
+        try {
+            List<Integer> numbers = LottoInputView.inputWinningLottoNumbers();
+            return LottoGenerator.manualGenerate(numbers);
+        } catch (IllegalArgumentException e) {
+            LottoOutputView.printErrorMessage(e.getMessage());
+            return getLotto();
+        }
+    }
+
+    private WinningLotto createWinningLotto(Lotto lotto) {
+        try {
+            int bonusNumber = LottoInputView.inputBonusNumber();
+            return new WinningLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            LottoOutputView.printErrorMessage(e.getMessage());
+            return createWinningLotto(lotto);
+        }
     }
 
 }

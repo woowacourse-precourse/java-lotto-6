@@ -14,49 +14,73 @@ public class DrawnNumbers {
     private final Integer bonusNumber;
 
     private DrawnNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
-        Validator.validateWinningNumbers(winningNumbers);
+        validateWinningNumbers(winningNumbers);
+        validateBonusNumber(bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public static DrawnNumbers from(DrawnNumbersDto drawnNumbersDto) {
+    public DrawnNumbers from(DrawnNumbersDto drawnNumbersDto) {
         return new DrawnNumbers(drawnNumbersDto.getWinningNumbers(), drawnNumbersDto.getBonusNumber());
     }
 
-    private static class Validator {
-        private static void validateWinningNumbers(List<Integer> winningNumbers) {
-            validateInvalidRange(winningNumbers);
-            validateDuplication(winningNumbers);
-        }
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        validateInvalidRange(winningNumbers);
+        validateDuplication(winningNumbers);
+    }
 
-        private static void validateDuplication(List<Integer> winningNumbers) {
-            if (isDuplicated(winningNumbers)) {
-                throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
-            }
+    private void validateDuplication(List<Integer> winningNumbers) {
+        if (isDuplicated(winningNumbers)) {
+            throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
         }
+    }
 
-        private static boolean isDuplicated(List<Integer> winningNumbers) {
-            int uniqueSize = getUniqueSize(winningNumbers);
-            return uniqueSize != winningNumbers.size();
-        }
+    private boolean isDuplicated(List<Integer> winningNumbers) {
+        int uniqueSize = getUniqueSize(winningNumbers);
+        return uniqueSize != winningNumbers.size();
+    }
 
-        private static int getUniqueSize(List<Integer> winningNumbers) {
-            return (int) winningNumbers.stream()
-                    .distinct()
-                    .count();
-        }
+    private static int getUniqueSize(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+                .distinct()
+                .count();
+    }
 
-        private static void validateInvalidRange(List<Integer> winningNumbers) {
-            if (isInvalidRange(winningNumbers)) {
-                throw LottoException.from(ErrorMessage.INVALID_RANGE_ERROR);
-            }
+    private static void validateInvalidRange(List<Integer> winningNumbers) {
+        if (isInvalidRange(winningNumbers)) {
+            throw LottoException.from(ErrorMessage.INVALID_RANGE_ERROR);
         }
+    }
 
-        private static boolean isInvalidRange(List<Integer> winningNumbers) {
-            return winningNumbers.stream()
-                    .allMatch(number ->
-                            number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue()
-                    );
+    private boolean isInvalidRange(List<Integer> winningNumbers) {
+        return winningNumbers.stream()
+                .allMatch(number ->
+                        number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue()
+                );
+    }
+
+    private void validateBonusNumber(Integer bonusNumber) {
+        validateInvalidRange(bonusNumber);
+        validateDuplication(bonusNumber);
+    }
+
+    private void validateInvalidRange(Integer bonusNumber) {
+        if (isInvalidRange(bonusNumber)) {
+            throw LottoException.from(ErrorMessage.INVALID_RANGE_ERROR);
         }
+    }
+
+    private boolean isInvalidRange(Integer bonusNumber) {
+        return bonusNumber < MIN_LOTTO_NUMBER.getValue() || bonusNumber > MAX_LOTTO_NUMBER.getValue();
+    }
+
+    private void validateDuplication(Integer bonusNumber) {
+        if (isDuplicatedWithWinningNumbers(bonusNumber)) {
+            throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
+        }
+    }
+
+    private boolean isDuplicatedWithWinningNumbers(Integer bonusNumber) {
+        return winningNumbers.contains(bonusNumber);
     }
 }

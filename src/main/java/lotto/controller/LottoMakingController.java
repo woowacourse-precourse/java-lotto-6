@@ -21,6 +21,7 @@ public class LottoMakingController {
             try {
                 String input = view.inputMoney();
                 validateIsNumber(input);
+                money = Integer.parseInt(input);
                 validateMoneyUnit(money);
                 break;
             } catch (NumberFormatException e) {
@@ -32,7 +33,7 @@ public class LottoMakingController {
     }
 
     private void validateIsNumber(String number) throws NumberFormatException {
-        money = Integer.parseInt(number);
+        Integer.parseInt(number);
     }
 
     private void validateMoneyUnit(int money) {
@@ -56,7 +57,7 @@ public class LottoMakingController {
                 String input = view.inputWinningNumber();
                 Lotto winningNumber = new Lotto(Arrays.asList(changeStringToInteger(input)));
                 return winningNumber;
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
             } catch (IllegalArgumentException e) {
                 view.outputError(e.getMessage());
@@ -70,6 +71,27 @@ public class LottoMakingController {
         for (int i = 0; i < numbers.length; i++)
             numbers[i] = Integer.parseInt(n[i]);
         return numbers;
+    }
+
+    public int createBonusNumber() {
+        while (true) {
+            try {
+                String input = view.inputBonusNumber();
+                validateIsNumber(input);
+                int bonusNumber = Integer.parseInt(input);
+                validateBoundaryNumber(bonusNumber, 1, 45);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
+            } catch (IllegalArgumentException e) {
+                view.outputError(e.getMessage());
+            }
+        }
+    }
+
+    public void validateBoundaryNumber(int input, int start, int end) {
+        if (input < start || input > end)
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
     }
 
 }

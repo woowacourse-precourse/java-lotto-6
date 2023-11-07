@@ -16,6 +16,7 @@ public class LottoGame {
         gameSetting.createLottoCount();
         ArrayList<Lotto> lottos = gameSetting.createLottos();
         Lotto winningNumber = gameSetting.createWinningNumbers();
+        int bonusNumber = gameSetting.createBonusNumber();
     }
 
 }

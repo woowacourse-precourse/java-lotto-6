@@ -66,8 +66,8 @@ public class Controller {
     private BonusNumber bonusNumberSetting(WinningNumbers winningNumbers) {
         while (true) {
             try {
-                String bonusNumberString = InputView.inputBonusNumber();
-                return new BonusNumber(bonusNumberString, winningNumbers);
+                String bonusNumberInput = InputView.inputBonusNumber();
+                return new BonusNumber(bonusNumberInput, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR + e.getMessage());
             }

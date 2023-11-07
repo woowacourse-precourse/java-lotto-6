@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class LottoChecker {
-
+    private static final int NONE = 0;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
     private final Map<Prize, Integer> result = new HashMap<>();
@@ -20,12 +20,12 @@ public class LottoChecker {
     }
 
     public void initPrize() {
-        result.put(Prize.FIRST, 0);
-        result.put(Prize.SECOND, 0);
-        result.put(Prize.THIRD, 0);
-        result.put(Prize.FOURTH, 0);
-        result.put(Prize.FIFTH, 0);
-        result.put(Prize.NONE, 0);
+        result.put(Prize.FIRST, NONE);
+        result.put(Prize.SECOND, NONE);
+        result.put(Prize.THIRD, NONE);
+        result.put(Prize.FOURTH, NONE);
+        result.put(Prize.FIFTH, NONE);
+        result.put(Prize.NONE, NONE);
     }
 
     public void insertLottos(final List<Lotto> lottos) {
@@ -39,11 +39,11 @@ public class LottoChecker {
         lottos.forEach(lotto -> {
             long matches = this.checkWinningNumber(lotto);
             boolean isContainBonus = false;
-            if (matches == 5L) {
+            if (matches == 5) {
                 isContainBonus = checkContainBonusNumber(lotto);
             }
-            Prize prize = this.getPrize(matches, isContainBonus);
-            result.put(prize, this.result.get(prize) + 1);
+            Prize prize = getPrize(matches, isContainBonus);
+            result.put(prize, result.get(prize) + 1);
         });
     }
 
@@ -100,9 +100,10 @@ public class LottoChecker {
         }
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+
         double usedMoney = (long) lottos.size() * 1000;
         double profit = (this.totalPrize / usedMoney) * 100;
-        this.profitRate = decimalFormat.format(profit);
+        this.profitRate = decimalFormat.format(profit);구
     }
 
     public long getTotalPrize() {

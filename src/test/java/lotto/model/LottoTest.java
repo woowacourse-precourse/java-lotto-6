@@ -1,7 +1,9 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +30,14 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자는 1에서 45 사이어야 합니다.");
+    }
+    @Test
+    @DisplayName("로또가 잘 생성되는지 확인한다")
+    void createLotto(){
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+
+        assertThat(lotto.getNumbers()).containsExactly(1,2,3,4,5,6);
     }
 
 }

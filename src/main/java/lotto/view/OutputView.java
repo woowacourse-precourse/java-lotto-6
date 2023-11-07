@@ -1,10 +1,5 @@
 package lotto.view;
 
-import java.util.Map;
-import lotto.model.LottoPlayer;
-import lotto.model.LottoRank;
-import org.w3c.dom.ls.LSOutput;
-
 public class OutputView {
     private static final String LOTTO_START_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_BUY_MESSAGE = "%d개를 구매했습니다.";

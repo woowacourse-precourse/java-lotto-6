@@ -1,12 +1,15 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validLotto(numbers);
         this.numbers = numbers;
     }
 
@@ -17,6 +20,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void validLotto(List<Integer> numbers) {
+        // 중복값 없는지 확인
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (numbers.size() > uniqueNumbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
     public String getLottoNumbers() {
         return numbers.toString();
     }

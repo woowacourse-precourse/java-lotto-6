@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.TreeMap;
 
-public class LottoPlayer {
+public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
     private final List<Lotto> lottos = new ArrayList<>();
     private final Map<LottoRank, Integer> result = new HashMap<>();
 
 
-    public LottoPlayer(int purchaseAmount) {
+    public LottoManager(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
 
         for (LottoRank rank : LottoRank.values()) {

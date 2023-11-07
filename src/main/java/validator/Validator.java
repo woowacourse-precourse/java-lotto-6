@@ -1,6 +1,8 @@
 package validator;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
     private static final int LOTTO_PRICE = 1_000;
@@ -40,6 +42,13 @@ public class Validator {
 
     public static boolean isNumeric(String input) {
         return input.matches(ONLY_NUMBER_REGEX);
+    }
+
+    public static void validateWinningNumbersUniqueness(List<Integer> winningNumbers) {
+        Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
+        if (winningNumbers.size() != uniqueWinningNumbers.size()) {
+            throw new IllegalArgumentException("당첨 번호 6개가 중복되지 않도록 입력해 주세요.");
+        }
     }
 
     public static void validateWinningNumberCount(List<Integer> winningNumbers) {

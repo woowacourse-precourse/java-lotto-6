@@ -40,4 +40,8 @@ public class LottoService {
     public WinningStatistics getWinningStatistics() {
         return winningStatistics;
     }
+
+    public String getWinningRate() {
+        return winningStatistics.getWinningRate(purchaseAmount.getAmount());
+    }
 }

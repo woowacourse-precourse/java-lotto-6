@@ -56,10 +56,15 @@ public class LottoController {
 
     private void printResult() {
         printWinningStatistics();
+        printWinningRate();
     }
 
     private void printWinningStatistics() {
         lottoService.calculateWinningStatistics();
         OutputView.printWinningStatistics(lottoService.getWinningStatistics());
+    }
+
+    private void printWinningRate() {
+        OutputView.printWinningRate(lottoService.getWinningRate());
     }
 }

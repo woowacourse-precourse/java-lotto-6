@@ -28,6 +28,11 @@ public class WinningStatistics {
         return totalPrize;
     }
 
+    public String getWinningRate(int amount) {
+        double winningRate = (totalPrize / amount) * 100;
+        return String.format("%.1f", winningRate);
+    }
+
     public void updateWinningStatistics(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         for (Lotto lotto : lottos) {
             checkOneRandomLotto(getMatchNumber(lotto, winningLotto), isMatchBonus(lotto, bonusNumber));

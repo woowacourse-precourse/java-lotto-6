@@ -9,6 +9,7 @@ public class OutputView {
     private static final String LOTTO_PURCHASE_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
     private static final String[] LOTTO_PRINT_FORMAT = {"[", "]"};
     private static final String LOTTO_WINNING_STATICS_START_MESSAGE = "\n당첨 통계\n---";
+    private static final String LOTTO_WINNING_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final String DELIMITER = ", ";
 
     public static void printPurchaseLottoCounts(PurchaseAmount purchaseAmount) {
@@ -37,5 +38,9 @@ public class OutputView {
         for (WinningRecord winningRecord : WinningRecord.getResultValues()) {
             System.out.println(winningRecord.getResultMessage(winningResult.get(winningRecord)));
         }
+    }
+
+    public static void printWinningRate(String winningRate) {
+        System.out.println(String.format(LOTTO_WINNING_RATE_MESSAGE, winningRate));
     }
 }

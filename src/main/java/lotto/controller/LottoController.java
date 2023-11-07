@@ -27,6 +27,8 @@ public class LottoController {
         int numberOfLottos = findValidNumberOfLottos();
         List<Lotto> purchasedLottos = generateLottos(numberOfLottos);
         resultView.displayPurchasedLottos(purchasedLottos);
+
+        Lotto winningLotto = askValidWinningLotto();
     }
 
     private int findValidNumberOfLottos() {
@@ -42,7 +44,7 @@ public class LottoController {
             final int inputMoney = inputView.getInputMoney();
             return lottoPaymentService.calculateNumberOfLottos(inputMoney);
         } catch (IllegalArgumentException e) {
-            resultView.println("[ERROR] " + e.getMessage());
+            resultView.printException(e);
             return -1;
         }
     }
@@ -51,5 +53,23 @@ public class LottoController {
         return IntStream.range(0, numberOfLottos)
                 .mapToObj(i -> new Lotto(lottoNumberGenerator.generate()))
                 .toList();
+    }
+
+    private Lotto askValidWinningLotto() {
+        Lotto winningLotto;
+        do {
+            winningLotto = askWinningLotto();
+        } while (winningLotto == null);
+        return winningLotto;
+    }
+
+    private Lotto askWinningLotto() {
+        try {
+            final List<Integer> winningNumbers = inputView.getWinningNumbers();
+            return new Lotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            resultView.printException(e);
+            return null;
+        }
     }
 }

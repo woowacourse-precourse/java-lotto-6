@@ -1,4 +1,4 @@
-package lotto.domian;
+package lotto.domain;
 
 public enum WinningTable {
     NOT_WINNING(0, false, 0, ""),

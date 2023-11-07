@@ -1,6 +1,11 @@
-package lotto.Controller;
+package lotto.controller;
 
-import lotto.domian.*;
+import lotto.domain.Lotto;
+import lotto.domain.BoughtLotto;
+import lotto.domain.LottoAmount;
+import lotto.domain.WinningTable;
+import lotto.domain.WinningCheck;
+
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,7 +32,9 @@ public class LottoController {
         OutputView.printLottoAmount(lottoAmount);
 
         printBoughtLotto(lottoAmount);
-        printWinningAndBonusNumber();
+        printWinningNumber();
+        printBounusNumber();
+        calculateRankingCount();
 
         printWinningStatistic();
         printYield();
@@ -50,17 +57,27 @@ public class LottoController {
         }
     }
 
-    private void printWinningAndBonusNumber() {
+    private void printWinningNumber() {
         try {
             System.out.println();
             lotto = new Lotto(InputView.inputWinningNumbers());
             numbers = lotto.getLotto();
+        } catch (IllegalArgumentException e) {
+            printWinningNumber();
+        }
+    }
+
+    private void printBounusNumber() {
+        try {
             System.out.println();
             bonusNumber = lotto.bonusNumber(InputView.inputBonusNumber());
-            rankingCount = winningCheck.checkCount(boughtLottos, numbers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            printWinningAndBonusNumber();
+            printBounusNumber();
         }
+    }
+
+    private void calculateRankingCount() {
+        rankingCount = winningCheck.checkCount(boughtLottos, numbers, bonusNumber);
     }
 
     private void printWinningStatistic() {

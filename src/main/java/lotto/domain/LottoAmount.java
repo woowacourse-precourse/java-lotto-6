@@ -1,4 +1,4 @@
-package lotto.domian;
+package lotto.domain;
 
 public class LottoAmount {
     private final long amount;

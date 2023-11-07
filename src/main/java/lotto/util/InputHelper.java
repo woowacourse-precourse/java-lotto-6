@@ -23,6 +23,7 @@ public class InputHelper {
             OutputAdaptor.displayMessageToPromptToInputPurchasePrice();
             return InputAdaptor.readPurchasePrice();
         } catch (IllegalArgumentException e) {
+            OutputAdaptor.displayErrorMessage(e.getMessage());
             return inputPurchasePrice();
         }
     }
@@ -45,6 +46,7 @@ public class InputHelper {
             OutputAdaptor.displayMessageToPromptToInputWinningNumbers();
             return InputAdaptor.readWinningNumbers();
         } catch (IllegalArgumentException e) {
+            OutputAdaptor.displayErrorMessage(e.getMessage());
             return inputWinningNumbers();
         }
     }
@@ -62,6 +64,7 @@ public class InputHelper {
             OutputAdaptor.displayMessageToPromptToInputBonusNumber();
             return InputAdaptor.readBonusNumber();
         } catch (IllegalArgumentException e) {
+            OutputAdaptor.displayErrorMessage(e.getMessage());
             return inputBonusNumber();
         }
     }

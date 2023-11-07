@@ -12,6 +12,10 @@ import static lotto.configure.OutputConfiguration.*;
 
 public class OutputAdaptor {
 
+    public static void displayErrorMessage(String errorMessage) {
+        Printer.print(errorMessage + LINE_BRAKING);
+    }
+
     public static void displayMessageToPromptToInputPurchasePrice() {
         Printer.print(MESSAGE_TO_PROMPT_TO_INPUT_PURCHASE_PRICE + LINE_BRAKING);
     }

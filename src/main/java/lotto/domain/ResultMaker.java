@@ -36,7 +36,21 @@ public class ResultMaker {
         int investment = bundle.showInvestment();
         calculateTotalPrize();
         double rateOfReturn = (double) totalPrize / investment * 100;
-        return String.format("%.1f", rateOfReturn);
+        String rawRateOfReturn = String.format("%.1f", rateOfReturn);
+        return formattingNumber(rawRateOfReturn);
+    }
+
+    private String formattingNumber(String rawNumber) {
+        if (rawNumber.length() < 6) {
+            return rawNumber;
+        }
+        StringBuilder formattedNumber = new StringBuilder(rawNumber);
+        for (int i = 0; i < rawNumber.length() - 2; i++) {
+            if (i % 3 == 0 && i != 0) {
+                formattedNumber.insert(rawNumber.length() - 2 - i, ",");
+            }
+        }
+        return formattedNumber.toString();
     }
 
     public Map<Rank, Integer> giveResult() {

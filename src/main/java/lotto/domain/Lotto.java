@@ -24,6 +24,7 @@ public class Lotto {
         }
     }
 
+    @Override
     public String toString() {
         List<Integer> copied = new ArrayList<>(numbers);
         Collections.sort(copied);

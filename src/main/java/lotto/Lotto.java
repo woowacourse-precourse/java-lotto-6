@@ -16,6 +16,17 @@ public class Lotto {
         }
     }
 
+    public void addBonusNumber(int bonusNumber){
+        numbers.add(bonusNumber);
+    }
+
+    public List<Integer> getLottoNumbers(){
+        return numbers;
+    }
+
+    public int getBonusNumber(){
+        return numbers.get(6);
+    }
 
     // TODO: 추가 기능 구현
 }

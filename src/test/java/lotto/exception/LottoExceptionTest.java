@@ -1,6 +1,7 @@
 package lotto.exception;
 
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,6 +25,12 @@ class LottoExceptionTest {
     @Test
     @DisplayName("로또번호나 보너스 번호에 숫자가 아닌 문자가 있을경우 테스트")
     void checkNumberFalseTest() {
-        Assertions.assertThat(lottoException.checkNumber("q")).isFalse();
+        Assertions.assertThat(lottoException.numberCheck("q")).isFalse();
+    }
+
+    @Test
+    @DisplayName("로또번호가 6자리인지 확인하는 테스트")
+    void checkNumberLengthTest() {
+        Assertions.assertThat(lottoException.numberLengthCheckMain(List.of(1, 2, 3, 4, 5, 6))).isTrue();
     }
 }

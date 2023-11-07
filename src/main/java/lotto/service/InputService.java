@@ -13,12 +13,16 @@ import static lotto.utils.Validator.*;
 
 public class InputService {
     public static long readExpense() {
-        String input = readLine();
+        try {
+            String input = readLine();
 
-        validateNumberType(input);
-        validateExpenseValue(input);
-        
-        return parseLong(input);
+            validateNumberType(input);
+            validateExpenseValue(input);
+
+            return parseLong(input);
+        } catch (IllegalArgumentException e) {
+            return readExpense();
+        }
     }
 
 
@@ -27,11 +31,15 @@ public class InputService {
         String[] input = trim(readLine().split(SPLIT_DELIMITER));
 
         for (String num : input) {
-            validateNumberType(num);
-            winningNumbers.add(parseInt(num));
+            try {
+                validateNumberType(num);
+                winningNumbers.add(parseInt(num));
+            } catch (IllegalArgumentException e) {
+                return readWinningNumbers();
+            }
         }
 
-        winningNumbers.sort(Integer::compareTo);
+        winningNumbers.sort(null);
         return winningNumbers;
     }
 
@@ -46,13 +54,17 @@ public class InputService {
 
 
     public static int readBonusNumber(Lotto winningLotto) {
-        String input = readLine();
-        validateNumberType(input);
+        try {
+            String input = readLine();
+            validateNumberType(input);
 
-        int bonusNumber = parseInt(input);
-        validateBonusNumInRange(bonusNumber);
-        validateBonusNumDuplicate(bonusNumber, winningLotto);
+            int bonusNumber = parseInt(input);
+            validateBonusNumInRange(bonusNumber);
+            validateBonusNumDuplicate(bonusNumber, winningLotto);
 
-        return bonusNumber;
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return readBonusNumber(winningLotto);
+        }
     }
 }

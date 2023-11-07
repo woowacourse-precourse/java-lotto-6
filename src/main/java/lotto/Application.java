@@ -25,9 +25,9 @@ public class Application {
         return lottoRanks;
     }
     static double computeRateOfReturn(Map<Rank, Integer> lottoRanks, long purchaseAmount) {
-        long proceeds = lottoRanks.get(Rank.FIFTH) * 5000 + lottoRanks.get(Rank.FOURTH) * 50000 + lottoRanks.get(Rank.THIRD) * 1500000 + lottoRanks.get(Rank.SECOND) * 30000000 + lottoRanks.get(Rank.FIRST) * 2000000000;
-        System.out.println(proceeds);
-        return Math.abs(proceeds - purchaseAmount) / purchaseAmount * 100;
+        long proceeds;
+        proceeds = lottoRanks.get(Rank.FIFTH) * 5000 + lottoRanks.get(Rank.FOURTH) * 50000 + lottoRanks.get(Rank.THIRD) * 1500000 + lottoRanks.get(Rank.SECOND) * 30000000 + lottoRanks.get(Rank.FIRST) * 2000000000;
+        return (double) proceeds / purchaseAmount * 100;
     }
 
     static void printResult(Map<Rank, Integer> lottoRanks, double rateOfReturn) {

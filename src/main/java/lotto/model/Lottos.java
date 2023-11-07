@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,12 +11,9 @@ public class Lottos {
     }
 
     public List<WinningLotto> getWinningLottos(User user) {
-        List<WinningLotto> winningLottos = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            WinningLotto winningLotto = lotto.getWinningLotto(user.getLotto(), user.getBonusNumber());
-            winningLottos.add(winningLotto);
-        }
-        return winningLottos;
+        return lottos.stream()
+                .map(lotto -> lotto.getWinningLotto(user.getLotto(), user.getBonusNumber()))
+                .toList();
     }
 
     public int getLottosCount() {

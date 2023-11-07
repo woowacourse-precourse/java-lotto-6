@@ -2,8 +2,8 @@ package lotto.controller;
 
 import static lotto.model.Lotto.generateLotto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.dto.LottosResult;
 import lotto.dto.TotalResults;
 import lotto.generator.NumberGenerator;
@@ -44,10 +44,9 @@ public class LottoController {
     }
 
     private Lottos generateLottos(int lottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(generateLotto(numberGenerator));
-        }
+        List<Lotto> lottos = IntStream.range(0, lottoCount)
+                .mapToObj(i -> generateLotto(numberGenerator))
+                .toList();
         return new Lottos(lottos);
     }
 

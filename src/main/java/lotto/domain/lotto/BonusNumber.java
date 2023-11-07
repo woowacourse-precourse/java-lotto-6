@@ -13,7 +13,7 @@ public class BonusNumber {
 
     public static BonusNumber of(int number, Lotto lotto) {
         validateRange(number);
-        validateDuplicate(number, lotto);
+        validateContainsInLotto(number, lotto);
         return new BonusNumber(number);
     }
 
@@ -26,7 +26,7 @@ public class BonusNumber {
         }
     }
 
-    private static void validateDuplicate(int number, Lotto lotto) {
+    private static void validateContainsInLotto(int number, Lotto lotto) {
         if (lotto.contains(number)) {
             throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복될 수 없습니다.");
         }

@@ -1,6 +1,7 @@
 package lotto.domain.winningNumber;
 
 public class BonusNumber {
+
     final int bonusNumber;
 
     public BonusNumber(String input) {

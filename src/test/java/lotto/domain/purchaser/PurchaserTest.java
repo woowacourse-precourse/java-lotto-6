@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Nested
 @DisplayName("구입 금액 입력 테스트")
 public class PurchaserTest {
+
     @DisplayName("구매 금액 - 숫자를 입력하지 않은 경우")
     @Test
     void testPurchaseAmountNotNumericInput() {

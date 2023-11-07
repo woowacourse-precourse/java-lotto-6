@@ -4,6 +4,7 @@ import lotto.constants.ErrorMessage;
 import lotto.constants.LottoRule;
 
 public class Purchaser {
+
     int purchaseAmount;
 
     public Purchaser(String purchaseAmount) {
@@ -26,7 +27,7 @@ public class Purchaser {
 
     private void validateDivisibilityByLottoPrice(String purchaseAmount) {
         int purchaseResult = Integer.parseInt(purchaseAmount);
-        if(purchaseResult % LottoRule.LOTTO_PRICE.getNumber() != 0) {
+        if (purchaseResult % LottoRule.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_AMOUNT.getMessage());
         }
     }

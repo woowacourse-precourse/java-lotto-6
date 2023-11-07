@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Nested
 @DisplayName("당첨 번호 입력 테스트")
 public class WinningNumberTest {
+
     @DisplayName("당첨 번호 - 당첨 번호의 개수가 6개가 넘으면 예외 발생")
     @Test
     void testWinningNumberOverSize() {

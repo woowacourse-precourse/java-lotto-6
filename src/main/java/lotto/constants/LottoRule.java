@@ -7,6 +7,7 @@ public enum LottoRule {
     LOTTO_NUMBER_COUNT(6);
 
     private final int number;
+
     LottoRule(int number) {
         this.number = number;
     }

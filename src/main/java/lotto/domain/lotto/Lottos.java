@@ -7,6 +7,7 @@ import lotto.service.LottoService;
 import java.util.*;
 
 public class Lottos {
+
     int numberOfLotto;
     List<Lotto> lottos = new ArrayList<>();
     HashMap<LottoRank, Integer> rankCount;
@@ -18,14 +19,14 @@ public class Lottos {
     }
 
     private void initEachLotto() {
-        for(int i = 0; i < numberOfLotto; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             lottos.add(new Lotto(LottoService.generateRandomLottoNumber()));
         }
     }
 
     private void initRankCount() {
         rankCount = new LinkedHashMap<>();
-        for(LottoRank lottoRank : LottoRank.values()) {
+        for (LottoRank lottoRank : LottoRank.values()) {
             rankCount.put(lottoRank, 0);
         }
     }
@@ -36,7 +37,7 @@ public class Lottos {
 
     public List<List<Integer>> getAllLottoNumbers() {
         List<List<Integer>> allLottoNumbers = new ArrayList<>();
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             allLottoNumbers.add(lotto.getNumbers());
         }
         return Collections.unmodifiableList(allLottoNumbers);
@@ -44,7 +45,8 @@ public class Lottos {
 
     public HashMap<LottoRank, Integer> getLottosResult(FinalWinningNumber finalWinningNumber) {
         for (Lotto lotto : lottos) {
-            LottoRank lottoRank = lotto.compareLottoNumberWithFinalWinningNumber(finalWinningNumber);
+            LottoRank lottoRank = lotto.compareLottoNumberWithFinalWinningNumber(
+                    finalWinningNumber);
             rankCount.put(lottoRank, rankCount.get(lottoRank) + 1);
         }
         rankCount.remove(LottoRank.OUT_OF_RANK);
@@ -53,7 +55,7 @@ public class Lottos {
 
     public double calculateTotalRateOfReturn() {
         double totalSum = 0;
-        for(LottoRank lottoRank : rankCount.keySet()) {
+        for (LottoRank lottoRank : rankCount.keySet()) {
             totalSum += lottoRank.getValue() * rankCount.get(lottoRank);
         }
         return totalSum / (numberOfLotto * LottoRule.LOTTO_PRICE.getNumber()) * 100;

@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers =numbers;
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -30,7 +31,7 @@ public class Lotto {
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
-        if(numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE_NUMBER.getMessage());
         }
     }
@@ -39,7 +40,8 @@ public class Lotto {
         return numbers;
     }
 
-    public LottoRank compareLottoNumberWithFinalWinningNumber(FinalWinningNumber finalWinningNumber) {
+    public LottoRank compareLottoNumberWithFinalWinningNumber(
+            FinalWinningNumber finalWinningNumber) {
         return LottoRank.getRank(Arrays.asList(
                 compareWithWinningNumber(finalWinningNumber.winningNumber()),
                 compareWithBonusNumber(finalWinningNumber.bonusNumber())
@@ -47,14 +49,14 @@ public class Lotto {
     }
 
     private int compareWithWinningNumber(WinningNumber winningNumber) {
-        return (int)numbers.stream()
+        return (int) numbers.stream()
                 .filter(o -> winningNumber.getWinningNumber().stream()
                         .anyMatch(Predicate.isEqual(o)))
                 .count();
     }
 
     private int compareWithBonusNumber(BonusNumber bonusNumber) {
-        if(numbers.contains(bonusNumber.getBonusNumber())) {
+        if (numbers.contains(bonusNumber.getBonusNumber())) {
             return 1;
         }
         return 0;

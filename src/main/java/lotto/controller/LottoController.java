@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
@@ -75,7 +76,7 @@ public class LottoController {
     private void printWinningStatistics(Lottos lottos, FinalWinningNumber finalWinningNumber) {
         outputView.outputWinningStatistics();
         HashMap<LottoRank, Integer> rankCount = lottos.getLottosResult(finalWinningNumber);
-        for(LottoRank rank : rankCount.keySet()) {
+        for (LottoRank rank : rankCount.keySet()) {
             outputView.outputRankResult(rank.getRankContent(), rankCount.get(rank));
         }
     }

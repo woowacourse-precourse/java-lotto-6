@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 public class WinningNumber {
+
     List<Integer> winningNumber;
     final String separator = ",";
 
@@ -34,7 +35,7 @@ public class WinningNumber {
     }
 
     private void validateLength(String input) {
-        if(!isSameLengthAsLottoNumberCount(input)) {
+        if (!isSameLengthAsLottoNumberCount(input)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_FORMAT.getMessage());
         }
     }
@@ -44,14 +45,15 @@ public class WinningNumber {
     }
 
     private void validateEachContent(String input) {
-        for(String content : input.split(separator)) {
+        for (String content : input.split(separator)) {
             WinningNumberValidator.validateNumericInput(content);
             WinningNumberValidator.validateValueInRange(content);
         }
     }
 
     private void validateDuplicateNumbers(String input) {
-        if(input.split(separator).length != Arrays.stream(input.split(separator)).distinct().toArray().length){
+        if (input.split(separator).length != Arrays.stream(input.split(separator)).distinct()
+                .toArray().length) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE_NUMBER.getMessage());
         }
     }
@@ -59,7 +61,7 @@ public class WinningNumber {
 
     private List<Integer> initWinningNumber(String input) {
         List<Integer> list = new ArrayList<>();
-        for(String content : input.split(separator)) {
+        for (String content : input.split(separator)) {
             list.add(Integer.parseInt(content));
         }
         return list;

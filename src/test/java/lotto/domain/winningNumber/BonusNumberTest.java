@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Nested
 @DisplayName("보너스 번호 입력 테스트")
 public class BonusNumberTest {
+
     @DisplayName("보너스 번호 - 입력이 숫자가 아닌 경우")
     @Test
     void testBonusNumberNotNumericInput() {

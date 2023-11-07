@@ -206,7 +206,27 @@ public class Application {
 	}
 	
 	private void resultArr(Result r) {
-		
+		if (r == Result.rank1) {
+			rankCnt.set(0, rankCnt.get(0)+1);
+			return;
+		}
+		if (r == Result.rank2) {
+			rankCnt.set(1, rankCnt.get(1)+1);
+			return;
+		}
+		if (r == Result.rank3) {
+			rankCnt.set(2, rankCnt.get(2)+1);
+			return;
+		}
+		if (r == Result.rank4) {
+			rankCnt.set(3, rankCnt.get(3)+1);
+			return;
+		}
+		if (r == Result.rank5) {
+			rankCnt.set(4, rankCnt.get(4)+1);
+			return;
+		}
+		return;
 	}
 	
 	private Result findResult(ArrayList<Integer> lst) {

@@ -9,13 +9,13 @@ import lotto.domain.WinningNumber;
 import lotto.message.ExceptionMessage;
 
 public class InputView {
-    public Amount inputAmount(){
+    public Amount inputAmount() {
         Amount amount = null;
-        while(amount == null){
+        while (amount == null) {
             try {
                 String input = Console.readLine();
                 amount = new Amount(input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -23,13 +23,13 @@ public class InputView {
         return amount;
     }
 
-    public WinningNumber inputWinningNumber(){
+    public WinningNumber inputWinningNumber() {
         WinningNumber winningNumber = null;
-        while(winningNumber == null){
+        while (winningNumber == null) {
             try {
                 String input = Console.readLine();
-                winningNumber =new WinningNumber(input);
-            }catch (IllegalArgumentException e){
+                winningNumber = new WinningNumber(input);
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -37,13 +37,13 @@ public class InputView {
         return winningNumber;
     }
 
-    public BonusNumber inputBonusNumber(WinningNumber winningNumber){
+    public BonusNumber inputBonusNumber(WinningNumber winningNumber) {
         BonusNumber bonusNumber = null;
-        while (bonusNumber == null){
+        while (bonusNumber == null) {
             try {
                 String input = Console.readLine();
                 bonusNumber = new BonusNumber(winningNumber, input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

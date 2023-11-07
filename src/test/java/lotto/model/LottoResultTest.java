@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.model.LottoRank.FOUR_MATCH;
+import static lotto.model.LottoRank.LESS_THREE_MATCH;
 import static lotto.model.LottoRank.THREE_MATCH;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,10 +28,11 @@ class LottoResultTest {
     void 구매금액을_받아_수익률을_계산한다() {
         final LottoResult lottoResult = new LottoResult();
         lottoResult.increaseRankCount(THREE_MATCH);
+        lottoResult.increaseRankCount(LESS_THREE_MATCH);
 
-        final double earningsRate = lottoResult.getEarningsRate(8000);
-        
-        assertThat(String.format("%.1f", earningsRate)).isEqualTo("62.5");
+        final double earningsRate = lottoResult.getEarningsRate();
+
+        assertThat(String.format("%.1f", earningsRate)).isEqualTo("250.0");
     }
 
 }

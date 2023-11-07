@@ -14,11 +14,11 @@ public class InputController {
     private WinningNum winningNum;
     private BonusNum bonusNum;
 
-    public int inputMoney(){
+    public Money inputMoney(){
         try{
             money = new Money(InputView.inputMoney());
             OutputView.printBlank();
-            return money.getMoney();
+            return money;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputMoney();
@@ -35,10 +35,10 @@ public class InputController {
         }
     }
 
-    public int inputBonusNum(){
+    public BonusNum inputBonusNum(){
         try {
             bonusNum = new BonusNum(InputView.inputBonusNum(), winningNum.getWinningNum());
-            return bonusNum.getBonusNum();
+            return bonusNum;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputBonusNum();

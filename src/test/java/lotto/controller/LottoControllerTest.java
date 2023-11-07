@@ -1,7 +1,8 @@
 package lotto.controller;
 
 import static lotto.utils.StringUtils.countOccurrences;
-import static lotto.view.ErrorMessage.NOT_A_NUMBER;
+import static lotto.view.ErrorMessage.*;
+import static lotto.view.ErrorMessage.NOT_A_INTEGER_NUMBER;
 import static lotto.view.ErrorMessage.RECEIVED_MONEY_NOT_MULTIPLE_OF_1000;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -63,7 +64,7 @@ class LottoControllerTest {
         // when, then
         assertThatThrownBy(() -> lottoController.receiveMoney())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_A_NUMBER.getErrorMessage());
+                .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
 
     @Test
@@ -177,4 +178,30 @@ class LottoControllerTest {
         // then
         assertThat(result).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("기능25 테스트 : 보너스 번호로 정수가 아닌 값을 받은 경우 예외가 발생한다.")
+    void registerBonusNumberShouldThrowIllegalArgumentExceptionWhenGivenNotIntegerNumber() {
+        // given
+        System.setIn(createUserInput("1.1"));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("기능25 테스트 : 보너스 번호로 숫자가 아닌 값을 입력받은 경우 예외가 발생한다.")
+    void registerBonusNumberShouldThrowIllegalArgumentExceptionWhenGivenNotNumberValue() {
+        // given
+        System.setIn(createUserInput("1a"));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
+    }
+
+
 }

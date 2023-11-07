@@ -29,6 +29,7 @@ public class Application {
     private static void validateBonusNumber(String input) {
         checkNull(input);
         checkEmpty(input);
+        checkNumber(input);
     }
 
     private static String inputWinningNumber() {

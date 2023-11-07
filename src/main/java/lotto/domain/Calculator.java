@@ -16,8 +16,8 @@ public class Calculator {
     public static Map<Rank, Integer> classify(List<WinningCount> winningCounts) {
         Map<Rank, Integer> winningResult = new HashMap<>();
         winningResult.put(FIRST, countRank(winningCounts, FIRST));
-        winningResult.put(SECOND, countSecond(winningCounts, SECOND));
-        winningResult.put(THIRD, countThird(winningCounts, THIRD));
+        winningResult.put(SECOND, countSecond(winningCounts));
+        winningResult.put(THIRD, countThird(winningCounts));
         winningResult.put(FOURTH, countRank(winningCounts, FOURTH));
         winningResult.put(FIFTH, countRank(winningCounts, FIFTH));
         return winningResult;
@@ -42,14 +42,14 @@ public class Calculator {
                 .count();
     }
 
-    private static int countSecond(List<WinningCount> winningCounts, Rank SECOND) {
+    private static int countSecond(List<WinningCount> winningCounts) {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == SECOND.getCount()
                         && winningCount.hasBonusNumber())
                 .count();
     }
 
-    private static int countThird(List<WinningCount> winningCounts, Rank THIRD) {
+    private static int countThird(List<WinningCount> winningCounts) {
         return (int) winningCounts.stream()
                 .filter(winningCount -> winningCount.getWinningCount() == THIRD.getCount()
                         && !winningCount.hasBonusNumber())

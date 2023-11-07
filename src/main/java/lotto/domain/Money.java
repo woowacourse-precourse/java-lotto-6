@@ -1,10 +1,9 @@
 package lotto.domain;
 
-public class Money {
+import static lotto.constants.LottoConstant.LOTTO_PRICE_UNIT;
 
+public class Money {
     private final long amount;
-    private final String ERROR = "[ERROR] ";
-    private final int UNIT = 1000;
 
     public Money(long amount) {
         validate(amount);
@@ -13,10 +12,10 @@ public class Money {
 
     private void validate(long amount) throws IllegalArgumentException {
         if (!isPositive(amount)) {
-            throw new IllegalArgumentException(ERROR + "구입금액은 양수여야 합니다");
+            throw new IllegalArgumentException("[ERROR] 구입금액은 양수여야 합니다");
         }
-        if (canNotDivide(amount, UNIT)) {
-            throw new IllegalArgumentException(ERROR + UNIT + "원 단위로 구입이 가능합니다");
+        if (canNotDivide(amount, LOTTO_PRICE_UNIT)) {
+            throw new IllegalArgumentException("[ERROR] " + LOTTO_PRICE_UNIT + "원 단위로 구입이 가능합니다");
         }
     }
 

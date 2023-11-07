@@ -50,7 +50,7 @@
 
 ### LottoWinningAnalyzer (로또 당첨 결과 분석기)
 
-- [ ]  `당첨 번호와 보너스 번호를 입력` 받는다.
+- [x]  `비교할 로또들과 당첨 번호를 저장` 한다.
 - [ ]  `당첨 통계를 생성`한다.
 
 ### WinningNumbers (당첨 번호) → **First Class Collection**

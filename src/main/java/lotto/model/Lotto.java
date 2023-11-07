@@ -27,7 +27,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    public String getLottoNumbers() {
+    public String printLottoNumbers() {
         return numbers.toString();
     }
 

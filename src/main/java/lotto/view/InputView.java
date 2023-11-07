@@ -18,14 +18,14 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                return checkPurchaseAmount(input);
+                return validPurchase(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
 
-    private int checkPurchaseAmount(String input) {
+    private int validPurchase(String input) {
         try {
             int amount = Integer.parseInt(input);
             if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
@@ -41,17 +41,18 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                return checkWinningNumbers(input);
+                return validWinningNumbers(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
 
-    private List<Integer> checkWinningNumbers(String input) {
+    private List<Integer> validWinningNumbers(String input) {
         try {
             List<Integer> inputNumbers = splitWinningNumbers(input);
-            validWinningNumbers(inputNumbers);
+            checkRange(inputNumbers);
+            checkDuplicate(inputNumbers);
             return inputNumbers;
         } catch (NumberFormatException e) {
             throw new BusinessLogicException(ExceptionMessage.INVALID_WINNING_NUMBER);
@@ -64,13 +65,14 @@ public class InputView {
                 .toList();
     }
 
-    private void validWinningNumbers(List<Integer> inputNumbers) {
-        // 번호 6개 맞는지 확인
+    private void checkRange(List<Integer> inputNumbers) {
         if (inputNumbers.size() != 6 || Collections.min(inputNumbers) < LOTTO_MIN_VALUE
                 || Collections.max(inputNumbers) > LOTTO_MAX_VALUE) {
             throw new BusinessLogicException(ExceptionMessage.INVALID_WINNING_NUMBER);
         }
-        // 중복값 없는지 확인
+    }
+
+    private void checkDuplicate(List<Integer> inputNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(inputNumbers);
         if (inputNumbers.size() > uniqueNumbers.size()) {
             throw new BusinessLogicException(ExceptionMessage.INVALID_WINNING_NUMBER);
@@ -81,16 +83,14 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                int bonusNumber = checkBonusNumber(input);
-                validBonusNumber(bonusNumber, winningNumbers);
-                return bonusNumber;
+                return validBonusNumber(input, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
 
-    private int checkBonusNumber(String input) {
+    private int checkNumeric(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -98,9 +98,11 @@ public class InputView {
         }
     }
 
-    private void validBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    private int validBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = checkNumeric(input);
         if (winningNumbers.contains(bonusNumber) || bonusNumber < LOTTO_MIN_VALUE || bonusNumber > LOTTO_MAX_VALUE) {
             throw new BusinessLogicException(ExceptionMessage.INVALID_BONUS_NUMBER);
         }
+        return bonusNumber;
     }
 }

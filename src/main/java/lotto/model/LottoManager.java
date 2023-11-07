@@ -24,7 +24,7 @@ public class LottoManager {
         }
     }
 
-    public void buyLottos() {
+    public void issueLottos() {
         int numberOfLottoTickets = purchaseAmount / LOTTO_PRICE;
 
         for (int i = 0; i < numberOfLottoTickets; i++) {
@@ -47,12 +47,12 @@ public class LottoManager {
     public String getLottoNumbers() {
         StringJoiner lottoNumbers = new StringJoiner("\n");
         for (Lotto lotto : lottos) {
-            lottoNumbers.add(lotto.getLottoNumbers());
+            lottoNumbers.add(lotto.printLottoNumbers());
         }
         return lottoNumbers.toString();
     }
 
-    public void checkLottoResult(List<Integer> winningNumbers, int bonusNumber) {
+    public void checkLottosResult(List<Integer> winningNumbers, int bonusNumber) {
         for (Lotto lotto : lottos) {
             LottoRank rank = determineLottoRank(lotto, winningNumbers, bonusNumber);
 
@@ -62,7 +62,10 @@ public class LottoManager {
 
     public LottoRank determineLottoRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = lotto.countMatchingNumbers(winningNumbers);
-        int bonusMatchCount = lotto.countMatchingBonusNumber(bonusNumber);
+        int bonusMatchCount = 0;
+        if (matchCount == 5) {
+            bonusMatchCount = lotto.countMatchingBonusNumber(bonusNumber);
+        }
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank.isMatch(matchCount, bonusMatchCount)) {
@@ -73,7 +76,6 @@ public class LottoManager {
         return LottoRank.NONE;
     }
 
-    // 수익률 계산
     public double getRateOfReturn() {
         return (double) getReturn() / purchaseAmount * 100;
     }
@@ -86,8 +88,7 @@ public class LottoManager {
         return returnPrice;
     }
 
-    // 당첨 통계 글자 생성
-    public String getLottoResult() {
+    public String printLottosResult() {
 
         StringJoiner lottoResult = new StringJoiner("\n");
         Map<LottoRank, Integer> sortedResult = new TreeMap<>(Collections.reverseOrder());

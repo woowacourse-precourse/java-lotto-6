@@ -19,7 +19,7 @@ public class LottoGame {
         int amount = inputView.getPurchaseAmount();
 
         LottoManager lottoManager = new LottoManager(amount);
-        lottoManager.buyLottos();
+        lottoManager.issueLottos();
 
         outputView.answerForPurchase(lottoManager.getLottoTicketCount(), lottoManager.getLottoNumbers());
 
@@ -29,9 +29,9 @@ public class LottoGame {
         outputView.askForBonusNumber();
         int bonusNumber = inputView.getBonusNumber(winningNumbers);
 
-        lottoManager.checkLottoResult(winningNumbers, bonusNumber);
+        lottoManager.checkLottosResult(winningNumbers, bonusNumber);
         double rateOfReturn = lottoManager.getRateOfReturn();
 
-        outputView.printLottoResult(lottoManager.getLottoResult(), rateOfReturn);
+        outputView.printLottoResult(lottoManager.printLottosResult(), rateOfReturn);
     }
 }

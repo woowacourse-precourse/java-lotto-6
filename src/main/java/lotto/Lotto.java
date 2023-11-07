@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Rank;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -53,5 +54,14 @@ public class Lotto {
         return numbers.stream()
                 .filter(other::contains)
                 .count();
+    }
+
+    public Rank calculateRank(final Lotto other, final int bonusNumber) {
+        if (other.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+        long matchCount = compare(other);
+        boolean isBonus = contains(bonusNumber);
+        return Rank.findBy(matchCount, isBonus);
     }
 }

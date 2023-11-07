@@ -18,4 +18,10 @@ public class Lotteries {
     public List<Lotto> getLotteries() {
         return lotteries;
     }
+
+    public List<Rank> calculateRanks(final Lotto other, final int bonusNumber) {
+        return lotteries.stream()
+                .map(lotto -> lotto.calculateRank(other, bonusNumber))
+                .toList();
+    }
 }

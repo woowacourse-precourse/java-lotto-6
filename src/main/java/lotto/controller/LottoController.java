@@ -15,6 +15,8 @@ public class LottoController {
         int purchaseAmount = inputView.readPurchaseAmount();
         List<Lotto> lottoTickets = lottoService.purchaseLottoTickets(purchaseAmount);
         outputView.displayLottoTickets(lottoTickets);
+        List<Integer> winningNumbers = inputView.readWinningNumbers();
+        int bonusNumber = inputView.readBonusNumber();
     }
 
 }

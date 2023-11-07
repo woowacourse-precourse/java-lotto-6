@@ -42,6 +42,4 @@ public class LottoService {
         Collections.sort(numbers);
         return numbers;
     }
-
-
 }

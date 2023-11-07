@@ -1,5 +1,6 @@
 package OutputManager;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -20,8 +21,9 @@ public class OutputManager {
 
     private static String buildResultMsg(LottoStatistics totalResult) {
         StringBuilder msgBuilder = new StringBuilder("");
+        DecimalFormat formatter = new DecimalFormat("###,###.0");
         Map<LottoResult, Integer> statistics = totalResult.getStatistics();
-        for (LottoResult result : statistics.keySet()) {
+        for (LottoResult result : LottoResult.values()) {
             if (result == LottoResult.OTHER) {
                 continue;
             }
@@ -30,7 +32,7 @@ public class OutputManager {
             msgBuilder.append("개\n");
         }
         msgBuilder.append("총 수익률은 ")
-                .append(totalResult.getReturnRate())
+                .append(formatter.format(totalResult.getReturnRate()))
                 .append("%입니다.\n");
         return msgBuilder.toString();
     }

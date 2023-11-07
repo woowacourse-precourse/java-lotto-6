@@ -32,7 +32,7 @@ public class GameInput {
     public static Integer insertBonusNumber(){
         String number = Console.readLine();
         try {
-            return Converter.convertStringToBonusBall(number);
+            return Converter.convertStringToLottoNumber(number);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return null;

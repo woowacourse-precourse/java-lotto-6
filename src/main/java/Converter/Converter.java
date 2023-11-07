@@ -23,11 +23,10 @@ public class Converter {
     public static Lotto convertCommaStringToLotto(String commaValue) throws IllegalArgumentException{
         List<Integer> numbers = new ArrayList<>(LOTTO_SIZE);
         for(String splitValue : commaValue.split(COMMA)){
-            Integer number = convertStringToPositiveInteger(splitValue);
+            Integer number = convertStringToLottoNumber(splitValue);
             numbers.add(number);
         }
-        Collections.sort(numbers);
-        return new Lotto(Collections.unmodifiableList(numbers));
+        return convertListIntToLotto(numbers);
     }
 
     public static Lotto convertListIntToLotto(List<Integer> value){
@@ -36,15 +35,17 @@ public class Converter {
         return new Lotto(Collections.unmodifiableList(randomNumbers));
     }
 
+    public static Integer convertStringToLottoNumber(String value){
+        IntegerValidator.checkEmptyValue(value);
+        IntegerValidator.checkZeroOrPositiveInteger(value);
+        IntegerValidator.checkLottoNumberRange(value);
+        return Integer.valueOf(value);
+    }
+
     public static Integer convertStringToMoney(String value)throws IllegalArgumentException{
         Integer money = convertStringToPositiveInteger(value);
         MoneyValidator.isDividedInto1000(money);
         return money;
-    }
-
-    public static Integer convertStringToBonusBall(String value) throws IllegalArgumentException{
-        Integer Bonus = convertStringToPositiveInteger(value);
-        return Bonus;
     }
 
     /* include 0 */

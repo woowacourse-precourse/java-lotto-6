@@ -1,6 +1,9 @@
 package Validator;
 
-import static Constant.GuideMessagePiece.EMPTY_VALUE;
+import static Constant.ErrorMessage.ERROR_MSG_INPUT_LOTTO_NUMBER_RANGE;
+import static Constant.GuideMessagePiece.EMPTY_STRING_VALUE;
+import static Constant.LottoSettingValue.LOTTO_MAXIMUM_NUMBER;
+import static Constant.LottoSettingValue.LOTTO_MINIMAL_NUMBER;
 
 public class IntegerValidator {
 
@@ -9,7 +12,7 @@ public class IntegerValidator {
     private static final String ERROR_MSG_INPUT_UNDER_INTEGER_RANGE = "[ERROR] 2147483647 이하의 숫자를 입력해 주세요.";
 
     public static void checkEmptyValue(String value) throws IllegalArgumentException{
-        if(EMPTY_VALUE.equals(value)){
+        if(EMPTY_STRING_VALUE.equals(value)){
             throw new IllegalArgumentException(ERROR_MSG_INPUT_NOT_EMPTY_VALUE);
         }
     }
@@ -24,11 +27,18 @@ public class IntegerValidator {
     }
 
     public static void checkIntegerMaxValue(String value) throws IllegalArgumentException{
-        String maxValue = EMPTY_VALUE+Integer.MAX_VALUE;
+        String maxValue = EMPTY_STRING_VALUE+Integer.MAX_VALUE;
         if(isFirstBiggerThanSecond(value,maxValue)){
             throw new IllegalArgumentException(ERROR_MSG_INPUT_UNDER_INTEGER_RANGE);
         }
         return;
+    }
+
+    public static void checkLottoNumberRange(String value) throws IllegalArgumentException {
+        if(isFirstBiggerThanSecond(LOTTO_MINIMAL_NUMBER+EMPTY_STRING_VALUE,value)
+                || isFirstBiggerThanSecond(value,LOTTO_MAXIMUM_NUMBER+EMPTY_STRING_VALUE)){
+            throw new IllegalArgumentException(ERROR_MSG_INPUT_LOTTO_NUMBER_RANGE);
+        }
     }
 
     private static Boolean isFirstBiggerThanSecond(String value1, String value2){

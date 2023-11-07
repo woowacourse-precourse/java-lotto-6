@@ -6,6 +6,8 @@ import lotto.domain.WinningNumber;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.constant.LottoConstant.MIN_MATCH_COUNT_FOR_BONUS;
+
 public enum LottoRank {
     NONE(0, 0, false, "꽝"),
     FIFTH(5000, 3, false, "3개 일치 (5,000원) - "),
@@ -30,16 +32,20 @@ public enum LottoRank {
         Lotto winningLotto = winningNumber.getWinningNumber();
         List<Integer> winningNumbers = winningLotto.getNumbers();
 
-        int matchCountResult = (int) winningNumbers.stream()
-                .filter(lotto::isContain)
-                .count();
+        int matchCountResult = getMatchCountResult(lotto, winningNumbers);
 
         boolean matchBonusResult = false;
-        if (matchCountResult == 5) {
+        if (matchCountResult == MIN_MATCH_COUNT_FOR_BONUS.getValue()) {
             matchBonusResult = lotto.isContain(winningNumber.getBonusNumber());
         }
 
         return getRank(matchCountResult, matchBonusResult);
+    }
+
+    private static int getMatchCountResult(Lotto lotto, List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+                .filter(lotto::isContain)
+                .count();
     }
 
     private static LottoRank getRank(int matchCountResult, boolean matchBonusResult) {

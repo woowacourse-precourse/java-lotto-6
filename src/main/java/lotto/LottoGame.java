@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,22 +17,26 @@ public class LottoGame {
     private int bonusNumber;
 
     public void inputLottoNumbers() {
-        winningLottoNumbers = Arrays.stream(Console.readLine().split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        validateWinningNumberSize();
-        validateNumberRange();
-        validateDuplicateWinningNumber();
+        try {
+            winningLottoNumbers = Arrays.stream(Console.readLine().split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            validateWinningNumberSize();
+            validateNumberRange();
+            validateDuplicateWinningNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+
     }
 
     public void inputBonusNumber() {
         bonusNumber = Integer.parseInt(Console.readLine());
     }
 
-    public void printLottos(List<Lotto> lotts) {
-        for (Lotto lo : lotts) {
-            Collections.sort(lo.getNumbers());
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lo : lottos) {
             System.out.println(lo.getNumbers());
         }
     }
@@ -57,6 +62,18 @@ public class LottoGame {
         }
         PrizePrint(map, totalMoney);
     }
+
+//    private void saveMap(Lotto lotto, HashMap<Prize, Integer> map) {
+//        int count = 0;
+//        boolean bonusMatch = false;
+//
+//        for (int number : lotto.getNumbers()) {
+//            if(winningLottoNumbers.contains(number)) count++;
+//            if(number == bonusNumber) bonusMatch = true;
+//        }
+//        Prize prize = Prize.valueOf(count, bonusMatch);
+//        map.put(prize, map.get(prize) + 1);
+//    }
 
     private void validateWinningNumberSize() {
         if(winningLottoNumbers.size() != 6)

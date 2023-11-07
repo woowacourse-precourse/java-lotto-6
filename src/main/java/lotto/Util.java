@@ -6,6 +6,7 @@ import java.util.List;
 import static java.util.Collections.sort;
 
 public class Util {
+    private static final String basicError = "[ERROR]";
 
     private static final String error1 = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String error2 = "[ERROR] 보너스 번호는 중복될 수 없습니다.";
@@ -14,12 +15,12 @@ public class Util {
         try {
             return Integer.parseInt(line);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(basicError);
         }
     }
 
     public static Integer checkTotalPrice(Integer price) {
-        if(price % 1000 != 0) throw new IllegalArgumentException();
+        if(price % 1000 != 0) throw new IllegalArgumentException(basicError);
         return price / 1000;
     }
 
@@ -41,7 +42,7 @@ public class Util {
             bonus.add(temp);
             return bonus;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(basicError);
         }
     }
 }

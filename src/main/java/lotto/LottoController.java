@@ -13,16 +13,13 @@ import static lotto.Util.*;
 public class LottoController {
     private List<Lotto> lottos;
     private int totalLottoCnt;
-
+    private int three = 0;
+    private int four = 0;
+    private int five1 = 0;
+    private int five2 = 0;
+    private int six = 0;
     private List<Integer> winningNumbers;
     private List<Integer> bonusNumber;
-
-    int three = 0;
-    int four = 0;
-    int five1 = 0;
-    int five2 = 0;
-    int six = 0;
-
 
     public void playLotto() {
         start();
@@ -98,11 +95,11 @@ public class LottoController {
     private void printEnd() {
         System.out.println("당첨 통계\n" +
                 "---\n" +
-                "3개 일치 (5,000원) - " + three + "개\n" +
-                "4개 일치 (50,000원) - " + four + "개\n" +
-                "5개 일치 (1,500,000원) - "+ five1 + "개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - "+ five2 + "개\n" +
-                "6개 일치 (2,000,000,000원) - "+ six + "개\n" +
-                "총 수익률은 "+(three*5000L + four*50000L + five1*1500000L + five2*30000000L + six*2000000000L)/(totalLottoCnt* 10L) + "%입니다.");
+                THREE.getCoin() + three + "개\n" +
+                FOUR.getCoin() + four + "개\n" +
+                FIVE1.getCoin() + five1 + "개\n" +
+                FIVE2.getCoin() + five2 + "개\n" +
+                SIX.getCoin() + six + "개\n" +
+                "총 수익률은 " + String.format("%.1f",(double)(three*5000L + four*50000L + five1*1500000L + five2*30000000L + six*2000000000L) / (double)(totalLottoCnt*10L)) + "% 입니다.");
     }
 }

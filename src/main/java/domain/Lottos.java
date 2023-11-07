@@ -9,4 +9,8 @@ public class Lottos {
     public List<Lotto> getLottoList() {
         return lottoList;
     }
+
+    public void addLotto(Lotto lotto) {
+        lottoList.add(lotto);
+    }
 }

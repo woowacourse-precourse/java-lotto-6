@@ -14,6 +14,9 @@ public class Lotto {
         if (numberLengthvaildation(numbers)) {
             throw new IllegalArgumentException();
         }
+        else if (numberSizeVaildation(numbers)){
+            throw new IllegalArgumentException();
+        }
     }
 
     private boolean numberLengthvaildation(List<Integer> numbers){
@@ -22,5 +25,13 @@ public class Lotto {
         }
         return false;
     }
-    // TODO: 추가 기능 구현
+
+    private boolean numberSizeVaildation(List<Integer> numbers){
+        for(int num : numbers){
+            if(num > 45 && num < 1){
+                return true;
+            }
+        }
+        return false;
+    }
 }

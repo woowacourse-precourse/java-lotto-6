@@ -11,6 +11,7 @@
     - [x] 로또 당첨 번호 정수형 변환 - NumberGenerator#conversionInputToInteger()
         - [x] 입력 번호 정수인지 유효성 검사 - NumberGenerator#inputNumberIntegerVaildation()
     - [x] 로또 당첨 번호 6자리 유효성 검사 - Lotto#numberLengthvaildation
+    - [x] 로또 당첨 번호 범위 유효성 검사 - Lotto#numberSizeVaildation
 - [ ] 생성된 수와 구매자 수 6개를 비교할 수 있어야 한다. - Referee#compare()
     - [ ] 몇 개의 숫자가 같은지 알 수 있다. - Judgment#correctCount()
         - [ ] 6개 번호 일치 (1등 / 2,000,000,000원)

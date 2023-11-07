@@ -17,20 +17,20 @@ public class Lotto {
         this.numbers = convertIntegerListToLottoNumberList(numbers);
     }
 
-    public Lotto(String input){
+    public Lotto(String input) {
         this(convertStringArrayToIntegerList(input.split(" ")));
     }
 
-    public boolean contains(LottoNumber number){
+    public boolean contains(LottoNumber number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number.getNumber());
     }
 
-    public int compareNumbers(Lotto winningNumbers){
+    public int compareNumbers(Lotto winningNumbers) {
         return (int) numbers.stream().filter(winningNumbers::contains).count();
     }
 
-    public List<LottoNumber> getNumbers(){
+    public List<LottoNumber> getNumbers() {
         return numbers;
     }
 
@@ -48,7 +48,7 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         long distinctCount = numbers.stream().distinct().count();
 
-        if(numbers.size() != distinctCount) {
+        if (numbers.size() != distinctCount) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.get());
         }
     }

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public enum  Rank {
+public enum Rank {
     LOSING_TICKET(0, 0, " 0"),
     FIFTH(3, 5000, " (5,000원)"),
     FOURTH(4, 50000, " (50,000원)"),
@@ -31,14 +31,14 @@ public enum  Rank {
                 .orElse(LOSING_TICKET);
     }
 
-    public long calculatePrize(int count){
-        return (long) amount * count;
-    }
-
     public static List<Rank> getWithoutLosingTicket() {
         return Arrays.stream(Rank.values())
                 .filter(rank -> !rank.equals(LOSING_TICKET))
                 .toList();
+    }
+
+    public long calculatePrize(int count) {
+        return (long) amount * count;
     }
 
     public int getMatchCount() {

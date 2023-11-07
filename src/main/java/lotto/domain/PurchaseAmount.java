@@ -19,7 +19,7 @@ public class PurchaseAmount {
     }
 
     public double calculateProfit(long prizeSum) {
-        return (1.0 * prizeSum / amount) * 100 ;
+        return (1.0 * prizeSum / amount) * 100;
     }
 
     private void validate(int inputAmount) {

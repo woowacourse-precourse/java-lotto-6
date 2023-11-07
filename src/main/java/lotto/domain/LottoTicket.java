@@ -10,22 +10,22 @@ import static lotto.Constants.*;
 public class LottoTicket {
     private final List<Lotto> ticket = new ArrayList<>();
 
-    public LottoTicket(int ticketCount){
-        for (int i=0; i<ticketCount; i++){
+    public LottoTicket(int ticketCount) {
+        for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = generateLotto();
             ticket.add(lotto);
         }
     }
 
-    public LottoTicket(List<Lotto> lottos){
+    public LottoTicket(List<Lotto> lottos) {
         ticket.addAll(lottos);
     }
 
-    public List<Lotto> getTicket(){
+    public List<Lotto> getTicket() {
         return ticket;
     }
 
-    private Lotto generateLotto(){
+    private Lotto generateLotto() {
         List<Integer> numbers = Randoms
                 .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_COUNT);
         return new Lotto(numbers);

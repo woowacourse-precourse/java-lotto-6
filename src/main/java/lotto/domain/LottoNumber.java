@@ -19,7 +19,7 @@ public class LottoNumber {
         this(Utils.convertStringToInt(input));
     }
 
-    public int getNumber(){
+    public int getNumber() {
         return this.number;
     }
 

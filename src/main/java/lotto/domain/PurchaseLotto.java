@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
@@ -30,7 +31,13 @@ public class PurchaseLotto {
                 .sum();
     }
 
-    public List<List<Integer>> getAllNumbers() {
+    public Map<Rank, Long> calculateCountByWinningRank(WinningLotto winningLotto) {
+        List<Rank> winningRanks = getWinningRanks(winningLotto);
+        return winningRanks.stream()
+                .collect(Collectors.groupingBy(r -> r, Collectors.counting()));
+    }
+
+    public List<List<Integer>> getAllLottoNumber() {
         return this.lottos.stream()
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());

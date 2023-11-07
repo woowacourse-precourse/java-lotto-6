@@ -60,10 +60,6 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int getNumberByIndex(int index) {
-        return numbers.get(index);
-    }
-
     public Ranking isWin(WinningLotto winningLotto) {
         int matchCount = calculateMatchCount(winningLotto);
         boolean isMatchBonusNumber = hasBonusNumber(winningLotto.getBonusNumber(), matchCount);

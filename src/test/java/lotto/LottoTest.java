@@ -53,15 +53,4 @@ class LottoTest {
 
         assertThat(isContain).isFalse();
     }
-
-    @Test
-    @DisplayName("입력받은 인덱스에 존재하는 숫자를 반환한다.")
-    void getNumberByIndex() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int index = 0;
-
-        int number = lotto.getNumberByIndex(index);
-
-        assertThat(number).isEqualTo(1);
-    }
 }

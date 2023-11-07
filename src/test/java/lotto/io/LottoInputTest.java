@@ -32,4 +32,13 @@ class LottoInputTest {
         assertEquals(List.of(1,2,3,4,5,6), lottoInput.receiveLottos());
     }
 
+    @Test
+    void 당첨번호에_숫자가_아닌_문자가_포함된_경우_예외를_반환한다() {
+        LottoInput lottoInput = new LottoInput(() -> "1,a.2,3,4,5");
+
+        assertThatThrownBy(lottoInput::receiveMoney)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(IoException.ERROR.getMessage());
+    }
+
 }

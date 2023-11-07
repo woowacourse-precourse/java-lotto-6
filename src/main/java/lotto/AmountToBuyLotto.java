@@ -14,7 +14,7 @@ public class AmountToBuyLotto {
         isBlank(input);
         input = input.trim();
         validateNumberFormat(input);
-
+        validateRange(input);
         isZero(input);
         this.amount = Integer.parseInt(input);
 
@@ -46,6 +46,16 @@ public class AmountToBuyLotto {
     }
 
 
+    private void validateRange(String amount) {
+        try {
+            int money = Integer.parseInt(amount);
+            if (money > TWO_BILLION) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ERROR_INPUT_TWO_BILLION_LESS);
+        }
+    }
 
 
     private void validateNumberFormat(String amount) {

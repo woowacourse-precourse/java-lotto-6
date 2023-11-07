@@ -17,6 +17,8 @@ public class Application {
 
         Lotto WinLotto = getWinNumbers(); // 로또 당첨 번호를 입력받음
 
+        bonusNumber = getBonusNumber(WinLotto); //보너스 번호 입력 받음
+
     }
 
     private static List<Integer> parseLottoNumbers(String lottoNums) { //입력 -> List<Integer>
@@ -40,6 +42,21 @@ public class Application {
             }catch (NumberFormatException e) { //ParseInt에서 던지는 exception
                 System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다.");
             } catch (IllegalArgumentException e) { //Lotto class에서 던지는 exception
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int getBonusNumber(Lotto winLotto) {
+        while (true) {
+            try {
+                System.out.print("보너스 번호를 입력해 주세요: ");
+                int bonusNumber = Integer.parseInt(Console.readLine().trim());
+                winLotto.checkBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다.");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

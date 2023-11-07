@@ -30,5 +30,14 @@ public class Lotto {
         return uniqueNumbers.size() != LOTTO_NUMBERS_SIZE;
     }
 
+    public void checkBonusNumber(int bonusNumber){
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 이미 당첨 번호에 포함된 보너스 번호 입니다.");
+        }
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     // TODO: 추가 기능 구현
 }

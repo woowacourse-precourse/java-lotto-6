@@ -8,4 +8,11 @@ public class LottoView {
         return parseAmount(Console.readLine());
     }
 
+    private int parseAmount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액으로 숫자를 입력해야 합니다.");
+        }
+    }
 }

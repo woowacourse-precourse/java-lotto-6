@@ -3,6 +3,8 @@ package lotto;
 import static lotto.Constants.ErrorConstant.*;
 import static lotto.Constants.LottoConstant.*;
 
+import lotto.game.LottoGame;
+
 
 public class AmountToBuyLotto {
 
@@ -29,8 +31,8 @@ public class AmountToBuyLotto {
         return amount;
     }
 
-    public int dividedByLottoPrice(int lottoPrice) {
-        return amount / lottoPrice;
+    public int dividedByLottoPrice() {
+        return amount / LOTTO_PRICE;
     }
 
     private void isZero(String input) {

@@ -25,7 +25,7 @@ public class LottoGame {
     }
 
     public void saleLotto(AmountToBuyLotto amountToBuyLotto) {
-        int totalCount = amountToBuyLotto.dividedByLottoPrice(LOTTO_PRICE);
+        int totalCount = amountToBuyLotto.dividedByLottoPrice();
         for (int current = INIT_COUNT; current < totalCount; current++) {
             issuedLottos.add(createLotto());
         }

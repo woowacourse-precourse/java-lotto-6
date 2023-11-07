@@ -2,13 +2,15 @@ package lotto.Model;
 
 public class CheckPurchaseAmount {
 
-    private int getNumberOfTicket(int purchaseAmount){
+    public int getNumberOfTicket(int purchaseAmount){
         validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount%1000;
+        int numberOfTicket = purchaseAmount/1000;
+
+        return numberOfTicket;
     }
 
     private void validatePurchaseAmount(int purchaseAmount){
-        if(purchaseAmount%1000==0){
+        if(purchaseAmount%1000!=0){
             throw new IllegalArgumentException();
         }
     }    

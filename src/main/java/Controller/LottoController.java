@@ -5,6 +5,7 @@ import View.OutputView;
 import lotto.Calculator;
 import lotto.Lottos;
 import lotto.WinningNumbers;
+import lotto.WinningStatistics;
 
 public class LottoController {
     private final InputView inputView;
@@ -25,10 +26,7 @@ public class LottoController {
         WinningNumbers winningNumbers = inputView.askWinningNumbers();
 
         Calculator calculator = new Calculator(lottos, winningNumbers);
-
-//        WinningResults winningResults = new WinningResults(calculator.calculateRank(),
-//                calculator.calculateWinningRate(),
-//                rank, winningRate);
-//        outputView.printWinningResults(winningResults);
+        WinningStatistics winningStatistics = calculator.calculateStatistics(amount);
+        outputView.printStatistics(winningStatistics);
     }
 }

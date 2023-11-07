@@ -42,7 +42,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int match(Lotto lotto) {
+    public int matchCountWith(Lotto lotto) {
         return Math.toIntExact(numbers.stream()
                 .filter(lotto::contains)
                 .count());

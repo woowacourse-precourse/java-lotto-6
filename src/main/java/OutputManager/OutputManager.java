@@ -21,7 +21,7 @@ public class OutputManager {
 
     private static String buildResultMsg(LottoStatistics totalResult) {
         StringBuilder msgBuilder = new StringBuilder("");
-        DecimalFormat formatter = new DecimalFormat("###,###.0");
+        DecimalFormat formatter = new DecimalFormat("###,##0.0");
         Map<LottoResult, Integer> statistics = totalResult.getStatistics();
         for (LottoResult result : LottoResult.values()) {
             if (result == LottoResult.OTHER) {

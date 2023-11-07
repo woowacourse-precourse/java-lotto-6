@@ -6,7 +6,7 @@
     - [X] 가격을 입력받는다.
         - [X] 1000원 단위를 입력 받았는지 검증. Customer#validatePrice
     - [] 가격에 맞는 갯수로 로또를 생성한다. Customer#buy
-        - [] 로또 생성 LottoRandomGenerator#generateLotto
+        - [] 로또 생성 LottoRandomGenerator#generateLottoSortedNumbers
             - 유효성검사 Lotto#validateLotto
             - [] 1 ~ 45 사이의 값이여야 한다. Validation#validateLottoNumberRange
             - [] 6자리 숫자여야한다. Validation#validateLottoSize

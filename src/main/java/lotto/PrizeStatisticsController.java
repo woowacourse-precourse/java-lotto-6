@@ -12,7 +12,7 @@ public class PrizeStatisticsController {
     Calculator calculator = new Calculator();
     PrizeStatistics prizeDescribe = PrizeStatistics.getInstance();
 
-    public void calculatePrizeDescribeLogic(LottoBundle lottoBundle, List<Integer> prizeNumber, int bonusNumber) {
+    public void calculatePrizeStatisticsProcess(LottoBundle lottoBundle, List<Integer> prizeNumber, int bonusNumber) {
         // 당첨 통계 계산
         createPrizeDescribe(lottoBundle, prizeNumber, bonusNumber);
         // 줄바꿈하고 당첨 통계 출력

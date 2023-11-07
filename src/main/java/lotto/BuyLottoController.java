@@ -11,7 +11,7 @@ public class BuyLottoController {
     LottoBundle lottoBundle = LottoBundle.getInstance();
     RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-    public void buyLottoLogic(int money) {
+    public void buyLottoProcess(int money) {
         // 구입 금액으로 살 수 있는 로또의 수 계산
         int lottoCount = calculator.calculateMoneyToLottoCount(money);
         // 로또의 수 출력

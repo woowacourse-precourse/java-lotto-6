@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constants.message.PurchasedMessage;
 import lotto.constants.message.RequestMessage;
 import lotto.constants.message.StatisticsMessage;
 
@@ -23,6 +24,11 @@ public class OutputView {
 
     public void printStatisticsStartLine() {
         System.out.println(StatisticsMessage.START_LINE);
+    }
+
+    public void printFormattedLotto(String formattedLotto) {
+        System.out.println(PurchasedMessage.PURCHASED_LOTTO_START
+                + formattedLotto + PurchasedMessage.PURCHASED_LOTTO_END);
     }
 
     public void printFormattedLine(String formattedContent) {

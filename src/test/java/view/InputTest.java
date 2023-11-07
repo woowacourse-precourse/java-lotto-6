@@ -21,7 +21,7 @@ public class InputTest {
 
     @DisplayName("금액 입력이 숫자가 아닐 시 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"a","1,a","a,b","1,2,3,a"})
+    @ValueSource(strings = {"a","-",".","1.0"})
     void inputNotInteger(String input){
         assertThatThrownBy(() -> InputValidator.validateInputPrice(input))
                 .isInstanceOf(NotIntegerException.class);
@@ -40,6 +40,14 @@ public class InputTest {
     void numbersInputHasSpace(String input){
         assertThatThrownBy(() -> InputValidator.validateInputNumbers(input))
                 .isInstanceOf(NullInputException.class);
+    }
+
+    @DisplayName("당첨 숫자들 입력이 숫자가 아닐 시 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a","1,a","a,b","1,2,3,a"})
+    void numbersInputNotInteger(String input){
+        assertThatThrownBy(() -> InputValidator.validateInputNumbers(input))
+                .isInstanceOf(NotIntegerException.class);
     }
 
 

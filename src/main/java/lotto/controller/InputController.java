@@ -24,10 +24,11 @@ public class InputController {
         }
     }
 
-    public void getWinnerNumbersFromUser() {
+    public LottoFromUser getWinnerNumbersFromUser() {
         Lotto lotto = getLottoNumberFromUser();
-        System.out.println(lotto.getLottoNumbers());
         int bonusNumber = getBonusNumberFromUser(lotto);
+
+        return new LottoFromUser(lotto, bonusNumber);
     }
 
     public Lotto getLottoNumberFromUser() {
@@ -82,7 +83,7 @@ public class InputController {
 
     public void validateNumberDuplication(int number, List<Integer> numbers) {
         if (numbers.contains(number)) {
-            ErrorMessage.lottoNumberRangeException();
+            ErrorMessage.lottoNUmberDuplicationException();
             throw new IllegalArgumentException();
         }
     }
@@ -90,8 +91,14 @@ public class InputController {
     public int getBonusNumberFromUser(Lotto lotto) {
         OutputView.askBonusNumber();
 
-        int bonusNumber = parseInt(Console.readLine());
+        try {
+            int bonusNumber = validateNumber(Console.readLine());
+            validateNumberRange(bonusNumber);
+            validateNumberDuplication(bonusNumber, lotto.getLottoNumbers());
 
-        return bonusNumber;
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return getBonusNumberFromUser(lotto);
+        }
     }
 }

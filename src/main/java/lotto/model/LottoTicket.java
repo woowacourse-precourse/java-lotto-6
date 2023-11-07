@@ -1,13 +1,22 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoTicket {
     private final List<Lotto> lottoList;
+    public Map<Integer, Integer> rank;
 
     public LottoTicket(List<Lotto> lottoList) {
         this.lottoList = new ArrayList<>(lottoList);
+
+        // Initialize rank map with values from 1 to 5 mapped to 0
+        this.rank = new HashMap<>();
+        for (int i = 1; i <= 5; i++) {
+            rank.put(i, 0);
+        }
     }
 
     public static LottoTicket generate(int numberOfLotto) {
@@ -31,18 +40,23 @@ public class LottoTicket {
 
     private int calculatePrize(int numberOfWinningNumbers, boolean bonusMatches) {
         if (numberOfWinningNumbers == 6) {
+            increaseRank(1);
             return Prize.FIRST.getPrize();
         }
         if (numberOfWinningNumbers == 5 && bonusMatches) {
+            increaseRank(2);
             return Prize.SECOND.getPrize();
         }
         if (numberOfWinningNumbers == 5) {
+            increaseRank(3);
             return Prize.THIRD.getPrize();
         }
         if (numberOfWinningNumbers == 4) {
+            increaseRank(4);
             return Prize.FOURTH.getPrize();
         }
         if (numberOfWinningNumbers == 3) {
+            increaseRank(5);
             return Prize.FIFTH.getPrize();
         }
         return 0;
@@ -54,6 +68,10 @@ public class LottoTicket {
         }
         double earningRate = ((double) totalPrize / purchaseAmount) * 100;
         return Math.round(earningRate * 100) / 100.0;
+    }
+
+    public void increaseRank(int key) {
+        rank.put(key, rank.get(key) + 1);
     }
 
 

@@ -26,7 +26,8 @@ public class Application {
                 new LotteryResultsCalculator(operator), userService);
 
         InputValidator validator = new InputValidator();
-        InputInterface in = new InputInterface(Console::readLine, System.out::println, validator);
+        InputConverter converter = new InputConverter(validator);
+        InputInterface in = new InputInterface(Console::readLine, System.out::println, converter);
         NumberFormat numberFormat = NumberFormat.getIntegerInstance();
         OutputInterface out = new OutputInterface(numberFormat);
 

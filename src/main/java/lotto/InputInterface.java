@@ -21,17 +21,16 @@ public class InputInterface {
     private Input in;
     private Output out;
 
-    private InputValidator validator;
+    private InputConverter converter;
 
-    public InputInterface(Input input, Output output, InputValidator validator) {
+    public InputInterface(Input input, Output output, InputConverter converter) {
         this.in = input;
         this.out = output;
-        this.validator = validator;
+        this.converter = converter;
     }
 
     public long getPurchasedAmount() {
         out.println(INPUT_PURCHASE_AMOUNT_TEXT);
-
         return getValidPurchasedAmount();
     }
 
@@ -48,71 +47,31 @@ public class InputInterface {
     private long getValidPurchasedAmount() {
         try {
             String input = in.readLine();
-            long purchaseAmount = convertToPurchasedAmount(input);
+            long purchaseAmount = converter.convertToPurchasedAmount(input);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
+            out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getPurchasedAmount();
-        }
-    }
-
-    private long convertToPurchasedAmount(String input) {
-        try {
-            long purchasedAmount = Long.parseLong(input);
-            validator.checkIfNegativeLong(purchasedAmount);
-            validator.checkIfDivisibleByLotteryPrice(purchasedAmount);
-            return purchasedAmount;
-        } catch (NumberFormatException e) {
-            throw new InvalidPurchasedAmountException(PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT,
-                    input, e);
         }
     }
 
     private List<Integer> getValidWinningNumbers() {
         try {
             String input = in.readLine();
-            return convertToWinningNumbers(input);
+            return converter.convertToWinningNumbers(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
+            out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getValidWinningNumbers();
-        }
-    }
-
-    private List<Integer> convertToWinningNumbers(String input) {
-        try {
-            List<Integer> tokens = Arrays.stream(input.split(INPUT_DELIMITER))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(toList());
-            validator.checkIfNumbersBetween(1, 45, tokens);
-            validator.checkIfNumbersIs6UniqueNumbers(tokens);
-
-            return tokens;
-        } catch (NumberFormatException e) {
-            throw new InvalidWinningNumbersException(
-                    WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT, input, e);
         }
     }
 
     private int getValidBonusNumber(List<Integer> numbers) {
         try {
             String input = in.readLine();
-            return convertToBonusNumber(input, numbers);
+            return converter.convertToBonusNumber(input, numbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
+            out.println(ERROR_TEXT_FORMAT.format(e.getMessage()));
             return getValidBonusNumber(numbers);
         }
     }
-
-    private int convertToBonusNumber(String input, List<Integer> numbers) {
-        try {
-            int bonusNumber = Integer.parseInt(input);
-            validator.checkIfNumberBetween(1, 45, bonusNumber);
-            validator.checkIfNumberIsInWinningNumber(bonusNumber, numbers);
-            return bonusNumber;
-        } catch (NumberFormatException e) {
-            throw new InvalidBonusNumberException(BONUS_NUMBER_CANNOT_CONVERT_TO_INTEGER_TEXT, input, e);
-        }
-    }
-
 }

@@ -17,11 +17,9 @@ public class LottoService {
 
     private Map<Ranking, Integer> winningResult;
 
-    public String makePurchaseResultOutputStatement(int count) {
+    public String makePurchaseResultOutputStatement(List<Lotto> lottoList, int purchaseCount) {
         StringBuilder result = new StringBuilder();
-        result.append(count).append(PURCHASE_X_COUNT + "\n");
-
-        List<Lotto> lottoList = generateLottoList(count);
+        result.append(purchaseCount).append(PURCHASE_X_COUNT + "\n");
 
         for (Lotto lotto : lottoList) {
             result.append(lotto.getStatus()).append("\n");
@@ -30,15 +28,7 @@ public class LottoService {
         return result.toString();
     }
 
-    public List<Lotto> generateLottoList(int count) {
-        List<Lotto> result = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
-            result.add(generateLotto());
-        }
-
-        return result;
-    }
 
     public Lotto generateLotto() {
         List<Integer> list = generateLottoCombination();

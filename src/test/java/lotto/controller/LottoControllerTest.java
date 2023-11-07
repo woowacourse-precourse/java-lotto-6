@@ -1,17 +1,24 @@
 package lotto.controller;
 
-import static lotto.utils.StringUtils.*;
-import static lotto.view.ErrorMessage.*;
-import static org.assertj.core.api.Assertions.*;
+import static lotto.domain.Ranking.SIXTH;
+import static lotto.utils.StringUtils.countOccurrences;
+import static lotto.view.ErrorMessage.NOT_A_NUMBER;
+import static lotto.view.ErrorMessage.RECEIVED_MONEY_NOT_MULTIPLE_OF_1000;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
-import org.junit.jupiter.api.*;
+import lotto.domain.Lotto;
+import lotto.service.LottoService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-
-
+import java.util.List;
 
 class LottoControllerTest {
     private final PrintStream standardOut = System.out;
@@ -25,7 +32,7 @@ class LottoControllerTest {
 
     @BeforeEach
     public void beforeEach() {
-        lottoController = new LottoController();
+        lottoController = new LottoController(new LottoService());
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
@@ -77,9 +84,11 @@ class LottoControllerTest {
     void purchaseOneLottoWhenInputMoneyIs0() {
         // given
         int totalPurchaseAmount = 0;
+        int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
+        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
 
         // when
-        lottoController.showPurchaseResult(totalPurchaseAmount);
+        lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
         String result = outputStreamCaptor.toString();
         int count = countOccurrences(result, "[");
 
@@ -94,9 +103,11 @@ class LottoControllerTest {
     void purchaseOneLottoWhenInputMoneyIs1000() {
         // given
         int totalPurchaseAmount = 1000;
+        int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
+        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
 
         // when
-        lottoController.showPurchaseResult(totalPurchaseAmount);
+        lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
         String result = outputStreamCaptor.toString();
         int count = countOccurrences(result, "[");
 
@@ -110,14 +121,29 @@ class LottoControllerTest {
     void purchaseFiveLottoWhenInputMoneyIs5000() {
         // given
         int totalPurchaseAmount = 5000;
+        int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
+        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
 
         // when
-        lottoController.showPurchaseResult(totalPurchaseAmount);
+        lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
         String result = outputStreamCaptor.toString();
         int count = countOccurrences(result, "[");
 
         // then
         assertThat(result).startsWith("5개를 구매했습니다.");
         assertThat(count).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("기능08 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
+    void generateLottoListMakeLottoAsManyAsCount() {
+        // given
+        int count = 5;
+
+        // when
+        List<Lotto> lottoList = lottoController.generateLottoList(5);
+
+        // then
+        assertThat(lottoList).hasSize(count);
     }
 }

@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.domain.Ranking.*;
 import static org.assertj.core.api.Assertions.*;
 
+import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 import lotto.utils.StringUtils;
@@ -15,10 +16,12 @@ import java.util.Map;
 
 class LottoServiceTest {
     private LottoService lottoService;
+    private LottoController lottoController;
 
     @BeforeEach
     void beforeEach() {
         this.lottoService = new LottoService();
+        this.lottoController = new LottoController(this.lottoService);
     }
 
     @Test
@@ -61,19 +64,6 @@ class LottoServiceTest {
         // when, then
         assertThatCode(() -> lottoService.generateLotto())
                 .doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("기능08 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
-    void generateLottoListMakeLottoAsManyAsCount() {
-        // given
-        int count = 5;
-
-        // when
-        List<Lotto> lottoList = lottoService.generateLottoList(5);
-
-        // then
-        assertThat(lottoList).hasSize(count);
     }
 
     @Test
@@ -171,9 +161,9 @@ class LottoServiceTest {
     void purchaseResultOutputStatementHaveLottosAsManyAsInputNumber() {
         // given
         int count = 5;
-
+        List<Lotto> lottoList = lottoController.generateLottoList(count);
         // when
-        String result = lottoService.makePurchaseResultOutputStatement(count);
+        String result = lottoService.makePurchaseResultOutputStatement(lottoList,count);
         int executionCount = StringUtils.countOccurrences(result, "[");
 
         // then
@@ -266,7 +256,7 @@ class LottoServiceTest {
     void makeWinningResultOutputStatementCorrectly() {
         // given
         int numberPurchase = 1000;
-        List<Lotto> lottoList = lottoService.generateLottoList(numberPurchase);
+        List<Lotto> lottoList = lottoController.generateLottoList(numberPurchase);
         Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
@@ -284,7 +274,7 @@ class LottoServiceTest {
     void makeWinningResultOutputStatementCorrectlyWhenPurchaceZeroAmountLotto() {
         // given
         int numberPurchase = 0;
-        List<Lotto> lottoList = lottoService.generateLottoList(numberPurchase);
+        List<Lotto> lottoList = lottoController.generateLottoList(numberPurchase);
         Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 

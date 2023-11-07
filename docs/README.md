@@ -26,11 +26,9 @@
 
     ✏️ 기능34. 로또 구매 결과에 대한 출력문을 작성한다. ➡ makePurchaseResultOutputStatement()
 
-        ✏️ 기능8. 지정된 갯수만큼 로또를 발행하고 List 형태로 반환한다. ➡ generateLottoList() 
-        
-            ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ generateLotto() 
+    ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ generateLotto() 
             
-                ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
+    ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
 
     ✏️ 기능35. 로또 당첨 결과에 대한 출력문을 작성한다. ➡ makeWinningResultOuputStatement()
 
@@ -58,7 +56,9 @@
         
         ✏️ 기능19. 검증을 통과하면 로또 구매 개수를 반환한다 ➡ 기본 메서드 사용
 
-    ✏️ 기능20. 로또 구매 개수만큼 로또를 구매하고 로또 구매 결과를 보여준다. ➡ showPurchaseResult() 
+    ✏️ 기능8. 로또 구매 개수만큼 로또를 구매한다. ➡ generateLottoList() 
+
+    ✏️ 기능20. 로또 구매 결과를 출격한다. ➡ showPurchaseResult()  
 
     ✏️ 기능21. 로또 당첨 번호를 입력받는다. ➡ registerWinningLottoCombination() 
 

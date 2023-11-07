@@ -24,9 +24,9 @@ public class LottoTicket {
 
     public List<LottoStatus> compareLotto(WinningNumbers winningNumbers) {
         List<LottoStatus> lottoStatuses = new ArrayList<>();
-        for (int i = 0; i < lottos.size(); i++) {
-            int correctCount = lottos.get(i).matchNumbers(winningNumbers.getWinningLotto());
-            boolean hasBonusNumber = lottos.get(i).contains(winningNumbers.getBonusNumber());
+        for (Lotto lotto : lottos) {
+            int correctCount = lotto.matchNumbers(winningNumbers.getWinningLotto());
+            boolean hasBonusNumber = lotto.contains(winningNumbers.getBonusNumber());
             lottoStatuses.add(LottoStatus.getLottoStatus(correctCount, hasBonusNumber));
         }
         return lottoStatuses;

@@ -7,8 +7,11 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+
+import static lotto.domain.LottoConstant.PRICE_PER_LOTTO;
 
 public class LottoController {
 
@@ -24,20 +27,72 @@ public class LottoController {
     }
 
     public void run() {
-        String inputLottoPrice = inputView.inputLottoPrice();
-        int price = Integer.parseInt(inputLottoPrice);
+        int price;
+        int lottoSheets;
 
-        int lottoSheets = lottoService.calculateLottoSheet(price);
+        price = purchaseLotto();
+        lottoSheets = price / PRICE_PER_LOTTO;
+
         outputView.printLottoQuantity(lottoSheets);
+
         List<Lotto> lottos = lottoService.generateLotto(lottoSheets);
         outputView.printLottoNumbers(lottos);
 
-        String inputLottoNumbers = inputView.inputLottoNumbers();
+        List<Integer> lottoNumbers = writeUserLottoNumbers();
+        int bonusNumber = writeUserBonusNumber(lottoNumbers);
 
-        String inputLottoBonusNumber = inputView.inputLottoBonusNumber();
+        UserLotto userLotto = new UserLotto(lottoNumbers, bonusNumber);
 
-        UserLotto userLotto = lottoService.purchaseLotto(inputLottoNumbers, inputLottoBonusNumber);
+        lottoResult(price, lottos, userLotto);
+    }
 
+    private int purchaseLotto() {
+        int price = 0;
+        boolean isRetry = true;
+
+        while(isRetry) {
+            try {
+                price = inputView.inputLottoPrice();
+                isRetry = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return price;
+    }
+
+    private List<Integer> writeUserLottoNumbers() {
+        boolean isRetry = true;
+        List<Integer> lottoNumbers = new ArrayList<>();
+
+        while (isRetry) {
+            try {
+                lottoNumbers = inputView.inputLottoNumbers();
+                isRetry = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                lottoNumbers.clear();
+            }
+        }
+        return lottoNumbers;
+    }
+
+    private int writeUserBonusNumber(List<Integer> lottoNumbers) {
+        boolean isRetry = true;
+        int bonusNumber = 0;
+
+        while (isRetry) {
+            try {
+                bonusNumber = inputView.inputLottoBonusNumber(lottoNumbers);
+                isRetry = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private void lottoResult(int price, List<Lotto> lottos, UserLotto userLotto) {
         EnumMap<LottoRank, Integer> lottoResult = lottoService.getLottoResult(lottos, userLotto);
 
         outputView.printLotteryResult(lottoResult);
@@ -45,6 +100,5 @@ public class LottoController {
         double ratio = lottoService.calculatePrizeRatio(lottoResult, price);
 
         outputView.printPrizeRatio(ratio);
-
     }
 }

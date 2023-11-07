@@ -43,13 +43,23 @@ public class InputView {
         }
     }
 
-    public static Lotto inputWinNumber() {
+    private static Lotto inputWinNumber() {
         try {
             System.out.println(INPUT_WIN_NUMBER_MESSAGE);
             return new Lotto(toList(Console.readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinNumber();
+        }
+    }
+
+    private static int inputBonusNumber() {
+        try {
+            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+            return toInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
         }
     }
 
@@ -60,16 +70,6 @@ public class InputView {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT_NUMBER_ERROR_MESSAGE);
-        }
-    }
-
-    public static int inputBonusNumber() {
-        try {
-            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-            return toInt(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputBonusNumber();
         }
     }
 }

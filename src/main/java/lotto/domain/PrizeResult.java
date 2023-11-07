@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.*;
 
 public class PrizeResult {
-    private static Map<Prize, Integer> prizeResult;
+    private Map<Prize, Integer> prizeResult;
 
     private PrizeResult(Map<Prize, Integer> prizeResult) {
         this.prizeResult = prizeResult;
@@ -14,15 +14,11 @@ public class PrizeResult {
     }
 
     private static Map<Prize, Integer> createPrizeResult(Lottos lottos, WinNumber winNumber) {
-        prizeResult = new HashMap<>();
+        Map<Prize, Integer> prizeResult = new HashMap<>();
         for (Lotto lotto : lottos.getLottos()) {
             Prize prize = Prize.valueOf(getMatchCount(lotto, winNumber), hasBonus(lotto, winNumber));
             prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1);
         }
-        return prizeResult;
-    }
-
-    public static Map<Prize, Integer> getPrizeResult() {
         return prizeResult;
     }
 
@@ -42,5 +38,9 @@ public class PrizeResult {
 
     private static boolean hasBonus(Lotto lotto, WinNumber winNumber) {
         return lotto.getNumber().contains(winNumber.getBonusNumber());
+    }
+
+    public Map<Prize, Integer> getPrizeResult() {
+        return prizeResult;
     }
 }

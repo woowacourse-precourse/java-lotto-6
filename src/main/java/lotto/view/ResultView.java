@@ -42,6 +42,6 @@ public class ResultView {
     }
 
     public static void showReturnRate(PrizeResult prizeResult, Money money) {
-        System.out.printf(RETURN_RATE_MESSAGE, prizeResult.calculateReturnRate(PrizeResult.getPrizeResult(), money));
+        System.out.printf(RETURN_RATE_MESSAGE, prizeResult.calculateReturnRate(prizeResult.getPrizeResult(), money));
     }
 }

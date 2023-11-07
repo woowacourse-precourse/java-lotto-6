@@ -2,6 +2,7 @@ package ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.stream.Stream;
 import ui.validator.BonusNumberValidator;
 import ui.validator.CommonNumberValidator;
@@ -15,50 +16,47 @@ class InputView {
      * @return 1000 단위로 끊어진 로또 구매 금액.
      */
     public static int getMoney() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                int money = Integer.parseInt(input);
-                MoneyValidator.verify(money);
-                return money;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return repeat(() -> {
+            String input = Console.readLine();
+            int money = Integer.parseInt(input);
+            MoneyValidator.verify(money);
+            return money;
+        });
     }
 
     public static List<Integer> getCommonNumbers() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                String[] inputNumbers = input.split(",");
+        return repeat(() -> {
+            String input = Console.readLine();
+            String[] inputNumbers = input.split(",");
 
-                List<Integer> integers = Stream.of(inputNumbers).map(Integer::parseInt).toList();
+            List<Integer> integers = Stream.of(inputNumbers).map(Integer::parseInt).toList();
 
-                CommonNumberValidator.verify(integers);
+            CommonNumberValidator.verify(integers);
 
-                return integers;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+            return integers;
+        });
     }
 
     public static int getBonusNumber(List<Integer> commonNumbers) {
+        return repeat(() -> {
+            String input = Console.readLine();
+            int number = Integer.parseInt(input);
+            BonusNumberValidator.verify(commonNumbers, number);
+            return number;
+
+        });
+    }
+
+    private static <R> R repeat(Callable<R> supplier) {
         while (true) {
             try {
-                String input = Console.readLine();
-                int number = Integer.parseInt(input);
-                BonusNumberValidator.verify(commonNumbers, number);
-                return number;
+                return supplier.call();
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("[ERROR] Unexpected Exception");
             }
         }
     }

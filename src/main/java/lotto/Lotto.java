@@ -62,16 +62,16 @@ public class Lotto {
 
     private Rank getRank(Integer matchingNumberCount, Integer bonusNumberCount) {
         if (matchingNumberCount == 6) {
-            return Rank.FIRSTPLACE;
+            return Rank.FIRST_PLACE;
         } else if (matchingNumberCount == 5 && bonusNumberCount == 1) {
-            return Rank.SECONDPLACE;
+            return Rank.SECOND_PLACE;
         } else if (matchingNumberCount == 5) {
-            return Rank.THIRDPLACE;
+            return Rank.THIRD_PLACE;
         } else if (matchingNumberCount == 4) {
-            return Rank.FOURTHPLACE;
+            return Rank.FOURTH_PLACE;
         } else if (matchingNumberCount == 3) {
-            return Rank.FIFTHPLACE;
+            return Rank.FIFTH_PLACE;
         }
-        return Rank.OTHERPLACE;
+        return Rank.OTHER_PLACE;
     }
 }

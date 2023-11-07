@@ -17,4 +17,8 @@ public class UserService {
         user.setLottoCnt(cnt);
         user.setLottos(lottos);
     }
+
+    public User getUser() {
+        return this.user;
+    }
 }

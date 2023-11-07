@@ -34,8 +34,8 @@ public class User {
         this.lottoCnt = lottoCnt;
     }
 
-    public void setTotalPrize(long rankMoney) {
-        this.totalPrize = rankMoney;
+    public void setTotalPrize(long totalPrize) {
+        this.totalPrize = totalPrize;
     }
 
     public void addCntrank(Rank rank){
@@ -46,5 +46,9 @@ public class User {
 
         Integer beforeCnt = cntRank.get(rank);
         cntRank.put(rank, beforeCnt + 1);
+    }
+
+    public HashMap<Rank, Integer> getCntRank() {
+        return cntRank;
     }
 }

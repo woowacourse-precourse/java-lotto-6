@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.util.Constant.LOTTO_NUMBERS_COUNT;
 import static lotto.util.ErrorMessage.ERROR_LOTTO_DUPLICATE;
 import static lotto.util.ErrorMessage.ERROR_LOTTO_SIZE;
 
@@ -16,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ERROR_LOTTO_SIZE);
         }
         validateDuplicate(numbers);
@@ -25,7 +26,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicate = new HashSet<>(numbers);
-        if (nonDuplicate.size() != 6) {
+        if (nonDuplicate.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ERROR_LOTTO_DUPLICATE);
         }
     }

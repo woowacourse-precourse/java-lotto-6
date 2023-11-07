@@ -10,7 +10,7 @@ import java.util.Map;
 public class OutputView {
     private static final String outputResultMessage = "당첨통계\n---";
     private static final String outputLottoStringBase = "%d개를 구매했습니다.\n";
-    private static final String outputResultBase = "%s (%d원) -  %d개\n";
+    private static final String outputResultBase = "%s (%s원) -  %d개\n";
 
     public void outputLotto(List<Lotto> lottos) {
         String outputLotto = String.format(outputLottoStringBase, lottos.size());
@@ -24,6 +24,6 @@ public class OutputView {
     public void outputRank(Map<Rank, Integer> rank) {
         System.out.println(outputResultMessage);
         Arrays.stream(Rank.values()).forEach(n -> System.out.printf(outputResultBase,
-                n.getReply(), n.getMoney(), rank.getOrDefault(n, 0)));
+                n.getReply(), n.getMoenyWithComma(), rank.getOrDefault(n, 0)));
     }
 }

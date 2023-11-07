@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public enum Rank {
@@ -39,5 +40,10 @@ public enum Rank {
 
         return Arrays.stream(Rank.values()).filter(Rank -> Rank.shot == shot)
                 .findAny().orElse(Rank.NONE);
+    }
+
+    public String getMoenyWithComma() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(money);
     }
 }

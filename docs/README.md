@@ -8,8 +8,8 @@
 - [x] 로또 발행 
   - [x] 입력받은 금액만큼 로또 발행 - LottoPublisher#publishLottosByAmount()
     - [x] 발행 가능한 로또 개수 계산 - LottoPublisher#countLottoTicketsAvailableForPurchase()
-    - [ ] "0개를 구매했습니다." - OutputView#printIssuedLotto()
-    - [ ] "[0, 0, 0, 0, 0, 0]" - OutputView#printIssuedLotto()
+    - [x] "0개를 구매했습니다." - OutputView#printPublishedLottoCount()
+    - [x] "[0, 0, 0, 0, 0, 0]" - OutputView#printPublishedLottos()
     - [x] 중복되지 않는 랜덤 6개 숫자 - RandomNumberGenerator#createUniqueRandomNumbers()
       - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
     - [x] 오름차순 정렬 - RandomNumberGenerator#sortRandomNumbers()

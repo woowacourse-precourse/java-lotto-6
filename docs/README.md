@@ -43,6 +43,7 @@ ________
 - [x] ErrorMsg eunm 클래스 추가
 - [x] `default` 로또 상수 메시지 클래스 추가
 - [x] `Lotto` 출력 관련 enum 클래스 추가
+- [x] `LottoPrice`로또 당첨 가격 관련 enum 추가
 
 ________
 

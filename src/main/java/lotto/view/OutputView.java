@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class OutputView {
 
+    public static final double ROUNDING_PRECISION = 100.0;
     private final Map<Rank, String> rankPrinter;
 
     public OutputView() {
@@ -49,7 +50,7 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        rateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0;
+        rateOfReturn = Math.round(rateOfReturn * ROUNDING_PRECISION) / ROUNDING_PRECISION;
 
         System.out.println(StringUtil.doubleToString(rateOfReturn));
     }

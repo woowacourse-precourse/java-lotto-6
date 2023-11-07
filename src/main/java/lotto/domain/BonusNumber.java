@@ -3,6 +3,8 @@ package lotto.domain;
 
 public class BonusNumber {
 
+    private static final int LOTTO_MINIMUM_VALUE = 1;
+    private static final int LOTTO_MAXIMUM_VALUE = 45;
     private final int bonusNumber;
 
     private BonusNumber(Lotto answerLotto, int bonusNumber) {
@@ -20,13 +22,13 @@ public class BonusNumber {
     }
 
     private void validateDuplicateBonusNumber(Lotto answerLotto, int bonusNumber) {
-        if(answerLotto.containsBonusNumber(bonusNumber)) {
+        if (answerLotto.containsBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] : 정답 번호와 동일한 보너스 번호가 있으면 안됩니다.");
         }
     }
 
     private void validateBonusNumberSize(int bonusNumber) {
-        if(bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MINIMUM_VALUE || bonusNumber > LOTTO_MAXIMUM_VALUE) {
             throw new IllegalArgumentException("[ERROR] : 보너스 번호는 1~45 사이 입니다.");
         }
     }

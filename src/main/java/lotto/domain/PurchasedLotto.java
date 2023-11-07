@@ -10,6 +10,7 @@ import static lotto.utils.PurchaseManager.dividePurchaseAmount;
 
 public class PurchasedLotto {
 
+    private static final int ISSUE_START_VALUE = 0;
     private final List<Lotto> purchasedLotto;
 
     private PurchasedLotto(int purchaseAmount, NumberGenerator numberGenerator) {
@@ -21,7 +22,7 @@ public class PurchasedLotto {
     }
 
     private List<Lotto> issueLotto(int purchaseAmount, NumberGenerator numberGenerator) {
-        return IntStream.range(0, dividePurchaseAmount(purchaseAmount))
+        return IntStream.range(ISSUE_START_VALUE, dividePurchaseAmount(purchaseAmount))
                 .mapToObj(i -> new Lotto(numberGenerator.generateNumber()))
                 .toList();
     }

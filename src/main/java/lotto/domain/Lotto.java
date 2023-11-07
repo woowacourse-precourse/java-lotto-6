@@ -3,6 +3,11 @@ package lotto.domain;
 import java.util.*;
 
 public class Lotto {
+
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int LOTTO_MINIMUM_VALUE = 1;
+    private static final int LOTTO_MAXIMUM_VALUE = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] : 로또 번호는 6개 입니다.");
         }
     }
@@ -30,7 +35,7 @@ public class Lotto {
 
     private void validateNumberLength(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MINIMUM_VALUE || number > LOTTO_MAXIMUM_VALUE) {
                 throw new IllegalArgumentException("[ERROR] : 로또 번호는 1부터 45 사이어야 합니다.");
             }
         }

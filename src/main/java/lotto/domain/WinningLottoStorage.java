@@ -6,6 +6,9 @@ import java.util.Map;
 
 public class WinningLottoStorage {
 
+    private static final int RANK_INIT_VALUE = 0;
+    private static final int RANK_PLUS_VALUE = 1;
+    private static final int RATE_OF_RETURN_MULTIPLY_VALUE = 100;
     private final Map<Rank, Integer> rankStorage;
 
     public WinningLottoStorage() {
@@ -14,19 +17,19 @@ public class WinningLottoStorage {
     }
 
     private void initRankStorage() {
-        rankStorage.put(Rank.CORRECT_ZERO, 0);
-        rankStorage.put(Rank.CORRECT_ONE, 0);
-        rankStorage.put(Rank.CORRECT_TWO, 0);
-        rankStorage.put(Rank.CORRECT_THREE, 0);
-        rankStorage.put(Rank.CORRECT_FOUR, 0);
-        rankStorage.put(Rank.CORRECT_FIVE, 0);
-        rankStorage.put(Rank.CORRECT_FIVE_BONUS, 0);
-        rankStorage.put(Rank.CORRECT_SIX, 0);
+        rankStorage.put(Rank.CORRECT_ZERO, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_ONE, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_TWO, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_THREE, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_FOUR, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_FIVE, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_FIVE_BONUS, RANK_INIT_VALUE);
+        rankStorage.put(Rank.CORRECT_SIX, RANK_INIT_VALUE);
     }
 
     public void store(Rank rank) {
         Integer count = rankStorage.get(rank);
-        rankStorage.put(rank, count + 1);
+        rankStorage.put(rank, count + RANK_PLUS_VALUE);
     }
 
     public int getRank(Rank rank) {
@@ -34,7 +37,7 @@ public class WinningLottoStorage {
     }
 
     public double getRateOfReturn(int purchaseAmount) {
-        return calculateWinningAmount() / (double)purchaseAmount * 100;
+        return calculateWinningAmount() / (double)purchaseAmount * RATE_OF_RETURN_MULTIPLY_VALUE;
     }
 
     private double calculateWinningAmount() {

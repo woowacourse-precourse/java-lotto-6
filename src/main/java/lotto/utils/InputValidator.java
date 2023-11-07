@@ -5,6 +5,8 @@ import java.util.List;
 
 public class InputValidator {
 
+    private static final String LOTTO_NUMBER_SEPARATOR = ",";
+
     public static void validateAmountNotNumber(String purchaseAmount) {
         try {
             Integer.parseInt(purchaseAmount);
@@ -19,7 +21,7 @@ public class InputValidator {
     }
 
     private static List<String> parseAnswerNumberToList(String answerNumber) {
-        return Arrays.stream(answerNumber.split(","))
+        return Arrays.stream(answerNumber.split(LOTTO_NUMBER_SEPARATOR))
                 .filter(s -> !s.isEmpty())
                 .toList();
     }

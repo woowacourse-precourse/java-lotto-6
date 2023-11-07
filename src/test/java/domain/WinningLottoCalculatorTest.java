@@ -83,5 +83,21 @@ class WinningLottoCalculatorTest {
 		// then
 		Assertions.assertThat(winningLottoCalculator.getLottoPrizes()).isEqualTo(result);
 	}
+
+	@DisplayName("당첨 금액 계산")
+	@Test
+	public void calculateLottoPrizeTotalMoney() {
+		//given
+		Long excepted = 2031555000L;
+		PurchaseLotto purchaseLotto = getPurchaseLotto();
+		WinningLotto winningLotto = getWinningLotto();
+
+		// when
+		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
+		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto, winningLotto);
+
+		//then
+		Assertions.assertThat(winningLottoCalculator.getTotalPrizeMoney()).isEqualTo(excepted);
+	}
 }
 

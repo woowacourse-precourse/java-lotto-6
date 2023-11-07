@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class WinningLottoCalculator {
 	private final HashMap<LottoPrize, Integer> lottoPrizes;
-	private double totalPrizeMoney;
+	private Long totalPrizeMoney;
 
 	public WinningLottoCalculator() {
 		this.lottoPrizes = new HashMap<>() {{
@@ -21,6 +21,10 @@ public class WinningLottoCalculator {
 
 	public HashMap<LottoPrize, Integer> getLottoPrizes() {
 		return lottoPrizes;
+	}
+
+	public Long getTotalPrizeMoney() {
+		return totalPrizeMoney;
 	}
 
 	public long getMatchCount(Lotto lotto, WinningLotto winningLotto) {
@@ -48,5 +52,11 @@ public class WinningLottoCalculator {
 	private void increaseLottoPrizes(long matchCount, boolean bonusNumberMatchLotto) {
 		LottoPrize lottoPrizeType = LottoPrize.getLottoPrizeType(matchCount, bonusNumberMatchLotto);
 		lottoPrizes.put(lottoPrizeType, lottoPrizes.get(lottoPrizeType) + 1);
+		plusTotalPrizeMoney(lottoPrizeType);
 	}
+
+	private void plusTotalPrizeMoney(LottoPrize lottoPrizeType) {
+		this.totalPrizeMoney += lottoPrizeType.getPrizeMoney();
+	}
+
 }

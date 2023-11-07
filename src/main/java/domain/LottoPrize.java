@@ -16,6 +16,10 @@ public enum LottoPrize {
 		this.prizeMoney = prizeMoney;
 	}
 
+	public int getPrizeMoney() {
+		return prizeMoney;
+	}
+
 	public static LottoPrize getLottoPrizeType(long matchCount, boolean matchBonusNumber) {
 		if (isFirstPrize(matchCount)) {
 			return FIRST_PRIZE;

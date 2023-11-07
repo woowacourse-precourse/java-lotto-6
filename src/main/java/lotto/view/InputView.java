@@ -36,7 +36,7 @@ public class InputView {
         return winningNumbers;
     }
 
-    public BonusNumber inputBonusNumber() {
+    public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
         BonusNumber bonusNumber = null;
 
         while (!isValidBonusNumber(bonusNumber)) {
@@ -45,7 +45,7 @@ public class InputView {
 
             Integer validBonusNumber = parseValidBonusNumber(inputBonusNumber);
 
-            bonusNumber = createBonusNumber(validBonusNumber);
+            bonusNumber = createBonusNumber(validBonusNumber, winningNumbers);
         }
         return bonusNumber;
     }
@@ -114,9 +114,9 @@ public class InputView {
 
     }
 
-    private BonusNumber createBonusNumber(Integer validBonus) {
+    private BonusNumber createBonusNumber(Integer validBonus, WinningNumbers winningNumbers) {
         if (isValidBonus(validBonus)) {
-            return BonusNumber.from(validBonus);
+            return BonusNumber.of(validBonus, winningNumbers);
         }
         return null;
     }

@@ -22,7 +22,7 @@ public class LottoGame {
         outputView.printPurchaseLottos(purchaseLottos);
 
         WinningNumbers winningNumbers = inputWinningNumbers();
-        BonusNumber bonusNumber = inputBonusNumber();
+        BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
 
         lottoResult = purchaseLottos.calculateLottoResult(winningNumbers, bonusNumber);
 
@@ -38,7 +38,7 @@ public class LottoGame {
         return inputView.inputWinningNumbers();
     }
 
-    private BonusNumber inputBonusNumber() {
-        return inputView.inputBonusNumber();
+    private BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
+        return inputView.inputBonusNumber(winningNumbers);
     }
 }

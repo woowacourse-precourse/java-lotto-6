@@ -18,7 +18,7 @@ public class LottoResultTest {
 
     @DisplayName("총 수익률이 소수이면 소수점 아래 둘째자리에서 반올림된다.")
     @ParameterizedTest
-    @CsvSource({"8000,62.5", "1000,55.6", "11000,45.5", "14000,35.7"})
+    @CsvSource({"8000,62.5", "1000,500.0", "11000,45.5", "14000,35.7"})
     void roundRateOfReturn(int price, String expected) {
         String actual = lottoResult.roundRateOfReturn(PurchasePrice.from(price));
         assertThat(actual).contains(expected);

@@ -30,7 +30,7 @@ class LottoTest {
             "1,2,3,4,5,7,7", "1,2,3,4,5,6,6"})
     void checkWinningCount(int lotto1, int lotto2, int lotto3, int lotto4, int lotto5, int lotto6, int expectedCount) {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = BonusNumber.from(7);
+        BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers);
 
         Lotto lotto = new Lotto(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6));
         LottoResultStatus resultStatus = lotto.getLottoResultStatus(winningNumbers, bonusNumber);

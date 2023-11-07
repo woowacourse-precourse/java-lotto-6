@@ -64,6 +64,7 @@ public class LottoController {
             bonusMessage = isBonusMessage(matchNumber, bonusMessage, bonusState);
             matchNumber = isBonusMatchNumber(matchNumber, bonusState);
             outputView.printLottoResult(matchNumber, rewardIndex, bonusMessage, lottoWinners[matchNumber - 3]);
+            bonusState = cheackBonusLottoTime(matchNumber, bonusState);
         }
     }
 
@@ -80,5 +81,9 @@ public class LottoController {
             matchNumber--;
         }
         return matchNumber;
+    }
+
+    private boolean cheackBonusLottoTime(int matchNumber, boolean bonusState) {
+        return matchNumber == LOTTO_BONUS_NUMBER_INDEX && bonusState == false;
     }
 }

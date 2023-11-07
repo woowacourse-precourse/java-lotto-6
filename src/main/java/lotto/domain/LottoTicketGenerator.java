@@ -1,36 +1,38 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.error.Error;
 import lotto.error.Error.ErrorType;
 
 public class LottoTicketGenerator {
-    List<LottoTicket> lottoTickets;
-    int numberOfTicket;
+    List<LottoTicket> lottoTickets = new ArrayList<>();
+    public int ticketCount;
 
     public LottoTicketGenerator() {
     }
 
     public LottoTicket createLottoTicket() {
-        LottoTicket lottoTicket = (LottoTicket) Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        LottoTicket lottoTicket = new LottoTicket(lottoNumber);
         return lottoTicket;
     }
 
-    public List<LottoTicket> returnLottoTickets() {
-        for (int i = 0; i < numberOfTicket; i++) {
-            lottoTickets.add((LottoTicket) createLottoTicket());
+    public List<LottoTicket> createLottoTickets() {
+        for (int i = 0; i < ticketCount; i++) {
+            lottoTickets.add(createLottoTicket());
         }
         return lottoTickets;
     }
 
-    public void getNumberOfTicket(int amount) {
-        validate(amount);
-        this.numberOfTicket = amount / 1000;
+    public void insertMoney(int money) {
+        validate(money);
+        this.ticketCount = money / 1000;
     }
 
-    private void validate(int amount) {
-        if (!(amount % 1000 == 0) || amount <= 0) {
+    private void validate(int money) {
+        if (!(money % 1000 == 0) || money <= 0) {
             Error.errorMessage(ErrorType.INVALID_AMOUNT);
         }
     }

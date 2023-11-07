@@ -13,6 +13,7 @@ public class Application {
         System.out.println();
         int number = input / 1000;
         outputLottoNumber(number);
+        winningNumber();
     }
 
     private static int buyLotto() {
@@ -68,4 +69,12 @@ public class Application {
             System.out.println(str);
         }
     }
+
+    private static String winningNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String str = Console.readLine();
+
+        return str;
+    }
+
 }

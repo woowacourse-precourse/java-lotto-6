@@ -32,6 +32,15 @@ public class Lotto {
         }
     }
 
+    public int compareLottoNumber(Lotto lotto){
+        int count = 0;
+        for (LottoNumber lottoNumber : lotto.numbers){
+            if( containLottoNumber(lottoNumber) ){
+                count++;
+            }
+        }
+        return count;
+    }
     public boolean containLottoNumber(LottoNumber lottoNumber){
         return numbers.contains(lottoNumber);
     }

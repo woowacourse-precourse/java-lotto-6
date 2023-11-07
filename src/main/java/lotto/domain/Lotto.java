@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static lotto.util.Instruction.ERROR_DUPLICATE_LOTTO_NUMBER_EXISTENCE;
+import static lotto.util.Instruction.ERROR_PROPERTY_LOTTO_TICKET_SIZE;
+
 public class Lotto {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
@@ -14,6 +17,27 @@ public class Lotto {
     public Lotto() {
         this.lottoNumbers = createLotto();
         Collections.sort(lottoNumbers);
+    }
+
+    public Lotto(List<LottoNumber> numbers) {
+        isValidLottoSize(numbers);
+        isValidDuplication(numbers);
+        this.lottoNumbers = numbers;
+        Collections.sort(lottoNumbers);
+    }
+
+    private void isValidLottoSize(List<LottoNumber> numbers) {
+        if (numbers.size() != ONE_LOTTO_LENGTH) {
+            throw new IllegalArgumentException(ERROR_PROPERTY_LOTTO_TICKET_SIZE.getMessage());
+        }
+    }
+
+    private void isValidDuplication(List<LottoNumber> numbers) {
+        boolean hasDuplicateLottoNumber = numbers.stream()
+                .anyMatch(lottoNumber -> Collections.frequency(lottoNumbers, lottoNumber) != 1);
+        if (hasDuplicateLottoNumber) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_LOTTO_NUMBER_EXISTENCE.getMessage());
+        }
     }
 
     public List<LottoNumber> createLotto() {

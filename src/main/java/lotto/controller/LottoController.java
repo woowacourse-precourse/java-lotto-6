@@ -2,11 +2,13 @@ package lotto.controller;
 
 import lotto.*;
 import lotto.util.ErrorMessage;
+import lotto.validate.Check;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningNumber;
 
 public class LottoController {
@@ -44,6 +46,19 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return lottoNumbers();
+        }
+    }
+
+    public static int setBonusNumber(List<Integer> winningNumbers) {
+        try {
+            List<Integer> bonusNumber = inputBonusNumber();
+            Check.bonusNumberCount(bonusNumber);
+            Check.rightRange(bonusNumber);
+            Check.numberDuplicate(winningNumbers,bonusNumber);
+            return bonusNumber.get(0);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return setBonusNumber(winningNumbers);
         }
     }
 }

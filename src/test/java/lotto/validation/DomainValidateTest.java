@@ -61,4 +61,16 @@ class DomainValidateTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
         assertThatCode(() -> DomainValidate.validateNumberOfBonus(bonus)).doesNotThrowAnyException();
     }
+
+    @Test
+    void testValidateNegativeMoney() {
+        // given
+        int wrongMoney = -1400;
+        int money = 1400;
+
+        // when & then
+        assertThatThrownBy(() -> DomainValidate.validateNegativeMoney(wrongMoney))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
+        assertThatCode(() -> DomainValidate.validateNegativeMoney(money)).doesNotThrowAnyException();
+    }
 }

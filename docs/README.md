@@ -174,5 +174,6 @@
 ### ✔️Utils
 - [x] Parser
   - [x] ","로 구분된 숫자 문자열을 정수 List로 변환한다. 
+  - [x] ","로 구분된 숫자 문자열을 LottoNumber자료형의 List로 변환한다.
 - [x] RandomUtils
   - [x] 1 ~ 45 사이의 무작위 숫자를 6개 뽑는다.

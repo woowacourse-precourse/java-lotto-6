@@ -13,9 +13,9 @@ class PurchaseAmountValidatorTest {
     @Test
     void 올바른_구매_금액_검사() {
         String validInput = "1000";
-        int expectedAmount = 1000;
+        long expectedAmount = 1000;
 
-        int actualAmount = PurchaseAmountValidator.validate(validInput);
+        long actualAmount = PurchaseAmountValidator.validate(validInput);
 
         assertThat(actualAmount).isEqualTo(expectedAmount);
     }
@@ -36,7 +36,7 @@ class PurchaseAmountValidatorTest {
         String invalidInput = "500";
 
         assertThatThrownBy(() -> PurchaseAmountValidator.validate(invalidInput))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(TestConstant.ERROR_MESSAGE);
     }
 

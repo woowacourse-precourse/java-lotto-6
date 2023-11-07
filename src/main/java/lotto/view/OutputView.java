@@ -33,7 +33,7 @@ public class OutputView {
     }
 
     private void printRevenue(int winningMoney, int purchaseMoney) {
-        double revenue = (double) (winningMoney - purchaseMoney) / purchaseMoney * 100;
+        double revenue = (double) winningMoney / purchaseMoney * 100;
         System.out.printf(PRINT_REVENUE, revenue);
     }
 

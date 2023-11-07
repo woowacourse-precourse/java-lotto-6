@@ -2,18 +2,21 @@ package lotto.view;
 
 import static lotto.enums.OutputMessage.*;
 
+import java.util.List;
+import java.util.Map;
+import lotto.model.Lotto;
+
 public class OutputView {
     public void promptForPurchaseAmount() {
-        System.out.println(PURCHASE_AMOUNT_PROMPT.getMessage());
+        System.out.println(PURCHASE_ACCOUNT_PROMPT.getMessage());
     }
 
-    public void displayPurchaseAmount(int amount) {
-        System.out.printf(PURCHASE_NUMBER_OUTPUT.getMessage(), amount);
+    public void displayPurchaseAmount(int count) {
+        System.out.printf(PURCHASE_NUMBER_OUTPUT.getMessage(), count);
     }
 
-    public void displayPurchaseLotto() {
-        //TODO
-        System.out.println();
+    public void displayPurchaseLotto(List<Lotto> lottos) {
+        lottos.forEach(System.out::println);
     }
 
     public void promptForWinningNumbers() {
@@ -24,8 +27,8 @@ public class OutputView {
         System.out.println(BONUS_NUMBER_PROMPT.getMessage());
     }
 
-    public void displayWinningStatistics() {
-        //TODO
-        System.out.println(WINNING_STATISTICS_OUTPUT);
+    public void displayResult(Map<String, Integer> lottoResults, double profit) {
+        //TODO 구현
+        System.out.println(WINNING_STATISTICS_OUTPUT.getMessage());
     }
 }

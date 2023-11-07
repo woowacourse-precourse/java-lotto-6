@@ -11,7 +11,7 @@ public class Application {
     static List<String> winningNums = new ArrayList<>();
 
     public static void inputLottoAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        PrintInstructions.printAmountInstruction();
         try {
             int amount = Integer.parseInt(Console.readLine());
             validateAmount(amount);
@@ -26,7 +26,7 @@ public class Application {
     }
 
     public static void inputBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        PrintInstructions.printBonusInstruction();
         try{
             int bonus = Integer.parseInt(Console.readLine());
             validateNumber(bonus);
@@ -47,7 +47,7 @@ public class Application {
     }
 
     public static Lotto inputWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        PrintInstructions.printWinningNumberInstruction();
         winningNums = (Arrays.asList(Console.readLine().split(",")));
         try {
             isAllValidNumbers(winningNums);

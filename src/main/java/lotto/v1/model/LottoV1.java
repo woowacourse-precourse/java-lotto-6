@@ -1,14 +1,14 @@
-package lotto.model;
+package lotto.v1.model;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto {
+public class LottoV1 {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public LottoV1(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -36,7 +36,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int matchCount(Lotto otherLotto) {
+    public int matchCount(LottoV1 otherLotto) {
         return (int) this.numbers.stream().filter(otherLotto::containsNumber).count();
     }
 

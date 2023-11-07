@@ -1,14 +1,14 @@
-package lotto.view;
+package lotto.v1.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.LottoValidationUtils;
+import lotto.v1.util.LottoValidationUtilsV1;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LottoView {
-    public LottoView() {
+public class LottoViewV1 {
+    public LottoViewV1() {
     }
 
     public int inputMoney() {
@@ -34,7 +34,7 @@ public class LottoView {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
-            LottoValidationUtils.checkValidBonusNumber(bonusNumber, winningNumbers);
+            LottoValidationUtilsV1.checkValidBonusNumber(bonusNumber, winningNumbers);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호로 숫자를 입력해야 합니다.");

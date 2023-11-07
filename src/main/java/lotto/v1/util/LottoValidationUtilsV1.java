@@ -1,8 +1,8 @@
-package lotto.util;
+package lotto.v1.util;
 
 import java.util.List;
 
-public class LottoValidationUtils {
+public class LottoValidationUtilsV1 {
 
     public static final int LOTTO_NUMBER_MIN = 1;
     public static final int LOTTO_NUMBER_MAX = 45;

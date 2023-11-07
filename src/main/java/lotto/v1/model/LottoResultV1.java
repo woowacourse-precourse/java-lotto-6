@@ -1,10 +1,10 @@
-package lotto.model;
+package lotto.v1.model;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoResult {
+public class LottoResultV1 {
     // TODO : enum 으로 변경해서 중복 제거.
     // TODO : equals, hashcode 구현.
     private static final int MAX_MATCH_COUNT = 6;
@@ -12,7 +12,7 @@ public class LottoResult {
     private Map<Integer, Long> prizeMap = initializePrizeMap();
     private Map<Integer, Integer> secondPrizeWinners = new HashMap<>();
 
-    public LottoResult() {
+    public LottoResultV1() {
         for (int i = 0; i <= MAX_MATCH_COUNT; i++) {
             matchCounts.put(i, 0);
             secondPrizeWinners.put(5, 0);
@@ -40,7 +40,7 @@ public class LottoResult {
         return prizeMap;
     }
 
-    public void updateMatchCount(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
+    public void updateMatchCount(LottoV1 purchasedLotto, LottoV1 winningLotto, int bonusNumber) {
         int matchCount = purchasedLotto.matchCount(winningLotto);
         if (matchCount == 5 && purchasedLotto.containsNumber(bonusNumber)) {
             secondPrizeWinners.put(5, secondPrizeWinners.getOrDefault(5, 0) + 1);
@@ -53,8 +53,8 @@ public class LottoResult {
         matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0) + 1);
     }
 
-    public void calculateResults(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
-        for (Lotto purchasedLotto : purchasedLottos) {
+    public void calculateResults(List<LottoV1> purchasedLottos, LottoV1 winningLotto, int bonusNumber) {
+        for (LottoV1 purchasedLotto : purchasedLottos) {
             updateMatchCount(purchasedLotto, winningLotto, bonusNumber);
         }
     }

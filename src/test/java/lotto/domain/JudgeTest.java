@@ -33,9 +33,10 @@ public class JudgeTest {
     @Test
     void testCompareWinningNumbers() {
         // given
-        int answer = 3;
         Lotto randomNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto winningNumbers = new Lotto(Arrays.asList(2, 3, 5, 7, 8, 9));
+
+        int answer = 3;
 
         // when
         int matchCount = Judge.compareWinningNumbers(winningNumbers, randomNumbers);
@@ -56,13 +57,31 @@ public class JudgeTest {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoBonus bonus = new LottoBonus(7);
 
-        // when
         int answer = FIRST_PLACE_AMOUNT + SECOND_PLACE_AMOUNT + THIRD_PLACE_AMOUNT;
+
+        // when
         int totalEarnings = Judge.calculateEarnings(randomNumbers, winningNumbers, bonus);
 
         // then
         assertThat(totalEarnings).isEqualTo(answer);
     }
 
-    
+    @DisplayName("당첨 등수를 리턴하는 메서드를 테스트한다.")
+    @Test
+    void testFindRank() {
+        // given
+        Lotto randomNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoBonus bonus = new LottoBonus(7);
+        LottoResult lottoRankCount;
+
+        String answer = "SECOND_PLACE";
+
+        // when
+        lottoRankCount = Judge.findRank(randomNumbers, winningNumbers, bonus);
+        String rankName = lottoRankCount.name();
+
+        // then
+        assertThat(rankName).isEqualTo(answer);
+    }
 }

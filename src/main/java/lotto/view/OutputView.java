@@ -50,4 +50,8 @@ public class OutputView {
     public void printRate(Result result, Money inputMoney) {
         System.out.println("총 수익률은 " + result.calculateRate(inputMoney) + "%입니다.");
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
 }

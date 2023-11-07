@@ -18,7 +18,8 @@ public class LottoController {
 
     public void run() {
         LottoTicket lottoTicket = Retry.retryOnException(() -> buyLottoTicket());
-        WinLotto winLotto = Retry.retryOnException(() -> registerWinLotto());
+        Lotto lotto = Retry.retryOnException(() -> inputWinLottoNumbers());
+        WinLotto winLotto = Retry.retryOnException(() -> inputWinLottoNumbersWithBonus(lotto));
         calculateWinStatistics(lottoTicket, winLotto);
     }
 
@@ -30,10 +31,13 @@ public class LottoController {
         return lottoTicket;
     }
 
-    private WinLotto registerWinLotto() {
-        Lotto lotto = Retry.retryOnException(() -> new Lotto(inputView.inputWinNumbers()));
-        LottoNumber bonusNumber = Retry.retryOnException(() -> new LottoNumber(inputView.inputBonusNumber()));
-        return new WinLotto(lotto, bonusNumber);
+    private Lotto inputWinLottoNumbers() {
+        return new Lotto(inputView.inputWinNumbers());
+    }
+
+    private WinLotto inputWinLottoNumbersWithBonus(Lotto winLotto) {
+        LottoNumber lottoNumber = new LottoNumber(inputView.inputBonusNumber());
+        return new WinLotto(winLotto, lottoNumber);
     }
 
     private void calculateWinStatistics(LottoTicket lottoTicket, WinLotto winLotto) {

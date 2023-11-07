@@ -4,7 +4,7 @@ import lotto.ApplicationConfig;
 import lotto.model.trade.LottoBuyer;
 import lotto.model.trade.LottoSeller;
 import lotto.model.lotto.Lottos;
-import lotto.model.rank.WinningLotto;
+import lotto.model.lotto.WinningLotto;
 import lotto.service.LottoGameService;
 
 public class LottoGameController {

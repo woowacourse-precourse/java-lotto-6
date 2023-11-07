@@ -12,7 +12,7 @@ import lotto.model.lotto.Lotto;
 import lotto.model.trade.LottoBuyer;
 import lotto.model.trade.LottoSeller;
 import lotto.model.lotto.Lottos;
-import lotto.model.rank.WinningLotto;
+import lotto.model.lotto.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

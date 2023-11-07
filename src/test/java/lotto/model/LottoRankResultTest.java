@@ -11,7 +11,7 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.rank.LottoRank;
 import lotto.model.rank.LottoRankResult;
-import lotto.model.rank.WinningLotto;
+import lotto.model.lotto.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.lotto.Lotto;
+import lotto.model.lotto.WinningLotto;
 
 public class LottoRankResult {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;

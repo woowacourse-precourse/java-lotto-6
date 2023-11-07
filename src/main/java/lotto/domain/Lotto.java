@@ -20,23 +20,7 @@ public class Lotto {
     public Rewards checkReward(WinningNumber winningNumber, Integer bonus) {
         Integer count = countSameNumber(winningNumber);
         boolean hasBonus = hasBonus(bonus);
-
-        if (count == 6) {
-            return Rewards.FIRST;
-        }
-        if (count == 5) {
-            if (hasBonus) {
-                return Rewards.SECOND;
-            }
-            return Rewards.THIRD;
-        }
-        if (count == 4) {
-            return Rewards.FOURTH;
-        }
-        if (count == 3) {
-            return Rewards.FIFTH;
-        }
-        return Rewards.LOSE;
+        return Rewards.of(count, hasBonus);
     }
 
     private Integer countSameNumber(WinningNumber winningNumber) {

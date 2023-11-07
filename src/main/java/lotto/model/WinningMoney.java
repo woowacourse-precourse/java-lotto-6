@@ -12,10 +12,10 @@ public enum WinningMoney {
 
   private int matchCount;
   private boolean hasBonus;
-  private int price;
+  private long price;
 
-  WinningMoney(int matchCount, boolean hasBonus, int price) {
-    this.matchCount =matchCount;
+  WinningMoney(int matchCount, boolean hasBonus, long price) {
+    this.matchCount = matchCount;
     this.hasBonus = hasBonus;
     this.price = price;
   }
@@ -26,5 +26,13 @@ public enum WinningMoney {
             .filter(bonus -> bonus.hasBonus == hasBonus)
             .findAny()
             .orElse(NON_MATCH);
+  }
+
+  public static long calculateMoney(WinningMoney winningMoney, int count) {
+    return WinningMoney.valueOf(winningMoney.name()).getPrice() * count;
+  }
+
+  private long getPrice() {
+    return price;
   }
 }

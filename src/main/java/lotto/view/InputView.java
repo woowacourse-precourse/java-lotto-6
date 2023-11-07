@@ -48,12 +48,12 @@ public class InputView {
         .collect(Collectors.toList());
   }
 
-  public String inputBonusNumber() {
+  public int inputBonusNumber() {
     System.out.println(InputMessage.BONUS_NUMBER.message);
     String input = Console.readLine();
     validateBonusNumber(input);
 
-    return input;
+    return inputConverter.inputToNumber(input);
   }
 
   private void validatePurchaseMoney(String input) {

@@ -37,21 +37,13 @@ public class OutputView {
 
         threePrize(checkCount);
 
-        System.out.print(FOUR);
-        //개수 입력
-        System.out.println(SOME);
+        fourPrize(checkCount);
 
-        System.out.print(FIVE);
-        //개수 입력
-        System.out.println(SOME);
+        fivePrize(checkCount);
 
-        System.out.print(FIVE_BONUS);
-        //개수 입력
-        System.out.println(SOME);
+        fiveBonusPrize(checkCount);
 
-        System.out.print(SIX);
-        //개수 입력
-        System.out.println(SOME);
+        sixPrize(checkCount);
     }
 
     public int countPrize(List<Integer> checkCount, int Number){
@@ -69,19 +61,19 @@ public class OutputView {
     }
 
     public void fourPrize(List<Integer> checkCount){
-        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+        System.out.println(FOUR + countPrize(checkCount, 4) + SOME);
     }
 
     public void fivePrize(List<Integer> checkCount){
-        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+        System.out.println(FIVE + countPrize(checkCount, 5) + SOME);
     }
 
     public void fiveBonusPrize(List<Integer> checkCount){
-        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+        System.out.println(FIVE_BONUS + countPrize(checkCount, 7) + SOME);
     }
 
     public void sixPrize(List<Integer> checkCount){
-        System.out.println(THREE + countPrize(checkCount, 3) + SOME);
+        System.out.println(SIX + countPrize(checkCount, 6) + SOME);
     }
 
     public void yieldRateOfReturn(double YIELD){

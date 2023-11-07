@@ -45,7 +45,7 @@ public class Game {
         PRIZE = prizeNumberInput(); //당첨 번호 입력
         changePrizeNumber(PRIZE);   //당첨 번호 변환
 
-        checkPrize(lottos, checkCount); //당첨 개수 확인
+        checkPrize(lottos, prizes); //당첨 개수 확인
 
         inputView.bonusNumberView();
         PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
@@ -102,16 +102,17 @@ public class Game {
         return Integer.parseInt(PAST_BONUS_NUMBER);
     }
 
-    public void checkPrize(List<Lotto> lottos, List<Integer> checkCount){
+    public void checkPrize(List<Lotto> lottos, List<Integer> prizes){
         for (Lotto lotto : lottos) {
-            prizeNumber(lotto, checkCount);
+            prizeNumber(lotto, prizes);
         }
     }
 
-    public void prizeNumber(Lotto lotto, List<Integer> checkCount){
+    public void prizeNumber(Lotto lotto, List<Integer> prizes){
         List<Integer> numbers = lotto.getNumbers();
         int count = 0;
         CHECK_PRIZE = 0;
+        //버그 발생
         for (int number : numbers) {
             if(prizes.get(count++) == number){
                 CHECK_PRIZE++;

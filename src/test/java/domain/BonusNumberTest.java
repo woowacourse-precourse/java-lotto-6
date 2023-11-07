@@ -20,7 +20,7 @@ class BonusNumberTest extends NsTest {
         });
     }
 
-    @DisplayName("보너스 번호가 1 ~ 45 숫자가 아니면 예외 처리")
+    @DisplayName("보너스 번호가 로또 번호와 중복이면 예외 처리")
     @Test
     void createBonusNumberByDuplicate() {
         assertSimpleTest(() -> {

@@ -25,8 +25,16 @@ public class Player {
         return this.amount / 1000;
     }
 
+    public ArrayList<Lotto> getLotteries() {
+        return this.lotteries;
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
     private void validate(int amount) {
-        LottoValidation.validateOverThousandUnit(amount);
-        LottoValidation.validateIsThousandUnit(amount);
+        LottoValidation.validateOverStandardUnit(amount);
+        LottoValidation.validateIsStandardUnit(amount);
     }
 }

@@ -38,9 +38,13 @@ public class Lottos {
     }
 
     public double calculateTotalRate() {
-        System.out.println(this.total);
-        System.out.println(player.getAmount());
+//        System.out.println(this.total);
+//        System.out.println(player.getAmount());
         return Math.round(((double) this.total / player.getAmount()) * 10000) / 100.0;
+    }
+
+    public Map<LottoResult, Integer> getLottoResultWithCount() {
+        return this.lottoResultWithCount;
     }
 
     private List<Integer> calculateMatchNumbers(int index) {

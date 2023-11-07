@@ -39,10 +39,18 @@ public class OutputView {
 
     public static String getFormatStringFrom(double decimal) {
         String formatted = String.format(RegexConstant.DECIMAL_FORMAT.getRegex(), decimal);
-        formatted = formatted.replaceAll(RegexConstant.TRAILING_ZEROS_FROM_DOUBLE.getRegex(),
-                SystemMessage.EMPTY.getMessage());
-        formatted = formatted.replaceAll(RegexConstant.LAST_DOTS.getRegex(),
-                SystemMessage.EMPTY.getMessage());
+        formatted = getRemovedTrailingZero(formatted);
+        formatted = getRemovedLastDot(formatted);
         return formatted;
+    }
+
+    private static String getRemovedTrailingZero(String formatted) {
+        return formatted.replaceAll(RegexConstant.TRAILING_ZEROS_FROM_DOUBLE.getRegex(),
+                SystemMessage.EMPTY.getMessage());
+    }
+
+    private static String getRemovedLastDot(String formatted) {
+        return formatted.replaceAll(RegexConstant.LAST_DOT.getRegex(),
+                SystemMessage.EMPTY.getMessage());
     }
 }

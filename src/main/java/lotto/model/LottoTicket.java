@@ -14,7 +14,7 @@ public class LottoTicket {
 
     public static LottoTicket create(final Money purchasedLotto) {
         List<Lotto> lottos = IntStream.range(0, purchasedLotto.getNumberOfLotto())
-                .mapToObj(i -> RandomNumberGenerator.generate())
+                .mapToObj(LottoIndex -> RandomNumberGenerator.generate())
                 .map(Lotto::new)
                 .toList();
         return new LottoTicket(lottos);

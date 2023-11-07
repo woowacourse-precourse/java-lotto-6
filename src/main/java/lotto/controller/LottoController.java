@@ -24,7 +24,7 @@ public class LottoController {
         long money = inputPurchaseAmount();
         HashMap<String, Long> scoreBored = produceStatisticsLottoScore(money);
         OutputView.outputViewStatistics(scoreBored);
-        OutputView.outputViewTotalReturn(getTotalReturn(scoreBored), money);
+        OutputView.outputViewTotalReturn(Utils.calculateReturn(getTotalReturn(scoreBored), money));
     }
 
     private Long inputPurchaseAmount() {

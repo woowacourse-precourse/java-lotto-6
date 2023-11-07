@@ -16,13 +16,13 @@ public class IOService {
     private final String LOTTO_CNT_MESSAGE = "개를 구매했습니다.";
     private final String PRIZE_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private final String ERROR_INTEGER = "[ERROR] 구입 금액은 정수여야 합니다.";
-    private final String ERROR_UNIT = "[ERROR] 구입 금액은 1,000원 단위여야합니다.";
+    private final String ERROR_AMOUNT_INTEGER = "[ERROR] 구입 금액은 정수여야 합니다.";
+    private final String ERROR_AMOUNT_UNIT = "[ERROR] 구입 금액은 1,000원 단위여야합니다.";
     private final String ERROR_PRIZE_NUMBER_CNT = "[ERROR] 6개를 입력해야합니다.";
     private final String ERROR_PRIZE_NUMBER_INTEGER = "[ERROR] 당첨 번호는 정수여야 합니다.";
     private final String ERROR_PRIZE_NUMBER_RANGE = "[ERROR] 당첨 번호는 1이상 45이하입니다.";
     private final String ERROR_PRIZE_NUMBER_DUPLICATE = "[ERROR] 당첨 번호는 중복될 수 없습니다.";
-    private final String ERROR_MINIMUM = "[ERROR] 구입 금액이 1000원보다 작을 수는 없습니다.";
+    private final String ERROR_AMOUNT_MINIMUM = "[ERROR] 구입 금액이 1000원보다 작을 수는 없습니다.";
     private final String ERROR_BONUS_NUMBER_CNT = "[ERROR] 1개를 입력해야합니다.";
     private final String ERROR_BONUS_NUMBER_INTEGER = "[ERROR] 보너스 번호는 정수여야합니다.";
     private final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1이상 45이하입니다.";
@@ -89,16 +89,17 @@ public class IOService {
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 
-    public int scanPurchaseAmount() {
-        boolean success = true;
-        String purchaseAmount;
-        do {
-            purchaseAmount = Console.readLine();
-
-            success = validatePurchaseAmount(purchaseAmount);
-        } while (!success);
-
-        return Integer.parseInt(purchaseAmount);
+    public String scanPurchaseAmount() {
+//        boolean success = true;
+//        String purchaseAmount;
+//        do {
+//            purchaseAmount = Console.readLine();
+//
+//            success = validatePurchaseAmount(purchaseAmount);
+//        } while (!success);
+//
+//        return Integer.parseInt(purchaseAmount);
+        return Console.readLine();
     }
 
     public WinningNumber scanWinningNumber(){
@@ -144,39 +145,15 @@ public class IOService {
         return Integer.parseInt(bonusNumber);
     }
 
-    public boolean validatePurchaseAmount(String purchaseAmount) {
-        try {
-            validateLong(purchaseAmount);
-            validateMinimum(purchaseAmount);
-            validateUnit(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-
-        return true;
+    public void printErrorAmountInteger() {
+        System.out.println(ERROR_AMOUNT_INTEGER);
+    }
+    public void printErrorAmountMinimum() {
+        System.out.println(ERROR_AMOUNT_MINIMUM);
     }
 
-    private void validateLong(String number) {
-        try {
-            Long.parseLong(number);
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INTEGER);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateMinimum(String number) {
-        if (Long.parseLong(number) < 1000) {
-            System.out.println(ERROR_MINIMUM);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateUnit(String number) {
-        if (!number.endsWith("000")) {
-            System.out.println(ERROR_UNIT);
-            throw new IllegalArgumentException();
-        }
+    public void printErrorAmountUnit() {
+        System.out.println(ERROR_AMOUNT_UNIT);
     }
 
     public boolean validatePrizeNumber(String prizeNumbers) {

@@ -18,11 +18,56 @@ public class LottoService {
     }
 
     public void sellLottos() {
+        boolean success = true;
+        int amount, cnt;
+        String purchaseAmount;
+
         ioService.printBeforePurchaseLottoMessage();
-        int amount = ioService.scanPurchaseAmount();
-        int cnt = amount / 1000;
+        do {
+            purchaseAmount = ioService.scanPurchaseAmount();
+
+            success = validatePurchaseAmount(purchaseAmount);
+        } while (!success);
+
+        amount = Integer.parseInt(purchaseAmount);
+        cnt = amount / 1000;
         List<Lotto> lottos = generateLottos(cnt);
         userService.updateUser(lottos, cnt);
+    }
+
+    public boolean validatePurchaseAmount(String purchaseAmount) {
+        try {
+            validateLong(purchaseAmount);
+            validateMinimum(purchaseAmount);
+            validateUnit(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void validateLong(String number) {
+        try {
+            Long.parseLong(number);
+        } catch (NumberFormatException e) {
+            ioService.printErrorAmountInteger();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateMinimum(String number) {
+        if (Long.parseLong(number) < 1000) {
+            ioService.printErrorAmountMinimum();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateUnit(String number) {
+        if (!number.endsWith("000")) {
+            ioService.printErrorAmountUnit();
+            throw new IllegalArgumentException();
+        }
     }
 
     public void informPurchaseHistory(){

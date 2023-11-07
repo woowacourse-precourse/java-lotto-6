@@ -60,4 +60,24 @@ public class Lotto {
         
     }
     
+    public List<Integer> getWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        
+        String getNumber = Console.readLine();
+        String[] numberList = getNumber.split(",");
+        
+        List<Integer> winningNumber = new ArrayList<>();
+        for (String numberValue : numberList) {
+            int number = Integer.parseInt(numberValue.trim());
+            if(number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            winningNumber.add(number);
+        }
+        
+        validate(winningNumber);
+        
+        return winningNumber;
+    }
+    
 }

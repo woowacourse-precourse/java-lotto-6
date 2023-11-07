@@ -1,9 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import lotto.InputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -31,4 +34,13 @@ public class Lotto {
         }
         return lotto;
     }*/
+    public static Lotto makingSingleLotto(){
+        List<Integer> lottoList = new ArrayList<>(6);
+        for(int i=0; i<6; i++){
+            Integer rndnumber = Randoms.pickNumberInRange(1,45);
+            lottoList.add(rndnumber);
+        }
+        Lotto singleLotto = new Lotto(lottoList);
+        return singleLotto;
+    }
 }

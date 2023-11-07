@@ -19,5 +19,18 @@ public class Customer {
         this.pocket.add(lotto);
     }
 
-    public List<Lotto> getPocket(Customer customer){return customer.pocket;}
+    public List<Lotto> getPocket(){return this.pocket;}
+
+    public void buyLottos(){
+        try{
+            Integer lottoamount = InputView.moneyValidate(InputView.buyLottoInput());
+            for(int i=0; i<lottoamount; i++){
+                Lotto singleLotto = Lotto.makingSingleLotto();
+                this.addPocket(singleLotto);
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            this.buyLottos();
+        }
+    }
 }

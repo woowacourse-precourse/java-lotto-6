@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class InputValidator {
     public int validateAndReturnLottoInput(String inputMoney) throws IllegalArgumentException {
@@ -19,8 +17,9 @@ public class InputValidator {
     }
 
     public List<Integer> validateAndReturnWinningNumber(String numberInput) throws IllegalArgumentException {
-        List<Integer> winningNumbers = parseWinningNumber(numberInput);
+        List<Integer> winningNumbers = new ArrayList<>(parseWinningNumber(numberInput));
         if (checkDuplicateNumber(winningNumbers) && checkWinNumberSize(winningNumbers) && validateCorrectRangeWinNumbers(winningNumbers)) {
+            Collections.sort(winningNumbers);
             return winningNumbers;
         }
         return null;

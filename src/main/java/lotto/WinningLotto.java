@@ -11,14 +11,14 @@ public class WinningLotto {
         this.bonus = bonus;
     }
 
-    public WinningLotto of(List<Integer> winningNumbers, int bonus) {
+    public static WinningLotto of(List<Integer> winningNumbers, int bonus) {
         Lotto winningLotto = new Lotto(winningNumbers);
         validateBonus(winningLotto, bonus);
 
         return new WinningLotto(winningLotto, bonus);
     }
 
-    private void validateBonus(Lotto lotto, int bonus) {
+    private static void validateBonus(Lotto lotto, int bonus) {
         if (bonus<1||bonus>45) {
             throw new IllegalArgumentException();
         }

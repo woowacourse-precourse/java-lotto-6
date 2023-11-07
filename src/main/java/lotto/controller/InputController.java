@@ -31,13 +31,8 @@ public class InputController {
 
     public Lotto getLottoNumberFromUser() {
         OutputView.askLottoNumbers();
-        List<Integer> lottoNumbers = new ArrayList<>();
         List<String> splitNumbers = validateLength(Console.readLine());
-
-        for (String number : splitNumbers) {
-            System.out.println(number);
-            lottoNumbers.add(parseInt(number));
-        }
+        List<Integer> lottoNumbers = validateNumber(splitNumbers);
 
         return new Lotto(lottoNumbers);
     }
@@ -51,5 +46,21 @@ public class InputController {
         }
 
         return splitNumbersFromUser;
+    }
+
+    public List<Integer> validateNumber(List<String> splitNumbers) {
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String splitNumber : splitNumbers) {
+            try {
+                int number = parseInt(splitNumber);
+                numbers.add(number);
+            } catch (NumberFormatException e) {
+                ErrorMessage.numberException();
+                throw new IllegalArgumentException();
+            }
+        }
+
+        return numbers;
     }
 }

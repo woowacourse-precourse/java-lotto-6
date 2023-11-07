@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoProfit.getReturnRate;
+
 import java.util.List;
 
 public class LottoResult {
@@ -16,9 +18,16 @@ public class LottoResult {
         int[] reward = {5000,50000,1500000,30000000,2000000000};
         int [] rewardMatch = countMatchNumbers(purchasedLottos,winningNumbers,bonusNumber);
 
+        int totalReward = 0;
+
         for (int i = 0; i < rewardMatch.length; i++) {
+            int prize = reward[i] * rewardMatch[i];
+            totalReward += prize;
             System.out.println(rewardNames[i] + " 일치 (" + String.format("%,d원", reward[i]) + ") - " + rewardMatch[i] + "개");
         }
+
+        double returnRate = getReturnRate(purchasedLottos.count(),totalReward);
+        System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate * 100) + "입니다.");
     }
 
     /*
@@ -26,12 +35,12 @@ public class LottoResult {
     * */
     private int[] countMatchNumbers(Lottos purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
 
-        int[] rewardMatch = new int[4];
+        int[] rewardMatch = new int[5];
 
         for(Lotto lotto : purchasedLottos.getLottos()) {
             int matchCount = countMatchingNumbers(lotto,winningNumbers);
             if(matchCount >=3) {
-                rewardMatch[matchCount-3]+=matchCount;
+                rewardMatch[matchCount-3]+=1;
             }
 
             if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {

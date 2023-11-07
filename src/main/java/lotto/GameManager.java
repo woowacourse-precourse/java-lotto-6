@@ -84,8 +84,10 @@ public class GameManager {
     }
 
     private void announceLottoResult() {
-        Map<LottoRankInfo, Integer> lottoRankInfo =
+        Map<LottoRankInfo, Integer> winningResult =
                 resultCalculator.generateLottoResult(lottoTickets, lottoWinningNumbers, bonusNumber);
-        System.out.println(lottoRankInfo);
+        List<LottoRankInfo> rankInfos = LottoRankInfo.getRankInfoByList();
+        outputView.printWinningResult(winningResult, rankInfos);
+
     }
 }

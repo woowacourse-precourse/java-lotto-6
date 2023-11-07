@@ -1,6 +1,10 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum LottoRankInfo {
     FIRST(6, 2_000_000_000),
@@ -16,6 +20,14 @@ public enum LottoRankInfo {
     LottoRankInfo(int matchingCount, int prizeMoney) {
         this.matchingCount = matchingCount;
         this.prizeMoney = prizeMoney;
+    }
+
+    public static List<LottoRankInfo> getRankInfoByList() {
+        List<LottoRankInfo> lottoRankInfos = Stream.of(LottoRankInfo.values())
+                .filter(rank -> rank.matchingCount >= 3)
+                .collect(Collectors.toList());
+        Collections.reverse(lottoRankInfos);
+        return lottoRankInfos;
     }
 
     public static LottoRankInfo geLottoRankInfo(int matchingCount, boolean matchingBonus) {
@@ -49,5 +61,13 @@ public enum LottoRankInfo {
 
     private boolean isMatchCountEqual(int matchingCount, int expectedMatchingCount) {
         return matchingCount == expectedMatchingCount;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

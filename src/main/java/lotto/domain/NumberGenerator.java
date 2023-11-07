@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import static lotto.constants.LottoConfig.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,13 +9,17 @@ import java.util.List;
 public class NumberGenerator {
     // TODO: 랜덤 숫자를 생성하고 중복 여부 확인하는 클래스
     public static List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(
+                RANDOM_RANGE_MIN_NUMBER.getValue(),
+                RANDOM_RANGE_MAX_NUMBER.getValue(),
+                NUMBER_LENGTH.getValue()
+        );
     }
 
     private static boolean isUniqueNumber(List<Integer> numbers) {
         return numbers
                 .stream()
                 .distinct()
-                .toList().size() == 6;
+                .toList().size() == NUMBER_LENGTH.getValue();
     }
 }

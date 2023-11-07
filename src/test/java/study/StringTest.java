@@ -15,6 +15,7 @@ public class StringTest {
     }
 
     @DisplayName("1,를 split 했을 때 1만을 포함하는 배열이 반환되는지 확인한다.")
+    @Test
     void testSplitOnlyNumberAndComma() {
         String numbers = "1,";
 

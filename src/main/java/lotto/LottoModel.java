@@ -71,12 +71,16 @@ public class LottoModel {
         bonusNumber = number;
     }
 
+    public static int[] getLottoRank() {
+        return lottoRank;
+    }
+
     public static int getBonusNumber() {
         return bonusNumber;
     }
 
-    public static int[] getLottoRank() {
-        return lottoRank;
+    public static int getProfit() {
+        return profit;
     }
 
     public static List<Lotto> generateLottos(int lottoPrice) {
@@ -91,13 +95,13 @@ public class LottoModel {
         return generatedLottos;
     }
 
-    public static void checkLottoRank() {
+    public static void checkLottoRank(List<Lotto> boughtLottos, Lotto winningLotto, int bonusNumber) {
         for (Lotto boughtLotto : boughtLottos) {
-            calcProfit(checkWonNumber(boughtLotto), boughtLotto);
+            calcProfit(checkWonNumber(boughtLotto, winningLotto), boughtLotto, bonusNumber);
         }
     }
 
-    public static int checkWonNumber(Lotto boughtLotto) {
+    public static int checkWonNumber(Lotto boughtLotto, Lotto winningLotto) {
         int wonNumber = 0;
         for (int number : boughtLotto.getNumbers()) {
             if (winningLotto.getNumbers().contains(number)) {
@@ -107,8 +111,8 @@ public class LottoModel {
         return wonNumber;
     }
 
-    private static void calcProfit(int wonNumber, Lotto boughtLotto) {
-        if (checkBonusNumber(boughtLotto) && wonNumber == 5) {
+    private static void calcProfit(int wonNumber, Lotto boughtLotto, int bonusNumber) {
+        if (checkBonusNumber(boughtLotto, bonusNumber) && wonNumber == 5) {
             lottoRank[3]++;
             profit += wonInfo.getPrize(3);
             return;
@@ -121,11 +125,11 @@ public class LottoModel {
         }
     }
 
-    private static boolean checkBonusNumber(Lotto boughtLotto) {
+    private static boolean checkBonusNumber(Lotto boughtLotto, int bonusNumber) {
         return boughtLotto.getNumbers().contains(bonusNumber);
     }
 
-    public static double calcProfitPercentage() {
+    public static double calcProfitPercentage(int profit, int lottoPrice) {
         return Math.round((double) profit / (double) lottoPrice * 1000) / 10.0;
     }
 }

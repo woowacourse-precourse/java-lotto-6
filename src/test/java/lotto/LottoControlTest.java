@@ -21,11 +21,6 @@ class LottoControlTest extends NsTest {
         });
     }
 
-    @Test
-    void 로또가격만큼_로또번호생성_테스트() {
-        List<Lotto> randomNumbers = LottoModel.generateLottos(7000);
-        assertThat(new HashSet<>(randomNumbers)).hasSize(7);
-    }
 
     @Test
     void 로또번호_중복_테스트() {

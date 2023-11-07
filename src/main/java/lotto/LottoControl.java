@@ -17,9 +17,10 @@ public class LottoControl {
         LottoModel.setWinningLotto(LottoControl.inputWinningNumbers());
         LottoModel.setBonusNumber(LottoControl.inputBonusNumber(LottoModel.getWinningLotto()));
 
-        LottoModel.checkLottoRank();
+        LottoModel.checkLottoRank(LottoModel.getBoughtLottos(), LottoModel.getWinningLotto(),
+                LottoModel.getBonusNumber());
         LottoView.printRankInfo(LottoModel.getLottoRank());
-        LottoView.printProfitRate(LottoModel.calcProfitPercentage());
+        LottoView.printProfitRate(LottoModel.calcProfitPercentage(LottoModel.getProfit(), LottoModel.getLottoPrice()));
     }
 
     public static int inputLottoPrice() {

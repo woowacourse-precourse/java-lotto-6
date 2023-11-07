@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.constant.LottoRank;
 import lotto.util.FakeNumberGenerator;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,6 +11,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 @DisplayName("LottoPack 테스트")
 class LottoPackTest {
@@ -25,7 +27,7 @@ class LottoPackTest {
         @Test
         void sizeReturnsGivenNumbers() {
             LottoPack lottoPack = LottoPack.createLottoPack(10);
-            Assertions.assertEquals(lottoPack.size(), 10);
+            assertEquals(lottoPack.size(), 10);
         }
 
     }
@@ -56,19 +58,43 @@ class LottoPackTest {
         @DisplayName("등수를 잘 검사하는지 확인")
         @ParameterizedTest
         @MethodSource("provideLottoAndResult")
-        void checkTHREE(Result result, Lotto lotto, LottoRank lottoRank) {
-            Assertions.assertEquals(lotto.calculate(result), lottoRank);
+        void checkTHREE(Result result, LottoPack lottoPack, List<LottoRank> lottoRanks) {
+            assertIterableEquals(lottoPack.calculate(result), lottoRanks);
         }
 
         private static Stream<Arguments> provideLottoAndResult() {
             Result result = getResult();
             return Stream.of(
-                    Arguments.of(result, new Lotto(List.of(40, 41, 42, 43, 44, 45)), LottoRank.NOTHING),
-                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 43, 44, 45)), LottoRank.THREE),
-                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 44, 45)), LottoRank.FOUR),
-                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 5, 45)), LottoRank.FIVE),
-                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 5, 7)), LottoRank.FIVE_BONUS),
-                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 5, 6)), LottoRank.SIX)
+                    Arguments.of(
+                            result,
+                            new LottoPack(1, new FakeNumberGenerator(List.of(40, 41, 42, 43, 44, 45))),
+                            List.of(LottoRank.NOTHING)
+                    ),
+                    Arguments.of(
+                            result,
+                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 43, 44, 45))),
+                            List.of(LottoRank.THREE)
+                    ),
+                    Arguments.of(
+                            result,
+                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 44, 45))),
+                            List.of(LottoRank.FOUR)
+                    ),
+                    Arguments.of(
+                            result,
+                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 5, 45))),
+                            List.of(LottoRank.FIVE)
+                    ),
+                    Arguments.of(
+                            result,
+                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 5, 7))),
+                            List.of(LottoRank.FIVE_BONUS)
+                    ),
+                    Arguments.of(
+                            result,
+                            new LottoPack(1, new FakeNumberGenerator(List.of(1, 2, 3, 4, 5, 6))),
+                            List.of(LottoRank.SIX)
+                    )
             );
         }
 

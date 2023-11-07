@@ -10,7 +10,7 @@ public class LottoStatistics {
     private static final Map<LottoResult, Integer> lottoPlaceResults = new HashMap<>();
     private static final Map<LottoResult, Long> lottoTotalAmountResult = new HashMap<>();
 
-    public Map<LottoResult, Long> calculateLottoResults(List<Lotto> lottos, WinnerNumbers winner) {
+    public Map<LottoResult, Integer> calculateLottoResults(List<Lotto> lottos, WinnerNumbers winner) {
 
         lottoPlaceResults.clear();
         lottoTotalAmountResult.clear();
@@ -18,7 +18,7 @@ public class LottoStatistics {
         calculateLottoPlaceResult(lottos, winner);
         calculateToTalAmountLottoResults();
 
-        return lottoTotalAmountResult;
+        return lottoPlaceResults;
     }
 
     private void calculateLottoPlaceResult(List<Lotto> lottos, WinnerNumbers winner) {

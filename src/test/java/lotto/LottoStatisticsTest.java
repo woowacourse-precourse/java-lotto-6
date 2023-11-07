@@ -1,6 +1,5 @@
 package lotto;
 
-import static lotto.constant.LottoConstant.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class LottoStatisticsTest {
         WinnerNumbers winnerNumbers = new WinnerNumbers(Arrays.asList(1,2,3,4,5,6), 7);
         LottoStatistics lottoStatistics = new LottoStatistics();
 
-        Map<LottoResult, Long> result = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
+        Map<LottoResult, Integer> result = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
 
         assertThat(result.size()).isEqualTo(5);
 
@@ -37,11 +36,11 @@ public class LottoStatisticsTest {
                         LottoResult.FOURTH_PLACE
                 );
 
-        assertThat(result.get(LottoResult.OUT_OF_BOUND_NO_MATCH)).isEqualTo(OUT_OF_BOUND_AMOUNT);
-        assertThat(result.get(LottoResult.OUT_OF_BOUND_ONE_MATCH)).isEqualTo(OUT_OF_BOUND_AMOUNT);
-        assertThat(result.get(LottoResult.OUT_OF_BOUND_TWO_MATCH)).isEqualTo(OUT_OF_BOUND_AMOUNT);
-        assertThat(result.get(LottoResult.FIFTH_PLACE)).isEqualTo(FIFTH_PLACE_AMOUNT);
-        assertThat(result.get(LottoResult.FOURTH_PLACE)).isEqualTo(FOURTH_PLACE_AMOUNT * 3);
+        assertThat(result.get(LottoResult.OUT_OF_BOUND_NO_MATCH)).isEqualTo(1);
+        assertThat(result.get(LottoResult.OUT_OF_BOUND_ONE_MATCH)).isEqualTo(1);
+        assertThat(result.get(LottoResult.OUT_OF_BOUND_TWO_MATCH)).isEqualTo(1);
+        assertThat(result.get(LottoResult.FIFTH_PLACE)).isEqualTo(1);
+        assertThat(result.get(LottoResult.FOURTH_PLACE)).isEqualTo(3);
     }
 
     @DisplayName("3등 ~ 1등까지 값 검증 테스트")
@@ -52,7 +51,7 @@ public class LottoStatisticsTest {
         WinnerNumbers winnerNumbers = new WinnerNumbers(Arrays.asList(1,2,3,4,5,6), 7);
         LottoStatistics lottoStatistics = new LottoStatistics();
 
-        Map<LottoResult, Long> result = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
+        Map<LottoResult, Integer> result = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
 
         assertThat(result.size()).isEqualTo(3);
 
@@ -63,9 +62,9 @@ public class LottoStatisticsTest {
                         LottoResult.THIRD_PLACE
                 );
 
-        assertThat(result.get(LottoResult.THIRD_PLACE)).isEqualTo(THIRD_PLACE_AMOUNT * 2);
-        assertThat(result.get(LottoResult.SECOND_PLACE)).isEqualTo(SECOND_PLACE_AMOUNT * 2);
-        assertThat(result.get(LottoResult.FIRST_PLACE)).isEqualTo(FIRST_PLACE_AMOUNT * 2);
+        assertThat(result.get(LottoResult.THIRD_PLACE)).isEqualTo(2);
+        assertThat(result.get(LottoResult.SECOND_PLACE)).isEqualTo(2);
+        assertThat(result.get(LottoResult.FIRST_PLACE)).isEqualTo(2);
     }
 
     private List<Lotto> makeLottosByFourthPlaceFromOutOfBoundNumber() {

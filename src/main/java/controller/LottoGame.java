@@ -30,11 +30,12 @@ public class LottoGame {
         int lottoCnt = publishLottoUtil.buyLotto();
         List<Lotto> lottos = publishLottoUtil.publishLotto(lottoCnt);
         publishLottoUtil.showPublishedLotto(lottos);
-        String getWinningNumbers = inputView.enterWinningNumber();
-        int bonusNumber = inputView.enterBonusNumber();
-        List<Integer> winningNumbers = Arrays.stream(getWinningNumbers.split(",")).map(Integer::parseInt).toList();
+        List<Integer> winningNumbers = inputView.enterWinningNumber();
+        int bonusNumber = inputView.enterBonusNumber(winningNumbers);
+
         Map<Integer, Integer> lottoScore = scoreUtil.updateScore(lottoCnt, lottos, bonusNumber, winningNumbers);
         outputView.showScore(lottoScore, ScoreUtil.hasFiveAndbonusNumber);
-        outputView.showEarningRate(prizeUtil.calculateEarningRate(lottoCnt, lottoScore, ScoreUtil.hasFiveAndbonusNumber));
+        outputView.showEarningRate(
+                prizeUtil.calculateEarningRate(lottoCnt, lottoScore, ScoreUtil.hasFiveAndbonusNumber));
     }
 }

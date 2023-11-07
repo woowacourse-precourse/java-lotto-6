@@ -23,7 +23,7 @@ public enum WinningHistory {
     private final int prizeMoney;
     WinningHistory(int matchNumbers, int prizeMoney){
         this.matchNumbers = matchNumbers;
-        this.prizeMoney = matchNumbers;
+        this.prizeMoney = prizeMoney;
     }
 
     public int getMatchNumbers() {

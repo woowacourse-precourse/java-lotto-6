@@ -33,9 +33,10 @@ public class LottoManager {
         return winningDetails;
     }
 
-    public double calculateProfitRate(int purchaseAmount) {
+    public double calculateProfitRate(PurchaseAmount purchaseAmount) {
         int totalPrize = winningDetails.calculateTotalPrize();
-
-        return ((double) totalPrize) / purchaseAmount * 100;
+        int investmentCost = purchaseAmount.getPurchaseAmount();
+        
+        return ((double) totalPrize) / investmentCost * 100;
     }
 }

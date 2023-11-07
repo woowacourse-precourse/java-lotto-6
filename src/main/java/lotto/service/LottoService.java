@@ -1,49 +1,45 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.LottoManager;
 import lotto.domain.LottoSeller;
 import lotto.domain.Lottos;
-import lotto.domain.Prize;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningDetails;
-import lotto.domain.WinningLotto;
 
 public class LottoService {
-    private final LottoSeller lottoSeller;
-    private final WinningDetails winningDetails;
-    private WinningLotto winningLotto;
+    private final LottoManager lottoManager;
+    private Lottos lottos;
+    private PurchaseAmount purchaseAmount;
 
-    public LottoService(LottoSeller lottoSeller, WinningDetails winningDetails) {
-        this.lottoSeller = lottoSeller;
-        this.winningDetails = winningDetails;
+    private LottoService(LottoManager lottoManager) {
+        this.lottoManager = lottoManager;
     }
 
-    public Lottos buyLotto(int money) {
-        int numberOfLottos = lottoSeller.calculateNumberOfLottos(money);
-        return Lottos.createLottos(numberOfLottos);
+    public static LottoService getInstance() {
+        WinningDetails winningDetails = WinningDetails.createWinningDetails();
+        LottoManager lottoManager = LottoManager.from(winningDetails);
+
+        return new LottoService(lottoManager);
+    }
+
+    public List<String> buyLotto(int money) {
+        LottoSeller lottoSeller = new LottoSeller();
+        purchaseAmount = new PurchaseAmount(money);
+        lottos = lottoSeller.getLottos(purchaseAmount);
+
+        return lottos.getIssuedLottoNumbers();
     }
 
     public void drawWinningLotto(List<Integer> numbers, int bonusNumber) {
-        winningLotto = WinningLotto.of(numbers, bonusNumber);
+        lottoManager.createWinningLotto(numbers, bonusNumber);
     }
 
-    public void rankLotto(Lotto lotto) {
-        int matchedCount = winningLotto.countMatchingNumbers(lotto);
-        boolean isMatchedBonusNumber = winningLotto.isMatchBonusNumber(lotto);
-        Prize prize = Prize.determineRank(matchedCount, isMatchedBonusNumber);
-        winningDetails.increasePrizeAmount(prize);
+    public WinningDetails getWinningResult() {
+        return lottoManager.statisticsPrize(lottos);
     }
 
-    public WinningDetails statisticsLottoResult(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottos()) {
-            rankLotto(lotto);
-        }
-
-        return winningDetails;
-    }
-
-    public double getProfitRate(int money) {
-        int totalPrize = winningDetails.calculateTotalPrize();
-        return lottoSeller.calculateProfitRate(money, totalPrize);
+    public double getProfitRate() {
+        return lottoManager.calculateProfitRate(purchaseAmount);
     }
 }

@@ -44,5 +44,9 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printErrorMessage(String s) {
+        System.out.println(s);
+    }
+
 
 }

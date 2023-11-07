@@ -48,7 +48,7 @@ public class LottoService {
                 lottoComputer.config(Lotto.toLotto(inputView.readWinningLotto()));
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -61,7 +61,7 @@ public class LottoService {
                 lottoComputer.config(inputView.readBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -73,7 +73,7 @@ public class LottoService {
                 lottoGenerator.configMoney(inputView.readMoney());
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }

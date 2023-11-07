@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.constValue.ConstMessage.NUMBER_ERROR_MESSAGE;
 import static lotto.utils.Validator.*;
+
 public class UserInput {
     private int lottoPrice;
     private List<Integer> winningNumbers;
@@ -21,23 +23,40 @@ public class UserInput {
     public void inputLottoPrice(){
         String newLottoPrice = Console.readLine();
         // TODO : 입력값 검증
-        validateLottoPrice(newLottoPrice);
-        this.lottoPrice = Integer.parseInt(newLottoPrice);
+        try{
+            validateLottoPrice(newLottoPrice);
+            this.lottoPrice = Integer.parseInt(newLottoPrice);
+
+
+        } catch (IllegalArgumentException e){
+            inputLottoPrice();
+        }
     }
 
     public void inputWinningNumbers(){
         String input = Console.readLine();
-        validateWinningNumbers(input);
 
-        this.winningNumbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .toList();;
+        try{
+            validateWinningNumbers(input);
+
+            this.winningNumbers = Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .toList();;
+        } catch (IllegalArgumentException e){
+            inputWinningNumbers();
+        }
     }
 
     public void inputBonusNumber(){
         String newBonusNumber = Console.readLine();
-        validateBonusNumber(newBonusNumber);
-        this.bonusNumber = Integer.parseInt(newBonusNumber);
+
+        try{
+            validateBonusNumber(newBonusNumber);
+            this.bonusNumber = Integer.parseInt(newBonusNumber);
+        } catch (IllegalArgumentException e){
+            inputBonusNumber();
+        }
+
     }
 
     public int getLottoPrice() {

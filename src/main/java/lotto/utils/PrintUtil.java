@@ -6,6 +6,9 @@ import lotto.core.Prize;
 import static lotto.constValue.ConstMessage.*;
 
 public class PrintUtil {
+    public static void printNewLine(){
+        System.out.println();
+    };
     public static void printPricePrompt(){
         System.out.println(PRICE_PROMPT_MESSAGE);
     }

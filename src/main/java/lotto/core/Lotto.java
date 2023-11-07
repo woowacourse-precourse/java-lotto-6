@@ -7,17 +7,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers); // 길이 검사
+        validateNumbersLength(numbers); // 길이 검사
         hasDuplicateInNumbers(numbers); // 중복 검사
         validateIsNumbersInRange(numbers); // 1~45 사이 검사
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            System.out.printf(LENGTH_ERROR_MESSAGE);
-            throw new IllegalArgumentException();
-        }
     }
 
     public List<Integer> getNumbers(){

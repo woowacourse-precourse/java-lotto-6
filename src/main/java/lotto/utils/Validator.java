@@ -9,21 +9,27 @@ import static lotto.constValue.ConstNumber.*;
 public class Validator {
     public static void validateNullOrEmpty(String input) {
         if (input == null){
-            System.out.printf(NULL_ERROR_MESSAGE);
+            System.out.println(NULL_ERROR_MESSAGE);
             throw new IllegalArgumentException(NULL_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateNumbersLength(List<Integer> inputs) {
+        if (inputs.size() != 6) {
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validatePriceRange(String input) {
         if (Integer.parseInt(input) < LOTTO_PRICE ){
-            System.out.printf(PRICE_ERROR_MESSAGE);
+            System.out.println(PRICE_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
 
     public static void validateIsNumber(String input){
         if(!isNumber(input)){
-            System.out.printf(NUMBER_ERROR_MESSAGE);
+            System.out.println(NUMBER_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
@@ -45,7 +51,7 @@ public class Validator {
 
     public static void validateIsNumberInRange(int winningNumber){
         if ( !(winningNumber >= 1 && winningNumber <= 45) ){
-            System.out.printf(INPUT_ERROR_MESSAGE);
+            System.out.println(INPUT_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
@@ -62,7 +68,7 @@ public class Validator {
                 .count() != winningNumbers.size();
 
         if ( hasDuplicate ) {
-            System.out.printf(DUPLICATE_ERROR_MESSAGE);
+            System.out.println(DUPLICATE_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }

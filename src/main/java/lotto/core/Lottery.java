@@ -36,20 +36,23 @@ public class Lottery {
     private void ready(){
         printPricePrompt();
         userInput.inputLottoPrice();
+        printNewLine();
 
         this.countOfLotto = userInput.getLottoPrice()/LOTTO_PRICE;
 
         printLottoCount(countOfLotto);
-
         for(int i=0;i<countOfLotto;i++){
             setLottos(getRandomNumbers());
         }
+        printNewLine();
 
         printWinningNumberPrompt();
         userInput.inputWinningNumbers();
+        printNewLine();
 
         printBonusNumberPrompt();
         userInput.inputBonusNumber();
+        printNewLine();
 
         winningNumbers = new WinningNumber(
                 userInput.getWinningNumbers(),

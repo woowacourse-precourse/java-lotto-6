@@ -18,53 +18,44 @@ public class LottoResultManagerTest {
     @DisplayName("로또 결과 저장")
     @Test
     void addLottoResult(){
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        LottoWinningChecker checker = new LottoWinningChecker(List.of(1,2,3,4,5,6), 7);
-        LottoResult result = checker.check(lotto);
-        assertThat(lottoResultManager.add(result)).isEqualTo(0);
+        assertThat(lottoResultManager.add(LottoResult.FIRST_PRIZE)).isEqualTo(0);
     }
 
     @DisplayName("로또 수익률 계산")
     @Test
     void calculateLottoRateOfReturn(){
-        LottoWinningChecker checker = new LottoWinningChecker(List.of(1,2,3,10,11,12), 7);
+        Lotto winningsLotto = new Lotto(List.of(1,2,3,10,11,12));
+        BonusNumber bonusNumber = new BonusNumber(winningsLotto, 7);
+        LottoWinningChecker checker = new LottoWinningChecker(winningsLotto, bonusNumber);
 
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        LottoResult result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(1,2,3,10,11,12));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
         lotto = new Lotto(List.of(23,32,45,4,5,6));
-        result = checker.check(lotto);
-        lottoResultManager.add(result);
+        checker.check(lotto);
 
-        assertThat(lottoResultManager.calculateRateOfReturn(1)).isEqualTo("22222277.8");
+        LottoResultManager resultManager = checker.getLottoResultManager();
+        assertThat(resultManager.calculateRateOfReturn(1)).isEqualTo("22,222,277.8");
     }
 }

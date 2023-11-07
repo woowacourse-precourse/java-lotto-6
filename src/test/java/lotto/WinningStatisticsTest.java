@@ -17,7 +17,7 @@ class WinningStatisticsTest {
         PaidAmount paidAmount = new PaidAmount(3000);
 
         WinningStatistics winningStatistics = new WinningStatistics(winningCounts, paidAmount);
-        double expectedRate = (double) (WinningRank.FIRST.getPrize() + WinningRank.THIRD.getPrize()) / 3000;
+        double expectedRate = (double) (WinningRank.FIRST.getPrize() + WinningRank.THIRD.getPrize()) / 3000 * 100;
 
         //when
         double profitRate = winningStatistics.calculateProfitRate();

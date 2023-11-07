@@ -4,6 +4,9 @@ package lotto;
 import java.util.Arrays;
 
 public class WinningStatistics {
+
+    private static final int PERCENTAGE = 100;
+
     private final WinningCounts winningCounts;
     private final PaidAmount paidAmount;
 
@@ -14,7 +17,7 @@ public class WinningStatistics {
 
     public double calculateProfitRate() {
         long totalPrize = calculateTotalPrize();
-        return (double) totalPrize / paidAmount.getPaidAmount();
+        return (double) totalPrize / paidAmount.getPaidAmount() * PERCENTAGE;
     }
 
     private long calculateTotalPrize() {

@@ -18,7 +18,7 @@ class InputWinnerNumbersTest {
     void getInstanceTest() {
         InputWinnerNumbers testInput = InputWinnerNumbers.getInstance(VALID_INPUT);
 
-        assertEquals(List.of(3,5,7,12,20,41).toString(), testInput.toString());
+        assertEquals(List.of(3, 5, 7, 12, 20, 41).toString(), testInput.toString());
     }
 
     @Test

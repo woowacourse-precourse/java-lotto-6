@@ -13,6 +13,7 @@ class LottoTest {
     private static final Lotto LOTTO_TEST_INSTANCE = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     private static final Integer CONTAINED_NUMBER = 3;
     private static final Integer NOT_CONTAINED_NUMBER = 45;
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {

@@ -23,7 +23,7 @@ public class ConfirmWinningService implements Service {
     public void confirmWinning(PublishedLotto publishedLotto, LottoBonusPair winnerNumberPair) {
         List<Integer> rankList = winnerNumberPair.getResults(publishedLotto);
         Map<Integer, Integer> rankCount = new HashMap<>();
-        for (Integer rank:rankList) {
+        for (Integer rank : rankList) {
             if (hasWon(rank)) {
                 rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
                 addReward(rank);

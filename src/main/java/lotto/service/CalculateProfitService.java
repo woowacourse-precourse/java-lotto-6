@@ -7,6 +7,7 @@ import lotto.view.View;
 
 public class CalculateProfitService implements Service {
     private final LottoOutputView lottoOutputView;
+
     CalculateProfitService(View lottoOutputView) {
         this.lottoOutputView = (LottoOutputView) lottoOutputView;
     }

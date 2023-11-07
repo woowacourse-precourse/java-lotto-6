@@ -9,8 +9,7 @@ public enum Numbers {
     BONUS_INCLUDED_START_RANK(7),
     BONUS_NOT_INCLUDED_START_RANK(8),
     REWARD_CRITERIA(5),
-    PERCENTAGE(100)
-    ;
+    PERCENTAGE(100);
 
     private final Integer number;
 

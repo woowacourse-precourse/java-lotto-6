@@ -7,7 +7,7 @@ public enum ErrorMessage {
     NOT_INTEGER("정수가 아닙니다."),
     NOT_SIX_NUMBERS("6개의 숫자가 필요합니다."),
     HAS_DUPLICATE_NUMBER("중복된 숫자를 허용하지 않습니다."),
-    WINNER_NUMBER_CONTAINS_BONUS("당첨 번호는 보너스 번호를 포함할 수 없습니다."),
+    WINNER_NUMBER_CONTAINS_BONUS("당첨 번호에 보너스 번호가 포함될 수 없습니다."),
     BLANK_INPUT("빈 입력은 허용하지 않습니다."),
     BLANK_ELEMENT("입력된 리스트에 빈 입력이 포함되어 있습니다."),
     INVALID_RANK("당첨 순위는 1등부터 5등까지만 가능합니다.");

@@ -51,7 +51,7 @@ public class Lotto {
 
     private boolean hasDuplicateNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
-        for (Integer number:numbers) {
+        for (Integer number : numbers) {
             if (!set.add(number)) {
                 return true;
             }

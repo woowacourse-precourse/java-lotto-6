@@ -15,6 +15,7 @@ public class InputBonusNumber extends InputNumber {
     public static InputBonusNumber getInstance(String input) {
         return new InputBonusNumber(input);
     }
+
     @Override
     public Integer sendInputData() {
         return this.number;

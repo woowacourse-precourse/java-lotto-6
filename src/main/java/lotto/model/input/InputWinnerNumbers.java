@@ -54,7 +54,7 @@ public class InputWinnerNumbers extends InputList<Integer> {
     }
 
     private boolean notLottoNumbers() {
-        for (Integer number:list) {
+        for (Integer number : list) {
             if (number < MINIMUM_LOTTO_NUMBER.getNumber() || number > MAXIMUM_LOTTO_NUMBER.getNumber()) {
                 return true;
             }

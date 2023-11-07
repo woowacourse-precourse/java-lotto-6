@@ -21,4 +21,7 @@ public enum Prize {
     public String getPrizeString() {
         return prizeString;
     }
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }

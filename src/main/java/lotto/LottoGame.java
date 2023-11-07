@@ -131,7 +131,6 @@ public class LottoGame {
         }
         printStats(stats, lottos);
     }
-
     private static void printStats(Map<Prize, Integer> stats, List<Lotto> lottos) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -143,6 +142,17 @@ public class LottoGame {
                 System.out.printf("%s - %d개%n", prizeString, count);
             }
         }
+        double totalProfitRatio = calculateTotalProfitRatio(stats, lottos.size());
+    }
+
+    private static double calculateTotalProfitRatio(Map<Prize, Integer> stats, int numberOfLottos) {
+        int totalPrize = stats.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
+        int totalSpent = numberOfLottos * 1000; // Total amount spent
+
+        double totalProfit = (totalPrize - totalSpent) * 100.0 / totalSpent;
+        return 100.0 + totalProfit;
     }
 
 }

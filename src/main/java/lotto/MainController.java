@@ -21,6 +21,9 @@ public class MainController {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         WinningResult winningResult = lottos.getWinningResult(winningNumber, bonusNumber);
+
+        Map<Rank, Integer> result = winningResult.getResult();
+        outputView.printResult(result);
     }
 
     private PurchaseAmount getPurchaseAmount() {

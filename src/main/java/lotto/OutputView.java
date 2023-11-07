@@ -16,4 +16,23 @@ public class OutputView {
                 .map(LottoDTO::getNumbers)
                 .forEach(System.out::println);
     }
+
+    public void printResult(Map<Rank, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        List<Rank> ranks = result.keySet().stream()
+                .filter(rank -> !rank.equals(Rank.NOTHING))
+                .sorted(Comparator.reverseOrder())
+                .toList();
+
+        for (Rank rank : ranks) {
+            if (!rank.equals(Rank.SECOND)) {
+                System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getNumber(), rank.getPrize(), result.get(rank));
+            }
+            if (rank.equals(Rank.SECOND)) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getNumber(), rank.getPrize(), result.get(rank));
+            }
+        }
+    }
 }

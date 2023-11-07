@@ -17,6 +17,10 @@ public class WinningResult {
         result.put(rank, result.get(rank) + ADDING_COUNT);
     }
 
+    public Map<Rank, Integer> getResult() {
+        return Collections.unmodifiableMap(result);
+    }
+
     private void init() {
         result.put(Rank.FIRST, INITIAL_VALUE);
         result.put(Rank.SECOND, INITIAL_VALUE);

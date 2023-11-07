@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 
 public class LottoResult {
 
+    private static final int NUM_PRIZES_TO_SKIP = 1;
+    private static final Long DEFAULT_ENTRY_VALUE = 0L;
+    private static final int HUNDRED = 100;
+
     private final Map<Prize, Long> prizeResult;
 
     public LottoResult(final Lottos lottos, final WinnerLotto winnerLotto) {
@@ -22,10 +26,10 @@ public class LottoResult {
 
     private Map<Prize, Long> processPrizeResult(Map<Prize, Long> prizeResults) {
         return Arrays.stream(Prize.values())
-                .skip(1)
+                .skip(NUM_PRIZES_TO_SKIP)
                 .collect(Collectors.toMap(
                         prize -> prize,
-                        prize -> prizeResults.getOrDefault(prize, 0L),
+                        prize -> prizeResults.getOrDefault(prize, DEFAULT_ENTRY_VALUE),
                         Long::sum,
                         () -> new TreeMap<>(Comparator.comparing(Enum::ordinal))
                 ));
@@ -38,7 +42,7 @@ public class LottoResult {
     }
 
     public Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
-        return (double) calculateProfit(prizeResults) / (double) money * 100;
+        return (double) calculateProfit(prizeResults) / (double) money * HUNDRED;
     }
 
     private Long calculateProfit(Map<Prize, Long> prizeResults) {

@@ -24,4 +24,17 @@ public class InputHandler {
         }
         return inputList;
     }
+
+    public static Integer getUserInputBonus() {
+        System.out.println("보너스 번호를 입력해 주세요");
+
+        String input = Console.readLine();
+        int number;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("올바른 숫자 형식이 아닙니다.");
+        }
+        return number;
+    }
 }

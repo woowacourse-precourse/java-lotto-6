@@ -39,6 +39,6 @@ class AmountTest {
         // Then
         Assertions.assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.AMOUNT_IS_NOT_POSITIVE.message());
+                .hasMessageContaining(ErrorMessage.AMOUNT_IS_NOT_DIVIDED_LOTTO_PRICE.message());
     }
 }

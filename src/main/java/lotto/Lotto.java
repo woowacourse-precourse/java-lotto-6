@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.Prize.*;
 
 public class Lotto {
   private final List<Integer> numbers;
@@ -35,5 +36,25 @@ public class Lotto {
       if (number == bonusNumber) return true;
     }
     return false;
+  }
+
+  public Prize getScore(Lotto winningLotto, Integer bonusNumber) {
+    Integer score = 0;
+    for(Integer number : numbers) {
+      for(Integer winningnumber : winningLotto.numbers) {
+        if(number == winningnumber) score++;
+      }
+    }
+    if(score == 6)
+      return FIRST_PRIZE;
+    if(score == 5 && this.matchWithBonusNumber(bonusNumber))
+      return SECOND_PRIZE;
+    if(score == 5)
+      return THIRD_PRIZE;
+    if(score == 4)
+      return FOURTH_PRIZE;
+    if(score == 3)
+      return FIFTH_PRIZE;
+    return FAIL;
   }
 }

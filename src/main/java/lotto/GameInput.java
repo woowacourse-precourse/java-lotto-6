@@ -1,10 +1,6 @@
 package lotto;
 
-import static lotto.GuideMessage.COMMA;
-import static lotto.LottoSettingValue.LOTTO_SIZE;
-
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,17 +28,9 @@ public class GameInput {
             System.out.println(illegalArgumentException.getMessage());
             return null;
         }
-        List<Integer> winningNumbers = convertCommaStringToListInt(commaWinnigNumbers);
+        List<Integer> winningNumbers = Converter.convertCommaStringToListInt(commaWinnigNumbers);
         Collections.sort(winningNumbers);
         return new Lotto(Collections.unmodifiableList(winningNumbers));
-    }
-
-    public static List<Integer> convertCommaStringToListInt(String commaString){
-        List<Integer> winnigNumbers = new ArrayList<>(LOTTO_SIZE);
-        for(String number : commaString.split(COMMA)){
-            winnigNumbers.add(Integer.valueOf(number));
-        }
-        return winnigNumbers;
     }
 
     public static Integer insertBonusNumber(){

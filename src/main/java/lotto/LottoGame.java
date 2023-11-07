@@ -1,7 +1,5 @@
 package lotto;
 
-import static lotto.GuideMessage.COMMA;
-
 public class LottoGame {
 
     public LottoGame(){
@@ -36,19 +34,12 @@ public class LottoGame {
             if (lottoResultWinners.getNumberOfWinner(rank) == 0){
                 continue;
             }
-            sum += Integer.valueOf(convertCommaStringToString(rank.getPrizeMoney()))
+            sum += Integer.valueOf(Converter.convertCommaStringToString(rank.getPrizeMoney()))
             * lottoResultWinners.getNumberOfWinner(rank);
         }
         return sum;
     }
 
-    public String convertCommaStringToString(String value){
-        String result = "";
-        for (String splitedValue : value.split(COMMA)) {
-            result += splitedValue;
-        }
-        return result;
-    }
 
     public LottoResultWinners findWinnerOfLotto(Lottos lottos, Lotto winningNumbers, Integer bonusNumber) {
         LottoResultWinners lottoResultWinners = new LottoResultWinners();

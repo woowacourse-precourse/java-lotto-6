@@ -23,7 +23,7 @@ public class Judge {
         for (Lotto lotto : lottos.getLottos()){
             int matchingCount = checkMatchingNumbers(winningNumber, bonus, lotto);
             boolean containBonus = false;
-            if(matchingCount == Reward.SECOND.getPrize()){
+            if(matchingCount == Reward.SECOND.getMatchCount()){
                 containBonus = checkBonus(player.getBonusNumber(),lotto);
             }
             Reward reward = findReward(matchingCount, containBonus);

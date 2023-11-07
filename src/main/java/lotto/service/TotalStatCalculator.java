@@ -32,6 +32,6 @@ public class TotalStatCalculator {
     }
 
     private int getRankCount(String message) {
-        return Integer.parseInt(message.split(LottoValues.SPLIT_PARAMETER)[0]);
+        return Integer.parseInt(message.split(LottoValues.RANKING_SPLIT_PARAMETER)[0]);
     }
 }

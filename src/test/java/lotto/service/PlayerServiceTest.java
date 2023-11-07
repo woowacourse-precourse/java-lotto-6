@@ -18,7 +18,6 @@ class PlayerServiceTest {
     Player player;
     PlayerService playerService;
     static LottoGenerator lottoGenerator;
-    static WinningNumberGenerator winningNumberGenerator;
     static WinningLottoCalculator winningLottoCalculator;
 
     @BeforeAll

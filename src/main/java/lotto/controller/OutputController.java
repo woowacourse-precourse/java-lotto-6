@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.service.TotalStatCalculator;
 import lotto.util.OutputMessage;
@@ -16,6 +18,7 @@ public class OutputController {
     }
 
     public void printLottoPapers(List<Lotto> lottos, int lottoCount) {
+        System.out.println();
         System.out.println(String.format(OutputMessage.LOTTO_PRINT_TITLE.toString(), lottoCount));
         for (Lotto lotto : lottos) {
             System.out.println(lotto.toString());
@@ -26,9 +29,10 @@ public class OutputController {
         Map<String, Integer> winningStatistics = totalStatCalculator.getTotalLottoStats();
         String returnRate = getReturnRate(winningStatistics, customerPrice);
 
+        System.out.println();
         System.out.println(OutputMessage.TOTAL_STATISTICS_TITLE);
         System.out.println(OutputMessage.TOTAL_PARAMETER);
-        for (String message : winningStatistics.keySet()) {
+        for (String message : getMessages(winningStatistics,false)) {
             System.out.println(String.format(OutputMessage.TOTAL_STATISTICS_MESSAGE.toString(), message,
                     winningStatistics.get(message)));
         }
@@ -37,17 +41,23 @@ public class OutputController {
 
     private String getReturnRate(Map<String, Integer> winningStatistics, int customerPrice) {
 
-        List<String> messages = winningStatistics.keySet().stream().toList();
+        List<String> messages = getMessages(winningStatistics,true);
         List<RewardValue> rewardValues = Arrays.stream(RewardValue.values()).toList();
         double returnRate = 0.0;
 
         for (int count = 0; count < messages.size(); count++) {
-            double rewardValue = Double.parseDouble(rewardValues.get(count).toString());
+            double rewardValue = Double.parseDouble(rewardValues.get(count).toString().replace(",",""));
             int rewardCount = winningStatistics.get(messages.get(count));
             returnRate += getProceed(rewardValue, rewardCount);
         }
 
-        return String.format("%.2f", returnRate / customerPrice);
+        return String.format("%.1f", (returnRate / customerPrice)*100);
+    }
+
+    private static List<String> getMessages(Map<String, Integer> winningStatistics, boolean isReverse) {
+        if(isReverse)
+            return winningStatistics.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        return winningStatistics.keySet().stream().sorted().collect(Collectors.toList());
     }
 
     private double getProceed(double rewardValue, int rewardCount) {

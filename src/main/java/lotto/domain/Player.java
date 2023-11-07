@@ -38,22 +38,30 @@ public class Player {
         }
     }
 
-    public int getNumberCount(String message, int count) {
+    public int getNumberCount(String message, int rankCount) {
         List<CorrectCount> correctLottoCounts = getCorrectLottoCounts();
 
-        if(message == RankingMessage.FIFTH_RANK.toString()){
-            return getCorrectBonusNumberCount(count, correctLottoCounts).intValue();
+        if(message.equals(RankingMessage.SECOND_RANK.toString())){
+            return getCorrectSecondNumberCount(rankCount, correctLottoCounts).intValue();
         }
-        return getCorrectNumberCount(count, correctLottoCounts).intValue();
+        if(message.equals(RankingMessage.THIRD_RANK.toString())){
+            return getCorrectThirdNumberCount(rankCount, correctLottoCounts).intValue();
+        }
+        return getCorrectNumberCount(rankCount, correctLottoCounts).intValue();
     }
 
-    private Long getCorrectNumberCount(int count, List<CorrectCount> correctLottoCounts) {
-        return correctLottoCounts.stream().filter(correctCount -> correctCount.getCorrectNumberCount() == count).count();
+    private Long getCorrectNumberCount(int rankCount, List<CorrectCount> correctLottoCounts) {
+        return correctLottoCounts.stream().filter(correctCount -> correctCount.getCorrectNumberCount() == rankCount).count();
     }
 
-    private Long getCorrectBonusNumberCount(int count, List<CorrectCount> correctLottoCounts) {
+    private Long getCorrectSecondNumberCount(int rankCount, List<CorrectCount> correctLottoCounts) {
         return correctLottoCounts.stream().filter(correctCount ->
-                (correctCount.getCorrectNumberCount() == count) &&
+                (correctCount.getCorrectNumberCount() == rankCount) &&
                         (correctCount.getCorrectBonusNumberCount() == LottoValues.BONUS_NUMBER_COUNT)).count();
+    }
+    private Long getCorrectThirdNumberCount(int rankCount, List<CorrectCount> correctLottoCounts) {
+        return correctLottoCounts.stream().filter(correctCount ->
+                (correctCount.getCorrectNumberCount() == rankCount) &&
+                        (correctCount.getCorrectBonusNumberCount() == 0)).count();
     }
 }

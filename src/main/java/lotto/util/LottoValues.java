@@ -11,6 +11,6 @@ public class LottoValues {
     public static final int MAX_LOTTO_NUMBER = 45;
 
 
-    public static final String SPLIT_PARAMETER = "개";
-
+    public static final String RANKING_SPLIT_PARAMETER = "개";
+    public static final String INPUT_SPLIT_PARAMETER = ",";
 }

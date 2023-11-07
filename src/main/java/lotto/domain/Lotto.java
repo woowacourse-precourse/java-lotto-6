@@ -1,12 +1,10 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
-
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -27,26 +25,19 @@ public class Lotto {
     }
 
     private boolean isOverlapLottoNumber(List<Integer> numbers) {
-        HashSet<Integer> lottoNums = new HashSet<>();
-        for (int num : numbers) {
-            lottoNums.add(num);
-        }
-        return lottoNums.size() != LOTTO_SIZE;
+        return numbers.stream()
+                .distinct()
+                .count() != LOTTO_SIZE;
     }
-
 
     public boolean containLottoNumber(int winningNumber) {
         return numbers.contains(winningNumber);
     }
 
     public int matchCount(WinningLotto winningLotto) {
-        int matchCount = 0;
-        for (int winningNumber : winningLotto.getWinningLottoNumbers()) {
-            if (containLottoNumber(winningNumber)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) winningLotto.getWinningLottoNumbers().stream()
+                .filter(this::containLottoNumber)
+                .count();
     }
 
     public List<Integer> getNumbers() {

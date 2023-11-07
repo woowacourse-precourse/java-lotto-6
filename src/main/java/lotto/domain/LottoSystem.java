@@ -42,7 +42,7 @@ public class LottoSystem {
         return true;
     }
 
-    private boolean isNotAllIntegerType(String lotto) {
+    private static boolean isNotAllIntegerType(String lotto) {
         String[] lottoNums = lotto.split(",");
 
         for (String num : lottoNums) {
@@ -52,20 +52,20 @@ public class LottoSystem {
         return true;
     }
 
-    private boolean isWrongLottoUnit(String lotto) {
+    private static boolean isWrongLottoUnit(String lotto) {
         if (lotto.split(",").length != lottoCount) return true;
 
         return false;
     }
 
-    private boolean validateMoney(String money) {
+    private static boolean validateMoney(String money) {
         if (isNotIntegerType(money)) return false;
         if (isWrongMoneyUnit(Integer.parseInt(money))) return false;
 
         return true;
     }
 
-    private boolean isNotIntegerType(String num) {
+    private static boolean isNotIntegerType(String num) {
         try {
             Integer.parseInt(num);
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class LottoSystem {
         return false;
     }
 
-    private boolean isWrongMoneyUnit(int money) {
+    private static boolean isWrongMoneyUnit(int money) {
         if (money % moneyUnit != 0) return true;
 
         return false;

@@ -42,7 +42,7 @@ public class InputValidator {
             inputNumber.add(character);
         }
         if (inputNumber.size()!=WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(getDuplicateNumberMessage());
         }
     }
 }

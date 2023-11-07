@@ -32,5 +32,7 @@ public class MessageManager {
     public static String getCommaSeparatorMissingMessage() {
         return exceptionMessages.getString("commaSeparatorMissing.message");
     }
-
+    public static String getDuplicateNumberMessage() {
+        return exceptionMessages.getString("duplicateNumber.message");
+    }
 }

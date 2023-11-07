@@ -16,11 +16,11 @@ public class InputController {
     private BonusNumber bonusNumber;
     private WinnerNumber winnerNumber;
 
-    public int getPurchaseAmount() {
+    public LottoPurchaseAmount getPurchaseAmount() {
         try {
             String purchase = InputViewLottoPurchaseAmount.getPurchaseAmount();
             lottoPurchaseAmount = new LottoPurchaseAmount(purchase);
-            return lottoPurchaseAmount.getLottoCount();
+            return lottoPurchaseAmount;
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getPurchaseAmount();

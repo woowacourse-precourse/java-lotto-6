@@ -4,20 +4,27 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.constant.StringConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.RandomNumberGenerator;
 import lotto.domain.WinningLotto;
 
 public class GameService {
+
+    private final String DIVISION_STANDARD = ",";
 
     private PurchaseAmount purchaseAmount;
     private WinningLotto winningLotto;
     private Lotteries lotteries;
     private LottoResult lottoResult;
+    private final RandomNumberGenerator numberGenerator;
+
+    public GameService(RandomNumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
 
     public void createPurchaseAmount(String userInput) {
         purchaseAmount = PurchaseAmount.from(userInput);
@@ -30,7 +37,8 @@ public class GameService {
     }
 
     public void createLotteries() {
-        lotteries = Lotteries.from(purchaseAmount.calculateAmountOfLotteries());
+        int purchaseCount = purchaseAmount.calculateAmountOfLotteries();
+        lotteries = Lotteries.of(purchaseCount, numberGenerator);
     }
 
     public void createLottoResult() {
@@ -55,7 +63,7 @@ public class GameService {
     }
 
     private List<Integer> convertStrToList(String winningLotto) {
-        return Arrays.stream(winningLotto.split(StringConstant.DIVISION_STANDARD.getMessage()))
+        return Arrays.stream(winningLotto.split(DIVISION_STANDARD))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

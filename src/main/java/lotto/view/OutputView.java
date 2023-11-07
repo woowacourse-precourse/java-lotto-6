@@ -32,8 +32,8 @@ public class OutputView {
                 continue;
             }
 
-            System.out.printf(PRINT_WINNING_STATS_RESULT_MESSAGE,
-                    PriceConstant.getCountByLabel(result.getKey()), PriceConstant.getPriceByLabel(result.getKey()), result.getValue());
+            System.out.printf(PRINT_WINNING_STATS_RESULT_MESSAGE, PriceConstant.getCountByLabel(result.getKey()),
+                    PriceConstant.getPriceByLabel(result.getKey()), result.getValue());
         }
     }
 

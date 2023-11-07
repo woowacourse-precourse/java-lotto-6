@@ -1,35 +1,33 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.util.RandomNumberGenerator;
 
 public class Lotteries {
 
     private final List<Lotto> lotteries;
 
-    private Lotteries(int purchaseCount) {
-        this.lotteries = generateLotteries(purchaseCount);
+    private Lotteries(int purchaseCount, RandomNumberGenerator numberGenerator) {
+        this.lotteries = generateLotteries(purchaseCount, numberGenerator);
     }
 
-    public static Lotteries from(int purchaseCount) {
-        return new Lotteries(purchaseCount);
+    public static Lotteries of(int purchaseCount, RandomNumberGenerator numberGenerator) {
+        return new Lotteries(purchaseCount, numberGenerator);
     }
 
-    private List<Lotto> generateLotteries(int purchaseCount) {
-        return IntStream.range(0, purchaseCount)
-                .mapToObj(i -> this.generateLotto())
+    private List<Lotto> generateLotteries(int purchaseCount, RandomNumberGenerator numberGenerator) {
+        List<Lotto> lottos = IntStream.range(0, purchaseCount)
+                .mapToObj(i -> new Lotto(generateLottoNumbers(numberGenerator)))
                 .collect(Collectors.toList());
+
+        return Collections.unmodifiableList(lottos);
     }
 
-    private Lotto generateLotto() {
-        return new Lotto(generateLottoNumbers());
-    }
-
-    private List<Integer> generateLottoNumbers() {
-        return RandomNumberGenerator.generateLottoNumbers().stream()
+    private List<Integer> generateLottoNumbers(RandomNumberGenerator numberGenerator) {
+        return numberGenerator.generateLottoNumbers().stream()
                 .sorted()
                 .collect(Collectors.toList());
     }

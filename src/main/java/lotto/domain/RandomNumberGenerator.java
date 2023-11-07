@@ -1,12 +1,12 @@
-package lotto.util;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.constant.NumberConstant;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator{
 
-    public static List<Integer> generateLottoNumbers() {
+    public List<Integer> generateLottoNumbers() {
         List<Integer> randomNumbers =  Randoms.pickUniqueNumbersInRange(
                 NumberConstant.LOTTO_MIN_NUMBER.getNumber(),
                 NumberConstant.LOTTO_MAX_NUMBER.getNumber(),

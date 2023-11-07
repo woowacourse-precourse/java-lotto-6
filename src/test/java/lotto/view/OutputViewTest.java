@@ -4,20 +4,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.Lotteries;
-import lotto.domain.LottoResult;
-import lotto.domain.WinningLotto;
+import lotto.domain.RandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class OutputViewTest {
 
     OutputView outputView = new OutputView();
+    RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
 
     Lotteries lotteries;
 
     @BeforeEach
     void init() {
-        lotteries = Lotteries.from(5);
+        lotteries = Lotteries.of(5, numberGenerator);
     }
 
     @Test

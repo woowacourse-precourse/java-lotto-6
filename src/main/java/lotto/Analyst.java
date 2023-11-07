@@ -52,16 +52,4 @@ public class Analyst {
         }
     }
 
-    public void printLottoResult(int userMoney) {
-        int totalWinningAmount = 0;
-        Output.printWinningStatistics();
-
-        for (Map.Entry<LottoMessage, Integer> entry : lottoResult.entrySet()) {
-            if (entry.getValue() > 0) {
-                totalWinningAmount += entry.getKey().winningAmount * entry.getValue();
-            }
-            System.out.println(entry.getKey().message + " - " + entry.getValue() + "개");
-        }
-        Output.printReturn(totalWinningAmount, userMoney);
-    }
 }

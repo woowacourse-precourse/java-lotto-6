@@ -1,10 +1,13 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Money {
 
+    private static final String NOT_DIVIDED_ERROR_MESSAGE = "나누어 떨어지지 않는 숫자입니다.";
     private static final String INVALID_INPUT_MESSAGE = "음수의 숫자를 받을 수 없습니다.";
+    private static final String CURRENCY_UNIT = "원";
     private static final int ZERO_VALUE = 0;
     private final long value;
 
@@ -18,7 +21,7 @@ public class Money {
             return (int) (this.value / lottoUnitPrice);
         }
 
-        throw new IllegalArgumentException("나누어 떨어지지 않는 숫자입니다.");
+        throw new IllegalArgumentException(NOT_DIVIDED_ERROR_MESSAGE);
     }
 
     public boolean isDivisible(long divisor) {
@@ -37,6 +40,12 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat decFormat = new DecimalFormat("###,###");
+        return decFormat.format(this.value) + CURRENCY_UNIT;
     }
 
     private void validate(long value) {

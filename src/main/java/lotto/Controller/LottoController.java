@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.controller.UserInputMessage.*;
 import static lotto.util.RandomNumberGenerator.generateRandomNumbers;
+import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
 import static lotto.util.EarningsCalculator.calculateEarningsRate;
 import static lotto.validator.Validator.isBonusNumberDuplicate;
@@ -47,7 +48,7 @@ public class LottoController {
         requestWinningNumbers();
         requestBonusNumber();
 
-
+        printOutWinningResult();
     }
 
     public void requestLottoPurchaseAmount() {
@@ -65,7 +66,7 @@ public class LottoController {
 
     public void printOutRandomNumbers() {
         int lottoTicket = purchaseAmount / LOTTO_PRICE;
-        System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE+"\n", lottoTicket);
+        System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE + "\n", lottoTicket);
         generateLottoRandomNumbers(lottoTicket);
         for (Lotto randomNumber : lottoRandomNumbers) {
             System.out.println(randomNumber);
@@ -114,6 +115,8 @@ public class LottoController {
         calculateResult();
 
         String earningsRate = calculateEarningsRate(totalEarnings, purchaseAmount);
+        printOutMatchingResult();
+        System.out.printf(EARNING_RATE_MESSAGE + "\n", earningsRate);
     }
 
     public void calculateResult() {
@@ -146,6 +149,20 @@ public class LottoController {
         return LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
     }
 
+    public void printOutMatchingResult() {
+        for (LottoResult result : LottoResult.values()) {
+            String messageFormat = MATCH_MESSAGE;
+            int matchCount = result.getLottoMatchCount();
+            int winningAmount = result.getLottoWinningAmount();
+            int rank = result.getRank();
+            String rankName = result.name();
+            int rankCount = lottoRankCount.getCount(rank);
+            if (rankName.equals("SECOND_PLACE")) {
+                messageFormat = MATCH_BONUS_MESSAGE;
+            }
+            System.out.printf(messageFormat + "\n", matchCount, addThousandsSeparator(winningAmount), rankCount);
+        }
+    }
 
 
 }

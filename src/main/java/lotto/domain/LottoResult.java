@@ -6,7 +6,7 @@ import java.util.List;
 public enum LottoResult {
     FIFTH_PLACE(5, 3, 5_000, Arrays.asList(true, false)),
     FOURTH_PLACE(4, 4, 50_000, Arrays.asList(true, false)),
-    THIRD_PLACE(3, 5, 1_500_000, Arrays.asList(true, false)),
+    THIRD_PLACE(3, 5, 1_500_000, Arrays.asList(false)),
     SECOND_PLACE(2, 5, 30_000_000, Arrays.asList(true)),
     FIRST_PLACE(1, 6, 2_000_000_000, Arrays.asList(true, false));
 
@@ -22,7 +22,7 @@ public enum LottoResult {
         this.isMatchBonusNumber = isMatchBonusNumber;
     }
 
-    public static LottoResult getLottoResult(int lottoMatchCount, Boolean isMatchBonusNumber) {
+    public static LottoResult getLottoResult(int lottoMatchCount, boolean isMatchBonusNumber) {
         for (LottoResult result : values()) {
             if (result.lottoMatchCount == lottoMatchCount && result.isMatchBonusNumber.contains(isMatchBonusNumber)) {
                 return result;
@@ -41,10 +41,6 @@ public enum LottoResult {
 
     public int getLottoWinningAmount() {
         return lottoWinningAmount;
-    }
-
-    public List<Boolean> getIsMatchBonusNumber() {
-        return isMatchBonusNumber;
     }
 
 }

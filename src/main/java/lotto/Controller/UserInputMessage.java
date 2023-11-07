@@ -10,6 +10,7 @@ public class UserInputMessage {
 
     public static final String MATCH_MESSAGE = "%d개 일치 (%s원) - %d개";
     public static final String MATCH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    public static final String EARNING_RATE_MESSAGE = "총 수익률은 %s입니다.";
 
     private UserInputMessage() {
     }

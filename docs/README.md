@@ -12,7 +12,7 @@
 - Ticket : 구입한 로또들을 의미하는 객체
 
 ## Service
-- [ ] Lotto를 발급하는 기능
+- [x] Lotto를 발급하는 기능
 - [ ] Lotto의 당첨 여부를 확인하는 기능
 - [ ] Ticket을 발급하는 기능
 - [ ] Ticket의 총 당첨 금액을 계산하는 기능

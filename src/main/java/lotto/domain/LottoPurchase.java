@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -23,6 +25,7 @@ public class LottoPurchase {
 
         for(int i = 0; i < this.LottoPurchaseCnt; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers.sort(Comparator.naturalOrder());
             randomNumbers.add(numbers);
         }
         return randomNumbers;

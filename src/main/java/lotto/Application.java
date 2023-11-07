@@ -1,26 +1,10 @@
 package lotto;
 
-import lotto.controller.LottoGameController;
-import lotto.service.LottoGeneratorService;
-import lotto.service.LottoRankCalculatorService;
-import lotto.service.LottoStoreService;
-import lotto.view.InputReader;
-import lotto.view.InputView;
-import lotto.view.MessageResolver;
-import lotto.view.OutputView;
+import lotto.config.LottoGameConfig;
 
 public class Application {
     public static void main(String[] args) {
-
-        InputView inputView = new InputView(new InputReader());
-        OutputView outputView = new OutputView(new MessageResolver());
-        LottoRankCalculatorService lottoRankCalculatorService = new LottoRankCalculatorService();
-        LottoGeneratorService lottoGeneratorService = new LottoGeneratorService();
-        LottoStoreService lottoStoreService = new LottoStoreService(lottoGeneratorService);
-
-        LottoGameController lottoGameController = new LottoGameController(inputView, outputView, lottoStoreService,
-                lottoRankCalculatorService);
-
-        lottoGameController.run();
+        LottoGameConfig lottoGameConfig = new LottoGameConfig();
+        lottoGameConfig.lottoGameController().run();
     }
 }

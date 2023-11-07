@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.List;
+
 public class LottoSystem {
     private static final int PRICE_0 = 1000;
 
@@ -13,5 +16,9 @@ public class LottoSystem {
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력받은 값이 잘못되었습니다.");
         }
+    }
+
+    public void lottoNumberSort(List<Integer> numbers){
+        Collections.sort(numbers);
     }
 }

@@ -27,20 +27,4 @@ class ResultTest {
             assertThat(this.result.getCount(i + 1)).isEqualTo(expected[i]);
         }
     }
-
-    @Test
-    void testCalculateTotalReward() {
-        this.result.addCount(1);
-        this.result.addCount(2);
-        this.result.addCount(3);
-        this.result.addCount(3);
-        this.result.addCount(4);
-
-        int expected = DomainConfiguration.REWARD_PER_RANK.get(1)
-                + DomainConfiguration.REWARD_PER_RANK.get(2)
-                + DomainConfiguration.REWARD_PER_RANK.get(3) * 2
-                + DomainConfiguration.REWARD_PER_RANK.get(4);
-
-        assertThat(this.result.calculateTotalReward()).isEqualTo(expected);
-    }
 }

@@ -9,7 +9,7 @@ public enum Rank {
     FOURTH(50_000, 4, false,"4개 일치 (50,000원) - "),
 
     THIRD(1_500_000, 5, false,"5개 일치 (1,500,000원) - "),
-    SECOND(30_000_000, 5, false,"5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+    SECOND(30_000_000, 5, true,"5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIRST(2_000_000_000, 6, false,"6개 일치 (2,000,000,000원) - ");
 
     private final int reward;
@@ -25,15 +25,25 @@ public enum Rank {
     }
 
     public static Rank calculate(int correctNumCount, boolean containBonus) {
+
+        if (correctNumCount != 5) {
+            return Arrays.stream(values())
+                    .filter(rank -> rank.mathCount == correctNumCount)
+                    .findAny()
+                    .orElse(NOTHING);
+        }
         return Arrays.stream(values())
-                .filter(rank -> correctNumCount == rank.mathCount)
-                .filter(rank -> containBonus==rank.containBonus)
+                .filter(rank -> rank.mathCount == correctNumCount)
+                .filter(rank -> rank.containBonus==containBonus)
                 .findAny()
                 .orElse(NOTHING);
     }
-
     public int getMoney() {
         return reward;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
 }

@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.service.Statistics;
 import lotto.view.*;
 import lotto.service.NumberMatch;
 import lotto.service.RandomLottoNumber;
 
 import java.util.List;
+import java.util.Set;
 
 public class LottoController {
 
@@ -17,6 +19,7 @@ public class LottoController {
     private InputBonus inputBonus = new InputBonus();
     private NumberMatch numberMatch = new NumberMatch();
     private RankResult rankResult = new RankResult();
+    private Statistics statistics;
 
 
 
@@ -29,6 +32,8 @@ public class LottoController {
         List<Integer> matching = numberMatch.matching(lottoNumbers, inputlottoNumbers);
         List<Boolean> containBonus = numberMatch.containBonusAll(lottoNumbers, bonus);
         rankResult.calculateResult(matching, containBonus);
+        statistics = new Statistics(money, rankResult);
+
     }
 
     private void showLottoNumbers(List<Lotto> lottoNumbers) {

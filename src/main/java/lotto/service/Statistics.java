@@ -10,11 +10,12 @@ public class Statistics {
         this.rate = (getTotalMoney(rankResult) / money)*100;
     }
     private long getTotalMoney(RankResult rankResult) {
-        int result = 0;
+        int totalMoney = 0;
+
         for (Rank rank : Rank.values()) {
-            result += rankResult.getCount(rank) * rank.getMoney();
+            totalMoney += rankResult.getCount(rank) * rank.getMoney();
         }
-        return result;
+        return totalMoney;
     }
 
     public double getRate() {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RankResult {
-    private final Map<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
+    public final Map<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
 
     public RankResult() {
         Arrays.stream(Rank.values())

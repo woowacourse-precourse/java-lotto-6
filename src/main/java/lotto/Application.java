@@ -2,6 +2,8 @@ package lotto;
 
 import static lotto.QuantityDisplayManager.printPurchaseQuantity;
 import static lotto.UserInputHandler.getLottoPurchaseAmount;
+import static lotto.UserInputHandler.inputWinningNumbers;
+import static lotto.UserInputHandler.requestInputForWinningNumbers;
 import static lotto.UserInputHandler.requestPurchaseAmount;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -21,5 +23,7 @@ public class Application {
         for(i = 0 ; i < purchaseQuantity ; i++){
             System.out.println(numbers.get(i));
         }
+        requestInputForWinningNumbers();
+        inputWinningNumbers();
     }
 }

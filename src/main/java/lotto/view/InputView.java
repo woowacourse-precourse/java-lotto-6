@@ -19,6 +19,7 @@ public class InputView {
 
     public static String inputBonusNumber() {
         String bonusNumber = Console.readLine();
-        return Validator.checkNullValue(Console.readLine());
+        Validator.checkBonusNumberForm(bonusNumber);
+        return Validator.checkNullValue(bonusNumber);
     }
 }

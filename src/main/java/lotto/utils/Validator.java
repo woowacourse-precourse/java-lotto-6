@@ -84,6 +84,12 @@ public class Validator {
         }
     }
 
+    public static void checkBonusNumberForm(String input) throws IllegalArgumentException {
+        if (!input.matches("^([1-9]|[1-3][0-9]|4[0-5])$")) {
+            throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자를 입력해야 합니다.");
+        }
+    }
+
     private static void checkLottoNumberDuplicate(List<Integer> winningNumber, Integer bonusNumber) throws  IllegalArgumentException{
         if(winningNumber.contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR] 입력된 보너스 번호가 당첨 번호에 포함됩니다.");

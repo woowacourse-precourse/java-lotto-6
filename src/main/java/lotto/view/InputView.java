@@ -1,14 +1,15 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import component.input.InputBonusNumberComponent;
-import component.input.InputLottoNumbersComponent;
-import component.input.InputMoneyComponent;
-import component.output.ErrorMessageComponent;
 import io.output.Writer;
+import java.util.function.Supplier;
 import lotto.controller.dto.input.BuyLottosDto;
 import lotto.controller.dto.input.DrawLottosDto;
 import lotto.controller.dto.input.builder.DrawLottosDtoBuilder;
+import lotto.view.component.input.InputBonusNumberComponent;
+import lotto.view.component.input.InputLottoNumbersComponent;
+import lotto.view.component.input.InputMoneyComponent;
+import lotto.view.component.output.ErrorMessageComponent;
 
 /**
  * 입력을 위한 UI를 출력하고, 입력을 받아오는 역할을 합니다.
@@ -33,18 +34,15 @@ public final class InputView {
      * <p>
      * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
      * <p>
-     * 위 요구 사항을 지키기 위해 실패 시, 재귀 호출로 재입력
+     * retryUntilSuccess는 이름 그대로 콜백 함수에서 예외가 발생하지 않을 때까지 재호출합니다.
      */
     public BuyLottosDto inputBuyLottosDto() {
-        new InputMoneyComponent().renderTo(writer);
-        try {
+        return retryUntilSuccess(() -> {
+            new InputMoneyComponent().renderTo(writer);
             return BuyLottosDto.from(readLine());
-        } catch (final IllegalArgumentException e) {
-            new ErrorMessageComponent(e.getMessage())
-                    .renderTo(writer);
-            return inputBuyLottosDto();
-        }
+        });
     }
+
 
     /**
      * 로또 추첨을 위한 당첨 번호 및 보너스 번호를 입력 받아서 Dto로 변환합니다.
@@ -52,8 +50,8 @@ public final class InputView {
     public DrawLottosDto inputDrawLottosDto() {
         final DrawLottosDtoBuilder builder = DrawLottosDtoBuilder.builder();
 
-        inputLottoNumbers(builder);
-        inputBonusNumber(builder);
+        retryUntilSuccess(() -> inputLottoNumbers(builder));
+        retryUntilSuccess(() -> inputBonusNumber(builder));
 
         return builder.build();
     }
@@ -65,20 +63,10 @@ public final class InputView {
      * <p>
      * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
      * <p>
-     * 위 요구 사항을 지키기 위해 실패 시, 재귀 호출로 재입력
      */
     private DrawLottosDtoBuilder inputLottoNumbers(final DrawLottosDtoBuilder builder) {
         new InputLottoNumbersComponent().renderTo(writer);
-
-        try {
-            builder.lottoNumbers(readLine());
-        } catch (final IllegalArgumentException e) {
-            new ErrorMessageComponent(e.getMessage())
-                    .renderTo(writer);
-            return inputLottoNumbers(builder);
-        }
-
-        return builder;
+        return builder.lottoNumbers(readLine());
     }
 
 
@@ -89,20 +77,25 @@ public final class InputView {
      * <p>
      * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
      * <p>
-     * 위 요구 사항을 지키기 위해 실패 시, 재귀 호출로 재입력
      */
     private DrawLottosDtoBuilder inputBonusNumber(final DrawLottosDtoBuilder builder) {
         new InputBonusNumberComponent().renderTo(writer);
+        return builder.bonusNumber(readLine());
+    }
 
+    /**
+     * 인자로 받은 함수가 성공할 때까지 재귀적으로 호출합니다.
+     * <p>
+     * 실패할 경우, 예외 메세지를 출력한 뒤 재호출합니다.
+     */
+    private <T> T retryUntilSuccess(final Supplier<T> supplier) {
         try {
-            builder.bonusNumber(readLine());
+            return supplier.get();
         } catch (final IllegalArgumentException e) {
             new ErrorMessageComponent(e.getMessage())
                     .renderTo(writer);
-            return inputBonusNumber(builder);
+            return retryUntilSuccess(supplier);
         }
-
-        return builder;
     }
 
     /**

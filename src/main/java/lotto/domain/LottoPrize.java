@@ -15,6 +15,29 @@ public enum LottoPrize {
         this.prize = prize;
     }
 
+    public static LottoPrize determinePrize(int matchedNumbers, boolean bonusNumberMatch) {
+        if (matchedNumbers == Lotto.MAX_NUMBERS) {
+            return determineSixMatchPrize(bonusNumberMatch);
+        }
+        return determineOtherMatchesPrize(matchedNumbers);
+    }
+
+    private static LottoPrize determineSixMatchPrize(boolean bonusNumberMatch) {
+        if (bonusNumberMatch) {
+            return SECOND;
+        }
+        return FIRST;
+    }
+
+    private static LottoPrize determineOtherMatchesPrize(int matchedNumbers) {
+        for (LottoPrize prize : values()) {
+            if (prize.matchingNumbers == matchedNumbers) {
+                return prize;
+            }
+        }
+        return null;
+    }
+
     public int getMatchingNumbers() {
         return matchingNumbers;
     }

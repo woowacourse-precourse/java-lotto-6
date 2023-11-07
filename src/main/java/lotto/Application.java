@@ -39,5 +39,20 @@ public class Application {
             rankCount[rank]++;
         }
 
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (int i = 1; i <= 5; i++) {
+            if (i == 1) {
+                System.out.println(WinMessageType.FIRST.getDetail() + " - " + rankCount[i]);
+            } else if (i == 2) {
+                System.out.println(WinMessageType.SECOND.getDetail() + " - " + rankCount[i]);
+            } else if (i == 3) {
+                System.out.println(WinMessageType.THIRD.getDetail() + " - " + rankCount[i]);
+            } else if (i == 4) {
+                System.out.println(WinMessageType.FOURTH.getDetail() + " - " + rankCount[i]);
+            } else if (i == 5) {
+                System.out.println(WinMessageType.FIFTH.getDetail() + " - " + rankCount[i]);
+            }
+        }
     }
 }

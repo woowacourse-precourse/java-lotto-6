@@ -12,8 +12,6 @@ import java.util.Collections;
 public class LottoMakingController {
     private static final LottoView view = new LottoView();
     private final int MONEY_UNIT = 1000;
-    private final int LOTTO_START = 1;
-    private final int LOTTO_END = 45;
     private int payment;
     private int lottoCount;
 
@@ -77,10 +75,7 @@ public class LottoMakingController {
         while (true) {
             try {
                 String input = view.inputWinningNumber();
-                ArrayList<Integer> inputNumbers = new ArrayList<Integer>(Arrays.asList(changeStringToIntegers(input)));
-                validateBoundaryNumbers(inputNumbers);
-                validateOverlapNumber(inputNumbers);
-                Lotto winningNumber = new Lotto(inputNumbers);
+                Lotto winningNumber = new Lotto(new ArrayList<Integer>(Arrays.asList(changeStringToIntegers(input))));
                 this.winningNumbers = winningNumber;
                 break;
             } catch (IllegalArgumentException e) {
@@ -101,21 +96,6 @@ public class LottoMakingController {
         }
     }
 
-    private void validateBoundaryNumbers(ArrayList<Integer> input) {
-        try {
-            for (int i = 0; i < input.size(); i++)
-                validateBoundaryNumber(input.get(i));
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-    }
-
-    private void validateOverlapNumber(ArrayList<Integer> input) {
-        for (Integer i : input)
-            if (Collections.frequency(input, i) > 1)
-                throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
-    }
-
     public void createBonusNumber() {
         while (true) {
             try {
@@ -133,7 +113,7 @@ public class LottoMakingController {
     }
 
     private void validateBoundaryNumber(int input) {
-        if (input < LOTTO_START || input > LOTTO_END)
+        if (input < Lotto.LOTTO_START || input > Lotto.LOTTO_END)
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
     }
 

@@ -25,6 +25,7 @@ public class LottoView {
     }
 
     public String inputBonusNumber() {
+        System.out.println();
         System.out.println(Message.INPUT_BONUS_NUMBER_MESSAGE.getValue());
         return Console.readLine();
     }

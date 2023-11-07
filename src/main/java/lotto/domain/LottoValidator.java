@@ -8,13 +8,19 @@ public class LottoValidator {
 
     public static final int LOTTO_PRICE = 1000;
 
+    public void validateContains(Lotto lotto, int number) {
+        if (lotto.containsNumber(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
             validateNumberRange(number);
         }
     }
 
-    private void validateNumberRange(int number) {
+    public void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException();
         }

@@ -9,9 +9,8 @@ public class NumberPicker {
 
     private List<Integer> winningNumbers = new ArrayList<>();
 
-
     // 중복되지 않는 6개의 숫자를 뽑는다.
-    private void stringToNumbers(String input) {
+    public List<Integer> stringToNumbers(String input) {
         String[] splitNumbers = input.split(",");
         checkDuplicated(splitNumbers);
         checkNumbersLength(splitNumbers);
@@ -20,6 +19,7 @@ public class NumberPicker {
             winningNumbers.add(Integer.parseInt(number));
         }
         checkNumbersRange(winningNumbers);
+        return winningNumbers;
     }
 
     public void checkDuplicated(String[] numbers) {
@@ -57,12 +57,13 @@ public class NumberPicker {
 
 
     //  보너스 번호 1개를 뽑아 winningNumbers에 저장
-    private void pickBonusNumber(String input) {
+    public int pickBonusNumber(String input) {
         checkIsBonusNumber(input);
         int bonusNumber = Integer.parseInt(input);
         winningNumbers.add(bonusNumber);
         checkIsDuplicate(winningNumbers);
         checkLottoNumberRange(bonusNumber);
+        return bonusNumber;
 
     }
 

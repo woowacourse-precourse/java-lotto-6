@@ -10,7 +10,13 @@ import lotto.view.SystemInput;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 public class LottoController {
+
+    private static final String COMMA_SEPERATOR = ",";
+    private static final int ROUND_NUMBER = 2;
+    private static final int THOUSANDS = 1000;
 
     public void run() {
         try {
@@ -25,7 +31,7 @@ public class LottoController {
         int money = SystemInput.readMoney();
         SystemOutput.printPurchaseAmount(money);
 
-        int gameAmount = money / 1000;
+        int gameAmount = money / THOUSANDS;
         WinningLottos winningLottos = createWinningLottos(gameAmount);
         SystemOutput.printWiningLotto(winningLottos);
 
@@ -53,7 +59,7 @@ public class LottoController {
 
     private List<Integer> getUserPickLotto(String userPickLotto) {
         List<Integer> userPickNumber = new ArrayList<>();
-        String[] userPickLottoSplit = userPickLotto.split(",");
+        String[] userPickLottoSplit = userPickLotto.split(COMMA_SEPERATOR);
         for (String userpick : userPickLottoSplit) {
             userPickNumber.add(Integer.parseInt(userpick));
         }
@@ -69,7 +75,10 @@ public class LottoController {
     }
 
     private void getRate(RankContainer rankContainer, long cnt, int money) {
-        double rate = (cnt * 0.1) / ((money) / 1000);
-        SystemOutput.printRankResult(rankContainer, rate);
+        double rate = (cnt * 0.1) / ((money) / THOUSANDS);
+        BigDecimal bd = new BigDecimal(rate);
+        bd = bd.setScale(ROUND_NUMBER, RoundingMode.HALF_UP);
+        double roundRate = bd.doubleValue();
+        SystemOutput.printRankResult(rankContainer, roundRate);
     }
 }

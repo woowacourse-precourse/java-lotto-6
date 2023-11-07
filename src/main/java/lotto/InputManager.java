@@ -9,7 +9,7 @@ public class InputManager {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 moneyInput = Integer.parseInt(Console.readLine().replaceAll("\\s", ""));
-                InputValidator.checkMoney1000(moneyInput);
+                InputValidator.checkDivisibleBy1000(moneyInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

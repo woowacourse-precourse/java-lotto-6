@@ -38,10 +38,10 @@ public class InputInitializer {
         return lottoNumberList;
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(Lotto lotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberInput = Console.readLine();
-        new BonusNumberValidator().validate(bonusNumberInput);
+        new BonusNumberValidator().validate(bonusNumberInput, lotto);
         return Integer.parseInt(bonusNumberInput);
     }
 }

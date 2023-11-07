@@ -16,17 +16,9 @@ public class DeliverService {
 
         int i=0;
         while(i<num){
-            Lotto lotto = null;
-            try{
-                lotto = new Lotto(generator.generate());
-            } catch (IllegalArgumentException e){
-                Output output = new Output();
-                output.printError(NOT_WORK_LOTTO_GENERATOR.getMessage());
-            }
-            if(lotto!=null) {
-                lottoPackage.add(lotto);
-                i++;
-            }
+            Lotto lotto = new Lotto(generator.generate());
+            lottoPackage.add(lotto);
+            i++;
         }
 
         return lottoPackage;

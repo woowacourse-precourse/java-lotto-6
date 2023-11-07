@@ -7,23 +7,23 @@ import lotto.vo.BonusNumber;
 
 public class SetBonusNumController {
     BonusNumber bonusNumber;
+    public SetBonusNumController(){
+        setBonusNum();
+    }
     public void setBonusNum(){
         Input input = new Input();
         Output output = new Output();
-        SetBonusNumService service = null;
+        SetBonusNumService service = new SetBonusNumService();
 
-        boolean checkException = false;
-        while (!checkException) {
-            service = new SetBonusNumService();
+        while (bonusNumber==null) {
             output.printBonusNumberPrompt();
+            String number = input.get();
             try{
-                String number = input.get();
-                checkException = service.checkException(number);
+                bonusNumber = service.generateBonusNum(number);
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
-        this.bonusNumber = new BonusNumber(service.getBonusNumber());
     }
 
     public BonusNumber getBonusNumber(){

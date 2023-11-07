@@ -11,7 +11,6 @@ import static lotto.util.LottoNumber.LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY;
 import static lotto.util.ProgramMessage.*;
 
 public class OutputView {
-    private static final String PROFIT_RATE_FORMAT = "#.##";
     public void printMoneyInputGuideMessage() {
         System.out.println(MONEY_INPUT_GUIDE_MESSAGE.getMessage());
     }
@@ -61,8 +60,7 @@ public class OutputView {
         return winMoneyComma;
     }
 
-    public void printProfit(double profit) {
-        DecimalFormat decimalFormat = new DecimalFormat(PROFIT_RATE_FORMAT);
-        System.out.printf(PROFIT_MESSAGE.getMessage(), decimalFormat.format(profit));
+    public void printProfit(String profit) {
+        System.out.printf(PROFIT_MESSAGE.getMessage(), profit);
     }
 }

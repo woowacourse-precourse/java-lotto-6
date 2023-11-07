@@ -112,7 +112,7 @@ public class LottoGame {
     }
 
     private void printProfit(PurchasePrice purchasePrice) {
-        double profit = new Profit().calculateProfitRate(purchasePrice, winResult);
+        String profit = new Profit().calculateProfitRate(purchasePrice, winResult);
         outputView.printProfit(profit);
     }
 }

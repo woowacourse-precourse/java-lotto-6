@@ -20,9 +20,9 @@ public class ProfitTest {
     @DisplayName("수익률 계산 확인")
     @Test
     void calculateProfitRate() {
-        winResult.increaseWinResultValue(WinnerRank.FOUR.getValue());//four
+        winResult.increaseWinResultValue(WinnerRank.FOUR.getValue());
         winResult.increaseWinResultValue(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue());
 
-        assertThat(profit.calculateProfitRate(purchasePrice, winResult)).isEqualTo(22142.86);
+        assertThat(profit.calculateProfitRate(purchasePrice, winResult)).isEqualTo("22142.86");
     }
 }

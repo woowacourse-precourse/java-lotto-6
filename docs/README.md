@@ -122,6 +122,10 @@ LottoController
 StringUtil
 - 비어있는 문자열인지 체크
 - 숫자형 입력값인지 체크
+ListUtil
+- 리스트의 크기가 6 인지 체크
+- 리스트 내 값이 1 ~ 45 사의 값인지 체크
+- 리스트 내 중복된 값이 없는지 체크
 
 ### Service
 LottoService

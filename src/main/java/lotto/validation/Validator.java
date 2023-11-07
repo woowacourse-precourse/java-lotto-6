@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Validator {
+public class Validator {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final String INVALID_NUMERIC_REGEX = "\\d+";
     private static final String COMMA = ",";

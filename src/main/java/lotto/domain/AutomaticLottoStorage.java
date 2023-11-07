@@ -9,6 +9,8 @@ import lotto.util.TextBuilder;
 public class AutomaticLottoStorage {
 
     private List<AutomaticLotto> automaticLottos;
+
+
     private final Integer totalPrice;
 
     private AutomaticLottoStorage(final Integer totalPrice) {
@@ -38,6 +40,10 @@ public class AutomaticLottoStorage {
 
     private Integer getTicketCount() {
         return this.totalPrice / Constant.LOTTO_TICKET_PRICE;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
     }
 
     private void validate(final Integer totalPrice) {

@@ -2,10 +2,11 @@ package lotto.validation;
 
 public class AmountValidator {
 
-    public static void validateAmount(String amountStr) {
+    public static int validateAmount(String amountStr) {
         int amount = parseToInt(amountStr);
         validateMinimumAmount(amount);
         validateThousandUnit(amount);
+        return amount;
     }
 
     private static int parseToInt(String amount) {

@@ -2,15 +2,14 @@ package lotto.controller;
 
 import lotto.core.policy.PickNumberPolicy;
 import lotto.core.policy.WinningPolicy;
-import lotto.entity.Cost;
-import lotto.entity.Lotto;
-import lotto.entity.Lottos;
+import lotto.entity.*;
 import lotto.tool.OutputGenerateTool;
+
+import java.util.List;
 
 import static lotto.controller.InputController.inputPurchaseCost;
 import static lotto.property.LottoProperty.COST_UNIT_STANDARD;
-import static lotto.property.OutputProperty.PURCHASE;
-import static lotto.property.OutputProperty.PURCHASE_COUNT;
+import static lotto.property.OutputProperty.*;
 import static lotto.view.OutputView.outputFormatting;
 import static lotto.view.OutputView.outputLineBreak;
 
@@ -44,10 +43,32 @@ public class MainController {
             outputGenerateTool.generateLottoList(lotto);
         }
         displayPublishedLottos(outputGenerateTool);
+        purchaseResult(lottos.getLottos());
     }
 
     private void displayPublishedLottos(OutputGenerateTool outputGenerateTool) {
         outputFormatting(outputGenerateTool.getLottosFormat());
+    }
+
+    private void purchaseResult(List<Lotto> lottos) {
+        WeekWinning weekWinning = publishWeekWinning();
+        for (int i = 0; i < lottos.size(); i++) {
+            winningPolicy.winningCount(lottos.get(i).getNumbers(), weekWinning.winning(), weekWinning.bonus());
+        }
+    }
+
+    private WeekWinning publishWeekWinning() {
+        return new WeekWinning(inputWinning().getWinningNumbers(), inputBonus().getBonusNumber());
+    }
+
+    private Winning inputWinning() {
+        outputFormatting(INPUT_WINNING.toString());
+        return InputController.inputWinningNumbers();
+    }
+
+    private Bonus inputBonus() {
+        outputFormatting(INPUT_BONUS.toString());
+        return InputController.inputBonusNumber();
     }
 
     private Long calculatePurchaseCount(Cost cost) {

@@ -23,7 +23,7 @@ public class StringUtils {
         try {
             result = Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_A_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(NOT_A_INTEGER_NUMBER.getErrorMessage());
         }
 
         return result;

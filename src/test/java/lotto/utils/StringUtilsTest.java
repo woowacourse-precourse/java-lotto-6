@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import static lotto.view.ErrorMessage.NOT_A_NUMBER;
+import static lotto.view.ErrorMessage.NOT_A_INTEGER_NUMBER;
 import static lotto.utils.StringUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -80,7 +80,7 @@ class StringUtilsTest {
         // when, then
         assertThatThrownBy(() -> parseInt(target))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_A_NUMBER.getErrorMessage());
+                .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
 
     @Test
@@ -92,6 +92,6 @@ class StringUtilsTest {
         // when, then
         assertThatThrownBy(() -> parseInt(target))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_A_NUMBER.getErrorMessage());
+                .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
 }

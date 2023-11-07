@@ -17,7 +17,7 @@ public class BonusNumberException {
 
     public void word(String bonusNumber) {
         int idx = 0;
-        if(bonusNumber.equals("")) {
+        if (bonusNumber.equals("")) {
             throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
         if (bonusNumber.charAt(idx) == '-') {

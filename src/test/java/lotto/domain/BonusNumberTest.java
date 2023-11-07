@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest {
 
-    BonusNumber bonusNumber;
+    private BonusNumber bonusNumber;
     @BeforeEach
     void setUp(){
         bonusNumber = new BonusNumber(7);

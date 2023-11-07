@@ -1,11 +1,14 @@
 package lotto.model;
 
+import static lotto.common.exception.LottoNumberErrorMessage.OUT_OF_RANGE;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import lotto.common.exception.LottoNumberException;
 import lotto.util.RandomGenerator;
 
 public class LottoNumber {
@@ -27,7 +30,7 @@ public class LottoNumber {
 
     public static LottoNumber generateLottoNumber(final int number) {
         return Optional.ofNullable(lottoNumberCacheMap.get(number))
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new LottoNumberException(OUT_OF_RANGE));
     }
 
     public static List<LottoNumber> generateLottoNumbers(final int lottoSize) {
@@ -65,10 +68,10 @@ public class LottoNumber {
     }
 
     private void validateNumberIsLessThanMinThreshold(int number){
-        if(number < MIN_LOTTO_NUMBER) throw new IllegalArgumentException();
+        if(number < MIN_LOTTO_NUMBER) throw new LottoNumberException(OUT_OF_RANGE);
     }
 
     private void validateNumberIsMoreThanMaxThreshold(int number){
-        if(number > MAX_LOTTO_NUMBER) throw new IllegalArgumentException();
+        if(number > MAX_LOTTO_NUMBER) throw new LottoNumberException(OUT_OF_RANGE);
     }
 }

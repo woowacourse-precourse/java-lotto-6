@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculator {
+    private static final Integer PERCENTAGE = 100;
+    private static final Integer INITIAL_COUNT = 0;
+    private static final Integer INCREASE_COUNT = 1;
     private final List<Lotto> playerLottos;
     private final WinningNumbers winningNumbers;
     private final Map<Rank, Integer> winningStatistics;
@@ -22,7 +25,7 @@ public class Calculator {
     }
 
     public Double calculateWinningRate(Map<Rank, Integer> winningResult, int money) {
-        return sumTotalPrize(winningResult) / (double) money * 100;
+        return sumTotalPrize(winningResult) / (double) money * PERCENTAGE;
     }
 
     private Long sumTotalPrize(Map<Rank, Integer> winningResult) {
@@ -33,7 +36,7 @@ public class Calculator {
 
     private void initStatistics() {
         for (Rank rank : Rank.values()) {
-            winningStatistics.put(rank, 0);
+            winningStatistics.put(rank, INITIAL_COUNT);
         }
     }
 
@@ -42,7 +45,7 @@ public class Calculator {
             int matchCount = lotto.matchCountWith(winningNumbers.winningLotto());
             boolean isBonusNumberMatched = lotto.contains(winningNumbers.bonusNumber());
             Rank rank = Rank.valueOf(matchCount, isBonusNumberMatched);
-            winningStatistics.put(rank, winningStatistics.get(rank) + 1);
+            winningStatistics.put(rank, winningStatistics.get(rank) + INCREASE_COUNT);
         }
     }
 }

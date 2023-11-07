@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Objects;
+import lotto.constant.LottoNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +24,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
-        if (numbers.size() != 6 | hasDuplicatedNumber(numbers)) {
+        if (numbers.size() != LottoNumber.COUNT | hasDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException();
         }
     }

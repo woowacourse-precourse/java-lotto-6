@@ -7,7 +7,8 @@ public enum Message {
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계"),
     SEPARATE_LINE("---"),
-    COUNT("개");
+    COUNT("개"),
+    TOTAL_RATE_OF_RETURN("총 수익률은 %s%%입니다.");
 
     private String message;
 

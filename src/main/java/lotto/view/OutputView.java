@@ -6,6 +6,7 @@ import lotto.constant.Message;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoResultStatus;
 import lotto.domain.PurchaseLottos;
+import lotto.domain.PurchasePrice;
 
 public class OutputView {
     private static final String DELIMITER = "\n";
@@ -22,6 +23,11 @@ public class OutputView {
 
         String result = createResult(lottoResult);
         System.out.println(result);
+    }
+
+    public void printRateOfReturn(LottoResult lottoResult, PurchasePrice purchasePrice) {
+        String roundRateOfReturn = lottoResult.roundRateOfReturn(purchasePrice);
+        System.out.printf(Message.TOTAL_RATE_OF_RETURN.getMessage(), roundRateOfReturn);
     }
 
     private void printNewLine() {

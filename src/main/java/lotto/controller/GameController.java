@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.PurchaseCount;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
 import lotto.view.GameView;
@@ -15,17 +16,9 @@ public class GameController {
     }
 
     public void run(){
-        int lottoPurchaseCount = getLottoPurchaseCount(view.inputLottoPurchaseAmount());
-        model.issueLottos(lottoPurchaseCount);
-        printLottos(lottoPurchaseCount, model.findAllLottos());
-    }
-
-    private int getLottoPurchaseCount(String input) {
-        try {
-            return Integer.parseInt(input)/1000;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해야 합니다.");
-        }
+        PurchaseCount purchaseCount = new PurchaseCount(view.inputLottoPurchaseAmount());
+        model.issueLottos(purchaseCount.getValue());
+        printLottos(purchaseCount.getValue(), model.findAllLottos());
     }
 
     private void printLottos(int lottoPurchaseCount, Lottos lottos) {

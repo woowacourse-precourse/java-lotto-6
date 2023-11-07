@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+
 import lotto.validation.InputException;
 
 public class Lotto {

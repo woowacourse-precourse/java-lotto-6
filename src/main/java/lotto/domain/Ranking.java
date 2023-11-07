@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import lotto.Lotto;
 import lotto.WinningLotto;
 import lotto.constant.Rank;
@@ -24,7 +25,7 @@ public class Ranking {
     private Map<Rank, Integer> initializeRankStatus() {
         Map<Rank, Integer> rankStatus = new HashMap<>();
 
-        for (Rank rank : Rank.values()) {
+        for (final Rank rank : Rank.values()) {
             rankStatus.put(rank, 0);
         }
 
@@ -32,11 +33,11 @@ public class Ranking {
     }
 
     private void rankingLotto() {
-        for (Lotto lotto : purchasedLotto.getPurchasedLotto()) {
-            final int matchCount = isContainLottoNumbers(lotto);
+        for (final Lotto lotto : purchasedLotto.getPurchasedLotto()) {
+            final int matchCount = matchedLottoNumberCount(lotto);
             final int totalMatchCount = matchBonusNumber(matchCount, lotto);
+            final Rank matchedRank = getRankByCount(totalMatchCount);
 
-            Rank matchedRank = getRankByCount(totalMatchCount);
             updateRankCounts(matchedRank);
         }
     }
@@ -51,10 +52,10 @@ public class Ranking {
         return totalMatchCount;
     }
 
-    private int isContainLottoNumbers(final Lotto lotto) {
+    private int matchedLottoNumberCount(final Lotto lotto) {
         int matchCount = 0;
 
-        for (int number : lotto.getNumbers()) {
+        for (final int number : lotto.getNumbers()) {
             if (winningNumbers.contains(number)) {
                 matchCount++;
             }
@@ -67,12 +68,12 @@ public class Ranking {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void updateRankCounts(final Rank matchedRank) {
-        rankStatus.put(matchedRank, rankStatus.get(matchedRank) + 1);
+    private void updateRankCounts(final Rank rank) {
+        rankStatus.put(rank, rankStatus.get(rank) + 1);
     }
 
     private Rank getRankByCount(final int matchCount) {
-        for (Rank rank : Rank.values()) {
+        for (final Rank rank : Rank.values()) {
             if (rank.getMatchCount() == matchCount) {
                 return rank;
             }

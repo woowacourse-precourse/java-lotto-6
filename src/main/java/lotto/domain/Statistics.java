@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.constant.Rank;
 
 public class Statistics {
-
     private final Ranking ranking;
     private final Purchase purchasedLotto;
 
@@ -12,7 +11,7 @@ public class Statistics {
         this.purchasedLotto = purchasedLotto;
     }
 
-    public Ranking getRanking() {
+    public final Ranking getRanking() {
         return this.ranking;
     }
 
@@ -24,7 +23,7 @@ public class Statistics {
                 + ranking.getRankStatus().get(Rank.FIRST) * Rank.FIRST.getPrize();
     }
 
-    public double getTotalRevenue() {
+    public final double getTotalRevenue() {
         final int totalRevenue = sumRevenue();
         final double revenue = (double) totalRevenue / (purchasedLotto.getAmount() * 10);
 

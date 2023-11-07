@@ -70,7 +70,6 @@ public final class InputException {
     }
 
     public static void wrongNumberRange(final String input) {
-
         final int number = Integer.parseInt(input);
 
         if (number < 1 || number > 45) {

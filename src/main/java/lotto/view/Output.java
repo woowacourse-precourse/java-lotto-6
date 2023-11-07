@@ -6,7 +6,7 @@ import lotto.constant.Rank;
 import lotto.domain.Purchase;
 import lotto.domain.Statistics;
 
-public class Output {
+public final class Output {
     public static void illegalArgumentException(final IllegalArgumentException illegalArgumentException) {
         System.out.println(illegalArgumentException.getMessage());
     }
@@ -18,7 +18,7 @@ public class Output {
     public static void purchasedLotto(final Purchase purchase) {
         System.out.println("\n" + purchase.getAmount() + Constant.purchaseCount);
 
-        for (Lotto lotto : purchase.getPurchasedLotto()) {
+        for (final Lotto lotto : purchase.getPurchasedLotto()) {
             Output.lottoNumber(lotto);
         }
     }

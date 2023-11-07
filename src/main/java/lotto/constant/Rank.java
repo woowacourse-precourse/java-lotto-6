@@ -1,7 +1,7 @@
 package lotto.constant;
 
 public enum Rank {
-    ELSE(0,0),
+    ELSE(0, 0),
     FOURTH(3, 5000),
     THIRD(4, 50000),
     SECOND(5, 1500000),

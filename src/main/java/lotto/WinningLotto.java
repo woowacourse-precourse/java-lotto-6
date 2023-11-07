@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import lotto.validation.InputException;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -10,12 +11,12 @@ public class WinningLotto {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(String winningNumbers, String bonusNumber) {
+    public WinningLotto(final String winningNumbers, final String bonusNumber) {
         this.winningNumbers = initializeWinningNumbers(winningNumbers);
         this.bonusNumber = initializeBonusNumber(bonusNumber);
     }
 
-    private List<Integer> initializeWinningNumbers(String input) {
+    private List<Integer> initializeWinningNumbers(final String input) {
         final List<Integer> inputNumbers;
 
         try {
@@ -33,7 +34,7 @@ public class WinningLotto {
     private List<Integer> parseNumbers(final String input) {
         final List<Integer> numbers = new ArrayList<>();
 
-        for (String number : input.split(",")) {
+        for (final String number : input.split(",")) {
             numbers.add(Integer.parseInt(number));
         }
 
@@ -43,7 +44,6 @@ public class WinningLotto {
     }
 
     private int initializeBonusNumber(final String input) {
-
         try {
             bonusNumberValidate(input, this.winningNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -56,11 +56,11 @@ public class WinningLotto {
     }
 
     public final List<Integer> getWinningNumbers() {
-        return winningNumbers;
+        return this.winningNumbers;
     }
 
     public final int getBonusNumber() {
-        return bonusNumber;
+        return this.bonusNumber;
     }
 
     private void stringInputValidate(final String input) {

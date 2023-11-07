@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.view.constants.ConstantMessage.ASK_LOTTO_BONUS_NUMBER;
+import static lotto.view.constants.ConstantMessage.ASK_LOTTO_NUMBERS;
 import static lotto.view.constants.ConstantMessage.ASK_LOTTO_PURCHASE_AMOUNT;
 import static lotto.view.constants.ConstantMessage.DISPLAY_LOTTO_PURCHASE_COUNT;
 
@@ -25,6 +27,18 @@ public class GameView {
 
     public static void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
+    }
+
+    public static String inputLottoNumbers() {
+        printlnEmpty();
+        printConstantMessage(ASK_LOTTO_NUMBERS);
+        return Console.readLine();
+    }
+
+    public static String inputLottoBonusNumber() {
+        printlnEmpty();
+        printConstantMessage(ASK_LOTTO_BONUS_NUMBER);
+        return Console.readLine();
     }
 
     public static void printlnEmpty() {

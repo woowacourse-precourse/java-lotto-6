@@ -38,6 +38,16 @@ public class LottoSystem {
         return player.getPurchasedLottoCount();
     }
 
+    private int getMatchingNumbersCount(Lotto winningLotto) {
+        return (int) winningLotto.getLottoNumbers()
+                .stream()
+                .filter(winningLottoNumber ->
+                        player.getLotto().getLottoNumbers()
+                        .stream()
+                        .anyMatch(lottoNumber -> isNumberMatch(lottoNumber.getLottoNumber(), winningLottoNumber.getLottoNumber())))
+                .count();
+    }
+
     private boolean hasBonusNumber(Lotto winningLotto) {
         return winningLotto.getLottoNumbers()
                 .stream()

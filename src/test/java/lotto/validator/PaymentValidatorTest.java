@@ -13,7 +13,7 @@ import lotto.Constants;
 class PaymentValidatorTest {
 
     @ParameterizedTest(name = "입력값 : {0}")
-    @ValueSource(strings = {"1000,", " 1000", "1000 "})
+    @ValueSource(strings = {"1000,", " 1000", "1000 ", "101,000"})
     @DisplayName("구입 금액 예외 처리: 구입 금액에 숫자외 다른 문자가 있는 경우")
     void givenNonPositiveNumber_whenValidateOnlyNumberExist_thenThrowException(String amount) {
         // when & then

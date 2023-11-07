@@ -11,7 +11,7 @@ public class Player {
     Map<Lotto,CorrectCount> lottos;
 
     public Player() {
-        lottos = new HashMap<Lotto,CorrectCount>();
+        lottos = new HashMap<>();
     }
 
     public void addLotto(Lotto lotto) {

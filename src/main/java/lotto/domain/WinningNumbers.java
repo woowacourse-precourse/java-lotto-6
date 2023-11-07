@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.util.LottoValues;
+import lotto.exception.NumberValidator;
 
 public class WinningNumbers {
 
@@ -9,8 +9,8 @@ public class WinningNumbers {
     private final int BONUS_NUMBER;
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
-        validate(numbers);
-        validate(bonusNumber);
+        NumberValidator.validate(numbers);
+        NumberValidator.validate(bonusNumber);
         this.numbers = numbers;
         this.BONUS_NUMBER = bonusNumber;
     }
@@ -21,32 +21,5 @@ public class WinningNumbers {
 
     public int calculateBonusNumber(Lotto lotto){
         return lotto.getCorrectNumberCount(BONUS_NUMBER);
-    }
-
-    private void validate(List<Integer> numbers) {
-        validateNumberCount(numbers);
-        validateDuplicate(numbers);
-        validateRange(numbers);
-    }
-
-    private void validate(int numbers) {
-        validateRange(numbers);
-    }
-
-    private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != LottoValues.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
-    }
-
-    private void validateRange(List<Integer> numbers) {
-
-    }
-
-    private void validateRange(int numbers) {
-
     }
 }

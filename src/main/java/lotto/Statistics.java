@@ -14,4 +14,12 @@ public class Statistics {
     public Map<PrizeGrade, Integer> getGradeDist() {
         return this.gradeDist;
     }
+
+    private Map<PrizeGrade, Integer> getZeroDist() {
+        Map<PrizeGrade, Integer> zeroDist = new HashMap<>();
+        for (PrizeGrade prizeGrade : PrizeGrade.values()) {
+            zeroDist.put(prizeGrade, ZERO);
+        }
+        return zeroDist;
+    }
 }

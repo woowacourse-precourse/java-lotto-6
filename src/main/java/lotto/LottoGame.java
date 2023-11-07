@@ -96,8 +96,8 @@ public class LottoGame {
             }
         }
 
-        //printResult(winCounts);
-        //calculateEarnings(winCounts, lottos.size());
+        printResults(winCounts);
+        calculateEarnings(winCounts, lottos.size());
     }
 
     private static void printResults(int[] winCounts) {
@@ -108,5 +108,19 @@ public class LottoGame {
         System.out.println("5개 일치 (1,500,000원)- " + winCounts[5] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원)- " + winCounts[2] + "개");
         System.out.println("6개 일치 (2,000,000,000원)- " + winCounts[6] + "개");
+    }
+
+    private static void calculateEarnings(int[] winCounts, int lottoCount) {
+        int[] winnings = new int[]{0, 0, 30000000, 5000, 50000, 1500000, 2000000000};
+        long totalWinnings = 0;
+        for (int i = 3; i <= 6; i++) {
+            totalWinnings += winnings[i] * winCounts[i];
+        }
+        totalWinnings += winnings[2] * winCounts[2];
+
+        long totalSpent = lottoCount * LOTTO_PRICE;
+        double earningsRate = (double) totalWinnings / totalSpent;
+
+        System.out.printf("총 수익률은 %.2f입니다.\n", (earningsRate * 100) -100);
     }
 }

@@ -39,15 +39,9 @@ public class Lotto {
     }
     
     public List<Integer> drawLottoNumbers() {
-        HashSet<Integer> lottoNumbers = new HashSet<>();
-        
-        while(lottoNumbers.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            lottoNumbers.add(randomNumber);
-        }
-        List<Integer> sortedLotto = new ArrayList<>(lottoNumbers);
-        Collections.sort(sortedLotto);
-        return sortedLotto;
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45,6);
+        Collections.sort(randomNumbers);
+        return randomNumbers;
     }
     
     
@@ -61,23 +55,46 @@ public class Lotto {
     }
     
     public List<Integer> getWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        
-        String getNumber = Console.readLine();
-        String[] numberList = getNumber.split(",");
-        
-        List<Integer> winningNumber = new ArrayList<>();
-        for (String numberValue : numberList) {
-            int number = Integer.parseInt(numberValue.trim());
-            if(number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        System.out.println();
+        while(true) {
+            
+            try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            
+            String getNumber = Console.readLine();
+            String[] numberList = getNumber.split(",");
+            
+            HashSet<Integer> winningNumber = new HashSet<>();
+            
+            
+            for (String numberValue : numberList) {
+                int number = Integer.parseInt(numberValue.trim());
+                
+                if(number < 1 || number > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                if(!winningNumber.add(number)) {
+                    throw new IllegalArgumentException("[ERROR] 중복된 번호가 입력되었습니다.");
+                }
             }
-            winningNumber.add(number);
+            
+            validate(new ArrayList<>(winningNumber));
+            
+            return new ArrayList<>(winningNumber);
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        
-        validate(winningNumber);
-        
-        return winningNumber;
+    }
+    
+    public int getBonusNumber() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNum = Integer.parseInt(Console.readLine());
+        if(bonusNum < 1 || bonusNum > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonusNum;
     }
     
 }

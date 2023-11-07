@@ -9,6 +9,6 @@ public class Application {
         Lotto lotto = new Lotto();
         lotto.printPurchaseLottoNumbers();
         lotto.getWinningNumber();
-        
+        lotto.getBonusNumber();
     }
 }

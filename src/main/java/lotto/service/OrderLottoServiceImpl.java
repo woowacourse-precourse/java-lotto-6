@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.dto.MoneyDTO;
+import lotto.enums.Constant;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepository;
 import lotto.utils.RandomGenerator;
@@ -31,7 +32,7 @@ public class OrderLottoServiceImpl implements OrderLottoService {
     }
 
     private Integer getCountOfLotto(MoneyDTO moneyDTO) {
-        return moneyDTO.getAmount() / 1000;
+        return moneyDTO.getAmount() / Constant.MONEY_UNITS.getContentToInteger();
     }
 
     private List<Integer> createLotto() {

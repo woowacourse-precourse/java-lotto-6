@@ -3,6 +3,9 @@ package lotto.domain;
 import static lotto.constant.ExceptionMessage.LOTTO_DUPLICATE_NUMBER_EXCEPTION;
 import static lotto.constant.ExceptionMessage.LOTTO_WRONG_RANGE_EXCEPTION;
 import static lotto.constant.ExceptionMessage.LOTTO_WRONG_SIZE_EXCEPTION;
+import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
 
 import java.util.List;
 
@@ -29,18 +32,18 @@ public class Lotto {
     }
 
     private boolean isWrongSize(List<Integer> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LOTTO_SIZE.getValue();
     }
 
     private boolean hasDuplicate(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
-                .count() != 6;
+                .count() != LOTTO_SIZE.getValue();
     }
 
     private boolean isWrongRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue());
     }
 
     public boolean isContain(int number) {

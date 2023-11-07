@@ -58,13 +58,4 @@ public class Controller { //게임 흐름을 컨트럴
         }
         return maching;
     }
-
-
-
-
-
-
-
-
-
 }

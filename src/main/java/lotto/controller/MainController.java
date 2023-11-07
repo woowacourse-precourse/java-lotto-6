@@ -17,7 +17,10 @@ public class MainController {
     public static void startLotto(){
         user.getMoney();
         user.getTicketCount();
-        user.getRandomLotto();
+        user.getLottosThroughTicketCount();
+
+        user.getWinLotto();
+        user.getBonusNumber();
 
     }
 

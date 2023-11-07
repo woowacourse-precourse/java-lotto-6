@@ -2,15 +2,21 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import lotto.util.WinLottoCheck;
 import lotto.view.ErrorMessage;
 import lotto.view.InputMessage;
+import lotto.view.OutputMessage;
 
 public class User {
 
     private int money;
     private int ticketCount;
     private List<Lotto> lottos;
+    private Lotto winLotto;
+    private WinLottoCheck winLottoCheck;
 
     public void getMoney() {
         System.out.println(InputMessage.INPUT_MONEY.getMsg());
@@ -28,20 +34,32 @@ public class User {
     /**
      * 천원단위로 나눠 떨어지지 않을 때 예외처리
      * */
-    public int getTicketCount(){
+    public void getTicketCount(){
         if(this.money % 1000 != 0){
             throw new IllegalArgumentException(ErrorMessage.VALUE_ERROR.getMsg());
         }
-        return this.money / 1000;
+        ticketCount = this.money / 1000;
     }
 
-    public void getRandomLotto(){
-        System.out.println();
+    public void getLottosThroughTicketCount(){
+        System.out.println("\n" + ticketCount + OutputMessage.BOUGHT_OUTPUT.getMsg());
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lotto.printNumbers();
-            lottos.add(lotto);
+            this.lottos.add(lotto);
         }
     }
 
+    public void getWinLotto() {
+        System.out.println("\n" + InputMessage.REQUEST_WIN_LOTTO.getMsg());
+        String winLotto = Console.readLine();
+
+        winLottoCheck = new WinLottoCheck();
+        this.winLotto = new Lotto(winLottoCheck.winLottoErrorCheck(winLotto));
+    }
+
+
+    public void getBonusNumber() {
+
+    }
 }

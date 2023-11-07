@@ -1,5 +1,6 @@
-package lotto;
+package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,6 +18,7 @@ public class Lotto {
     }
 
     public void printNumbers(){
-        System.out.println("[" + String.join(", ", (CharSequence) numbers) + "]");
+        Collections.sort(numbers);
+        System.out.println(numbers);
     }
 }

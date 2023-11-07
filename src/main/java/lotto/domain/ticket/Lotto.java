@@ -9,7 +9,6 @@ import static lotto.domain.ticket.LottoNumberConfig.NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import lotto.domain.dto.LottoResult;
 import lotto.domain.winningnumbers.WinningNumbers;
 

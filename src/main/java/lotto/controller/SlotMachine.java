@@ -14,16 +14,12 @@ public class SlotMachine {
     }
 
     private static BuyPrice requestValidBuyPrice() {
-        BuyPrice buyPrice = null;
-        boolean valid = false;
-        while (!valid) {
+        while (true) {
             try {
-                buyPrice = BuyPrice.from(InputView.askBuyPrice());
-                valid = true;
+                return BuyPrice.from(InputView.askBuyPrice());
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
-        return buyPrice;
     }
 }

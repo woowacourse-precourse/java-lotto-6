@@ -18,12 +18,20 @@ public class LottoOutput {
         }
     }
 
-    public void inputWinningNumber() {
-        System.out.println(Message.INPUT_WINNING_NUMBER.getMessage());
+    public void printResult() {
+        System.out.println(
+                Message.LINE_BREAK.getMessage() + Message.OUTPUT_WINNING_RESULT.getMessage());
+        System.out.println(Message.OUTPUT_SOLID_LINE.getMessage());
+        printStatics();
+        System.out.printf(Message.REVENUE_RESULT.getMessage(), 62.55);
     }
 
-    public void inputBonusNumber() {
-        System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
+    public void printStatics() {
+        System.out.printf(Message.FIFTH_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
+        System.out.printf(Message.FOURTH_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
+        System.out.printf(Message.THIRD_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
+        System.out.printf(Message.SECOND_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
+        System.out.printf(Message.FIRST_STATICS.getMessage() + Message.LINE_BREAK.getMessage(), 5);
     }
 
 }

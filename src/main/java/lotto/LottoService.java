@@ -31,12 +31,17 @@ public class LottoService {
 	}
 
 	public List<Integer> checkNumbers(String inputNumbers) throws IllegalArgumentException {
+		List<Integer> userNumbers = new ArrayList<>();
+
 		String[] numbers = inputNumbers.split(",");
 		validator.isThisSizeSix(numbers);
+
 		for (int i = 0; i < numbers.length; i++) {
 			validator.isComposedOfNumbers(numbers[i]);
 			validator.isInRange(numbers[i]);
+			userNumbers.add(Integer.parseInt(numbers[i]));
 		}
-		return null;
+
+		return userNumbers;
 	}
 }

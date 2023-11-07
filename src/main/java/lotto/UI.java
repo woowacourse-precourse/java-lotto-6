@@ -12,6 +12,7 @@ public class UI {
 		System.out.println("\n" + numberOfLottoTickets + "개를 구매했습니다.");
 		showComputerLottos(numberOfLottoTickets);
 		List<Integer> userNumbers = inputNumbers();
+		int bonusNumber = inputBonusNumber(userNumbers);
 	}
 
 	private long inputMoney() {
@@ -48,5 +49,11 @@ public class UI {
 			System.out.println(e.getMessage());
 			return inputNumbers();
 		}
+	}
+
+	private int inputBonusNumber(List<Integer> userNumbers) {
+		System.out.println("\n보너스 번호를 입력해 주세요.");
+		String inputBonusNumber = Console.readLine();
+		return 0;
 	}
 }

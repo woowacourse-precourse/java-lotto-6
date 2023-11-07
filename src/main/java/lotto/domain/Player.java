@@ -55,4 +55,8 @@ public class Player {
     public WinLotto getWinLotto() {
         return winLotto;
     }
+
+    public double getRateOfReturn() {
+        return (Utils.getRateOfReturn() / lottoAmount.getLottoAmount()) * 100;
+    }
 }

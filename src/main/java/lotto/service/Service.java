@@ -94,5 +94,11 @@ public class Service {
 	public boolean isBonusNumberCorrect(Lotto lotto) {
 		return lotto.getNumbers().contains(lottoGame.getBonusNumber());
 	}
+	
+	public Rank checkLottoRank(Lotto lotto) {
+		int correctCount = countCorrectLottoNumber(lotto);
+		boolean isbonus = isBonusNumberCorrect(lotto);
+		return Rank.ranking(correctCount, isbonus);
+	}
 
 }

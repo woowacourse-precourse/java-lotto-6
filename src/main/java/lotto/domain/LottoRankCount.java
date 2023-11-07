@@ -1,23 +1,28 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LottoRankCount {
-    public static final int RANK_COUNT = 5;
-    private final List<Integer> rankCount;
 
-    LottoRankCount() {
-        rankCount = new ArrayList<>(Collections.nCopies(RANK_COUNT, 0));
+    private static final int FIRST_RANK = 1;
+    private static final int LAST_RANK = 5;
+    private Map<Integer, Integer> rankCounts;
+
+    public LottoRankCount() {
+        rankCounts = new HashMap<>();
     }
 
-    public void increaseRankCount(int rank) {
-        Integer count = rankCount.get(rank - 1);
-        rankCount.set(rank, count++);
+    public void incrementCount(int rank) {
+        if (rank > LAST_RANK || rank < FIRST_RANK) {
+            throw new IllegalStateException();
+        }
+        int currentCount = rankCounts.getOrDefault(rank, 0);
+        rankCounts.put(rank, currentCount + 1);
     }
 
-    public List<Integer> getRankCount() {
-        return rankCount;
+    public int getCount(int rank) {
+        return rankCounts.getOrDefault(rank, 0);
     }
+
 }

@@ -24,22 +24,13 @@ public enum LottoResult {
         this.isMatchBonusNumber = isMatchBonusNumber;
     }
 
-    public static int getWinningAmount(int lottoMatchCount, Boolean isMatchBonusNumber) {
+    public static LottoResult getLottoResult(int lottoMatchCount, Boolean isMatchBonusNumber) {
         for (LottoResult result : values()) {
             if (result.lottoMatchCount == lottoMatchCount && result.isMatchBonusNumber.contains(isMatchBonusNumber)) {
-                return result.lottoWinningAmount;
+                return result;
             }
         }
-        return 0;
-    }
-
-    public static int getRankCount(int lottoMatchCount, Boolean isMatchBonusNumber) {
-        for (LottoResult result : values()) {
-            if (result.lottoMatchCount == lottoMatchCount && result.isMatchBonusNumber.contains(isMatchBonusNumber)) {
-                return result.rank;
-            }
-        }
-        throw new IllegalStateException(WRONG_RANK_STATE);
+        return null;
     }
 
     public int getRank() {

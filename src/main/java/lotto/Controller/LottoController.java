@@ -16,6 +16,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
 import lotto.domain.Judge;
+import lotto.domain.LottoRankCount;
 import lotto.domain.LottoResult;
 
 
@@ -105,8 +106,9 @@ public class LottoController {
         for (Lotto randomNumbers : lottoRandomNumbers) {
             int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
             boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
-            totalEarnings += LottoResult.getWinningAmount(matchCount, isMatchBonusNumber);
+            LottoResult lottoResult = LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
 
+            totalEarnings +=
         }
     }
 

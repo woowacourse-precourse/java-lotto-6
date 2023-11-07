@@ -40,7 +40,7 @@ class WinningLottoTest {
                 .hasMessageContaining("당첨 번호 중 보너스 번호와 일치하는 숫자가 존재합니다.");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} -> {1}")
     @MethodSource("userLottoAndLottoRanking")
     @DisplayName("1장의 로또와 당첨 번호를 비교하여 결과를 알 수 있다.")
     void compare(Lotto userLotto, LottoRanking expected) {

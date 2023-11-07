@@ -64,7 +64,7 @@ class LottoTest {
     }
 
     @DisplayName("사용자의 로또와 비교하여 일치하는 번호가 총 몇개인지 알 수 있다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} -> {1}")
     @MethodSource("userLottoAndNumberOfMatches")
     void countNumberOfMatches(Lotto userLotto, int expected) {
         int actual = lotto.countNumberOfMatches(userLotto);
@@ -82,7 +82,7 @@ class LottoTest {
     }
 
     @DisplayName("보너스 번호를 포함하는지 알 수 있다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} -> {1}")
     @CsvSource(value = {"6, true", "7, false"})
     void hasBonusNumber(int bonusNumber, boolean expected) {
         boolean actual = lotto.hasBonusNumber(new BonusNumber(bonusNumber));

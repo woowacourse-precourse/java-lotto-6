@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -30,7 +31,7 @@ public class LottoService {
     private Winner winners;
     private Lotto winLotto;
     private int bonusNumber;
-    private int totalPrize = 0;
+    private float totalPrize = 0;
 
     public void repeatPurchase(int lottoCount) {
         for (int count = 0; count < lottoCount; count++) {
@@ -71,48 +72,51 @@ public class LottoService {
         winners = new Winner();
 
         for (Lotto lotto : purchaseLotto) {
+            int win = 0;
+            boolean bonus = false;
+            for (int number : lotto.getLotto()) {
+                if (winLotto.getLotto().contains(number)) {
+                    win++;
+                    continue;
+                }
+                if (number == bonusNumber) {
+                    bonus = true;
+                }
+            }
 
-            List<Integer> notMatchNumbers = lotto.getLotto();
-            notMatchNumbers.removeAll(winLotto.getLotto());
-
-            winFirstPlace(notMatchNumbers);
-            winSecondOrThirdPlace(notMatchNumbers);
-            winFourthPlace(notMatchNumbers);
-            winFifthPlace(notMatchNumbers);
+            winFirstPlace(win);
+            winSecondOrThirdPlace(win, bonus);
+            winFourthPlace(win);
+            winFifthPlace(win);
         }
 
     }
 
-    private void winFirstPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - SIX_MATCH) {
+    private void winFirstPlace(int win) {
+        if (win == SIX_MATCH) {
             winners.increase1stPlace();
         }
     }
 
-    private void winSecondOrThirdPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - FIVE_MATCH) {
-            checkBonusNumber(notMatchNumbers);
+    private void winSecondOrThirdPlace(int win, boolean bonus) {
+        if (win == FIVE_MATCH) {
+            if (bonus) {
+                winners.increase2ndPlace();
+                return;
+            }
+
+            winners.increase3rdPlace();
         }
     }
 
-    private void checkBonusNumber(List<Integer> notMatchNumbers) {
-
-        if (notMatchNumbers.contains(bonusNumber)) {
-            winners.increase2ndPlace();
-            return;
-        }
-
-        winners.increase3rdPlace();
-    }
-
-    private void winFourthPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - FOUR_MATCH) {
+    private void winFourthPlace(int win) {
+        if (win == FOUR_MATCH) {
             winners.increase4thPlace();
         }
     }
 
-    private void winFifthPlace(List<Integer> notMatchNumbers) {
-        if (notMatchNumbers.size() == LOTTO_NUMBER_COUNT - THREE_MATCH) {
+    private void winFifthPlace(int win) {
+        if (win == THREE_MATCH) {
             winners.increase5thPlace();
         }
     }

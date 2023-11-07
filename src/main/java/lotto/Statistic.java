@@ -17,16 +17,13 @@ public enum Statistic {
         this.prize = prize;
     }
 
-    public static Statistic getStatistic(int matchCount){
+    public static Statistic getStatistic(int matchCount) {
         return Arrays.stream(values())
                 .filter(s -> s.matchCount == matchCount)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("3개 이상 일치 하지 않음"));
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
     public int getPrize() {
         return prize;
     }

@@ -21,7 +21,9 @@ public class Application {
         }
     }
 
-    public class
+    public class {
+
+    }
 }
 
 

@@ -15,6 +15,18 @@ public class OutputProcessor {
         this.outputSender = outputSender;
     }
 
+    public void outputPurchaseMoneyInputMessage() {
+        outputSender.send("구입금액을 입력해 주세요.");
+    }
+
+    public void outputWinningNumberInputMessage() {
+        outputSender.send("당첨 번호를 입력해 주세요.");
+    }
+
+    public void outputBonusNumberInputMessage() {
+        outputSender.send("보너스 번호를 입력해 주세요.");
+    }
+
     public void outputNumberOfLottos(int numberOfLottos) {
         outputSender.send(String.format(NUMBER_OF_BOUGHT_PROMPT, numberOfLottos));
     }

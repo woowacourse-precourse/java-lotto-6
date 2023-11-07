@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.model.Budget;
+import lotto.model.Policy;
+import lotto.model.User;
 import lotto.service.LottoAnswerService;
 import lotto.service.LottoService;
 import lotto.service.ResultService;
@@ -13,6 +16,11 @@ public class LottoController {
     private LottoService lottoService;
     private ResultService resultService;
     private UserService userService;
+
+    private User user;
+
+    private Policy lottoPolicy;
+    private Budget budget;
 
 
     public LottoController(
@@ -28,21 +36,28 @@ public class LottoController {
     }
 
     public void start() {
+        buyLotto();
+    }
+
+    private void buyLotto() {
+        doBuyLotto();
 
     }
 
-
-
-    public int readUserBudget() {
+    private boolean doBuyLotto() {
         OutputView.printBudgetInputDescription();
-        int budget = 0;
+        int userMoney;
+
         try {
-            budget = InputView.inputBudget();
+            userMoney = InputView.inputBudget();
+            budget = new Budget(userMoney);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return false;
         }
 
-        return budget;
+        return true;
     }
+
 
 }

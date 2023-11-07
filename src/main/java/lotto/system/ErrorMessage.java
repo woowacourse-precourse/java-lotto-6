@@ -16,7 +16,7 @@ public class ErrorMessage {
     public static final String LOTTO_IS_OVER_SIZE =
             "[ERROR] 로또의 길이가 " + Constants.LOTTO_SIZE.getConstants() + " 이 아닙니다.";
     public static final String NUM_DUPLICATION = "[ERROR] 로또는 중복된 값이 들어 갈 수 없습니다.";
-    public static final String ALREADY_EXIST = "[ERROR] 이미 당첨 번호에서 입력 한 값입니다.";
+    public static final String ALREADY_EXIST = "[ERROR] 이미 당첨 번호에서 입력한 값입니다.";
 
     private ErrorMessage() {
     }

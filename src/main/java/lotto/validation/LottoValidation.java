@@ -1,8 +1,6 @@
 package lotto.validation;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import lotto.system.Constants;
 import lotto.system.ErrorMessage;
 
@@ -37,7 +35,7 @@ public class LottoValidation implements Validation {
         try {
             Arrays.stream(input.split(","))
                     .mapToLong(Long::parseLong);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.EACH_NOT_NUMERIC);
         }
     }

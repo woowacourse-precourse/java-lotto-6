@@ -7,22 +7,26 @@ import java.util.List;
 
 public class Ticket {
     public List<List<Integer>> tickets = new ArrayList<>();
-    public String price;
+    public int price;
     private static final int TICKET_PRICE = 1000;
-    public final int AMOUNT;
+    public int amount;
 
-    public Ticket(String price) {
+    public Ticket(int price) {
         validate(price);
         this.price = price;
-        AMOUNT = Integer.parseInt(this.price) / TICKET_PRICE;
+        setAmount();
         purchaseTicket();
     }
 
-    private void validate(String price) {
-        if (Integer.parseInt(price) % TICKET_PRICE != 0) {
+    private void validate(int price) {
+        if (price % TICKET_PRICE != 0) {
             throw new IllegalArgumentException();
         }
         this.price = price;
+    }
+
+    private void setAmount() {
+        this.amount = this.price / TICKET_PRICE;
     }
 
     private List<Integer> generateTicket() {
@@ -31,7 +35,7 @@ public class Ticket {
     }
 
     private void purchaseTicket() {
-        for (int i = 0; i < this.AMOUNT; i++) {
+        for (int i = 0; i < this.amount; i++) {
             this.tickets.add(generateTicket());
         }
     }

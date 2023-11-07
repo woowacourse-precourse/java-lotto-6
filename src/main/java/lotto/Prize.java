@@ -1,17 +1,20 @@
 package lotto;
 
 enum Prize {
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
-    FOURTH(4, 50_000),
-    FIFTH(3, 5_000);
-
+    FIRST("FIRST", 6, true, 2_000_000_000),
+    SECOND("SECOND", 5, true, 30_000_000),
+    THIRD("THIRD", 5, false, 1_500_000),
+    FOURTH("FOURTH", 4, true, 50_000),
+    FIFTH("FIFTH", 3, true, 5_000);
+    private final String name;
+    private final boolean bonus;
     private final int match;
     private final int profit;
 
-    Prize(int match, int profit) {
+    Prize(String name, int match, boolean bonus, int profit) {
+        this.name = name;
         this.match = match;
+        this.bonus = bonus;
         this.profit = profit;
     }
 
@@ -21,5 +24,13 @@ enum Prize {
 
     public int getProfit() {
         return profit;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean getBonus() {
+        return bonus;
     }
 }

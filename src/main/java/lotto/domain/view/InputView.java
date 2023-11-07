@@ -10,6 +10,11 @@ public class InputView {
         return readLine();
     }
 
+    public String requestInputDrawNumbers() {
+        System.out.println(UserInterfaceMessage.REQUEST_INPUT_WINNING_NUMBER.getValue());
+        return readLine();
+    }
+
     public void printMessage(String message) {
         System.out.println(message);
     }

@@ -4,12 +4,14 @@ import java.util.List;
 import lotto.domain.repository.Lotto;
 import lotto.domain.view.InputView;
 import lotto.domain.view.OutputView;
+import lotto.service.LottoInputDrawNumberService;
 import lotto.service.LottoPublishService;
 
 public class LottoController {
     private InputView inputView;
     private OutputView outputView;
     LottoPublishService lottoPublishService = LottoPublishService.getInstance();
+    LottoInputDrawNumberService lottoInputDrawNumberService = LottoInputDrawNumberService.getInstance();
 
     public LottoController() {
         this.inputView = new InputView();
@@ -19,6 +21,16 @@ public class LottoController {
     public void startGame() {
         this.buyLotto();
         this.lottoPublish();
+        this.saveDrawNumbers();
+    }
+
+    private void saveDrawNumbers() {
+        try {
+            lottoInputDrawNumberService.saveDrawNumber(inputView.requestInputDrawNumbers());
+        } catch (IllegalArgumentException e) {
+            inputView.printMessage(e.getMessage());
+            this.saveDrawNumbers();
+        }
     }
 
     private void buyLotto() {

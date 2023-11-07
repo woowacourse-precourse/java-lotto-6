@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.WinningNumber;
+import view.constants.ConstantMessage;
 
 public class GameService {
 
     public void play() {
 
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ConstantMessage.PURCHASE_PRICE_INPUT.getMessage());
         int price = getPrice();
 
         List<Lotto> lottos = createLottoByPrice(price);
@@ -42,7 +43,7 @@ public class GameService {
     public List<Lotto> createLottoByPrice(int price) {
         List<Lotto> lottos = new ArrayList<>();
         int createLottoNumber = price / 1000;
-        System.out.println(createLottoNumber + "개를 구매했습니다.");
+        System.out.println(createLottoNumber + ConstantMessage.PURCHASE_NUMBER_OUTPUT.getMessage());
 
         for (int i = 0; i < createLottoNumber; i++) {
             List<Integer> newLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -59,7 +60,7 @@ public class GameService {
     }
 
     public WinningNumber getWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(ConstantMessage.WINNING_NUMBER_INPUT.getMessage());
         String[] winningNumberInput = Console.readLine().split(",");
         validateWinningNumber(winningNumberInput);
 
@@ -81,7 +82,6 @@ public class GameService {
             throw new IllegalArgumentException();
         }
 
-        List<Integer> uniqueWinningNumber = new ArrayList<>();
         for (String number : winningNumber) {
             if (!number.matches("\\d+")) {
                 throw new IllegalArgumentException();
@@ -90,7 +90,7 @@ public class GameService {
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(ConstantMessage.BONUS_INPUT.getMessage());
         String bonusInput = Console.readLine();
         validateBonus(bonusInput, winningNumbers);
         return Integer.parseInt(bonusInput);
@@ -124,7 +124,6 @@ public class GameService {
                     bonus[index]++;
                 }
             }
-            System.out.println(lottoResult[index] + "   " + bonus[index]);
             index++;
         }
 
@@ -143,17 +142,25 @@ public class GameService {
             }
         }
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + winningResult[0] + "개");
-        System.out.println("4개 일치 (50,000원) - " + winningResult[1] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winningResult[2] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult[3] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winningResult[4] + "개");
+        System.out.println(ConstantMessage.WINNING_RESULT_TITLE.getMessage());
+        System.out.println(ConstantMessage.WINNING_RESULT_UNDERSCORE.getMessage());
+        System.out.println(ConstantMessage.WINNING_RESULT_THREE.getMessage() + winningResult[0]
+                + ConstantMessage.NUMBER_UNIT.getMessage());
+        System.out.println(ConstantMessage.WINNING_RESULT_FOUR.getMessage() + winningResult[1]
+                + ConstantMessage.NUMBER_UNIT.getMessage());
+        System.out.println(ConstantMessage.WINNING_RESULT_FIVE.getMessage() + winningResult[2]
+                + ConstantMessage.NUMBER_UNIT.getMessage());
+        System.out.println(
+                ConstantMessage.WINNING_RESULT_FIVE_AND_BONUS.getMessage() + winningResult[3]
+                        + ConstantMessage.NUMBER_UNIT.getMessage());
+        System.out.println(ConstantMessage.WINNING_RESULT_SIX.getMessage() + winningResult[4]
+                + ConstantMessage.NUMBER_UNIT.getMessage());
 
         double rateOfReturn = (5000 * winningResult[0] + 50000 * winningResult[1] + 1_500_000 * winningResult[2]
                 + 30_000_000 * winningResult[3] + 2_000_000_000 * winningResult[4]) * 100.0 / price;
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println(
+                ConstantMessage.TOTAL_BENEFIT_FIRST.getMessage() + rateOfReturn
+                        + ConstantMessage.TOTAL_BENEFIT_LAST.getMessage());
     }
 
 }

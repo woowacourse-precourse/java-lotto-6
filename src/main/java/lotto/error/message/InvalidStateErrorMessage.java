@@ -10,7 +10,7 @@ public enum InvalidStateErrorMessage implements ErrorMessage {
     private final String message;
 
     InvalidStateErrorMessage(String message) {
-        this.message = message;
+        this.message = messageHeader + message;
     }
 
     @Override

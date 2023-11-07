@@ -12,7 +12,7 @@ public enum InvalidInputErrorMessage implements ErrorMessage {
     private final String message;
 
     InvalidInputErrorMessage(String message) {
-        this.message = message;
+        this.message = messageHeader + message;
     }
 
     @Override

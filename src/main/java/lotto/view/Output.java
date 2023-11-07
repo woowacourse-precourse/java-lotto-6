@@ -22,4 +22,9 @@ public class Output {
     void printRevenue(double revenue) {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", revenue);
     }
+
+    void printError(IllegalArgumentException e) {
+        System.out.print("[ERROR] ");
+        System.out.println(e);
+    }
 }

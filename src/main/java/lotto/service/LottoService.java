@@ -43,4 +43,14 @@ public class LottoService {
 
         return rankCount;
     }
+
+    public double calculateProfitRate(Map<Rank, Integer> rankCount, PurchaseAmount purchaseAmount) {
+        int totalWinningAmount = 0;
+
+        for (Rank rank : Rank.values()) {
+            totalWinningAmount += rank.getWinningAmount() * rankCount.getOrDefault(rank, 0);
+        }
+
+        return (double) totalWinningAmount / (double) purchaseAmount.getMoney() * 100.0;
+    }
 }

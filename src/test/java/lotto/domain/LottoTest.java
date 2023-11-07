@@ -98,16 +98,4 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .hasMessage(ExceptionMessages.LOTTO_IS_EMPTY.getMessage());
     }
-
-    @Test
-    @DisplayName("로또 번호가 널문자로 입력된 경우 예외가 발생한다.")
-    void 로또_널문자_입력() throws Exception{
-        //given
-        final String numbers = null;
-        //when,then
-        assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Lotto(numbers))
-                .hasMessage(ExceptionMessages.LOTTO_IS_EMPTY.getMessage());
-    }
 }

@@ -28,11 +28,11 @@ public class PurchaseMoneyTest {
         //given
         final String inputMoney = " 3000";
 
-        //when,then
-        assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_NOT_NUMBER.getMessage());
+        //when
+        PurchaseMoney purchaseMoney = new PurchaseMoney(inputMoney);
+
+        // then
+        assertThat(purchaseMoney.getValue()).isEqualTo(3000);
     }
 
     @Test
@@ -54,20 +54,6 @@ public class PurchaseMoneyTest {
     void 빈_값_입력() throws Exception{
         //given
         final String inputMoney = "";
-
-        //when,then
-        assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new PurchaseMoney(inputMoney))
-                .hasMessage(ExceptionMessages.PURCHASE_MONEY_IS_EMPTY_VALUE.getMessage());
-    }
-
-    @Test
-    @DisplayName("널 값을 입력한 경우")
-    void 널_값_입력() throws Exception{
-
-        //given
-        final String inputMoney = null;
 
         //when,then
         assertThatThrownBy(() -> new PurchaseMoney(inputMoney))

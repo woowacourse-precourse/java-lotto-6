@@ -6,7 +6,7 @@ import static lotto.validator.constants.Pattern.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.constans.WinningPrize;
+import lotto.model.constans.WinningRank;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.Validator;
 import lotto.validator.WinningNumbersValidator;
@@ -27,7 +27,7 @@ public class WinningNumbers {
                 .collect(Collectors.toList());
     }
 
-        public static WinningNumbers from(String winningNumbers) {
+    public static WinningNumbers from(String winningNumbers) {
         WINNING_NUMBERS_VALIDATOR.validate(winningNumbers);
         return new WinningNumbers(splitNumbers(winningNumbers));
     }
@@ -51,15 +51,15 @@ public class WinningNumbers {
     public LottosResult calculateLottosResult(List<Lotto> lottos) {
         LottosResult lottosResult = LottosResult.create();
         for (Lotto lotto : lottos) {
-            lottosResult.updateResult(calculatePrizeRank(lotto));
+            lottosResult.updateResult(calculateWinningRank(lotto));
         }
         return lottosResult;
     }
 
-    private WinningPrize calculatePrizeRank(Lotto lotto) {
+    private WinningRank calculateWinningRank(Lotto lotto) {
         int matchingNumberCount = countMatchingNumbers(lotto);
         boolean matchBonusNumber = matchBonusNumber(lotto);
-        return WinningPrize.getWinningPrizeByResult(matchingNumberCount, matchBonusNumber);
+        return WinningRank.getWinningPrizeByResult(matchingNumberCount, matchBonusNumber);
     }
 
     private int countMatchingNumbers(Lotto lotto) {

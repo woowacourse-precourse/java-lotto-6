@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
-import lotto.model.constans.WinningPrize;
+import lotto.model.constans.WinningRank;
 import lotto.validator.PayAmountValidator;
 import lotto.validator.Validator;
 
 public class Client {
     private final int payAmount;
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
     private static final Validator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
 
     private Client(int payAmount) {
@@ -37,7 +37,7 @@ public class Client {
 
     private long calculateWinningPrize(LottosResult lottosResult) {
         long winningPrize = 0;
-        for (Entry<WinningPrize, Integer> entry: lottosResult.entrySet()) {
+        for (Entry<WinningRank, Integer> entry: lottosResult.entrySet()) {
             winningPrize += entry.getKey().getPrize() * entry.getValue();
         }
         return winningPrize;

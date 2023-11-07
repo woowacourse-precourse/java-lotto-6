@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.constans.WinningPrize;
+import lotto.model.constans.WinningRank;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,9 +39,9 @@ public class WinningNumbersTest {
 
         LottosResult lottosResult = winningNumbers.calculateLottosResult(client.getLottos());
 
-        for (Map.Entry<WinningPrize, Integer> entry : lottosResult.entrySet()) {
-            WinningPrize winningPrize = entry.getKey();
-            int expectedCount = expectedLottosResult.get(winningPrize);
+        for (Map.Entry<WinningRank, Integer> entry : lottosResult.entrySet()) {
+            WinningRank winningRank = entry.getKey();
+            int expectedCount = expectedLottosResult.get(winningRank);
             assertThat(entry.getValue()).isEqualTo(expectedCount);
         }
     }
@@ -58,11 +58,11 @@ public class WinningNumbersTest {
 
     private LottosResult createLottosResultForTest() {
         LottosResult lottosResult = LottosResult.create();
-        lottosResult.updateResult(WinningPrize.FIRST_PRIZE);
-        lottosResult.updateResult(WinningPrize.FIFTH_PRIZE);
-        lottosResult.updateResult(WinningPrize.FORTH_PRIZE);
-        lottosResult.updateResult(WinningPrize.SECOND_PRIZE);
-        lottosResult.updateResult(WinningPrize.NO_PRIZE);
+        lottosResult.updateResult(WinningRank.FIRST_PRIZE);
+        lottosResult.updateResult(WinningRank.FIFTH_PRIZE);
+        lottosResult.updateResult(WinningRank.FORTH_PRIZE);
+        lottosResult.updateResult(WinningRank.SECOND_PRIZE);
+        lottosResult.updateResult(WinningRank.NO_PRIZE);
         return lottosResult;
     }
 }

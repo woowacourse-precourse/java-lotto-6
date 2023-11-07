@@ -2,7 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.constans.WinningPrize;
+import lotto.model.constans.WinningRank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ public class ClientTest {
     private final LottosResult lottosResult = LottosResult.create();
     @BeforeEach
     void setUp() {
-        lottosResult.updateResult(WinningPrize.FIFTH_PRIZE);
+        lottosResult.updateResult(WinningRank.FIFTH_PRIZE);
     }
 
     @DisplayName("당첨 결과가 주어졌을 때 수익률을 계산한다. - 7000원으로 5000원 당첨되면 71.4% 수익률")

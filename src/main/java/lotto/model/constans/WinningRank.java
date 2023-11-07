@@ -2,7 +2,7 @@ package lotto.model.constans;
 
 import java.text.DecimalFormat;
 
-public enum WinningPrize {
+public enum WinningRank {
     FIFTH_PRIZE(3, 5_000),
     FORTH_PRIZE(4, 50_000),
     THIRD_PRIZE(5, 1_500_000),
@@ -14,19 +14,19 @@ public enum WinningPrize {
     private final int matchingNumbersCount;
     private final long prize;
 
-    WinningPrize(int matchingNumbersCount, long prize) {
+    WinningRank(int matchingNumbersCount, long prize) {
         this.matchingNumbersCount = matchingNumbersCount;
         this.prize = prize;
     }
 
-    public static WinningPrize getWinningPrizeByResult(int matchingNumbersCount, boolean matchBonusNumber) {
+    public static WinningRank getWinningPrizeByResult(int matchingNumbersCount, boolean matchBonusNumber) {
         if (matchingNumbersCount == 5) {
             if (matchBonusNumber) {
                 return SECOND_PRIZE;
             }
             return THIRD_PRIZE;
         }
-        for (WinningPrize prize : values()) {
+        for (WinningRank prize : values()) {
             if (prize.matchingNumbersCount == matchingNumbersCount) {
                 return prize;
             }

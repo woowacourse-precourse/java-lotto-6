@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.LottosResult;
 import lotto.model.WinningNumbers;
 import lotto.model.LottoStore;
-import lotto.model.constans.WinningPrize;
+import lotto.model.constans.WinningRank;
 import lotto.view.View;
 
 public class LottoController {
@@ -82,8 +82,8 @@ public class LottoController {
     }
 
     private void printLottoResult(LottosResult lottosResult) {
-        for(Entry<WinningPrize, Integer> entry: lottosResult.entrySet()) {
-            if (entry.getKey().equals(WinningPrize.NO_PRIZE)) {
+        for(Entry<WinningRank, Integer> entry: lottosResult.entrySet()) {
+            if (entry.getKey().equals(WinningRank.NO_PRIZE)) {
                 continue;
             }
             view.printLottoResult(entry.getKey().toString(), entry.getValue());

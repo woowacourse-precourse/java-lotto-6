@@ -9,9 +9,9 @@ import java.util.Set;
 public class LottoNumberGenerator {
 
     public enum LottoConfiguration {
-        MIN(1),
-        MAX(45),
-        COUNT(6);
+        MIN_NUMBER(1),
+        MAX_NUMBER(45),
+        NUMBERS(6);
 
         private final int value;
 
@@ -25,16 +25,17 @@ public class LottoNumberGenerator {
     }
 
     public List<Integer> generateLottoNumber() {
-        Set<Integer> lottoNumbers = new HashSet<>();
+        List<Integer> lottoNumbers = new ArrayList<>();
 
-        while (lottoNumbers.size() < LottoConfiguration.COUNT.getValue()) {
-            int lottoNumber = Randoms.pickNumberInRange(
-                LottoConfiguration.MIN.getValue(),
-                LottoConfiguration.MAX.getValue()
+        while (lottoNumbers.size() < LottoConfiguration.NUMBERS.getValue()) {
+            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(
+                    LottoConfiguration.MIN_NUMBER.getValue(),
+                    LottoConfiguration.MAX_NUMBER.getValue(),
+                    LottoConfiguration.NUMBERS.getValue()
             );
-            lottoNumbers.add(lottoNumber);
+            lottoNumbers.addAll(lottoNumber);
         }
 
-        return new ArrayList<>(lottoNumbers);
+        return lottoNumbers;
     }
 }

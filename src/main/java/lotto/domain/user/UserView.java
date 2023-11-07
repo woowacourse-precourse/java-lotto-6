@@ -21,6 +21,15 @@ public class UserView {
         return user;
     }
 
+    public void userStats(final User user){
+        outputUserRateOfReturn(user);
+    }
+
+    private void outputUserRateOfReturn(final User user){
+        RateOfReturnResponse response = userController.getRateOfReturn(user);
+        System.out.println(ViewMessage.OUTPUT_RATE_OF_RETURN_FRONT.getMessage() + response);
+    }
+
     private void outputBuyLotto(final User user){
         UserLottoResponse response = userController.buyLotto(user);
         response.outputLottoSize();

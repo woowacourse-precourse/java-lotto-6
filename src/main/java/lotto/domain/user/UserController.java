@@ -18,7 +18,7 @@ public class UserController {
     public UserLottoResponse buyLotto(final User user){
         return userService.buyAllPurchasableLotto(user);
     }
-
+    public RateOfReturnResponse getRateOfReturn(final User user){return userService.getUserRateOfReturn(user);}
     private User createUserFromAsset(final int asset){
         return userService.createUser(asset);
     }

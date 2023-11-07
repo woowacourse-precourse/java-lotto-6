@@ -13,7 +13,7 @@ public class UserService {
     }
 
     public User createUser(int assets){
-        return new User(assets);
+        return User.fromAsset(assets);
     }
 
     public UserLottoResponse buyAllPurchasableLotto(User user){
@@ -24,6 +24,10 @@ public class UserService {
 
     public int getUserAssets(final User user){
         return user.getAsset();
+    }
+
+    public RateOfReturnResponse getUserRateOfReturn(final User user){
+        return RateOfReturnResponse.from(user.getRateOfReturn());
     }
 
     private int getPurchasableLottoCount(final User user){

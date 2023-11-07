@@ -10,6 +10,7 @@ import lotto.domain.number.LottoNumber;
 import lotto.domain.number.LottoNumberService;
 
 import java.util.List;
+import lotto.domain.user.User;
 import lotto.global.enums.LottoPrize;
 
 public class LottoService {
@@ -20,28 +21,12 @@ public class LottoService {
         this.lottoNumberService = lottoNumberService;
     }
 
-    public List<LottoResultResponse> getLottoStatistics(final List<Lotto> userLottos, final Lotto raffledLotto) {
-        Map<LottoPrize, Long> countedPrizes = countPrize(userLottos, raffledLotto);
+    public List<LottoResultResponse> getLottoStatistics(final User user, final Lotto raffledLotto) {
+        Map<LottoPrize, Long> countedPrizes = countPrize(user, raffledLotto);
         return countedPrizes.entrySet().stream()
                 .map(entry -> LottoResultResponse.from(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
-    private Map<LottoPrize, Long> countPrize(final List<Lotto> userLotto, final Lotto raffledLotto) {
-        Map<LottoPrize, Long> prizeCount = initPrizeCount();
-
-        userLotto.forEach(lotto -> {
-            int matchedNormalCount = countMatchedNormalNumber(lotto, raffledLotto);
-            int bonusNumberCount = checkMatchedBonusNumber(lotto, raffledLotto.getBonusNumber()) ? 1 : 0;
-            LottoPrize determinedPrize = LottoPrize.determinePrize(matchedNormalCount, bonusNumberCount);
-
-            if (determinedPrize != LottoPrize.NONE) {
-                prizeCount.put(determinedPrize, prizeCount.get(determinedPrize) + 1);
-            }
-        });
-
-        return prizeCount;
-    }
-
 
     public Lotto buyLotto(){
         return Lotto.forUserLotto(lottoNumberService.pickAutoNumbers());
@@ -54,6 +39,22 @@ public class LottoService {
     public RaffleLottoResponse addBonusNumber(final Lotto lotto, final LottoNumber lottoNumber){
         lotto.addBonusNumber(lottoNumber);
         return new RaffleLottoResponse(lotto);
+    }
+    private Map<LottoPrize, Long> countPrize(final User user, final Lotto raffledLotto) {
+        Map<LottoPrize, Long> prizeCount = initPrizeCount();
+
+        user.getMyLotto().forEach(lotto -> {
+            int matchedNormalCount = countMatchedNormalNumber(lotto, raffledLotto);
+            int bonusNumberCount = checkMatchedBonusNumber(lotto, raffledLotto.getBonusNumber()) ? 1 : 0;
+            LottoPrize determinedPrize = LottoPrize.determinePrize(matchedNormalCount, bonusNumberCount);
+
+            if (determinedPrize != LottoPrize.NONE) {
+                user.addPrize(determinedPrize.getPrize());
+                prizeCount.put(determinedPrize, prizeCount.get(determinedPrize) + 1);
+            }
+        });
+
+        return prizeCount;
     }
 
     private Map<LottoPrize, Long> initPrizeCount(){

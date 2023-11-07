@@ -49,4 +49,8 @@ public class LottoView {
         responses.forEach(System.out::println);
     }
 
+    private void outputRateOfReturn(final User user){
+        System.out.println(user.getRateOfReturn());
+    }
+
 }

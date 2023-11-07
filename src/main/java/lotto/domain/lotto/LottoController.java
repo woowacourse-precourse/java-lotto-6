@@ -16,7 +16,7 @@ public class LottoController {
     }
 
     public List<LottoResultResponse> getLottoStatistics(final User user, final Lotto raffledLotto){
-        return lottoService.getLottoStatistics(user.getMyLotto(), raffledLotto);
+        return lottoService.getLottoStatistics(user, raffledLotto);
     }
     public RaffleLottoResponse raffleLotto(final String input){
         List<LottoNumber> lotto = convertService.stringToNormalNumberConverter(input);

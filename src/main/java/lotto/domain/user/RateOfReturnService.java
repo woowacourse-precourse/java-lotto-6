@@ -1,4 +1,7 @@
-package lotto.domain.number;
+package lotto.domain.user;
 
 public class RateOfReturnService {
+
+
+
 }

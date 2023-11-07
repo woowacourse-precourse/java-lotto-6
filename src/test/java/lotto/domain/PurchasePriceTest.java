@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constants.message.ErrorMessage;
-import lotto.exception.NotThousandUnitException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ class PurchasePriceTest {
     @DisplayName("구매 금액이 1000 단위가 아니라면 에러가 발생한다.")
     void When_PurchasePriceIsNotThousandUnit_Then_Error() {
         assertThatThrownBy(() -> PurchasePrice.from(1009))
-                .isInstanceOf(NotThousandUnitException.class)
+                .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining(error);
     }
 

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.service;
 
 public class PriceValidator {
 

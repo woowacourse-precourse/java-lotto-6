@@ -16,4 +16,16 @@ public enum Grade {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
     }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoGameException;
 import lotto.util.LottoConstants;
 
 public class BonusNumber {
@@ -12,7 +14,7 @@ public class BonusNumber {
 
     private void validate(Integer number) {
         if (isOutOfRangeNumber(number)) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(ErrorMessage.OUT_OF_RANGE);
         }
     }
 

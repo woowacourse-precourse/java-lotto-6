@@ -55,7 +55,7 @@ public class InputView {
 
     private static void validateBonusNumberInput(String input) {
         if (isNotPositiveInteger(input)) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(ErrorMessage.NON_POSITIVE_INTEGER);
         }
     }
 

@@ -1,6 +1,5 @@
 package lotto.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ class BonusNumberTest {
     void createBonusNumberException() {
         List<Integer> winningNumber = List.of(1,2,3,4,5,6);
         String bonusNum = "7";
-        BonusNumber bonusNumber = lotto.model.BonusNumber.createBonusNumber(winningNumber,bonusNum);
+        BonusNumber bonusNumber = lotto.model.BonusNumber.bonusNumberOf(winningNumber,bonusNum);
         assertEquals(bonusNumber.getBonusNumber(),7);
     }
 }

@@ -18,22 +18,21 @@ public class LottoPaper {
     }
 
     private void validate(String totalAmount) {
-        if (!isInputValueNumber(totalAmount)) {
+        isInputValueNumber(totalAmount);
+        isDivisibleByThousand(totalAmount);
+    }
+
+    private void isInputValueNumber(String totalAmount) {
+        if (!totalAmount.matches("\\d+")) {
             throw new IllegalArgumentException(IS_NOT_NUMBER.getMessage());
         }
+    }
 
-        if (!isDivisibleByThousand(totalAmount)) {
+    private void isDivisibleByThousand(String totalAmount) {
+        int money = stringToIntegerMoney(totalAmount);
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException(IS_NOT_DIVISIBLE.getMessage());
         }
-    }
-
-    private boolean isInputValueNumber(String totalAmount) {
-        return true;
-    }
-
-    private boolean isDivisibleByThousand(String totalAmount) {
-        int money = stringToIntegerMoney(totalAmount);
-        return money % 1000 == 0;
     }
 
     private int calculatorLottoPaperNumber(String totalAmount) {

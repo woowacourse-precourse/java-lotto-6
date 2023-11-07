@@ -36,7 +36,6 @@ public class BuyingLotto {
         lottoNumber = money / 1000;
         for (int i = 0; i < lottoNumber; i++) {
             List<Integer> numbers = randomLottoNumbers();
-            System.out.println(numbers);
             Lotto lotto = new Lotto(numbers);
             totalLotto.add(lotto);
         }
@@ -46,6 +45,13 @@ public class BuyingLotto {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
+    }
+
+    static void printingLotto() {
+        System.out.println(String.format("%d개를 구매했습니다.", lottoNumber));
+        for (Lotto lotto: totalLotto) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
 

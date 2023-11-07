@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -42,3 +43,30 @@ public class Prize {
     public Map<Integer, Integer> getPrizeResult() {
         return this.prizeResult;
     }
+
+    public void getPrizeMoney() {
+        Iterator<Integer> keys = prizeResult.keySet().iterator();
+        int prizeMoney = 0;
+        while (keys.hasNext()) {
+            int key = keys.next();
+            prizeMoney += calculatePrizeMoney(key, prizeResult.get(key));
+        }
+
+    }
+
+    private int calculatePrizeMoney(int key, int value) {
+        if (key == 3) {
+            return value * 5_000;
+        }
+        if (key == 4) {
+            return value * 50_000;
+        }
+        if (key == 5) {
+            return value * 1_500_000;
+        }
+        if (key == 6) {
+            return value * 30_000_000;
+        }
+        return 0;
+    }
+}

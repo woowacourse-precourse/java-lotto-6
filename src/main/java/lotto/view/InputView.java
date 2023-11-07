@@ -36,6 +36,18 @@ public class InputView {
         return nums;
     }
 
+    public static int inputBonusNum() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNum = 0;
+        try {
+            bonusNum = Integer.parseInt(readLine());
+            validateLottoNum(bonusNum);
+        } catch (NumberFormatException e) {
+            validateNumber();
+        }
+        return bonusNum;
+    }
+
     public static void validateDuplicateNum(int number, List<Integer> nums) {
         if (nums.contains(number)) {
             throw new IllegalArgumentException("중복된 번호가 존재합니다.");
@@ -44,7 +56,7 @@ public class InputView {
 
     public static void validateLottoNum(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("각 번호는 1~45사이 값이여야 합니다.");
+            throw new IllegalArgumentException("번호는 1~45사이 값이여야 합니다.");
         }
     }
 

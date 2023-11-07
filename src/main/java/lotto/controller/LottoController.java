@@ -15,6 +15,7 @@ public class LottoController {
         inputWinnerLottoTicket();
         inputBonusNumber();
         processPrizeCalculation();
+        processProfitCalculation();
     }
 
     public void inputBuyLottoTickets() {
@@ -81,5 +82,9 @@ public class LottoController {
 
     public void processPrizeCalculation() {
         this.lottoService.calculatePrize();
+    }
+
+    public void processProfitCalculation() {
+        this.lottoService.calculateProfit();
     }
 }

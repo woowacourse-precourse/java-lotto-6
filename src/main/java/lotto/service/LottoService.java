@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ public class LottoService {
     private Bonus bonus;
     private Payment payment;
     private List<List<Integer>> userLottoNumbers;
+    private Total total;
 
     public void buyLottoTickets(String inputAmount) {
         payment = new Payment(inputAmount);
@@ -51,12 +53,20 @@ public class LottoService {
     }
 
     private void getTotalPrizeResult(List<Prize> totalPrizeResult) {
-        new Total(totalPrizeResult);
+        total = new Total(totalPrizeResult);
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Prize prize : Prize.values()) {
             String formattedPrice = String.format("%,d", prize.getPrice());
             System.out.printf(prize.getMessage(),formattedPrice,prize.getCount());
         }
+    }
+
+    public void calculateProfit() {
+        int ticketCount = payment.getTicket();
+        Profit profit = new Profit(ticketCount);
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+        String formattedProfitRate = decimalFormat.format(profit.getProfitRate());
+        System.out.printf("총 수익률은 %s%%입니다.\n",formattedProfitRate);
     }
 }

@@ -7,6 +7,7 @@ import java.util.*;
 public class Base_Func {
 
     public static int Input_Purchase_Price() {
+        System.out.println("구입금액을 입력해 주세요.");
         String tmp_input = Console.readLine();
         int price = -1;
         try {
@@ -31,5 +32,33 @@ public class Base_Func {
         }
     }
 
+    public static List<Integer> Input_Win_Lotto_List() {
+        System.out.println("당첨 번호를 입력해 주세요.");
 
+        String tmp_input = Console.readLine();
+        String[] tmp_arr = tmp_input.split(",");
+        List<Integer> ret_list = new ArrayList<>();
+        try {
+            for (String num : tmp_arr) {
+                int tmp_num = Integer.parseInt(num);
+                ret_list.add(tmp_num);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 입력 오류 입니다.");
+        }
+
+        return ret_list;
+    }
+
+    public static int Input_Win_Lotto_Bonus_number() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String tmp_input = Console.readLine();
+        int price = -1;
+        try {
+            price = Integer.parseInt(tmp_input);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 입력 오류 입니다.");
+        }
+        return price;
+    }
 }

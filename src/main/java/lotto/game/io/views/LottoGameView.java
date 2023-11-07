@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Map;
 import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.dto.PlayerLotto;
-import lotto.game.io.InteractionRepeatable;
 
-public class LottoGameView implements InteractionRepeatable {
+public class LottoGameView {
 
     public final LottosView lottosView;
     public final WinningLottoView winningLottoView;

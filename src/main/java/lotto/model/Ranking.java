@@ -11,8 +11,8 @@ public enum Ranking {
     FIVE_BONUS(5,30000000),
     SIXTH(6,200000000);
 
-    private int count;
-    private int reward;
+    final private int count;
+    final private int reward;
 
     Ranking(int count, int reward){
         this.count = count;

@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.model.Ranking;
+
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputMessage {
@@ -16,4 +19,21 @@ public class OutputMessage {
         System.out.println("\n당첨 통계");
         System.out.println("---");
     }
+
+    private static void showResult(HashMap<Ranking,Integer> map, Ranking ranking){
+        if(ranking.getCount() == 0){
+            return;
+        }
+        if(ranking.equals(Ranking.FIVE_BONUS)){
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",ranking.getCount(),ranking.getReward(),map.get(ranking));
+        }
+        System.out.printf("%d개 일치 (%d원) - %d개\n", ranking.getCount(), ranking.getReward(), map.get(ranking));
+    }
+
+    public static void showRank(HashMap<Ranking,Integer> map){
+        for(Ranking ranking : Ranking.values()){
+            showResult(map,ranking);
+        }
+    }
+
 }

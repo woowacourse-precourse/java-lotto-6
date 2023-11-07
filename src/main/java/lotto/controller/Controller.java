@@ -32,6 +32,8 @@ public class Controller {
 
     private void gameResult() {
         lottoService.checkLottoRanking(customer,winningNumber);
+        OutputMessage.winningMessage();
+        OutputMessage.showRank(customer.getLottoResult());
     }
 
     private void resultLotto(Customer customer) {
@@ -43,7 +45,6 @@ public class Controller {
 
     private void winningNumberShow() {
         winningNumber = new WinningNumber(getWinningNumber(),getBonusNumber());
-        OutputMessage.winningMessage();
     }
 
     private List<Integer> getWinningNumber() { // String[] vs List<Integer> ..

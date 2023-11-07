@@ -11,6 +11,7 @@ public class Customer {
 
     public Customer(int purchaseMoney) {
         this.purchaseMoney = purchaseMoney;
+        initLottoResult();
     }
 
     public int getPurchaseMoney() {
@@ -27,6 +28,17 @@ public class Customer {
 
     public HashMap<Ranking,Integer> getLottoResult(){
         return lottoResult;
+    }
+
+    private void initLottoResult(){
+        lottoResult.put(Ranking.ZERO, 0);
+        lottoResult.put(Ranking.ONE, 0);
+        lottoResult.put(Ranking.TWO, 0);
+        lottoResult.put(Ranking.THREE, 0);
+        lottoResult.put(Ranking.FOUR, 0);
+        lottoResult.put(Ranking.FIVE, 0);
+        lottoResult.put(Ranking.FIVE_BONUS, 0);
+        lottoResult.put(Ranking.SIXTH, 0);
     }
 
 }

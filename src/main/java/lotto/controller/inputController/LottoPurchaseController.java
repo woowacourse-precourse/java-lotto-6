@@ -6,6 +6,12 @@ public class LottoPurchaseController {
     private final LottoPurchaseInput inputView = new LottoPurchaseInput();
 
     public int getPurchaseAmount() {
-        return inputView.requestPurchaseAmount();
+        while (true) {
+            try {
+                return inputView.requestPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

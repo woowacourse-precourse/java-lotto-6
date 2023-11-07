@@ -63,4 +63,8 @@ public class OutputView {
     public static void printReturnRate(String result) {
         System.out.println(String.format(RETURN_RATE_SENTENCE, result));
     }
+
+    public static void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }

@@ -23,4 +23,8 @@ public class Lottos {
                 .collect(Collectors.toList()));
     }
 
+    public int size() {
+        return lottos.size();
+    }
+
 }

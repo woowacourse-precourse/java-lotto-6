@@ -6,8 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.utils.LottoConstants.LOTTO_NUMBERS_SIZE;
+
 public class Lotto {
-    private static final Integer LOTTO_SIZE = 6;
     private static final String LOTTO_SIZE_ERROR = "로또 번호 갯수는 6개여야 합니다.";
     private static final String LOTTO_DUPLICATE_ERROR = "중복되는 숫자는 허용하지 않습니다.";
 
@@ -26,13 +27,13 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new ErrorMessage(LOTTO_SIZE_ERROR);
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != LOTTO_SIZE) {
+        if (new HashSet<>(numbers).size() != LOTTO_NUMBERS_SIZE) {
             throw new ErrorMessage(LOTTO_DUPLICATE_ERROR);
         }
     }

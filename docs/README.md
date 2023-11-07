@@ -9,6 +9,8 @@ java
     │   └── WinningNumber.java
     ├── controller
     │   └── LottoController.java
+    ├── service
+    │   └── LottoService.java
     ├── view
     │   ├── inputView.java
     │   └── outputView.java

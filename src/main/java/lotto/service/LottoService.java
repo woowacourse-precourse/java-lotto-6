@@ -8,6 +8,7 @@ import java.util.Map;
 public class LottoService {
     private WinningNumbers winningNumbers;
     private LottoBuyer lottoBuyer;
+    private LottoCompare lottoCompare;
 
     public void buyLotto(Money money) {
         LottoMarket lottoMarket = new LottoMarket(new RandomNumbersGenerator());
@@ -25,9 +26,10 @@ public class LottoService {
     }
 
     public void compareAllLotto() {
-        LottoCompare lottoCompare = new LottoCompare();
-        lottoCompare.compareAllLottoToWinning(findLottos(), winningNumbers);
-    public EnumMap<WinningGrade, Integer> getWinningResult() {
+        lottoCompare = new LottoCompare();
+        lottoCompare.compareAllLottoToWinning(findBoughtLottos(), winningNumbers);
+    }
+
     public Map<WinningGrade, Integer> getWinningResult() {
         return lottoCompare.getWinningResult();
     }

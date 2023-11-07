@@ -2,12 +2,14 @@ package lotto.controller;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Money;
+import lotto.domain.WinningGrade;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.Map;
+
 public class LottoController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
@@ -38,7 +40,12 @@ public class LottoController {
     private void compare() {
         outputView.printWinningResultMessage();
         lottoService.compareAllLotto();
+        outputView.printWinningResult(getWinningResult());
+    }
     private Map<WinningGrade, Integer> getWinningResult() {
+        return lottoService.getWinningResult();
+    }
+
     private double getCalculatedLottoYield() {
         return lottoService.calculateLottoYield();
     }

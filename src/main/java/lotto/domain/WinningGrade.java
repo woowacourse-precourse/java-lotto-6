@@ -1,16 +1,16 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.Map;
 
 public enum WinningGrade {
-    FIRST(1, 6, 2_000_000_000, false),
-    SECOND(2, 5, 30_000_000, true),
-    THIRD(3, 5, 1_500_000, false),
-    FOURTH(4, 4, 50_000, false),
+    DEFAULT(6, 0, 0, false),
     FIFTH(5, 3, 5_000, false),
-    DEFAULT(6, 0, 0, false);
+    FOURTH(4, 4, 50_000, false),
+    THIRD(3, 5, 1_500_000, false),
+    SECOND(2, 5, 30_000_000, true),
+    FIRST(1, 6, 2_000_000_000, false);
 
     private final int grade;
     private final int matchCount;
@@ -45,7 +45,7 @@ public enum WinningGrade {
         return THIRD;
     }
 
-    public static int getWinningAmount(EnumMap<WinningGrade, Integer> winningGradeMap) {
+    public static int getWinningAmount(Map<WinningGrade, Integer> winningGradeMap) {
         return winningGradeMap.entrySet()
                 .stream()
                 .mapToInt(WinningGrade::calculatePrizeMoney)
@@ -56,4 +56,12 @@ public enum WinningGrade {
         return grade.getKey().prizeMoney * grade.getValue();
     }
 
+    @Override
+    public String toString() {
+        return matchCount + "개 일치 (" + convertToCommaPattern(prizeMoney) + "원) - ";
+    }
+
+    private String convertToCommaPattern(int prizeMoney) {
+        return new DecimalFormat("###,###").format(prizeMoney);
+    }
 }

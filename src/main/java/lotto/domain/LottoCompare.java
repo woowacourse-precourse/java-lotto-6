@@ -23,6 +23,9 @@ public class LottoCompare {
     }
 
     public Map<WinningGrade, Integer> getWinningResult() {
+        return new EnumMap<>(winningMap);
+    }
+
     private void compareLottoToWinning(List<Integer> lotto, WinningNumbers winningNumbers) {
         int matchCount = getMatchCount(lotto, winningNumbers);
         boolean bonusIncluded = hasBonusNumber(lotto, winningNumbers);
@@ -36,8 +39,8 @@ public class LottoCompare {
 
     private void addWinningGradeResult(WinningGrade grade) {
         if (grade != WinningGrade.DEFAULT) {
-            int plusCount = winningMap.get(grade) + 1;
-            winningMap.put(grade, plusCount);
+        int plusCount = winningMap.get(grade) + 1;
+        winningMap.put(grade, plusCount);
         }
     }
 

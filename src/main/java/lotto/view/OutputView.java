@@ -1,8 +1,9 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-
+import lotto.domain.WinningGrade;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void printInputMoneyToBuyLottoMessage() {
@@ -38,4 +39,9 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
-}
+
+    public void printWinningResult(Map<WinningGrade, Integer> winningResult) {
+        winningResult.entrySet().stream()
+                .filter(result -> result.getKey() != WinningGrade.DEFAULT)
+                .forEach(result -> System.out.println(result.getKey().toString() + result.getValue() + "개"));
+    }

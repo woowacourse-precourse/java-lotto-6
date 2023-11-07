@@ -10,7 +10,9 @@ public class LottoController {
 
     public void start() {
         Money money = getMoney();
-        Lottos lottos = createLotto(money);
+        printLottoCount(money);
+        Lottos lottos = createLottos(money);
+        printLottos(lottos);
     }
 
     private Money getMoney() {
@@ -19,12 +21,18 @@ public class LottoController {
         return new Money(money);
     }
 
-    private Lottos createLotto(Money money) {
+    private void printLottoCount(Money money) {
         OutputLottoCountView outputLottoCountView = new OutputLottoCountView();
         outputLottoCountView.OutputLottoCount(money);
+    }
+
+    private Lottos createLottos(Money money) {
         int lottoCount = money.getLottoCount();
         LottoGenerator lottoGenerator = new LottoGenerator();
         return new Lottos(lottoGenerator.generateLottos(lottoCount));
+    }
+
+    private void printLottos(Lottos lottos) {
     }
 
     private void getNumber() {

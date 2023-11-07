@@ -19,7 +19,7 @@ public class OutputView {
         }
     }
 
-    public void askWinnerNumber() {
+    public void askWinningLotto() {
         System.out.println(Notification.WINNER_LOTTO.getMessage());
     }
 

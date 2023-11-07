@@ -7,7 +7,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String readWinnerNumber() {
+    public String readWinningLotto() {
         return Console.readLine();
     }
 

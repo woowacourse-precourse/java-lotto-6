@@ -15,9 +15,6 @@ public class LottoService {
     private final LottoGenerator lottoGenerator;
     private final LottoComputer lottoComputer;
     private Lottos boughtLottos;
-    private Lotto winngLotto;
-    private Integer bonusNumber;
-    private Integer userMoney;
 
     public LottoService(InputView inputView, OutputView outputView, LottoComputer lottoComputer,
                         LottoGenerator lottoGenerator) {
@@ -37,31 +34,31 @@ public class LottoService {
         configBoughtLottoOfComputer();
         configBonusNumberOfComputer();
 
-        lottoComputer.config(winnerLotto);
-        lottoComputer.config(myLottos);
-//        lottoComputer.config(bonus);
         outputView.showResult(lottoComputer.simulate());
     }
 
-    private void handleWinnerNumber() {
-        outputView.askWinnerNumber();
+    private void configBoughtLottoOfComputer() {
+        lottoComputer.config(boughtLottos);
+    }
+
+    private void configWinningLottoOfComputer() {
+        outputView.askWinningLotto();
         while (true) {
             try {
-                winnerLotto = Lotto.toLotto(inputView.readWinnerNumber());
+                lottoComputer.config(Lotto.toLotto(inputView.readWinningLotto()));
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
         }
-
     }
 
-    private void handleBonusNumber() {
+    private void configBonusNumberOfComputer() {
         outputView.askBonusNumber();
         while (true) {
             try {
 
-                lottoComputer.validateBonus(inputView.readBonusNumber());
+                lottoComputer.config(inputView.readBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());

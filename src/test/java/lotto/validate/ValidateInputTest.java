@@ -63,4 +63,40 @@ class ValidateInputTest {
                 .hasMessage(CANNOT_DIVISIBLE_MESSAGE);
     }
 
+    @DisplayName("입력한 당첨 번호를 미입력하면 예외가 발생한다.")
+    @Test
+    void 당첨번호_미입력_예외처리() {
+        //given
+        final String input = "";
+
+        //when,then
+        assertThatThrownBy(() -> ValidateInput.validateWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NON_EMPTY_MESSAGE);
+    }
+
+    @DisplayName("입력한 당첨 번호에 공백이 존재하면 예외가 발생한다.")
+    @Test
+    void 당첨번호_공백_예외_처리() {
+        //given
+        final String input = "1, 2, 3, 4,5,6";
+
+        //when,then
+        assertThatThrownBy(() -> ValidateInput.validateWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NON_BLANK_MESSAGE);
+    }
+
+    @DisplayName("입력한 당첨 번호가 정수가 아니면 예외가 발생한다.")
+    @Test
+    void 당첨번호_타입_예외_처리() {
+        //given
+        final String input = "1,new,jeans,hype,boy,6";
+
+        //when,then
+        assertThatThrownBy(() -> ValidateInput.validateWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WRONG_TYPE_INPUT_MESSAGE);
+    }
+
 }

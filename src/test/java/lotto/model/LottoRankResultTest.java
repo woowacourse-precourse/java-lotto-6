@@ -2,6 +2,8 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.ApplicationConfig;
@@ -81,6 +83,7 @@ public class LottoRankResultTest {
     @Test
     void testTotalReturnByLottoPrize() {
         //given
+        DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
         Lottos lottos = new Lottos(List.of(
                 new Lotto(List.of(1, 2, 3, 13, 14, 15)),    // 5등
                 new Lotto(List.of(1, 2, 10, 15, 16, 17)),
@@ -94,10 +97,10 @@ public class LottoRankResultTest {
 
         //when
         countWinningResult(lottos);
-        double totalReturn = (double) result.getTotalReturn(lottos.size());
+        BigDecimal totalReturn = result.getTotalReturn(lottos.size());
 
         //then
-        assertThat(totalReturn).isEqualTo(62.5);
+        assertThat(decimalFormat.format(totalReturn)).isEqualTo("62.5");
     }
 
     private void countWinningResult(Lottos lottos) {

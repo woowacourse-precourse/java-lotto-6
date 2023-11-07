@@ -18,7 +18,7 @@ public class Compare {
         scoreResult.put(score, scoreResult.get(score)+1);
     }
 
-    private Integer getScoreResult(Score score) {
+    public Integer getScoreResult(Score score) {
         return scoreResult.get(score);
     }
 

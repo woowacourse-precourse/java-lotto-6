@@ -25,7 +25,7 @@ public class LottoController {
         Compare scoreResult = new Compare();
         scoringResult(scoreResult, win, lottos);
 
-
+        printResults(scoreResult);
     }
 
     public User getMoney(){

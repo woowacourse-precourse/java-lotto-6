@@ -2,12 +2,12 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Computer {
+public class Lucky {
 
     private final List<Integer> lucky;
     private final int bonus;
 
-    public Computer(List<Integer> lucky, int bonus) {
+    public Lucky(List<Integer> lucky, int bonus) {
         this.lucky = lucky;
         this.bonus = bonus;
     }

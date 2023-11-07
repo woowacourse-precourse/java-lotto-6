@@ -10,7 +10,7 @@ public class Calculator {
         return getTotalReward() / (getNumberOfLotto() *10);
     }
 
-    public double getTotalReward() {
+    private double getTotalReward() {
         return Arrays.stream(Rank.values())
                 .mapToLong(value -> value.getReward() * resultRepository.findWinningByRank(value))
                 .sum();

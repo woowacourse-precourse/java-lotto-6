@@ -70,7 +70,7 @@ public class Validation {
     }
 
     public double totalReturnCalculate(List<Integer> winningStaticsResult, int payment) {
-        double income = INDEX_RESET;
+        double income = VARIABLE_RESET;
 
         for (int index = INDEX_RESET; index < winningStaticsResult.size(); index++) {
             income += totalIncomeCalculate(winningStaticsResult.get(index), index);

@@ -4,11 +4,9 @@ import static lotto.constants.constants.LOTTO_COST;
 
 import lotto.exception.CostUnitDivideException;
 import lotto.exception.CostZeroException;
-import lotto.exception.IncludeCharException;
-import lotto.exception.InputBlankException;
 
-public class CostValidator {
-    public static void validateReadLine(String readline) {
+public class CostValidator extends CommonValidator {
+    public static void validateCostReadLine(String readline) {
         checkBlank(readline);
         checkDigit(readline);
     }
@@ -18,19 +16,6 @@ public class CostValidator {
         checkZero(cost);
     }
 
-    private static void checkBlank(String readline) {
-        if (readline == null || readline.isBlank()) {
-            throw InputBlankException.inputBlankException;
-        }
-    }
-
-    private static void checkDigit(String readLine) {
-        for (int i = 0; i < readLine.length(); i++) {
-            if (!Character.isDigit(readLine.charAt(i))) {
-                throw IncludeCharException.includeCharException;
-            }
-        }
-    }
 
     private static void checkDivideUnit(int cost) {
         if (cost % LOTTO_COST != 0) {

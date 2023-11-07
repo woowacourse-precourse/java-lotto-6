@@ -9,11 +9,6 @@ import lotto.constant.RankingMessage;
 public class View {
     private static String BAR = " - ";
     private static String UNIT = "개";
-
-    public static int requestMoney() {
-        return Integer.parseInt(Console.readLine());
-    }
-
     public static void printMessage(String message) {
         System.out.println(message);
     }

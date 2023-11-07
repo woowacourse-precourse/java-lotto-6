@@ -41,7 +41,6 @@ public class OutputView {
         System.out.println("당첨 통계\n---");
         Arrays.stream(Rank.values())
                 .forEach(rank -> System.out.printf(rank.getMatchInfo(), lottoResult.findMatchCountFor(rank)));
-        printNewLine();
     }
 
     public static void printRateOfReturn(Profit profit) {

@@ -5,13 +5,17 @@ import lotto.exception.WinnerNumberException;
 import java.util.List;
 
 public class WinnerNumber {
-    private final List<Integer> input;
-    public WinnerNumber(List<Integer> input) {
-        validate(input);
-        this.input = input;
+    private final List<Integer> winnerNum;
+    public WinnerNumber(List<Integer> winnerNum) {
+        validate(winnerNum);
+        this.winnerNum = winnerNum;
     }
 
     private void validate(List<Integer> input) {
         WinnerNumberException winnerNumberException = new WinnerNumberException(input);
+    }
+
+    public List<Integer> getWinnerNumber(){
+        return this.winnerNum;
     }
 }

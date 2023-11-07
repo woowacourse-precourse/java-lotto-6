@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Objects;
 import lotto.constants.DomainMessages;
+import lotto.constants.ErrorMessages;
 import lotto.domain.Lotto;
 
 public class ConsolePrinter {
@@ -37,5 +38,11 @@ public class ConsolePrinter {
         DomainMessages messageTemplate = DomainMessages.TOTAL_RETURN;
         String showMessage = messageTemplate.getMessageWithTotalReturn(totalReturn);
         System.out.print(showMessage);
+    }
+
+    public static void showException(ErrorMessages message) {
+        validateNull(message);
+
+        System.out.print(message.getMessage());
     }
 }

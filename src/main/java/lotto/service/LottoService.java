@@ -1,8 +1,8 @@
 package lotto.service;
 
-import lotto.Constant.PurchaseAmount;
+import lotto.constant.PurchaseAmount;
 import lotto.domain.Lotto;
-import lotto.domain.RandomLottoNumberGenerator;
+import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

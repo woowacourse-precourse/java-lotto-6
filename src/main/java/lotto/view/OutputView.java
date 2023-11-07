@@ -4,11 +4,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
-import lotto.Constant.OutputMessage;
+import lotto.constant.OutputMessage;
 import lotto.domain.Lotto;
 
 import java.util.List;
-import lotto.Constant.Rank;
+import lotto.constant.Rank;
 
 public class OutputView {
 
@@ -17,15 +17,15 @@ public class OutputView {
     }
 
     public void printRequestWinningNumbers() {
-        System.out.println(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
+        System.out.println(OutputMessage.REQUEST_WINNING_NUMBERS.getMessageWithNewLine());
     }
 
     public void printRequestBonusNumber() {
-        System.out.println(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
+        System.out.println(OutputMessage.REQUEST_BONUS_NUMBER.getMessageWithNewLine());
     }
 
     public void printPurchasedLottoQuantity(int lottoQuantity) {
-        System.out.println(OutputMessage.PURCHASED_LOTTO_QUANTITY.format(lottoQuantity));
+        System.out.println(OutputMessage.PURCHASED_LOTTO_QUANTITY.getMessageWithNewLine(lottoQuantity));
     }
 
     public void printLottos(List<Lotto> lottos) {
@@ -35,7 +35,8 @@ public class OutputView {
     }
 
     public void printResults(Map<Rank, Integer> results) {
-        System.out.println(OutputMessage.RESULTS_HEADER.getMessage());
+        System.out.println(OutputMessage.RESULTS_HEADER.getMessageWithNewLine());
+        System.out.println(OutputMessage.RESULTS_SEPARATOR.getMessage());
         NumberFormat numberFormat = getNumberInstance();
         for (Rank rank : Rank.values()) {
             printResult(results, rank, numberFormat);
@@ -52,7 +53,7 @@ public class OutputView {
                     prizeMoneyFormatted, results.getOrDefault(rank, 0)));
             return;
         }
-        System.out.printf(OutputMessage.RESULT_LINE.format(
+        System.out.println(OutputMessage.RESULT_LINE.format(
                 rank.getMatchCount(), prizeMoneyFormatted, results.getOrDefault(rank, 0)));
     }
 
@@ -61,7 +62,7 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        DecimalFormat profitFormat = new DecimalFormat("#.##");
+        DecimalFormat profitFormat = new DecimalFormat("#.#");
         System.out.println(OutputMessage.PROFIT_RATE.format(profitFormat.format(profitRate)));
     }
 

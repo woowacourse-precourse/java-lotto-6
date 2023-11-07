@@ -2,9 +2,9 @@ package lotto.controller;
 
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.LottoResultCalculator;
-import lotto.domain.ProfitCalculator;
-import lotto.Constant.Rank;
+import lotto.domain.calculator.LottoResultCalculator;
+import lotto.domain.calculator.ProfitCalculator;
+import lotto.constant.Rank;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningNumbersFactory;
 import lotto.service.LottoService;

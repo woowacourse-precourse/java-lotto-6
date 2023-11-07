@@ -1,12 +1,13 @@
 package lotto;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PrizeStats {
     private final Map<PrizeGrade, Integer> gradeDist;
 
-    public PrizeStats(Lottos lottos, Lotto winningLotto, Bonus bonus) {
+    public PrizeStats(List<Lotto> lottos, Lotto winningLotto, Bonus bonus) {
         this.gradeDist = getEmptyDist();
         fillDist(lottos, winningLotto, bonus);
     }
@@ -23,8 +24,8 @@ public class PrizeStats {
         return zeroDist;
     }
 
-    private void fillDist(Lottos lottos, Lotto winningLotto, Bonus bonus) {
-        for (Lotto lotto : lottos.getTickets()) {
+    private void fillDist(List<Lotto> lottos, Lotto winningLotto, Bonus bonus) {
+        for (Lotto lotto : lottos) {
             addFrequency(determineGrade(lotto, winningLotto, bonus));
         }
     }

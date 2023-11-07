@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -50,6 +51,14 @@ public class LottoOutput {
                 System.out.printf("%s - %d개\n", prizeDescription, count);
             }
         }
+
+
+    }
+
+    public void printEarningsRate(double earningsRate) {
+        DecimalFormat df = new DecimalFormat("0.0%");
+        String formattedEarningsRate = df.format(earningsRate / 100);
+        System.out.println("총 수익률은 " + formattedEarningsRate + "입니다.");
     }
 
 }

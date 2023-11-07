@@ -1,11 +1,9 @@
 package lotto;
 
-import static lotto.constants.ConstantValues.*;
-
 import java.util.HashMap;
 import java.util.List;
 
-public class PrizeCalculator {
+public class ScoreCalculator {
 
     public static HashMap<String, Integer> getScore(List<Lotto> lottoList, Lotto winLotto, int bonus) {
         HashMap<String, Integer> finalScore = new HashMap<>();

@@ -35,7 +35,7 @@ public class LottoGame {
         while(!validateInput){
             validateInput = validatePurchaseAmount(inputView.inputPurchaseAmount());
         }
-        outputView.printResult(purchaseManager.getPurchaseNumber());
+        outputView.printResult(purchaseManager.calcPurchaseNumber());
     }
     private boolean validatePurchaseAmount(String purchaseAmount){
         try {
@@ -52,7 +52,7 @@ public class LottoGame {
     }
     private List<Lotto> makeLotto(){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i=0;i<purchaseManager.getPurchaseNumber();i++){
+        for(int i=0;i<purchaseManager.calcPurchaseNumber();i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));

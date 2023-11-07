@@ -7,14 +7,12 @@ import java.util.regex.Pattern;
 
 public class PurchaseManager {
     private Integer purchaseAmount;
-    private Integer purchaseNumber;
 
     public PurchaseManager(String purchaseAmount){
         isNumber(purchaseAmount);
         this.purchaseAmount = Integer.parseInt(purchaseAmount);
         canPurchase();
         hasNoChange();
-        calcPurchaseNumber();
     }
 
     private void isNumber(String purchaseAmount) {
@@ -35,11 +33,7 @@ public class PurchaseManager {
         }
     }
 
-    private void calcPurchaseNumber(){
-        purchaseNumber = purchaseAmount/Constant.LOTTO_PRICE;
-    }
-
-    public Integer getPurchaseNumber() {
-        return purchaseNumber;
+    public Integer calcPurchaseNumber() {
+        return purchaseAmount/Constant.LOTTO_PRICE;
     }
 }

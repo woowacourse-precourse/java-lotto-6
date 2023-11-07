@@ -2,10 +2,12 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,10 @@ public class LottoReturnTest {
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
         lottoResult = new LottoResult(winningNumbersInfo, bonusNumber);
+    }
+    @AfterEach
+    void closeConsole() {
+        Console.close();
     }
 
     private void consoleInput(final String... args) {

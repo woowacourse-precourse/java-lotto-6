@@ -229,5 +229,17 @@ class LottoControllerTest {
         assertThat(result).containsSubsequence("[", "1", "2", "3", "4", "5", "6", "]");
     }
 
+    @Test
+    @DisplayName("기능22 테스트 : 당첨 번호 등록할 때 공백이 있어도 정상입력되는지 확인한다.")
+    void registerWinningNumberShouldRemoveWhiteSpace() {
+        // given
+        System.setIn(createUserInput("1, 2, 3, 4, 5, 6"));
 
+        // when
+        Lotto lotto = lottoController.registerWinningLottoCombination();
+        String result = lotto.getStatus();
+
+        // then
+        assertThat(result).containsSubsequence("[", "1", "2", "3", "4", "5", "6", "]");
+    }
 }

@@ -48,7 +48,7 @@ public class Judgement {
         }
     }
 
-    public List<Integer> judgeAllLottoRank(Lottos lottos) {
+    public static List<Integer> judgeAllLottoRank(Lottos lottos) {
         List<Integer> counts = lottos.getWinningCounts();
         List<Integer> rank = Arrays.asList(0, 0, 0, 0, 0);
         for (int count : counts) {
@@ -57,7 +57,7 @@ public class Judgement {
         return rank;
     }
 
-    private void judgeLottoRank(List<Integer> rank, int count) {
+    private static void judgeLottoRank(List<Integer> rank, int count) {
         if (count > 6) {
             rank.set(4, rank.get(4) + 1);
         }

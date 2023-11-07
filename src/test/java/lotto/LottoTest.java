@@ -1,7 +1,8 @@
 package lotto;
 
-import lotto.model.Lotto;
-import lotto.model.LottoValidator;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.service.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -51,14 +52,21 @@ class LottoTest {
     @DisplayName("보너스 번호가 0이면 예외가 발생한다.")
     @Test
     void createLottoByZeroBonusNumber() {
-        assertThatThrownBy(() -> LottoValidator.validateBonus(playerLotto, 0))
+        assertThatThrownBy(() -> new BonusNumber(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 45가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverBonusNumber() {
-        assertThatThrownBy(() -> LottoValidator.validateBonus(playerLotto, 46))
+        assertThatThrownBy(() -> new BonusNumber(46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByNotNumberBonusNumber() {
+        assertThatThrownBy(() -> new BonusNumber("c"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

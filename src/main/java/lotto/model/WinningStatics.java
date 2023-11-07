@@ -32,4 +32,8 @@ public class WinningStatics {
         return statics;
     }
 
+    public int getWinningGradeCount(final WinningGrade winningGrade) {
+        return statics.get(winningGrade);
+    }
+
 }

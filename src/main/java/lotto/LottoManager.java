@@ -1,14 +1,13 @@
 package lotto;
 
-import java.util.Map;
 import lotto.io.ConsoleManager;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.PurchasePrice;
-import lotto.model.WinningGrade;
 import lotto.model.WinningLotto;
+import lotto.model.WinningStatics;
 
 public class LottoManager {
 
@@ -35,11 +34,11 @@ public class LottoManager {
         BonusNumber bonusNumber = consoleManager.inputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        Map<WinningGrade, Integer> statics = lottoCalculator.getWinningStatic(lottos, winningLotto);
+        WinningStatics statics = lottoCalculator.getWinningStatic(lottos, winningLotto);
 
         consoleManager.printStatics(statics);
 
-        int profit = lottoCalculator.getLottosProfit(statics);
+        int profit = lottoCalculator.getWinningProfit(statics);
 
         float profitRate = lottoCalculator.getProfitRate(profit, purchasePrice.getPrice());
 

@@ -24,7 +24,7 @@ public class LottoCalculator {
         return statics;
     }
 
-    public int getLottosProfit(WinningStatics statics) {
+    public int getWinningProfit(WinningStatics statics) {
         return statics.getStatics()
                 .entrySet()
                 .stream()

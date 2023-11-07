@@ -1,15 +1,16 @@
 package lotto;
 
+import static lotto.model.WinningGrade.FIRST_GRADE;
+import static lotto.model.WinningGrade.SECOND_GRADE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningGrade;
 import lotto.model.WinningLotto;
+import lotto.model.WinningStatics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,24 +40,28 @@ class LottoCalculatorTest {
                         new Lotto(List.of(1, 8, 11, 31, 41, 42))));
 
         // When
-        Map<WinningGrade, Integer> result = lottoCalculator.getWinningStatic(lottos, winningLotto);
+        WinningStatics result = lottoCalculator.getWinningStatic(lottos, winningLotto);
 
         // Then
-        assertThat(result).containsKeys(WinningGrade.NONE_GRADE, WinningGrade.FIRST_GRADE);
+        assertThat(result.getStatics())
+                .containsKeys(WinningGrade.NONE_GRADE, FIRST_GRADE);
     }
 
     @Test
     @DisplayName("로또로 얻은 수익을 구한다.")
     void getLottosProfit_Statics() {
         // Given
-        Map<WinningGrade, Integer> statics = new EnumMap<>(WinningGrade.class);
-        statics.put(WinningGrade.FIRST_GRADE, 3);
-        statics.put(WinningGrade.SECOND_GRADE, 2);
+        WinningStatics statics = new WinningStatics();
+        statics.addWinningCount(FIRST_GRADE);
+        statics.addWinningCount(SECOND_GRADE);
+        statics.addWinningCount(SECOND_GRADE);
 
-        int expected = 3 * WinningGrade.FIRST_GRADE.getWinningPrice() + 2 * WinningGrade.SECOND_GRADE.getWinningPrice();
+        int firstGradeProfit = statics.getWinningGradeCount(FIRST_GRADE) * FIRST_GRADE.getWinningPrice();
+        int secondGradeProfit = statics.getWinningGradeCount(SECOND_GRADE) * SECOND_GRADE.getWinningPrice();
+        int expected = firstGradeProfit + secondGradeProfit;
 
         // When
-        int result = lottoCalculator.getLottosProfit(statics);
+        int result = lottoCalculator.getWinningProfit(statics);
 
         // Then
         assertThat(result).isEqualTo(expected);
@@ -66,17 +71,19 @@ class LottoCalculatorTest {
     @DisplayName("로또로 얻은 수익과 구입 금액을 비교해서 수익률을 구한다.")
     void getProfitRate_ProfitAndPurchasePrice() {
         // Given
-        Map<WinningGrade, Integer> statics = new EnumMap<>(WinningGrade.class);
-        statics.put(WinningGrade.FIRST_GRADE, 3);
-        statics.put(WinningGrade.SECOND_GRADE, 2);
+        WinningStatics statics = new WinningStatics();
+        statics.addWinningCount(FIRST_GRADE);
+        statics.addWinningCount(SECOND_GRADE);
+        statics.addWinningCount(SECOND_GRADE);
+
         int price = 5_000;
-        int profit = lottoCalculator.getLottosProfit(statics);
+        int profit = lottoCalculator.getWinningProfit(statics);
 
         // When
         float profitRate = lottoCalculator.getProfitRate(profit, price);
 
         // Then
-        assertThat(profitRate).isEqualTo(3.5300652E7f);
+        assertThat(profitRate).isEqualTo(4.12E7f);
     }
 
 }

@@ -3,7 +3,10 @@ package lotto.view;
 import static lotto.message.Message.*;
 
 import java.util.List;
-import lotto.Lotto;
+import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.WinningStatistics;
 
 public class Output {
     public static void printWinningStatisticsMessage() {
@@ -20,11 +23,11 @@ public class Output {
     }
 
     public static void printWinningNumberMessage() {
-        System.out.println(WINNING_NUMBER.message());
+        System.out.println("\n" + WINNING_NUMBER.message());
     }
 
     public static void printBonusNumberMessage() {
-        System.out.println(BONUS_NUMBER.message());
+        System.out.println("\n" + BONUS_NUMBER.message());
     }
 
     public static void printProfitPercentage(int profitPercentage) {
@@ -33,5 +36,16 @@ public class Output {
 
     public static void printTotalLotto(List<Lotto> totalLotto) {
         totalLotto.stream().forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public static void printWinningResult(WinningStatistics winningStatistics){
+        Map<Ranking, Integer> winningResult = winningStatistics.getWinningStatus();
+        StringBuilder stringBuilder = new StringBuilder("\n");
+
+        for(Ranking ranking : winningStatistics.getWinningStatus().keySet()){
+            stringBuilder.append(ranking.getWinningMessage()+winningResult.get(ranking)).append("\n");
+        }
+
+        System.out.println(stringBuilder);
     }
 }

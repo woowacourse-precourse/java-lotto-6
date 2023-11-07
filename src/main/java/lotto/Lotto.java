@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -28,14 +26,5 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public static Lotto generateRandomLotto() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        for (int i = 1; i <= 45; i++) {
-            lottoNumbers.add(i);
-        }
-        Collections.shuffle(lottoNumbers);
-        return new Lotto(lottoNumbers.subList(0, 6));
     }
 }

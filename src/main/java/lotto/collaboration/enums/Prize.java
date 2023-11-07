@@ -14,6 +14,9 @@ public enum Prize {
     LOST(6, "불일치", 0, 0L),
     ;
 
+    public static final String COUNT_OF_PRIZE_LOTTOS_DELIMITER = " - ";
+    public static final String COUNT_OF_PRIZE_LOTTOS_UNIT = "개";
+
     private final int rank;
     private final String message;
     private final int countOfGuess;
@@ -43,6 +46,10 @@ public enum Prize {
                 .toList();
     }
 
+    public String makeCountOfPrizeLottos(int size) {
+        return message + COUNT_OF_PRIZE_LOTTOS_DELIMITER + size + COUNT_OF_PRIZE_LOTTOS_UNIT;
+    }
+
     public String message() {
         return message;
     }
@@ -51,5 +58,4 @@ public enum Prize {
     public long money() {
         return money;
     }
-
 }

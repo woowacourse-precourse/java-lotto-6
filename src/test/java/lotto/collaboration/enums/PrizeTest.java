@@ -71,6 +71,15 @@ class PrizeTest {
     }
 
     @Test
+    void makeCountOfPrizeLottos로_개별등수당첨결과문을_가져올수있다() {
+        String expected = "6개 일치 (2,000,000,000원) - 1개";
+
+        String actual = Prize.FIRST.makeCountOfPrizeLottos(1);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     void money로_당첨내역금액을_가져올수있다() {
         int expected = 2_000_000_000;
 

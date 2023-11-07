@@ -1,19 +1,17 @@
 package lotto.domain;
 
-import lotto.domain.dto.output.LottosDto;
+import static lotto.domain.DrawResult.getResult;
 
 public class DrawMachine {
-    private final lotto.domain.Lotto winningNumbers;
-    private final LottoNumber bonusNumber;
-    private final LottosDto lottosDto;
+    private final WinningLottoNumbers winningLottoNumbers;
 
-    public DrawMachine(lotto.domain.Lotto winningNumbers, LottoNumber bonusNumber, LottosDto lottosDto) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-        this.lottosDto = lottosDto;
+    public DrawMachine(WinningLottoNumbers winningLottoNumbers) {
+        this.winningLottoNumbers = winningLottoNumbers;
     }
 
-    public void draw() {
-
+    private DrawResult draw(Lotto userLotto) {
+        int matchingCount = winningLottoNumbers.getMatchingCount(userLotto);
+        boolean containBonusNumber = winningLottoNumbers.containBonusNumber(userLotto);
+        return getResult(matchingCount, containBonusNumber);
     }
 }

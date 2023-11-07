@@ -11,23 +11,28 @@ public enum DrawResult {
     FIFTH(3, 5_000, false),
     NONE(0, 0, false);
 
-    private static final List<DrawResult> drawResults = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, NONE);
-    private final int matchingNumberCount;
+    private static final List<DrawResult> drawResults = List.of(FIRST, THIRD, FOURTH, FIFTH, NONE);
+    private final int matchingCount;
     private final int prizeAmount;
-    private final boolean hasBonusNumber;
+    private final boolean containBonusNumber;
 
-    DrawResult(int matchingNumberCount, int prizeAmount, boolean hasBonusNumber) {
-        this.matchingNumberCount = matchingNumberCount;
+    DrawResult(int matchingNumberCount, int prizeAmount, boolean containBonusNumber) {
+        this.matchingCount = matchingNumberCount;
         this.prizeAmount = prizeAmount;
-        this.hasBonusNumber = hasBonusNumber;
+        this.containBonusNumber = containBonusNumber;
     }
 
-    public static DrawResult getResult(int matchingNumberCount, boolean hasBonusNumber) {
+    public static DrawResult getResult(int matchingCount, boolean containBonusNumber) {
+        if (matchingCount == SECOND.matchingCount && containBonusNumber) {
+            return SECOND;
+        }
         Optional<DrawResult> drawingResult = drawResults.stream()
-                .filter(result -> result.hasBonusNumber == hasBonusNumber)
-                .filter(result -> result.matchingNumberCount == matchingNumberCount)
+                .filter(result -> result.matchingCount == matchingCount)
                 .findFirst();
         return drawingResult.orElse(NONE);
     }
 
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }

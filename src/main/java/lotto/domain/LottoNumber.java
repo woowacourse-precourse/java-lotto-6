@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 import static lotto.domain.LottoNumberGenerator.END_INCLUSIVE;
 import static lotto.domain.LottoNumberGenerator.START_INCLUSIVE;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_RANGE;
@@ -20,5 +22,18 @@ public class LottoNumber {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoNumber that = (LottoNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

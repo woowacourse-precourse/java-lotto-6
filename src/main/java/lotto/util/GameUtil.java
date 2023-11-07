@@ -3,8 +3,10 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameUtil {
     private static final int MIN_LOTTO_NUM = 1;
@@ -18,6 +20,20 @@ public class GameUtil {
         Collections.sort(createdLotto);
 
         return new Lotto(createdLotto);
+    }
+
+    //형태 변환
+    public static List<String> converseStringToStringList(String input){
+        String[] splitInput = input.split(",");
+        return Arrays.asList(splitInput);
+    }
+
+    public static List<Integer> converseStringListToIntegerList(List<String> input){
+        List<String> changeInput = input;
+        changeInput.replaceAll(String::trim);
+        return changeInput.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     //당첨 결과 반환

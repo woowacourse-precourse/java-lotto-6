@@ -28,7 +28,4 @@ public enum LottoRank {
         return index;
     }
 
-    public Integer getWinMoney() {
-        return money * index;
-    }
 }

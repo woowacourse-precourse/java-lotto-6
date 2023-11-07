@@ -3,10 +3,13 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.CSVNumbersValidator;
 
 public class InputView {
     private InputView() {
+    }
+
+    public static int inputPurchaseAmount() {
+        return Integer.parseInt(Console.readLine());
     }
 
     public static List<Integer> inputWinningNumbers() {

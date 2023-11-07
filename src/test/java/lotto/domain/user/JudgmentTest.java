@@ -2,7 +2,7 @@ package lotto.domain.user;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoTargetNumResults;
+import lotto.domain.number.LottoTargetNumResults;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

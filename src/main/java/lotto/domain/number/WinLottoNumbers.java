@@ -1,13 +1,13 @@
-package lotto.domain.num;
+package lotto.domain.number;
 
 import lotto.utill.Utii;
 
 import java.util.List;
 
-public class WinLottoNums {
+public class WinLottoNumbers {
     private List<Integer> winLottoNums;
 
-    public WinLottoNums(List<Integer> winLottoNums) {
+    public WinLottoNumbers(List<Integer> winLottoNums) {
 
         this.winLottoNums = winLottoNums;
     }

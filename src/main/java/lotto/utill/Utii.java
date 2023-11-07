@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utii {
-    // TODO: 11/6/23 상수 관리
     private static final String COMMA_REGEX = ",";
 
     public static boolean isSameInt(Integer num_1, Integer num_2) {

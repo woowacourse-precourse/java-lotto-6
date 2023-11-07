@@ -3,7 +3,7 @@ package lotto.control;
 import lotto.config.Config;
 import lotto.domain.host.LottoHost;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoTargetNumResults;
+import lotto.domain.number.LottoTargetNumResults;
 import lotto.domain.seller.LottoSeller;
 import lotto.domain.user.User;
 

@@ -1,4 +1,4 @@
-package lotto.domain.num;
+package lotto.domain.number;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,28 +11,17 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTargetNumResultsTest {
+    private static final Integer BONUS_INDEX = 6;
     private LottoTargetNumResults lottoTargetNumResults;
-    private WinLottoNums winLottoNums;
+    private WinLottoNumbers winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
     @BeforeEach
     void setUp() {
-        winLottoNums = new WinLottoNums(List.of(1, 2, 3, 4, 5, 6));
+        winLottoNums = new WinLottoNumbers(List.of(1, 2, 3, 4, 5, 6));
         bonusLottoNum = new BonusLottoNum(7);
         lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
     }
-
-    // TODO: 11/5/23 삭제 요망
-//    @DisplayName("당첨 번호 추첨 번호들과, 보너스 번호들을 같은지 확인한다.")
-//    @ParameterizedTest
-//    @CsvSource({"1,0", "2,1", "3,2", "4,3", "5,4", "6,5", "7,6"})
-//    void isSame(Integer targetNum, Integer indexOfSpecial) {
-//        // when
-//        Boolean result = lottoNumResults.isSame(targetNum);
-//
-//        // than
-//        assertThat(result).isTrue();
-//    }
 
     @DisplayName("당첨 번호 추첨 번호가 같은지 확인한다.")
     @ParameterizedTest
@@ -49,7 +38,7 @@ class LottoTargetNumResultsTest {
     @Test
     void isSameBonusNum() {
         Integer targetNum = 7;
-        Integer indexOfSpecial = 6;
+        Integer indexOfSpecial = BONUS_INDEX;
 
         // when
         Boolean result = lottoTargetNumResults.isSameBonusNum(targetNum, indexOfSpecial);

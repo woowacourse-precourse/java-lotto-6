@@ -4,10 +4,10 @@ import lotto.control.Process;
 import lotto.domain.host.LottoHost;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.BonusLottoNum;
-import lotto.domain.num.LottoTargetNumResults;
-import lotto.domain.num.RanNumbers;
-import lotto.domain.num.WinLottoNums;
+import lotto.domain.number.BonusLottoNum;
+import lotto.domain.number.LottoTargetNumResults;
+import lotto.domain.number.RanNumbers;
+import lotto.domain.number.WinLottoNumbers;
 import lotto.domain.seller.LottoSeller;
 import lotto.domain.user.Judgment;
 import lotto.domain.user.RateResult;
@@ -42,8 +42,8 @@ public class Config {
         return new LottoTargetNumResults(winNumbers, bonusNumber);
     }
 
-    public static WinLottoNums winLottoNums(List<Integer> strOfPickWinNum) {
-        return new WinLottoNums(strOfPickWinNum);
+    public static WinLottoNumbers winLottoNums(List<Integer> strOfPickWinNum) {
+        return new WinLottoNumbers(strOfPickWinNum);
     }
 
     public static LottoSeller lottoSeller() {

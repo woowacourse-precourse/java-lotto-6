@@ -5,7 +5,6 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 
 public class LottoSeller {
-    // TODO: 11/6/23 상수 관리
     private static final Integer PRICE_LOTTO = 1000;
     private LottoEnvelop lottoEnvelop;
 
@@ -29,7 +28,6 @@ public class LottoSeller {
         }
     }
 
-    // TODO: 11/6/23 상수 정리 
     public String tellNumberLotto() {
         return lottoEnvelop.size() + "개를 구매했습니다.";
     }

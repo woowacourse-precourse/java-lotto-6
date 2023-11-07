@@ -1,4 +1,4 @@
-package lotto.domain.num;
+package lotto.domain.number;
 
 import lotto.config.Config;
 import lotto.utill.Utii;
@@ -6,10 +6,9 @@ import lotto.utill.Utii;
 import java.util.List;
 
 public class LottoTargetNumResults {
-    // TODO: 11/6/23 상수 관리 
     private static final Integer BONUS_INDEX_NUM = 6;
     private static final Integer SIZE_WIN_NUMBERS = 6;
-    private WinLottoNums winLottoNums;
+    private WinLottoNumbers winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
     public LottoTargetNumResults(List<Integer> winNumbers, Integer bonusNumber) {

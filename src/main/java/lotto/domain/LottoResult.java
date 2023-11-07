@@ -9,12 +9,12 @@ import static lotto.constant.PrizesConstant.NO_BENEFIT;
 import static lotto.constant.PrizesConstant.PERCENTAGE_INDICATOR;
 import static lotto.constant.PrizesConstant.ROUND_INDICATOR;
 
-public class Prizes {
+public class LottoResult {
 
     private static final Integer INIT_PRIZE_COUNT = 0;
     private final Map<Prize, Integer> prizes;
 
-    public Prizes(final List<Prize> prizes) {
+    public LottoResult(final List<Prize> prizes) {
         this.prizes = new HashMap<>();
         initPrizes();
         updatePrizes(prizes);

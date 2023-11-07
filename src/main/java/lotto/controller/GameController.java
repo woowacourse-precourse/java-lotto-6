@@ -70,9 +70,9 @@ public class GameController {
 
     private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {
         RequestLottoResult requestLottoResult = lottos.compareWithWinnerLotto(winnerLotto);
-        Prizes prizes = new Prizes(prizeDummy);
-        prizes.getRoundedTotalBenefit(cash.getDepositAmount());
-        outputView.printStaticResult(prizes, cash);
+        LottoResult lottoResult = new LottoResult(prizeDummy);
+        lottoResult.getRoundedTotalBenefit(cash.getDepositAmount());
+        outputView.printStaticResult(lottoResult, cash);
     }
 
 

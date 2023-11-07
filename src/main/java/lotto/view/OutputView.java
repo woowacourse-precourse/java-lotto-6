@@ -3,8 +3,6 @@ package lotto.view;
 import lotto.domain.*;
 
 import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.List;
 
 import static lotto.util.CharacterUnits.*;
 import static lotto.util.PatternUnits.PATTERN_FOR_DECIMAL_FORMAT;
@@ -36,18 +34,18 @@ public class OutputView {
     }
 
 
-    public static void printStaticResult(final Prizes prizes, final Cash cash) {
+    public static void printStaticResult(final LottoResult lottoResult, final Cash cash) {
         initOutputBuilder();
-        generateStaticResultOutputBuilder(prizes);
-        generateTotalBenefitOutputBuilder(prizes, cash);
+        generateStaticResultOutputBuilder(lottoResult);
+        generateTotalBenefitOutputBuilder(lottoResult, cash);
         printOutputBuilder();
     }
 
-    private static void generateStaticResultOutputBuilder(final Prizes prizes) {
+    private static void generateStaticResultOutputBuilder(final LottoResult lottoResult) {
         outputBuilder.append(WINNING_STATIC_MESSAGE.getMessage());
         for (Prize prize : Prize.values()) {
             generateRankingResultOutputBuilder(prize,
-                    prizes.countPrize(prize));
+                    lottoResult.countPrize(prize));
             outputBuilder.append(ENTER.getUnit());
         }
     }
@@ -75,8 +73,8 @@ public class OutputView {
                 countOfPrize));
     }
 
-    private static void generateTotalBenefitOutputBuilder(final Prizes prizes, final Cash cash) {
-        outputBuilder.append(String.format(TOTAL_BENEFIT_MESSAGE_FORMAT.getMessage(), prizes.getRoundedTotalBenefit(cash.getDepositAmount())));
+    private static void generateTotalBenefitOutputBuilder(final LottoResult lottoResult, final Cash cash) {
+        outputBuilder.append(String.format(TOTAL_BENEFIT_MESSAGE_FORMAT.getMessage(), lottoResult.getRoundedTotalBenefit(cash.getDepositAmount())));
     }
 
     public static void printErrorMessage(final Exception e) {

@@ -3,7 +3,9 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.WinningPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -105,4 +107,27 @@ class LottoServiceTest {
         boolean isContainNumber = lottoService.checkBonusNumber(lotto);
         assertThat(isContainNumber).isFalse();
     }
+
+    @DisplayName("구입금액이 8,000 일때 5등이 하나이면 총 수익률은 62.5% 이다.")
+    @Test
+    void getReturnOnLotto() {
+        int lottoPurchaseAmount = 8000;
+        Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
+        LottoService lottoService = new LottoService(winningNumbers, 7);
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(8,21,23,41,42,43)),
+                new Lotto(List.of(3,5,11,16,32,38)),
+                new Lotto(List.of(7,11,16,35,36,44)),
+                new Lotto(List.of(1,8,11,31,41,42)),
+                new Lotto(List.of(13,14,16,38,42,45)),
+                new Lotto(List.of(7,11,30,40,42,43)),
+                new Lotto(List.of(2,13,22,32,38,45)),
+                new Lotto(List.of(1,3,5,14,22,45))
+        );
+        double returnOnLotto = lottoService.getReturnOnLotto(lottos, lottoPurchaseAmount);
+
+        double expected = 62.5;
+        assertThat(returnOnLotto).isEqualTo(expected);
+    }
+
 }

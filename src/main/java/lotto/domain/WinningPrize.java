@@ -21,6 +21,10 @@ public enum WinningPrize {
         this.winningPrizeAmount = winningPrizeAmount;
     }
 
+    public int getWinningPrizeAmount() {
+        return winningPrizeAmount;
+    }
+
     public static WinningPrize valueOf(int winningNumbersCount, boolean existBonusNumber) {
         if (winningNumbersCount < MIN_WINNING_COUNT) {
             return EMPTY_PRIZE;

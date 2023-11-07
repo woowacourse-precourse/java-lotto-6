@@ -13,6 +13,17 @@ public class WinnerNumberException {
     private static final String IS_COMMA_MESSAGE = "당첨번호의 구분자로는 ,를 사용해주십시오.";
     private static final String IS_RIGHT_RANGE_MESSAGE = "당첨번호는 1부터 45 사이의 숫자로만 구성되어야 합니다.";
 
+    public WinnerNumberException(String input) {
+        isNumber(input);
+        isComma(input);
+    }
+
+    public WinnerNumberException(List<Integer> list) {
+        isDuplicate(list);
+        isSize(list);
+        isBlank(list);
+        isRightRange(list);
+    }
 
 
     public void isNumber(String winnerNum) {
@@ -20,6 +31,14 @@ public class WinnerNumberException {
             Integer.parseInt(winnerNum);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(IS_NUMBER_MESSAGE);
+        }
+    }
+
+    public void isComma(String winnerNum) {
+        for (char c : winnerNum.toCharArray()) {
+            if (!(Character.isLetterOrDigit(c) || c == ',')) {
+                throw new IllegalArgumentException(IS_COMMA_MESSAGE);
+            }
         }
     }
 
@@ -47,11 +66,4 @@ public class WinnerNumberException {
         }
     }
 
-    public void isComma(String winnerNum) {
-        for (char c : winnerNum.toCharArray()) {
-            if (!(Character.isLetterOrDigit(c) || c == ',')) {
-                throw new IllegalArgumentException(IS_COMMA_MESSAGE);
-            }
-        }
-    }
 }

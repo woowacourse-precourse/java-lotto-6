@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class LottoPlayer {
     public void buyLottos(int number) {
         System.out.printf("%d개를 구매했습니다.\n", number);
         for (int i = 0; i < number; i++) {
-            Lotto lotto = new Lotto(List.of(1,2,3,4,5,6)); // naturalOrder 적용 필요
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)); // naturalOrder 적용 필요
             printLotto(lotto);
             lottos.add(lotto);
         }

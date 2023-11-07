@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -30,9 +29,6 @@ public class Lotto {
 
     private static List<Integer> getLottoNumbers(final LottoNumberGenerator lottoNumberGenerator) {
         List<Integer> randomNumbers = lottoNumberGenerator.pickNumbers();
-        randomNumbers = new ArrayList<>(randomNumbers);
-        Collections.sort(randomNumbers);
-
         return Collections.unmodifiableList(randomNumbers);
     }
 

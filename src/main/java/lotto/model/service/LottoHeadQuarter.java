@@ -1,8 +1,8 @@
 package lotto.model.service;
 
 import lotto.controller.dto.NumberDto;
-import lotto.model.vo.BonusNumber;
-import lotto.model.vo.WinNumber;
+import lotto.model.domain.vo.BonusNumber;
+import lotto.model.domain.vo.WinNumber;
 
 public class LottoHeadQuarter {
 
@@ -25,7 +25,7 @@ public class LottoHeadQuarter {
                 .anyMatch((w) -> w.equals(bonusNumber.getBonusNumber()));
     }
 
-    public void drawWinner() {
+    public void drawWinner(Lottos playerLottos, WinNumber winNumber, BonusNumber bonusNumber) {
 
     }
 

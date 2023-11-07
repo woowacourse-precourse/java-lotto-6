@@ -3,9 +3,9 @@ package lotto.model.service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.model.vo.Lotto;
-import lotto.model.vo.Lottos;
-import lotto.model.vo.Money;
+import lotto.model.domain.vo.Lotto;
+import lotto.model.domain.vo.Lottos;
+import lotto.model.domain.vo.Money;
 
 public class LottoStore {
 

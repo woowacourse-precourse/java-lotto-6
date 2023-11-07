@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.NumberGenerateStrategy;
+import lotto.model.service.NumberGenerateStrategy;
 
 public class TestNumberGenerateStrategy implements NumberGenerateStrategy {
 

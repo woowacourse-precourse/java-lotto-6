@@ -1,7 +1,7 @@
 package lotto.controller.dto;
 
-import lotto.model.vo.BonusNumber;
-import lotto.model.vo.WinNumber;
+import lotto.model.domain.vo.BonusNumber;
+import lotto.model.domain.vo.WinNumber;
 
 public class NumberDto {
 

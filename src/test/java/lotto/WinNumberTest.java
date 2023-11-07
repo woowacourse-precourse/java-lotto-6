@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.vo.WinNumber;
+import lotto.model.domain.vo.WinNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

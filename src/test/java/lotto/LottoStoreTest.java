@@ -1,9 +1,9 @@
 package lotto;
 
 import java.util.Arrays;
-import lotto.model.LottoStore;
-import lotto.model.vo.Lotto;
-import lotto.model.vo.Money;
+import lotto.model.service.LottoStore;
+import lotto.model.domain.vo.Lotto;
+import lotto.model.domain.vo.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

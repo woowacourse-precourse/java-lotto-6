@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
 import lotto.model.service.LottoHeadQuarter;
 import lotto.model.service.LottoStore;
-import lotto.model.vo.BonusNumber;
-import lotto.model.vo.Lottos;
-import lotto.model.vo.Money;
+import lotto.model.domain.vo.BonusNumber;
+import lotto.model.domain.vo.Lottos;
+import lotto.model.domain.vo.Money;
 import lotto.model.service.RandomNumberGenerateStrategy;
-import lotto.model.vo.WinNumber;
+import lotto.model.domain.vo.WinNumber;
 import lotto.view.ErrorView;
 import lotto.view.OutputView;
 

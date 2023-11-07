@@ -35,10 +35,10 @@ public class Lotto {
         return lottoNumbers;
     }
 
-    public String lottoResult(List<Integer> winningNumber, int bonusNumber) {
+    public String lottoResult(List<Integer> winningNumber, Integer bonusNumber) {
         String correctCount = compareNumbers(winningNumber);
 
-        if (correctCount.equals(LottoConstants.CORRECT_FIVE)) {
+        if (correctCount.equals(LottoConstants.CORRECT_FIVE) && numbers.contains(bonusNumber)) {
             return LottoConstants.CORRECT_FIVE_WITH_BONUS;
         }
 
@@ -47,11 +47,16 @@ public class Lotto {
 
     private String compareNumbers(List<Integer> winningNumber) {
         int containCount = 0;
+        int minWin = Integer.parseInt(LottoConstants.CORRECT_TREE);
 
         for (int number : numbers) {
             if (winningNumber.contains(number)) {
                 containCount++;
             }
+        }
+
+        if (containCount < minWin) {
+            return "-1";
         }
         return String.valueOf(containCount);
     }

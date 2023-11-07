@@ -2,6 +2,7 @@ package lotto.validation;
 
 import lotto.util.LottoConstants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -78,7 +79,7 @@ public class InputValidation {
     }
     private boolean checkDuplicateNumber(String readNumbers) {
         String[] readNumber = readNumbers.split(LottoConstants.DIVISION_STANDARD);
-        List<String> numbers = Arrays.asList(readNumber);
+        List<String> numbers = new ArrayList<>(Arrays.asList(readNumber));
         Collections.sort(numbers);
         boolean flag = true;
 

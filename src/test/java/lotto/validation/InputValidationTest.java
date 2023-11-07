@@ -3,6 +3,7 @@ package lotto.validation;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +27,7 @@ class InputValidationTest {
     @Test
     void validateBonusNumberTest_exception() {
         //given
-        List<Integer> numbers = Arrays.asList(2, 15, 19, 21, 33, 42);
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(2, 15, 19, 21, 33, 42));
 
         //when
         String bonusNumber = "15";

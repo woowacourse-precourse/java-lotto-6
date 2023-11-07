@@ -6,6 +6,7 @@ import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +37,7 @@ class InputServiceTest extends IOTest {
     void readWinningNumbersTest() {
         //given
         systemIn("1,13,28,33,38,42");
-        List<Integer> winningNumber = Arrays.asList(1, 13, 28, 33, 38, 42);
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(1, 13, 28, 33, 38, 42));
 
         //when
         List<Integer> result = inputService.readWinningNumbers();
@@ -49,7 +50,7 @@ class InputServiceTest extends IOTest {
     void readBonusNumberTest() {
         //given
         systemIn("3");
-        List<Integer> winningNumber = Arrays.asList(1, 13, 28, 30, 38, 42);
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(1, 13, 28, 30, 38, 42));
 
         //when
         int result = inputService.readBonusNumber(winningNumber);

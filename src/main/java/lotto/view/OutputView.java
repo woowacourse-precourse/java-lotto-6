@@ -18,7 +18,7 @@ public class OutputView {
     private static final String DIVISION_LINE = "---%n";
     private static final String CORRECTING_COUNT = "%s개 일치 (%s원) - %s개%n";
     private static final String CORRECTING_COUNT_WITH_BONUS = "%s개 일치, 보너스 볼 일치 (%s원) - %s개%n";
-    private static final String EARNINGS_RATIO = "총 수익률은 %.1f%입니다.%n";
+    private static final String EARNINGS_RATIO = "총 수익률은 %.1f%%입니다.%n";
     private static final String COUNT_WITH_BONUS = "5 + bonus";
 
     public void printInputPurchaseMoney() {
@@ -54,14 +54,14 @@ public class OutputView {
         int prizeMoney = lottoPrizeMoney.getPrizeMoney();
 
         if (correctCount.equals(COUNT_WITH_BONUS)) {
-            System.out.printf(CORRECTING_COUNT_WITH_BONUS, correctCount, df.format(prizeMoney), winningCount);
+            System.out.printf(CORRECTING_COUNT_WITH_BONUS, correctCount.substring(0, 1), df.format(prizeMoney), winningCount);
             return;
         }
         System.out.printf(CORRECTING_COUNT, correctCount, df.format(prizeMoney), winningCount);
 
     }
 
-    public void printEarningRatio(int earningMoney) {
+    public void printEarningRatio(float earningMoney) {
         System.out.printf(EARNINGS_RATIO, earningMoney);
     }
 

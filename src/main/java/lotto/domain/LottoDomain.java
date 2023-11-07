@@ -8,7 +8,7 @@ import lotto.util.LottoConstants;
 import lotto.view.OutputView;
 import lotto.view.viewArgument.LottoPrizeMoney;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,7 +46,9 @@ public class LottoDomain {
             Lotto lotto = lottos.getLotto(i);
             String result = lotto.lottoResult(winningNumbers.getNumbers(), winningNumbers.getBonusNumber());
 
-            lottoStats.put(result, lottoStats.get(result) + 1);
+            if (checkWin(result)) {
+                lottoStats.put(result, lottoStats.get(result) + 1);
+            }
         }
 
         return lottoStats;
@@ -59,19 +61,25 @@ public class LottoDomain {
         for (Entry<String, Integer> entrySet : resultStats.entrySet()) {
             outputView.printWinningDetail(entrySet.getKey(), entrySet.getValue());
 
-            earningMoney += getMoney(entrySet.getKey());
+            earningMoney += getMoney(entrySet.getKey()) * entrySet.getValue();
         }
-        System.out.println(earningMoney + " / " + purchaseAmount);
+
         return (earningMoney / purchaseAmount) * 100;
     }
 
+    private boolean checkWin(String result) {
+        if (result.equals("-1")) {
+            return false;
+        }
+        return true;
+    }
     private int getMoney(String correctCount) {
         LottoPrizeMoney prizeMoney = lottoPrizeMoney.valueOfCorrectCount(correctCount);
         return prizeMoney.getPrizeMoney();
     }
 
     private Map<String, Integer> createLottoStats() {
-        Map<String, Integer> lottoStats = new HashMap<>();
+        Map<String, Integer> lottoStats = new LinkedHashMap<>();
 
         for (LottoPrizeMoney lottoPrizeMoney : LottoPrizeMoney.values()) {
             lottoStats.put(lottoPrizeMoney.getCorrectCount(), 0);

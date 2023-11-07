@@ -9,10 +9,7 @@ import lotto.view.viewArgument.LottoPrizeMoney;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +35,7 @@ class LottoDomainTest {
     @Test
     void createWinningNumbersTest() {
         //given
-        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumber = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         //when
@@ -53,10 +50,10 @@ class LottoDomainTest {
     void compareNumbersTest() {
         //given
         Lottos lottos = new Lottos();
-        lottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        lottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10)));
+        lottos.addLotto(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))));
+        lottos.addLotto(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 10))));
 
-        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 10);
+        WinningNumbers winningNumbers = new WinningNumbers(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)), 10);
 
         //when
         Map<String, Integer> result = lottoDomain.compareNumbers(lottos, winningNumbers);

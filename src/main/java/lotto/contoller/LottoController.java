@@ -32,8 +32,12 @@ public class LottoController {
         int bonusNumber = inputService.readBonusNumber(winningNum);
         WinningNumbers winningNumbers = lottoDomain.createWinningNumbers(winningNum, bonusNumber);
 
+        outputView.printWinningState();
+
         Map<String, Integer> resultStats = lottoDomain.compareNumbers(lottos, winningNumbers);
-        lottoDomain.printLottoStats(resultStats, purchaseCount);
+        float earningMoney = lottoDomain.printLottoStats(resultStats, purchaseCount);
+
+        outputView.printEarningRatio(earningMoney);
     }
 
 

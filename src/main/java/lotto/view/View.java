@@ -34,7 +34,7 @@ public class View {
         System.out.println(BONUS_NUMBER_INPUT.message());
     }
 
-    public void printLottoResultMessage() {
+    public void printWinningStatisticMessage() {
         System.out.println(WINNING_STATISTICS.message());
     }
 

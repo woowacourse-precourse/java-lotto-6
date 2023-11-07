@@ -75,7 +75,7 @@ public class LottoController {
 
     private void announceLottoResults(Client client, WinningNumbers winningNumbers) {
         LottosResult lottoResults = winningNumbers.calculateLottosResult(client.getLottos());
-        view.printLottoResultMessage();
+        view.printWinningStatisticMessage();
         printLottoResult(lottoResults);
         double rateOfReturn = client.calculateRateOfReturn(lottoResults);
         view.printRateOfReturn(rateOfReturn);

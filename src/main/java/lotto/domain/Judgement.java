@@ -3,9 +3,8 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constant.Constant.RANK_MONEY;
-
 public class Judgement {
+    private static final int[] RANK_MONEY = {5000, 50000,1500000,30000000,2000000000};
     private static final int MIN_WINNING_NUMBER = 3;
     private static final int DEFAULT_COUNT = 0;
 

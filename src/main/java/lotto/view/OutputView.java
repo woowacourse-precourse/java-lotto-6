@@ -4,10 +4,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
-import static lotto.constant.Constant.COUNT;
-
 public class OutputView {
-
+    private static final String COUNT = "개";
     private static final String REQUEST_MONEY = "구입금액을 입력해 주세요.";
     private static final String BUY_LOTTO_COUNT = "를 구매했습니다.";
     private static final String REQUEST_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";

@@ -5,9 +5,9 @@ import java.util.List;
 import lotto.validator.NumberValidator;
 import lotto.validator.LottoNumberValidator;
 
-import static lotto.constant.Constant.COMMA_DELIMITER;
 
 public class WinningLottoGenerator {
+    private static final String COMMA_DELIMITER = ",";
     private WinningLottoGenerator() {}
 
     public static List<Integer> generateLottoNumber(final String input){

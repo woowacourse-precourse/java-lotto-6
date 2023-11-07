@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-import static lotto.GameConfig.*;
+import static lotto.configuration.GameConfig.*;
 
 public class LottoNumberGenerator {
     public static List<Integer> generateRandomLottoNumber() {

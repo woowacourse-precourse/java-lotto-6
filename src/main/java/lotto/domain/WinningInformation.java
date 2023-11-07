@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.*;
 
-import static lotto.GameConfig.*;
+import static lotto.configuration.GameConfig.*;
 
 public class WinningInformation {
     public static final int PERCENTAGE_MULTIPLIER = 100;

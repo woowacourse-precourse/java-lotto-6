@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import lotto.GameConfig;
-
-import static lotto.GameConfig.*;
+import static lotto.configuration.ErrorMessage.*;
+import static lotto.configuration.GameConfig.*;
 
 public class PurchaseAmount {
     private final int amount;
@@ -14,7 +13,7 @@ public class PurchaseAmount {
 
     private void validate(int amount) {
         if (isMultipleOfUnit(amount)) {
-            throw new IllegalArgumentException("구입 금액의 최소 단위는 1,000원입니다.");
+            throw new IllegalArgumentException(PURCHASE_UNIT);
         }
     }
 

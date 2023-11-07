@@ -1,11 +1,11 @@
 package lotto.domain;
 
+
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import static lotto.GameConfig.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.GameConfig.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.configuration.ErrorMessage.*;
+import static lotto.configuration.GameConfig.*;
 import static lotto.util.LottoNumberGenerator.generateRandomLottoNumber;
 
 public class Lotto {
@@ -28,7 +28,7 @@ public class Lotto {
 
     private static void validateRangeOfNumber(int number) {
         if (hasInvalidRange(number)) {
-            throw new IllegalArgumentException("1에서 45 사이의 정수를 입력해주십시오.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 
@@ -37,14 +37,14 @@ public class Lotto {
     }
 
     private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 여섯 개여야 합니다.");
+        if (numbers.size() != NUMBER_OF_LOTTO_NUMBERS) {
+            throw new IllegalArgumentException(EXCESS_NUMBER_OF_LOTTOS);
         }
     }
 
     private static void validateDuplication(List<Integer> numbers) {
         if (containsDuplication(numbers)) {
-            throw new IllegalArgumentException("로또 번호에는 중복이 존재할 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION);
         }
     }
 

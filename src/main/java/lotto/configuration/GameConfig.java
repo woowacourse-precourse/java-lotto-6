@@ -1,4 +1,4 @@
-package lotto;
+package lotto.configuration;
 
 public class GameConfig {
     public static final Integer NUMBER_OF_LOTTO_NUMBERS = 6;

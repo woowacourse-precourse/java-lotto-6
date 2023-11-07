@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.GameConfig.*;
+import static lotto.configuration.GameConfig.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoNumberGeneratorTest {

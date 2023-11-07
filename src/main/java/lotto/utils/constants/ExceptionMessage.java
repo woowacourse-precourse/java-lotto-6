@@ -7,7 +7,8 @@ public enum ExceptionMessage {
     WINNING_LOTTO_NUMBER("6개의 숫자를 콤마로 구분하여 입력해주세요."),
     WINNING_LOTTO_DUPULICATED_NUMBER("중복된 숫자를 입력했습니다."),
     WINNIG_LOTTO_INCLUDED_VALUE_NUMBER("1에서 45 사이의 숫자를 입력해야 합니다."),
-    WINNIG_LOTTO_SIX_VALUE_NUMBER("6개의 숫자를 입력해야 합니다.");
+    WINNIG_LOTTO_SIX_VALUE_NUMBER("6개의 숫자를 입력해야 합니다."),
+    INPUT_LOTTO_NUM_DUPLICATED_BONUSNUM("입력하신 당첨 번호와 중복되지 않은 보너스 숫자를 입력해주세요.");
 
     private final String message;
 

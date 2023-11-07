@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.LottoTicketEntity;
+import lotto.service.validator.LottoValidator;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class LottoTicketGenerate {
         List<Integer> lottoNumbers;
 
         lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, TOTAL_LOTTO_NUMBER_COUNT);
-        LottoValidateRegistry.lottoTicketValidate(lottoNumbers);
+        LottoValidator.lottoTicketValidate(lottoNumbers);
 
         return lottoNumbers;
     }

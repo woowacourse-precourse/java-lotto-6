@@ -1,0 +1,26 @@
+package lotto.service.validator;
+
+import java.util.List;
+
+import static lotto.service.validator.ServiceValidateRegistry.*;
+
+public class LottoValidator {
+    public static void priceValidate (final String userInput) {
+        validateAmountIn1000s(userInput);
+    }
+    public static void lottoTicketValidate (final List<Integer> userInput) {
+        checkDuplicateNumbers(userInput);
+        checkRangeOfNumbers(userInput);
+        checkSizeOfNumbers(userInput);
+    }
+    public static void winningNumberValidate (final List<Integer> userInput) {
+        checkDuplicateNumbers(userInput);
+        checkRangeOfNumbers(userInput);
+        checkSizeOfNumbers(userInput);
+    }
+    public static void bonusNumberValidate (final List<Integer> userInput) {
+        checkDuplicateNumbers(userInput);
+        checkRangeOfNumbers(userInput);
+    }
+
+}

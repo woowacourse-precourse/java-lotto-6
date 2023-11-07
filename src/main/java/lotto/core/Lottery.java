@@ -75,13 +75,17 @@ public class Lottery {
     public void start(){
         for(Lotto currentLotto:lottos){
             int countMatching = compareLotto(currentLotto);
-            boolean hasBonus = hasBonusNumber(currentLotto);
+            boolean hasBonus = hasBonusNumber(
+                    currentLotto,
+                    this.winningNumbers.getBonusNumber()
+            );
 
             for(Prize prize:prizes.keySet()){
                 if ((countMatching == prize.getMatchingCount()) && (hasBonus || !prize.hasBonus())) {
                     int count = prizes.get(prize);
                     count += 1;
                     prizes.put(prize,count);
+                    break;
                 }
             }
         }
@@ -112,7 +116,7 @@ public class Lottery {
 
     private String getTotalProfit(double totalPrice){
         double totalProfit = totalPrice / userInput.getLottoPrice() * 100;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#,###.0");
         return df.format(totalProfit);
     }
 
@@ -136,8 +140,8 @@ public class Lottery {
         return count;
     }
 
-    public boolean hasBonusNumber(Lotto lotto){
-        return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+    public boolean hasBonusNumber(Lotto lotto, int bonusNumber){
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
 }

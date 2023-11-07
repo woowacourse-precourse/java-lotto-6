@@ -30,9 +30,14 @@ public class InputValidate {
 
     public static void validateUniqueInputLottoNumbers(List<Integer> lottoNumbers) {
         Set<Integer> checkingUniqueNumbers = new HashSet<>(lottoNumbers);
-        System.out.println(checkingUniqueNumbers);
         if (checkingUniqueNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 입력한 로또 당첨 번호 중 중복된 숫자가 존재합니다.");
+        }
+    }
+
+    public static void validateAmountInputLottoNumbers(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 6개 입력해야 합니다.");
         }
     }
 

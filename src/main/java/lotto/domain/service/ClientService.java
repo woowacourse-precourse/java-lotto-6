@@ -5,10 +5,10 @@ import static lotto.global.constant.LottoNumberType.LOTTO_AMOUNT_UNIT;
 import static lotto.global.constant.LottoNumberType.MAX_RANGE_OF_LOTTO;
 import static lotto.global.constant.LottoNumberType.MIN_RANGE_OF_LOTTO;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.global.constant.ConsoleType;
 import lotto.global.view.InputView;
 import lotto.global.view.OutputView;
@@ -42,12 +42,13 @@ public class ClientService {
         }
     }
 
-    private ArrayList<Integer> parseByInput(String input) {
-        return new ArrayList<>(Arrays.stream(input.split(SPLITTER))
+    private List<Integer> parseByInput(String input) {
+        return Arrays.stream(input.split(SPLITTER))
+                .map(String::trim)
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .peek(this::validateNumberRange)
-                .toList());
+                .collect(Collectors.toList());
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {

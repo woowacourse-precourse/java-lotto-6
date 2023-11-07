@@ -99,9 +99,7 @@
 2. LottoController
    - 로또 당첨자 및 수익률 확인 기능
    - playGame()
-     - [ ] 로또 결과 시작 출력 메시지 호출
-     - saveResetLottoWinnerCounts()
-       - [ ] 로또 수량만큼 게임 진행
+     - [x] 로또 결과 시작 출력 메시지 호출
      - dicideLottoWinner()
        - getLottoWinnerCount()
          - [ ] 발행된 로또 번호와 당첨 로또 번호 비교하여 포함 개수 반환

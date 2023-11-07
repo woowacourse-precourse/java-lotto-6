@@ -111,4 +111,17 @@ public class LottoService {
         }
         return numbers;
     }
+
+    public void createBonusNumber() {
+        while (true) {
+            try {
+                String input = InputView.bonusNumber();
+                int validPart = checkNumber(input);
+                setBonusNumber(validPart);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

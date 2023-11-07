@@ -17,6 +17,7 @@ public class LottoGame {
     private void play() {
         lottoService.play();
         lottoService.createWinningNumbers();
+        lottoService.createBonusNumber();
     }
 
 }

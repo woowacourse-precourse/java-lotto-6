@@ -4,6 +4,8 @@ import lotto.constant.message.WinningStatisticsMessage;
 import lotto.constant.SystemData;
 import lotto.model.WinningCondition;
 
+import java.text.DecimalFormat;
+
 public class WinningStatisticsView {
 
     public static void printHeader() {
@@ -12,14 +14,27 @@ public class WinningStatisticsView {
     }
 
     public static void printContent(WinningCondition winningCondition, int count) {
+        printCorrectCount(winningCondition);
+        printWinningPrice(winningCondition);
+        printWinningCount(count);
+        System.out.println();
+    }
+
+    private static void printCorrectCount(WinningCondition winningCondition){
         System.out.printf(WinningStatisticsMessage.WINNING_NUMBER_CORRECT, winningCondition.winningNumberCount());
         if (winningCondition.bonusNumberCount() > 0) {
             System.out.printf(", " + WinningStatisticsMessage.BONUS_NUMBER_CORRECT);
         }
+    }
 
-        System.out.printf(" " + WinningStatisticsMessage.WINNING_AMOUNT, winningCondition.winningAmount());
+    private static void printWinningPrice(WinningCondition winningCondition){
+        int winningAmount = winningCondition.winningAmount();
+        DecimalFormat moneyFormat = SystemData.MONEY_FORMAT;
+        System.out.printf(" " + WinningStatisticsMessage.WINNING_AMOUNT, moneyFormat.format(winningAmount));
+    }
+
+    private static void printWinningCount(int count){
         System.out.printf(" " + WinningStatisticsMessage.WINNING_COUNT, count);
-        System.out.println();
     }
 
     public static void printTotalProfitResult(float profitRate) {

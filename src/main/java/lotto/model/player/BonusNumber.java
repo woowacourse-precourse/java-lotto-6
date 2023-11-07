@@ -2,6 +2,7 @@ package lotto.model.player;
 
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.constant.UnitNumber;
 
 public class BonusNumber {
     private static Integer bonusNumber;
@@ -28,7 +29,8 @@ public class BonusNumber {
     }
 
     private static void validateIsNumberInRange(String number) {
-        boolean IsNumberInRange = (Integer.parseInt(number) >= 1 && Integer.parseInt(number) <= 45);
+        boolean IsNumberInRange = (Integer.parseInt(number) >= UnitNumber.LOTTO_MIN_NUMBER.getNumber()
+                && Integer.parseInt(number) <= UnitNumber.LOTTO_MAX_NUMBER.getNumber());
         if(!IsNumberInRange) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
         }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.constant.BonusMatchType;
 import lotto.constant.MatchNumber;
+import lotto.constant.UnitNumber;
 import lotto.constant.Winning;
 import lotto.model.player.BonusNumber;
 import lotto.model.Lotto;
@@ -49,7 +50,7 @@ public class Controller {
     }
 
     private void printLottoManager(int purchase) {
-        int lottoPurchaseCount = purchase / 1000;
+        int lottoPurchaseCount = purchase / UnitNumber.LOTTO_PRICE.getNumber();
         outputView.printLottoPurchaseCount(lottoPurchaseCount);
         for(int i = 0; i<lottoPurchaseCount; i++) {
             lottoPurchaseNumbers.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));

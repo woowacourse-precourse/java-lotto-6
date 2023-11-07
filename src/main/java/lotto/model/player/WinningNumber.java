@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constant.ErrorMessage;
+import lotto.constant.UnitNumber;
 
 public class WinningNumber {
     private static List<Integer> winningNumber;
+    private static final String COMMA = ",";
 
     public WinningNumber(String numbers) {
         List<String> splitNumber = splitNumber(numbers);
@@ -17,7 +19,7 @@ public class WinningNumber {
     }
 
     private static List<String> splitNumber(String numbers) {
-        return Arrays.stream(numbers.split(","))
+        return Arrays.stream(numbers.split(COMMA))
                 .collect(Collectors.toList());
     }
 
@@ -38,14 +40,15 @@ public class WinningNumber {
     }
 
     private static void validateIsSixNumbers(List<String> numbers) {
-        if(numbers.size() != 6) {
+        if(numbers.size() != UnitNumber.WINNING_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_COUNT.getMessage());
         }
     }
 
     private static void validateIsNumberInRange(List<String> numbers) {
         for(String number : numbers) {
-            boolean IsNumberInRange = (Integer.parseInt(number) >= 1 && Integer.parseInt(number) <= 45);
+            boolean IsNumberInRange = (Integer.parseInt(number) >= UnitNumber.LOTTO_MIN_NUMBER.getNumber()
+                    && Integer.parseInt(number) <= UnitNumber.LOTTO_MIN_NUMBER.getNumber());
             if(!IsNumberInRange) {
                 throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }

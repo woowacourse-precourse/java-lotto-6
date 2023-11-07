@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.constant.Message;
+import lotto.constant.UnitNumber;
 import lotto.constant.Winning;
 
 public class LottoOutputView {
-    private static final int ROUNDED_HELPER_NUMBER = 100;
-
     public void printLottoPurchaseCount(int count) {
         System.out.println(count + Message.PURCHASE_COUNT.getMessage());
     }
@@ -33,7 +32,8 @@ public class LottoOutputView {
     }
 
     public void printRateOfReturn(double rate) {
-        rate = (double) Math.round(rate * ROUNDED_HELPER_NUMBER) / ROUNDED_HELPER_NUMBER;
+        rate = (double) Math.round(rate * UnitNumber.ROUNDED_HELPER_NUMBER.getNumber())
+                / UnitNumber.ROUNDED_HELPER_NUMBER.getNumber();
         System.out.println(Message.RATE_OF_RETURN_SUBJECT.getMessage()
                 + rate + Message.RATE_OF_RETURN_UNITS.getMessage()
                 + Message.RATE_OF_RETURN_VERB.getMessage());

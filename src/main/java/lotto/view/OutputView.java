@@ -21,4 +21,8 @@ public class OutputView {
         System.out.printf(InformationMessage.SECOND_PLACE.getMessage(), result.get(Rank.SECOND_PLACE));
         System.out.printf(InformationMessage.FIRST_PLACE.getMessage(), result.get(Rank.FIRST_PLACE));
     }
+
+    public void printRateOfReturn(String rate) {
+        System.out.printf(InformationMessage.RATE_OF_RETURN.getMessage(), rate);
+    }
 }

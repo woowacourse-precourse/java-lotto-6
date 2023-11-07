@@ -27,6 +27,7 @@ public class Controller {
         showYourLotto();
         checkLotto();
         showYourResult();
+        showYourRateOfReturn();
     }
 
     private void buyLotto() {
@@ -50,6 +51,11 @@ public class Controller {
         outputView.printResult(lottoResult);
     }
 
+    private void showYourRateOfReturn() {
+        String rateOfReturn = resultMaker.calculateRateOfReturn();
+        outputView.printRateOfReturn(rateOfReturn);
+    }
+
     private void checkLotto() {
         resultMaker = new ResultMaker(lottoBundle, selectWinningLotto());
         resultMaker.updateResult();
@@ -57,7 +63,7 @@ public class Controller {
 
     private SelectedLotto selectWinningLotto() {
         String nums = selectNumbers();
-        String bonus = chooseBonus(makeSplittedNumbers(nums));
+        String bonus = selectBonus(makeSplittedNumbers(nums));
         return new SelectedLotto(nums, bonus);
     }
 
@@ -76,7 +82,7 @@ public class Controller {
         return nums;
     }
 
-    private String chooseBonus(List<String> splitted) {
+    private String selectBonus(List<String> splitted) {
         String bonus = "";
         while (true) {
             try {

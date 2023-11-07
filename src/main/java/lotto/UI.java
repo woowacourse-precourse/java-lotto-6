@@ -87,5 +87,7 @@ public class UI {
 	}
 
 	private void showProfitRates(long numberOfLottoTickets, long profit) {
+		String profitRate = lottoService.getProfitRate(numberOfLottoTickets, profit);
+		System.out.println("총 수익률은 " + profitRate + "%입니다.");
 	}
 }

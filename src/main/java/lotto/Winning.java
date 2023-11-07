@@ -2,7 +2,9 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -39,6 +41,7 @@ public class Winning {
         checkOtherCharacter(noEmptyReadLine);
         List<Integer> numbers = createNumbers(noEmptyReadLine);
         numbers.forEach(this::checkBoundary);
+        checkDuplication(numbers);
         return numbers;
     }
 
@@ -62,11 +65,18 @@ public class Winning {
         return readLine.replaceAll("\\s", "");
     }
 
+    private void checkDuplication(List<Integer> numbers) {
+        Set<Integer> noDuplicationNumbers = new HashSet<>(numbers);
+        if (numbers.size() != noDuplicationNumbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void validateBonusNumber(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
         Integer bonusNumber = translateToNumber(noEmptyReadLine);
         checkBoundary(bonusNumber);
-        checkDuplication(bonusNumber);
+        checkExist(bonusNumber);
     }
 
     private Integer translateToNumber(String readLine) {
@@ -85,7 +95,7 @@ public class Winning {
         }
     }
 
-    private void checkDuplication(Integer bonusNumber) {
+    private void checkExist(Integer bonusNumber) {
         if (this.numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

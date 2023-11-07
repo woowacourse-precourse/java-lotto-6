@@ -1,9 +1,12 @@
 package lotto.validate;
 
+import java.util.List;
+
 public class ValidateInput {
 
     private static final String SINGLE_BLANK_INPUT = " ";
     private static final int LOTTO_PRICE = 1000;
+    private static final String DELIMITER = ",";
     private static final String NON_EMPTY_MESSAGE = "[ERROR] 값을 입력해주세요.";
     private static final String NON_BLANK_MESSAGE = "[ERROR] 비어있는 값은 입력할 수 없습니다.";
     private static final String WRONG_TYPE_INPUT_MESSAGE = "[ERROR] 정수형태로 입력해주세요";
@@ -14,6 +17,21 @@ public class ValidateInput {
         validateHasBlank(purchaseAmount);
         validateIsInteger(purchaseAmount);
         validateDivisible(purchaseAmount);
+    }
+
+    public static void validateWinningNumber(String inputNumber) {
+        validateIsEmpty(inputNumber);
+        validateHasBlank(inputNumber);
+        List<String> inputString = List.of(inputNumber.split(DELIMITER));
+        validateIsIntegerList(inputString);
+    }
+
+    private static void validateIsIntegerList(List<String> inputString) {
+        try {
+            inputString.forEach(Integer::parseInt);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(WRONG_TYPE_INPUT_MESSAGE);
+        }
     }
 
     private static void validateIsEmpty(String purchaseAmount) {

@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.LottoMachine;
+import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import lotto.utils.NumberUtil;
 import lotto.validate.ValidateInput;
 import lotto.view.InputView;
@@ -17,6 +21,8 @@ public class LottoController {
         Lottos lottos = new Lottos(LottoMachine.createLotto(lottoCount));
         lottos.printLottos(OutputView::printEachLotto);
 
+        WinningNumbers winningNumbers = fetchWinningNumbers();
+
     }
 
     private String fetchPurchaseAmount() {
@@ -29,5 +35,16 @@ public class LottoController {
             return fetchPurchaseAmount();
         }
         return purchaseAmount;
+    }
+
+    private WinningNumbers fetchWinningNumbers() {
+        OutputView.printWinningNumberInputAnnounce();
+        try {
+            List<Integer> inputNumbers = InputView.inputWinningNumber();
+            return new WinningNumbers(inputNumbers);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return fetchWinningNumbers();
+        }
     }
 }

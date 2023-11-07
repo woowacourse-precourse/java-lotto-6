@@ -9,20 +9,26 @@ public class Lotto {
 	public static final String DUPLICATE_LOTTO_NUMBER_MESSAGE = "중복된 로또 값이 존재합니다.";
 	public static final int PRICE = 1000;
 	public static final int SIZE = 6;
-	private final List<LottoNumber> lotto = new ArrayList<>();
+	private final List<LottoNumber> lotto;
 
-	public void add(LottoNumber lottoNumber) {
-		validate(lottoNumber);
-		lotto.add(lottoNumber);
+	public Lotto(List<Integer> integers) {
+		validate(integers);
+		this.lotto = integers.stream()
+			.map(LottoNumber::from)
+			.collect(Collectors.toList());
 	}
 
 	public LottoNumber get(int i) {
 		return lotto.get(i);
 	}
 
-	private void validate(LottoNumber lottoNumber) {
-		if (isDuplicate(lottoNumber)) {
-			throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_MESSAGE);
+	private void validate(List<Integer> integers) {
+		if (integers.size() != SIZE) {
+			throw new IllegalArgumentException("입력된 숫자들의 개수가 올바르지 않습니다.");
+		}
+		if (integers.stream()
+			.anyMatch(i -> integers.indexOf(i) != integers.lastIndexOf(i))) {
+			throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
 		}
 	}
 

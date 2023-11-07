@@ -30,12 +30,11 @@ public class DrawService {
 			}
 
 			for (Rank rank : matchCounter.keySet()) {
-				if (rank.getMatchNormalCount() == matchNormalCount) {
-					if (rank.isNeedMatchBonus()) {
-						if (hasBonus) {
-							matchCounter.put(rank, matchCounter.get(rank) + 1);
-						}
-					}
+				if (rank.getMatchNormalCount() == matchNormalCount && !rank.isNeedMatchBonus()) {
+					matchCounter.put(rank, matchCounter.get(rank) + 1);
+				}
+				if (rank.getMatchNormalCount() == matchNormalCount && rank.isNeedMatchBonus() && hasBonus) {
+					matchCounter.put(rank, matchCounter.get(rank) + 1);
 				}
 			}
 		}

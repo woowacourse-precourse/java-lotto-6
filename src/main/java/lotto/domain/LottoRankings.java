@@ -11,7 +11,7 @@ public class LottoRankings {
         this.rankings = rankings;
     }
 
-    public LottoResult getResult() {
+    public LottoResult toLottoResult() {
         EnumMap<LottoRanking, Integer> lottoRankingResult = new EnumMap<>(LottoRanking.class);
 
         for (LottoRanking ranking : rankings) {

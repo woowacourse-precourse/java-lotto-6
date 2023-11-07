@@ -24,7 +24,7 @@ public class LottoManager {
     }
 
     public LottoResult calculateResult(Lottos lottos, WinningLotto winningLotto) {
-        LottoRankings lottoRankings = lottos.calculateRankings(winningLotto);
-        return lottoRankings.getResult();
+        LottoRankings winRankings = lottos.calculateRankings(winningLotto);
+        return winRankings.toLottoResult();
     }
 }

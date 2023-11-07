@@ -1,5 +1,7 @@
 package lotto.factory;
 
+import static lotto.constants.LottoNumber.LOTTO_PRICE;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
@@ -28,6 +30,6 @@ public class UserLotteriesFactory {
     }
 
     public static Integer calculateCountOfPurchasedLotto(Integer purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / LOTTO_PRICE;
     }
 }

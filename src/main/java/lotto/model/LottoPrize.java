@@ -20,10 +20,10 @@ public enum LottoPrize {
     }
 
     public static LottoPrize valueOf(Boolean hasBonusNumber, Integer countMatchNumber) {
-        if (hasBonusNumber && countMatchNumber == 5) {
+        if (hasBonusNumber && countMatchNumber == SECOND_PRIZE.getMatchedNumberCount()) {
             return SECOND_PRIZE;
         }
-        if (!hasBonusNumber && countMatchNumber == 5) {
+        if (!hasBonusNumber && countMatchNumber == THIRD_PRIZE.getMatchedNumberCount()) {
             return THIRD_PRIZE;
         }
         return Arrays.stream(values())

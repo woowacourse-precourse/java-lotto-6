@@ -1,10 +1,9 @@
 package lotto.validation;
 
 import static lotto.constants.ErrorMessage.*;
+import static lotto.constants.LottoNumber.LOTTO_PRICE;
 
 public class PurchaseAmountValidator {
-
-    private static final Integer LOTTO_PRICE = 1000;
 
     public Integer validatePurchaseAmount(String purchaseAmount) {
         validateEmpty(purchaseAmount);

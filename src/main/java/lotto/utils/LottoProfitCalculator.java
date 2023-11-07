@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import static lotto.constants.LottoNumber.LOTTO_PRICE;
+
 import java.util.Map;
 import lotto.model.LottoPrize;
 
@@ -8,7 +10,7 @@ public class LottoProfitCalculator {
     public static Double findLottoProfitPercentage(Map<LottoPrize, Long> winningCountPerLottoPrize,
                                                    Integer lotteriesCount) {
         Long earnMoney = lottoPrizeCount(winningCountPerLottoPrize);
-        return (earnMoney / (double) (lotteriesCount * 1000)) * 100.0;
+        return (earnMoney / (double) (lotteriesCount * LOTTO_PRICE)) * 100.0;
     }
 
     private static Long lottoPrizeCount(Map<LottoPrize, Long> winningCountPerLottoPrize) {

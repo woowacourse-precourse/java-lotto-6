@@ -2,6 +2,9 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_NUMBER_CONTAIN_EXCEPTION;
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_NUMBER_RANGE_EXCEPTION;
+
 public class WinningNumber {
     private final Lotto lotto;
     private final int bonusNumber;
@@ -15,11 +18,11 @@ public class WinningNumber {
     private void validateBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> winningNumber = lotto.getNumbers();
         if (isWrongRange(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 1~45 사이의 숫자가 입력 되어야 합니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE_EXCEPTION.getMessage());
         }
 
         if (isContainInLotto(winningNumber, bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_CONTAIN_EXCEPTION.getMessage());
         }
     }
 

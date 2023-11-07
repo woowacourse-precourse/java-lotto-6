@@ -10,15 +10,19 @@ import lotto.constants.Prize;
 public class PrizeChecker {
     public Map<Integer, Integer> recordWinningByRank(
             List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
+        Map<Integer, Integer> winningByRank = createWinningByRankMap();
         List<Integer> lottoRank = recordRank(lottos, winningNumber, bonusNumber);
-        Map<Integer, Integer> winningByRank = new LinkedHashMap<>();
-        for (int i = Prize.FIRST.getRank(); i <= Prize.FIFTH.getRank(); i++) {
-            winningByRank.put(i, 0);
-        }
         for (int rank : lottoRank) {
             if (winningByRank.containsKey(rank)) {
                 winningByRank.put(rank, winningByRank.get(rank) + 1);
             }
+        }
+        return winningByRank;
+    }
+    private Map<Integer, Integer> createWinningByRankMap() {
+        Map<Integer, Integer> winningByRank = new LinkedHashMap<>();
+        for (int i = Prize.FIRST.getRank(); i <= Prize.FIFTH.getRank(); i++) {
+            winningByRank.put(i, 0);
         }
         return winningByRank;
     }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.constants.LottoStatus;
 
@@ -11,7 +10,6 @@ public class Lotto {
         validate(numbers);
         checkRange(numbers);
         checkSameNumber(numbers);
-        Collections.sort(numbers); // 로또 오름차순 정렬
         this.numbers = numbers;
     }
 

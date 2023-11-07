@@ -7,10 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoGeneratorTest {
+    LottoGenerator generator = new LottoGenerator();
+
     @DisplayName("로또는 금액에 의해 정해진 발행 매수만큼 생성한다.")
     @Test
     void generateThreeLottos() {
-        LottoGenerator generator = new LottoGenerator();
         List<Lotto> lottos = generator.generateLotto(3);
         assertEquals(3, lottos.size());
     }
@@ -18,7 +19,6 @@ class LottoGeneratorTest {
     @DisplayName("각 로또는 6개의 번호를 갖는다.")
     @Test
     void generateSixNumbersByEachLotto() {
-        LottoGenerator generator = new LottoGenerator();
         List<Lotto> lottos = generator.generateLotto(3);
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
@@ -29,7 +29,6 @@ class LottoGeneratorTest {
     @DisplayName("각 로또 번호는 1~45의 숫자 범위를 갖는다.")
     @Test
     void generateNumbersInRangeByEachLotto() {
-        LottoGenerator generator = new LottoGenerator();
         List<Lotto> lottos = generator.generateLotto(3);
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
@@ -40,7 +39,6 @@ class LottoGeneratorTest {
     @DisplayName("각 로또 번호는 서로 중복되지 않는다.")
     @Test
     void generateNonDuplicateNumberByEachLotto() {
-        LottoGenerator generator = new LottoGenerator();
         List<Lotto> lottos = generator.generateLotto(3);
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();

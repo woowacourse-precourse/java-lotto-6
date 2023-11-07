@@ -6,15 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import lotto.constants.Prize;
 
-public class RateOfReturn {
+public class Yield {
     public double calculate(long totalPrizeMoney, long payment) {
         return ((double) totalPrizeMoney / payment) * 100;
-    }
-
-    public String applyDecimalPlace(double rateOfReturn) {
-        DecimalFormat decimalPlace = new DecimalFormat("0.0");
-        decimalPlace.setRoundingMode(RoundingMode.HALF_UP);
-        return decimalPlace.format(rateOfReturn);
     }
 
     public long sumPrizeMoney(Map<Integer, Integer> winningByRank) {

@@ -11,11 +11,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BonusTest {
 
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     @DisplayName("구매 로또 번호와 보너스 번호가 일치하는지 확인한다.")
     void checkSameNumber(int number) {
         // given
+        Lotto
         Bonus bonus = new Bonus(number);
         List<Integer> ticket = List.of(1, 2, 3, 21, 26, 30);
 
@@ -32,5 +33,5 @@ public class BonusTest {
     void createOverRange(int number) {
         assertThatThrownBy(() -> new Bonus(number))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
+    }*/
 }

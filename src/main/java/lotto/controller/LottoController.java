@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.domain.LottoSet;
 import lotto.domain.Returns;
+import lotto.domain.Ticket;
 import lotto.domain.Tickets;
-import lotto.domain.Wallet;
 import lotto.domain.WinRecord;
 import lotto.model.LottoModel;
 
@@ -16,34 +16,26 @@ public class LottoController {
         this.lottoModel = lottoModel;
     }
 
-    public void gernerateTicket(final int wallet) {
-        Wallet wallets = new Wallet(wallet);
-        Tickets tickets = new Tickets(wallets);
-
+    public void gernerateTicket(final int money) {
+        Ticket ticket = new Ticket(money);
+        Tickets tickets = new Tickets(ticket);
         tickets.generate();
 
         lottoModel.saveTicktet(tickets);
-        lottoModel.saveWallet(wallets);
     }
 
-    public void inputLotto(final List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
+    public void inputLotto(final List<Integer> lottoNumbers, final int bonusNumber) {
+        Lotto lotto = new Lotto(lottoNumbers);
+        LottoSet lottoSet = new LottoSet(lotto, bonusNumber);
 
-        lottoModel.saveLotto(lotto);
-    }
-
-    public void inputBonus(final int number){
-        Bonus bonus = new Bonus(number);
-
-        lottoModel.saveBonus(bonus);
+        lottoModel.saveLottoSet(lottoSet);
     }
 
     public void inputWinRecord() {
         Tickets tickets = lottoModel.findTickets();
-        Lotto lotto = lottoModel.findLotto();
-        Bonus bonus = lottoModel.findBonus();
+        LottoSet lottoSet = lottoModel.findLottoSet();
 
-        WinRecord winRecord = new WinRecord(lotto, bonus);
+        WinRecord winRecord = new WinRecord(lottoSet);
         winRecord.inputWinRecord(tickets);
 
         lottoModel.saveWinRecord(winRecord);
@@ -54,12 +46,11 @@ public class LottoController {
         winRecord.print();
     }
 
-    public void printReturns() {
+    public void printReturns(int money) {
         WinRecord winRecord = lottoModel.findWinRecord();
-        Wallet wallet = lottoModel.findWallet();
 
-        Returns returns = new Returns(wallet, winRecord);
-        returns.calculate();
+        Returns returns = new Returns(money);
+        returns.calculate(winRecord);
         returns.print();
     }
 

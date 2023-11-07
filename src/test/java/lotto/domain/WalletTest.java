@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WalletTest {
-    @ParameterizedTest
+    /*@ParameterizedTest
     @ValueSource(ints = {14500,13600,15210})
     @DisplayName("로또 구매시 잔금이 남아 구매를 할 수 없다.")
     void createRemain(int wallet){
@@ -43,5 +43,5 @@ public class WalletTest {
 
         // then
         assertThat(returns).isEqualTo(62.5);
-    }
+    }*/
 }

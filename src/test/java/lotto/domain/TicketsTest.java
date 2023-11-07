@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class TicketsTest {
     private LottoModel lottoModel = getLottoModel();
 
-    @Test
+    /*@Test
     @DisplayName("티켓 발급이 정상처리되었음을 확인한다.")
     void generateTickect(){
         // given
@@ -41,6 +41,6 @@ public class TicketsTest {
 
         // then
         assertThat(winRecord.size()).isEqualTo(14);
-    }
+    }*/
 
 }

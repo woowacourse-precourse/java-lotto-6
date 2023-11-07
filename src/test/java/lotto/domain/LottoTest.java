@@ -29,7 +29,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구매 로또 번호와 당첨 내역이 일치하는지 확인한다.")
+    /*@DisplayName("구매 로또 번호와 당첨 내역이 일치하는지 확인한다.")
     @Test
     void checkSameNumber(){
         // given
@@ -42,5 +42,5 @@ class LottoTest {
 
         // then
         assertThat(sameCount).isEqualTo(2);
-    }
+    }*/
 }

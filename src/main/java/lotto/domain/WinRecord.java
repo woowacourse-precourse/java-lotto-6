@@ -2,24 +2,20 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;
-import lotto.domain.rule.PrizeAmount;
 
 public class WinRecord {
     private List<Integer> winRecord = new ArrayList<>();
-    private final Lotto lotto;
-    private final Bonus bonus;
+    private final LottoSet lottoSet;
 
-    public WinRecord(Lotto lotto, Bonus bonus) {
-        this.lotto = lotto;
-        this.bonus = bonus;
+    public WinRecord(LottoSet lottoSet) {
+        this.lottoSet = lottoSet;
     }
 
     public void inputWinRecord(Tickets tickets) {
-        this.winRecord = tickets.matchNumber(lotto, bonus);
+        this.winRecord = tickets.matchNumber(this.lottoSet);
     }
 
     public void print() {
@@ -44,13 +40,7 @@ public class WinRecord {
         OutputMessage.printf(messageType, count);
     }
 
-    public double sumPrizeAmount(Map<Integer, PrizeAmount> prizeAmounts) {
-        double prizeAmount = this.winRecord.stream()
-                .filter(prizeAmounts::containsKey)
-                .map(prizeAmounts::get)
-                .mapToDouble(PrizeAmount::getAmount)
-                .sum();
-
-        return prizeAmount;
+    public List<Integer> get(){
+        return this.winRecord;
     }
 }

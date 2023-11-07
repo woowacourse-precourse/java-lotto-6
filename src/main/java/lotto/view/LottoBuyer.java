@@ -12,14 +12,15 @@ import lotto.view.convert.ConvertToInt;
 
 public class LottoBuyer {
     private LottoController lottoController = AppConfig.getController();
+    private int money;
 
     public void gernerateTicket(){
         OutputMessage.print(MessageType.INPUT_BUY_START);
         try{
             ConvertToInt converToInt = ConvertToInt.from(readLine());
-            int wallet = converToInt.getValue();
+            this.money = converToInt.getValue();
 
-            lottoController.gernerateTicket(wallet);
+            lottoController.gernerateTicket(this.money);
         }catch (InputException ie){
             OutputMessage.printf(INPUT_ERROR,ie.getMessage());
 
@@ -33,7 +34,7 @@ public class LottoBuyer {
     }
 
     public void printReturns(){
-        lottoController.printReturns();
+        lottoController.printReturns(this.money);
     }
 
 }

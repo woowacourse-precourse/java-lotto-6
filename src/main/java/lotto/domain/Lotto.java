@@ -8,13 +8,13 @@ import lotto.config.output.OutputMessage;
 import lotto.domain.constant.LottoConstant;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.lottoNumbers = numbers;
 
-        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.numbers);
+        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.lottoNumbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -26,7 +26,7 @@ public class Lotto {
             throw new InputException(ExceptionType.ERROR_LOTTO_DUPLICATE);
         }
 
-        if (islottoRange(numbers)) {
+        if (isLottoRange(numbers)) {
             throw new InputException(ExceptionType.ERROR_LOTTO_RANGE);
         }
     }
@@ -39,7 +39,7 @@ public class Lotto {
         return numbers.size() > numbers.stream().distinct().count();
     }
 
-    private boolean islottoRange(List<Integer> numbers) {
+    private boolean isLottoRange(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> isLower(number) || isHight(number));
     }
@@ -52,9 +52,7 @@ public class Lotto {
         return LottoConstant.LOTTO_START_NUMBER > number;
     }
 
-    public int sameTicket(List<Integer> ticket) {
-        return (int) ticket.stream()
-                .filter(this.numbers::contains)
-                .count();
+    public List<Integer> get(){
+        return this.lottoNumbers;
     }
 }

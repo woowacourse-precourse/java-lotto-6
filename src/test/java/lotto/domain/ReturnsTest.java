@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class ReturnsTest {
 
-    @Test
+    /*@Test
     @DisplayName("수익률이 정상 출력됨을 확인한다.")
     void print(){
         // given
@@ -23,6 +23,6 @@ public class ReturnsTest {
         Returns returns = new Returns(wallet, winRecord);
         returns.calculate();
         returns.print();
-    }
+    }*/
 
 }

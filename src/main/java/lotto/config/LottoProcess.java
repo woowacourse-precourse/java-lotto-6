@@ -21,7 +21,6 @@ public class LottoProcess {
     private static void inputProcess(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer) {
         lottoBuyer.gernerateTicket();
         lottoDrawer.inputLotto();
-        lottoDrawer.inputBonus();
         lottoDrawer.inputWinRecord();
     }
 

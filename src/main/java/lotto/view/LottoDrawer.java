@@ -16,27 +16,33 @@ public class LottoDrawer {
 
     public void inputLotto() {
         OutputMessage.print(MessageType.INPUT_START_WIN_NUMBER);
-        try {
-            ConvertToList lottoConvertor = ConvertToList.from(readLine());
-            List<Integer> numbers = lottoConvertor.getValue();
-
-            lottoController.inputLotto(numbers);
-        } catch (InputException ie) {
-            inputLotto();
-        }
-
+        List<Integer> lottoNumber = lottoNumber();
+        int bonusNumber = bonusNumber();
+        lottoController.inputLotto(lottoNumber, bonusNumber);
     }
 
-    public void inputBonus() {
-        OutputMessage.print(MessageType.INPUT_START_BONUS);
-        try {
-            ConvertToInt bonusConvertor = ConvertToInt.from(readLine());
-            int number = bonusConvertor.getValue();
+    private List<Integer> lottoNumber(){
+        ConvertToList lottoConvertor = null;
 
-            lottoController.inputBonus(number);
-        }catch (InputException ie){
-            inputBonus();
+        try {
+            lottoConvertor = ConvertToList.from(readLine());
+        }catch (InputException ie) {
+            lottoNumber();
         }
+
+        return lottoConvertor.getValue();
+    }
+
+    private int bonusNumber(){
+        ConvertToInt bonusConvertor = null;
+
+        try {
+            bonusConvertor = ConvertToInt.from(readLine());
+        }catch (InputException ie) {
+            bonusNumber();
+        }
+
+        return bonusConvertor.getValue();
     }
 
     public void inputWinRecord() {

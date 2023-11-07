@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.LottoList;
 import lotto.model.LottoManager;
 import lotto.service.LottoService;
 import lotto.service.InputValidator;
@@ -15,14 +14,15 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoList lottoList;
     private final LottoService lottoService;
     private final InputValidator inputValidator;
+
+    private LottoManager lottoManager;
+    private List<Lotto> lottoList;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoList = new LottoList();
         this.inputValidator = new InputValidator();
         this.lottoService = new LottoService();
     }
@@ -30,6 +30,11 @@ public class LottoController {
     public void startLottoGame() {
         buyLotto();
         setLottoNumbers();
+        getLottoResult();
+    }
+
+    private void getLottoResult() {
+
     }
 
     private void buyLotto() {
@@ -40,6 +45,7 @@ public class LottoController {
     private void setLottoNumbers() {
         LottoManager winningNumbers = getWinningNumbersFromUser();
         addBonusNumberToWinningNumbers(winningNumbers);
+        this.lottoManager = winningNumbers;
     }
 
     private int getPurchaseAmount() {
@@ -50,6 +56,7 @@ public class LottoController {
     private void showLottoTicketNumbers(int purchaseAmount) {
         int numberOfLottoTicketsToBuy = lottoService.calculateNumberOfLottoTicketsToBuy(purchaseAmount);
         List<Lotto> lottoList = lottoService.buyLottoTickets(purchaseAmount);
+        this.lottoList = lottoList;
         showLottoTickets(numberOfLottoTicketsToBuy, lottoList);
     }
 

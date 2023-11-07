@@ -42,7 +42,7 @@ class LottoTest {
     @Test
     void purchaseAmountNotDivisibleBy1000Exception() {
         int purchaseAmount = 7777;
-        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(purchaseAmount))
+        assertThatThrownBy(() -> inputValidator.validateLottoPurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -82,31 +82,31 @@ class LottoTest {
         assertEquals(expectedSortedNumbers, sortedNumbers);
     }
 
-    @DisplayName("당첨 번호 입력이 5개가 아니라면 예외가 발생한다.")
+    @DisplayName("당첨 번호 입력이 6개가 아니라면 예외가 발생한다.")
     @Test
     void validateWinningNumbersCount() {
-        assertThatThrownBy(() -> new LottoManager(List.of(1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> new LottoManager(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호 입력이 1~45 범위가 아니라면 예외가 발생한다.")
     @Test
     void validateWinningNumbersInRange() {
-        assertThatThrownBy(() -> new LottoManager(List.of(51, 22, 31, 40, 5)))
+        assertThatThrownBy(() -> new LottoManager(List.of(51, 22, 31, 40, 5, 1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있다면 예외가 발생한다.")
     @Test
     void validateWinningNumbersDuplicate() {
-        assertThatThrownBy(() -> new LottoManager(List.of(22, 22, 31, 40, 5)))
+        assertThatThrownBy(() -> new LottoManager(List.of(22, 22, 31, 40, 5, 1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호 입력이 1~45 범위가 아니라면 예외가 발생한다.")
     @Test
     void validateBonusNumbersInRange() {
-        LottoManager lottoManager = new LottoManager(List.of(1, 2, 3, 4, 5));
+        LottoManager lottoManager = new LottoManager(List.of(1, 2, 3, 4, 5, 6));
         int outOfRangeBonusNumber = 46;
         assertThatThrownBy(() -> lottoManager.addBonusNumber(outOfRangeBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -115,7 +115,7 @@ class LottoTest {
     @DisplayName("보너스 번호가 당첨번호와 중복된 숫자가 있다면 예외가 발생한다.")
     @Test
     void validateWinningNumbersAndBonusNumberDuplicate() {
-        LottoManager lottoManager = new LottoManager(List.of(1, 2, 3, 4, 5));
+        LottoManager lottoManager = new LottoManager(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> lottoManager.addBonusNumber(1))
                 .isInstanceOf(IllegalArgumentException.class);
     }

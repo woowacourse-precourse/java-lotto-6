@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.view.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class LottoTickets {
 
     public static LottoTickets crateBuyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
         if(purchaseAmount%1000!=0){
-             throw new IllegalArgumentException("ERROR");
+             throw new IllegalArgumentException(ExceptionMessage.inputPurchaseAmountError.getErrorMessage());
         }
 
         LottoTickets lottoTickets = new LottoTickets(buyLottoTickets(purchaseAmount));

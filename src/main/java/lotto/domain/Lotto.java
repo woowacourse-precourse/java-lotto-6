@@ -18,11 +18,22 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void sortAscending() {
+        //numbers.sort(Comparator.naturalOrder());
+    }
 
-    public Long countCommon(List<Integer> numbers) {
-        return this.numbers.stream()
-                .filter(numbers::contains)
-                .count();
+    public int countMatching(List<Integer> numbers) {
+    return (int) this.numbers.stream()
+            .filter(numbers::contains)
+            .count();
+    }
+
+    public Boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

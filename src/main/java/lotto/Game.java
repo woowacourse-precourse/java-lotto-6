@@ -87,17 +87,12 @@ public class Game {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String readLine = Console.readLine();
-                bonus.save(readLine);
-                isBonusSameWithWinning();
+                bonus.save(readLine, winning.getNumbers());
                 isNotEnded = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private void isBonusSameWithWinning() {
-        bonus.isContained(winning.getNumbers());
     }
 
     private void informWinning() {

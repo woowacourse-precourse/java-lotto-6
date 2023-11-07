@@ -1,6 +1,6 @@
 package lotto;
 
-public class Buying {
+public class Buying extends Input {
     private Integer price;
 
     public Buying() {
@@ -20,16 +20,16 @@ public class Buying {
         this.price = price;
     }
 
-    private Integer validate(String readLine) {
-        String refinedReadLine = removeEmpty(readLine);
-        checkDigit(refinedReadLine);
-        Integer price = translateToPrice(refinedReadLine);
+    protected Integer validate(String readLine) {
+        String noEmptyReadLine = removeEmpty(readLine);
+        checkDigit(noEmptyReadLine);
+        Integer price = translateToValueType(noEmptyReadLine);
         checkBoundary(price);
         checkRest(price);
         return price;
     }
 
-    private String removeEmpty(String readLine) {
+    protected String removeEmpty(String readLine) {
         return readLine.replaceAll("\\s", "");
     }
 
@@ -39,7 +39,8 @@ public class Buying {
         }
     }
 
-    private void checkBoundary(Integer price) {
+    @Override
+    protected void checkBoundary(Integer price) {
         if (price < 1000 || price > 100000) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상, 100000원 이하여야 합니다.");
         }
@@ -51,9 +52,9 @@ public class Buying {
         }
     }
 
-    private Integer translateToPrice(String refinedReadLine) {
+    protected Integer translateToValueType(String noEmptyReadLine) {
         try {
-            return Integer.parseInt(refinedReadLine);
+            return Integer.parseInt(noEmptyReadLine);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력되어야 합니다.");
         }

@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Winning {
+public class Winning extends Input {
     private List<Integer> numbers;
 
     public Winning() {
@@ -25,16 +25,16 @@ public class Winning {
         this.numbers = numbers;
     }
 
-    private List<Integer> validate(String readLine) {
+    protected List<Integer> validate(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
         checkOtherCharacter(noEmptyReadLine);
-        List<Integer> numbers = createNumbers(noEmptyReadLine);
+        List<Integer> numbers = translateToValueType(noEmptyReadLine);
         numbers.forEach(this::checkBoundary);
         checkDuplication(numbers);
         return numbers;
     }
 
-    private String removeEmpty(String readLine) {
+    protected String removeEmpty(String readLine) {
         return readLine.replaceAll("\\s", "");
     }
 
@@ -47,17 +47,11 @@ public class Winning {
         }
     }
 
-    private List<Integer> createNumbers(String noEmptyReadLine) {
+    protected List<Integer> translateToValueType(String noEmptyReadLine) {
         String[] split = noEmptyReadLine.split(",");
         return Arrays.stream(split)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    private void checkBoundary(Integer number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1~45 범위 내에 해당해야 합니다.");
-        }
     }
 
     private void checkDuplication(List<Integer> numbers) {

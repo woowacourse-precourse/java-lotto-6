@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-public class Bonus {
+public class Bonus extends Input {
     private Integer number;
 
     public Bonus() {
@@ -13,8 +13,9 @@ public class Bonus {
         return number;
     }
 
-    public void save(String readLine) {
+    public void save(String readLine, List<Integer> winningNumbers) {
         Integer number = validate(readLine);
+        isContained(winningNumbers);
         this.number = number;
     }
 
@@ -24,30 +25,24 @@ public class Bonus {
         }
     }
 
-    private Integer validate(String readLine) {
+    protected Integer validate(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
-        Integer bonusNumber = translateToNumber(noEmptyReadLine);
+        Integer bonusNumber = translateToValueType(noEmptyReadLine);
         checkBoundary(bonusNumber);
         return bonusNumber;
     }
 
-    private String removeEmpty(String readLine) {
+    protected String removeEmpty(String readLine) {
         return readLine.replaceAll("\\s", "");
     }
 
-    private Integer translateToNumber(String readLine) {
+    protected Integer translateToValueType(String noEmptyReadLine) {
         Integer result;
         try {
-            result = Integer.parseInt(readLine);
+            result = Integer.parseInt(noEmptyReadLine);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력되어야 합니다.");
         }
         return result;
-    }
-
-    private void checkBoundary(Integer number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1~45 범위 내에 해당해야 합니다.");
-        }
     }
 }

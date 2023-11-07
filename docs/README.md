@@ -1,0 +1,21 @@
+# TODO
+
+- [x] 구입금액을 입력받는 `getLottoPurchasePrice` 함수를 구현
+- [x] `getLottoPurchasePrice` 함수에 대한 테스트 코드 추가
+- [x] 로또를 만들어내는 `makeLottery` 함수를 구현
+- [x] 로또가 가지고 있는 숫자들을 가져오기 위한 getter 추가
+- [x] 만들어낸 로또를 출력하는 `printLottoNumbers` 함수를 구현
+- [x] 당첨 숫자를 입력받는 `getWinningNumbers` 함수를 구현
+- [x] `getWinningNumbers` 함수에 대한 테스트 코드 추가
+- [x] 당첨 숫자와 lotto가 몇개나 일치하는지 확인하는 `matchCount` 함수를 구현
+- [x] `matchCount` 함수에 대한 테스트 코드 추가
+- [x] 현재 lotto가 bonus number를 가지고 있는지 확인하는 `matchBonusNumber` 함수를 구현
+- [x] `matchBonusNumber` 함수에 대한 테스트 코드 추가
+- [x] lotto 등수와 당첨 금액에 대한 enum `LottoRank` 추가
+- [x] 등수 별 당첨내역을 구하는 `getMatchCountByRank` 함수를 구현
+- [x] `getMatchCountByRank` 함수에 대한 테스트 코드 추가
+- [x] 로또를 통해 번 금액을 계산하는 `getEarnedMoney` 함수를 구현
+- [x] `getEarnedMoney` 함수에 대한 테스트 코드 추가
+- [X] 당첨률을 소수 두번째 자리까지 출력하는 `getRevenueRate` 함수를 구현
+- [x] `getRevenueRate` 함수에 대한 테스트 코드 추가
+- [x] lotto 결과 통계를 출력하는 `printStatistics` 함수를 구현

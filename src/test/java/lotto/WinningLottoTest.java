@@ -14,10 +14,20 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningLottoTest {
+
+    @DisplayName("보너스 번호에 숫자가 아닌 값이 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"숫자아님", "notNumber", "1섞어2MIX3"})
+    void createWinningLottoByNonNumericValueBonusNumber(String bonusNumber) {
+        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[Error] 보너스 번호에 숫자가 아닌 값이 들어왔습니다.");
+    }
+
     @DisplayName("보너스 번호에 범위(1 ~ 45) 밖의 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "46"})
-    void createWinningLottoByBonusNumberOverRange(String bonusNumber) {
+    void createWinningLottoByOverRangeBonusNumber(String bonusNumber) {
         assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }

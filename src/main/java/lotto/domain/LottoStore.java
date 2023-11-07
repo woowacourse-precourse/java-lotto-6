@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.LongStream;
 
 public class LottoStore {
-    private final int LOTTO_PRICE = 1000;
-    private final int START_NUM = 1;
-    private final int END_NUM = 45;
-    private final int NUM_COUNT = 6;
-    private final int MIN_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int START_NUM = 1;
+    private static final int END_NUM = 45;
+    private static final int NUM_COUNT = 6;
+    private static final int MIN_PRICE = 1000;
 
     private long chargedMoney;
     private long lottoAmount;

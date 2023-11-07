@@ -5,7 +5,7 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.LottoGameMessage;
 
 public class InputView {
-    private final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
     public long validateCustomerMoneyInput(final String moneyInput) {
         if (moneyInput.isEmpty()) {

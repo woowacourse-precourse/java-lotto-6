@@ -6,16 +6,16 @@ import java.util.*;
 
 public class LottoChecker {
 
-    private final List<Integer> WINNING_NUMBERS;
-    private final int BONUS_NUMBER;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
     private List<Lotto> lottos = new ArrayList<>();
     private Map<Prize, Integer> result = new HashMap<>();
     private long totalPrize;
     private String profitRate;
 
     public LottoChecker(final List<Integer> winningNumbers, final int bonusNumber) {
-        this.WINNING_NUMBERS = winningNumbers;
-        this.BONUS_NUMBER = bonusNumber;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
         this.initPrize();
     }
 
@@ -51,7 +51,7 @@ public class LottoChecker {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         long matches = lottoNumbers.stream()
-                .filter(this.WINNING_NUMBERS::contains).count();
+                .filter(this.winningNumbers::contains).count();
 
         return matches;
     }
@@ -59,7 +59,7 @@ public class LottoChecker {
     public boolean checkContainBonusNumber(final Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        boolean isContainBonus = lottoNumbers.contains(this.BONUS_NUMBER);
+        boolean isContainBonus = lottoNumbers.contains(this.bonusNumber);
 
         return isContainBonus;
     }

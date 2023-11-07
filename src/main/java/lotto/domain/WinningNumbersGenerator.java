@@ -9,9 +9,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumbersGenerator {
-    private final int START_NUM = 1;
-    private final int END_NUM = 45;
-    private final int NUM_COUNT = 6;
+    private static final int START_NUM = 1;
+    private static final int END_NUM = 45;
+    private static final int NUM_COUNT = 6;
 
     private List<Integer> winningNumbers;
     private int bonusNumber;

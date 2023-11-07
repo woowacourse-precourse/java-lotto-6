@@ -37,8 +37,12 @@ public class InputView {
     }
 
     public List<Integer> toWinningNumbers(String readLine) {
-        return Arrays.stream(readLine.split(","))
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            return Arrays.stream(readLine.split(","))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_INPUT_ERROR.getMessage());
+        }
     }
 }

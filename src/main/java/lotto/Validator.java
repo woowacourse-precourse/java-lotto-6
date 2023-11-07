@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
+
+    // 로또 구입 금액 입력 검증
     public static void validateAmount(String amount) {
         Validator.checkBlankOrNULL(amount);
         Validator.checkContainSpace(amount);
@@ -27,9 +29,6 @@ public class Validator {
     public static void checkNAN(String input) {
         try {
             Integer number = Integer.parseInt(input);
-            // Integer으로 변환된 값이 입력 값과 같지 않을 시 예외 발생
-            if (number.toString().equals(input))
-                throw new IllegalArgumentException("[ERROR]");
             if (number < 0)
                 throw new IllegalArgumentException("[ERROR]");
         } catch (NumberFormatException e) {

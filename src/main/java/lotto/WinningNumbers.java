@@ -2,19 +2,19 @@ package lotto;
 
 import java.util.List;
 
-public record WinningNumbers(Lotto winningNumbers, int bonusNumber) {
+public record WinningNumbers(Lotto numbers, int bonusNumber) {
     public WinningNumbers {
-        validate(winningNumbers, bonusNumber);
+        validate(numbers, bonusNumber);
     }
 
-    private void validate(Lotto winningNumbers, int bonusNumber) {
-        validate(winningNumbers);
+    private void validate(Lotto numbers, int bonusNumber) {
+        validate(numbers);
         validate(bonusNumber);
-        validateNotDuplicated(winningNumbers, bonusNumber);
+        validateNotDuplicated(numbers, bonusNumber);
     }
 
-    private void validate(Lotto winningNumbers) {
-        winningNumbers.getSortedNumbers().forEach(this::validateNumberInRange);
+    private void validate(Lotto numbers) {
+        numbers.getSortedNumbers().forEach(this::validateNumberInRange);
     }
 
     private void validate(int bonusNumber) {
@@ -27,10 +27,10 @@ public record WinningNumbers(Lotto winningNumbers, int bonusNumber) {
         }
     }
 
-    private void validateNotDuplicated(Lotto winningNumbers, int bonusNumber) {
-        List<Integer> winningNumbersList = winningNumbers.getSortedNumbers();
-        winningNumbersList.add(bonusNumber);
-        if (winningNumbersList.stream().distinct().count() != winningNumbersList.size()) {
+    private void validateNotDuplicated(Lotto numbers, int bonusNumber) {
+        List<Integer> winningNumbers = numbers.getSortedNumbers();
+        winningNumbers.add(bonusNumber);
+        if (winningNumbers.stream().distinct().count() != winningNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }
     }

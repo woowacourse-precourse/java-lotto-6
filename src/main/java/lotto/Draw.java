@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static lotto.Lotto.lottoRangeFirstNum;
 import static lotto.Lotto.lottoRangeLastNum;
@@ -109,7 +110,16 @@ public class Draw {
 
     Map<Rank, Integer> draw(Lotto winning, int bonusNum, List<Lotto> lottos) {
         Map<Rank, Integer> drawResult = initDrawResult();
+        for (Lotto lotto : lottos) {
+            int matchCount = calculateMatchCount(winning, lotto);
+        }
         return drawResult;
+    }
+
+    int calculateMatchCount(Lotto winning, Lotto lotto) {
+        List<Integer> totalNumber = new ArrayList<>(lotto.getNumbers());
+        totalNumber.addAll(winning.getNumbers());
+        return totalNumber.size() - Set.copyOf(totalNumber).size();
     }
 
     Map<Rank, Integer> initDrawResult() {

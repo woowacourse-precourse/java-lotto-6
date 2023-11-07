@@ -41,6 +41,6 @@ class MoneyTest {
         int expectedResult = money / NumberType.LOTTO_PRICE.getValue();
 
         //When & Then
-        assertThat(moneyObject.getLottoCount()).isEqualTo(expectedResult);
+        assertThat(moneyObject.getLottoPurchaseCount()).isEqualTo(expectedResult);
     }
 }

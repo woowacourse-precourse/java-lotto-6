@@ -11,8 +11,8 @@ public class Judgment {
 
     public boolean correctBonus(List<Integer> computer, int bonusnumber){
         if(computer.contains(bonusnumber)){
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }

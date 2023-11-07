@@ -19,7 +19,7 @@ public class WinningInfo {
     }
     public void setthirdrank(){
         this.thirdrank += 1;
-        this.totalamount += 150000;
+        this.totalamount += 1500000;
     }
     public void setsecondrank(){
         this.secondrank += 1;

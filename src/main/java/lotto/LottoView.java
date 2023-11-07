@@ -15,7 +15,6 @@ public class LottoView {
         }
         catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + num + "는 숫자가 아닙니다.");
-            System.exit(0);
         }
         return amount;
     }
@@ -41,7 +40,6 @@ public class LottoView {
         }
         catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + num + "는 숫자가 아닙니다.");
-            System.exit(0);
         }
         return bonusNum;
     }

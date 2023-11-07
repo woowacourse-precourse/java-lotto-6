@@ -30,7 +30,6 @@ public class LottoService {
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 입력값이 숫자가 아닙니다.");
-            System.exit(0);
         }
         return lottoWinningNumbers;
     }

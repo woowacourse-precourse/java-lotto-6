@@ -19,23 +19,20 @@ public class WinningCombinationBuilder {
     }
 
     private static int parseInputToInt(String bonusNumberInput) {
-        int bonusNumber = Integer.parseInt(bonusNumberInput);
-        LottoValidator.verifyRange(bonusNumber);
-        return bonusNumber;
+        return Integer.parseInt(bonusNumberInput);
     }
 
     private static List<Integer> parseInputToList(String winningNumbersInput) {
-        List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(","))
+        return Arrays.stream(winningNumbersInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
-        LottoValidator.verifyNumbersSize(winningNumbers);
-        LottoValidator.verifyNoDuplication(winningNumbers);
-        LottoValidator.verifyLottoNumberRange(winningNumbers);
-        return winningNumbers;
     }
 
     public WinningCombinationBuilder withWinningNumbers(String input) {
         List<Integer> winningNumbers = parseInputToList(input);
+        LottoValidator.verifyNumbersSize(winningNumbers);
+        LottoValidator.verifyNoDuplication(winningNumbers);
+        LottoValidator.verifyLottoNumberRange(winningNumbers);
         this.winningNumbers = winningNumbers;
         this.isWinningNumbersNotSet = false;
         return this;
@@ -43,6 +40,8 @@ public class WinningCombinationBuilder {
 
     public WinningCombinationBuilder withBonusNumber(String input) {
         int bonusNumber = parseInputToInt(input);
+        LottoValidator.verifyRange(bonusNumber);
+        verifyBonusNotContainedInWinningNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
         this.isBonusNumberNotSet = false;
         return this;
@@ -50,7 +49,6 @@ public class WinningCombinationBuilder {
 
     public WinningCombinationDto build() {
         verifyAllFieldAreSet();
-        verifyBonusNotContainedInWinningNumbers();
         return new WinningCombinationDto(winningNumbers, bonusNumber);
     }
 
@@ -60,7 +58,7 @@ public class WinningCombinationBuilder {
         }
     }
 
-    private void verifyBonusNotContainedInWinningNumbers() {
+    private void verifyBonusNotContainedInWinningNumbers(int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호가 당첨 번호와 중복될 수 없습니다.");
         }

@@ -1,9 +1,16 @@
 package lotto.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
+import lotto.domain.FinalGrade;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.PlayerLotto;
+import lotto.domain.Rank;
+import lotto.dto.WinningStatisticsDto;
 import lotto.service.numbergenerator.NumberGenerator;
 
 public class LottoGameService {
@@ -21,5 +28,14 @@ public class LottoGameService {
             lottos.add(new Lotto(numbersGenerator.generate()));
         }
         return Collections.unmodifiableList(lottos);
+    }
+
+    public WinningStatisticsDto calculateWinningStatistics(final PlayerLotto playerLotto, final Lotto winningNumber,
+                                                           final LottoNumber bonusNumber) {
+        FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+        EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
+        BigDecimal yieldRate = yieldCalculator.calculate(finalGrade);
+
+        return new WinningStatisticsDto(eachRankCounts, yieldRate);
     }
 }

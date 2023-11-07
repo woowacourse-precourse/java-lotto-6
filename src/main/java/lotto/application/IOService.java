@@ -2,11 +2,14 @@ package lotto.application;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.User;
 import lotto.domain.WinningNumber;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class IOService {
     private final String BEFORE_PURCHASE_LOTTO_MESSAGE = "구입금액을 입력해 주세요.";
@@ -50,7 +53,43 @@ public class IOService {
         System.out.println(BONUS_NUMBER_MESSAGE);
     }
 
-    public long scanPurchaseAmount() {
+    public void printResult(User user) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        printStatistics(user);
+        printProfit(user);
+    }
+
+    private void printStatistics(User user) {
+        List<Rank> ranks = List.of(Rank.FifthRank, Rank.ForthRank, Rank.ThirdRank, Rank.SecondRank, Rank.FirstRank);
+        List<Integer> cntMatches = List.of(3, 4, 5, 5, 6);
+        String message;
+        for(int i = 0; i < 5; ++i){
+            Rank rank = ranks.get(i);
+            message = makeStaticsMessage(cntMatches.get(i), rank, user.getCntRank().get(rank));
+            System.out.println(message);
+        }
+    }
+
+    private String makeStaticsMessage(int cntMath, Rank rank, int cntRank){
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+        final String cntMathInfo = Integer.toString(cntMath) + "개 일치";
+        final String bonusInfo = ", 보너스 볼 일치";
+        final String prizeInfo = " (" + numberFormat.format(rank.getPrize()) + "원) ";
+        final String cntRankInfo = "- " + Integer.toString(cntRank) + "개";
+
+        if(rank.equals(Rank.SecondRank))
+            return cntMathInfo + bonusInfo + prizeInfo + cntRankInfo;
+        return cntMathInfo + prizeInfo + cntRankInfo;
+    }
+
+    private void printProfit(User user) {
+        double profit =  (double)user.getTotalPrize() / 1000.0 / (double) (user.getLottoCnt());
+        profit = Math.round(profit * 1000) / 10.0;
+        System.out.println("총 수익률은 " + profit + "%입니다.");
+    }
+
+    public int scanPurchaseAmount() {
         boolean success = true;
         String purchaseAmount;
         do {
@@ -59,15 +98,20 @@ public class IOService {
             success = validatePurchaseAmount(purchaseAmount);
         } while (!success);
 
-        return Long.parseLong(purchaseAmount);
+        return Integer.parseInt(purchaseAmount);
     }
 
     public WinningNumber scanWinningNumber(){
-        List<Integer> prizeNumbers = scanPrizeNumbers();
+        WinningNumber winningNumber;
+        List<Integer> prizeNumbers;
+        printPrizeNumberMessage();
 
+        prizeNumbers = scanPrizeNumbers();
         prizeNumbers = prizeNumbers.stream().sorted().toList();
-        WinningNumber winningNumber = new WinningNumber(prizeNumbers);
 
+        winningNumber = new WinningNumber(prizeNumbers);
+
+        printBonusNumberMessage();
         int bonusNumber = scanBonusNumber(prizeNumbers);
         winningNumber.setBonusNumber(bonusNumber);
 

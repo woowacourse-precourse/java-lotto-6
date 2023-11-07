@@ -12,7 +12,7 @@ public class User {
     private HashMap<Rank, Integer> cntRank;
 
     public User() {
-        this.cntRank = new HashMap<>();
+        this.cntRank = makeRankMap();
     }
 
     public List<Lotto> getLottos() {
@@ -39,13 +39,19 @@ public class User {
     }
 
     public void addCntrank(Rank rank){
-        if(!cntRank.containsKey(rank)){
-            cntRank.put(rank, 1);
-            return;
-        }
-
         Integer beforeCnt = cntRank.get(rank);
         cntRank.put(rank, beforeCnt + 1);
+    }
+
+    private HashMap<Rank, Integer> makeRankMap(){
+        HashMap<Rank, Integer> hashMap = new HashMap<>();
+        List<Rank> ranks = List.of(Rank.FirstRank, Rank.SecondRank, Rank.ThirdRank, Rank.ForthRank, Rank.FifthRank, Rank.None);
+
+        for (Rank rank : ranks) {
+            hashMap.put(rank, 0);
+        }
+
+        return hashMap;
     }
 
     public HashMap<Rank, Integer> getCntRank() {

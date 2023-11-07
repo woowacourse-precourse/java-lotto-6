@@ -37,6 +37,13 @@ public class LottoService {
         this.winningNumber = winningNumber;
     }
 
+    public void showResult(){
+        User user = userService.getUser();
+        checkLottos();
+
+        ioService.printResult(user);
+    }
+
     public List<Lotto> generateLottos(int cnt) {
         List<Lotto> lottos = new ArrayList<>(cnt);
 
@@ -107,9 +114,10 @@ public class LottoService {
         HashMap<Rank, Integer> cntRank = user.getCntRank();
         List<Rank> ranks = List.of(Rank.FirstRank, Rank.SecondRank, Rank.ThirdRank, Rank.ForthRank, Rank.FifthRank, Rank.None);
 
-        long totalPrize = 0;
+        long totalPrize = 0L;
         for (Rank rank : ranks) {
             int cnt = cntRank.get(rank);
+
             totalPrize += cnt * rank.getPrize();
         }
 

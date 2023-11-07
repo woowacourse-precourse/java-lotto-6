@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.domain.Ranking.*;
 import static org.assertj.core.api.Assertions.*;
 
 import lotto.domain.Lotto;
@@ -8,10 +9,9 @@ import lotto.utils.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 class LottoServiceTest {
     private LottoService lottoService;
@@ -133,7 +133,7 @@ class LottoServiceTest {
         Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
 
         // then
-        assertThat(result).isEqualTo(Ranking.THIRD);
+        assertThat(result).isEqualTo(THIRD);
     }
 
     @Test
@@ -148,7 +148,7 @@ class LottoServiceTest {
         Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
 
         // then
-        assertThat(result).isEqualTo(Ranking.SECOND);
+        assertThat(result).isEqualTo(SECOND);
     }
 
     @Test
@@ -163,7 +163,7 @@ class LottoServiceTest {
         Ranking result = lottoService.calculateRanking(target, answer, bonusNumber);
 
         // then
-        assertThat(result).isEqualTo(Ranking.FIRST);
+        assertThat(result).isEqualTo(FIRST);
     }
 
     @Test
@@ -205,6 +205,34 @@ class LottoServiceTest {
         for (Ranking ranking : winningResult.keySet()) {
             assertThat(winningResult.get(ranking)).isEqualTo(0);
         }
+    }
+
+    @Test
+    @DisplayName("기능11 테스트 : 로또 당첨 결과를 winningResult에 정확하게 담아둔다.")
+    void storeWinningResultInHashMapCorrectly() {
+        // given
+        List<Lotto> lottoList = new ArrayList<>();
+
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
+        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 8)));
+        lottoList.add(new Lotto(List.of(3, 4, 5, 6, 7, 8)));
+        lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
+
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        // when
+        lottoService.makeWinningResult(lottoList, answer, bonusNumber);
+        Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
+
+        // then
+        assertThat(winningResult.get(FIRST)).isEqualTo(1);
+        assertThat(winningResult.get(SECOND)).isEqualTo(1);
+        assertThat(winningResult.get(THIRD)).isEqualTo(1);
+        assertThat(winningResult.get(FORTH)).isEqualTo(1);
+        assertThat(winningResult.get(FIFTH)).isEqualTo(1);
+        assertThat(winningResult.get(SIXTH)).isEqualTo(0);
     }
 
 }

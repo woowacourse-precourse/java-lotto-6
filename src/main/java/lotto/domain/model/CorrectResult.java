@@ -8,7 +8,7 @@ import lotto.domain.constant.Rank;
 public class CorrectResult {
 
     private final int sameCount; //로또 번호 6개와 당첨 번호 6개 중 일치하는 개수
-    private final Boolean existBonus; //로또 번호 6개 중 보너스 번호가 있는지 여부
+    private final boolean existBonus; //로또 번호 6개 중 보너스 번호가 있는지 여부
 
     public CorrectResult(int sameCount, boolean existBonus) {
         this.sameCount = sameCount;

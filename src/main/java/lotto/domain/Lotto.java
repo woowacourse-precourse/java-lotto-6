@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -23,6 +24,13 @@ public class Lotto {
             if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
                 throw new IllegalArgumentException("[ERROR] 숫자가 범위를 벗어났습니다.");
             }
+        }
+    }
+
+    private void isDuplicateValidate(List<Integer> numbers) {
+        HashSet<Integer> numberSet = new HashSet<>(numbers);
+        if (!(numberSet.size() == 6)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
         }
     }
 }

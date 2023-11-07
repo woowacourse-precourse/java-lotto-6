@@ -49,4 +49,8 @@ public class BonusNumber {
     public boolean isValid() {
         return bonusNumber != 0;
     }
+
+    public Boolean isEqualBonusNumber(Lotto lotto) {
+        return lotto.contain(this.bonusNumber);
+    }
 }

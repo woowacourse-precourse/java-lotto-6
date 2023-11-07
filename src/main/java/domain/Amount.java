@@ -15,4 +15,7 @@ public class Amount {
         System.out.print(amount);
     }
 
+    public boolean isLargerThen(int index) {
+        return amount > index;
+    }
 }

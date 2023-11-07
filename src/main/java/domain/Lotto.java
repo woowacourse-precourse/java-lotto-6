@@ -87,4 +87,14 @@ public class Lotto {
     public boolean contain(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
+
+    public int equalNumbersCount(Lotto winningNumber) {
+        int count = 0;
+        for(int num : this.numbers){
+            if(winningNumber.contain(num)){
+                count++;
+            }
+        }
+        return count;
+    }
 }

@@ -26,4 +26,21 @@ public class Lottos {
 
         return message.toString();
     }
+
+    public List<Integer> equalNumbersCount(Lotto winningNumber) {
+
+        List<Integer> equalCount = new ArrayList<>();
+        for(Lotto lotto : this.lottos){
+            equalCount.add(winningNumber.equalNumbersCount(lotto));
+        }
+        return equalCount;
+    }
+
+    public List<Boolean> equalBonusNumber(BonusNumber bonusNumber) {
+        List<Boolean> isEqual = new ArrayList<>();
+        for(Lotto lotto : this.lottos){
+            isEqual.add(bonusNumber.isEqualBonusNumber(lotto));
+        }
+        return isEqual;
+    }
 }

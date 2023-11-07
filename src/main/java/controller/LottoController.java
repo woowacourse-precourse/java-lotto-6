@@ -6,7 +6,9 @@ import domain.Amount;
 import domain.BonusNumber;
 import domain.Lotto;
 import domain.Lottos;
+import domain.Rank;
 import domain.WinningNumbers;
+import service.CompareLottoServcie;
 import service.MakeObjectService;
 import service.UserInputService;
 
@@ -27,8 +29,11 @@ public class LottoController {
         Lotto lotto = UserInputService.lotto();
         InputView.bonusNumberMessage();
         BonusNumber bonusNumber = UserInputService.bonusNumber(lotto);
+        WinningNumbers winningNumbers = MakeObjectService.winningNumbers(lotto, bonusNumber);
 
         //compareLottoNumbers
+        Rank rank = CompareLottoServcie.rank(amount, lottos, winningNumbers);
+
         //printResult
     }
 

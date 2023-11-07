@@ -4,6 +4,7 @@ import domain.Amount;
 import domain.BonusNumber;
 import domain.Lotto;
 import domain.Lottos;
+import domain.Rank;
 import domain.WinningNumbers;
 import java.util.List;
 
@@ -27,5 +28,13 @@ public class MakeObjectService {
 
     public static BonusNumber bonusNumber(int number, Lotto lotto) {
         return new BonusNumber(number, lotto);
+    }
+
+    public static WinningNumbers winningNumbers(Lotto lotto, BonusNumber bonusNumber) {
+        return new WinningNumbers(lotto, bonusNumber);
+    }
+
+    public static Rank rank(List<Integer> rank) {
+        return new Rank(rank);
     }
 }

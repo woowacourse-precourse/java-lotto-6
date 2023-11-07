@@ -30,4 +30,11 @@ public class Exception {
         throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_DUPLICATION_MESSAGE.getMessage());
     }
 
+    void raiseInvalidBonusNumberArgumentException() {
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER_ARGUMENT_MESSAGE.getMessage());
+    }
+
+    void raiseInvalidBonusNumberRangeMessage() {
+        throw new IllegalArgumentException((ExceptionMessage.INVALID_BONUS_NUMBER_RANGE_MESSAGE.getMessage()));
+    }
 }

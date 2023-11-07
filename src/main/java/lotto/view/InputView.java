@@ -6,4 +6,8 @@ public class InputView {
     public String scanPurchaseAmount() {
         return Console.readLine();
     }
+
+    public String scanWinningLotto() {
+        return Console.readLine();
+    }
 }

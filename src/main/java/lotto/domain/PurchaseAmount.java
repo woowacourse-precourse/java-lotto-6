@@ -17,7 +17,7 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
-    public int getPurchasedNumber() {
+    public int getPurchaseNumber() {
         return amount / LOTTO_PRICE;
     }
 

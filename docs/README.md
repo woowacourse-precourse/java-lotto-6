@@ -14,11 +14,11 @@
     - [x] 오름차순 정렬
 
 ### 로또 당첨 번호 입력
-- [ ] 당첨 번호 입력 (번호는 쉼표(,)를 기준으로 구분)
-    - [ ] `예외상황` : 입력값이 null이거나 비어있는 경우
-    - [ ] `예외상황` : 입력값이 숫자가 아닌 경우
-    - [ ] `예외상황` : 로또 번호 숫자 범위에 없는 경우
-    - [ ] `예외상황` : 숫자가 중복되는 경우
+- [x] 당첨 번호 입력 (번호는 쉼표(,)를 기준으로 구분)
+    - [x] `예외상황` : 입력값이 null이거나 비어있는 경우
+    - [x] `예외상황` : 입력값이 숫자가 아닌 경우
+    - [x] `예외상황` : 로또 번호 숫자 범위에 없는 경우
+    - [x] `예외상황` : 숫자가 중복되는 경우
 - [ ] 보너스 번호 입력
     - [ ] `예외상황` : 입력값이 null이거나 비어있는 경우
     - [ ] `예외상황` : 입력값이 숫자가 아닌 경우
@@ -40,9 +40,10 @@
 - [x] 명확한 예외 유형 처리
 
 ## 🧠 확장 가능성
-- [ ] 로또 1장 가격 변동 가능성
-- [ ] 로또 번호 숫자 범위 변동 가능성
-- [ ] 당첨 번호 입력 구분자 변동 가능성
+- [x] 로또 1장 가격 변동 가능성
+- [x] 로또 1장 숫자 개수 변동 가능성
+- [x] 로또 번호 숫자 범위 변동 가능성
+- [x] 당첨 번호 입력 구분자 변동 가능성
 - [ ] 당첨 기준 변동 가능성
 - [ ] 당첨 금액 변동 가능성
 
@@ -61,7 +62,6 @@
 - `PurchaseAmount`
 - `AllLottoNumbers`
 - `AllWinningNumbers`
-- `LottoGenerator`
 
 ### PurchaseAmount
 - int
@@ -69,16 +69,11 @@
 ### AllLottoNumbers
 - List\<Lotto>
 
-### LottoGenerator
-
 ### Lotto
 - List\<Integer>
 
 ### AllWinningNumbers
-- `WinningNumbers`
-- bonusNumber
-
-### WinningNumbers
-- List\<Integer>
+- `Lotto` winningLotto
+- int bonusNumber
 
 ### GameUtils

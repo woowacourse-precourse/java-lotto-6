@@ -1,9 +1,10 @@
 package lotto.service;
 
+import lotto.GameUtils;
 import lotto.domain.AllLottoNumbers;
 import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.AllWinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,14 @@ import java.util.List;
 public class NumberService {
     private PurchaseAmount purchaseAmount;
     private AllLottoNumbers allLottoNumbers;
-    private final LottoGenerator lottoGenerator;
+    private AllWinningNumbers allWinningNumbers;
 
-    public NumberService(LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
+    public NumberService() {
+        allWinningNumbers = new AllWinningNumbers();
     }
 
-    public int getPurchasedNumber() {
-        return purchaseAmount.getPurchasedNumber();
+    public int getPurchaseNumber() {
+        return purchaseAmount.getPurchaseNumber();
     }
 
     public String getAllLottoNumbersInString() {
@@ -33,10 +34,14 @@ public class NumberService {
         this.allLottoNumbers = new AllLottoNumbers(createLottos());
     }
 
+    public void initWinningLotto(String input) {
+        allWinningNumbers.initWinningLotto(input);
+    }
+
     private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < purchaseAmount.getPurchasedNumber(); count++) {
-            lottos.add(new Lotto(lottoGenerator.create(Lotto.LOTTO_SIZE)));
+        for (int count = 0; count < purchaseAmount.getPurchaseNumber(); count++) {
+            lottos.add(GameUtils.createRandomLotto(Lotto.LOTTO_SIZE));
         }
         return lottos;
     }

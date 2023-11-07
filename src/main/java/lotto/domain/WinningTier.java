@@ -25,12 +25,9 @@ public class WinningTier {
 
             WinningStatistics winningConfirmResult = WinningStatistics.confirm(correctWinningCount, correctBonus);
             int rank = winningConfirmResult.getRank();
-
             tempWinningCounts.put(rank, tempWinningCounts.getOrDefault(rank, DEFAULT_VALUE) + PLUS_UNIT);
         }
-        tempWinningCounts.forEach((rank, count) -> {
-            winningTier.merge(rank, count, Integer::sum);
-        });
+        tempWinningCounts.forEach((rank, count) -> winningTier.merge(rank, count, Integer::sum));
     }
 
     public HashMap<Integer, Integer> getWinningTier() {

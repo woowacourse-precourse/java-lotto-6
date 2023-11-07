@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class LottoWinCheck {
+    // 로또 하나 몇개 당첨 되었는지
 
     private List<Integer> winningNumbers;
     private Integer bonusNum;

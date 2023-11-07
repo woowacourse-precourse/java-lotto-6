@@ -7,22 +7,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoHandler {
-    private final List<Integer> winningNumber;
-    private final int bonusNumber;
-    private List<Integer> resultAmount;
-    private List<Integer> winList;
+public class LottoResults {
+    private final LottoWinRequirements requirements;
+    private final List<Integer> resultAmount;
+    private final List<Integer> winList;
 
-    private LottoHandler(List<Integer> winningNumber, int bonusNumber) {
-        checkDuplicateNumbers(winningNumber, bonusNumber);
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+    private LottoResults(LottoWinRequirements requirements) {
+        this.requirements = requirements;
         this.resultAmount = new ArrayList<>();
         this.winList = new ArrayList<>(List.of(0, 0, 0, 0, 0));
     }
 
-    public static LottoHandler of(List<Integer> winningNumber, int bonusNumber) {
-        return new LottoHandler(winningNumber, bonusNumber);
+    public static LottoResults of(LottoWinRequirements requirements) {
+        return new LottoResults(requirements);
     }
 
     public void calculateResult(PaperBag paperBag) {
@@ -42,7 +39,7 @@ public class LottoHandler {
         List<Lotto> lottoes = paperBag.getLottoes();
         for (Lotto lotto : lottoes) {
             Set<Integer> lottoSet = new HashSet<>(lotto.getNumbers());
-            Set<Integer> winningNumberSet = new HashSet<>(winningNumber);
+            Set<Integer> winningNumberSet = new HashSet<>(requirements.getWinningNumber());
             lottoSet.retainAll(winningNumberSet);
             calculateResult(lottoSet.size(),lotto);
         }
@@ -61,7 +58,7 @@ public class LottoHandler {
 
     private int ifMatchNumberFive(Lotto lotto) {
         List<Integer> lottoNumber = lotto.getNumbers();
-        if (lottoNumber.contains(bonusNumber)) {
+        if (lottoNumber.contains(requirements.getBonusNumber())) {
             return LottoInfo.SECOND_WINNER.getWinningAmount();
         }
         return LottoInfo.THIRD_WINNER.getWinningAmount();
@@ -91,11 +88,4 @@ public class LottoHandler {
         sb.append(LottoInfo.FIRST_WINNER.getInfo()).append(" - ").append(winList.get(4)).append("개").append("\n");
         return sb.toString();
     }
-
-    private static void checkDuplicateNumbers(List<Integer> winningNumber, int bonusNumber) {
-        if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨번호와 보너스 번호가 중복됩니다.");
-        }
-    }
-
 }

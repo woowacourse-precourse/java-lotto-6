@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IOController {
@@ -22,7 +21,7 @@ public class IOController {
         return inputView.winningNumberInput();
     }
 
-    public int bounusNumberInput() {
+    public int bonusNumberInput() {
         return inputView.bonusNumberInput();
     }
 
@@ -44,7 +43,4 @@ public class IOController {
     public void showRevenue(double revenue) {
         outputView.showRevenue(revenue);
     }
-
-
-
 }

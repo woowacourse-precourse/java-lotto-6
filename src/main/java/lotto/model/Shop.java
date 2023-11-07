@@ -9,11 +9,13 @@ import java.util.List;
 public class Shop {
     private final int purchaseAmount;
     private final int purchaseNumber;
+    private final PaperBag paperBag;
 
     private Shop(int purchaseAmount) {
         isPurchaseAmountValid(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
         this.purchaseNumber = purchaseAmount / 1000;
+        this.paperBag = wrapPaperBag();
     }
 
     private void isPurchaseAmountValid(int purchaseAmount) {
@@ -30,7 +32,11 @@ public class Shop {
         return new Shop(purchaseAmount);
     }
 
-    public PaperBag giveLottoes() {
+    public PaperBag givePaperBag() {
+        return paperBag;
+    }
+
+    private PaperBag wrapPaperBag(){
         List<Lotto> lottoes = new ArrayList<>();
         for (int i = 0; i < purchaseNumber; i++) {
             Lotto lotto = LottoGenerator.generateLotto();

@@ -1,13 +1,8 @@
 package lotto.model;
 
-import lotto.model.lotto.LottoHandler;
-
-import java.util.List;
-
 public class Person {
     private PaperBag paperBag;
     private final int purchaseAmout;
-
 
     private Person(int purchaseAmout) {
         this.purchaseAmout = purchaseAmout;

@@ -2,18 +2,19 @@ package lotto.controller;
 
 import lotto.model.Person;
 import lotto.model.Shop;
-import lotto.model.lotto.LottoHandler;
+import lotto.model.lotto.LottoResults;
+import lotto.model.lotto.LottoWinRequirements;
 import lotto.util.Calculator;
+import lotto.util.Log;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class LottoController {
     private final IOController ioController;
-    private Person person;
-    private Shop shop;
-    private LottoHandler lottoHandler;
+    private final Person person;
+    private final Shop shop;
+    private LottoResults lottoResults;
+    private static final Log log = new Log();
 
     public LottoController() {
         this.ioController = new IOController(new InputView(), new OutputView());
@@ -23,32 +24,35 @@ public class LottoController {
 
     public void process() {
         buyLotto();
-        inputNumbers();
-        getResults();
+        inputWinRequirements();
+        showResults();
     }
 
     private void buyLotto() {
         ioController.lottoCountCheck(shop.getPurchaseNumber());
-        person.buyLotto(shop.giveLottoes());
+        person.buyLotto(shop.givePaperBag());
         ioController.showLotto(person.getLottoesToString());
     }
 
-    private void inputNumbers() {
-        this.lottoHandler =
-                LottoHandler.of(
-                        ioController.winningNumberInput(),
-                        ioController.bounusNumberInput()
-                );
+    private void inputWinRequirements() {
+        try {
+            LottoWinRequirements requirements =
+                    LottoWinRequirements.of(ioController.winningNumberInput(), ioController.bonusNumberInput());
+            this.lottoResults = LottoResults.of(requirements);
+        } catch (IllegalArgumentException e) {
+            log.error(e.getMessage());
+            inputWinRequirements();
+        }
     }
 
-    private void getResults() {
-        lottoHandler.calculateResult(person.getPaperBag());
-        ioController.showResult(lottoHandler.resultToString());
+    private void showResults() {
+        lottoResults.calculateResult(person.getPaperBag());
+        ioController.showResult(lottoResults.resultToString());
         ioController.showRevenue(calculateRevenue());
     }
 
     private double calculateRevenue() {
-        int totalIncome = lottoHandler.getTotalWinAmount();
+        int totalIncome = lottoResults.getTotalWinAmount();
         int purchasePrice = person.getPurchaseAmout();
         return Calculator.getRevenue(purchasePrice, totalIncome);
     }

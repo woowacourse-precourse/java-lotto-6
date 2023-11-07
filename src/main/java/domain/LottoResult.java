@@ -1,10 +1,14 @@
 package domain;
 
+import util.ConstOfLottoResult;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
     private Map<Integer, Integer> result = new HashMap<>(); // key: 등 수, value: 개수
+
+    private int profit;
 
     public LottoResult() {
         result.put(0,0); //0등은 존재 X, 1~5등 이외의 결과를 저장하는 공간
@@ -13,6 +17,7 @@ public class LottoResult {
         result.put(3,0);
         result.put(4,0);
         result.put(5,0);
+        profit = 0;
     }
 
     public void increaseCountOfRank(int rank) {
@@ -21,6 +26,18 @@ public class LottoResult {
 
     public int getCountOfRank(int rank) {
         return result.get(rank);
+    }
+
+    private void calculateTotalProfit() {
+        for(ConstOfLottoResult constOfLottoResult : ConstOfLottoResult.values()) {
+            int price = constOfLottoResult.getPrice();
+            profit += (price * result.get(constOfLottoResult.getRank()));
+        }
+    }
+
+    public double calculateRateOfProfit(int money) {
+        calculateTotalProfit();
+        return (double) profit / (double) money * 100.0;
     }
 
 }

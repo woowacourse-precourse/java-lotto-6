@@ -50,12 +50,6 @@ public enum Rank {
         return scoreCache.getOrDefault(score, NONE);
     }
 
-    public static long getTotalPrize(Map<Rank, Integer> rankResult) {
-        return rankResult.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().prize * entry.getValue())
-                .sum();
-    }
-
     public int getMatchCount() {
         return matchCount;
     }

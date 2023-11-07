@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +18,7 @@ class LottoTicketsTest {
     void getRankResult(List<Lotto> tickets, WinningTicket winningTicket, Integer[] expected) {
         LottoTickets lottoTickets = new LottoTickets(tickets, new PurchaseAmount(1000));
 
-        Map<Rank, Integer> rankResult = lottoTickets.getRankResult(winningTicket);
+        RankResult rankResult = lottoTickets.getRankResult(winningTicket);
         assertThat(rankResult.values()).containsExactly(expected);
     }
 

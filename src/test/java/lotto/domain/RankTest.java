@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.EnumMap;
 import java.util.stream.Stream;
 import lotto.dto.MatchResult;
 import org.junit.jupiter.api.DisplayName;
@@ -38,36 +37,5 @@ class RankTest {
                 Arguments.of(0, true, Rank.NONE),
                 Arguments.of(0, false, Rank.NONE)
         );
-    }
-
-    @DisplayName("총 상금액을 구할 수 있다")
-    @ParameterizedTest
-    @MethodSource
-    void getTotalPrize(EnumMap<Rank, Integer> rankResult, long expected) {
-
-        long totalPrize = Rank.getTotalPrize(rankResult);
-
-        assertThat(totalPrize).isEqualTo(expected);
-    }
-
-    public static Stream<Arguments> getTotalPrize() {
-        return Stream.of(
-                Arguments.of(createRankToCount(Rank.NONE, Rank.NONE), 0L),
-                Arguments.of(createRankToCount(Rank.NONE, Rank.FIFTH), 5000L),
-                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH), 5000L + 5000L),
-                Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH, Rank.FIRST), 2_000_000_000L + 5000L + 5000L)
-        );
-    }
-
-    private static EnumMap<Rank, Integer> createRankToCount(Rank... ranks) {
-        EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
-        for (Rank rank : ranks) {
-            add(rankResult, rank);
-        }
-        return rankResult;
-    }
-
-    private static void add(EnumMap<Rank, Integer> map, Rank rank) {
-        map.put(rank, map.getOrDefault(rank, 0) + 1);
     }
 }

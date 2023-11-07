@@ -2,12 +2,11 @@ package lotto.domain.service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoShop;
 import lotto.domain.LottoTickets;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.Rank;
+import lotto.domain.RankResult;
 import lotto.domain.WinningTicket;
 import lotto.dto.Result;
 
@@ -18,9 +17,8 @@ public class LottoService {
     }
 
     public Result getWinningResult(LottoTickets lottoTickets, WinningTicket winningTicket) {
-        Map<Rank, Integer> rankResult = lottoTickets.getRankResult(winningTicket);
-        long totalPrize = Rank.getTotalPrize(rankResult);
-        BigDecimal rateOfReturn = lottoTickets.getRateOfReturn(totalPrize);
+        RankResult rankResult = lottoTickets.getRankResult(winningTicket);
+        BigDecimal rateOfReturn = lottoTickets.getRateOfReturn(rankResult.getTotalPrize());
         return new Result(rankResult, rateOfReturn);
     }
 }

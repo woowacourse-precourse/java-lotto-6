@@ -29,6 +29,7 @@ public class UserHandler {
         return amount;
     }
 
+
     public static int getLottoCountFromUser(int amount) {
         return amount/1000;
     }
@@ -63,40 +64,46 @@ public class UserHandler {
     }
 
     private static List<String> validateWinningNumberInput(String winningNumberInput) {
-        //에러 : 아무것도 입력하지 않았을 경우
         if (winningNumberInput == null || winningNumberInput.isEmpty()) {
             throw new IllegalArgumentException("번호를 입력해주세요.");
         }
 
         List<String> winningNumbers = splitNumbers(winningNumberInput);
-//        checkWinningNumberSize(winningNumbers);
-
-        Set<String> uniqueNumbers = new HashSet<>(winningNumbers);
-        if (uniqueNumbers.size() != winningNumbers.size()) {
-            throw new IllegalArgumentException("중복된 번호를 입력하였습니다.");
-        }
+        checkWinningNumberSize(winningNumbers);
+        checkDuplicateWinningNumber(winningNumbers);
 
         for (String winningNumber : winningNumbers) {
-//            checkWinningNumberString(winningNumber);
             validateWinningNumber(winningNumber);
         }
         return winningNumbers;
     }
 
+    private static void checkCommaSeparated(String winningNumberInput) {
+        if (!winningNumberInput.contains(",")) {
+            throw new IllegalArgumentException("당첨 번호는 쉼표(,)로 구분해주세요.");
+        }
+    }
+
     private static List<String> splitNumbers(String winningNumberInput) {
+        checkCommaSeparated(winningNumberInput);
         return Arrays.asList(winningNumberInput.split(","));
     }
 
-    private static void checkWinningNumberSize(String winningNumbers) {
+    private static void checkWinningNumberSize(List<String> winningNumbers) {
+        Set<String> uniqueNumbers = new HashSet<>(winningNumbers);
 
-//        if (winningNumbers.size() != 6) {
-//            throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
-//        }
+        if (uniqueNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+        }
+    }
 
+    private static void checkDuplicateWinningNumber(List<String> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
+        }
     }
 
     private static void validateWinningNumber(String winningNumber) {
-        // 문자열을 입력했을 경우, 쉼표로 구분하지 않았을 경우, 로또 번호의 숫자범위를 벗어났을 경우, 6개가 아닌경우, 중복되는 경우
         int number;
         try {
             number = Integer.parseInt(winningNumber.trim());
@@ -109,4 +116,29 @@ public class UserHandler {
         }
     }
 
+    public static int getBonusNumberFromUser() {
+        ResultView.printNewLine();
+        System.out.println("보너스 번호를 입력해주세요.");
+        String BonusNumberInput = Console.readLine();
+
+        return validateBonusNumberInput(BonusNumberInput);
+    }
+
+    private static int validateBonusNumberInput(String BonusNumberInput) {
+        if (BonusNumberInput == null || BonusNumberInput.isEmpty()){
+            throw new IllegalArgumentException("값을 입력해주세요.");
+        }
+
+        int bonusNumber = Integer.parseInt(BonusNumberInput);
+
+        checkvalidateBonusNumber(bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private static void checkvalidateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45까지의 숫자입니다.");
+        }
+    }
 }

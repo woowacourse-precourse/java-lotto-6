@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.domain.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +26,14 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 1-45 범위 내에서 생성되지 않으면 예외가 발생한다.")
+    @Test
+    void 로또_번호_정상범위() {
+        List<Integer> lottoNumber = Lotto.generateLottoNumber();
+        for (int i = 0; i < lottoNumber.size(); i++) {
+            assertThat(lottoNumber.get(i))
+                    .isGreaterThanOrEqualTo(1)
+                    .isLessThanOrEqualTo(45);
+        }
+    }
 }

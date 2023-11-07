@@ -5,18 +5,10 @@ import java.util.List;
 public class WinningCheckPolicy implements WinningPolicy {
 
     @Override
-    public Integer winningCount(List<Integer> lotto, List<Integer> winning) {
+    public Integer winningCount(List<Integer> lotto, List<Integer> winning, Integer bonus) {
         return lotto.stream()
-                .filter(winning::contains)
+                .filter(number -> winning.contains(number) || number.equals(bonus))
                 .toList()
                 .size();
-    }
-
-    @Override
-    public Integer hitBonus(List<Integer> lotto, Integer bonus) {
-        if (lotto.contains(bonus)) {
-            return 1;
-        }
-        return 0;
     }
 }

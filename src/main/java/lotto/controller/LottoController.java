@@ -9,12 +9,16 @@ import lotto.domain.WinningCheck;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-
+    private final int PERCENT = 100;
+    private final int LOTTO_PRICE = 1000;
+    private final double CONVERT_DOUBLE_CONSTANT = 10.0;
     private List<List<Integer>> boughtLottos = new ArrayList<>();
     private List<Integer> numbers;
     private WinningCheck winningCheck = new WinningCheck();
@@ -94,8 +98,10 @@ public class LottoController {
         for (WinningTable winningTable : WinningTable.values()) {
             sum += (long) rankingCount.get(winningTable.name()) * winningTable.getWinningAmount();
         }
-        double yield = (sum * 100) / (lottoAmount * 1000);
-        double roundYield = Math.round(yield * 100.0) / 100.0;
-        System.out.println("총 수익률은 " + roundYield + "%입니다.");
+        double yield = (sum * PERCENT) / (lottoAmount * LOTTO_PRICE);
+        double roundYield = Math.round(yield * CONVERT_DOUBLE_CONSTANT) / CONVERT_DOUBLE_CONSTANT;
+
+        DecimalFormat df = new DecimalFormat("#,###.0");
+        System.out.println("총 수익률은 " + df.format(roundYield) + "%입니다.");
     }
 }

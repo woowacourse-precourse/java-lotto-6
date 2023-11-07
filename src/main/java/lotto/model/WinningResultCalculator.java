@@ -35,8 +35,10 @@ public class WinningResultCalculator {
     private long calculateSumOfPrice(final Map<Rank, Integer> status) {
         return status.entrySet()
                 .stream()
-                .mapToLong(entry -> entry.getKey()
-                        .getPrice() * entry.getValue())
+                .mapToLong(entry -> {
+                    Rank rank = entry.getKey();
+                    return rank.getPrice() * entry.getValue();
+                })
                 .sum();
     }
 }

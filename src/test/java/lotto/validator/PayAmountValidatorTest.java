@@ -34,7 +34,7 @@ public class PayAmountValidatorTest {
 
     @DisplayName("구매 금액으로 10자리를 초과하는 값 입력 시 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1000000000000000000000000000000000000000000000","1234567891234567989000"})
+    @ValueSource(strings = {"1000000000000000000000000000000000000000000000", "1234567891234567989000"})
     void testWhenPayAmountDigitOverTen(String payAmount) {
         IllegalArgumentException payAmountException =
                 Assertions.assertThrows(IllegalArgumentException.class,
@@ -54,7 +54,7 @@ public class PayAmountValidatorTest {
 
     @DisplayName("구매 금액으로 20억을 넘는 값 입력 시 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"2000001000","5000000000"})
+    @ValueSource(strings = {"2000001000", "5000000000"})
     void testWhenPayAmountIsOverTwoBillion(String payAmount) {
         IllegalArgumentException payAmountException =
                 Assertions.assertThrows(IllegalArgumentException.class,

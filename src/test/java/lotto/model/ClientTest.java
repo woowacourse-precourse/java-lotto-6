@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class ClientTest {
     private final LottosResult lottosResult = LottosResult.create();
+
     @BeforeEach
     void setUp() {
         lottosResult.updateResult(WinningRank.FIFTH_PRIZE);

@@ -53,7 +53,7 @@ public class WinningNumbersTest {
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 10, 35)));
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 5, 16)));
         client.receiveLotto(new Lotto(List.of(11, 12, 13, 14, 15, 16)));
-        return  client;
+        return client;
     }
 
     private LottosResult createLottosResultForTest() {

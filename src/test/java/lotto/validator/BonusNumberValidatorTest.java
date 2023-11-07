@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusNumberValidatorTest {
     Validator bonusNumberValidator = new BonusNumberValidator();
+
     @DisplayName("보너스 번호로 Null 및 공백 입력 시 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
@@ -23,7 +24,6 @@ public class BonusNumberValidatorTest {
 
     @DisplayName("보너스 번호로 숫자가 아닌 값 입력 시 예외가 발생한다.")
     @ParameterizedTest
-    @NullAndEmptySource
     @ValueSource(strings = {"오", "five", "@"})
     void testWhenBonusNumberIsNotDigit(String bonusNumber) {
         IllegalArgumentException bonusNumberException =
@@ -34,7 +34,6 @@ public class BonusNumberValidatorTest {
 
     @DisplayName("보너스 번호로 범위 밖의 값 입력 시 예외가 발생한다.")
     @ParameterizedTest
-    @NullAndEmptySource
     @ValueSource(strings = {"0", "46", "100"})
     void testWhenBonusNumberIsInvalidRange(String bonusNumber) {
         IllegalArgumentException bonusNumberException =
@@ -45,7 +44,7 @@ public class BonusNumberValidatorTest {
 
     @DisplayName("적절한 보너스 번호 입력 시 예외가 발생하지 않는다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1","20","45"})
+    @ValueSource(strings = {"1", "20", "45"})
     void testWhenBonusNumberIsValid(String bonusNumber) {
         Assertions.assertDoesNotThrow(() -> bonusNumberValidator.validate(bonusNumber));
     }

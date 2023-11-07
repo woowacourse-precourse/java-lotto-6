@@ -43,8 +43,15 @@ public class LottoSystem {
                 .stream()
                 .filter(winningLottoNumber ->
                         player.getLotto().getLottoNumbers()
-                        .stream()
-                        .anyMatch(lottoNumber -> isNumberMatch(lottoNumber.getLottoNumber(), winningLottoNumber.getLottoNumber())))
+                                .stream()
+                                .anyMatch(lottoNumber -> isNumberMatch(lottoNumber.getLottoNumber(), winningLottoNumber.getLottoNumber())))
+                .count();
+    }
+
+    private int getMatchingBonusNumberCount(Lotto winningLotto) {
+        return (int) winningLotto.getLottoNumbers()
+                .stream()
+                .filter(winningLottoNumber -> isNumberMatch(player.getBonusNumber(), winningLottoNumber.getLottoNumber()))
                 .count();
     }
 

@@ -55,6 +55,10 @@ public class LottoSeller {
         return lottoMachine.calculateRate(money, ranks);
     }
 
+    private void printRate(double rate) {
+        outputView.printRate(rate);
+    }
+
     private void printRank(List<Rank> ranks) {
         int first = 0, second = 0, third = 0, fourth = 0, fifth = 0;
         for (Rank rank : ranks) {
@@ -75,9 +79,5 @@ public class LottoSeller {
             }
         }
         outputView.printRank(first, second, third, fourth, fifth);
-    }
-
-    private void printRate(double rate) {
-        outputView.printRate(rate);
     }
 }

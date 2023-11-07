@@ -18,7 +18,11 @@ public class BuyLotto {
 
         while(!correctInputMoney){
             System.out.println("구입금액을 입력해 주세요.");
-            inputPurchaseMoney = Integer.valueOf(readLine());
+            try{
+                inputPurchaseMoney = Integer.valueOf(readLine());
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 올바른 금액을 입력해 주세요.");
+            }
 
             validateInputMoney(inputPurchaseMoney);
         }

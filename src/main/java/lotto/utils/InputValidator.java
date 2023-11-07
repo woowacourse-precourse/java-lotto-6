@@ -3,13 +3,9 @@ package lotto.utils;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoConfig;
 
 public class InputValidator {
-    private static final int LESS_AMOUNT = 1000;
-    private static final int JACKPOT_MINIMUM_NUMBER = 1;
-    private static final int JACKPOT_MAXIMUM_NUMBER = 45;
-    private static final int JACKPOT_MAXIMUM_SIZE = 6;
-
     public static void checkLottoPayAmountInput(String lottoPayAmount) {
         checkNoInput(lottoPayAmount);
         checkNumeric(lottoPayAmount);
@@ -18,13 +14,13 @@ public class InputValidator {
     }
 
     private static void checkLessAmountUnit(String lottoPayAmount) {
-        if (Integer.parseInt(lottoPayAmount) % LESS_AMOUNT != 0) {
+        if (Integer.parseInt(lottoPayAmount) % LottoConfig.LOTTO_AMOUNT.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.LESS_AMOUNT_UNIT_ERROR.getErrorMessage());
         }
     }
 
     private static void checkLessAmount(String lottoPayAmount) {
-        if (Integer.parseInt(lottoPayAmount) < LESS_AMOUNT) {
+        if (Integer.parseInt(lottoPayAmount) < LottoConfig.LOTTO_AMOUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LESS_AMOUNT_ERROR.getErrorMessage());
         }
     }
@@ -70,7 +66,8 @@ public class InputValidator {
         String replaceNumberInput = numberInput.replace(",", "");
         for (int i = 0; i < replaceNumberInput.length(); i++) {
             int number = Integer.parseInt(String.valueOf(replaceNumberInput.charAt(i)));
-            if (number < JACKPOT_MINIMUM_NUMBER || JACKPOT_MAXIMUM_NUMBER < number) {
+            if (number < LottoConfig.LOTTO_MINIMUM_NUMBER.getValue()
+                    || LottoConfig.LOTTO_MAXIMUM_NUMBER.getValue() < number) {
                 throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_OUT_OF_RANGE_ERROR.getErrorMessage());
             }
         }
@@ -84,7 +81,7 @@ public class InputValidator {
 
     private static void checkJackpotNumberSize(String jackpotNumberInput) {
         String[] jackpotNumbers = jackpotNumberInput.split(",");
-        if (jackpotNumbers.length != JACKPOT_MAXIMUM_SIZE) {
+        if (jackpotNumbers.length != LottoConfig.LOTTO_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_SIZE_ERROR.getErrorMessage());
         }
     }

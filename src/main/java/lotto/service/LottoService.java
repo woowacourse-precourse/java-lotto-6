@@ -5,15 +5,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
+import lotto.enums.LottoConfig;
 import lotto.enums.WinningRank;
 import lotto.utils.RandomGenerator;
 import lotto.view.OutputView;
 
 public class LottoService {
-    private static final int MINIMUM_NUMBER = 1;
-    private static final int MAXIMUM_NUMBER = 45;
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int LOTTO_AMOUNT = 1000;
     private final List<Lotto> lottos = new ArrayList<>();
 
     public LottoService() {
@@ -22,8 +19,10 @@ public class LottoService {
     public void publishLottos(int payAmount) {
         int lottoCount = calculateLottoCount(payAmount);
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = RandomGenerator.getRandomNumber(MINIMUM_NUMBER, MAXIMUM_NUMBER,
-                    LOTTO_NUMBER_SIZE);
+            List<Integer> lottoNumbers = RandomGenerator.getRandomNumber(
+                    LottoConfig.LOTTO_MINIMUM_NUMBER.getValue(),
+                    LottoConfig.LOTTO_MAXIMUM_NUMBER.getValue(),
+                    LottoConfig.LOTTO_NUMBER_SIZE.getValue());
             lottos.add(new Lotto(lottoNumbers));
         }
 
@@ -32,9 +31,8 @@ public class LottoService {
 
     }
 
-
     public int calculateLottoCount(int payAmount) {
-        int lottoCount = payAmount / LOTTO_AMOUNT;
+        int lottoCount = payAmount / LottoConfig.LOTTO_AMOUNT.getValue();
         return lottoCount;
     }
 

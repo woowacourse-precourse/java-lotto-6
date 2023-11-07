@@ -5,6 +5,6 @@ import lotto.dto.MoneyDTO;
 import lotto.model.Lotto;
 
 public interface OrderLottoService {
-    public void order(MoneyDTO moneyDTO);
+    public Integer order(MoneyDTO moneyDTO);
     public List<Lotto> getOrderList();
 }

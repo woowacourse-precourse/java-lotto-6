@@ -17,13 +17,15 @@ public class OrderLottoServiceImpl implements OrderLottoService {
     }
 
     @Override
-    public void order(MoneyDTO moneyDTO) {
+    public Integer order(MoneyDTO moneyDTO) {
         Integer countOfLotto = getCountOfLotto(moneyDTO);
 
         for (int i = 0; i < countOfLotto; ++i) {
             Lotto lotto = new Lotto(createLotto());
             lottoRepository.save(lotto);
         }
+
+        return countOfLotto;
     }
 
     @Override

@@ -46,7 +46,8 @@ public class LottoController {
     }
 
     private void requestOrderLotto() {
-        orderLottoService.order(money.createDTO());
+        Integer countOfLotto = orderLottoService.order(money.createDTO());
+        OutputView.printLottoCountBought(countOfLotto);
 
         List<Lotto> entireLotto = orderLottoService.getOrderList();
 

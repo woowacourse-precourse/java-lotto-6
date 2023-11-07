@@ -14,6 +14,7 @@ public class LottoController {
     private final int lottoPrice = 1000;
     private int purchaseQuantity;
     private boolean checkInitPurchaseQuantity = true;
+    private boolean checkInitWinningNumber = true;
 
     private Lottos lottos;
 
@@ -26,6 +27,10 @@ public class LottoController {
         outputPurchaseQuantity(); // 구매 수량 출력
         makeLottos(); // 로또 생성
         printLotto(); // 생성한 로또 출력
+
+        while(checkInitWinningNumber){
+            initWinningNumber(); // 당첨 번호 초기화
+        }
     }
 
     public void initPurchaseQuantity() {
@@ -34,6 +39,19 @@ public class LottoController {
             validateInputMoney(input);
             calculateQuantity(input);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void initWinningNumber(){
+        try{
+            String winningNumber = InputView.inputWinningNumber();
+            //todo: 예외처리
+            System.out.println();
+            String bonusNumber = InputView.inputBonusNumber();
+            // todo: 예외처리
+
+        }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }

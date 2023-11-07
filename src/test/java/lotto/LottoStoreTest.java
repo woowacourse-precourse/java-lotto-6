@@ -15,10 +15,11 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LottoStoreTest {
-    private final int LOTTO_START_NUM = 1;
-    private final int LOTTO_END_NUM = 45;
-    private final int LOTTO_NUM_COUNT = 6;
-    private final String ERROR_PHRASES = "[ERROR]";
+    private static final int LOTTO_START_NUM = 1;
+    private static final int LOTTO_END_NUM = 45;
+    private static final int LOTTO_NUM_COUNT = 6;
+    private static final String ERROR_PHRASES = "[ERROR]";
+    private static final int LOTTO_PRICE = 1000;
 
     @DisplayName("로또를 사기 위한 금액이 1000원 미만이면 예외가 발생한다")
     @Test
@@ -87,16 +88,13 @@ public class LottoStoreTest {
     void calculateLottoAmount() {
         //given
         LottoStore lottoStore = new LottoStore();
-        final int LOTTO_PRICE = 1000;
         long money = 20000;
 
         //when
         lottoStore.getMoney(money);
-        lottoStore.calculateLottoAmount();
-        long lottoAmountExpected = lottoStore.getChargedMoney() / LOTTO_PRICE;
 
         //then
-        assertThat(lottoStore.getLottoAmount()).isEqualTo(lottoAmountExpected);
+        assertThat(lottoStore.getChargedMoney() / LOTTO_PRICE).isEqualTo(20);
     }
 
     @DisplayName("로또 번호 생성")
@@ -106,7 +104,8 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         //when
-        List<Integer> lottoNumbers = lottoStore.generateLottoNumbers();
+        Lotto lotto = lottoStore.generateLottoNumbers();
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
         //then
         assertThat(lottoNumbers.size()).isEqualTo(LOTTO_NUM_COUNT);
@@ -126,11 +125,10 @@ public class LottoStoreTest {
         //when
         long money = 250000;
         lottoStore.getMoney(money);
-        lottoStore.calculateLottoAmount();
         lottoStore.generateAllLottos();
 
         //then
         List<Lotto> lottoPapers = lottoStore.getLottos();
-        assertThat(lottoPapers.size()).isEqualTo(lottoStore.getLottoAmount());
+        assertThat(lottoPapers.size()).isEqualTo(lottoStore.getChargedMoney() / LOTTO_PRICE);
     }
 }

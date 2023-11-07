@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    private final static int LOTTO_UNIT_PRICE = 1000;
 
     int inputLottoPrice(){
         int price = 0;
@@ -34,6 +35,12 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 로또 구매는 숫자를 입력해야합니다.");
         }
         return price;
+    }
+
+    void validUnit(int price){
+        if((price%LOTTO_UNIT_PRICE) != 0){
+            throw new IllegalArgumentException("[ERROR] 로또 구매는 1000원 단위 입니다.");
+        }
     }
 
 }

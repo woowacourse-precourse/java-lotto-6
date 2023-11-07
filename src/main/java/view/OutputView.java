@@ -3,8 +3,8 @@ package view;
 import enums.Constants;
 import enums.ExceptionMessage;
 import enums.Message;
-import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
 
 public class OutputView {
     private int size = Integer.parseInt(Constants.LOTTO_NUMBER_SIZE.getConst());
@@ -21,10 +21,8 @@ public class OutputView {
         System.out.print(Message.NEW_LINE.getMessage());
     }
 
-    public void printMyLottoNumber(ArrayList<List<Integer>> myLottoNumber){
-        for (List<Integer> integers : myLottoNumber) {
-            System.out.println(integers);
-        }
+    public void printMyLottoNumber(List<Integer> myLottoNumber){
+        System.out.println(myLottoNumber);
     }
 
     public void printIlligalLottoCostMessage(){

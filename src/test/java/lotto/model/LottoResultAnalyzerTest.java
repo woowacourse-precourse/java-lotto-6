@@ -26,6 +26,21 @@ class LottoResultAnalyzerTest {
         assertEquals(expectedMatchCount, matchCount);
     }
 
+    @DisplayName("당첨 번호 일치 개수를 로또 용지에 단일 입력 확인")
+    @ParameterizedTest(name = "당첨 번호: {0}, 구매한 로또 번호: {1}, 예상 일치 개수: {2}")
+    @MethodSource("matchCase")
+    public void 당첨_번호_일치_개수_단일_입력(List<Integer> winningNumbers, List<Integer> purchasedNumbers, int expectedMatchCount) {
+        // given
+        LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+        LottoPaper purchasedLottoPaper = new LottoPaper(purchasedNumbers);
+
+        // when
+        lottoResultAnalyzer.writeResultToLottoPaper(purchasedLottoPaper, winningNumbers);
+
+        // then
+        assertEquals(expectedMatchCount, purchasedLottoPaper.getMatchingCount());
+    }
+
     static Stream<Arguments> matchCase() {
         return Stream.of(
                 Arguments.of(

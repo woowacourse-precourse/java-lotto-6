@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -34,5 +35,11 @@ public class OutputView {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getNumber(), rank.getPrize(), result.get(rank));
             }
         }
+    }
+
+    public void printTotalReturn(double totalReturn) {
+        DecimalFormat formatter = new DecimalFormat("###,###.0");
+        String format = formatter.format(totalReturn);
+        System.out.print("총 수익률은 " + format + "%입니다.");
     }
 }

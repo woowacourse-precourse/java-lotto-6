@@ -28,6 +28,7 @@ public class MainController {
 
         int totalPrize = winningResult.getTotalPrize();
         double totalReturn = purchaseAmount.getTotalReturn(totalPrize);
+        outputView.printTotalReturn(totalReturn);
     }
 
     private PurchaseAmount getPurchaseAmount() {

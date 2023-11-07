@@ -11,7 +11,7 @@ public class PurchaseAmountValidatorTest {
     @Test
     void purchaseAmountNotInteger() {
         assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate(-1);
+            PurchaseAmountValidator.validate("-1");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -19,7 +19,7 @@ public class PurchaseAmountValidatorTest {
     @Test
     void purchaseAmountNotNaturalNumber() {
         assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate(1001);
+            PurchaseAmountValidator.validate("1001");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

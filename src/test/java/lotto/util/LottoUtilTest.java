@@ -22,7 +22,7 @@ public class LottoUtilTest {
     void covertTest() {
         String inputNumbers = "1, 4,10, 2,6,3";
         List<Integer> actual = Arrays.asList(1, 4, 10, 2, 6, 3);
-        List<Integer> expected = LottoUtil.convert(inputNumbers);
+        List<Integer> expected = LottoUtil.parseInputToList(inputNumbers);
         assertEquals(expected, actual);
     }
 

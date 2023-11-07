@@ -7,6 +7,7 @@ import lotto.model.Calculator;
 import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
 import lotto.model.RankResult;
+import lotto.util.LottoUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -35,8 +36,7 @@ public class LottoController {
     private void initPurchaseAmount() {
         while (true) {
             try {
-                int inputPurchaseAmount = InputView.readPurchaseAmount();
-                purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
+                purchaseAmount = new PurchaseAmount(InputView.readPurchaseAmount());
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.displayExceptionMessage(e.getMessage());
@@ -56,7 +56,7 @@ public class LottoController {
     private void initWinnerNumber() {
         while (true) {
             try {
-                List<Integer> numbers = InputView.readLottoNumbers();
+                List<Integer> numbers = LottoUtil.parseInputToList(InputView.readLottoNumbers());
                 winnerLotto = new Lotto(numbers);
                 break;
             } catch (IllegalArgumentException e) {
@@ -68,7 +68,7 @@ public class LottoController {
     private void initBonusNumber() {
         while (true) {
             try {
-                int inputBonusNumber = InputView.readBonusNumber();
+                int inputBonusNumber = LottoUtil.parseInputToNumber(InputView.readBonusNumber());
                 bonusNumber = new BonusNumber(winnerLotto, inputBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {

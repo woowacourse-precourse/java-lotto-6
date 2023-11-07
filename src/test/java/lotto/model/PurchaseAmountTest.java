@@ -13,7 +13,7 @@ public class PurchaseAmountTest {
     @Test
     void throwExceptionWhenPurchaseAmountIsNegative() {
         assertThatThrownBy(() -> {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(-1);
+            PurchaseAmount purchaseAmount = new PurchaseAmount("-1");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,14 +21,14 @@ public class PurchaseAmountTest {
     @Test
     void throwExceptionWhenPurchaseAmountCanNotDivideByThousand() {
         assertThatThrownBy(() -> {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(1001);
+            PurchaseAmount purchaseAmount = new PurchaseAmount("1001");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("아직 구매금액만큼 로또가 발행되지 않았을 때 true를 반환한다")
     @Test
     void shouldReturnFalseWhenLottosAreNotFullyIssued() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
+        PurchaseAmount purchaseAmount = new PurchaseAmount("10000");
         int issuedCount = 5;
         assertTrue(purchaseAmount.isNotFullyIssued(issuedCount));
     }

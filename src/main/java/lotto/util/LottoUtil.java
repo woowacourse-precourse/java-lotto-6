@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.message.ExceptionMessage;
 import lotto.model.Rank;
 import lotto.model.RankResult;
 
@@ -15,10 +16,18 @@ public class LottoUtil {
         numbers.sort(null);
     }
 
-    public static List<Integer> convert(String numbers) {
+    public static int parseInputToNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_NOT_NUMBER.getMessage());
+        }
+    }
+
+    public static List<Integer> parseInputToList(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .map(String::trim)
-                .map(Integer::parseInt)
+                .map(LottoUtil::parseInputToNumber)
                 .collect(Collectors.toList());
     }
 

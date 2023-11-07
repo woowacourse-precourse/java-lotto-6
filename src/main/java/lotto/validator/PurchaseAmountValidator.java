@@ -3,12 +3,14 @@ package lotto.validator;
 import static lotto.util.Constants.LOTTO_PRICE;
 
 import lotto.message.ExceptionMessage;
+import lotto.util.LottoUtil;
 
 public class PurchaseAmountValidator {
 
-    public static void validate(int inputAmount) {
-        validateNaturalNumber(inputAmount);
-        validateDivisibleByPrice(inputAmount);
+    public static void validate(String inputAmount) {
+        int purchaseAmount = LottoUtil.parseInputToNumber(inputAmount);
+        validateNaturalNumber(purchaseAmount);
+        validateDivisibleByPrice(purchaseAmount);
     }
 
     private static void validateNaturalNumber(int inputAmount) {

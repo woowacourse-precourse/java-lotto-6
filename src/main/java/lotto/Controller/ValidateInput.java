@@ -5,12 +5,11 @@ import static java.lang.Integer.parseInt;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Controller.ValidateTools;
 
-public class InputValidate {
+public class ValidateInput {
     private static final String SEPERATE = ",";
     private ValidateTools validateTools;
-    public InputValidate(ValidateTools validateTools){
+    public ValidateInput(ValidateTools validateTools){
         this.validateTools = validateTools;
     }
     public int validateCost(String input){
@@ -40,12 +39,12 @@ public class InputValidate {
         return input;
     }
 
-    public int changeInt(String s){
+    private int changeInt(String s){
         return parseInt(s);
     }
 
 
-    public List<String> changeList(String input){
+    private List<String> changeList(String input){
         List<String> splitNums = Arrays.asList(input.split(SEPERATE));
         return splitNums;
     }

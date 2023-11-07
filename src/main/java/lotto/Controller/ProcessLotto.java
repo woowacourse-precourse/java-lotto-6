@@ -18,27 +18,27 @@ public class ProcessLotto {
 
 
     public void drawLotto(ValidateTools validateTools){
-        InputValidate inputValidate = new InputValidate(validateTools);
+        ValidateInput validateInput = new ValidateInput(validateTools);
 
-        int cost = askCost(inputValidate, 0);
+        int cost = askCost(validateInput, 0);
         int count = new Calculate().getLottoCount(cost);
         outputView.printNumberPurchase(count);
 
         List<Lotto> lottos = generateLottos(count, new Generator());
-        List<Integer> winningNums = askWinningNums(inputValidate, new ArrayList<>());
-        int bonus = askBonus(inputValidate, winningNums, 0);
+        List<Integer> winningNums = askWinningNums(validateInput, new ArrayList<>());
+        int bonus = askBonus(validateInput, winningNums, 0);
         outputView.printWinningStatistics();
 
         statistics(lottos, winningNums, bonus, cost);
     }
 
 
-    private int askCost(InputValidate inputValidate, int cost){
+    private int askCost(ValidateInput validateInput, int cost){
         boolean success = false;
         while (!success){
             try{
                 inputView.askPurchaseAmount();
-                cost = inputValidate.validateCost(inputView.getLine());
+                cost = validateInput.validateCost(inputView.getLine());
                 success = true;
             }
             catch (IllegalArgumentException e){
@@ -49,12 +49,12 @@ public class ProcessLotto {
     }
 
 
-    private List<Integer> askWinningNums(InputValidate inputValidate, List<Integer> winningNums){
+    private List<Integer> askWinningNums(ValidateInput validateInput, List<Integer> winningNums){
         boolean success = false;
         while (!success){
             try{
                 inputView.askWinningNums();
-                winningNums = inputValidate.validateWinningNums(inputView.getLine());
+                winningNums = validateInput.validateWinningNums(inputView.getLine());
                 new Lotto(winningNums);
                 success = true;
             }
@@ -66,12 +66,12 @@ public class ProcessLotto {
     }
 
 
-    private int askBonus(InputValidate inputValidate, List<Integer> winningNums, int bonus){
+    private int askBonus(ValidateInput validateInput, List<Integer> winningNums, int bonus){
         boolean success = false;
         while (!success){
             try{
                 inputView.askBonusNum();
-                bonus = inputValidate.validateBonus(inputView.getLine(), winningNums);
+                bonus = validateInput.validateBonus(inputView.getLine(), winningNums);
                 success = true;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());

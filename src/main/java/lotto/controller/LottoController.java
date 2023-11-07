@@ -3,7 +3,6 @@ package lotto.controller;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import lotto.model.Buyer;
 import lotto.model.LottoSeller;
@@ -46,7 +45,7 @@ public class LottoController {
     private WinnigLotto pickWinningLotto() {
         final WinningNumbers winningNumbers = inputNumbers();
         final Integer bonusNubmer = inputBonusNubmer(winningNumbers);
-        return new WinnigLotto(winningNumbers,bonusNubmer);
+        return new WinnigLotto(winningNumbers, bonusNubmer);
     }
 
     private Integer inputBonusNubmer(WinningNumbers winningNumbers) {

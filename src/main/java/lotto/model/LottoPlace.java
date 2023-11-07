@@ -20,6 +20,12 @@ public enum LottoPlace {
         this.isBonusRequired = isBonusRequired;
     }
 
+    public static Optional<LottoPlace> judgeLottoPlace(LottoStatus lottoStatus) {
+        return Arrays.stream(LottoPlace.values())
+                .filter((lottoPlace) -> lottoPlace.isRightPlace(lottoStatus))
+                .findAny();
+    }
+
     public LottoStatus getLottoStatus() {
         return lottoStatus;
     }
@@ -30,12 +36,6 @@ public enum LottoPlace {
 
     public boolean isBonusRequired() {
         return isBonusRequired;
-    }
-
-    public static Optional<LottoPlace> judgeLottoPlace(LottoStatus lottoStatus) {
-        return Arrays.stream(LottoPlace.values())
-                .filter((lottoPlace) -> lottoPlace.isRightPlace(lottoStatus))
-                .findAny();
     }
 
     private boolean isRightPlace(LottoStatus lottoStatus) {

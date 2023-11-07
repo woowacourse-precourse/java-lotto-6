@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.math.BigDecimal;
-
 public class LottoSeller {
     private final LottoSellingPolicy lottoSellingPolicy = new LottoSellingPolicy();
     private final LottosGenerator lottosGenerator = new LottosGenerator();

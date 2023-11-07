@@ -3,7 +3,7 @@ package lotto.utils;
 import java.math.BigDecimal;
 
 public class MoneyParser {
-    private static String IMPROPER_MONEY_MESSAGE = "금액을 올바르게 입력하세요.";
+    private static final String IMPROPER_MONEY_MESSAGE = "금액을 올바르게 입력하세요.";
 
     public static BigDecimal parseMoney(String inputMoney) {
         CommonValidator.validateEmptyString(inputMoney);

@@ -13,6 +13,16 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
+    private static Stream<Arguments> provideLottoAndResult() {
+        return Stream.of(
+                Arguments.of(List.of(1, 3, 7, 10, 13, 45), "FIFTH"),
+                Arguments.of(List.of(1, 3, 7, 8, 29, 45), "FOURTH"),
+                Arguments.of(List.of(1, 3, 7, 8, 9, 45), "THIRD"),
+                Arguments.of(List.of(1, 3, 7, 8, 9, 18), "SECOND"),
+                Arguments.of(List.of(1, 3, 7, 8, 9, 11), "FIRST")
+        );
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -37,7 +47,6 @@ class LottoTest {
                 .hasMessage("숫자는 1에서 45사이여야합니다.");
     }
 
-
     @DisplayName("당첨번호 : [1,3,7,8,9,11] ,보너스 번호 : 18 인경우 등수 판별")
     @ParameterizedTest(name = "로또번호 :{0}, 예상등수 : {1}")
     @MethodSource("provideLottoAndResult")
@@ -50,15 +59,5 @@ class LottoTest {
         Optional<LottoPlace> lottoPlace = lotto.calculateLottoPlace(winnigLotto);
 
         assertThat(lottoPlace).containsSame(LottoPlace.valueOf(expected));
-    }
-
-    private static Stream<Arguments> provideLottoAndResult() {
-        return Stream.of(
-                Arguments.of(List.of(1, 3, 7, 10, 13, 45), "FIFTH"),
-                Arguments.of(List.of(1, 3, 7, 8, 29, 45), "FOURTH"),
-                Arguments.of(List.of(1, 3, 7, 8, 9, 45), "THIRD"),
-                Arguments.of(List.of(1, 3, 7, 8, 9, 18), "SECOND"),
-                Arguments.of(List.of(1, 3, 7, 8, 9, 11), "FIRST")
-        );
     }
 }

@@ -21,7 +21,7 @@ public class InputView {
 
     private String inputTemplate(String message) {
         printMessage(message);
-        String input =  Console.readLine();
+        String input = Console.readLine();
         printEmptyLine();
         return input;
     }

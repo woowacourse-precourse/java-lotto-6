@@ -5,7 +5,7 @@ import java.util.Objects;
 import lotto.utils.AmountValidator;
 
 public class Money {
-    private BigDecimal amount;
+    private final BigDecimal amount;
 
     public Money(String amount) {
         AmountValidator.validateMoney(amount);
@@ -16,12 +16,17 @@ public class Money {
         this.amount = amount;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
     public static Money getZeroMoney() {
         return new Money(BigDecimal.ZERO);
+    }
+
+    public static Money sum(Money money1, Money money2) {
+        BigDecimal sum = money1.amount.add(money2.amount);
+        return new Money(sum);
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 
     public BigDecimal divideBy(Money divider) {
@@ -31,11 +36,6 @@ public class Money {
     public Money multiply(int count) {
         BigDecimal multipliedAmount = this.amount.multiply(new BigDecimal(count));
         return new Money(multipliedAmount);
-    }
-
-    public static Money sum(Money money1, Money money2) {
-        BigDecimal sum = money1.amount.add(money2.amount);
-        return new Money(sum);
     }
 
     @Override

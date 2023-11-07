@@ -5,12 +5,16 @@ public class LottoStatus {
     private boolean isBonusNumberCorrect;
 
     public LottoStatus(int correctNumber) {
-        this(correctNumber,false);
+        this(correctNumber, false);
     }
 
     public LottoStatus(int correctNumber, boolean isBonusNumberCorrect) {
         this.correctNumber = correctNumber;
         this.isBonusNumberCorrect = isBonusNumberCorrect;
+    }
+
+    public static LottoStatus createEmptyStatus() {
+        return new LottoStatus(0, false);
     }
 
     public int getCorrectNumber() {
@@ -19,10 +23,6 @@ public class LottoStatus {
 
     public boolean isBonusNumberCorrect() {
         return isBonusNumberCorrect;
-    }
-
-    public static LottoStatus createEmptyStatus() {
-        return new LottoStatus(0,false);
     }
 
     public void update(NumberStatus numberStatus) {

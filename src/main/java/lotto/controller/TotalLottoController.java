@@ -34,7 +34,7 @@ public class TotalLottoController {
     }
 
     public void showLottoNumbers(Lottos lottos) {
-        outputView.showLottosNumber(lottos.getIssuedLottos());
+        outputView.showLottosNumber(lottos);
     }
 
     public LottoResult issueLottoResult() {

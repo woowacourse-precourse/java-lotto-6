@@ -1,27 +1,32 @@
 package lotto.domain;
 
-import static lotto.domain.LottoPrice.LOTTO_UNIT_PRICE;
-
+import java.util.Collections;
 import java.util.Map;
 
 public class ResultStatics {
     private final Map<LottoPrizeStatus, Integer> prizeResult;
-    private final int issueMoney;
+    private final int phrasedMoney;
     private final double earningRate;
+    private final long totalEarning;
 
-    public ResultStatics(Map<LottoPrizeStatus, Integer> prizeResult, int issueCount) {
-        this.prizeResult = prizeResult;
-        this.issueMoney = issueCount * LOTTO_UNIT_PRICE;
-        this.earningRate = calculateEarningRate(prizeResult, issueMoney);
+    public ResultStatics(Map<LottoPrizeStatus, Integer> prizeResult, int phrasedMoney) {
+        this.prizeResult = Collections.unmodifiableMap(prizeResult);
+        this.phrasedMoney = phrasedMoney;
+        this.totalEarning = calculateTotalEarning();
+        this.earningRate = calculateEarningRate();
     }
 
-    private double calculateEarningRate(Map<LottoPrizeStatus, Integer> prizeResult, int issueMoney) {
+    private double calculateEarningRate() {
+        return ((double) totalEarning / phrasedMoney) * 100;
+    }
+
+    public long calculateTotalEarning() {
         long totalEarning = 0;
-        for (LottoPrizeStatus status : prizeResult.keySet()) {
-            int prizeCount = prizeResult.get(status).intValue();
-            totalEarning += status.getPrizeMoney() * prizeCount;
+        for (LottoPrizeStatus prizeStatus : prizeResult.keySet()) {
+            int prizeCount = prizeResult.get(prizeStatus).intValue();
+            totalEarning += prizeStatus.getPrizeMoney() * prizeCount;
         }
-        return ((double)totalEarning / issueMoney) * 100;
+        return totalEarning;
     }
 
     public Map<LottoPrizeStatus, Integer> getPrizeResult() {
@@ -30,5 +35,13 @@ public class ResultStatics {
 
     public double getEarningRate() {
         return earningRate;
+    }
+
+    public int getPhrasedMoney() {
+        return phrasedMoney;
+    }
+
+    public long getTotalEarning() {
+        return totalEarning;
     }
 }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +21,8 @@ class LottoIssueServiceTest {
     @Test
     @DisplayName("주어진 횟수가 유효하다면 그 크기만큼의 로또를 발행한다.")
     public void createLottosByValidCount() {
-        List<Lotto> lottos = service.issueLottos(10);
-        assertThat(lottos.size())
+        Lottos lottos = service.issueLottos(10);
+        assertThat(lottos.getIssuedLottos().size())
                 .isEqualTo(10);
     }
 

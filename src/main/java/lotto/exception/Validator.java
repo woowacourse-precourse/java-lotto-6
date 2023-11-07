@@ -29,4 +29,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능 합니다.");
         }
     }
+
+    private static void validateWinningNumbersCount(String[] numbers) {
+        if (numbers.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개로 입력해야 합니다.");
+        }
+    }
 }

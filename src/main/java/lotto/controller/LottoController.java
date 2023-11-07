@@ -10,7 +10,6 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class LottoController {
     private final InputView inputView;

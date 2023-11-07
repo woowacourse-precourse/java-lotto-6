@@ -47,6 +47,7 @@ public class Lotto {
         }
         return correctNum;
     }
+
     //맞춘번호 갯수에 따른 등수를 Lotto가 관리
     public int findRank(int correctNum,int bonusNum){
         if (correctNum ==3) return 5;
@@ -60,16 +61,16 @@ public class Lotto {
         return 0;
     }
 
+    public boolean has(int bonusNum){
+        return numbers.contains(bonusNum);
+    }
+
     public String listToAscendingString(){
         String[] array = numbers.stream()
                 .sorted()
                 .map(String::valueOf)
                 .toArray(String[]::new);
         return String.join(", ", array);
-    }
-
-    public boolean has(int bonusNum){
-        return numbers.contains(bonusNum);
     }
 
     public List<Integer> getNumbers() {

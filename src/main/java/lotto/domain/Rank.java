@@ -11,18 +11,14 @@ public enum Rank {
     UNRANK(null, null, null, null);
 
     private final String outputMessage;
-    private final Integer prize;
+    private final Integer prizePrice;
 
-    // 맞은 번호 개수
     private final Integer matchCount;
-
-    // 맞은 번호 개수에 보너스 포함 여부
-    // true 이면 matchCount에 보너스 번호도 포함하여 계산
     private final Boolean isMatchCountIncludeBonus;
 
     Rank(String outputMessage, Integer prize, Integer matchCount, Boolean isMatchCountIncludeBonus) {
         this.outputMessage = outputMessage;
-        this.prize = prize;
+        this.prizePrice = prize;
         this.matchCount = matchCount;
         this.isMatchCountIncludeBonus = isMatchCountIncludeBonus;
     }
@@ -60,7 +56,7 @@ public enum Rank {
         return this.outputMessage;
     }
 
-    public Integer getPrize() {
-        return prize;
+    public Integer getPrizePrice() {
+        return prizePrice;
     }
 }

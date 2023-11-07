@@ -18,13 +18,12 @@ public class GameController {
     private BigDecimal buyPrice;
 
     public void start() {
-        List<Lotto> userLottos = buyUserLottos();
+        List<Lotto> userLottoes = buyUserLottos();
         WinLotto winLotto = getWinLottoNumbers();
-        Map<Rank, Integer> rankingCountResult = showMatchResult(winLotto, userLottos);
+        Map<Rank, Integer> rankingCountResult = showMatchResult(winLotto, userLottoes);
         showReturnRate(rankingCountResult);
     }
 
-    //1) 로또 구매 = 로또 개수 카운팅해서 -> 개수만큼 사용자의 로또 생성하여 발급한 로또 출력함
     private List<Lotto> buyUserLottos() {
         buyPrice = InputView.readLottoPrice();
         BigDecimal lottoCount = getLottoCount(buyPrice);
@@ -39,29 +38,21 @@ public class GameController {
         return price.divide(BigDecimal.valueOf(LOTTO_PRICE));
     }
 
-    // 2) (당첨번호, 보너스 번호) --> WinLotto 생성
     private WinLotto getWinLottoNumbers() {
-        //4) 당첨 번호 입력 기능
         List<Integer> winNumbers = InputView.readWinningNumber();
-
-        //5) 보너스 번호 입력 기능
         int bonusNumber = InputView.readBonusNumber(winNumbers);
 
-        WinLotto winLotto = new WinLotto(winNumbers, bonusNumber);
-        return winLotto;
+        return new WinLotto(winNumbers, bonusNumber);
     }
 
-    // 3) WinLotto와 User의 Lotters 들을 각각 비교하여, 당첨 결과 출력
     private Map<Rank, Integer> showMatchResult(WinLotto winLotto, List<Lotto> userLottos) {
         Map<Rank, Integer> rankCountMap = GameResultJudge.judge(winLotto, userLottos);
         OutputView.printResultLottoPrize(rankCountMap);
         return rankCountMap;
     }
 
-    // 4) 수익률 구하여 출력
-    private void showReturnRate(Map<Rank, Integer> rankCountMap) {
-        BigDecimal out = GameReturnRateCalculator.getReturnRate(rankCountMap, buyPrice);
+    private void showReturnRate(Map<Rank, Integer> rankingCountResult) {
+        BigDecimal out = GameReturnRateCalculator.getReturnRate(rankingCountResult, buyPrice);
         OutputView.printPrizePercentResult(out);
     }
-
 }

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.utils.ExceptionMessage;
+import lotto.utils.GameNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != GameNumber.LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_SIZE.getMessage());
         }
         for (Integer number : numbers) {
@@ -26,7 +27,7 @@ public class Lotto {
     }
 
     public void validateRange(Integer number) {
-        if (number > 45 || number < 1) {
+        if (number > GameNumber.MAX_RANGE.getNumber() || number < GameNumber.MIN_RANGE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }

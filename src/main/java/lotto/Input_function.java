@@ -17,7 +17,7 @@ public class Input_function {
             return num;
         }
         catch(NumberFormatException nfe) {
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자 형식이 아닙니다.", nfe);
+            throw new IllegalArgumentException("[ERROR]", nfe);
         }
 
     }

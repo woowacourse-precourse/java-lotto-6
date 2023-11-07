@@ -35,10 +35,14 @@ public class Display_function {
     }
 
     public void displayEarningRate(int prize, int money) {
+        float earningRate = 0;
         if(prize ==0) {
-            System.out.println("수익률은 -100%입니다.");
+            System.out.println("수익률은 0%입니다.");
         }
-        System.out.printf("수익률은 %.2f \\%입니다.",(prize-money)/money*100);
+        if(prize != 0) {
+            earningRate = ((float)prize/money)*100;
+            System.out.printf("수익률은 %.1f%%입니다.",earningRate);
+        }
     }
 
 }

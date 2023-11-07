@@ -14,17 +14,18 @@ public class InputView {
     private static final String NAN_ERROR_MESSAGE = "[ERROR] 숫자가 아닌 값은 입력이 불가능합니다.";
     private static final Pattern WINNING_NUMBERS = Pattern.compile("^\\d+(,\\d+)*$");
     private static final String SPACE = " ";
+    private static final String EMPTY = "";
     private static final String DELIMITER = ",";
 
     public static long getPurchaseCost() {
-        System.out.println(PURCHASE_COST_MESSAGE);
+        print(PURCHASE_COST_MESSAGE);
         String input = getLine();
 
         return toLong(input);
     }
 
     public static List<Integer> getWinningNumbers() {
-        System.out.println(WINNING_NUMBER_MESSAGE);
+        print(WINNING_NUMBER_MESSAGE);
         String input = getLine();
         validateCharacter(input);
 
@@ -32,17 +33,22 @@ public class InputView {
     }
 
     public static int getBonusNumber() {
-        System.out.println(BONUS_NUMBER_MESSAGE);
+        print(BONUS_NUMBER_MESSAGE);
         String input = getLine();
 
         return toInt(input);
     }
-    
+
     private static String getLine() {
         String input = Console.readLine().trim();
         validateNullOrEmpty(input);
+        print(EMPTY);
 
         return input;
+    }
+
+    private static void print(String message) {
+        System.out.println(message);
     }
 
     private static void validateNullOrEmpty(String input) {

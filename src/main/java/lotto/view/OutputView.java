@@ -10,10 +10,12 @@ public class OutputView {
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String HYPHEN_COUNT = " - %d개";
     private static final String LINE_FEED = "\n";
+    private static final String EMPTY = "";
 
     public static void printLottos(List<List<Integer>> lottos) {
         print(lottos.size() + PAID_DONE_MESSAGE);
         lottos.forEach(System.out::println);
+        print(EMPTY);
     }
 
     public static void printWinningStatistics(Map<Integer, Integer> resultOfLottos, double profitRate) {

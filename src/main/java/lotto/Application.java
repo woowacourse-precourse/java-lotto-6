@@ -10,9 +10,7 @@ public class Application {
         Output.startMessage();
         lottoCnt = issuanceLotto(Input.money());
         Output.howManyLottoMessage(lottoCnt);
-        LottoGame.getLotto();
-        Output.winningNumberGuide();
-        Output.bonusNumberGuide();
+
 
     }
 }

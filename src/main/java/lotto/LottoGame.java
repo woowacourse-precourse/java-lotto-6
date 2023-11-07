@@ -23,6 +23,7 @@ public class LottoGame {
         for (int i = 0; i < lottoCnt; i++) {
             tickets.add(getRandomNumbers());
         }
+        Output.checkLottoNumberMessage(tickets);
         return tickets;
     }
 
@@ -32,5 +33,16 @@ public class LottoGame {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER,END_NUMBER,COUNT_NUMBER);
         Collections.sort(randomNumbers);
         return randomNumbers;
+    }
+
+    public static List<Integer> MakeWinningNumbers(String winningNumbers) {
+        List<Integer> winningNumbersList = new ArrayList<>();
+        String[] splitNumbers = winningNumbers.split(",");
+
+        for (int i = 0; i < Input.LOTTO_WINNING_NUMBER_COUNT; i++) {
+            winningNumbersList.add(Integer.parseInt(splitNumbers[i]));
+        }
+
+        return winningNumbersList;
     }
 }

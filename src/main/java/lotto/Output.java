@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Output {
     public static void startMessage(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -7,6 +9,12 @@ public class Output {
 
     public static void howManyLottoMessage(int countLotto){
         System.out.println(countLotto + "개를 구매했습니다.");
+    }
+
+    public static void checkLottoNumberMessage(List<List<Integer>> tickets){
+        for(List<Integer> ticket : tickets){
+            System.out.println(ticket);
+        }
     }
 
     public static void winningNumberGuide(){

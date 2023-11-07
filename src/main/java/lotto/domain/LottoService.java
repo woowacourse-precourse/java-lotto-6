@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
-
     public static List<Lotto> generatePlayerLotto(Money money){
         List<Lotto> playerLotto = new ArrayList<>();
         int amount = money.getAmount();

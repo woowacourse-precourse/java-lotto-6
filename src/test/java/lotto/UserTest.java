@@ -28,5 +28,16 @@ class UserTest {
         assertEquals(payment / 1000, user.purchaseNumber());
         assertNotNull(user.PurchasedLottoNumbers());
         assertEquals(payment / 1000, user.purchasedLottoNumbersSize());
+        assertEquals(List.of(0,0,0,0,0,0), user.rankCount());
+    }
+
+    @DisplayName("당첨된 등수를 입력받으면 해당하는 등수 횟수 증가 확인")
+    @Test
+    void testIncreaseRankCount() {
+        User user = new User(1000);
+        for (int i=1;i<6;i++) {
+            user.increaseRankCount(i);
+            assertEquals(1, user.getRankCount(i));
+        }
     }
 }

@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,10 +21,26 @@ public class Lotto {
         return numbers.stream().distinct().count() != numbers.size();
     }
 
-    public List<Integer> getNumbers() {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers;
+    public int calculateMatchingCount(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public int calculateBonusCount(int bonusNumber) {
+        int bonusCount = 0;
+        if (numbers.contains(bonusNumber)) {
+            bonusCount++;
+        }
+        return bonusCount;
+    }
+
+    public void updateLottoResult(Map<String, Integer> lottoResult, int matchingCount, int bonusCount) {
+        LottoRank lottoRank = LottoRank.findByMatchCount(matchingCount, bonusCount);
+        if (lottoRank != null) {
+            String rank = lottoRank.getRank();
+            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+        }
     }
 
     @Override

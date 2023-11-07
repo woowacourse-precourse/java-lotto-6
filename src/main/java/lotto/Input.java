@@ -36,12 +36,30 @@ public class Input {
         return winningNumbers;
     }
 
+    public int inputBonusNumber() {
+        String bonusNumber = input();
+        validateBonusNumber(bonusNumber);
+        return Integer.parseInt(bonusNumber);
+    }
+
+    private void validateBonusNumber(String value) {
+        int temp;
+        try {
+            temp = Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INTEGER_VALUE.getErrMsg());
+        }
+        if (temp < 1 || temp > 45) {
+            throw new IllegalArgumentException(INVALID_NUMBERS_VALUE.getErrMsg());
+        }
+    }
+
     private void validatePurchaseAmount(String purchaseAmount) {
         int temp;
         try {
             temp = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER_PURCHASE_AMOUNT.getErrMsg());
+            throw new IllegalArgumentException(NOT_INTEGER_VALUE.getErrMsg());
         }
         if ((temp / 1000) != 0) {
             throw new IllegalArgumentException(UNDIVIDED_PURCHASE_AMOUNT.getErrMsg());

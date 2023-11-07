@@ -10,7 +10,7 @@ public enum ExceptionMessage {
     OUT_OF_RANGE_NUMBER_EXCEPTION("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATE_NUMBER_EXCEPTION("로또 번호는 중복될 수 없습니다."),
     WINNING_NUMBERS_COUNT_EXCEPTION("로또 번호는 6개여야 합니다."),
-    DUPLICATE_BONUS_NUMBER_EXCEPTION("보너스 번호는 중복될 수 없습니다."),
+    DUPLICATE_BONUS_NUMBER_EXCEPTION("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     ERROR_TAG("[ERROR] ");
 
     private final String message;

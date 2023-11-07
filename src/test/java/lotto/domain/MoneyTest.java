@@ -11,9 +11,9 @@ public class MoneyTest {
 
     @DisplayName("유효한 돈 객체는 생성한다.")
     @Test
-    void should_Create_When_Valid() {
+    void should_CreateMoney_When_Valid() {
         Money money = new Money(100000);
-        assertThat(money.equals(new Money(100000)));
+        assertThat(money).isNotNull();
     }
 
     @DisplayName("구매한도를 초과한 경우 예외가 발생한다.")

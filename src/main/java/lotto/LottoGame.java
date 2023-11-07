@@ -15,6 +15,7 @@ public class LottoGame {
         showLottos(lottos);
         System.out.println();
         List<Integer> winningNumbers = getValidWinningNumbers();
+        System.out.println();
     }
 
     private static int getValidPurchaseAmount() {
@@ -94,6 +95,11 @@ public class LottoGame {
         if (winningNumbers.contains(0)) {
             throw new IllegalArgumentException("[ERROR] 0은 유효한 로또 번호가 아닙니다.");
         }
+    }
+
+    private static int getBonusNumberFromUser() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
 }

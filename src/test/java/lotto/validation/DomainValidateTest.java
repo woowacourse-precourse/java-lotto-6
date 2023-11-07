@@ -29,7 +29,7 @@ class DomainValidateTest {
         // given
         List<Integer> lotto = new ArrayList<>();
         List<Integer> bonus = new ArrayList<>();
-        for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + LOTTO_NUMBER_CNT.getNum(); i++) {
+        for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + WINNING_NUMBER_CNT.getNum(); i++) {
             lotto.add(i);
         }
         for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + LOTTO_BONUS_NUMBER_CNT.getNum(); i++) {
@@ -41,9 +41,9 @@ class DomainValidateTest {
         wrongBonus.add(bonus.get(0));
 
         // when & then
-        assertThatThrownBy(() -> DomainValidate.validateNumberOfLottoNumbers(wrongBonus))
+        assertThatThrownBy(() -> DomainValidate.validateNumberOfWinningNumbers(wrongBonus))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
-        assertThatCode(() -> DomainValidate.validateNumberOfLottoNumbers(lotto)).doesNotThrowAnyException();
+        assertThatCode(() -> DomainValidate.validateNumberOfWinningNumbers(lotto)).doesNotThrowAnyException();
     }
 
     @Test
@@ -78,11 +78,11 @@ class DomainValidateTest {
     void testValidateDuplicated() {
         // given
         List<Integer> numbers = new ArrayList<>();
-        for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + LOTTO_NUMBER_CNT.getNum(); i++) {
+        for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + WINNING_NUMBER_CNT.getNum(); i++) {
             numbers.add(i);
         }
         List<Integer> wrongNumbers = new ArrayList<>(numbers);
-        wrongNumbers.set(LOTTO_NUMBER_CNT.getNum() - 1, LOTTO_NUMBER_MIN.getNum());
+        wrongNumbers.set(WINNING_NUMBER_CNT.getNum() - 1, LOTTO_NUMBER_MIN.getNum());
 
         // when & then
         assertThatThrownBy(() -> DomainValidate.validateDuplicated(wrongNumbers))

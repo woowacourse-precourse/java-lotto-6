@@ -7,8 +7,8 @@ public enum ErrorMessage {
     NUMBER_IS_NOT_IN_RANGE("[ERROR] 주어진 수는 " +
             ConstantNum.LOTTO_NUMBER_MIN + " 이상, " +
             ConstantNum.LOTTO_NUMBER_MAX + " 이하가 아닙니다."),
-    NOT_ENOUGH_LOTTO_NUMBERS("[ERROR] 주어진 당첨 번호의 개수는 " +
-            ConstantNum.LOTTO_NUMBER_CNT.getNum() +
+    NOT_ENOUGH_WINNING_NUMBERS("[ERROR] 주어진 당첨 번호의 개수는 " +
+            ConstantNum.WINNING_NUMBER_CNT.getNum() +
             "가 아닙니다."),
     NOT_ENOUGH_BONUS("[ERROR] 주어진 보너스 번호의 개수는 " +
             ConstantNum.LOTTO_BONUS_NUMBER_CNT.getNum() +

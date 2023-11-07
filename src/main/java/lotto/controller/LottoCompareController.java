@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoTickets;
-import lotto.domain.WinningLotto;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 
 public class LottoCompareController {
 
@@ -15,6 +12,13 @@ public class LottoCompareController {
             lottoCompareNum(lotto);
         }
 
+    }
+
+    public static double winningLottoRate(){
+        long purchaseAmount = LottoTickets.getBuyLottoTicketsNum() * 1000;
+        long winningMoney =  winningMoney();
+        double resultRate = purchaseAmount/winningMoney;
+        return Math.round(resultRate*10000)/100.0;
     }
 
     private static void lottoCompareNum(Lotto lotto){
@@ -48,6 +52,16 @@ public class LottoCompareController {
         if(mathNum == 6){
             WinningLotto.increaseSixSameNumLotto();
         }
+    }
+
+    private static long winningMoney(){
+
+        return WinningMoney.FIRST.getWinningMoney() * WinningLotto.getSixSameNumLotto()
+                + WinningMoney.SECOND.getWinningMoney() * WinningLotto.getFiveAndBonusSameNumLotto()
+                + WinningMoney.THIRD.getWinningMoney() * WinningLotto.getFiveSameNumLotto()
+                + WinningMoney.FOURTH.getWinningMoney() * WinningLotto.getFourSameNumLotto()
+                + WinningMoney.FIFTH.getWinningMoney() * WinningLotto.getTreeSameNumLotto();
+
     }
 
 }

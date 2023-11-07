@@ -54,6 +54,11 @@ public class UserOutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + WinningLotto.getSixSameNumLotto() + "개");
     }
 
+    public static void winningLottoRateResult(){
+        System.out.println("총 수익률은 " + LottoCompareController.winningLottoRate()+"입니다.");
+    }
+
+
 
 
 

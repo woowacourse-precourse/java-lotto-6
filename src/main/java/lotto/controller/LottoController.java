@@ -12,12 +12,10 @@ import java.util.List;
 
 public class LottoController {
     public void play() {
-
-    }
-
-    public void start() {
         Money money = new Money();
         buyLottos(money.trial());
+        generateWinningNumbers();
+        generateBonusNumber();
     }
 
     public void buyLottos(int trial) {
@@ -30,5 +28,13 @@ public class LottoController {
         } while (myLottos.size() < trial);
 
         OutputView.printBoughtLottos(myLottos);
+    }
+
+    public void generateWinningNumbers() {
+        OutputView.printAskWinningNumbersMessage();
+    }
+
+    public void generateBonusNumber() {
+        OutputView.printAskBonusNumberMessage();
     }
 }

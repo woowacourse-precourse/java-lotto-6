@@ -51,7 +51,7 @@ public class OutputView {
     }
 
     private String thousandFormatter(double profitRate) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
         return decimalFormat.format(profitRate);
     }
 

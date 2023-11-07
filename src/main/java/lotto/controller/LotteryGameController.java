@@ -6,31 +6,26 @@ import lotto.domain.lottery.*;
 import lotto.view.OutputView;
 import lotto.view.InputView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LotteryGameController {
 
-    private final static String SPLIT_SYMBOL = ",";
-
     static int purchaseAmount;
     static int lottoAmount;
-    private Lotto winningLotto;
-    private BonusNumber bonusNumber;
+    static Lotto winningLotto;
+    static BonusNumber bonusNumber;
 
     static final Lottos purchasedLotto = new Lottos();
     private final InputView inputView = new InputView();
     private final LotteryMessageBuilder lotteryMessageBuilder = new LotteryMessageBuilder();
     private final Computer computer = new Computer();
     private final PurchaseController purchaseController = new PurchaseController();
+    private final WinningNumberController winningNumberController = new WinningNumberController();
 
     public void run() {
         purchaseController.purchaseStage();
-        requestWinningNumber();
-        requestBonusNumber();
-
+        winningNumberController.inputWinningNumberStage();
         returnLotteryResult(purchaseAmount);
         inputView.closeConsole();
     }
@@ -41,30 +36,5 @@ public class LotteryGameController {
         computer.calcRateOfProfit(winningStats, purchaseAmount);
         OutputView.printNewLine();
         OutputView.returnWinningStats(lotteryMessageBuilder.returnWinningLottoList(winningStats));
-    }
-
-    private void requestBonusNumber() {
-        OutputView.printNewLine();
-        OutputView.requestBonusNumberMessage();
-        String input = inputView.returnInput();
-        bonusNumber = new BonusNumber(Integer.parseInt(input));
-    }
-
-    private void requestWinningNumber() {
-        OutputView.requestWinningNumberMessage();
-
-        winningLotto = new Lotto(inputWinningNumber());
-    }
-
-    private List<Integer> inputWinningNumber() {
-        String input = inputView.returnInput();
-        String[] numberStrings = input.split(SPLIT_SYMBOL);
-
-        List<Integer> numbers = new ArrayList<>();
-        for (String numberString : numberStrings) {
-            numbers.add(Integer.parseInt(numberString));
-        }
-
-        return numbers;
     }
 }

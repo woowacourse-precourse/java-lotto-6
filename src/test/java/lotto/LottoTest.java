@@ -99,7 +99,16 @@ class    LottoTest {
     void createLottoByConsecutiveCommasValueNumbers(String numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+                .hasMessageContaining("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
+                        + minLottoNumber + "~" + maxLottoNumber);
+    }
+
+    @DisplayName("로또 번호를 String으로 생성할 때 int 범위 밖의 숫자가 들어온 경우 예외를 발생한다.")
+    @Test
+    void createLottoByOutOfRangeToInteger() {
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,5,21474836479"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                         + minLottoNumber + "~" + maxLottoNumber);
     }
 

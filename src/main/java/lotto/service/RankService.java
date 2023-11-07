@@ -31,7 +31,7 @@ public class RankService {
         return winningCount;
     }
 
-    private LottoRank calculateLottoRank(Lotto lotto) {
+    public LottoRank calculateLottoRank(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         long matchingCount = lottoNumbers.stream().filter(winningNumbers::contains).count();
         LottoRank bonusWin = LottoRank.BONUS;

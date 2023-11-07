@@ -10,6 +10,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
 import lotto.domain.WinLotto;
+import lotto.exception.lotto.BonusDuplicatedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,7 @@ public class WinLottoTest {
         LottoNumber bonus = LottoNumber.getInstance(1);
 
         assertThatThrownBy(() -> WinLotto.of(lotto, bonus))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BonusDuplicatedException.class);
     }
 
     @ParameterizedTest

@@ -6,6 +6,9 @@ import lotto.exception.lotto.LottoNumberDuplicatedException;
 import lotto.exception.lotto.LottoNumberSizeException;
 
 public class Lotto {
+
+    public static final int REQUIRED_LOTTO_NUMBER_SIZE = 6;
+
     private final List<LottoNumber> numbers;
 
     public Lotto(List<LottoNumber> numbers) {
@@ -26,16 +29,16 @@ public class Lotto {
 
     private void validate(List<LottoNumber> numbers) {
         validateSize(numbers);
-        validateUniqueness(numbers);
+        validateDuplication(numbers);
     }
 
     private void validateSize(List<LottoNumber> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != REQUIRED_LOTTO_NUMBER_SIZE) {
             throw new LottoNumberSizeException(numbers);
         }
     }
 
-    private void validateUniqueness(List<LottoNumber> numbers) {
+    private void validateDuplication(List<LottoNumber> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new LottoNumberDuplicatedException(numbers);
         }

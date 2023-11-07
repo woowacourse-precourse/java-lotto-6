@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class LottoTest {
 
     @Test
-    void create(){
+    void create() {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         assertNotNull(lotto);
     }

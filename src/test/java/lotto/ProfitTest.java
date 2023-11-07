@@ -3,11 +3,13 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import lotto.domain.Profit;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class ProfitTest {
 
+    @DisplayName("'Profit'는 수익률을 계산한다.")
     @ParameterizedTest
     @CsvSource({
             "8000, 5000, 62.5",

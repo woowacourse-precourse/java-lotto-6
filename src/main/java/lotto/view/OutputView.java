@@ -14,7 +14,6 @@ public class OutputView {
     private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final String LOTTO_STATISTICS_MESSAGE = "\n당첨 통계\n---";
-
     private static final String RESULT_FORMAT = "%s - %d개%n";
 
     public void print(List<Lotto> lottoTickets) {

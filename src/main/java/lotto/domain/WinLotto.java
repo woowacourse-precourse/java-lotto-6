@@ -8,7 +8,7 @@ public class WinLotto {
     private final LottoNumber bonus;
 
     public WinLotto(Lotto winLottoNumber, LottoNumber bonus) {
-        validateUniqueness(winLottoNumber, bonus);
+        validateDuplication(winLottoNumber, bonus);
         this.numbers = winLottoNumber;
         this.bonus = bonus;
     }
@@ -16,7 +16,7 @@ public class WinLotto {
         return new WinLotto(winLottoNumber, bonus);
     }
 
-    private void validateUniqueness(Lotto winLottoNumber, LottoNumber bonus) {
+    private void validateDuplication(Lotto winLottoNumber, LottoNumber bonus) {
         if(winLottoNumber.contains(bonus)){
             throw new BonusDuplicatedException(winLottoNumber, bonus);
         }

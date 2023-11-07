@@ -18,7 +18,7 @@ public class Money {
     }
 
     private void validate(long value) {
-        if (value < 1000) {
+        if (value < AMOUNT_PER_UNIT) {
             throw new MoneyRangeException(value);
         }
 

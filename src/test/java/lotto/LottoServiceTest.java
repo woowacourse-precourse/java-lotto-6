@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LottoServiceTest {
 
-
     @DisplayName("LottoService는 구입 금액에 따라 로또 티켓을 생성한다")
     @ParameterizedTest
     @CsvSource({"1000,1", "2000,2", "5000,5", "10000,10"})

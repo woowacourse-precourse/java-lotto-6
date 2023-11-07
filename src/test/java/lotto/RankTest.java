@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class RankTest {
 
-    @DisplayName("Rank는 일치하는 번호의 갯수와 상금을 가진다")
+    @DisplayName("Rank는 일치하는 숫자의 개수와 보너스 숫자 일치 여부에 따라 순위를 반환한다.")
     @ParameterizedTest
     @CsvSource({
             "0, false, NOTHING",

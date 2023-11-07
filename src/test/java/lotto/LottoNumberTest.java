@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import lotto.domain.LottoNumber;
+import lotto.exception.lotto.LottoNumberRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +24,6 @@ public class LottoNumberTest {
     @ValueSource(ints = {-1, 0, 46, 99})
     void createLottoByGreaterThanMaxOrLesserThanMin(int input) {
         assertThatThrownBy(() -> LottoNumber.getInstance(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 45보다 크거나 1보다 작을수 없습니다.");
+                .isInstanceOf(LottoNumberRangeException.class);
     }
 }

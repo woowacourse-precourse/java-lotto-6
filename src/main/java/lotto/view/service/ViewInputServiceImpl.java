@@ -14,14 +14,11 @@ public class ViewInputServiceImpl implements ViewInputService {
 
     @Override
     public int inputPurchaseAmount() {
-        int res = 0;
         try {
-            res = Integer.parseInt(InputValidator.validInputPurchaseAmount(readLine()));
+            return Integer.parseInt(InputValidator.validInputPurchaseAmount(readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputPurchaseAmount();
-        } finally {
-            return res;
+            return inputPurchaseAmount();
         }
     }
 }

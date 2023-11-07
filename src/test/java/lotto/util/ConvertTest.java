@@ -69,8 +69,10 @@ public class ConvertTest {
     @DisplayName("세 자리마다 쉼표를 붙이고, 소수점 둘째 자리에서 반올림하는 조건으로 실수를 형식화한다.")
     @Test
     void formatDoubleWithCommaAndRound() {
-        String formattedDouble = Convert.formatDoubleWithCommaAndRound(1234567.47);
-
-        assertThat(formattedDouble).isEqualTo("1,234,567.5");
+        assertThat(Convert.formatDoubleWithCommaAndRound(1234567.47)).isEqualTo("1,234,567.5");
+        assertThat(Convert.formatDoubleWithCommaAndRound(1234567.44)).isEqualTo("1,234,567.4");
+        assertThat(Convert.formatDoubleWithCommaAndRound(1234567)).isEqualTo("1,234,567.0");
+        assertThat(Convert.formatDoubleWithCommaAndRound(1234560)).isEqualTo("1,234,560.0");
+        assertThat(Convert.formatDoubleWithCommaAndRound(0)).isEqualTo("0.0");
     }
 }

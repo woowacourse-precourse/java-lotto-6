@@ -55,4 +55,26 @@ class LottoTest {
             );
         }
     }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    @DisplayName("checkEachDistinct 검증 테스트")
+    class CheckEachDistinct {
+        @ParameterizedTest(name = "{0}가 입력되었을 때")
+        @MethodSource("parameterProvider")
+        void 각_원소가_중복되지_않는지_테스트(List<Integer> target) {
+            assertThatThrownBy(() -> new Lotto(target))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ExceptionMessage.NUMBER_NOT_DISTINCT);
+        }
+
+        private Stream<Arguments> parameterProvider() {
+            return Stream.of(
+                    Arguments.of(List.of(1,2,3,4,5,1)),
+                    Arguments.of(List.of(1,2,3,4,4,4)),
+                    Arguments.of(List.of(43,43,43,45,45,45))
+            );
+        }
+    }
+
 }

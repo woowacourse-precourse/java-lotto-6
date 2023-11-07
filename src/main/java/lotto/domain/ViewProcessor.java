@@ -17,7 +17,7 @@ public class ViewProcessor {
     private int cost;
     private List<Integer> winningNums;
 
-    enum finalsInputUI {
+    enum MagicNums {
 
         INIT_NUM(0),
         LOTTONUM_MIN_RANGE(0),
@@ -28,7 +28,7 @@ public class ViewProcessor {
 
         private final int value;
 
-        finalsInputUI(int value) {
+        MagicNums(int value) {
             this.value = value;
         }
 
@@ -38,13 +38,13 @@ public class ViewProcessor {
 
     }
 
-    enum StatesInputUI {
+    enum States {
         STATE_SUCESS(false),
         STATE_FALSE(true);
 
         private final boolean state;
 
-        StatesInputUI(boolean state) {
+        States(boolean state) {
             this.state = state;
         }
 
@@ -54,8 +54,8 @@ public class ViewProcessor {
     }
 
     public ViewProcessor() {
-        this.bonusNum = finalsInputUI.INIT_NUM.getValue();
-        this.cost = finalsInputUI.INIT_NUM.getValue();
+        this.bonusNum = MagicNums.INIT_NUM.getValue();
+        this.cost = MagicNums.INIT_NUM.getValue();
     }
 
     public void bonusBall() {
@@ -72,14 +72,14 @@ public class ViewProcessor {
     }
 
     public void checkExceptionWinning(int winning) {
-        if (winning < finalsInputUI.LOTTONUM_MIN_RANGE.getValue()
-                || winning > finalsInputUI.LOTTONUM_MAX_RANGE.getValue()) {
+        if (winning < MagicNums.LOTTONUM_MIN_RANGE.getValue()
+                || winning > MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
     public void checkLengthWinning(String[] parsedWinnings) {
-        if (parsedWinnings.length != finalsInputUI.LOTTO_LENGTH.getValue()) {
+        if (parsedWinnings.length != MagicNums.LOTTO_LENGTH.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }
@@ -87,8 +87,8 @@ public class ViewProcessor {
     public int checkValidBonusNum(String tempBonus) {
         try {
             int bonusNum = Integer.parseInt(tempBonus);
-            if (bonusNum >= finalsInputUI.LOTTONUM_MIN_RANGE.getValue()
-                    && bonusNum <= finalsInputUI.LOTTONUM_MAX_RANGE.getValue()) {
+            if (bonusNum >= MagicNums.LOTTONUM_MIN_RANGE.getValue()
+                    && bonusNum <= MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
                 return bonusNum;
             }
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -100,19 +100,27 @@ public class ViewProcessor {
     public void checkValidPurchase(String tempCost) {
         try {
             int invalidCost = Integer.parseInt(tempCost);
-            if (invalidCost <= finalsInputUI.PURCHASE_MIN.getValue()) {
-                throw new IllegalArgumentException(
-                        "[ERROR] 구입 금액은 " + finalsInputUI.PURCHASE_MIN.getValue() + "원 이상이여야 합니다."
-                );
-            }
-            if (invalidCost % finalsInputUI.PURCHASE_UNIT.getValue() != 0) {
-                throw new IllegalArgumentException(
-                        "[ERROR] 구입 금액은 " + finalsInputUI.PURCHASE_UNIT.getValue() + "원 단위여야 합니다."
-                );
-            }
+            checkRangePurchase(invalidCost);
+            checkUnitPurchase(invalidCost);
             cost = invalidCost;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 정수여야 합니다.");
+        }
+    }
+
+    public void checkRangePurchase(int invalidCost) {
+        if (invalidCost <= MagicNums.PURCHASE_MIN.getValue()) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 구입 금액은 " + MagicNums.PURCHASE_MIN.getValue() + "원 이상이여야 합니다."
+            );
+        }
+    }
+
+    public void checkUnitPurchase(int invalidCost) {
+        if (invalidCost % MagicNums.PURCHASE_UNIT.getValue() != 0) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 구입 금액은 " + MagicNums.PURCHASE_UNIT.getValue() + "원 단위여야 합니다."
+            );
         }
     }
 
@@ -165,13 +173,13 @@ public class ViewProcessor {
     public boolean purchase(String tempCost) {
         try {
             checkValidPurchase(tempCost);
-            int numOfLotto = cost / finalsInputUI.PURCHASE_UNIT.getValue();
+            int numOfLotto = cost / MagicNums.PURCHASE_UNIT.getValue();
             List<Lotto> publishedLottos = lottomodel.publishLotto(numOfLotto);
             userView.purchaseLog(numOfLotto, publishedLottos);
-            return StatesInputUI.STATE_SUCESS.getState();
+            return States.STATE_SUCESS.getState();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return StatesInputUI.STATE_FALSE.getState();
+            return States.STATE_FALSE.getState();
         }
     }
 

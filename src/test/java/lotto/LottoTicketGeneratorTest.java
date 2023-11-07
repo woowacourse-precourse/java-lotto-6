@@ -9,12 +9,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoGeneratorTest {
-    private LottoGenerator lottoGenerator;
+class LottoTicketGeneratorTest {
+    private LottoTicketGenerator lottoTicketGenerator;
 
     @BeforeEach
     void initialize() {
-        lottoGenerator = new LottoGenerator();
+        lottoTicketGenerator = new LottoTicketGenerator();
     }
 
     @DisplayName("구매 수량에 따라 로또를 발행한다.")
@@ -22,12 +22,12 @@ class LottoGeneratorTest {
     @ValueSource(ints = {1, 5, 15, 60, 100})
     void buyLottoWith(int purchaseQuantity) {
 
-        List<Lotto> lottoTickets = lottoGenerator.buy(purchaseQuantity);
+        List<Lotto> lottoTickets = lottoTicketGenerator.buy(purchaseQuantity);
 
         assertThat(lottoTickets).hasSize(purchaseQuantity);
 
         assertThat(lottoTickets)
                 .doesNotContainNull()
-                .allMatch(lotto -> lotto.getNumbers().size() == LottoGenerator.NUMBER_COUNT);
+                .allMatch(lotto -> lotto.getNumbers().size() == Lotto.NUMBER_COUNT);
     }
 }

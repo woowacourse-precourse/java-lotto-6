@@ -7,6 +7,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    public static final int MINIMUM_NUMBER = 1;
+    public static final int MAXIMUM_NUMBER = 45;
+    public static final int NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
@@ -15,10 +18,6 @@ public class Lotto {
     }
 
     public static Lotto generate() {
-        final int MINIMUM_NUMBER = 1;
-        final int MAXIMUM_NUMBER = 45;
-        final int NUMBER_COUNT = 6;
-
         List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(
                 MINIMUM_NUMBER, MAXIMUM_NUMBER, NUMBER_COUNT
         );

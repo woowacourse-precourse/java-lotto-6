@@ -1,11 +1,14 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProgramManager {
 	InputView inputView;
 	OutputView outputView;
+
 	ProgramManager() {
 		this.inputView = new InputView();
 		this.outputView = new OutputView();
@@ -34,13 +37,13 @@ public class ProgramManager {
 	}
 
 	void showAmount(int price) {
-		outputView.showAmount(price/1000);
+		outputView.showAmount(price / 1000);
 	}
 
 	List<Lotto> showBuyLotto(int price) {
 		List<Lotto> lottoList = new ArrayList<>();
 		LottoHost lottoHost = LottoHost.getInstance();
-		int numberOfBuyingLotto = price/1000;
+		int numberOfBuyingLotto = price / 1000;
 
 		while (numberOfBuyingLotto > 0) {
 			List<Integer> numberList = lottoHost.makeRandomLottoNumber();
@@ -50,18 +53,15 @@ public class ProgramManager {
 		}
 
 		outputView.showBuyLottoNumber(lottoList);
-
 		return lottoList;
 	}
 
 	Lotto getLottoNumber() {
 		String number = inputView.getLottoNumber();
-		String[] numberArray = number.split(",");
-		List<Integer> numberList = new ArrayList<>();
-		for(String num : numberArray) {
-			numberList.add(Integer.parseInt(num));
-		}
-		Lotto lotto = new Lotto(numberList);
+		List<String> inputList = Arrays.asList(number.split(","));
+		Lotto lotto = new Lotto(inputList.stream()
+			.map(s -> Integer.parseInt(s))
+			.collect(Collectors.toList()));
 		return lotto;
 	}
 
@@ -77,7 +77,6 @@ public class ProgramManager {
 
 	void showResult(LottoHost lottoHost, Customer customer) {
 		List<Integer> resultList = compareLotte(lottoHost, customer);
-
 		outputView.printResult(resultList);
 		outputView.printRate(calcRate(resultList, customer));
 	}
@@ -90,15 +89,14 @@ public class ProgramManager {
 	double calcRate(List<Integer> resultList, Customer customer) {
 		int prizeMoney = calcPrizeMoney(resultList);
 		int buyMoney = customer.getPrice();
-
 		return ((double)prizeMoney / (double)buyMoney) * 100;
 	}
 
 	int calcPrizeMoney(List<Integer> resultList) {
 		return resultList.get(0) * 5000
-			 + resultList.get(1) * 50000
-			 + resultList.get(2) * 1500000
-			 + resultList.get(3) * 30000000
-			 + resultList.get(4) * 2000000000;
+			+ resultList.get(1) * 50000
+			+ resultList.get(2) * 1500000
+			+ resultList.get(3) * 30000000
+			+ resultList.get(4) * 2000000000;
 	}
 }

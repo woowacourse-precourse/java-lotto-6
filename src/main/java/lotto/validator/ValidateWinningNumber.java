@@ -13,6 +13,7 @@ public class ValidateWinningNumber {
         validateEmpty(buyerInput);
         validateNumerical(tokenizer(buyerInput));
         validateNumberRange(tokenizer(buyerInput));
+        validateSize(tokenizer(buyerInput));
         validateDuplication(tokenizer(buyerInput));
     }
 
@@ -52,6 +53,21 @@ public class ValidateWinningNumber {
     private static StringTokenizer tokenizer(String buyerInput){
         StringTokenizer tokenizer=new StringTokenizer(buyerInput,",");
         return tokenizer;
+    }
+    private static void validateSize(StringTokenizer tokenizer){
+        if(isOutOfSize(tokenizer)){
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 6자리 입력 가능합니다.");
+        }
+    }
+
+    private static boolean isOutOfSize(StringTokenizer tokenizer){
+        if(tokenizer.countTokens()>6){
+            return true;
+        }
+        if(tokenizer.countTokens()<6){
+            return true;
+        }
+        return false;
     }
 
     private static void validateEmpty(String buyerInput) {

@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constants.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -43,7 +45,7 @@ public class Winning extends Input {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(noEmptyReadLine);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 쉼표(,) 이외에 입력될 수 없습니다.");
+            throw new IllegalArgumentException(WINNING_NUMBER_TYPE_ERROR);
         }
     }
 
@@ -57,7 +59,7 @@ public class Winning extends Input {
     private void checkDuplication(List<Integer> numbers) {
         Set<Integer> noDuplicationNumbers = new HashSet<>(numbers);
         if (numbers.size() != noDuplicationNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 숫자여야 합니다.");
+            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR);
         }
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constants.*;
 import static lotto.ResultCase.*;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -35,14 +36,14 @@ public class Game {
     }
 
     private void saveBuyingPrice() {
-        saveValue("구입금액을 입력해 주세요.", buyingPrice);
+        saveValue(BUYING_PRICE, buyingPrice);
     }
 
     private void giveLotto() {
         int buyingCount = buyingPrice.getBuyingCount();
-        System.out.println(buyingCount + "개를 구매했습니다.");
+        System.out.println(buyingCount + BUYING_COUNT);
         for (int i = 0; i < buyingCount; i++) {
-            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
             showLotto(uniqueNumbers);
             lottos.add(new Lotto(uniqueNumbers));
         }
@@ -58,15 +59,15 @@ public class Game {
     }
 
     private void saveWinningNumber() {
-        saveValue("당첨 번호를 입력해 주세요.", winning);
+        saveValue(WINNING_NUMBER, winning);
     }
 
     private void saveBonusNumber() {
-        saveValue("보너스 번호를 입력해 주세요.", bonus);
+        saveValue(BONUS_NUMBER, bonus);
     }
 
     private void informWinning() {
-        System.out.println("당첨 통계\n---");
+        System.out.println(WINNING_STATISTICS);
         printWinning(THREE_CORRECTNESS);
         printWinning(FOUR_CORRECTNESS);
         printWinning(FIVE_CORRECTNESS);
@@ -77,7 +78,7 @@ public class Game {
     private void printWinning(ResultCase resultCase) {
         int matchLotto = countMatchLotto(resultCase);
         result.changeResult(resultCase, matchLotto);
-        System.out.println(resultCase.getInform() + matchLotto + "개");
+        System.out.println(resultCase.getInform() + matchLotto + UNIT);
     }
 
     private int countMatchLotto(ResultCase resultCase) {
@@ -102,7 +103,7 @@ public class Game {
     }
 
     private void informRateOfReturn() {
-        System.out.println("총 수익률은 " + calculateRateOfReturn() + "%입니다.");
+        System.out.println(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT);
     }
 
     private double calculateRateOfReturn() {

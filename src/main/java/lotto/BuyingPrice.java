@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constants.*;
+
 public class BuyingPrice extends Input {
     private Integer price;
 
@@ -35,7 +37,7 @@ public class BuyingPrice extends Input {
 
     private void checkDigit(String readLine) {
         if (readLine.length() > 6) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 6자리 이하여야 합니다.");
+            throw new IllegalArgumentException(BUYING_PRICE_DIGIT_ERROR);
         }
     }
 
@@ -43,20 +45,20 @@ public class BuyingPrice extends Input {
         try {
             return Integer.parseInt(noEmptyReadLine);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력되어야 합니다.");
+            throw new IllegalArgumentException(NUMBER_TYPE_ERROR);
         }
     }
 
     @Override
     protected void checkBoundary(Integer price) {
         if (price < 1000 || price > 100000) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상, 100000원 이하여야 합니다.");
+            throw new IllegalArgumentException(BUYING_PRICE_BOUNDARY_ERROR);
         }
     }
 
     private void checkRest(Integer price) {
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(BUYING_PRICE_REST_ERROR);
         }
     }
 }

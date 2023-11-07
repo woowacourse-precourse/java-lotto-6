@@ -7,6 +7,9 @@ public class UserAmount {
     private static final int USER_AMOUNT_DIVIDE_STANDARD = 1000;
     private static final String LOTTO_USER_AMOUNT_IS_DIVIDE_BY_STANDARD_MESSAGE = "[ERROR] 로또 구입 금액은 1000으로 나누어떨어져야 합니다.";
     private static final int ALL_DIVIDE_SIGNAL_VALUE = 0;
+    private static final String USER_AMOUNT_IS_NOT_ZERO = "[ERROR] 구입 금액이 0원이 아닌 값을 입력해야 합니다.";
+    private static final int ZERO_EQUALS_VALUE = 0;
+
     private int userAmount;
 
     private UserAmount(int userAmount) {
@@ -17,6 +20,7 @@ public class UserAmount {
         validateContainsEmpty(userAmount);
         validateNumeric(userAmount);
         int amount = Integer.parseInt(userAmount);
+        validateZero(amount);
         validateDivideByStandard(amount);
         return new UserAmount(amount);
     }
@@ -47,6 +51,16 @@ public class UserAmount {
 
     private static boolean isDivideByStandard(int userAmount) {
         return userAmount % USER_AMOUNT_DIVIDE_STANDARD == ALL_DIVIDE_SIGNAL_VALUE;
+    }
+
+    private static void validateZero(int userAmount) {
+        if (isEqualsZero(userAmount)) {
+            throw new IllegalArgumentException(USER_AMOUNT_IS_NOT_ZERO);
+        }
+    }
+
+    private static boolean isEqualsZero(int userAmount) {
+        return userAmount == ZERO_EQUALS_VALUE;
     }
 
     public int getUserAmount() {

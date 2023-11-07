@@ -8,13 +8,13 @@ public class Constants {
     public static final Pattern nonDigitPattern = Pattern.compile("\\D");
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    public static final String NUM_WRONG_ERROR = ERROR_MESSAGE +"로또 번호 입력은 쉼표로 구분되어 있어야 하며, 공백을 포함하지 않아야 하며, 숫자를 입력해야 한다";
-    public static final String NUM_SIZE_ERROR= ERROR_MESSAGE+"로또 번호의 숫자 범위는 1~45까지이다.";
-    public static final String NUM_DUPLICATE_EORROR = ERROR_MESSAGE+"중복된 로또 번호는 허용하지 않습니다.";
-    public static final String NUM_COUNT_ERROR = ERROR_MESSAGE+"로또 당첨 번호는 6개를 입력해야 합니다.";
-    public static final String NUM_IS_INT = ERROR_MESSAGE+"숫자를 입력하세요.";
-    public static final String COST_ERROR = ERROR_MESSAGE +"1000원 단위의 입력만 가능합니다.";
-    public static final String COST_WRONG_ERROR= ERROR_MESSAGE + "음수가 아닌 양수를 입력해 주십시오";
+    public static final String NUM_WRONG_ERROR = ERROR_MESSAGE +" 로또 번호 입력은 쉼표로 구분되어 있어야 하며, 공백을 포함하지 않아야 하며, 숫자를 입력해야 한다";
+    public static final String NUM_SIZE_ERROR= ERROR_MESSAGE+" 로또 번호의 숫자 범위는 1~45까지이다.";
+    public static final String NUM_DUPLICATE_EORROR = ERROR_MESSAGE+" 중복된 로또 번호는 허용하지 않습니다.";
+    public static final String NUM_COUNT_ERROR = ERROR_MESSAGE+" 로또 당첨 번호는 6개를 입력해야 합니다.";
+    public static final String NUM_IS_INT = ERROR_MESSAGE+" 숫자를 입력하세요.";
+    public static final String COST_ERROR = ERROR_MESSAGE +" 1000원 단위의 입력만 가능합니다.";
+    public static final String COST_WRONG_ERROR= ERROR_MESSAGE + " 음수가 아닌 양수를 입력해 주십시오";
 
     public static final int MIN_NUM = 1;
     public static final int MAX_NUM = 45;

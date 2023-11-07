@@ -20,18 +20,18 @@ public class WinningNumberValidator {
     }
 
     public void checkBonusNumber(List<Integer> lotto, String bonusNumber) {
-        // 숫자인지 validate하는 함수
+        checkBonusNumberIsNumber(bonusNumber);
 
         checkBonusDuplicate(lotto, Integer.parseInt(bonusNumber));
     }
 
     public void checkLottoNumberValid(String lotto) {
         if(!lotto.contains(",")) {
-            System.out.printf(constants.LOTTO_NUMBER_NOT_VALID_ERROR);
+            System.out.printf(constants.WINNING_NUMBER_NOT_VALID_ERROR);
             throw new IllegalArgumentException();
         }
         if(Arrays.asList(lotto.split(",")).size() != constants.LOTTO_NUMBER) {
-            System.out.printf(constants.LOTTO_NUMBER_NOT_SIX_ERROR);
+            System.out.printf(constants.WINNING_NUMBER_NOT_SIX_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -43,7 +43,7 @@ public class WinningNumberValidator {
                 Integer.parseInt(lottoNumber);
             }
             catch(NumberFormatException e) {
-                System.out.printf(constants.LOTTO_NUMBER_NOT_NUMBER_ERROR);
+                System.out.printf(constants.WINNING_NUMBER_NOT_NUMBER_ERROR);
                 throw new IllegalArgumentException();
             }
         }
@@ -63,7 +63,17 @@ public class WinningNumberValidator {
             if(lottoNumber >= constants.LOTTO_NUMBER_MIN && lottoNumber <= constants.LOTTO_NUMBER_MAX) {
                 continue;
             }
-            System.out.printf(constants.LOTTO_NUMBER_RANGE_ERROR);
+            System.out.printf(constants.WINNING_NUMBER_RANGE_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkBonusNumberIsNumber(String bonusNumber) {
+        try{
+            Integer.parseInt(bonusNumber);
+        }
+        catch(NumberFormatException e) {
+            System.out.printf(constants.BONUS_NUMBER_NOT_NUMBER_ERROR);
             throw new IllegalArgumentException();
         }
     }

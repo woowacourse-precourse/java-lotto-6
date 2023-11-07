@@ -15,12 +15,13 @@ public class Constants {
     public static final String LOTTO_PRICE_NOT_POSITIVE_ERROR = "[ERROR] 로또 구입 금액은 양수만 입력하세요.\n\n";
     public static final String LOTTO_PRICE_NOT_DIVIDED_ERROR = "[ERROR] 로또 구입 금액은 1000원 단위로 입력하세요.\n\n";
 
-    public static final String LOTTO_NUMBER_NOT_VALID_ERROR = "[ERROR] 올바른 로또 입력 형식이 아닙니다.\n";
-    public static final String LOTTO_NUMBER_NOT_SIX_ERROR = "[ERROR] 로또는 6개의 번호를 입력해야 합니다.\n";
-    public static final String LOTTO_NUMBER_NOT_NUMBER_ERROR = "[ERROR] 로또 번호는 정수만 입력하세요.\n";
-    public static final String LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45까지만 입력하세요.\n";
+    public static final String WINNING_NUMBER_NOT_VALID_ERROR = "[ERROR] 올바른 로또 입력 형식이 아닙니다.\n";
+    public static final String WINNING_NUMBER_NOT_SIX_ERROR = "[ERROR] 로또는 6개의 번호를 입력해야 합니다.\n";
+    public static final String WINNING_NUMBER_NOT_NUMBER_ERROR = "[ERROR] 로또 번호는 정수만 입력하세요.\n";
+    public static final String WINNING_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45까지만 입력하세요.\n";
     public static final String WINNING_NUMBER_DUPLICATED_ERROR = "[ERROR] 로또 번호는 중복이 될 수 없습니다.\n";
 
+    public static final String BONUS_NUMBER_NOT_NUMBER_ERROR = "[ERROR] 보너스 번호는 숫자만 입력하세요.\n";
     public static final String BONUS_NUMBER_DUPLICATED_ERROR = "[ERROR] 보너스 숫자는 로또 번호 중복이 될 수 없습니다.\n";
 
 }

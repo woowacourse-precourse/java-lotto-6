@@ -4,6 +4,9 @@ import lotto.validation.LottoNumberValidator;
 
 import java.util.List;
 
+import static lotto.message.ErrorMessage.ERROR_MESSAGE_HEAD;
+import static lotto.message.ErrorMessage.INVALID_NUMBER_SIZE_EXCEPTION;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -14,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + INVALID_NUMBER_SIZE_EXCEPTION + numbers.size());
         }
 
         LottoNumberValidator.validateDuplicateNumbers(numbers);

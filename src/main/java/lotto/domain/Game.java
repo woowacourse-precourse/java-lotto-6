@@ -20,28 +20,45 @@ public class Game {
     }
 
     public void start() {
-        Writer.purchaseAmount();
-        purchaseAmount = Reader.purchaseAmount();
-        issuance(purchaseAmount);
+        setLottos();
         Writer.lottos(lottos);
-        Writer.winningNumbers();
-        List<Integer> winningNumbers = Reader.winningNumbers();
-        setWinningNumbers(winningNumbers);
-        Writer.bonusNumbers();
-        Integer bonusNumber = Reader.bonusNumber();
-        setBonusNumber(bonusNumber);
+        setWinningNumbers();
+        setBonusNumber();
         setResult();
         Writer.result(result);
-        rateOfReturn = calculateRateOfReturn();
+        setRateOfReturn();
         Writer.rateOfReturn(rateOfReturn);
     }
 
-    private Double calculateRateOfReturn() {
+    private void setLottos() {
+        try {
+            Writer.purchaseAmount();
+            purchaseAmount = Reader.purchaseAmount();
+            issuance(purchaseAmount);
+        } catch (IllegalArgumentException exception) {
+            Writer.exception(exception);
+            setLottos();
+        }
+    }
+
+    private void setBonusNumber() {
+        try {
+            Writer.bonusNumbers();
+            Integer bonusNumber = Reader.bonusNumber();
+            validator.validateBonusNumber(winningNumbers, bonusNumber);
+            this.bonusNumber = bonusNumber;
+        } catch (IllegalArgumentException exception) {
+            Writer.exception(exception);
+            setBonusNumber();
+        }
+    }
+
+    private void setRateOfReturn() {
         Integer revenue = 0;
         for (Grade grade : result.keySet()) {
             revenue += result.get(grade) * grade.getPrice();
         }
-        return ((double) revenue / purchaseAmount)*100;
+        rateOfReturn = ((double) revenue / purchaseAmount) * 100;
     }
 
     public void issuance(Integer purchaseAmount) {
@@ -53,13 +70,15 @@ public class Game {
         result = lottos.grade(winningNumbers, bonusNumber);
     }
 
-    private void setWinningNumbers(List<Integer> winningNumbers) {
-        validator.validateWinningNumbers(winningNumbers);
-        this.winningNumbers = winningNumbers;
-    }
-
-    private void setBonusNumber(Integer bonusNumber) {
-        validator.validateBonusNumber(winningNumbers, bonusNumber);
-        this.bonusNumber = bonusNumber;
+    private void setWinningNumbers() {
+        try {
+            Writer.winningNumbers();
+            List<Integer> winningNumbers = Reader.winningNumbers();
+            validator.validateWinningNumbers(winningNumbers);
+            this.winningNumbers = winningNumbers;
+        } catch (IllegalArgumentException exception) {
+            Writer.exception(exception);
+            setWinningNumbers();
+        }
     }
 }

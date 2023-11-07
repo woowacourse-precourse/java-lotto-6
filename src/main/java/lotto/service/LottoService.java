@@ -22,7 +22,7 @@ public class LottoService {
     }
 
     public void buyLottoAll(User user) {
-        int purchaseAmount = user.getPurchaseAmount();
+        int purchaseAmount = user.getPurchaseAmount().getAmount();
         int lottoCount = purchaseAmount / 1000;
 
         IntStream.range(0, lottoCount)

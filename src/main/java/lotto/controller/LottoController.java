@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoData;
@@ -8,7 +9,6 @@ import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.utils.InputProcessor;
 import lotto.utils.Validation;
-import lotto.view.ExceptionMessages;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -39,7 +39,7 @@ public class LottoController {
         try {
             outputView.getInputAmount();
             int purchaseAmount = inputProcessor.getUserInputPurchaseAmount();
-            user = new User(purchaseAmount);
+            user = new User(new Amount(purchaseAmount));
             lottoService.buyLottoAll(user);
             printBuyLotto();
         } catch (IllegalArgumentException e) {
@@ -48,7 +48,7 @@ public class LottoController {
     }
 
     private void printBuyLotto() {
-        outputView.printLottoCount(user.getPurchaseAmount() / 1_000);
+        outputView.printLottoCount(user.getPurchaseAmount().getAmount() / 1_000);
         for (Lotto lotto : user.getLottos()) {
             outputView.printLottoNumbers(lotto.getNumbers());
         }

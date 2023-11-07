@@ -13,7 +13,7 @@ class LottoWinningNumbersTest {
     void calculateWinningNumberCount() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 5, 6), 7);
 
         // when
         int result = winningNumbers.calculateWinningNumberCount(lotto);
@@ -29,7 +29,7 @@ class LottoWinningNumbersTest {
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, bonusNumber));
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 6), bonusNumber);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 5, 6), bonusNumber);
 
         // when
         boolean result = winningNumbers.matchesBonusNumber(lotto);
@@ -45,7 +45,7 @@ class LottoWinningNumbersTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         int bonusNumber = 7;
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers(List.of(1, 2, 3, 4, 5, 6), bonusNumber);
+        LottoWinningNumbers winningNumbers = LottoWinningNumbers.of(List.of(1, 2, 3, 4, 5, 6), bonusNumber);
 
         // when
         boolean result = winningNumbers.matchesBonusNumber(lotto);

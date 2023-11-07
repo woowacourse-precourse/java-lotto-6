@@ -9,8 +9,9 @@ import java.text.NumberFormat;
 
 public class LottoFormatter {
 
+    private static final NumberFormat numberFormat = NumberFormat.getNumberInstance();
+
     public static String getStatisticsFormat(Matching matching, int count) {
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
         return String.format(
                 "%s (%s원) - %d개",
                 matching.getMatchingNumber(),

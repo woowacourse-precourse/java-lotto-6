@@ -78,8 +78,8 @@ public class Round {
 
         winningAmount.put(5_000, winCnts.stream().filter(num -> num == 3).count());
         winningAmount.put(50_000, winCnts.stream().filter(num -> num == 4).count());
-        winningAmount.put(1_500_000, containBonusCnt);
-        winningAmount.put(30_000_000, notContainBonusCnt);
+        winningAmount.put(1_500_000, notContainBonusCnt);
+        winningAmount.put(30_000_000, containBonusCnt);
         winningAmount.put(2_000_000_000, winCnts.stream().filter(num -> num == 6).count());
 
         return winningAmount;

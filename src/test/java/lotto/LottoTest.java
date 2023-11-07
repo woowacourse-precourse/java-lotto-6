@@ -128,7 +128,7 @@ class LottoTest {
     @DisplayName("보너스 포함 여부를 반영하여 당첨 개수를 카운트한다.")
     @Test
     void judgeWithBonusNumber() {
-        List<Integer> winCnts = Arrays.asList(4, 5, 5, 2, 6);
+        List<Integer> winCnts = Arrays.asList(4, 5, 5, 5, 6);
         List<Boolean> containsBonus = Arrays.asList(false, false, true, true, true);
 
         long containBonusCnt = (int) (IntStream.range(0, winCnts.size())
@@ -140,8 +140,8 @@ class LottoTest {
         // 조건에 맞게 각 개수를 카운트
         assertThat(winCnts.stream().filter(num -> num == 3).count()).isEqualTo(0);
         assertThat(winCnts.stream().filter(num -> num == 4).count()).isEqualTo(1);
-        assertThat(containBonusCnt).isEqualTo(1);
         assertThat(notContainBonusCnt).isEqualTo(1);
+        assertThat(containBonusCnt).isEqualTo(2);
         assertThat(winCnts.stream().filter(num -> num == 6).count()).isEqualTo(1);
     }
 

@@ -11,6 +11,7 @@ import lotto.view.InputBonusNumberView;
 import static lotto.view.OutputNumberOfBoughtLottoView.printBoughtLottos;
 import static lotto.view.OutputLottoNumbersView.printLottos;
 import static lotto.view.OutputLottoResultsView.printResults;
+import static lotto.view.OutputReturnRateView.printReturnRate;
 
 public class LottoController {
 
@@ -27,6 +28,7 @@ public class LottoController {
 
         printResults(scoreResult);
         ReturnRate rate = getReturnRate(scoreResult, lotto);
+        printReturnRate(rate);
 
     }
 

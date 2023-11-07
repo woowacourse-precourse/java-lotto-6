@@ -19,10 +19,9 @@ class ProfitCalculatorTest {
         //given
         List<LottoRank> lottoRanks = new ArrayList<>(Arrays.asList(LottoRank.FIFTH_RANK, LottoRank.FORTH_RANK));
         LottoResult lottoResult = new LottoResult(lottoRanks);
-        ProfitCalculator profitCalculator = new ProfitCalculator();
 
         //when
-        int result = profitCalculator.calculateProfit(lottoResult);
+        int result = ProfitCalculator.calculateProfit(lottoResult);
 
         //then
         assertThat(result).isEqualTo(55000);
@@ -33,10 +32,9 @@ class ProfitCalculatorTest {
     @DisplayName("로또 수익률 계산")
     void calculateProfitMargin(int profit, int amount, double expected) {
         //given
-        ProfitCalculator profitCalculator = new ProfitCalculator();
 
         //when
-        double result = profitCalculator.calculateProfitMargin(profit, amount);
+        double result = ProfitCalculator.calculateProfitMargin(profit, amount);
 
         //then
         assertThat(result).isEqualTo(expected);

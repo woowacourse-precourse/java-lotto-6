@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -34,6 +35,13 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public void printNumbers() {
+        String joinNumbers = numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+        System.out.println("[" + joinNumbers + "]");
     }
 
     public Rank checkLottoWinningRank(List<Integer> winningNumbers, Integer bonusNumber) {

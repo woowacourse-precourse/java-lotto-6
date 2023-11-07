@@ -12,6 +12,7 @@ public class Input {
         String amountStr = Console.readLine();
         validateDigit(amountStr);
         int amount = Integer.parseInt(amountStr);
+        validateOverZero(amount);
         validateAmountInThousands(amount);
         return amount;
     }

@@ -3,7 +3,8 @@
 ## 입력
 1. 구입금액 입력
    - 1000원으로 나누어 구입 개수 계산
-   - 1000원 단위가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
+     - 1000원 단위가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
+     - 구입금액이 0원 미만일 경우 `IllegalArgumentException`를 발생시킨다.
    - (Lotto)로또 번호에 중복 숫자가 있을 경우 `IllegalArgumentException`를 발생시킨다.
    - (Lotto)번호가 1~45 사이가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
 2. 당첨 번호 입력

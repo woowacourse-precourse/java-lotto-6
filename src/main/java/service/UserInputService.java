@@ -1,7 +1,6 @@
 package service;
 
 import static util.ErrorMessage.ONLY_INPUT_NUMBER;
-import static util.Split.INPUT_SEPERATOR;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.Amount;
@@ -12,6 +11,7 @@ import java.util.List;
 
 public class UserInputService {
 
+    private static final String SEPERATOR = ",";
     private static String input() {
         return Console.readLine();
     }
@@ -39,7 +39,7 @@ public class UserInputService {
         Lotto lotto = null;
 
         while (true) {
-            if (checkIsNumberList(input().split(INPUT_SEPERATOR.get()), numbers)) {
+            if (checkIsNumberList(input().split(SEPERATOR), numbers)) {
                 lotto = MakeObjectService.lotto(numbers);
             }
 

@@ -5,7 +5,6 @@ import static util.LottoRankNumber.FIRST;
 import static util.LottoRankNumber.SECOND;
 import static util.LottoValidationValue.LOTTO_PRICE;
 import static util.ProgressMessage.OUTPUT_BUY_NUMBER;
-import static util.RoundingOff.SECOND_DECIMAL;
 import static util.WinningStatisticsMessage.BAR;
 import static util.WinningStatisticsMessage.COUNT_RANK;
 import static util.WinningStatisticsMessage.COUNT_RANK_WITH_BONUS;
@@ -23,6 +22,8 @@ import service.EnumToList;
 
 public class OuputView {
 
+    private static final int PERCENTAGE = 100;
+    private static final double FOR_ROUND_OFF = 100;
     public static void buyMessage(Amount amount) {
         amount.printAmount();
         System.out.println(OUTPUT_BUY_NUMBER.get());
@@ -76,7 +77,7 @@ public class OuputView {
     }
 
     private static double calculateRateOfReturn(int revenue, Amount amount) {
-        double result = ((double)revenue / (amount.getAmount() * LOTTO_PRICE.get())) * 100;
-        return Math.round(result * SECOND_DECIMAL.get()) / SECOND_DECIMAL.get();
+        double result = ((double)revenue / (amount.getAmount() * LOTTO_PRICE.get())) * PERCENTAGE;
+        return Math.round(result * FOR_ROUND_OFF) / FOR_ROUND_OFF;
     }
 }

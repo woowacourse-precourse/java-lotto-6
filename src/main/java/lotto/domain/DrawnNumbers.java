@@ -20,7 +20,7 @@ public class DrawnNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public DrawnNumbers from(DrawnNumbersDto drawnNumbersDto) {
+    public static DrawnNumbers from(DrawnNumbersDto drawnNumbersDto) {
         return new DrawnNumbers(drawnNumbersDto.getWinningNumbers(), drawnNumbersDto.getBonusNumber());
     }
 

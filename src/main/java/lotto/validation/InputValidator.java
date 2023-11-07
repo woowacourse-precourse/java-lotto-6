@@ -43,7 +43,7 @@ public class InputValidator {
     private static void validateIsNumberSeparatedByComma(String input) {
         String[] numbers = Convertor.splitByComma(input);
         boolean hasNonNumber = Arrays.stream(numbers)
-                .anyMatch(number -> RegexPattern.NOT_NUMBER.matches(input));
+                .anyMatch(number -> RegexPattern.NOT_NUMBER.matches(number));
         if (hasNonNumber) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
         }

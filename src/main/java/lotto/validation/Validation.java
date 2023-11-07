@@ -25,20 +25,20 @@ public class Validation {
         }
     }
 
-    public void checkWinningLottoRange(List<Integer> lottos) {
+    private void checkWinningLottoRange(List<Integer> lottos) {
         for (Integer lotto : lottos) {
             if (lotto <= 0 || lotto > 45)
                 throw new IllegalArgumentException("[ERROR] 당첨 번호를 0 ~ 45 사이에서 입력해 주세요.");
         }
     }
 
-    public void checkWinningLottoSize(List<Integer> lottos) {
+    private void checkWinningLottoSize(List<Integer> lottos) {
         if (lottos.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력해 주세요.");
         }
     }
 
-    public void checkWinningLottoDuplicate(List<Integer> lottos) {
+    private void checkWinningLottoDuplicate(List<Integer> lottos) {
         Set<Integer> winningSizeCheck = new HashSet<>(lottos);
         if (winningSizeCheck.size() != 6)
             throw new IllegalArgumentException("[ERROR] 서로 다른 6개의 당첨 번호를 입력해 주세요.");
@@ -52,12 +52,12 @@ public class Validation {
         }
     }
 
-    public void checkBonusNumDuplicate(List<Integer> lotts, int bonus) {
+    private void checkBonusNumDuplicate(List<Integer> lotts, int bonus) {
         if (lotts.contains(bonus))
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함되어 있지 않은 번호를 보너스 번호로 입력해 주세요.");
     }
 
-    public void checkBonusNumRange(int bonus) {
+    private void checkBonusNumRange(int bonus) {
         if (bonus <= 0 || bonus > 45)
             throw new IllegalArgumentException("[ERROR] 보너스 번호를 0 ~ 45 사이에서 입력해 주세요.");
     }

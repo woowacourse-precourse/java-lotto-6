@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-public class WinLotto {
+public class Matching {
     public enum Mactching {
         ALL(6, 2000000000),
         FIVE_BONUS(5, 30000000),
@@ -32,7 +32,7 @@ public class WinLotto {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public Matching(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;

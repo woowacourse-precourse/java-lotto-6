@@ -1,25 +1,24 @@
 package lotto.View;
 
-import camp.nextstep.edu.missionutils.Console;
 
 public class error {
     public static void not_valid_purchaseAmount() {
-        System.out.println("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        System.out.println(errorText.NOT_VALID_PURCHASE_AMOUNT);
     }
     public static void NAN() {
-        System.out.println("[ERROR] 유효한 숫자를 입력하세요.");
+        System.out.println(errorText.NAN);
     }
     public static void duplicate_winningNumber() {
-        System.out.println("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        System.out.println(errorText.DUPLICATE_WINNING_NUMBER);
     }
 
     public static void not_valid_winningNumber() {
-        System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        System.out.println(errorText.NOT_VALID_WINNING_NUMBER);
     }
     public static void not_valid_bonusNumber() {
-        System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        System.out.println(errorText.NOT_VALID_BONUS_NUMBER);
     }
     public static void not_valid_winningNumber_length() {
-        System.out.println("[ERROR] 로또 번호는 6개여야 합니다.");
+        System.out.println(errorText.NOT_VALID_WINNING_NUMBER_LENGTH);
     }
 }

@@ -12,7 +12,7 @@ class BonusNumberTest {
         Lotto lotto = Converter.stringToLotto(numbers);
         int inputBonusNumber = 5;
 
-        Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber,lotto))
+        Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("중복");
     }
@@ -24,7 +24,7 @@ class BonusNumberTest {
         Lotto lotto = Converter.stringToLotto(numbers);
         int inputBonusNumber = -1;
 
-        Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber,lotto))
+        Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1부터 45");
     }

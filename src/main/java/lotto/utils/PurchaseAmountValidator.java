@@ -25,4 +25,5 @@ public class PurchaseAmountValidator {
             throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_UNIT_ERROR_MESSAGE);
         }
     }
+
 }

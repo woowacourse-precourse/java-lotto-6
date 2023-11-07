@@ -15,7 +15,7 @@ public class MainController {
 
     Calculator calculator;
 
-    public MainController(){
+    public MainController() {
         this.calculator = new Calculator();
     }
 

@@ -10,14 +10,14 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber,Lotto mainNumbers) {
-        validateBonusNumber(bonusNumber,mainNumbers);
+    public BonusNumber(int bonusNumber, Lotto mainNumbers) {
+        validateBonusNumber(bonusNumber, mainNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateBonusNumber(int bonusNumber,Lotto mainNumbers) {
+    public void validateBonusNumber(int bonusNumber, Lotto mainNumbers) {
         validateNumberRange(bonusNumber);
-        validateDuplicate(bonusNumber,mainNumbers);
+        validateDuplicate(bonusNumber, mainNumbers);
     }
 
     private void validateNumberRange(int bonusNumber) {
@@ -26,7 +26,7 @@ public class BonusNumber {
         }
     }
 
-    private void validateDuplicate(int bonusNumber,Lotto mainNumbers) {
+    private void validateDuplicate(int bonusNumber, Lotto mainNumbers) {
         if (mainNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + DUPLICATE_ERROR);
         }
@@ -35,4 +35,5 @@ public class BonusNumber {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
 }

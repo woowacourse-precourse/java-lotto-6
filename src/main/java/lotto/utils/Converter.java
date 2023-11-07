@@ -10,21 +10,22 @@ import lotto.domain.Lotto;
 
 public class Converter {
 
-    private Converter(){
+    private Converter() {
 
     }
-    public static Lotto stringToLotto(String inputValue){
+
+    public static Lotto stringToLotto(String inputValue) {
         List<Integer> numbers = stringListToIntegerList(stringToList(inputValue));
         return new Lotto(numbers);
     }
 
-    public static List<Integer> stringListToIntegerList(List<String> inputValue){
+    public static List<Integer> stringListToIntegerList(List<String> inputValue) {
         return inputValue.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public static List<String> stringToList(String inputValue){
+    public static List<String> stringToList(String inputValue) {
         return new ArrayList<>(List.of(inputValue.split(",")));
     }
 
@@ -48,7 +49,7 @@ public class Converter {
         return numbers;
     }
 
-    public static String deleteSpace(String input){
+    public static String deleteSpace(String input) {
         String replaceValue = input.replace(" ", "");
         return replaceValue;
     }

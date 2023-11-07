@@ -11,13 +11,13 @@ import lotto.view.OutView;
 
 public class OutputController {
 
-    public void orderPrintTicketQuantity(int ticketQuantity){
+    public void orderPrintTicketQuantity(int ticketQuantity) {
         OutView.printTicketQuantity(ticketQuantity);
     }
 
     public void orderPrintConsumerLottos(ArrayList<Lotto> consumerLottos) {
         OutView.printWinningStaticInfoMessage();
-        for(Lotto consumerLotto : consumerLottos){
+        for (Lotto consumerLotto : consumerLottos) {
             List<String> numbers = Converter.lottoToString(consumerLotto);
             String outputConsumerNumbers = String.join(", ", numbers);
             OutView.printConsumerLottos(outputConsumerNumbers);
@@ -25,16 +25,16 @@ public class OutputController {
     }
 
     public void orderPrintRanking(Map<Ranking, Integer> result) {
-        for(Map.Entry<Ranking,Integer> eachRank : result.entrySet()){
+        for (Map.Entry<Ranking, Integer> eachRank : result.entrySet()) {
             printWithoutNone(eachRank);
         }
     }
 
     private static void printWithoutNone(Entry<Ranking, Integer> eachRank) {
-        if(eachRank.getKey() !=Ranking.None){
+        if (eachRank.getKey() != Ranking.None) {
             Ranking ranking = eachRank.getKey();
             int numbersOfWinning = eachRank.getValue();
-            OutView.printRanking(ranking.getMessage(),numbersOfWinning);
+            OutView.printRanking(ranking.getMessage(), numbersOfWinning);
         }
     }
 

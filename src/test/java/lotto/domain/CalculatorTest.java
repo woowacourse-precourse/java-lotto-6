@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static lotto.utils.constants.LottoConstants.LOTTO_TICKET_PRICE;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,13 +18,13 @@ class CalculatorTest {
     List<Ranking> rankingList;
 
     @BeforeEach
-    void setUp(){
-        Integer[] numbers = {1,3,5,7,9,11};
-        int bonusNumber = 40;
+    void setUp() {
+        Integer[] numbers = {1, 3, 5, 7, 9, 11};
         Lotto winningLotto = new Lotto(Arrays.asList(numbers));
-        winningNumbers = new WinningNumbers(winningLotto,bonusNumber);
+        BonusNumber bonusNumber = new BonusNumber(40, winningLotto);
+        winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
         Integer[] firstNumbers = new Integer[]{1, 3, 5, 7, 9, 11};
-        Integer[]secondNumbers = new Integer[]{1, 3, 5, 7, 9, 40};
+        Integer[] secondNumbers = new Integer[]{1, 3, 5, 7, 9, 40};
         Integer[] thirdNumbers = new Integer[]{1, 3, 5, 7, 9, 30};
         Integer[] fourthNumbers = new Integer[]{1, 3, 5, 7, 10, 20};
         Integer[] fifthNumbers = new Integer[]{1, 3, 5, 10, 20, 30};
@@ -40,35 +39,35 @@ class CalculatorTest {
         testNumbers.add(firstNumbers);
 
         testNumbers.stream()
-                .forEach((lotto)->winningLottos.add(new Lotto(Arrays.asList(lotto))));
+                .forEach((lotto) -> winningLottos.add(new Lotto(Arrays.asList(lotto))));
 
         rankingList = Arrays.asList(Ranking.values());
     }
 
 
     @Test
-    void 등수_반환_테스트(){
+    void 등수_반환_테스트() {
         Calculator calculator = new Calculator();
-        for(int i=0;i<winningLottos.size();i++){
+        for (int i = 0; i < winningLottos.size(); i++) {
             Ranking ranking = calculator.calculateRanking(winningLottos.get(i), winningNumbers);
             Assertions.assertThat(ranking).isEqualTo(rankingList.get(i));
         }
     }
 
     @Test
-    void 수익률_반환_테스트(){
+    void 수익률_반환_테스트() {
         Calculator calculator = new Calculator();
-        Map<Ranking,Integer> board= new TreeMap<>();
-        board.put(Ranking.None,10);
-        board.put(Ranking.Fifth,3);
-        board.put(Ranking.Fourth,2);
-        board.put(Ranking.Third,1);
-        board.put(Ranking.Second,0);
-        board.put(Ranking.First,0);
+        Map<Ranking, Integer> board = new TreeMap<>();
+        board.put(Ranking.None, 10);
+        board.put(Ranking.Fifth, 3);
+        board.put(Ranking.Fourth, 2);
+        board.put(Ranking.Third, 1);
+        board.put(Ranking.Second, 0);
+        board.put(Ranking.First, 0);
 
         float returnOfRate = calculator.calculateReturnOfRate(board, 16);
         int totalReward = Ranking.Fifth.getReward() * 3 + Ranking.Fourth.getReward() * 2 + Ranking.Third.getReward();
-        float answer = (float) totalReward/(16*LOTTO_TICKET_PRICE)*100;
+        float answer = (float) totalReward / (16 * LOTTO_TICKET_PRICE) * 100;
 
         Assertions.assertThat(returnOfRate).isEqualTo(answer);
     }

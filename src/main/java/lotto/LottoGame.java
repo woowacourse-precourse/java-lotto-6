@@ -15,11 +15,11 @@ public class LottoGame {
     OutputController outputController;
     MainController mainController;
 
-        public LottoGame() {
-            this.inputController = new InputController();
-            this.outputController = new OutputController();
-            this.mainController = new MainController();
-        }
+    public LottoGame() {
+        this.inputController = new InputController();
+        this.outputController = new OutputController();
+        this.mainController = new MainController();
+    }
 
     public void run() {
         int ticketQuantity = inputController.settingTicketQuantity();
@@ -33,7 +33,7 @@ public class LottoGame {
         Map<Ranking, Integer> resultBoard = mainController.getRankingResult(consumerLottos, winningNumbers);
         outputController.orderPrintRanking(resultBoard);
 
-        float returnOfRate = mainController.getReturnOfRate(resultBoard,ticketQuantity);
+        float returnOfRate = mainController.getReturnOfRate(resultBoard, ticketQuantity);
         outputController.orderPrintReturnOfRate(returnOfRate);
     }
 

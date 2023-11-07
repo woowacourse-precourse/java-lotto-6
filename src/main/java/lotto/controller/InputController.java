@@ -33,7 +33,7 @@ public class InputController {
         Lotto mainNumbers = settingMainNumbers();
         BonusNumber bonusNumber = settingBonusNumber(mainNumbers);
 
-        WinningNumbers winningNumbers = new WinningNumbers(mainNumbers,bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
         return winningNumbers;
     }
 

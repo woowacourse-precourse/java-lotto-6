@@ -1,13 +1,13 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.domain.LottoNumbersGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class LottoNumbersGeneratorTest {
 
     LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator();
+
     @Test
     void 로또_번호_6개_생성_테스트() {
         //given

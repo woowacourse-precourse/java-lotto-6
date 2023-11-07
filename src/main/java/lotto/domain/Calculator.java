@@ -27,7 +27,7 @@ public class Calculator {
     private static Ranking getRanking(int correctMainNumbersCount, boolean isNeedCheckBonusNumber) {
         Ranking result = Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking.getCorrectCount() == correctMainNumbersCount)
-                .filter(ranking -> ranking.getNeedToCorrectBonusNumber()== isNeedCheckBonusNumber)
+                .filter(ranking -> ranking.getNeedToCorrectBonusNumber() == isNeedCheckBonusNumber)
                 .findAny()
                 .orElse(None);
         return result;

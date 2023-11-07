@@ -28,6 +28,7 @@ public class WinningNumber {
 
     private static void validateBonusNumber(List<Integer> lotto, int bonus) {
         Validator.validateInputRange(bonus);
+        Validator.validateBonusNumberInLotto(lotto, bonus);
     }
 
     private static List<Integer> stringToIntList(String numbers) {

@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import common.Convert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -90,13 +91,13 @@ public class LottoService {
         return matchNumberCount;
     }
 
-    public int calculateRevenueRate(int buyAmount, Map<Rank, Integer> lottoResult) {
-        int totalRevenue = 0;
+    public String calculateRevenueRate(int buyAmount, Map<Rank, Integer> lottoResult) {
+        double totalRevenue = 0;
         Iterator<Rank> keys = lottoResult.keySet().iterator();
         while (keys.hasNext()) {
             Rank rank = keys.next();
             totalRevenue += lottoResult.get(rank) * rank.reward;
         }
-        return totalRevenue / buyAmount * 1000;
+        return Convert.formatWithCommaAndRound((totalRevenue / (buyAmount * 1000)) * 100);
     }
 }

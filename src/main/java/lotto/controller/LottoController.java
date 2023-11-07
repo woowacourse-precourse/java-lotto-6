@@ -33,6 +33,7 @@ public class LottoController {
         int bonusNumber = InputView.getBonusNumber(winningNumber);
         Map<Rank, Integer> lottoResult = lottoService.calculateResult(userLottos, winningNumber, bonusNumber);
         OutputView.printLottoResult(lottoResult);
-        int revenue = lottoService.calculateRevenueRate(buyAmount, lottoResult);
+        String revenueRate = lottoService.calculateRevenueRate(buyAmount, lottoResult);
+        OutputView.printRevenueRate(revenueRate);
     }
 }

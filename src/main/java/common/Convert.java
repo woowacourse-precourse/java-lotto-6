@@ -1,5 +1,6 @@
 package common;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -22,5 +23,9 @@ public class Convert {
             winningNumber.add(stringToInteger(st.nextToken()));
         }
         return winningNumber;
+    }
+
+    public static String formatWithCommaAndRound(double revenueRate) {
+        return new DecimalFormat("#,###.#").format(revenueRate);
     }
 }

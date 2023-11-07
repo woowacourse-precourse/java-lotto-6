@@ -16,7 +16,7 @@ public class OutputView {
     private static final String THIRD_MESSAGE = "5개 일치 (1,500,000원) - %d개\n";
     private static final String SECOND_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
-
+    private static final String REVENUE_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
     public static void printBuyPrice() {
         System.out.println(BUY_PRICE_MESSAGE);
     }
@@ -46,5 +46,9 @@ public class OutputView {
         System.out.printf(THIRD_MESSAGE, lottoResult.get(Rank.Third));
         System.out.printf(SECOND_MESSAGE, lottoResult.get(Rank.Second));
         System.out.printf(FIRST_MESSAGE, lottoResult.get(Rank.First));
+    }
+
+    public static void printRevenueRate(String revenueRate) {
+        System.out.printf(REVENUE_RATE_MESSAGE, revenueRate);
     }
 }

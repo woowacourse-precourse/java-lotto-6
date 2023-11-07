@@ -7,17 +7,17 @@ import lotto.view.LottoView;
 public class PurchaseController {
     private LottoView lottoView = new LottoView();
 
-    public int runPurchaseAmount(){
+    public PurchaseAmount runPurchaseAmount(){
         return processPurchaseAmount();
     }
-    public int processPurchaseAmount(){
+    public PurchaseAmount processPurchaseAmount(){
         String purchaseNum;
-        int amount;
+        PurchaseAmount amount;
         while(true){
             try{
                 purchaseNum = getPurchaseAmount();
                 PurchaseAmount purchaseAmount = new PurchaseAmount(purchaseNum);
-                amount = purchaseAmount.getTicketNum();
+                amount = purchaseAmount;
                 break;
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());

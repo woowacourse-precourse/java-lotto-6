@@ -16,7 +16,6 @@ public class Application {
         int ticketCount = purchaseAmount / LOTTO_TICKET_PRICE;
         Lotto[] tickets = new Lotto[ticketCount];
 
-
         for (int i = 0; i < ticketCount; i++) {
             tickets[i] = Lotto.generate();
         }
@@ -34,11 +33,11 @@ public class Application {
 
         WinningNumbers win = new WinningNumbers(numbers, bonusNumber);
 
-
-
-
-
-
+        int[] rankCount = new int[6];
+        for (int i = 0; i < ticketCount; i++) {
+            int rank = win.getWinningRank(tickets[i]);
+            rankCount[rank]++;
+        }
 
     }
 }

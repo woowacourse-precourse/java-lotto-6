@@ -22,4 +22,24 @@ public class WinningNumbers {
             throw new IllegalArgumentException("[ERROR] 로또 번호 중 중복이 있습니다.");
         }
     }
+
+    public int getWinningRank(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        int matchingNumbers = (int) lottoNumbers.stream().filter(numbers::contains).count();
+        boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
+
+        if (matchingNumbers == 6) {
+            return 1;
+        } else if (matchingNumbers == 5 && hasBonusNumber) {
+            return 2;
+        } else if (matchingNumbers == 5) {
+            return 3;
+        } else if (matchingNumbers == 4) {
+            return 4;
+        } else if (matchingNumbers == 3) {
+            return 5;
+        }
+
+        return 0;
+    }
 }

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.domain.HitNumbers;
 import lotto.enums.ErrorMessages;
 import lotto.enums.GlobalConstant;
 
@@ -36,16 +37,20 @@ public class InputValidator {
         return convertStringListToIntegerList(splitAnswer);
     }
 
-    public int validateBonusNumber(String input, boolean duplicatedFlag) {
+    public void validateBonusNumber(String input, HitNumbers hitNumbers) {
         validateInputEmpty(input);
         validateInputBlank(input);
         validateNonNumberInput(input);
 
         int convertedNumber = Integer.parseInt(input);
         validateNumberInRange(convertedNumber);
+        boolean duplicatedFlag = isHitNumbersHasThatNumber(hitNumbers, convertedNumber);
         validateBonusNumberConflictWithAnswer(duplicatedFlag);
+    }
 
-        return convertedNumber;
+    private boolean isHitNumbersHasThatNumber(HitNumbers hitNumbers, int bonusNumber) {
+        List<Integer> unmodifiableHitNumber = hitNumbers.getHitNumbers();
+        return unmodifiableHitNumber.contains(bonusNumber);
     }
 
     // 공통 검증 사항 시작

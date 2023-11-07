@@ -9,11 +9,13 @@ import lotto.domain.User;
 public class OutputLottoNumbersView {
 
     public static void printLottos(Lottos lottos) {
-        System.out.print("[");
         for(Lotto lotto : lottos.getLottos()){
-            System.out.print(lotto);
+            printLotto(lotto.getNumbers());
         }
-        System.out.println("]");
+    }
+
+    public static void printLotto(List<Integer> lotto) {
+        System.out.println(Arrays.deepToString(lotto.toArray()));
     }
 
 }

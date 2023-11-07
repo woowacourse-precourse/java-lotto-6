@@ -18,6 +18,6 @@ public class WinningLottoValidator {
     }
 
     private static boolean hasBonusNumInWinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
-        return winningLotto.hasNumber(bonusNumber.bounusNum());
+        return winningLotto.hasNumber(bonusNumber.getBonusNum());
     }
 }

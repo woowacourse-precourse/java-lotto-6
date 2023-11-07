@@ -1,4 +1,4 @@
-package LottoRandom;
+package LottoNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;

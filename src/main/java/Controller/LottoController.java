@@ -3,7 +3,7 @@ package Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import LottoRandom.LottoInput;
+import LottoNumber.LottoInput;
 import lotto.Lotto;
 import lotto.PrintLottoNumber;
 import lottoBuy.LottoPurchase;

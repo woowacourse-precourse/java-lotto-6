@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import domain.Amount;
 import domain.LottoTicketsPurchasingMachine;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,8 @@ public class LottoTicketsPurchasingMachineTest {
     @ValueSource(ints = {-10_000, -1_000, 0})
     void purchaseOfLottoTicketsNotPositiveAmount(int amount) {
         LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
-        assertThrows(IllegalArgumentException.class, () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(amount));
+        assertThrows(IllegalArgumentException.class,
+                () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(new Amount(amount)));
     }
 
     @ParameterizedTest
@@ -25,13 +27,14 @@ public class LottoTicketsPurchasingMachineTest {
     @ValueSource(ints = {1, 11, 111, 1_111, 11_111})
     void purchaseOfLottoTicketsNotCorrectUnitAmount(int amount) {
         LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
-        assertThrows(IllegalArgumentException.class, () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(amount));
+        assertThrows(IllegalArgumentException.class,
+                () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(new Amount(amount)));
     }
 
     @ParameterizedTest
     @DisplayName("로또 금액 정상 지불")
     @MethodSource("purchaseAmountAndExpectLottoTicketsNumber")
-    void purchaseOfLottoTicketsSuccessTest(int purchaseAmount, int expectLottoTicketsNumber) {
+    void purchaseOfLottoTicketsSuccessTest(Amount purchaseAmount, int expectLottoTicketsNumber) {
         LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
         assertThat(lottoTicketsPurchasingMachine.purchaseOfLottoTickets(purchaseAmount))
                 .isEqualTo(expectLottoTicketsNumber);
@@ -39,9 +42,9 @@ public class LottoTicketsPurchasingMachineTest {
 
     public static Stream<Arguments> purchaseAmountAndExpectLottoTicketsNumber() {
         return Stream.of(
-                Arguments.of(1_000, 1),
-                Arguments.of(10_000, 10),
-                Arguments.of(100_000, 100)
+                Arguments.of(new Amount(1_000), 1),
+                Arguments.of(new Amount(10_000), 10),
+                Arguments.of(new Amount(100_000), 100)
         );
     }
 

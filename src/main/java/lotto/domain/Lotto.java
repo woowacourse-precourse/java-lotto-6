@@ -8,16 +8,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Lotto extends LottoSingleNumber {
+public class Lotto {
     private List<Integer> numbers;
 
-    public Lotto(int lottoNumber) {
-        super(lottoNumber);
-    }
     public Lotto(List<Integer> numbers) {
-        super();
         List<Integer> numbersCopy = new ArrayList<>(numbers);
-        numbersCopy.forEach(Lotto::new);
+        numbersCopy.forEach(LottoSingleNumber::new);
         numbersCopy.sort(Comparator.naturalOrder());
         validate(numbersCopy);
         this.numbers = numbersCopy;

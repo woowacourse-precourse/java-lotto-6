@@ -13,8 +13,6 @@ public class LottoSingleNumber {
         isLottoNumberRangeValid(number);
         lottoSingleNumber = number;
     }
-    public LottoSingleNumber() {
-    }
 
     protected void isLottoNumberRangeValid(int number) {
         if (number > NUMBER_MAX_SIZE.getValue() || number < NUMBER_MIN_SIZE.getValue()) {

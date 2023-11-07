@@ -1,12 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.consts.Constants;
 import lotto.consts.ErrorMessage;
 import lotto.consts.MachineMessage;
 
 public class PurchaseView {
-    private static final int PRICE = 1000;
-    private static final String R_NUMBER = "^[0-9]*$";
     public static int lotto() {
         String input;
         System.out.println();
@@ -32,13 +31,13 @@ public class PurchaseView {
     }
 
     public static void validateAmountIsNumber(String input) throws IllegalArgumentException {
-        if(!input.matches(R_NUMBER)){
+        if(!input.matches(Constants.R_NUMBER)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_MUST_BE_NUMBER.getMessage());
         }
     }
 
     public static void validateAmountUnit(String input) throws IllegalArgumentException {
-        if(Integer.parseInt(input) % PRICE != 0) {
+        if(Integer.parseInt(input) % Constants.PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_AMOUNT_UNIT.getMessage());
         }
     }

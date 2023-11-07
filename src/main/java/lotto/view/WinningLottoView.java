@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.consts.Constants;
 import lotto.consts.ErrorMessage;
 import lotto.consts.MachineMessage;
 import lotto.utils.Convertor;
@@ -11,10 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningLottoView {
-    private final static String R_LOTTO_RANGE = "^(?:4[0-5]|[1-3][0-9]|[1-9])$";
-    private final static int COUNT_NO_BONUS = 6;
-    private final static int COUNT_WITH_BONUS = 7;
-
     public static List<Integer> publishLotto() {
         String input;
 
@@ -40,7 +37,7 @@ public class WinningLottoView {
     public static boolean isErrorOccurredInLotto(String input) {
         try {
             validateNumbersInArray(input);
-            validateDuplicate(Convertor.convertStringToList(input), COUNT_NO_BONUS);
+            validateDuplicate(Convertor.convertStringToList(input), Constants.COUNT_NO_BONUS);
         } catch (Exception exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
@@ -55,7 +52,7 @@ public class WinningLottoView {
             List<String> lottoWithBonus = new ArrayList<>(lottos.stream().map(i -> Integer.toString(i)).toList());
             lottoWithBonus.add(input);
 
-            validateDuplicate(lottoWithBonus, COUNT_WITH_BONUS);
+            validateDuplicate(lottoWithBonus, Constants.COUNT_WITH_BONUS);
             validateLottoNumber(input);
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -78,7 +75,7 @@ public class WinningLottoView {
     public static void validateNumbersInArray(String input) throws IllegalArgumentException {
         List<String> inputs = Convertor.convertStringToList(input);
 
-        if(inputs.size() != COUNT_NO_BONUS) {
+        if(inputs.size() != Constants.COUNT_NO_BONUS) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
         }
 
@@ -88,7 +85,7 @@ public class WinningLottoView {
     }
 
     public static void validateLottoNumber(String input) throws IllegalArgumentException {
-        if(!input.matches(R_LOTTO_RANGE)){
+        if(!input.matches(Constants.R_LOTTO_RANGE)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_LOTTO_NUMBER.getMessage());
         }
     }

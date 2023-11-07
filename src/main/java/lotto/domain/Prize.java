@@ -1,6 +1,4 @@
-package lotto.model;
-
-import java.util.List;
+package lotto.domain;
 
 public enum Prize {
     FIRST(2000000000),

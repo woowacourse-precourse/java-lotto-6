@@ -15,9 +15,7 @@ public class Application {
 	private ArrayList<ArrayList<Integer>> lotto;
 	public void start() {
 		System.out.println("구입금액을 입력해 주세요.");	
-		while (!vaildMoney)
-			inputMoney();
-		
+		while (!vaildMoney)inputMoney();
 		lottoCnt = purchase / 1000;
 		System.out.println("\n" + lottoCnt +"개를 구매했습니다.");
 		lotto = new ArrayList<>(lottoCnt);
@@ -34,7 +32,13 @@ public class Application {
 			System.out.println("[ERROR] 로또 1장의 가격은 1000원이므로, 구입 금액은 1000원의 배수여야 합니다.");
 		}
 	}
+	
 	private void isCorrectMoney(int n) throws IllegalArgumentException {
+		if (n % 1000 == 0 && n >= 1000) {
+			vaildMoney = true;
+			return;
+		}
+		throw new IllegalArgumentException();
 	}
 	
 	private void run() {

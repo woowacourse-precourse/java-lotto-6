@@ -6,10 +6,8 @@ import lotto.domain.Money;
 import lotto.configuration.PrintMessage;
 import lotto.service.LottoService;
 import lotto.util.Utils;
-import lotto.verification.Validation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.VerificationView;
 
 import java.util.HashMap;
 import java.util.List;

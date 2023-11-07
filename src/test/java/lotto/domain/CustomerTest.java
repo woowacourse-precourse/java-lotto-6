@@ -14,5 +14,18 @@ class CustomerTest {
         assertThatThrownBy(() -> new Customer(money)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 나누어떨어지지않는수() {
+        String money = "1100";
+        assertThatThrownBy(() -> new Customer(money)).isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    void 음수() {
+        String money = "-10000";
+        assertThatThrownBy(() -> new Customer(money)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

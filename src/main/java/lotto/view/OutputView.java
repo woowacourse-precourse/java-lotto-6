@@ -1,6 +1,12 @@
 package lotto.view;
 
 
+import static lotto.view.OutputMessage.BONUS_BALL_COUNT_MESSAGE;
+import static lotto.view.OutputMessage.CORRECT_SAME_NUMBER_MESSAGE;
+import static lotto.view.OutputMessage.EARNING_RATE_MESSAGE;
+import static lotto.view.OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE;
+import static lotto.view.OutputMessage.RATE_MESSAGE_FORMAT;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.controller.dto.LottoResponseDto;
@@ -14,7 +20,7 @@ public class OutputView {
     }
 
     public static void printPurchaseLotto(int lottoCount) {
-        System.out.println(lottoCount + OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE);
+        System.out.println(lottoCount + PURCHASED_LOTTO_COUNT_MESSAGE.getMessage());
     }
 
     public static void printLottosValue(LottoResponseDtos lottoResponseDtos) {
@@ -32,13 +38,14 @@ public class OutputView {
     }
 
     private static void printLottoResultEachRanking(ResultResponseDto resultResponseDto) {
-        String message = String.format(OutputMessage.CORRECT_SAME_NUMBER_MESSAGE, resultResponseDto.getSameNumberCount());
+        String message = String.format(CORRECT_SAME_NUMBER_MESSAGE.getMessage(),
+                resultResponseDto.getSameNumberCount());
 
         if (resultResponseDto.isHasBonus()) {
-            message += OutputMessage.BONUS_BALL_COUNT_MESSAGE;
+            message += BONUS_BALL_COUNT_MESSAGE.getMessage();
         }
 
-        message += String.format(OutputMessage.RATE_MESSAGE_FORMAT,
+        message += String.format(RATE_MESSAGE_FORMAT.getMessage(),
                 resultResponseDto.getWinnerPriceFormatted(), resultResponseDto.getTotalCount());
 
         System.out.println(message);
@@ -61,6 +68,6 @@ public class OutputView {
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.printf(OutputMessage.EARNING_RATE_MESSAGE, earningRate);
+        System.out.printf(EARNING_RATE_MESSAGE.getMessage(), earningRate);
     }
 }

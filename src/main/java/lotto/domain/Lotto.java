@@ -1,13 +1,16 @@
 package lotto.domain;
 
+import static lotto.util.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
+import static lotto.util.ErrorMessage.LOTTO_SIZE_IS_OVER;
+import static lotto.util.ErrorMessage.NUMBER_IS_OVER_RANGE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.ErrorMessage;
-import lotto.util.LottoGenerator;
 import lotto.controller.dto.LottoResponseDto;
+import lotto.util.LottoGenerator;
 
 public class Lotto {
 
@@ -43,14 +46,14 @@ public class Lotto {
 
     private static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_IS_OVER);
+            throw new IllegalArgumentException(LOTTO_SIZE_IS_OVER.getMessage());
         }
     }
 
     private void validateNumbersDuplicated(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED);
+            throw new IllegalArgumentException(LOTTO_NUMBER_IS_DUPLICATED.getMessage());
         }
     }
 
@@ -58,7 +61,7 @@ public class Lotto {
         for (Integer num : numbers) {
             if (num < LottoGenerator.LOTTO_START_INCLUSIVE
                     || num > LottoGenerator.LOTTO_END_INCLUSIVE) {
-                throw new IllegalArgumentException(ErrorMessage.NUMBER_IS_OVER_RANGE);
+                throw new IllegalArgumentException(NUMBER_IS_OVER_RANGE.getMessage());
             }
         }
     }

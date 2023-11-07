@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.ErrorMessage;
+import static lotto.util.ErrorMessage.BONUS_NUMBER_IS_DUPLICATED_MESSAGE;
 
 public class UserLotto {
 
@@ -22,8 +22,8 @@ public class UserLotto {
     }
 
     private void validateDuplicated() {
-        if (lotto.isContain(bonusNumber)){
-            throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATED_MESSAGE);
+        if (lotto.isContain(bonusNumber)) {
+            throw new IllegalStateException(BONUS_NUMBER_IS_DUPLICATED_MESSAGE.getMessage());
         }
     }
 }

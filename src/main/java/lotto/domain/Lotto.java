@@ -55,7 +55,15 @@ public class Lotto {
                 .collect(Collectors.toSet());
     }
 
+    private void validateContains(int number) {
+        if (this.numbers.contains(number)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호에 포함되지 않은 숫자여야 합니다.");
+        }
+    }
+
     public LottoWinning confirmLottoWinning(Lotto winningLotto, int bonusNumber) {
+        validateNumber(bonusNumber);
+        winningLotto.validateContains(bonusNumber);
         int matchCount = confirmMatchCount(winningLotto);
         boolean isBonusNumber = has(bonusNumber);
         return LottoWinning.findByMatchOf(matchCount, isBonusNumber);

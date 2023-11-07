@@ -62,16 +62,26 @@ public class LottoController {
 
     private void lottoProcess() {
 
-        OutputValue.winLottoNumberMessage();
-        List<Integer> winLotto = InputValue.getWinLottoNumbers();
-        lottoService.setWinLotto(winLotto);
-
-        OutputValue.changeLine();
+        winningLottoNumbersInputLogic();
 
         OutputValue.bonusNumberMessage();
-        lottoService.setBonusNumber(InputValue.getBonusNumber(winLotto));
+        //lottoService.setBonusNumber(InputValue.getBonusNumber(InputValue.getBonusNumber()));
 
         OutputValue.changeLine();
+    }
+
+    private void winningLottoNumbersInputLogic() {
+
+        OutputValue.winningLottoNumbersMessage();
+
+        try {
+            lottoService.setWinningLottoNumbers(InputValue.setWinningLottoNumbers());
+            OutputValue.changeLine();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            OutputValue.changeLine();
+            winningLottoNumbersInputLogic();
+        }
     }
 
 //    private void lottoEnd() {

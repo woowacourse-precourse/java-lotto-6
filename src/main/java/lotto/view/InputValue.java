@@ -19,22 +19,13 @@ public class InputValue {
     private static final Integer LOTTO_SIZE = 6;
 
     public static int getPurchasePrice() {
-        try {
-            String input = removeInputSpaces();
 
-            emptyValueCheck(input);
+        String input = removeInputSpaces();
 
-            int price = numberCheck(input);
+        emptyValueCheck(input);
 
-            priceUnitCheck(price);
+        return numberCheck(input);
 
-            return price;
-
-        } catch (IllegalArgumentException e) {
-
-            System.out.println(e.getMessage());
-            return getPurchasePrice();
-        }
     }
 
     private static String removeInputSpaces() {
@@ -63,53 +54,19 @@ public class InputValue {
     }
 
 
-    public static List<Integer> getWinLottoNumbers() {
-        try {
-            String input = removeInputSpaces();
+    public static List<Integer> setWinningLottoNumbers() {
 
-            emptyValueCheck(input);
+        String input = removeInputSpaces();
 
-            List<Integer> numbers = new ArrayList<>();
-            for (String temp : input.split(SEPARATOR)) {
+        emptyValueCheck(input);
 
-                int number = numberCheck(temp);
-
-                duplicateCheck(numbers, number);
-
-                numbers.add(number);
-
-            }
-
-            numbersRangeCheck(numbers);
-
-            lottoSizeCheck(numbers);
-
-            return numbers;
-
-        } catch (IllegalArgumentException e) {
-
-            System.out.println(e.getMessage());
-            return getWinLottoNumbers();
+        List<Integer> numbers = new ArrayList<>();
+        for (String temp : input.split(SEPARATOR)) {
+            numbers.add(numberCheck(temp));
         }
-    }
 
-    private static void numbersRangeCheck(List<Integer> numbers) {
-        for(int number : numbers)
-            rangeCheck(number);
+        return numbers;
     }
-
-    private static void rangeCheck(int number) {
-        if(number > END_NUMBER || number < START_NUMBER) throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_RANGE.getMessage());
-    }
-
-    private static void duplicateCheck(List<Integer> numbers, int number) {
-        if(numbers.contains(number)) throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
-    }
-
-    private static void lottoSizeCheck(List<Integer> numbers) {
-        if(numbers.size() != LOTTO_SIZE) throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_SIZE.getMessage());
-    }
-
 
     public static int getBonusNumber(List<Integer> winLotto) {
         try {
@@ -139,7 +96,7 @@ public class InputValue {
     }
 
     private static void duplicateBonusNumber(List<Integer> winLotto, int bonusNumber) {
-        if(winLotto.contains(bonusNumber)) {
+        if (winLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
         }
     }

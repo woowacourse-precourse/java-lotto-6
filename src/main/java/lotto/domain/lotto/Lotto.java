@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import static lotto.util.ExceptionEnum.INVALID_NUMBERS_SIZE;
+import static lotto.util.ExceptionEnum.INVALID_NUMBER_RANGE;
 
 import java.util.List;
 
@@ -15,12 +16,25 @@ public class Lotto{
 
     private void validate(List<Integer> numbers){
         throwIfInvalidNumbersSize(numbers);
+        throwIfInvalidNumbersRange(numbers);
     }
 
     private void throwIfInvalidNumbersSize(List<Integer> numbers){
         if (numbers.size() != 6){
             throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.message());
         }
+    }
+
+    private void throwIfInvalidNumbersRange(List<Integer> numbers){
+        for (Integer number : numbers){
+            if(!isInRange(number)){
+                throw new IllegalArgumentException(INVALID_NUMBER_RANGE.message());
+            }
+        }
+    }
+
+    private boolean isInRange(int number){
+        return number>=1&&number<=45;
     }
 
     public int countWinningNumbers(List<Integer> winningNumbers){

@@ -2,7 +2,6 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import lotto.domain.WinningResult;
-import lotto.domain.LotteryResult;
 
 public class Lottos{
 
@@ -12,7 +11,7 @@ public class Lottos{
         this.lottos = lottos;
     }
 
-    public WinningResult determineWinnings(LotteryResult lotteryResult){
+    public WinningResult determineWinnings(Lotto lotto, Bonus bonus){
         return null;
     }
 

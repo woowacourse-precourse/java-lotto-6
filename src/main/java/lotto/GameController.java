@@ -33,6 +33,7 @@ public class GameController {
         LottoResultAnalyze lottoResultAnalyze = new LottoResultAnalyze();
         Map<String, Integer> lottoResult = lottoResultAnalyze.calculateResult(lottoTicket, winningNumbers, bonusNumber);
         double profit = calculateProfit(amount, lottoResult);
+        displayResult(lottoResult, profit);
     }
 
     private int initGame() {
@@ -119,5 +120,9 @@ public class GameController {
         }
         double profit = ((double) totalPrize / amount) * 100;
         return profit;
+    }
+
+    private void displayResult(Map<String, Integer> lottoResult, double profit) {
+        outputView.displayResult(OutputMessage.DISPLAY_LOTTO_RESULT, lottoResult, profit);
     }
 }

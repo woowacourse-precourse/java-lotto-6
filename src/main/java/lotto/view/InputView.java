@@ -3,6 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.InputValidate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
 
     private final InputValidate inputValidate = new InputValidate();
@@ -12,7 +15,20 @@ public class InputView {
         return Console.readLine();
     }
 
-    public int InputMoney(){
+    public List<Integer> inputLotto(){
+        outputView.printLottoInputMessage();
+        List<Integer> lotto = new ArrayList<>();
+        String[] input = userInput().split(",");
+        for(String num : input){
+            inputValidate.inputBlankValidate(num);
+            inputValidate.inputIsDigitValidate(num);
+            int lottoNum = Integer.parseInt(num);
+            lotto.add(lottoNum);
+        }
+        return lotto;
+    }
+
+    public int inputMoney(){
         outputView.printMoneyInputMessage();
         String input = userInput();
         inputValidate.inputBlankValidate(input);

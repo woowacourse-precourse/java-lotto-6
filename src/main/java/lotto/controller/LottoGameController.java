@@ -1,24 +1,41 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoGameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
-    private int ticket;
+    int ticket;
     private LottoTickets lottoTickets;
+    private Lotto correctLotto;
 
     public void run(){
         getTicket();
         createLottoTickets(ticket);
+        createCorrectLotto();
     }
 
-    private void createLottoTickets(int ticket){
+    private void createCorrectLotto(){
+        while(true){
+            try {
+                correctLotto = new Lotto(inputView.inputLotto());
+                break;
+            } catch (IllegalArgumentException e){
+                outputView.println(e.getMessage());
+            }
+        }
+    }
+
+    private LottoTickets createLottoTickets(int ticket){
         lottoTickets = new LottoTickets(ticket);
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
+        return lottoTickets;
     }
 
     private void getTicket(){
@@ -27,13 +44,13 @@ public class LottoGameController {
                 ticket = createTicket(createMoney());
                 break;
             } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                outputView.println(e.getMessage());
             }
         }
     }
 
     private Money createMoney(){
-        Money money = new Money(inputView.InputMoney());
+        Money money = new Money(inputView.inputMoney());
         return money;
     }
 

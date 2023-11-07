@@ -45,12 +45,12 @@ public class UserInputService {
 
         while(true){
             if(checkIsNumberList(input().split(","),numbers)){
-                System.out.println(numbers);
                 Lotto lotto = MakeObjectService.lotto(numbers);
                 if(lotto.isValid()){
                     return lotto;
                 }
             }
+            numbers.clear();
         }
     }
 
@@ -68,4 +68,6 @@ public class UserInputService {
         }
         return true;
     }
+
+
 }

@@ -6,7 +6,7 @@ public enum ExceptionMessages {
     PURCHASE_MONEY_IS_EMPTY_VALUE("아무런 값도 입력되지 않았습니다. 1,000단위의 숫자값을 입력해야합니다."),
     PURCHASE_MONEY_IS_NOT_NUMBER("문자가 입력되었습니다. 1,000단위의 숫자값을 입력해야 합니다."),
     PURCHASE_MONEY_IS_NOT_OVER_ONE_THOUSAND("1,000원보다 작은 금액이 입력되었습니다. 1,000단위의 숫자값을 입력해야합니다."),
-    LOTTO_SIZE_IS_OVER_SIX("로또 번호의 갯수가 6개보다 많이 입력되었습니다. 6자리로 입력해야합니다."),
+    LOTTO_SIZE_IS_OVER_SIX("로또 번호는 총 6개를 입력해야합니다."),
     LOTTO_IS_DUPLICATED("로또 번호가 중복되었습니다. 중복되지 않은 번호를 입력해야 합니다."),
     LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE("로또 번호의 범위가 1~45가 아닙니다. 1~45사이의 번호를 입력해야합니다."),
     LOTTO_IS_NOT_NUMER("로또 번호가 문자로 입력되었습니다. 로또 번호는 1~45사이의 숫자를 입력해야 합니다."),

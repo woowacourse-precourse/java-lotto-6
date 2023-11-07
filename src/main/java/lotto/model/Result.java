@@ -9,6 +9,7 @@ public class Result {
     private static HashMap<Integer, Integer> winningCount = new HashMap<>();
     private static List<Lotto> lottoTickets = new ArrayList<>();
     private static int totalPrize;
+    private static String totalProfit;
 
     public void addWinningCount(int rank) {
         if (winningCount.containsKey(rank)) {
@@ -36,5 +37,13 @@ public class Result {
 
     public int getTotalPrize() {
         return totalPrize;
+    }
+
+    public String getTotalProfit() {
+        return totalProfit;
+    }
+
+    public void setTotalProfit(String totalProfit) {
+        Result.totalProfit = totalProfit;
     }
 }

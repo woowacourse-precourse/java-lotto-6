@@ -5,13 +5,14 @@ import lotto.Lotto;
 import lotto.enums.Message;
 import lotto.model.Result;
 import lotto.model.User;
+import lotto.util.Calculate;
 import lotto.view.OutputView;
 import lotto.util.Computer;
-import lotto.util.InputCheck;
 import lotto.view.InputView;
 
 public class LottoMachine {
     Result result = new Result();
+    Calculate calculate = new Calculate();
     Computer computer = new Computer();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
@@ -19,39 +20,22 @@ public class LottoMachine {
 
     public void startLottoGame() {
         buyLotto();
-        getManyLottoTicket();
         drawLottoNumber();
         drawWinningNumber();
         drawBonusNumber();
         getWinningStatistics();
     }
 
-    public void getManyLottoTicket() {
-        user.setManyLottoTicket(user.getPaymentAmount() / 1000);
-    }
-
     public void buyLotto() {
         inputView.inputPaymentAmount();
+        calculate.settingLottoTicketCount();
     }
 
     public void drawLottoNumber() {
-        for (int i = 0; i < user.getManyLottoTicket(); i++) {
-            getLottoNumber();
+        for (int i = 0; i < user.getLottoTicketCount(); i++) {
+            computer.getLottoNumber();
         }
         outputView.printLottoNumber(result.getLottoTicket());
-    }
-
-    public void getLottoNumber() {
-        while (true) {
-            try {
-                List<Integer> numbers = computer.getRandomNumber();
-                Lotto lotto = new Lotto(numbers);
-                result.addLottoTicket(lotto);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
     public void drawWinningNumber() {
@@ -66,8 +50,10 @@ public class LottoMachine {
         Message.WINNING_STATISTICS.getMessage();
         System.out.println("---");
         compareLottoTicket();
+        calculate.settingTotalPrize();
+        calculate.settingTotalProfit();
         outputView.printWinningStatistics(result.getWinningCount());
-        outputView.printTotalProfit(result.getWinningCount());
+        outputView.printTotalProfit();
     }
 
     public void compareLottoTicket() {

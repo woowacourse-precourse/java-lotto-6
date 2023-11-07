@@ -6,14 +6,15 @@ import java.util.StringJoiner;
 import lotto.Lotto;
 import lotto.enums.LottoRank;
 import lotto.enums.Message;
+import lotto.model.Result;
 import lotto.model.User;
 
 public class OutputView {
     User user = new User();
-    int totalPrize = 0;
+    Result result = new Result();
 
     public void printLottoNumber(List<Lotto> lottoNumbers) {
-        System.out.print("\n" + user.getManyLottoTicket());
+        System.out.print("\n" + user.getLottoTicketCount());
         Message.PURCHASE_LOTTO.getMessage();
         for (Lotto numbers : lottoNumbers) {
             System.out.print("[");
@@ -59,24 +60,7 @@ public class OutputView {
         return prize;
     }
 
-    public void printTotalProfit(HashMap<Integer, Integer> winningCount) {
-        System.out.println("총 수익률은 " + getTotalProfit(winningCount) + "입니다.");
-    }
-
-    public String getTotalProfit(HashMap<Integer, Integer> winningCount) {
-        for (LottoRank lottoRank : LottoRank.values()) {
-            int rankCount = getRankCount(lottoRank.getRank(), winningCount);
-            addTotalPrize(lottoRank.getPrize(), rankCount);
-        }
-        return calculateProfit();
-    }
-
-    public void addTotalPrize(int prize, int rankCount) {
-        totalPrize += prize * rankCount;
-    }
-
-    public String calculateProfit() {
-        double TotalProfit = ((double) totalPrize / user.getPaymentAmount()) * 100;
-        return String.format("%.1f%%", TotalProfit);
+    public void printTotalProfit() {
+        System.out.println("총 수익률은 " + result.getTotalProfit() + "입니다.");
     }
 }

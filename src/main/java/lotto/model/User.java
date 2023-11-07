@@ -5,9 +5,8 @@ import lotto.Lotto;
 public class User {
     private static int paymentAmount;
     private static Lotto winningNumber;
-    private static int manyLottoTicket;
+    private static int lottoTicketCount;
     private static int bonusNumber;
-
 
     public int getPaymentAmount() {
         return paymentAmount;
@@ -25,12 +24,12 @@ public class User {
         User.winningNumber = winningNumber;
     }
 
-    public int getManyLottoTicket() {
-        return manyLottoTicket;
+    public int getLottoTicketCount() {
+        return lottoTicketCount;
     }
 
-    public void setManyLottoTicket(int manyLottoTicket) {
-        User.manyLottoTicket = manyLottoTicket;
+    public void setLottoTicketCount(int lottoTicketCount) {
+        this.lottoTicketCount = lottoTicketCount;
     }
 
     public int getBonusNumber() {

@@ -55,4 +55,12 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 중복된 숫자가 존재합니다.");
     }
+
+    @DisplayName("보너스 입력 값이 1과 45 사이의 숫자가 아닐때 예외가 발생한다.")
+    @Test
+    void createBonusNumberByOutOfRange() {
+        assertThatThrownBy(() -> new LottoGame().validateRangeOne(90))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1과 45 사이의 수를 입력하세요");
+    }
 }

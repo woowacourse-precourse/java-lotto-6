@@ -50,6 +50,13 @@ public class LottoGame {
         validateRange(winingNumbers);
         validateSize(winingNumbers);
         validateDuplicate(winingNumbers);
+
+        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(Message.BONUS_NUMBER_REQUEST);
+        OutputView.print(Message.LINE_BREAK);
+        input = InputView.read();
+        validateNumber(input);
+
     }
 
     public void validateNumber(String input) {
@@ -91,6 +98,12 @@ public class LottoGame {
                 .distinct()
                 .count() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+        }
+    }
+
+    public void validateRangeOne(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 public class Statistic {
 
     private static final Integer DEFAULT_COUNT = 0;
+    private static final Integer FIVE_COUNT = 5;
     private static final Integer COUNT = 1;
 
     private Map<LottoRank, Integer> rank;
@@ -35,7 +36,7 @@ public class Statistic {
     }
 
     private static LottoRank determineRank(Integer matchedCount, Boolean includeBonus) {
-        if (matchedCount == 5 && includeBonus) {
+        if (isSecondRank(matchedCount, includeBonus)) {
             return LottoRank.SECOND_RANK;
         }
 
@@ -43,6 +44,10 @@ public class Statistic {
                 .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isIncludeBonus())
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
+    }
+
+    private static boolean isSecondRank(Integer matchedCount, Boolean includeBonus) {
+        return matchedCount == FIVE_COUNT && includeBonus;
     }
 
     public Map<LottoRank, Integer> getRank() {

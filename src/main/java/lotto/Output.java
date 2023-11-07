@@ -11,8 +11,6 @@ public class Output {
     private static int fourth = 0;
     private static int fifth = 0;
     private static double reward = 0;
-
-    private static final int LOTTOPRICE = 1000;
     private static final int FIRSTNUM = 6;
     private static final int SECONDNUM = 5;
     private static final int THIRDNUM = 5;
@@ -20,10 +18,9 @@ public class Output {
     private static final int FIFTHNUM = 3;
     private static final int BONUSNNUM = 1;
 
-    public static void printbuyLottos(int wallet) {
+    public static void printbuyLottos(int lottoCount) {
 
-        wallet /= LOTTOPRICE;
-        System.out.println(wallet + "개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
     public static void printCustomerLottos(List<Integer> numbers) {

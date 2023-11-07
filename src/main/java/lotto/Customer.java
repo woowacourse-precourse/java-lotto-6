@@ -44,7 +44,8 @@ public class Customer {
 
     private void buyLottos() {
 
-        Output.printbuyLottos(wallet);
+        int lottoCount = wallet / LOTTOPRICE;
+        Output.printbuyLottos(lottoCount);
         createLottos();
     }
 

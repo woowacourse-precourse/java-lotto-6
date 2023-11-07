@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.YieldRate;

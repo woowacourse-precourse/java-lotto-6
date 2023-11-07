@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.domain.NumberConverter.convertNumberToLottoNumber;
@@ -12,6 +13,7 @@ public class LottoTicket {
         validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
         this.lottoNumbers = convertNumberToLottoNumber(numbers);
+        Collections.sort(lottoNumbers);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {

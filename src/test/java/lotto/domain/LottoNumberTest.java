@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoTicketNumberTest {
+class LottoNumberTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1, 46, 100})

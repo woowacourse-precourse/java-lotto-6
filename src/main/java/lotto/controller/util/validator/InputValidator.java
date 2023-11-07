@@ -8,12 +8,12 @@ import lotto.configuration.LottoConstants;
 
 public class InputValidator {
 
-    public void validateMoney(int money) {
-        if (money < LottoConstants.LOTTO_PRICE) {
+    public void validateMoney(Integer moneyAmount) {
+        if (moneyAmount < LottoConstants.LOTTO_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_MONEY);
         }
 
-        if (money % LottoConstants.LOTTO_PRICE != 0) {
+        if (moneyAmount % LottoConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.UNIT_NOT_VALID);
         }
     }

@@ -6,11 +6,12 @@ import java.util.Collections;
 import java.util.List;
 import lotto.configuration.LottoConstants;
 import lotto.model.domain.Lotto;
+import lotto.model.dto.PurchaseMoney;
 
 public class LottoGenerator {
 
-    public List<Lotto> purchaseLotto(int money) {
-        int lottoCount = money / LottoConstants.LOTTO_PRICE;
+    public List<Lotto> purchaseLotto(PurchaseMoney purchaseMoney) {
+        int lottoCount = purchaseMoney.getValue() / LottoConstants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
@@ -39,5 +40,5 @@ public class LottoGenerator {
     private void sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
     }
-    
+
 }

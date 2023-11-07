@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.controller.util.handler.InputHandler;
 import lotto.model.domain.Lotto;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.PurchaseMoney;
 import lotto.model.dto.WinningNumber;
 import lotto.model.service.LottoService;
 import lotto.view.output.OutputView;
@@ -20,7 +21,7 @@ public class LottoController {
     }
 
     public void startLotto() {
-        int purchaseMoney = inputHandler.getPurchaseMoney();
+        PurchaseMoney purchaseMoney = inputHandler.getPurchaseMoney();
         List<Lotto> lottos = lottoService.purchaseLotto(purchaseMoney);
         outputView.printLottos(lottos);
 
@@ -28,7 +29,7 @@ public class LottoController {
 
         LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumber);
         outputView.printLottoRanks(lottoResult);
-        outputView.printEarningRate(lottoResult.getTotalReward(), purchaseMoney);
+        outputView.printEarningRate(lottoResult.getTotalReward(), purchaseMoney.getValue());
     }
 
     private WinningNumber getWinningNumber() {

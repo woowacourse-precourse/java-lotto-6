@@ -3,6 +3,7 @@ package lotto.model.service;
 import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.PurchaseMoney;
 import lotto.model.dto.WinningNumber;
 
 public class LottoService {
@@ -15,8 +16,8 @@ public class LottoService {
         this.lottoChecker = lottoChecker;
     }
 
-    public List<Lotto> purchaseLotto(int money) {
-        return lottoGenerator.purchaseLotto(money);
+    public List<Lotto> purchaseLotto(PurchaseMoney purchaseMoney) {
+        return lottoGenerator.purchaseLotto(purchaseMoney);
     }
 
     public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumber winningNumber) {

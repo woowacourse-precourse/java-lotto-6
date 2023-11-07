@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.controller.util.parser.InputParser;
 import lotto.controller.util.validator.InputValidator;
+import lotto.model.dto.PurchaseMoney;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -22,11 +23,11 @@ public class InputHandler {
         this.inputValidator = inputValidator;
     }
 
-    public int getPurchaseMoney() {
+    public PurchaseMoney getPurchaseMoney() {
         return processInput(() -> {
-            int moneyAmount = inputParser.parseMoney(inputView.getMoney());
+            Integer moneyAmount = inputParser.parseMoney(inputView.getMoney());
             inputValidator.validateMoney(moneyAmount);
-            return moneyAmount;
+            return new PurchaseMoney(moneyAmount);
         });
     }
 

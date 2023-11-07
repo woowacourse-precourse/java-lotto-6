@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,9 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -50,6 +54,74 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void moneyNotNum() {
+        assertSimpleTest(() -> {
+            runException("abc");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void moneyNot1000() {
+        assertSimpleTest(() -> {
+            runException("1234");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("랜덤 로또 번호가 정상적으로 생성되는지 확인한다.")
+    @Test
+    void createLottoNumTest() {
+        int moneyValue = 5000;
+
+        List<List<Integer>> lottoNums = Application.createLottoNum(moneyValue);
+
+        for (List<Integer> lottoNum : lottoNums) {
+            assertEquals(6, lottoNum.size());
+            assertTrue(lottoNum.stream().allMatch(num -> num >= 1 && num <= 45));
+            assertEquals(6, lottoNum.stream().distinct().count());
+        }
+    }
+
+    @DisplayName("입력한 당첨 번호가 숫자로 이루어지지 않으면 예외가 발생한다.")
+    @Test
+    void lottoNotNum() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 보너스 번호가 숫자로 이루어지지 않으면 예외가 발생한다.")
+    @Test
+    void bonusNotNum() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 보너스 번호가 1부터 45 사이의 숫자가 예외가 발생한다.")
+    @Test
+    void bonusNumRange() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력한 보너스 번호가 입력한 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void bonusNumDuplicate() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

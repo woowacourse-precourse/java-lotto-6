@@ -11,6 +11,7 @@ public class LottoController {
     public void start() {
         Player player = new Player();
         inputCash(player);
+        
         OutputView.printAttempt(player.getCash());
 
         drawLotto(player);
@@ -42,7 +43,7 @@ public class LottoController {
 
     private void printResult(List<LottoResult> lottoResults, Player player) {
         OutputLottoResult outputLottoResult = new OutputLottoResult(lottoResults);
-        
+
         OutputView.printStat(outputLottoResult);
         OutputView.printRateOfReturn(Calculator.calculateRateOfReturn(outputLottoResult.getTotalReturn(), player.getCash()));
     }

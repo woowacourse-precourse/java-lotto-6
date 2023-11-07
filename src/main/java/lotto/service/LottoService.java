@@ -11,14 +11,14 @@ import java.util.List;
 
 public class LottoService {
 
-    private static final Integer START_NUMBER = 1;
-    private static final Integer LAST_NUMBER = 45;
-    private static final Integer COUNT = 6;
+    private static final int START_NUMBER = 1;
+    private static final int LAST_NUMBER = 45;
+    private static final int COUNT = 6;
 
     public List<List<Integer>> generateRandomLottoNumbers(Long length) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-        for (Integer count = 0; count < length; count++) {
+        for (int count = 0; count < length; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, LAST_NUMBER, COUNT);
             lottoNumbers.add(Utils.sortAscendingRandomLottoList(numbers));
         }
@@ -27,7 +27,7 @@ public class LottoService {
     }
 
     public Integer countMatchingWinningNumbers(List<Integer> winningLotto, List<Integer> myLotto) {
-        Integer countValue = 0;
+        int countValue = 0;
 
         for (int j = 0; j < COUNT; j++) {
             if (winningLotto.contains(myLotto.get(j))) {

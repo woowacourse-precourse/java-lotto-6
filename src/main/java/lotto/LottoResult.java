@@ -71,31 +71,18 @@ public class LottoResult {
 	public void printResult() {
 		int totalProfit = 0;
 		System.out.println("당첨 통계\n---");
-		// 2등을 제외한 나머지 등수에 대한 출력
 		for (Prize prize : Prize.values()) {
-			if (prize == Prize.SECOND_PLACE) { // 2등에 해당하는 경우만 특별하게 처리
 			int prizeCount = (int) lottoResult.stream().filter(prizeMoney -> prizeMoney == prize.getPrizeMoney()).count();
 			System.out.println(prize.resultText + prizeCount + "개");
-			totalProfit += prizeCount * Prize.SECOND_PLACE.getPrizeMoney();
-			continue;
-			}
-			// 2등을 제외하고 처리
-			int prizeCount = (int) lottoResult.stream().filter(prizeMoney -> prizeMoney == prize.getPrizeMoney()).count();
-			System.out.println(prize.resultText+ prizeCount + "개");
 			totalProfit += prizeCount * prize.getPrizeMoney();
 		}
 		// 수익률 계산 및 출력
 		System.out.println("총 수익률은 " + getRateOfProfit(totalProfit) + "%입니다.");
 	}
-
-	
-
 	private double getRateOfProfit(int profit) {
 		double rateOfProfit = 100 * ((double)profit / (lottoShop.getLottos().size() * LOTTO_PRICE));
 		BigDecimal roundedRateOfProfit = new BigDecimal(rateOfProfit).setScale(2, RoundingMode.HALF_UP);
 		
 		return roundedRateOfProfit.doubleValue();
 	}
-
-
 }

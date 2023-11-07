@@ -40,4 +40,16 @@ public class WinningNumbers {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateInputBonus(String inputBonus) {
+        if (inputBonus.isEmpty() || inputBonus.equals(LINE_SEPARATION)) {
+            throw new IllegalArgumentException();
+        }
+        if (inputBonus.contains(BLANK)) {
+            throw new IllegalArgumentException();
+        }
+        if (!Pattern.matches("^[0-9]+$", inputBonus)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

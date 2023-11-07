@@ -11,6 +11,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoCashierTest {
+    private static final String VALIDATE_UNIT_MESSAGE = "[ERROR] 1000원 단위로 구입해야 합니다.";
+
     @ParameterizedTest
     @CsvSource({"10000, 10", "5000, 5", "2000, 2"})
     @DisplayName("금액에 따른 로또 발행 갯수를 정확하게 계산한다.")
@@ -19,5 +21,13 @@ class LottoCashierTest {
 
         int count = cashier.getLottoCount(money);
         assertEquals(expectedCount, count);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1500", "0", "100", "10050"})
+    @DisplayName("유효하지 않은 금액 입력 시 예외가 발생한다.")
+    public void testInvalidLottoCount(int invalidMoney) {
+        LottoCashier cashier = new LottoCashier();
+        assertThrows(IllegalArgumentException.class, () -> cashier.getLottoCount(invalidMoney), VALIDATE_UNIT_MESSAGE);
     }
 }

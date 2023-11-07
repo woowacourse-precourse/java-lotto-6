@@ -14,17 +14,17 @@ public enum LottoRank {
     FOURTH(50000, 4, false),
     FIFTH(5000, 3, false),
     NONE(0, 0, false);
-    private final int amount;
+    private final long amount;
     private final int count;
     private final boolean hasBonus;
 
-    LottoRank(int amount, int count, boolean hasBonus) {
+    LottoRank(long amount, int count, boolean hasBonus) {
         this.amount = amount;
         this.count = count;
         this.hasBonus = hasBonus;
     }
 
-    public static LottoRank of(final int count, final boolean hasBonus) {
+    public static LottoRank of(int count, final boolean hasBonus) {
         if (count == 5) {
             return whenCountFive(hasBonus);
         }
@@ -53,7 +53,7 @@ public enum LottoRank {
         return count;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 

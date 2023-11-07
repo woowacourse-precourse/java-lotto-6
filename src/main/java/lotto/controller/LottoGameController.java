@@ -23,9 +23,6 @@ public class LottoGameController {
             outputView.printInputPurchaseAmount();
             String amount = inputView.inputPurchaseAmount();
             return new PurchaseAmount(amount);
-        } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.PURCHASE_AMOUNT_NOT_DIGIT.getMessage());
-            setPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setPurchaseAmount();

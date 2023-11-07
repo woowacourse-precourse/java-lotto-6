@@ -9,4 +9,8 @@ public class OutputView {
     public static void printLotto(Lotto lotto) {
         System.out.println(lotto.getNumbers().toString());
     }
+    public static void printStatisticsResult(Lotto lotto) {
+        System.out.println("당첨 통계\n ---");
+    }
+
 }

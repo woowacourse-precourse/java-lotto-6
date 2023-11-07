@@ -27,6 +27,7 @@ public class InputValueChecker {
         }
     }
 
+    // 사용자가 입력하는 보너스 번호의 유효성을 판단한다.
     public void checkBonusNumberValidation(String bonusNumber, List<Integer> winnerNumber) throws NotValidInputException {
         checkContainValidation(bonusNumber, winnerNumber);
     }
@@ -66,6 +67,7 @@ public class InputValueChecker {
         }
     }
 
+    // 사용자가 입력한 보너스 번호가 당첨 번호에 포함된 경우, 오류를 반환한다.
     private void checkContainValidation(String bonusNumber, List<Integer> winnerNumber) {
         int parsedBonusNumber = Integer.parseInt(bonusNumber);
 

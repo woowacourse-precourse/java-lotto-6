@@ -18,7 +18,7 @@ public class Display_function {
         System.out.println("4개 일치 (50,000원) - "+ number +"개");
     }
     public void showThird(int number){
-        System.out.println("5개 일치 (150,000원) - "+ number +"개");
+        System.out.println("5개 일치 (1,500,000원) - "+ number +"개");
     }
     public void showSecond(int number){
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ number +"개");
@@ -41,7 +41,7 @@ public class Display_function {
         }
         if(prize != 0) {
             earningRate = ((float)prize/money)*100;
-            System.out.printf("수익률은 %.1f%%입니다.",earningRate);
+            System.out.printf("총 수익률은 %.1f%%입니다.",earningRate);
         }
     }
 

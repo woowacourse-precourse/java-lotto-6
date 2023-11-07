@@ -17,8 +17,10 @@ public class Calculation {
         List<Integer> lotto_number = new ArrayList<>();
         
         lotto_number = Randoms.pickUniqueNumbersInRange(1,45,6);
-        Collections.sort(lotto_number);
-        return lotto_number;
+
+        List<Integer> sortNumber = new ArrayList<>(lotto_number);
+        Collections.sort(sortNumber);
+        return sortNumber;
     }
 
     public void generate_all_lotto_numbers(List<List<Integer>> all_numbers, int count) {

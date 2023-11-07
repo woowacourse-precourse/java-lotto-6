@@ -6,8 +6,9 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
-    public LottoResult run(List<Lotto> lottos) {
-        WinningLotto winningLotto = setUpWinningLotto();
+    public LottoResult run(List<Lotto> lottos, WinningLotto winningLotto) {
+        //WinningLotto winningLotto = setUpWinningLotto();
+        //WinningLotto winningLotto = setUpWinningLotto(winningNumbers);
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
 
@@ -40,16 +41,17 @@ public class LottoWinningProcess {
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }
 
-    private WinningLotto setUpWinningLotto() {
-        return new WinningLotto(setUpWinningNumbers(), setUpBonusNumber());
+    public WinningLotto setUpWinningLotto(Lotto winningNumbers) {
+        //return new WinningLotto(setUpWinningNumbers(), setUpBonusNumber());
+        return new WinningLotto(winningNumbers,setUpBonusNumber());
     }
 
-    private Lotto setUpWinningNumbers() {
+    public Lotto setUpWinningNumbers() {
         String winningNumbers = InputView.inputWinningNumbers();
         return new Lotto(Converter.convertWinningNumber(winningNumbers));
     }
 
-    private int setUpBonusNumber() {
+    public int setUpBonusNumber() {
         String bonusNumber = InputView.inputBonusNumber();
         return Converter.convertToNumeric(bonusNumber);
     }

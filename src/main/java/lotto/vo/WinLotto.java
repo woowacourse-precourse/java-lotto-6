@@ -1,6 +1,7 @@
 package lotto.vo;
 
 import java.util.List;
+import lotto.validator.WinLottoValidator;
 
 public class WinLotto {
 
@@ -8,8 +9,13 @@ public class WinLotto {
     private int bonusNum;
 
     public WinLotto(List<Integer> numbers, int bonusNum) {
+        validate(numbers, bonusNum);
         this.numbers = numbers;
         this.bonusNum = bonusNum;
+    }
+
+    private void validate(List<Integer> numbers, int bonusNum) {
+        WinLottoValidator.validate(numbers, bonusNum);
     }
 
     public List<Integer> getNumbers() {

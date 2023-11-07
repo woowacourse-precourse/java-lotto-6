@@ -8,7 +8,7 @@ public class ClientInform {
     private PurchaseAmount purchaseAmount;
     private LottoWinningReward lottoWinningReward;
 
-    private ClientInform(int purchaseAmount) throws IllegalArgumentException {
+    private ClientInform(int purchaseAmount) {
         this.purchaseAmount = PurchaseAmount.getInstance(purchaseAmount);
         this.lottoWinningReward = LottoWinningReward.getInstance(LottoNumConstant.ZERO.getValue());
     }

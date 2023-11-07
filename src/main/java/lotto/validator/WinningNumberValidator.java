@@ -13,20 +13,20 @@ public class WinningNumberValidator extends Validator {
     private static final Pattern VALID_LOTTO_NUMBER_REGEXP = Pattern.compile("[0-9]+");
 
     @Override
-    public void validate(String winningNumber) throws IllegalArgumentException {
+    public void validate(String winningNumber) {
         validateEmptyInput(winningNumber);
         validateSeparator(winningNumber);
         validateInvalidWinningNumbers(winningNumber);
         validateWinningNumber(parsingWinningNumber(winningNumber));
     }
 
-    private void validateSeparator(String winningNumber) throws IllegalArgumentException {
+    private void validateSeparator(String winningNumber) {
         if (!winningNumber.contains(Constant.NUMBER_SEPARATOR.getMessage())) {
             throw new IllegalArgumentException(ErrorMessage.SEPARATOR_ERROR.getMessage());
         }
     }
 
-    private void validateInvalidWinningNumbers(String winningNumber) throws IllegalArgumentException {
+    private void validateInvalidWinningNumbers(String winningNumber) {
         String[] winningLottoNumbers = winningNumber.split(Constant.NUMBER_SEPARATOR.getMessage());
         for (String winningNumberStr : winningLottoNumbers) {
             if (!isValidWinningNumber(winningNumberStr)) {
@@ -35,12 +35,12 @@ public class WinningNumberValidator extends Validator {
         }
     }
 
-    private boolean isValidWinningNumber(String lottoNumber) throws IllegalArgumentException {
+    private boolean isValidWinningNumber(String lottoNumber) {
         Matcher matcher = VALID_LOTTO_NUMBER_REGEXP.matcher(lottoNumber);
         return matcher.matches();
     }
 
-    private void validateWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+    private void validateWinningNumber(List<Integer> winningNumbers) {
         validateWinningLottoNumber(winningNumbers);
         validateWinningNumberBound(winningNumbers);
         validateDupleWinningNumber(winningNumbers);
@@ -52,8 +52,8 @@ public class WinningNumberValidator extends Validator {
                 .toList();
     }
 
-    private void validateWinningNumberBound(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if(winningNumbers.stream().anyMatch(number -> !isValidNumberBound(number))){
+    private void validateWinningNumberBound(List<Integer> winningNumbers) {
+        if (winningNumbers.stream().anyMatch(number -> !isValidNumberBound(number))) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_BOUND_ERROR.getMessage());
         }
     }
@@ -65,13 +65,13 @@ public class WinningNumberValidator extends Validator {
         return true;
     }
 
-    private void validateWinningLottoNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if(winningNumbers.size() != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
+    private void validateWinningLottoNumber(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NUM_ERROR.getMessage());
         }
     }
 
-    private void validateDupleWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+    private void validateDupleWinningNumber(List<Integer> winningNumbers) {
         if (countNotDupleLottoNumber(winningNumbers) != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLE_NUM_ERROR.getMessage());
         }

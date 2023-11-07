@@ -19,25 +19,21 @@ public class InputView {
         return instance;
     }
 
-    public Integer readPurchaseAmount() throws IllegalArgumentException{
+    public Integer readPurchaseAmount() {
         System.out.println(InputViewMessage.LOTTO_PURCHASE_MESSAGE.getMessage());
         String purchaseAmount = Console.readLine();
-        checkPurchaseValidate(purchaseAmount);
+        new PurchaseAmountValidator().validate(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
     }
 
-    private void checkPurchaseValidate(String purchaseAmount) throws IllegalArgumentException {
-        new PurchaseAmountValidator().validate(purchaseAmount);
-    }
-
-    public String readWinningLotto() throws IllegalArgumentException {
+    public String readWinningLotto() {
         System.out.println(InputViewMessage.WINNING_LOTTO_MESSAGE.getMessage());
         String winningLotto = Console.readLine();
         new WinningNumberValidator().validate(winningLotto);
         return winningLotto;
     }
 
-    public String readBonusNumber() throws IllegalArgumentException {
+    public String readBonusNumber() {
         System.out.println(InputViewMessage.BONUS_NUMBER_MESSAGE.getMessage());
         String bonusNumber = Console.readLine();
         new BonusNumberValidator().validate(bonusNumber);

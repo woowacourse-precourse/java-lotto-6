@@ -11,7 +11,7 @@ public class PurchaseAmountValidator extends Validator {
         validatePurchaseAmount(purchaseAmount);
     }
     // 금액이 숫자가 아닌 문자가 들어온 경우
-    private static void validatePurchaseAmount(String purchaseAmount) throws IllegalArgumentException{
+    private static void validatePurchaseAmount(String purchaseAmount) {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {

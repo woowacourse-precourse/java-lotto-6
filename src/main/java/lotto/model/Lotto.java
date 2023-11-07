@@ -9,11 +9,18 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuple(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuple(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue()) {
             throw new IllegalArgumentException();
         }
     }

@@ -34,7 +34,7 @@ public class LottoService {
         return instance;
     }
 
-    public void makeLottoByPurchaseAmount(int purchaseAmount) throws IllegalArgumentException {
+    public void makeLottoByPurchaseAmount(int purchaseAmount) {
         makeClientInform(purchaseAmount);
         lottos = Lottos.getInstance(makeLotto(getLottoNum()));
     }

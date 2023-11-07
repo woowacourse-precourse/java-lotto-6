@@ -7,7 +7,7 @@ public enum LottoRateConstant {
     THIRD_LOTTO_MESSAGE("5개 일치 (1,500,000원) - %d개"),
     SECOND_LOTTO_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     FIRST_LOTTO_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
-    TOTAL_RETURN_MESSAGE("총 수익률은 %.2f%%입니다.");
+    TOTAL_RETURN_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private String message;
 

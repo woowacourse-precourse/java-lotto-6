@@ -10,6 +10,7 @@ public enum ErrorMessage {
     LOTTO_NUMBER_NUM_ERROR("6개의 숫자를 입력해주세요."),
     DUPLE_NUM_ERROR("당첨번호가 중복되었습니다. 중복되지 않게 입력해주세요."),
     NUMBER_BOUND_ERROR("1 ~ 45 사이의 숫자를 입력해주세요."),
+    DUPLE_BONUS_NUM_TO_WINNING_NUM("보너스번호가 당첨번호와 중복되었습니다. 중복되지 않게 입력해주세요."),
     NO_MATCH_RANKING_ERROR("매치되는 등수가 없습니다.");
 
     private final String message;

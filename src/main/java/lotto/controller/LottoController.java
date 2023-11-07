@@ -28,13 +28,50 @@ public class LottoController {
         System.out.println("보너스 번호="+ prizeLotto.getBonusNum());
     }
     public PrizeLotto createPrizeNum(){
-        return new PrizeLotto(numberValidator.prizeLottoNumValidator(inputView.enterPrizeLottoNum()), Integer.parseInt(inputView.enterBonusNum()));
+        List<Integer> lo;
+        int bonus;
+        lo = lottoNumCheck();
+        bonus = lottoBonusNumCheck(lo);
+        return new PrizeLotto(lo,bonus);
+
+    }
+    public List<Integer> lottoNumCheck(){
+        List<Integer> lo;
+        while(true) {
+            try {
+                lo = numberValidator.prizeLottoNumValidator(inputView.enterPrizeLottoNum());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lo;
+    }
+
+    public int lottoBonusNumCheck(List<Integer> lo){
+        int bonus;
+        while(true) {
+            try {
+                bonus = numberValidator.lottoBonusNumValidator(inputView.enterBonusNum(),lo);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonus;
     }
 
     public void createUserLottoNum(){
-        int buyLottoNum = numberValidator.buyLottoMoneyValidator(inputView.enterBuyLottoAmount());
-        List<Lotto> lotto = generateLottoNum(buyLottoNum);
-        userLotto.setUsersLotto(lotto);
+        while(true) {
+            try {
+                int buyLottoNum = numberValidator.buyLottoMoneyValidator(inputView.enterBuyLottoAmount());
+                List<Lotto> lotto = generateLottoNum(buyLottoNum);
+                userLotto.setUsersLotto(lotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Lotto> generateLottoNum(int num){

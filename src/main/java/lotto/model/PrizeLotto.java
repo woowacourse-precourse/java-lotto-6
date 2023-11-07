@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PrizeLotto {
     private final List<Integer> prizeNumbers;
@@ -16,14 +18,9 @@ public class PrizeLotto {
     }
 
     public PrizeLotto(List<Integer> numbers, int bonusNum) {
-        validate(numbers);
         this.prizeNumbers = numbers;
         this.bonusNum = bonusNum;
     }
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
+
 
 }

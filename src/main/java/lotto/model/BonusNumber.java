@@ -6,8 +6,8 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
-        validate(bonusNumber);
+    public BonusNumber(int bonusNumber, WinningNumber winningNumber) {
+        validate(bonusNumber, winningNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -15,7 +15,15 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    private void validate(int bonusNumber) {
+    private void validate(int bonusNumber, WinningNumber winningNumber) {
         LottoNumberValidator.validateBonusNumber(bonusNumber);
+        validateDuplicateBonusNumber(bonusNumber, winningNumber);
+    }
+
+
+    private void validateDuplicateBonusNumber(int bonusNumber, WinningNumber winningNumber) {
+        LottoNumberValidator.validateDuplicateBonusNumber(
+                winningNumber.getWinningNumbers(),
+                bonusNumber);
     }
 }

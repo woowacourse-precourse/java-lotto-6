@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.validation.LottoNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,8 +30,7 @@ public class WinningLotto {
         do {
             try {
                 int bonusNumber = readBonusNumber();
-                validateDuplicateBonusNumber(bonusNumber);
-                return new BonusNumber(bonusNumber);
+                return new BonusNumber(bonusNumber, this.winningNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.printExceptionMessage(e.getMessage());
             }
@@ -49,11 +47,6 @@ public class WinningLotto {
         } while (true);
     }
 
-    private void validateDuplicateBonusNumber(int bonusNumber) {
-        LottoNumberValidator.validateDuplicateBonusNumber(
-                winningNumber.getWinningNumbers(),
-                bonusNumber);
-    }
 
     private List<Integer> readWinningNumbers() {
         return InputView.readWinningNumbers();

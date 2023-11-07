@@ -26,7 +26,7 @@ public class Output {
     }
 
     public static void printNumOfLotto(int numOfLotto) {
-        out.println(String.format(NUM_OF_LOTTO, numOfLotto / 1000));
+        out.println(messageFormat(NUM_OF_LOTTO, numOfLotto / 1000));
     }
 
     public static void printTicket(Ticket ticket) {
@@ -54,22 +54,26 @@ public class Output {
     }
 
     private static void printSame3(int count) {
-        out.println(String.format(SAME3, count));
+        out.println(messageFormat(SAME3, count));
     }
 
     private static void printSame4(int count) {
-        out.println(String.format(SAME4, count));
+        out.println(messageFormat(SAME4, count));
     }
 
     private static void printSame5(int count) {
-        out.println(String.format(SAME5, count));
+        out.println(messageFormat(SAME5, count));
     }
 
     private static void printSame5Bonus(int count) {
-        out.println(String.format(SAME5_BONUS, count));
+        out.println(messageFormat(SAME5_BONUS, count));
     }
 
     private static void printSame6(int count) {
-        out.println(String.format(SAME6, count));
+        out.println(messageFormat(SAME6, count));
+    }
+
+    private static String messageFormat(String message, int count) {
+        return String.format(message, count);
     }
 }

@@ -8,7 +8,7 @@ import lotto.domain.Money;
 import lotto.domain.dto.LottoPrizeDto;
 
 public class LottoView {
-    private static final String BONUS_NUMBER_DUPLICATED_ERROR = "보너스 숫자는 당첨 번호와 중복될 수 없습니다";
+    private static final String BONUS_NUMBER_DUPLICATED_ERROR = "보너스 숫자는 당첨 번호와 중복될 수 없습니다.";
     public static final String ERROR = "[ERROR] ";
 
     private final LottoInputView inputView = new LottoInputView();
@@ -35,10 +35,10 @@ public class LottoView {
         outputView.printRateOfReturn(rateOfReturn);
     }
 
-    public Lotto getWinningNumbers() {
+    public Lotto getWinningLotto() {
         Lotto winningNumbers;
         do {
-            winningNumbers = inputView.getWinningNumbers();
+            winningNumbers = inputView.getWinningLotto();
         } while (winningNumbers == null);
 
         return winningNumbers;

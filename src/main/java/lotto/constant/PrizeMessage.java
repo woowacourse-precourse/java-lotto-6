@@ -32,4 +32,5 @@ public enum PrizeMessage {
     public String getMessage() {
         return message;
     }
+
 }

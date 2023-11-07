@@ -22,4 +22,5 @@ public enum PrizeMoney {
     String getValueWithDelimiter() {
         return DecimalFormatter.toNumberWithDelimiter(value);
     }
+
 }

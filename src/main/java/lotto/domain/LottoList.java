@@ -18,7 +18,7 @@ public class LottoList {
         return lottos.size();
     }
 
-    public static LottoList generateRandomLottoSetSizeWith(int size) {
+    public static LottoList generateRandomLottoListSizeWith(int size) {
         List<Lotto> randomLottos = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             randomLottos.add(Lotto.generateRandom());

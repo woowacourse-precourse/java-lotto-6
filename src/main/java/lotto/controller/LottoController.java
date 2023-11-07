@@ -15,9 +15,9 @@ public class LottoController {
 
     public void purchaseLottos() {
         Money money = lottoView.getLottoPurchasingCost();
-        LottoList lottoList = LottoList.generateRandomLottoSetSizeWith(money.getLottoCount());
+        LottoList lottoList = LottoList.generateRandomLottoListSizeWith(money.getLottoCount());
         printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
-        Lotto winningLotto = lottoView.getWinningNumbers();
+        Lotto winningLotto = lottoView.getWinningLotto();
         LottoNumber bonusNumber = lottoView.getBonusNumberWithDuplicationCheck(winningLotto);
 
         LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber);

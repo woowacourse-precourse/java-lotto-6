@@ -30,9 +30,48 @@ class LottoInputViewTest {
         InputStream in = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(in);
 
-        lottoInputView.getWinningNumbers();
+        lottoInputView.getWinningLotto();
 
         assertThat(outputMessage.toString()).hasToString("당첨 번호를 입력해 주세요.\n[ERROR] 문자는 입력할 수 없습니다.\n");
+    }
+
+    @DisplayName("로또 번호 입력에 중복된 숫자가 있은면 에러메세지가 출력된다.")
+    @Test
+    void getDuplicatedNumbers() {
+        String userInput = "1,1,1,2,3,4";
+
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+
+        lottoInputView.getWinningLotto();
+
+        assertThat(outputMessage.toString()).hasToString("당첨 번호를 입력해 주세요.\n[ERROR] 로또 번호는 서로 중복될 수 없습니다.\n");
+    }
+
+    @DisplayName("로또 번호 입력시 6개를 초과한 숫자들을 입력하면 에러메세지가 출력된다.")
+    @Test
+    void getMoreThanSixNumbers() {
+        String userInput = "1,2,3,4,5,6,7,8,9";
+
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+
+        lottoInputView.getWinningLotto();
+
+        assertThat(outputMessage.toString()).hasToString("당첨 번호를 입력해 주세요.\n[ERROR] 로또 번호는 6개여야 합니다.\n");
+    }
+
+    @DisplayName("로또 번호 입력시 6개 미만의 숫자들을 입력하면 에러메세지가 출력된다.")
+    @Test
+    void getLessThanSixNumbers() {
+        String userInput = "1,2,3,4,5";
+
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+
+        lottoInputView.getWinningLotto();
+
+        assertThat(outputMessage.toString()).hasToString("당첨 번호를 입력해 주세요.\n[ERROR] 로또 번호는 6개여야 합니다.\n");
     }
 
     @DisplayName("로또 번호 입력 정상 테스트.")
@@ -42,7 +81,7 @@ class LottoInputViewTest {
         InputStream in = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(in);
 
-        lottoInputView.getWinningNumbers();
+        lottoInputView.getWinningLotto();
     }
 
     @DisplayName("보너스 번호 입력에 문자가 포함되어 있으면 에러메세지가 출력된다.")

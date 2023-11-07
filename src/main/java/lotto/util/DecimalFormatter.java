@@ -13,4 +13,5 @@ public class DecimalFormatter {
     public static String toNumberWithDelimiter(long numberInput) {
         return decimalFormat.format(numberInput);
     }
+
 }

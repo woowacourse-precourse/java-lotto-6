@@ -35,4 +35,5 @@ public class LottoPurchaseDto {
     public LottoNumber getBonusNumber() {
         return bonusNumber;
     }
+
 }

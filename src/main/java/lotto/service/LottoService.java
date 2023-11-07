@@ -39,20 +39,13 @@ public class LottoService {
         return InputView.inputWinnerLotto();
     }
 
-    /*
-    TODO
-    Service에서 로또 매칭결과 생성
-    -> Rank별 결과 출력
-    -> 수익통계 결과 출력
-     */
-
     public void calculateLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {
-        Map<LottoRank, Integer> allRankResult = new LinkedHashMap<>();
+        Map<LottoRank, Integer> userLottoResultsRank = new LinkedHashMap<>();
         List<LottoRank> userLottoResults = getUserLottoResults(userLottos, winnerLotto);
         Arrays.stream(LottoRank.values())
                 .filter(userLottoResults::contains)
-                .forEach(rank -> allRankResult.put(rank, getWinningCount(rank, userLottoResults)));
-        OutputView.outputAllRankMatchResults(allRankResult);
+                .forEach(rank -> userLottoResultsRank.put(rank, getWinningCount(rank, userLottoResults)));
+        OutputView.outputAllRankMatchResults(userLottoResultsRank);
     }
 
     private List<LottoRank> getUserLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {

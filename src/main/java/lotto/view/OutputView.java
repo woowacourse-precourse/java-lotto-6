@@ -34,15 +34,15 @@ public class OutputView {
                 .collect(Collectors.joining(", "));
     }
 
-    public static void outputAllRankMatchResults(Map<LottoRank, Integer> allRankResult) {
+    public static void outputAllRankMatchResults(Map<LottoRank, Integer> userLottoResultsRank) {
         System.out.println("당첨 통계");
         System.out.println("---");
         Arrays.stream(LottoRank.values())
                 .sorted(Comparator.reverseOrder())
-                .forEach(rank -> outputRankResult(rank, allRankResult.getOrDefault(rank, 0)));
+                .forEach(rank -> outputRankMatchResult(rank, userLottoResultsRank.getOrDefault(rank, 0)));
     }
 
-    private static void outputRankResult(LottoRank rank, long winningCount) {
+    private static void outputRankMatchResult(LottoRank rank, long winningCount) {
         String resultPrintFormat = "%d개 일치%s (%s원) - %d개";
         String bonusFormant = "";
         if(rank.getMatchBonus()) {

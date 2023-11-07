@@ -16,7 +16,7 @@ public class InputView {
 
     public static Lotto inputWinningNum() {
         String input = inputNotBlank();
-        List<Integer> winNumberList = Lotto.validateInputWinningNumber(input); // 초기화
+        List<Integer> winNumberList = Lotto.validateInputWinningNumber(input);
         Lotto.validateNoDuplicates(winNumberList);
         Lotto.validateNumberRange(winNumberList);
         Lotto.validateSixNumbers(winNumberList);

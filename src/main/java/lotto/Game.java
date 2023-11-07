@@ -11,14 +11,13 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    private Integer buyingPrice;
+    private Buying buying;
     private List<Lotto> lottos;
     private Lotto winning;
     private Integer bonusNumber;
     private Result result;
 
     public Game() {
-        this.buyingPrice = 0;
         this.lottos = new ArrayList<>();
         this.bonusNumber = 0;
         this.result = new Result();
@@ -36,13 +35,13 @@ public class Game {
     private void saveBuyingPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String readLine = Console.readLine();
-        buyingPrice = Integer.parseInt(readLine);
+        buying = new Buying(readLine);
     }
 
     private void giveLotto() {
-        int count = buyingPrice / 1000;
-        System.out.println(count + "개를 구매했습니다.");
-        for (int i = 0; i < count; i++) {
+        int buyingCount = buying.getBuyingCount();
+        System.out.println(buyingCount + "개를 구매했습니다.");
+        for (int i = 0; i < buyingCount; i++) {
             List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             showLotto(uniqueNumbers);
             lottos.add(new Lotto(uniqueNumbers));
@@ -115,6 +114,6 @@ public class Game {
     }
 
     private double calculateRateOfReturn() {
-        return ((double) result.getWinningPrice() / buyingPrice) * 100;
+        return ((double) result.getWinningPrice() / buying.getBuyingPrice()) * 100;
     }
 }

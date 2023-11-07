@@ -13,6 +13,7 @@ public class Lottos { // 발행된 로또들의 모임
 		LottoGenerator lottoGenerator = new LottoGenerator();
 		List<Lotto> lottos = new ArrayList<Lotto>();
 		OutputView outputView = new OutputView();
+		outputView.printLottoAmount(amount);
 		while(amount-- > 0) {
 			Lotto lotto = new Lotto(lottoGenerator.randomNumbers()); //로또 객체의 랜덤로또 생성
 			outputView.printLotto(lotto.getnumbers());

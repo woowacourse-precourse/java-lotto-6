@@ -20,19 +20,30 @@ public class LottoController {
     public void start() {
         int lottoTicketCount = inputLottoAmount();
         outputView.printLottoTicketCount(lottoTicketCount);
-        lottos = new Lottos(lottoTicketCount);
+        lottos = createLottos(lottoTicketCount);
         outputView.printLottos(lottos);
     }
 
-    public int inputLottoAmount() {
+    private int inputLottoAmount() {
         while (true) {
             try {
                 lottoAmount = new LottoAmount(inputView.inputAmount());
                 return lottoAmount.getlottoTicketCount();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printError(e);
             }
         }
     }
+
+    private Lottos createLottos(int lottoTicketCount) {
+        while (true) {
+            try {
+                return new Lottos(lottoTicketCount);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
+    }
+
 
 }

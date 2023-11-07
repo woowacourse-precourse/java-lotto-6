@@ -23,7 +23,7 @@ public class LottoGenerator {
 //        this.numberOfTickets = money / 1000;
 //    }
 
-    public void insertMoney(String input) {
+    public void configMoney(String input) {
         checkInputFormat(input);
         int money = Integer.parseInt(input);
         this.money = money;

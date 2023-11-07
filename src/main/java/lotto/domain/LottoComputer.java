@@ -28,10 +28,10 @@ public class LottoComputer {
         this.myLottos = myLottos;
     }
 
-    public void config(String bonusNumber) {
-        validate(bonusNumber);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+    public void config(Integer bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
+
 
     public void config(Lotto winnerLotto) {
         this.winnerLotto = winnerLotto;
@@ -73,7 +73,7 @@ public class LottoComputer {
     }
 
 
-    private void validate(String val) {
+    public void validateBonus(String val) {
         validateAllDigit(val);
         validateNumberRange(Integer.parseInt(val));
     }

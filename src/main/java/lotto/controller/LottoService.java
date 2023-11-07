@@ -12,10 +12,12 @@ public class LottoService {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoGenerator lottoGenerator;
-    private LottoComputer lottoComputer;
+    private final LottoGenerator lottoGenerator;
+    private final LottoComputer lottoComputer;
     private Lottos myLottos;
     private Lotto winnerLotto;
+    private Integer bonusNumber;
+    private Integer userMoney;
 
     public LottoService(InputView inputView, OutputView outputView, LottoComputer lottoComputer,
                         LottoGenerator lottoGenerator) {
@@ -26,15 +28,18 @@ public class LottoService {
     }
 
     public void run() {
-        handleUserMoney();
+        configMoneyOfGenerator();
 
         myLottos = lottoGenerator.generateMyTickets();
         outputView.showMyTickets(myLottos.toDto());
 
-        handleWinnerNumber();
-        handleBonusNumber();
+        configWinningLottoOfComputer();
+        configBoughtLottoOfComputer();
+        configBonusNumberOfComputer();
 
+        lottoComputer.config(winnerLotto);
         lottoComputer.config(myLottos);
+//        lottoComputer.config(bonus);
         outputView.showResult(lottoComputer.simulate());
     }
 
@@ -43,7 +48,6 @@ public class LottoService {
         while (true) {
             try {
                 winnerLotto = Lotto.toLotto(inputView.readWinnerNumber());
-                lottoComputer.config(winnerLotto);
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
@@ -56,7 +60,8 @@ public class LottoService {
         outputView.askBonusNumber();
         while (true) {
             try {
-                lottoComputer.config(inputView.readBonusNumber());
+
+                lottoComputer.validateBonus(inputView.readBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
@@ -64,11 +69,13 @@ public class LottoService {
         }
     }
 
-    private void handleUserMoney() {
+    private void configMoneyOfGenerator() {
         outputView.askMoney();
         while (true) {
             try {
-                lottoGenerator.insertMoney(inputView.readMoney());
+                String input = inputView.readMoney();
+                lottoGenerator.configMoney(input);
+                userMoney = Integer.parseInt(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());

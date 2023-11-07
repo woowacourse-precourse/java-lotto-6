@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.List;
+
 import static lotto.util.LottoInformation.MIN_NUMBER;
 import static lotto.util.LottoInformation.MAX_NUMBER;
 
@@ -86,6 +88,13 @@ public class NumberValidator {
 
         if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
             return false;
+        }
+        return true;
+    }
+
+    public static boolean isWinningNumberDuplicate(int bonusNumber, List<Integer> numbers) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(NumberErrorMessage.DUPLICATE_WINNING_NUMBERS.getMessage());
         }
         return true;
     }

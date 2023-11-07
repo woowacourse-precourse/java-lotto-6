@@ -4,8 +4,8 @@ import lotto.model.LottoMachine;
 import lotto.model.LottoStatistics;
 import lotto.model.TotalProfitCalculator;
 import lotto.model.WinningNumbers;
+import lotto.util.NumberValidator;
 import lotto.view.input.InputView;
-import lotto.view.input.WinningNumbersInputView;
 import lotto.view.output.OutputView;
 
 import java.util.List;
@@ -14,7 +14,6 @@ public class LottoGameController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private LottoMachine lottoMachine;
-    private WinningNumbersInputView winningNumbersInputView;
     private LottoStatistics lottoStatistics;
     private WinningNumbers winningNumbers;
     private TotalProfitCalculator totalProfitCalculator;
@@ -23,7 +22,7 @@ public class LottoGameController {
         int payment = inputMoney();
         outputPurchaseLottoInformation(payment);
         List<Integer> numbers = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber();
+        int bonusNumber = inputBonusNumber(numbers);
         outputWinningStatistics(numbers, bonusNumber);
         outputTotalProfit(payment);
     }
@@ -38,12 +37,18 @@ public class LottoGameController {
     }
 
     private List<Integer> inputWinningNumbers() {
-        winningNumbersInputView = new WinningNumbersInputView();
-        return winningNumbersInputView.getInput();
+        return inputView.getWinningNumbers();
     }
 
-    private int inputBonusNumber() {
-        return inputView.getBonusNumber();
+    private int inputBonusNumber(List<Integer> numbers) {
+        try{
+            int bonusNumber = inputView.getBonusNumber();
+            NumberValidator.isWinningNumberDuplicate(bonusNumber, numbers);
+            return bonusNumber;
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return inputBonusNumber(numbers);
     }
 
     private void outputWinningStatistics(List<Integer> numbers, int bonusNumber) {

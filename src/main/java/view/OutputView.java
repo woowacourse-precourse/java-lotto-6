@@ -1,8 +1,8 @@
 package view;
 
-import domain.PrizeStatistics;
+import model.PrizeStatistics;
 import java.util.List;
-import domain.Lotto;
+import model.Lotto;
 
 public class OutputView {
     public void printLottoCount(int lottoCount) {

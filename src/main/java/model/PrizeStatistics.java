@@ -1,4 +1,4 @@
-package domain;
+package model;
 
 public class PrizeStatistics {
     private static final int ADD_PRIZE = 1;

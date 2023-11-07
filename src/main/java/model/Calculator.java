@@ -1,4 +1,4 @@
-package domain;
+package model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +8,7 @@ import util.PrizeMoney;
 
 public class Calculator {
     PrizeStatistics prizeStatistics = PrizeStatistics.getInstance();
+    LottoBundle lottoBundle = LottoBundle.getInstance();
     private static final int DIVIDING_UNIT = 1000;
     private static final double PERCENTAGE_FACTOR = 100;
 
@@ -15,28 +16,45 @@ public class Calculator {
         return money / DIVIDING_UNIT;
     }
 
-    public void calculatePrizeDescribe(Lotto lottoNumber, List<Integer> prizeNumber, int bonusNumber) {
-        int matchedNumberCount = getMatchedNumberCount(lottoNumber, prizeNumber);
-
-        if (matchedNumberCount == HitNumber.HIT_THREE_NUMBER.getHitNumber()) {
-            prizeStatistics.winFifthPrize();
+    public void calculatePrizeStatistics(List<Integer> prizeNumber, int bonusNumber) {
+        for (Lotto lottoNumber : lottoBundle.getLottoBundle()) {
+            int matchedNumberCount = getMatchedNumberCount(lottoNumber, prizeNumber);
+            isResultFifthPlace(matchedNumberCount);
+            isResultFourthPlace(matchedNumberCount);
+            isResultThirdPlace(matchedNumberCount);
+            isResultSecondPlace(bonusNumber, lottoNumber, matchedNumberCount);
+            isResultFirstPlace(matchedNumberCount);
         }
+    }
 
-        if (matchedNumberCount == HitNumber.HIT_FOUR_NUMBER.getHitNumber()) {
-            prizeStatistics.winFourthPrize();
+    private void isResultFirstPlace(int matchedNumberCount) {
+        if (matchedNumberCount == HitNumber.HIT_SIX_NUMBER.getHitNumber()) {
+            prizeStatistics.winFirstPrize();
         }
+    }
 
-        if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber()) {
-            prizeStatistics.winThirdPrize();
-        }
-
+    private void isResultSecondPlace(int bonusNumber, Lotto lottoNumber, int matchedNumberCount) {
         if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber() && isLottoNumberContainBonusNumber(
                 lottoNumber, bonusNumber)) {
             prizeStatistics.winSecondPrize();
         }
+    }
 
-        if (matchedNumberCount == HitNumber.HIT_SIX_NUMBER.getHitNumber()) {
-            prizeStatistics.winFirstPrize();
+    private void isResultThirdPlace(int matchedNumberCount) {
+        if (matchedNumberCount == HitNumber.HIT_FIVE_NUMBER.getHitNumber()) {
+            prizeStatistics.winThirdPrize();
+        }
+    }
+
+    private void isResultFourthPlace(int matchedNumberCount) {
+        if (matchedNumberCount == HitNumber.HIT_FOUR_NUMBER.getHitNumber()) {
+            prizeStatistics.winFourthPrize();
+        }
+    }
+
+    private void isResultFifthPlace(int matchedNumberCount) {
+        if (matchedNumberCount == HitNumber.HIT_THREE_NUMBER.getHitNumber()) {
+            prizeStatistics.winFifthPrize();
         }
     }
 

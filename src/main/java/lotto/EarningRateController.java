@@ -1,6 +1,6 @@
 package lotto;
 
-import domain.Calculator;
+import model.Calculator;
 import view.OutputView;
 
 public class EarningRateController {

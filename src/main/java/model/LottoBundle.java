@@ -1,11 +1,13 @@
-package domain;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.RandomNumberGenerator;
 
 public class LottoBundle {
     private static LottoBundle instance;
-    private List<Lotto> lottoBundle = new ArrayList<>();
+    private final List<Lotto> lottoBundle = new ArrayList<>();
+    RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     private LottoBundle() {
     }
@@ -17,8 +19,10 @@ public class LottoBundle {
         return instance;
     }
 
-    public void addLotto(List<Integer> randomNumber) {
-        lottoBundle.add(new Lotto(randomNumber));
+    public void addLotto(int lottoCount) {
+        for (int i = 0; i < lottoCount; i++) {
+            lottoBundle.add(new Lotto(randomNumberGenerator.createNewRandomNumber()));
+        }
     }
 
     public List<Lotto> getLottoBundle() {

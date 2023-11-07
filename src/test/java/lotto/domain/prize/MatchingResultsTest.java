@@ -13,7 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("[Domain Layer] MatchingResults")
-public class MatchingResultsTest {
+class MatchingResultsTest {
 
     @Nested
     @DisplayName("[of] 정적 팩토리 메소드 / 생성자 테스트")

@@ -34,7 +34,13 @@ public class MatchingResult {
     }
 
     // Getter
-    public boolean getMatchingBonus() {
+
+
+    public PrizeMatchingCount getPrizeMatchingCount() {
+        return prizeMatchingCount;
+    }
+
+    public boolean getBonusMatching() {
         return bonusMatching;
     }
 }

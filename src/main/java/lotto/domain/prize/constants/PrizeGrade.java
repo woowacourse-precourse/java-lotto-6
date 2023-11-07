@@ -73,7 +73,7 @@ public enum PrizeGrade {
     }
 
     private static Predicate<PrizeGrade> isSatisfyBonusCondition(MatchingResult matchingResult) {
-        return grade -> grade.matchingBonus.apply(matchingResult.getMatchingBonus());
+        return grade -> grade.matchingBonus.apply(matchingResult.getBonusMatching());
     }
 
     // Getter

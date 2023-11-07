@@ -30,53 +30,49 @@ public class LottoView {
     }
 
     public void start() {
-        System.out.println(START);
-        lottoPay();
+        setLottoBudget();
         parseLotto();
         parseBonusInteger();
         lottoResult();
     }
 
-    private void lottoPay() {
-        String money = Console.readLine();
+    private void setLottoBudget() {
         while (true) {
             try {
+                System.out.println(START);
+                String money = Console.readLine();
                 List<Lotto> tickets = lottoController.setLottoBudget(money);
                 this.lottoTickets = tickets;
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("IllegalArgumentException : " + e.getMessage());
-                money = Console.readLine();
             }
         }
 
         System.out.printf(BUY.toString(), lottoTickets.size());
         lottoTickets.stream()
                 .forEach(ticket -> System.out.println(ticket.getNumbers().toString()));
-
-        System.out.println(JACKPOT);
     }
 
     private void parseLotto() {
-        String number = Console.readLine();
         while (true) {
             try {
+                System.out.println(JACKPOT);
+                String number = Console.readLine();
                 this.userLotto = LottoController.getInstance()
                         .createUserLottoNumber(number);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("IllegalArgumentException : " + e.getMessage());
-                number = Console.readLine();
             }
         }
-
-        System.out.println(BONUS);
     }
 
     private void parseBonusInteger() {
-        String bonus = Console.readLine();
         while (true) {
             try {
+                System.out.println(BONUS);
+                String bonus = Console.readLine();
                 BonusRequestDTO bonusRequestDTO = new BonusRequestDTO.Builder()
                         .lotto(userLotto)
                         .bonus(bonus)
@@ -86,7 +82,6 @@ public class LottoView {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("IllegalArgumentException : " + e.getMessage());
-                bonus = Console.readLine();
             }
         }
     }

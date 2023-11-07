@@ -6,7 +6,6 @@ import lotto.View.InputView;
 import lotto.View.OutputView;
 import lotto.Model.Generator;
 import lotto.Model.Lotto;
-import lotto.Model.StaisticsResult;
 
 public class ProcessLotto {
     private OutputView outputView;

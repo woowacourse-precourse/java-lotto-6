@@ -1,10 +1,11 @@
-package lotto.Model;
+package lotto.Controller;
 
 import static lotto.MatchNums.*;
 
 import java.util.HashMap;
 import java.util.List;
 import lotto.Controller.CalculateLotto;
+import lotto.Model.Lotto;
 import lotto.View.OutputView;
 
 public class StaisticsResult {

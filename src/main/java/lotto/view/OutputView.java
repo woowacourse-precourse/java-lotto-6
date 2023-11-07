@@ -24,11 +24,15 @@ public class OutputView {
 
     public static void outputAllLottoNumbers(Lottos lottos) {
         List<Lotto> outputLottos = lottos.getAllLotto();
-        System.out.println(String.format(OUTPUT_LOTTO_COUNT_MESSAGE, outputLottos.size()));
+        outputLottoCount(outputLottos);
 
         outputLottos.forEach(
                 lotto -> System.out.println(String.format(OUTPUT_LOTTO_NUMBERS_MESSAGE, lotto.getNumbers().toArray())));
 
+    }
+
+    public static void outputLottoCount(List<Lotto> outputLottos) {
+        System.out.println(String.format(OUTPUT_LOTTO_COUNT_MESSAGE, outputLottos.size()));
     }
 
     public static void outputResult(HashMap<StateType, Integer> result) {

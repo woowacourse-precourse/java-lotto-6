@@ -25,12 +25,10 @@ public class LottosResult {
     }
 
     public List<Integer> countEachRank(Map<Rank, Integer> results) {
-        List<Integer> eachRankNumber = Arrays.stream(Rank.values())
+        return Arrays.stream(Rank.values())
                 .filter(rank -> !isZero(rank))
                 .map(rank -> results.getOrDefault(rank, 0))
                 .collect(Collectors.toList());
-
-        return eachRankNumber;
     }
 
     private boolean isZero(Rank rank) {

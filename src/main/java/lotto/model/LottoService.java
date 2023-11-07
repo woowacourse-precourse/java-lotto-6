@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.config.LottoMessage;
 import lotto.config.Rank;
+import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.PurchaseAmountDto;
 import lotto.dto.request.WinningNumbersDto;
 import lotto.dto.response.LottoResultsDto;
@@ -23,9 +24,18 @@ public class LottoService {
         return new LottoService();
     }
 
+    public LottoTicketsDto purchaseLottos(NumberGenerator numberGenerator, PurchaseAmountDto purchaseAmountDto) {
+        LottoMachine lottoMachine = createLottoMachine(numberGenerator, purchaseAmountDto);
+        return lottoMachine.createLottoTickets();
+    }
+
     // 로또 결과 계산과 관련된 주요 로직을 처리하는 메소드
-    public LottoResultsDto calculateResults(LottoTicketsDto lottoTicketsDto, WinningNumbersDto winningNumbersDto) {
-        Map<Rank, Long> lottoStream = countWinningRanks(lottoTicketsDto, winningNumbersDto);
+    public LottoResultsDto calculateResults(LottoTicketsDto lottoTicketsDto,
+                                            WinningNumbersDto winningNumbersDto,
+                                            BonusNumberDto bonusNumberDto) {
+        WinningNumbers winningNumbers = createWinningNumbers(winningNumbersDto, bonusNumberDto);
+
+        Map<Rank, Long> lottoStream = countWinningRanks(lottoTicketsDto, winningNumbers);
         LottoResults lottoResults = LottoResults.from(lottoStream);
         String formattedResults = formatResults(lottoResults);
         float profitRate = calculateProfitRate(lottoTicketsDto, lottoResults);
@@ -34,15 +44,15 @@ public class LottoService {
     }
 
     // 로또 등수별로 몇 개의 당첨이 있는지 계산하는 메소드
-    private static Map<Rank, Long> countWinningRanks(LottoTicketsDto lottoTicketsDto,
-                                                     WinningNumbersDto winningNumbersDto) {
+    private Map<Rank, Long> countWinningRanks(LottoTicketsDto lottoTicketsDto,
+                                                     WinningNumbers winningNumbers) {
         return lottoTicketsDto.getLottoTickets().getLottoTickets().stream()
-                .map(lotto -> determineRank(lotto, winningNumbersDto.getNumbers(), winningNumbersDto.getBonus()))
+                .map(lotto -> determineRank(lotto, winningNumbers.getNumbers(), winningNumbers.getBonus()))
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
 
     // 당첨 등수를 결정하는 메소드
-    private static Rank determineRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    private Rank determineRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         long matchCount = countMatches(lotto, winningNumbers);
         boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
         return Rank.valueOf(matchCount, bonusMatch);
@@ -87,9 +97,13 @@ public class LottoService {
         return ProfitCalculator.calculateLottoReturnRate(totalCost, totalPrize);
     }
 
-    public LottoMachine createLottoMachine(NumberGenerator numberGenerator, PurchaseAmountDto purchaseAmountDto) {
+    private LottoMachine createLottoMachine(NumberGenerator numberGenerator, PurchaseAmountDto purchaseAmountDto) {
         String amount = purchaseAmountDto.getAmount();
         Money money = Money.from(amount);
         return LottoMachine.of(numberGenerator, money);
+    }
+
+    public WinningNumbers createWinningNumbers(WinningNumbersDto winningNumbersDto, BonusNumberDto bonusNumberDto) {
+        return WinningNumbers.of(winningNumbersDto.getNumbers(), bonusNumberDto.getBonus());
     }
 }

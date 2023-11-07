@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.Game;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningInformation;
 import lotto.input.ConsoleInputReader;
 import lotto.input.InputProcessor;
@@ -11,8 +12,6 @@ import lotto.output.OutputProcessor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-
-import static lotto.GameConfig.*;
 
 public class GameManager {
     private InputProcessor inputProcessor;
@@ -56,8 +55,9 @@ public class GameManager {
 
     private List<Lotto> purchase() {
         outputProcessor.outputPurchaseMoneyInputMessage();
-        int purchaseMoney = requestRepeatedly(inputProcessor::getUserPurchaseMoney);
-        int numberOfLottos = purchaseMoney / PURCHASE_MONEY_UNIT;
+        Integer amount = requestRepeatedly(inputProcessor::getUserPurchaseMoney);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
+        int numberOfLottos = purchaseAmount.toNumberOfLottos();
         List<Lotto> lottos = issueLottos(numberOfLottos);
         outputProcessor.outputNewLine();
         return lottos;

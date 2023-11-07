@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.GameConfig.*;
-import static lotto.input.InputValidator.*;
 
 /*
  * todo
@@ -22,7 +21,7 @@ public class InputProcessor {
 
     public Integer getUserPurchaseMoney() {
         String input = inputReader.read();
-        validatePurchaseMoneyInput(input);
+        validateIsInteger(input);
         return Integer.parseInt(input);
     }
 
@@ -34,8 +33,22 @@ public class InputProcessor {
 
     public Integer getBonusNumber() {
         String input = inputReader.read();
-        validateBonusNumberInput(input);
+        validateIsInteger(input);
         return Integer.valueOf(input);
+    }
+
+    public static void validateWinningNumberInput(String input) {
+        String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
+        Arrays.stream(separatedInput)
+                .forEach(InputProcessor::validateIsInteger);
+    }
+
+    private static void validateIsInteger(String str) {
+        try {
+            Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력은 정수여야합니다.");
+        }
     }
 
 

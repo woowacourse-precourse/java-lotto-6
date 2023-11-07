@@ -92,7 +92,7 @@ public class Game {
     }
 
     private void createProfitRate() {
-        profitRate = Calculator.calculateProfitRate(createWinningCounts(), purchaseAmount);
+        profitRate = Calculator.calculateProfitRate(winningResult, purchaseAmount);
     }
 
 

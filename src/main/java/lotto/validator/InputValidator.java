@@ -7,7 +7,7 @@ import lotto.message.ExceptionMessage;
 import java.util.regex.Pattern;
 
 public class InputValidator {
-    private static final String DIGIT_REGEX = "^[0-9]+$";
+    private static final String DIGIT_REGEX = "^\\d+$";
     private static final String SPLIT_REGEX = "^[0-9,]+$";
 
     public void validateIsDigit(String number) {

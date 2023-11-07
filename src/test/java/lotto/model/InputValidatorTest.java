@@ -84,7 +84,4 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateAndParseWinningNumbers(winningNumbersOutOfRange))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
-
 }

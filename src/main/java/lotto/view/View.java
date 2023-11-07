@@ -55,7 +55,6 @@ public class View {
         System.out.println(message);
     }
 
-
     public void displayResults(LottoResult lottoResult) {
         printMessage(WINNING_STATISTICS_MESSAGE.getMessage());
         printRankResults(lottoResult);

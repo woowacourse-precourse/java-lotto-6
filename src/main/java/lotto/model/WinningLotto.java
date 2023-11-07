@@ -10,8 +10,6 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-
-
     public int calculateMatchingNumbers(Lotto lotto) {
         return (int) lotto.getNumbers()
                 .stream()

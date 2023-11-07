@@ -41,7 +41,7 @@ public class InputValidator {
         validateNumeric(stringInteger);
         int bonusNumber = Integer.parseInt(stringInteger);
         validateBonusNumberRange(bonusNumber);
-        validateBonusNumberNotInLottoNumbers(bonusNumber,winningNumbers);
+        validateBonusNumberNotInLottoNumbers(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 

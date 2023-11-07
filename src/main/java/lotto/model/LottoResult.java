@@ -47,7 +47,7 @@ public class LottoResult {
         return totalPrize;
     }
 
-    private BigDecimal  calculateProfitRate(BigDecimal totalPrizeMoney, BigDecimal totalSpentMoney) {
+    private BigDecimal calculateProfitRate(BigDecimal totalPrizeMoney, BigDecimal totalSpentMoney) {
         BigDecimal profitRateDecimal = totalPrizeMoney
                 .divide(totalSpentMoney, 5, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100));

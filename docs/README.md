@@ -26,9 +26,9 @@
 - [x]  로또 넘버 리스트 반환 메소드
 
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생
-  - 로또 번호 개수가 6개가 아닐 경우
-  - 로또 번호가 1 - 45 사이의 수가 아닐 경우 (ex. `123`, `0`)
-  - 로또 번호 가운데 중복된 수가 있을 경우
+    - 로또 번호 개수가 6개가 아닐 경우
+    - 로또 번호가 1 - 45 사이의 수가 아닐 경우 (ex. `123`, `0`)
+    - 로또 번호 가운데 중복된 수가 있을 경우
 
 
 ### Winning Lotto (당첨 번호)
@@ -58,7 +58,7 @@
 - [x]  총 구입 금액 반환
 
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생
-  - 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우
+    - 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우
 
 ### LottoRank
 
@@ -77,29 +77,32 @@
 
 ### Util
 
-- [x]  1 - 45 사이 무작위의 6개의 로또 넘버 생성 메소드
-- [x]  1- 45 사이의 로또 넘버 검증 메소드
-- [x]  당첨 내역에 따른 수익률 계산 메소드
-  - 수익률은 소수점 둘째 자리에서 반올림
-  - 수익률 계산 알고리즘 구현
+- [x]  [`LottoNumberGenerator`] 1 - 45 사이 무작위의 6개의 로또 넘버 생성 메소드
+- [x]  [`LottoNumberValidator`] 1- 45 사이의 로또 넘버 검증 메소드
+- [x]  [`LottoProfitCalculator`] 당첨 내역에 따른 수익률 계산 메소드
+    - 수익률은 소수점 둘째 자리에서 반올림
+    - 수익률 계산 알고리즘 구현
 
-    ``` java
-        double roi = (double) (revenue * 100) / cost;
-        return Math.round(roi * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림*
-    ```
+   ```java
+    double roi = (double) (revenue * 100) / cost;
+    return Math.round(roi * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림
+   ```
 
-- [x]  문자열 가공 역할의 **TextBuilder 라이브러리 구현**
-  - Integer 파라미터 타입을 추가하는 메소드
-  - Double 파라미터 타입을 추가하는 메소드
-  - 화폐 단위를 적용하여 Integer 파라미터 타입을 추가하는 메소드
-    - 화폐 단위 적용 예시
+- [x]  [`TextBuilder`] 문자열 가공 역할의 **TextBuilder 라이브러리 구현**
+    - Integer 파라미터 타입을 추가하는 메소드
+    - Double 파라미터 타입을 추가하는 메소드
+    - 화폐 단위를 적용하여 Integer 파라미터 타입을 추가하는 메소드
+        - 화폐 단위 적용 예시
             
-    ``` java
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        String result = decimalFormat.format(cash);
-    ```
+        ``` java
+            DecimalFormat decimalFormat = new DecimalFormat("###,###");
+            String result = decimalFormat.format(cash);
+        ```
 
-- [x]  [LottoGamePrinter] 문자열 출력 메소드 구현
+
+
+- [x]  [`LottoGameInputer`] 문자열 입력 메소드 구현
+- [x]  [`LottoGamePrinter`] 문자열 출력 메소드 구현
 
 ### **✅ 프로그래밍 요구 사항**
 

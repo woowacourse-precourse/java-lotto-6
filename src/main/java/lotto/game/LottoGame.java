@@ -13,6 +13,12 @@ public class LottoGame {
     private LottoStorage lottoStorage;
     private AutomaticLottoStorage automaticLottoStorage;
 
+    private LottoGame() {}
+
+    public static LottoGame getInstance() {
+        return new LottoGame();
+    }
+
     public void start () {
         inputLottoPurchaseAmount();
         printAutomaticLottoResults();

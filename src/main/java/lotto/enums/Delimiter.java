@@ -7,7 +7,7 @@ public enum Delimiter {
     private final String regex;
     private final String korName;
 
-    Delimiter(String value, String regex, String korName) {
+    Delimiter(final String value, final String regex, final String korName) {
         this.value = value;
         this.regex = regex;
         this.korName = korName;

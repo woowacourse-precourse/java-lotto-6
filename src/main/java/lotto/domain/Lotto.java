@@ -35,8 +35,8 @@ public record Lotto(List<LottoNumber> numbers) {
 
     public Prize match(final Lotto lotto, final LottoNumber bonus) {
         final int matchedCount = this.getMatchCount(lotto);
-        final boolean matchedBonus = this.contains(bonus);
-        return Prize.valueOf(matchedCount, matchedBonus);
+        final boolean isBonus = this.contains(bonus);
+        return Prize.valueOf(matchedCount, isBonus);
     }
 
     public boolean contains(final LottoNumber lottoNumber) {

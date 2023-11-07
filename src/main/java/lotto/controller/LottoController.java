@@ -29,11 +29,11 @@ public class LottoController {
         LottoTicket lottoTicket = this.buyLottoTicket(amount);
         outputView.printLottoTicket(lottoTicket);
 
-        WinningLotto winningLotto = this.getWinningLotto();
+        WinningLotto winningLotto = this.issueWinningLotto();
         WinningResult winningResult = lottoTicket.match(winningLotto);
         outputView.printWinningResult(winningResult);
 
-        double yield = winningResult.calculateYield(amount);
+        final double yield = winningResult.calculateYield(amount);
         outputView.printYield(Converter.convertToStringWithRound(yield));
     }
 
@@ -45,15 +45,15 @@ public class LottoController {
         });
     }
 
-    private LottoTicket buyLottoTicket(Amount amount) {
+    private LottoTicket buyLottoTicket(final Amount amount) {
         int quantity = amount.getLottoQuantity();
         return lottoMachine.createLottoTicketByAuto(quantity);
     }
 
-    private WinningLotto getWinningLotto() {
+    private WinningLotto issueWinningLotto() {
         Lotto lotto = this.getLotto();
         return this.inputWithRetry(() -> {
-            LottoNumber bonus = getBonus();
+            LottoNumber bonus = this.getBonus();
             return new WinningLotto(lotto, bonus);
         });
     }
@@ -72,7 +72,7 @@ public class LottoController {
         return lottoMachine.createLottoNumber(bonus);
     }
 
-    private <T> T inputWithRetry(Supplier<T> supplier) {
+    private <T> T inputWithRetry(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

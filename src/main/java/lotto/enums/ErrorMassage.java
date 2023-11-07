@@ -23,7 +23,7 @@ public enum ErrorMassage {
     private static final String ERROR = "[ERROR] ";
     private final String massage;
 
-    ErrorMassage(String massage) {
+    ErrorMassage(final String massage) {
         this.massage = massage;
     }
 

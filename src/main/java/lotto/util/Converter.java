@@ -33,11 +33,11 @@ public class Converter {
                 .toList();
     }
 
-    public static String convertNumberWithComma(int number) {
+    public static String convertNumberWithComma(final int number) {
         return DECIMAL_FORMAT.format(number);
     }
 
-    public static String convertToStringWithRound(double value) {
+    public static String convertToStringWithRound(final double value) {
         double rounder = Math.pow(TEN, DECIMAL_POINT);
         return String.valueOf(Math.round(value * rounder) / rounder);
     }

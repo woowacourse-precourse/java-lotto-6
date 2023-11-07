@@ -19,8 +19,8 @@ public enum Prize {
         this.winningMoney = winningMoney;
     }
 
-    public static Prize valueOf(final int matchedCount, final boolean matchedBonus) {
-        if (matchedCount == SECOND.matchedCount && matchedBonus) {
+    public static Prize valueOf(final int matchedCount, final boolean isBonus) {
+        if (matchedCount == SECOND.matchedCount && isBonus) {
             return SECOND;
         }
 

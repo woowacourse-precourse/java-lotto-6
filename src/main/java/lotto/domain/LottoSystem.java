@@ -29,7 +29,7 @@ public class LottoSystem {
         List<Lotto> lottos = new ArrayList<>();
 
         int purchaseLottoCnt = purchaseMoney / moneyUnit;
-        while (purchaseLottoCnt --> 1) {
+        while (purchaseLottoCnt --> 0) {
             List<Integer> lotto = createRandomNumbers();
             Collections.sort(lotto);
             lottos.add(new Lotto(lotto));

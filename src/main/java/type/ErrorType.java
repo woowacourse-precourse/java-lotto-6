@@ -6,7 +6,7 @@ public enum ErrorType {
     INVALID_NUMBER_DIGITS("[ERROR] 6자리의 숫자가 생성되어야 합니다."),
     INVALID_NUMBER_RANGE("[ERROR] 숫자는 1~45 사이의 숫자여야 합니다."),
     INVALID_NUMBER_DUPLICATED("[ERROR] 중복된 숫자가 입력되면 안됩니다."),
-    INVALID_BONUS_NUMBER_DUPLICATED("[ERROR] 보너스 넘버는 중복된 숫자가 아니여야 합니다."),
+    INVALID_BONUS_NUMBER_DUPLICATED("[ERROR] 보너스 넘버는 0이상 45 이상의 중복된 숫자가 아니여야 합니다."),
     INVALID_NUMBER_INPUT("[ERROR] 숫자 입력만 가능합니다.");
 
     private final String errorText;

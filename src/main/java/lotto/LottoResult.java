@@ -5,11 +5,11 @@ public enum LottoResult {
     ZeroMatches(0, 0, "0", false),
     OneMatches(1, 0, "0", false),
     TwoMatches(2, 0 ,"0", false),
-    ThreeMatches(3, 5000, "5000", false),
-    FourMatches(4, 50000, "50.000", false),
-    FiveMatches(5, 1500000, "1.500.000", false),
-    FiveBonusMatches(5, 30000000, "30.000.000", true),
-    SixMatches(6, 2000000000, "2.000.000.000", false);
+    ThreeMatches(3, 5000, "5,000", false),
+    FourMatches(4, 50000, "50,000", false),
+    FiveMatches(5, 1500000, "1,500,000", false),
+    FiveBonusMatches(5, 30000000, "30,000,000", true),
+    SixMatches(6, 2000000000, "2,000,000,000", false);
 
     private final int match;
     private final int price;

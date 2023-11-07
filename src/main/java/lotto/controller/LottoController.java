@@ -24,10 +24,21 @@ public class LottoController {
 
     public void run() {
         Money money = payMoney();
+        Lottos lottos = buyLotto(money);
+        Customer customer = new Customer(money, lottos);
+
 
     }
 
     private Money payMoney() {
         return new Money(read(InputView::inputMoney));
     }
+
+    private Lottos buyLotto(Money money) {
+        Lottos lottos = lottoStore.issue(money, new LottoAutoIssuePolicy());
+        OutputView.printQuantity(money.getBuyLottoQuantity());
+        OutputView.printLottos(LottosDto.from(lottos));
+        return lottos;
+    }
+
 }

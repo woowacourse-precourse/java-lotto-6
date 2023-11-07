@@ -11,7 +11,7 @@ public class InputView {
     public static int intputAmount(String input){
         ValidateCheck.pureIntegerCheck(input);
         int amount = Integer.parseInt(input);
-        ValidateCheck.inputAmountValidate(amount)
+        ValidateCheck.inputAmountValidate(amount);
         return amount/Constants.LOTTO_PRICE.getNumber();
     }
 
@@ -28,4 +28,10 @@ public class InputView {
         return winNumbers;
     }
 
+    public static int inputBonusNumber(String input){
+        ValidateCheck.pureIntegerCheck(input);
+        int bonusNumber = Integer.parseInt(input);
+        ValidateCheck.numberRangeValidate(bonusNumber);
+        return bonusNumber;
+    }
 }

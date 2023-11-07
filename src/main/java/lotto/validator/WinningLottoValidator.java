@@ -16,7 +16,7 @@ public class WinningLottoValidator {
         new Lotto(win.stringToList(winningLotto));
     }
 
-    public static void validateDigit(String winningLotto) {
+    private static void validateDigit(String winningLotto) {
         List<String> winningNumbers = List.of(winningLotto.split(","));
 
         for (String number : winningNumbers) {

@@ -2,9 +2,9 @@ package lotto.domain;
 
 public class JackpotNumber {
     private final Lotto jackpot;
-    private final Integer bonusNumber;
+    private Integer bonusNumber;
 
-    public JackpotNumber(Lotto jackpot, Integer bounusNumber) {
+    public JackpotNumber(Lotto jackpot, int bounusNumber) {
         this.jackpot = jackpot;
         this.bonusNumber = bounusNumber;
     }
@@ -13,5 +13,8 @@ public class JackpotNumber {
     }
     public Integer getBonusNumber() {
         return bonusNumber;
+    }
+    public void changeBonus(int bonus) {
+        this.bonusNumber = bonus;
     }
 }

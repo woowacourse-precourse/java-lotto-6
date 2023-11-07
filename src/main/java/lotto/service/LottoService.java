@@ -30,7 +30,7 @@ public class LottoService {
         return new Bonus(bonusNumber, winningNumbers).getNumber();
     }
 
-    public String getRevenue(Map<Prize, Integer> result, Money money) {
+    public double getRevenue(Map<Prize, Integer> result, Money money) {
         double rewards = calculateRewards(result);
         return money.calculateRevenue(rewards);
     }

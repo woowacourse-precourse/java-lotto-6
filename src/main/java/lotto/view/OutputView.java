@@ -20,8 +20,8 @@ public class OutputView {
 
     }
 
-    public void printRevenue(String revenue) {
-        String message = String.format("총 수익률은 %s입니다.", revenue);
+    public void printRevenue(double revenue) {
+        String message = String.format("총 수익률은 %,.1f%%입니다.", revenue);
         System.out.println(message);
     }
 

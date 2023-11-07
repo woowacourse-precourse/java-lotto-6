@@ -117,7 +117,7 @@ public class LottoController {
     }
 
     private void responseRevenue(Map<Prize, Integer> prizeResult, Money money) {
-        String revenue = lottoService.getRevenue(prizeResult, money);
+        double revenue = lottoService.getRevenue(prizeResult, money);
         outputView.printRevenue(revenue);
     }
 

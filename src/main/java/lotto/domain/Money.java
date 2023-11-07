@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import lotto.util.Convertor;
 import lotto.util.Validator;
 
@@ -20,19 +18,8 @@ public class Money {
         return money / UNIT;
     }
 
-    public String calculateRevenue(double rewards) {
-        double revenue = (rewards / money) * 100;
-
-        NumberFormat nf = NumberFormat.getInstance();
-        nf.setGroupingUsed(false);
-
-        String str = nf.format(revenue) + "e" + 1;
-        revenue = Math.round(Double.parseDouble(str));
-        str = nf.format(revenue) + "e" + (-1);
-
-        DecimalFormat df = new DecimalFormat("###,###,###.0");
-
-        return df.format(Double.parseDouble(str)) + "%";
+    public double calculateRevenue(double rewards) {
+        return (rewards / money) * 100;
     }
 
 }

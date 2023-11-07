@@ -1,6 +1,9 @@
 package lotto.view;
 
 
+import java.util.List;
+import lotto.domain.Lotto;
+
 public class OutputView {
 
     public void printPurchaseGuideMessage() {
@@ -17,5 +20,11 @@ public class OutputView {
 
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 }

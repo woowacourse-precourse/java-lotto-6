@@ -36,4 +36,24 @@ class WinningLottoTest {
         );
     }
 
+
+
+    @DisplayName("당첨 로또 번호와 보너스 번호가 일치하는 경우 IllegalArgumentException 에러 발생")
+    @ParameterizedTest
+    @MethodSource("getLottoNumbersAndDuplicationBonusNumber")
+    void checkWinningLottoAndDuplicationBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> WinningLotto.of(numbers, bonusNumber));
+    }
+
+    private static Stream<Arguments> getLottoNumbersAndDuplicationBonusNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(List.of(10, 12, 14, 19, 22, 45), 45)
+        );
+    }
+
+    @Test
+    void isWinningNumber() {
+
+    }
 }

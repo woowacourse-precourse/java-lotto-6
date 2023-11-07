@@ -81,6 +81,4 @@ final class PrintResultSet {
         }
         return printSix;
     }
-
-
 }

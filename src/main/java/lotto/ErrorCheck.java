@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-import static lotto.Application.*;
+import static lotto.RunnerLotto.*;
 
 
 public class ErrorCheck {

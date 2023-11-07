@@ -8,7 +8,7 @@ import static lotto.ErrorCheck.validateRandomLottoSize;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    Lotto(List<Integer> numbers) {
         validateLottoSize(numbers);
         this.numbers = numbers;
         Collections.sort(numbers);
@@ -21,6 +21,8 @@ public class Lotto {
     public void printLottoPaper(Lotto lotto) {
         System.out.println(lotto.numbers);
     }
+
+
     public Score compareWinningNumbers(WinningNumberSet winningNumberSets) {
         int countMatch = 0;
         boolean checkBonus = false;
@@ -36,5 +38,4 @@ public class Lotto {
         return new Score(countMatch, checkBonus);
 
     }
-
 }

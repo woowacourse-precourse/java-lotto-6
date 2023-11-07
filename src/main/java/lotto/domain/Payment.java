@@ -7,10 +7,10 @@ public record Payment(int payment) {
     private static final int LOTTO_PRICE = 1000;
 
     public Payment {
-        checkValidate(payment);
+        validate(payment);
     }
 
-    private void checkValidate(int payment) {
+    private void validate(int payment) {
         if (isLowerThanPrice(payment)) {
             throw new IllegalArgumentException(IS_LOWER_THAN_PRICE.getMessage().formatted(LOTTO_PRICE));
         }
@@ -19,15 +19,15 @@ public record Payment(int payment) {
         }
     }
 
-    public int getLottoPrice() {
-        return LOTTO_PRICE;
-    }
-
     private boolean isNotDividedBy(int payment) {
         return payment % LOTTO_PRICE != 0;
     }
 
     private boolean isLowerThanPrice(int payment) {
         return payment < LOTTO_PRICE;
+    }
+
+    public int getLottoPrice() {
+        return LOTTO_PRICE;
     }
 }

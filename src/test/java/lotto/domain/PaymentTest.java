@@ -7,7 +7,6 @@ import lotto.constant.Constants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 class PaymentTest {
 
     @DisplayName("로또 가격 단위에 맞지 않는 금액이면 예외가 발생한다.")

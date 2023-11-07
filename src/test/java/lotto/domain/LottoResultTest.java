@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Map;
 
-
 class LottoResultTest {
     private final LottoResult lottoResult = new LottoResult();
 

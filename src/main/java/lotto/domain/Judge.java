@@ -32,4 +32,33 @@ public class Judge {
         return matchingCount >= 3;
     }
 
+    public WinningResult determineWinningResult(int count, boolean bonusMatch) {
+        if (count == 6) {
+            return WinningResult.MATCH_6;
+        }
+
+        if (count == 5) {
+            return bonusMatch ? WinningResult.MATCH_5_WITH_BONUS : WinningResult.MATCH_5;
+        }
+
+        if (count == 4) {
+            return WinningResult.MATCH_4;
+        }
+
+        if (count == 3) {
+            return WinningResult.MATCH_3;
+        }
+
+        return null;
+    }
+
+    public boolean isBonusMatch(List<Lotto> numbers, int bonusNumber) {
+        for (Lotto lotto : numbers) {
+            if (lotto.contains(bonusNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

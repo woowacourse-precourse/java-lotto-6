@@ -25,11 +25,12 @@ public class LottoTicket {
         return Collections.unmodifiableList(lottoTickets);
     }
 
-    public PrizeResult calculateWinningStatistic(prizeNumbers winningNumbers) {
+    public PrizeResult calculateWinningStatistic(PrizeNumbers prizeNumbers) {
         List<Ranking> rankings = lottoTickets.stream()
-                .map(winningNumbers::calculatePrize)
+                .map(prizeNumbers::calculatePrize)
                 .filter(Objects::nonNull)
-                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
+                .peek(System.out::println)
+                .collect(toList());
         return new PrizeResult(rankings);
     }
 }

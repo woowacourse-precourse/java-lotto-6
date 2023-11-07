@@ -16,9 +16,9 @@ public class LottoController {
 
         LottoTicket lottoTickets = buyTickets(amount);
 
-        PrizeNumbers winningNumbers = createWinningNumbers();
+        PrizeNumbers prizeNumbers = createprizeNumbers();
 
-        PrizeResult winningResult = getPrizeResult(lottoTickets, winningNumbers);
+        PrizeResult winningResult = getPrizeResult(lottoTickets, prizeNumbers);
 
         printResult(amount, winningResult);
     }
@@ -41,16 +41,16 @@ public class LottoController {
         return lottoTickets;
     }
 
-    private PrizeNumbers createWinningNumbers() {
+    private PrizeNumbers createprizeNumbers() {
         Lotto inputLottoNumbers = getInputLottoNumbers();
         BonusNumber bonusNumber = getBonusNumber();
 
-        return getWinningNumbers(inputLottoNumbers, bonusNumber);
+        return getprizeNumbers(inputLottoNumbers, bonusNumber);
     }
 
     private Lotto getInputLottoNumbers() {
         try {
-            return new Lotto(InputView.inputWinningNumbers());
+            return new Lotto(InputView.inputprizeNumbers());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return getInputLottoNumbers();
@@ -66,17 +66,17 @@ public class LottoController {
         }
     }
 
-    private PrizeNumbers getWinningNumbers(Lotto lottoNumbers, BonusNumber bonusNumber) {
+    private PrizeNumbers getprizeNumbers(Lotto lottoNumbers, BonusNumber bonusNumber) {
         try {
             return new PrizeNumbers(lottoNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return getWinningNumbers(lottoNumbers, getBonusNumber());
+            return getprizeNumbers(lottoNumbers, getBonusNumber());
         }
     }
 
-    private PrizeResult getPrizeResult(LottoTicket lottoTickets, PrizeNumbers winningNumbers) {
-        return lottoTickets.calculateWinningStatistic(winningNumbers);
+    private PrizeResult getPrizeResult(LottoTicket lottoTickets, PrizeNumbers prizeNumbers) {
+        return lottoTickets.calculateWinningStatistic(prizeNumbers);
     }
 
     private void printResult(TicketPurchaseAmount amount, PrizeResult winningResult) {

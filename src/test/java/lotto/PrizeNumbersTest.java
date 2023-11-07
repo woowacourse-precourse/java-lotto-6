@@ -10,7 +10,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
-import lotto.domain.prizeNumbers;
+import lotto.domain.PrizeNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,7 +25,7 @@ public class PrizeNumbersTest {
         BonusNumber bonusNumber = new BonusNumber(6);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new prizeNumbers(lotto, bonusNumber);
+            new PrizeNumbers(lotto, bonusNumber);
         });
 
         assertEquals("보너스 번호는 로또 번호에 포함될 수 없습니다.", exception.getMessage());
@@ -40,13 +40,13 @@ public class PrizeNumbersTest {
         // given
         Lotto lottoNumbers = new Lotto(List.of(n1, n2, n3, n4, n5, n6));
         BonusNumber bonusNumber = new BonusNumber(bn);
-        prizeNumbers winningNumbers = new prizeNumbers(lottoNumbers, bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(lottoNumbers, bonusNumber);
 
         // when
         Lotto myLotto = new Lotto(List.of(n1, n2, n3, n4, n5, n6));
 
         // then
-        assertThat(winningNumbers.calculatePrize(myLotto)).isEqualTo(expected);
+        assertThat(prizeNumbers.calculatePrize(myLotto)).isEqualTo(expected);
     }
     @Test
     @DisplayName("2등 당첨 결과 반환")
@@ -54,13 +54,13 @@ public class PrizeNumbersTest {
         // given
         Lotto lottoNumbers = new Lotto(List.of(1,2,3,4,5,6));
         BonusNumber bonusNumber = new BonusNumber(7);
-        prizeNumbers winningNumbers = new prizeNumbers(lottoNumbers, bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(lottoNumbers, bonusNumber);
 
         // when
         Lotto myLotto = new Lotto(List.of(1,2,3,4,5,7));
 
         //then
-        assertThat(winningNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.SECOND);
+        assertThat(prizeNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.SECOND);
     }
 
     @Test
@@ -69,13 +69,13 @@ public class PrizeNumbersTest {
         // given
         Lotto lottoNumbers = new Lotto(List.of(1,2,3,4,5,6));
         BonusNumber bonusNumber = new BonusNumber(7);
-        prizeNumbers winningNumbers = new prizeNumbers(lottoNumbers, bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(lottoNumbers, bonusNumber);
 
         // when
         Lotto myLotto = new Lotto(List.of(1,2,3,4,5,8));
 
         //then
-        assertThat(winningNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.THIRD);
+        assertThat(prizeNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.THIRD);
     }
 
     @Test
@@ -84,13 +84,13 @@ public class PrizeNumbersTest {
         // given
         Lotto lottoNumbers = new Lotto(List.of(1,2,3,4,5,6));
         BonusNumber bonusNumber = new BonusNumber(7);
-        prizeNumbers winningNumbers = new prizeNumbers(lottoNumbers, bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(lottoNumbers, bonusNumber);
 
         // when
         Lotto myLotto = new Lotto(List.of(1,2,3,4,8,9));
 
         //then
-        assertThat(winningNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.FOURTH);
+        assertThat(prizeNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.FOURTH);
     }
     @Test
     @DisplayName("5등 당첨 결과 반환")
@@ -98,12 +98,12 @@ public class PrizeNumbersTest {
         // given
         Lotto lottoNumbers = new Lotto(List.of(1,2,3,4,5,6));
         BonusNumber bonusNumber = new BonusNumber(7);
-        prizeNumbers winningNumbers = new prizeNumbers(lottoNumbers, bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(lottoNumbers, bonusNumber);
 
         // when
         Lotto myLotto = new Lotto(List.of(1,2,3,8,9,10));
 
         //then
-        assertThat(winningNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.FIFTH);
+        assertThat(prizeNumbers.calculatePrize(myLotto)).isEqualTo(Ranking.FIFTH);
     }
 }

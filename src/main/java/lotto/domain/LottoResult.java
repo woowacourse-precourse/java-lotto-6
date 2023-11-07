@@ -42,7 +42,7 @@ public class LottoResult {
                 .sum();
     }
 
-    public Map<Ranking, Integer> getResults() {
-        return results;
+    public Integer getCountByRanking(Ranking ranking) {
+        return results.getOrDefault(ranking, DEFAULT_VALUE);
     }
 }

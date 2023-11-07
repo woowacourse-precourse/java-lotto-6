@@ -13,16 +13,16 @@ import org.junit.jupiter.api.Test;
 class MainControllerTest {
     private final OutputStream outputStream = new ByteArrayOutputStream();
     private MainController mainController;
-    
+
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outputStream));
         mainController = new MainController();
     }
 
-    @DisplayName("로또 전체 컨트롤러를 테스트한다.")
+    @DisplayName("로또 메인 컨트롤러를 테스트한다.")
     @Test
-    void testWinningController() {
+    void 로또_메인_컨트롤러_테스트() {
         String money = "8000";
         String lotto = "1,2,3,4,5,6";
         String bonus = "7";

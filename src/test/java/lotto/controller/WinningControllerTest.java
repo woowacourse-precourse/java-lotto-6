@@ -24,7 +24,7 @@ class WinningControllerTest {
 
     @DisplayName("로또 당첨 번호 컨트롤러를 테스트한다.")
     @Test
-    void testWinningController() {
+    void 로또_당첨_번호_컨트롤러를_테스트() {
         String lotto = "1,2,3,4,5,6";
         String bonus = "7";
         String[] args = {lotto, bonus};

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class PrizeTest {
     @DisplayName("로또 당첨 보상 객체 생성을 테스트한다.")
     @Test
-    void createPrize() {
+    void 당첨_보상_객체_생성_테스트() {
         Prize prize = Prize.valueOf(3, false);
         assertThat(prize).isNotNull();
         assertThat(prize).isEqualTo(Prize.FIFTH);
@@ -17,15 +17,15 @@ class PrizeTest {
 
     @DisplayName("로또 당첨 보상 문구 변환을 테스트한다.")
     @Test
-    void testFormatMessage() {
+    void 당첨_보상_문구_변환_테스트() {
         Prize prize = Prize.valueOf(3, false);
         String message = prize.formatMessage(1);
         assertThat(message).isEqualTo("3개 일치 (5,000원) - 1개");
     }
 
-    @DisplayName("로또에 따라 갱신된 로또 당첨 보상 객체를 테스트한다.")
+    @DisplayName("사용자의 로또에 따라 갱신된 로또 당첨 보상 객체를 테스트한다.")
     @Test
-    void testGetPrize() {
+    void 사용자_로또와_비교_후_갱신된_당첨_보상_테스트() {
         List<Prize> prizes = Prize.getPrize();
         assertThat(prizes).isNotNull();
         assertThat(prizes).hasSize(5);

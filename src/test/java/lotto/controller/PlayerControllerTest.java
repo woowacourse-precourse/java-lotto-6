@@ -23,7 +23,7 @@ class PlayerControllerTest {
 
     @DisplayName("사용자 컨트롤러를 테스트한다.")
     @Test
-    void testLottoController() {
+    void 사용자_컨트롤러_테스트() {
         String money = "8000";
         System.setIn(new ByteArrayInputStream(money.getBytes()));
 

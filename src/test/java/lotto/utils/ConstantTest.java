@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class ConstantTest {
     @DisplayName("상수 값을 테스트 합니다.")
     @Test
-    public void testConstantValues() {
+    void 상수_값_테스트() {
         assertThat(MIN_MONEY.getValue()).isEqualTo(1000);
         assertThat(MIN_LOTTO.getValue()).isEqualTo(1);
         assertThat(MAX_LOTTO.getValue()).isEqualTo(45);

@@ -15,14 +15,14 @@ class ResultTest {
 
     @DisplayName("로또 당첨 결과 객체 생성을 테스트한다.")
     @Test
-    void createResult() {
+    void 로또_당첨_결과_객체_생성_테스트() {
         Result result = Result.of(List.of(lotto), winning);
         assertThat(result).isNotNull();
     }
 
     @DisplayName("로또 당첨 결과에 따른 개수 조회를 테스트한다.")
     @Test
-    void testGetPrizeCount() {
+    void 로또_당첨_결과_개수_조회_테스트() {
         Result result = Result.of(List.of(lotto), winning);
         assertThat(result.getPrizeCount(Prize.NONE)).isEqualTo(0);
         assertThat(result.getPrizeCount(Prize.FIFTH)).isEqualTo(0);
@@ -34,7 +34,7 @@ class ResultTest {
 
     @DisplayName("로또 당첨 결과에 따른 총 당첨 금액 계산을 테스트한다.")
     @Test
-    void testCalculatePrizeMoney() {
+    void 로또_당첨_결과_금액_테스트() {
         Result result = Result.of(List.of(lotto), winning);
         double prizeMoney = result.calculatePrizeMoney();
         assertThat(prizeMoney).isEqualTo(2000000000);
@@ -42,7 +42,7 @@ class ResultTest {
 
     @DisplayName("로또 당첨 결과에 따른 총 수익률 계산을 테스트한다.")
     @Test
-    void testCalculateProfit() {
+    void 로또_당첨_결과_수익률_테스트() {
         Result result = Result.of(List.of(lotto), winning);
         double prizeProfit = result.calculatePrizeProfit(1);
         assertThat(prizeProfit).isEqualTo(200000000);

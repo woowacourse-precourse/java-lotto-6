@@ -19,19 +19,19 @@ class GeneratorTest {
 
     @DisplayName("랜덤 로또 숫자 생성을 테스트 합니다.")
     @Test
-    void generateLotto() {
+    void 랜덤_로또_숫자_생성_테스트() {
         assertThat(lottoNumbers).isNotNull();
     }
 
     @DisplayName("생성된 로또 숫자가 범위 안에서 생성되는지 테스트 합니다.")
     @Test
-    void generateLottoInRange() {
+    void 랜덤_로또_범위_테스트() {
         lottoNumbers.forEach(number -> assertThat(number).isBetween(MIN_LOTTO.getValue(), MAX_LOTTO.getValue()));
     }
 
     @DisplayName("생성된 로또 숫자가 오름차순으로 정렬되는지 테스트 합니다.")
     @Test
-    void generateLottoSort() {
+    void 랜덤_로또_정렬_테스트() {
         assertThat(lottoNumbers).isSorted();
     }
 }

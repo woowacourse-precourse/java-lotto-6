@@ -20,8 +20,6 @@ class ResultControllerTest {
     private WinningController winningController;
     private ResultController resultController;
 
-    private
-
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outputStream));
@@ -32,7 +30,7 @@ class ResultControllerTest {
 
     @DisplayName("로또 당첨 결과 컨트롤러를 테스트한다.")
     @Test
-    void testWinningController() {
+    void 로또_당첨_결과_컨트롤러_테스트() {
         String money = "8000";
         String lotto = "1,2,3,4,5,6";
         String bonus = "7";

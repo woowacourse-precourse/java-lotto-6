@@ -12,9 +12,9 @@ public class WinningNumber implements Containable {
     private final List<Integer> winningNumber;
 
     public WinningNumber(List<Integer> winningNumber) {
-        validateDuplicateNumbers(winningNumber);
-        validateOutOfRange(winningNumber);
         validateLottoLength(winningNumber);
+        validateOutOfRange(winningNumber);
+        validateDuplicateNumbers(winningNumber);
         this.winningNumber = winningNumber;
     }
 

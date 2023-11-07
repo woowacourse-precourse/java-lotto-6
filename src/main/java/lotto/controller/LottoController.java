@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.BuyAmount;
-import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoResultsDTO;
@@ -34,9 +33,7 @@ public class LottoController {
 
     private void buyLotto() {
         buyAmount = createBuyAmount();
-        int lottoCount = buyAmount.getAbleToBuyCount();
-        List<Lotto> lottoNumbers = lottoGenerator.generateLottos(lottoCount);
-        lottos = new Lottos(lottoNumbers);
+        lottos = new Lottos(lottoGenerator.generateLottos(buyAmount.getAbleToBuyCount()));
         OutputView.displayAllLottos(lottos.toLottosDTO());
     }
 

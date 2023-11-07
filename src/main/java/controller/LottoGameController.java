@@ -27,4 +27,8 @@ public class LottoGameController {
         return lottoGameService.initLottoGame(buyLottos);
     }
 
+    public LottoGameDto.Result processLottoGame(LottoGameDto.Request request) {
+        return lottoGameService.doLottoGame(request);
+    }
+
 }

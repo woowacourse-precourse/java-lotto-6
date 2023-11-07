@@ -24,4 +24,10 @@ public class LottoGameService {
         Long lottoGameId = lottoGameRepository.save(saveLottoGame);
         return new LottoGameDto.Response(lottoGameId);
     }
+
+
+    public LottoGameDto.Result doLottoGame(LottoGameDto.Request request) {
+        LottoGame lottoGame = lottoGameRepository.findById(request.getLottoGameId());
+        return lottoGame.doLottoGame();
+    }
 }

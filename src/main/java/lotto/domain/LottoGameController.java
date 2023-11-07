@@ -14,6 +14,7 @@ public class LottoGameController {
         OutputView.printPurchaseLottos(lottos);
         WinningLotto winningLotto = generateWinningLotto();
         GameResult gameResult = new GameResult(lottos, winningLotto);
+        OutputView.printWinningStats(gameResult, money);
     }
 
 

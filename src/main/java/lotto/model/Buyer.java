@@ -55,7 +55,7 @@ public class Buyer {
     }
 
     public float getTotalProfitRate() {
-        return winningAmount / (float) purchaseAmount;
+        return winningAmount / (float) purchaseAmount * 100;
     }
 
     public int getWinningNumberCount(List<Integer> numbers, int[] winningNumbers) {

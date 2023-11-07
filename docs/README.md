@@ -88,7 +88,7 @@
 + validateNumber 함수를 호출함
 + 에러가 발생하지 않으면 무한루프를 멈춤
 
-##### void validateNumbers(num)
+##### void validateNumber(num)
 + 번호가 1부터 45 사이의 숫자가 아니라면 IllegalArgumentException 발생시킴
 
 ##### List splitNumbers(str)

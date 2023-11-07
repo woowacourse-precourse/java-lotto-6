@@ -31,5 +31,15 @@ public class Input {
         return lotto;
     }
 
+    List<Integer> splitNumbers(String str) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] numStrs = str.split(",");
+        for (String numStr : numStrs) {
+            int num = Integer.parseInt(numStr);
+            validateNumber(num);
+            numbers.add(num);
+        }
+        return numbers;
+    }
 
 }

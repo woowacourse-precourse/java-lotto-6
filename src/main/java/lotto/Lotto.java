@@ -1,50 +1,50 @@
 package lotto;
 
 import static lotto.Enum.ErrorMessage.DUPLICATED_ERROR;
-import static lotto.Enum.ErrorMessage.LENGHT_ERROR;
-import static lotto.Enum.ErrorMessage.NUMBER_RANGE_ERROR;
+import static lotto.Enum.ErrorMessage.LENGTH_ERROR;
+import static lotto.Enum.ErrorMessage.NUMBER_NOT_IN_RANGE_ERROR;
 import static lotto.Enum.Number.SIX;
-import static lotto.Enum.Number.MAX_NUMBER;
-import static lotto.Enum.Number.MIN_NUMBER;
+import static lotto.Enum.Number.FORTY_FIVE;
+import static lotto.Enum.Number.ONE;
 
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> numbers) {
-        validateLength(numbers);
-        validateDuplicated(numbers);
-        validateRange(numbers);
-        this.numbers = numbers;
+        validateLottoNumbersLength(numbers);
+        validateLottoNumbersNotDuplicated(numbers);
+        validateLottoNumbersInRange(numbers);
+        this.lottoNumbers = numbers;
     }
 
-    private void validateLength(List<Integer> numbers) {
+    public static void validateLottoNumbersLength(List<Integer> numbers) {
         if (numbers.size() != SIX.getNumber()) {
-            throw new IllegalArgumentException(LENGHT_ERROR.getMessage());
+            throw new IllegalArgumentException(LENGTH_ERROR.getMessage());
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private void validateLottoNumbersInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
+            if (number < ONE.getNumber() || number > FORTY_FIVE.getNumber()) {
+                throw new IllegalArgumentException(NUMBER_NOT_IN_RANGE_ERROR.getMessage());
             }
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
+    public static void validateLottoNumbersNotDuplicated(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(DUPLICATED_ERROR.getMessage());
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
     }
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return lottoNumbers.toString();
     }
 }

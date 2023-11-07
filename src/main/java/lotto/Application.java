@@ -1,23 +1,21 @@
 package lotto;
 
-import static lotto.Enum.InputMessage.BUY_HOW_MANY;
 import static lotto.Enum.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.Enum.InputMessage.INPUT_PURCHASE_AMOUNT;
-import static lotto.Enum.InputMessage.INPUT_WINNING_NUMBER;
-import static lotto.Enum.InputMessage.WINNING_STATISTICS;
-import static lotto.Enum.Number.UNIT;
+import static lotto.Enum.InputMessage.INPUT_WINNING_NUMBERS;
+import static lotto.Enum.OutputMessage.WINNING_STATISTICS;
+import static lotto.Enum.Number.THOUSAND;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.Enum.OutputMessage;
 
 public class Application {
     public static void main(String[] args) {
         String input;
         int money;
-        int countLotto;
-        int bonusNumber;
-        List<Integer> winningNumber;
-        List<Lotto> lottos;
+        List<Integer> winningNumbers;
+        List<Lotto> publishedLotto;
 
         while (true) {
             try {
@@ -32,16 +30,16 @@ public class Application {
             }
         }
 
-        countLotto = money / UNIT.getNumber();
-        System.out.println("\n" + countLotto + BUY_HOW_MANY.getMessage());
-        lottos = LottoProcess.publishLotto(countLotto);
-        LottoProcess.printLotto(lottos, countLotto);
+        int howManyLotto = money / THOUSAND.getNumber();
+        System.out.println(OutputMessage.printBuyHowManyLottoMessage(howManyLotto));
+        publishedLotto = LottoProcess.publishLotto(howManyLotto);
+        LottoProcess.printLotto(publishedLotto, howManyLotto);
 
         while (true) {
             try {
-                System.out.println(INPUT_WINNING_NUMBER.getMessage());
+                System.out.println(INPUT_WINNING_NUMBERS.getMessage());
                 input = Console.readLine();
-                winningNumber = Exception.checkWinningNumber(input);
+                winningNumbers = Exception.validateWinningNumbers(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -52,7 +50,7 @@ public class Application {
             try {
                 System.out.println(INPUT_BONUS_NUMBER.getMessage());
                 input = Console.readLine();
-                Exception.checkBonusNumber(winningNumber, input);
+                Exception.validateBonusNumber(winningNumbers, input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -60,9 +58,9 @@ public class Application {
         }
 
         System.out.println(WINNING_STATISTICS.getMessage());
-        bonusNumber = Integer.parseInt(input);
-        Statistics statistics = new Statistics(lottos, winningNumber, bonusNumber);
-        statistics.printStatistic();
+        int bonusNumber = Integer.parseInt(input);
+        Statistics statistics = new Statistics(publishedLotto, winningNumbers, bonusNumber);
+        statistics.printStatisticResult();
         statistics.calculateTotalRateOfReturn(money);
     }
 }

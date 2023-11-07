@@ -1,8 +1,8 @@
 package lotto;
 
 import static lotto.Enum.Number.SIX;
-import static lotto.Enum.Number.MAX_NUMBER;
-import static lotto.Enum.Number.MIN_NUMBER;
+import static lotto.Enum.Number.FORTY_FIVE;
+import static lotto.Enum.Number.ONE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LottoProcess {
     private static List<Integer> createRandomLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), SIX.getNumber());
+        return Randoms.pickUniqueNumbersInRange(ONE.getNumber(), FORTY_FIVE.getNumber(), SIX.getNumber());
     }
 
     public static List<Lotto> publishLotto(int countLotto) {

@@ -56,7 +56,7 @@ public class Game {
 
     private void calculatePNL() {
         final int profit = winnings.stream().mapToInt(Winning::calculatePrize).sum();
-        final float pnl = (float) (Math.round((float) profit / money * 10) / 10.0);
+        final float pnl = (float) (Math.round(((float) profit / money) * 100 * 10) / 10.0);
         View.printMessageWithArgs(Message.RESPONSE_PNL,pnl);
     }
 }

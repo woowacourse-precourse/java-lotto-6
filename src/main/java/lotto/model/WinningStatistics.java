@@ -5,7 +5,6 @@ import lotto.constant.Constants;
 import java.util.*;
 
 public class WinningStatistics {
-    private static final int SPECIAL_MATCH_COUNT = Constants.SPECIAL_MATCH_COUNT.getValue();
     private long totalReward = 0;
     private double rateOfReturn = 0.0;
     private final Map<WinningPrize, Integer> winningResult = new LinkedHashMap<>() {{
@@ -27,8 +26,10 @@ public class WinningStatistics {
     public void setWinningResult(List<Lotto> purchaseLottos, List<Integer> winningLotto, int bonusNumber) {
         for (Lotto purchaseLotto : purchaseLottos) {
             List<Integer> lotto = purchaseLotto.getNumbers();
+
             int matchCount = calculateMatchCount(lotto, winningLotto);
             BonusStatus bonusStatus = getBonusStatus(matchCount, lotto, bonusNumber);
+
             Optional<WinningPrize> winningPrizeOrNull = WinningPrize.getWinningPrize(matchCount, bonusStatus);
             if (winningPrizeOrNull.isPresent()) {
                 WinningPrize winningPrize = winningPrizeOrNull.get();
@@ -47,6 +48,8 @@ public class WinningStatistics {
     }
 
     private BonusStatus getBonusStatus(int matchCount, List<Integer> lotto, int bonusNumber) {
+        int SPECIAL_MATCH_COUNT = Constants.SPECIAL_MATCH_COUNT.getValue();
+
         if (matchCount != SPECIAL_MATCH_COUNT) {
             return BonusStatus.NO_MATTER;
         }

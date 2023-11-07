@@ -16,9 +16,13 @@ public class LottoGenerator {
     }
 
     private List<Integer> pickLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(),
-                        NUMBER_COUNT.getValue()).stream()
+        return pickRandomNumbers().stream()
                 .sorted()
                 .toList();
+    }
+
+    private List<Integer> pickRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(),
+                NUMBER_COUNT.getValue());
     }
 }

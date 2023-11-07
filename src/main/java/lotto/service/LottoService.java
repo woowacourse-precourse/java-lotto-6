@@ -6,17 +6,21 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.domain.LottoWinningBonusNumber;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.PurchasedLottoNumbers;
 import lotto.domain.User;
+import lotto.domain.dto.InputBonusNumber;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
-    public static PurchasedLottoNumbers purchasedLottoNumbers;
+    private static PurchasedLottoNumbers purchasedLottoNumbers;
+    private static LottoWinningNumbers lottoWinningNumbers;
+    private static LottoWinningBonusNumber lottoWinningBonusNumber;
 
-    public static void lottoStart(InputMoney inputMoney){
+    public static void lottoStart(InputMoney inputMoney) {
         User user = new User(inputMoney.getMoney());
         lottoGenerator(user.getAmount());
     }
@@ -34,8 +38,12 @@ public class LottoService {
         return purchasedLotto;
     }
 
-    public static void inputWinningLotto(InputWinningNumbers inputWinningNumbers){
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(inputWinningNumbers.getInputWinningNumbers());
+    public static void inputWinningLotto(InputWinningNumbers inputWinningNumbers) {
+        lottoWinningNumbers = new LottoWinningNumbers(inputWinningNumbers.getInputWinningNumbers());
+    }
+
+    public static void inputBonusLotto(InputBonusNumber inputBonusNumber) {
+        lottoWinningBonusNumber = new LottoWinningBonusNumber(inputBonusNumber.getInputBonusNumber(), lottoWinningNumbers.getWinningNumbers());
     }
 
     public static PurchasedLottoDTO purchasedLottoToDTO() {

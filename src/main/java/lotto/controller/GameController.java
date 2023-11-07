@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.dto.InputBonusNumber;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.PurchasedLottoDTO;
@@ -13,6 +14,7 @@ public class GameController {
         PurchasedLottoDTO purchasedLottoDTO = LottoService.purchasedLottoToDTO();
         OutputView.printPurchasedLotto(purchasedLottoDTO);
         inputWinningNumbers();
+        inputBonusNumber();
     }
 
     private static void inputMoney(){
@@ -32,6 +34,16 @@ public class GameController {
         }catch (IllegalArgumentException e){
             OutputView.printErrorMessage(e);
             inputWinningNumbers();
+        }
+    }
+
+    private static void inputBonusNumber(){
+        try{
+            InputBonusNumber inputBonusNumber = InputView.inputBonusNumber();
+            LottoService.inputBonusLotto(inputBonusNumber);
+        }catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e);
+            inputBonusNumber();
         }
     }
 }

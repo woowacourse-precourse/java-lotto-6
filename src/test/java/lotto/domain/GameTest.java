@@ -11,13 +11,10 @@ import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
+
 
 public class GameTest {
     @DisplayName("로또 여러개 생성 시 카운트 일치 테스트")

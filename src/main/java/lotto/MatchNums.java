@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.HashMap;
-
 public enum MatchNums {
     THREE(3, 5_000, "3개 일치 (5,000원) - %d개"),
     FOUR(4, 50_000, "4개 일치 (50,000원) - %d개"),

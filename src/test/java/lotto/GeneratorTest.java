@@ -17,7 +17,6 @@ public class GeneratorTest {
         assertEquals(6, generator.generate6Nums().size());
 
         List<Integer> generateNums = generator.generate6Nums();
-        System.out.println(generateNums);
         assertEquals(true, (generateNums.size() == new HashSet<>(generateNums).size()));
     }
 }

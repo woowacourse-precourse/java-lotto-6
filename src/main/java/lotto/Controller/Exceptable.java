@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import static java.lang.Integer.parseInt;
 import static lotto.Constants.*;
+import static lotto.ErrorMessages.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,19 +13,19 @@ public class Exceptable {
 
     public void validateSpace(String input){
         if (input.length() != input.replace(" ", "").length()){
-            throw new IllegalArgumentException("[ERROR] 숫자 중간에 공백이 입력되었습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_SPACE.getMessage());
         }
     }
 
     public void validateOverOne(String input){
         if (input.split(",").length > 1){
-            throw new IllegalArgumentException("[ERROR] 1개 이상이 입력되었습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_OVER_ONE.getMessage());
         }
     }
 
     public void validatePoint(String input){
         if (input.contains(".")){
-            throw new IllegalArgumentException("[ERROR] 소수점은 입력할 수 없습니다. 다시 입력해주세요");
+            throw new IllegalArgumentException(VALIDATE_POINT.getMessage());
         }
     }
 
@@ -33,44 +34,44 @@ public class Exceptable {
             parseInt(input);
         }
         catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_NUMBER.getMessage());
         }
     }
 
     public void validateDuplicateBonus(int bonus, List<Integer> winningNums){
         if (winningNums.contains(bonus)){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되었습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_DUPLICATE_BONUS.getMessage());
         }
     }
 
     public void validate1to45(int num){
         if (num < START_INCLUSIVE.getNum() || num > END_INCLUSIVE.getNum()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45사이 입니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_1_TO_45.getMessage());
         }
     }
 
     public void validateZeroLess(int num){
         if (num <= 0){
-            throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해주세요. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_ZERO_LESS.getMessage());
         }
     }
 
     public void validateDuplicateLottos(List<Integer> numbers){
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numbers.size() != numberSet.size()){
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_DUPLICATE_LOTTO.getMessage());
         }
     }
 
     public void validate6Nums(List<Integer> numbers){
         if (numbers.size() != LOTTO_NUMBER_COUNT.getNum()) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자가 아닙니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(VALIDATE_6_NUMS.getMessage());
         }
     }
 
     public boolean validateDivided(int cost){
         if (cost%DIVIDED.getNum() > 0){
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다. 다시 입력해주세요");
+            throw new IllegalArgumentException(VALIDATE_DIVIDED.getMessage());
         }
         return true;
     }

@@ -1,11 +1,10 @@
 package lotto.domain;
 
+import lotto.view.ExceptionMessage;
+
 import java.util.List;
 
 public class Amount {
-
-    private final String INPUT_SIZE_ERROR = "[ERROR] 입력 금액은 1,000원 이상이어야 합니다.";
-    private final String INPUT_STYLE_ERROR = "[ERROR] 입력 금액은 1,000원 단위여야 합니다.";
     private final int total;
     private int count;
 
@@ -31,17 +30,13 @@ public class Amount {
 
     private void validateSize(int total) {
         if (total<1000) {
-            throw new IllegalArgumentException(INPUT_SIZE_ERROR);
+            ExceptionMessage.setAmountSizeError();
         }
     }
 
     private void validateStyle(int total) {
         if (total%1000!=0) {
-            throw new IllegalArgumentException(INPUT_STYLE_ERROR);
+            ExceptionMessage.setAmountStyleError();
         }
     }
-
-
-
-    //TODO : 예외처리
 }

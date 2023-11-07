@@ -21,10 +21,6 @@ public class Controller {
     Parser parser = new Parser();
 
     public void run(){
-        startLotto();
-    }
-
-    private void startLotto(){
         Amount amount = requestPlayerAmountInput();
         List<Lotto> randomLottery = lottoNumRandomGenerator.purchaseLottery(amount);
         ResultMessage.setPurchaseMessage(amount,randomLottery);
@@ -96,7 +92,7 @@ public class Controller {
     private int validaterequestPlayerBonusInput(Lotto winningNum){
         try{
             int result=parser.stringToInteger(Console.readLine());
-            winningNum.validateWinningAndBonus(winningNum,result);
+            winningNum.validateBonus(winningNum,result);
             return result;
         } catch(IllegalArgumentException e){
             ResultMessage.printExceptionMessage(e.getMessage());

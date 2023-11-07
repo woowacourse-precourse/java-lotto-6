@@ -9,6 +9,7 @@ package controller;
 
 import model.Lotto;
 import model.LottoNumberPicker;
+import model.LottoNumberSetHolder;
 import model.LottoTicketSeller;
 import view.InputView;
 import view.OutputView;
@@ -30,9 +31,10 @@ public class LottoController {
         int lottoTicketNum = lottoTicketSeller.receiveLottotickets();
 
         LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
+        LottoNumberSetHolder lottoNumberSetHolder = new LottoNumberSetHolder();
         while(lottoTicketNum-- > 0){
             Lotto lotto = new Lotto(lottoNumberPicker.lottoNumberPick());
-            //로또셋들 저장(LottoNumberSetHolder) (
+            lottoNumberSetHolder.lottoNumberSetAdd(lotto);
         }
 
     }

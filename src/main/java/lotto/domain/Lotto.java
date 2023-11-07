@@ -14,8 +14,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(String numbers) {
-        numbers = removeSpace(numbers);
         validate(numbers);
+        numbers = removeSpace(numbers);
         this.numbers = makeNumbers(numbers);
     }
 
@@ -23,9 +23,10 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(final String numbers) {
+    private void validate(String numbers) {
         if(isEmpty(numbers)) ExceptionMessages.LOTTO_IS_EMPTY.throwException();
 
+        numbers = removeSpace(numbers);
         String[] splitNumbers = splitComma(numbers);
 
         if(!isDigit(splitNumbers)) ExceptionMessages.LOTTO_IS_NOT_NUMER.throwException();

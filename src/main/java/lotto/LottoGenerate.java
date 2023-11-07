@@ -6,27 +6,22 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoGenerate {
-    private final HashMap<Integer, List<Integer>> randomLottoNumbers;
+    public HashMap<Integer, Lotto> createLottoRepeat(int number) {
+        HashMap<Integer, Lotto> allLotto = new HashMap<>();
 
-    public LottoGenerate(int lottoTicket) {
-        HashMap<Integer, List<Integer>> randomLottoNumbers = new HashMap<>();
-
-        for (int i = 0; i < lottoTicket; i++) {
-            randomLottoNumbers.put(i, createRandomLotto());
+        for (int i = 0; i < number; i++) {
+            Lotto lotto = createLotto();
+            allLotto.put(i, lotto);
         }
 
-        this.randomLottoNumbers = randomLottoNumbers;
+        return allLotto;
     }
 
-    public HashMap<Integer, List<Integer>> getRandomLottoNumbers() {
-        return randomLottoNumbers;
-    }
-
-    private List<Integer> createRandomLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(Config.MIN_LOTTO_NUMBER,
+    private Lotto createLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Config.MIN_LOTTO_NUMBER,
                 Config.MAX_LOTTO_NUMBER, Config.SIZE_OF_LOTTO);
-        Collections.sort(lottoNumbers);
+        Collections.sort(numbers);
 
-        return lottoNumbers;
+        return new Lotto(numbers);
     }
 }

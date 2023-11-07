@@ -6,6 +6,8 @@ import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Map;
+
 public class LottoController {
     InputView inputView;
     OutputView outputView;
@@ -51,5 +53,7 @@ public class LottoController {
     }
 
     private void printLottoResult(UserLottos userLottos, LottoWinning lottoWinning) {
+        Map<Integer, Integer> rankMap = lottoGame.calcWinningStatistics(userLottos, lottoWinning);
+
     }
 }

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.LottoWinning;
+import lotto.constant.LottoWinningValue;
 import lotto.domain.Lotto;
 import lotto.domain.UserLottos;
 
@@ -12,8 +12,8 @@ public class OutputView {
     private static final String WINNING_RESULT = "%s - %d개\n";
     private static final String RATE_OF_RETURN = "총 수익률은 %d%%입니다.";
 
-    private static final int HIGHEST_RANK = LottoWinning.values()[0].getRank();
-    private static final int LOWEST_RANK = LottoWinning.values()[LottoWinning.values().length - 1].getRank();
+    private static final int HIGHEST_RANK = LottoWinningValue.values()[0].getRank();
+    private static final int LOWEST_RANK = LottoWinningValue.values()[LottoWinningValue.values().length - 1].getRank();
 
 
     public void printNumberOfPurchase(int num) {
@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS);
 
         for (int i = HIGHEST_RANK; i <= LOWEST_RANK; i++) {
-            String winnings = LottoWinning.valueOfRank(i).getWinnings();
+            String winnings = LottoWinningValue.valueOfRank(i).getWinnings();
             int cnt = winningCnt.get(i);
 
             System.out.printf(WINNING_RESULT, winnings, cnt);

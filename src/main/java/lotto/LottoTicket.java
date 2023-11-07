@@ -9,9 +9,11 @@ import java.util.List;
 
 public class LottoTicket {
 
+    private final int tickets;
     private final List<List<Integer>> ticketNumbers;
 
     public LottoTicket(List<List<Integer>> ticketNumbers) {
+        this.tickets = purchaseTicket();
         this.ticketNumbers = purchaseTicketNumbers();
     }
 
@@ -65,5 +67,9 @@ public class LottoTicket {
 
     public List<List<Integer>> getTicketNumbers() {
         return ticketNumbers;
+    }
+
+    public int getTickets() {
+        return tickets;
     }
 }

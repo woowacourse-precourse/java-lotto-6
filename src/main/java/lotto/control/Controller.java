@@ -16,7 +16,15 @@ public class Controller {
     int amount;
 
     void start() {
+        getLottoNumbers();
+        getWinningNumbers();
 
+        int[] winCount = new int[5];
+        for (Lotto lotto : lottoes) {
+            winCount[getIndex(lotto)]++;
+        }
+        output.printWinnings(winCount);
+        output.printRevenue(getRevenue(winCount));
     }
 
     void getLottoNumbers() {

@@ -16,8 +16,8 @@ public class Lotto {
         Validation.validateLottoNumbers(numbers);
     }
 
-    public boolean contains(int bonus){
-        return this.numbers.contains(bonus);
+    public boolean contains(int number){
+        return this.numbers.contains(number);
     }
 
     public int countMatchNumbers(Lotto otherNumbers) {

@@ -119,4 +119,17 @@ public class InputView {
         return bonusNumber;
     }
 
+    int validBonusNumber(String input){
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch (Exception e){
+            throw new IllegalArgumentException("[ERROR] 보너스 당첨 번호는 1개만 입력해야 합니다.");
+        }
+        if(bonusNumber < LOTTO_MINIMUM_NUMBER || bonusNumber > LOTTO_MAXIMUM_NUMBER){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonusNumber;
+    }
+
 }

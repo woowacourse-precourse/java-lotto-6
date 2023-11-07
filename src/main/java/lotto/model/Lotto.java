@@ -1,8 +1,6 @@
 package lotto.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
 
@@ -19,13 +17,17 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     public String getNumbersToString() {
         List<String> numbers = integerListToStringList(this.numbers);
         String numbersLine = String.join(DELIMITER_OF_PURCHASE_LOTTO, numbers);
         return String.format(FORMAT_OF_PURCHASE_LOTTO, numbersLine);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().toList(); // TODO: check convention!
     }
 
     private List<String> integerListToStringList(List<Integer> beforeType) {

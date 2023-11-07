@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface LottoMachine {
 
-    public List<Integer> generate();
+    List<Integer> generate();
 }

@@ -5,7 +5,13 @@ import lotto.service.Service;
 public class Controller {
 	
 	Service service = new Service();
-
+	
+	public void run() {
+		gameSet();
+		gamePlay();
+		gameResult();
+	}
+	
 	public void gameSet() {
 		service.initBuyer();
 		service.buyLotteries();

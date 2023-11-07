@@ -23,8 +23,8 @@
     - [ ] 당첨 결과 확인: checkWiningResult
 - [x] 로또: Lotto
     - [x] 로또 보기: getLotto
-- [ ] 결제: Payment
-    - [ ] 결제
+- [x] 결제: Payment
+    - [x] 결제: pay
 - [ ] 발행: Publish
     - [ ] 번호 생성: makeNumber
     - [ ] 오름차순 정렬: sortAscending

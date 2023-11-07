@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public class LottoQuantity {
     private final int quantity;

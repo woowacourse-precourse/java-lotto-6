@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class InputNumber {
+public class InputLottoNumber {
 
     private final List<Integer> inputNumber;
 
-    public InputNumber(String inputNumber) {
+    public InputLottoNumber(String inputNumber) {
         validate(inputNumber);
         this.inputNumber = parseInputNumberToList(inputNumber);
     }

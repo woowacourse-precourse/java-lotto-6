@@ -1,9 +1,9 @@
-package lotto;
+package lotto.model;
 
-public class BonusNumber {
+public class InputBonusNumber {
     private final int number;
 
-    public BonusNumber(String inputNumber) {
+    public InputBonusNumber(String inputNumber) {
         validate(inputNumber);
         this.number = parseNumberToInt(inputNumber);
     }

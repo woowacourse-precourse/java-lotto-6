@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,5 +20,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

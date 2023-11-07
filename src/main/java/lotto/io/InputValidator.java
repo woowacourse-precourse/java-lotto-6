@@ -1,12 +1,11 @@
 package lotto.io;
 
-import java.util.regex.Pattern;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoConstant;
+import lotto.constant.RegexPattern;
 
 public class InputValidator {
 
-    private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
 
     private static boolean isContainDelimiter(final String input) {
         return !input.contains(LottoConstant.DELIMITER);
@@ -19,7 +18,7 @@ public class InputValidator {
     }
 
     private boolean isNumeric(final String input) {
-        return !NUMERIC_PATTERN.matcher(input).matches();
+        return RegexPattern.isNumberic(input);
     }
 
     public void validateNull(final String input) {

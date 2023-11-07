@@ -46,8 +46,8 @@ public class InputView {
                 String winningNumStr = readLine();
                 winningNumValidates(winningNumStr);
                 winningNum = parseWinningNum(winningNumStr);
-                validateDuplicateNumInWinningNum(winningNum);
                 validateWinningNumCountIsOver(winningNum);
+                validateDuplicateNumInWinningNum(winningNum);
                 return winningNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -99,7 +99,7 @@ public class InputView {
     }
     // end
     public int readBonusNum() {
-        int bonusNum = 0;
+        int bonusNum;
         while (true) {
             try {
                 String bonusNumStr = readLine();

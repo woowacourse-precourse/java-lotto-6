@@ -30,14 +30,6 @@ class LottoTest {
                 .hasMessageContaining(ExceptionMessage.NOT_SAME_WITH_LOTTO_SIZE.getMessage(LOTTO_SIZE));
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.getMessage());
-    }
-
     @DisplayName("1부터 45사이의 범위를 넘어간 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoOutOfRange() {
@@ -52,6 +44,14 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.IS_NOT_IN_RANGE.getMessage(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
+    }
+
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByDuplicatedNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.CONSIST_OF_DUPLICATE_NUMBER.getMessage());
     }
 
     @DisplayName("올바른 당첨 로또를 입력하면 성공한다.")

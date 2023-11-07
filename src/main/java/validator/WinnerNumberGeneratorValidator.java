@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 public class WinnerNumberGeneratorValidator {
+    public void vaildWinnerNumbers(List<Integer> winnerNumbers) {
+        vaildWinnerNumberRange(winnerNumbers);
+        vaildWinnerNumberSize(winnerNumbers);
+        vaildWinnerNumberDuplication(winnerNumbers);
+    }
+
     void vaildWinnerNumberRange(List<Integer> winnerNumbers) {
         for (int winnerNumber : winnerNumbers) {
             if (winnerNumber < 1) {

@@ -73,4 +73,20 @@ class DomainValidateTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
         assertThatCode(() -> DomainValidate.validateNegativeMoney(money)).doesNotThrowAnyException();
     }
+
+    @Test
+    void testValidateDuplicated() {
+        // given
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + LOTTO_NUMBER_CNT.getNum(); i++) {
+            numbers.add(i);
+        }
+        List<Integer> wrongNumbers = new ArrayList<>(numbers);
+        wrongNumbers.set(LOTTO_NUMBER_CNT.getNum() - 1, LOTTO_NUMBER_MIN.getNum());
+
+        // when & then
+        assertThatThrownBy(() -> DomainValidate.validateDuplicated(wrongNumbers))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
+        assertThatCode(() -> DomainValidate.validateDuplicated(numbers)).doesNotThrowAnyException();
+    }
 }

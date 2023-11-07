@@ -1,10 +1,9 @@
-package lotto.model.winningLotto;
+package lotto.model;
 
 
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
-import lotto.model.WinningInfo;
 
 public class WinningLotto {
     private final Lotto winningNumber;
@@ -17,10 +16,6 @@ public class WinningLotto {
 
     public static WinningLotto of(Lotto winningNumber, int bonusNumber) {
         return new WinningLotto(winningNumber, bonusNumber);
-    }
-
-    public WinningLottoDTO toWinningLottoDTO() {
-        return WinningLottoDTO.of(winningNumber, bonusNumber);
     }
 
     public WinningInfo compare(LottoDTO lottoDTO) {

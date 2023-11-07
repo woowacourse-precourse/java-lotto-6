@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
-import lotto.model.winningLotto.WinningLotto;
 
 public class Lottos {
     private final List<Lotto> lottos;

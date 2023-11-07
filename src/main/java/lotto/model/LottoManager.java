@@ -1,10 +1,8 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
-import lotto.model.winningLotto.WinningLotto;
 
 public class LottoManager {
     private Lottos lottos;
@@ -42,7 +40,7 @@ public class LottoManager {
                 WinningInfo.FIVE_AND_BONUS_MATCH, WinningInfo.SIX_MATCH);
 
         double winningAmount = winningInfos.stream()
-                .mapToDouble(winningInfo -> lottoResult.getWinningAmount(winningInfo))
+                .mapToDouble(winningInfo -> lottoResult.calculateWinningAmount(winningInfo))
                 .sum();
 
         return winningAmount / purchaseAmount;

@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class LottoResult {
     private static final int ONE_COUNT = 1;
@@ -34,7 +33,7 @@ public class LottoResult {
         return resultCount.getOrDefault(winningInfo,0);
     }
 
-    public int getWinningAmount(WinningInfo winningInfo){
+    public int calculateWinningAmount(WinningInfo winningInfo){
         return  winningInfo.price * getCount(winningInfo);
     }
 

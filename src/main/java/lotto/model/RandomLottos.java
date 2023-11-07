@@ -18,18 +18,19 @@ public class RandomLottos {
         this.randomLottos = generateRandomLottos();
     }
 
-    private List<Lotto> generateRandomLottos(){
+    private List<Lotto> generateRandomLottos() {
         List<Lotto> randomLottos = new ArrayList<>();
-        for(int i=0; i<lottoTicketNumber; i++){
+        for (int i = 0; i < lottoTicketNumber; i++) {
             randomLottos.add(generateLotto());
         }
         return randomLottos;
     }
-    private Lotto generateLotto(){
+
+    private Lotto generateLotto() {
         List<Integer> lottoNumbers = new ArrayList<>();
-        while(lottoNumbers.size() < NUMBERSPERLOTTO){
+        while (lottoNumbers.size() < NUMBERSPERLOTTO) {
             Integer randomInt = Randoms.pickNumberInRange(LOTTONUMBERSTART, LOTTONUMBEREND);
-            if(!lottoNumbers.contains(randomInt)){
+            if (!lottoNumbers.contains(randomInt)) {
                 lottoNumbers.add(randomInt);
             }
         }
@@ -38,7 +39,7 @@ public class RandomLottos {
         return lotto;
     }
 
-    public List<Lotto> getRandomLottos(){
+    public List<Lotto> getRandomLottos() {
         return randomLottos;
     }
 }

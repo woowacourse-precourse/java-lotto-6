@@ -22,17 +22,19 @@ public class DisplayOutput {
     public void outputBonusNumber() {
         System.out.println(OUTPUTBONUSNUMBER);
     }
-    public void outputRandomLottos(RandomLottos randomLottos){
+
+    public void outputRandomLottos(RandomLottos randomLottos) {
         int randomLottoNumbers = randomLottos.getRandomLottos().size();
         List<Lotto> randomLotto = randomLottos.getRandomLottos();
-        for(int i=0; i<randomLottoNumbers; i++){
+        for (int i = 0; i < randomLottoNumbers; i++) {
             //String lottoOutput = String.join( ",",randomLotto.get(i).getLotto().toString());
             System.out.println(randomLotto.get(i).getLotto().toString());
         }
     }
-    public void outputWinningStatics(HashMap<String, Integer> winningStatics){
-        for(String grade : winningStatics.keySet()){
-            System.out.println(grade +" "+ winningStatics.get(grade).toString());
+
+    public void outputWinningStatics(HashMap<String, Integer> winningStatics) {
+        for (String grade : winningStatics.keySet()) {
+            System.out.println(grade + " " + winningStatics.get(grade).toString());
         }
     }
 

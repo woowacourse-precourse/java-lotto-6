@@ -27,9 +27,9 @@ public class LottoChecker {
             List<Integer> lottoforcompare = lotto.getLotto();
             boolean bonusNumberCheck = lottoforcompare.contains(bounsNumber);
             lottoforcompare.retainAll(answerLotto);
-            String lottoRank = getLottoRank(lottoforcompare,bonusNumberCheck);
+            String lottoRank = getLottoRank(lottoforcompare, bonusNumberCheck);
             Integer currentStatics = winningStatics.get(lottoRank);
-            winningStatics.replace(lottoRank, currentStatics+1);
+            winningStatics.replace(lottoRank, currentStatics + 1);
         }
         return winningStatics;
     }
@@ -40,8 +40,9 @@ public class LottoChecker {
                 return "FIRST";
             }
             case 5 -> {
-                if (bonusNumberCheck)
+                if (bonusNumberCheck) {
                     return "SECOND";
+                }
                 return "THIRD";
             }
             case 4 -> {

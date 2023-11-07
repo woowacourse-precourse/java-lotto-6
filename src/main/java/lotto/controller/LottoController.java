@@ -24,10 +24,11 @@ public class LottoController {
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
-        LottoChecker lottoChecker = new LottoChecker(randomLottos,answerLotto, bounsNumber);
+        LottoChecker lottoChecker = new LottoChecker(randomLottos, answerLotto, bounsNumber);
         HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
         WinningReward winningRewardChecker = new WinningReward();
-        Double winningReward = getWinningReward(winningStatics, lottoAmountofMoney.getLottoAmountofMoney(), winningRewardChecker);
+        Double winningReward = getWinningReward(winningStatics, lottoAmountofMoney.getLottoAmountofMoney(),
+                winningRewardChecker);
     }
 
     private Integer getLottoAmountofMoney() {
@@ -50,18 +51,22 @@ public class LottoController {
         displayOutput.outputBonusNumber();
         return displayInput.inputBonusNumber();
     }
-    private RandomLottos getRandomLottos(LottoAmountofMoney lottoAmountofMoney){
+
+    private RandomLottos getRandomLottos(LottoAmountofMoney lottoAmountofMoney) {
         RandomLottos randomLottos = new RandomLottos(lottoAmountofMoney);
         displayOutput.outputRandomLottos(randomLottos);
         return randomLottos;
     }
-    private HashMap<String, Integer> getWinningStatics(LottoChecker lottoChecker){
-        HashMap<String, Integer> winningStatics =  lottoChecker.checkLottoNumbers();
+
+    private HashMap<String, Integer> getWinningStatics(LottoChecker lottoChecker) {
+        HashMap<String, Integer> winningStatics = lottoChecker.checkLottoNumbers();
         displayOutput.outputWinningStatics(winningStatics);
         return winningStatics;
     }
-    private Double getWinningReward(HashMap<String, Integer> winningStatics, Integer lottoAmountofMoney, WinningReward winningRewardchecker){
-        Double winningReward =  winningRewardchecker.calculateRateOfReturn(winningStatics, lottoAmountofMoney);
+
+    private Double getWinningReward(HashMap<String, Integer> winningStatics, Integer lottoAmountofMoney,
+                                    WinningReward winningRewardchecker) {
+        Double winningReward = winningRewardchecker.calculateRateOfReturn(winningStatics, lottoAmountofMoney);
         displayOutput.outputWinningReward(winningReward);
         return winningReward;
     }

@@ -23,7 +23,7 @@ public class WinningReward {
         return rateOfReturn;
     }
 
-    private Long calculateWinningReward(HashMap<String, Integer> winningStatics){
+    private Long calculateWinningReward(HashMap<String, Integer> winningStatics) {
         winningReward = winningReward + winningStatics.get("FIRST") * FIRSTAWARD;
         winningReward = winningReward + winningStatics.get("SECOND") * SECONDAWARD;
         winningReward = winningReward + winningStatics.get("THIRD") * THIRDAWARD;

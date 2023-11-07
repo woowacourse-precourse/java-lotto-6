@@ -9,17 +9,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoResult;
+import lotto.domain.MatchingCase;
 import lotto.domain.Profit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
     private ByteArrayOutputStream outputStream;
+    private List<MatchingCase> matchingResult = Arrays.asList(MatchingCase.values());
+
 
     @BeforeEach
     void setup() {
@@ -49,7 +53,7 @@ public class OutputViewTest {
                 List.of(LOTTO_1_TO_5_WITH_45, LOTTO_1_TO_6, LOTTO_3_TO_8));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoCollection.setResultGroup(winningLotto, BONUS_NUMBER_45);
-        OutputView.printResult();
+        OutputView.printResult(matchingResult);
         assertThat(outputStream.toString())
                 .hasToString("당첨 통계\n"
                         + "---\n"

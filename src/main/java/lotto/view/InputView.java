@@ -2,15 +2,16 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.WinningNumbersDto;
+import lotto.util.Converter;
 import lotto.util.validator.LottoNumberValidator;
 import lotto.util.validator.Validator;
 import lotto.util.validator.ValidatorFactory;
 
 public class InputView {
-    public static String inputPurchase() {
+    public static int inputPurchase() {
         String rawPurchase = input("구입금액을 입력해 주세요.");
         validateNumber(rawPurchase);
-        return rawPurchase;
+        return Converter.convertToInt(rawPurchase);
     }
 
     public static WinningNumbersDto inputWinningNumbers() {

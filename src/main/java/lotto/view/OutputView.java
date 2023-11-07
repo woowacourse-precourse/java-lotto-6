@@ -8,6 +8,7 @@ import lotto.domain.MatchingCase;
 
 public class OutputView {
     public static final String NEW_LINE = System.lineSeparator();
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] ";
 
     public static void printLottoCount(int count) {
         System.out.printf("%d개를 구매했습니다.", count);
@@ -19,10 +20,10 @@ public class OutputView {
         }
     }
 
-    public static void printResult() {
+    public static void printResult(List<MatchingCase> matchingCaseGroup) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (MatchingCase matchingCase : MatchingCase.values()) {
+        for (MatchingCase matchingCase : matchingCaseGroup) {
             generateResultMessage(matchingCase);
         }
     }
@@ -41,5 +42,9 @@ public class OutputView {
 
     public static void printProfit(double profit) {
         System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+    }
+
+    public static void printExceptionMessage(String message) {
+        System.out.println(ERROR_MESSAGE_FORMAT + message);
     }
 }

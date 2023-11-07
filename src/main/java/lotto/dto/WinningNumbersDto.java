@@ -31,4 +31,8 @@ public class WinningNumbersDto {
         Validator validator = validatorFactory.getValidator(WinningNumbersDto.class);
         validator.validate(value);
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

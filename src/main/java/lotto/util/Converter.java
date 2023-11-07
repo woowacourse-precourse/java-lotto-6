@@ -8,4 +8,8 @@ public class Converter {
                 .map(value -> Integer.parseInt(value))
                 .toList();
     }
+
+    public static int convertToInt(String input) {
+        return Integer.parseInt(input);
+    }
 }

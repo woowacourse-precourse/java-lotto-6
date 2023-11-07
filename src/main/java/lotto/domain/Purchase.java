@@ -12,8 +12,7 @@ public class Purchase {
         this.purchase = purchase;
     }
 
-    public static Purchase from(String rawPurchase) {
-        int purchase = Integer.parseInt(rawPurchase);
+    public static Purchase from(int purchase) {
         validate(purchase);
         return new Purchase(purchase);
     }

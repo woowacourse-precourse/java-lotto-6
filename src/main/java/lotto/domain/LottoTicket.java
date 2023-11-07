@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.LottoGenerator;
@@ -39,7 +40,7 @@ public class LottoTicket {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 
     public int getTicketCount() {

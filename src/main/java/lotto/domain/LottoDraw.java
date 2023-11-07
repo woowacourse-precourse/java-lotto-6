@@ -1,10 +1,6 @@
 package lotto.domain;
 
-import static lotto.config.LottoConfig.LOTTO_UNIT_PRICE;
-
-import lotto.config.Constant;
 import lotto.config.LottoPrize;
-import lotto.util.Util;
 
 import java.util.List;
 

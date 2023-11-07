@@ -19,20 +19,20 @@ public class WinningNumbersValidator extends InputValidator {
     }
 
     private void validateInputFormat() {
-        if(!super.input.matches(Constant.PATTERN_NUMBERS)) {
+        if (!super.input.matches(Constant.PATTERN_NUMBERS)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
         }
     }
 
     private void validateDuplicateNumber(List<String> numbers) {
-        if(numbers.size() != Util.distinctListSize(numbers)) {
+        if (numbers.size() != Util.distinctListSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 
     private void validateNumberInRange(String inputNumber) {
         final int number = Integer.parseInt(inputNumber);
-        if(number < LottoConfig.LOTTO_NUMBER_MIN.getNumber() || number > LottoConfig.LOTTO_NUMBER_MAX.getNumber()) {
+        if (number < LottoConfig.LOTTO_NUMBER_MIN.getNumber() || number > LottoConfig.LOTTO_NUMBER_MAX.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_NUMBER.getMessage());
         }
     }

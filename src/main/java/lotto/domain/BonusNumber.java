@@ -15,7 +15,7 @@ public class BonusNumber {
     }
 
     private void validateExistNumber(List<Integer> numbers, int number) {
-        if(numbers.contains(number)) {
+        if (numbers.contains(number)) {
             throw new IllegalArgumentException(ErrorMessage.EXIST_NUMBER.getMessage());
         }
     }

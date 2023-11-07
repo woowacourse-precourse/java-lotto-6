@@ -19,7 +19,7 @@ public class BonusNumberValidator extends InputValidator {
 
     private void validateNumberInRange(String inputNumber) {
         final int number = Integer.parseInt(inputNumber);
-        if(number < LottoConfig.LOTTO_NUMBER_MIN.getNumber() || number > LottoConfig.LOTTO_NUMBER_MAX.getNumber()) {
+        if (number < LottoConfig.LOTTO_NUMBER_MIN.getNumber() || number > LottoConfig.LOTTO_NUMBER_MAX.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_NUMBER.getMessage());
         }
     }

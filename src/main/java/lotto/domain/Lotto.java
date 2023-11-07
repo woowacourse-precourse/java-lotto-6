@@ -17,16 +17,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_LOTTO_NUMBERS) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 6개를 입력해주세요.");
-        }
-    }
-
-    private void validateUnique(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }
 
@@ -38,7 +35,10 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    private void validateUnique(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
     }
 }

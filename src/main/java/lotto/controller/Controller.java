@@ -24,19 +24,6 @@ public class Controller {
         lottoResult(rankList, money);
     }
 
-    private void lottoResult(List<LottoRank> rankList, int money) {
-        Statistic statistic = new Statistic(rankList);
-        OutputView.lottoResultMessage(statistic, money);
-    }
-
-    private List<LottoRank> compareLottoNumber(WinningNumber winningNumber, List<Lotto> lottoTickets) {
-        List<LottoRank> rankList = new ArrayList<>();
-        for (Lotto lotto : lottoTickets) {
-            rankList.add(winningNumber.compareNumbers(lotto.getNumbers()));
-        }
-        return rankList;
-    }
-
     private int inputMoneyFromUser() {
         try {
             Money money = new Money(InputView.inputMoney());
@@ -80,5 +67,18 @@ public class Controller {
             System.out.println(e.getMessage());
             return inputWinningNumberFromUser();
         }
+    }
+
+    private List<LottoRank> compareLottoNumber(WinningNumber winningNumber, List<Lotto> lottoTickets) {
+        List<LottoRank> rankList = new ArrayList<>();
+        for (Lotto lotto : lottoTickets) {
+            rankList.add(winningNumber.compareNumbers(lotto.getNumbers()));
+        }
+        return rankList;
+    }
+    
+    private void lottoResult(List<LottoRank> rankList, int money) {
+        Statistic statistic = new Statistic(rankList);
+        OutputView.lottoResultMessage(statistic, money);
     }
 }

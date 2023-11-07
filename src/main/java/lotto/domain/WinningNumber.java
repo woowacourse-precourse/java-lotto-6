@@ -8,6 +8,7 @@ public class WinningNumber {
     private static final int LARGEST_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
     private final int bonusNumber;
+
     public WinningNumber(List<Integer> numbers, int bonusNumber) {
         validateUnique(numbers,bonusNumber);
         validateRange(bonusNumber);

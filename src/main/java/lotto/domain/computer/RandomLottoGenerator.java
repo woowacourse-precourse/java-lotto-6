@@ -1,10 +1,10 @@
-package lotto.computer;
+package lotto.domain.computer;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.lotto.Lotto;
-import lotto.lotto.Lottos;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 
 public class RandomLottoGenerator {
 

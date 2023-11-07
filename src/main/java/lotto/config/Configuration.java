@@ -1,9 +1,9 @@
 package lotto.config;
 
-import lotto.computer.Computer;
-import lotto.computer.RandomLottoGenerator;
-import lotto.computer.ResultGenerator;
-import lotto.game.Game;
+import lotto.domain.computer.Computer;
+import lotto.domain.computer.RandomLottoGenerator;
+import lotto.domain.computer.ResultGenerator;
+import lotto.domain.game.Game;
 import lotto.input.ConsoleInput;
 import lotto.input.Input;
 import lotto.output.ConsoleOutput;

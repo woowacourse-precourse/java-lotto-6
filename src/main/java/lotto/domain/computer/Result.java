@@ -1,4 +1,4 @@
-package lotto.computer;
+package lotto.domain.computer;
 
 public class Result {
 

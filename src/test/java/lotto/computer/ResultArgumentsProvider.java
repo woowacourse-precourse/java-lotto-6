@@ -2,7 +2,7 @@ package lotto.computer;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.lotto.Lotto;
+import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.params.provider.Arguments;
 
 public class ResultArgumentsProvider {

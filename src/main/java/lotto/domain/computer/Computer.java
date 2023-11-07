@@ -1,8 +1,8 @@
-package lotto.computer;
+package lotto.domain.computer;
 
 import java.util.List;
-import lotto.lotto.Lotto;
-import lotto.lotto.Lottos;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 
 public class Computer {
 

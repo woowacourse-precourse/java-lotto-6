@@ -1,11 +1,11 @@
-package lotto.game;
+package lotto.domain.game;
 
 import static lotto.ExceptionHandler.handle;
 
-import lotto.computer.Computer;
+import lotto.domain.computer.Computer;
 import lotto.input.Input;
 import lotto.output.Output;
-import lotto.user.User;
+import lotto.domain.user.User;
 
 public class Game {
 

@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.List;
-import lotto.lotto.Lotto;
-import lotto.lotto.Lottos;
+import lotto.domain.computer.Result;
+import lotto.domain.computer.ResultGenerator;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

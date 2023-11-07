@@ -7,7 +7,7 @@ public class Result {
     private boolean isBonusMatching;
     private Rank rank = Rank.OTHERS;
 
-    Result(Ticket ticket, Lotto lotto) {
+    public Result(Ticket ticket, Lotto lotto) {
         compareTicketAndLotto(ticket, lotto);
         decideRank();
     }
@@ -24,7 +24,8 @@ public class Result {
             }
         }
 
-        isBonusMatching = (matchingNumbersCounter == Rank.SECOND.getNumberOfMatching()) && lottoNumbers.contains(bonusNumber);
+        isBonusMatching = (matchingNumbersCounter == Rank.SECOND.getNumberOfMatching())
+                && lottoNumbers.contains(bonusNumber);
     }
 
     private void decideRank() {

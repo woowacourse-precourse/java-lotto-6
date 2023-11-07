@@ -6,10 +6,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    static final int PRICE = 1000;
-    private static final int NUMBER_COUNTER = 6; // 로또 번호 최대 개수
-    static final int START_NUMBER = 1;
-    static final int END_NUMBER = 45;
+    public static final int PRICE = 1000;
+    public static final int NUMBERS_COUNTER = 6; // 로또 번호 최대 개수
+    public static final int START_NUMBER = 1;
+    public static final int END_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_COUNTER) {
+        if (numbers.size() != NUMBERS_COUNTER) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 

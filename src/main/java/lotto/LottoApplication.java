@@ -56,9 +56,12 @@ public class LottoApplication {
 
     private Lotto getPickedNumbers() {
         try {
-            List<Integer> pickedNumbers = Arrays.stream(Input.readPickedNumbers().trim().split(","))
+            List<Integer> pickedNumbers = Arrays.stream(
+                    Input.readPickedNumbers()
+                            .trim()
+                            .split(","))
                     .map(Integer::valueOf)
-                    .toList(); // String[]을 List<Integer>로 변환 
+                    .toList(); // String[]을 List<Integer>로 변환
 
             return new Lotto(pickedNumbers);
         } catch (NumberFormatException nfe) { // pickedNumbers 중 정수값이 없을 경우
@@ -75,7 +78,7 @@ public class LottoApplication {
     }
 
     private Lotto drawLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.START_NUMBER, Lotto.END_NUMBER, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.START_NUMBER, Lotto.END_NUMBER, Lotto.NUMBERS_COUNTER));
     }
 
     private int getNumberOfLotto(int receivedAmount) {
@@ -120,20 +123,4 @@ public class LottoApplication {
         Output.printTotalProfit(String.valueOf(totalProfit));
     }
 
-//    private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {
-//        BigDecimal totalWinningAmount = BigDecimal.ZERO;
-//
-//        for (int i = 1; i < rankingCounter.length; i++) {
-//            totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(rankingCounter[i]).multiply(WINNING_AMOUNT_BY_RANKING[i]));
-//        }
-//
-//        return totalWinningAmount;
-//    }
-//
-//    private BigDecimal calculateWinningProfit(BigDecimal receivedAmount, BigDecimal totalWinningAmount) {
-//        BigDecimal percent = new BigDecimal(0);
-//        percent = totalWinningAmount.divide(receivedAmount, 3, RoundingMode.HALF_UP);
-//        percent = percent.multiply(BigDecimal.valueOf(100), new MathContext(3, RoundingMode.HALF_UP));
-//        return percent;
-//    }
 }

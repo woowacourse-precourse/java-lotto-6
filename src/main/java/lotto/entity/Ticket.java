@@ -4,7 +4,7 @@ public class Ticket {
     private final Lotto lotto;
     private final Bonus bonus;
 
-    Ticket(Lotto lotto, Bonus bonus) {
+    public Ticket(Lotto lotto, Bonus bonus) {
         validate(lotto, bonus);
 
         this.lotto = lotto;

@@ -38,7 +38,17 @@ public class LottoSystem {
         return player.getPurchasedLottoCount();
     }
 
-    private int getMatchingNumbersCount(Lotto winningLotto) {
+    private Optional<Prize> getPrize(int totalMatchingNumberCount, boolean hasBonusNumber) {
+        if (totalMatchingNumberCount == 6 && hasBonusNumber) {
+            return Optional.of(Prize.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH);
+        }
+
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.getMatchingNumberCount() == totalMatchingNumberCount)
+                .findAny();
+    }
+
+    private int getMatchingNumberCount(Lotto winningLotto) {
         return (int) winningLotto.getLottoNumbers()
                 .stream()
                 .filter(winningLottoNumber ->

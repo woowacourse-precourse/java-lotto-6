@@ -126,3 +126,7 @@ Lotto클래스 countWinningTickets메소드
 ``````````````````````````
 Lotto클래스 calculateRateOfReturn메소드
 ```````````````````````````````
+23. 최종 로또 랭크를 보여주는 showWinningRank 기능 추가
+``````````````````````````
+Lotto클래스 showWinningRank메소드
+```````````````````````````````

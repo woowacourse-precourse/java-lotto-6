@@ -51,11 +51,7 @@ public class Lotto {
                 count[rank.ordinal()]++;
             }
         }
-        System.out.println("당첨 통계\n" + "---");
-        for (int i = LottoRank.values().length - 1; i >= 0; i--) {
-            LottoRank rank = LottoRank.values()[i];
-            System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count[rank.ordinal()] + "개");
-        }
+        showWinningRank(count);
         calculateRateOfReturn(tickets,count);
     }
 
@@ -68,5 +64,16 @@ public class Lotto {
         double temporaryRateOfReturn = (double)prizeMoney/lottoPrize;
         double rateOfReturn = Math.round(temporaryRateOfReturn * 1000) / 10.0;
         System.out.println("총 수익률은 " +rateOfReturn+"%입니다.");
+    }
+    public static void showWinningRank(int[] count){
+        System.out.println("당첨 통계\n" + "---");
+        for (int i = LottoRank.values().length - 1; i >= 0; i--) {
+            LottoRank rank = LottoRank.values()[i];
+            if(rank.getPrize()==1500000){
+                System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + rank.getPrize() + "원) - " + count[rank.ordinal()] + "개");
+                continue;
+            }
+            System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count[rank.ordinal()] + "개");
+        }
     }
 }

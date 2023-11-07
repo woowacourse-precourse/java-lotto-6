@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.model.LottoInfo.LOTTO_PRICE;
+import static lotto.model.LottoInfo.NUMBER_COUNT;
+
 public class Lottos {
     private final List<Lotto> lottos;
     private List<Integer> goal;
@@ -18,9 +21,9 @@ public class Lottos {
         lottos.add(new Lotto(RandomGenerator.getAutoNumbers(6)));
     }
     public void buyMultipleAllRandom(int payment){
-        int count = payment / 1000;
+        int count = payment / LOTTO_PRICE;
         IntStream.range(0,count)
-                .mapToObj(lotto->new Lotto(RandomGenerator.getAutoNumbers(6)))
+                .mapToObj(lotto->new Lotto(RandomGenerator.getAutoNumbers(NUMBER_COUNT)))
                 .forEach(lottos::add);
     }
     public int getSize(){

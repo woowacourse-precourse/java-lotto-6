@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.global.ErrorMessage.*;
+import static lotto.model.LottoInfo.*;
 
 public class InputView {
     private InputView(){}
@@ -28,7 +29,7 @@ public class InputView {
     private void validPayment(String input){
         try {
             int payment = Integer.parseInt(input);
-            if(payment%1000!=0)
+            if(payment%LOTTO_PRICE!=0)
                 throw new IllegalArgumentException(PAYMENT_ERROR.toString());
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(NUMBER_ERROR.toString());
@@ -46,7 +47,7 @@ public class InputView {
     private void validNumbers(String input){
         try {
             String[] stringNums = input.split(",");
-            if(stringNums.length!=6)
+            if(stringNums.length!=NUMBER_COUNT)
                 throw new IllegalArgumentException(SIZE_ERROR.toString());
             for(String num : stringNums){
                 validNumber(num);
@@ -66,7 +67,7 @@ public class InputView {
     private void validNumber(String input){
         try {
             int payment = Integer.parseInt(input);
-            if(payment<1 || payment>45)
+            if(payment<START_NUMBER || payment>END_NUMBER)
                 throw new IllegalArgumentException(RANGE_ERROR.toString());
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(NUMBER_ERROR.toString());

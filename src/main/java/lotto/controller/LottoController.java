@@ -162,11 +162,11 @@ public class LottoController {
     }
 
     void showRateOfReturn(Rank rank, Long paymentPrice) {
-        int winningPrice = rank.getRank(1) * Number.RANK1_PRICE.getNumber()
-                + rank.getRank(2) * Number.RANK2_PRICE.getNumber()
-                + rank.getRank(3) * Number.RANK3_PRICE.getNumber()
-                + rank.getRank(4) * Number.RANK4_PRICE.getNumber()
-                + rank.getRank(5) * Number.RANK5_PRICE.getNumber();
+        int winningPrice = rank.getRank(1) * Number.RANK1_PRIZE.getNumber()
+                + rank.getRank(2) * Number.RANK2_PRIZE.getNumber()
+                + rank.getRank(3) * Number.RANK3_PRIZE.getNumber()
+                + rank.getRank(4) * Number.RANK4_PRIZE.getNumber()
+                + rank.getRank(5) * Number.RANK5_PRIZE.getNumber();
         double rateOfReturn = (double) winningPrice / paymentPrice;
         OutputHandler.printRateOfReturn(rateOfReturn);
     }

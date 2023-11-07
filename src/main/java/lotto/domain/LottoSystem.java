@@ -39,6 +39,16 @@ public class LottoSystem {
         return player.getPurchasedLottoCount();
     }
 
+    private Map<Prize, Integer> getWinningCountForEachPrize(List<Prize> winningPrizes) {
+        Map<Prize,Integer> winningCounts = new HashMap<>();
+        for (Prize winningPrize : winningPrizes) {
+            if (Arrays.asList(Prize.values()).contains(winningPrize)) {
+                winningCounts.put(winningPrize, winningCounts.getOrDefault(winningPrize, 0) + 1);
+            }
+        }
+        return winningCounts;
+    }
+
     private List<Prize> getWinningPrizes() {
         List<Prize> prizes = new ArrayList<>();
         for (int i = 0; i < getPurchasedLottoCount(); i++) {

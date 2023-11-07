@@ -1,12 +1,28 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoMachine {
-//    private List<Integer> winningNumber = new ArrayList<>();
+    //    private List<Integer> winningNumber = new ArrayList<>();
     // 크기가 정해져있고, 불편해서 배열쓰는게 나을수도....
-    private String[] winningNumber;
+    private List<Integer> winningNumber;
     private int bonusNumber;
 
-    public String[] getWinningNumber() {
+    public LottoMachine() {
+        String[] winningNumberInput = BuyerInfoInput.inputWinningNumber();
+        validateWinningNumber(winningNumberInput);
+        String bonusNumberInput = BuyerInfoInput.inputBonusNumber();
+        validateBonusNumber(bonusNumberInput, winningNumberInput);
+
+        for (String num : winningNumberInput) {
+            this.winningNumber.add(Integer.parseInt(num));
+        }
+
+        this.bonusNumber = Integer.parseInt(bonusNumberInput);
+
+    }
+
+    public List<Integer> getWinningNumber() {
         return winningNumber;
     }
 
@@ -14,20 +30,15 @@ public class LottoMachine {
         return bonusNumber;
     }
 
-    public void setWinningNumber(String[] winningNumber) {
+    public void validateWinningNumber(String[] winningNumber) {
         Validator.isWinningNumberValid(winningNumber);
         Validator.isWinningNumberDistinct(winningNumber);
         Validator.isWinningNumberSizeValid(winningNumber);
-//        for (String num : winningNumber){
-//            this.winningNumber.add(Integer.parseInt(num));
-//        }
-        this.winningNumber = winningNumber;
     }
 
-    public void setBonusNumber(String bonusNumber) {
+    public void validateBonusNumber(String bonusNumber, String[] winningNumber) {
         Validator.isBonusNumberValid(bonusNumber);
-        Validator.isBonusNumberDistinct(winningNumber,bonusNumber);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+        Validator.isBonusNumberDistinct(winningNumber, bonusNumber);
     }
 
 

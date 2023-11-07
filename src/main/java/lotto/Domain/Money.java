@@ -5,14 +5,24 @@ import lotto.Constant.Constant;
 public class Money {
 
     private final Integer value;
+    private final Integer count;
 
     public Money(String value) {
         validate(value);
         this.value = Integer.parseInt(value);
+        this.count = makeCount(this.value);
     }
 
     public Integer getValue() {
         return value;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    private int makeCount(int value) {
+        return value / Constant.LOTTO_DIVIDE_PRICE;
     }
 
     private void validate(String value) {

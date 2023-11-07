@@ -6,6 +6,8 @@ public class Constant {
     public static final String INPUT_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static final String INPUT_LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
 
+    public static final String OUTPUT_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
+
     public static final String ERROR_PREFIX = "[ERROR] ";
     public static final String NUMBER_PREFIX = "구입금액은 ";
     public static final String BONUS_PREFIX = "보너스 번호는 ";

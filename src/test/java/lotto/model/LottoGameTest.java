@@ -25,7 +25,7 @@ class LottoGameTest {
             numbers.add(i);
         }
         lotto = new Lotto(numbers);
-        drawResult = new DrawResult(lotto, 7);
+        drawResult = new DrawResult(lotto, 6);
     }
 
 

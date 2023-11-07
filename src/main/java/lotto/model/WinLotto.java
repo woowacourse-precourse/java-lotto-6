@@ -1,8 +1,7 @@
 package lotto.model;
 
-import static lotto.model.enums.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
-
 import lotto.model.enums.Rank;
+import lotto.model.exceptions.DuplicatedNumberException;
 
 public class WinLotto {
     private final Lotto winLotto;
@@ -16,7 +15,7 @@ public class WinLotto {
 
     private void checkDuplicateNumber(Lotto winLotto, int bonusNumber) {
         if (winLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATED_NUMBER_MESSAGE.getMessage());
+            throw new DuplicatedNumberException();
         }
     }
 

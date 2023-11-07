@@ -6,6 +6,14 @@ import java.util.Set;
 
 public class LottoValidator {
 
+    public static final int LOTTO_PRICE = 1000;
+
+    public void validateDivideByLottoPrice(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void validateDuplicate(List<Integer> numbers) {
         Set<Integer> duplicateRemove = new HashSet<>(numbers);
         if (numbers.size() != duplicateRemove.size()) {

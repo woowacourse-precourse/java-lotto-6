@@ -16,11 +16,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTicketsTest {
     LottoTickets lottoTickets;
+
     @DisplayName("생성 테스트")
     @BeforeEach
     @Test
     void createLottoTickets() {
-        lottoTickets = new LottoTickets(5);
+        lottoTickets = LottoTickets.createdBy(5);
     }
 
     @DisplayName("")
@@ -33,7 +34,7 @@ class LottoTicketsTest {
     @Test
     void NumbersOfLottoTickets() {
         assertRandomUniqueNumbersInRangeTest(() ->
-                        assertThat(new LottoTickets(5).getLottoTickets().stream().map(Lotto::toString))
+                        assertThat(LottoTickets.createdBy(5).getLottoTickets().stream().map(Lotto::toString))
                                 .contains("[1, 2, 3, 4, 5, 6]",
                                         "[4, 5, 6, 7, 8, 9]",
                                         "[3, 10, 23, 42, 43, 45]",
@@ -41,21 +42,21 @@ class LottoTicketsTest {
                                         "[2, 3, 9, 12, 30, 34]"
                                 )
                 ,
-                List.of(1,2,3,4,5,6),
-                List.of(4,5,6,7,8,9),
-                List.of(3,10,23,42,43,45),
-                List.of(10,20,30,35,40,45),
-                List.of(2,3,9,12,30,34)
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(4, 5, 6, 7, 8, 9),
+                List.of(3, 10, 23, 42, 43, 45),
+                List.of(10, 20, 30, 35, 40, 45),
+                List.of(2, 3, 9, 12, 30, 34)
         );
     }
 
     @DisplayName("양수가 아닐 경우 예외가 발생해야함")
     @Test
     void createLottoTicketsByZero() {
-        assertThatThrownBy(() -> new LottoTickets(-1))
+        assertThatThrownBy(() -> LottoTickets.createdBy(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
-        assertThatThrownBy(() -> new LottoTickets(0))
+        assertThatThrownBy(() -> LottoTickets.createdBy(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
     }
@@ -78,17 +79,17 @@ class LottoTicketsTest {
 
         final List<Lotto> lottoTickets1 = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            lottoTickets1.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+            lottoTickets1.add(Lotto.valueOf(List.of(1, 2, 3, 4, 5, 6)));
         }
         lottoTickets = lottoTickets1;
         //
         final List<Lotto> lottoTickets2 = new ArrayList<>();
-        IntStream.range(0, 10).forEach(i -> lottoTickets2.add(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+        IntStream.range(0, 10).forEach(i -> lottoTickets2.add(Lotto.valueOf(List.of(1, 2, 3, 4, 5, 6))));
         //
         final List<Lotto> lottoTickets3;
 
         lottoTickets3 = IntStream.range(0, 10)
-                .mapToObj(i -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .mapToObj(i -> Lotto.valueOf(List.of(1, 2, 3, 4, 5, 6)))
                 .collect(Collectors.toList());
 
         assertThat(lottoTickets2.equals(lottoTickets3)).isFalse();

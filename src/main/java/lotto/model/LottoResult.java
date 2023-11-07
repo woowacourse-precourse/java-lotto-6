@@ -2,8 +2,7 @@ package lotto.model;
 
 import java.util.HashMap;
 
-import static lotto.model.LottoResultFormat.ERROR;
-import static lotto.model.LottoResultFormat.FIVE_BONUS;
+import static lotto.model.LottoResultFormat.*;
 
 public class LottoResult {
     private final HashMap<LottoResultFormat, Integer> lottoResultHashMap;
@@ -13,7 +12,7 @@ public class LottoResult {
 //    }
 
     public LottoResult(){
-        this.lottoResultHashMap = null;
+        this.lottoResultHashMap = new HashMap<>();
     }
 
     public void addHashMap(int numberOfMatchLotto, boolean isBonusMatch) {

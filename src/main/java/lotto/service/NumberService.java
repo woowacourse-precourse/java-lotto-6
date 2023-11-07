@@ -11,6 +11,8 @@ import java.util.List;
 public class NumberService {
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_RANGE_MIN = 1;
+    public static final int LOTTO_RANGE_MAX = 45;
     private PurchaseAmount purchaseAmount;
     private AllLottoNumbers allLottoNumbers;
     private final LottoGenerator lottoGenerator;

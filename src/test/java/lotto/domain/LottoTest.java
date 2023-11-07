@@ -13,7 +13,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Lotto.NUMBERS_SIZE_INAVLID_EXCEPTION);
+                .hasMessage(Lotto.NUMBERS_SIZE_INVALID_EXCEPTION);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -24,5 +24,11 @@ class LottoTest {
                 .hasMessage(Lotto.NUMBERS_DUPLICATE_EXCEPTION);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByOutOfRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Lotto.NUMBERS_RANGE_INVALID_EXCEPTION);
+    }
 }

@@ -108,6 +108,5 @@ public class LottoController {
             bonusNumber = createBonusNumber();
             return createWinningNumbers(winningNumber, bonusNumber);
         }
-
     }
 }

@@ -41,10 +41,10 @@
     - [ ] 1 ~ 45 사이의 숫자인지 확인 Validator
 
 
-- [ ] <<5.당첨 통계 계산>>
+- [x] <<5.당첨 통계 계산>>
   - [x] 일치 번호 개수 계산 LottoCalculator
   - [x] 당첨 금액 계산 LottoCalculator
-  - [ ] 수익률 계산 RateOfReturnCalculator
+  - [x] 수익률 계산 RateOfReturnCalculator
     - 수소점 둘째 자리에서 반올림
 
 

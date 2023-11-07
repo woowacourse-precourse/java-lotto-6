@@ -43,7 +43,7 @@ public class LottoResult {
     public void updateMatchCount(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
         int matchCount = purchasedLotto.matchCount(winningLotto);
         if (matchCount == 5 && purchasedLotto.containsNumber(bonusNumber)) {
-            secondPrizeWinners.put(5, secondPrizeWinners.getOrDefault(5, 0) + 1); 
+            secondPrizeWinners.put(5, secondPrizeWinners.getOrDefault(5, 0) + 1);
         } else {
             incrementMatchCount(matchCount);
         }
@@ -65,6 +65,10 @@ public class LottoResult {
                 printMatchStatistics(matchCount, count);
             }
         });
+        int secondPrizeCount = secondPrizeWinners.getOrDefault(5, 0);
+        if (secondPrizeCount > 0) {
+            System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", formatPrizeMoney(30_000_000L), secondPrizeCount);
+        }
     }
 
     private void printMatchStatistics(int matchCount, int count) {

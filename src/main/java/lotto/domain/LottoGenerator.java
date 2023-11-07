@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.configure.DomainConfiguration;
 import lotto.util.RandomNumberGenerator;
+import lotto.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,11 @@ import java.util.List;
  * 로또를 발행하는 클래스.
  */
 public class LottoGenerator {
+
+    public static int calculateNumOfLotto(int purchasePrice) throws IllegalArgumentException {
+        Validator.validateDivisibility(purchasePrice);
+        return purchasePrice / DomainConfiguration.PRICE_OF_LOTTO;
+    }
 
     /**
      * (purchasePrice / DomainConfiguration.PRICE_OF_LOTTO)만큼의 로또를 발행한다.

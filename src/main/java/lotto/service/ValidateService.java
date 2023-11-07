@@ -1,10 +1,8 @@
 package lotto.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
-import lotto.constant.LottoPrice;
 
 public class ValidateService {
     public int validateNumber(String inputValue) {
@@ -16,24 +14,11 @@ public class ValidateService {
     }
 
 
-    public void validateInputWinningNumbersAll(List<Integer> winningNumbers) {
-        validateInputLottoRange(winningNumbers);
-        validateDuplicateWinningNumber(winningNumbers);
-        validateWinningNumbersCount(winningNumbers);
-    }
-
     public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateBonusNumberRange(bonusNumber);
         validateDuplicationWinningNumbersAndBonusNumber(bonusNumber, winningNumbers);
     }
 
-    private void validateInputLottoRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < LottoNumber.START_NUMBER.getNumber() || number > LottoNumber.END_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
-            }
-        }
-    }
 
     private void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < LottoNumber.START_NUMBER.getNumber() || bonusNumber > LottoNumber.END_NUMBER.getNumber()) {
@@ -42,17 +27,6 @@ public class ValidateService {
 
     }
 
-    private void validateDuplicateWinningNumber(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
-        }
-    }
-
-    private void validateWinningNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());
-        }
-    }
 
     private void validateDuplicationWinningNumbersAndBonusNumber(int bonusNumber, List<Integer> numbers) {
         if (numbers.contains(bonusNumber)) {

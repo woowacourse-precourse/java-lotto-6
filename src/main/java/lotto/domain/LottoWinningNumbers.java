@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoNumber;
 import lotto.service.InputService;
 import lotto.service.MessageService;
 import lotto.service.ValidateService;
@@ -27,7 +28,7 @@ public class LottoWinningNumbers {
             try {
                 List<String> inputValues = Arrays.asList(inputService.inputValue().split(","));
                 List<Integer> winningNumbers = separateNumbers(inputValues);
-                validateService.validateInputWinningNumbersAll(winningNumbers);
+                validateInputWinningNumbersAll(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -67,5 +68,28 @@ public class LottoWinningNumbers {
 
     public List<Integer> getWinningNumber() {
         return winningNumber;
+    }
+
+    private void validateInputWinningNumbersAll(List<Integer> winningNumbers) {
+        validateInputLottoRange(winningNumbers);
+        validateDuplicateWinningNumber(winningNumbers);
+        validateWinningNumbersCount(winningNumbers);
+    }
+    private void validateInputLottoRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LottoNumber.START_NUMBER.getNumber() || number > LottoNumber.END_NUMBER.getNumber()) {
+                throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_OVER_RANGE_ERROR.getMessage());
+            }
+        }
+    }
+    private void validateDuplicateWinningNumber(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
+        }
+    }
+    private void validateWinningNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());
+        }
     }
 }

@@ -5,4 +5,8 @@ public class BounsNumber {
     public BounsNumber(Integer bonusNumber){
         this.bonusNumber = bonusNumber;
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

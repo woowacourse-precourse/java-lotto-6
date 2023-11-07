@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import lotto.model.BounsNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmountofMoney;
+import lotto.model.LottoChecker;
 import lotto.model.RandomLottos;
 import lotto.view.DisplayInput;
 import lotto.view.DisplayOutput;
@@ -21,6 +23,8 @@ public class LottoController {
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
+        LottoChecker lottoChecker = new LottoChecker(randomLottos,answerLotto, bounsNumber);
+        HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
     }
 
     private Integer getLottoAmountofMoney() {
@@ -47,6 +51,11 @@ public class LottoController {
         RandomLottos randomLottos = new RandomLottos(lottoAmountofMoney);
         displayOutput.outputRandomLottos(randomLottos);
         return randomLottos;
+    }
+    private HashMap<String, Integer> getWinningStatics(LottoChecker lottoChecker){
+        HashMap<String, Integer> winningStatics =  lottoChecker.checkLottoNumbers();
+        displayOutput.outputWinningStatics(winningStatics);
+        return winningStatics;
     }
 
 

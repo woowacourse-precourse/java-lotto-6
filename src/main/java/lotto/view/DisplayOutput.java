@@ -1,6 +1,8 @@
 package lotto.view;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.RandomLottos;
 
@@ -27,6 +29,11 @@ public class DisplayOutput {
         for(int i=0; i<randomLottoNumbers; i++){
             //String lottoOutput = String.join( ",",randomLotto.get(i).getLotto().toString());
             System.out.println(randomLotto.get(i).getLotto().toString());
+        }
+    }
+    public void outputWinningStatics(HashMap<String, Integer> winningStatics){
+        for(String grade : winningStatics.keySet()){
+            System.out.println(grade +" "+ winningStatics.get(grade).toString());
         }
     }
 }

@@ -3,13 +3,13 @@ package lotto.game.io.views;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Input;
+import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Output;
 
-public class LottoGameView {
+public class LottoGameView implements InteractionRepeatable {
 
     public static final String ERROR_HEADER_MESSAGE = "[ERROR] ";
     public final Input input;
@@ -21,20 +21,10 @@ public class LottoGameView {
     }
 
     public int askPurchaseAmount() {
-        return supplyAnswer(() -> {
+        return supplyInteraction(() -> {
             output.println("구입금액을 입력해 주세요.");
             return input.number();
         });
-    }
-
-    private <T> T supplyAnswer(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                output.println(ERROR_HEADER_MESSAGE + e.getMessage());
-            }
-        }
     }
 
     public void announcePurchaseLottos(List<PlayerLotto> purchaseLottos) {
@@ -46,7 +36,7 @@ public class LottoGameView {
     }
 
     public List<Integer> askWinningNumbers() {
-        return supplyAnswer(() -> {
+        return supplyInteraction(() -> {
             output.println();
             output.println("당첨 번호를 입력해 주세요");
             List<Integer> winningNumbers = input.numbers(",");
@@ -80,7 +70,7 @@ public class LottoGameView {
     }
 
     public int askBonusNumber() {
-        return supplyAnswer(() -> {
+        return supplyInteraction(() -> {
             output.println();
             output.println("보너스 번호를 입력해 주세요.");
             int bonusNumber = input.number();

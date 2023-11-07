@@ -23,8 +23,7 @@ public class Application {
                 new LottoGameView(
                         new ConsoleInput(), new ConsoleOutput()
                 ),
-                new LottosRandoms(),
-                new ConsoleOutput()
+                new LottosRandoms()
         );
     }
 

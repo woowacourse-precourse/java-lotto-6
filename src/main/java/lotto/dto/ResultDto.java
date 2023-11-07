@@ -16,4 +16,12 @@ public class ResultDto {
     public static ResultDto create(List<Integer> totalResult, Double returnRate) {
         return new ResultDto(totalResult, returnRate);
     }
+
+    public List<Integer> getPrizeResult() {
+        return prizeResult;
+    }
+
+    public Double getReturnRate() {
+        return returnRate;
+    }
 }

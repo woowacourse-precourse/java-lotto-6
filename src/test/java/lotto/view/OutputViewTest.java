@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.dto.LottosDto;
+import lotto.dto.ResultDto;
 import lotto.model.Lotto;
 import lotto.view.message.Error;
 import org.junit.jupiter.api.AfterEach;
@@ -75,4 +77,28 @@ public class OutputViewTest {
         assertThat(outContent.toString()).isEqualToIgnoringWhitespace(expectedOutput);
     }
 
+    @DisplayName("당첨내역과 수익률을 출력한다")
+    @Test
+    public void 당첨내역과_수익률을_출력() {
+        // given
+        ResultDto resultDto = ResultDto.create(Arrays.asList(1, 0, 0, 2, 0), 1002.54);
+
+        //when
+        OutputView.printResult(resultDto);
+
+        //then
+        String expectedOutput = String.join(
+                "\n",
+                "",
+                "당첨 통계",
+                "---",
+                "3개 일치 (5,000원) - 0개",
+                "4개 일치 (50,000원) - 2개",
+                "5개 일치 (1,500,000원) - 0개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                "6개 일치 (2,000,000,000원) - 1개",
+                "총 수익률은 1002.54%입니다."
+        );
+        assertThat(outContent.toString()).isEqualToIgnoringWhitespace(expectedOutput);
+    }
 }

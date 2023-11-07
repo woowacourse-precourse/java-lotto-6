@@ -12,9 +12,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("6자리가 아닙니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean isNumberInLotto(int Number) {
+        return numbers.contains(Number);
+    }
 }

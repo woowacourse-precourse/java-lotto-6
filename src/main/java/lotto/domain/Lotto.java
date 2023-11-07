@@ -14,7 +14,6 @@ public class Lotto implements LottoConstant {
 
     public Lotto(List<Integer> numbers) {
         validateNumbers(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
     public List<Integer> getNumbers(){

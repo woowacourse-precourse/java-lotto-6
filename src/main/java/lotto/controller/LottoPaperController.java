@@ -30,7 +30,7 @@ public class LottoPaperController {
         return lottoTickets;
     }
     private Lotto issueLottoTicket(){
-        List<Integer> lottoNumbers = LottoNumberGenerator.generateLottoNumbers();
+        List<Integer> lottoNumbers = LottoNumberGenerator.generateOrderedLottoNumbers();
         return new Lotto(lottoNumbers);
     }
 }

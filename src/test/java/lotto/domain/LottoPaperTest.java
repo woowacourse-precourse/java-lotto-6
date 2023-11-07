@@ -19,7 +19,7 @@ public class LottoPaperTest {
 
         int lottoTicketSize = LottoTicketCalculator.calculateLottoTicketQuantityWithAmount(amount);
         for ( int i = 0 ; i < lottoTicketSize; i++ ) {
-            lottoTickets.add(new Lotto(LottoNumberGenerator.generateLottoNumbers()));
+            lottoTickets.add(new Lotto(LottoNumberGenerator.generateOrderedLottoNumbers()));
         }
         LottoPaper lottoPaper = new LottoPaper(payment.amount(),lottoTickets);
 

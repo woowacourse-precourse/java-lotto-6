@@ -8,12 +8,12 @@ public class InputExceptionTemplate {
         return run(callback, null);
     }
 
-    public void run(final InputVoidCallback callback) {
-        run(callback, null);
-    }
-
     public <T> T run(final InputCallback<T> callback, final String message) {
         return executeWithCallback(callback, message);
+    }
+
+    public void run(final InputVoidCallback callback) {
+        run(callback, null);
     }
 
     public void run(final InputVoidCallback callback, final String message) {

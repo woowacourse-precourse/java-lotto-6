@@ -1,7 +1,5 @@
 package lotto.View;
 
-import java.math.BigDecimal;
-
 public class OutputView {
 
     public void printNumberPurchase(int cnt){

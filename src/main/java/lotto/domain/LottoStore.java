@@ -23,11 +23,6 @@ public class LottoStore {
         chargeMoney(moneyInput);
     }
 
-
-    public void chargeMoney(final long moneyInput) {
-        this.chargedMoney = moneyInput;
-    }
-
     public void validateChargedMoney(final long moneyInput) {
         if (moneyInput < MIN_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.LESS_THAN_THOUSAND.errorMessage);
@@ -37,11 +32,14 @@ public class LottoStore {
         }
     }
 
+    public void chargeMoney(final long moneyInput) {
+        this.chargedMoney = moneyInput;
+    }
+
     public void sellLottos(final Customer customer) {
         generateAllLottos();
         customer.setLotto(lottos);
     }
-
 
     public void generateAllLottos() {
         lottos = new ArrayList<>();
@@ -49,7 +47,6 @@ public class LottoStore {
         LongStream.range(0, chargedMoney / LOTTO_PRICE)
                 .forEach(i -> lottos.add(generateLottoNumbers()));
     }
-
 
     public Lotto generateLottoNumbers() {
         final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, NUM_COUNT)

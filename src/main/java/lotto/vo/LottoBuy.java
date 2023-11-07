@@ -1,4 +1,4 @@
-package lotto.vo.buy;
+package lotto.vo;
 
 public class LottoBuy {
     private static long buymoney = 0;

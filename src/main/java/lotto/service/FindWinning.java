@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 import lotto.Controller.PrintScreen;
 import lotto.Controller.Request;
-import lotto.Lotto;
+import lotto.vo.Lotto;
 import lotto.service.generator.RateofReturn;
-import lotto.vo.buy.LottoBuy;
-import lotto.vo.winning.LottoWinning;
+import lotto.vo.LottoBuy;
+import lotto.vo.LottoWinning;
 
 public class FindWinning {
     PrintScreen print = new PrintScreen();

@@ -1,9 +1,9 @@
 package lotto.Controller;
 
-import lotto.Lotto;
+import lotto.vo.Lotto;
 import lotto.fixeddata.Text;
-import lotto.vo.buy.LottoBuy;
-import lotto.vo.issuanced.LottosNumber;
+import lotto.vo.LottoBuy;
+import lotto.vo.LottosNumber;
 import lotto.util.io.output.viewer.UserScreen;
 import lotto.util.io.output.viewer.Viewer;
 

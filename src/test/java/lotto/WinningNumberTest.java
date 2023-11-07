@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Controller.Request;
-import lotto.vo.winning.LottoWinning;
+import lotto.vo.LottoWinning;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

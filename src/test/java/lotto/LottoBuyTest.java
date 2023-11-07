@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.time.Duration;
 import lotto.Controller.PrintScreen;
 import lotto.Controller.Request;
-import lotto.vo.buy.LottoBuy;
+import lotto.vo.LottoBuy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

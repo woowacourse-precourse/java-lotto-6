@@ -9,7 +9,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.service.FindWinning;
-import lotto.vo.winning.LottoWinning;
+import lotto.vo.Lotto;
+import lotto.vo.LottoWinning;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

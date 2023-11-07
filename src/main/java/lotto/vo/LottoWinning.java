@@ -1,6 +1,4 @@
-package lotto.vo.winning;
-
-import lotto.Lotto;
+package lotto.vo;
 
 public class LottoWinning {
     private static Lotto winningnumber;

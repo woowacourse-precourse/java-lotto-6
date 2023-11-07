@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Controller.PrintScreen;
 import lotto.Controller.Request;
-import lotto.Lotto;
-import lotto.vo.buy.LottoBuy;
-import lotto.vo.issuanced.LottosNumber;
+import lotto.vo.Lotto;
+import lotto.vo.LottoBuy;
+import lotto.vo.LottosNumber;
 
 public class LottoIssuance {
     Request request = new Request();

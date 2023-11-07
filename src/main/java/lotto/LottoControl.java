@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.Controller.PrintScreen;
-import lotto.vo.issuanced.LottosNumber;
+import lotto.vo.LottosNumber;
 import lotto.service.generator.LottoIssuance;
 import lotto.service.FindWinning;
 

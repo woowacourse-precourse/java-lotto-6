@@ -1,6 +1,6 @@
 package lotto.service.generator;
 
-import lotto.Lotto;
+import lotto.vo.Lotto;
 import lotto.service.errorchek.ErrorCheck;
 
 public class TextNumberConvert {

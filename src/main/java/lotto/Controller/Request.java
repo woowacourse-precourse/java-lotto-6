@@ -1,9 +1,9 @@
 package lotto.Controller;
 
-import lotto.Lotto;
+import lotto.vo.Lotto;
 import lotto.fixeddata.Text;
-import lotto.vo.buy.LottoBuy;
-import lotto.vo.winning.LottoWinning;
+import lotto.vo.LottoBuy;
+import lotto.vo.LottoWinning;
 import lotto.service.generator.TextNumberConvert;
 import lotto.util.io.input.Input;
 import lotto.util.io.input.Keyboard;

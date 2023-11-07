@@ -1,7 +1,7 @@
-package lotto.vo.issuanced;
+package lotto.vo;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.vo.Lotto;
 
 public class LottosNumber {
     private static List<Lotto> lottos;

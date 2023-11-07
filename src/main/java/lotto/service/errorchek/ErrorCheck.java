@@ -3,11 +3,11 @@ package lotto.service.errorchek;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
+import lotto.vo.Lotto;
 import lotto.fixeddata.ErrorText;
 import lotto.fixeddata.NumberData;
 import lotto.fixeddata.Text;
-import lotto.vo.winning.LottoWinning;
+import lotto.vo.LottoWinning;
 
 public class ErrorCheck {
     private static long IsNumber64bit(String input) {

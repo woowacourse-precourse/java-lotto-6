@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,11 +39,11 @@ public class RandomLottoNumbersTest {
     void 로또_번호_오름_차순_정렬 () {
 
         List<List<Integer>> expected = new ArrayList<>();
-        expected.add(List.of(1,2,4,3,5,6));
-        expected.add(List.of(23,13,34,2,1,3));
-        expected.add(List.of(45,4,2,3,11,44));
-        expected.add(List.of(3,2,16,4,14,6));
-        expected.add(List.of(40,2,17,4,7,39));
+        expected.add(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
+        expected.add(new ArrayList<>(Arrays.asList(23,13,34,2,1,3)));
+        expected.add(new ArrayList<>(Arrays.asList(45,4,2,3,11,44)));
+        expected.add(new ArrayList<>(Arrays.asList(3,2,16,4,14,6)));
+        expected.add(new ArrayList<>(Arrays.asList(40,2,17,4,7,39)));
 
         List<List<Integer>> actual = randomLottoNumbers.sortLotto(expected);
 

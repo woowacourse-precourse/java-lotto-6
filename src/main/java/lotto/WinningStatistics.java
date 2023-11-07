@@ -3,9 +3,13 @@ package lotto;
 import java.util.Map;
 
 public record WinningStatistics(Map<Ranking, Integer> rankingNumber) {
-    public double getReturnRage(int amount) {
+    public double getReturnRate(int amount) {
+        return (double) (getTotalPrize() - amount) / amount * 100;
+    }
+
+    private int getTotalPrize() {
         return rankingNumber.entrySet().stream()
-                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum() / amount * 100;
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 }

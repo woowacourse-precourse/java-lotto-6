@@ -19,6 +19,7 @@ public class InputView {
     }
 
     public Money inputMoney() {
+        System.out.println();
         System.out.println(Constant.INPUT_PRICE_MESSAGE);
         return new Money(Console.readLine());
     }
@@ -29,6 +30,7 @@ public class InputView {
     }
 
     public Bonus inputBonus() {
+        System.out.println();
         System.out.println(Constant.INPUT_BONUS_MESSAGE);
         return new Bonus(Console.readLine());
     }

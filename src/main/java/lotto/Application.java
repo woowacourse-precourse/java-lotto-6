@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,5 +17,6 @@ public class Application {
         OutputView.askBonusNumbers();
         int bonusNumber = InputView.getBonusNumber();
         Lotto.countWinningTickets(winningNumbers, lottos,bonusNumber);
+
     }
 }

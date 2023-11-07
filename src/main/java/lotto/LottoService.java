@@ -72,6 +72,12 @@ public class LottoService {
         isNumberOverLimit(input);
     }
 
+    public void isWinningNumbersContainBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+        if (winningNumbers.contains(Integer.parseInt(bonusNumber))) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_WINNING_NUMBERS.getMessage());
+        }
+    }
+
     public void containsNonNumericCharacters(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());

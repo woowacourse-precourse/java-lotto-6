@@ -3,12 +3,10 @@ package lotto.manager;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.InputValidator;
 import lotto.Lotto;
-
-import java.util.Arrays;
-
+import lotto.Statistics;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import static lotto.utility.StringUtil.*;
 
@@ -42,6 +40,22 @@ public class IOManager {
         System.out.println(ENTER_BONUS_NUMBER.getMessage());
     }
 
+    public void printWinningStatisticsGuide() {
+        System.out.println(PRINT_WINNING_STATISTICS_PHRASES.getMessage());
+    }
+
+    public void printWinningStatistics() {
+        Statistics statistics = Statistics.getInstance();
+
+        Map<Integer, Integer> winningNumberMatchCount = statistics.getWinningNumberMatchCount();
+
+        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "3개 일치", "5,000", winningNumberMatchCount.get(3));
+        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "4개 일치", "50,000", winningNumberMatchCount.get(4));
+        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "5개 일치", "1,500,000", winningNumberMatchCount.get(5));
+        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "5개 일치, 보너스 볼 일치", "30,000,000", winningNumberMatchCount.get(51));
+        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "6개 일치", "2,000,000,000", winningNumberMatchCount.get(6));
+
+    }
     public int readPayAmount() {
         String inputPayAmount = Console.readLine().replaceAll("\\s", "");
 

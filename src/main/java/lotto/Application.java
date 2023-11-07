@@ -1,9 +1,6 @@
 package lotto;
 
-import lotto.controller.BuyingController;
-import lotto.controller.LottoNumberAddController;
-import lotto.controller.WinningBonusNumberController;
-import lotto.controller.WinningNumberController;
+import lotto.controller.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,5 +16,8 @@ public class Application {
 
         WinningBonusNumberController winningBonusNumberController = new WinningBonusNumberController();
         winningBonusNumberController.handle();
+
+        WinningStatisticsController winningStatisticsController = new WinningStatisticsController();
+        winningStatisticsController.handle();
     }
 }

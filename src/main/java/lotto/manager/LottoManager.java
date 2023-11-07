@@ -1,22 +1,24 @@
 package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.InputValidator;
 import lotto.Lotto;
-
+import lotto.Statistics;
 import java.util.ArrayList;
 import java.util.List;
-
 import static lotto.utility.IntegerUtil.*;
-import static lotto.utility.StringUtil.*;
 
 public class LottoManager {
 
     private static LottoManager lottoManager;
+
+    private final Statistics statistics = Statistics.getInstance();
+
     private int lottoTicketCount;
+
+    private List<Lotto> lottoList;
+
     private List<Integer> winningNumber;
     private int bonusNumber;
-
 
     private LottoManager() {
 
@@ -41,6 +43,8 @@ public class LottoManager {
             lottoList.add(lotto);
         }
 
+        this.lottoList = lottoList;
+
         return lottoList;
     }
 
@@ -50,6 +54,30 @@ public class LottoManager {
                 LOTTO_NUMBER_END_INCLUSIVE.getValue(),
                 LOTTO_NUMBER_COUNT.getValue()
         );
+    }
+
+    public void calculateAllLotto() {
+        for( Lotto lotto : this.lottoList ) {
+            calculateLotto(lotto);
+        }
+    }
+
+    public void calculateLotto(Lotto lotto) {
+
+        int matchCount = 0;
+        int bonusCount = 0;
+
+        for (int number : lotto.getNumbers()) {
+            if ( winningNumber.contains(number) ) {
+                matchCount++;
+            }
+
+            if ( bonusNumber == number ) {
+                bonusCount++;
+            }
+        }
+
+        statistics.integrate(matchCount, bonusCount);
     }
 
     public void setLottoTicketCount(int lottoTicketCount) {

@@ -1,8 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -13,72 +10,31 @@ public class LottoController {
     static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    int getInput() {
-        int parsedInput;
-
+    int inputCash() {
         System.out.println(INPUT_CASH_MESSAGE);
-        String input = Console.readLine();
-
-        while (true) {
-            try {
-                parsedInput = Integer.parseInt(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 숫자를 입력해주세요.");
-            }
-        }
-
-        return parsedInput;
-    }
-
-    List<Integer> getInputOfWinningNumber() {
-
-        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
-        String input = Console.readLine();
-
-        List<String> seperatedInput = Arrays.asList(input.split(","));
-        List<Integer> parsedInput = new ArrayList<>();
-
-        for (int i = 0; i < seperatedInput.size(); i++) {
-            parsedInput.add(Integer.parseInt(seperatedInput.get(i)));
-        }
-
-        return parsedInput;
-    }
-
-    // 구입금액 입력받아서 정수형으로 변환 후 반환
-    int getCash() {
-        int input = getInput();
-        int cash;
-
-        if (input % 1000 != 0) {
-            throw new IllegalArgumentException();
-        }
-
-        cash = input / 1000;
-
-//        while (true) {
-//            try {
-//                cash = validator.validateCash(parsedInput);
-//                break;
-//            } catch (IllegalArgumentException e) {
-//                System.out.println("[ERROR] 구입금액은 1000원 단위이여야 합니다.");
-//            }
-//        }
+        int cash = lottoService.getInput();
 
         return cash;
     }
 
-    void purchaseLotto() {
-        int purchaseAmount = getCash();
+    void showLottoBundle(int cash) {
+        int ticket = lottoService.getTicket(cash);
 
-        System.out.printf("%d개를 구매했습니다.\n", purchaseAmount);
-        List<Lotto> lottos = lottoService.getLottoBundle(purchaseAmount);
+        System.out.printf("%d개를 구매했습니다.\n", ticket);
+        List<Lotto> lottos = lottoService.getLottoBundle(ticket);
 
         for (int i = 0; i < lottos.size(); i++) {
             List<Integer> lotto = lottos.get(i).getNumbers();
             System.out.println(lotto.toString());
         }
     }
+
+    List<Integer> inputWinningNumbers() {
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        List<Integer> winningNumbers = lottoService.getInputForNumbers();
+
+        return winningNumbers;
+    }
+
 
 }

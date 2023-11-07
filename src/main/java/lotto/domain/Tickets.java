@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getDataModel;
+import static lotto.config.AppConfig.getLottoModel;
 import static lotto.domain.constant.LottoConstant.MATCH_ALL_SEVEN_COUNT;
 import static lotto.domain.constant.LottoConstant.MATCH_ALL_SIX_COUNT;
 
@@ -43,7 +43,7 @@ public class Tickets {
     }
 
     public void save() {
-        getDataModel().saveTicktet(this);
+        getLottoModel().saveTicktet(this);
     }
 
     public List<Integer> matchNumber(Lotto lotto, Bonus bonus) {

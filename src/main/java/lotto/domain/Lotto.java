@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getDataModel;
+import static lotto.config.AppConfig.getLottoModel;
 
 import java.util.List;
 import lotto.domain.constant.LottoConstant;
@@ -61,6 +61,6 @@ public class Lotto {
     }
 
     public void save() {
-        getDataModel().saveLotto(this);
+        getLottoModel().saveLotto(this);
     }
 }

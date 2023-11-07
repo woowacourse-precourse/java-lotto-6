@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.config.AppConfig.getDataModel;
+import static lotto.config.AppConfig.getLottoModel;
 
 import java.util.List;
 import lotto.domain.Bonus;
@@ -12,7 +12,7 @@ import lotto.domain.WinRecord;
 import lotto.model.LottoModel;
 
 public class LottoController {
-    private LottoModel dataModel = getDataModel();
+    private LottoModel dataModel = getLottoModel();
 
     public void gernerateTicket(final int wallet) {
         Wallet wallets = new Wallet(wallet);

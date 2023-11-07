@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getDataModel;
+import static lotto.config.AppConfig.getLottoModel;
 
 import lotto.config.exception.ExceptionType;
 import lotto.config.exception.InputException;
@@ -37,6 +37,6 @@ public class Wallet {
     }
 
     public void save() {
-        getDataModel().saveWallet(this);
+        getLottoModel().saveWallet(this);
     }
 }

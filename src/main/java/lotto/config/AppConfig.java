@@ -73,7 +73,7 @@ public class AppConfig {
         return prizeAmount;
     }
 
-    public static LottoModel getDataModel(){
+    public static LottoModel getLottoModel(){
         if(lottoModel == null){
             lottoModel = new LottoModel();
         }

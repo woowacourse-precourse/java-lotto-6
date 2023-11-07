@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getDataModel;
+import static lotto.config.AppConfig.getLottoModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class WinRecord {
     }
 
     public void save() {
-        getDataModel().saveWinRecord(this);
+        getLottoModel().saveWinRecord(this);
     }
 
     public double sumPrizeAmount(Map<Integer, PrizeAmount> prizeAmounts) {

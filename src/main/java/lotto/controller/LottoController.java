@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 
@@ -89,6 +90,21 @@ public class LottoController {
     }
     public String printPrizeNumbers() {
         return "당첨 번호를 입력해 주세요.";
+    }
+    public List<Integer> inputPrizeNumbers() {
+        List<Integer> prizeNumbers = new ArrayList<>();
+        try {
+            String confirmString = Console.readLine();
+            List<String> testing = List.of(confirmString.split(","));
+            for (String splited:
+                    testing) {
+                prizeNumbers.add(Integer.parseInt(splited));
+            }
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("숫자만 입력하실 수 있습니다.");
+        }
+        return prizeNumbers;
+
     }
 
     public void run() {

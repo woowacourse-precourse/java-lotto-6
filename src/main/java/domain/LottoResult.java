@@ -1,7 +1,6 @@
 package domain;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +14,7 @@ public class LottoResult {
     private int sixLottoWinning;
 
     private BigDecimal totalProfit;
-    private BigDecimal profitRate;
+    private Double profitRate;
 
     public LottoResult getLottoResultStatistic(List<Lotto> lottoList, UserLotto lottoGame){
         LottoResult lottoResult = new LottoResult();
@@ -31,9 +30,7 @@ public class LottoResult {
             }
             lottoResult.setLottoResultStatistic(winningCount,isBonusLotto);
         }
-        // TODO. 총합 계산
         BigDecimal totalProfit = lottoResult.createTotalProfit(lottoResult);
-        // TODO. 수익률 계산
         lottoResult.setProfitRate(totalProfit ,lottoGame.getAmount());
         return lottoResult;
     }
@@ -62,7 +59,9 @@ public class LottoResult {
             setWinningFiveCount(isBonusLotto);
             return;
         }
-        this.sixLottoWinning++;
+        if(winningCount == 6){
+            this.sixLottoWinning++;
+        }
     }
 
     private void setWinningFiveCount(boolean isBonusLotto){
@@ -74,10 +73,10 @@ public class LottoResult {
     }
 
     public void setProfitRate(BigDecimal totalProfit, int amount){
-        BigDecimal ratio = totalProfit.divide(new BigDecimal(amount), 2, RoundingMode.HALF_UP);
+        BigDecimal ratio = totalProfit.divide(new BigDecimal(amount), 3, BigDecimal.ROUND_HALF_UP);
         BigDecimal profitRate = ratio.multiply(new BigDecimal(100));
 
-        this.profitRate = profitRate;
+        this.profitRate = profitRate.doubleValue();
     }
 
     private BigDecimal createTotalProfit(LottoResult lottoResult){
@@ -98,7 +97,10 @@ public class LottoResult {
         BigDecimal sixPriceResult = sixPrice.multiply(
                 new BigDecimal(lottoResult.getSixLottoWinning()));
 
-        return sixPrice;
+        return threePriceResult.add(fourPriceResult)
+                .add(fivePriceResult)
+                .add(fiveBonusPriceResult)
+                .add(sixPriceResult);
     }
 
     public int getThreeLottoWinning() {
@@ -121,7 +123,7 @@ public class LottoResult {
         return sixLottoWinning;
     }
 
-    public BigDecimal getProfitRate() {
+    public Double getProfitRate() {
         return profitRate;
     }
 }

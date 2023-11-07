@@ -10,7 +10,7 @@ public class Judgement {
     private static final int MIN_WINNING_NUMBER = 3;
     private static final int DEFAULT_COUNT = 0;
 
-    public void checkLottoNumber(Lottos lottos, WinningLotto winningLotto) {
+    public static void checkLottoNumber(Lottos lottos, WinningLotto winningLotto) {
         for (Lotto compare_lotto : lottos.getLottos()) {
             int count;
             count = checkWinningNumberCount(compare_lotto.getNumbers(), winningLotto.getWinning_number());
@@ -18,7 +18,7 @@ public class Judgement {
         }
     }
 
-    private int checkWinningNumberCount(List<Integer> compare_lotto, List<Integer> winning_lotto) {
+    private static int checkWinningNumberCount(List<Integer> compare_lotto, List<Integer> winning_lotto) {
         int count = DEFAULT_COUNT;
         for (int i = 0; i < compare_lotto.size(); i++) {
             count += compareNumber(compare_lotto.get(i), winning_lotto);
@@ -27,14 +27,14 @@ public class Judgement {
         return count;
     }
 
-    private int checkFirstRank(int state, int count) {
+    private static int checkFirstRank(int state, int count) {
         if (state == 5 && count == 6) {
             count++;
         }
         return count;
     }
 
-    private int compareNumber(int number, List<Integer> winning_lotto) {
+    private static int compareNumber(int number, List<Integer> winning_lotto) {
         int count = DEFAULT_COUNT;
         if (winning_lotto.contains(number)) {
             count++;
@@ -42,7 +42,7 @@ public class Judgement {
         return count;
     }
 
-    private void checkAddLottoCount(Lottos lottos, int count) {
+    private static void checkAddLottoCount(Lottos lottos, int count) {
         if (count >= MIN_WINNING_NUMBER) {
             lottos.addLottoRank(count);
         }

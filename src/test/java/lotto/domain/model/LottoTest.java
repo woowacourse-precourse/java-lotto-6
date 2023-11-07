@@ -1,15 +1,13 @@
 package lotto.domain.model;
 
-import lotto.domain.model.Lotto;
-import lotto.exception.lottoamountexception.AmountErrorMessage;
-import lotto.exception.lottonumbersexception.LottoNumbersInputException;
-import lotto.exception.lottonumbersexception.NumbersErrorMessage;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static lotto.exception.lottonumbersexception.NumbersErrorMessage.INSUFFICIENT_NUMBERS_COUNT;
+import static lotto.exception.lottonumbersexception.NumbersErrorMessage.OUT_OF_NUMBERS_RANGE;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.exception.lottonumbersexception.LottoNumbersInputException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -31,16 +29,18 @@ class LottoTest {
     @DisplayName("로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
     void createLottoByOutOfNumberRange() {
+        // when & then
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(LottoNumbersInputException.class)
-                .hasMessage(NumbersErrorMessage.OUT_OF_NUMBERS_RANGE.getMessage());
+                .hasMessage(OUT_OF_NUMBERS_RANGE.getMessage());
     }
 
     @DisplayName("로또 번호의 개수가 6개 미만이라면 예외가 발생한다.")
     @Test
     void createLottoByUnderSize() {
+        // when & then
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(LottoNumbersInputException.class)
-                .hasMessage(NumbersErrorMessage.INSUFFICIENT_NUMBERS_COUNT.getMessage());
+                .hasMessage(INSUFFICIENT_NUMBERS_COUNT.getMessage());
     }
 }

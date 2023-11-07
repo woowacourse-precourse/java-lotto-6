@@ -12,8 +12,9 @@ public class UserInputManager {
         return readLine();
     }
 
+    // 사용자로부터 당첨 번호를 입력받는 메소드
     public String getWinningNumbersInput() {
-        System.out.println("당첨 번호를 입력하세요 (6개의 숫자를 쉼표로 구분하여 입력):");
         return readLine();
     }
+
 }

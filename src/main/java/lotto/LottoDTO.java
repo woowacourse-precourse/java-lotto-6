@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class LottoDTO {
@@ -16,7 +15,6 @@ public class LottoDTO {
     private final List<Integer> numbers;
 
     public List<Integer> getNumbers() {
-        numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
 }

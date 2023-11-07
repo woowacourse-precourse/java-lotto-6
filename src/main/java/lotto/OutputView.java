@@ -12,6 +12,8 @@ public class OutputView {
     public void printPurchasedLottos(List<LottoDTO> lottoDTOSs) {
         lottoDTOSs.stream()
                 .map(LottoDTO::getNumbers)
+                .flatMap(Collection::stream)
+                .sorted()
                 .forEach(System.out::println);
     }
 }

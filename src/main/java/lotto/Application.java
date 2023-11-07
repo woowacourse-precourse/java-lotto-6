@@ -68,6 +68,10 @@ public class Application {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         bonusLotto = Integer.parseInt(Console.readLine());
         validateRange(bonusLotto, startLottoNumber, endLottoNumber);
+        if(winLotto.getNumbers().contains(bonusLotto)) {
+            System.out.println("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException();
+        }
 
         for(int i=0; i<purchasedLottos.size(); i++) {
             int count = countMatchNumber(purchasedLottos.get(i), winLotto, bonusLotto);
@@ -84,8 +88,7 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + counts[2] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + counts[3] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + counts[4] + "개");
-        System.out.println(sumMoney + " " + money);
-        System.out.printf("총 수익률은 %.1f입니다.", returnRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", returnRate);
     }
 
     public static void validateRange(int number, int startLottoNumber, int endLottoNumber) {

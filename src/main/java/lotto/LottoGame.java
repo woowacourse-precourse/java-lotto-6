@@ -33,6 +33,7 @@ public class LottoGame {
             print.printLottoNumbers(lotto);
             lottos.add(lotto);
         }
+        System.out.println();
         return new Lottos(lottos);
     }
 }

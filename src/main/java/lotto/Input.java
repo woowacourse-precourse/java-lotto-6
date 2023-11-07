@@ -15,6 +15,8 @@ public class Input {
     }
 
     private String consoleReadLine() {
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 }

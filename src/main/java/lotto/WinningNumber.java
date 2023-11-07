@@ -29,7 +29,22 @@ public class WinningNumber {
         return new WinningNumber(input);
     }
 
+    public boolean hasNumber(Integer number) {
+        for (LottoNumber winningNumber : winningNumbers) {
+            if (winningNumber.isSame(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public void hasNumber(LottoNumber lottoNumber) {
+        for (LottoNumber winningNumber : winningNumbers) {
+            if (winningNumber.equals(lottoNumber)) {
+                throw new IllegalArgumentException(ERROR_NO_INPUT_DUPLICATED_WIHT_WINNING_NUBER);
+            }
+        }
+    }
 
     private void validateDuplicated(String[] numbers) {
         int count = (int) Arrays.stream(numbers).distinct().count();

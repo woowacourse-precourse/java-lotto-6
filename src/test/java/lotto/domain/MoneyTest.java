@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Money;
 import lotto.message.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,10 +26,10 @@ public class MoneyTest {
                 .hasMessage(ExceptionMessage.INVALID_UNIT);
     }
 
-    @DisplayName("돈이 부족하면 지불 시 예외가 발생한다.")
+    @DisplayName("돈이 충분하면 지불 시 예외가 발새앟지 않는다.")
     @Test
     void purchaseLottoSuccessTest() {
-        Money money = new Money(1_000);
+        Money money = new Money(LottoOption.LOTTO_PRICE);
 
         Assertions.assertThatNoException()
                 .isThrownBy(money::payLotto);
@@ -39,7 +38,7 @@ public class MoneyTest {
     @DisplayName("돈이 부족하면 지불 시 예외가 발생한다.")
     @Test
     void purchaseLottoFailTest() {
-        Money money = new Money(1_000);
+        Money money = new Money(LottoOption.LOTTO_PRICE);
 
         money.payLotto();
 
@@ -50,14 +49,14 @@ public class MoneyTest {
 
     @Test
     void canPurchaseLottoSuccessTest() {
-        Money money = new Money(1_000);
+        Money money = new Money(LottoOption.LOTTO_PRICE);
 
         Assertions.assertThat(money.canPurchaseLotto()).isTrue();
     }
 
     @Test
     void canPurchaseLottoFailTest() {
-        Money money = new Money(1_000);
+        Money money = new Money(LottoOption.LOTTO_PRICE);
 
         money.payLotto();
 

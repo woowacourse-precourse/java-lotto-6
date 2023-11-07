@@ -90,7 +90,7 @@ class LottoTest {
     @DisplayName("랜덤 로또 생성 시 규칙에 맞게 생성된다.")
     @RepeatedTest(50)
     void createRandomLottoTest() {
-        Lotto randomLotto = Lotto.createRandomLotto(new Money(1000));
+        Lotto randomLotto = Lotto.createRandomLotto(new Money(LottoOption.LOTTO_PRICE));
         List<Integer> numbers = randomLotto.getNumbers();
 
         Assertions.assertThat(numbers).hasSize(LottoOption.LOTTO_SIZE);

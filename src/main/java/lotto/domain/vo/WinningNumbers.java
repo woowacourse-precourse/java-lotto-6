@@ -13,7 +13,7 @@ public final class WinningNumbers {
         return new WinningNumbers(numbers);
     }
 
-    public  boolean isContained(int number) {
+    public boolean isContained(int number) {
         return numbers.contains(number);
     }
 }

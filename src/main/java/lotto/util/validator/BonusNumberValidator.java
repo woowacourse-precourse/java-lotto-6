@@ -4,7 +4,7 @@ package lotto.util.validator;
 import lotto.constant.ErrorMessage;
 import lotto.domain.vo.WinningNumbers;
 
-public class BonusNumberValidator extends AbstractNumberValidator<Integer>{
+public class BonusNumberValidator extends AbstractNumberValidator<Integer> {
     private final WinningNumbers winningNumbers;
 
     public BonusNumberValidator(WinningNumbers winningNumbers) {

@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -46,20 +47,12 @@ public class Lotto {
 
         for (int i = 0; i < issueCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            sortIssuedLotto(numbers);
-            lottos.add(new Lotto(numbers));
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            Collections.sort(sortedNumbers);
+            lottos.add(new Lotto(sortedNumbers));
         }
 
         return lottos;
-    }
-
-    public static void sortIssuedLotto(List<Integer> numbers) {
-        numbers.sort(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 - o2;
-            }
-        });
     }
 
     public static Map<Rank, Integer> isWin(List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber) {

@@ -34,6 +34,24 @@ public class Statistics {
         return profitPercent;
     }
 
+    private int correctCount(List<Integer> lotto) {
+        int count = lotto.stream()
+                .distinct()
+                .filter(prizeNumbers::contains)
+                .collect(Collectors.toSet())
+                .size();
+        return count;
+    }
+
+    private void calculate() {
+        for (Lotto lotto : myLotto) {
+            boolean bonus = false;
+            int correct = correctCount(lotto.getNumbers());
+            if (lotto.getNumbers().contains(bonusNumber)) {
+                bonus = true;
+            }
+            matchNumber(correct, bonus);
+        }
     }
 
 }

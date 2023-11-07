@@ -28,7 +28,7 @@ public class Lotto {
 
     private void validateSizeFrom(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_LENGTH.message);
+            throw new IllegalArgumentException(ErrorMessage.PREFIX + ErrorMessage.INVALID_NUMBER_LENGTH.message);
         }
     }
 
@@ -37,7 +37,7 @@ public class Lotto {
                 .distinct()
                 .findAny()
                 .isPresent()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE_NUMBER.message);
+            throw new IllegalArgumentException(ErrorMessage.PREFIX +ErrorMessage.INVALID_DUPLICATE_NUMBER.message);
         }
     }
 

@@ -16,14 +16,17 @@
 - [ ] 잘못된 입력 감지 / 에러메시지 출력
 ***
 ## 기능 목록
+- [ ] 게임진행: GameProcess
+    - [ ] 로또 구입: buyLotto
+    - [ ] 로또 발행: publishLotto
+    - [ ] 당첨 번호 입력: enterWiningNumber
+    - [ ] 당첨 결과 확인: checkWiningResult
 - [x] 로또: Lotto
-    - [x] 번호 저장
-    - [ ] 번호 보기: getNumbers
+    - [x] 로또 보기: getLotto
 - [ ] 결제: Payment
     - [ ] 결제
 - [ ] 발행: Publish
     - [ ] 번호 생성: makeNumber
-- [ ] 정렬: Sort
     - [ ] 오름차순 정렬: sortAscending
 - [ ] 당첨 판정: Judgment
     - [ ] 당첨 번호 판정: judgeWinningNumber

@@ -22,7 +22,6 @@ public class LottoWinningRankingService {
         for (Lotto lotto : userLottos.lottoGroup()) {
             int matchedNumberCount = countMatchedNumbers(lotto, winningLotto);
             boolean needsBonusNumber = hasBonusNumber(lotto, winningLotto);
-
             LottoWinningRanking ranking = calculateRanking(matchedNumberCount, needsBonusNumber);
             rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, 0) + 1);
         }
@@ -45,16 +44,18 @@ public class LottoWinningRankingService {
     }
 
     private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {
-        for (LottoWinningRanking ranking : LottoWinningRanking.values()) {
-            if (isMatchingRanking(ranking, matchedNumberCount, needsBonusNumber)) {
-                return ranking;
+        LottoWinningRanking ranking = LottoWinningRanking.NONE;
+        for (LottoWinningRanking value : LottoWinningRanking.values()) {
+            if (isMatchingRanking(value, matchedNumberCount, needsBonusNumber)) {
+                ranking = value;
             }
         }
-        return LottoWinningRanking.NONE;
+
+        return ranking;
     }
 
     private boolean isMatchingRanking(LottoWinningRanking ranking, int matchedNumberCount, boolean needsBonusNumber) {
         return matchedNumberCount == ranking.getMatchedNumberCount()
-                && (!ranking.getNeedsBonusNumber() || needsBonusNumber);
+                && (needsBonusNumber || !ranking.getNeedsBonusNumber());
     }
 }

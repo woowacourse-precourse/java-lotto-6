@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.Lotto;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;

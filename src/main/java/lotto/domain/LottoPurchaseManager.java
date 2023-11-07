@@ -3,8 +3,6 @@ package lotto.domain;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
-import lotto.Lotto;
-import lotto.dto.LottoNumbersInfo;
 import lotto.message.LottoResult;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;

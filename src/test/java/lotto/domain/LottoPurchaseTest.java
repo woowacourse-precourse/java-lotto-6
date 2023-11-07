@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.Lotto;
-import lotto.dto.LottoNumbersInfo;
 import lotto.message.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

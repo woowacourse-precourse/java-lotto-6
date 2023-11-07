@@ -24,8 +24,8 @@ public class NumberInputView {
 
     private void validate() {
         String input = Console.readLine();
-        integrating(input);
         try {
+            integrating(input);
             validateLength();
             validateNumerics();
             validationDuplicate();
@@ -36,9 +36,16 @@ public class NumberInputView {
     }
 
     private void integrating(String input) {
-        this.numbers = Arrays.stream(input.split(DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        try {
+            this.numbers = Arrays.stream(input.split(DELIMITER, -1))
+                    .map(String::trim)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] : 제대로 된 숫자여야합니다.");
+        }
+        if (numbers.contains("")) {
+            throw new IllegalArgumentException("[ERROR] : 빈 숫자는 넣을 수 없습니다.");
+        }
     }
 
     private void validateLength() {

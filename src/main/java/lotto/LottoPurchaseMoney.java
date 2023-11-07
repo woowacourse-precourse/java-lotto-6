@@ -9,8 +9,7 @@ public class LottoPurchaseMoney {
 
     private int money;
 
-    public LottoPurchaseMoney(String inputMoney) {
-        int money = Converter.stringToInt(inputMoney);
+    public LottoPurchaseMoney(int money) {
         validateEnoughMoney(money);
         validateUnit(money);
         this.money = money;

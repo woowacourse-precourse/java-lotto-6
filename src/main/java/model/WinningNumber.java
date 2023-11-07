@@ -19,7 +19,7 @@ public class WinningNumber {
     }
 
     public List<Integer> getWinning_number() {
-        return winning_number;
+        return this.winning_number;
     }
 
 }

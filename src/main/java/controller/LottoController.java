@@ -52,8 +52,6 @@ public class LottoController {
     }
 
     public List<Integer> AskWinningNumbers(){
-        List<Integer> winningNumberList = new ArrayList<>();
-
         inputView.printWinningNumbers();
         return inputWinningNumber();
     }
@@ -61,7 +59,7 @@ public class LottoController {
     public List<Integer> inputWinningNumber(){
         List<Integer> winningNumberList = new ArrayList<>();
         try {
-            lottoService.makeWinningNumber(Console.readLine());
+            winningNumberList = lottoService.makeWinningNumber(Console.readLine());
             validator.checkLottoRange(winningNumberList);
         }catch (NumberFormatException e){
             return inputWinningNumber();

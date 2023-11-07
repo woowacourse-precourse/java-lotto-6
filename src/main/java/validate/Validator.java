@@ -5,22 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
-    public enum ErrorMessage {
 
-        ERROR1("[ERROR] 숫자를 입력해주세요"),
-        ERROR2("[ERROR] 가격을 천 단위로 입력해주세요"),
-        ERROR3("[ERROR] 1부터 45사이의 숫자를 입력해 주세요."),
-        ERROR4("[ERROR] 중복된 숫자가 존재합니다.");
-        private String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-    }
 
     public void checkNull(String number){
         if (number == null){
-            System.out.println(ErrorMessage.ERROR1);
+            System.out.println(ErrorMessageenum.ERROR1.getMessage());
             throw new NullPointerException();
         }
     }
@@ -29,14 +18,14 @@ public class Validator {
         try{
             return Integer.parseInt(number);
         }catch (NumberFormatException e){
-            System.out.println(ErrorMessage.ERROR1);
+            System.out.println(ErrorMessageenum.ERROR1.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     public void checkPrice1000(int price){
         if(price%1000 != 0 ){
-            System.out.println(ErrorMessage.ERROR2);
+            System.out.println(ErrorMessageenum.ERROR2.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -44,7 +33,7 @@ public class Validator {
     public void checkLottoRange(List<Integer> lotto){
         for(int num: lotto){
             if(num>45 || num<1){
-                System.out.println(ErrorMessage.ERROR3);
+                System.out.println(ErrorMessageenum.ERROR3.getMessage());
                 throw new IllegalArgumentException();
             }
         }
@@ -52,7 +41,7 @@ public class Validator {
     public void checkWinningDuplicate(List<Integer> lotto){
         Set<Integer> lottoSet = new HashSet<>(lotto);
         if(lottoSet.size() != 7){
-            System.out.println(ErrorMessage.ERROR4);
+            System.out.println(ErrorMessageenum.ERROR4.getMessage());
             throw new IllegalArgumentException();
         }
     }

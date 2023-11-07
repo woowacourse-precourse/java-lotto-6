@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.exceptionMessages.ExceptionMessages;
@@ -30,12 +29,8 @@ public class Lotto {
     }
 
     private boolean isInvalidRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < MIN_RANGE || number > MAX_RANGE) {
-                return true;
-            }
-        }
-        return false;
+        return numbers.stream()
+                .anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE);
     }
 
     private boolean isDuplicate(List<Integer> numbers) {

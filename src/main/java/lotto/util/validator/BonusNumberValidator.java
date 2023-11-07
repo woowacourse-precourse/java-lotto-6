@@ -7,7 +7,6 @@ import java.util.List;
 
 public class BonusNumberValidator extends Validator {
 
-    @Override
     public Integer validate(String input) {
         validateNumber(input, BONUS_NUMBER_PATTERN);
         int number = Integer.parseInt(input);

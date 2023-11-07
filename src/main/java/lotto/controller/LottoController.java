@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 

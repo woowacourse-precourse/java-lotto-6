@@ -32,10 +32,8 @@ public class Result {
     }
 
     public void printWinningStatistics(HashMap<Integer, Integer> winningCount) {
-        int rankCount;
-        for (int rank = 5; rank > 0; rank--) {
-            rankCount = getRankCount(rank, winningCount);
-            LottoRank lottoRank = findLottoRank(rank);
+        for(LottoRank lottoRank : LottoRank.values()){
+            int rankCount = getRankCount(lottoRank.getRank(), winningCount);
             printWinningResult(lottoRank, rankCount);
             addTotalPrize(lottoRank.getPrize(), rankCount);
         }
@@ -47,15 +45,6 @@ public class Result {
             rankCount = winningCount.get(rank);
         }
         return rankCount;
-    }
-
-    public LottoRank findLottoRank(int rank) {
-        for (LottoRank lottoRank : LottoRank.values()) {
-            if (lottoRank.getRank() == rank) {
-                return lottoRank;
-            }
-        }
-        return null;
     }
 
     public void printWinningResult(LottoRank lottoRank, int rankCount) {

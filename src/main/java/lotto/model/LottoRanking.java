@@ -22,6 +22,7 @@ public class LottoRanking {
         this.bonusNumber = bonusNumber;
         this.winningLotto = winningLotto;
         this.lottoBucket = lottoBucket;
+        checkWinning();
     }
 
     public String calculateEarningsRate() {
@@ -36,7 +37,6 @@ public class LottoRanking {
     }
 
     public Map<LottoWinningRule, Integer> getWinningDetails() {
-        checkWinning();
         return winningDetails;
     }
 

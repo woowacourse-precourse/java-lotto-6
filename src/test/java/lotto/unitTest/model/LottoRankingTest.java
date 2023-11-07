@@ -90,4 +90,26 @@ class LottoRankingTest {
         //then
         assertThat(winningDetails.get(rank)).isEqualTo(1);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "7,8,9,10,11,12:1:-100.00",
+            "1,2,3,4,5,6:7:199999900.00",
+            "1,2,3,4,5,7:6:2999900.00"
+    }, delimiter = ':')
+    void 당첨로또의_수익률을_계산한다(String inputWinningNumbers, int bonusNumber, String earningsRate) {
+        //given
+        Lotto publishedLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        when(LottoCreator.createRandomLotto()).thenReturn(publishedLotto);
+        List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
+                .map(Integer::parseInt)
+                .toList();
+        LottoRanking lottoRanking = new LottoRanking(new LottoBucket(1), new Lotto(numbers), bonusNumber);
+
+        //when
+        String calculatedEarningsRate = lottoRanking.calculateEarningsRate();
+
+        //then
+        assertThat(calculatedEarningsRate).isEqualTo(earningsRate);
+    }
 }

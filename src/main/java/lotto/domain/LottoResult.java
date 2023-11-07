@@ -59,8 +59,8 @@ public class LottoResult {
     }
 
     public Double getTotalReturn(int purchaseAmount) {
-        Double totalReturn = totalPrize() / purchaseAmount;
-        totalReturn *= 100;
+        Double totalPirze = totalPrize();
+        Double totalReturn = (totalPirze / purchaseAmount) * 100;
         return totalReturn;
     }
 

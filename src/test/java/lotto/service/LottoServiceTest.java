@@ -65,7 +65,7 @@ public class LottoServiceTest {
     @MethodSource("generateListData")
     @DisplayName("내 번호와 당첨 번호를 비교, 몇개의 숫자와 같은지 결과 보여줌")
     void compareMyNumberWithWinningNumberTest(List<Integer> myNumber, List<Integer> winningNumber, int expected) {
-        int result = service.compareMyNumberWithWinningNumber(myNumber, winningNumber)
+        int result = service.compareMyNumberWithWinningNumber(myNumber, winningNumber);
         // 이거 지금은 enum 잘 몰라서 이렇게 했는데, 상수 enum으로 표현하는거 배우면 enum 클래스로 받아올 수 있음.
         // 그래서 밑에 있는 Assertion도 수정 될 수 있음. + 매개변수도
         assertThat(result).isEqualTo(expected);
@@ -124,6 +124,6 @@ public class LottoServiceTest {
     static Stream<Arguments> generateTotalIncomeAndSpentFee() {
         return Stream.of(
                 Arguments.of(8000, 5000, "62.5%")
-        )
+        );
     }
 }

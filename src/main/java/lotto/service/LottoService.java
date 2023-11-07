@@ -1,6 +1,12 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.LottoPublisher;
+import lotto.domain.LottoResult;
+import lotto.domain.UserAmount;
+import lotto.domain.WinnerRevenue;
+import lotto.domain.WinningBundle;
+import lotto.domain.WinningTier;
 import lotto.dto.LottoPurchaseResultDto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.RevenueDto;

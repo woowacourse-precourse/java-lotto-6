@@ -9,7 +9,6 @@ import lotto.dto.WinningBundleDto;
 import lotto.utils.Split;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
 

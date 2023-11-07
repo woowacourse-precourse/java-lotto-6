@@ -1,8 +1,5 @@
 package lotto.domain;
 
-
-import java.util.List;
-
 public class WinningNumber {
     private static final String WINNING_NUMBER_MUST_NUMERIC_MESSAGE = "[ERROR] 당첨 번호는 숫자여야 합니다.";
     private static final String WINNING_NUMBER_RANGE_MESSAGE = "[ERROR] 당첨 번호는 1~45의 숫자여야 합니다.";

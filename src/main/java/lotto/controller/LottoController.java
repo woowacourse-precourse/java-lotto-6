@@ -1,7 +1,8 @@
 package lotto.controller;
 
-
-import lotto.domain.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.UserAmount;
+import lotto.domain.WinningBundle;
 import lotto.dto.LottoPurchaseResultDto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.RevenueDto;

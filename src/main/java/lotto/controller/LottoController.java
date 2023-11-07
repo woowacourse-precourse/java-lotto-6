@@ -63,8 +63,14 @@ public class LottoController {
 
     private Integer inputBonusNumber() {
         OutputView.inputViewBonusNumber();
-        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(InputView.input()));
-        return bonusNumber.getBonusNumber();
+        while (true) {
+            try {
+                BonusNumber bonusNumber = new BonusNumber(getInputBonusNumber());
+                return bonusNumber.getBonusNumber();
+            } catch (IllegalArgumentException e) {
+            }
+        }
+
     }
 
     private HashMap<String, Long> produceStatisticsLottoScore(Long money) {
@@ -92,5 +98,11 @@ public class LottoController {
     private List<Integer> getInputWinningNumber() {
         String userInput = InputView.input().trim();
         return Utils.convertToLottoIntegerList(userInput);
+    }
+
+    private Integer getInputBonusNumber() {
+        String userInput = InputView.input().trim();
+        int bonusNumber = Utils.stringToInteger(userInput);
+        return Utils.rangeInputBonusNumber(bonusNumber);
     }
 }

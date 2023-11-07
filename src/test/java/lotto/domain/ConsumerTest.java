@@ -3,6 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,5 +28,20 @@ public class ConsumerTest {
         assertThatThrownBy(() -> consumer.setPurchaseAmount(5001))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구매 금액은 1000원 단위로 입력해주세요.");
+    }
+
+    @DisplayName("구매한 로또들을 저장한다.")
+    @Test
+    void saveLottos() {
+        //Given
+        Consumer consumer = new Consumer();
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1,2,3,4,5,6)),
+                new Lotto(List.of(1,2,3,4,5,6))
+        );
+        //When
+        consumer.setLottos(lottos);
+        //Then
+        assertThat(consumer.getLottos()).isEqualTo(lottos);
     }
 }

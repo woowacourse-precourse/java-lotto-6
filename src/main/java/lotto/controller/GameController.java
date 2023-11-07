@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static java.lang.Integer.parseInt;
 import static lotto.view.message.SystemMessage.INPUT_BONUS;
 import static lotto.view.message.SystemMessage.INPUT_PURCHASE_AMOUNT;
 import static lotto.view.message.SystemMessage.INPUT_WINNING_LOTTO;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import lotto.RankType;
 import lotto.domain.Referee;
 import lotto.domain.Win;
+import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.message.RankMessage;
@@ -33,7 +35,10 @@ public class GameController {
 
     private static int readPurchaseAmount() {
         OutputView.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
-        return Integer.parseInt(InputView.read());
+        String purchaseAmount = InputView.read();
+        PurchaseAmountValidator.validate(purchaseAmount);
+
+        return parseInt(purchaseAmount);
     }
 
     private void printLottoAmountAndLottos(LottoController lottoController) {
@@ -48,7 +53,7 @@ public class GameController {
 
     private static int readBonus() {
         OutputView.printMessage(INPUT_BONUS.getMessage());
-        return Integer.parseInt(InputView.read());
+        return parseInt(InputView.read());
     }
 
     private void printResult(Referee referee) {

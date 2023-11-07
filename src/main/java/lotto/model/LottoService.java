@@ -5,7 +5,6 @@ import lotto.util.InputUtil;
 
 public class LottoService {
 
-    private final LottoGenerator generator = LottoGenerator.getInstance();
     private final InputUtil inputUtil = InputUtil.getInstance();
     private Lotto winningLotto;
     private LottoNumber bonusNumber;
@@ -15,6 +14,13 @@ public class LottoService {
         this.user = buyer;
         sellLotto(buyer);
         generateWinningLotto();
+        List<Lotto> purchasedLotto = user.getPurchasedLotto();
+        for (Lotto lotto : purchasedLotto) {
+            System.out.println(lotto);
+        }
+        System.out.println("===============");
+        System.out.println(winningLotto);
+        System.out.println(bonusNumber);
     }
 
     private void sellLotto(User buyer) {
@@ -27,4 +33,9 @@ public class LottoService {
         this.bonusNumber = new LottoNumber(inputUtil.inputBonusNumber());
     }
 
+    public void drawLotto() {
+        Judge judge = new Judge(winningLotto, bonusNumber, user);
+        LottoResult draw = judge.draw();
+        System.out.println(draw);
+    }
 }

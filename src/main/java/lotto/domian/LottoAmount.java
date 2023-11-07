@@ -17,13 +17,13 @@ public class LottoAmount {
 
     private static void validateMinAmount(long amount) {
         if (amount < 1000) {
-            throw new IllegalArgumentException("최소 입력 금액은 1,000입니다.");
+            throw new IllegalArgumentException("[ERROR] 최소 입력 금액은 1,000입니다.");
         }
     }
 
     private static void validateRemainderDivisionBy1000(long amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("입력 금액은 1,000원 단위로 입력이 필요합니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 1,000원 단위로 입력이 필요합니다.");
         }
     }
 }

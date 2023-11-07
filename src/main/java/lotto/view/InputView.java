@@ -47,7 +47,7 @@ public class InputView {
         try {
             Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자 입력이 필요합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자 입력이 필요합니다.");
         }
     }
 

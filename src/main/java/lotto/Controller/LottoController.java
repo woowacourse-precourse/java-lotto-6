@@ -17,13 +17,14 @@ public class LottoController {
     private WinningCheck winningCheck = new WinningCheck();
     public Map<String, Integer> rankingCount;
     private int bonusNumber;
+    private long lottoAmount;
 
     public void run() {
         start();
     }
 
     private void start() {
-        long lottoAmount = inputLottoAmount();
+        lottoAmount = inputLottoAmount();
         OutputView.printLottoAmount(lottoAmount);
 
         printBoughtLotto(lottoAmount);
@@ -31,7 +32,6 @@ public class LottoController {
 
         printWinningStatistic();
         printYield();
-
     }
 
     private long inputLottoAmount() {
@@ -68,7 +68,12 @@ public class LottoController {
     }
 
     private void printYield() {
-        System.out.println();
-        OutputView.printYield();
+        double sum = 0;
+        for (WinningTable winningTable : WinningTable.values()) {
+            sum += (long) rankingCount.get(winningTable.name()) * winningTable.getWinningAmount();
+        }
+        double yield = (sum * 100) / (lottoAmount * 1000);
+        double roundYield = Math.round(yield * 100.0) / 100.0;
+        System.out.println("총 수익률은 " + roundYield + "%입니다.");
     }
 }

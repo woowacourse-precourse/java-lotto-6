@@ -44,7 +44,7 @@ public class Lotto {
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("입력이 필요한 숫자의 범위는 1 ~ 45 입니다.");
+                throw new IllegalArgumentException("[ERROR] 입력이 필요한 숫자의 범위는 1 ~ 45 입니다.");
             }
         }
     }
@@ -52,7 +52,7 @@ public class Lotto {
     private void validateDuplicatedBonusNumber(List<Integer> numbers, int bonusNumber) {
         for (int number : numbers) {
             if (number == bonusNumber) {
-                throw new IllegalArgumentException("당첨 번호와 보너스 번호가 중복 되었습니다.");
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복 되었습니다.");
             }
         }
     }

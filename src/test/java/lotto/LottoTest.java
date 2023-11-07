@@ -38,5 +38,12 @@ class LottoTest {
         assertThat(new Lotto(List.of(2, 24, 32, 29, 45, 17)).getNumbers()).isInstanceOf(List.class);
     }
 
-
+    @DisplayName("로또 숫자들을 문자열로 전달한다.")
+    @Test
+    void createStringOfNumbers() {
+        assertThat(new Lotto(List.of(2, 24, 32, 29, 45, 17)).toString())
+                .startsWith("[")
+                .contains("2, 24, 32, 29, 45, 17")
+                .endsWith("]");
+    }
 }

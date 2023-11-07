@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,6 +33,11 @@ public class Lotto {
 
     public void sort() {
         Collections.sort(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.deepToString(numbers.toArray());
     }
 }
 

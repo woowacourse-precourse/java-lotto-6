@@ -12,9 +12,10 @@ import static lotto.resource.TextResourceProvider.QUANTITY_OUTPUT_TEXT_FORMAT;
 import java.text.NumberFormat;
 import java.util.List;
 import lotto.domain.LotteryRanking;
-import lotto.domain.LotteryReceipt;
 import lotto.domain.LotteryResult;
 import lotto.domain.PurchasedLottery;
+import lotto.service.dto.LotteryDto;
+import lotto.service.dto.LotteryReceiptDto;
 
 public class OutputInterface {
 
@@ -24,8 +25,8 @@ public class OutputInterface {
         this.numberFormat = numberFormat;
     }
 
-    public void printReceipt(LotteryReceipt receipt) {
-        System.out.println(QUANTITY_OUTPUT_TEXT_FORMAT.format(Long.toString(receipt.size())));
+    public void printReceipt(LotteryReceiptDto receipt) {
+        System.out.println(QUANTITY_OUTPUT_TEXT_FORMAT.format(Long.toString(receipt.quantity())));
         System.out.println(renderReceipt(receipt));
     }
 
@@ -37,16 +38,16 @@ public class OutputInterface {
 
     }
 
-        private String renderReceipt(LotteryReceipt receipt) {
+    private String renderReceipt(LotteryReceiptDto receipt) {
         StringBuilder builder = new StringBuilder();
-        for (PurchasedLottery lottery : receipt.getLotteries()) {
+        for (LotteryDto lottery : receipt.lotteries()) {
             builder.append(renderPurchasedLottery(lottery));
         }
         return builder.toString();
     }
 
-    private String renderPurchasedLottery(PurchasedLottery lottery) {
-        String[] arguments = lottery.getNumbers()
+    private String renderPurchasedLottery(LotteryDto lottery) {
+        String[] arguments = lottery.numbers()
                 .stream()
                 .sorted()
                 .map(number -> Integer.toString(number))

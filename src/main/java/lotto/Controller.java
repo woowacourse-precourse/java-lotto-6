@@ -1,12 +1,12 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.LotteryReceipt;
 import lotto.domain.User;
 import lotto.service.ApplyWinningLotteryService;
 import lotto.service.CalculateResultService;
 import lotto.service.PurchaseLotteryService;
 import lotto.service.dto.CalculationOutcome;
+import lotto.service.dto.LotteryReceiptDto;
 
 public class Controller {
     private InputInterface in;
@@ -29,7 +29,7 @@ public class Controller {
 
     public void purchaseLotteries() {
         long purchasedAmount = in.getPurchasedAmount();
-        LotteryReceipt receipt = purchaseLotteryService.purchase(user, purchasedAmount);
+       LotteryReceiptDto receipt = purchaseLotteryService.purchase(user, purchasedAmount);
         out.printReceipt(receipt);
     }
 

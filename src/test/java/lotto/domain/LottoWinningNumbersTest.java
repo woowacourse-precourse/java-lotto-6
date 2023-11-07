@@ -39,6 +39,16 @@ public class LottoWinningNumbersTest {
     }
 
     @Test
+    @DisplayName("입력한 당첨번호 중 중복되는 번호가 있을경우 재입력 받는다.")
+    void WinningNumbersDuplicateTest() {
+        consoleInput("1,2,3,4,5,5", "1,2,3,4,5,6");
+
+        List<Integer> winningNumbers = lottoWinningNumbers.inputWinningNumbers();
+
+        assertThat(winningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
     @DisplayName("보너스번호 테스트")
     void BonusNumberTest() {
         consoleInput("1,2,3,4,5,6", "7");

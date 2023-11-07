@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.constants.LottoConstants.DIVIDER;
 import static lotto.constants.LottoConstants.END;
 import static lotto.constants.LottoConstants.FORMMATER_COUNT_BONUS;
+import static lotto.constants.LottoConstants.FORMMATER_COUNT_SEVEN;
 import static lotto.constants.LottoConstants.FORMMATER_COUNT_SIX;
 import static lotto.constants.LottoConstants.START;
 import static lotto.utils.LottoUtils.getPriceForIntegerParser;
@@ -38,7 +39,7 @@ public class OutView {
             System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), PRICE));
         }
         if (!PRICE.equals("0")) {
-            rateFormat((double) price / (double) getPriceForIntegerParser(PRICE));
+            rateFormat((double) getPriceForIntegerParser(PRICE) / (double) price);
         }
     }
 
@@ -71,15 +72,18 @@ public class OutView {
         if (start == FORMMATER_COUNT_SIX) {
             return FORMMATER_COUNT_BONUS;
         }
+        if (start == FORMMATER_COUNT_SEVEN) {
+            return FORMMATER_COUNT_SIX;
+        }
         return start;
     }
 
     private String matchFormatter(int start) {
-        String formatFive = LottoMsg.LOTTO_MATCH_FORMAT.getMsg();
+        String retryFormat = LottoMsg.LOTTO_MATCH_FORMAT.getMsg();
         if (start == FORMMATER_COUNT_SIX) {
-            formatFive = LottoMsg.LOTTO_MATCH_FORMAT_BONUS.getMsg();
+            retryFormat = LottoMsg.LOTTO_MATCH_FORMAT_BONUS.getMsg();
         }
-        return formatFive;
+        return retryFormat;
     }
 
 

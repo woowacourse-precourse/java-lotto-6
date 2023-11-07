@@ -79,21 +79,24 @@ public class LottoController {
         showRateOfRevenue(ranks);
     }
 
-    private Map<LottoRank, Integer> getCountRanks(List<LottoRank> ranks) {
-        Map<LottoRank, Integer> countRanks = new EnumMap<>(LottoRank.class);
-        for (LottoRank rank : LottoRank.values()) {
-            countRanks.put(rank, 0);
-        }
-        countRanks.remove(LottoRank.NONE);
-        ranks.removeIf(lottoRank -> lottoRank == LottoRank.NONE);
+    private void showRateOfRevenue(List<LottoRank> ranks) {
+        outputView.printRateOfRevenue(lottoBuyer.getRateOfReturn(ranks));
+    }
 
+    private Map<LottoRank, Integer> getCountRanks(List<LottoRank> ranks) {
+        Map<LottoRank, Integer> countRanks = initCountRanks();
+        ranks.removeIf(lottoRank -> lottoRank == LottoRank.NONE);
         for (LottoRank rank : ranks) {
             countRanks.put(rank, countRanks.get(rank) + 1);
         }
         return countRanks;
     }
 
-    private void showRateOfRevenue(List<LottoRank> ranks) {
-        outputView.printRateOfRevenue(lottoBuyer.getRateOfReturn(ranks));
+    private EnumMap<LottoRank, Integer> initCountRanks() {
+        EnumMap<LottoRank, Integer> countRanks = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.getValuesWithoutNone()) {
+            countRanks.put(rank, 0);
+        }
+        return countRanks;
     }
 }

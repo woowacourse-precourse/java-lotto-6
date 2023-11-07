@@ -5,6 +5,7 @@ import static lotto.LottoConstance.SECOND_AND_THIRD_WINING_COUNT;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum LottoRank {
     FIRST("6개 일치 (2,000,000,000원) - %d개", 6, 2000000000L),
@@ -31,7 +32,7 @@ public enum LottoRank {
         if (winingCount < FIFTY_WINING_COUNT.get()) {
             return NONE;
         }
-        
+
         List<LottoRank> lottoRanks = Arrays.stream(values())
                 .filter(lottoRank -> lottoRank.getMatchingCount() == winingCount).toList();
 
@@ -60,4 +61,9 @@ public enum LottoRank {
         return prize;
     }
 
+    public static List<LottoRank> getValuesWithoutNone() {
+        List<LottoRank> values = Arrays.stream(values()).collect(Collectors.toList());
+        values.remove(NONE);
+        return values;
+    }
 }

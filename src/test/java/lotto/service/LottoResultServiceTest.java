@@ -24,13 +24,19 @@ class LottoResultServiceTest {
         LottoResultService service = new LottoResultService(winningLotto, purchasedLotto);
         //when
         Map<LottoRankInfo, Integer> ranks = new EnumMap<>(LottoRankInfo.class);
+
         purchasedLotto.lotto()
                 .stream()
                 .map(winningLotto::getLottoRank)
                 .forEach(e -> ranks.merge(e, 1, Integer::sum));
+        for (LottoRankInfo rank : LottoRankInfo.values()) {
+            if (!ranks.containsKey(rank)) {
+                ranks.put(rank, 0);
+            }
+        }
+        ranks.remove(LottoRankInfo.NONE);
         //then
-        assertThat(service.createLottoResultDto()
-                .getRanks().toString()).hasToString(ranks.toString());
+        assertThat(service.createLottoResultDto().getRanks()).containsAllEntriesOf(ranks);
     }
 
     @ParameterizedTest

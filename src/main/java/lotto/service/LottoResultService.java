@@ -39,7 +39,8 @@ public final class LottoResultService {
     }
 
     private Map<LottoRankInfo, Integer> convertLottoRanks(Map<LottoRankInfo, Integer> result) {
-        Map<LottoRankInfo, Integer> lottoRankDto = new TreeMap<>((r1, r2) -> r1.getHitCount() - r2.getHitCount());
+        Map<LottoRankInfo, Integer> lottoRankDto = new TreeMap<>((r1, r2)
+                -> (int) (r1.getRewardPrice() - r2.getRewardPrice()));
 
         Arrays.stream(LottoRankInfo.values())
                 .forEach(rank -> lottoRankDto.put(rank, result.getOrDefault(rank, 0)));

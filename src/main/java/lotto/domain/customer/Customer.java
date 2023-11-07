@@ -27,7 +27,7 @@ public class Customer {
 
     private int convertStringToInt(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException();
         }

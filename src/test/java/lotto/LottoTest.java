@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
@@ -43,16 +42,16 @@ class LottoTest {
 
         AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 1 ~ 45 사이로 발급되어야 합니다.");
     }
 
     static Stream<Arguments> provideUniqueNumbers() {
         return Stream.of(
-                Arguments.of(Set.of(1, 2, 3, 4, 5, 6), 6),
-                Arguments.of(Set.of(1, 2, 3, 4, 5, 7), 5),
-                Arguments.of(Set.of(1, 2, 3, 4, 7, 8), 4),
-                Arguments.of(Set.of(1, 2, 3, 7, 8, 9), 3),
-                Arguments.of(Set.of(1, 2, 7, 8, 9, 10), 2)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), 5),
+                Arguments.of(List.of(1, 2, 3, 4, 7, 8), 4),
+                Arguments.of(List.of(1, 2, 3, 7, 8, 9), 3),
+                Arguments.of(List.of(1, 2, 7, 8, 9, 10), 2)
         );
     }
 

@@ -12,7 +12,7 @@ class ValidatorTest {
     void validateNumericInput() {
         assertThatThrownBy(() -> Validator.validateNumericValue("123a45"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력 값이 유효한 숫자가 아닙니다.");
+                .hasMessage("[ERROR] 입력 값은 숫자로만 이루어져 있어야 합니다.");
     }
 
     @DisplayName("정상 값이 입력되어 예외를 발생하지 않음")
@@ -26,6 +26,6 @@ class ValidatorTest {
     void testValidateIsEmpty() {
         assertThatThrownBy(() -> Validator.validateIsEmpty(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력 값이 없습니다.");
+                .hasMessage("[ERROR] 입력 값이 없습니다.");
     }
 }

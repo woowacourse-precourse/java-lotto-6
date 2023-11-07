@@ -30,9 +30,7 @@ public class LottoSystem {
 
         int purchaseLottoCnt = purchaseMoney / moneyUnit;
         while (purchaseLottoCnt --> 0) {
-            List<Integer> lotto = createRandomNumbers();
-            Collections.sort(lotto);
-            lottos.add(new Lotto(lotto));
+            lottos.add(new Lotto(createRandomNumbers()));
         }
 
         return lottos;
@@ -40,40 +38,5 @@ public class LottoSystem {
 
     private static List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(lottoNumberMinArrange, lottoNumberMaxArrange, lottoCount);
-    }
-
-    private boolean validateWinningLotto(String lotto) {
-        if (isWrongLottoUnit(lotto)) return false;
-        if (isNotAllIntegerType(lotto)) return false;
-
-        // TODO : Lotto의 validate로 추가 유효성 검사 필요
-
-        return true;
-    }
-
-    private static boolean isNotAllIntegerType(String lotto) {
-        String[] lottoNums = lotto.split(",");
-
-        for (String num : lottoNums) {
-            if (isNotIntegerType(num)) return false;
-        }
-
-        return true;
-    }
-
-    private static boolean isWrongLottoUnit(String lotto) {
-        if (lotto.split(",").length != lottoCount) return true;
-
-        return false;
-    }
-
-    private static boolean isNotIntegerType(String num) {
-        try {
-            Integer.parseInt(num);
-        } catch (Exception e) {
-            return true;
-        }
-
-        return false;
     }
 }

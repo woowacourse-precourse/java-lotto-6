@@ -26,7 +26,7 @@ public class Lotto {
 
     private void validateNumbersRange(List<Integer> numbers) {
         if (!hasProperRange(numbers)) {
-            throw new LottoRangeException()
+            throw new LottoRangeException();
         }
     }
 

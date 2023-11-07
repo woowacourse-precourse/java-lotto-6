@@ -2,6 +2,8 @@ package lotto.model;
 
 public class Purchase {
     public static final String NUMBER_PATTERN = "[+-]?\\d+";
+    public static final String ERROR_MESSAGE_AMOUNT_NOT_IN_THOUSANDS = "[ERROR] 구매 금액은 1000원 단위여야 합니다.";
+    public static final String ERROR_MESSAGE_AMOUNT_NUMERIC = "[ERROR] 구매 금액은 숫자로만 이루어져야 합니다.";
 
     private final int purchaseCount;
 
@@ -24,14 +26,14 @@ public class Purchase {
     // 구매 금액이 1000원 단위인지 검증
     private static void validateAmountInThousands(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_AMOUNT_NOT_IN_THOUSANDS);
         }
     }
 
     // 구매 금액이 숫자로만 이루어져있는지 검증
     private static void validateNumeric(String input) {
         if (!input.matches(NUMBER_PATTERN)) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자로만 이루어져야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_AMOUNT_NUMERIC);
         }
     }
 

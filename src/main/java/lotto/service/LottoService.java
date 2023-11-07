@@ -27,7 +27,9 @@ public class LottoService {
 
     private static final String BONUS_DUPLICATE_MESSAGE = BONUS_NUMBER_MESSAGE + "당첨 번호와 중복 될 수 없습니다.";
 
-    public Map<String, String> setUserLottoNumbersAndBonusNumber(String inputUserLottoNumbers, String inputUserBonusNumber) {
+    public Map<String, String> setUserLottoNumbersAndBonusNumber(
+            String inputUserLottoNumbers, String inputUserBonusNumber
+    ) {
         Map<String, String> userLottoNumbersAndBonusNumber = new HashMap<>();
         userLottoNumbersAndBonusNumber.put("userLottoNumbers", inputUserLottoNumbers);
         userLottoNumbersAndBonusNumber.put("userBonusNumber", inputUserBonusNumber);
@@ -35,7 +37,9 @@ public class LottoService {
         return userLottoNumbersAndBonusNumber;
     }
 
-    public Map<LottoRank, Integer> getLottoWinningResult(Map<String, String> userLottoNumbersAndBonusNumber, List<List<Integer>> lottoTickets) {
+    public Map<LottoRank, Integer> getLottoWinningResult(
+            Map<String, String> userLottoNumbersAndBonusNumber, List<List<Integer>> lottoTickets
+    ) {
         Map<LottoRank, Integer> lottoWinningResult = getLottoWinningResultInit();
 
         List<String> userLottoNumbers = Arrays.stream(
@@ -155,4 +159,20 @@ public class LottoService {
         }
     }
 
+    public double getLottoRateOfReturn(String buyLottoAmount, Map<LottoRank, Integer> lottoWinningResult) {
+        long inputBuyLottoAmount = Long.parseLong(buyLottoAmount);
+        long totalPrize = 0L;
+        for (LottoRank lottoRank : lottoWinningResult.keySet()) {
+            Integer winningCount = lottoWinningResult.get(lottoRank);
+            String lottoRankPrize = lottoRank.getPrize();
+            String prize = lottoRankPrize.replaceAll(",", "");
+
+            totalPrize += Long.parseLong(prize) * winningCount;
+        }
+
+        // 수익률 = (수익 / 총투자금액) * 100
+        long revenue = totalPrize - inputBuyLottoAmount; // 수익 금액
+        double rateOfReturn = (double) revenue / inputBuyLottoAmount * 100; // 수익률
+        return Math.round(rateOfReturn * 100) / 100.0;
+    }
 }

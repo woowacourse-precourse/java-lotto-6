@@ -39,9 +39,14 @@ public class LottoController {
         // 사용자가 당첨 번호와 보너스 번호를 입력하여 그 정보를 저장한다.
         Map<String, String> userLottoNumbersAndBonusNumber = getUserLottoNumberAndBonusNumber();
 
-        // 구매한 로또와 사용자의 로또를 비교하여 등수를 구한다.
-        Map<LottoRank, Integer> lottoWinningResult = lottoService.getLottoWinningResult(userLottoNumbersAndBonusNumber, lottoTickets);
+        // 구매한 로또와 사용자의 로또를 비교하여 총 결과를 구한다.
+        Map<LottoRank, Integer> lottoWinningResult = lottoService.getLottoWinningResult(
+                userLottoNumbersAndBonusNumber, lottoTickets
+        );
         consoleOutputView.outputLottoWinningResult(lottoWinningResult);
+
+        // 수익률을 구한다.
+        double lottoRateOfReturn = lottoService.getLottoRateOfReturn(buyLottoAmount, lottoWinningResult);
     }
 
     private Map<String, String> getUserLottoNumberAndBonusNumber() {

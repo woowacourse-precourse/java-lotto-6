@@ -1,6 +1,7 @@
 package controller;
 
 import util.RandomNumberGeneratorUtil;
+import view.LottoBonusNumberInputView;
 import view.LottoPurchaseInputView;
 import view.LottoWinningNumberInputView;
 
@@ -8,11 +9,13 @@ public class LottoController {
     LottoPurchaseInputView lottoPurchaseInputView = new LottoPurchaseInputView();
     RandomNumberGeneratorUtil randomNumberGeneratorUtil = new RandomNumberGeneratorUtil();
     LottoWinningNumberInputView lottoWinningNumberInputView = new LottoWinningNumberInputView();
+    LottoBonusNumberInputView lottoBonusNumberInputView = new LottoBonusNumberInputView();
 
     public void gameStart() {
         int lottoPurchase = lottoPurchaseInputView.readLottoPurchaseValidator();
         createLotto(lottoPurchase);
         lottoWinningNumberInputView.readLottoWinningNumber();
+        lottoBonusNumberInputView.readLottoBonusNumber();
     }
 
     public void createLotto(int price) {

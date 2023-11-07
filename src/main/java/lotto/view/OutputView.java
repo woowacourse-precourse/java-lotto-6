@@ -16,4 +16,8 @@ public class OutputView {
     public void printRateOfReturn(Double makeOfReturn) {
         System.out.printf(Constants.PRINT_RATE_OF_RETURN, makeOfReturn);
     }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

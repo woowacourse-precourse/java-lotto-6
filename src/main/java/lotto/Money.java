@@ -16,6 +16,10 @@ public class Money {
         return money / NumberType.LOTTO_PRICE.getValue();
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private void validateMoney(int money) {
         if (!checkMoneyDivideByLottoPrice(money)) {
             throw new IllegalArgumentException(String.format(ErrorMessage.INVALID_MONEY_ERROR.getMessage(), NumberType.LOTTO_PRICE.getValue()));

@@ -9,27 +9,27 @@ import lotto.constant.Grade;
 class GradeTest {
 	@Test
 	void 일등_이십억() {
-		assertEquals("2,000,000,000", Grade.FIRST.getPrize());
+		assertEquals("2,000,000,000", Grade.FIRST.getFormattedPrize());
 	}
 
 	@Test
 	void 이등_삼천만() {
-		assertEquals("30,000,000", Grade.SECOND.getPrize());
+		assertEquals("30,000,000", Grade.SECOND.getFormattedPrize());
 	}
 
 	@Test
 	void 삼등_백오십만() {
-		assertEquals("1,500,000", Grade.THIRD.getPrize());
+		assertEquals("1,500,000", Grade.THIRD.getFormattedPrize());
 	}
 
 	@Test
 	void 사등_오만() {
-		assertEquals("50,000", Grade.FOURTH.getPrize());
+		assertEquals("50,000", Grade.FOURTH.getFormattedPrize());
 	}
 
 	@Test
 	void 오등_오천() {
-		assertEquals("5,000", Grade.FIFTH.getPrize());
+		assertEquals("5,000", Grade.FIFTH.getFormattedPrize());
 	}
 
 	@Test

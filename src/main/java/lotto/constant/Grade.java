@@ -33,7 +33,11 @@ public enum Grade {
 		return matchCount;
 	}
 
-	public String getPrize() {
+	public long getPrize() {
+		return prize;
+	}
+
+	public String getFormattedPrize() {
 		return PRIZE_FORMATTER.format(prize);
 	}
 

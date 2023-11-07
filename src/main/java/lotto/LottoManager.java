@@ -4,9 +4,11 @@ import lotto.io.ConsoleManager;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.ProfitRate;
 import lotto.model.PurchaseAmount;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningLotto;
+import lotto.model.WinningProfit;
 import lotto.model.WinningStatics;
 
 public class LottoManager {
@@ -38,9 +40,9 @@ public class LottoManager {
 
         consoleManager.printStatics(statics);
 
-        int profit = lottoCalculator.getWinningProfit(statics);
+        WinningProfit winningProfit = new WinningProfit(statics);
 
-        float profitRate = lottoCalculator.getProfitRate(profit, purchasePrice.getPrice());
+        ProfitRate profitRate = new ProfitRate(winningProfit, purchasePrice);
 
         consoleManager.printProfitRate(profitRate);
 

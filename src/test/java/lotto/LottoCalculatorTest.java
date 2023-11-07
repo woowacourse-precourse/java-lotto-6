@@ -8,8 +8,11 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.ProfitRate;
+import lotto.model.PurchasePrice;
 import lotto.model.WinningGrade;
 import lotto.model.WinningLotto;
+import lotto.model.WinningProfit;
 import lotto.model.WinningStatics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -51,39 +54,43 @@ class LottoCalculatorTest {
     @DisplayName("로또로 얻은 수익을 구한다.")
     void getLottosProfit_Statics() {
         // Given
-        WinningStatics statics = new WinningStatics();
-        statics.addWinningCount(FIRST_GRADE);
-        statics.addWinningCount(SECOND_GRADE);
-        statics.addWinningCount(SECOND_GRADE);
+        WinningStatics statics = makeWinningStatics();
 
         int firstGradeProfit = statics.getWinningGradeCount(FIRST_GRADE) * FIRST_GRADE.getWinningPrice();
         int secondGradeProfit = statics.getWinningGradeCount(SECOND_GRADE) * SECOND_GRADE.getWinningPrice();
         int expected = firstGradeProfit + secondGradeProfit;
 
         // When
-        int result = lottoCalculator.getWinningProfit(statics);
+        WinningProfit result = new WinningProfit(statics);
 
         // Then
-        assertThat(result).isEqualTo(expected);
+        assertThat(result.getProfit()).isEqualTo(expected);
     }
 
     @Test
     @DisplayName("로또로 얻은 수익과 구입 금액을 비교해서 수익률을 구한다.")
     void getProfitRate_ProfitAndPurchasePrice() {
         // Given
+        WinningStatics statics = makeWinningStatics();
+
+        PurchasePrice purchasePrice = new PurchasePrice("5000");
+        WinningProfit winningProfit = new WinningProfit(statics);
+
+        // When
+        ProfitRate profitRate = new ProfitRate(winningProfit, purchasePrice);
+
+        // Then
+        assertThat(profitRate.getRate()).isEqualTo(4.12E7f);
+    }
+
+    private WinningStatics makeWinningStatics() {
         WinningStatics statics = new WinningStatics();
+
         statics.addWinningCount(FIRST_GRADE);
         statics.addWinningCount(SECOND_GRADE);
         statics.addWinningCount(SECOND_GRADE);
 
-        int price = 5_000;
-        int profit = lottoCalculator.getWinningProfit(statics);
-
-        // When
-        float profitRate = lottoCalculator.getProfitRate(profit, price);
-
-        // Then
-        assertThat(profitRate).isEqualTo(4.12E7f);
+        return statics;
     }
 
 }

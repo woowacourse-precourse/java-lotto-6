@@ -8,6 +8,7 @@ import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.ProfitRate;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningGrade;
 import lotto.model.WinningStatics;
@@ -90,8 +91,8 @@ public class ConsoleManager {
                 });
     }
 
-    public void printProfitRate(final float profitRate) {
-        outputProcessor.outputProfitRate(profitRate);
+    public void printProfitRate(final ProfitRate profitRate) {
+        outputProcessor.outputProfitRate(profitRate.getRate());
     }
 
 }

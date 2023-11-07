@@ -13,14 +13,6 @@ public class LottoMachine {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    private int calculateLottoQuantity(int amount) {
-        return amount / LOTTO_PRICE;
-    }
-
-    public Lotto buyLotto() {
-        return new Lotto(lottoNumberGenerator.generateLottoNumbers());
-    }
-
     public List<Lotto> buyLottos(LottoAmount lottoAmount) {
         int amount = lottoAmount.getAmount();
         int quantity = calculateLottoQuantity(amount);
@@ -28,5 +20,12 @@ public class LottoMachine {
         return IntStream.range(0, quantity)
                 .mapToObj(i -> buyLotto())
                 .toList();
+    }
+    private int calculateLottoQuantity(int amount) {
+        return amount / LOTTO_PRICE;
+    }
+
+    public Lotto buyLotto() {
+        return new Lotto(lottoNumberGenerator.generateLottoNumbers());
     }
 }

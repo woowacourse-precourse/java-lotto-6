@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private int bonus;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -21,5 +20,7 @@ public class Lotto {
         }
     }
 
-
+    public void printLotto(){
+        System.out.println(numbers);
+    }
 }

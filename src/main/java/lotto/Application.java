@@ -1,10 +1,18 @@
 package lotto;
 
 public class Application {
+    public static void printConsole(String flag){
+        System.out.println(flag + "을 입력해 주세요.");
+    }
+
     public static void main(String[] args) {
+        printConsole("구입금액");
         UserData userData = new UserData();
 
-        userData.inputMoney();
         System.out.println(userData.money);
+
+        System.out.printf("\n%d개를 구매했습니다.\n", userData.lottoCount);
+        userData.printUserLotto();
+
     }
 }

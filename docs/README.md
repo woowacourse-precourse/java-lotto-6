@@ -1,6 +1,7 @@
 ## 기능 목록
 - [x] 로또 구입 금액 입력
   - [x] Exception: 1000원 단위가 아닐 시
+- [x] 사용자 로또 설정 
 - [ ] 당점 번호 입력
   - [ ] Exception: 쉼표로 구분되지 않는 경우
   - [ ] Exception: 6개의 숫자를 입력받지 않는 경우
@@ -24,7 +25,6 @@
   
 
 - (class) Application
-  - getRandomLotto(): 로또 번호 랜덤 설정
   
 - (class) Lotto
   - validate(): 예외 처리
@@ -36,6 +36,12 @@
 - (class) UserData
   - money
     - inputMoney(): 금액 입력
+    - validateMoney(): 금액에 대한 예외 처리
+  - lottoCount
+    - setLottoCount(): 로또 개수 설정
+  - userLotto
+    - getRandomLotto(): 로또 번호 랜덤 설정
+    - setUserLotto(): 로또 수 만큼 로또 생성
   - returnRate
     - calculateReturnRate(): 수익률 계산
   - lottoResult

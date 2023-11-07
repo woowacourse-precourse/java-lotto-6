@@ -9,7 +9,7 @@ public class PurchaseAmountValidator {
 
     private void validateNotEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new NumberFormatException();
         }
     }
 
@@ -17,7 +17,7 @@ public class PurchaseAmountValidator {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new NumberFormatException();
         }
     }
 }

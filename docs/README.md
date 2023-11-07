@@ -44,6 +44,7 @@
    5. 입력값 자동화
 4. outputview에서 model의 존재를 알지 못하게 수정할 수 있을까?
 5. 수익률 부분이랑 결과 부분이랑 OutputVIew 나누기
+6. controller의 반목문 메서드로 빼기
 
 ---
 

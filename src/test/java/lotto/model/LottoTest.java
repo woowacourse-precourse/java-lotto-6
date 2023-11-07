@@ -1,14 +1,16 @@
 package lotto.model;
+import static lotto.configurations.SettingValues.SIZE_OF_LOTTO;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.model.Lotto;
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class LottoTest {
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -27,15 +29,24 @@ class LottoTest {
     @DisplayName("로또 번호가 최대 범위를 벗어나면 예외가 발생한다.")
     @Test
     void createLottoByOutOfMaxRangeNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("로또 번호가 최소 범위를 벗어나면 예외가 발생한다.")
     @Test
     void createLottoByOutOfMinRangeNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("객체 생성 성공")
+    @Test
+    void createLottoComplete(){
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+
+        Lotto lotto = new Lotto(numbers);
+
+        for(int i=0;i<SIZE_OF_LOTTO.get();i++){
+            assertEquals(numbers.get(i),lotto.getValue(i));
+        }
     }
 }

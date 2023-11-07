@@ -15,14 +15,26 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSizeOfNumbers(numbers);
+        validateDuplication(numbers);
         LottoValidator.validateOutOfRange(numbers);
-        LottoValidator.validateDuplication(numbers);
     }
 
     private void validateSizeOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void validateDuplication(List<Integer> numbers) {
+        if (hasDuplication(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean hasDuplication(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count() != numbers.size();
     }
 
     public int countWinningNumbers(Lotto o) {

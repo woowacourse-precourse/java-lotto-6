@@ -14,7 +14,7 @@ public record WinNumbersDto(List<Integer> winNumbers, int bonusNumber) {
         validate(winNumbers, bonusNumber);
     }
 
-    public void validate(List<Integer> winNumbers, int bonusNumber) {
+    private void validate(List<Integer> winNumbers, int bonusNumber) {
         new Lotto(winNumbers); // 생성자를 통해 로또 번호 검증
         validateBonusNumberInRange(bonusNumber);
         validateDuplicatedBonusNumber(winNumbers, bonusNumber);

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.dto.LottoesDto;
 import lotto.dto.MoneyDto;
 import lotto.dto.ResultDto;
@@ -23,8 +24,16 @@ public class LottoController {
     }
 
     private void purchaseLottoes() {
-        MoneyDto moneyDto = getMoneyFromClient();
-        createLottoes(moneyDto);
+        while (true) {
+            try {
+                MoneyDto moneyDto = getMoneyFromClient();
+                createLottoes(moneyDto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
     }
 
     private MoneyDto getMoneyFromClient() {
@@ -39,13 +48,34 @@ public class LottoController {
 
     private WinNumbersDto createWinNumbers() {
         List<Integer> winNumbers = getWinNumbers();
-        int bonusNumber = getBonusNumber();
-        return new WinNumbersDto(winNumbers, bonusNumber);
+        WinNumbersDto winNumbersDto;
+        while (true) {
+            try {
+                int bonusNumber = getBonusNumber();
+                winNumbersDto = new WinNumbersDto(winNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        return winNumbersDto;
     }
 
     private List<Integer> getWinNumbers() {
-        outputView.beforeInputWinNumbers();
-        return inputView.inputNumbers();
+        List<Integer> winNumbers;
+        while (true) {
+            try {
+                outputView.beforeInputWinNumbers();
+                winNumbers = inputView.inputNumbers();
+                new Lotto(winNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        return winNumbers;
     }
 
     private int getBonusNumber() {

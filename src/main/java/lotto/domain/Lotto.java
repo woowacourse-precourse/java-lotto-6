@@ -43,7 +43,7 @@ public class Lotto {
                 .count();
     }
 
-    public boolean isSameAsBonusNumber(int bonus) {
+    public boolean hasBonusNumber(int bonus) {
         return numbers.contains(bonus);
     }
 

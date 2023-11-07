@@ -8,4 +8,6 @@ public class LottoErrorMessageConstants {
     public static final String ERROR_MESSAGE_INVALID_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개여야 입니다.";
 
     public static final String ERROR_MESSAGE_ZERO_NOT_ALLOWED = "[ERROR] 입력된 값에 0이 포함되어 있습니다.";
+
+    public static final String ERROR_MESSAGE_DUPLICATE_NUMBER = "[ERROR] 입력된 번호에 중복된 값이 있습니다.";
 }

@@ -41,4 +41,17 @@ class LottoNumberGeneratorTest {
         Collections.sort(sortedNumbers);
         assertEquals(sortedNumbers , lotto.getNumbers());
     }
+
+    @Test
+    @DisplayName("생성된 로또 번호가 유효한지 확인하는 테스트")
+    void testGenerateLotto() {
+        LottoNumberGenerator generator = new LottoNumberGenerator();
+        Lotto lotto = generator.generateLotto();
+        try{
+            lotto.validate(lotto.getNumbers());
+        }catch (Exception e){
+            fail("에러가 발생하면 안됩니다");
+        }
+
+    }
 }

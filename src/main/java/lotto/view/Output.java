@@ -1,7 +1,8 @@
 package lotto.view;
 
-import lotto.domain.compareSystem.LottoMachine;
-import lotto.domain.compareSystem.LottoResult;
+import lotto.Option.GameStatus;
+import lotto.domain.result.LottoMachine;
+import lotto.domain.result.LottoResult;
 import lotto.domain.user.UserLotto;
 
 public class Output {
@@ -18,15 +19,15 @@ public class Output {
         System.out.println("당첨통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "
-                + lottoMachine.getWinStatus().get(new LottoResult(3, 0)) + "개");
+                + lottoMachine.getWinStatus().get(new LottoResult(GameStatus.THREE_EQUAL)) + "개");
         System.out.println("4개 일치 (50,000원) - "
-                + lottoMachine.getWinStatus().get(new LottoResult(4, 0)) + "개");
+                + lottoMachine.getWinStatus().get(new LottoResult(GameStatus.FOUR_EQUAL)) + "개");
         System.out.println("5개 일치 (1,500,000원) - "
-                + lottoMachine.getWinStatus().get(new LottoResult(5, 0)) + "개");
+                + lottoMachine.getWinStatus().get(new LottoResult(GameStatus.FIVE_EQUAL)) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "
-                + lottoMachine.getWinStatus().get(new LottoResult(5, 1)) + "개");
+                + lottoMachine.getWinStatus().get(new LottoResult(GameStatus.FIVE_AND_BONUS_EQUAL)) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - "
-                + lottoMachine.getWinStatus().get(new LottoResult(6, 0)) + "개");
+                + lottoMachine.getWinStatus().get(new LottoResult(GameStatus.SIX_EQUAL)) + "개");
     }
 
     public void rateOfReturn(double rate) {

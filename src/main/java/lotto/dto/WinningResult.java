@@ -13,14 +13,14 @@ public record WinningResult(Map<Prize, Integer> prizes) {
     }
 
     public double calculateYield(final Amount amount) {
-        return (double) this.totalWinningMoney() / amount.amount() * 100;
+        return (double) this.totalWinningAmount() / amount.amount() * 100;
     }
 
-    private int totalWinningMoney() {
+    private int totalWinningAmount() {
         IntBinaryOperator multiply = (a, b) -> a * b;
         return prizes.keySet().stream()
                 .filter(prize -> prize != Prize.NONE)
-                .mapToInt(p -> multiply.applyAsInt(p.getWinningMoney(), prizes.get(p)))
+                .mapToInt(p -> multiply.applyAsInt(p.getWinningAmount(), prizes.get(p)))
                 .sum();
     }
 }

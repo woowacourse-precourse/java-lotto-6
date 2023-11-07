@@ -32,9 +32,9 @@ public class OutputView {
 
     private String createResultMessage(final int countOfPrize, final Prize prize) {
         final int matchedCount = prize.getMatchedCount();
-        final String winningMoney = Converter.convertNumberWithComma(prize.getWinningMoney());
+        final String winningAmount = Converter.convertNumberWithComma(prize.getWinningAmount());
         final String format = this.determineFormatByPrize(prize);
-        return String.format(format, matchedCount, winningMoney, countOfPrize);
+        return String.format(format, matchedCount, winningAmount, countOfPrize);
     }
 
     private String determineFormatByPrize(final Prize prize) {

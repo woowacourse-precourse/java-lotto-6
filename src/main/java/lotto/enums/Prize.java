@@ -12,11 +12,11 @@ public enum Prize {
 
     public static final Prize[] PRIZES = values();
     private final int matchedCount;
-    private final int winningMoney;
+    private final int winningAmount;
 
-    Prize(final int matchedCount, final int winningMoney) {
+    Prize(final int matchedCount, final int winningAmount) {
         this.matchedCount = matchedCount;
-        this.winningMoney = winningMoney;
+        this.winningAmount = winningAmount;
     }
 
     public static Prize valueOf(final int matchedCount, final boolean isBonus) {
@@ -32,10 +32,10 @@ public enum Prize {
     }
 
     public int getMatchedCount() {
-        return matchedCount;
+        return this.matchedCount;
     }
 
-    public int getWinningMoney() {
-        return winningMoney;
+    public int getWinningAmount() {
+        return this.winningAmount;
     }
 }

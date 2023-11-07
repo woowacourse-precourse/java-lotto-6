@@ -3,12 +3,14 @@ package lotto.view;
 import static lotto.constant.Message.BONUS_NUMBER_PROMPT;
 import static lotto.constant.Message.PURCHASE_AMOUNT_MESSAGE;
 import static lotto.constant.Message.PURCHASE_AMOUNT_PROMPT;
+import static lotto.constant.Message.WINNING_CASE_MESSAGE;
 import static lotto.constant.Message.WINNING_NUMBER_PROMPT;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.WinningResultDto;
 
 public class LottoView implements View {
     private LottoView() {
@@ -29,7 +31,7 @@ public class LottoView implements View {
     }
 
     @Override
-    public void printMessage(Message message, Object args) {
+    public void printMessage(Message message, Object... args) {
         System.out.printf(message.getMessage(), args);
         System.out.println();
     }
@@ -68,5 +70,17 @@ public class LottoView implements View {
     public String askBonusNumber() {
         printMessage(BONUS_NUMBER_PROMPT);
         return Console.readLine();
+    }
+
+    @Override
+    public void printWinningCase(WinningResultDto winningResultDto) {
+        printMessage(
+                WINNING_CASE_MESSAGE,
+                winningResultDto.firstPlaceCount(),
+                winningResultDto.secondPlaceCount(),
+                winningResultDto.thirdPlaceCount(),
+                winningResultDto.fourthPlaceCount(),
+                winningResultDto.fifthPlaceCount()
+        );
     }
 }

@@ -35,6 +35,7 @@ public class LottoController {
                 lottosDto
         );
         view.printMessage(Message.WINNING_STATS);
+        view.printWinningCase(winningResultDto);
         view.close();
     }
 }

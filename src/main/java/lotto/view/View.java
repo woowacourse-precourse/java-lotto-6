@@ -3,13 +3,14 @@ package lotto.view;
 import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.WinningResultDto;
 
 public interface View {
     void println(String string);
 
     void printMessage(Message message);
 
-    void printMessage(Message message, Object args);
+    void printMessage(Message message, Object... args);
 
     String askPurchaseAmount();
 
@@ -22,4 +23,6 @@ public interface View {
     String askWinningNumber();
 
     String askBonusNumber();
+
+    void printWinningCase(WinningResultDto winningResultDto);
 }

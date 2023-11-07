@@ -2,16 +2,13 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningLottoNumber;
 import lotto.domain.WinningNumber;
 
 public class LottoCompareController {
 
 
-    private  static  int treeNumMath = 0;
-    private  static  int fourNumMath = 0;
-    private  static  int fiveNumMath = 0;
-    private  static  int fiveAndBonusNumMath = 0;
-    private  static  int sixNumNumMath = 0;
+
 
     public static void lottoTicketsCompareNum(){
         for(Lotto lotto : LottoTickets.getBuyLottoTickets()){
@@ -35,21 +32,21 @@ public class LottoCompareController {
     }
     private static void increaseWinningDetails(int mathNum, boolean bonusNum){
         if(mathNum == 3){
-            treeNumMath ++;
+            WinningLottoNumber.increaseTreeSameNumLotto();
         }
         if(mathNum == 4){
-            fourNumMath++;
+            WinningLottoNumber.increaseFourSameNumLotto();
         }
         if(mathNum == 5){
             if(bonusNum == false){
-                fiveNumMath++;
+                WinningLottoNumber.increaseFiveSameNumLotto();
             }
             if(bonusNum == true){
-                fiveAndBonusNumMath++;
+                WinningLottoNumber.increaseFiveAndBonusSameNumLotto();
             }
         }
         if(mathNum == 6){
-            sixNumNumMath++;
+            WinningLottoNumber.increaseSixSameNumLotto();
         }
     }
 

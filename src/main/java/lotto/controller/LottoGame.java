@@ -47,7 +47,7 @@ public class LottoGame {
             purchaseManager = new PurchaseManager(purchaseAmount);
             return true;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            outputView.printError(e.getMessage());
             return false;
         }
     }
@@ -75,7 +75,7 @@ public class LottoGame {
             winningNumbers = new WinningNumbers(input);
             return true;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            outputView.printError(e.getMessage());
             return false;
         }
     }
@@ -90,7 +90,7 @@ public class LottoGame {
             winningNumbers.setBonusNumber(input);
             return true;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            outputView.printError(e.getMessage());
             return false;
         }
     }

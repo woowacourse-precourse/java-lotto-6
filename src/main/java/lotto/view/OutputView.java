@@ -40,4 +40,8 @@ public class OutputView {
     public void printRate(String num){
         System.out.println(MessageFormat.format(Constant.RATE_OF_RETURN, num));
     }
+
+    public void printError(String e){
+        System.out.println(e);
+    }
 }

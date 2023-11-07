@@ -1,9 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class GameService {
     static final int ERROR = -1;

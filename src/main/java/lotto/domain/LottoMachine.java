@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 
 public class LottoMachine {
     public Lotto buyLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER, Lotto.NUM_OF_LOTTO);
         return new Lotto(numbers);
     }
 }

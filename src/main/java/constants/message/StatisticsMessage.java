@@ -1,4 +1,4 @@
-package constants;
+package constants.message;
 
 public class StatisticsMessage {
     private static final String START = "당첨 통계";

@@ -1,4 +1,4 @@
-package constants;
+package constants.message;
 
 public class RequestMessage {
     private static final String PAYMENT = "구입금액을 입력해 주세요.";

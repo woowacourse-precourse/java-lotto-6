@@ -14,7 +14,7 @@ public class BonusLotto {
 
     private void validate(int bonus) {
         if (validateBonusRange(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 로또는 1에서 45 사이 정수여야 합니다.");
+            throw new IllegalArgumentException(ExceptionList.BONUSLOTTORANGEEXCEPTION.content());
         }
     }
 
@@ -27,7 +27,7 @@ public class BonusLotto {
 
     public void validateDuplicate(Lotto lotto, int bonus) {
         if (lotto.getNumbers().contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 로또는 중복되지 않은 수여야 합니다.");
+            throw new IllegalArgumentException(ExceptionList.BONUSLOTTODUPLICATIONEXCEPTION.content());
         }
     }
 }

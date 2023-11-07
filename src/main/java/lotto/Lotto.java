@@ -17,15 +17,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 로또는 6개의 정수여야 합니다.");
+            throw new IllegalArgumentException(ExceptionList.LOTTOCOUNTEXCETION.content());
         }
 
         if (numbers.stream().distinct().collect(Collectors.toList()).size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 로또는 중복되지 않은 수여야 합니다.");
+            throw new IllegalArgumentException(ExceptionList.LOTTODUPLICATIONEXCEPTION.content());
         }
 
         if (!validateNumber(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 로또는 1에서 45 사이 정수여야 합니다.");
+            throw new IllegalArgumentException(ExceptionList.LOTTORANGEEXCEPTION.content());
         }
     }
 

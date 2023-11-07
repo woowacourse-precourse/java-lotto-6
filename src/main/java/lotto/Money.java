@@ -20,7 +20,7 @@ public class Money {
 
     private void validate(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 이루어져야 합니다.");
+            throw new IllegalArgumentException(ExceptionList.MONEYUNITEXCEPTION.content());
         }
     }
 

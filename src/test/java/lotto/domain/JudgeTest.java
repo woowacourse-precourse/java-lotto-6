@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import lotto.domain.Judge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -26,6 +27,14 @@ public class JudgeTest {
     @Test
     void compareWinningNumbersWithRandomNumbers() {
         // given
+        int answer = 3;
+        Lotto randomNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(2, 3, 5, 7, 8, 9));
 
+        // when
+        int matchCount = Judge.compareWinningNumbers(winningNumbers, randomNumbers);
+
+        // then
+        assertThat(matchCount).isEqualTo(answer);
     }
 }

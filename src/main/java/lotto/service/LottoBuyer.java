@@ -9,15 +9,15 @@ import lotto.domain.RandomNumbers;
 
 public class LottoBuyer {
     private int lottoTicketNumber;
+    private Payment payment;
     private List<Lotto> lottos = new ArrayList<>();
-    private Lotto winningNumbers;
-    private BonusNumber bonusNumber;
 
     public LottoBuyer(int lottoTicketNumber) {
         this.lottoTicketNumber = lottoTicketNumber;
     }
 
     public LottoBuyer(Payment payment) {
+        this.payment = payment;
         this.lottoTicketNumber = payment.getPayment() / payment.getLottoPrice();
     }
 
@@ -28,13 +28,11 @@ public class LottoBuyer {
         }
     }
 
-    public void setInputs(Lotto winningNumbers, BonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
-
     public List<Lotto> getLottos() {
         return lottos;
     }
 
+    public Payment getPayment() {
+        return payment;
+    }
 }

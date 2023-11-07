@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.*;
 import lotto.domain.enums.Rank;
 
+import java.security.cert.TrustAnchor;
 import java.util.*;
 
 
@@ -44,14 +45,20 @@ public class Application {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             long purchaseAmount = Integer.parseInt(Console.readLine());
+            if (purchaseAmount % 1000 != 0)
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수인 숫자여야 합니다.");
             System.out.println(String.format("%d개를 구매했습니다.", purchaseAmount / 1000));
-            if (purchaseAmount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
-            }
             return purchaseAmount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수인 숫자여야 합니다.");
         }
+    }
+    static boolean isWinningNumberValid(List<Integer> winningNumber){
+     if(Collections.max(winningNumber) > 45)
+         return false;
+     if(Collections.min(winningNumber) < 1)
+         return false;
+     return true;
     }
 
     static List<Integer> getWinningNumber() {
@@ -62,31 +69,61 @@ public class Application {
             for (int i = 0; i < 6; i++) {
                 winningNumber.add(Integer.parseInt(winningNumberOfString.get(i)));
             }
+            if(!isWinningNumberValid(winningNumber))
+                throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
             System.out.println(winningNumber);
             return winningNumber;
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 숫자가 포함되어야 합니다.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
+        }
+    }
+
+    static int getBonusNumber(){
+        try{
+            System.out.println("보너스 번호를 입력해 주세요.");
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            System.out.println(bonusNumber);
+            return bonusNumber;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
         }
     }
 
     public static void game() {
-        long purchaseAmount = getPurchaseAmount();
-
+        //이것들도 각각..메서드로 뺴서 딱 걔네들을 불러줘야할 듯
+        long purchaseAmount = 0;
+        try {
+            purchaseAmount = getPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 구입 금액은 1000의 배수인 숫자여야 합니다.");
+            game();
+        }
         List<Lotto> lottos = Lotto.createLottos(purchaseAmount / 1000);
-
-        List<Integer> winningNumber = getWinningNumber();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        System.out.println(bonusNumber);
+        List<Integer> winningNumber = null;
+        try {
+            winningNumber = getWinningNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
+            //이거..끊긴거부터해야하는데 ㅠ
+            game();
+        }
+        int bonusNumber = 0;
+        try {
+            bonusNumber = getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
+            //이거..끊긴거부터해야하는데 ㅠ
+            game();
+        }
 
         Map<Rank, Integer> lottoRanks = createLottoRanksMap(winningNumber, lottos, bonusNumber);
 
         double rateOfReturn = computeRateOfReturn(lottoRanks, purchaseAmount);
 
         printResult(lottoRanks, rateOfReturn);
+
     }
 
     public static void main(String[] args) {

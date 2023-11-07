@@ -15,17 +15,13 @@ public class WinningLotto {
     private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto() {
-        this.winningNumbers = null;
-        this.bonusNumber = -1;
-    }
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto createWinningNumbers(String winningNumbers) {
+    public static Lotto createWinningNumbers(String winningNumbers) {
         InputValidator.validateEmpty(winningNumbers);
         InputValidator.validateNull(winningNumbers);
         List<Integer> numbers = parseNumbers(winningNumbers);
@@ -35,7 +31,7 @@ public class WinningLotto {
         return new Lotto(numbers);
     }
 
-    public int createBonusNumber(String bonusNumber) {
+    public static int createBonusNumber(String bonusNumber) {
         InputValidator.validateEmpty(bonusNumber);
         InputValidator.validateNull(bonusNumber);
         return parseNumber(bonusNumber);
@@ -49,14 +45,14 @@ public class WinningLotto {
         return this.bonusNumber;
     }
 
-    private List<Integer> parseNumbers(String numbers) {
+    private static List<Integer> parseNumbers(String numbers) {
         return Stream.of(numbers.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    private int parseNumber(String number) {
+    private static int parseNumber(String number) {
         int parsedNumber;
         try {
             parsedNumber = Integer.parseInt(number.trim());
@@ -71,13 +67,13 @@ public class WinningLotto {
         return parsedNumber;
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 6개만 입력 가능");
         }
     }
 
-    private void validateUnique(List<Integer> numbers) {
+    private static void validateUnique(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != LOTTO_SIZE) {
@@ -85,13 +81,13 @@ public class WinningLotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private static void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             validateSingleRange(number);
         }
     }
 
-    private void validateSingleRange(int number) {
+    private static void validateSingleRange(int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
             throw new IllegalArgumentException(
                     "로또번호는" + MIN_VALUE + "과" + MAX_VALUE + "사이만 가능");

@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumber {
+public class LottoWinningNumber {
     private final Set<Integer> numbers;
 
-    public WinningNumber(List<Integer> numbers) {
+    public LottoWinningNumber(List<Integer> numbers) {
         validateNumbers(numbers);
         this.numbers = new HashSet<>(numbers);
     }

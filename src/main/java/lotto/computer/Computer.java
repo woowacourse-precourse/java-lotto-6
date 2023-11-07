@@ -1,28 +1,36 @@
 package lotto.computer;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.IntStream;
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
 
 public class Computer {
 
-    public Lottos createUserLottos(int money) {
-        List<Lotto> lottos = createLottoList(money);
+    private final RandomLottoGenerator randomLottoGenerator;
+    private final ResultGenerator resultGenerator;
 
-        return new Lottos(lottos);
+    public Computer(RandomLottoGenerator randomLottoGenerator, ResultGenerator resultGenerator) {
+        this.randomLottoGenerator = randomLottoGenerator;
+        this.resultGenerator = resultGenerator;
     }
 
-    private List<Lotto> createLottoList(int money) {
-        return IntStream.rangeClosed(1, money / 1000)
-                .mapToObj(num -> {
-                            List<Integer> randomNumbers =
-                                    Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                            randomNumbers.sort(Integer::compareTo);
-                            return new Lotto(randomNumbers);
-                        }
-                )
-                .toList();
+    public Lottos createUserLottos() {
+        return randomLottoGenerator.createUserLottos();
+    }
+
+    public Result createResult(Lottos lottos) {
+        return resultGenerator.createResult(lottos);
+    }
+
+    public void setMoney(int money) {
+        randomLottoGenerator.setMoney(money);
+    }
+
+    public void setLottoNumber(List<Integer> numbers) {
+        resultGenerator.setWinningLotto(new Lotto(numbers));
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        resultGenerator.setBonusNumber(bonusNumber);
     }
 }

@@ -23,8 +23,8 @@ public record WinningLotto(Lotto lotto, BonusNumber bonus) {
         return new ResultSheet(sheet);
     }
 
-    private Integer addCountByRank(Map<Rank, Integer> resultSheet, Rank rank) {
-        return resultSheet.put(rank, resultSheet.get(rank) + 1);
+    private void addCountByRank(Map<Rank, Integer> resultSheet, Rank rank) {
+        resultSheet.put(rank, resultSheet.get(rank) + 1);
     }
 
     public Rank calculateLottoRank(Lotto userLotto) {

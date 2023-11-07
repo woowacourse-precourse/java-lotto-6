@@ -5,9 +5,28 @@ import static org.assertj.core.api.Assertions.*;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class InputManagerTest {
+
+    @Test
+    void 보너스_번호_입력() {
+        String input = "34";
+        setInput(input);
+
+        assertThat(InputManager.bonusNumberInput(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+    }
+
+    @Test
+    void 구매_금액_입력() {
+        String input = "10000";
+        setInput(input);
+
+        assertThat(InputManager.purchaseAmountInput()).isEqualTo(10);
+
+        Console.close();
+    }
 
     @Test
     void 당첨_로또_숫자가_아니면_예외() {

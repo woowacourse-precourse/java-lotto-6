@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.constant.Phrases;
+import lotto.constant.Rank;
 
 public class OutputAboutResult {
     public static void printIntroduceWinnerResult() {
@@ -10,14 +11,14 @@ public class OutputAboutResult {
     }
 
     public static void printWinnerResult(int[] resultCount) {
-        System.out.println(Phrases.correctThreePhrase+resultCount[3]+Phrases.countPhrase);
-        System.out.println(Phrases.correctFourPhrase+resultCount[4]+Phrases.countPhrase);
-        System.out.println(Phrases.correctFivePhrase+resultCount[5]+Phrases.countPhrase);
-        System.out.println(Phrases.correctFiveBonusPhrase+resultCount[7]+Phrases.countPhrase);
-        System.out.println(Phrases.correctSixPhrase+resultCount[6]+Phrases.countPhrase);
+        System.out.println(Phrases.correctThreePhrase + resultCount[Rank.FOURTH.getMatchCount()] + Phrases.countPhrase);
+        System.out.println(Phrases.correctFourPhrase + resultCount[Rank.THIRD.getMatchCount()] + Phrases.countPhrase);
+        System.out.println(Phrases.correctFivePhrase + resultCount[Rank.SECOND.getMatchCount()] + Phrases.countPhrase);
+        System.out.println(Phrases.correctFiveBonusPhrase + resultCount[Rank.SECOND_WITH_BONUS.getMatchCount()] + Phrases.countPhrase);
+        System.out.println(Phrases.correctSixPhrase + resultCount[Rank.FIRST.getMatchCount()] + Phrases.countPhrase);
     }
 
-    public static void printRateOfReturn(float rateOfReturn){
-        System.out.println(Phrases.rateOfReturnPhrase+rateOfReturn+Phrases.confirmPhrase);
+    public static void printRateOfReturn(float rateOfReturn) {
+        System.out.println(Phrases.rateOfReturnPhrase + rateOfReturn + Phrases.confirmPhrase);
     }
 }

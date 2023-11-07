@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.Phrases;
-import lotto.view.OutputAboutException;
 
 import java.util.List;
 

@@ -2,12 +2,8 @@ package lotto.domain;
 
 import lotto.domain.db.PurchaseLotto;
 import lotto.domain.db.PurchaseLottoCollection;
-import lotto.util.StringToNumberListParser;
-import lotto.view.InputAboutLottoNumber;
 
-import java.io.LineNumberInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MakeLottoCollection {

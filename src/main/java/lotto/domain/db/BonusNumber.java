@@ -1,6 +1,5 @@
 package lotto.domain.db;
 
-import lotto.constant.Phrases;
 import lotto.exception.bonusNumber.BonusNumberException;
 
 public class BonusNumber {

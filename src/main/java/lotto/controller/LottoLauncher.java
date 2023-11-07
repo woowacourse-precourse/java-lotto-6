@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.constant.Phrases;
 import lotto.domain.RateOfReturnCalculator;
 import lotto.domain.db.*;
+
 import lotto.exception.bonusNumber.BonusNumberException;
 import lotto.util.StringToNumberListParser;
 import lotto.view.*;
@@ -46,7 +47,7 @@ public class LottoLauncher {
 
         WinningLotto winningLottoNumbers = SaveLottoController.lottoControl(lottoNumber, bonusNumber.getBonus());
 
-//        new BonusNumberException().bonusNumberDuplication(bonusNumber.getBonus(), winningLottoNumbers.getLottoNumbers());
+        new BonusNumberException().bonusNumberDuplication(bonusNumber.getBonus(), winningLottoNumbers.getLottoNumbers());
         OutputAboutResult.printIntroduceWinnerResult();
 
         int[] result = SaveResultController.resultControl(purchaseLottoNumbers, winningLottoNumbers);

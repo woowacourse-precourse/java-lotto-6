@@ -57,8 +57,8 @@ class ResultTest {
 
     @Test
     void 당첨률_계산_테스트() {
-        double winningRate = (double) 30005000 / 2000;
-        assertEquals(Math.round(winningRate * 100.0) / 100.0, result.calculateWinningRate());
+        double winningRate = (double) 30005000 / 2000 * 100;
+        assertEquals(Math.round(winningRate * 10.0) / 10.0, result.calculateWinningRate());
     }
 
 }

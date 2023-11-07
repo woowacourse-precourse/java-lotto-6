@@ -28,6 +28,7 @@ public class LottoController {
         result.calculateResult(winningNumbers,bonusNumber);
         outputView.printWinningResult(result);
         double winningRate = result.calculateWinningRate();
+        outputView.printWinningRate(winningRate);
     }
 
 

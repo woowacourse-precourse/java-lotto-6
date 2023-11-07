@@ -50,8 +50,8 @@ public class Validator {
         }
     }
 
-    public static void checkComma(String userInput){
-        if(userInput.substring(userInput.length() - INDEX_MINUS_ONE.get()).equals(COMMA.getMessage())){
+    public static void checkComma(String userInput) {
+        if (userInput.substring(userInput.length() - INDEX_MINUS_ONE.get()).equals(COMMA.getMessage())) {
             throw new IllegalArgumentException(COMMA_ERROR.getMessage());
         }
     }

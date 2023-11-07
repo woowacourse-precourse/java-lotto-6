@@ -21,7 +21,6 @@ class LottoGeneratorTest {
     @DisplayName("당첨 번호를 입력 받아 당첨 로또 생성")
     @Test
     void createWinningLotto() {
-
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
@@ -34,7 +33,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"a,b,c,d,e,f", "1,,3,4,5,6", "1, ,3,4,5,6"})
     void createWinningLottoByNotNumber(String lottoNumber) {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -43,7 +41,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0,1,2,3,4,5", "-1,2,3,4,5,6", "1.5,2,3,4,5,6"})
     void createWinningLottoByNotPositiveNumber(String lottoNumber) {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -51,7 +48,6 @@ class LottoGeneratorTest {
     @DisplayName("입력된 당첨 번호 마지막에 콤마가 있을 때, 예외 처리")
     @Test
     void createWinningLottoByNotNumber() {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto("1,2,3,4,5,6,"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -60,7 +56,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0,1,2,3,4,5", "100,2,3,4,5,6", "41,42,43,44,45,46"})
     void createWinningLottoByNotRange(String lottoNumber) {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -69,7 +64,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"01,2,3,4,5,6", "1,2,03,04,005,00006"})
     void createWinningLottoByFirstNumberZero(String lottoNumber) {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -78,7 +72,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "1,2,3,4,5", "1,2,3,4,5,6,7"})
     void createWinningLottoByNotEqualSize(String lottoNumber) {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -86,7 +79,6 @@ class LottoGeneratorTest {
     @DisplayName("입력된 당첨 번호가 중복될 때, 예외 처리")
     @Test
     void createWinningLottoByDuplication() {
-
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -94,7 +86,6 @@ class LottoGeneratorTest {
     @DisplayName("보너스 번호를 입력 받아 보너스 번호 생성")
     @Test
     void createBonusNumber() {
-
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
 
@@ -122,7 +113,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "1.5"})
     void createBonusNumberByNotPositiveNumber(String bonusNumber) {
-
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
 
@@ -135,7 +125,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "46", "100"})
     void createBonusNumberByNotRange(String bonusNumber) {
-
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
 
@@ -147,7 +136,6 @@ class LottoGeneratorTest {
     @DisplayName("입력된 보너스 번호가 당첨 번호와 중복될 때, 예외 처리")
     @Test
     void createBonusNumberByDuplication() {
-
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
 
@@ -160,7 +148,6 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(strings = {"01", "00045"})
     void createBonusNumberByFirstNumberZero(String bonusNumber) {
-
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
 
@@ -168,5 +155,4 @@ class LottoGeneratorTest {
         assertThatThrownBy(() -> LottoGenerator.createBonusNumber(winningLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

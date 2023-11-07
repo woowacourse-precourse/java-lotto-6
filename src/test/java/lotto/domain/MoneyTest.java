@@ -20,7 +20,7 @@ class MoneyTest {
 
     @DisplayName("구매 금액이 양수 이외의 숫자일 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"1000.0,", "200.1", "0","-1000"})
+    @ValueSource(strings = {"1000.0,", "200.1", "0", "-1000"})
     void createMoneyByNotPositiveNumber(String userInput) {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -36,7 +36,7 @@ class MoneyTest {
 
     @DisplayName("구매 금액이 1000단위가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"999", "1500","1001"})
+    @ValueSource(strings = {"999", "1500", "1001"})
     void createMoneyByNotThousands(String userInput) {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -44,7 +44,7 @@ class MoneyTest {
 
     @DisplayName("1000원 개수 세기")
     @Test
-    void countThousand(){
+    void countThousand() {
         // given
         Money money = new Money("2000");
 

@@ -61,7 +61,7 @@ class LottoManagerTest {
         assertThat(lottoResult.state.get(Prize.FIRST)).isEqualTo(1);
 
         for (Prize prize : lottoResult.state.keySet()) {
-            if (prize == Prize.FIRST){
+            if (prize == Prize.FIRST) {
                 continue;
             }
 
@@ -86,7 +86,7 @@ class LottoManagerTest {
         assertThat(lottoResult.state.get(Prize.SECOND)).isEqualTo(1);
 
         for (Prize prize : lottoResult.state.keySet()) {
-            if (prize == Prize.SECOND){
+            if (prize == Prize.SECOND) {
                 continue;
             }
 
@@ -111,7 +111,7 @@ class LottoManagerTest {
         assertThat(lottoResult.state.get(Prize.THIRD)).isEqualTo(1);
 
         for (Prize prize : lottoResult.state.keySet()) {
-            if (prize == Prize.THIRD){
+            if (prize == Prize.THIRD) {
                 continue;
             }
 
@@ -137,7 +137,7 @@ class LottoManagerTest {
         assertThat(lottoResult.state.get(Prize.FOURTH)).isEqualTo(2);
 
         for (Prize prize : lottoResult.state.keySet()) {
-            if (prize == Prize.FOURTH){
+            if (prize == Prize.FOURTH) {
                 continue;
             }
 
@@ -163,13 +163,11 @@ class LottoManagerTest {
         assertThat(lottoResult.state.get(Prize.FIFTH)).isEqualTo(2);
 
         for (Prize prize : lottoResult.state.keySet()) {
-            if (prize == Prize.FIFTH){
+            if (prize == Prize.FIFTH) {
                 continue;
             }
 
             assertThat(lottoResult.state.get(prize)).isEqualTo(0);
         }
     }
-
-
 }

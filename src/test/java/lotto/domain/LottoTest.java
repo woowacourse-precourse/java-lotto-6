@@ -34,9 +34,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호의 각 번호를 검증")
+    @DisplayName("로또 번호의 각 번호를 검증 (숫자x, 양수x, 숫자 앞0, 범위 초과)")
     @ParameterizedTest
-    @ValueSource(strings = {"a","1.5", "01", "0", "46"}) // 숫자x, 양수x, 숫자 앞0, 범위 초과
+    @ValueSource(strings = {"a", "1.5", "01", "0", "46"})
     void checkLottoNumber(String lottoNumber) {
         assertThatThrownBy(() -> Lotto.checkLottoNumber(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);

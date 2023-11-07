@@ -10,16 +10,19 @@ class LottoResultTest {
 
     @DisplayName("로또 결과 초기화 값 확인")
     @Test
-    void initializeLottoResult(){
+    void initializeLottoResult() {
+        // given
+        LottoResult lottoResult;
 
         // when
-        LottoResult lottoResult = new LottoResult();
+        lottoResult = new LottoResult();
 
         // then
         // key - Prize
         for (Prize prize : Prize.values()) {
             assertThat(lottoResult.state.containsKey(prize)).isTrue();
         }
+
         // value - 0
         for (Prize prize : lottoResult.state.keySet()) {
             assertThat(lottoResult.state.get(prize)).isEqualTo(0);
@@ -31,7 +34,7 @@ class LottoResultTest {
     void calculateEarningsRate() {
         // given
         LottoResult lottoResult = new LottoResult();
-        lottoResult.state.replace(Prize.FIFTH,1);   // 5등 5000원, 1개
+        lottoResult.state.replace(Prize.FIFTH, 1);   // 5등 5000원, 1개
 
         // when
         Double earningsRate = lottoResult.calculateEarningsRate(5); // 로또 5장

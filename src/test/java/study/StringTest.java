@@ -20,12 +20,10 @@ public class StringTest {
         separationTwo = "1".split(",");
 
         // then
-
         assertThat(separationOne)
                 .containsExactly("1", "2");
         assertThat(separationTwo)
                 .containsExactly("1");
-
     }
 
     @Test

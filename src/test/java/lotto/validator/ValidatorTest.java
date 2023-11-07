@@ -67,5 +67,4 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(COMMA_ERROR.getMessage());
     }
-
 }

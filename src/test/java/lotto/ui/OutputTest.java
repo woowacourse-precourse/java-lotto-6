@@ -4,9 +4,7 @@ import static lotto.constants.Message.BONUS_NUMBER;
 import static lotto.constants.Message.PURCHASE_LOTTO;
 import static lotto.constants.Message.PURCHASE_MONEY;
 import static lotto.constants.Message.WINNING_NUMBER;
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -46,7 +44,6 @@ class OutputTest {
         assertThat(out.toString())
                 .contains("[ERROR] 예외 처리 메시지");
     }
-
 
     @DisplayName("구매한 로또 개수 출력")
     @Test
@@ -93,7 +90,6 @@ class OutputTest {
                 .contains(BONUS_NUMBER.getMessage());
     }
 
-
     @DisplayName("로또 번호를 오름차순으로 정렬하여 구매한 로또 전체 출력")
     @Test
     void printLottos() {
@@ -110,7 +106,6 @@ class OutputTest {
         assertThat(out.toString())
                 .contains("[1, 2, 3, 4, 5, 6]")
                 .contains("[1, 10, 20, 30, 40, 45]");
-
     }
 
     @DisplayName("당첨 통계 출력, 수익률은 둘째 자리에서 반올림")

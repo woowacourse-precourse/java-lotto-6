@@ -24,8 +24,8 @@ public class Output {
         System.out.println(PURCHASE_MONEY.getMessage());
     }
 
-    public static void printCount(Integer lottoCount){
-        System.out.println(lottoCount+PURCHASE_LOTTO.getMessage());
+    public static void printCount(Integer lottoCount) {
+        System.out.println(lottoCount + PURCHASE_LOTTO.getMessage());
     }
 
     public static void printLottos(List<Lotto> lottos) {

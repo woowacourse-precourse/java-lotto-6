@@ -38,5 +38,4 @@ public class SetTest {
     void contains_true_and_false(int value, boolean expected) {
         assertThat(numbers.contains(value)).isEqualTo(expected);
     }
-
 }

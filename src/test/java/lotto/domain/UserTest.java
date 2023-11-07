@@ -12,7 +12,6 @@ class UserTest {
     @ParameterizedTest
     @CsvSource(value = {"1000,1", "2000,2"})
     void purchaseLotto(String money, Integer lottoCount) {
-
         // given
         User user = new User();
 
@@ -23,5 +22,4 @@ class UserTest {
         assertThat(user.lottoCount).isEqualTo(lottoCount);
         assertThat(user.lottos).isNotEmpty();
     }
-
 }

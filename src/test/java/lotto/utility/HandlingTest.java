@@ -79,7 +79,7 @@ class HandlingTest {
 
     @DisplayName("변환하는 값앞에 0이 붙을 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"01,2,3,4,5,6","010"})
+    @ValueSource(strings = {"01,2,3,4,5,6", "010"})
     void parseNumbersByFirstNumberZero(String userInput) {
         // given
         List<String> lotto = Handling.split(userInput);

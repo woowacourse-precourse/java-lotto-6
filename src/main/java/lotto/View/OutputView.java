@@ -1,7 +1,7 @@
 package lotto.View;
 
-import java.util.List;
 import lotto.Constant.Constant;
+import lotto.Domain.Lotties;
 import lotto.Domain.Lotto;
 
 public class OutputView {
@@ -20,8 +20,8 @@ public class OutputView {
         System.out.println(lottoCount + Constant.OUTPUT_LOTTO_COUNT_MESSAGE);
     }
 
-    public void showLotties(List<Lotto> lotties) {
-        for (Lotto lotto : lotties) {
+    public void showLotties(Lotties lotties) {
+        for (Lotto lotto : lotties.getLotties()) {
             System.out.println(lotto.getNumbers());
         }
     }

@@ -1,10 +1,8 @@
 package lotto.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import lotto.Domain.Bonus;
+import lotto.Domain.Lotties;
 import lotto.Domain.Lotto;
-import lotto.Domain.LottoGenerator;
 import lotto.Domain.Money;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -14,12 +12,10 @@ public class LottoController {
     private static LottoController lottoController = new LottoController();
     private InputView inputView;
     private OutputView outputView;
-    private List<Lotto> lotties;
 
     private LottoController() {
         this.inputView = InputView.getInstance();
         this.outputView = OutputView.getInstance();
-        this.lotties = new ArrayList<>();
     }
 
     public static LottoController getInstance() {
@@ -30,7 +26,7 @@ public class LottoController {
         Money money = getMoney();
         showLottoCount(money.getCount());
 
-        lotties = buyLotto(money.getCount());
+        Lotties lotties = new Lotties(money.getCount());
         showLotties(lotties);
 
         Lotto lotto = getLotto();
@@ -51,12 +47,8 @@ public class LottoController {
         outputView.showLottoCount(count);
     }
 
-    private void showLotties(List<Lotto> lotties) {
+    private void showLotties(Lotties lotties) {
         outputView.showLotties(lotties);
-    }
-
-    private List<Lotto> buyLotto(int count) {
-        return LottoGenerator.makeLotties(count);
     }
 
     private Lotto getLotto() {

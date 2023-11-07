@@ -1,11 +1,14 @@
 package lotto;
 
+import java.util.Arrays;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -23,5 +26,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void 당첨_번호와_일치하는_번호_갯수_확인(){
+        Lotto userLotto = new Lotto(List.of(1, 2, 30, 40, 50, 60));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertEquals(2, userLotto.countMatchingNumbers(winningLotto));
+    }
 }

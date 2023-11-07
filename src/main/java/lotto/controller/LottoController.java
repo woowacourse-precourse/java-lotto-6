@@ -23,8 +23,7 @@ public class LottoController {
             Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
             printLottoValues(lottos);
             UserLotto userLotto = getUserLotto();
-            List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos
-            );
+            List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos);
             returnGameResult(results, purchasePrice);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

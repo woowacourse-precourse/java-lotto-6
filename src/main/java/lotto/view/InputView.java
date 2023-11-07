@@ -16,6 +16,10 @@ public class InputView {
     public static List<Integer> getUserLottoNumber() {
         String input = Console.readLine();
         String[] numbers = getSplit(input);
+        if (numbers.length != 6){
+            throw new IllegalArgumentException(
+                    ErrorMessage.INPUT_NUMBERS_SIZE_IS_NOT_CORRECT_MESSAGE);
+        }
         return mapToInteger(numbers);
     }
 
@@ -32,7 +36,14 @@ public class InputView {
     }
 
     private static String[] getSplit(String input) {
+        if (hasNotCommand(input)){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_NOT_COMMAND_MESSAGE);
+        }
         return input.split(",");
+    }
+
+    private static boolean hasNotCommand(String input) {
+        return !input.contains(",");
     }
 
     private static List<Integer> mapToInteger(String[] numbers) {

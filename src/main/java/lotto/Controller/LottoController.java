@@ -12,15 +12,14 @@ import java.util.*;
 import static lotto.Enum.constants.*;
 
 public class LottoController {
+    public static Map<Prize, Integer> winResult;
+    static Lotto winNumber;
+    static int bonus;
+    static String lottoAmount;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     LottoService lottoService = new LottoService();
     List<Lotto> lottos = new ArrayList<>();
-    String lottoAmount;
-    static Lotto winNumber;
-    static int bonus;
-    public static Map<Prize, Integer> winResult;
-
 
     public void LottoGamePlay() {
         int count = lottoPurchase();
@@ -31,7 +30,11 @@ public class LottoController {
         System.out.println();
 
         createWinNumber();
+        System.out.println();
+
         createBonus();
+        System.out.println();
+
         LottoResult();
     }
 
@@ -58,7 +61,6 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println();
     }
 
     private void createWinNumber() {
@@ -67,7 +69,6 @@ public class LottoController {
             List<Integer> numbers = splitNumber();
             validateInput = insertNumberToLotto(numbers);
         }
-        System.out.println();
     }
 
     private boolean insertNumberToLotto(List<Integer> numbers) {
@@ -106,9 +107,7 @@ public class LottoController {
         int count = 0;
         while (!validInput) {
             try {
-                lottoAmount = inputView.purchaseLotto();
-                int amount = Integer.parseInt(lottoAmount);
-                count = lottoService.countingLottoByAmount(amount);
+                count = inputPurchase();
                 validInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(LottoError.AmountFormat.getErrorMessage());
@@ -117,6 +116,11 @@ public class LottoController {
         System.out.println();
         outputView.purchaseLottoCount(count);
         return count;
+    }
+
+    private int inputPurchase() {
+        lottoAmount = inputView.purchaseLotto();
+        return lottoService.countingLottoByAmount(Integer.parseInt(lottoAmount));
     }
 
     public void insertResult(Lotto lotto, Lotto winNumbers) {

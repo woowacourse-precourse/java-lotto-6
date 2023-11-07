@@ -8,6 +8,7 @@ import java.util.List;
 
 public class InputView {
     public static long inputMoney() {
+        System.out.println("금액을 입력하세요.");
         String money = Console.readLine();
         InputValidator.validateInputMoney(money);
 
@@ -15,6 +16,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumber() {
+        System.out.println("당첨 번호를 입력하세요.");
         String winningNumber = Console.readLine();
         String[] numbers = winningNumber.split(",");
         InputValidator.validateInputWinningNumber(numbers);
@@ -23,6 +25,7 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력하세요.");
         String bonusNumber = Console.readLine();
         InputValidator.validateBonusNumber(bonusNumber);
 

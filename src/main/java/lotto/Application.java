@@ -6,29 +6,27 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class Application {
+    private static int input ;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int input = buyLotto();
-        int number = input / 1000;
-        Lotto[] lottos = outputLottoNumber(number);
+        buyLotto();
+        Lotto[] lottos = outputLottoNumber();
         String[] winning = winningNumber();
         int bonus = bonusNumber();
         compare(lottos, winning, bonus);
     }
 
-    private static int buyLotto() {
+    private static void buyLotto() {
         String str = "";
-        int num = 0;
 
         try {
             System.out.println("구입금액을 입력해 주세요.");
             str = Console.readLine();
             exceptionMessage(str);
-            num = Integer.parseInt(str);
-            return num;
+            input = Integer.parseInt(str);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return buyLotto();
+            buyLotto();
         }
     }
 
@@ -63,7 +61,8 @@ public class Application {
         return Integer.parseInt(input) % 1000 == 0;
     }
 
-    private static Lotto[] outputLottoNumber(int number) {
+    private static Lotto[] outputLottoNumber() {
+        int number = input / 1000;
         int i = 0;
         Lotto[] lottos = new Lotto[number];
         try {
@@ -192,16 +191,24 @@ public class Application {
         }
 
         print(arr);
+        rateOfReturn(arr, input);
     }
 
     private static void print(int[] arr) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + arr[0]);
-        System.out.println("4개 일치 (50,000원) - " + arr[1]);
-        System.out.println("5개 일치 (1,500,000원) - " + arr[2]);
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + arr[3]);
-        System.out.println("6개 일치 (2,000,000,000원) - " + arr[4]);
+        System.out.println("3개 일치 (5,000원) - " + arr[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + arr[1]+ "개");
+        System.out.println("5개 일치 (1,500,000원) - " + arr[2]+ "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + arr[3]+ "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + arr[4]+ "개");
+    }
+
+    private static void rateOfReturn(int[] arr, int input) {
+        float sum = (float) ((arr[0] * 5000) + (arr[1] * 50000) + (arr[2] * 1500000) + (arr[3] * 30000000) + (arr[4] * 2000000000)) / input;
+
+        String result = String.format("%,.1f", sum);
+        System.out.println("총 수익률은 " + result + "% 입니다.");
     }
 
 }

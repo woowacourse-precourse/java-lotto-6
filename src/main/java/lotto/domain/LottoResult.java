@@ -14,14 +14,12 @@ public class LottoResult {
     private List<List<Integer>> quantityOfLotto;
     private int correctCount;
     private Map<Rank, Integer> prizeCount;
-    private int prizeMoney;
 
     public LottoResult(List<Integer> numberFromPlayer, int bonusNumber, List<List<Integer>> quantityOfLotto) {
         this.numberFromPlayer = numberFromPlayer;
         this.bonusNumber = bonusNumber;
         this.quantityOfLotto = quantityOfLotto;
         this.prizeCount = setPrizeCount();
-        prizeMoney = ZERO;
     }
 
     private Map<Rank, Integer> setPrizeCount() {
@@ -70,20 +68,5 @@ public class LottoResult {
             compareLotto(lotto);
         }
         return prizeCount;
-    }
-
-    private int calculatePrizeMoney() {
-        prizeMoney += prizeCount.get(Rank.FIRST) * Rank.FIRST.prizeMoney;
-        prizeMoney += prizeCount.get(Rank.SECOND) * Rank.SECOND.prizeMoney;
-        prizeMoney += prizeCount.get(Rank.THIRD) * Rank.THIRD.prizeMoney;
-        prizeMoney += prizeCount.get(Rank.FOURTH) * Rank.FOURTH.prizeMoney;
-        prizeMoney += prizeCount.get(Rank.FIFTH) * Rank.FIFTH.prizeMoney;
-
-        return prizeMoney;
-    }
-
-    public double getRateOfReturn(int purchaseAmount) {
-        prizeMoney = calculatePrizeMoney();
-        return (double) prizeMoney / (double) purchaseAmount * PERCENTAGE;
     }
 }

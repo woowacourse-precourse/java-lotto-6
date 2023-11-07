@@ -7,13 +7,15 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
-    private LottoByPlayer lottoByPlayer;
     private LottoAmount lottoAmount;
+    private LottoByPlayer lottoByPlayer;
     private final LottoGenerator lottoGenerator;
     private LottoResult lottoResult;
+    private RateOfReturn rateOfReturn;
     private Validator validator;
 
 
@@ -23,11 +25,14 @@ public class LottoGame {
     private int purchaseAmount;
     private List<Integer> numberFromPlayer;
     private int bonusNumber;
+    private Map<Rank, Integer> prizeCount;
 
     public LottoGame() {
-        lottoGenerator = new LottoGenerator();
-        validator = new Validator();
         lottoAmount = new LottoAmount();
+        lottoGenerator = new LottoGenerator();
+        rateOfReturn = new RateOfReturn();
+        validator = new Validator();
+
         numberFromPlayer = new ArrayList<>();
         numberFromGenerator = new ArrayList<>();
         quantityOfLotto = new ArrayList<>();
@@ -97,10 +102,11 @@ public class LottoGame {
 
 
     private void printWinningResult() {
-        OutputView.printWinningStatistics(lottoResult.compare());
+        this.prizeCount = lottoResult.compare();
+        OutputView.printWinningStatistics(prizeCount);
     }
 
     private void printTotalRateOfReturn() {
-        OutputView.printTotalRateOfReturn(lottoResult.getRateOfReturn(purchaseAmount));
+        OutputView.printTotalRateOfReturn(rateOfReturn.getRateOfReturn(purchaseAmount, prizeCount));
     }
 }

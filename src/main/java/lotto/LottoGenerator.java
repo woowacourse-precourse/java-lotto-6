@@ -6,16 +6,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGenerator {
 
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
+    private static final int LOTTO_SIZE = 6;
 
     private static List<Integer> generateLotteryNumber() {
-        List<Integer> lottertyNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> lottertyNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE));
         Collections.sort(lottertyNumbers);
         return lottertyNumbers;
     }
 
-    public static List<Lotto> generateLottos(int numberOfLottoes) {
+    public static List<Lotto> generateLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int lottoNumber = 0; lottoNumber < numberOfLottoes; lottoNumber++) {
+        for (int lottoNumber = 0; lottoNumber < numberOfLottos; lottoNumber++) {
             Lotto lotto = generateLotto();
             lottos.add(lotto);
         }

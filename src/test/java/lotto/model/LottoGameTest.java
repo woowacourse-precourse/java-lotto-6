@@ -100,11 +100,15 @@ class LottoGameTest {
     }
 
     @Test
-    void calculationResult() {
+    @DisplayName("수익률 계산 테스트")
+    void calculationRateOfReturn() {
+        lottoGame.updateMatch(3, lotto, drawResult);
+        lottoGame.calculationRateOfReturn();
+        assertEquals(500.0, lottoGame.getRateOfReturn());
     }
 
     @Test
-    void calculationRateOfReturn() {
+    void calculationResult() {
     }
 
 }

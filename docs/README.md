@@ -27,7 +27,6 @@
 ### Main Functions
 - Controller
   - 게임시작
-  - 입력
 - Model
   - 구입금액 입력
   - 로또 번호 생성
@@ -40,6 +39,7 @@
   - 로또 당첨번호 입력에 대한 예외 처리
   - 보너스 번호 입력에 대한 예외 처리
 - View
+  - 입력
   - 게임 결과
 
 ### Exception List

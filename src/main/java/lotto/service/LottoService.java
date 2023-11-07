@@ -14,6 +14,8 @@ import java.util.Map;
 public class LottoService {
     private static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
 
+    private Map<Ranking, Integer> winningResult;
+
     public String makePurchaseResultOutputStatement(int count) {
         StringBuilder result = new StringBuilder();
         result.append(count).append(PURCHASE_X_COUNT + "\n");
@@ -74,14 +76,20 @@ public class LottoService {
         return SIXTH;
     }
 
-    public Map<Ranking, Integer> initWinningResult() {
-        Map<Ranking, Integer> winningResult = new HashMap<>();
+    public void initWinningResult() {
+        winningResult = new HashMap<>();
 
         for (Ranking ranking : Ranking.values()) {
             winningResult.put(ranking, 0);
         }
-
-        return winningResult;
     }
 
+    public void makeWinningResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+
+    }
+
+
+    public Map<Ranking, Integer> getWinningResult() {
+        return winningResult;
+    }
 }

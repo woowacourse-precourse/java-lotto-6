@@ -183,27 +183,27 @@ class LottoServiceTest {
 
     @Test
     @DisplayName("기능36 테스트 : Ranking에 있는 값들로 winningResult를 초기화한다.")
-    void winningResultInitByRankingEnum() {
+    void winningResultUseRakingEnumAsKey() {
         // when
-        Map<Ranking, Integer> winnerResult = lottoService.initWinningResult();
+        lottoService.initWinningResult();
+        Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
 
         // then
-        Set<Ranking> keySet = winnerResult.keySet();
-
-        assertThat(keySet)
+        assertThat(winningResult.keySet())
                 .hasSize(6)
                 .contains(Ranking.values());
     }
 
     @Test
     @DisplayName("기능36 테스트 : winningResult의 모든 원소의 value는 0으로 초기화된다.")
-    void EveryWinningResultElementHaveValueZero() {
+    void initWinningResultInitElementValuesToZero() {
         // when
-        Map<Ranking, Integer> winnerResult = lottoService.initWinningResult();
+        lottoService.initWinningResult();
+        Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
 
         // then
-        for (Ranking ranking : winnerResult.keySet()) {
-            assertThat(winnerResult.get(ranking)).isEqualTo(0);
+        for (Ranking ranking : winningResult.keySet()) {
+            assertThat(winningResult.get(ranking)).isEqualTo(0);
         }
     }
 

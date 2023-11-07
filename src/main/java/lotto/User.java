@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class User {
-    int money;
+    private int money;
     List<Lotto> lottos;
 
     public User() {
@@ -44,5 +44,9 @@ public class User {
         if (Integer.parseInt(money) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또는 1장당 1000원입니다. 1000원 단위로 구매를 진행해주세요.");
         }
+    }
+
+    public int getUserMoney() {
+        return money;
     }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.view.constant.ViewConstant.InputViewConstant.COMMA;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.DUPLICATED_WINNING_NUMBER;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.NOT_CONTAINS_ONLY_NUMBER;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.NOT_EXIST_INPUT_ERROR;
 import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessage.NOT_NUMBER;
@@ -20,7 +21,9 @@ import static lotto.view.constant.ViewConstant.InputViewConstant.ZERO;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputView {
     public long supplyPurchaseAmount() {
@@ -65,15 +68,24 @@ public class InputView {
         if (hasNotSixNumbers(winningNumber)) {
             throw new IllegalArgumentException(NOT_SIX_NUMBERS.getErrorMessage());
         }
+        if (hasDuplicateNumber(winningNumber)) {
+            throw new IllegalArgumentException(DUPLICATED_WINNING_NUMBER.getErrorMessage());
+        }
         validateEachNumber(winningNumber);
+    }
+
+    private boolean isInvalidNumbersFormat(final String winningNumber) {
+        return !winningNumber.matches(NUMBERS_FORMAT_REGEX);
     }
 
     private boolean hasNotSixNumbers(final String winningNumber) {
         return winningNumber.split(COMMA).length != NUMBERS_COUNT;
     }
 
-    private boolean isInvalidNumbersFormat(final String winningNumber) {
-        return !winningNumber.matches(NUMBERS_FORMAT_REGEX);
+    private boolean hasDuplicateNumber(String winningNumber) {
+        List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
+        Set<String> nonDuplicateNumbers = new HashSet<>(numbers);
+        return nonDuplicateNumbers.size() != numbers.size();
     }
 
     private void validateEachNumber(final String winningNumber) {

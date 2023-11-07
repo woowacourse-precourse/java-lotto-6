@@ -17,6 +17,7 @@ public class ViewConstant {
             UNDER_THOUSAND_AMOUNT("[ERROR] 최소 1000원의 금액을 입력해야 합니다."),
             WINNING_NUMBERS_INVALID_FORMAT("[ERROR] 입력 형식이 올바르지 않습니다."),
             NOT_SIX_NUMBERS("[ERROR] 당첨 번호는 6개의 숫자로 이루어져야 합니다."),
+            DUPLICATED_WINNING_NUMBER("[ERROR] 6개의 번호는 중복될 수 없습니다."),
             DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다."),
             NOT_NUMBER("[ERROR] 값은 숫자만 가능합니다."),
             OVER_RANGE("[ERROR] 숫자 범위는 1부터 45까지 가능합니다.");

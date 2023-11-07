@@ -3,6 +3,9 @@ package lotto;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
+import lotto.constant.Ranking;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +16,7 @@ public class Lotto {
 
     private static final String START_MESSAGE = "[";
     private static final String END_MESSAGE = "]";
+    private static final int THIRD_RANKING_NUMBER = 5;
 
     private final List<Integer> numbers;
 
@@ -58,6 +62,29 @@ public class Lotto {
 
     public int getNumberByIndex(int index) {
         return numbers.get(index);
+    }
+
+    public Ranking isWin(WinningLotto winningLotto) {
+        int matchCount = calculateMatchCount(winningLotto);
+        boolean isMatchBonusNumber = hasBonusNumber(winningLotto.getBonusNumber(), matchCount);
+        return Ranking.getRanking(matchCount, isMatchBonusNumber);
+    }
+
+    private int calculateMatchCount(WinningLotto winningLotto) {
+        int count = 0;
+        for (int i = 0; i < LottoConstant.COUNT.getValue(); i++) {
+            if (winningLotto.isContain(numbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean hasBonusNumber(BonusNumber bonusNumber, int count) {
+        if (count != THIRD_RANKING_NUMBER) {
+            return false;
+        }
+        return numbers.contains(bonusNumber.getValue());
     }
 
     public String getNumbers() {

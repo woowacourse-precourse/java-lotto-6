@@ -10,7 +10,6 @@ import java.util.*;
 
 public class Lottoes {
 
-    private static final int THIRD_RANKING_NUMBER = 5;
     private final List<Lotto> elements = new ArrayList<>();
     private final LottoResult result = new LottoResult();
 
@@ -29,30 +28,10 @@ public class Lottoes {
     }
 
     public void calculateRanking(WinningLotto winningLotto) {
-        for (Lotto lotto: elements) {
-            int matchCount = calculateMatchCount(lotto, winningLotto);
-            boolean isMatchBonusNumber = hasBonusNumber(lotto, winningLotto.getBonusNumber(), matchCount);
-            Ranking ranking = Ranking.getRanking(matchCount, isMatchBonusNumber);
+        elements.forEach(lotto -> {
+            Ranking ranking = lotto.isWin(winningLotto);
             result.increaseCount(ranking);
-        }
-    }
-
-    private int calculateMatchCount(Lotto lotto, WinningLotto winningLotto) {
-        int count = 0;
-        for (int i = 0; i < LottoConstant.COUNT.getValue(); i++) {
-            int number = lotto.getNumberByIndex(i);
-            if (winningLotto.isContain(number)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber, int count) {
-        if (count != THIRD_RANKING_NUMBER) {
-            return false;
-        }
-        return lotto.isContain(bonusNumber.getValue());
+        });
     }
 
     public String getLottoesNumber() {

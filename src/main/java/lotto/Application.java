@@ -204,13 +204,14 @@ class bonus_number{
 class lotto_result{
     private static final int SECOND_PRIZE = 7;
 
-    public static void totalLottoCheck(List<List<Integer>> total, List<Integer> numbers, int bonus){
+    public static List<Integer> totalLottoCheck(List<List<Integer>> total, List<Integer> numbers, int bonus){
         List<Integer> result = new ArrayList<>();
         for(List<Integer> lotto : total){
             int correction = eachLottoCheck(lotto, numbers, bonus);
             result.add(correction);
         }
         printResult(result);
+        return result;
     }
 
     public static int eachLottoCheck(List<Integer> lotto, List<Integer> numbers, int bonus){
@@ -254,8 +255,23 @@ class lotto_result{
     }
 }
 
+class profit_margin_caculation{
+    public static void profitMargin(List<Integer> result, int inputMoney){
+        int totalPrize = 0;
+        totalPrize += 5000 * Collections.frequency(result, 3);
+        totalPrize += 50000 * Collections.frequency(result, 4);
+        totalPrize += 1500000 * Collections.frequency(result, 5);
+        totalPrize += 30000000 * Collections.frequency(result, 7);
+        totalPrize += 2000000000 * Collections.frequency(result, 6);
+        float profitMargin = (float) totalPrize /inputMoney * 100;
+        System.out.println("총 수익률은 "+ String.format("%.1f", profitMargin) + "%입니다.");
+    }
+
+}
+
 public class Application {
     public static void main(String[] args) {
+
         int realMoney = money_for_lotto.exceptionRepeatMoney();
         int repeatTime = money_for_lotto.repeatTime(realMoney);
 
@@ -264,8 +280,10 @@ public class Application {
         List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
         int realBonus = bonus_number.exceptionRepeatBonus(winningNumber);
 
-
         System.out.println("\n당첨 통계\n---");
+        List<Integer> result = lotto_result.totalLottoCheck(totalLotto, winningNumber, realBonus);
+        profit_margin_caculation.profitMargin(result, realMoney);
+        Console.close();
 
     }
 }

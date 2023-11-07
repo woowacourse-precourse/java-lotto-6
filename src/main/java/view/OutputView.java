@@ -6,6 +6,7 @@ import lotto.Lotto;
 public class OutputView {
 
     private static String HORIZONTAL_RULE = "---";
+
     public static void printMoneyInputMessage() {
         System.out.println(OutputMessage.MONEY_INPUT_MESSAGE.getMessage());
     }
@@ -13,6 +14,7 @@ public class OutputView {
     public static void printLottoPurchaseCount(int count) {
         System.out.println(String.format(OutputMessage.LOTTO_PURCHASE_COUNT_MESSAGE.getMessage(), count));
     }
+
     public static void printAnswerLottoNumberInputMessage() {
         System.out.println(OutputMessage.ANSWER_LOTTO_INPUT_MESSAGE.getMessage());
     }
@@ -31,5 +33,9 @@ public class OutputView {
 
     public static void printLottoString(Lotto lotto) {
         System.out.println(lotto.getGeneratedLottoString());
+    }
+
+    public static void printEarningRate(double earningRate) {
+        System.out.printf(OutputMessage.EARNING_RATE_MESSAGE.getMessage(), earningRate);
     }
 }

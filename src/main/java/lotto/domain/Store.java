@@ -9,6 +9,7 @@ import lotto.constant.LottoErrorMessage;
 public class Store {
     public static List<Lotto> sellLottos(Integer money) {
         List<Lotto> lottos = new ArrayList<Lotto>();
+        validatePositive(money);
         validateDividedByPrice(money);
 
         for (int i = 0; i < money / Lotto.PRICE; i++) {
@@ -18,6 +19,12 @@ public class Store {
         }
 
         return lottos;
+    }
+
+    private static void validatePositive(Integer money) {
+        if (money <= 0) {
+            throw new IllegalArgumentException(LottoErrorMessage.PAY_MONEY_CONDITION);
+        }
     }
 
     private static void validateDividedByPrice(Integer money) {

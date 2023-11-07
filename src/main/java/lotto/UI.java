@@ -28,9 +28,6 @@ public class UI {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
         }
-        if (payment <= 0) {
-            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
-        }
         return payment;
     }
 

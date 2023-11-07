@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Print {
 
@@ -21,5 +22,14 @@ public class Print {
         List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
         numbers.sort(null);
         return numbers;
+    }
+
+    public void printDrawResultStats(Map<Rank, Integer> drawResult) {
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NO_RANK) {
+                continue;
+            }
+            System.out.println(rank.getMessage() + drawResult.get(rank) + "개");
+        }
     }
 }

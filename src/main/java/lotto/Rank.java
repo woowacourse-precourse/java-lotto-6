@@ -30,4 +30,8 @@ public enum Rank {
                 .findAny()
                 .orElse(NO_RANK);
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

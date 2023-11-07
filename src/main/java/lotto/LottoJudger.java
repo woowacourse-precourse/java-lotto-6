@@ -89,6 +89,7 @@ public class LottoJudger {
     }
 
     private void initStatisticMap() {
+        statisticMap = new HashMap<>();
         for (Result result : Result.values()) {
             statisticMap.put(result, 0);
         }

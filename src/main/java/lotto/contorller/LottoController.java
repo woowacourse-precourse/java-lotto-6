@@ -2,30 +2,31 @@ package lotto.contorller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.UserLotto;
 import lotto.service.UserLottoService;
 
+import static java.lang.Integer.parseInt;
+
 public class LottoController {
-
-    int amount;
-    int bonusNum;
-    Lotto lotto;
+    UserLotto userLotto;
     private final UserLottoService lottoService = new UserLottoService();
-    public void getLottoInput() {
+    public Lotto getLottoInput() {
         String lottoInput = Console.readLine();
-        lotto = lottoService.stringToLotto(lottoInput);
+        return lottoService.stringToLotto(lottoInput);
     }
 
-    public void getAmountInput() {
+    public int getAmountInput() {
         String amountInput = Console.readLine();
-        amount = Integer.parseInt(amountInput);
+        return Integer.parseInt(amountInput);
     }
 
-    public void getBonusNumInput() {
+    public int getBonusNumInput() {
         String bonusNumInput = Console.readLine();
-        bonusNum = Integer.parseInt(bonusNumInput);
+        return Integer.parseInt(bonusNumInput);
     }
 
-    public void start() {
+    public void init() {;
+        userLotto = lottoService.getUserLotto(getLottoInput(), getBonusNumInput(), getAmountInput());
 
     }
 }

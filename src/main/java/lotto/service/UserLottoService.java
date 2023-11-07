@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.UserLotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,5 +16,9 @@ public class UserLottoService {
         }
 
         return new Lotto(lottoNums);
+    }
+
+    public UserLotto getUserLotto(Lotto lotto, int bonusNum, int amount) {
+        return new UserLotto(lotto, bonusNum, amount);
     }
 }

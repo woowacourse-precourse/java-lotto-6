@@ -21,12 +21,20 @@ public class LottoPurchaseService {
 
         int value = Integer.parseInt(purchaseAmount);
         isMinimumAmountValid(value);
+        isAmountInUnit(value);
     }
 
     private void isMinimumAmountValid(int value) {
         if (value < LOTTO_TICKET_PRICE) {
             throw new IllegalArgumentException(
                     String.format(ErrorConstants.INVALID_RANGE_INPUT.getData(), LOTTO_TICKET_PRICE));
+        }
+    }
+
+    private void isAmountInUnit(int value) {
+        if (value % LOTTO_TICKET_PRICE != 0) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorConstants.INVALID_UNIT_INPUT.getData(), LOTTO_TICKET_PRICE));
         }
     }
 

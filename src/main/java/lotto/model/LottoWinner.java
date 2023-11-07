@@ -9,4 +9,8 @@ public class LottoWinner {
         winningLotto = winning;
         bonusLotto = bonus;
     }
+
+    public static void compareWithLotto(Lotto lotto) {
+        int correctCount = winningLotto.compareLottoWith(lotto);
+    }
 }

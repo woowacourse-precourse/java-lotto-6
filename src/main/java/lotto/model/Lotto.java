@@ -26,6 +26,25 @@ public class Lotto {
         return String.format(FORMAT_OF_PURCHASE_LOTTO, numbersLine);
     }
 
+    public int compareLottoWith(Lotto anotherLotto) {
+        return countSameNumbers(numbers, anotherLotto.numbers);
+    }
+
+    private int countSameNumbers(List<Integer> numbers, List<Integer> anotherNumbers) {
+        int correctCount = 0;
+        for (int number : numbers) {
+            correctCount += isContain(anotherNumbers, number);
+        }
+        return correctCount;
+    }
+
+    private int isContain(List<Integer> anotherNumbers, int number) {
+        if (anotherNumbers.contains(number)) {
+            return 1;
+        }
+        return 0;
+    }
+
     private List<Integer> sortNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().toList(); // TODO: check convention!
     }

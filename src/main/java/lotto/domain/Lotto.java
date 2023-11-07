@@ -38,9 +38,17 @@ public class Lotto {
         }
     }
 
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    public void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
         }
+    }
+
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().filter(winningLotto::containNumber).count();
+    }
+
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
     }
 }

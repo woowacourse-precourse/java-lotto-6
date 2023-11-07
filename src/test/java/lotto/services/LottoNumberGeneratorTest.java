@@ -1,11 +1,10 @@
-package lotto;
+package lotto.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.services.LottoNumberGenerator;
 import lotto.utils.NumberGenerator;
 import lotto.utils.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;

@@ -9,7 +9,7 @@ public class LottoNumberComparator {
     private final List<Lotto> purchasedLottos;
     private final Lotto winningLotto;
     private final int bonusNumber;
-    private EnumMap<LottoPrize, Integer> prizeCount;
+    private final EnumMap<LottoPrize, Integer> prizeCount;
 
     public LottoNumberComparator(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
         this.purchasedLottos = purchasedLottos;
@@ -17,22 +17,21 @@ public class LottoNumberComparator {
         this.bonusNumber = bonusNumber;
         this.prizeCount = new EnumMap<>(LottoPrize.class);
         initializePrizeCount();
-        calculatePrizes();
     }
 
     public EnumMap<LottoPrize, Integer> getPrizeCount() {
         return prizeCount;
     }
 
-    private void initializePrizeCount() {
+    protected void initializePrizeCount() {
         for (LottoPrize rank : LottoPrize.values()) {
             prizeCount.put(rank, 0);
         }
     }
 
-    private void calculatePrizes() {
+    public void calculatePrizes() {
         for (Lotto lotto : purchasedLottos) {
-            int matchCount = calculateMatchingNumbers(lotto);
+            int matchCount = countMatchingNumbers(lotto);
             boolean isBonus = isBonusNumberMatched(lotto);
             LottoPrize rank = determinePrize(matchCount, isBonus);
 
@@ -40,7 +39,7 @@ public class LottoNumberComparator {
         }
     }
 
-    public int calculateMatchingNumbers(Lotto purchasedLotto) {
+    protected int countMatchingNumbers(Lotto purchasedLotto) {
         int matchCount = 0;
         List<Integer> winningNumbers = winningLotto.getNumbers();
         List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
@@ -52,17 +51,17 @@ public class LottoNumberComparator {
         return matchCount;
     }
 
-    public boolean isBonusNumberMatched(Lotto purchasedLotto) {
+    protected boolean isBonusNumberMatched(Lotto purchasedLotto) {
         List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
         return purchasedNumbers.contains(bonusNumber);
     }
 
-    private LottoPrize determinePrize(int matchCount, boolean bonus) {
+    protected LottoPrize determinePrize(int matchCount, boolean bonus) {
         return LottoPrize.calculate(matchCount, bonus);
 
     }
 
-    private void updatePrizeCount(LottoPrize rank) {
+    protected void updatePrizeCount(LottoPrize rank) {
         if (rank != null) {
             prizeCount.put(rank, prizeCount.get(rank) + 1);
         }

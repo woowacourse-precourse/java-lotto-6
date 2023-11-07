@@ -3,11 +3,13 @@ package lotto.controller;
 import java.util.List;
 
 import lotto.Lotto;
+import lotto.model.WinningInfo;
 
 public class LottoStart {
     static Lotto lotto;
     static Judgment judgment = new Judgment();
     static NumberGenerator numbergenerator = new NumberGenerator();
+    WinningInfo winninginfo = new WinningInfo();
 
     public LottoStart(){
         final int num = numbergenerator.inputBuyCost();
@@ -16,9 +18,11 @@ public class LottoStart {
         lottonumbers(num2);
         correctNumberSet();
         
+        int bonusNumber = numbergenerator.InputBonusNumber(lotto.getLotto());
+        
         for(List<Integer> st : num2){
-            int num5 = judgment.correctCount(st , lotto.getLotto());
-            System.out.println(num5);
+            int correctCount = judgment.correctCount(st , lotto.getLotto());
+            setWinningInfo(correctCount);
         }
     }
 
@@ -39,6 +43,21 @@ public class LottoStart {
             }catch (IllegalArgumentException e){
                 System.out.println(e);
             }   
+        }
+    }
+
+    private void setWinningInfo(int correctCount){
+        if (correctCount == 3){
+            winninginfo.setFifthRank();
+        }
+        else if (correctCount == 4){
+            winninginfo.setfourthrank();
+        }
+        else if (correctCount == 5){
+            winninginfo.setthirdrank();
+        }
+        else if (correctCount == 6){
+            winninginfo.setfirstrank();
         }
     }
 }

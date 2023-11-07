@@ -72,6 +72,8 @@
 
 ### Lotto
 -[ ] 발행한 각 로또를 저장한다.
+- [ ] 6개의 숫자가 맞는지 확인
+  - 6개가 아니라면 IllegalArgumentException 오류 발생
 -[ ] 각 숫자 범위가 1~45까지인지 확인
     - [ ] 숫자의 범위 안에 없는 숫자라면 IllegalArgumentException 오류 발생
 

@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.LottoGet;
+import lotto.model.LottoSetUp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class View {
     }
 
     public static void printlottos() {
-        int[][] lottos = LottoGet.getLottos();
+        int[][] lottos = LottoSetUp.toMakeIncreseLotto();
         for(int i = 0; i < numberOfgetTotalCost; i++) {
             System.out.println(Arrays.toString(lottos[i]));
         }

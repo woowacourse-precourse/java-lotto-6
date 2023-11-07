@@ -6,12 +6,13 @@ import java.util.List;
 
 public class LottoHost {
 
-    private Lotto lottoAnswer;
+    private Lotto AnswerLotto;
     private Integer bonusNumber;
 
     public Lotto generateLotto(){
         return new Lotto(generateRandomNumbers());
     }
+
 
     private List<Integer> generateRandomNumbers(){
         List<Integer> host = new ArrayList<>();

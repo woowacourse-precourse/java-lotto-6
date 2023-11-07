@@ -36,7 +36,7 @@ public class LottoChecker {
         if (hit == LottoConfig.LOTTO_SIZE) {
             return LottoPrize.FIRST;
         }
-        if (hit == LottoConfig.LOTTO_SIZE - 1 && answerNumberSet.contains(bonusNumber)) {
+        if (hit == LottoConfig.LOTTO_SIZE - 1 && lotto.getNumbers().contains(bonusNumber)) {
             return LottoPrize.SECOND;
         }
         if (hit == LottoConfig.LOTTO_SIZE - 1) {

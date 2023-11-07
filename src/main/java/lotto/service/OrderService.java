@@ -1,25 +1,30 @@
 package lotto.service;
 
 import lotto.domain.OrderCalculator;
-import lotto.values.ExceptionMessage;
 
 import static lotto.values.ExceptionMessage.*;
 
 public class OrderService {
-    private OrderCalculator calculator;
+    int lottoNumber;
+
     public boolean checkException(String input){
-        if(input.length()==0) throw new IllegalArgumentException(NOT_NULL.getMessage());
-        if(!input.matches(ONLY_NUMBER.getMessage())) throw new IllegalArgumentException(NOT_NUMBER.getMessage());
-
-        this.calculator = new OrderCalculator(input);
-
-        if(!calculator.checkThousands()) throw new IllegalArgumentException(CAN_NOT_PURCHASE.getMessage());
-        if(calculator.tooMuchValue()) throw new IllegalArgumentException(TOO_MUCH_MONEY.getMessage());
+        checkMoneyException(input);
+        checkComputeException(input);
 
         return true;
     }
-    public int executeOrder(){
-        return calculator.compute();
+    private void checkMoneyException(String input){
+        if(input.length()==0) throw new IllegalArgumentException(NOT_NULL.getMessage());
+        if(!input.matches(ONLY_NUMBER.getMessage())) throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+    }
+    private void checkComputeException(String input){
+        OrderCalculator calculator = new OrderCalculator(input);
+        if(!calculator.checkThousands()) throw new IllegalArgumentException(CAN_NOT_PURCHASE.getMessage());
+        if(calculator.tooMuchValue()) throw new IllegalArgumentException(TOO_MUCH_MONEY.getMessage());
+        lottoNumber = calculator.compute();
+    }
+    public int getLottoNumber(){
+        return lottoNumber;
     }
 
 }

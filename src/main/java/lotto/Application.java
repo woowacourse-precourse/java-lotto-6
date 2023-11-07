@@ -7,7 +7,8 @@ public class Application {
         // TODO: 프로그램 구현
         String input = input_money();
         int money = String_to_Int(input);
-        System.out.print(money);
+        int lotto_num = Affordable_LottoNum(money);
+        System.out.print(lotto_num);
     }
     private static String input_money(){               // input을 String으로 받아 반환
         System.out.print("구입금액을 입력해 주세요.\n");
@@ -21,6 +22,13 @@ public class Application {
             throw new IllegalArgumentException();
         }
     }
+    private static int Affordable_LottoNum(Integer money) {
+        if (money % 1000 != 0){            // 나누어 떨어지지 않으면 IllegalArgumentException 발생
+            throw new IllegalArgumentException();
+        }
+        return money / 1000;
+    }
+
 
 
 }

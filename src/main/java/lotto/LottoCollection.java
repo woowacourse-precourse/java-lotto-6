@@ -59,6 +59,17 @@ public class LottoCollection {
         rankingCount.put(rank, rankingCount.getOrDefault(rank, 0) + 1);
     }
 
+    public void printWinningStatistics() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i = 5; i > 0; i--){
+            LottoRank rank = getLottoRankByNumber(i);
+            int count = rankingCount.getOrDefault(i, 0);
+            System.out.println(rank.getRankMessage() + " - " + count + "개");
+        }
+    }
+
+
     private LottoRank getLottoRankByNumber(int number) {
         for (LottoRank rank : LottoRank.values()) {
             if (rank.ordinal() + 1 == number) {

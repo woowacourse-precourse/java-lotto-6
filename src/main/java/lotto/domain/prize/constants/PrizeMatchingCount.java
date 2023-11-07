@@ -23,14 +23,14 @@ public enum PrizeMatchingCount {
     // Utility Method
     public static PrizeMatchingCount from(final int matchingCount) {
         return Arrays.stream(PrizeMatchingCount.values())
-                .filter(rank -> isSameMatchingCount(matchingCount, rank))
+                .filter(grade -> isSameMatchingCount(matchingCount, grade))
                 .findFirst()
                 .orElseThrow(() -> LottoException.from(ErrorMessage.SYSTEM_CRASHED));
     }
 
     // Validation Method
-    private static boolean isSameMatchingCount(int matchingCount, PrizeMatchingCount rank) {
-        return rank.getCount() == matchingCount;
+    private static boolean isSameMatchingCount(int matchingCount, PrizeMatchingCount grade) {
+        return grade.getCount() == matchingCount;
     }
 
     // Getter

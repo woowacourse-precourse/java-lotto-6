@@ -19,7 +19,7 @@ class InputValidatorTest {
         //when
         //then
         assertThatThrownBy(() -> {
-                InputValidator.isNaturalNumber(number);
+                InputValidator.isOneNaturalNumber(number);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +32,7 @@ class InputValidatorTest {
         //when
         //then
         assertThatThrownBy(() -> {
-            InputValidator.isNaturalNumber(numbers);
+            InputValidator.isNaturalNumbers(numbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

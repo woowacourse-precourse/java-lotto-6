@@ -7,18 +7,15 @@ public class InputValidator {
     private static final String REGEXP_PATTERN_NUMBER = "^[\\d]*$";
     private static final String REGEXP_PATTERN_SPACE_CHAR = "^[\\s]*$";
 
-    public static void isNaturalNumber(String number) {
+    public static void isOneNaturalNumber(String number) {
         if (!Pattern.matches(REGEXP_PATTERN_NUMBER, number)) {
             throw new IllegalArgumentException(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING.getText());
         }
     }
 
-    public static void isNaturalNumber(String[] numbers) {
+    public static void isNaturalNumbers(String[] numbers) {
         for (String number : numbers) {
-            if (!Pattern.matches(REGEXP_PATTERN_NUMBER, number)) {
-                throw new IllegalArgumentException(
-                        InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING_ARRAY.getText());
-            }
+            isOneNaturalNumber(number);
         }
     }
 

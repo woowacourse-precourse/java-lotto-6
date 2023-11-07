@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.LottoGenerator;
 import lotto.domain.Purchase;
+import lotto.domain.RewardCalculator;
 import lotto.domain.WinningLotto;
 
 public class Application {
@@ -12,5 +13,8 @@ public class Application {
 
         LottoGenerator lottos = new LottoGenerator(trials);
         WinningLotto.setWinningLotto();
+
+        RewardCalculator calc = new RewardCalculator(lottos.getLottoTrials());
+        calc.getResults();
     }
 }

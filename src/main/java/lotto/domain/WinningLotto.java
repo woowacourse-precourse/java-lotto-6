@@ -22,6 +22,11 @@ public class WinningLotto {
             setBonus();
     }
 
+    public static void setWinningLotto(List<Integer> winning, int bonusNumber) {
+        lotto = new Lotto(winning);
+        bonus = bonusNumber;
+    }
+
     private static void setLotto() {
         while (true) {
             try {

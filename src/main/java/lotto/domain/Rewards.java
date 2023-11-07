@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum Rewards {
     First(6, null, 2_000_000_000),
     Second(5, true, 30_000_000),
@@ -8,7 +11,7 @@ public enum Rewards {
     Fifth(3, null, 5_000);
 
     private final int countOfMatch;
-    private final boolean isBonusMatch;
+    private final Boolean isBonusMatch;
     private final int prize;
 
     Rewards(int match, Boolean bonus, int prize) {
@@ -19,6 +22,13 @@ public enum Rewards {
 
     public String getSummaryText() {
         return getMatchText() + getBonusText() + getPrizeText();
+    }
+
+    public static Optional<Rewards> getRewardByValues(int matches, boolean bonus) {
+        return Arrays.stream(Rewards.values())
+                .filter(reward -> (reward.countOfMatch == matches)
+                        && (reward.isBonusMatch == (Boolean) bonus))
+                .findFirst();
     }
 
     private String getMatchText() {

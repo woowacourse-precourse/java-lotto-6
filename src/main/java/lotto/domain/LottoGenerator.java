@@ -8,7 +8,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class LottoGenerator {
-    public List<Lotto> LottoTrials = new ArrayList<>();
+    private List<Lotto> LottoTrials = new ArrayList<>();
 
     public LottoGenerator(int trials) {
         generateLottoTrials(trials);
@@ -22,4 +22,7 @@ public class LottoGenerator {
         }
     }
 
+    public List<Lotto> getLottoTrials() {
+        return this.LottoTrials;
+    }
 }

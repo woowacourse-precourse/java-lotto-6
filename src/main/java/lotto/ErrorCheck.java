@@ -39,6 +39,11 @@ public class ErrorCheck {
             throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_PURCHASE_INPUT.getMessage());
         }
     }
+    public static void validatePurchaseInputDataType(String purchaseAmountInput) {
+        if (!(purchaseAmountInput.matches("^[0-9, ]+$"))){
+            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_PURCHASE_INPUT_DATA_TYPE.getMessage());
+        }
+    }
 
     public static void validateRandomLottoSize(List<Integer> numbers) {
         if (numbers.size() != 6) {

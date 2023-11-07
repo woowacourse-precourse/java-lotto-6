@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.ErrorCheck.*;
@@ -15,8 +16,7 @@ public class RunnerLotto {
     public static final int LOTTO_START_NUMBER = 1;
     public static final int LOTTO_END_NUMBER = 45;
 
-    public static void playLotto() {
-        LottoInit lottoInit = ReceiveInitial();
+    public static void playLotto(LottoInit lottoInit) {
         List<Lotto> allOfLottoPapers = makeAllLottoPaper(lottoInit.numberOfLotto);
         WinningNumberSet winningNumberSets = makeWinningNumber();
         PrinterResultSet resultSets = calculateResult(winningNumberSets, allOfLottoPapers);
@@ -27,6 +27,7 @@ public class RunnerLotto {
         List<Lotto> allOfLottoPapers = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
             Lotto lottoPaper = new Lotto(makeRandomNumbers());
+            Collections.sort(lottoPaper.getLottoNumbers());
             lottoPaper.printLottoPaper(lottoPaper);
             allOfLottoPapers.add(lottoPaper);
         }
@@ -37,20 +38,7 @@ public class RunnerLotto {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_SIZE);
     }
 
-    private static LottoInit ReceiveInitial() {
-        LottoInit lottoInit = null;
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            int purchaseAmount = Integer.parseInt(Console.readLine());
-            int numberOfLotto = purchaseAmount / 1000;
-            lottoInit = new LottoInit(purchaseAmount, numberOfLotto);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return ReceiveInitial();
-        }
-        System.out.println("\n" + lottoInit.numberOfLotto + "개를 구매했습니다.");
-        return lottoInit;
-    }
+
 
     public static WinningNumberSet makeWinningNumber() {
         String[] winningNumbers;
@@ -58,10 +46,8 @@ public class RunnerLotto {
         try {
             System.out.println("\n당첨 번호를 입력해 주세요.");
             String winningLotteryNumber = Console.readLine();
-            validateInputDataType(winningLotteryNumber);
             winningNumbers = winningLotteryNumber.split(",");
-            validateWinningNumbersDataType(winningNumbers);
-            validateWinningNumbersSize(winningNumbers);
+            validateAllOfWinningNumberError(winningLotteryNumber,winningNumbers);
             System.out.println("\n보너스 번호를 입력해 주세요.");
             bonusNumber = Integer.parseInt(Console.readLine());
             validateBonusNum(bonusNumber);
@@ -70,6 +56,12 @@ public class RunnerLotto {
             return makeWinningNumber();
         }
         return new WinningNumberSet(winningNumbers, bonusNumber);
+    }
+
+    public static void validateAllOfWinningNumberError(String winningLotteryNumber,String[] winningNumbers){
+        validateInputDataType(winningLotteryNumber);
+        validateWinningNumbersDataType(winningNumbers);
+        validateWinningNumbersSize(winningNumbers);
     }
 
     public static PrinterResultSet calculateResult(WinningNumberSet winningNumberSets, List<Lotto> allOfLottoPapers) {

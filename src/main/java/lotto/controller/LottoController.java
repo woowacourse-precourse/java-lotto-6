@@ -36,31 +36,31 @@ public class LottoController {
         showTotalRevenue(totalRevenue);
     }
 
-    public int makeBonusNumber(Lotto winningNumbers) {
+    private int makeBonusNumber(Lotto winningNumbers) {
         String inputBonusNumber = getBonusNumber();
         validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
         return Integer.parseInt(inputBonusNumber);
     }
 
-    public String getBonusNumber() {
+    private String getBonusNumber() {
         return inputView.bonusNumberInput();
     }
 
-    public void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+    private void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
         inputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
     }
 
-    public int getPurchaseAmount() {
+    private int getPurchaseAmount() {
         String purchaseAmount = inputView.purchaseAmountInput();
         inputValidation.validatePurchaseAmountInput(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
     }
 
-    public int purchaseLottoTickets(int purchaseAmount) {
+    private int purchaseLottoTickets(int purchaseAmount) {
         return calculateNumberOfLottoTickets(purchaseAmount);
     }
 
-    public void showPurchasedLottoTickets(Lottos lottos) {
+    private void showPurchasedLottoTickets(Lottos lottos) {
         List<Lotto> generatedLottos = lottos.getLottos();
         showNumberOfLottos(generatedLottos.size());
         for (Lotto lotto : generatedLottos) {
@@ -68,32 +68,32 @@ public class LottoController {
         }
     }
 
-    public Lotto makeWinningNumbers() {
+    private Lotto makeWinningNumbers() {
         List<String> inputWinningNumbers = splitWinningNumbers(getWinningNumbers());
         validateWinningNumbers(inputWinningNumbers);
         return makeWinningNumbersToLotto(inputWinningNumbers);
     }
 
-    public String getWinningNumbers() {
+    private String getWinningNumbers() {
         return inputView.winningNumbersInput();
     }
 
-    public List<String> splitWinningNumbers(String winningNumbers) {
+    private List<String> splitWinningNumbers(String winningNumbers) {
         return List.of(winningNumbers.split(","));
     }
 
-    public void validateWinningNumbers(List<String> numbers) {
+    private void validateWinningNumbers(List<String> numbers) {
         inputValidation.validateWinningNumbersInput(numbers);
     }
 
-    public Lotto makeWinningNumbersToLotto(List<String> winningNumbers) {
+    private Lotto makeWinningNumbersToLotto(List<String> winningNumbers) {
         List<Integer> winningLottoNumbers = winningNumbers.stream()
             .map(Integer::parseInt)
             .toList();
         return new Lotto(winningLottoNumbers);
     }
 
-    public Lottos generateLottoTickets(int numberOfLottoTickets) {
+    private Lottos generateLottoTickets(int numberOfLottoTickets) {
         Lottos lottos = new Lottos();
         for (int i = 0; i < numberOfLottoTickets; i++) {
             Lotto randomLotto = generateRandomLotto();
@@ -103,7 +103,7 @@ public class LottoController {
         return lottos;
     }
 
-    public int calculateNumberOfLottoTickets(int purchaseAmount) {
+    private int calculateNumberOfLottoTickets(int purchaseAmount) {
         int parsedPurchaseAmount = purchaseAmount;
         return parsedPurchaseAmount / LOTTO_TICKET_PRIZE;
     }

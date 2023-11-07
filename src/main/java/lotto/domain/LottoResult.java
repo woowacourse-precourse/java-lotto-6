@@ -21,5 +21,4 @@ public class LottoResult {
         }
         return 0;
     }
-
 }

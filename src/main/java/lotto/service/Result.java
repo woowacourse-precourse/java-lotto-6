@@ -12,11 +12,11 @@ public class Result {
     private static final int FIVE_HIT_PLUS_BONUS_HIT_PRICE = 30000000;
     private static final int SIX_HIT_PRICE = 2000000000;
 
-    private static int threeHit = 0;
-    private static int fourHit = 0;
-    private static int fiveHit = 0;
-    private static int fiveHitPlusBonusHit = 0;
-    private static int sixHit = 0;
+    private static int threeHit;
+    private static int fourHit;
+    private static int fiveHit;
+    private static int fiveHitPlusBonusHit;
+    private static int sixHit;
     private final Payment payment;
     private final List<Lotto> lottos;
 
@@ -36,22 +36,25 @@ public class Result {
     private void countResult(List<Integer> winningResults, List<Boolean> bonusResults) {
         resetCount();
         for (int i = 0; i < winningResults.size(); i++) {
-            int result = winningResults.get(i);
-            if (result == 3) {
-                threeHit++;
-            }
-            if (result == 4) {
-                fourHit++;
-            }
-            if (result == 5 && !bonusResults.get(i)) {
-                fiveHit++;
-            }
-            if (result == 5 && bonusResults.get(i)) {
-                fiveHitPlusBonusHit++;
-            }
-            if (result == 6) {
-                sixHit++;
-            }
+            updateCount(winningResults.get(i),bonusResults.get(i));
+        }
+    }
+
+    private void updateCount(Integer result, boolean bonusResult) {
+        if (result == 3) {
+            threeHit++;
+        }
+        if (result == 4) {
+            fourHit++;
+        }
+        if (result == 5 && !bonusResult) {
+            fiveHit++;
+        }
+        if (result == 5 && bonusResult) {
+            fiveHitPlusBonusHit++;
+        }
+        if (result == 6) {
+            sixHit++;
         }
     }
 

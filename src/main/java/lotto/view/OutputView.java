@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.dto.ResultDto;
@@ -43,6 +44,8 @@ public class OutputView {
             }
         }
 
-        System.out.println("총 수익률은 " + totalResult.yield() + "%입니다.");
+        DecimalFormat decimalFormat = new DecimalFormat("0.#");
+
+        System.out.println("총 수익률은 " + decimalFormat.format(totalResult.yield()) + "%입니다.");
     }
 }

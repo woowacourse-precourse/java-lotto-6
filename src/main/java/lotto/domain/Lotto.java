@@ -27,7 +27,7 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (isWrongSize(numbers)) {
-            throw LottoException.of(WRONG_SIZE);
+            throw LottoException.from(WRONG_SIZE);
         }
     }
 
@@ -37,7 +37,7 @@ public class Lotto {
 
     private void validateDuplicate(final List<Integer> numbers) {
         if (isDuplicateNumber(numbers)) {
-            throw LottoException.of(DUPLICATE_NUMBER);
+            throw LottoException.from(DUPLICATE_NUMBER);
         }
     }
 
@@ -47,13 +47,13 @@ public class Lotto {
 
     private void validateRange(final List<Integer> numbers) {
         if (isWrongRange(numbers)) {
-            throw LottoException.of(ErrorMessage.WRONG_RANGE);
+            throw LottoException.from(ErrorMessage.WRONG_RANGE);
         }
     }
 
     private void validateRange(final int bonusNumber) {
         if (isWrongRange(bonusNumber)) {
-            throw LottoException.of(ErrorMessage.WRONG_RANGE);
+            throw LottoException.from(ErrorMessage.WRONG_RANGE);
         }
     }
 
@@ -71,7 +71,7 @@ public class Lotto {
         validateRange(bonusNumber);
 
         if (numbers.contains(bonusNumber)) {
-            throw LottoException.of(DUPLICATE_NUMBER);
+            throw LottoException.from(DUPLICATE_NUMBER);
         }
 
     }

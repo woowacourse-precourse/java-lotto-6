@@ -6,7 +6,7 @@ public class LottoException extends IllegalArgumentException {
         super(errorMessage.getMessage());
     }
 
-    public static LottoException of(final ErrorMessage errorMessage) {
+    public static LottoException from(final ErrorMessage errorMessage) {
         return new LottoException(errorMessage);
     }
 }

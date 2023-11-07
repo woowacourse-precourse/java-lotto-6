@@ -17,7 +17,7 @@ public final class Convertor {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw InvalidTypeException.of(NOT_INTEGER);
+            throw InvalidTypeException.from(NOT_INTEGER);
         }
     }
 

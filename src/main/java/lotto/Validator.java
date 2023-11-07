@@ -17,4 +17,16 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void containOnlyDigit(String input) {
+        if (!input.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void containOnlyDigit(String[] inputNumbers) {
+        for (String input: inputNumbers) {
+            containOnlyDigit(input);
+        }
+    }
 }

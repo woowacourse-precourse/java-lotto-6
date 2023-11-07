@@ -128,7 +128,18 @@ class ValidationTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Validation.verifyRangeWinningLottoNumber(case3);
         });
+    }
 
+    @DisplayName("보너스 번호에 대해 아무것도 입력하지 아니면 예외가 발생한다.")
+    @Test
+    void verifyEmptyBonusNumber() {
+        //given
+        final String case1 = "";
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyEmptyBonusNumber(case1);
+        });
     }
 
     @DisplayName("보너스 번호가 숫자가 아닌 값이면 예외가 발생한다.")

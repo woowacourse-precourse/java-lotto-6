@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.LottoNumbers;
-import lotto.domain.Result;
+import lotto.domain.result.Result;
 
 import java.util.List;
 

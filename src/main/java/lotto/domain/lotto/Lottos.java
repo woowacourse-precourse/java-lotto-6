@@ -3,12 +3,11 @@ package lotto.domain.lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.ErrorMessage;
 import lotto.domain.Amount;
-import lotto.domain.Result;
+import lotto.domain.result.Result;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lottos {

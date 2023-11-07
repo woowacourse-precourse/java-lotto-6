@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.domain.Result;
+import lotto.domain.result.Result;
 
 import java.util.Map;
 

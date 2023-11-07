@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
+import lotto.domain.result.Result;
+import lotto.domain.result.Results;
 import lotto.dto.ResultDto;
 
 import java.util.List;

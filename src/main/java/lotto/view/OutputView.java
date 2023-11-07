@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.Result;
+import lotto.domain.result.Result;
 import lotto.dto.LottosDto;
 import lotto.dto.ResultDto;
 

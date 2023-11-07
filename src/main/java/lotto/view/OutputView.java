@@ -45,6 +45,6 @@ public class OutputView {
     }
 
     public static void printTotalRevenue(double revenue){
-        System.out.println("총 수익률은 "+revenue+"%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", revenue);
     }
 }

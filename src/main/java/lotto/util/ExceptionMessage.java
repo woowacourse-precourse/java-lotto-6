@@ -7,7 +7,9 @@ public enum ExceptionMessage {
     PURCHASE_INVALID_UNIT("[ERROR] 구매 금액은 %d단위로 입력해주세요."),
     WINNING_NUMBER_INVALID_DELIMITER("[ERROR] 쉼표로 구분하여 입력해주세요."),
     WINNING_NUMBER_INVALID_SIZE("[ERROR] 서로 다른 %d개의 당첨 번호를 입력해주세요."),
-    BONUS_ALREADY_CONTAIN_WINNING("[ERROR] 당첨 번호에 포함되지 않는 번호를 입력해주세요.");
+    BONUS_ALREADY_CONTAIN_WINNING("[ERROR] 당첨 번호에 포함되지 않는 번호를 입력해주세요."),
+    TICKET_COUNT_INVALID_NUMBER("[ERROR] 구매 갯수는 최소 1개 이상이어야 합니다."),
+    TICKET_COUNT_IS_NULL("[ERROR] 구매 갯수는 null일 수 없습니다.");
 
     private final String message;
 

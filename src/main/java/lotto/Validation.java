@@ -12,7 +12,7 @@ public class Validation {
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_END_NUMBER = 45;
 
-    public int parsePurchaseAmount(String userInput) {
+    public static int parsePurchaseAmount(String userInput) {
         int inputMoney = 0;
         try {
             inputMoney = Integer.parseInt(userInput);
@@ -23,19 +23,19 @@ public class Validation {
         return inputMoney;
     }
 
-    public void validateUnderZero(int money) {
+    public static void validateUnderZero(int money) {
         if (money < 0) {
             throw new IllegalArgumentException("[ERROR] : 0보다 큰 숫자를 입력해야 합니다.");
         }
     }
 
-    public void validateDivideThousand(int money) {
+    public static void validateDivideThousand(int money) {
         if (money % LOTTO_BUY_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] : 입력 금액은 " + LOTTO_BUY_UNIT + " 단위여야 합니다.");
         }
     }
 
-    public void validateWinNumbersFormatByChar(String winNumbersInput) {
+    public static void validateWinNumbersFormatByChar(String winNumbersInput) {
         for (int i = 0; i < winNumbersInput.length(); i++) {
             if (!Character.isDigit(winNumbersInput.charAt(i)) && winNumbersInput.charAt(i) != ',') {
                 throw new IllegalArgumentException("[ERROR] : 숫자, 구분자(,)만 입력 가능합니다.");
@@ -43,21 +43,21 @@ public class Validation {
         }
     }
 
-    public void validateWinNumbersFormatByLength(String winNumbersInput) {
+    public static void validateWinNumbersFormatByLength(String winNumbersInput) {
         String[] splitWinNumbersInput = winNumbersInput.split(",");
         if (splitWinNumbersInput.length != LOTTO_LENGTH) {
             throw new IllegalArgumentException("[ERROR] : 당첨 번호는 " + LOTTO_LENGTH + "개여야 합니다.");
         }
     }
 
-    public void validateWinNumbersFormatBySide(String winNumberInput) {
+    public static void validateWinNumbersFormatBySide(String winNumberInput) {
         if (!Character.isDigit(winNumberInput.charAt(0)) || !Character.isDigit(winNumberInput.charAt(winNumberInput.length() - 1))) {
             throw new IllegalArgumentException("[ERROR] : 입력의 시작과 끝은 숫자여야 합니다");
         }
     }
 
 
-    public List<Integer> validateWinNumbersInRange(String winNumbersInput) {
+    public static List<Integer> validateWinNumbersInRange(String winNumbersInput) {
         List<Integer> winNumbers = new ArrayList<>();
         String[] splitWinNumbersInput = winNumbersInput.split(",");
         for (int i = 0; i < splitWinNumbersInput.length; i++) {
@@ -70,7 +70,7 @@ public class Validation {
         return winNumbers;
     }
 
-    public void validateWinNumbersByDuplicate(List<Integer> winNumbers) {
+    public static void validateWinNumbersByDuplicate(List<Integer> winNumbers) {
         Set<Integer> validateDuplicateSet = new HashSet<>();
         for (int i = 0; i < winNumbers.size(); i++) {
             validateDuplicateSet.add(winNumbers.get(i));
@@ -80,7 +80,7 @@ public class Validation {
         }
     }
 
-    public int validateBonusNumberInRangeOrIsNumber(String bonusNumberInput) {
+    public static int validateBonusNumberInRangeOrIsNumber(String bonusNumberInput) {
         int bonusNumber = 0;
         try {
             bonusNumber = Integer.parseInt(bonusNumberInput);
@@ -93,7 +93,7 @@ public class Validation {
         return bonusNumber;
     }
 
-    public void validateBonusNumberByDuplicate(int bonusNumber, List<Integer> winNumbers) {
+    public static void validateBonusNumberByDuplicate(int bonusNumber, List<Integer> winNumbers) {
         if (winNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] : 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }

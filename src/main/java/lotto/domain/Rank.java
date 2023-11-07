@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum  Rank {
     LOSING_TICKET(0, 0, " 0"),
@@ -34,11 +35,21 @@ public enum  Rank {
         return (long) amount * count;
     }
 
+    public static List<Rank> getWithoutLosingTicket() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> !rank.equals(LOSING_TICKET))
+                .toList();
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
 
     public int getAmount() {
         return amount;
+    }
+
+    public String getStringAmount() {
+        return stringAmount;
     }
 }

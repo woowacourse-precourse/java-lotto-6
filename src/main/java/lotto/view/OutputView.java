@@ -1,8 +1,6 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.LottoTicket;
+import lotto.domain.*;
 
 import java.util.List;
 
@@ -33,4 +31,20 @@ public class OutputView {
         String lottoNumbersLetter = String.join(", ", lottoNumbers);
         return String.format("[%s]",lottoNumbersLetter);
     }
+
+    public static void printResultMessage() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---------");
+    }
+
+    public static void printWinningStatistic(WinningResults winningResults){
+        for(Rank rank : Rank.getWithoutLosingTicket() ){
+            if (rank != Rank.LOSING_TICKET)
+                System.out.println(rank.getMatchCount() + "개 일치"
+                        + rank.getStringAmount() + " - "
+                        + winningResults.getWinningResult().getOrDefault(rank, 0) + "개");
+        }
+    }
+
+
 }

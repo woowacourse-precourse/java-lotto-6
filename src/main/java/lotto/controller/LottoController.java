@@ -5,12 +5,22 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+
     public void start() {
         PurchaseAmount purchaseAmount = readAmount();
 
         LottoTicket lottoTicket = buyTicket(purchaseAmount);
 
         LuckyNumbers luckyNumbers = createLuckyNumber();
+
+        WinningResults winningResults = new WinningResults(lottoTicket, luckyNumbers);
+
+        getLottoResult(purchaseAmount, winningResults);
+    }
+
+    private void getLottoResult(PurchaseAmount purchaseAmount, WinningResults winningResults) {
+        OutputView.printResultMessage();
+        OutputView.printWinningStatistic(winningResults);
     }
 
     private PurchaseAmount readAmount() {

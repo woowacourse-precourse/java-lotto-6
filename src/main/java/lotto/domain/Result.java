@@ -17,19 +17,18 @@ public class Result {
 		return new Result(purchaseAmount, matchCount, calculateRateOfReturn(purchaseAmount, matchCount));
 	}
 
-	public String getRateOfReturn() {
-		return String.format("%.2f", rateOfReturn);
+	public float getRateOfReturn() {
+		return rateOfReturn;
 	}
 
 	public int getCount(Rank rank) {
 		return matchCount.get(rank);
 	}
 
-	private static int calculateRateOfReturn(int purchaseAmount, Map<Rank, Integer> matchCount) {
+	private static float calculateRateOfReturn(int purchaseAmount, Map<Rank, Integer> matchCount) {
 		int total = matchCount.keySet().stream()
-			.mapToInt(
-				rank -> matchCount.get(rank) * rank.getReward())
+			.mapToInt(rank -> matchCount.get(rank) * rank.getReward())
 			.sum();
-		return total / (purchaseAmount * Lotto.PRICE);
+		return (float)(Math.round((float)total / (purchaseAmount * Lotto.PRICE) * 10000)) / 100;
 	}
 }

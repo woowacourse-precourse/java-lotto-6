@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.dto.LottosDto;
 import lotto.model.BonusNumber;
 import lotto.model.Result;
@@ -19,6 +20,8 @@ public class LottoService {
     }
 
     public void calculateWinningStatistics(LottosDto purchasedLottos) {
-        Result lottoResult = Result.calculate(purchasedLottos.getLottoDtos(), winningNumber, bonusNumber);
+        List<Result> results = purchasedLottos.getLottoDtos().stream()
+                .map((lotto) -> Result.calculate(lotto, winningNumber, bonusNumber))
+                .toList();
     }
 }

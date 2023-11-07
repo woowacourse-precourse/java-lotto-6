@@ -2,14 +2,14 @@ package lotto.ui;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.PrizeType;
 import lotto.domain.WinningStatus;
 
 public class ConsoleOutput implements Output {
     private static final String LOTTO_PRICE_REQUEST = "구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBERS_REQUEST = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_REQUEST = "보너스 번호를 입력해 주세요.";
-    private static final String BUY_NUMBER_OF_LOTTO_MESSAGE = "%d개를 구매했습니다.";
+    private static final String WINNING_NUMBERS_REQUEST = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_REQUEST = "\n보너스 번호를 입력해 주세요.";
+    private static final String BUY_NUMBER_OF_LOTTO_MESSAGE = "\n%d개를 구매했습니다.";
+    private static final String START_WINNING_STATUS_MESSAGE = "\n당첨 통계\n---\n";
     private static final String RETURN_OF_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -50,7 +50,7 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void printWinningStatus(WinningStatus winningStatus) {
-        System.out.println(winningStatus.getMessages());
+        System.out.print(START_WINNING_STATUS_MESSAGE + winningStatus.getMessages());
     }
 
     @Override

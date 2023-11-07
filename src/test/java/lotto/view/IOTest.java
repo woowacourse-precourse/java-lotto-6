@@ -18,6 +18,7 @@ public abstract class IOTest {
         ));
     }
 
+
     @BeforeEach
     void setUp() {
         standardOut = System.out;

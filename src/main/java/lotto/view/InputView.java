@@ -18,16 +18,13 @@ import static lotto.view.InputViewMessage.INPUT_BONUS_NUMBER;
 
 public class InputView {
 
-    public RequestCash requestCash() throws IllegalStateException {
+    public RequestCash requestCash() throws IllegalArgumentException, IllegalStateException {
         try {
             System.out.println(INPUT_CASH_MESSAGE.getMessage());
             final String requestCash = getInput();
             final Integer cash = Parser.parseInt(requestCash);
             return RequestCash.of(cash);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestCash();
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             throw e;
         }
     }

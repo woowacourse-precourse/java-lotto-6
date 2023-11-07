@@ -50,7 +50,11 @@ public class GameController {
             RequestCash requestCash = inputView.requestCash();
             return Cash.create(requestCash.depositAmount(),
                                requestCash.spendAmount());
-        } catch (IllegalStateException e) {
+        }
+        catch (IllegalArgumentException e) {
+            return depositCash();
+        }
+        catch (IllegalStateException e) {
             throw e;
         }
     }

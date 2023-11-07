@@ -15,6 +15,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
+        numbers = ascendingNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -41,4 +43,9 @@ public class Lotto {
         numbers.forEach(this::validateNumberRange);
     }
 
+    private List<Integer> ascendingNumbers(List<Integer> numbers){
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
 }

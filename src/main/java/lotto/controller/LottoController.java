@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.dto.LottoResultDto;
+import lotto.mapper.LottoResultDtoMapper;
 import lotto.mapper.LottoTicketsDtoMapper;
 import lotto.dto.LottoTicketsDto;
 import lotto.model.BonusNumber;
@@ -20,8 +22,9 @@ public class LottoController {
         Output.printLottoTickets(lottoTicketsDto);
 
         WinningLotto winningLotto = getWinningLotto();
-        LottoResult lottoResult = LottoResult.getLottoResult(winningLotto, lottoTickets);
-        System.out.println(lottoResult);
+        LottoResult lottoResult = LottoResult.calculateLottoResult(winningLotto, lottoTickets);
+        LottoResultDto lottoResultDto = LottoResultDtoMapper.from(lottoResult);
+        Output.printLottoResult(lottoResultDto);
     }
 
     private LottoTickets getLottoTickets(Money money) {

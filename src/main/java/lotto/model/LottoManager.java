@@ -13,8 +13,7 @@ public class LottoManager {
         this.generator = generator;
     }
 
-    public void generateLottos(int purchaseMoney) {
-        int ticketNumber = purchaseMoney / 1000;
+    public void generateLottos(int ticketNumber) {
         for (int i = 0; i < ticketNumber; i++) {
             Lotto newLotto = generator.createSingleLotto();
             lottos.add(newLotto);

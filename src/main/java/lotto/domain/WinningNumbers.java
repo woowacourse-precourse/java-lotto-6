@@ -11,15 +11,15 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicated(Lotto winningNumber, int bonusNumber) {
-        if (winningNumber.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getValue());
-        }
-    }
-
     public Rank announceRank(Lotto lotto) {
         int matchingNumberCounts = lotto.compareLottoWithWinningNumber(this.winningNumber);
         boolean hasBonusNumber = lotto.contains(this.bonusNumber);
         return Rank.of(matchingNumberCounts, hasBonusNumber);
+    }
+
+    private void validateDuplicated(Lotto winningNumber, int bonusNumber) {
+        if (winningNumber.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getValue());
+        }
     }
 }

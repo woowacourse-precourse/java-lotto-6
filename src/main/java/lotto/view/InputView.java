@@ -13,10 +13,6 @@ public class InputView {
     private final static String BONUS_NUMBER_FORMAT = "보너스 번호를 입력해 주세요.";
     private static final String DELIMITER = ",";
 
-    private static void showMessage(String message) {
-        System.out.println(message);
-    }
-
     public static int inputAmount() {
         showMessage(AMOUNT_FORMAT);
         return Utils.convertStringToInteger(Console.readLine());
@@ -35,7 +31,11 @@ public class InputView {
         return bonusNumber;
     }
 
-    public static void validateNumberRange(int number) {
+    private static void showMessage(String message) {
+        System.out.println(message);
+    }
+    
+    private static void validateNumberRange(int number) {
         boolean isValidRange = (number >= LottoNumberRange.MIN.getValue() && number <= LottoNumberRange.MAX.getValue());
 
         if (!isValidRange) {

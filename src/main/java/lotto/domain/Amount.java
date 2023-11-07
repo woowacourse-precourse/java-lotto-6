@@ -9,17 +9,17 @@ public class Amount {
         this.amount = amount;
     }
 
-    private void validate(int amount) {
-        validateMinAmount(amount);
-        validateUnit(amount);
-    }
-
     public int calculateTotalLottoNumber() {
         return this.amount / PRICE;
     }
 
     public String calculateEarningsRate(long totalWinningPrize) {
         return roundOff((double) totalWinningPrize / this.amount);
+    }
+
+    private void validate(int amount) {
+        validateMinAmount(amount);
+        validateUnit(amount);
     }
 
     private String roundOff(double earningsRate) {

@@ -2,6 +2,7 @@ package lotto.console;
 
 import lotto.domain.*;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -30,6 +31,8 @@ public class Output {
     }
 
     public static void printRate(Asset asset){
-        System.out.printf("총 수익률은 %.1f%%입니다.", asset.getRate());
+        DecimalFormat outFormat = new DecimalFormat("#,###.0");
+        System.out.println(asset.getRate());
+        System.out.println("총 수익률은 " + outFormat.format(asset.getRate()) +"%입니다.");
     }
 }

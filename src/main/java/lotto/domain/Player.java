@@ -39,7 +39,7 @@ public class Player {
 
     public Long calTicketNum(Double money){
         long ticketNum = (long) (money / 1000);
-        
+
         if(ticketNum > 100){
             throw new IllegalArgumentException("로또는 100장만 살 수 있습니다.");
         }

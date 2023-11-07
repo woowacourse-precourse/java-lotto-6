@@ -55,7 +55,7 @@ public class Lotto {
                 .count();
     }
 
-    public boolean matchWithBonus(Bonus bonus) {
-        return getNumbers().contains(bonus.getNumber());
+    public boolean matchWithBonus(int number) {
+        return getNumbers().contains(number);
     }
 }

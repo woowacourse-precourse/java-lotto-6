@@ -1,8 +1,7 @@
 package lotto.enums;
 
-import lotto.Lotto;
+import lotto.game.Lotto;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,15 +24,17 @@ public enum CommonMessage {
     public static String generateLottoListMsg(List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(lottos.size()).append("개를 구매했습니다.");
+        sb.append(lottos.size()).append("개를 구매했습니다.").append("\n");
         for(Lotto lotto : lottos) {
             sb.append("[");
 
             List<Integer> lottoNumbers = lotto.getNumbers();
-            for (Integer number : lottoNumbers) {
-                sb.append(number).append(", ");
+            int lastIdx = lottoNumbers.size() - 1;
+
+            for (int idx = 0; idx < lastIdx; idx++) {
+                sb.append(lottoNumbers.get(idx)).append(", ");
             }
-            sb.append("]\n");
+            sb.append(lottoNumbers.get(lastIdx)).append("]").append("\n");
         }
 
         return sb.toString();
@@ -42,7 +43,7 @@ public enum CommonMessage {
     public static String generateLottoResultMsg(Map<LottoRank, Integer> lottoRanks) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("당첨 통계").append("\n").append("---");
+        sb.append("당첨 통계").append("\n").append("---").append("\n");
 
         for(LottoRank lottoRank : lottoRanks.keySet()) {
             sb.append(lottoRank.prizeMsg).append(" - ")
@@ -50,6 +51,13 @@ public enum CommonMessage {
                     .append("개\n");
         }
 
+        return sb.toString();
+    }
+
+    public static String generateBenefitRateMsg(double benefitRate) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("총 수익률은 ").append(benefitRate).append("%입니다.");
         return sb.toString();
     }
 }

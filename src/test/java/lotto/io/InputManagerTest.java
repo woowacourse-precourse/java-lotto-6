@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class InputManagerTest {
 
-    InputManager inputManager = new InputManager();
+    InputManager inputManager = InputManager.getInstance();
 
     @Test
     void validateInputMoneyFormat() {

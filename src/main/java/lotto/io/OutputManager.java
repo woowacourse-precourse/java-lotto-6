@@ -1,6 +1,6 @@
 package lotto.io;
 
-import lotto.Lotto;
+import lotto.game.Lotto;
 import lotto.enums.CommonMessage;
 import lotto.enums.LottoRank;
 
@@ -9,11 +9,21 @@ import java.util.Map;
 
 public class OutputManager {
 
+    private OutputManager() {}
+
+    private static class SingletonHelper{
+        private final static OutputManager outputManager = new OutputManager();
+    }
+
+    public static OutputManager getInstance() {
+        return SingletonHelper.outputManager;
+    }
+
     public void printPurchaseMsg() {
         System.out.println(CommonMessage.READ_PURCHASE_MSG.message());
     }
 
-    public void printLottoNumberMsg() {
+    public void printWinningNumberMsg() {
         System.out.println(CommonMessage.READ_LOTTO_NUMBER_MSG.message());
     }
 
@@ -28,6 +38,11 @@ public class OutputManager {
 
     public void printLottoResultMsg(Map<LottoRank, Integer> lottoRanks) {
         String msg = CommonMessage.generateLottoResultMsg(lottoRanks);
+        System.out.println(msg);
+    }
+
+    public void printBenefitRateMsg(double benefitRate) {
+        String msg = CommonMessage.generateBenefitRateMsg(benefitRate);
         System.out.println(msg);
     }
 }

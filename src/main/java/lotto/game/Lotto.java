@@ -1,4 +1,4 @@
-package lotto;
+package lotto.game;
 
 import lotto.enums.LottoRank;
 
@@ -43,22 +43,13 @@ public class Lotto {
         return getRank(hit, bonusNumberFlag);
     }
 
-    public LottoRank getRank(int hit, boolean bonusNumberFlag) {
-        if(hit == 3) {
-            return LottoRank.THIRD;
-        }
-        if(hit == 4) {
-            return LottoRank.FOURTH;
-        }
-        if(hit == 5 && !bonusNumberFlag) {
-            return LottoRank.FIFTH_WITHOUT_BONUS;
-        }
-        if(hit == 5 && bonusNumberFlag) {
-            return LottoRank.SIXTH;
-        }
-        else {
-            return LottoRank.NONE;
-        }
+    private LottoRank getRank(int hit, boolean bonusNumberFlag) {
+        if(hit == 3)  return LottoRank.THIRD;
+        if(hit == 4)  return LottoRank.FOURTH;
+        if(hit == 5 && !bonusNumberFlag)  return LottoRank.FIFTH_WITHOUT_BONUS;
+        if(hit == 5 && bonusNumberFlag)  return LottoRank.FIFTH_WITH_BONUS;
+        if(hit == 6) return LottoRank.SIXTH;
+        else return LottoRank.NONE;
     }
 
     public List<Integer> getNumbers() {

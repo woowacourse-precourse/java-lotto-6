@@ -8,12 +8,12 @@ import java.util.Map;
 public class Analyst {
     Map<LottoMessage, Integer> lottoResult = new LinkedHashMap<>();
     private final List<Lotto> lottos;
-    private final List<Integer> sixLottoNumber;
+    private final List<Integer> winningLottoNumber;
     private final int bonusNumber;
 
-    public Analyst(List<Lotto> lottos, List<Integer> sixLottoNumber, int bonusNumber) {
+    public Analyst(List<Lotto> lottos, List<Integer> winningLottoNumber, int bonusNumber) {
         this.lottos = lottos;
-        this.sixLottoNumber = sixLottoNumber;
+        this.winningLottoNumber = winningLottoNumber;
         this.bonusNumber = bonusNumber;
 
         lottoResult.put(LottoMessage.THREE, 0);
@@ -25,10 +25,10 @@ public class Analyst {
 
     public void calculate() {
         for (Lotto lotto : lottos) {
-            List<Integer> winningNumbers = new ArrayList<>(lotto.getSixLottoNumbers());
+            List<Integer> winningNumbers = new ArrayList<>(lotto.getLottoNumbers());
 
             boolean isBonusNumber = winningNumbers.contains(bonusNumber);
-            winningNumbers.retainAll(sixLottoNumber);
+            winningNumbers.retainAll(winningLottoNumber);
 
             rankCalculator(isBonusNumber, winningNumbers);
         }

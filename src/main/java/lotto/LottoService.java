@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.List;
-
 public class LottoService {
     private final int LOTTO_PRICE = 1000;
 
@@ -14,7 +12,7 @@ public class LottoService {
 
         Computer computer = new Computer();
 
-        Analyst analyst = new Analyst(user.lottos, computer.getSixLottoNumber(), computer.getBonusNumber());
+        Analyst analyst = new Analyst(user.lottos, computer.getWinningLottoNumber(), computer.getBonusNumber());
         analyst.calculate();
 
         Output.printLottoResult(analyst.lottoResult, user.money);

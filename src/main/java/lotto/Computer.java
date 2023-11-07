@@ -7,35 +7,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Computer {
-    private Lotto sixLottoNumber;
+    private Lotto winningLottoNumber;
     private int bonusNumber;
 
     public Computer() {
         Output.printLottoNumbersMessage();
-        sixLottoNumber = inputSixLottoNumber();
-        Output.printLottoNumbers(sixLottoNumber.getSixLottoNumbers());
+        winningLottoNumber = inputWinningLottoNumber();
+        Output.printLottoNumbers(winningLottoNumber.getLottoNumbers());
 
         Output.printBonusNumberMessage();
         bonusNumber = inputBonusNumber();
         Output.printBonusNumber(bonusNumber);
     }
 
-    public List<Integer> getSixLottoNumber() {
-        return sixLottoNumber.getSixLottoNumbers();
+    public List<Integer> getWinningLottoNumber() {
+        return winningLottoNumber.getLottoNumbers();
     }
 
     public int getBonusNumber() {
         return bonusNumber;
     }
 
-    private Lotto inputSixLottoNumber() {
+    private Lotto inputWinningLottoNumber() {
         while (true) {
             try {
-                List<String> sixLottoNumber = new ArrayList<>(List.of(Console.readLine().split(",")));
+                List<String> winningLottoNumber = new ArrayList<>(List.of(Console.readLine().split(",")));
 
-                validateLottoNumberInputFormat(sixLottoNumber);
+                validateLottoNumberInputFormat(winningLottoNumber);
 
-                return new Lotto(Parse.parseInteger(sixLottoNumber));
+                return new Lotto(Parse.parseInteger(winningLottoNumber));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -82,7 +82,7 @@ public class Computer {
     }
 
     private void validateDuplicateBonusNumber(int bonusNumber) {
-        if (sixLottoNumber.getSixLottoNumbers().contains(bonusNumber)) {
+        if (winningLottoNumber.getLottoNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 입력한 6개의 로또 당첨 번호와 중복됩니다. 다시 입력해주세요.");
         }
     }

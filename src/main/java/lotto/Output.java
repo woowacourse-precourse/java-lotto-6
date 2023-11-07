@@ -28,23 +28,23 @@ class Output {
 
     static void printLottoSixNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            printLottoSixNumber(lotto);
+            printLottoNumber(lotto);
         }
     }
 
-    private static void printLottoSixNumber(Lotto lotto) {
-        System.out.println(lotto.getSixLottoNumbers());
+    private static void printLottoNumber(Lotto lotto) {
+        System.out.println(lotto.getLottoNumbers());
     }
 
     static void printLottoNumbersMessage() {
         System.out.println("\n" + PROMPT_WINNING_NUMBERS);
     }
 
-    static void printLottoNumbers(List<Integer> sixLottoNumbers) {
+    static void printLottoNumbers(List<Integer> LottoNumbers) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < sixLottoNumbers.size(); i++) {
-            sb.append(sixLottoNumbers.get(i));
-            if (i != sixLottoNumbers.size() - 1) {
+        for (int i = 0; i < LottoNumbers.size(); i++) {
+            sb.append(LottoNumbers.get(i));
+            if (i != LottoNumbers.size() - 1) {
                 sb.append(",");
             }
         }

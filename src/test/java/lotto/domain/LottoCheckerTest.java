@@ -45,10 +45,10 @@ public class LottoCheckerTest {
 
         //given
         List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         Lottos lottos = new Lottos(lottoList);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 8);
         int bonusNumber = 7;
-        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
         //when
         LottoChecker lottoChecker = new LottoChecker(new WinningNumbers(winningNumbers), new BonusNumber(bonusNumber));
@@ -85,5 +85,7 @@ public class LottoCheckerTest {
         assertThat(result.contains(LottoRank.SECOND)).isTrue();
 
     }
+
+
 
 }

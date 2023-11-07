@@ -4,38 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.io.InputNumber;
-import lotto.io.InputNumberImpl;
 import lotto.dataObjects.Bonus;
 import lotto.dataObjects.Lotto;
 import lotto.dataObjects.Money;
 import lotto.enumContainer.RelateToLotto;
+import lotto.io.InputNumber;
+import lotto.io.InputNumberImpl;
 import lotto.io.PrintGenerator;
-import lotto.io.PrintOutputGenerator;
+import lotto.io.PrintGeneratorImpl;
 
 public class LottoProcessImpl implements LottoProcess {
 
 	private final InputNumber inputNumber;
-	private PrintGenerator PrintGenerator;
+	private final PrintGenerator PrintGenerator;
 	private Money money;
 	private Lotto lotto;
 	private Bonus bonus;
 
 	public LottoProcessImpl() {
 		this.inputNumber = new InputNumberImpl();
+		this.PrintGenerator = new PrintGeneratorImpl();
 	}
 
 	@Override
 	public void playGame() {
 		inputPrice();
+		List<List<Integer>> IssuedLotto = generateLotto();
 		inputWinningNumbers();
 		inputBonusNumber();
-		List<List<Integer>> IssuedLotto = generateLotto();
 
 
 	}
 
 	private void inputPrice() {
+		PrintGenerator.printInputMent("구입금액을");
 		try {
 			int lottoPrice = inputNumber.inputPurchasePrice();
 			money = new Money(lottoPrice);
@@ -45,6 +47,7 @@ public class LottoProcessImpl implements LottoProcess {
 	}
 
 	private void inputWinningNumbers() {
+		PrintGenerator.printInputMent("당첨 번호를");
 		try {
 			List<Integer> lottoNumbers = new ArrayList<>();
 			inputNumber.inputWinningNumbers(lottoNumbers);
@@ -55,6 +58,7 @@ public class LottoProcessImpl implements LottoProcess {
 	}
 
 	private void inputBonusNumber() {
+		PrintGenerator.printInputMent("보너스 번호를");
 		try {
 			int bonusNumber = inputNumber.inputBonusNumber();
 			bonus = new Bonus(bonusNumber, this.lotto);
@@ -73,6 +77,7 @@ public class LottoProcessImpl implements LottoProcess {
 				RelateToLotto.COUNT.number());
 			bundleOfLotto.add(lottoNumbers);
 		}
+		PrintGenerator.printPurchaseNumbers(bundleOfLotto);
 		return bundleOfLotto;
 	}
 }

@@ -1,11 +1,10 @@
 package domain;
 
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoMachine {
-    private int spend;
-    private List<Lotto> lottoTickets;
+    private final int spend;
+    private final List<Lotto> lottoTickets;
 
     public LottoMachine(int spend, List<Lotto> lottoTickets) {
         this.spend = spend;
@@ -14,5 +13,9 @@ public class LottoMachine {
 
     public int getSpend() {
         return spend;
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 }

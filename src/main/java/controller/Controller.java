@@ -15,6 +15,7 @@ public class Controller {
 
     private void showPurchasedLottoInfo() {
         OutputView.printPurchaseCount(lottoMachine.getSpend());
+        OutputView.printLottoNumbers(lottoMachine.getLottoTickets());
     }
 
     private void setupWinningNumbers() {

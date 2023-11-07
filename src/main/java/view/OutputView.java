@@ -1,5 +1,8 @@
 package view;
 
+import domain.Lotto;
+import java.util.List;
+
 public class OutputView {
     public static void printInputSpend() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -7,6 +10,12 @@ public class OutputView {
 
     public static void printPurchaseCount(int spend) {
         System.out.printf("\n%d개를 구매했습니다.\n", spend / 1000);
+    }
+
+    public static void printLottoNumbers(List<Lotto> lottoTickets) {
+        for (Lotto lottoNumbers : lottoTickets) {
+            System.out.println(lottoNumbers);
+        }
     }
 
     public static void printInputWinningNumbers() {

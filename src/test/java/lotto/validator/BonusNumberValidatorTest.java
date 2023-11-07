@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -38,9 +39,8 @@ class BonusNumberValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> BonusNumberValidator.inputValidate(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
+            assertThatThrownBy(() -> BonusNumberValidator.inputValidate(input)).isInstanceOf(
+                    IllegalArgumentException.class).hasMessage(ErrorMessage.ENTER_VALUE_MESSAGE.getMessage());
         }
 
         @DisplayName("보너스 번호로 숫자 외에 입력이 들어오면 예외 발생")
@@ -51,9 +51,9 @@ class BonusNumberValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> BonusNumberValidator.inputValidate(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(InputValidator.INVALID_INPUT_CHARACTER);
+            assertThatThrownBy(() -> BonusNumberValidator.inputValidate(input)).isInstanceOf(
+                            IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.INVALID_INPUT_CHARACTER_MESSAGE.getMessage());
         }
     }
 
@@ -94,13 +94,13 @@ class BonusNumberValidatorTest {
             // then
             assertThatThrownBy(() -> new BonusNumber(number1, winningLotto)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE.getMessage());
             assertThatThrownBy(() -> new BonusNumber(number2, winningLotto)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE.getMessage());
             assertThatThrownBy(() -> new BonusNumber(number3, winningLotto)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE.getMessage());
         }
     }
 }

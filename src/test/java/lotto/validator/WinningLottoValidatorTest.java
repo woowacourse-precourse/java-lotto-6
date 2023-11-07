@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ class WinningLottoValidatorTest {
             // when
             // then
             assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
-                    IllegalArgumentException.class).hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
+                    IllegalArgumentException.class).hasMessage(ErrorMessage.ENTER_VALUE_MESSAGE.getMessage());
         }
 
         @DisplayName("당첨 번호에 숫자 이외에 문자가 들어있다면 예외 발생")
@@ -48,7 +49,7 @@ class WinningLottoValidatorTest {
             // then
             assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(WinningLottoValidator.ENTER_NUMBERS_AND_DELIMITERS_ONLY_MESSAGE);
+                    .hasMessage(ErrorMessage.ENTER_NUMBERS_AND_DELIMITERS_ONLY_MESSAGE.getMessage());
         }
 
         @DisplayName("당첨 번호가 구분자가 '" + WinningLottoValidator.DELIMITER + "' 가 아닐 때 예외 발생")
@@ -61,7 +62,7 @@ class WinningLottoValidatorTest {
             // then
             assertThatThrownBy(() -> WinningLottoValidator.inputValidate(input)).isInstanceOf(
                             IllegalArgumentException.class)
-                    .hasMessage(WinningLottoValidator.ENTER_NUMBERS_AND_DELIMITERS_ONLY_MESSAGE);
+                    .hasMessage(ErrorMessage.ENTER_NUMBERS_AND_DELIMITERS_ONLY_MESSAGE.getMessage());
         }
     }
 
@@ -91,9 +92,9 @@ class WinningLottoValidatorTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(LottoValidator.INVALID_LOTTO_SIZE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_SIZE_MESSAGE.getMessage());
             assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(LottoValidator.INVALID_LOTTO_SIZE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_SIZE_MESSAGE.getMessage());
         }
     }
 
@@ -122,9 +123,9 @@ class WinningLottoValidatorTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningLottoValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_WINNING_NUMBER_RANGE_MESSAGE.getMessage());
             assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(WinningLottoValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_WINNING_NUMBER_RANGE_MESSAGE.getMessage());
         }
     }
 
@@ -154,9 +155,9 @@ class WinningLottoValidatorTest {
             // when
             // then
             assertThatThrownBy(() -> new WinningLotto(numbers1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(LottoValidator.DUPLICATE_NUMBERS_MESSAGE);
+                    .hasMessage(ErrorMessage.DUPLICATE_NUMBERS_MESSAGE.getMessage());
             assertThatThrownBy(() -> new WinningLotto(numbers2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(LottoValidator.DUPLICATE_NUMBERS_MESSAGE);
+                    .hasMessage(ErrorMessage.DUPLICATE_NUMBERS_MESSAGE.getMessage());
         }
     }
 }

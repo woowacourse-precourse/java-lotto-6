@@ -3,6 +3,7 @@ package lotto.validator;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.PurchaseAmount;
+import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ class PurchaseAmountValidatorTest {
             // then
             assertThatThrownBy(() -> PurchaseAmountValidator.inputValidate(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(InputValidator.ENTER_VALUE_MESSAGE);
+                    .hasMessage(ErrorMessage.ENTER_VALUE_MESSAGE.getMessage());
         }
 
         @DisplayName("구입 금액이 숫자가 아닐 경우 예외 발생")
@@ -49,7 +50,7 @@ class PurchaseAmountValidatorTest {
             // then
             assertThatThrownBy(() -> PurchaseAmountValidator.inputValidate(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(InputValidator.INVALID_INPUT_CHARACTER);
+                    .hasMessage(ErrorMessage.INVALID_INPUT_CHARACTER_MESSAGE.getMessage());
         }
     }
 
@@ -81,9 +82,9 @@ class PurchaseAmountValidatorTest {
             // when
             // then
             assertThatThrownBy(() -> new PurchaseAmount(amount1)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PurchaseAmountValidator.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
+                    .hasMessage(ErrorMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE.getMessage());
             assertThatThrownBy(() -> new PurchaseAmount(amount2)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PurchaseAmountValidator.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
+                    .hasMessage(ErrorMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE.getMessage());
         }
     }
 }

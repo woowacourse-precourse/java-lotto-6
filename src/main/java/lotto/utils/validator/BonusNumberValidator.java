@@ -11,6 +11,7 @@ public class BonusNumberValidator {
     public static void validate(String target) {
         validateBlank(target);
         validateMaxLength(target);
+        validateNumeric(target);
     }
 
     private static void validateBlank(String target) {
@@ -23,6 +24,14 @@ public class BonusNumberValidator {
         if (target == null || target.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
                     WinningInformationExceptionMessage.EXCEED_BONUS_NUMBER_LENGTH.getError());
+        }
+    }
+
+    private static void validateNumeric(String target) {
+        try {
+            Integer.parseInt(target);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(WinningInformationExceptionMessage.NOT_NUMERIC.getError(), e);
         }
     }
 }

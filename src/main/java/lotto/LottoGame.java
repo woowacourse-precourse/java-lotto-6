@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lotto.Input.InputType;
 
@@ -43,8 +44,7 @@ public class LottoGame {
         Print.printPurchase(purchaseAmount/ LOTTO_PRICE);
         for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++){
             List<Integer> makedNumbers = Utils.makeRandomNumbers(1, 45, 6);
-            Collections.sort(makedNumbers);
-            purchasedLotto.add(new Lotto(makedNumbers));
+            purchasedLotto.add(new Lotto(makedNumbers.stream().sorted().toList()));
         }
         Print.printPurchasedLotto(purchasedLotto);
     }

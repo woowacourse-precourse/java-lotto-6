@@ -1,4 +1,4 @@
-package util;
+package message;
 
 public enum ProgressMessage {
     INPUT_AMOUNT("구입금액을 입력해 주세요."),

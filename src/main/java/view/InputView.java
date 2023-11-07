@@ -1,9 +1,9 @@
 package view;
 
-import static util.ErrorMessage.ONLY_CAN_NUMBER;
-import static util.ProgressMessage.INPUT_AMOUNT;
-import static util.ProgressMessage.INPUT_BONUS_NUMBER;
-import static util.ProgressMessage.INPUT_WINNING_LOTTO_NUMBER;
+import static message.ErrorMessage.ONLY_CAN_NUMBER;
+import static message.ProgressMessage.INPUT_AMOUNT;
+import static message.ProgressMessage.INPUT_BONUS_NUMBER;
+import static message.ProgressMessage.INPUT_WINNING_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;

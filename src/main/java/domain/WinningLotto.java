@@ -1,7 +1,7 @@
 package domain;
 
-import static util.ErrorMessage.CANT_DUPLICATE_NUMBER;
-import static util.ErrorMessage.LOTTO_NUMBER_RANGE;
+import static message.ErrorMessage.CANT_DUPLICATE_NUMBER;
+import static message.ErrorMessage.LOTTO_NUMBER_RANGE;
 import static view.InputView.inputBonusNumber;
 
 import java.util.regex.Pattern;

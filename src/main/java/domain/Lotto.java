@@ -1,8 +1,8 @@
 package domain;
 
-import static util.ErrorMessage.CANT_DUPLICATE_NUMBER;
-import static util.ErrorMessage.LOTTO_COUNT_LIMIT;
-import static util.ErrorMessage.LOTTO_NUMBER_RANGE;
+import static message.ErrorMessage.CANT_DUPLICATE_NUMBER;
+import static message.ErrorMessage.LOTTO_COUNT_LIMIT;
+import static message.ErrorMessage.LOTTO_NUMBER_RANGE;
 import static view.InputView.inputWinningLottoNumber;
 
 import java.util.List;

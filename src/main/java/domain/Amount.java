@@ -1,9 +1,9 @@
 package domain;
 
 import static service.RandomNumber.getRandomNumber;
-import static util.ErrorMessage.CANT_DIVIDE_AMOUNT;
-import static util.ErrorMessage.NOT_POSITIVE_AMOUNT;
-import static util.ProgressMessage.OUTPUT_TICKET_COUNT;
+import static message.ErrorMessage.CANT_DIVIDE_AMOUNT;
+import static message.ErrorMessage.NOT_POSITIVE_AMOUNT;
+import static message.ProgressMessage.OUTPUT_TICKET_COUNT;
 import static view.InputView.inputLottoPurchaseAmount;
 
 import java.util.ArrayList;

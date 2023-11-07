@@ -7,6 +7,7 @@ import static lotto.constraint.LottoConstraint.TOTAL_NUMBERS_OF_LOTTO;
 import static lotto.constraint.LottoConstraint.LOTTO_MINIMUM_BOUND;
 import static lotto.constraint.LottoConstraint.LOTTO_MAXIMUM_BOUND;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.Exception;
 
@@ -16,6 +17,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     private void validate(List<Integer> numbers) {

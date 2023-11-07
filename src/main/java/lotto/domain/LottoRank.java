@@ -38,17 +38,14 @@ public enum LottoRank {
         if(hit < 3){
             return MISS;
         }
-
         if(SECOND.matchHit(hit) && matchBonus){
             return SECOND;
         }
-
         for(LottoRank rank : values()){
             if(rank.matchHit(hit) && rank != SECOND){
                 return rank;
             }
         }
-
         throw new IllegalArgumentException();
     }
 }

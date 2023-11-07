@@ -2,9 +2,6 @@ package lotto.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.groupingBy;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> lottoResult;

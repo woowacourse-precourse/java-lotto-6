@@ -37,4 +37,12 @@ class LottoTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @DisplayName("당첨 번호가 형식에 올바르지 않게 들어왔을 때 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,false,4,5"})
+    void 당첨번호_입력형태_잘못된_경우(String input) {
+        assertThatThrownBy(() -> Validator.checkBonusNumberForm(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
 }

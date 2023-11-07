@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class MarginCalculator {
 
-    private static final String MARGIN_FORMAT = "#,###.#%";
+    private static final String MARGIN_FORMAT = "#,###.0%";
     private final double margin;
 
     public MarginCalculator(Map<Rankings,Integer> result, int purchaseAmount) {

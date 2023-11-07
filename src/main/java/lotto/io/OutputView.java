@@ -30,10 +30,12 @@ public class OutputView {
     }
 
     public void printBonusNumberRequset() {
+        System.out.println();
         System.out.println(ProcessMessage.BONUS_NUMBER_REQUEST.toMessage());
     }
 
     public void printResultLotto(final WinningStatistic winningStatistic) {
+        System.out.println();
         System.out.println(ProcessMessage.WINNING_STATISTICS.toMessage());
         System.out.println(ProcessMessage.STATISTICS_DELIMITER.toMessage());
         System.out.println(outputFommatter.toLottoResult(winningStatistic));

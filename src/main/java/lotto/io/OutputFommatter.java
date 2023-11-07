@@ -46,7 +46,7 @@ public class OutputFommatter {
                         enumMap.getOrDefault(LottoResultRule.FIVE_MATCH_WITH_BONUS, 0).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());
         stringbuilder.append(String.format(ResultMessage.SIX_MATCH.toMessage(),
-                        enumMap.getOrDefault(LottoResultRule.SIX_MATCH, 0).toString()));
+                enumMap.getOrDefault(LottoResultRule.SIX_MATCH, 0).toString()));
         return stringbuilder.toString();
     }
 

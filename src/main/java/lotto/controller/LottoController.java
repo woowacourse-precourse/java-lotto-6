@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
@@ -24,36 +25,60 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printPurchaseAmountRequset();
-        final Amount amount = inputManager.readPurchaseAmount();
-        final Ticket ticket = lottoService.calculateTicketFromAmonut(amount);
-        outputView.printNumberOfTicket(ticket);
-        final Lottos lottos = lottoService.saveLottos(ticket);
-        outputView.printNumberOfLottos(lottos);
-        WinningLotto winningLotto;
-        while (true) {
-            try {
-                outputView.printWinningLottoRequset();
-                winningLotto = inputManager.readWinningLotto();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printExceptionMessage(e);
-            }
-        }
-        BonusNumber bonusNumber;
-        while (true) {
-            try {
-                outputView.printBonusNumberRequset();
-                bonusNumber = inputManager.readBonusNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printExceptionMessage(e);
-            }
-        }
+        final Amount amount = readLottoAmount();
+        final Lottos lottos = buyLotto(amount);
+        WinningLotto winningLotto = readWinningLotto();
+        BonusNumber bonusNumber = readBonusNumber();
         winningLotto.updateBonusNumber(bonusNumber.toValue());
         WinningStatistic winningStatistic = lottoService.compareLotto(lottos, winningLotto);
+        printResult(amount, winningStatistic);
+    }
+
+    private void printResult(Amount amount, WinningStatistic winningStatistic) {
         outputView.printResultLotto(winningStatistic);
         String profit = lottoService.getPerformance(winningStatistic, amount);
         outputView.printProfit(profit);
     }
+
+    private BonusNumber readBonusNumber() {
+        return retryUntilSuccess(() -> {
+            outputView.printBonusNumberRequset();
+            return inputManager.readBonusNumber();
+        });
+
+    }
+
+    private WinningLotto readWinningLotto() {
+        return retryUntilSuccess(() -> {
+            outputView.printWinningLottoRequset();
+            return inputManager.readWinningLotto();
+        });
+    }
+
+    private Lottos buyLotto(Amount amount) {
+        final Ticket ticket = lottoService.calculateTicketFromAmonut(amount);
+        outputView.printNumberOfTicket(ticket);
+        final Lottos lottos = lottoService.saveLottos(ticket);
+        outputView.printNumberOfLottos(lottos);
+        return lottos;
+    }
+
+    private Amount readLottoAmount() {
+        return retryUntilSuccess(() -> {
+            outputView.printPurchaseAmountRequset();
+            return inputManager.readPurchaseAmount();
+        });
+    }
+
+    private <T> T retryUntilSuccess(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
+    }
 }
+
+

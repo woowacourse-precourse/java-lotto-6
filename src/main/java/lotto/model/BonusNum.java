@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.util.Validation;
 
 public class BonusNum {
+
     private int bonusNum;
 
     public BonusNum() {
@@ -13,6 +14,7 @@ public class BonusNum {
         bonusNum = validate(input, lotto);
         return bonusNum;
     }
+
     public int validate(String input, Lotto lotto) {
         int validNum = Validation.validateInteger(input);
         Validation.validateNumberRange(validNum);

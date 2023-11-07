@@ -1,6 +1,7 @@
 package lotto.constants;
 
 public class MarksAndConstants {
+
     public static final String COMMA = ",";
     public static final String SPACE = " ";
     public static final String LEFT_BRACKET = "[";

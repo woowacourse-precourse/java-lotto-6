@@ -23,6 +23,7 @@ public class LottoController {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
+
     public void run() {
         int totalCost = getValidBuyingCost(inputView);
         List<List<Integer>> purchased = purchaseLotto(totalCost);
@@ -50,6 +51,7 @@ public class LottoController {
         }
         return validCost;
     }
+
     private Lotto getValidWinningNum(InputView inputView) {
         WinningNumbers winningNum = new WinningNumbers();
         Lotto result;
@@ -57,13 +59,14 @@ public class LottoController {
             try {
                 result = winningNum.getLotto(inputView.inputWinnerNumbers());
                 break;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 winningNum.clearList();
             }
         }
         return result;
     }
+
     private int getValidBonusNum(InputView inputview, Lotto lotto) {
         BonusNum bonusNum = new BonusNum();
         int validBonusNum;
@@ -79,20 +82,21 @@ public class LottoController {
     }
 
     private List<List<Integer>> purchaseLotto(int totalPrice) {
-        List<List<Integer>> purchased = Lotto.getManyLotto(totalPrice/SINGLE_LOTTO_PRICE);
+        List<List<Integer>> purchased = Lotto.getManyLotto(totalPrice / SINGLE_LOTTO_PRICE);
         outputView.printQuantityAndAllLottoNumbers(purchased.size(), purchased);
         return purchased;
     }
+
     private Map<LottoRanks, Integer> compareLotto(List<List<Integer>> purchased, Lotto winningNum, int bonusNum) {
         Comparing nextPhase = new Comparing(winningNum, bonusNum);
         return nextPhase.getResult(purchased);
     }
 
-    public Double getReturnRate(Map<LottoRanks,Integer> enumMap, int cost) {
+    public Double getReturnRate(Map<LottoRanks, Integer> enumMap, int cost) {
         long totalSum = 0;
         for (LottoRanks key : enumMap.keySet()) {
-            totalSum += (long) key.getWinnings()*enumMap.get(key);
+            totalSum += (long) key.getWinnings() * enumMap.get(key);
         }
-        return (double)(totalSum*ONE_HUNDRED)/cost;
+        return (double) (totalSum * ONE_HUNDRED) / cost;
     }
 }

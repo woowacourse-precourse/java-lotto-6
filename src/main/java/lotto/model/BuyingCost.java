@@ -5,6 +5,7 @@ import lotto.util.Validation;
 public class BuyingCost {
 
     private int buyingCost;
+
     public BuyingCost() {
         this.buyingCost = 0;
     }
@@ -13,6 +14,7 @@ public class BuyingCost {
         buyingCost = validate(input);
         return buyingCost;
     }
+
     public int validate(String input) {
         int validNum = Validation.validateInteger(input);
         Validation.validatePositiveNumber(validNum);

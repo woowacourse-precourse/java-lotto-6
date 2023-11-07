@@ -24,9 +24,11 @@ public enum LottoRanks {
     public int getSameNumber() {
         return sameNumber;
     }
+
     public boolean isSecond() {
         return isSecond;
     }
+
     public int getWinnings() {
         return winnings;
     }
@@ -39,6 +41,7 @@ public enum LottoRanks {
         }
         return NONE;
     }
+
     public static Map<LottoRanks, Integer> getEnumMap() {
         Map<LottoRanks, Integer> lottoResult = new EnumMap<>(LottoRanks.class);
         for (LottoRanks lottoRanks : lotto.constants.LottoRanks.values()) {

@@ -38,18 +38,21 @@ public class InputView {
         validateBlankInput(input);
         validateSpaceChar(input);
     }
+
     public void validateInputWinnerNum(String input) {
         validateInput(input);
         Validation.validateComma(input);
     }
+
     private void validateBlankInput(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(String.format(ERROR_FORMAT+BLANK_INPUT));
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT + BLANK_INPUT));
         }
     }
+
     private void validateSpaceChar(String input) {
         if (input.contains(SPACE)) {
-            throw new IllegalArgumentException(String.format(ERROR_FORMAT+SPACE_INCLUDED));
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT + SPACE_INCLUDED));
         }
     }
 

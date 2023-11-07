@@ -3,14 +3,14 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.DrawingResults;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.ProfitRate;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
-import lotto.domain.dto.BonusNumberDto;
-import lotto.domain.dto.DrawingResultDto;
-import lotto.domain.dto.LottoDto;
-import lotto.domain.dto.LottosDto;
-import lotto.domain.dto.ProfitRateDto;
-import lotto.domain.dto.WinningLottoDto;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -35,11 +35,10 @@ class LottoMachineTest {
             PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
 
             // when
-            LottosDto lottosDto = lottoMachine.issuedLottos(purchaseAmount);
+            Lottos lottos = lottoMachine.issuedLottos(purchaseAmount);
 
             // then
-            assertThat(lottosDto.lottos().size()).isEqualTo(
-                    5000 / PurchaseAmount.PURCHASE_AMOUNT_UNIT);
+            assertThat(lottos.getLottos().size()).isEqualTo(5000 / PurchaseAmount.PURCHASE_AMOUNT_UNIT);
         }
     }
 
@@ -50,20 +49,21 @@ class LottoMachineTest {
         @Test
         void Rank_count_equals_drawing_result() {
             // given
-            LottoDto lottoDto1 = new LottoDto(List.of(1, 2, 3, 4, 5, 6)); // 1등 - 6개 일치
-            LottoDto lottoDto2 = new LottoDto(List.of(1, 2, 3, 4, 5, 6)); // 1등 - 6개 일치
-            LottoDto lottoDto3 = new LottoDto(List.of(1, 2, 3, 4, 5, 10)); // 3등 - 5개 일치
-            LottoDto lottoDto4 = new LottoDto(List.of(1, 2, 3, 4, 10, 20)); // 4등 - 4개 일치
+            Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 1등 - 6개 일치
+            Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 1등 - 6개 일치
+            Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 10)); // 3등 - 5개 일치
+            Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 10, 20)); // 4등 - 4개 일치
 
-            LottosDto lottosDto = new LottosDto(List.of(lottoDto1, lottoDto2, lottoDto3, lottoDto4));
-            WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6));
-            BonusNumberDto bonusNumberDto = new BonusNumberDto(45);
+            Lottos lottos = new Lottos(List.of(lotto1, lotto2, lotto3, lotto4));
+            WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+            BonusNumber bonusNumber = new BonusNumber(45);
 
             // when
-            DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
-            Integer firstCount = drawingResultDto.drawingResults().get(Rank.FIRST);
-            Integer thirdCount = drawingResultDto.drawingResults().get(Rank.THIRD);
-            Integer fourthCount = drawingResultDto.drawingResults().get(Rank.FOURTH);
+            DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto,
+                    bonusNumber);
+            Integer firstCount = drawingResult.getResults().get(Rank.FIRST);
+            Integer thirdCount = drawingResult.getResults().get(Rank.THIRD);
+            Integer fourthCount = drawingResult.getResults().get(Rank.FOURTH);
 
             // then
             assertThat(firstCount).isEqualTo(2);
@@ -79,18 +79,18 @@ class LottoMachineTest {
         @DisplayName("추첨 결과에 따른 수익률을 반환한다.")
         @Test
         void Calculate_profit() {
-            LottoDto lottoDto1 = new LottoDto(List.of(1, 2, 3, 4, 5, 6)); // 1등
-            LottoDto lottoDto2 = new LottoDto(List.of(1, 2, 3, 4, 5, 6)); // 1등
-            LottoDto lottoDto3 = new LottoDto(List.of(1, 2, 3, 4, 5, 10)); // 3등
-            LottoDto lottoDto4 = new LottoDto(List.of(1, 2, 3, 4, 10, 20)); // 4등
+            Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 1등
+            Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 1등
+            Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 10)); // 3등
+            Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 10, 20)); // 4등
 
-            LottosDto lottosDto = new LottosDto(List.of(lottoDto1, lottoDto2, lottoDto3, lottoDto4));
-            WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6));
-            BonusNumberDto bonusNumberDto = new BonusNumberDto(45);
+            Lottos lottos = new Lottos(List.of(lotto1, lotto2, lotto3, lotto4));
+            WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+            BonusNumber bonusNumber = new BonusNumber(45);
 
             // when
-            DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
-            ProfitRateDto result = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
+            DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
+            ProfitRate result = lottoMachine.calculateProfitRate(lottos, drawingResult);
 
             // then
             System.out.println(result);

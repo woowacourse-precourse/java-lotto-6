@@ -86,6 +86,7 @@ class LottoMachineTest {
         when(player.getLottos()).thenReturn(LOTTOS);
 
         LottoResult lottoResult = lottoMachine.rank(player, winningLotto);
+
         assertThat(lottoResult.getRankingCounts()).isEqualTo(LOTTO_RESULT.getRankingCounts());
         verify(winningLotto, times(1)).getLotto();
         verify(winningLotto, times(1)).getBonusNumber();

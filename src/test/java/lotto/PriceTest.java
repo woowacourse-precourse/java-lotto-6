@@ -13,7 +13,7 @@ public class PriceTest {
 
     @DisplayName("Price로 문자가 주어지면 예외 발생 테스트.")
     @Test
-    void checkNumber1() {
+    void validateNumber1() {
         String input = "5000원";
 
         assertThatThrownBy(() -> new Price(input))
@@ -23,7 +23,7 @@ public class PriceTest {
 
     @DisplayName("Price가 int타입 넘어가면 예외 발생 테스트")
     @Test
-    void checkNumber2() {
+    void validateNumber2() {
         String input = "4000000001";
 
         assertThatThrownBy(() -> new Price(input))
@@ -33,7 +33,7 @@ public class PriceTest {
 
     @DisplayName("Price가 한 개의 로또 가격 단위로 떨어지지 않으면 예외 발생 테스트")
     @Test
-    void checkDividingUnitOfOneLottoPrice() {
+    void validateDividingUnitOfOneLottoPrice() {
         String input = "500";
 
         assertThatThrownBy(() -> new Price(input))
@@ -43,7 +43,7 @@ public class PriceTest {
 
     @DisplayName("Price가 0원이나 음수면 예외 발생하는 테스트")
     @Test
-    void checkValidRange1() {
+    void validateNumberRange1() {
         String input = "0";
 
         assertThatThrownBy(() -> new Price(input))
@@ -53,7 +53,7 @@ public class PriceTest {
 
     @DisplayName("Price가 0원이나 음수면 예외 발생하는 테스트")
     @Test
-    void checkValidRange2() {
+    void validateNumberRange2() {
         String input = "-1000";
 
         assertThatThrownBy(() -> new Price(input))
@@ -63,7 +63,7 @@ public class PriceTest {
 
     @DisplayName("Price가 1000원으로 떨어지나 로또 최대 구입 가격인 20억~int타입 사이면 예외 발생하는 테스트")
     @Test
-    void checkValidRange3() {
+    void validateNumberRange3() {
         String input = "2000001000";
 
         assertThatThrownBy(() -> new Price(input))

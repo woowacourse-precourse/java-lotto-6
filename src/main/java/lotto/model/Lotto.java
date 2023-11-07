@@ -34,8 +34,8 @@ public class Lotto {
     }
 
     private void validateAscendingOrder(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size()-1; i++) {
-            if (numbers.get(i) >= numbers.get(i+1)) {
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i) >= numbers.get(i + 1)) {
                 throw new IllegalArgumentException();
             }
         }

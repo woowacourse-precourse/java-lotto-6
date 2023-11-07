@@ -9,6 +9,10 @@ public class OutputView {
         System.out.println(constant.message);
     }
 
+    public void print(String output) {
+        System.out.println(output);
+    }
+
     public void printPrizeResult(String result) {
         printMessage(ConstantsMessage.LOTTO_RESULT_HEADER);
         printMessage(ConstantsMessage.LOTTO_RESULT_SECTION);
@@ -17,7 +21,7 @@ public class OutputView {
 
     public void printLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto.getNumbers() + "\n");
         }
     }
 }

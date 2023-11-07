@@ -8,7 +8,7 @@ public enum ExceptionMessage {
     NUMBER_COUNT_ERROR("로또 번호는 %d개여야 합니다."),
     BONUS_NUMBER_DUPLICATE_ERROR("보너스 번호에 중복이 있습니다.");
 
-    private static final String PREFIX = "[ERROR] ";
+    private final static String PREFIX = "[ERROR] ";
     public final String message;
 
     ExceptionMessage(String message) {

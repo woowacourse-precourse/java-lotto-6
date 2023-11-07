@@ -1,22 +1,32 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoChanger;
+import lotto.domain.LottoGenerator;
 import lotto.utility.Validation;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoManager {
     private int lottoCount;
-    public LottoManager(){}
+    private List<Lotto> lottoCollection;
 
-    public void startLottoService(){
+    private LottoGenerator lottoGenerator;
+
+    public LottoManager() {
+        lottoGenerator = new LottoGenerator();
+    }
+
+    public void startLottoService() {
         purchaseLotto(); //로또 구매하기
-
+        generateLotto(); //로또 생성하기
 
     }
 
-    private void purchaseLotto(){
+    private void purchaseLotto() {
         String purchaseAmount;
 
         purchaseAmount = inputPurchaseAmount();
@@ -37,5 +47,9 @@ public class LottoManager {
         }
 
         return purchaseAmount;
+    }
+
+    private void generateLotto(){
+        lottoCollection = lottoGenerator.generate(lottoCount);
     }
 }

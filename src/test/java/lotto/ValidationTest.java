@@ -1,7 +1,6 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,11 +14,11 @@ public class ValidationTest {
     @Test
     @DisplayName("숫자 외에 다른 문자가 있으면 예외가 발생한다.")
     void createPurchaseWithNonNumber() {
-        String inputString = "abc";
+        String inputString = "1000j";
 
         assertThatThrownBy(() -> validation.isAllNumber(inputString))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 올바른 숫자를 입력해 주세요.");
+                .hasMessageContaining(Messages.ALL_NUMBER_ERROR.getMessage());
     }
 
     @Test
@@ -29,7 +28,7 @@ public class ValidationTest {
 
         assertThatThrownBy(() -> validation.isDivisibleByThousand(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessageContaining(Messages.DIVISIBLE_BY_THOUSAND_ERROR.getMessage());
     }
 
     @Test
@@ -37,11 +36,11 @@ public class ValidationTest {
     void isBetweenRangeNumberWhenNumberIsNotInRange() {
         assertThatThrownBy(() -> validation.isBetweenRangeNumber(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining(Messages.BETWEEN_RANGE_ERROR.getMessage());
 
         assertThatThrownBy(() -> validation.isBetweenRangeNumber(46))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining(Messages.BETWEEN_RANGE_ERROR.getMessage());
     }
 
     @Test
@@ -52,6 +51,6 @@ public class ValidationTest {
 
         assertThatThrownBy(() -> validation.isNotDuplicated(duplicatedNumber, numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                .hasMessageContaining(Messages.DUPLICATED_ERROR.getMessage());
     }
 }

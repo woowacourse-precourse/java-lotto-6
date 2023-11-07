@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 class LottoTest {
@@ -141,5 +140,18 @@ class LottoTest {
 
         // then
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("기능33 테스트 : 로또 객체가 가진 숫자리스트를 문자열로 반환한다.")
+    void getNumberStatusReturnNumberListInTheFormOfString() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        String result = lotto.getStatus();
+
+        // then
+        assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }

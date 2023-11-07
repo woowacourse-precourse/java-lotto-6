@@ -1,8 +1,10 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
+import lotto.util.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -81,5 +83,26 @@ public class WinnerLottoTest {
         assertThat(rank).isEqualTo(Rank.NONE);
     }
 
+    @DisplayName("보너스 번호가 당첨로또에 포함되어있으면 예외 발생")
+    @Test
+    void createWinnerLottoToBonusByDuplicate() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonus = 6;
+
+        assertThatThrownBy(() -> new WinnerLotto(lotto,bonus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_BONUS_IS_CONTAIN_NUMBERS.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 당첨로또에 포함되어있으면 예외 발생")
+    @Test
+    void createWinnerLottoToBonusByOutOfRange() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonus = 50;
+
+        assertThatThrownBy(() -> new WinnerLotto(lotto,bonus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
+    }
 
 }

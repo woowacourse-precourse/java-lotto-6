@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.util.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,8 @@ class LottoTest {
     void createLottoByOutOfRange() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
     }
 
     @DisplayName("로또 번호에 범위에 벗어난 숫자가 있으면 예외가 발생한다2.")
@@ -39,7 +41,8 @@ class LottoTest {
     void createLottoByOutOfRange2() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_INPUT_RANGE.getMessage());
     }
 
     @DisplayName("로또 번호에 타겟 숫자가 포함되어 있으면 True를 리턴한다.")

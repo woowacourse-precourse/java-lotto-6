@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Amount;
 
 import java.util.*;
@@ -19,6 +20,9 @@ public class Application {
 
         bonusNumber = getBonusNumber(WinLotto); //보너스 번호 입력 받음
 
+        for(int iter = 1;iter <= amount.getAmount()/1000;iter++){ //입력금액 / 1000 만큼 iter 실행
+            makeRandomLotto();
+        }
     }
 
     private static List<Integer> parseLottoNumbers(String lottoNums) { //입력 -> List<Integer>
@@ -62,5 +66,9 @@ public class Application {
         }
     }
 
+    private static Lotto makeRandomLotto(){
+        List<Integer> numberList = Randoms.pickUniqueNumbersInRange(1,45,6);
+        return new Lotto(numberList);
+    }
 
 }

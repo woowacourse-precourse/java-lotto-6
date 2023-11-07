@@ -52,18 +52,4 @@ class LottoTest {
         Assertions.assertThat(lotto.getLottoNumbers()).isEqualTo(sortAfterLottoNumber);
     }
 
-    @DisplayName("수량에 맞게 로또 여러개가 발행되는지 테스트한다.")
-    @Test
-    void createLottosByAmount() {
-        //given
-        int amount = 6;
-
-        //when
-        List<List<Integer>> lottos = Lotto.generateLottosByAmount(amount);
-
-        //then
-        Assertions.assertThat(lottos.size()).isEqualTo(amount);
-    }
-
-
 }

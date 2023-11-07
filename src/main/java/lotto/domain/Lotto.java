@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.constants.LottoErrorMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,15 +21,6 @@ public class Lotto {
         validateLengthNumber(numbers);
         validateRange(numbers);
         validateDuplication(numbers);
-    }
-
-    public static List<List<Integer>> generateLottosByAmount(int amount) {
-        List<List<Integer>> lottos = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            lottos.add(RandomNumber.generateLottoNumbers());
-        }
-
-        return lottos;
     }
 
     public List<Integer> getLottoNumbers() {

@@ -1,5 +1,8 @@
 package lotto.utils;
 
+import static lotto.utils.constants.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
+import static lotto.utils.constants.ErrorMessageConstants.PURCHASE_AMOUNT_FORMAT_ERROR_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +26,14 @@ public class Converter {
 
     public static List<String> stringToList(String inputValue){
         return new ArrayList<>(List.of(inputValue.split(",")));
+    }
+
+    public static int convertStringToInt(String inputValue) {
+        try {
+            return Integer.parseInt(inputValue);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + PURCHASE_AMOUNT_FORMAT_ERROR_MESSAGE);
+        }
     }
 
     public static void stringToInt(List<String> numbers) {

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.user;
 
 
 public class LottoResults {

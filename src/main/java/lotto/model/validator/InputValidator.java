@@ -1,6 +1,6 @@
 package lotto.model.validator;
 
-import lotto.model.WinningNumber;
+import lotto.model.lotto.WinningNumber;
 
 import java.util.List;
 import java.util.regex.Pattern;

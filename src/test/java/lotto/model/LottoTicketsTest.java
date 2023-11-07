@@ -1,5 +1,10 @@
 package lotto.model;
 
+import lotto.model.lotto.BonusNumber;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.WinningNumber;
+import lotto.model.user.LottoResults;
+import lotto.model.user.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +14,6 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTicketsTest {
     List<Lotto> tickets = new ArrayList<>();

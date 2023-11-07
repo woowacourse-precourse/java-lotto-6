@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.lotto.BonusNumber;
+import lotto.model.lotto.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

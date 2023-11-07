@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.user;
 
 import static lotto.model.validator.InputValidator.checkNumericInput;
 import static lotto.model.validator.InputValidator.numberMustBeMultipleOf1000;

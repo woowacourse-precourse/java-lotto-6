@@ -1,7 +1,11 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.*;
+import lotto.model.lotto.BonusNumber;
+import lotto.model.lotto.WinningNumber;
+import lotto.model.user.LottoResults;
+import lotto.model.user.LottoTickets;
+import lotto.model.user.OrderAmount;
 import lotto.view.View;
 
 public class MainController {

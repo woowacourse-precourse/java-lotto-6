@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,17 +34,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("isContain 함수가 잘 동작하는 지 확이")
+    @DisplayName("isContain 함수가 잘 동작하는 지 확인")
     @Test
     void testIsContain() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertTrue(lotto.isContain(1));
-        assertTrue(lotto.isContain(2));
-        assertTrue(lotto.isContain(3));
-        assertTrue(lotto.isContain(4));
-        assertTrue(lotto.isContain(5));
-        assertTrue(lotto.isContain(6));
+        assertAll(
+                () -> assertTrue(lotto.isContain(1)),
+                () -> assertTrue(lotto.isContain(2)),
+                () -> assertTrue(lotto.isContain(3)),
+                () -> assertTrue(lotto.isContain(4)),
+                () -> assertTrue(lotto.isContain(5)),
+                () -> assertTrue(lotto.isContain(6))
+        );
     }
 
     @DisplayName("getNumber 정상 작동 확인")

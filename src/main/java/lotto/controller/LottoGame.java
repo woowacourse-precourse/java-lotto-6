@@ -14,9 +14,9 @@ public class LottoGame {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoGame() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+    public LottoGame(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void gameStart() {

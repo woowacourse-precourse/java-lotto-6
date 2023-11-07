@@ -88,7 +88,7 @@ public class LottoSystem {
         int purchaseAmount = player.getPurchaseAmount();
         int totalProfit = 0;
         for (Prize prize : prizes) {
-            totalProfit += prize.getPrize();
+            totalProfit += prize.getPrizeMoney();
         }
         return ((double) totalProfit / purchaseAmount) * 100;
     }

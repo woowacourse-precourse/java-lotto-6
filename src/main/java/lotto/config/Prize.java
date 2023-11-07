@@ -9,18 +9,18 @@ public enum Prize {
     SIX_NUMBER_MATCH(6, 2000000000);
 
     private final int matchingNumberCount;
-    private final int prize;
+    private final int prizeMoney;
 
-    Prize(int matchingNumberCount, int prize) {
+    Prize(int matchingNumberCount, int prizeMoney) {
         this.matchingNumberCount = matchingNumberCount;
-        this.prize = prize;
+        this.prizeMoney = prizeMoney;
     }
 
     public int getMatchingNumberCount() {
         return matchingNumberCount;
     }
 
-    public int getPrize() {
-        return prize;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

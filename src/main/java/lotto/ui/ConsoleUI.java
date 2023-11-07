@@ -11,6 +11,7 @@ import static lotto.ui.ConsoleMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.ui.ConsoleMessage.REQUEST_WINNING_NUMBERS;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.error.exception.InvalidInputException;
 import lotto.input.InputProcessor;
@@ -54,6 +55,8 @@ public class ConsoleUI {
     private void printLottosInfo(List<Lotto> lottos) {
         System.out.println(lottos.size() + PRINT_LOTTOS.getMessage());
         for (Lotto lotto : lottos) {
+            List<Integer> sortedLottoNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedLottoNumbers);
             System.out.println(lotto.getNumbers().toString());
         }
         System.out.println();

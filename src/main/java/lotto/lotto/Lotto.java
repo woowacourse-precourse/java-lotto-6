@@ -5,7 +5,6 @@ import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_DUPLICA
 import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_OUT_OF_RANGE;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.error.exception.InvalidStateException;
@@ -21,7 +20,6 @@ public class Lotto {
 
     public static Lotto create() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
 

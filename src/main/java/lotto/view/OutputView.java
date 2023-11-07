@@ -33,4 +33,8 @@ public class OutputView {
             System.out.println(String.format(rank.getMessage(), winningStatus.get(rank)));
         }
     }
+
+    public void printProfitRate(String profitRate){
+        System.out.println(String.format("총 수익률은 %s%%입니다.", profitRate));
+    }
 }

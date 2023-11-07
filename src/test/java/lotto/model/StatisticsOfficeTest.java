@@ -83,7 +83,7 @@ class StatisticsOfficeTest {
                                 Rank.FOURTH_PLACE, 1,
                                 Rank.FIFTH_PLACE, 0,
                                 Rank.LAST_PLACE, 0))
-                        , 3000, "1666.7"),
+                        , 3000, "1,666.7"),
                 arguments(new EnumMap<>(Map.of(Rank.FIRST_PLACE, 0,
                                 Rank.SECOND_PLACE, 0,
                                 Rank.THIRD_PLACE, 0,

@@ -47,11 +47,11 @@ public class StatisticsOffice {
         return winningStatus;
     }
 
-    public static String calculateProfitRate(Map<Rank, Integer> winningStatus, int money) {
+    public static String  calculateProfitRate(Map<Rank, Integer> winningStatus, int money) {
         double profit = 0.0;
         for (Rank rank : winningStatus.keySet()) {
             profit += rank.getReward() * winningStatus.get(rank);
         }
-        return String.format("%.1f", profit * 100 / money);
+        return String.format("%,.1f", profit * 100 / money);
     }
 }

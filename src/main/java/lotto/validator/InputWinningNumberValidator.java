@@ -14,32 +14,26 @@ public class InputWinningNumberValidator {
 
     public static void validateWinningNumber(String winningNumber) {
         if (isNotSeparateByComma(winningNumber)) {
-            System.out.println("[ERROR] 당첨 번호는 쉼표로 구분한 숫자를 입력해야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분한 숫자를 입력해야 합니다.");
         }
         if (isNotLottoNumber(winningNumber)) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
         }
         if (incorrectLottoNumberSize(winningNumber)) {
-            System.out.println("[ERROR] 로또번호는 6개를 입력해야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또번호는 6개를 입력해야 합니다.");
         }
         if (isOverlapLottoNumber(winningNumber)) {
-            System.out.println("[ERROR] 중복된 로또 번호를 입력하였습니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호를 입력하였습니다.");
         }
 
     }
 
     public static void validateBonusNumber(String bonusNumber) {
         if (isNotDigit(bonusNumber)) {
-            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
         if (isNotLottoBonusNumber(bonusNumber)) {
-            System.out.println("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
         }
     }
 

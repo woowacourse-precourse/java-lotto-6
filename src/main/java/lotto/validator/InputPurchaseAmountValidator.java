@@ -11,16 +11,13 @@ public class InputPurchaseAmountValidator {
 
     public static void validatePurchaseAmount(String purchaseAmount) {
         if (isNotDigit(purchaseAmount)) {
-            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(("[ERROR] 숫자를 입력해야 합니다."));
         }
         if (isOverMaximumAmount(purchaseAmount)) {
-            System.out.println("[ERROR] 2,147,483,647보다 작은 값을 입력해야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 2,147,483,647보다 작은 값을 입력해야 합니다.");
         }
         if (isNotMultipleOf1000(purchaseAmount)) {
-            System.out.println("[ERROR] 1,000원 단위의 숫자를 입력해야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1,000원 단위의 숫자를 입력해야 합니다.");
         }
     }
 

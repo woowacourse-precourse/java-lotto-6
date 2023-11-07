@@ -38,7 +38,8 @@ public class LottoService {
         System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            randomNum.sort(Comparator.naturalOrder());
             lottos.add(new Lotto(randomNum));
             System.out.println(randomNum);
         }

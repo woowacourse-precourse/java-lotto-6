@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class Lotto {
+    private static final String INVALID_LOTTO_MESSAGE = "[ERROR] 6개의 로또 번호를 입력해야 합니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,7 +13,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LOTTO_MESSAGE);
         }
     }
 

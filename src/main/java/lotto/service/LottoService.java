@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import lotto.model.InputValidation;
 import lotto.model.Lotto;
 import lotto.model.RandomNumber;
@@ -12,9 +13,27 @@ public class LottoService {
     private int lottoCount;
     private ArrayList<Lotto> lottos;
     private int payment;
+    private Lotto winningNumbers;
+    private int bonusNumber;
 
     public int getPayment() {
         return payment;
+    }
+
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public void setWinningNumbers(Lotto winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     public void createLottoCount() {
@@ -65,5 +84,31 @@ public class LottoService {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.toString());
         }
+    }
+
+    public void createWinningNumbers() {
+        while (true) {
+            try {
+                String input = InputView.winningNumber();
+                List<Integer> numbers = parseInput(input);
+                setWinningNumbers(new Lotto(numbers));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> parseInput(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] parts = input.split(",");
+
+        for (String part : parts) {
+            String trimmedPart = part.trim(); // 앞뒤 공백 제거
+            int validPart = checkNumber(trimmedPart);
+            InputValidation.validateNumberInRange(validPart);
+            numbers.add(validPart);
+        }
+        return numbers;
     }
 }

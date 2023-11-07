@@ -14,18 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
     public void start() {
-        OutputView.print(PAYMENT_REQUEST.getMessage());
-        OutputView.print(LINE_BREAK.getMessage());
 
-        String money = InputView.read();
-        validateNumber(money);
-        validateMultiple(money);
-        int payment = Integer.parseInt(money);
+        int payment = receiveMoney();
 
         OutputView.print(LINE_BREAK.getMessage());
         int countOfLotto = payment / 1000;
@@ -50,7 +46,7 @@ public class LottoGame {
         OutputView.print(WINNING_NUMBER_REQUEST.getMessage());
         OutputView.print(LINE_BREAK.getMessage());
         String input = InputView.read();
-        validateInputRequirement(input);
+        InputValidator.validateInputRequirement(input);
 
         List<Integer> winingNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
@@ -64,7 +60,7 @@ public class LottoGame {
         OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
         OutputView.print(LINE_BREAK.getMessage());
         input = InputView.read();
-        validateNumber(input);
+        InputValidator.validateNumber(input);
         validateRangeOne(Integer.parseInt(input));
         validateBonusDuplication(Integer.parseInt(input), winingNumbers);
         int bonus = Integer.parseInt(input);
@@ -80,11 +76,15 @@ public class LottoGame {
 
     }
 
-    public void validateNumber(String input) {
-        if (!input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
-        }
+    private int receiveMoney() {
+        OutputView.print(PAYMENT_REQUEST.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
+        String money = InputView.read();
+        InputValidator.validateNumber(money);
+        validateMultiple(money);
+        return Integer.parseInt(money);
     }
+
 
     public void validateMultiple(String input) {
         if (Stream.of(input)
@@ -94,11 +94,6 @@ public class LottoGame {
         }
     }
 
-    public void validateInputRequirement(String input) {
-        if (!input.matches("^[0-9]+(,[0-9]+)*$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자와 쉼표(,)만 입력하세요");
-        }
-    }
 
     public void validateRange(List<Integer> numbers) {
         for (int num : numbers) {

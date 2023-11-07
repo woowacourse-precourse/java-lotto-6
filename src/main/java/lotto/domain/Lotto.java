@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.constant.LottoConsts.REQUIRED_COUNT;
+import static lotto.constant.LottoConsts.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,6 +19,9 @@ public class Lotto {
         }
         if (numbers.stream().distinct().count() != REQUIRED_COUNT) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+        }
+        if (!numbers.stream().allMatch(number -> MIN_NUMBER <= number && number <= MAX_NUMBER)) {
+            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d부터 %d까지의 숫자여야 합니다.", MIN_NUMBER, MAX_NUMBER));
         }
     }
 

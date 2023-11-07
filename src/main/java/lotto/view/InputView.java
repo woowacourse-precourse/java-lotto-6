@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constant.ConstantString.BONUS_NUMBER_INIT_MESSAGE;
 import static lotto.constant.ConstantString.LUCKY_NUMBER_INIT_MESSAGE;
 import static lotto.constant.ConstantString.PURCHASE_PRICE_MESSAGE;
 
@@ -16,6 +17,7 @@ public class InputView {
     private final InputValidator inputValidator;
     private String validateInput;
     private List<String> validateLuckyNumbers;
+    private Integer validateBonusNumber;
 
     public InputView() {
         inputValidator = new InputValidator();
@@ -88,6 +90,35 @@ public class InputView {
         return validateLuckyNumbers.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public Integer writeBonusNumber() {
+        printWhiteSpace();
+        print(BONUS_NUMBER_INIT_MESSAGE);
+        validateBonusNumber();
+        return validateBonusNumber;
+    }
+
+    private void validateBonusNumber(){
+        while (!validBonusNumber()){
+        }
+    }
+
+    private boolean validBonusNumber() {
+        try{
+            String bonusNumber = removeWhitespace(Console.readLine());
+            inputValidator.validateNotNull(bonusNumber);
+            inputValidator.validateNumber(bonusNumber);
+            validateBonusNumber = Integer.parseInt(bonusNumber);
+            return true;
+        }catch (LottoApplicationException e){
+            e.getErrorMessage();
+            return false;
+        }
+    }
+
+    private void printWhiteSpace(){
+        System.out.println();
     }
 
 }

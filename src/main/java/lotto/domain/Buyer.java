@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Buyer {
-    private ArrayList<Lotto> Lotteries = new ArrayList<>();
+    private static ArrayList<Lotto> Lotteries = new ArrayList<>();
     private int price;
+
+    public static ArrayList<Lotto> getLotteries() {
+        return Lotteries;
+    }
 
     public Buyer(int price) {
         this.price = price;

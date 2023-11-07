@@ -1,14 +1,10 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.LottoAmount;
-import lotto.model.RandomNumbers;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -22,7 +18,7 @@ public class LottoController {
         getLottoAmount();
         getLottos();
 //        getWinningLotto();
-        System.out.println(getWinningLotto());
+        System.out.println(getWinningLotto().getNumbers());
 //        getBonusNumber();
         System.out.println(getBonusNumber());
     }
@@ -45,11 +41,6 @@ public class LottoController {
         amount = lottoAmount.getAmount();
     }
 
-    //winning 입력 받아서 모델에서 validation 처리 -> Lotto에서
-//    private void getWinningLotto() {
-//        Lotto lotto = new Lotto(lottoStringtoIntegerList());
-//        winningLotto = lotto;
-//    }
     private Lotto getWinningLotto() {
         Lotto lotto = new Lotto(lottoStringtoIntegerList());
         winningLotto = lotto;
@@ -61,11 +52,6 @@ public class LottoController {
         return lotto.getNumbers();
     }
 
-    //bonusNumber 입력 받아서 모델에서 validation 처리 -> bonusNum 모델 생성?
-//    private void getBonusNumber(){
-//        BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
-//        bonusNumber = bonus.getBonusNumber();
-//    }
     private int getBonusNumber() {
         BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
         bonusNumber = bonus.getBonusNumber();
@@ -75,4 +61,15 @@ public class LottoController {
     //각 로또가 몇개 맞았는지 확인, lottos, amount, winningNumbers, bonusNumber 등등 활용,
     //모델 생성(로또 결과 모델)해서 각 로또가 몇개 맞혔는지 보너스는 맞혔는지 확인하고 map에 넣기
     //수익률 출력 -> 당첨금/로또 구입금
+    private void getLottoResults(){
+//        HashMap<List<String>, Integer> hashMap = new HashMap<>();
+//        hashMap.put();
+
+        LottoResult lottoResults = new LottoResult();
+    }
+    //String인 result 객체를 여러 개 모아서 List<Result>로 할까?
+    //각 Result.get당첨금액을 다 더해서 /amount
+
+
+
 }

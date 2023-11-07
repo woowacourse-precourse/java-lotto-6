@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.Validator.validateFittingInRange;
+
 import java.util.List;
 
 public class LottoWinningNumber {
@@ -8,6 +10,7 @@ public class LottoWinningNumber {
 
     public LottoWinningNumber(Lotto winningNumbers, int bonusNumber) {
         hasBonusNumber(winningNumbers, bonusNumber);
+        validateFittingInRange(bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }

@@ -1,8 +1,9 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.utils.Constant.LOTTO_PRICE;
-import static lotto.utils.Constant.ZERO;
+import static lotto.utils.Validator.canDivideByKilo;
+import static lotto.utils.Validator.isDigit;
+import static lotto.utils.Validator.isMoneyOverKilo;
 
 public class InputView {
 
@@ -26,23 +27,5 @@ public class InputView {
         isDigit(inputBonusNumber);
 
         return Integer.parseInt(inputBonusNumber);
-    }
-
-    private static void isDigit(String money) {
-        if (!money.matches("-?\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자가 입력되었습니다.");
-        }
-    }
-
-    private static void canDivideByKilo(String money) {
-        if (Integer.parseInt(money) % LOTTO_PRICE != ZERO) {
-            throw new IllegalArgumentException("[ERROR] 천 원단위로 입력해 주세요.");
-        }
-    }
-
-    private static void isMoneyOverKilo(String money) {
-        if (Integer.parseInt(money) < 1000) {
-            throw new IllegalArgumentException("[ERROR] 한 장도 구입할 수 없습니다.");
-        }
     }
 }

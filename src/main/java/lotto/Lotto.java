@@ -1,6 +1,5 @@
 package lotto;
 
-import javax.swing.*;
 import java.util.List;
 
 public class Lotto {

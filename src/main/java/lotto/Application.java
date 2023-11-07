@@ -6,6 +6,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class Application {
+
+    private static final int LOTTO_START_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
+    private static final int LOTTO_LENGTH = 6;
     public static void main(String[] args) {
 
         try {
@@ -25,12 +29,10 @@ public class Application {
 
             List<Lotto> lottoList = new ArrayList<>();
             for (int i = 0; i < purchaseCount; i++) {
-                lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+                lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_LENGTH)));
             }
 
-            for (int i = 0; i < lottoList.size(); i++) {
-//                    Collections.sort(lottoList.get(i).getNumbers());
-            }
+            //TODO : lottoList내 로또 번호 오름차순 정렬
 
             for (int i = 0; i < lottoList.size(); i++) {
                 System.out.println(lottoList.get(i).toString());
@@ -91,7 +93,7 @@ public class Application {
             System.out.println("5개 일치 (1,500,000원) - " + winStatistic[2] + "개");
             System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winStatistic[1] + "개");
             System.out.println("6개 일치 (2,000,000,000원) - " + winStatistic[0] + "개");
-            System.out.println("총 수익률은 " + (totalMoneyGet / (float)purchaseAmount) * 100 + "%입니다.");
+            System.out.println("총 수익률은 " + (totalMoneyGet / (float) purchaseAmount) * 100 + "%입니다.");
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

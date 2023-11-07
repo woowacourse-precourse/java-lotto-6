@@ -1,6 +1,12 @@
 package lotto.view;
 
 
+import lotto.domain.common.Lotto;
+import lotto.domain.consumer.Consumer;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
 
     private final static String PRICE_MESSAGE = "구입금액을 입력해 주세요.";
@@ -10,4 +16,17 @@ public class OutputView {
         System.out.println(PRICE_MESSAGE);
     }
 
+    public void printCountMessage(Consumer consumer) {
+        int count = consumer.consumerLottos().size();
+        System.out.println("\n" + count + COUNT_MESSAGE);
+    }
+
+    public void printConsumerNumbers(Consumer consumer) {
+        for(Lotto lotto : consumer.consumerLottos()) {
+            List<Integer> numbers = lotto.numbers();
+            List<Integer> sorted = numbers.stream().sorted().collect(Collectors.toList());
+            System.out.println(sorted);
+        }
+        System.out.println();
+    }
 }

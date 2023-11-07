@@ -18,6 +18,7 @@ public class GameController {
         double prifitRate = Result.resultsToProfitRate(result);
         output.printResults(result, prifitRate);
     }
+
     private int readPurchaseAmount(){
         while (true) {
             try {

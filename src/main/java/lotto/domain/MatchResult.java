@@ -15,7 +15,7 @@ public class MatchResult {
 
     public static MatchResult of(Lotto purchasedLotto, WinningNumbersWithBonus winningNumbersWithBonus) {
         return new MatchResult(winningNumbersWithBonus.countMatchingNumbers(purchasedLotto),
-                winningNumbersWithBonus.containsFrom(purchasedLotto));
+                winningNumbersWithBonus.bonusIn(purchasedLotto));
     }
 
     public boolean isEqaulMatchNumbersCount(int matchNumbersCount) {

@@ -9,6 +9,10 @@ public class WinningNumbersWithBonus {
         this.bonusNumber = bonusNumber;
     }
 
+    public static WinningNumbersWithBonus of(Lotto winningNumbers, Ball bonusNumber) {
+        return new WinningNumbersWithBonus(winningNumbers, bonusNumber);
+    }
+
     public static WinningNumbersWithBonus createManual() {
         return new WinningNumbersWithBonus(Lotto.createWinningNumbers(), Ball.createManual());
     }
@@ -17,7 +21,7 @@ public class WinningNumbersWithBonus {
         return lotto.countMatchingNumbers(winningNumbers);
     }
 
-    public boolean containsFrom(Lotto lotto) {
+    public boolean bonusIn(Lotto lotto) {
         return lotto.contains(bonusNumber);
     }
 }

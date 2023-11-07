@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.wrapper.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,14 +25,40 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 특정 번호가 포함되어 있는지 검사한다.")
+    @Test
+    void doesLottoContainThisNumber() {
+        // given
+        int commonNumber = 1;
+        int notCommonNumber = 7;
+        Lotto lotto = new Lotto(List.of(commonNumber,2,3,4,5,6));
+        LottoNumber commonLottoNumber = new LottoNumber(commonNumber);
+        LottoNumber notCommonLottoNumber = new LottoNumber(notCommonNumber);
+        // when, then
+        assertThat(lotto.doesHaveLottoNumber(commonLottoNumber)).isEqualTo(true);
+        assertThat(lotto.doesHaveLottoNumber(notCommonLottoNumber)).isEqualTo(false);
+    }
+
+    @DisplayName("로또가 다른 로또와 공통된 숫자가 몇개 있는지 검사한다.")
+    @Test
+    void checkSameNumberCount() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        int expectedSameCount = 3;
+        // when, then
+        assertThat(lotto.getSameCount(otherLotto)).isEqualTo(expectedSameCount);
+    }
+
     @DisplayName("로또가 가진 번호들을 오름차순 정렬, 쉼표로 구분, 대괄호로 감싼 뒤 반환한다.")
     @Test
     void getLottoPrintFormat() {
         // given
         Lotto lotto = new Lotto(List.of(35, 20, 9, 8, 13, 5));
+        String expectedResult = "[5, 8, 9, 13, 20, 35]";
         // when
         String lottoPrintFormat = lotto.toString();
         // then
-        assertThat(lottoPrintFormat).isEqualTo("[5, 8, 9, 13, 20, 35]");
+        assertThat(lottoPrintFormat).isEqualTo(expectedResult);
     }
 }

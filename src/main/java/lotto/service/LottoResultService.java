@@ -31,6 +31,7 @@ public final class LottoResultService {
         result.merge(rank, 1, Integer::sum);
     }
 
+
     private LottoResultDTO convertDto(Map<LottoRankInfo, Integer> result) {
         LottoResult lottoResult = new LottoResult(result);
         Map<LottoRankInfo, Integer> lottoRankDto = convertLottoRanks(result);
@@ -38,11 +39,10 @@ public final class LottoResultService {
     }
 
     private Map<LottoRankInfo, Integer> convertLottoRanks(Map<LottoRankInfo, Integer> result) {
-        Map<LottoRankInfo, Integer> lottoRankDto = new TreeMap<>((o1, o2) -> o1.getHitCount() - o2.getHitCount());
+        Map<LottoRankInfo, Integer> lottoRankDto = new TreeMap<>((r1, r2) -> r1.getHitCount() - r2.getHitCount());
 
         Arrays.stream(LottoRankInfo.values())
-                .forEach(rank -> lottoRankDto.put(rank, result.get(rank)));
-
+                .forEach(rank -> lottoRankDto.put(rank, result.getOrDefault(rank, 0)));
         lottoRankDto.remove(LottoRankInfo.NONE);
         return lottoRankDto;
     }

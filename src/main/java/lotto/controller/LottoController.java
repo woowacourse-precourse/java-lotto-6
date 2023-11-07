@@ -15,14 +15,14 @@ public class LottoController {
 
     public void start() {
         Money money = getLottoMoney();
-        printBuyLotto(money);
-
         Lottos lottos = getLottos(money);
-        printLottoList(lottos);
 
         WinningLotto winningLotto = getWinningLotto();
         PrizeResult prizeResult = new PrizeResult();
         calcLottoResult(prizeResult, winningLotto, lottos);
+
+        printBuyLotto(money);
+        printLottoList(lottos);
 
         Rate rate = getRate(money, prizeResult);
         printStatistics(prizeResult, rate);

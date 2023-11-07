@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class TicketPurchaseAmount {
     private static final int DIVISOR = 1000;
     private static final String NUMBER_REGAX = "^[0-9]*$";
@@ -41,4 +43,5 @@ public class TicketPurchaseAmount {
     public int calculateLottoCount() {
         return amount / DIVISOR;
     }
+
 }

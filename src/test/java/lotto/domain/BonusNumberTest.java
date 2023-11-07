@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -27,5 +28,21 @@ class BonusNumberTest {
         // then
         assertThatThrownBy(() -> BonusNumber.ofNotDuplicatedWithWinningNumber("46", winningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호와 동일하면 true, 아니면 false를 반환한다.")
+    @Test
+    void isEqual() {
+        // given
+        WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,6");
+        BonusNumber bonusNumber = BonusNumber.ofNotDuplicatedWithWinningNumber("10", winningNumber);
+
+        // when
+        boolean result1 = bonusNumber.isEqual(15);
+        boolean result2 = bonusNumber.isEqual(10);
+
+        // then
+        assertThat(result1).isFalse();
+        assertThat(result2).isTrue();
     }
 }

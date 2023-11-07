@@ -28,7 +28,7 @@ public class WinStatisticsTest {
     }
 
     @Test
-    void 수익률을_계산해_반환한다() {
+    void calculateProfit_메서드는_수익률을_계산해_반환한다() {
         //given
         List<Ranking> rankings = List.of(Ranking.FIFTH, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE, Ranking.NONE);
         //when

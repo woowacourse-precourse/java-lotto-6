@@ -37,7 +37,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource(value = "provideLottoTestData")
-    void 당첨_로또와_비교해_등수를_구한다(Lotto lotto, Ranking result) {
+    void compareWinLotto_메서드는_당첨_로또와_비교해_등수를_구한다(Lotto lotto, Ranking result) {
         //given
         WinLotto winLotto = new WinLotto(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
         //when

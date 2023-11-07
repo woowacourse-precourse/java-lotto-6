@@ -1,26 +1,22 @@
 package ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import dto.LottoMoney;
 
 class InputView {
     private InputView() {
     }
 
     /**
-     * @return 로또 장 수
+     * @return 1000 단위로 끊어진 로또 구매 금액.
      */
-    public static int getMoney() {
+    public static LottoMoney getMoney() {
         String input = Console.readLine();
-        int money;
         try {
-            money = Integer.parseInt(input);
-
-            if (money % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
-            }
+            int money = Integer.parseInt(input);
+            return new LottoMoney(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 잘못된 금액입니다.", e);
         }
-        return money;
     }
 }

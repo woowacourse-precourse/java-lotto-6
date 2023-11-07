@@ -49,3 +49,4 @@
 - [X] lottoPurchaseInput - 메시지가 표시가 안됨
 - [X] makeLottoAsPurchaseAndAccumulate
 - [X] 당첨 번호 입력받도록 사용자에게 전달하는 메세지 필요
+- [] 총 수익률을 출력하는 함수 해결 필요

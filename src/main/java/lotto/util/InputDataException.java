@@ -26,4 +26,10 @@ public class InputDataException {
             }
         }
     }
+
+    public static void validateBonusNumberInput(String bonusNumberInput) {
+        if(!bonusNumberInput.matches("\\d+")) {
+            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_ONLY_NUMBERS);
+        }
+    }
 }

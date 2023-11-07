@@ -27,4 +27,8 @@ public class LottoShop {
         }
         return purchaseAmount.changeBy(LOTTO_AMOUNT);
     }
+
+    public int countLottoTicket(PurchaseAmount purchaseAmount) {
+        return changeAmountToLottos(purchaseAmount);
+    }
 }

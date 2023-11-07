@@ -51,7 +51,7 @@ public class WinningLottoValidator {
 
             if (count > 1) {
                 throw new IllegalArgumentException(
-                        ErrorMessage.INVALID_LOTTO_WINNING_NUMBER_RANGE_MESSAGE.getMessage());
+                        ErrorMessage.DUPLICATE_NUMBERS_MESSAGE.getMessage());
             }
         }
     }

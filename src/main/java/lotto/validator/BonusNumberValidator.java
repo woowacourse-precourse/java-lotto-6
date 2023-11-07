@@ -22,7 +22,7 @@ public class BonusNumberValidator {
 
     private static void validateNumbersInLottoRange(final int number) {
         if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_WINNING_NUMBER_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE.getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ public class BonusNumberValidator {
         boolean isDuplicate = winningLotto.getNumbers().contains(number);
 
         if (isDuplicate) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE.getMessage());
         }
     }
 }

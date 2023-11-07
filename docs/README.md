@@ -56,55 +56,34 @@
 ---
 #### 상수
 
-- `NOT_A_NUMBER`
-  - Msg : `Message.ERROR_NOT_A_NUMBER`
-  - test(String input)
-    - input을 받아 `String.trim()`으로 공백을 지운 후 숫자로 변환한다.
-    - 변환할 수 없으면 `NumberFormatException`이 발생하면 `true`를 반환한다.
-    - 모두 바꿀 수 있으면 error가 아니므로 `false`를 반환한다.
-    
-- `NOT_IN_THOUSANDS`
-  - Msg : `Message.ERROR_NOT_IN_THOUSANDS`
-  - test(String input)
-    - input을 받아 `String.trim()`으로 공백을 지운다.
-    - 숫자로 변환하고 1000원 단위인지 확인한다.
-    - 1000원 단위가 아니면 `true`를 반환한다.
-    - 1000원 단위면 `false`를 반환한다.
-    
-- `MONEY_OUT_OF_RANGE`
-  - Msg : `Message.ERROR_MONEY_OUT_OF_RANGE`
-  - test(String input)
-    - input을 받아 `String.trim()`으로 공백을 지운다.
-    - 숫자로 변환한 뒤 각 수가 0 ~ `Long.MAX_VALUE` 사이의 수인지 확인한다.
-    - 하나의 숫자라도 0 ~`Long.MAX_VALUE`의 범위에 있으면 `true`를 그렇지 않으면 `false`를 반환한다.
-  
-- `NUMBER_OUT_OF_RANGE`
-  - Msg : `Message.ERROR_NUMBER_OUT_OF_RANGE`
-  - test(String input)
-    - input을 받아 `String.trim()`으로 공백을 지운다.
-    - 숫자로 변환한 뒤 각 수가 1 ~ 45 사이의 수인지 확인한다.
-    - 하나의 숫자라도 1 ~ 45의 범위에 있으면 `true`를 그렇지 않으면 `false`를 반환한다.
-    
-- `NOT_SIX_WINNING_NUMBERS`
-  - Msg : `Message.ERROR_NOT_SIX_WINNING_NUMBERS`
-  - test(String input) : 당첨 번호를 받을 때 사용한다.
-    - input을 ',' 기준으로 나누고 `String.trim()`으로 공백을 지운다.
-    - 길이가 6자리인지 확인한다.
-    - 6자리가 아니면 `true`를 그렇지 않으면 `false`를 반환한다.
-    
 - `NOT_ONE_NUMBER`
   - Msg : `Message.ERROR_NOT_ONE_NUMBER`
-  - test(String input) : 금액과 보너스 번호를 입력받을 때 사용한다.
-    - input을 ',' 기준으로 나누고 `String.trim()`으로 공백을 지운다.
-    - 길이가 1자리인지 확인한다.
-    - 1자리가 아니면 `true`를 반환한다.
-    - 1자리면 `false`를 반환한다.
+  - test(List<Integer> numberCandidates)
+    - numberCandidates에 담긴 정수의 개수를 센다.
+    - 정수가 1개가 아니면 `true`를 반환하고 그렇지 않으면 `false`를 반환한다.
+  
+- `NOT_IN_THOUSANDS`
+  - Msg : `Message.ERROR_NOT_IN_THOUSANDS`
+  - test(List<Integer> numberCandidates)
+    - numberCandidates에 담긴 정수가 1000원으로 나머지 연산을 한다.
+    - 0이 아니면 `true`를 반환하고 그렇지 않으면`false`를 반환한다.
+
+- `NUMBER_OUT_OF_RANGE`
+  - Msg : `Message.ERROR_NUMBER_OUT_OF_RANGE`
+  - test(List<Integer> numberCandidates)
+    - numberCandidates에 담긴 정수를 순회하며 1 ~ 45 사이의 수인지 확인한다.
+    - 하나의 숫자라도 1 ~ 45의 범위에 있으면 `true`를 그렇지 않으면 `false`를 반환한다.
+
+- `NOT_SIX_WINNING_NUMBERS`
+  - Msg : `Message.ERROR_NOT_SIX_WINNING_NUMBERS`
+  - test(List<Integer> numberCandidates)
+    - numberCandidates에 담긴 정수의 개수를 센다.
+    - 6개가 아니면 `true`를 그렇지 않으면 `false`를 반환한다.
     
 - `DUPLICATED_NUMBER`
   - Msg : `Message.ERROR_DUPLICATED_NUMBER`
-  - test(String input)
-    - input을 `,`로 나누고 `String.trim()`으로 공백을 지운다.
-    - 각 문자열을 숫자로 변환한다.
+  - test(List<Integer> numberCandidates)
+    - numberCandidates에 담긴 정수를 `Set`에 `add()`하면서 중복인지 체크한다.
     - 숫자가 중복되면 `true`를 하나도 중복이 없으면 `false`를 반환한다. 
 
 #### 필드
@@ -117,7 +96,7 @@
 - `public String getErrorMsg()`
   - 에러 메시지를 반환한다.
 - `public boolean isError(String input)`
-  - `Predicate<String>`의 `test(String s)`를 사용해 각 상수에 저장된 람다식에 넣고 결과를 반환한다.
+  - `Predicate<List<Integer>>`의 `test(List<Integer> numberCandidates)`를 사용해 각 상수에 저장된 람다식에 넣고 결과를 반환한다.
 
 ---
 
@@ -132,15 +111,12 @@
 - `PURCHASE_LOTTO`
   - domain : 구입금액
   - `List<ErrorType>`
-    - `NOT_A_NUMBER`
     - `NOT_ONE_NUMBER`
-    - `MONEY_OUT_OF_RANGE`
     - `NOT_IN_THOUSANDS`
 
 - `DRAW_WINNING_NUMBERS`
   - domain : 당첨 번호
   - `List<ErrorType>`
-    - `NOT_A_NUMBER`
     - `NOT_SIX_WINNING_NUMBERS`
     - `NUMBER_OUT_OF_RANGE`
     - `DUPLICATED_NUMBER`
@@ -148,23 +124,22 @@
 - `DRAW_BONUS_NUMBER`
   - domain : 보너스 번호
   - `List<ErrorType>`
-    - `NOT_A_NUMBER`
     - `NOT_ONE_NUMBER`
     - `NUMBER_OUT_OF_RANGE`
 
 
 #### 필드
 
-- `private String domain`
+- `private String subject`
   - 에러 메시지에 출력할 단계에 사용되는 이름
 - `private List<ErrorType> possibleErrors`
   - 해당 단계에서 나올 수 있는 에러들 리스트
 
 
 #### 메소드
-- `public void checkPossibleError(String input)`
+- `public void checkPossibleError(List<Integer> numberCandidates)`
   - input값을 넣었을 때 해당 단계에서 오류가 발생하는지 확인하는 메소드
-  - possibleErrors에서 ErrorType 하나마다 `isError`인터페이스의 `test(String s)` 메소드를 실행한다.
+  - possibleErrors에서 ErrorType 하나마다 `isError`인터페이스의 `test(List<Integer> numberCandidates)` 메소드를 실행한다.
   - 만약 하나라도 에러가 발생한다면 에러메시지와 함께 `IllegalArgumentException`을 발생시킨다.
 
 
@@ -200,6 +175,9 @@
 
 ---
 #### 필드
+
+- `COMMA`
+  - ","
 
 - `PURCHASE_MONEY`
   - "구입금액";
@@ -249,7 +227,6 @@
 
 #### 필드
 
-- `MIN_LOTTO_MONEY` : 0
 - `THOUSAND` : 1000
 - `SIX_WINNING_NUMBERS` : 6
 - `ONE_NUMBER` : 1

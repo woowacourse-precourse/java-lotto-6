@@ -39,10 +39,8 @@ public class WinningNumbersGenerator {
 
     public void validateDividedInput() {
         for (String winningNumberInput : this.winningNumberInput) {
-            if (winningNumberInput.chars().anyMatch(c -> !Character.isDigit((char) c))) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
-            }
             int winningNumber = Integer.parseInt(winningNumberInput);
+
             if (winningNumber > END_NUM || winningNumber < START_NUM) {
                 throw new IllegalArgumentException("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
             }

@@ -8,10 +8,8 @@ public enum ViewMessage {
 
     LOTTO_PURCHASE_AMOUNT_MESSAGE("개를 구매했습니다.\n"),
     WINNING_STATISTICS_MESSAGE("\n당첨 통계\n---"),
-    WINNING_STATISTICS_DASH("---"),
     COUNT_MESSAGE("개"),
-    TOTAL_RETURN_MESSAGE("총 수익률은 "),
-    REGEXP_NUMBER("^[0-9]*$");
+    TOTAL_RETURN_MESSAGE("총 수익률은 ");
 
     private final String message;
 

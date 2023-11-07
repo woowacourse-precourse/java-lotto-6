@@ -5,13 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoAdmin {
-    private final List<Integer> winningNumbers;
-    private final Integer bonusNumber;
-
-    public LottoAdmin(List<Integer> winningNumbers, Integer bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
+    private List<Integer> winningNumbers;
+    private Integer bonusNumber;
 
     public List<LottoRank> checkLottos(LottoPlayer player) {
         List<LottoRank> ranks = new ArrayList<>();
@@ -29,7 +24,7 @@ public class LottoAdmin {
 
     public void printPrize(LottoPlayer player) {
         List<LottoRank> ranks = checkLottos(player);
-        System.out.printf("당첨 통계\n---\n");
+        System.out.print("당첨 통계\n---\n");
         System.out.printf(LottoRank.FIFTH.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.FIFTH));
         System.out.printf(LottoRank.FOURTH.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.FOURTH));
         System.out.printf(LottoRank.THIRD.getMessage() + " - %d개\n", Collections.frequency(ranks, LottoRank.THIRD));
@@ -66,5 +61,13 @@ public class LottoAdmin {
             }
         }
         return false;
+    }
+
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusNumber(Integer bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

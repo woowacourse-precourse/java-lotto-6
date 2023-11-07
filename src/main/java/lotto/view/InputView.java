@@ -18,12 +18,13 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요 (1부터 45까지의 숫자, 쉼표로 구분).");
         String input = Console.readLine();
 
-        /* Parse input (car names) into Arraylist */
-        StringTokenizer st1 = new StringTokenizer(input, ",");
-        List<Integer> carNames = new ArrayList<Integer>();
-        while(st1.hasMoreTokens()) carNames.add(Integer.valueOf(st1.nextToken()));
+        String[] numbers = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
 
-        return carNames;
+        return winningNumbers;
     }
 
     public int requestBonusNumber() {

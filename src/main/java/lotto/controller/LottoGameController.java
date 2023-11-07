@@ -3,6 +3,8 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
 import lotto.model.domain.LottoWinNumber;
+import lotto.model.domain.Player;
+import lotto.model.domain.RankingBoard;
 import lotto.model.service.LottoHeadQuarter;
 import lotto.model.service.LottoStore;
 import lotto.model.domain.vo.BonusNumber;
@@ -26,28 +28,26 @@ public class LottoGameController {
     }
 
     public void run() {
-        Lottos lottos = buyLotto();
+        Player player = buyLotto();
         WinNumber winNumber = setWinNumber();
         BonusNumber bonusNumber = setBonusNumber();
-        playLottoGame(lottos, winNumber, bonusNumber);
+        playLottoGame(player, winNumber, bonusNumber);
     }
 
-    private Lottos buyLotto() {
-        Lottos lottos = null;
+    private Player buyLotto() {
+        Player player = null;
         try {
             outputView.printPurchaseInput();
             Money money = new Money(input());
-
-            lottos = lottoStore.sellLotto(money);
-
-            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(lottos.getEA(), lottos.getHistory());
+            player = lottoStore.sellLotto(money);
+            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getLottos().getEA(), player.getLottos().getHistory());
             outputView.printPurchaseHistory(dto);
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
-            lottos = buyLotto();
+            player = buyLotto();
         }
         outputView.printLineSeparator();
-        return lottos;
+        return player;
     }
 
     private WinNumber setWinNumber() {
@@ -76,11 +76,12 @@ public class LottoGameController {
         return bonusNumber;
     }
 
-    private void playLottoGame(Lottos lottos, WinNumber winNumber, BonusNumber bonusNumber) {
+    private void playLottoGame(Player player, WinNumber winNumber, BonusNumber bonusNumber) {
         try {
             LottoHeadQuarter lottoHeadQuarter = new LottoHeadQuarter();
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
-            lottoHeadQuarter.drawWinner(lottoWinNumber, lottos);
+            RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, player.getLottos());
+
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
             setBonusNumber();

@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.domain.statistics;
 
-import lotto.constants.LottoRule;
-import lotto.constants.WinningFactor;
+import lotto.constants.lotto.LottoRule;
+import lotto.constants.lotto.WinningFactor;
 
 import java.util.EnumMap;
 import java.util.Map;

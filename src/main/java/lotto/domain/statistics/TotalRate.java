@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.statistics;
 
 public class TotalRate {
     private static final double RATE_MULTIPLIER = 100.0;

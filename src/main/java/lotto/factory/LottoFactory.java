@@ -1,9 +1,9 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
-import lotto.domain.LottoStatistics;
 import lotto.domain.PlayerLottoNumbers;
-import lotto.domain.TotalRate;
+import lotto.domain.statistics.LottoStatistics;
+import lotto.domain.statistics.TotalRate;
 import lotto.io.*;
 import lotto.service.LottoService;
 import lotto.validator.InputValidator;
@@ -11,10 +11,6 @@ import lotto.validator.InputValidator;
 public class LottoFactory {
 
     private LottoFactory() {
-    }
-
-    private static class LottoFactoryHelper {
-        private static final LottoFactory INSTANCE = new LottoFactory();
     }
 
     public static LottoFactory getInstance() {
@@ -59,5 +55,9 @@ public class LottoFactory {
 
     private TotalRate totalRate() {
         return new TotalRate();
+    }
+
+    private static class LottoFactoryHelper {
+        private static final LottoFactory INSTANCE = new LottoFactory();
     }
 }

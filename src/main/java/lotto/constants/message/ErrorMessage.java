@@ -1,4 +1,6 @@
-package lotto.constants;
+package lotto.constants.message;
+
+import lotto.constants.ViewElement;
 
 public enum ErrorMessage {
     ERROR_TAG("[ERROR] "),

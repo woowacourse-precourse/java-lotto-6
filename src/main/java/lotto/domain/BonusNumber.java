@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constants.LottoRule;
+import lotto.constants.lotto.LottoRule;
 import lotto.exception.BonusNumberContainLottoException;
 import lotto.exception.LottoNumberRangeException;
 

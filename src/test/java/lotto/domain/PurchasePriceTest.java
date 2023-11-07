@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constants.ErrorMessage;
+import lotto.constants.message.ErrorMessage;
 import lotto.exception.NotThousandUnitException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

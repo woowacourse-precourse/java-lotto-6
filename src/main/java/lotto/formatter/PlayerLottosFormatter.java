@@ -1,7 +1,7 @@
 package lotto.formatter;
 
-import lotto.constants.ProgressMessage;
 import lotto.constants.ViewElement;
+import lotto.constants.message.ProgressMessage;
 import lotto.domain.Number;
 import lotto.domain.Numbers;
 

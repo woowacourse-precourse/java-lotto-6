@@ -1,16 +1,13 @@
 package lotto.io;
 
-import lotto.constants.ProgressMessage;
 import lotto.constants.ViewElement;
+import lotto.constants.message.ProgressMessage;
 import lotto.formatter.GameResultFormatter;
 import lotto.formatter.PlayerLottosFormatter;
 
 public class OutputView {
 
-    private OutputView() {}
-
-    private static class OutputViewHelper {
-        private static final OutputView INSTANCE = new OutputView();
+    private OutputView() {
     }
 
     public static OutputView getInstance() {
@@ -51,5 +48,9 @@ public class OutputView {
 
     public void printNextLine() {
         System.out.println();
+    }
+
+    private static class OutputViewHelper {
+        private static final OutputView INSTANCE = new OutputView();
     }
 }

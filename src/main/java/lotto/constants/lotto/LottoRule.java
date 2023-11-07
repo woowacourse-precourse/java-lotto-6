@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.lotto;
 
 public final class LottoRule {
     public static final Long NUMBER_MAX_SIZE = 6L;

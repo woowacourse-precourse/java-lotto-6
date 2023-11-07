@@ -1,7 +1,7 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constants.LottoRule;
+import lotto.constants.lotto.LottoRule;
 
 import java.util.List;
 

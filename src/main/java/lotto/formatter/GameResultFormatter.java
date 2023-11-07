@@ -1,8 +1,8 @@
 package lotto.formatter;
 
-import lotto.constants.ProgressMessage;
 import lotto.constants.ViewElement;
-import lotto.constants.WinningFactor;
+import lotto.constants.lotto.WinningFactor;
+import lotto.constants.message.ProgressMessage;
 
 import java.text.NumberFormat;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constants.LottoRule;
+import lotto.constants.lotto.LottoRule;
 import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumberRangeException;
 import lotto.exception.LottoNumbersSizeException;
@@ -21,6 +21,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    private static Boolean isInRange(Integer number) {
+        return number >= LottoRule.START_NUMBER && number <= LottoRule.END_NUMBER;
+    }
+
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LottoRule.NUMBER_MAX_SIZE) {
             throw new LottoNumbersSizeException();
@@ -38,10 +42,6 @@ public class Lotto {
         return numbers.stream()
                 .filter(Lotto::isInRange)
                 .count();
-    }
-
-    private static Boolean isInRange(Integer number) {
-        return number >= LottoRule.START_NUMBER && number <= LottoRule.END_NUMBER;
     }
 
     private void validateLottoDuplicate(List<Integer> numbers) {

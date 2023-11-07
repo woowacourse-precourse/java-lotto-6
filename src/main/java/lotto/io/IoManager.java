@@ -9,7 +9,10 @@ import java.util.function.Supplier;
 public interface IoManager {
 
     PurchasePrice inputPurchasePrice();
+
     Lotto inputLotto();
+
     BonusNumber inputBonusNumber(Lotto lotto);
+
     <T> T read(Supplier<T> input);
 }

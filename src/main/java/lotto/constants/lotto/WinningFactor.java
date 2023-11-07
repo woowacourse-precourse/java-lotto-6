@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.lotto;
 
 import java.util.Arrays;
 

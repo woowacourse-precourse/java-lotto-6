@@ -1,6 +1,11 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.Numbers;
+import lotto.domain.PlayerLottoNumbers;
+import lotto.domain.PurchasePrice;
+import lotto.domain.WinningLotto;
+import lotto.domain.statistics.LottoStatistics;
+import lotto.domain.statistics.TotalRate;
 import lotto.formatter.GameResultFormatter;
 import lotto.formatter.PlayerLottosFormatter;
 

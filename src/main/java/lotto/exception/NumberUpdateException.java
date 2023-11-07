@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.constants.ErrorMessage;
+import lotto.constants.message.ErrorMessage;
 
 public class NumberUpdateException extends IllegalStateException {
     public NumberUpdateException() {

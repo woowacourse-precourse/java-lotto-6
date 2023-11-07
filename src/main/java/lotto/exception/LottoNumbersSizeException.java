@@ -1,7 +1,7 @@
 package lotto.exception;
 
-import lotto.constants.ErrorMessage;
-import lotto.constants.LottoRule;
+import lotto.constants.lotto.LottoRule;
+import lotto.constants.message.ErrorMessage;
 
 public class LottoNumbersSizeException extends IllegalArgumentException {
 

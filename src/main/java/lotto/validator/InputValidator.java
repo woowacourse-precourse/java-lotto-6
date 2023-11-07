@@ -1,8 +1,8 @@
 package lotto.validator;
 
 import lotto.constants.InputPattern;
-import lotto.exception.NotDivisionCommaException;
-import lotto.exception.NotNumericException;
+import lotto.exception.global.NotDivisionCommaException;
+import lotto.exception.global.NotNumericException;
 
 public class InputValidator {
     public void validateNumeric(String purchasePrice) {

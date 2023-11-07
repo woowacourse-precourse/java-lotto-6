@@ -2,10 +2,10 @@ package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.domain.Ranking.*;
+import static lotto.utils.CalculationUtils.*;
 
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,6 +92,19 @@ public class LottoService {
             int value = winningResult.getOrDefault(ranking, 0);
             winningResult.put(ranking, value + 1);
         }
+    }
+
+    public double calculateProfitRate(int inputMoney) {
+        int totalPrizeMoney = 0;
+
+        for (Ranking ranking : winningResult.keySet()) {
+            int curCount = winningResult.get(ranking);
+            totalPrizeMoney += (ranking.getPrizeMoney() * curCount);
+        }
+
+        double profitRate =  (totalPrizeMoney / (double) inputMoney) *100;
+
+        return roundToDecimalPlace(profitRate, 1);
     }
 
 

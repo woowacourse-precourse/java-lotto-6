@@ -70,7 +70,7 @@ public class LottoController {
     }
 
     private List<Integer> inputWinningNumbers() {
-        // 당첨 번호를 입력해 주세요.
+        outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
         try {
             return inputView.inputNumbers();
         } catch (IllegalArgumentException e) {
@@ -80,7 +80,7 @@ public class LottoController {
     }
 
     private int inputBonusNumber() {
-        // 보너스 번호를 입력해 주세요.
+        outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
         try {
             return inputView.inputNumber();
         } catch (IllegalArgumentException e) {

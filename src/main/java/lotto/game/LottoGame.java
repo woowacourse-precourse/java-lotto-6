@@ -12,30 +12,27 @@ public class LottoGame implements InteractionRepeatable {
 
     private final LottoGameView lottoGameView;
     private final Randoms randoms;
+    private final Lottos lottos;
 
-    public LottoGame(LottoGameView lottoGameView, Randoms randoms) {
+    public LottoGame(LottoGameView lottoGameView, Randoms randoms, Lottos lottos) {
         this.lottoGameView = lottoGameView;
         this.randoms = randoms;
+        this.lottos = lottos;
     }
 
     public void run() {
-        Lottos lottos = new Lottos();
-
-        payOfPurchaseAmount(lottos);
-        List<PlayerLotto> buyLottos = receive(lottos);
-
-        WinningLotto winningLotto = getWinningLotto();
-        announceResult(lottos, buyLottos, winningLotto);
+        payOfPurchaseAmount();
+        announceResult(receiveIssuedLottos(), getWinningLotto());
     }
 
-    private void payOfPurchaseAmount(Lottos lottos) {
+    private void payOfPurchaseAmount() {
         runInteraction(() -> {
             int purchaseAmount = lottoGameView.askPurchaseAmount();
             lottos.purchase(purchaseAmount);
         });
     }
 
-    private List<PlayerLotto> receive(Lottos lottos) {
+    private List<PlayerLotto> receiveIssuedLottos() {
         List<PlayerLotto> buyLottos = lottos.make(randoms);
         lottoGameView.announcePurchaseLottos(buyLottos);
         return buyLottos;
@@ -48,7 +45,7 @@ public class LottoGame implements InteractionRepeatable {
                         lottoGameView.askBonusNumber()));
     }
 
-    private void announceResult(Lottos lottos, List<PlayerLotto> buyLottos, WinningLotto winningLotto) {
+    private void announceResult(List<PlayerLotto> buyLottos, WinningLotto winningLotto) {
         lottoGameView.announceWinningStatistics(
                 lottos.getPurchaseAmount(),
                 winningLotto.matchNumbers(buyLottos));

@@ -3,32 +3,42 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int input = buyLotto();
-        System.out.println();
         int number = input / 1000;
         Lotto[] lottos = outputLottoNumber(number);
         String[] winning = winningNumber();
-        bonusNumber();
+        int bonus = bonusNumber();
     }
 
     private static int buyLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String str = Console.readLine();
+        String str = "";
+        int num = 0;
 
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            str = Console.readLine();
+            exceptionMessage(str);
+            num = Integer.parseInt(str);
+            return num;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return buyLotto();
+        }
+    }
+
+    private static void exceptionMessage(String str) {
         if (!isDigit(str)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
+        } else if (!inputValidate(str)) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
         }
-
-        int input = Integer.parseInt(str);
-        inputValidate(input);
-        return input;
     }
 
     private static boolean isDigit(String str) {
@@ -50,10 +60,8 @@ public class Application {
         return numbers;
     }
 
-    private static void inputValidate(int input) {
-        if (input % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
-        }
+    private static boolean inputValidate(String input) {
+        return Integer.parseInt(input) % 1000 == 0;
     }
 
     private static Lotto[] outputLottoNumber(int number) {
@@ -70,20 +78,30 @@ public class Application {
             String str = lotto.length(lotto);
             System.out.println(str);
         }
+        System.out.println();
 
         return lottos;
     }
 
     private static String[] winningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String str = Console.readLine();
+        String str = "";
+        String[] number;
 
-        if (!checkExpression(str)) {
-            throw new IllegalArgumentException("쉼표(,) 기준으로 구분합니다. 쉼표(,)를 넣어주세요.");
-        } else if (!duplicateNumber(str)) {
-            throw new IllegalArgumentException("이미 숫자가 존재합니다.");
-        } else if (!checkLength(str)) {
-            throw new IllegalArgumentException("6개만 입력하세요");
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            str = Console.readLine();
+            if (!checkExpression(str)) throw new IllegalArgumentException("쉼표(,) 기준으로 구분합니다. 쉼표(,)를 넣어주세요.");
+
+            number = str.split(",");
+
+            if (!duplicateNumber(number)) {
+                throw new IllegalArgumentException("이미 숫자가 존재합니다.");
+            } else if (!checkLength(number)) {
+                throw new IllegalArgumentException("6개 입력해주세요.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winningNumber();
         }
 
         return str.split(",");
@@ -93,12 +111,11 @@ public class Application {
         return str.contains(",");
     }
 
-    private static boolean duplicateNumber(String str) {
+    private static boolean duplicateNumber(String[] str) {
         boolean flag = true;
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
-        for (int i = 0; i < str.length(); i++) {
-            String s = String.valueOf(str.charAt(i));
+        for (String s : str) {
             if (list.contains(s)) {
                 flag = false;
             } else {
@@ -109,8 +126,8 @@ public class Application {
         return flag;
     }
 
-    private static boolean checkLength(String str) {
-        return str.length() == 6;
+    private static boolean checkLength(String[] str) {
+        return str.length == 6;
     }
 
     private static int bonusNumber() {

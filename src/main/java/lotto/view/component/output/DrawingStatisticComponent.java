@@ -1,6 +1,6 @@
 package lotto.view.component.output;
 
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import lotto.view.component.Component;
 
 public final class DrawingStatisticComponent implements Component {
@@ -16,9 +16,9 @@ public final class DrawingStatisticComponent implements Component {
                     6개 일치 (2,000,000,000원) - %d개
                     총 수익률은 %.1f%%입니다.
             """.replaceAll("( ){2,}", "");
-    private final LottosDrawingResult data;
+    private final LottosDrawingOutput data;
 
-    public DrawingStatisticComponent(final LottosDrawingResult data) {
+    public DrawingStatisticComponent(final LottosDrawingOutput data) {
         this.data = data;
     }
 

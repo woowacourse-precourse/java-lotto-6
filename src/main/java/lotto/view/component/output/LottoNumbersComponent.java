@@ -1,14 +1,14 @@
 package lotto.view.component.output;
 
 import java.util.List;
-import lotto.controller.dto.output.LottosBuyingResult;
+import lotto.controller.dto.output.LottosBuyingOutput;
 import lotto.view.component.Component;
 
 public final class LottoNumbersComponent implements Component {
 
-    private final LottosBuyingResult data;
+    private final LottosBuyingOutput data;
 
-    public LottoNumbersComponent(final LottosBuyingResult data) {
+    public LottoNumbersComponent(final LottosBuyingOutput data) {
         this.data = data;
     }
 

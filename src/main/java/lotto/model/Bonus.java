@@ -27,8 +27,8 @@ public class Bonus {
     }
 
     private void validateRange(int bonus) {
-            if (bonus < 1 || bonus > 45) {
-                throw new IllegalArgumentException("[ERROR] 숫자 범위 오류입니다.");
-            }
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 숫자 범위 오류입니다.");
+        }
     }
 }

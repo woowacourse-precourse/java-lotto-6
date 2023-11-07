@@ -18,7 +18,6 @@ public class Application {
     private static final Intersection intersection = new Intersection();
     private static HashMap result = new HashMap<>();
 
-
     public static void purchaseCount(String purchasingAmount) {
         try {
             purchasePieces = new Purchase(purchasingAmount).pieces();

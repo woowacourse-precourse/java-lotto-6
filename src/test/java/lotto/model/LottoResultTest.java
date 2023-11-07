@@ -8,6 +8,7 @@ import java.util.HashMap;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoResultTest {
+
     private HashMap result = new HashMap<>();
     private HashMap testResult = new HashMap<>();
 

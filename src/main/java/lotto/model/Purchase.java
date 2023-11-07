@@ -1,6 +1,7 @@
 package lotto.model;
 
 public class Purchase {
+
     private static final int PURCHASING_UNIT = 1000;
     private static final String INPUT_CONTENT_REGEX = "^[0-9]+$";
 

@@ -7,12 +7,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController {
     private String amount;
     private List<Lotto> lottos;
     private int numberOfLottoPurchased;
+    private List<Integer> winnerNumbers;
+    private Lotto winnerLottoNumber;
 
     public void play() {
         getAmount();
@@ -40,4 +44,13 @@ public class GameController {
 
         OutputView.printLottos(lottos);
     }
+
+    private void getWinnerNumber() {
+        String winnerNumber = InputView.LOTTO_NUMBER.getInput();
+        String[] winnerNumberItems = winnerNumber.split(",");
+        winnerNumbers = Arrays.stream(winnerNumberItems).map(Integer::parseInt).collect(Collectors.toList());
+        winnerLottoNumber = new Lotto(winnerNumbers);
+    }
+
+
 }

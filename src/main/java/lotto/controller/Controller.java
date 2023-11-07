@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
+import lotto.domain.LottoGameResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,12 +12,13 @@ public class Controller {
     private Buyer buyer;
     private LottoGame lottoGame;
     private Lotto lotto;
-    private int bonus;
+
 
     public void run(){
         initBuyer();
         printBuyersLotto();
         initLottoGame();
+        ranking();
     }
 
     private void initBuyer(){
@@ -44,11 +46,15 @@ public class Controller {
 
     private void getBonus(){
         try{
-            bonus = InputView.readBonus();
+            int bonus = InputView.readBonus();
             lottoGame = new LottoGame(bonus, lotto);
         }catch (IllegalArgumentException e){
             OutputView.printErrorMessage(e);
             getBonus();
         }
+    }
+
+    private void ranking(){
+        LottoGameResult lottoGameResult = lottoGame.checkGameResult(buyer.getLottoNumbers());
     }
 }

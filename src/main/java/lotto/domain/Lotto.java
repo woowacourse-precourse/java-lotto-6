@@ -16,10 +16,17 @@ public class Lotto {
         Validation.validateLottoNumbers(numbers);
     }
 
-    public boolean containBonus(int bonus){return numbers.contains(bonus);}
+    public boolean contains(int bonus){
+        return this.numbers.contains(bonus);}
+
+    public int countMatchNumbers(Lotto otherNumbers) {
+        return (int)this.numbers.stream()
+                .filter(otherNumbers::contains)
+                .count();
+    }
 
     @Override
     public String toString() {
-        return String.join(", ", Utils.integerListToStringList(numbers));
+        return numbers.toString();
     }
 }

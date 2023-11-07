@@ -91,14 +91,17 @@
 
     - [ ] LottoInputParser InputParser 구현클래스
         - [ ] 입력을 쉼표 기준으로 분할하여 List<Integer> 형태로 파싱하는 기능
+        - [ ] 입력에 공백을 허용
         - [ ] 정수와 쉼표로 이루어져 있는지 검증.
 
     - [ ] BonusInputParser InputParser 구현 클래스
         - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
+        - [ ] 입력에 공백을 허용
         - [ ] 정수로 이루어져 있는지 검증.
 
     - [ ] PaymentInputParser InputParser 구현 클래스
         - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
+        - [ ] 입력에 공백을 허용
         - [ ] 정수로 이루어져 있는지 검증.
 
 2. UI(View)

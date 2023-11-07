@@ -21,7 +21,7 @@ public enum WinningFactor {
         this.isMatchBonusNumber = isMatchBonusNumber;
     }
 
-    public static WinningFactor findWinningFactorByCount(Integer count, Boolean isMatchBonusNumber) {
+    public static WinningFactor findWinningFactorByCondition(Integer count, Boolean isMatchBonusNumber) {
         return Arrays.stream(WinningFactor.values())
                 .filter(factor -> factor.count.equals(count) && factor.isMatchBonusNumber.equals(isMatchBonusNumber))
                 .findFirst()

@@ -17,7 +17,7 @@ public class LottoStatistics {
     }
 
     public void upWinningFactorValue(Integer matchCount, Boolean isMatchBonusNumber) {
-        WinningFactor winningFactorByCount = WinningFactor.findWinningFactorByCount(matchCount, isMatchBonusNumber);
+        WinningFactor winningFactorByCount = WinningFactor.findWinningFactorByCondition(matchCount, isMatchBonusNumber);
         statistics.put(winningFactorByCount, statistics.get(winningFactorByCount) + LottoRule.MATCH_UP);
     }
 

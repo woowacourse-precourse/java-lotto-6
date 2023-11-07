@@ -12,8 +12,8 @@
 
 ## 기능 목록
 # domain
-- [ ] 로또 번호 생성하기 - NumberGenerator#createRandomNumbers()
-  - [ ] 1~45 중복되지 않는 6개의 숫자 채번
+- [x] 로또 번호 생성하기 - NumberGenerator#createRandomNumbers()
+  - [x] 1~45 중복되지 않는 6개의 숫자 채번
 
 - [ ] 로또 구매하기 - Buy#getGames()
   - [ ] 로또 구매 금액은 1장당 1,000원

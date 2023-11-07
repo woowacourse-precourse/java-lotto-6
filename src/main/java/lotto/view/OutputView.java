@@ -33,13 +33,13 @@ public class OutputView {
         println(WINNING_STATISTICS);
         println(SEPARATOR_LINE);
 
-        printRankingDetails(winningStatistics.rankingNumber());
+        printRankingDetails(winningStatistics.rankingNumbers());
         printReturnRate(winningStatistics);
     }
 
     private static void printRankingDetails(Map<Ranking, Integer> rankingNumber) {
         for (Ranking ranking : Ranking.values()) {
-            println(ranking.getCriteria() + " - " + rankingNumber.getOrDefault(ranking, 0) + "개");
+            println(ranking.getComment() + " - " + rankingNumber.getOrDefault(ranking, 0) + "개");
         }
     }
 

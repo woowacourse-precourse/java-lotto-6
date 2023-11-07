@@ -1,6 +1,8 @@
 package lotto.validation;
 
 import static lotto.constant.Constant.LOTTO_CNT;
+import static lotto.constant.Constant.LOTTO_MAX_VALUE;
+import static lotto.constant.Constant.LOTTO_MIN_VALUE;
 import static lotto.constant.Constant.LOTTO_PURCHASE_MINIMUM_AMOUNT;
 
 import java.util.Arrays;
@@ -43,6 +45,18 @@ public class LottoInputValidator {
         });
     }
 
+    public static void validateBonusNumber(String bonusNumber) {
+        if (!isOnlyInteger(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_BONUS_NUMBER.getMessage());
+        }
+        if (isStartZero(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.START_ZERO_BONUS_NUMBER.getMessage());
+        }
+        if (!isInRangeLottoNumber(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.OVER_RANGE_BONUS_NUMBER.getMessage());
+        }
+    }
+
     private static boolean isOnlyInteger(String input) {
         return Pattern.matches(REGEXP_PATTERN_ZERO_TO_NINE_NUMBER, input);
     }
@@ -57,5 +71,10 @@ public class LottoInputValidator {
 
     private static boolean isRightSize(int length) {
         return length == LOTTO_CNT;
+    }
+
+    private static boolean isInRangeLottoNumber(String numberString) {
+        int number = Integer.parseInt(numberString);
+        return number >= LOTTO_MIN_VALUE && number <= LOTTO_MAX_VALUE;
     }
 }

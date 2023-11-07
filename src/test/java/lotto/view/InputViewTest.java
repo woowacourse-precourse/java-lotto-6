@@ -74,6 +74,33 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    void inputBonusNumberByOnlyInteger() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "s");
+            assertThat(output()).contains(ErrorMessage.NOT_INTEGER_BONUS_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자가 0으로 시작하면 예외가 발생한다.")
+    void inputBonusNumberByStartZero() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "05");
+            assertThat(output()).contains(ErrorMessage.START_ZERO_BONUS_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
+    void inputBonusNumberByInRangeLottoNumber() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "75");
+            assertThat(output()).contains(ErrorMessage.OVER_RANGE_BONUS_NUMBER.getMessage());
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

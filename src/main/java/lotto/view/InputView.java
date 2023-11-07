@@ -11,6 +11,7 @@ import lotto.validation.LottoInputValidator;
 
 public class InputView {
 
+    // TODO 재입력 while 문 format 맞추기
     public static int getLottoPurchaseAmount() {
         String lottoPurchaseAmount = "";
         boolean isNotRightInput = true;
@@ -46,5 +47,18 @@ public class InputView {
         List<Integer> winningNumbers = new ArrayList<>();
         Stream.of(split).map(Integer::valueOf).forEach(winningNumbers::add);
         return Lotto.issueLotto(winningNumbers);
+    }
+
+    public static int getBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusNumber = Console.readLine();
+                LottoInputValidator.validateBonusNumber(bonusNumber);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

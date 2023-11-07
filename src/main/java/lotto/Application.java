@@ -14,6 +14,7 @@ public class Application {
         OutputView.printLottoNumbersByPurchaseAmount(lottoNumbers);
 
         Lotto winningNumbers = InputView.getWinningNumbers();
+        int bonusNumber = InputView.getBonusNumber();
 
 
     }

@@ -44,7 +44,7 @@ public class Buyer {
         }
     }
 
-    public HashMap<WinningCondition, Integer> getWinningStatistics(){
+    public HashMap<WinningCondition, Integer> getWinningStatistics() {
         return winningStatistics;
     }
 

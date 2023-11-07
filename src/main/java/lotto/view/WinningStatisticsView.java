@@ -22,7 +22,7 @@ public class WinningStatisticsView {
 
     private static void printCorrectCount(WinningCondition winningCondition){
         System.out.printf(WinningStatisticsMessage.WINNING_NUMBER_CORRECT, winningCondition.winningNumberCount());
-        if (winningCondition.bonusNumberCount() > 0) {
+        if (winningCondition.containBonusNumber()) {
             System.out.printf(", " + WinningStatisticsMessage.BONUS_NUMBER_CORRECT);
         }
     }

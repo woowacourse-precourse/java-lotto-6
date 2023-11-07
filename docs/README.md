@@ -41,6 +41,11 @@
 -[x] 로또의 개수만큼 발행한다. - LottoGenerator
 -[x] 당첨 번호와 보너스 번호를 발행한다. - WinningLotto
     -[x] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다. - WinningLotto
--[ ] 로또 당첨 결과를 구한다. - LottoResult
-  - [ ] 당첨 등수에 대한 매핑을 위해 Enum 클래스를 사용한다. - LottoPrize
-  - [ ] 수익결과를 구한다. - LottoResult
+-[x] 로또 당첨 결과를 구한다. - LottoResult
+  - [x] 당첨 등수에 대한 매핑을 위해 Enum 클래스를 사용한다. - LottoPrize
+  - [x] 수익결과를 구한다. - LottoResult
+
+`모든 기능은 구현을 완료, 해당 기능을 이용한 프로토타입 생성`
+- [ ] 프로토타입을 생성하고 유지보수 한다 - Apllication
+
+---

@@ -1,11 +1,9 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.view.*;
 import lotto.service.NumberMatch;
 import lotto.service.RandomLottoNumber;
-import lotto.view.InputBonus;
-import lotto.view.InputBuyLotto;
-import lotto.view.InputLottoNumber;
 
 import java.util.List;
 
@@ -17,8 +15,8 @@ public class LottoController {
     private RandomLottoNumber randomLottoNumber = new RandomLottoNumber();
     private InputLottoNumber inputLottoNumber = new InputLottoNumber();
     private InputBonus inputBonus = new InputBonus();
-    NumberMatch numberMatch = new NumberMatch();
-
+    private NumberMatch numberMatch = new NumberMatch();
+    private RankResult rankResult = new RankResult();
 
 
 
@@ -27,9 +25,9 @@ public class LottoController {
         List<Lotto> lottoNumbers = getLottoNumbers(randomLottoNumber, ticket);
         List<Integer> inputlottoNumbers = inputLottoNumber.getLottoNumbers();
         int bonus = inputBonus.getBonus();
-        List<Integer> mathcing = numberMatch.mathcing(lottoNumbers, inputlottoNumbers);
+        List<Integer> matching = numberMatch.matching(lottoNumbers, inputlottoNumbers);
         List<Boolean> containBonus = numberMatch.containBonusAll(lottoNumbers, bonus);
-
+        rankResult.calculateResult(matching, containBonus);
     }
 
     private void showLottoNumbers(List<Lotto> lottoNumbers) {

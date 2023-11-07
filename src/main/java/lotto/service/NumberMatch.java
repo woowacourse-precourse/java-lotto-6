@@ -7,7 +7,7 @@ import java.util.*;
 public class NumberMatch {
 
     private static final int SIZE=6;
-    public List<Integer> mathcing(List<Lotto> lottoNumbers,List<Integer> inputlottoNumbers) {
+    public List<Integer> matching(List<Lotto> lottoNumbers,List<Integer> inputlottoNumbers) {
         List<Integer> winCount = new ArrayList<>();
         for (int i = 0; i < lottoNumbers.size(); i++) {
             List<Integer> notWinLottoNumber = lottoNumbers.get(i).returnNumbers();

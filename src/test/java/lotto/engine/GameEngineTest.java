@@ -105,18 +105,18 @@ class GameEngineTest {
 
     private static Stream<Arguments> 로또예상수익률() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "1", 1.999999E8),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "27", 1.999999E8),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 7), "1", 2999900d),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 7), "27", 149900d),
-                Arguments.of(List.of(1, 2, 3, 4, 8, 7), "27", 4900d),
-                Arguments.of(List.of(1, 2, 3, 4, 8, 7), "1", 4900d),
-                Arguments.of(List.of(1, 2, 3, 9, 8, 7), "27", 400d),
-                Arguments.of(List.of(1, 2, 3, 9, 8, 7), "1", 400d),
-                Arguments.of(List.of(1, 2, 10, 9, 8, 7), "27", -100d),
-                Arguments.of(List.of(1, 3, 10, 9, 8, 7), "27", -100d),
-                Arguments.of(List.of(1, 13, 10, 9, 8, 7), "27", -100d),
-                Arguments.of(List.of(11, 13, 10, 9, 8, 7), "27", -100d)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "1", 2.0E8),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), "27", 2.0E8),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), "1", 3000000.0d),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), "27", 150000.0),
+                Arguments.of(List.of(1, 2, 3, 4, 8, 7), "27", 5000d),
+                Arguments.of(List.of(1, 2, 3, 4, 8, 7), "1", 5000d),
+                Arguments.of(List.of(1, 2, 3, 9, 8, 7), "27", 500d),
+                Arguments.of(List.of(1, 2, 3, 9, 8, 7), "1", 500d),
+                Arguments.of(List.of(1, 2, 10, 9, 8, 7), "27", 0d),
+                Arguments.of(List.of(1, 3, 10, 9, 8, 7), "27", 0d),
+                Arguments.of(List.of(1, 13, 10, 9, 8, 7), "27", 0d),
+                Arguments.of(List.of(11, 13, 10, 9, 8, 7), "27", 0d)
         );
     }
 

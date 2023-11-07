@@ -71,7 +71,7 @@ public class GameEngine {
     public double getEarningPercent() {
         BigDecimal originalPrice = new BigDecimal(lottos.size() * LOTTO_PRICE);
         BigDecimal earningPrice = new BigDecimal(getEarningPrice());
-        return earningPrice.subtract(originalPrice)
+        return earningPrice
                 .divide(originalPrice)
                 .multiply(new BigDecimal(MAKE_PERCENT))
                 .doubleValue();

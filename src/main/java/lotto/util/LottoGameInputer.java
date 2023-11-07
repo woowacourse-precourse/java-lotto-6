@@ -1,5 +1,8 @@
 package lotto.util;
 
+
+import static lotto.common.ErrorMessage.LOTTO_PURCHASE_AMOUNT_INVALID_ERROR;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +14,16 @@ public class LottoGameInputer {
     }
 
     public static Integer inputToInteger() {
-        return Integer.parseInt(input());
+        Integer result = null;
+        while (result == null) {
+            try {
+                result = Integer.parseInt(input());
+            } catch (NumberFormatException exception) {
+                LottoGamePrinter.println(LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
+            }
+        }
+
+        return result;
     }
 
     public static List<Integer> convertCommaSeparatedValuesToList() {

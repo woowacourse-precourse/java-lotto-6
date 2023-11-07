@@ -3,6 +3,8 @@ package lotto;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -24,5 +26,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 1 ~ 45를 벗어나면 예외가 발생한다")
+    @ValueSource(ints = {-1, 0, 46})
+    @ParameterizedTest
+    void createLottoByInvalidRange(int invalidNumber) {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, invalidNumber)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

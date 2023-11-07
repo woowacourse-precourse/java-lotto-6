@@ -9,21 +9,9 @@ import java.util.stream.Collectors;
 
 import static lotto.domain.Computer.rateOfProfit;
 import static lotto.domain.Computer.rewards;
+import static lotto.domain.constants.LotteryMessageConstant.*;
 
 public class LotteryMessageBuilder {
-
-    private final static String JOIN_SYMBOL = " - ";
-    private final static String MATCH_MESSAGE = " 일치";
-    private final static String COUNT_UNIT = "개";
-    private final static String BONUS_BALL_MESSAGE = "보너스 볼";
-    private final static String PROFIT_MESSAGE_START = "총 수익률은 ";
-    private final static String PROFIT_MESSAGE_END = "%입니다.";
-    private final static String LOTTO_NUMBER_PREFIX = "[";
-    private final static String LOTTO_NUMBER_SUFFIX = "]";
-    private final static String DELIMITER = ", ";
-    private final static String REWARD_PREFIX = " (";
-    private final static String REWARD_SUFFIX = ")";
-    private final static String REWARD_UNIT = "원";
 
     public String returnLottoList(List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
@@ -39,14 +27,14 @@ public class LotteryMessageBuilder {
         List<Integer> numbers = lotto.getNumbers();
         String lottoNumbers = numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(DELIMITER, LOTTO_NUMBER_PREFIX, LOTTO_NUMBER_SUFFIX));
+                .collect(Collectors.joining(DELIMITER.getMessage(), LOTTO_NUMBER_PREFIX.getMessage(), LOTTO_NUMBER_SUFFIX.getMessage()));
 
         return lottoNumbers;
     }
 
     private String returnRateOfProfit() {
         StringBuilder sb = new StringBuilder();
-        sb.append(PROFIT_MESSAGE_START).append(rateOfProfit).append(PROFIT_MESSAGE_END);
+        sb.append(PROFIT_MESSAGE_START.getMessage()).append(rateOfProfit).append(PROFIT_MESSAGE_END.getMessage());
         return sb.toString();
     }
     public String returnWinningLottoList(Map<Integer, Integer> winningStats) {
@@ -62,9 +50,9 @@ public class LotteryMessageBuilder {
         StringBuilder sb = new StringBuilder();
         sb.append(matchingExplaination(result))
                 .append(returnEachResultAmount(result))
-                .append(JOIN_SYMBOL)
+                .append(JOIN_SYMBOL.getMessage())
                 .append(count)
-                .append(COUNT_UNIT)
+                .append(COUNT_UNIT.getMessage())
                 .append("\n");
 
         return sb.toString();
@@ -73,27 +61,27 @@ public class LotteryMessageBuilder {
     private String matchingExplaination(int result) {
         StringBuilder sb = new StringBuilder();
         if (result >= 3 && result <= 5) {
-            sb.append(8-result).append(COUNT_UNIT).append(MATCH_MESSAGE);
+            sb.append(8-result).append(COUNT_UNIT.getMessage()).append(MATCH_MESSAGE.getMessage());
             return sb.toString();
         }
         if (result == 2) {
-            sb.append(5).append(COUNT_UNIT).append(MATCH_MESSAGE)
-                    .append(DELIMITER)
-                    .append(BONUS_BALL_MESSAGE)
-                    .append(MATCH_MESSAGE);
+            sb.append(5).append(COUNT_UNIT.getMessage()).append(MATCH_MESSAGE.getMessage())
+                    .append(DELIMITER.getMessage())
+                    .append(BONUS_BALL_MESSAGE.getMessage())
+                    .append(MATCH_MESSAGE.getMessage());
             return sb.toString();
         }
-        sb.append(6).append(COUNT_UNIT).append(MATCH_MESSAGE);
+        sb.append(6).append(COUNT_UNIT.getMessage()).append(MATCH_MESSAGE.getMessage());
         return sb.toString();
     }
 
     private String returnEachResultAmount(int result) {
         StringBuilder sb = new StringBuilder();
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        sb.append(REWARD_PREFIX)
+        sb.append(REWARD_PREFIX.getMessage())
                 .append(decimalFormat.format(rewards[result - 1]))
-                .append(REWARD_UNIT)
-                .append(REWARD_SUFFIX);
+                .append(REWARD_UNIT.getMessage())
+                .append(REWARD_SUFFIX.getMessage());
         return sb.toString();
     }
 

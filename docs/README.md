@@ -25,6 +25,8 @@
       - [x] "[ERROR] 6개의 숫자를 입력해야 합니다." 메세지를 출력하고, 그 부분부터 입력을 다시 받는다. - User.getWinningNumber()
     - [x] 각 숫자가 1과 45 사이의 숫자가 아닌 경우 예외 처리한다. - validation.validateNumbersRange()
       - [x] "[ERROR] 숫자의 범위는 1~45 사이어야 합니다." 메세지를 출력하고, 그 부분부터 입력을 다시 받는다. - User.getWinningNumber()
+    - [ ] 각 숫자가 고유한지 확인한다. - validation.validateWinningNumberUnique()
+      - [ ] "[ERROR] 당첨 번호에 중복된 숫자가 없어야 합니다." 메세지를 출력하고, 그 부분부터 입력을 다시 받는다.
   - [x] 보너스 번호를 입력받는다. - User.getBonusNumber()
     - [x] "보너스 번호를 입력해 주세요."를 출력한다. - User.getBonusNumber()
     - [x] 숫자가 아닌 경우 예외 처리한다. - validation.validateInteger()
@@ -40,7 +42,7 @@
   - [x] 4개가 일치하는 경우를 확인한다. (4등) - Rank.ranking()
   - [x] 3개가 일치하는 경우를 확인한다. (5등) - Rank.ranking()
   - [x] 당첨 내역을 출력한다. - User.printResult()
-- [ ] 총 수익률을 계산한다.
-  - [ ] 총 수익을 계산한다.
-  - [ ] 총 수익을 구입금액으로 나누어 총 수익률을 계산한다. 
-  - [ ]수익률을 출력한다. 
+- [x] 총 수익률을 계산한다.
+  - [x] 총 수익을 계산한다.
+  - [x] 총 수익을 구입금액으로 나누어 총 수익률을 계산한다. 
+  - [x]수익률을 출력한다. 

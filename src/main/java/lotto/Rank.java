@@ -11,6 +11,7 @@ public enum Rank {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - ");
 
     private final int matchCount;
+
     private final int prize;
     private final String message;
 
@@ -22,6 +23,10 @@ public enum Rank {
 
     public String getMessage() {
         return message;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     public static Rank checkLotto(Lotto lotto, List<Integer> winningNumber, int bonusNumber){
@@ -42,8 +47,4 @@ public enum Rank {
         return MISS;
 
     }
-
-
-
-
 }

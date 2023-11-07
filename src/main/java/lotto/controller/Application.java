@@ -8,6 +8,8 @@ public class Application {
         // TODO: 프로그램 구현
         PlayerLottoAmount playerLottoAmount = null;
         playerLottoAmount = getPlayerLottoAmount(playerLottoAmount);
+        int count = playerLottoAmount.calculateLottoCount();
+
 
 
     }

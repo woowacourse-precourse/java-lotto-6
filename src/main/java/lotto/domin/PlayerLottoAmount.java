@@ -16,6 +16,9 @@ public class PlayerLottoAmount {
     public static int getAmount() {
         return amount;
     }
+    public int calculateLottoCount() {
+        return amount / LOTTO_MIN_AMOUNT;
+    }
 
 
     public void validateAmount(int amountNm) {

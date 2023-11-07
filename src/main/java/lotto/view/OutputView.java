@@ -6,6 +6,7 @@ import static lotto.domain.Result.FOUR_MATCH;
 import static lotto.domain.Result.SIX_MATCH;
 import static lotto.domain.Result.THREE_MATCH;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -70,5 +71,10 @@ public class OutputView {
     }
 
 
-
+    public static void printProfit(int profit, int totalInvestment) {
+        double profitPercentage = (profit) / (double) totalInvestment * 100;
+        DecimalFormat profitDecimal = new DecimalFormat("#0.0%");
+        String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
+        System.out.println("총 수익률은 "+formattedProfitPercentage+"입니다.");
+    }
 }

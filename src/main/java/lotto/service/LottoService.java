@@ -34,13 +34,13 @@ public class LottoService {
     }
 
     public Map<Rank, Integer> generateLottoStatistics(WinningLotto winningLotto, ArrayList<Lotto> lottos) {
-        Map<Rank, Integer> map = new HashMap<>();
+        Map<Rank, Integer> rankCount = new HashMap<>();
 
         for (Lotto lotto : lottos) {
             Rank rank = winningLotto.calculateRank(lotto);
-            map.put(rank, map.getOrDefault(rank, 0) + 1);
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
 
-        return map;
+        return rankCount;
     }
 }

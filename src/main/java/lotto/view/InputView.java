@@ -18,14 +18,9 @@ public class InputView {
         return convertInputMainWinningNumbersToIntegerList(inputMainWinningNumbers);
     }
 
-    private static List<Integer> convertInputMainWinningNumbersToIntegerList(String inputMainWinningNumbers) {
-        try {
-            return Stream.of(inputMainWinningNumbers.split(","))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException exception) {
-            throw new LottoGameException(ErrorCode.NON_INT_WINNING_NUMBER);
-        }
+    public static int readBonusNumber() {
+        String inputBonusNumber = Console.readLine();
+        return convertInputBonusNumberToInt(inputBonusNumber);
     }
 
     private static int convertInputPurchaseAmountToInt(String inputPurchaseAmount) {
@@ -33,6 +28,24 @@ public class InputView {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException exception) {
             throw new LottoGameException(ErrorCode.NON_INT_PURCHASE_AMOUNT);
+        }
+    }
+
+    private static List<Integer> convertInputMainWinningNumbersToIntegerList(String inputMainWinningNumbers) {
+        try {
+            return Stream.of(inputMainWinningNumbers.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException exception) {
+            throw new LottoGameException(ErrorCode.NON_INT_MAIN_WINNING_NUMBERS);
+        }
+    }
+
+    private static int convertInputBonusNumberToInt(String inputBonusNumber) {
+        try {
+            return Integer.parseInt(inputBonusNumber);
+        } catch (NumberFormatException exception) {
+            throw new LottoGameException(ErrorCode.NON_INT_BONUS_NUMBER);
         }
     }
 }

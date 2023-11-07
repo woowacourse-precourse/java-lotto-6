@@ -18,8 +18,8 @@ public class Lotto {
         }
     }
 
-    public int calcMatchNumber(List<Integer> numbersToCompare) {
-        Set<Integer> winningNumbers = new HashSet<>(numbersToCompare);
+    public int calcMatchNumber(Lotto lottoToCompare) {
+        Set<Integer> winningNumbers = new HashSet<>(lottoToCompare.getNumbers());
         int matchCount = 0;
 
         for(int number: numbers) {

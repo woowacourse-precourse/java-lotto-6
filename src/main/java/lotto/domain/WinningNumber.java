@@ -1,21 +1,25 @@
 package lotto.domain;
 
 public class WinningNumber {
-    private Lotto lotto;
+    private Lotto winningLotto;
     private int bonusNumber;
 
     public WinningNumber(Lotto lotto, int bonusNumber) {
-        this.lotto = lotto;
+        this.winningLotto = lotto;
 
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        for (int number : lotto.getNumbers()) {
+        for (int number : winningLotto.getNumbers()) {
             if(bonusNumber == number) {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public int calcMatchCount (Lotto lotto) {
+        return lotto.calcMatchNumber(winningLotto);
     }
 }

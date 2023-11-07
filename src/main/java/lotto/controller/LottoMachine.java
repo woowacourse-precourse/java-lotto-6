@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.controller.handler.DrawHandler;
+import lotto.controller.machine.Judgment;
 import lotto.controller.machine.NumberGenerator;
 import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
@@ -37,6 +38,12 @@ public class LottoMachine {
         outputView.showLottos(lottoTicket.getLottos());
     }
 
+    private void judge(OutputView outputView) {
+        Judgment judgment = new Judgment();
+
+        judgment.judge(lottoTicket);
+    }
+
     public void start() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
@@ -44,6 +51,6 @@ public class LottoMachine {
 
         purchase(inputView, outputView);
         drawHandler.drarw(lottoTicket);
-        System.out.println(lottoTicket.getWinningNumber().toString());
+        judge(outputView);
     }
 }

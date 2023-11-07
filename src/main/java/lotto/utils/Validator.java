@@ -27,6 +27,13 @@ public class Validator {
         }
     }
 
+    public static void validatePriceModIsZero(String input) {
+        if (Integer.parseInt(input) / LOTTO_PRICE != 0 ){
+            System.out.println(MOD_ERROR_MESSAGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void validateIsNumber(String input){
         if(!isNumber(input)){
             System.out.println(NUMBER_ERROR_MESSAGE);

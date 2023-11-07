@@ -93,4 +93,13 @@ public class ValidatorTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
+
+    @DisplayName("구매 금액 1000원 단위 테스트")
+    @Test
+    void 구매금액_단위_테스트(){
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> Validator.validatePriceModIsZero("1900"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
 }

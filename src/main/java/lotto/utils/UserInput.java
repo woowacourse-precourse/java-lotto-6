@@ -74,6 +74,7 @@ public class UserInput {
     private void validateLottoPrice(String input){
         validateNullOrEmpty(input);
         validateIsNumber(input);
+        validatePriceModIsZero(input);
         validatePriceRange(input);
     }
 

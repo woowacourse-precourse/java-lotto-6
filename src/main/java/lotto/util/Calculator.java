@@ -1,7 +1,5 @@
 package lotto.util;
 
-import java.util.List;
-
 import static lotto.model.Rank.*;
 
 public class Calculator {
@@ -13,17 +11,17 @@ public class Calculator {
         return purchasePrice / TICKET_PRICE;
     }
 
-    public static float getRateOfProfit(int purchasePrice, List<Integer> rates) {
-        float totalPrize = getTotalPrize(rates);
+    public static float getRateOfProfit(int purchasePrice, int[] rankBoard) {
+        float totalPrize = getTotalPrize(rankBoard);
         float rateOfProfit = (totalPrize / (float) purchasePrice) * PERCENTAGE;
         return rateOfProfit;
     }
 
-    public static int getTotalPrize(List<Integer> rates) {
+    public static int getTotalPrize(int[] rates) {
         int total = 0;
 
-        for (int i = 0; i < 5; i++) {
-            total += getEachRankPrize(i + 1, rates.get(i));
+        for (int i = 1; i < 6; i++) {
+            total += getEachRankPrize(i, rates[i]);
         }
         return total;
     }

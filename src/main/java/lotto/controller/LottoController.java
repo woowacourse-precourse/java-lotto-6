@@ -19,11 +19,7 @@ public class LottoController {
     private int purchasePrice;
     int numberOfLottoTickets;
 
-    private int first;
-    private int second;
-    private int third;
-    private int fourth;
-    private int fifth;
+    int[] rankBoard = {0,0,0,0,0,0,0,0};
 
     public void startLotto() {
 
@@ -35,20 +31,8 @@ public class LottoController {
 
         getWinningLottoNumberFromUser();
         getBonusNumberFromUser();
-
         determineEachLottoRanks();
-
-        List<Integer> rates = new ArrayList<>();
-        rates.add(first);
-        rates.add(second);
-        rates.add(third);
-        rates.add(fourth);
-        rates.add(fifth);
-
-        float rateOfProfit = Calculator.getRateOfProfit(purchasePrice, rates);
-
-        OutputView.printPrizeResult(rates);
-        OutputView.printRateOfProfit(rateOfProfit);
+        getResult();
 
     }
 
@@ -88,7 +72,7 @@ public class LottoController {
             int matchingNumberCount = countMatchingNumbers(userNumbers, winningNumbers);
             Rank rank = getRank(userTickets, matchingNumberCount);
 
-            calculateWinnersByRank(rank);
+            calculateWinnersByRank(rank, rankBoard);
         }
     }
 
@@ -104,22 +88,22 @@ public class LottoController {
         return matchedNumbers;
     }
 
-    public void calculateWinnersByRank(Rank rank) {
+    public void calculateWinnersByRank(Rank rank, int[] rankBoard) {
         switch (rank) {
             case FIRST:
-                first += 1;
+                rankBoard[1] += 1;
                 break;
             case SECOND:
-                second += 1;
+                rankBoard[2] += 2;
                 break;
             case THIRD:
-                third += 1;
+                rankBoard[3] += 1;
                 break;
             case FOURTH:
-                fourth += 1;
+                rankBoard[4] += 1;
                 break;
             case FIFTH:
-                fifth += 1;
+                rankBoard[5] += 1;
                 break;
         }
     }
@@ -143,5 +127,12 @@ public class LottoController {
         }
 
         return LOOSE;
+    }
+
+    public void getResult() {
+        float rateOfProfit = Calculator.getRateOfProfit(purchasePrice, rankBoard);
+
+        OutputView.printPrizeResult(rankBoard);
+        OutputView.printRateOfProfit(rateOfProfit);
     }
 }

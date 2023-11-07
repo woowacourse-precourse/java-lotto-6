@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.model.Rank;
-
 import java.util.List;
 
 import static lotto.model.Rank.*;
@@ -32,18 +31,19 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void printPrizeResult(List<Integer> rates) {
+    public static void printPrizeResult(int[] rankBoard) {
 
         System.out.println("당첨 통계");
         System.out.println("---");
 
         StringBuilder result = new StringBuilder();
+        Rank[] ranks = Rank.values();
 
-        result.append(getResultMessage(FIFTH) + rates.get(4) + "개\n");
-        result.append(getResultMessage(FOURTH) + rates.get(3) + "개\n");
-        result.append(getResultMessage(THIRD) + rates.get(2) + "개\n");
-        result.append(getResultMessage(SECOND) + rates.get(1) + "개\n");
-        result.append(getResultMessage(FIRST) + rates.get(0) + "개");
+//        Arrays.stream(ranks).forEach(Rank -> System.out.println(getResultMessage(Rank) + rankBoard[Rank.ordinal()] + "개"));
+
+        for (int i = 5; i > 0; i--) {
+            System.out.println(getResultMessage(ranks[i-1]) + rankBoard[i] + "개");
+        }
 
         System.out.println(result);
     }

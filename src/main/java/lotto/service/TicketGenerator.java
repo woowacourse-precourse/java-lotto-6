@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketGenerator {
-    private final LottoNumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    public TicketGenerator(LottoNumberGenerator numberGenerator) {
+    public TicketGenerator(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    public static TicketGenerator create(LottoNumberGenerator numberGenerator) {
+    public static TicketGenerator create(NumberGenerator numberGenerator) {
         return new TicketGenerator(numberGenerator);
     }
 

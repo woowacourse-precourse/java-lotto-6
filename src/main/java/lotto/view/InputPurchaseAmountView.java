@@ -8,4 +8,12 @@ public class InputPurchaseAmountView {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         return Console.readLine();
     }
+
+    private void validateInput(String input){
+        try{
+            Integer.parseInt(input);
+        } catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 입력값이 유효한 숫자가 아닙니다.");
+        }
+    }
 }

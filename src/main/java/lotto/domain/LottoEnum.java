@@ -37,7 +37,7 @@ public class LottoEnum {
             if (this == MISS) {
                 return "꽝";
             }
-            return MessageFormat.format("{0}개 일치{1}({2}원)", matchCount, (bonusMatch ? ", 보너스 볼 일치" : ""), prizeMoney);
+            return MessageFormat.format("{0}개 일치{1} ({2}원)", matchCount, (bonusMatch ? ", 보너스 볼 일치" : ""), prizeMoney);
         }
     }
 

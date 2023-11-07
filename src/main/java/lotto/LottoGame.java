@@ -143,6 +143,7 @@ public class LottoGame {
             }
         }
         double totalProfitRatio = calculateTotalProfitRatio(stats, lottos.size());
+        printTotalProfitRatio(totalProfitRatio);
     }
 
     private static double calculateTotalProfitRatio(Map<Prize, Integer> stats, int numberOfLottos) {
@@ -153,6 +154,9 @@ public class LottoGame {
 
         double totalProfit = (totalPrize - totalSpent) * 100.0 / totalSpent;
         return 100.0 + totalProfit;
+    }
+    private static void printTotalProfitRatio(double totalProfitRatio) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalProfitRatio);
     }
 
 }

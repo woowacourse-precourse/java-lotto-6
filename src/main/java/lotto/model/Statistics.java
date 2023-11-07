@@ -55,7 +55,7 @@ public class Statistics {
         }
 
         // 총 수익률 계산 및 출력
-        float profitRate = (totalWinnings / totalAmount) * 100;
+        float profitRate = getProfitRate(totalWinnings);
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 

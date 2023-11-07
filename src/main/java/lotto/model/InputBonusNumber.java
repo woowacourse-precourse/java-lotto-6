@@ -1,6 +1,7 @@
 package lotto.model;
 
 public class InputBonusNumber {
+
     private final int number;
 
     public InputBonusNumber(String inputNumber) {

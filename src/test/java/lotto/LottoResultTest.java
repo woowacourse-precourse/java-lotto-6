@@ -17,7 +17,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("로또 발행 테스트")
-public class LottoReleaseTest extends NsTest{
+public class LottoResultTest extends NsTest{
 
     @ParameterizedTest
     @DisplayName("지불 금액만큼 로또가 발행되었는 지 테스트한다.")

@@ -7,11 +7,13 @@ import java.util.Map;
 public class LottoResult {
     private final double payment;
     private double totalPrizeMoney;
+    private double yieldRate;
     final Map<LottoPrize, Integer> prizeResult;
 
     public LottoResult(int payment) {
         this.payment = payment;
         this.totalPrizeMoney = 0;
+        this.yieldRate = 0;
         this.prizeResult = new EnumMap<LottoPrize, Integer>(LottoPrize.class);
         for (LottoPrize prize : LottoPrize.values()) {
             prizeResult.put(prize, 0);
@@ -29,6 +31,8 @@ public class LottoResult {
             LottoPrize prize = LottoPrize.valueOf(matchCount, matchBonus);
             prizeResult.put(prize, prizeResult.get(prize) + 1);
         }
+        calculateTotalPrizeMoney();
+        calculateYieldRate();
     }
 
     private void calculateTotalPrizeMoney() {
@@ -37,9 +41,12 @@ public class LottoResult {
         }
     }
 
+    private void calculateYieldRate() {
+        this.yieldRate = Math.round(totalPrizeMoney / payment*1000) / 10.0;
+    }
+
     private double getYieldRate() {
-        calculateTotalPrizeMoney();
-        return Math.round(totalPrizeMoney / payment*1000) / 10.0;
+        return yieldRate;
     }
 
     @Override
@@ -51,7 +58,7 @@ public class LottoResult {
                 if(prize == LottoPrize.SECOND) {
                     winningResult.append(", 보너스 볼 일치");
                 }
-                winningResult.append(" (" + prize.getPrizeMoney() + "원) - ")
+                winningResult.append(" " + prize + " - ")
                         .append(prizeResult.get(prize) + "개\n");
             }
         }

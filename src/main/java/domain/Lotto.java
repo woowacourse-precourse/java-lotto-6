@@ -14,6 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         Validator.checkLottoSizeNumberInput(numbers);
+        Validator.checkLottoDuplicatedNumberInput(numbers);
     }
 
     // TODO: 추가 기능 구현

@@ -34,18 +34,45 @@ public class LottoController {
     }
 
     public void playLotto() {
-        int purchaseAmount = inputView.getPurchaseAmount();
-        List<Lotto> lottos = lottoService.buyLottos(purchaseAmount);
+        int purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottos = purchaseLottos(purchaseAmount);
         printLottos(lottos);
 
+        WinningNumbers winningNumbers = getWinningNumbers();
+        Map<Rank, Integer> results = calculateLottoResults(lottos, winningNumbers);
+        printResults(results);
+
+        double profitRate = calculateProfitRate(purchaseAmount, results);
+        printProfitRate(profitRate);
+    }
+
+    private int getPurchaseAmount() {
+        return inputView.getPurchaseAmount();
+    }
+
+    private List<Lotto> purchaseLottos(int purchaseAmount) {
+        return lottoService.buyLottos(purchaseAmount);
+    }
+
+    private WinningNumbers getWinningNumbers() {
         String winningNumbersInput = getWinningNumbersInput();
         int bonusNumber = getBonusNumberInput();
-        WinningNumbers winningNumbers = WinningNumbersFactory.createWinningNumbers(winningNumbersInput, bonusNumber);
+        return WinningNumbersFactory.createWinningNumbers(winningNumbersInput, bonusNumber);
+    }
 
-        Map<Rank, Integer> results = resultCalculator.calculateResults(lottos, winningNumbers);
+    private Map<Rank, Integer> calculateLottoResults(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        return resultCalculator.calculateResults(lottos, winningNumbers);
+    }
+
+    private void printResults(Map<Rank, Integer> results) {
         outputView.printResults(results);
+    }
 
-        double profitRate = profitCalculator.getProfitRate(purchaseAmount, results);
+    private double calculateProfitRate(int purchaseAmount, Map<Rank, Integer> results) {
+        return profitCalculator.getProfitRate(purchaseAmount, results);
+    }
+
+    private void printProfitRate(double profitRate) {
         outputView.printProfitRate(profitRate);
     }
 
@@ -60,9 +87,5 @@ public class LottoController {
 
     private int getBonusNumberInput() {
         return inputView.getBonusNumber();
-    }
-
-    private WinningNumbers createWinningNumbers(String winningNumbersInput, int bonusNumber) {
-        return new WinningNumbers(winningNumbersInput, bonusNumber);
     }
 }

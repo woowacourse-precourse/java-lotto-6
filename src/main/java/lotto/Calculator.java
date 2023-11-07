@@ -1,13 +1,14 @@
 package lotto;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    private final Lottos userLottos;
+    private final List<Lotto> userLottos;
     private final WinningNumbers winningNumbers;
 
-    public Calculator(Lottos userLottos, WinningNumbers winningNumbers) {
+    public Calculator(List<Lotto> userLottos, WinningNumbers winningNumbers) {
         this.userLottos = userLottos;
         this.winningNumbers = winningNumbers;
     }
@@ -25,7 +26,7 @@ public class Calculator {
         for (Rank rank : Rank.values()) {
             winningResults.put(rank, 0);
         }
-        for (Lotto lotto : userLottos.getLottos()) {
+        for (Lotto lotto : userLottos) {
             int hitCount = lotto.matchCountWith(winningLotto);
             boolean isBonusNumberMatched = lotto.contains(bonusNumber);
             Rank rank = Rank.valueOf(hitCount, isBonusNumberMatched);

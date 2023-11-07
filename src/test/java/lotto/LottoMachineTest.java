@@ -12,7 +12,7 @@ class LottoMachineTest {
         int lottoPrice = 1_000;
         int lottoQuantity = 10;
 
-        assertThat(lottoMachine.buyLottos(lottoPrice * lottoQuantity))
+        assertThat(lottoMachine.buyLottos(new LottoAmount(lottoPrice * lottoQuantity)))
                 .hasSize(lottoQuantity);
     }
 }

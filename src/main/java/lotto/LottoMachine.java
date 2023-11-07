@@ -20,7 +20,8 @@ public class LottoMachine {
         return new Lotto(lottoNumberGenerator.generateLottoNumbers());
     }
 
-    public List<Lotto> buyLottos(int amount) {
+    public List<Lotto> buyLottos(LottoAmount lottoAmount) {
+        int amount = lottoAmount.getAmount();
         int quantity = calculateLottoQuantity(amount);
 
         return IntStream.range(0, quantity)

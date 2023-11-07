@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Statistician {
-    public WinningStatistics makeLottoStatistics(List<Lotto> lottoList, WinningLotto winningLotto) {
+    public WinningStatistics makeLottoStatistics(LottoAmount lottoAmount, List<Lotto> lottoList, WinningLotto winningLotto) {
         Map<Ranking, Integer> rankingNumber = new EnumMap<>(Ranking.class);
 
         lottoList.stream()
                 .map(lotto -> matchRanking(lotto, winningLotto))
                 .forEach(key -> rankingNumber.merge(key, 1, Integer::sum));
 
-        return new WinningStatistics(rankingNumber);
+        return new WinningStatistics(lottoAmount, rankingNumber);
     }
 
     private Ranking matchRanking(Lotto lotto, WinningLotto winningLotto) {

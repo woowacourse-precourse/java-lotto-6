@@ -2,8 +2,9 @@ package lotto;
 
 import java.util.Map;
 
-public record WinningStatistics(Map<Ranking, Integer> rankingNumber) {
-    public double getReturnRate(int amount) {
+public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> rankingNumber) {
+    public double getReturnRate() {
+        int amount = lottoAmount.getAmount();
         return (double) (getTotalPrize() - amount) / amount * 100;
     }
 

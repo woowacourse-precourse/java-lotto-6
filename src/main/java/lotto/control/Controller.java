@@ -32,4 +32,16 @@ public class Controller {
         winning = new Lotto(input.inputNumbers());
         bonus = new Bonus(input.inputBonus(), winning);
     }
+
+    int getIndex(Lotto lotto) {
+        int matchCount = winning.countMatch(lotto);
+        boolean bonusMatch = bonus.isBonusMatch(lotto);
+
+        if (matchCount == 3) return 0;
+        if (matchCount == 4) return 1;
+        if (matchCount == 5 && !bonusMatch) return 2;
+        if (matchCount == 5) return 3;
+        if (matchCount == 6) return 4;
+        return -1;
+    }
 }

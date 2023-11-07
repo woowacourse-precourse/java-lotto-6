@@ -18,7 +18,7 @@ public class Lotto {
         }
     }
 
-    int countMatch(Lotto other) {
+    public int countMatch(Lotto other) {
         List<Integer> otherNumbers = new ArrayList<>(other.getLottoNumbers());
         otherNumbers.retainAll(numbers);
         return otherNumbers.size();

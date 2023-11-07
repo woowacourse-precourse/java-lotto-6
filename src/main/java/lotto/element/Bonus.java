@@ -14,7 +14,7 @@ public class Bonus {
         }
     }
 
-    boolean isBonusMatch(Lotto other) {
+    public boolean isBonusMatch(Lotto other) {
         return other.getLottoNumbers().contains(number);
     }
 }

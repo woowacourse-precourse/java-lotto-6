@@ -76,4 +76,9 @@ public class OutputService {
         IntStream.range(0, line)
                 .forEach(i -> System.out.println());
     }
+
+
+    public static void printError(String errorMessage) {
+        System.out.println(ERROR_PREFIX + errorMessage);
+    }
 }

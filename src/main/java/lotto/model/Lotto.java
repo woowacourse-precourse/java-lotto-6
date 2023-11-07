@@ -1,16 +1,14 @@
 package lotto.model;
 
-import java.util.Collections;
+import static lotto.enums.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.enums.ExceptionMessage.CONTAIN_DUPLICATE_DIGITS_EXCEPTION;
+import static lotto.enums.ExceptionMessage.NOT_SIX_NUMBERS_EXCEPTION;
+import static lotto.enums.ExceptionMessage.NUMBERS_WRONG_RANGE_EXCEPTION;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
-    private static final String NOT_SIX_NUMBERS_EXCEPTION = "발행된 로또 번호의 개수는 6개여야 합니다.";
-    private static final String CONTAIN_DUPLICATE_DIGITS_EXCEPTION = "발행된 로또 번호의 개수는 6개여야 합니다.";
-    private static final String NUMBERS_WRONG_RANGE_EXCEPTION = "발행된 로또 번호의 개수는 6개여야 합니다.";
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,25 +16,25 @@ public class Lotto {
         this.numbers = sortAscending(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (isNumbersCountNotSix(numbers)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + NOT_SIX_NUMBERS_EXCEPTION);
-        }
-        if (isNumbersWrongRange(numbers)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + NUMBERS_WRONG_RANGE_EXCEPTION);
-        }
-        if (isContainDuplicateDigits(numbers)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + CONTAIN_DUPLICATE_DIGITS_EXCEPTION);
-        }
+    private static boolean isNumbersCountNotSix(List<Integer> numbers) {
+        return numbers.size() != LOTTO_NUMBER_COUNT.getNumber();
     }
 
-    private static boolean isNumbersCountNotSix(List<Integer> numbers) {
-        return numbers.size() != LOTTO_NUMBER_COUNT;
+    private void validate(List<Integer> numbers) {
+        if (isNumbersCountNotSix(numbers)) {
+            throw new IllegalArgumentException(NOT_SIX_NUMBERS_EXCEPTION.getMessage());
+        }
+        if (isNumbersWrongRange(numbers)) {
+            throw new IllegalArgumentException(CONTAIN_DUPLICATE_DIGITS_EXCEPTION.getMessage());
+        }
+        if (isContainDuplicateDigits(numbers)) {
+            throw new IllegalArgumentException(NUMBERS_WRONG_RANGE_EXCEPTION.getMessage());
+        }
     }
 
     private boolean isContainDuplicateDigits(List<Integer> numbers) {
         return numbers.stream()
-                .distinct().count() != LOTTO_NUMBER_COUNT;
+                .distinct().count() != LOTTO_NUMBER_COUNT.getNumber();
     }
 
     private boolean isNumbersWrongRange(List<Integer> numbers) {

@@ -53,7 +53,7 @@ public class ThousandUnitMoneyTest {
         // When && Then
         assertThatThrownBy(() -> ThousandUnitMoney.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
+                .hasMessageContaining("정수 범위의 값이 필요합니다.");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ThousandUnitMoneyTest {
         // When && Then
         assertThatThrownBy(() -> ThousandUnitMoney.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
+                .hasMessageContaining("정수 범위의 값이 필요합니다.");
     }
 
     @Test

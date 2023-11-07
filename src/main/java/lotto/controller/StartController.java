@@ -53,7 +53,8 @@ public class StartController {
 
     private void ticketInformation() {
         view.buyTicketCountMessage(buy.getBuyTicketCount());
-        lottoTicket();
+        ticket.setLottoTicket(buy.getBuyTicketCount());
+        view.lottoTicketNumbers(ticket.getLottoTicket());
     }
 
     private void sixHitNumber() {
@@ -73,10 +74,5 @@ public class StartController {
         } catch (IllegalArgumentException e) {
             bonusHitNumber();
         }
-    }
-
-    private void lottoTicket() {
-        ticket.setLottoTicket(buy.getBuyTicketCount());
-        view.lottoTicketNumbers(ticket.getLottoTicket());
     }
 }

@@ -143,9 +143,9 @@ public class View {
 
     private int calculateTotalProfitPrice() {
         return LottoRankRule.FIRST_RANK_PRICE.getRank() * matchRecords.get(Rank.FIRST_RANK.getRank())
-                + LottoRankRule.SECOND_RANK_PRICE.getRank() * matchRecords.get(Rank.SECOND_RANK.getRank())
-                + LottoRankRule.THIRD_RANK_PRICE.getRank() * matchRecords.get(Rank.THIRD_RANK.getRank())
-                + LottoRankRule.FOURTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FOURTH_RANK.getRank())
-                + LottoRankRule.FIFTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FIFTH_RANK.getRank());
+            + LottoRankRule.SECOND_RANK_PRICE.getRank() * matchRecords.get(Rank.SECOND_RANK.getRank())
+            + LottoRankRule.THIRD_RANK_PRICE.getRank() * matchRecords.get(Rank.THIRD_RANK.getRank())
+            + LottoRankRule.FOURTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FOURTH_RANK.getRank())
+            + LottoRankRule.FIFTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FIFTH_RANK.getRank());
     }
 }

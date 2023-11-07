@@ -11,7 +11,6 @@ public enum Rank {
     FIFTH_RANK("5th");
 
     private final String rank;
-    private static Map<Rank, Integer> ranks = new HashMap<>();
 
     Rank(String rank) {
         this.rank = rank;
@@ -19,15 +18,5 @@ public enum Rank {
 
     public String getRank() {
         return rank;
-    }
-
-    public static Map<Rank, Integer> getRanks() {
-        return ranks;
-    }
-
-    static {
-        for (Rank rank : Rank.values()) {
-            ranks.put(rank, 0);
-        }
     }
 }

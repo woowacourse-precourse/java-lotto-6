@@ -6,17 +6,17 @@ public class Bonus {
     private final int number;
 
     public Bonus(int number) {
-        this.number = validate(number);
+        validate(number);
+        this.number = number;
     }
 
     public int getNumber() {
         return number;
     }
 
-    private int validate(int number) {
+    private void validate(int number) {
         try {
             Validate.bonusHitLottoNumberValidate(number);
-            return number;
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }

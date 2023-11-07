@@ -4,21 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.model.Bonus;
 import lotto.model.WinningNumber;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class BonusNumberServiceTest {
 
-    BonusNumberService bonusNumberService;
-    WinningNumber winningNumber;
-
-    @BeforeEach
-    void setUp() {
-        bonusNumberService = new BonusNumberService();
-        winningNumber = new WinningNumber("1,2,3,4,5,6");
-    }
+    BonusNumberService bonusNumberService = new BonusNumberService();
+    WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
 
     @Test
     void 옳은_값이_들어오면_Bonus를_생성한다() {

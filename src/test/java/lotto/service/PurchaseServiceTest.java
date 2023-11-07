@@ -3,19 +3,13 @@ package lotto.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.model.Purchase;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class PurchaseServiceTest {
 
-    PurchaseService purchaseService;
-
-    @BeforeEach
-    void setUp() {
-        purchaseService = new PurchaseService();
-    }
+    PurchaseService purchaseService = new PurchaseService();
 
     @Test
     void 옳은_값이_들어오면_Purchase를_생성한다() {

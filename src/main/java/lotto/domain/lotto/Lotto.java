@@ -54,7 +54,7 @@ public class Lotto {
     }
 
     private int compareWithBonusNumber(BonusNumber bonusNumber) {
-        if(numbers.stream().anyMatch(i -> equals(bonusNumber.getBonusNumber()))){
+        if(numbers.contains(bonusNumber.getBonusNumber())) {
             return 1;
         }
         return 0;

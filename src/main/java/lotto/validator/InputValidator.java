@@ -4,10 +4,11 @@ import lotto.parser.Parser;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
-import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
+import static lotto.constant.LottoConstant.*;
 import static lotto.exception.InputViewExceptionMessage.*;
+import static lotto.exception.WinnerExceptionMessage.DUPLICATED_WINNER_NUMBER;
 import static lotto.exception.WinnerExceptionMessage.WRONG_BONUS_NUMBER_RANGE;
 import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
@@ -31,6 +32,15 @@ public class InputValidator {
         Integer parsedNumber = Parser.parseInt(number);
         if (!(RANGE_START_NUMBER.getSetting() <= parsedNumber && RANGE_END_NUMBER.getSetting() <= 45)) {
             throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    public static void validateDuplicatedNumber(final List<String> numberDummy) {
+        if (numberDummy.stream()
+                .map(Parser::parseInt)
+                .collect(Collectors.toSet())
+                .size() != LOTTO_LENGTH.getSetting()) {
+            throw new IllegalArgumentException(DUPLICATED_WINNER_NUMBER.getMessage());
         }
     }
 

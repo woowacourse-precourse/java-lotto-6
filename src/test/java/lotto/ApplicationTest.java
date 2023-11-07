@@ -119,6 +119,31 @@ class ApplicationTest extends NsTest {
 
     }
 
+    @DisplayName("당첨 번호 입력시 입력 형식을 준수하지 않은 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1/2/3/4/10/5", "1-2-3-4-12-5"})
+    void inputWinnerNumbersWithWrongFormatExceptionTest(String wrongWinnerNumbersFormat) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", wrongWinnerNumbersFormat, "45");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+
+    }
+
+    @DisplayName("당첨 번호 입력시 중복된 숫자 입력한 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,5", "1,2,3,4,1,5", "1,2,3,4,4,5", "1,2,3,2,2,5"})
+    void inputWinnerNumbersWithDuplicatedNumberExceptionTest(String duplicatedNumberInWinnerNumber) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", duplicatedNumberInWinnerNumber, "45");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

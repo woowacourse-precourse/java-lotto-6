@@ -19,7 +19,7 @@ public class LottoController {
         lottoResult.calculateWinningResult(lottos, InputView.inputWinningNumbers(), InputView.inputBonusNumber());
 
         outPutView.outPutViewWinningStatistics(lottoResult);
-        System.out.println("총 수익률은 " + lottoResult.calculateProfitRate(userMoney) + "%입니다.");
+        System.out.print("총 수익률은 " + lottoResult.calculateProfitRate(userMoney) + "%입니다.");
     }
 
 

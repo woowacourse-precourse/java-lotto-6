@@ -3,7 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import lotto.model.LottoGame;
+import lotto.model.Validator;
 
 public class View {
 
@@ -33,50 +36,38 @@ public class View {
     public static int getPurchaseAmount() {
         while (true) {
             try {
-                System.out.print("구매 금액을 입력해 주세요: ");
-                String input = Console.readLine();
-                int amount = Integer.parseInt(input);
-                validateAmount(amount);
-                return amount;
-            } catch (NumberFormatException e) {
-                printErrorMessage(ErrorMessage.INVALID_NUMBER);
+                return LottoGame.attemptToGetPurchaseAmount();
             } catch (IllegalArgumentException e) {
-                printErrorMessage(ErrorMessage.valueOf(e.getMessage()));
+                System.out.println(e.getMessage());
             }
         }
     }
-    public static Set<Integer> getWinningNumbers() {
+
+
+    public static List<Integer> getWinningNumbers() {
         while (true) {
             try {
-                System.out.print("당첨 번호를 입력해 주세요 (쉼표로 구분): ");
-                String input = Console.readLine();
-                return parseWinningNumbers(input);
+                return LottoGame.attempToGetWinningNumbers();
             } catch (IllegalArgumentException e) {
                 printErrorMessage(ErrorMessage.valueOf(e.getMessage()));
             }
         }
     }
 
-    private static Set<Integer> parseWinningNumbers(String input) {
-        if (!input.matches("(\\d+,){5}\\d+")) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.name());
-        }
 
-        String[] numberStrings = input.split(",");
-        if (numberStrings.length != 6) {
-            throw new IllegalArgumentException(ErrorMessage.INCORRECT_NUMBER_COUNT.name());
-        }
-
-        Set<Integer> numbers = new HashSet<>();
-        for (String numberString : numberStrings) {
-            int number = Integer.parseInt(numberString);
-            validateWinningNumber(number);
-            if (!numbers.add(number)) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.name());
+    public static int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return LottoGame.attemptToGetBonusNumber(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
-        return numbers;
     }
+
+
+
+
 
     private static void validateWinningNumber(int number) {
         if (number < 1 || number > 45) {
@@ -84,21 +75,6 @@ public class View {
         }
     }
 
-    public static int getBonusNumber(Set<Integer> winningNumbers) {
-        while (true) {
-            try {
-                System.out.print("보너스 번호를 입력해 주세요: ");
-                String input = Console.readLine();
-                int bonusNumber = Integer.parseInt(input);
-                validateBonusNumber(bonusNumber, winningNumbers);
-                return bonusNumber;
-            } catch (NumberFormatException e) {
-                printErrorMessage(ErrorMessage.INVALID_RANGE);
-            } catch (IllegalArgumentException e) {
-                printErrorMessage(ErrorMessage.valueOf(e.getMessage()));
-            }
-        }
-    }
 
     private static void validateBonusNumber(int number, Set<Integer> winningNumbers) {
         validateWinningNumber(number); // Reuse the validation for winning numbers

@@ -24,11 +24,17 @@ public class LottoController {
     }
 
     public void run() {
+        List<Lotto> purchasedLottos = purchaseLottos();
+
+        Lotto winningLotto = askValidWinningLotto();
+        int bonusBall = askValidBonusBall(winningLotto);
+    }
+
+    private List<Lotto> purchaseLottos() {
         int numberOfLottos = askValidNumberOfLottos();
         List<Lotto> purchasedLottos = generateLottos(numberOfLottos);
         resultView.displayPurchasedLottos(purchasedLottos);
-
-        Lotto winningLotto = askValidWinningLotto();
+        return purchasedLottos;
     }
 
     private int askValidNumberOfLottos() {
@@ -38,6 +44,7 @@ public class LottoController {
         } while (numberOfLottos == -1);
         return numberOfLottos;
     }
+
 
     private int askNumberOfLottos() {
         try {
@@ -55,6 +62,7 @@ public class LottoController {
                 .toList();
     }
 
+
     private Lotto askValidWinningLotto() {
         Lotto winningLotto;
         do {
@@ -70,6 +78,25 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             resultView.printException(e);
             return null;
+        }
+    }
+
+    private int askValidBonusBall(final Lotto winningLotto) {
+        int bonusBall;
+        do {
+            bonusBall = askBonusBall(winningLotto);
+        } while (bonusBall == -1);
+        return bonusBall;
+    }
+
+    private int askBonusBall(final Lotto winningLotto) {
+        try {
+            final int bonusBall = inputView.inputBonusBall();
+            winningLotto.validateBonusBall(bonusBall);
+            return bonusBall;
+        } catch (IllegalArgumentException e) {
+            resultView.printException(e);
+            return -1;
         }
     }
 }

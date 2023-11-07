@@ -14,6 +14,12 @@ public abstract class InputView {
         return convertStringToInt(input);
     }
 
+    public int inputBonusBall() {
+        println("보너스 번호를 입력해 주세요.");
+        final String input = read();
+        return convertStringToInt(input);
+    }
+
     private int convertStringToInt(final String input) {
         try {
             return Integer.parseInt(input);

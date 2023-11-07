@@ -19,10 +19,11 @@ public class LottoWinningNumbers {
     }
 
     private void validateOnlyPositiveWinningNumbers(String numbersString) {
-        if (!numbersString.matches("[\\d,\\s]+$")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로만 입력되어야 합니다.");
+        if (!numbersString.matches("^(\\d+(,\\d+)+)$")) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 공백을 제외한 정수와 쉼표(,)로만 입력되어야 합니다.");
         }
     }
+
 
     private List<Integer> convertToList(String numbersString) {
         return Arrays.stream(numbersString.split(","))

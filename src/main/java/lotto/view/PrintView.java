@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.config.LottoRank;
 import lotto.model.Lotto;
@@ -42,7 +43,7 @@ public class PrintView {
         System.out.println(sb.toString());
     }
 
-    public static void printWinningResult(int[] winningCount, double result) {
+    public static void printWinningResult(int[] winningCount, BigDecimal result) {
         StringBuilder sb = new StringBuilder();
         sb.append("\n당첨 통계");
         sb.append("\n---");

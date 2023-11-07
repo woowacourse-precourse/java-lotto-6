@@ -2,8 +2,8 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static java.lang.Math.round;
 import static lotto.Get.GetPurchaseNumber;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,11 +21,20 @@ public class Application {
 
         // 로또 당첨 금액 ENUM
         enum LottoResult {
-            FIFTH(5000), FOURTH(50000), THIRD(1500000), SECOND(30000000), FIRST(2000000000);
+            FIFTH(3, 5000, "3개 일치 (5,000원) - "), FOURTH(4, 50000, "4개 일치 (50,000원) - "), THIRD(5, 1500000, "5개 일치 (1,500,000원) - "), SECOND(55, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "), FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - ");
 
-            private final int value;
-            LottoResult(int value) { this.value = value; }
-            public int getValue() { return value; }
+            private final int correctNumber;
+            private final int reward;
+            private final String value;
+
+            LottoResult(int correctNumber, int reward, String value) {
+                this.correctNumber = correctNumber;
+                this.reward = reward;
+                this.value = value;
+            }
+            public int getCorrectNumber(){ return correctNumber; }
+            public int getReward() { return reward; }
+            public String getValue() { return value; }
         }
 
 
@@ -114,7 +123,7 @@ public class Application {
 
         //게임 3. 당첨번호, 보너스번호와 구매한 로또번호 비교
         int correctCount = 0; // 일치하는 숫자 개수
-        List<String> correctEnums = new ArrayList<>();
+        List<Integer> correctCounts = new ArrayList<>();
 
         // 당첨번호와 비교
         for(Lotto l:lottos){
@@ -127,45 +136,34 @@ public class Application {
 
             //보너스 체크
             if(correctCount == 5 && lottosTemp.contains(bonusNumber)){
-                correctCount = 55;
+                correctCounts.add(55);
             }
-
-            switch (correctCount){
-                case 3:
-                    correctEnums.add("FIFTH");
-                    break;
-                case 4:
-                    correctEnums.add("FOURTH");
-                    break;
-                case 5:
-                    correctEnums.add("THIRD");
-                    break;
-                case 55:
-                    correctEnums.add("SECOND");
-                    break;
-                case 6:
-                    correctEnums.add("FIRST");
-                    break;
-                default:
-                    break;
+            else {
+                correctCounts.add(correctCount);
             }
             correctCount = 0;
         }
 
-
-        System.out.println(correctEnums);
-
+        correctCounts.sort(Comparator.naturalOrder());
 
         // 출력 1. 당첨 내역 출력
-        //System.out.println(Message.WinningStatus.getValue() + "\n" + Message.Bar.getValue());
+        int totalReward = 0;
 
-        //System.out.println();
+        System.out.println(Message.WinningStatus.getValue() + "\n" + Message.Bar.getValue());
+
+        for(LottoResult lr:LottoResult.values()){
+            System.out.println(lr.getValue() + Collections.frequency(correctCounts, lr.getCorrectNumber()) + "개");
+            if(Collections.frequency(correctCounts, lr.getCorrectNumber()) != 0){
+                totalReward += lr.getReward();
+            }
+        }
+
+        // 게임 4.
+
+        double earningRate = totalReward / purchasePrice;
+        System.out.println("총 수익률은 " + round(earningRate * 100) / 100.0 + "%입니다.");
 
 
-
-        /* 게임 4.
-        double earningRate = ? / purchasePrice ;
-        */
 
     }
 }

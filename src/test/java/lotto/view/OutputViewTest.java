@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.view.OutputView.printEarningRate;
 import static lotto.view.OutputView.printLottoResult;
 import static lotto.view.OutputView.printLottoTickets;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -70,6 +71,15 @@ class OutputViewTest {
         assertThat(output()).contains("5개 일치 (1,500,000원) - 0개");
         assertThat(output()).contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 2개");
         assertThat(output()).contains("6개 일치 (2,000,000,000원) - 1개");
+    }
+
+    @Test
+    void 티켓_당첨_결과의_수익률을_출력한다() {
+        final double earningRate = 5000 * 100.0 / 8000;
+
+        printEarningRate(earningRate);
+
+        assertThat(output()).contains("총 수익률은 62.5%입니다.");
     }
 
 }

@@ -31,6 +31,10 @@ public class Lotto {
         return new HashSet<>(numbers).size() != LOTTO_SIZE.getValue();
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

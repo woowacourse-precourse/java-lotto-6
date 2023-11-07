@@ -29,13 +29,13 @@ public class InputView {
         }
     }
 
-    public static LottoNumber getBonusLottoNumber() {
+    public static LottoNumber getBonusLottoNumber(Lotto winningLotto) {
         try {
             println(DEMAND_INPUT_BONUS_NUMBER.getMessage());
-            return new LottoNumber(readInt());
+            return readBonusNumber(winningLotto);
         } catch (IllegalArgumentException e) {
             println(e.getMessage());
-            return getBonusLottoNumber();
+            return getBonusLottoNumber(winningLotto);
         }
     }
 

@@ -13,7 +13,7 @@ public class LottoController {
         OutputView.announceIssuedLottos(purchaseBudget.createQuantity());
 
         Lotto winningLotto = InputView.getWinningLotto();
-        LottoNumber bonusLottoNumber = InputView.getBonusLottoNumber();
+        LottoNumber bonusLottoNumber = InputView.getBonusLottoNumber(winningLotto);
 
         OutputView.announceWinningStatistics();
     }

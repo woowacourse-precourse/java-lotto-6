@@ -10,8 +10,9 @@ public enum ErrorMessage implements Message {
     HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE("최소 1장 이상 구매할 수 있는 금액을 입력해야합니다."),
     LOTTO_NUMBER_NOT_IN_RANGE("로또 번호의 범위를 벗어났습니다."),
     WRONG_LOTTO_SIZE(String.format("로또 번호는 %d개가 필요합니다.", LOTTO_SIZE.getValue())),
+    HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER("공백없이 숫자와 구분자만 입력해야합니다."),
     DUPLICATED_NUMBER_EXIST("중복되는 로또 번호가 존재합니다."),
-    HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER("공백없이 숫자와 구분자만 입력해야합니다.")
+    DUPLICATED_BONUS_NUMBER_EXIST("보너스 번호가 당첨번호와 중복됩니다.")
     ;
 
     private static final String PREFIX = "[ERROR] ";

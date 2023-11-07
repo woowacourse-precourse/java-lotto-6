@@ -29,6 +29,19 @@ public class LottoNumber {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LottoNumber that)) return false;
+
+        return getNumber() == that.getNumber();
+    }
+
+    @Override
+    public int hashCode() {
+        return getNumber();
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(number);
     }

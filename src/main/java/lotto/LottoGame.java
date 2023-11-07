@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoResult;
@@ -18,8 +19,9 @@ public class LottoGame {
         messageService.outputPurchaseAmount(purchaseAmount);
         List<Lotto> purchaseNumbers = lottoPurchase.purchaseLottoNumbers(purchaseAmount);
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
+        BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
         messageService.outputResultMessage();
-        LottoResult lottoResult = new LottoResult(winningNumbersInfo);
+        LottoResult lottoResult = new LottoResult(winningNumbersInfo,bonusNumber);
         LottoReturn lottoReturn = new LottoReturn(lottoResult.getLottoStatus(purchaseNumbers));
         lottoReturn.getLottoReturnRate(lottoPurchase.getPurchasePrice());
     }

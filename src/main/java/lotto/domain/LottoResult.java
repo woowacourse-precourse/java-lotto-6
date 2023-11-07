@@ -8,11 +8,13 @@ import lotto.service.MessageService;
 public class LottoResult {
     private final MessageService messageService = new MessageService();
     private final LottoWinningNumbers lottoWinningNumbers;
+    private final BonusNumber bonusNumber;
     private LottoCount lottoCount = new LottoCount();
     private static final int BONUS_CHECK_COUNT = 10;
 
-    public LottoResult(LottoWinningNumbers lottoWinningNumbers) {
+    public LottoResult(LottoWinningNumbers lottoWinningNumbers, BonusNumber bonusNumber) {
         this.lottoWinningNumbers = lottoWinningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public LottoCount getLottoStatus(List<Lotto> purchaseLottoNumber) {
@@ -64,7 +66,7 @@ public class LottoResult {
     }
 
     private int bonusNumberCheck(int matchCount, List<Integer> lottoNumbers) {
-        if (matchCount == LottoPrice.THIRD.getNumber() && lottoNumbers.contains(lottoWinningNumbers.getBonusNumber())) {
+        if (matchCount == LottoPrice.THIRD.getNumber() && lottoNumbers.contains(bonusNumber.getNumber())) {
             return matchCount + BONUS_CHECK_COUNT;
         }
         return matchCount;

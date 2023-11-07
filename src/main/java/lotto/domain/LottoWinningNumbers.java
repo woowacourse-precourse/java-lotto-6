@@ -11,14 +11,11 @@ import lotto.service.ValidateService;
 
 public class LottoWinningNumbers {
     private final InputService inputService = new InputService();
-    private final ValidateService validateService = new ValidateService();
     private final MessageService messageService = new MessageService();
-    private int bonusNumber;
     private List<Integer> winningNumber;
 
     public LottoWinningNumbers getWinningNumbersInfo() {
         this.winningNumber = inputWinningNumbers();
-        this.bonusNumber = inputBonusNumbers();
         return this;
     }
 
@@ -49,22 +46,6 @@ public class LottoWinningNumbers {
         return winningNumber;
     }
 
-    public int inputBonusNumbers() {
-        messageService.inputBonusNumberMessage();
-        while (true) {
-            try {
-                bonusNumber = validateService.validateNumber(inputService.inputValue());
-                validateService.validateBonusNumber(bonusNumber, winningNumber);
-                return bonusNumber;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 
     public List<Integer> getWinningNumber() {
         return winningNumber;

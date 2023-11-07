@@ -11,16 +11,17 @@ public class Converter {
 
     public static String convertCommaStringToString(String commaValue){
         String result = "";
-        for (String splitedValue : commaValue.split(COMMA)) {
-            result += splitedValue;
+        for (String splitValue : commaValue.split(COMMA)) {
+            result += splitValue;
         }
         return result;
     }
 
-    public static Lotto convertCommaStringToLotto(String commaValue){
+    public static Lotto convertCommaStringToLotto(String commaValue) throws IllegalArgumentException{
         List<Integer> numbers = new ArrayList<>(LOTTO_SIZE);
         for(String splitValue : commaValue.split(COMMA)){
-            numbers.add(Integer.valueOf(splitValue));
+            Integer number = convertStringToPositiveInteger(splitValue);
+            numbers.add(number);
         }
         Collections.sort(numbers);
         return new Lotto(Collections.unmodifiableList(numbers));

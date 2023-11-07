@@ -37,7 +37,7 @@ public class LottoChecker {
 
     public void saveLottosResult() {
         lottos.forEach(lotto -> {
-            long matches = this.checkWinningNumber(lotto);
+            long matches = checkWinningNumber(lotto);
             boolean isContainBonus = false;
             if (matches == 5) {
                 isContainBonus = checkContainBonusNumber(lotto);
@@ -51,13 +51,13 @@ public class LottoChecker {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         return lottoNumbers.stream()
-                .filter(this.winningNumbers::contains).count();
+                .filter(winningNumbers::contains).count();
     }
 
     public boolean checkContainBonusNumber(final Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        return lottoNumbers.contains(this.bonusNumber);
+        return lottoNumbers.contains(bonusNumber);
     }
 
     public Prize getPrize(final long matches, boolean isContainBonus) {
@@ -79,12 +79,8 @@ public class LottoChecker {
         return Prize.NONE;
     }
 
-    public Map<Prize, Integer> getResult() {
-        return Collections.unmodifiableMap(this.result);
-    }
-
     public void calculateTotalPrize() {
-        this.totalPrize = result.keySet().stream().mapToLong(prize -> prize.money * result.get(prize)).sum();
+        totalPrize = result.keySet().stream().mapToLong(prize -> prize.money * result.get(prize)).sum();
     }
 
     public void calculateProfitRate() {
@@ -96,8 +92,8 @@ public class LottoChecker {
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
 
         double usedMoney = (long) lottos.size() * 1000;
-        double profit = (this.totalPrize / usedMoney) * 100;
-        this.profitRate = decimalFormat.format(profit);
+        double profit = (totalPrize / usedMoney) * 100;
+        profitRate = decimalFormat.format(profit);
     }
 
     public long getTotalPrize() {
@@ -106,5 +102,9 @@ public class LottoChecker {
 
     public String getProfitRate() {
         return this.profitRate;
+    }
+
+    public Map<Prize, Integer> getResult() {
+        return Collections.unmodifiableMap(this.result);
     }
 }

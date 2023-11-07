@@ -17,6 +17,10 @@ public class UserLotto {
         printMyLotto();
     }
 
+    public UserLotto(int lottoNum){
+        IntStream.range(0, lottoNum)
+                .forEach(i -> userRepository.add(makeLotto()));
+    }
     public Lotto getIndexAt(int index) {
         return userRepository.get(index);
     }

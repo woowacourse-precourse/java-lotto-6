@@ -4,6 +4,7 @@ import lotto.model.LottoResult;
 import lotto.model.Prize;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,9 @@ public class OutputView {
     public void printLottos(int count,List<List<Integer>> lottos) {
         System.out.println(count + "개를 구매했습니다.");
         for (List<Integer> lotto : lottos) {
-            System.out.println(lotto);
+            List<Integer> sortedLotto = new ArrayList<>(lotto);
+            Collections.sort(sortedLotto);
+            System.out.println(sortedLotto);
         }
     }
 

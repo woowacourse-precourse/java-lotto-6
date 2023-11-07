@@ -40,13 +40,13 @@ class PurchaseTest {
     @Test
     void purchaseLotto() {
         // given
-        String money = "10000";
-        String lottoCount = "10";
+        int lottoCount = 10;
+        String money = String.valueOf(GameInfo.USER_MONEY_UNIT.getNumber() * lottoCount);
 
         // when
-        Purchase purchase = new Purchase("10000", moneyValidator);
+        Purchase purchase = new Purchase(money, moneyValidator);
 
         // then
-        assertEquals(10, purchase.getLottoCount());
+        assertEquals(lottoCount, purchase.getLottoCount());
     }
 }

@@ -11,6 +11,7 @@ import lotto.constants.Prize;
 import lotto.controller.LottoGameController;
 import lotto.util.Parser;
 import lotto.validator.impl.BonusNumberValidator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,12 +19,26 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottosTest {
 
+    Lottos lottos;
+
+    @BeforeEach
+    void initLottos() {
+        lottos = new Lottos(
+            List.of(
+                new Lotto("1,2,3,4,5,6"), // 5등
+                new Lotto("1,2,3,4,5,7"), // 5등
+                new Lotto("1,2,3,4,8,9"), // 5등
+                new Lotto("1,2,3,8,9,10"), // 5등
+                new Lotto("1,2,8,9,10,11"), // 당첨 없음
+                new Lotto("1,8,9,10,11,12") // 당첨 없음
+            )
+        );
+    }
+
     @DisplayName("로또 당첨 상태에 따른 순위를 계산한다.")
     @Test
     void matchRankTest() {
         // given
-        Lottos lottos = new Lottos(List.of(new Lotto("1,2,3,4,5,6")));
-
         int[] winningCount = {6, 5, 5, 4, 3, 2, 1};
         boolean[] isBonusNumber = {false, true, false, false, false, false, false};
         Prize[] expected = {Prize.FIRST, Prize.SECOND, Prize.THIRD, Prize.FOURTH, Prize.FIFTH,
@@ -42,17 +57,6 @@ class LottosTest {
     @Test
     void calculateGameResultTest() {
         // given
-        Lottos lottos = new Lottos(
-            List.of(
-                new Lotto("1,2,3,4,5,6"), // 5등
-                new Lotto("1,2,3,4,5,7"), // 5등
-                new Lotto("1,2,3,4,8,9"), // 5등
-                new Lotto("1,2,3,8,9,10"), // 5등
-                new Lotto("1,2,8,9,10,11"), // 당첨 없음
-                new Lotto("1,8,9,10,11,12") // 당첨 없음
-            )
-        );
-
         List<Integer> winningNumbers = List.of(1, 2, 3, 42, 43, 44);
         BitSet winningNumberBitSet = Parser.parseToBitSet(winningNumbers);
 
@@ -68,17 +72,6 @@ class LottosTest {
     @Test
     void getPrizeMoneyTest() {
         // given
-        Lottos lottos = new Lottos(
-            List.of(
-                new Lotto("1,2,3,4,5,6"), // 5등
-                new Lotto("1,2,3,4,5,7"), // 5등
-                new Lotto("1,2,3,4,8,9"), // 5등
-                new Lotto("1,2,3,8,9,10"), // 5등
-                new Lotto("1,2,8,9,10,11"), // 당첨 없음
-                new Lotto("1,8,9,10,11,12") // 당첨 없음
-            )
-        );
-
         List<Integer> winningNumbers = List.of(1, 2, 3, 42, 43, 44);
         BitSet winningNumberBitSet = Parser.parseToBitSet(winningNumbers);
 
@@ -95,17 +88,6 @@ class LottosTest {
     @Test
     void getProfit() {
         // given
-        Lottos lottos = new Lottos(
-            List.of(
-                new Lotto("1,2,3,4,5,6"), // 5등
-                new Lotto("1,2,3,4,5,7"), // 5등
-                new Lotto("1,2,3,4,8,9"), // 5등
-                new Lotto("1,2,3,8,9,10"), // 5등
-                new Lotto("1,2,8,9,10,11"), // 당첨 없음
-                new Lotto("1,8,9,10,11,12") // 당첨 없음
-            )
-        );
-
         List<Integer> winningNumbers = List.of(1, 2, 3, 42, 43, 44);
         BitSet winningNumberBitSet = Parser.parseToBitSet(winningNumbers);
 

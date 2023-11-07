@@ -1,23 +1,22 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.TreeMap;
 
 public class PrizeStats {
-    private final Map<PrizeGrade, Integer> gradeDist;
+    private final TreeMap<PrizeGrade, Integer> gradeDist;
 
     public PrizeStats(List<Lotto> lottos, Lotto winningLotto, Bonus bonus) {
         this.gradeDist = getEmptyDist();
         fillDist(lottos, winningLotto, bonus);
     }
 
-    public Map<PrizeGrade, Integer> getGradeDist() {
+    public TreeMap<PrizeGrade, Integer> getGradeDist() {
         return this.gradeDist;
     }
 
-    private Map<PrizeGrade, Integer> getEmptyDist() {
-        Map<PrizeGrade, Integer> zeroDist = new HashMap<>();
+    private TreeMap<PrizeGrade, Integer> getEmptyDist() {
+        TreeMap<PrizeGrade, Integer> zeroDist = new TreeMap<>();
         for (PrizeGrade prizeGrade : PrizeGrade.values()) {
             zeroDist.put(prizeGrade, ZERO);
         }

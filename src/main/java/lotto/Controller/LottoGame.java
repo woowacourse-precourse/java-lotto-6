@@ -24,7 +24,8 @@ public class LottoGame {
         this.user = makeUser(purchasePrice.findLottoQuantity());
         this.winningNumbers = makeWinningNumbers();
         this.bonusNumber = makeBonusNumber(winningNumbers.getWinningNumbers());
-        List<Integer> resultCount = makeResultCount();    //각 rank별로 몇 개가 나왔는지 기록한 정수 리스트
+        List<Integer> resultCount = makeResultCount();
+        // resultCount : 각 rank별로 몇 개가 나왔는지 기록한 정수 리스트 (미당첨, 5등, 4등, 3등, 2등, 1등)
         OutputView.printResultHead();
         transmitOutput(resultCount);
         double profitRate = user.calculateProfitRate(resultCount);

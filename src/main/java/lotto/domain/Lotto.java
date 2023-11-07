@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException();
         }
         if (numbers.size() != numbers.stream().distinct().count()) {

@@ -40,7 +40,7 @@ public class Referee {
     }
 
     public void calculateLottoBenefit(int lottoAmount) {
-        DomainValidate.validateDivideZeroDenominator(lottoAmount);
+        DomainValidate.validateDivideByZero(lottoAmount);
 
         long first = lottoRank.get(FIRST.getRank()) * FIRST.getReward();
         long second = lottoRank.get(SECOND.getRank()) * SECOND.getReward();

@@ -35,7 +35,7 @@ public class LottoController {
     }
 
     private void compare() {
-        outputView.printWinningStatisticsMessage();
+        outputView.printWinningResultMessage();
         lottoService.compareAllLotto();
     }
 }

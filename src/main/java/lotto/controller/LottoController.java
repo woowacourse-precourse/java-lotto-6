@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import java.util.List;
-
+import lotto.model.Lotto;
 import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
@@ -44,9 +43,8 @@ public class LottoController {
     }
 
     private WinningNumbers askWinningNumbers() {
-        List<Integer> numbers = lottoService.askWinningNumbers(inputView::askWinningNumbers);
-        int bonusNumber = lottoService.askBonusNumber(inputView::askBonusNumber);
-        return lottoService.createWinningNumbers(numbers, bonusNumber);
+        Lotto numbers = lottoService.askWinningNumbers(inputView::askWinningNumbers);
+        return lottoService.createWinningNumbers(numbers, inputView::askBonusNumber);
     }
 
     private LottoStatistic createStatisticOf(PurchaseAmount amount, Lottos lottos, WinningNumbers winningNumbers) {

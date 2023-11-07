@@ -21,9 +21,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
-        validateCount(numbers);
-        validateInRange(numbers);
-        validateNotDuplicated(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
@@ -31,6 +29,12 @@ public class Lotto {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return new Lotto(numbers);
+    }
+
+    public void validate(final List<Integer> numbers) {
+        validateCount(numbers);
+        validateInRange(numbers);
+        validateNotDuplicated(numbers);
     }
 
     protected void validateCount(final List<Integer> numbers) {

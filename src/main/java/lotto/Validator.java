@@ -30,6 +30,15 @@ public class Validator {
         checkDuplicated(intNumbers);
     }
 
+    // 보너스 번호 입력 검증
+    public static void validateBonusNumber(String number, List<Integer> numbers) {
+        checkBlankOrNULL(number);
+        checkContainSpace(number);
+        checkNAN(number);
+        checkNumberIn(1, 45, Integer.valueOf(number));
+        checkNumberInList(Integer.valueOf(number), numbers);
+    }
+
     // 공백이거나 NULL인지 검증
     public static void checkBlankOrNULL(String input) {
         if (input.equals("") || input == null)
@@ -82,8 +91,14 @@ public class Validator {
     public static void checkDuplicated(List<Integer> numbers) {
         for(int i = 0 ; i < numbers.size()-1; i++) {
             for(int j = i+1; j < numbers.size() ; j++)
-                if (numbers.get(i) == numbers.get(j))
+                if (numbers.get(i).equals(numbers.get(j)))
                     throw new IllegalArgumentException("[ERROR]");
         }
+    }
+
+    // 기존 당첨번호에 존재하는 숫자인지 검증
+    public static void checkNumberInList(Integer number, List<Integer> numbers) {
+        if (numbers.contains(number))
+            throw new IllegalArgumentException("[ERROR]");
     }
 }

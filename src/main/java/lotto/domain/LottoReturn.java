@@ -13,14 +13,15 @@ public class LottoReturn {
         this.lottoCount = lottoCount;
     }
 
-    public void getLottoReturnRate(int purchasePrice) {
+    public double getLottoReturnRate(int purchasePrice) {
         int lottoReturn = getLottoReturn();
         if (lottoReturn == 0) {
             messageService.outputLottoReturnRate(ZERO);
-            return;
+            return 0;
         }
-        double returnRate = (double) (lottoReturn - purchasePrice) / purchasePrice * HUNDRED;
-        messageService.outputLottoReturnRate(returnRate + HUNDRED);
+        double returnRate = (double) (lottoReturn - purchasePrice) / purchasePrice * HUNDRED + HUNDRED;
+        messageService.outputLottoReturnRate(returnRate);
+        return returnRate;
     }
 
     private int getLottoReturn() {

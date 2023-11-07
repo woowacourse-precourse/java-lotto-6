@@ -3,8 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -46,5 +44,25 @@ public class LottoReturnTest {
 
         int returnAmount = (int) method.invoke(lottoReturn);
         assertThat(returnAmount).isEqualTo(2000005000);
+    }
+
+    @DisplayName("5000원으로 구매해서 5등에 당첨되면 수익률은 100%다")
+    @Test
+    void calculateReturnRate() {
+        Lotto lotto1 = new Lotto(List.of(11, 22, 33, 44, 7, 9));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 5, 8, 9, 11));
+        Lotto lotto3 = new Lotto(List.of(11, 21, 31, 41, 5, 6));
+        Lotto lotto4 = new Lotto(List.of(10, 21, 31, 41, 5, 6));
+        Lotto lotto5 = new Lotto(List.of(11, 21, 31, 41, 5, 6));
+
+        List<Lotto> purchaseLottoNumbers = List.of(lotto1, lotto2, lotto3, lotto4, lotto5);
+
+        LottoCount lottoCount = lottoResult.getLottoStatus(purchaseLottoNumbers);
+        LottoReturn lottoReturn = new LottoReturn(lottoCount);
+        int purchasePrice = 5000;
+
+        double returnRate = lottoReturn.getLottoReturnRate(purchasePrice);
+        // Assert
+        assertThat(returnRate).isEqualTo(100.0);
     }
 }

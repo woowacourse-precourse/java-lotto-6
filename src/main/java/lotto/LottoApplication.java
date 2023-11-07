@@ -7,18 +7,22 @@ import lotto.enums.LottoPrizeConstants;
 
 public class LottoApplication {
     public static void start() {
-        Lottos lottos = purchaseLotto();
-        List<Integer> winningNumbers = setWinningNumbers();
-        int bonusNumber = setBonusNumber(winningNumbers);
-        // 당첨 번호와 로또 비교
-        Map<LottoPrizeConstants, Integer> matchedLottoCount = lottos.checkLottos(winningNumbers, bonusNumber);
+        try {
+            Lottos lottos = purchaseLotto();
+            List<Integer> winningNumbers = setWinningNumbers();
+            int bonusNumber = setBonusNumber(winningNumbers);
+            // 당첨 번호와 로또 비교
+            Map<LottoPrizeConstants, Integer> matchedLottoCount = lottos.checkLottos(winningNumbers, bonusNumber);
 
-        // 수익률
-        double incomeRate = lottos.getIncomeRate(matchedLottoCount);
-        printResult(matchedLottoCount, incomeRate);
+            // 수익률
+            double incomeRate = lottos.getIncomeRate(matchedLottoCount);
+            printResult(matchedLottoCount, incomeRate);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        }
     }
 
-    private static Lottos purchaseLotto() {
+    private static Lottos purchaseLotto() throws IllegalArgumentException {
         /* 구입금액 입력 및 구매*/
         String requestPurchasePrice = LottoView.requestPurchasePrice();
         int purchasePrice = LottoParser.readLineToNumber(requestPurchasePrice);
@@ -32,14 +36,14 @@ public class LottoApplication {
         return lottos;
     }
 
-    private static List<Integer> setWinningNumbers() {
+    private static List<Integer> setWinningNumbers() throws IllegalArgumentException {
         String requestWinningNumbers = LottoView.requestWinningNumbers();
         List<Integer> winningNumbers = LottoParser.readLineToNumbers(requestWinningNumbers);
         LottoInputValidator.WinningNumbersIsValid(winningNumbers);
         return winningNumbers;
     }
 
-    private static int setBonusNumber(List<Integer> winningNumbers) {
+    private static int setBonusNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
         String requestBonusNumber = LottoView.requestBonusNumber();
         int bonusNumber = LottoParser.readLineToNumber(requestBonusNumber);
         LottoInputValidator.bonusNumberIsValid(winningNumbers, bonusNumber);

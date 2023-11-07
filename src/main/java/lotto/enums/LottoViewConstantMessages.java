@@ -14,7 +14,7 @@ public enum LottoViewConstantMessages {
     FIVE_MATCH_MESSAGE("5개 일치 ({0}원) - {1}개"),
     BONUS_MATCH_MESSAGE("5개 일치, 보너스 볼 일치 ({0}원) - {1}개"),
     SIX_MATCH_MESSAGE("6개 일치 ({0}원) - {1}개"),
-    INCOME_RATE_MESSAGE("총 수익률은 {0}% 입니다.");
+    INCOME_RATE_MESSAGE("총 수익률은 {0}%입니다.");
     private final String message;
 
     LottoViewConstantMessages(String message) {

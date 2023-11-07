@@ -2,10 +2,10 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.enums.LottoConstants;
 import lotto.enums.LottoPrizeConstants;
 
@@ -48,13 +48,14 @@ public class Lottos {
     }
 
     public double getIncomeRate(Map<LottoPrizeConstants, Integer> matchedLottoCount) {
+        final int percentage = 100;
         double income = (matchedLottoCount.get(THREE_MATCH_PRIZE) * THREE_MATCH_PRIZE.getPrizeMoney())
                 + (matchedLottoCount.get(FOUR_MATCH_PRIZE) * FOUR_MATCH_PRIZE.getPrizeMoney())
                 + (matchedLottoCount.get(FIVE_MATCH_PRIZE) * FIVE_MATCH_PRIZE.getPrizeMoney())
                 + (matchedLottoCount.get(BONUS_PRIZE) * BONUS_PRIZE.getPrizeMoney())
                 + (matchedLottoCount.get(SIX_MATCH_PRIZE) * SIX_MATCH_PRIZE.getPrizeMoney());
         double spendMoney = getQuantity() * LottoConstants.LOTTO_PRICE.getConstant();
-        return income / spendMoney;
+        return (income / spendMoney) * percentage;
     }
 
     private List<Integer> randomNumbers() {
@@ -63,8 +64,9 @@ public class Lottos {
                 LottoConstants.LOTTO_END_NUMBER.getConstant(),
                 LottoConstants.LOTTO_PER_NUMBERS.getConstant()
         );
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private Map<LottoPrizeConstants, Integer> countPrize(List<LottoPrizeConstants> lottoPrizes) {

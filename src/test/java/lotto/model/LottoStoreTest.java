@@ -2,11 +2,13 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.AppConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoStoreTest {
-    LottoStore lottoStore = new LottoStore();
+    private static final AppConfig appConfig = new AppConfig();
+    private static final LottoStore lottoStore = appConfig.lottoStore();
 
     @DisplayName("1000원 당 1장의 로또를 발행해야 한다. - 3000원이면 3장")
     @Test

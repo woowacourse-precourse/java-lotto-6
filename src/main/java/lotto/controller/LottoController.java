@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import java.util.Map.Entry;
+import lotto.AppConfig;
 import lotto.model.Client;
 import lotto.model.Lotto;
 import lotto.model.LottosResult;
@@ -10,8 +10,9 @@ import lotto.model.constans.WinningRank;
 import lotto.view.View;
 
 public class LottoController {
-    private static final View view = new View();
-    private static final LottoStore lottoStore = new LottoStore();
+    private static final AppConfig appConfig = new AppConfig();
+    private static final View view = appConfig.view();
+    private static final LottoStore lottoStore = appConfig.lottoStore();
 
     public void run() {
         Client client = buyLottos();

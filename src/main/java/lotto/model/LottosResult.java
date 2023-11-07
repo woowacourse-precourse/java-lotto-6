@@ -3,8 +3,6 @@ package lotto.model;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import lotto.model.constans.WinningRank;
 
 public class LottosResult implements Iterable<WinningRank> {
@@ -24,10 +22,6 @@ public class LottosResult implements Iterable<WinningRank> {
 
     public void updateResult(WinningRank winningRank) {
         lottosResult.merge(winningRank, 1, Integer::sum);
-    }
-
-    public Set<Entry<WinningRank, Integer>> entrySet() {
-        return lottosResult.entrySet();
     }
 
     public Integer get(WinningRank key) {

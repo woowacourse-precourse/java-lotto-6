@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.AppConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,7 +10,8 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusNumberValidatorTest {
-    Validator bonusNumberValidator = new BonusNumberValidator();
+    private static final AppConfig appConfig = new AppConfig();
+    private static final Validator bonusNumberValidator = appConfig.bonusNumberValidator();
 
     @DisplayName("보너스 번호로 Null 및 공백 입력 시 예외가 발생한다.")
     @ParameterizedTest

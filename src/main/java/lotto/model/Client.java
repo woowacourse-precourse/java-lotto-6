@@ -3,16 +3,16 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map.Entry;
+import lotto.AppConfig;
 import lotto.model.constans.WinningRank;
-import lotto.validator.PayAmountValidator;
 import lotto.validator.Validator;
 
 public class Client {
+    private static final AppConfig appConfig = new AppConfig();
+    private static final Validator PAY_AMOUNT_VALIDATOR = appConfig.payAmountValidator();
+    private static final ReturnCalculator RETURN_CALCULATOR = appConfig.returnCalculator();
     private final int payAmount;
     private final List<Lotto> lottos = new ArrayList<>();
-    private static final Validator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
-    private static final ReturnCalculator RETURN_CALCULATOR = new ReturnCalculator();
 
     private Client(int payAmount) {
         this.payAmount = payAmount;

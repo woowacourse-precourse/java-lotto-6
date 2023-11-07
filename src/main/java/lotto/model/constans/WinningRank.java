@@ -10,7 +10,6 @@ public enum WinningRank {
     FIRST_PRIZE(6, 2_000_000_000),
     NO_PRIZE(0, 0);
 
-
     private final int matchingNumbersCount;
     private final long prize;
 

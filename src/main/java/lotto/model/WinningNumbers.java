@@ -6,16 +6,16 @@ import static lotto.validator.constants.Pattern.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.AppConfig;
 import lotto.model.constans.WinningRank;
-import lotto.validator.BonusNumberValidator;
 import lotto.validator.Validator;
-import lotto.validator.WinningNumbersValidator;
 
 public class WinningNumbers {
+    private static final AppConfig appConfig = new AppConfig();
+    private static final Validator WINNING_NUMBERS_VALIDATOR = appConfig.winningNumbersValidator();
+    private static final Validator BONUS_NUMBER_VALIDATOR = appConfig.bonusNumberValidator();
     private final List<Integer> winningNumbers;
     private int bonusNumber;
-    private static final Validator WINNING_NUMBERS_VALIDATOR = new WinningNumbersValidator();
-    private static final Validator BONUS_NUMBER_VALIDATOR = new BonusNumberValidator();
 
     private WinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;

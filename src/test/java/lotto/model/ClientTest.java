@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ClientTest {
-    private final LottosResult lottosResult = LottosResult.create();
+    private static final LottosResult lottosResult = LottosResult.create();
 
     @BeforeEach
     void setUp() {

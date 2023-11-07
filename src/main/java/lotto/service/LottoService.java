@@ -56,6 +56,7 @@ public class LottoService {
         consistencyService = new ConsistencyService(capital, userLotto);
         List<Integer> totalConsistency = consistencyService.winnerGraph(rl.getLottoLists());
         consistencyService.setRateMoney();
+        System.out.println(consistencyService.getRateOfReturn());
         outputView.winnerGraphComment(totalConsistency, consistencyService.getRateOfReturn());
     }
 

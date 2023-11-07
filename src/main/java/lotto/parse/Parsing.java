@@ -10,6 +10,7 @@ public class Parsing {
         if(inputValue%1000 != 0){
             throw new IllegalArgumentException();
         }
+        System.out.println();
         return inputValue/1000;
     }
 

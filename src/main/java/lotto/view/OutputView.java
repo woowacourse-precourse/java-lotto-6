@@ -42,10 +42,12 @@ public class OutputView {
     }
 
     public void bonusNumberComment(){
+        System.out.println();
         System.out.println(BONUS_NUMBER);
     }
 
-    public void winnerGraphComment(List<Integer> correctList, Long rateOfReturn){
+    public void winnerGraphComment(List<Integer> correctList, double rateOfReturn){
+        System.out.println();
         System.out.println(WIN_NUMBER_GRAPH);
         System.out.println(HYPHEN);
         System.out.println(THREE_CORRECT+correctList.get(0)+COUNT);

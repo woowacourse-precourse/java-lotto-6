@@ -32,12 +32,19 @@ public class ConsistencyService {
     }
 
     private static void setTotalConsistency(int lottoCount) {
-        if(bonusConsistency == 1){
+        if(lottoCount-3 == 2 && bonusConsistency == 1){
             totalConsistency.set(3, totalConsistency.get(3)+1);
+            return;
         }
-        if(bonusConsistency == 0){
+        if(lottoCount-3 == 2 && bonusConsistency == 0){
             totalConsistency.set(lottoCount -3, totalConsistency.get(lottoCount -3)+1);
+            return;
         }
+        if(lottoCount-3 == 3){
+            totalConsistency.set(4, totalConsistency.get(4)+1);
+            return;
+        }
+        totalConsistency.set(lottoCount-3, totalConsistency.get(lottoCount-3)+1);
     }
 
     private int getLottoConsistency(List<Integer> list) {
@@ -58,9 +65,10 @@ public class ConsistencyService {
         }
     }
 
-    public long getRateOfReturn(){
-        rateOfReturn = ((long) rateMoney/capital)*100;
-        return rateOfReturn;
+    public double getRateOfReturn(){
+        System.out.println("rateMoney : " + rateMoney);
+        System.out.println("capital : "+capital);
+        return ((double) rateMoney/capital)*100;
     }
 
 }

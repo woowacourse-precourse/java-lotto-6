@@ -13,6 +13,12 @@ public class Controller {
     private final LottoGame lottoGame = new LottoGame();
     private LottoMachine lottoMachine;
 
+    public void run() {
+        setupLottoMachine();
+        showPurchasedLottoInfo();
+        setupWinningNumbers();
+    }
+
     private void showPurchasedLottoInfo() {
         OutputView.printPurchaseCount(lottoMachine.getSpend());
         OutputView.printLottoNumbers(lottoMachine.getLottoTickets());

@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.view.ExceptionMessage;
 
-import java.util.List;
-
 public class Amount {
 
     private final int total;

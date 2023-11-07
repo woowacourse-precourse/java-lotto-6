@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import lotto.config.Config;
 import lotto.config.LottoRank;
@@ -46,17 +48,19 @@ public class RankService {
         return null;
     }
 
-    public double rateOfReturn() {
-        long sum = 0;
-        for (int i = 0; i < Config.RANK_LOTTO; i++) {
-            LottoRank rank = LottoRank.values()[i];
+    public BigDecimal rateOfReturn() {
+        BigDecimal sum = BigDecimal.ZERO;
+        BigDecimal totalSpent = BigDecimal.valueOf(user.getCount() * Config.PRICE_UNIT);
+
+        for(LottoRank rank : LottoRank.values()) {
             int count = winningCount[rank.getRank()];
-            sum += rank.getMoney() * count;
+            BigDecimal rankMoney = BigDecimal.valueOf(rank.getMoney());
+            sum = sum.add(rankMoney.multiply(BigDecimal.valueOf(count)));
         }
 
-        double result = (double) sum / (user.getCount() * Config.PRICE_UNIT) * 100;
+        BigDecimal result = sum.multiply(BigDecimal.valueOf(Config.PERCENT))
+                .divide(totalSpent, 2, RoundingMode.HALF_UP);
 
-        result = Math.round(result * 100.0) / 100.0;
         return result;
     }
 

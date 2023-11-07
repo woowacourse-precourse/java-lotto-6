@@ -13,6 +13,10 @@ import lotto.view.OutputView;
 public class LottoGameController {
     private final OutputView outputView;
     private final InputView inputView;
+    private int amount;
+    private Lottos lottos;
+    private Lotto winningNumbers;
+    private BonusNumber bonusNumber;
 
     public LottoGameController() {
         this.outputView = new OutputView();
@@ -21,8 +25,8 @@ public class LottoGameController {
 
     public void run() {
         purchaseLotto();
-        Lotto winningNumbers = setWinningNumbers();
-        BonusNumber bonusNumber = setBonusNumber(winningNumbers);
+        winningNumbers = setWinningNumbers();
+        bonusNumber = setBonusNumber(winningNumbers);
     }
 
     private BonusNumber setBonusNumber(Lotto winningNumbers) {
@@ -53,7 +57,8 @@ public class LottoGameController {
 
     private void purchaseLotto() {
         PurchaseAmount purchaseAmount = setPurchaseAmount();
-        Lottos lottos = createLottos(purchaseAmount.getNumberOfLotto());
+        amount = purchaseAmount.getAmount();
+        lottos = createLottos(purchaseAmount.getNumberOfLotto());
         outputView.printLottos(lottos);
     }
 

@@ -1,6 +1,5 @@
-package lotto.model;
+package lotto.service;
 
-import lotto.service.PriceValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

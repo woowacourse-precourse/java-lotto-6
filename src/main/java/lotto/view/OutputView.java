@@ -25,14 +25,8 @@ public class OutputView {
 
     public static void displayAllLottos(LottosDTO lottosDTO) {
         List<List<Integer>> lottos = lottosDTO.lottos();
-        StringBuilder formattedLottoOutput = new StringBuilder();
-
-        formattedLottoOutput.append(String.format(CURRENT_BOUGHT_LOTTO_MESSAGE, lottos.size()));
-        for (List<Integer> lotto : lottos) {
-            ArrayList<Integer> copyLotto = new ArrayList<>(lotto);
-            copyLotto.sort(Comparator.naturalOrder());
-            formattedLottoOutput.append(copyLotto).append("\n");
-        }
+        String formattedLottoOutput = String.format(CURRENT_BOUGHT_LOTTO_MESSAGE, lottos.size())
+                + createFormattedLottosOutput(lottos);
         System.out.println(formattedLottoOutput);
     }
 
@@ -46,6 +40,16 @@ public class OutputView {
         long buyLottoAmount = lottoResultsDTO.buyAmount();
         double rateOfReturn = (double) lottoResultsDTO.winningAmount() / buyLottoAmount;
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn * 100);
+    }
+
+    private static StringBuilder createFormattedLottosOutput(List<List<Integer>> lottos) {
+        StringBuilder formattedLottoOutput = new StringBuilder();
+        for (List<Integer> lotto : lottos) {
+            ArrayList<Integer> copyLotto = new ArrayList<>(lotto);
+            copyLotto.sort(Comparator.naturalOrder());
+            formattedLottoOutput.append(copyLotto).append("\n");
+        }
+        return formattedLottoOutput;
     }
 
     private static void printLottosStatistics(Map<LottoResults, Integer> result) {

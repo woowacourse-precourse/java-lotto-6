@@ -98,8 +98,9 @@
 - [X] : `LottoTest`
 - [X] : `LottoMachineTest`
 - [X] : `BonusNumberTest`
-- [X] : `PurchaseAmoutTest`
-  - 구매 금액 예외 검증
+- [X] : `BonusNumberTest`
+- [X] : `LottoResultTest`
+  - 당첨 결과 반환 검증
   - 수익률 반환 검증
 - [X] : `WinningLottoTest`
   - 당첨 번호와 로또 번호 일치 개수 반환 검증

@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1_000;
@@ -11,13 +13,19 @@ public class Application {
     private static int purchasedPrice;
 
     public static void main(String[] args) {
+        try {
+            readPurchasedPrice();
+            List<Lotto> lottos = createLottos(purchasedPrice);
+            printLottoNumbers(lottos);
 
-        readPurchasedPrice();
-        List<Lotto> lottos = createLottos(purchasedPrice);
-        printLottoNumbers(lottos);
+            List<Integer> winningNumbers = readWinningNumbers();
+            int bonusNumber = readBonusNumber();
 
-        List<Integer> winningNumbers = readWinningNumbers();
-        int bonusNumber = readBonusNumber();
+            LottoRankManagement lottoRankManagement = calculateRank(lottos, winningNumbers, bonusNumber);
+            lottoRankManagement.printResult();
+        } catch(Exception e){
+            System.out.println("[ERROR] " + e.getMessage());
+        }
     }
 
     public static void readPurchasedPrice() {
@@ -48,10 +56,10 @@ public class Application {
 
     private static List<Integer> readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (int i = 0; i < LOTTO_SIZE; i++) {
-            winningNumbers.add(Integer.parseInt(Console.readLine()));
-        }
+        String input = Console.readLine();
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
         return winningNumbers;
     }
 
@@ -61,4 +69,12 @@ public class Application {
         return bonus;
     }
 
+    private static LottoRankManagement calculateRank(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        LottoRankManagement lottoRankManagement = new LottoRankManagement();
+        for (Lotto lotto : lottos) {
+            LottoRank rank = lotto.match(winningNumbers, bonusNumber);
+            lottoRankManagement.add(rank);
+        }
+        return lottoRankManagement;
+    }
 }

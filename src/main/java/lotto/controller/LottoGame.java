@@ -12,7 +12,7 @@ import java.util.Map;
 public class LottoGame {
 
     private LottoAmount lottoAmount;
-    private LottoByPlayer lottoByPlayer;
+    private Lotto lotto;
     private final LottoGenerator lottoGenerator;
     private LottoResult lottoResult;
     private RateOfReturn rateOfReturn;
@@ -83,8 +83,8 @@ public class LottoGame {
     private List<Integer> setLottoNumber() {
         try {
             List<Integer> number = validator.validateInput(InputView.getWinningNumberInputFromPlayer());
-            lottoByPlayer = new LottoByPlayer(number);
-            return lottoByPlayer.getLottoNumberFromPlayer();
+            lotto = new Lotto(number);
+            return lotto.getLottoNumberFromPlayer();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setLottoNumber();
@@ -93,7 +93,7 @@ public class LottoGame {
 
     private int setBonusNumber() {
         try {
-            return lottoByPlayer.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(), numberFromPlayer);
+            return lotto.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(), numberFromPlayer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setBonusNumber();

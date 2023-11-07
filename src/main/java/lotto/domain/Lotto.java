@@ -7,10 +7,10 @@ import java.util.List;
 
 import static constant.MessageList.*;
 
-public class LottoByPlayer {
+public class Lotto {
     private final List<Integer> numbers;
 
-    public LottoByPlayer(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicatedNumbers(numbers);
         for (int number : numbers) {

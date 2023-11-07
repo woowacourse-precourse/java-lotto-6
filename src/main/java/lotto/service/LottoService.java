@@ -28,11 +28,11 @@ public class LottoService {
 
     private void validatePaidAmount(int payMoney) {
         if (payMoney < Value.LOTTO_TICKET_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_RANGE.getMessage());
         }
 
         if ((payMoney % Value.LOTTO_TICKET_PRICE) != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_UNIT.getMessage());
         }
     }
 

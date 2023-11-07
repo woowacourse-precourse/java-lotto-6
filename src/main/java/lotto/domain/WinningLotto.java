@@ -31,13 +31,13 @@ public class WinningLotto extends Lotto {
         List<Integer> numbers = this.getNumbers();
 
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < Value.LOTTO_START_NUMBER || bonusNumber > Value.LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.getMessage());
         }
     }
 }

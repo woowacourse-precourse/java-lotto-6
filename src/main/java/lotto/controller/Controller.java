@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.constants.ErrorMessage;
 import lotto.constants.Message;
 import lotto.constants.Value;
 import lotto.domain.Lotto;

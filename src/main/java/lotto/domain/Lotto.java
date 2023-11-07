@@ -28,14 +28,14 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_SIZE.getMessage());
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < Value.LOTTO_START_NUMBER || number > Value.LOTTO_END_NUMBER) {
-                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.getMessage());
             }
         }
     }
@@ -44,7 +44,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_DUPLICATE.getMessage());
         }
     }
 

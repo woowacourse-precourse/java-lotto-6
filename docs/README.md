@@ -68,6 +68,12 @@
     - numberCandidates에 담긴 정수가 1000원으로 나머지 연산을 한다.
     - 0이 아니면 `true`를 반환하고 그렇지 않으면`false`를 반환한다.
 
+- `MONEY_CAN_NOT_BE_ZERO`
+  - Msg : `Message.MONEY_CAN_NOT_BE_ZERO`
+  - test(List<Integer> numberCandidates)
+  - numberCandidates에 담긴 정수가 0 이상인지 확인한다.
+    - 0이면 `true`를 그렇지 않으면 `false`를 반환한다.
+
 - `NUMBER_OUT_OF_RANGE`
   - Msg : `Message.ERROR_NUMBER_OUT_OF_RANGE`
   - test(List<Integer> numberCandidates)
@@ -112,6 +118,7 @@
   - domain : 구입금액
   - `List<ErrorType>`
     - `NOT_ONE_NUMBER`
+    - `MONEY_CAN_NOT_BE_ZERO`
     - `NOT_IN_THOUSANDS`
 
 - `DRAW_WINNING_NUMBERS`
@@ -196,10 +203,10 @@
   - "[ERROR] %s%s\n"
     - [ERROR]와 함께 어떤 단계에서 어떤 에러가 발생했는지 알려주는 메시지
 - `ERROR_NOT_A_NUMBER`
-  - "(은)는 숫자여야 합니다.";
+  - "(은)는 0이상 2147483647이하의 숫자여야 합니다.";
 - `ERROR_NOT_IN_THOUSANDS`
   - "(은)는 1000원 단위여야 합니다.";
-- `ERROR_MONEY_OUT_OF_RANGE`
+- `ERROR_MONEY_CAN_NOT_BE_ZERO`
   - "(은)는 0이상의 숫자여야 합니다.";
 - `ERROR_NUMBER_OUT_OF_RANGE`
   - "(은)는 1부터 45 사이의 숫자여야 합니다.";
@@ -227,6 +234,7 @@
 
 #### 필드
 
+- `MIN_LOTTO_MONEY` : 0
 - `THOUSAND` : 1000
 - `SIX_WINNING_NUMBERS` : 6
 - `ONE_NUMBER` : 1

@@ -32,6 +32,18 @@ public class LottoGameTest {
         assertThat(rankCounts).containsExactly(2L, 0L, 0L, 0L, 1L);
     }
 
+    @DisplayName("주어진 로또에 대한 총 당첨 금액을 구한다.")
+    @ParameterizedTest
+    @MethodSource("generateLottoTickets")
+    void givenLottoTickets_Then_TotalAmountReturns(
+            final List<Lotto> lottoTickets
+    ) {
+        final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);
+        final WinningDetails winningDetails = lottoGame.play();
+        final BigDecimal totalAmount = winningDetails.sumUpWinningAmount();
+        assertThat(totalAmount).isEqualByComparingTo(BigDecimal.valueOf(2_000_010_000L));
+    }
+
     public static Stream<Arguments> generateLottoTickets() {
         return Stream.of(
                 Arguments.of(List.of(
@@ -45,17 +57,5 @@ public class LottoGameTest {
                         new Lotto(List.of(1, 2, 3, 41, 42, 43))
                 ))
         );
-    }
-
-    @DisplayName("주어진 로또에 대한 총 당첨 금액을 구한다.")
-    @ParameterizedTest
-    @MethodSource("generateLottoTickets")
-    void givenLottoTickets_Then_TotalAmountReturns(
-            final List<Lotto> lottoTickets
-    ) {
-        final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);
-        final WinningDetails winningDetails = lottoGame.play();
-        final BigDecimal totalAmount = winningDetails.sumUpWinningAmount();
-        assertThat(totalAmount).isEqualByComparingTo(BigDecimal.valueOf(2_000_010_000L));
     }
 }

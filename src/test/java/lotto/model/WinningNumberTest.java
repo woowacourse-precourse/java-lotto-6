@@ -12,6 +12,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningNumberTest {
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
+
     private final WinningNumber winningNumber
             = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
 
@@ -20,7 +22,8 @@ public class WinningNumberTest {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     void doesBonusExistsLotto_Then_ExceptionOccurs(final int bonusNumber) {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6), bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX);
     }
 
     @DisplayName("보너스 번호가 당첨 번호에 없으면 예외가 발생하지 않는다.")

@@ -1,7 +1,9 @@
 package lotto.controller.inputController;
 
+import lotto.model.validator.SecondInputValidator;
 import lotto.view.inputView.LottoBonusWinningNumberInput;
 import lotto.view.inputView.LottoWinningNumberInput;
+
 import java.util.List;
 
 public class LottoWinningNumberController {
@@ -15,7 +17,14 @@ public class LottoWinningNumberController {
     }
 
     public List<Integer> getWinningNumbers() {
-        return winningNumberInput.requestWinningNumbers();
+        while (true) {
+            try {
+                String input = winningNumberInput.requestWinningNumbers();
+                return SecondInputValidator.validateWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int getBonusNumber() {

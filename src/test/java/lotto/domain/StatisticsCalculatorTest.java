@@ -51,4 +51,24 @@ class StatisticsCalculatorTest {
         // then
         assertEquals(new Statistics(expcetedResults, expectedRate), actual);
     }
+
+    @Test
+    void 수익률이_0일_경우의_최종_결과를_통계로_반환한다() {
+
+        // given
+        StatisticsCalculator calculator = new StatisticsCalculator();
+        Lottos generatedLottos = new Lottos();
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7, winningNumber);
+        Money money = new Money(1000);
+
+        List<Result> expcetedResults = List.of();
+        double expectedRate = 0.0;
+
+        // when
+        Statistics actual = calculator.calculate(generatedLottos, winningNumber, bonusNumber, money);
+
+        // then
+        assertEquals(new Statistics(expcetedResults, expectedRate), actual);
+    }
 }

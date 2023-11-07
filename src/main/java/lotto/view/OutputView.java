@@ -26,7 +26,8 @@ public class OutputView {
     private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %s%%입니다.\n";
     private static final List<WinningRank> OUTPUT_ORDER_OF_RANK = List.of(WinningRank.FIFTH,
             WinningRank.FOURTH, WinningRank.THIRD, WinningRank.SECOND, WinningRank.FIRST);
-    private static final DecimalFormat NUMBER_FORMATTER = new DecimalFormat("###,###.#");
+    private static final DecimalFormat DOUBLE_FORMATTER = new DecimalFormat("###,###.0");
+    private static final DecimalFormat LONG_FORMATTER = new DecimalFormat("###,###");
     private static final int NOT_EXIST = 0;
 
     private static final String EXCEPTION_MESSAGE_FORMAT = "[ERROR] %s\n\n";
@@ -82,11 +83,11 @@ public class OutputView {
     }
 
     private String toPrintedNumber(long number) {
-        return NUMBER_FORMATTER.format(number);
+        return LONG_FORMATTER.format(number);
     }
 
     private String toPrintedNumber(double number) {
-        return NUMBER_FORMATTER.format(number);
+        return DOUBLE_FORMATTER.format(number);
     }
 
     public void printExceptionMessage(Exception exception) {

@@ -22,6 +22,12 @@ public class WinningNumbers extends Lotto {
         Validator.validateRangeOfBonusNumber(bonusNumber);
     }
 
+    public WinningNumbers(Lotto lotto, int bonusNumber) {
+        super(lotto);
+        this.bonusNumber = bonusNumber;
+        Validator.validateRangeOfBonusNumber(bonusNumber);
+    }
+
     /**
      * 보너스 번호를 반환한다.
      * @return 보너스 번호.

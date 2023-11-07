@@ -10,6 +10,20 @@ public class Validator {
         validatePurchaseAmountMinimumValue(num);
         validatePurchaseAmountMaximumValue(num);
     }
+
+    public static void validateWinningNumbers(String winningNumbers) {
+        String[] numbers = winningNumbers.split(",");
+        HashSet<Integer> duplicateSet = new HashSet<>();
+
+        validateWinningNumbersCount(numbers);
+
+        for (String number : numbers) {
+            int num = validateDisit(number);
+            validateNumberRange(num);
+            duplicateSet.add(num);
+        }
+        validateUniqueWinningNumbers(duplicateSet);
+    }
     private static void validatePurchaseAmountMultipleOf1000(int amountInteger) {
         if (amountInteger % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");

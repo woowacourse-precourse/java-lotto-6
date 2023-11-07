@@ -24,11 +24,11 @@ public class InputView {
     }
 
     public Lotto getWinningNumbers() {
-        List<Integer> winningNumbers;
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbersInput = readLine();
-        winningNumbers = Parser.parseNumbers(winningNumbersInput);
         try {
+            Validator.validateWinningNumbers(winningNumbersInput);
+            List<Integer> winningNumbers = Parser.parseNumbers(winningNumbersInput);
             System.out.println();
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {

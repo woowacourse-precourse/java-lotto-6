@@ -5,7 +5,7 @@ public class ErrorMessage {
     private static final String LOTTO_NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야합니다. 다시 입력해주세요.";
     private static final String AMOUNT_NOT_MULTIPLE_OF_1000_ERROR_MESSAGE = "[ERROR] 로또 구매 금액은 1,000원으로 나누어 떨어져야합니다. 다시 입력해주세요.";
     private static final String WINNING_NUMBERS_DELIMITER_NOT_COMMA_ERROR_MESSAGE = "[ERROR] 로또 번호는 쉼표(,)를 기준으로 구분된 숫자여야합니다. 다시 입력해주세요.";
-    private static final String SINGLE_BONUS_NUMBER_REQUIRED_ERROR_MESSAGE = "[ERROR] 보너스 번호는 1개만 입력해야합니다..";
+    private static final String BONUS_IN_LOTTO_ERROR_MESSAGE = "[ERROR] 보너스 번호가 당첨 번호 안에 포함되지 않아야 합니다. 다시 입력해주세요.";
     private static final String INPUT_BLANK_ERROR_MESSAGE = "[ERROR] 입력 값이 비어있습니다. 다시 입력해주세요.";
     private static final String INPUT_NOT_NATURAL_ERROR_MESSAGE = "[ERROR] 입력 값은 자연수여야합니다. 다시 입력해주세요.";
     private static final String INPUT_NOT_NUMERIC_ERROR_MESSAGE = "[ERROR] 입력 값은 숫자여야합니다. 다시 입력해주세요.";
@@ -23,8 +23,8 @@ public class ErrorMessage {
     public static void printDelimiterIsNotCommaErrorMessage() {
         printExceptionMessage(WINNING_NUMBERS_DELIMITER_NOT_COMMA_ERROR_MESSAGE);
     }
-    public static void printNotSingleBonusNumberErrorMessage() {
-        printExceptionMessage(SINGLE_BONUS_NUMBER_REQUIRED_ERROR_MESSAGE);
+    public static void printBonusIncludedErrorMessage() {
+        printExceptionMessage(BONUS_IN_LOTTO_ERROR_MESSAGE);
     }
     public static void printBlankInputErrorMessage() {
         printExceptionMessage(INPUT_BLANK_ERROR_MESSAGE);

@@ -3,6 +3,7 @@ package lotto;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Statistician {
     public WinningStatistics makeLottoStatistics(LottoAmount lottoAmount, List<Lotto> lottoList, WinningLotto winningLotto) {
@@ -10,16 +11,21 @@ public class Statistician {
 
         lottoList.stream()
                 .map(lotto -> matchRanking(lotto, winningLotto))
-                .forEach(key -> rankingNumber.merge(key, 1, Integer::sum));
+                .filter(Optional::isPresent)
+                .forEach(rankingOptional -> rankingNumber.merge(rankingOptional.get(), 1, Integer::sum));
 
         return new WinningStatistics(lottoAmount, rankingNumber);
     }
 
-    private Ranking matchRanking(Lotto lotto, WinningLotto winningLotto) {
+    private Optional<Ranking> matchRanking(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = matchCount(lotto, winningLotto.getNumbers());
         boolean matchBonus = matchBonusNumber(lotto, winningLotto.getBonusNumber());
 
-        return Ranking.of(matchCount, matchBonus);
+        if (matchCount >=3) {
+            return Optional.of(Ranking.of(matchCount, matchBonus));
+        }
+
+        return Optional.empty();
     }
 
     private int matchCount(Lotto lotto, List<Integer> numbers) {

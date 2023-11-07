@@ -13,7 +13,7 @@ public class LottoController {
         OutputView.askWinningNumbers();
         List<Integer> winningNumbers= InputView.getWinningNumbers();
         OutputView.askBonusNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
         Lotto.countWinningTickets(winningNumbers, lottos,bonusNumber);
     }
 }

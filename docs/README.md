@@ -134,3 +134,7 @@ Lotto클래스 showWinningRank메소드
 ``````````````````````````
 LottoController클래스 run메소드
 ```````````````````````````````
+25. 당첨번호에 포함된 숫자를 보너스 숫자로 입력하였을 때의 exception추가
+``````````````````````````
+CustomizedException bonusNumberWinningNumbersSame메소드
+```````````````````````````````

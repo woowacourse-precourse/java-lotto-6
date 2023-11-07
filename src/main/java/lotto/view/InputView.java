@@ -50,12 +50,13 @@ public class InputView {
         return WinningNumbers;
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> WinningNumbers) {
         int bonusNumber;
         while (true) {
             try {
                 bonusNumber = Integer.parseInt(Console.readLine());
                 CustomizedException.bonusNumbersNotRange(bonusNumber);
+                CustomizedException.bonusNumberWinningNumbersSame(WinningNumbers,bonusNumber);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println(CustomizedException.ERROR_MESSAGE_INIT + "유효한 번호를 입력해주세요.");

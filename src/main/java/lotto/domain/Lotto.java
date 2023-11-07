@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lotto.constants.IntegerConstants;
 import lotto.exceptions.DuplicateException;
@@ -34,28 +35,20 @@ public class Lotto {
     }
 
     public LottoMatchType match(List<Integer> winnings, Integer bonus) {
-        int matchCount = 0;
-        for (Integer w : winnings) {
-            if (numbers.contains(w)) {
-                matchCount += 1;
-            }
-        }
-        if (matchCount < 3) {
-            return LottoMatchType.MATCH_NONE;
-        }
-        if (matchCount == 3) {
-            return LottoMatchType.MATCH_THREE;
-        }
-        if (matchCount == 4) {
-            return LottoMatchType.MATCH_FOUR;
-        }
-        if (matchCount == 5 && !numbers.contains(bonus)) {
-            return LottoMatchType.MATCH_FIVE;
-        }
+        long matchCount = winnings.stream().filter(numbers::contains).count();
         if (matchCount == 5 && numbers.contains(bonus)) {
             return LottoMatchType.MATCH_FIVE_BONUS;
         }
-        return LottoMatchType.MATCH_SIX;
+        Map<Long, LottoMatchType> mapping = Map.ofEntries(
+                Map.entry(3L, LottoMatchType.MATCH_THREE),
+                Map.entry(4L, LottoMatchType.MATCH_FOUR),
+                Map.entry(5L, LottoMatchType.MATCH_FIVE),
+                Map.entry(6L, LottoMatchType.MATCH_SIX)
+        );
+        if (!mapping.containsKey(matchCount)) {
+            return LottoMatchType.MATCH_NONE;
+        }
+        return mapping.get(matchCount);
     }
 
     @Override

@@ -11,10 +11,10 @@ public class PurchaseNumber {
 
     public PurchaseNumber(List<LottoNumber> numbers) {
         if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 수를 로또 번호로 갖을 수 없습니다.");
+            throw new IllegalArgumentException("중복된 수를 로또 번호로 갖을 수 없습니다.");
         }
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입 번호는 " + LOTTO_NUMBER_COUNT + "자리여야 합니다.");
+            throw new IllegalArgumentException("구입 번호는 " + LOTTO_NUMBER_COUNT + "자리여야 합니다.");
         }
         this.numbers = numbers;
     }

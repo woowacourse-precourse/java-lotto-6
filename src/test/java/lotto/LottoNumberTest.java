@@ -15,17 +15,17 @@ public class LottoNumberTest {
         LottoNumber lottoNumber = new LottoNumber(number);
 
         assertThat(lottoNumber.getNumber())
-            .isEqualTo(number);
+                .isEqualTo(number);
     }
 
     @DisplayName("1 부터 45 밖의 수를 입력하면 예외가 발생한다.")
     @Test
     public void invalidLottoNumber() {
         assertThatThrownBy(
-            () -> {
-                int number = 47;
-                new LottoNumber(number);
-            }
+                () -> {
+                    int number = 47;
+                    new LottoNumber(number);
+                }
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

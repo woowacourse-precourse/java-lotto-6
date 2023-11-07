@@ -23,14 +23,7 @@ public class InputView {
 
     public static WinningNumber inputWinningNumber() {
         try {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
-            String userInput = Console.readLine();
-            List<LottoNumber> lottoNumbers = new ArrayList<>();
-            for (String userInputSeperated : userInput.split(",")) {
-                LottoNumber lottoNumber = toLottoNumber(userInputSeperated);
-                lottoNumbers.add(lottoNumber);
-            }
-
+            List<LottoNumber> lottoNumbers = getWinningNumber();
             LottoNumber bonusLottoNumber = inputBonusNumber();
             return new WinningNumber(lottoNumbers, bonusLottoNumber);
         } catch (IllegalArgumentException e) {
@@ -39,9 +32,20 @@ public class InputView {
         }
     }
 
+    private static List<LottoNumber> getWinningNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String userInput = Console.readLine();
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        for (String userInputSeperated : userInput.split(",")) {
+            LottoNumber lottoNumber = toLottoNumber(userInputSeperated);
+            lottoNumbers.add(lottoNumber);
+        }
+        return lottoNumbers;
+    }
+
     private static LottoNumber inputBonusNumber() {
         try {
-            System.out.println("\n보너스 번호를 입력해주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             String userInputBonusNumber = Console.readLine();
             return toLottoNumber(userInputBonusNumber);
         } catch (IllegalArgumentException e) {

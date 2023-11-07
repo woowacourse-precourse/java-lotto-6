@@ -42,7 +42,7 @@ public class PurchasePriceTest {
     @Test
     public void calculateProfit() {
         PurchasePrice purchasePrice = new PurchasePrice(8000);
-        float profit = purchasePrice.calculateProfit(8000);
+        double profit = purchasePrice.calculateProfit(8000);
 
         String formattedResult = String.format("%.1f", profit);
         assertThat(formattedResult).isEqualTo("100.0");

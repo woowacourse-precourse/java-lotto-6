@@ -13,7 +13,7 @@ public class WinningNumber {
     public WinningNumber(List<LottoNumber> numbers, LottoNumber bonusNumber) {
         checkDuplicated(numbers, bonusNumber);
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + LOTTO_NUMBER_COUNT + "자리여야 합니다.");
+            throw new IllegalArgumentException("당첨 번호는 " + LOTTO_NUMBER_COUNT + "자리여야 합니다.");
         }
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
@@ -21,12 +21,12 @@ public class WinningNumber {
 
     private static void checkDuplicated(List<LottoNumber> numbers, LottoNumber bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 넘버는 로또 안에 있는 수와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("보너스 번호는 로또 안에 있는 수와 중복될 수 없습니다.");
         }
         for (int i = 0; i < numbers.size(); i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
                 if (numbers.get(i).equals(numbers.get(j))) {
-                    throw new IllegalArgumentException("[ERROR] 중복된 수를 로또 번호로 갖을 수 없습니다.");
+                    throw new IllegalArgumentException("중복된 수를 로또 번호로 갖을 수 없습니다.");
                 }
             }
         }

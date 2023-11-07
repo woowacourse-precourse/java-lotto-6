@@ -10,6 +10,8 @@ public class LottoController {
     private static final int REWARD_SIZE = 5;
     private static final int LOTTO_BONUS_NUMBER_INDEX = 5;
     private static final int MINIMUM_LOTTO_NUMBER = 2;
+    private static final int START_WINNER_NUMBER = 3;
+    private static final int END_WINNER_NUMBER = 6;
 
     LuckeyLotto luckeyLotto;
     LottoMoney lottoMoney;
@@ -26,6 +28,7 @@ public class LottoController {
     public void playGame(List<List<Integer>> lottonumbers) {
         outputView.printLottoResultMessage();
         decideLottoWinner(lottonumbers);
+        infoLottoWinner();
     }
 
     private void decideLottoWinner(List<List<Integer>> lottoNumbers) {
@@ -51,5 +54,21 @@ public class LottoController {
         } else if (lottoWinnerCount > MINIMUM_LOTTO_NUMBER) {
             lottoWinners[lottoWinnerCount - 3]++;
         }
+    }
+
+    private void infoLottoWinner() {
+        String bonusMessage = "";
+        boolean bonusState = false;
+        for (int matchNumber = START_WINNER_NUMBER; matchNumber <= END_WINNER_NUMBER; matchNumber++) {
+            bonusMessage = isBonusMessage(matchNumber, bonusMessage, bonusState);
+        }
+    }
+
+    private String isBonusMessage(int matchNumber, String bonusMessage, boolean bonusState) {
+        bonusMessage = "";
+        if (bonusState == true) {
+            bonusMessage = ", 보너스 볼 일치";
+        }
+        return bonusMessage;
     }
 }

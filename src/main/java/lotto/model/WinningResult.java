@@ -37,4 +37,11 @@ public enum WinningResult {
         }
     }
 
+    public static int calculateTotalPrice() {
+        int totalPrice = 0;
+        for (WinningResult value : WinningResult.values()) {
+            totalPrice = totalPrice + (value.countResult * value.price);
+        }
+        return totalPrice;
+    }
 }

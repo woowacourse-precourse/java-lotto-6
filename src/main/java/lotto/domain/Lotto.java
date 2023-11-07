@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,6 +17,16 @@ public class Lotto {
         validateNotDuplicated(numbers);
         validateAscending(numbers);
         this.numbers = numbers.stream().map(LottoNumber::new).toList();
+    }
+
+    public static Lotto from(String numbers) {
+        return new Lotto(
+                Arrays
+                        .stream(numbers.split(LOTTO_DELIMITER))
+                        .map(LottoNumber::from)
+                        .map(LottoNumber::number)
+                        .toList()
+        );
     }
 
     public static Lotto generate() {

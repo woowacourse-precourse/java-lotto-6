@@ -6,27 +6,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class CalculateLotto {
+public class Calculate {
     public static final double POINT = 10.0;
+    private static final int DIVIDED = 1000;
 
-    public int checkMatch(List<Integer> generatedNums, List<Integer> inputNums){
+    public int getMatchCount(List<Integer> generatedNums, List<Integer> inputNums){
         return (int)generatedNums.stream().filter(o -> inputNums.stream().anyMatch(Predicate.isEqual(o))).count();
     }
 
-    public boolean checkBonus(List<Integer> generatedNums, List<Integer> winningNums, int bonus){
-        int cnt = checkMatch(generatedNums, winningNums);
+    public boolean canBeBonus(List<Integer> generatedNums, List<Integer> winningNums, int bonus){
+        int cnt = getMatchCount(generatedNums, winningNums);
         if (cnt == FIVE.getNum()){
             return generatedNums.contains(bonus);
         }
         return false;
     }
 
-    public double roi(double investment, double current){
+    public double getProfitRate(double investment, double current){
         double result = investment/current * 100;
         return Math.round(result*POINT)/POINT;
     }
 
-    public int getProfit(Map<Integer, Integer> matchMap){
+    public int getProfitCost(Map<Integer, Integer> matchMap){
         int profit = 0;
         for (Map.Entry<Integer, Integer> items: matchMap.entrySet()) {
             if (items.getKey() == THREE.getNum()) {
@@ -42,5 +43,9 @@ public class CalculateLotto {
             }
         }
         return profit;
+    }
+
+    public int getLottoCount(int cost){
+        return cost/DIVIDED;
     }
 }

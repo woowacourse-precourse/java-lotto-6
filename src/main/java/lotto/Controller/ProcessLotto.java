@@ -21,7 +21,7 @@ public class ProcessLotto {
         InputValidate inputValidate = new InputValidate(validateTools);
 
         int cost = askCost(inputValidate, 0);
-        int count = new AmountProcessing().getLottoCount(cost);
+        int count = new Calculate().getLottoCount(cost);
         outputView.printNumberPurchase(count);
 
         List<Lotto> lottos = generateLottos(count, new Generator());
@@ -96,7 +96,7 @@ public class ProcessLotto {
 
     private void statistics(List<Lotto> lottos, List<Integer> winningNums, int bonus, int cost){
         StaisticsResult staisticsResult = new StaisticsResult();
-        staisticsResult.updateResult(new CalculateLotto(), lottos, winningNums, bonus);
-        staisticsResult.printStatistics(outputView, new CalculateLotto(), cost);
+        staisticsResult.updateResult(new Calculate(), lottos, winningNums, bonus);
+        staisticsResult.printStatistics(outputView, new Calculate(), cost);
     }
 }

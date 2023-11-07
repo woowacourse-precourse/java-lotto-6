@@ -43,7 +43,7 @@ public class LottoMakingController {
                 String input = view.inputMoney();
                 validateIsNumber(input);
                 payment = Integer.parseInt(input);
-                validateMoneyUnit(payment);
+                validatePaymentUnit(payment);
                 break;
             } catch (IllegalArgumentException e) {
                 view.outputError(e.getMessage());
@@ -59,7 +59,7 @@ public class LottoMakingController {
         }
     }
 
-    private void validateMoneyUnit(int money) {
+    private void validatePaymentUnit(int money) {
         if (money % MONEY_UNIT != 0)
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_THOUSAND_MESSAGE.getValue());
         lottoCount = money / MONEY_UNIT;

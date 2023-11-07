@@ -22,15 +22,61 @@
 ## 프로젝트 구조
 ### Model
 1. Human
+- 사용자가 구매한 가격을 저장한다.
+- 사용자가 구매한 티켓의 장수를 저장한다.
 
 2. Lotto
+- 로또 티켓 한 장의 숫자들을 저장한다.
 
-3. WinningLotto
+3. Lottos
+- 사용자가 구매한 횟수만큼 로또(Lotto)를 초기화한다.
+- 로또의 번호는 무작위 숫자로 초기화한다.
+
+4. WinningLotto
+- 당첨 로또 번호들을 저장한다.
+- 보너스 번호를 저장한다.
+
+5. LottoMachine
+- 사용자가 뽑은 로또와 당첨 로또 번호의 차이를 저장한다.
+- 수익률을 계산한다.
 
 ### View
-1. InputView
-2. OutputView
+1. PurchaseView
+- 로또 구입 금액을 입력 받는다.
+- 유효하지 않은 입력값의 경우, 예외처리를 한다.
+- 다시 입력 받는다.
+
+2. WinningLottoView
+- 당첨 로또 번호를 입력 받는다.
+- 보너스 번호를 입력 받는다.
+- 유효하지 않은 입력값의 경우, 예외처리를 한다.
+- 다시 입력 받는다.
+
+3. OutputView
+- 구입한 로또 번호를 출력한다.
+- 당첨 통계를 출력한다.
+- 수익률을 출력한다.
 
 ### Controller
 1. MachineController
+- Model과 View의 연결고리 역할을 한다.
 
+### Const
+1. Constants
+- 프로젝트에서 사용되는 상수들을 관리한다.
+
+2. ErrorMessage
+- 예외문구들을 관리한다.
+
+3. MachineMessage
+- 출력과 관련된 문구들을 관리한다.
+
+### Utils
+1. Convertor
+- 자료형을 변경하는 함수들을 관리한다.
+
+2. LottoCompare
+- 당첨 유무를 확인한다.
+
+3. Random
+- 숫자들을 랜덤하게 뽑는다.

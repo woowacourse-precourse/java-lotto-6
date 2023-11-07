@@ -6,6 +6,15 @@ public class PlayerLottoAmount {
     private static final int LOTTO_MIN_AMOUNT = 1000;
     private static  int amount;
 
+    public PlayerLottoAmount(String amount) {
+
+        int amountNm = 0;
+        amountNm = validateNumber(amount);
+        validateAmount(amountNm);
+        this.amount = amountNm;
+    }
+
+
     public void validateAmount(int amountNm) {
         validateNumberZero(amountNm);
         validateDivisible(amountNm);

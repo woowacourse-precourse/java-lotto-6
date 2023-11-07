@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
 
@@ -12,5 +13,11 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public List<List<Integer>> getLottosNumbers() {
+        return lottos.stream()
+            .map(Lotto::getNumbers)
+            .collect(Collectors.toList());
     }
 }

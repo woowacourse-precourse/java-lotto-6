@@ -1,11 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.regex.Pattern;
 
 public class MoneyInputView {
 
     private static final int ZERO = 0;
     private static final int ONE_ISSUE_LOTTO = 1000;
+    private static final Pattern pattern = Pattern.compile("^[0-9]+$");
     private String input;
     private int money;
     private int issueCount;
@@ -17,6 +19,7 @@ public class MoneyInputView {
     private void validate() {
         input = Console.readLine();
         try {
+            numerics();
             nonZero();
             leastOneIssue();
             nonRemainder();
@@ -27,6 +30,12 @@ public class MoneyInputView {
         }
     }
 
+    private void numerics() {
+        boolean isNumeric = pattern.matcher(input).matches();
+        if (!isNumeric) {
+            throw new IllegalArgumentException("[ERROR] 숫자들로 구성된 입력값이어야 합니다.");
+        }
+    }
 
     private void nonZero() {
         if (Integer.parseInt(input) == 0) {

@@ -36,4 +36,26 @@ class AwardTest {
             );
         }
     }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    @DisplayName("getByOrdinal 메소드 테스트")
+    class GetByOrdinal {
+        @ParameterizedTest(name = "{0}가 입력으로 들어왔을 때")
+        @MethodSource("parameterProvider")
+        void ordinal_값에_따라_Award객체를_잘_반환하는지_테스트(int target, Award expected) {
+            assertThat(Award.getByOrdinal(target)).isEqualTo(expected);
+        }
+
+        private Stream<Arguments> parameterProvider() {
+            return Stream.of(
+                    Arguments.of(1, Award.ONE),
+                    Arguments.of(2, Award.TWO),
+                    Arguments.of(3, Award.THREE),
+                    Arguments.of(4, Award.FOUR),
+                    Arguments.of(5, Award.FIVE),
+                    Arguments.of(6, Award.SIX)
+            );
+        }
+    }
 }

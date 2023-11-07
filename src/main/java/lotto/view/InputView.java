@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final String WINNING_NUMBERS_REGEX = "^(\\d(,\\d+)*|)$";
+
     private InputView() {
     }
 
@@ -19,6 +21,7 @@ public class InputView {
     public static List<Integer> readWinnerLottoNumber() {
         String numbers = Console.readLine();
         validateBlank(numbers);
+        validateComma(numbers);
         return splitWord(numbers);
     }
 
@@ -46,5 +49,15 @@ public class InputView {
         return Arrays.stream(input.split(","))
                 .map(InputView::validateInteger)
                 .collect(Collectors.toList());
+    }
+
+    private static void validateComma(String numbers) {
+        if (isCommaContains(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 쉼표(,)를 기준으로 구분지어 입력해야 합니다.");
+        }
+    }
+
+    private static boolean isCommaContains(String numbers) {
+        return !numbers.matches(WINNING_NUMBERS_REGEX);
     }
 }

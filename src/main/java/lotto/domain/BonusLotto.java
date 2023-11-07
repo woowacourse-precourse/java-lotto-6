@@ -8,6 +8,10 @@ public class BonusLotto {
         this.number = number;
     }
 
+    public int getBonusLotto() {
+        return number;
+    }
+
     private void validate(int number, Lotto lottoNumbers) {
         checkNumberInRange(number);
         checkBonusNumberUniqueWithLottoNumbers(number, lottoNumbers);

@@ -52,5 +52,21 @@ public class ResultLottoTest {
 
     }
 
+    @DisplayName("1등인 상황에서 금액을 체크한다")
+    @Test
+    void checkWhenFirstMoney() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> lottoBundle = new ArrayList<>();
+        lottoBundle.add(lotto);
+        ResultLotto resultLotto = new ResultLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
+        //when
+        List<Integer> winning = resultLotto.calculateResult(lottoBundle);
+
+        //then
+        Assertions.assertThat(winning.get(5)).isEqualTo(2000000000);
+
+    }
+    
 }

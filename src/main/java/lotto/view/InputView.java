@@ -1,30 +1,30 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validation.AmountInputValidator;
-import lotto.validation.BonusNumberInputValidator;
-import lotto.validation.CommonValidator;
+import lotto.validation.PurchaseInputValidator;
+import lotto.validation.BonusInputValidator;
+import lotto.validation.CommonInputValidator;
 import lotto.validation.WinningNumbersInputValidator;
 
 public class InputView {
 
-    private final AmountInputValidator amountInput;
+    private final PurchaseInputValidator amountInput;
     private final WinningNumbersInputValidator winningNumbersInput;
-    private final BonusNumberInputValidator bonusNumberInput;
-    private final CommonValidator commonValidator;
+    private final BonusInputValidator bonusNumberInput;
+    private final CommonInputValidator commonInputValidator;
 
     public InputView() {
-        this.amountInput = new AmountInputValidator();
+        this.amountInput = new PurchaseInputValidator();
         this.winningNumbersInput = new WinningNumbersInputValidator();
-        this.bonusNumberInput = new BonusNumberInputValidator();
-        this.commonValidator = new CommonValidator();
+        this.bonusNumberInput = new BonusInputValidator();
+        this.commonInputValidator = new CommonInputValidator();
     }
 
     public String readAmountInput() {
         while (true) {
             try {
                 String input = Console.readLine();
-                commonValidator.validateNullEmptySpace(input);
+                commonInputValidator.validateNullEmptySpace(input);
                 amountInput.validateAmountInput(input);
                 return input;
             } catch (IllegalArgumentException e) {
@@ -37,7 +37,7 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                commonValidator.validateNullEmptySpace(input);
+                commonInputValidator.validateNullEmptySpace(input);
                 winningNumbersInput.validateWinningNumbers(input);
                 return input;
             } catch (IllegalArgumentException e) {
@@ -50,7 +50,7 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                commonValidator.validateNullEmptySpace(input);
+                commonInputValidator.validateNullEmptySpace(input);
                 bonusNumberInput.validateBonusNumberInput(winningNumbers, input);
                 return input;
             } catch (IllegalArgumentException e) {

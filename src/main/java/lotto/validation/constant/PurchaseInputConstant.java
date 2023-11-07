@@ -1,6 +1,6 @@
 package lotto.validation.constant;
 
-public enum AmountInput {
+public enum PurchaseInputConstant {
     NUMERIC_FORMAT_MESSAGE("[ERROR] 숫자만 입력할 수 있습니다."),
     POSITIVE_MESSAGE("[ERROR] 양수 값을 입력해야 합니다."),
     VALUE_DIVIDE_MESSAGE("[ERROR] 1000원 단위로 값을 입력해야 합니다."),
@@ -10,11 +10,11 @@ public enum AmountInput {
     private String message;
     private int number;
 
-    AmountInput(final String message) {
+    PurchaseInputConstant(final String message) {
         this.message = message;
     }
 
-    AmountInput(final int number) {
+    PurchaseInputConstant(final int number) {
         this.number = number;
     }
 

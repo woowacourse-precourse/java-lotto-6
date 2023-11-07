@@ -1,10 +1,10 @@
 package lotto.validation;
 
-import static lotto.validation.constant.Common.EMPTY_MESSAGE;
-import static lotto.validation.constant.Common.NULL_MESSAGE;
-import static lotto.validation.constant.Common.SPACE_MESSAGE;
+import static lotto.validation.constant.CommonInputConstant.EMPTY_MESSAGE;
+import static lotto.validation.constant.CommonInputConstant.NULL_MESSAGE;
+import static lotto.validation.constant.CommonInputConstant.SPACE_MESSAGE;
 
-public class CommonValidator {
+public class CommonInputValidator {
 
     public void validateInputNull(String input) {
         if (input == null) {

@@ -1,9 +1,9 @@
 package lotto.validation;
 
-import static lotto.validation.constant.WinningNumbers.CHECK_COMMA_MESSAGE;
-import static lotto.validation.constant.WinningNumbers.DUPLICATE_MESSAGE;
-import static lotto.validation.constant.WinningNumbers.NUMBERS_COUNT_MESSAGE;
-import static lotto.validation.constant.WinningNumbers.NUMBER_RANGE_MESSAGE;
+import static lotto.validation.constant.WinningNumbersInputConstant.CHECK_COMMA_MESSAGE;
+import static lotto.validation.constant.WinningNumbersInputConstant.DUPLICATE_MESSAGE;
+import static lotto.validation.constant.WinningNumbersInputConstant.NUMBERS_COUNT_MESSAGE;
+import static lotto.validation.constant.WinningNumbersInputConstant.NUMBER_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class WinningNumbersInputValidatorTest {
+class WinningNumbersInputConstantInputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,46", "-1,2,4,5,6,7", "2,3,5,0,4,6"})

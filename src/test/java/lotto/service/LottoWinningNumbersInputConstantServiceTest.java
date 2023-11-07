@@ -9,11 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class LottoWinningNumbersServiceTest {
+class LottoWinningNumbersInputConstantServiceTest {
 
     @Nested
     @DisplayName("LottoWinningNumbersService의 createLottoWinningNumbers 기능 테스트")
-    class createLottoWinningNumbersTest {
+    class createLottoWinningNumbersTestInputConstant {
 
         @Test
         @DisplayName("createLottoWinningNumbers를 사용하여 LottoWinningNumbers 객체에 당첨 번호가 올바르게 저장 되는지 테스트")

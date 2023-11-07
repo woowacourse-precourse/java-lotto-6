@@ -1,16 +1,16 @@
 package lotto.validation;
 
-import static lotto.validation.constant.BonusNumber.NUMERIC_FORMAT_MESSAGE;
-import static lotto.validation.constant.BonusNumber.DUPLICATION_BONUS_NUMBER;
-import static lotto.validation.constant.BonusNumber.LOTTO_MAX_NUMBER;
-import static lotto.validation.constant.BonusNumber.LOTTO_MIN_NUMBER;
-import static lotto.validation.constant.BonusNumber.NUMBER_RANGE_MESSAGE;
-import static lotto.validation.constant.BonusNumber.SPLIT_MESSAGE;
+import static lotto.validation.constant.BonusInputConstant.NUMERIC_FORMAT_MESSAGE;
+import static lotto.validation.constant.BonusInputConstant.DUPLICATION_BONUS_NUMBER;
+import static lotto.validation.constant.BonusInputConstant.LOTTO_MAX_NUMBER;
+import static lotto.validation.constant.BonusInputConstant.LOTTO_MIN_NUMBER;
+import static lotto.validation.constant.BonusInputConstant.NUMBER_RANGE_MESSAGE;
+import static lotto.validation.constant.BonusInputConstant.SPLIT_MESSAGE;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class BonusNumberInputValidator {
+public class BonusInputValidator {
 
     public void validateBonusNumberDuplication(String numbers, String number) {
         List<Integer> winningNumbers = stringToCollection(numbers);

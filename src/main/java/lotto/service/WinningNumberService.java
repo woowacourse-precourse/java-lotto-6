@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.constants.constants.SEPARATOR;
+import static lotto.constants.Constants.SEPARATOR;
 
 import java.util.Arrays;
 import java.util.List;

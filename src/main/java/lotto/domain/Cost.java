@@ -1,8 +1,8 @@
 package lotto.domain;
 
 
-import static lotto.constants.constants.INITIAL_COUNT;
-import static lotto.constants.constants.LOTTO_COST;
+import static lotto.constants.Constants.INITIAL_COUNT;
+import static lotto.constants.Constants.LOTTO_COST;
 
 import lotto.validation.CostValidator;
 

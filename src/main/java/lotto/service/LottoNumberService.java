@@ -1,8 +1,8 @@
 package lotto.service;
 
-import static lotto.constants.constants.LOTTO_NUMBER_RANGE_END;
-import static lotto.constants.constants.LOTTO_NUMBER_RANGE_START;
-import static lotto.constants.constants.LOTTO_NUMBER_SIZE;
+import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_END;
+import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_START;
+import static lotto.constants.Constants.LOTTO_NUMBER_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

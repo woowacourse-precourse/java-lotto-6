@@ -1,9 +1,9 @@
 package lotto.validation;
 
-import static lotto.constants.constants.DOUBLE_SEPARATOR;
-import static lotto.constants.constants.LOTTO_NUMBER_RANGE_END;
-import static lotto.constants.constants.LOTTO_NUMBER_RANGE_START;
-import static lotto.constants.constants.SEPARATOR;
+import static lotto.constants.Constants.DOUBLE_SEPARATOR;
+import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_END;
+import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_START;
+import static lotto.constants.Constants.SEPARATOR;
 
 import java.util.HashSet;
 import java.util.List;

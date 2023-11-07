@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.constants.constants.NULL_POINTER_EXCEPTION;
-import static lotto.constants.constants.ZERO_PROFIT;
+import static lotto.constants.Constants.NULL_POINTER_EXCEPTION;
+import static lotto.constants.Constants.ZERO_PROFIT;
 
 import java.util.ArrayList;
 import java.util.Arrays;

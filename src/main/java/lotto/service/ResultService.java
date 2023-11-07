@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.constants.constants.INITIAL_COUNT;
+import static lotto.constants.Constants.INITIAL_COUNT;
 
 import java.util.Arrays;
 import java.util.HashMap;

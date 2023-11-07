@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import static lotto.constants.constants.LOTTO_COST;
+import static lotto.constants.Constants.LOTTO_COST;
 
 import lotto.exception.CostUnitDivideException;
 import lotto.exception.CostZeroException;

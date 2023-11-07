@@ -1,7 +1,7 @@
 package lotto.validation;
 
-import static lotto.constants.constants.LOTTO_NUMBER_RANGE_END;
-import static lotto.constants.constants.LOTTO_NUMBER_RANGE_START;
+import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_END;
+import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_START;
 
 import lotto.domain.Lotto;
 import lotto.exception.NumberDuplicateException;

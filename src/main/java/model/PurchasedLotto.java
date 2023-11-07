@@ -27,14 +27,18 @@ public class PurchasedLotto {
     public List<WinType> checkLotto(List<Integer> bullseye, Integer bonusNum) {
         List<WinType> results = new ArrayList<>();
 
-        purchased.forEach(e -> {
-            Integer count = e.checkNumbers(bullseye);
+        for (Lotto e : purchased) {
+            Integer count = e.compareNumbers(bullseye);
             boolean bonus = false;
+
+            if (count < 3) {
+                continue;
+            }
             if (count == 5) {
                 bonus = e.checkBonus(bonusNum);
             }
             results.add(WinType.getByAttr(count, bonus));
-        });
+        }
         return results;
     }
 
@@ -44,6 +48,10 @@ public class PurchasedLotto {
         purchased.forEach(e -> result.add(e.toString()));
 
         return result;
+    }
+
+    public Integer getAmount() {
+        return purchased.size();
     }
 
 

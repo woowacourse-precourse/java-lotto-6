@@ -55,6 +55,9 @@ public class LottoProgram {
 
         PrintUtil.printWinningResultMessage(winningResult);
 
-        PrintUtil.printReturnRateMessage((totalPrize/Double.parseDouble(purchaseAmountInput))*100);
+        double purchaseAmount = Double.parseDouble(purchaseAmountInput);
+        double returnRate = (totalPrize/purchaseAmount)*100;
+
+        PrintUtil.printReturnRateMessage(returnRate);
     }
 }

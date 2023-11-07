@@ -37,7 +37,7 @@ class PaymentTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"8000,8","12000,12"})
+    @CsvSource(value = {"8000,8", "12000,12"})
     @DisplayName("[SUCCESS]구입금액을 로또 가격으로 나누어 로또 구매 개수를 구한다.")
     void calculateLottoAmountUsingPay(int input, int expected) {
 
@@ -50,4 +50,20 @@ class PaymentTest {
         // then
         assertThat(amount).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"8000, 5000, 62.5"})
+    @DisplayName("[SUCCESS]수익금을 이용하여 수익률을 계산한다.")
+    void calculateReturnRate(int input, int reward, String expected) {
+
+        // given
+        Payment userPay = new Payment(input);
+
+        // when
+        String result = userPay.getReturnRate(reward);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
 }

@@ -1,20 +1,26 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.InvalidLengthException;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    public static final int LOTTO_BALL_COUNT = 6;
 
-    public Lotto(List<Integer> numbers) {
+    private final List<LottoBall> numbers;
+
+    public Lotto(List<LottoBall> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validate(List<LottoBall> numbers) {
+        validateLength(numbers);
+    }
+
+    private void validateLength(List<LottoBall> numbers) {
+        if (numbers.size() != LOTTO_BALL_COUNT) {
+            throw new InvalidLengthException();
         }
     }
 
-    // TODO: 추가 기능 구현
 }

@@ -31,13 +31,31 @@ public class LottoResult {
         }
     }
 
-    public void calculateTotalPrizeMoney() {
+    private void calculateTotalPrizeMoney() {
         for(LottoPrize prize : LottoPrize.values()) {
             this.totalPrizeMoney += (prizeResult.get(prize) * prize.getPrizeMoney());
         }
     }
 
-    public double getYieldRate() {
+    private double getYieldRate() {
+        calculateTotalPrizeMoney();
         return Math.round(totalPrizeMoney / payment*1000) / 10.0;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder winningResult = new StringBuilder();
+        for(LottoPrize prize : LottoPrize.values()) {
+            if(prize != LottoPrize.ETC) {
+                winningResult.append(prize.getPrizeRank() + "개 일치");
+                if(prize == LottoPrize.SECOND) {
+                    winningResult.append(", 보너스 볼 일치");
+                }
+                winningResult.append(" (" + prize.getPrizeMoney() + "원) - ")
+                        .append(prizeResult.get(prize) + "개\n");
+            }
+        }
+        winningResult.append("총 수익률은 " + getYieldRate() + "%입니다.");
+        return winningResult.toString();
     }
 }

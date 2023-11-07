@@ -11,6 +11,8 @@ public class WinningNumber {
 
     private static final String ERROR_NUMBER_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_NUMBER_SIZE = "[ERROR] 당첨 번호는 6개를 입력해야 합니다.";
+    private static final String ERROR_BONUS_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_DUPLICATION_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.";
     private static List<Long> matchWinningNumber = new ArrayList<>();
     private static List<Long> matchBonusNumber = new ArrayList<>();
 
@@ -48,11 +50,28 @@ public class WinningNumber {
     }
 
     public void inputBonusNumber() {
-        System.out.println(BONUS_NUMBER);
-        bonusNumber = Integer.parseInt(readLine());
+        while (true) {
+            try {
+                System.out.println(BONUS_NUMBER);
+                bonusNumber = Integer.parseInt(readLine());
+                checkBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
     }
-    
+
+    public void checkBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ERROR_BONUS_RANGE);
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_DUPLICATION_NUMBER);
+        }
+    }
 
     public List<Integer> toWinningNumberList(String numbers) {
         String[] num = numbers.split(",");

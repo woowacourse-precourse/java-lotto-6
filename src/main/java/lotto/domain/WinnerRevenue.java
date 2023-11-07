@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.RevenueDto;
+
 import java.util.List;
 
 public class WinnerRevenue {

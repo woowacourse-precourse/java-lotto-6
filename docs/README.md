@@ -130,3 +130,7 @@ Lotto클래스 calculateRateOfReturn메소드
 ``````````````````````````
 Lotto클래스 showWinningRank메소드
 ```````````````````````````````
+24. model과 view를 조합하여 로또 기능을 실행하는 run 기능 추가
+``````````````````````````
+LottoController클래스 run메소드
+```````````````````````````````

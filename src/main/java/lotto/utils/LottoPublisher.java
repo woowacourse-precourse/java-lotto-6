@@ -22,8 +22,11 @@ public class LottoPublisher {
 
     private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                LottoRule.MIN_NUMBER.toValue(),
-                LottoRule.MAX_NUMBER.toValue(),
-                LottoRule.NUM_OF_NUMBER.toValue());
+                        LottoRule.MIN_NUMBER.toValue(),
+                        LottoRule.MAX_NUMBER.toValue(),
+                        LottoRule.NUM_OF_NUMBER.toValue())
+                .stream()
+                .sorted()
+                .toList();
     }
 }

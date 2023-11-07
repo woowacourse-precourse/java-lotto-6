@@ -1,13 +1,17 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 class LottoTicketManagerTest {
 
@@ -28,10 +32,31 @@ class LottoTicketManagerTest {
 
     @Test
     @DisplayName("보너스 번호에는 당첨 번호와 중복 입력할 수 없다.")
-    void 보너스_번호_중복_예외_테스트(){
-        lottoTicketManager.getLuckyNumber(new Lotto(List.of(1,2,3,4,5,6)));
-        Assertions.assertThatThrownBy(()->lottoTicketManager.getBonusNumber(6))
+    void 보너스_번호_중복_예외_테스트() {
+        lottoTicketManager.getLuckyNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Assertions.assertThatThrownBy(() -> lottoTicketManager.getBonusNumber(6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @MethodSource("lottoData")
+    @DisplayName("당첨 번호와 일치하는 로또 번호 갯수 반환 테스트")
+    public void 당첨_일치하는_번호_개수_확인(Lotto input, Integer expected) {
+        lottoTicketManager.getLuckyNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        assertThat(lottoTicketManager.correctLuckyNumber(input)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> lottoData() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), 5),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 10, 11)), 4),
+                Arguments.of(new Lotto(List.of(12, 27, 32, 4, 5, 6)), 3),
+                Arguments.of(new Lotto(List.of(12, 32, 43, 24, 5, 6)), 2),
+                Arguments.of(new Lotto(List.of(18, 21, 43, 24, 15, 6)), 1),
+                Arguments.of(new Lotto(List.of(11, 12, 13, 14, 15, 16)), 0)
+        );
+    }
+
 
 }

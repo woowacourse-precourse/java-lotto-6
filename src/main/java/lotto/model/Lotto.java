@@ -45,4 +45,9 @@ public class Lotto {
                 .filter(winningLottoNumbers::numberContain)
                 .count();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

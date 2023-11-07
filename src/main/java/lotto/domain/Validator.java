@@ -11,7 +11,6 @@ import static lotto.error.ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.error.ErrorMessage;
 
 public class Validator {
 
@@ -28,7 +27,7 @@ public class Validator {
     }
 
     private void validateDivided(Integer number, String error) {
-        if (number <= 0) {
+        if (number % PRICE != 0) {
             throw new IllegalArgumentException(error);
         }
     }
@@ -63,14 +62,14 @@ public class Validator {
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers,Integer number, String error) {
-        if (numbers.contains(number)){
+    private void validateDuplicate(List<Integer> numbers, Integer number, String error) {
+        if (numbers.contains(number)) {
             throw new IllegalArgumentException(error);
         }
     }
 
     public void validateBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
-        validateRange(bonusNumber,BONUS_NUMBER_OUT_OF_RANGE);
-        validateDuplicate(winningNumbers,bonusNumber,DUPLICATE_BONUS_NUMBER);
+        validateRange(bonusNumber, BONUS_NUMBER_OUT_OF_RANGE);
+        validateDuplicate(winningNumbers, bonusNumber, DUPLICATE_BONUS_NUMBER);
     }
 }

@@ -52,9 +52,11 @@ public class LottoService {
 
     private void getTotalPrizeResult(List<Prize> totalPrizeResult) {
         new Total(totalPrizeResult);
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (Prize prize : Prize.values()) {
-            System.out.print(prize.name()+"count: "+prize.getCount());
-            System.out.println();
+            String formattedPrice = String.format("%,d", prize.getPrice());
+            System.out.printf(prize.getMessage(),formattedPrice,prize.getCount());
         }
     }
 }

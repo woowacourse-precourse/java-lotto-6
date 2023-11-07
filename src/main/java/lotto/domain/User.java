@@ -11,6 +11,7 @@ public class User {
     public List<Lotto> buyLotto() {
         try {
             String inputPayment = UIFunction.requestInput("구입 금액을 입력해 주세요.");
+            int payment = Parser.toInteger(inputPayment);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return buyLotto();

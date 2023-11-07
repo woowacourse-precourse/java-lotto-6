@@ -15,13 +15,30 @@ public class LottoPlay implements Play{
 
     @Override
     public void start() {
-        int purchaseQuantity = getPurchaseQuantity();
-        List<Lotto> myLotto = getMyLottoNumber(purchaseQuantity);
+        List<Lotto> myLotto = purchase();
+        WinningLottoDTO winningLotto = lottery();
+        checkResult(myLotto, winningLotto);
+    }
+
+    @Override
+    public List<Lotto> purchase() {
+        int purchaseQuantity;
+        purchaseQuantity = getPurchaseQuantity();
+        return getMyLottoNumber(purchaseQuantity);
+    }
+
+    @Override
+    public WinningLottoDTO lottery() {
         Lotto winningLotto = readWinningNumber();
         int bonusNumber = readBonusNumber(winningLotto);
-        Rank[] ranks = getWinningStat(myLotto, winningLotto, bonusNumber);
+        return new WinningLottoDTO(winningLotto, bonusNumber);
+    }
+
+    @Override
+    public void checkResult(List<Lotto> myLotto, WinningLottoDTO winningLotto) {
+        Rank[] ranks = getWinningStat(myLotto, winningLotto);
         printWinningStat(ranks);
-        printYieldRate(purchaseQuantity, ranks);
+        printYieldRate(myLotto.size(), ranks);
     }
 
     private int getPurchaseQuantity() {
@@ -93,14 +110,14 @@ public class LottoPlay implements Play{
         return bonusNumber;
     }
 
-    private Rank[] getWinningStat(List<Lotto> myLottos, Lotto winningLotto, int bonusNumber) {
+    private Rank[] getWinningStat(List<Lotto> myLottos, WinningLottoDTO winningLotto) {
         int hits;
         boolean isMatchBonusNumber = false;
         Rank[] ranks = Rank.values();
         for (Lotto myLotto : myLottos) {
-            hits = getRank(myLotto, winningLotto);
+            hits = getRank(myLotto, winningLotto.lotto);
             if (hits == 5) {
-                isMatchBonusNumber = getMatchBonusNumber(winningLotto, bonusNumber);
+                isMatchBonusNumber = getMatchBonusNumber(winningLotto.lotto, winningLotto.bonusNumber);
             }
             ranks[Rank.findRank(hits, isMatchBonusNumber).ordinal()].increaseMatchCount();
         }

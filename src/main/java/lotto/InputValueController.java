@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import util.InputValueValidation;
+import model.InputValueValidation;
 import view.InputView;
 
 public class InputValueController {

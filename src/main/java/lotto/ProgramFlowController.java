@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import util.InputValueValidation;
+import model.InputValueValidation;
 import view.InputView;
 
 public class ProgramFlowController {

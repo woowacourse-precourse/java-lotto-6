@@ -242,4 +242,16 @@ class LottoControllerTest {
         // then
         assertThat(result).containsSubsequence("[", "1", "2", "3", "4", "5", "6", "]");
     }
+
+    @Test
+    @DisplayName("기능23 테스트 : 당첨번호로 입력한 값 중에 정수가 아닌 값이 있으면 에러 발생")
+    void registerWinningNumberShouldThrowExceptionWhenGivenNotNumberValue() {
+        // given
+        System.setIn(createUserInput("1,2,3,4,5,A"));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.registerWinningLottoCombination())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
+    }
 }

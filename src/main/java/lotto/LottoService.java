@@ -9,7 +9,6 @@ import java.util.List;
 import static lotto.ErrorCode.*;
 
 public class LottoService {
-    private static boolean[] isExistNumber;
 
     public void award(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int times) {
         int[] countOfPrize = new int[7];
@@ -65,11 +64,11 @@ public class LottoService {
         return winningLotto;
     }
 
-    public int drawBonus() {
+    public int drawBonus(Lotto winningLotto) {
         int bonusNumber = 0;
         while (bonusNumber == 0) {
             try {
-                bonusNumber = getBonusNumber(Console.readLine());
+                bonusNumber = getBonusNumber(Console.readLine(), winningLotto);
             } catch (IllegalArgumentException e) {
                 handleIllegalArgumentException(e);
             }
@@ -78,16 +77,13 @@ public class LottoService {
     }
 
     public Lotto getWinningLotto(String input) {
-        isExistNumber = new boolean[47];
         List<Integer> winningNumbers = new ArrayList<>();
         String[] strings = input.split(",");
-        if (strings.length != 6)
-            throw new IllegalArgumentException(LOTTERY_SIZE_ERROR.getMessage());
+
         for (String s : strings) {
             int number = Integer.parseInt(s);
             validateNumber(number);
             winningNumbers.add(number);
-            isExistNumber[number] = true;
         }
         return new Lotto(winningNumbers);
     }
@@ -95,15 +91,19 @@ public class LottoService {
     private void validateNumber(int number) {
         if (number < 1 || number > 45)
             throw new IllegalArgumentException(LOTTERY_NUMBER_RANGE_ERROR.getMessage());
-        if (isExistNumber[number])
-            throw new IllegalArgumentException(LOTTERY_NUMBER_DUPLICATED_ERROR.getMessage());
     }
 
-    public int getBonusNumber(String input) {
+    public int getBonusNumber(String input, Lotto lotto) {
         int number = Integer.parseInt(input);
-        validateNumber(number);
-        isExistNumber[number] = true;
+        validateNumber(number, lotto);
         return number;
+    }
+
+    private void validateNumber(int number, Lotto lotto) {
+        if (number < 1 || number > 45)
+            throw new IllegalArgumentException(LOTTERY_NUMBER_RANGE_ERROR.getMessage());
+        if (lotto.isNumberExisted(number))
+            throw new IllegalArgumentException(LOTTERY_NUMBER_DUPLICATED_ERROR.getMessage());
     }
 
     public List<Lotto> issueLotto(int number) {

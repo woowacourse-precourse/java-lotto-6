@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 
+import static lotto.ErrorCode.LOTTERY_NUMBER_DUPLICATED_ERROR;
+import static lotto.ErrorCode.LOTTERY_SIZE_ERROR;
 import static lotto.LottoRank.*;
 
 public class Lotto {
@@ -17,8 +19,19 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTERY_SIZE_ERROR.getMessage());
         }
+
+        boolean[] isExistedNumber = new boolean[46];
+        numbers.forEach(number -> {
+            if(isExistedNumber[number])
+                throw new IllegalArgumentException(LOTTERY_NUMBER_DUPLICATED_ERROR.getMessage());
+            isExistedNumber[number] = true;
+        });
+    }
+
+    public boolean isNumberExisted(int number){
+        return numbers.contains(number);
     }
 
     // TODO: 추가 기능 구현

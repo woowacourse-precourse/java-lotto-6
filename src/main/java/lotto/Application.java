@@ -14,7 +14,7 @@ public class Application {
         System.out.println("당첨 번호를 입력해주세요.");
         Lotto winningLotto = lottoService.drawLotto();
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = lottoService.drawBonus();
+        int bonusNumber = lottoService.drawBonus(winningLotto);
 
         System.out.println("당첨 통계");
         System.out.println("---");

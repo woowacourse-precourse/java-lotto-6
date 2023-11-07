@@ -1,6 +1,7 @@
 package lotto.util;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.error.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
 import static lotto.error.ErrorMessage.INVALID_PURCHASE_AMOUNT_FORMAT;
 import static lotto.error.ErrorMessage.INVALID_WINNING_NUMBER_FORMAT;
 
@@ -18,10 +19,15 @@ public final class Reader {
         return validFormatAndConvert(purchaseAmount, INVALID_PURCHASE_AMOUNT_FORMAT);
     }
 
-    public List<Integer> winningNumbers() {
+    public static List<Integer> winningNumbers() {
         String winningNumber = readLine();
         String[] winningAmounts = winningNumber.split(",");
         return validFormatAndConvert(winningAmounts, INVALID_WINNING_NUMBER_FORMAT);
+    }
+
+    public static Integer bonusNumber() {
+        String bonusNumber = readLine();
+        return validFormatAndConvert(bonusNumber, INVALID_BONUS_NUMBER_FORMAT);
     }
 
     private static Integer validFormatAndConvert(String input, String error) {

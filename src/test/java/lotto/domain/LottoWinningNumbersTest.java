@@ -13,7 +13,16 @@ public class LottoWinningNumbersTest {
     @Test
     @DisplayName("입력받은 당첨 번호에 정수가 아닌 입력이 있을 경우 예외가 발생한다.")
     public void 당첨_번호_정수_아닌_경우() throws Exception {
-        assertThatThrownBy(() -> new LottoWinningNumbers("a, b, 1, 2, 3, 4"))
+        String winningNumbersString = "a,2,3,4,5,6";
+        assertThatThrownBy(() -> new LottoWinningNumbers(winningNumbersString))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("입력받은 당첨 번호에 공백이 있을 경우 예외가 발생한다.")
+    public void 당첨_번호_공백_제외() throws Exception {
+        String winingNumbersString = "1, 2,3,4, 5,6";
+        assertThatThrownBy(() -> new LottoWinningNumbers(winingNumbersString))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

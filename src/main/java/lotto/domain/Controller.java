@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import static java.util.Collections.sort;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.BonusNumber;
@@ -10,149 +7,139 @@ import lotto.model.Lotto;
 import lotto.model.MatchingCounts;
 import lotto.model.Purchase;
 import lotto.model.WinningNumbers;
+import lotto.validator.Validator;
 import lotto.view.View;
 
 public class Controller {
-    public Controller() {
+    private final View view;
+    private final Validator validator;
+    private final GeneratorLotto generatorLotto;
+    private final MatchingCounts matchingCounts;
+    private final Calculator calculator;
+
+    public Controller(View view, Validator validator, GeneratorLotto generatorLotto, MatchingCounts matchingCounts,
+                      Calculator calculator) {
+        this.view = view;
+        this.validator = validator;
+        this.generatorLotto = generatorLotto;
+        this.matchingCounts = matchingCounts;
+        this.calculator = calculator;
     }
 
     public void lotto_Logic() {
-        View view = new View();
-        view.inputPurchaseAmount();
-
-        String inputPurchaseAmount = view.input();
-        while (!processPurchaseAmountData(inputPurchaseAmount)) {
-            processErrorResult();
-            inputPurchaseAmount = view.input();
-            processPurchaseAmountData(inputPurchaseAmount);
-        }
-
+        int purchaseAmount = processPurchaseAmount();
         System.out.println();
-        view.displayPurchaseQuantityMessage(Purchase.getPurchaseCount());
+        view.displayPurchaseQuantityMessage(purchaseAmount);
 
-        // 로또 번호 출력
-        List<Object> lottoNumbers = generateLottoNumbersList(generateLottoTickets(Purchase.getPurchaseCount()));
-        displayLottoNumbers(lottoNumbers);
+        List<List<Integer>> lottoNumbers = generateLottoNumbersForPurchase(purchaseAmount);
+        view.displayLottoNumbers(lottoNumbers);
 
+        List<Integer> winningNumbers = processAndValidateWinningNumbers();
+        processAndValidateBonusNumber();
+
+        calculateAndDisplayWinningResults(lottoNumbers, winningNumbers);
+        view.displayProfitPercent(calculator, matchingCounts);
+    }
+
+    private int processPurchaseAmount() {
+        System.out.println(PromptMessage.PURCHASE_AMOUNT.getMessage());
+        processInputAndValidateData("PurchaseAmount", validator);
+        return Purchase.getPurchaseCount();
+    }
+
+    private List<Integer> processAndValidateWinningNumbers() {
         System.out.println();
-        view.inputWinningNumbers();
+        System.out.println(PromptMessage.WINNING_NUMBERS.getMessage());
+        processInputAndValidateData("WinningNumbers", validator);
+        return WinningNumbers.getWinningNumbers();
+    }
 
-        // 당첨 번호 입력 ~ 검증 ~ 저장
-        String inputWinningNumbers = view.input();
-        while (!processWinningNumbersData(inputWinningNumbers)) {
-            processErrorResult();
-            inputWinningNumbers = view.input();
-            processWinningNumbersData(inputWinningNumbers);
-        }
-
-        // 보너스 번호 입력
+    private void processAndValidateBonusNumber() {
         System.out.println();
-        view.inputBonusNumber();
+        System.out.println(PromptMessage.BONUS_NUMBER.getMessage());
+        processInputAndValidateData("BonusNumber", validator);
+    }
 
-        String inputBonusNumber = view.input();
-        while (!processBonusNumberData(inputBonusNumber)) {
-            processErrorResult();
-            inputBonusNumber = view.input();
-            processBonusNumberData(inputBonusNumber);
-        }
+    private List<List<Integer>> generateLottoNumbersForPurchase(int purchaseAmount) {
 
-        MatchingCounts matchingCounts = new MatchingCounts();
-        calculateWinningLottoResults(lottoNumbers, WinningNumbers.getWinningNumbers(), matchingCounts);
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        List<Lotto> generatedLotto  = generatorLotto.generateLottoTickets(purchaseAmount);
+        return generatorLotto.generateLottoNumbersList(generatedLotto);
+    }
+
+    private void calculateAndDisplayWinningResults(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers) {
+        calculateWinningResults(lottoNumbers, winningNumbers);
+        view.displayWinningStatistics();
         view.printMatchingCounts(matchingCounts);
     }
 
-    public void calculateWinningLottoResults(List<Object> lottoNumbers, List<Integer> winningNumbers,
-                                             MatchingCounts matchingCounts) {
-        for (Object numbers : lottoNumbers) {
-            countMatchingNumbers((List<Integer>) numbers, winningNumbers, matchingCounts);
+    private void calculateWinningResults(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers) {
+        calculator.calculateWinningLottoResults(lottoNumbers, winningNumbers, matchingCounts);
+    }
+
+    public void processInputAndValidateData(String dataType, Validator validator) {
+        String input = view.input();
+        boolean processed = processAndValidateData(input, dataType, validator);
+
+        while (!processed) {
+            view.processErrorResult();
+            input = view.input();
+            processed = processAndValidateData(input, dataType, validator);
         }
     }
 
-    private void countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers,
-                                      MatchingCounts matchingCounts) {
-        int count = 0;
-        int bonus = 0;
-
-        for (int number : lottoNumbers) {
-            if (winningNumbers.contains(number)) {
-                count++;
-            }
+    private boolean processAndValidateData(String input, String dataType, Validator validator) {
+        if (dataType.equals("PurchaseAmount")) {
+            return processPurchaseAmountData(input, validator);
         }
 
-        if (count >= 3) {
-            if (count == 5) {
-                for (int number : lottoNumbers) {
-                    if (number == BonusNumber.getBonusNumber()) {
-                        bonus++;
-                    }
-                }
-                matchingCounts.displayWinningInfo(count, bonus);
-            }
+        if (dataType.equals("WinningNumbers")) {
+            return processWinningNumbersData(input, validator);
         }
-    }
 
-    // 로또 번호 랜덤 뽑기
-    public List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
-    // 로또 티켓 개수만큼 로또 객체 생성
-    public List<Lotto> generateLottoTickets(int purchaseAmount) {
-        List<Lotto> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount; i++) {
-            List<Integer> numbers = generateLottoNumbers();
-            sort(numbers);
-            Lotto lotto = new Lotto(numbers);
-            lottoNumbers.add(lotto);
+        if (dataType.equals("BonusNumber")) {
+            return processBonusNumberData(input, validator);
         }
-        return lottoNumbers; //user class 에 저장해야하나 ?
+
+        return false;
     }
 
-    public List<Object> generateLottoNumbersList(List<Lotto> lottoNumbers) {
-        List<Object> numbers = new ArrayList<>();
-        for (Lotto lotto : lottoNumbers) {
-            numbers.add(lotto.getLottoNumbers());
-        }
-        return numbers;
+    public boolean processPurchaseAmountData(String input, Validator validator) {
+        return processData(input, validator, Purchase.class);
     }
 
-
-    // 로또 번호 출력
-    public void displayLottoNumbers(List<Object> numbers) {
-        for (Object number : numbers) {
-            System.out.println(number);
-        }
+    public boolean processWinningNumbersData(String input, Validator validator) {
+        return processData(input, validator, WinningNumbers.class);
     }
 
-    private boolean isEmpty(String input) {
-        return !input.isEmpty();
+    public boolean processBonusNumberData(String input, Validator validator) {
+        return processData(input, validator, BonusNumber.class);
     }
 
-    public boolean isNotNumeric(String input) {
-        String[] inputArray = input.split(",");
+    private boolean processData(String input, Validator validator, Class<?> dataClass) {
         try {
-            for (String numStr : inputArray) {
-                Integer.parseInt(numStr);
-            }
-            return true;
-        } catch (NumberFormatException e) {
+            validator.validateInput(input);
+            createDataObject(input, dataClass);
+        } catch (IllegalArgumentException e) {
             return false;
         }
+        return true;
     }
 
-    // 최소 검증 로직
-    public void validateInput(String input) {
-        if (!isEmpty(input) && isNotNumeric(input)) {
-            throw new IllegalArgumentException();
+    private void createDataObject(String input, Class<?> dataClass) {
+        if (dataClass == WinningNumbers.class) {
+            new WinningNumbers(convertStringToIntegerList(input));
+        }
+
+        if (dataClass == Purchase.class) {
+            new Purchase(Integer.parseInt(input));
+        }
+
+        if (dataClass == BonusNumber.class) {
+            new BonusNumber(Integer.parseInt(input));
         }
     }
 
-    // 당첨 번호 모델에 넘기기 전 자료형 변환
-    // 메서드 이름 다시 짓기
-    public List<Integer> performTypeConversion(String input) {
+    public List<Integer> convertStringToIntegerList(String input) {
         String[] inputArray = input.split(",");
         List<Integer> inputWinningNumbers = new ArrayList<>();
         for (String numStr : inputArray) {
@@ -161,39 +148,4 @@ public class Controller {
         }
         return inputWinningNumbers;
     }
-
-    public void processErrorResult() {
-        System.out.println("[ERROR] 잘못 입력하셨습니다. 다시 입력해주세요.");
-    }
-
-    public boolean processWinningNumbersData(String input) {
-        try {
-            validateInput(input);
-            new WinningNumbers(performTypeConversion(input));
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean processPurchaseAmountData(String input) {
-        try {
-            validateInput(input);
-            new Purchase(Integer.parseInt((input)));
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean processBonusNumberData(String input) {
-        try {
-            validateInput(input);
-            new BonusNumber(Integer.parseInt((input)));
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-        return true;
-    }
-
 }

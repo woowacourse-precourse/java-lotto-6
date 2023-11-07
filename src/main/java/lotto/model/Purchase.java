@@ -1,11 +1,17 @@
 package lotto.model;
 
 public class Purchase {
+    private static int amount;
     private static int count = 0;
 
     public Purchase(int amount) {
         validate(amount);
+        Purchase.amount = amount;
         count = amount / 1000;
+    }
+
+    public static int getPurchaseAmount() {
+        return amount;
     }
 
     public static int getPurchaseCount() {

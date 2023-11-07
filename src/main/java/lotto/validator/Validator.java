@@ -1,44 +1,28 @@
 package lotto.validator;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class Validator {
     public Validator() {
     }
 
-    // 에러 발생
-    public void validate(List<Integer> numbers) {
-        if (!isNumbersValid(numbers)) {
+    public void validateInput(String input) {
+        if (!isEmpty(input) && isNotNumeric(input)) {
             throw new IllegalArgumentException();
         }
     }
 
-
-    private boolean isNumbersValid(List<Integer> numbers) {
-        boolean duplicatesValid = checkForDuplicates(numbers);
-        boolean sizeValid = checkInputSizeIs6(numbers);
-        boolean boundsValid = checkInputBounds(numbers);
-        return duplicatesValid && sizeValid && boundsValid;
+    private boolean isEmpty(String input) {
+        return !input.isEmpty();
     }
 
-    private boolean checkForDuplicates(List<Integer> numbers) {
-        Set<Integer> compareNumbers = new HashSet<>(numbers);
-        return compareNumbers.size() == numbers.size();
-    }
-
-    private boolean checkInputSizeIs6(List<Integer> numbers) {
-        return numbers.size() == 6;
-    }
-
-    private boolean checkInputBounds(List<Integer> numbers) {
-        for (int number: numbers) {
-            if (!(1 <= number && number <= 45)){
-                return false;
+    public boolean isNotNumeric(String input) {
+        String[] inputArray = input.split(",");
+        try {
+            for (String numStr : inputArray) {
+                Integer.parseInt(numStr);
             }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return true;
     }
-
 }

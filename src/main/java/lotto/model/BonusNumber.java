@@ -27,12 +27,16 @@ public class BonusNumber {
     }
 
     private boolean isBonusNumberInWinningNumbers(int bonusNumber) {
-        for (int number : WinningNumbers.getWinningNumbers()) {
-            if (number == bonusNumber) {
-                return false;
+        return !containsNumber(WinningNumbers.getWinningNumbers(), bonusNumber);
+    }
+
+    private boolean containsNumber(List<Integer> numbers, int target) {
+        for (int number : numbers) {
+            if (number == target) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private boolean checkInputBounds(int bonusNumber) {

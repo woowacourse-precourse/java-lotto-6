@@ -1,14 +1,13 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.validator.Validator;
+import lotto.validator.ValidatorForModel;
 
 public class WinningNumbers {
     private static List<Integer> winningNumbers;
-    // 보너스 번호
 
     public WinningNumbers(List<Integer> winningNumbers) {
-        Validator validator = new Validator();
+        ValidatorForModel validator = new ValidatorForModel();
         validator.validate(winningNumbers);
         WinningNumbers.winningNumbers = winningNumbers;
     }
@@ -16,5 +15,4 @@ public class WinningNumbers {
     public static List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
-
 }

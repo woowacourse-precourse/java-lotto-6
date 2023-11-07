@@ -1,14 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.domain.Calculator;
+import lotto.domain.Prize;
 import lotto.model.MatchingCounts;
 
 public class View {
     public View() {
-    }
-
-    public void inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
     }
 
     public String input() {
@@ -19,26 +18,37 @@ public class View {
         System.out.println(purchaseAmount + "개를 구매했습니다.");
     }
 
-    public void inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-    }
-
-    public void inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-    }
-
-    public void printMatchingCounts(MatchingCounts matchingCounts) {
-        String[] prizeDescriptions = {
-                "없음", "없음", "3개 일치 (5,000원)", "4개 일치 (50,000원)",
-                "5개 일치 (1,500,000원)", "5개 일치, 보너스 볼 일치 (30,000,000원)", "6개 일치 (2,000,000,000원)"
-        };
-
-        for (int i = 2; i <= 6; i++) {
-            System.out.println(prizeDescriptions[i] + " - " + matchingCounts.getMatchingCount().get(i) + "개");
+    public void displayLottoNumbers(List<List<Integer>> numbers) {
+        for (Object number : numbers) {
+            System.out.println(number);
         }
     }
 
-    public void displayProfitPercent(Calculator calculator, MatchingCounts matchingCounts){
+    public void processErrorResult() {
+        System.out.println("[ERROR] 잘못 입력하셨습니다. 다시 입력해주세요.");
+    }
+
+    public void displayWinningStatistics() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+    public void printMatchingCounts(MatchingCounts matchingCounts) {
+        Prize[] prizes = {
+                Prize.MATCH_3,
+                Prize.MATCH_4,
+                Prize.MATCH_5,
+                Prize.MATCH_5_PLUS_BONUS,
+                Prize.MATCH_6
+        };
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(prizes[i].getDescription() + " - " + matchingCounts.getMatchingCount().get(i) + "개");
+        }
+    }
+
+    public void displayProfitPercent(Calculator calculator, MatchingCounts matchingCounts) {
         System.out.println("총 수익률은 " + calculator.calculateProfitPercentage(matchingCounts) + "%입니다.");
     }
 }

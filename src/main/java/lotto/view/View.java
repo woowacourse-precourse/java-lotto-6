@@ -13,7 +13,7 @@ public interface View {
 
     void printAllLottery(List<Lotto> lotteries);
 
-    void printScoreDetails(List<Integer> scores);
+    void printScoreDetails(int[] scores);
 
     void printTotalReturn(float totalReturn);
 

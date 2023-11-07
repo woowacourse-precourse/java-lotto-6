@@ -44,12 +44,12 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void printScoreDetails(List scores) {
-        out("3개 일치 (5,000원) - " + scores.get(0) + "개");
-        out("4개 일치 (50,000원) - " + scores.get(1) + "개");
-        out("5개 일치 (1,500,000원) - " + scores.get(2) + "개");
-        out("5개 일치, 보너스 볼 일치 (30,000,000원) - " + scores.get(3) + "개");
-        out("6개 일치 (2,000,000,000원) - " + scores.get(4) + "개");
+    public void printScoreDetails(int[] scores) {
+        out("3개 일치 (5,000원) - " + scores[0] + "개");
+        out("4개 일치 (50,000원) - " + scores[1] + "개");
+        out("5개 일치 (1,500,000원) - " + scores[2] + "개");
+        out("5개 일치, 보너스 볼 일치 (30,000,000원) - " + scores[3] + "개");
+        out("6개 일치 (2,000,000,000원) - " + scores[4] + "개");
     }
 
     @Override

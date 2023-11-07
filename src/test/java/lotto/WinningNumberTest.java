@@ -29,7 +29,7 @@ public class WinningNumberTest {
                 .isThrownBy(() -> new Lotto(input));
     }
 
-    @DisplayName("당첨 번호가 중복될 떄 예외 발생")
+    @DisplayName("당첨 번호가 중복될 때 예외 발생")
     @Test
     void validateDuplication() {
         List<Integer> input = List.of(1, 2, 3, 3, 4, 5);
@@ -37,5 +37,15 @@ public class WinningNumberTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(input))
                 .withMessage(ErrorMessage.DUPLICATED_LOTTO);
+    }
+
+    @DisplayName("당첨 번호가 주어진 범위에서 벗어날 때 예외 발생")
+    @Test
+    void validateRange() {
+        List<Integer> input = List.of(1, 2, 3, 46, 4, 5);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Lotto(input))
+                .withMessageContaining("로또 번호의 숫자 범위는");
     }
 }

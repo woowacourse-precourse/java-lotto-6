@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,11 +23,16 @@ public class Application {
         validateWinningNumber(Console.readLine());
     }
 
-    private static void validateWinningNumber(String winningNumber) {
-        checkNull(winningNumber);
-        checkEmpty(winningNumber);
-        checkDelimiter(winningNumber);
-        winningNumber.split(",");
+    private static String validateWinningNumber(String winningNumber) {
+        try {
+            checkNull(winningNumber);
+            checkEmpty(winningNumber);
+            checkDelimiter(winningNumber);
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public static int inputPurchaseAmount() {

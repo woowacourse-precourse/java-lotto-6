@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.Lotto;
 
@@ -8,6 +9,37 @@ public class Calculator {
 
     public Calculator(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public String printLottoResult(Lotto winningLotto, int bonusNumber) {
+        String result = getResults(winningLotto, bonusNumber);
+        return result;
+    }
+    
+    private String getResults(Lotto winningLotto, int bonusNumber) {
+        String result = "";
+        Winning[] winnings = Winning.values();
+        for (int i = 0; i < winnings.length; i++) {
+            Winning winning = winnings[winnings.length - i - 1];
+            result += getResult(winning, winningLotto, bonusNumber) + "\n";
+        }
+        return result;
+    }
+
+    public String getResult(Winning winning, Lotto winningLotto, Integer bonusNumber) {
+        int sameNumberCount = winning.count();
+        String prize = formatNumberWithCommas(winning.prize());
+
+        int count = countSameNumber(winning, winningLotto, bonusNumber);
+        if (winning == Winning.SECOND) {
+            return sameNumberCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개";
+        }
+        return sameNumberCount + "개 일치 (" + prize + "원) - " + count + "개";
+    }
+
+    public String formatNumberWithCommas(int number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(number);
     }
 
     public int countSameNumber(Winning winning, Lotto winningLotto, int bonusNumber) {

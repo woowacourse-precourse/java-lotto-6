@@ -18,4 +18,8 @@ public class OutputHandler {
         }
         System.out.println("");
     }
+
+    public static void printLottoResult(String result) {
+        System.out.println("\n" + "당첨 통계\n" + "---\n" + result);
+    }
 }

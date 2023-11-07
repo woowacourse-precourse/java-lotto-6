@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoShopTest {
-    private static final String ERROR_MESSAGE_HEADER = "[ERROR]";
     LottoShop lottoShop;
 
     @BeforeEach

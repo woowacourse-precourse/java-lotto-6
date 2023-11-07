@@ -82,6 +82,7 @@ public class UserConsoleInputAdapter implements UserInputPort {
 
     private void validateLottoBuyPrice(String lottoBuyPrice) {
         validateLottoPriceIsInteger(lottoBuyPrice);
+        validateLottoPriceIsPositive(lottoBuyPrice);
         validateNoRecharge(toInt(lottoBuyPrice));
     }
 
@@ -89,6 +90,12 @@ public class UserConsoleInputAdapter implements UserInputPort {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
+            throw new IllegalLottoPriceException();
+        }
+    }
+
+    private void validateLottoPriceIsPositive(String lottoBuyPrice) {
+        if (toInt(lottoBuyPrice) < 0) {
             throw new IllegalLottoPriceException();
         }
     }
@@ -126,7 +133,16 @@ public class UserConsoleInputAdapter implements UserInputPort {
             validateLottoPriceIsInteger(number);
             validateLottoNumber(toInt(number));
         }
+
+        validateDuplicateNumber(numbers);
     }
+
+    private void validateDuplicateNumber(List<String> numbers) {
+        if (numbers.stream().distinct().count() != Lotto.LOTTO_NUMBER_SIZE) {
+            throw new DuplicatedLottoNumberException();
+        }
+    }
+
 
     private void validateLottoNumber(int lottoNumber) {
         if (lottoNumber < Lotto.LOTTO_NUMBER_MIN || lottoNumber > Lotto.LOTTO_NUMBER_MAX) {

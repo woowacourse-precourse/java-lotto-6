@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constant.Announcer;
+import lotto.constant.Error;
 import lotto.constant.LottoAnnouncer;
 import lotto.domain.Jackpot;
 import lotto.domain.Lotto;
@@ -15,7 +16,6 @@ public class Setting {
 
     private Input input = Input.getInput();
     private Output output = Output.getOutput();
-    private PurchaseException purchaseException = PurchaseException.getPurchaseException();
     private ProviderRandomValue providerRandomValue;
 
     public Setting() {
@@ -36,13 +36,17 @@ public class Setting {
     }
 
     private void manageException(String payment) {
-        isMinimumPayment(payment);
-        isUnitOfThousane(payment);
+        try {
+            isMinimumPayment(payment);
+            isUnitOfThousane(payment);
+        } catch (IllegalArgumentException e){
+            purchaseLotto();
+        }
     }
 
     private void isMinimumPayment(String payment) {
         if (Integer.parseInt(payment) < 1000) {
-            purchaseException.minimumPay();
+            new PurchaseException(Error.MINIMUM_PAYMENT);
         }
     }
 
@@ -50,7 +54,7 @@ public class Setting {
         int value = Integer.parseInt(payment) % 1000;
 
         if (value != 0) {
-            purchaseException.payThousand();
+            new PurchaseException(Error.ONLY_VALUE_THOUSAND);
         }
     }
 

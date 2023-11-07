@@ -2,26 +2,11 @@ package lotto.exception;
 
 import lotto.constant.Error;
 
-public class LottoException {
+public class LottoException extends IllegalArgumentException{
 
-    private static LottoException lottoException = new LottoException();
-
-    private LottoException() {
+    public LottoException(Error error) {
+        super(error.getMessage());
+        System.out.println(error.getMessage());
     }
 
-    public static LottoException getLottoException() {
-        return lottoException;
-    }
-
-    public void invalidCount() {
-        throw new IllegalArgumentException(Error.INVALID_NUMBER_COUNT.getMessage());
-    }
-
-    public void duplicateNumber() {
-        throw new IllegalArgumentException(Error.DUPLICATED_NUMBER.getMessage());
-    }
-
-    public void duplicateBonusNumber() {
-        throw new IllegalArgumentException(Error.DUPLICATED_BONUS_NUMBER.getMessage());
-    }
 }

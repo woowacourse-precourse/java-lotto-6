@@ -1,12 +1,14 @@
 package lotto.domain;
 
+import lotto.constant.Error;
+import lotto.controller.Setting;
 import lotto.exception.LottoException;
 
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    protected LottoException lottoException = LottoException.getLottoException();
+    private Setting setting;
 
     public Lotto(List<Integer> numbers) {
         manageException(numbers);
@@ -14,19 +16,24 @@ public class Lotto {
     }
 
     private void manageException(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplication(numbers);
+        try {
+            validateSize(numbers);
+            validateDuplication(numbers);
+        } catch (IllegalArgumentException e){
+
+        }
+
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            lottoException.invalidCount();
+            new LottoException(Error.INVALID_NUMBER_COUNT);
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            lottoException.duplicateNumber();
+            new LottoException(Error.DUPLICATED_NUMBER);
         }
 
     }

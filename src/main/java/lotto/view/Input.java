@@ -13,7 +13,6 @@ public class Input {
 
     private static Input input = new Input();
     private Output output = Output.getOutput();
-    private InputException inputException = InputException.getInputException();
 
     private Input() {
     }
@@ -34,30 +33,36 @@ public class Input {
             checkBlank(input);
             validateNumber(input);
             endWithSeperator(input);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             inputFromUser();
         }
     }
 
     private void manageSeperatorInputException(String input) {
-        checkBlank(input);
-        endWithSeperator(input);
+        try {
+            checkBlank(input);
+            endWithSeperator(input);
+        } catch (IllegalArgumentException e) {
+            inputFromUser();
+        }
     }
 
     private void checkBlank(String input) {
         if (input.equals("") || input.equals(" ")) {
-            inputException.isBlank();
+            new InputException(Error.ABLE_NUMBER);
         }
     }
 
     private void validateNumber(String input) {
-        if(!isNatural(input)){
-            throw inputException.isNotNaturalNumber(Error.ABLE_NUMBER);
+        if (!isNatural(input)) {
+            new InputException(Error.ABLE_NUMBER);
         }
     }
 
     private void endWithSeperator(String input) {
-
+        if (input.endsWith(",")) {
+            new InputException(Error.ENDS_WITH_SEPERATOR);
+        }
     }
 
     private boolean isNatural(String input) {
@@ -67,7 +72,7 @@ public class Input {
 
     public List<Integer> splitSeperator() {
         String input = readLine();
-        checkBlank(input);
+        manageSeperatorInputException(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
         List<Integer> list = new ArrayList<>();

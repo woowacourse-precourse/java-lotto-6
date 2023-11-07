@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.constant.Error;
+import lotto.exception.LottoException;
+
 import java.util.List;
 
 public class Jackpot extends Lotto{
@@ -20,7 +23,7 @@ public class Jackpot extends Lotto{
         numbers.add(bonus);
 
         if(super.isDuplication(numbers)) {
-            lottoException.duplicateBonusNumber();
+            new LottoException(Error.DUPLICATED_BONUS_NUMBER);
         }
     }
 }

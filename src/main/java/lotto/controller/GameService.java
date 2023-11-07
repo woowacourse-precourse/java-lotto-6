@@ -10,12 +10,12 @@ import java.util.List;
 public class GameService {
 
     private Setting setting;
+    private Judgement judgement;
     private List<Lotto> lottos;
     private Jackpot jackpot;
 
     public GameService() {
         setting = new Setting();
-        lottos = new ArrayList<>();
     }
 
     public void play() {
@@ -23,5 +23,8 @@ public class GameService {
 
         lottos = setting.pickLottos(repetitions);
         jackpot = setting.pickJackpot();
+
+        judgement = new Judgement(lottos, jackpot);
+        judgement.confirmJackpot();
     }
 }

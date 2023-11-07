@@ -9,87 +9,119 @@ import lotto.receiver.ConsoleLottoReceiver;
 import lotto.receiver.LottoReceiver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoManager {
-	private static final int LOTTO_MINIMUM_PRICE = 1000;
-	private static final int ZERO_CHANGE = 0;
-	private static final int LOOP_START_NUMBER = 0;
+    private static final int LOTTO_MINIMUM_PRICE = 1000;
+    private static final int ZERO_CHANGE = 0;
+    private static final int LOOP_START_NUMBER = 0;
+    private static final String SEPARATOR = ",";
 
-	private final LottoPrinter lottoPrinter = new ConsoleLottoPrinter();
-	private final LottoReceiver lottoReceiver = new ConsoleLottoReceiver();
-	private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+    private final LottoPrinter lottoPrinter = new ConsoleLottoPrinter();
+    private final LottoReceiver lottoReceiver = new ConsoleLottoReceiver();
+    private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
-	private int purchasePrice;
-	private int lottoCount;
+    private int purchasePrice;
+    private int lottoCount;
+    private List<Integer> winningNumbers;
 
-	public void run() {
-		receivePurchasePrice();
+    public void run() {
+        receivePurchasePrice();
 
-		List<Lotto> lottos = purchaseLottos();
-		// 당첨 번호 입력
+        List<Lotto> lottos = purchaseLottos();
+        // 당첨 번호 입력
+        receiveWiningNumber();
+        // 보너스 번호 입력
 
-		// 보너스 번호 입력
+        // 계산
+        // 출력
 
-		// 계산
-		// 출력
+    }
 
-	}
+    private void receivePurchasePrice() {
+        boolean isReceived = Boolean.FALSE;
 
-	private void receivePurchasePrice() {
-		boolean isReceived = Boolean.FALSE;
+        lottoPrinter.askInputPurchasePrice();
 
-		lottoPrinter.askInputPurchasePrice();
+        while (!isReceived) {
+            try {
+                isReceived = validatePurchasePrice(lottoReceiver.receive());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        calculateLottoCount();
+    }
 
-		while (!isReceived) {
-			try {
-				isReceived = validatePurchasePrice(lottoReceiver.receive());
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		calculateLottoCount();
-	}
+    private boolean validatePurchasePrice(String purchasePrice) {
+        int validatedPurchasePrice = validatePurchasePriceIsIntegerType(purchasePrice);
 
-	private boolean validatePurchasePrice(String purchasePrice) {
-		int validatedPurchasePrice = validatePurchasePriceIsIntegerType(purchasePrice);
+        this.purchasePrice = validatePurchasePriceIsRightPrice(validatedPurchasePrice);
 
-		this.purchasePrice = validatePurchasePriceIsRightPrice(validatedPurchasePrice);
+        return true;
+    }
 
-		return true;
-	}
+    private int validatePurchasePriceIsIntegerType(String purchasePrice) {
+        try {
+            return Integer.parseInt(purchasePrice);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionInfo.PURCHASE_PRICE_IS_NOT_INTEGER.getMessage());
+        }
+    }
 
-	private int validatePurchasePriceIsIntegerType(String purchasePrice) {
-		try {
-			return Integer.parseInt(purchasePrice);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(ExceptionInfo.PURCHASE_PRICE_IS_NOT_INTEGER.getMessage());
-		}
-	}
-	
-	private int validatePurchasePriceIsRightPrice(int purchasePrice) {
-		if (purchasePrice % LOTTO_MINIMUM_PRICE != ZERO_CHANGE) {
-			throw new IllegalArgumentException(ExceptionInfo.PURCHASE_PRICE_IS_NOT_RIGHT_PRICE.getMessage());
-		}
+    private int validatePurchasePriceIsRightPrice(int purchasePrice) {
+        if (purchasePrice % LOTTO_MINIMUM_PRICE != ZERO_CHANGE) {
+            throw new IllegalArgumentException(ExceptionInfo.PURCHASE_PRICE_IS_NOT_RIGHT_PRICE.getMessage());
+        }
 
-		return purchasePrice;
-	}
+        return purchasePrice;
+    }
 
-	private void calculateLottoCount() {
-		this.lottoCount = this.purchasePrice / LOTTO_MINIMUM_PRICE;
-	}
+    private void calculateLottoCount() {
+        this.lottoCount = this.purchasePrice / LOTTO_MINIMUM_PRICE;
+    }
 
-	private List<Lotto> purchaseLottos() {
-		List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> purchaseLottos() {
+        List<Lotto> lottos = new ArrayList<>();
 
-		for (int i = LOOP_START_NUMBER; i < lottoCount; i++) {
-			lottos.add(new Lotto(lottoNumberGenerator.generateLottoNumber()));
-		}
+        for (int i = LOOP_START_NUMBER; i < lottoCount; i++) {
+            lottos.add(new Lotto(lottoNumberGenerator.generateLottoNumber()));
+        }
 
-		lottoPrinter.noticePurchaseLotto(lottos);
+        lottoPrinter.noticePurchaseLotto(lottos);
 
-		return lottos;
-	}
+        return lottos;
+    }
 
+    private void receiveWiningNumber() {
+        boolean isReceived = Boolean.FALSE;
 
+        lottoPrinter.askWinningNumber();
+
+        while(!isReceived) {
+            try {
+                isReceived = validateWinningNumber(lottoReceiver.receive());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private boolean validateWinningNumber(String winningNumbers) {
+        ArrayList<Integer> validWinningNumber = new ArrayList<>();
+        try {
+            int[] separatedWinningNumber = Arrays.stream(winningNumbers.split(SEPARATOR)).mapToInt(Integer::parseInt)
+                    .toArray();
+            for (int i = LOOP_START_NUMBER; i < separatedWinningNumber.length; i++) {
+                validWinningNumber.add(separatedWinningNumber[i]);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionInfo.WINNING_NUMBERS_ARE_NOT_INTEGER.getMessage());
+        }
+
+        this.winningNumbers = validWinningNumber;
+
+        return true;
+    }
 }

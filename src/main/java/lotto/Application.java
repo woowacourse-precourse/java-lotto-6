@@ -22,7 +22,24 @@ public class Application {
         outputView.printIssueNumbers(issueNumbers, count);
 
         Set<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber();
 
+    }
+
+    private static int setBonusNumber() {
+        boolean askAgain = true;
+        int bonusNumber =0;
+        while (askAgain) {
+            askAgain = false;
+            String bonusNumberInput = inputView.inputBonusNumber();
+            try {
+                bonusNumber = validator.validateBonusNumber(bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                askAgain = true;
+            }
+        }
+        return bonusNumber;
     }
 
     private static Set<Integer> setWinningNumbers() {

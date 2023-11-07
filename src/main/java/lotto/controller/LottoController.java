@@ -5,6 +5,7 @@ import static lotto.view.View.requestWinningNumbers;
 
 import lotto.domain.DrawnNumbers;
 import lotto.domain.Lottos;
+import lotto.domain.WinningResult;
 import lotto.dto.DrawnNumbersDto;
 import lotto.view.View;
 
@@ -28,6 +29,7 @@ public class LottoController {
     }
 
     private void conclude(Lottos lottos, DrawnNumbers drawnNumbers) {
+        WinningResult winningResult = WinningResult.of(lottos, drawnNumbers);
         View.printLottoResult();
     }
 

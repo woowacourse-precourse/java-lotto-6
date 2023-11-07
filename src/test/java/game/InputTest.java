@@ -64,4 +64,12 @@ public class InputTest {
         String input = "1,2,3,4,5,육";
         assertThrows(IllegalArgumentException.class, () -> inputValidator.checkInputValue(input));
     }
+
+    @DisplayName("당첨 번호와 보너스 번호 중복 시 오류가 발생한다.")
+    @Test
+    void bonusNumberDuplicate(){
+        numbers.add(6);
+        int bonusNumber = 6;
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.checkBonusNumber(bonusNumber, numbers));
+    }
 }

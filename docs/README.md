@@ -36,9 +36,10 @@
     - [x] 수익률 출력
 
 ### 프로그래밍 요구 사항
-1. Java enum 사용
+
++ Java enum 사용
   - Prize
-  - Output의 PrizeNotice
-1. else예약어 사용 하지 않는다.
-1. 핵심 로직과 UI로직은 분리한다.
+  - Output의 PrizeNotice 
++ else예약어 사용 하지 않는다.
++ 핵심 로직과 UI로직은 분리한다.
   - Controller에 예외 처리하는 메소드를 만들어서 Lotto에서 그 메소드를 불러오도록 함. 

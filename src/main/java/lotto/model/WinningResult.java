@@ -46,15 +46,16 @@ public enum WinningResult {
 
     public static void checkWinning(int bonus, List<Integer> winningNumber, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            compareLotto(bonus, winningNumber, lotto.getNumbers());
+            int winningCount = (int) lotto.getNumbers().stream()
+                    .filter(winningNumber::contains)
+                    .count();
+
+            compareLotto(bonus, winningCount, lotto.getNumbers());
         }
     }
 
-    private static void compareLotto(int bonus, List<Integer> winningNumber, List<Integer> lotto) {
+    private static void compareLotto(int bonus, int winningCount, List<Integer> lotto) {
         boolean isBonus = false;
-        int winningCount = (int) lotto.stream()
-                .filter(winningNumber::contains)
-                .count();
 
         if (lotto.contains(bonus)) {
             winningCount++;

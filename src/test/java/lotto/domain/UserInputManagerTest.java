@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.domain.LottoGame.*;
 import static lotto.domain.LottoNumber.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,15 +8,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserInputManagerTest {
-	private final static int COST_UNIT = 1000;
 	static Class<UserInputManager> testClass = UserInputManager.class;
 
-	@DisplayName(COST_UNIT + "의 배수 입력")
+	@DisplayName(LOTTO_PRICE + "의 배수 입력")
 	@Test
 	public void checkPurchaseAmountIsValidTestWithValidValue() throws Throwable {
 		String testMethodName = "checkPurchaseAmountIsValid";
@@ -53,10 +54,10 @@ class UserInputManagerTest {
 		testMethod.setAccessible(true);
 
 		try {
-			testMethod.invoke(testClass, String.valueOf(COST_UNIT - 1));
+			testMethod.invoke(testClass, String.valueOf(LOTTO_PRICE - 1));
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] " + COST_UNIT + " 이상의 숫자를 입력하세요.");
+				.hasMessage("[ERROR] " + LOTTO_PRICE + " 이상의 숫자를 입력하세요.");
 		}
 	}
 
@@ -68,8 +69,8 @@ class UserInputManagerTest {
 		String testMethodName = "checkPurchaseAmountIsValid";
 		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class);
 		testMethod.setAccessible(true);
-		int value = COST_UNIT + 1;
-		while (value % COST_UNIT == 0) {
+		int value = LOTTO_PRICE + 1;
+		while (value % LOTTO_PRICE == 0) {
 			value += 1;
 		}
 
@@ -77,7 +78,7 @@ class UserInputManagerTest {
 			testMethod.invoke(testClass, String.valueOf(value));
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] 구입 금액은 " + COST_UNIT + " 단위로 입력하세요.");
+				.hasMessage("[ERROR] 구입 금액은 " + LOTTO_PRICE + " 단위로 입력하세요.");
 		}
 	}
 
@@ -179,7 +180,7 @@ class UserInputManagerTest {
 	@Test
 	public void checkBonusNumberIsValidTestWithValidValue() throws Throwable {
 		String testMethodName = "checkBonusNumberIsValid";
-		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, List.class);
 		testMethod.setAccessible(true);
 
 		try {
@@ -194,7 +195,7 @@ class UserInputManagerTest {
 	@Test
 	public void checkBonusNumberIsValidTestWithBlankInput() throws NoSuchMethodException, IllegalAccessException {
 		String testMethodName = "checkBonusNumberIsValid";
-		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, List.class);
 		testMethod.setAccessible(true);
 
 		try {
@@ -208,7 +209,7 @@ class UserInputManagerTest {
 	@Test
 	public void checkBonusNumberIsValidTestWithNumberNotInRange() throws NoSuchMethodException, IllegalAccessException {
 		String testMethodName = "checkBonusNumberIsValid";
-		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, List.class);
 		testMethod.setAccessible(true);
 
 		try {
@@ -222,7 +223,7 @@ class UserInputManagerTest {
 	@Test
 	public void checkBonusNumberIsValidTestWithDuplicatedNumber() throws NoSuchMethodException, IllegalAccessException {
 		String testMethodName = "checkBonusNumberIsValid";
-		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, List.class);
 		testMethod.setAccessible(true);
 
 		try {

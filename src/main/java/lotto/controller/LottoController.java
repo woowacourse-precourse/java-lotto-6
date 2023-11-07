@@ -28,4 +28,12 @@ public class LottoController {
         lottoView.outputLottoTicketNumbersView(lottoService.getLottoTickets());
     }
 
+    public void setLottoWinningNumbers() {
+        lottoView.inputWinnerNumbersView();
+        lottoService.inputWinnerNumbers();
+
+        lottoView.inputBonusNumberView();
+        lottoService.inputBonusNumber();
+    }
+
 }

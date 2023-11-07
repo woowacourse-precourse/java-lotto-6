@@ -11,7 +11,8 @@ import lotto.exception.LottoException;
 public class BonusNumber {
 
     private static int bonusNumber;
-    public static int bonusNumber(String input, List<Integer> winningNumbers){
+
+    public static int bonusNumber(String input, List<Integer> winningNumbers) {
         validateEmpty(input);
         validateNumber(input);
 
@@ -23,9 +24,9 @@ public class BonusNumber {
     }
 
     private static void validateRange(int bonusNumber) {
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw LottoException.of(INVALID_RANGE);
-            }
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw LottoException.of(INVALID_RANGE);
+        }
 
     }
 

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static java.lang.String.valueOf;
 import static lotto.exception.ErrorMessage.IS_NOT_MULTIPLE_OF_THOUSAND;
 import static lotto.validator.InputValidator.validateEmpty;
 import static lotto.validator.InputValidator.validateNumber;
@@ -30,7 +29,7 @@ public class PurchaseAmount {
     }
 
 
-    public static int getPurchaseAmount(){
+    public static int getPurchaseAmount() {
         return purchaseAmount;
     }
 

@@ -17,27 +17,29 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Result;
+
 public class LottoController {
     private static int count;
     private static int bonusNumber;
     private static List<Integer> randomNumbers = new ArrayList<>();
     private static List<Lotto> lotto;
     private static List<Integer> winningNumbers;
-    public static void prosess (){
+
+    public static void prosess() {
         try {
-        start();
-        createLottoNumber();
-        inputWinningNumbers();
-        result();
-        } catch (IllegalArgumentException e){
+            start();
+            createLottoNumber();
+            inputWinningNumbers();
+            result();
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
     public static void start() {
-            PurchaseAmount.creat(requestPurchaseAmount());
-            count = PurchaseAmount.count;
-            responseCount(count);
+        PurchaseAmount.creat(requestPurchaseAmount());
+        count = PurchaseAmount.count;
+        responseCount(count);
     }
 
     public static List<Lotto> createLottoNumber() {
@@ -64,7 +66,7 @@ public class LottoController {
 
     }
 
-    public static void inputBonusNumber(List<Integer> winningNumbers){
+    public static void inputBonusNumber(List<Integer> winningNumbers) {
         String input = requestBonusNumber();
         bonusNumber = bonusNumber(input, winningNumbers);
     }

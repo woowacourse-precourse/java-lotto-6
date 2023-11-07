@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.PurchaseAmount.count;
 import static lotto.domain.PurchaseAmount.getPurchaseAmount;
 
 import java.util.HashMap;
@@ -39,30 +38,48 @@ public class Result {
             int matchCount = countMatchingNumbers(lottoTicket.getNumbers(), winningNumbers);
             boolean hasBonusNumber = lottoTicket.getNumbers().contains(bonusNumber);
 
-            if (matchCount == 6) {
-                countMatchSix++;
-            }
-            if (matchCount == 5 && hasBonusNumber) {
-                countMatchFiveWithBonus++;
-            }
-            if (matchCount == 5 && !hasBonusNumber) {
-                countMatchFive++;
-            }
-            if (matchCount == 4) {
-                countMatchFour++;
-            }
-            if (matchCount == 3) {
-                countMatchThree++;
-            }
+            totalPrize += calculatePrizeForTicket(matchCount, hasBonusNumber);
+            updateCounters(matchCount, hasBonusNumber);
         }
 
-        totalPrize += countMatchSix * 2_000_000_000;
-        totalPrize += countMatchFiveWithBonus * 30_000_000;
-        totalPrize += countMatchFive * 1_500_000;
-        totalPrize += countMatchFour * 50_000;
-        totalPrize += countMatchThree * 5_000;
-
         return totalPrize;
+    }
+
+    private static int calculatePrizeForTicket(int matchCount, boolean hasBonusNumber) {
+        if (matchCount == 6) {
+            return 2_000_000_000;
+        }
+        if (matchCount == 5 && hasBonusNumber) {
+            return 30_000_000;
+        }
+        if (matchCount == 5 && !hasBonusNumber) {
+            return 1_500_000;
+        }
+        if (matchCount == 4) {
+            return 50_000;
+        }
+        if (matchCount == 3) {
+            return 5_000;
+        }
+        return 0;
+    }
+
+    private static void updateCounters(int matchCount, boolean hasBonusNumber) {
+        if (matchCount == 6) {
+            countMatchSix++;
+        }
+        if (matchCount == 5 && hasBonusNumber) {
+            countMatchFiveWithBonus++;
+        }
+        if (matchCount == 5 && !hasBonusNumber) {
+            countMatchFive++;
+        }
+        if (matchCount == 4) {
+            countMatchFour++;
+        }
+        if (matchCount == 3) {
+            countMatchThree++;
+        }
     }
 
     private static int countMatchingNumbers(List<Integer> userNumbers, List<Integer> winningNumbers) {

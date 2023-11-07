@@ -15,7 +15,7 @@ public class Lotto {
         validateLottoLength(numbers);
         validateDuplicateNumbers(numbers);
         validateLottoRegex(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     private boolean isLengthSix(List<Integer> numbers) {

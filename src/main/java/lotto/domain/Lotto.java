@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.constant.ExceptionConstant;
@@ -38,7 +39,7 @@ public class Lotto implements Comparable<Lotto> {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     public boolean isCompareByBonusNumber(int bonusNumber) {

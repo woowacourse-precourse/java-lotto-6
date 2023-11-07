@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -12,8 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = getSortedList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -41,5 +41,9 @@ public class Lotto {
         return formattedLottoNumbers.toString();
     }
 
-
+    private List<Integer> getSortedList(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
+    }
 }

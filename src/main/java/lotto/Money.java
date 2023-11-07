@@ -19,12 +19,8 @@ public class Money {
     }
 
     private void validate(int money) {
-        if (money % 1000 != 0) {
+        if (money % 1000 != 0 || money == 0) {
             throw new IllegalArgumentException(ExceptionList.MONEYUNITEXCEPTION.content());
         }
-    }
-
-    public void printLottoCount() {
-        System.out.println("\n" + lottoCount + "개를 구입했습니다.");
     }
 }

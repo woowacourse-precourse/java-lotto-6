@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 public class LottoGame {
     public void LottoStart() {
         Money money = inputMoney();
-        money.printLottoCount();
 
         LottoNumbers lottoNumbers = new LottoNumbers();
         LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(money.getLottoCount()));
+        lottoList.printLottoCount();
         lottoList.printLottoList();
 
         Lotto input_lotto = inputLotto();

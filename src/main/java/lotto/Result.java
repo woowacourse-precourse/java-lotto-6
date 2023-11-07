@@ -26,7 +26,7 @@ public class Result {
         int count = 0;
         for (int i = 0; i < countLotto.size(); i++) {
             if (countLotto.get(i) == 5 && !countBonusLotto.get(i)) {
-                count += 1;
+                count++;
             }
         }
         return count;
@@ -36,7 +36,7 @@ public class Result {
         int count = 0;
         for (int i = 0; i < countLotto.size(); i++) {
             if (countLotto.get(i) == 5 && countBonusLotto.get(i)) {
-                count += 1;
+                count++;
             }
         }
         return count;
@@ -57,11 +57,11 @@ public class Result {
 
     public void printResult() {
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + count3Match());
-        System.out.println("4개 일치 (50,000원) - " + count4Match());
-        System.out.println("5개 일치 (1,500,000원) - " + count5Match());
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count5MatchWithBonus());
-        System.out.println("6개 일치 (2,000,000,000원) - " + count6Match());
+        System.out.println("3개 일치 (5,000원) - " + count3Match() + "개");
+        System.out.println("4개 일치 (50,000원) - " + count4Match() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + count5Match() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count5MatchWithBonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + count6Match() + "개");
         System.out.printf("총 수익률은 %,.1f".formatted(rateOfReturn));
         System.out.println("%입니다.");
     }

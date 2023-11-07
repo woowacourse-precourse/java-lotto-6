@@ -18,6 +18,7 @@ public class WinningNumber {
     private WinningNumber(String input) {
         isBlank(input);
         input = input.trim();
+        validateCommaAtBothEndsForInput(input);
         String[] numbers = input.split(COMMA);
 
         winningNumbers = Arrays.stream(numbers).map(LottoNumber::newInstance).toList();
@@ -28,6 +29,19 @@ public class WinningNumber {
     }
 
 
+    private void validateCommaAtBothEndsForInput(String input) {
+        if (startsWithComma(input) || endsWithComma(input)) {
+            throw new IllegalArgumentException(ERROR_NO_INPUT_COMMA_IN_START_AND_END);
+        }
+    }
+
+    private boolean startsWithComma(String input) {
+        return input.charAt(INIT_NUM) == COMMA_CHARACTER;
+    }
+
+    private boolean endsWithComma(String input) {
+        return input.charAt(input.length() - ONE) == COMMA_CHARACTER;
+    }
 
     private void isBlank(String input) {
         if (input != null && !input.isBlank()) {

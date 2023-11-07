@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static lotto.constant.LottoNumber.PURCHASE_UNIT;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -26,4 +29,25 @@ public class LottoPublisherTest {
 
         assertEquals(expectedLottoAmount, actualLottoAmount);
     }
+
+    @Test
+    void 로또_발행() {
+        assertRandomUniqueNumbersInRangeTest(
+                ()->{
+                    LottoPublisher lottoPublisher = new LottoPublisher("3000");
+                    List<Lotto> userLottos = lottoPublisher.getUserLottos();
+
+                    assertThat(userLottos.get(0).getNumbers())
+                            .containsExactly(10, 20, 30, 40, 50, 60);
+                    assertThat(userLottos.get(1).getNumbers())
+                            .containsExactly(3, 6, 9, 12, 15, 18);
+                    assertThat(userLottos.get(2).getNumbers())
+                            .containsExactly(4, 12, 20, 28, 36, 44);
+                },
+                List.of(10, 20, 30, 40, 50, 60),
+                List.of(3, 6, 9, 12, 15, 18),
+                List.of(4, 12, 20, 28, 36, 44)
+        );
+    }
+
 }

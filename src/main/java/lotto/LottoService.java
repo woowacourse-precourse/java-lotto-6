@@ -39,6 +39,22 @@ public class LottoService {
         }
     }
 
+    public List<Integer> inputWinningNumbers() {
+        while (true) {
+            String input = Console.readLine().trim();
+            List<Integer> winningNumbers = new ArrayList<>();
+            try {
+                for (String number : input.split(", ")) {
+                    validateOneNumber(number);
+                    winningNumbers.add(Integer.parseInt(number));
+                }
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private void containsNonNumericCharacters(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());

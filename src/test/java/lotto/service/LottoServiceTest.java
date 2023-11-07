@@ -58,6 +58,6 @@ class LottoServiceTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumber = List.of(1, 2, 7, 8, 9, 10);
         int bonusNumber = 6;
-        assertThat(LottoService.getResult(lotto, winningNumber, bonusNumber)).isEqualTo(Prize.None);
+        assertThat(LottoService.getResult(lotto, winningNumber, bonusNumber)).isEqualTo(Prize.NONE);
     }
 }

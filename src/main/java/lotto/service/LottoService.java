@@ -35,6 +35,6 @@ public class LottoService {
         if (lotto.match(winningNumbers) == 3) {
             return Prize.FIFTH;
         }
-        return Prize.None;
+        return Prize.NONE;
     }
 }

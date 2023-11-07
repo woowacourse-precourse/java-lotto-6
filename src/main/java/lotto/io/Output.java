@@ -26,16 +26,13 @@ public class Output {
         System.out.println(NOTICE_MESSAGE);
         statistics.forEach((prize, count) -> {
             if (prize == Prize.SECOND) {
-                System.out.printf(PRINT_MATCH_BONUS_NUMBER_MESSAGE,
-                        prize.getMatchCount(),
-                        prize.getPrizeMoney(),
-                        count);
+                System.out.printf(PRINT_MATCH_BONUS_NUMBER_MESSAGE, prize.getMatchCount(), prize.getPrizeMoney(), count);
                 return;
             }
-            System.out.printf(PRINT_MATCH_MASSAGE,
-                    prize.getMatchCount(),
-                    prize.getPrizeMoney(),
-                    count);
+            if (prize == Prize.NONE) {
+                return;
+            }
+            System.out.printf(PRINT_MATCH_MASSAGE, prize.getMatchCount(), prize.getPrizeMoney(), count);
         });
     }
 
@@ -44,7 +41,7 @@ public class Output {
             List<Integer> winningNumbers,
             int bonusNumber)
     {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###.0");
+        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
         double profitRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
         System.out.printf(PRINT_PROFIT_RATE_MESSAGE, decimalFormat.format(profitRate));
     }

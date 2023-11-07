@@ -15,13 +15,7 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    public void run() {
-        startGame();
-        playGame();
-        endGame();
-    }
-
-    private void startGame() {
+    public void startGame() {
         String rawInput = inputView.requestInputLottoMoney();
         int lottoMoney = convertRawInputLottoMoneyToInt(rawInput);
 

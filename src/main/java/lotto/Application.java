@@ -11,6 +11,8 @@ public class Application {
         OutputView outputView = new OutputView();
         GameService gameService = new GameService();
         GameController gameController = new GameController(inputView, outputView, gameService);
-        gameController.run();
+        gameController.startGame();
+        gameController.playGame();
+        gameController.endGame();
     }
 }

@@ -19,7 +19,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumberRange(int bonusNumber) {
+    static void validateNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_NUMBER);
         }

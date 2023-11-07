@@ -1,4 +1,4 @@
-package lotto.utils.constants;
+package lotto.constants;
 
 public class ServiceConstants {
     public static final int INITIAL_COUNT = 0;

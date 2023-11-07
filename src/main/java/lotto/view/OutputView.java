@@ -5,7 +5,7 @@ import lotto.domain.PurchasedLotto;
 
 import java.util.Map;
 
-import static lotto.utils.constants.OutputConstants.*;
+import static lotto.constants.OutputConstants.*;
 
 public class OutputView {
     public void purchaseLottoMessage() {

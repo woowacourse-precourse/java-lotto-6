@@ -2,9 +2,11 @@ package lotto.domain;
 
 import lotto.exception.InvalidInputException;
 
-import static lotto.utils.constants.BonusNumberConstants.*;
-import static lotto.utils.constants.InputConstants.INVALID_INPUT_MESSAGE;
-import static lotto.utils.constants.InputConstants.NUMERIC;
+import static lotto.constants.DomainConstants.MAX_BONUS_NUMBER;
+import static lotto.constants.DomainConstants.MIN_BONUS_NUMBER;
+import static lotto.constants.InputConstants.NUMERIC;
+import static lotto.constants.InvalidExceptionConstants.INVALID_BONUS_NUMBER_RANGE_MESSAGE;
+import static lotto.constants.InvalidExceptionConstants.INVALID_INPUT_MESSAGE;
 
 
 public class BonusNumber {

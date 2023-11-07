@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.utils.constants.ServiceConstants.*;
+import static lotto.constants.ServiceConstants.*;
 
 public class LottoService {
     public Long purchaseLottoWithValidPrice(Long inputMoney) {

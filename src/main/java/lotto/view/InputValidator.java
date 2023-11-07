@@ -6,8 +6,10 @@ import lotto.exception.InvalidInputException;
 
 import java.util.List;
 
-import static lotto.utils.constants.InputConstants.*;
-import static lotto.utils.constants.WinningLottoConstants.*;
+import static lotto.constants.DomainConstants.*;
+import static lotto.constants.InputConstants.NUMERIC;
+import static lotto.constants.InputConstants.SPLIT_STANDARD;
+import static lotto.constants.InvalidExceptionConstants.*;
 
 public class InputValidator {
     public void validateInputMoney(String inputMoney) {

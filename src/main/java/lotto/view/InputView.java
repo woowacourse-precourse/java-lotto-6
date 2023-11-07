@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.utils.constants.InputConstants.SPLIT_STANDARD;
+import static lotto.constants.InputConstants.SPLIT_STANDARD;
 
 public class InputView {
 

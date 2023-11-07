@@ -1,4 +1,4 @@
-package lotto.utils.constants;
+package lotto.constants;
 
 public class OutputConstants {
     public static final String PURCHASE_LOTTO_MESSAGE = "구입금액을 입력해 주세요.";

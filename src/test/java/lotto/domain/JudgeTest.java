@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import lotto.domain.Judge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class JudgeTest {
     private static final int FIRST_PLACE_AMOUNT = 2_000_000_000;

@@ -32,8 +32,9 @@ public class Lotto {
     }
 
     private static List<Integer> createLottoNumber() {
-        List<Integer> lottoNumbers = pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_RANGE);
-        lottoNumbers.sort(Integer::compareTo);
-        return lottoNumbers;
+        return pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_RANGE)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

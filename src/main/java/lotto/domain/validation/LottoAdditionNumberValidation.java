@@ -1,8 +1,8 @@
 package lotto.domain.validation;
 
-import java.util.HashSet;
+import lotto.constants.ErrorMassageConstants;
+
 import java.util.List;
-import java.util.Set;
 
 import static java.lang.Integer.parseInt;
 import static lotto.constants.LottoNumberConstants.MAX_LOTTO_NUMBER;
@@ -23,21 +23,20 @@ public class LottoAdditionNumberValidation {
         try {
             return parseInt(additionNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : The provided addition number is not a valid integer.", e);
+            throw new IllegalArgumentException(ErrorMassageConstants.CONVERT_ADDITION_NUMBER_ERROR_MESSAGE.getMessage(), e);
         }
     }
 
     private void additionNumberInRange() {
         if(additionNumber < MIN_LOTTO_NUMBER || additionNumber > MAX_LOTTO_NUMBER){
-            throw new IllegalArgumentException("[ERROR] : The addition number is out of the valid range (" +
-                    MIN_LOTTO_NUMBER + " - " + MAX_LOTTO_NUMBER + ").");
+            throw new IllegalArgumentException(ErrorMassageConstants.ADDITION_NUMBER_IN_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void additionNumberDuplicateInWinningNumber() {
         for (int number : lottoWinningNumbers) {
             if (number == additionNumber) {
-                throw new IllegalArgumentException("[ERROR] : The addition number should not duplicate any of the main winning numbers.");
+                throw new IllegalArgumentException(ErrorMassageConstants.ADDITION_NUMBER_DUPLICATE_ERROR_MESSAGE.getMessage());
             }
         }
         lottoWinningNumbers.add(additionNumber);

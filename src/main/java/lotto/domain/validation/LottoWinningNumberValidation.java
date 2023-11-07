@@ -1,5 +1,7 @@
 package lotto.domain.validation;
 
+import lotto.constants.ErrorMassageConstants;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -24,22 +26,21 @@ public class LottoWinningNumberValidation {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : The provided winning numbers are not valid integers: ", e);
+            throw new IllegalArgumentException(ErrorMassageConstants.CONVERT_LOTTO_WINNING_NUMBER_ERROR_MESSAGE.getMessage(), e);
         }
     }
 
     private void duplicatedWinningNumber(){
         Set<Integer> set = new HashSet<>(lottoWinningNumbers);
         if(set.size() != lottoWinningNumbers.size()){
-            throw new IllegalArgumentException("[ERROR] : The provided winning numbers contain duplicates.");
+            throw new IllegalArgumentException(ErrorMassageConstants.WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void allNumbersInRange() {
         for (int number : lottoWinningNumbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] : Lotto numbers must be in the range of " +
-                        MIN_LOTTO_NUMBER + " to " + MAX_LOTTO_NUMBER + ".");
+                throw new IllegalArgumentException(ErrorMassageConstants.WINNING_NUMBERS_IN_RANGE_ERROR_MESSAGE.getMessage());
             }
         }
     }

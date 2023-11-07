@@ -30,13 +30,13 @@ public class LottoStatisticsDomain {
         int count = (int) oneLotto.stream()
                 .filter(winningLottoNumber::contains)
                 .count();
-        if(count == LOTTO_NUMBER_RANGE && isAdditionNumber(oneLotto)){
+        if(count == LOTTO_NUMBER_RANGE & isAdditionNumber(oneLotto)){
             return -count;
         }
         return count;
     }
 
     private boolean isAdditionNumber(List<Integer> oneLotto) {
-        return oneLotto.contains(winningLottoNumber.get(LOTTO_WINNING_NUMBER_RANGE - 1));
+        return oneLotto.contains(winningLottoNumber.get(LOTTO_NUMBER_RANGE));
     }
 }

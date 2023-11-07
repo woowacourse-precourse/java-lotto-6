@@ -4,11 +4,14 @@ import lotto.constants.WinningAmountOfLottoFloat;
 import lotto.constants.WinningAmountOfLottoString;
 import lotto.constants.WinningLottoCount;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.nCopies;
+import static lotto.constants.LottoNumberConstants.LOTTO_NUMBER_RANGE;
 import static lotto.constants.LottoWinningResultConstants.*;
+import static lotto.constants.NumberOfLottoPurchaseConstants.ONE_LOTTO_AMOUNT;
 
 public class LottoWinningStatisticsView {
     private List<Integer> lottoStatisticsTable;
@@ -21,9 +24,10 @@ public class LottoWinningStatisticsView {
     public void lottoStatisticsView(List<Integer> lottoStatistics) {
         lottoStatisticsInit(lottoStatistics);
         lottoStatistics();
-        float purchaseMoney = lottoStatistics.size() * 1000;
-        lottoReturns = lottoReturns / purchaseMoney;
-        System.out.printf(LOTTO_RETURNS, lottoReturns * 100);
+        float purchaseMoney = lottoStatistics.size() * ONE_LOTTO_AMOUNT;
+        DecimalFormat df = new DecimalFormat(SECOND_DECIMAL_PLACE);
+        lottoReturns = lottoReturns / purchaseMoney * PERCENTAGE_FACTOR;
+        System.out.printf(LOTTO_RETURNS, df.format(lottoReturns) + PERCENTAGE);
     }
 
     private void lottoStatisticsInit(List<Integer> lottoStatistics) {
@@ -33,13 +37,14 @@ public class LottoWinningStatisticsView {
         for(Integer i : lottoStatistics) {
             oneLottoStatisticsResult(i);
             haveAdditionNumber(i);
+            haveFullWinningNumber(i);
         }
     }
 
     private void oneLottoStatisticsResult(int index) {
-        if (index - 3 >= 0) {
-            int lastCount = lottoStatisticsTable.get(index - 3);
-            lottoStatisticsTable.set(index - 3, lastCount + 1);
+        if (index >= MIN_LOTTO_WINNING_NUMBER_COUNT & index != LOTTO_NUMBER_RANGE) {
+            int lastCount = lottoStatisticsTable.get(index - MIN_LOTTO_WINNING_NUMBER_COUNT);
+            lottoStatisticsTable.set(index - MIN_LOTTO_WINNING_NUMBER_COUNT, lastCount + 1);
         }
     }
 
@@ -47,6 +52,13 @@ public class LottoWinningStatisticsView {
         if(index < 0){
             int lastCount = lottoStatisticsTable.get(ADDITION_NUMBER);
             lottoStatisticsTable.set(ADDITION_NUMBER, lastCount + 1);
+        }
+    }
+
+    private void haveFullWinningNumber(int index){
+        if(index == LOTTO_NUMBER_RANGE){
+            int lastCount = lottoStatisticsTable.get(MAX_LOTTO_WINNING_NUMBER_INDEX);
+            lottoStatisticsTable.set(MAX_LOTTO_WINNING_NUMBER_INDEX, lastCount + 1);
         }
     }
 

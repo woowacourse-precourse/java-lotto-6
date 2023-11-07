@@ -1,5 +1,7 @@
 package lotto.domain.validation;
 
+import lotto.constants.ErrorMassageConstants;
+
 import static java.lang.Integer.parseInt;
 
 public class LottoPurchaseAmountValidation {
@@ -21,19 +23,19 @@ public class LottoPurchaseAmountValidation {
         try {
             return parseInt(amountStr);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : The provided lotto purchase amount is not a valid integer: ", e);
+            throw new IllegalArgumentException(ErrorMassageConstants.CONVERT_PURCHASE_AMOUNT_ERROR_MESSAGE.getMessage(), e);
         }
     }
 
     private void checkAmountIsAThousandUnits(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] : The provided amount is not a multiple of 1000: " + amount);
+            throw new IllegalArgumentException(ErrorMassageConstants.AMOUNT_IS_A_THOUSAND_UNITS_ERROR_MESSAGE.getMessage() + amount);
         }
     }
 
     private void checkAmountAtLeastOneLottoPrice(int amount) {
         if (amount < 1000) {
-            throw new IllegalArgumentException("[ERROR] : The provided amount is less than the minimum lotto purchase amount: " + amount);
+            throw new IllegalArgumentException(ErrorMassageConstants.AMOUNT_LEAST_ONE_LOTTO_PRICE_ERROR_MESSAGE.getMessage() + amount);
         }
     }
 }

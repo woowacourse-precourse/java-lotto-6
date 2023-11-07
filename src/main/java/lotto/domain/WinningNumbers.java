@@ -24,4 +24,11 @@ public class WinningNumbers {
         Validation.validateNumberListInRange(winningNumbers, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

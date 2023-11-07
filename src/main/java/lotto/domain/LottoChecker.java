@@ -2,7 +2,8 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
 
 public class LottoChecker {
 
@@ -19,16 +20,17 @@ public class LottoChecker {
     }
 
     public Map<Rank, Integer> checkWinningResult(LottoTickets lottoTickets) {
+        initWinningResult();
         Map<Lotto, Rank> rankByLotto = findRankByLotto(lottoTickets);
-
-        winningResult = Arrays.stream(Rank.values())
-                .collect(Collectors.toMap(rank -> rank, rank -> 0));
-
         for (Rank rank : rankByLotto.values()) {
             winningResult.put(rank, winningResult.get(rank) + 1);
         }
-
         return winningResult;
+    }
+
+    private void initWinningResult() {
+        winningResult = Arrays.stream(Rank.values())
+                .collect(toMap(rank -> rank, rank -> 0));
     }
 
     private Map<Lotto, Rank> findRankByLotto(LottoTickets lottoTickets) {

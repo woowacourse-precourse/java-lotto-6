@@ -22,8 +22,7 @@ public class LottoPurchaseValidator {
     }
 
     void vaildIntegerPurchaseAmount(String input) {
-        String regex = "[+-]?\\d*(\\.\\d+)?";
-        if (!input.matches(regex)) {
+        if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액에는 숫자만 입력해주세요.");
         }
     }

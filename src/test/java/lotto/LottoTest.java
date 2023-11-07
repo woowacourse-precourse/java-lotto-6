@@ -20,9 +20,10 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+        List<Integer> numbersWithDuplicates = List.of(1, 2, 3, 4, 5, 5);
 
-    // 아래에 추가 테스트 작성 가능
+        assertThatThrownBy(() -> new Lotto(numbersWithDuplicates))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 번호 중 중복된 값이 있습니다.");
+    }
 }

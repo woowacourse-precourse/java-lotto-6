@@ -1,11 +1,18 @@
 package lotto.domain;
 
+import lotto.view.InputView;
+
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class LottoResult {
     private final HashMap<Rank, Integer> result = new HashMap<>();
+
+    public HashMap<Rank, Integer> getResult() {
+        return result;
+    }
 
     public void calculateWinningResult(Lottos lottos, String inputWinningNumber, int bonusNumber) {
         for (Lotto lotto : lottos.getLottos()) {
@@ -14,9 +21,9 @@ public class LottoResult {
         }
     }
 
-    public String calculateProfitRate(String inputPrice) {
+    public String calculateProfitRate(int inputPrice) {
         double totalPrize = 0;
-        double userPrice = Double.parseDouble(inputPrice);
+        double userPrice = (double) inputPrice;
 
         for (Rank rank : result.keySet()) {
             totalPrize += rank.getWinningAmount() * result.get(rank);
@@ -26,11 +33,13 @@ public class LottoResult {
 
         profitRate = Math.round(profitRate * 100) / 100.0;
 
-        return String.format("%.1f", profitRate);
+        NumberFormat formatter = NumberFormat.getInstance();
+        formatter.setMinimumFractionDigits(1);
+        return formatter.format(profitRate);
     }
 
     private Rank checkRank(Lotto lotto, String inputWinningNumber, int bonusNumber) {
-        List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(","))
+        List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(InputView.COMMA))
                 .map(Integer::parseInt)
                 .toList();
 
@@ -44,13 +53,23 @@ public class LottoResult {
     }
 
     private Rank findRank(int matchCount, boolean matchBonus) {
-        for (Rank rank : Rank.values()) {
-            if (rank.getMatchCount() == matchCount && rank.isMatchBonous() == matchBonus) {
-                return rank;
-            }
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.getMatchCount() == matchCount && matchCondition(rank, matchCount, matchBonus))
+                .findFirst()
+                .orElse(Rank.MATCH_0);
+    }
+
+    private boolean matchCondition(Rank rank, int matchCount, boolean matchBonus) {
+        if (rank.getMatchCount() != matchCount) {
+            return false;
         }
 
-        return Rank.MATCH_0;
+        if (matchCount == 5) {
+            return rank.isMatchBonous() == matchBonus;
+        }
+
+        return true;
     }
+
 
 }

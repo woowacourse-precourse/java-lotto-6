@@ -4,6 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
+    public static void validateAmount(String amount) {
+        Validator.checkBlankOrNULL(amount);
+        Validator.checkContainSpace(amount);
+        Validator.checkNAN(amount);
+        Validator.checkDividedBy(1000, Integer.parseInt(amount));
+    }
+
     // 공백이거나 NULL인지 검증
     public static void checkBlankOrNULL(String input) {
         if (input.equals("") || input == null)

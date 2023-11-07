@@ -18,6 +18,8 @@ public class Lottos {
         return this.lottos;
     }
 
+    public void addLottos(Lotto lotto){ this.lottos.add(lotto);}
+
     public List<Integer> getWinningCounts() {
         return this.winningCounts;
     }
@@ -25,5 +27,6 @@ public class Lottos {
     public void addLottoRank(int count) {
         this.winningCounts.add(count);
     }
+
 
 }

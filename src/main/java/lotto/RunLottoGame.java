@@ -8,11 +8,12 @@ public class RunLottoGame {
     public void start() {
         prepareLotto();
         publishLotto();
+        winningLotto();
     }
 
     public void prepareLotto() {
-        InputManager inputManager = new InputManager();
-        int moneyInput = inputManager.inputMoney();
+        InputManager inputMoneyManager = new InputManager();
+        int moneyInput = inputMoneyManager.inputMoney();
 
         LottoQuantityManager lottoquantitymanager = new LottoQuantityManager();
         lottoQuantity = lottoquantitymanager.calculateLottoQuantity(moneyInput);
@@ -25,5 +26,10 @@ public class RunLottoGame {
         OutputManager outputManager = new OutputManager();
         outputManager.printLottoQuantity(lottoQuantity);
         outputManager.printAllLottoNumbers(allRandomLottoNumbers);
+    }
+
+    public void winningLotto() {
+        InputManager inputWinningManager = new InputManager();
+        List<Integer> winningLottoNumbers = inputWinningManager.inputWinningNumbers();
     }
 }

@@ -20,4 +20,11 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainException.ERROR.getMessage());
     }
+
+    @Test
+    void 구입금액이_1000으로_나누어_떨어지지_안으면_예외가_던져진다() {
+        assertThatThrownBy(() -> new Money(1500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainException.ERROR.getMessage());
+    }
 }

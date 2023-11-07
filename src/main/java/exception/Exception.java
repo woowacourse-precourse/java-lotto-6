@@ -37,4 +37,8 @@ public class Exception {
     void raiseInvalidBonusNumberRangeMessage() {
         throw new IllegalArgumentException((ExceptionMessage.INVALID_BONUS_NUMBER_RANGE_MESSAGE.getMessage()));
     }
+
+    void raiseInvalidInputException() {
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_MESSAGE.getMessage());
+    }
 }

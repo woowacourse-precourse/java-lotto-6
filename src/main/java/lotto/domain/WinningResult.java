@@ -19,4 +19,12 @@ public class WinningResult {
     public int getCount(Rank rank) {
         return results.get(rank);
     }
+
+    public int calculateTotalPrizeMoney() {
+        int totalPrizeMoney = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrizeMoney += rank.getPrizeMoney() * results.get(rank);
+        }
+        return totalPrizeMoney;
+    }
 }

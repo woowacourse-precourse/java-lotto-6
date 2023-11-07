@@ -12,12 +12,12 @@ public class Parser {
         return parseIntegerFromString(input, INVLID_PAYMENT_TYPE.getMessage());
     }
 
-    public static List<Integer> parseWinningNumber(String input){
+    public static List<Integer> parseWinningNumber(String input) {
         validateEndsWithDelimiter(input);
 
         List<Integer> numbers = Arrays
                 .stream(input.split(DELIMITER))
-                .map(number-> parseIntegerFromString(number, INVALID_WINNING_NUMBER_FORM.getMessage()))
+                .map(number -> parseIntegerFromString(number, INVALID_WINNING_NUMBER_FORM.getMessage()))
                 .toList();
 
         return numbers;
@@ -27,7 +27,7 @@ public class Parser {
         return parseIntegerFromString(input, INVALID_BONUS_NUMBER_FORM.getMessage());
     }
 
-    private static int parseIntegerFromString(String input, String errorMessage){
+    private static int parseIntegerFromString(String input, String errorMessage) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -35,8 +35,8 @@ public class Parser {
         }
     }
 
-    private static void validateEndsWithDelimiter(String input){
-        if(input.endsWith(DELIMITER)){
+    private static void validateEndsWithDelimiter(String input) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException(WINNING_NUMBER_ENDS_WITH_DELIMITER.getMessage());
         }
     }

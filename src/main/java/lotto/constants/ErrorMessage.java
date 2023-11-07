@@ -11,6 +11,7 @@ public enum ErrorMessage implements Message {
     LOTTO_NUMBER_NOT_IN_RANGE("로또 번호의 범위를 벗어났습니다."),
     WRONG_LOTTO_SIZE(String.format("로또 번호는 %d개가 필요합니다.", LOTTO_SIZE.getValue())),
     DUPLICATED_NUMBER_EXIST("중복되는 로또 번호가 존재합니다."),
+    HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER("공백없이 숫자와 구분자만 입력해야합니다.")
     ;
 
     private static final String PREFIX = "[ERROR] ";

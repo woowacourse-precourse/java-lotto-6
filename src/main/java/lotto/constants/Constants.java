@@ -17,7 +17,7 @@ public class Constants {
     }
 
     public enum Strings {
-        ;
+        LOTTO_NUMBERS_INPUT_DELIMITER(",");
 
         private String value;
 

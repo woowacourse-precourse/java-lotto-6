@@ -8,7 +8,7 @@ public class Consistency {
     private static int rateMoney;
     private static int capital;
     private static long rateOfReturn;
-    private static List<Integer> moneyList = new ArrayList<>();
+    private static List<Integer> moneyList = new ArrayList<>(Arrays.asList(50000, 1500000, 30000000, 2000000000));
     private static UserLotto userLotto;
     public Consistency(int capital, UserLotto userLotto){
         this.capital = capital;
@@ -24,15 +24,39 @@ public class Consistency {
         });
     }
 
-    private static void setLottoConsistency(List<Integer> list) {
+    private void setLottoConsistency(List<Integer> list) {
         lottoConsistency = (int) Math.max(list.stream().filter(lotto->userLotto.getLotto().getUserNumbers().stream().anyMatch(Predicate.isEqual(lotto))).count(), lottoConsistency);
     }
 
-    private static boolean isContains(List<Integer> list) {
+    private boolean isContains(List<Integer> list) {
         return list.contains(userLotto.getBonusLotto().getBonusNumber());
     }
 
-    private List<Integer> setMoneyList(){
-        moneyList.add(5000, 50000, 1500000, 30000000, 2000000000);
+    public void setRateMoney(){
+        if(lottoConsistency == 3){
+            rateMoney = moneyList.get(0);
+        }
+        if(lottoConsistency == 4){
+            rateMoney = moneyList.get(1);
+        }
+        if(lottoConsistency == 5 && bonusConsistency == 0){
+            rateMoney = moneyList.get(2);
+        }
+        if(lottoConsistency == 5 && bonusConsistency == 1){
+            rateMoney = moneyList.get(3);
+        }
+        if(lottoConsistency == 6){
+            rateMoney = moneyList.get(4);
+        }
     }
+
+    public void setRateOfReturn(){
+        rateOfReturn = ((long) rateMoney/capital)*100;
+    }
+
+    public long getRateOfReturn(){
+        return rateOfReturn;
+    }
+
+
 }

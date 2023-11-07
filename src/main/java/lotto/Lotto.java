@@ -11,7 +11,10 @@ import camp.nextstep.edu.missionutils.*;
 public class Lotto {
 
     private final List<Integer> numbers;
-
+    
+    public Lotto() {
+        numbers = new ArrayList<>();
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -42,26 +45,43 @@ public class Lotto {
         System.out.println(randomNumbers);
         return randomNumbers;
     }
+    
+    public void printPurchaseLottoNumbers() {
+        int amount = getUserPurchaseAmount();
 
-    public int[] printPurchaseLottoNumbers() {
-        int amount = getUserPurchaseAmount() / 1000;
-        System.out.println(amount + "개를 구매했습니다.");
+        System.out.println((amount / 1000) + "개를 구매했습니다.");
 
         List<List<Integer>> purchasedLottoNumbers = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < amount/1000; i++) {
             purchasedLottoNumbers.add(drawLottoNumbers());
         }
 
         List<Integer> winningNumbers = getWinningNumber();
         int[] matchArr = new int[5];
+        int bonusNum = getValidBonusNumber(new HashSet<Integer>(winningNumbers));
 
         for (List<Integer> lottoNumbers : purchasedLottoNumbers) {
             int matchingNumbers = countMatchingNumbers(lottoNumbers, winningNumbers);
+            if(matchingNumbers == 5 && winningNumbers.contains(bonusNum)) {
+                matchingNumbers = 7;
+            }
             updateMatchArr(matchArr, matchingNumbers);
         }
-        System.out.println(Arrays.toString(matchArr));
-        return matchArr;
+        
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - "+matchArr[0]+"개");
+        System.out.println("4개 일치 (50,000원) - "+matchArr[1]+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+matchArr[2]+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+matchArr[3]+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+matchArr[4]+"개");
+        
+        int totalPrize = (matchArr[0] * 5000) + (matchArr[1] * 50000) + (matchArr[2] * 1500000) + (matchArr[3] * 30000000) + (matchArr[4] * 200000000);
+        double rateOfReturn = Math.round(totalPrize / (double) amount * 1000) / 10;
+
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        
     }
     
     
@@ -78,6 +98,9 @@ public class Lotto {
                 matchArr[2]++;
                 break;
             case 6:
+                matchArr[4]++;
+                break;
+            case 7:
                 matchArr[3]++;
                 break;
         }
@@ -107,7 +130,7 @@ public class Lotto {
 
                 validate(new ArrayList<>(winningNumber));
 
-                int bonusNum = getValidBonusNumber(winningNumber);
+                
                 return new ArrayList<>(winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -118,10 +141,12 @@ public class Lotto {
     private int getValidBonusNumber(HashSet<Integer> winningNumber) {
         while (true) {
             try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNum = getBonusNumber();
                 if (winningNumber.contains(bonusNum)) {
                     throw new IllegalArgumentException("[ERROR] 로또번호와 중복된 보너스 번호가 입력되었습니다. 보너스 번호를 다시 입력하세요.");
-                } else {
+                } else if (!winningNumber.contains(bonusNum)) {
                     return bonusNum;
                 }
             } catch (IllegalArgumentException e) {
@@ -144,8 +169,7 @@ public class Lotto {
     
 
     public int getBonusNumber() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        
         int bonusNum = Integer.parseInt(Console.readLine());
         if (bonusNum < 1 || bonusNum > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");

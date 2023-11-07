@@ -26,7 +26,7 @@ public class InputService {
     }
 
 
-    public static Lotto readWinningNumbers() {
+    public static Lotto readWinningLotto() {
         List<Integer> winningNumbers = new ArrayList<>();
         String[] input = trim(readLine().split(SPLIT_DELIMITER));
 
@@ -39,7 +39,7 @@ public class InputService {
             winningNumbers.sort(null);
             return Lotto.create(winningNumbers);
         } catch (IllegalArgumentException e) {
-            return readWinningNumbers();
+            return readWinningLotto();
         }
     }
 
@@ -53,18 +53,18 @@ public class InputService {
     }
 
 
-    public static int readBonusNumber(Lotto winningLotto) {
+    public static int readBonusNum(Lotto winningLotto) {
         try {
             String input = readLine();
             validateNumberType(input);
 
-            int bonusNumber = parseInt(input);
-            validateBonusNumInRange(bonusNumber);
-            validateBonusNumDuplicate(bonusNumber, winningLotto);
+            int bonusNum = parseInt(input);
+            validateBonusNumInRange(bonusNum);
+            validateBonusNumDuplicate(bonusNum, winningLotto);
 
-            return bonusNumber;
+            return bonusNum;
         } catch (IllegalArgumentException e) {
-            return readBonusNumber(winningLotto);
+            return readBonusNum(winningLotto);
         }
     }
 }

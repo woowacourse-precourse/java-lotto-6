@@ -20,26 +20,25 @@ public class GameController {
     }
 
     public void play() {
+        gameProcess();
+    }
+
+    private void gameProcess() {
         try {
-            gameProcess();
+            Cash cash = depositCash();
+            Lottos lottos = purchaseLotto(cash);
+            Prizes prizes = compareWinnerLotto(lottos);
+            outputView.printStaticResult(prizes, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
         }
-
-    }
-
-    private void gameProcess() throws IllegalStateException {
-        Cash cash = depositCash();
-        Lottos lottos = purchaseLotto(cash);
-        Prizes prizes = compareWinnerLotto(lottos);
-        outputView.printStaticResult(prizes, cash);
     }
 
     private Cash depositCash() throws IllegalStateException {
         try {
-            return inputView.inputCash();
+            Cash cash = inputView.inputCash();
+            return cash;
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
             return depositCash();
         } catch (IllegalStateException e) {
             throw e;
@@ -54,7 +53,7 @@ public class GameController {
         return lottos;
     }
 
-    private Prizes compareWinnerLotto(Lottos lottos) throws IllegalStateException{
+    private Prizes compareWinnerLotto(Lottos lottos) throws IllegalStateException {
         try {
             List<Integer> winnerNumbers = inputView.inputWinnerNumbers();
             Integer bonusNumber = inputView.inputBonusNumber();
@@ -70,7 +69,6 @@ public class GameController {
         }
 
     }
-
 
 
 }

@@ -1,8 +1,9 @@
 package lotto.domain;
 
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lotto.domain.dto.LottoNumberCompareResult;
 
 public class LottoStorage {
@@ -16,13 +17,19 @@ public class LottoStorage {
         this.winningLotto = winningLotto;
     }
 
+    public List<LottoRank> finalAllLottoRanks(List<LottoNumberCompareResult> compareResults) {
+        return compareResults.stream()
+                .map(LottoRank::findLottoRank)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
     public List<LottoNumberCompareResult> compareAllAutomaticLottoWithWinningNumbers() {
-        List<LottoNumberCompareResult> results = new ArrayList<>();
 
-        automaticLottoStorage.getAutomaticLottos()
-                .forEach(lautomaticLotto -> results.add(compareWithWinningNumbers(lautomaticLotto.getNumbers())));
-
-        return results;
+        return automaticLottoStorage.getAutomaticLottos()
+                .stream()
+                .map(automaticLotto -> compareWithWinningNumbers(automaticLotto.getNumbers()))
+                .collect(Collectors.toList());
     }
 
     public LottoNumberCompareResult compareWithWinningNumbers(List<Integer> automaticLottoNumbers) {
@@ -30,11 +37,19 @@ public class LottoStorage {
         int matchingCount = (int) automaticLottoNumbers.stream().filter(winningLotto::isWinningNumber).count();
         boolean bonusIncluded = false;
 
-        if(automaticLottoNumbers.stream().anyMatch(number -> number.equals(winningLotto.getBonusNumber()))) {
+        if (automaticLottoNumbers.stream().anyMatch(number -> number.equals(winningLotto.getBonusNumber()))) {
             matchingCount++;
             bonusIncluded = true;
         }
 
         return LottoNumberCompareResult.of(matchingCount, bonusIncluded);
+    }
+
+    public void showLottoRankResult(List<LottoRank> lottoRanks) {
+
+    }
+
+    public void showprofit() {
+
     }
 }

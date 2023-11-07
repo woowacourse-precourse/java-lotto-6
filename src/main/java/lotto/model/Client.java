@@ -12,6 +12,7 @@ public class Client {
     private final int payAmount;
     private final List<Lotto> lottos = new ArrayList<>();
     private static final Validator PAY_AMOUNT_VALIDATOR = new PayAmountValidator();
+    private static final ReturnCalculator RETURN_CALCULATOR = new ReturnCalculator();
 
     private Client(int payAmount) {
         this.payAmount = payAmount;
@@ -45,7 +46,6 @@ public class Client {
 
     public double calculateRateOfReturn(LottosResult lottoResults) {
         double rateOfReturn = (double) calculateWinningPrize(lottoResults) / payAmount;
-        rateOfReturn = Math.round(rateOfReturn * 1000) / 10.0;
-        return rateOfReturn;
+        return RETURN_CALCULATOR.calculateRateOfReturn(rateOfReturn);
     }
 }

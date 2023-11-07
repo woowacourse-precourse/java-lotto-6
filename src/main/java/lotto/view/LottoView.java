@@ -77,4 +77,8 @@ public class LottoView {
                         lottoRankMessage.getMessage(), countIterator.next()))
                 .collect(Collectors.joining(MessageFormat.LINE_SEPARATOR.getValue()));
     }
+
+    public void showError(String message) {
+        writer.writeLine(message);
+    }
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
@@ -39,8 +40,8 @@ class LottoViewTest {
     void 구매로또_출력_테스트() {
         //given
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottos.add(new Lotto(List.of(6, 10, 16, 34, 35, 43)));
+        lottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        lottos.add(new Lotto(Arrays.asList(6, 10, 16, 34, 35, 43)));
         PurchasedLottosDto purchasedLottosDto = new PurchasedLottosDto(lottos);
         //when
         lottoView.showPurchasedLottos(purchasedLottosDto);
@@ -100,5 +101,15 @@ class LottoViewTest {
                 총 수익률은 62.5%입니다.
                 """;
         assertThat(writer.getOutput()).isEqualTo(expected);
+    }
+
+    @Test
+    void 에러메시지_출력_테스트() {
+        //given
+        String error = "유효하지 않은 입력입니다.";
+        //when
+        lottoView.showError(error);
+        //then
+        assertThat(writer.getOutput()).isEqualTo(error + LINE_SEPARATOR);
     }
 }

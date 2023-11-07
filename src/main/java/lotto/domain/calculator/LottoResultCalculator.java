@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.constant.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.WinningNumbers;
+import lotto.domain.winningnumber.WinningNumbers;
 
 public class LottoResultCalculator {
 

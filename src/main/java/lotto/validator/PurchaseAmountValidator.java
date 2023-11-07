@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.constant.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 import lotto.constant.PurchaseAmount;
 
 public class PurchaseAmountValidator {

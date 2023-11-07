@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.List;
 
-import lotto.constant.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 
 public class BonusNumberValidator {
 

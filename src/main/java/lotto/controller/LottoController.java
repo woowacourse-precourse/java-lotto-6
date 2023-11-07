@@ -5,8 +5,8 @@ import lotto.domain.Lotto;
 import lotto.domain.calculator.LottoResultCalculator;
 import lotto.domain.calculator.ProfitCalculator;
 import lotto.constant.Rank;
-import lotto.domain.WinningNumbers;
-import lotto.domain.WinningNumbersFactory;
+import lotto.domain.winningnumber.WinningNumbers;
+import lotto.domain.winningnumber.WinningNumbersFactory;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,18 +18,18 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
-    private final LottoResultCalculator resultCalculator;
+    private final LottoResultCalculator lottoResultCalculator;
     private final ProfitCalculator profitCalculator;
 
     public LottoController(InputView inputView,
                            OutputView outputView,
                            LottoService lottoService,
-                           LottoResultCalculator resultCalculator,
+                           LottoResultCalculator lottoResultCalculator,
                            ProfitCalculator profitCalculator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
-        this.resultCalculator = resultCalculator;
+        this.lottoResultCalculator = lottoResultCalculator;
         this.profitCalculator = profitCalculator;
     }
 
@@ -61,7 +61,7 @@ public class LottoController {
     }
 
     private Map<Rank, Integer> calculateLottoResults(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        return resultCalculator.calculateResults(lottos, winningNumbers);
+        return lottoResultCalculator.calculateResults(lottos, winningNumbers);
     }
 
     private void printResults(Map<Rank, Integer> results) {

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.Set;
 import java.util.TreeSet;
 
-import lotto.constant.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 import lotto.constant.LottoNumber;
 
 public class LottoNumberValidator {

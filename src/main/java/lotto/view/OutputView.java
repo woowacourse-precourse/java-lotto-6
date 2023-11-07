@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
-import lotto.constant.OutputMessage;
+import lotto.constant.message.OutputMessage;
 import lotto.domain.Lotto;
 
 import java.util.List;
@@ -35,12 +35,16 @@ public class OutputView {
     }
 
     public void printResults(Map<Rank, Integer> results) {
-        System.out.println(OutputMessage.RESULTS_HEADER.getMessageWithNewLine());
-        System.out.println(OutputMessage.RESULTS_SEPARATOR.getMessage());
+        printResultMessage();
         NumberFormat numberFormat = getNumberInstance();
         for (Rank rank : Rank.values()) {
             printResult(results, rank, numberFormat);
         }
+    }
+
+    private static void printResultMessage() {
+        System.out.println(OutputMessage.RESULTS_HEADER.getMessageWithNewLine());
+        System.out.println(OutputMessage.RESULTS_SEPARATOR.getMessage());
     }
 
     private void printResult(Map<Rank, Integer> results, Rank rank, NumberFormat numberFormat) {

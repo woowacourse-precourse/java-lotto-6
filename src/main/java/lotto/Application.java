@@ -20,10 +20,13 @@ public class Application {
             lotto.printLotto();
 
         }
-
-        User.InputLottoNumber();
-        User.InputBonusNumber();
-
+        System.out.println();
+        User.inputLottoNumber();
+        System.out.println();
+        User.inputBonusNumber();
+        System.out.println();
+        User.compareLottoNum(lottos);
+        User.printLottoResult();
 
 
 

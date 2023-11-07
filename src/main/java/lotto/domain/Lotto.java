@@ -12,8 +12,8 @@ public class Lotto extends LottoRule {
     }
 
     private void validate(List<Integer> numbers) {
-        if (isInvalidLength(numbers)) {
-            ExceptionMessage.LOTTO_INVALID_LENGTH.throwException();
+        if (isMismatchLength(numbers)) {
+            ExceptionMessage.LOTTO_MISMATCH_LENGTH.throwException();
         }
         if (isDuplicate(numbers)) {
             ExceptionMessage.LOTTO_DUPLICATE.throwException();

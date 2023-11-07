@@ -9,7 +9,7 @@ public class LottoRule {
 
 
 
-    protected boolean isInvalidLength(List<Integer> numbers) {
+    protected boolean isMismatchLength(List<Integer> numbers) {
         if (numbers.size() != LENGTH) {
             return true;
         }

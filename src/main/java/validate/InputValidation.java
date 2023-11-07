@@ -34,4 +34,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE_DUPLICATE_NUMBER);
         }
     }
+
+    public static void validateAmountMinimum(int purchaseAmount) {
+        if (purchaseAmount < 1000) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_AMOUNT_LESS_THAN_MINIMUM);
+        }
+    }
 }

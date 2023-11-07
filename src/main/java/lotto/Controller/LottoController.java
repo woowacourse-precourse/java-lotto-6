@@ -10,20 +10,22 @@ import java.util.List;
 
 public class LottoController {
     final int LOTTOPRICE = 1000;
-    private User[] user;
-    private LottoView view;
 
+    private User user;
+    private LottoView view;
+    private List<User> lottos = new ArrayList<User>();
     private int userBuyCount;
 
 
-    public LottoController(User[] user, LottoView lottoView) {
+    public LottoController( User user, LottoView lottoView) {
         this.user = user;
         this.view = lottoView;
     }
 
-    public void start(){
+    public void start() {
         inputPrice();
         amountLottos();
+        setLottoTickets();
     }
 
     public void inputPrice() {
@@ -31,7 +33,7 @@ public class LottoController {
         view.setPrice();
     }
 
-    public void amountLottos(){
+    public void amountLottos() {
         setUserBuyCount(view.getPrice());
         view.printNumOfLotto(userBuyCount);
     }
@@ -42,13 +44,23 @@ public class LottoController {
         return numbers;
     }
 
-    public void setLottoNumber() {
-        for (int i = 0; i < userBuyCount; i++) {
-            user[i].setUserLotto(makeLotto());
+    public void setLottoTickets(){
+        for(int i =0; i<userBuyCount; i++){
+            setLottoNumber();
+            printUserLottos();
+            lottos.add(user);
         }
+    }
+
+    public void setLottoNumber() {
+        user.setUserLotto(makeLotto());
     }
 
     public void setUserBuyCount(int price) {
         userBuyCount = price / LOTTOPRICE;
+    }
+
+    public void printUserLottos() {
+        view.printLottos(user.getUserLotto());
     }
 }

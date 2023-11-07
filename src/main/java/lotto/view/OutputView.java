@@ -62,6 +62,12 @@ public class OutputView {
         }
     }
 
+    public static void printScore(Map<Result, Integer> score) {
+        printWinningStatistics();
+        Result[] printOrder = new Result[] { THREE_MATCH, FOUR_MATCH, FIVE_MATCH, FIVE_AND_BONUS_MATCH, SIX_MATCH };
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+        printLottoMatched(score, printOrder, numberFormat);
+    }
 
 
 

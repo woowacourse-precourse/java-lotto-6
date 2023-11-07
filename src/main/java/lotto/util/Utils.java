@@ -14,7 +14,7 @@ public class Utils {
         return arrayToSortedList(splitString);
     }
 
-    private static List<Integer> arrayToSortedList(String[] numbers) {
+    private static List<Integer> arrayToSortedList(final String[] numbers) {
         return Arrays.stream(numbers).map(string -> Integer.parseInt(string)).sorted().toList();
     }
 

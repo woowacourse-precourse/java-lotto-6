@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import static lotto.domain.lotto.LottoRule.MAXIMUM;
 import static lotto.domain.lotto.LottoRule.MINIMUM;
-import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
+import static lotto.util.ErrorMessage.NOT_IN_RANGE;
 
 public class Bonus {
     private final int bonusNumber;
@@ -14,7 +14,7 @@ public class Bonus {
 
     private void validateNumberInRange(final int bonusNumber) {
         if (isNotNumberInRange(bonusNumber)) {
-            throw new IllegalArgumentException(INPUT_NOT_IN_RANGE.getMessage());
+            throw new IllegalArgumentException(NOT_IN_RANGE.getMessage());
         }
     }
 

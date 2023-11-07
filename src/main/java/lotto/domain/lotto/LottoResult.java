@@ -36,7 +36,8 @@ public class LottoResult {
     public void matchingNumber(final Lotto lotto) {
         Long count = getMatchingCount(lotto);
 
-        getAllValues().stream().forEach(rank -> incrementResult(count, rank, lotto));
+        getAllValues().stream()
+                .forEach(rank -> incrementResult(count, rank, lotto));
     }
 
     private Long getMatchingCount(final Lotto lotto) {
@@ -53,17 +54,21 @@ public class LottoResult {
 
     private boolean matchRank(final Long count, final LottoCriteria rank, final Lotto lotto) {
         if ((count == rank.getMatchNumber() && !rank.hasBonus()) ||
-                (count == rank.getMatchNumber() && rank.hasBonus() && isBonusContain(lotto))) {
+                isSecondPlace(count, rank, lotto)) {
             return true;
         }
         return false;
     }
 
-    public boolean isBonusContain(Lotto lotto) {
+    private boolean isSecondPlace(final Long count, final LottoCriteria rank, final Lotto lotto) {
+        return count == rank.getMatchNumber() && rank.hasBonus() && isBonusContain(lotto);
+    }
+
+    public final boolean isBonusContain(final Lotto lotto) {
         return lotto.getNumbers().contains(winningLotto.bonus());
     }
 
-    public float getReturnRate() {
+    public final float getReturnRate() {
         Long totalAmount = getTotalAmount();
         float returnRate = (float) totalAmount / getInvestMoney() * PERCENT.getValue();
 
@@ -80,7 +85,7 @@ public class LottoResult {
         return issuedLotto.size() * PRICE.getValue();
     }
 
-    public Map<LottoCriteria, Long> getRankingResult() {
+    public final Map<LottoCriteria, Long> getRankingResult() {
         return rankingResult;
     }
 }

@@ -12,13 +12,12 @@ public enum LottoCriteria {
 
     private final int matchNumber;
     private final long amount;
-
-    private final boolean checkBonus;
+    private final boolean hasBonus;
 
     LottoCriteria(final int matchNumber, final long amount, final boolean hasBonus) {
         this.matchNumber = matchNumber;
         this.amount = amount;
-        this.checkBonus = hasBonus;
+        this.hasBonus = hasBonus;
     }
 
     public final int getMatchNumber() {
@@ -30,7 +29,7 @@ public enum LottoCriteria {
     }
 
     public final boolean hasBonus() {
-        return checkBonus;
+        return hasBonus;
     }
 
     public static final List<LottoCriteria> getAllValues() {

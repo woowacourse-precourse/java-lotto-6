@@ -13,7 +13,7 @@ public class Customer {
         this.issuedLottos = new ArrayList<>();
     }
 
-    public void buyLotto(Lotto lotto) {
+    public void buyLotto(final Lotto lotto) {
         this.issuedLottos.add(lotto);
     }
 

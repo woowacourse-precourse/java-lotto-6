@@ -6,7 +6,7 @@ import lotto.util.Generator;
 
 public class LottoMachine {
 
-    public Lotto issueLotto(final Generator generator) {
+    public final Lotto issueLotto(final Generator generator) {
         List<Integer> issuedLotto = generator.generate();
         Collections.sort(issuedLotto);
         return new Lotto(Collections.unmodifiableList(issuedLotto));

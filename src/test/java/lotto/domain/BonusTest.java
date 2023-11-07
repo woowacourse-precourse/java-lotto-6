@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
+import static lotto.util.ErrorMessage.NOT_IN_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.lotto.Bonus;
@@ -17,6 +17,6 @@ public class BonusTest {
         // when & then
         assertThatThrownBy(() -> new Bonus(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_IN_RANGE.getMessage());
+                .hasMessage(NOT_IN_RANGE.getMessage());
     }
 }

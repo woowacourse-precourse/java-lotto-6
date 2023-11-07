@@ -1,12 +1,12 @@
 package lotto.util;
 
-import static lotto.util.ErrorMessage.INPUT_BONUS_DUPLICATE;
-import static lotto.util.ErrorMessage.INPUT_DUPLICATE_NUMBER;
-import static lotto.util.ErrorMessage.INPUT_INVALID_NUMBER;
-import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
-import static lotto.util.ErrorMessage.INPUT_NOT_NUMBER;
-import static lotto.util.ErrorMessage.INPUT_NOT_THOUSAND_UNIT;
-import static lotto.util.ErrorMessage.INPUT_OUT_OF_SIZE;
+import static lotto.util.ErrorMessage.BONUS_DUPLICATE;
+import static lotto.util.ErrorMessage.DUPLICATE_NUMBER;
+import static lotto.util.ErrorMessage.INVALID_NUMBER;
+import static lotto.util.ErrorMessage.NOT_IN_RANGE;
+import static lotto.util.ErrorMessage.NOT_NUMBER;
+import static lotto.util.ErrorMessage.NOT_THOUSAND_UNIT;
+import static lotto.util.ErrorMessage.OUT_OF_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateMoney(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_NUMBER.getMessage());
+                .hasMessage(NOT_NUMBER.getMessage());
     }
 
     @DisplayName("구입 금액에 1000원 단위가 아닌 숫자를 입력하면 에러 발생")
@@ -43,7 +43,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateMoney(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_THOUSAND_UNIT.getMessage());
+                .hasMessage(NOT_THOUSAND_UNIT.getMessage());
     }
 
     @DisplayName("구입 금액에 int의 범위를 넘어선 숫자를 입력하면 에러 발생")
@@ -53,7 +53,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateMoney(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_INVALID_NUMBER.getMessage());
+                .hasMessage(INVALID_NUMBER.getMessage());
     }
 
     @DisplayName("당첨 번호에 빈 문자를 입력하면 에러 발생")
@@ -63,7 +63,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateWinningNumber(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_NUMBER.getMessage());
+                .hasMessage(NOT_NUMBER.getMessage());
     }
 
     @DisplayName("당첨 번호에 숫자가 아닌 문자를 입력하면 에러 발생")
@@ -73,7 +73,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateWinningNumber(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_NUMBER.getMessage());
+                .hasMessage(NOT_NUMBER.getMessage());
     }
 
     @DisplayName("당첨 번호에 1-45 가 아닌 문자를 입력하면 에러 발생")
@@ -83,7 +83,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateWinningNumber(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_IN_RANGE.getMessage());
+                .hasMessage(NOT_IN_RANGE.getMessage());
     }
 
     @DisplayName("당첨 번호에 6개가 아닌 개수를 입력하면 에러 발생")
@@ -93,7 +93,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateWinningNumber(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_OUT_OF_SIZE.getMessage());
+                .hasMessage(OUT_OF_SIZE.getMessage());
     }
 
     @DisplayName("당첨 번호에 중복된 숫자를 입력하면 에러 발생")
@@ -103,7 +103,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateWinningNumber(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_DUPLICATE_NUMBER.getMessage());
+                .hasMessage(DUPLICATE_NUMBER.getMessage());
     }
 
     @DisplayName("보너스 번호에 숫자가 아닌 문자를 입력하면 에러 발생")
@@ -116,7 +116,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_NUMBER.getMessage());
+                .hasMessage(NOT_NUMBER.getMessage());
     }
 
     @DisplayName("보너스 번호에 숫자가 아닌 문자를 입력하면 에러 발생")
@@ -129,7 +129,7 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_NOT_IN_RANGE.getMessage());
+                .hasMessage(NOT_IN_RANGE.getMessage());
     }
 
     @DisplayName("보너스 번호에 당첨 번호와 반복되는 숫자를 입력하면 에러 발생")
@@ -142,6 +142,6 @@ public class ValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateBonusNumber(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_BONUS_DUPLICATE.getMessage());
+                .hasMessage(BONUS_DUPLICATE.getMessage());
     }
 }

@@ -19,7 +19,7 @@ public class LottoGame {
     public void start() {
         int ticketPurchaseAmount = getTicketPurchaseAmount();
         int ticketQuantity = ticketPurchaseAmount / TICKET_PRICE;
-        List<List<Integer>> tickets = getTickets(ticketQuantity);
+        List<Lotto> tickets = getTickets(ticketQuantity);
 
         printGeneratedLottoNumbers(ticketQuantity, tickets);
         getWinningNumbers();
@@ -32,21 +32,22 @@ public class LottoGame {
         Lotto winningTicket = new Lotto(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
     }
 
-    private static void printGeneratedLottoNumbers(int ticketQuantity, List<List<Integer>> tickets) {
+    private static void printGeneratedLottoNumbers(int ticketQuantity, List<Lotto> tickets) {
         System.out.println(ticketQuantity + "개를 구매했습니다.");
 
-        for (List<Integer> ticket : tickets) {
-            System.out.println(ticket);
+        for (Lotto ticket : tickets) {
+            System.out.println(ticket.getNumbers());
         }
 
         System.out.println();
     }
 
-    private List<List<Integer>> getTickets(int ticketQuantity) {
-        List<List<Integer>> tickets = new ArrayList<>();
+    private List<Lotto> getTickets(int ticketQuantity) {
+        List<Lotto> tickets = new ArrayList<>();
 
         for (int i = 0; i < ticketQuantity; i++) {
-            tickets.add(LottoNumberGenerator.generate(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS));
+            Lotto ticket = new Lotto(LottoNumberGenerator.generate(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS), MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
+            tickets.add(ticket);
         }
 
         System.out.println();

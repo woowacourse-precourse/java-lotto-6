@@ -5,28 +5,21 @@ import java.util.List;
 
 public class WinningLotto {
 
-    private final List<Integer> winning;
+    private final Lotto winning;
 
     private int bonus;
 
-    public WinningLotto(String numbers) {
-        String[] split = numbers.split(",");
-        List<Integer> splitNumber = new ArrayList<>();
-        toList(split, splitNumber);
-        validateSize(splitNumber);
-        validateRange(splitNumber);
-        validateDuplicate(splitNumber);
-        this.winning = splitNumber;
+    public WinningLotto(List<Integer> numbers,String bonus) {
+        this.winning = new Lotto(numbers);
+        int numberBonus = validateBonus(bonus);
+        validateDuplicateBonus(numberBonus);
+        validateRangeBonus(numberBonus);
+        this.bonus = numberBonus;
     }
 
-    public void setBonus(String number) {
-        int bonus = validateBonus(number);
-        validateDuplicateBonus(bonus);
-        validateRangeBonus(bonus);
-        this.bonus = bonus;
-    }
 
-    public List<Integer> getWinning() {
+
+    public Lotto getWinning() {
         return this.winning;
     }
 
@@ -41,7 +34,7 @@ public class WinningLotto {
     }
 
     private void validateDuplicateBonus(int bonus) {
-        if (this.winning.contains(bonus)) {
+        if (this.winning.find(bonus)) {
             throw new IllegalArgumentException("중복된 수를 입력하셨습니다.");
         }
     }

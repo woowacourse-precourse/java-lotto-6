@@ -30,7 +30,7 @@ public class LottoController {
 
     private Lottos getLottos(int ticket) {
         LottoGenerator lottoGenerator = new LottoGenerator();
-        return new Lottos(lottoGenerator.generateLottoGroup(ticket));
+        return new Lottos(lottoGenerator.generateLottos(ticket));
     }
 
     private WinningNumber getWinningNumber() {

@@ -5,7 +5,7 @@ import static lotto.util.ExceptionEnum.NUMBER_OUT_OF_RANGE;
 public class Bonus {
 
     private static final int STARTINCLUSIVE = 1;
-    private static final int ENDINCLUSIVE = 1;
+    private static final int ENDINCLUSIVE = 45;
 
     private final int bonusNumber;
 
@@ -18,7 +18,7 @@ public class Bonus {
         throwIfBonusNumberOutOfRange(bonusNumber);
     }
 
-    private void throwIfBonusNumberOutOfRange(int bonusNumbers) {
+    private void throwIfBonusNumberOutOfRange(int bonusNumber) {
         if (!isInRange(bonusNumber)) {
             throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.message());
         }

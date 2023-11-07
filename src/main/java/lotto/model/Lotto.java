@@ -10,8 +10,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSixNumbers(numbers);
         validateDuplicateNumbers(numbers);
-        numbers.sort(Integer::compareTo);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     public static List<Lotto> purchaseLottos(int purchaseCount) {

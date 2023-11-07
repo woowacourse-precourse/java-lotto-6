@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.view.ExceptionMessage.NUMBER_AND_COMMA_FORMAT_EXCEPTION;
+
 public class LottoWinningNumber {
 
     private final Lotto readWinningNumber;
@@ -15,7 +17,7 @@ public class LottoWinningNumber {
 
     private void validateNumberAndCommaFormat(String readWinningNumber) {
         if (!readWinningNumber.matches("([0-9]+,)*[0-9]+")) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 콤마 형식이어야 합니다.");
+            throw new IllegalArgumentException(NUMBER_AND_COMMA_FORMAT_EXCEPTION.getMessage());
         }
     }
 

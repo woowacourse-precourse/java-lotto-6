@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import lotto.view.ExceptionMessage;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.view.ExceptionMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,7 +22,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(SIZE_EXCEPTION.getMessage());
         }
     }
 
@@ -28,21 +32,26 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OVERLAP_EXCEPTION.getMessage());
         }
     }
 
     private void validateLottoNumberRange(List<Integer> numbers) {
         numbers.forEach(item -> {
             if (item < 1 || item > 45) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(RANGE_EXCEPTION.getMessage());
             }
         });
     }
 
-
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public void duplictionLottoBonusNumberAndWinNumber(Integer lottoBonusNumber) {
+        if (numbers.contains(lottoBonusNumber)) {
+            throw new IllegalArgumentException(OVERLAP_EXCEPTION.getMessage());
+        }
     }
 }

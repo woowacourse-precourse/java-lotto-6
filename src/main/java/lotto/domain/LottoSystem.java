@@ -8,21 +8,22 @@ import java.util.List;
 import static lotto.utils.LottoSystemUtils.*;
 
 public class LottoSystem {
-    private int purchaseMoney;
-    private List<Lotto> purchaseLottos;
-    private Lotto winningLotto;
+    private static int purchaseMoney;
+    private static List<Lotto> purchaseLottos;
+    private static Lotto winningLotto;
 
     public LottoSystem(String money) {
         validateMoney(money);
 
         this.purchaseMoney = stringToInteger(money);
-        this.purchaseLottos = createLottos(this.purchaseMoney / moneyUnit);
+        this.purchaseLottos = createLottos();
     }
 
-    private static List<Lotto> createLottos(int lottoCnt) {
+    private static List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
 
-        while (lottoCnt --> 1) {
+        int purchaseLottoCnt = purchaseMoney / moneyUnit;
+        while (purchaseLottoCnt --> 1) {
             lottos.add(new Lotto(createRandomNumbers()));
         }
 

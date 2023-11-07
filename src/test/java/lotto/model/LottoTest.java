@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
+import lotto.Application;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,11 +47,26 @@ class LottoTest extends NsTest {
         numbers.add(4);
         numbers.add(3);
         final Lotto newLotto = new Lotto(numbers);
-        System.out.println(newLotto.toString());
+        System.out.println(newLotto);
 
         assertThat(output()).contains("[1, 2, 3, 4, 5, 7]");
     }
 
+    @DisplayName("실패 - 로또 번호가 6개의 숫자가 아니다.")
+    @Test
+    void isNotSizeSix() {
+        final List<Integer> numbers = new ArrayList<>();
+        numbers.add(7);
+        numbers.add(5);
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(4);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호의 개수는 6개이어야 합니다.");
+    }
+    
     @Override
     protected void runMain() {
         Application.main(new String[]{});

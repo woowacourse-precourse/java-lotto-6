@@ -50,7 +50,7 @@ public class OutputView {
     }
 
     public static void printLottoYield(double yield) {
-        System.out.print(String.format(LOTTO_YIELD_MESSAGE,roundToTwoDecimalPlaces(yield)));
+        System.out.print(String.format(LOTTO_YIELD_MESSAGE, roundToTwoDecimalPlaces(yield)));
     }
 
     public static String roundToTwoDecimalPlaces(double number) {

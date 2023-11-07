@@ -6,6 +6,11 @@ import lotto.validator.LottoValidator;
 import java.util.List;
 
 public class Lotto {
+    private static final Integer RANDOM_LOTTO_START_NUMBER= 1;
+    private static final Integer RANDOM_LOTTO_END_NUMBER= 45;
+    private static final Integer RANDOM_LOTTO_SIZE= 6;
+
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +20,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != RANDOM_LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -26,7 +31,7 @@ public class Lotto {
     }
 
     public static Lotto createLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(RANDOM_LOTTO_START_NUMBER, RANDOM_LOTTO_END_NUMBER, RANDOM_LOTTO_SIZE));
     }
 
     public Integer countMatch(Lotto lotto) {

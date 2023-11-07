@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 public class LottoUtils {
     private static final String COMMA = ",";
+
     public static <T> T requestInputWithValidator(Supplier<T> inputSupplier, Function<T, T> validatorFunction) {
         try {
             T input = inputSupplier.get();

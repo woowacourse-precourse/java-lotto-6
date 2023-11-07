@@ -5,6 +5,11 @@ import lotto.util.LottoUtils;
 import java.util.List;
 
 public class LottoValidator {
+    private static final String ZERO_AMOUNT = "0";
+    private static final int LOTTO_AMOUNT = 1000;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+
     private static final String INPUT_ONLY_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 숫자만 입력할 수 있습니다";
     private static final String AMOUNT_INPUT_CORRECT_AMOUNT_EXCEPTION_MESSAGE = "[ERROR] 1000원 단위로 입력할 수 있습니다.";
     private static final String AMOUNT_INPUT_EMPTY_EXCEPTION_MESSAGE = "[ERROR] 숫자를 입력해주세요";
@@ -37,14 +42,14 @@ public class LottoValidator {
 
 
     public static boolean inputAmountEmptyValidator(String amount) {
-        if (amount.length() == 0) {
+        if (amount.length() == Integer.parseInt(ZERO_AMOUNT)) {
             throw new IllegalArgumentException(AMOUNT_INPUT_EMPTY_EXCEPTION_MESSAGE);
         }
         return true;
     }
 
     public static boolean inputAmountRangeValidator(String amount) {
-        if (Integer.parseInt(amount) % 1000 != 0 || amount.equals("0")) {
+        if (Integer.parseInt(amount) % LOTTO_AMOUNT != Integer.parseInt(ZERO_AMOUNT) || amount.equals(ZERO_AMOUNT)) {
             throw new IllegalArgumentException(AMOUNT_INPUT_CORRECT_AMOUNT_EXCEPTION_MESSAGE);
         }
         return true;
@@ -90,7 +95,7 @@ public class LottoValidator {
     }
 
     public static boolean lottoNumberRangeValidator(int lottoNumber) {
-        if (lottoNumber < 1 || lottoNumber > 45) {
+        if (lottoNumber < LOTTO_MIN_NUMBER || lottoNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(LOTTO_INPUT_RANGE_EXCEPTION_MESSAGE);
         }
         return true;

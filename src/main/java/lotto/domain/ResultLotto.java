@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 
 public class ResultLotto {
+    private static final String COMMA = ",";
     private HashMap<RankingLotto, Integer> score;
     double reward;
 
@@ -18,7 +19,7 @@ public class ResultLotto {
     public void matchTotalLotto(AmountLotto amountLotto, MyLottos myLottos, WinningLotto winningLotto) {
         for (int i = 0; i < amountLotto.calculateAmountLotto(); i++) {
             RankingLotto rankingLotto = winningLotto.matchLotto(myLottos.getLottos().get(i));
-            String reward = rankingLotto.getReward().replace(",", "");
+            String reward = rankingLotto.getReward().replace(COMMA, "");
             this.reward += Integer.parseInt(reward);
             this.score.put(rankingLotto, this.score.get(rankingLotto) + 1);
         }

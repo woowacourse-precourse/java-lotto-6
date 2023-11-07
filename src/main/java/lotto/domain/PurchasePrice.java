@@ -3,7 +3,11 @@ package lotto.domain;
 import lotto.exception.ErrorCode;
 
 public class PurchasePrice {
+
+    private static final int LOTTO_UNIT = 1000;
+
     private final int purchasePrice;
+
 
     public PurchasePrice(int purchasePrice) {
         validate(purchasePrice);
@@ -11,7 +15,7 @@ public class PurchasePrice {
     }
 
     private void validate(int purchasePrice) {
-        if (purchasePrice % 1000 != 0) {
+        if (purchasePrice % LOTTO_UNIT != 0) {
             throw new IllegalArgumentException(ErrorCode.INCORRECT_UNIT.getMessage());
         }
     }

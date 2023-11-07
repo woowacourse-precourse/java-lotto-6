@@ -1,14 +1,14 @@
 package lotto;
 
-import java.util.List;
-
 public class LottoGame {
     private final UserInterface userInterface = new UserInterface();
-    private List<Lotto> lottos;
+    private UserLottos userLottos;
 
     // 로또 게임 진행 시작
     public void start() {
         int amount = getLottoAmount();
+        UserLottos userLottos = new UserLottos(amount);
+        showLottos(userLottos);
     }
 
     // 구입금액 입력
@@ -29,10 +29,8 @@ public class LottoGame {
     }
 
     // 발행한 로또 수량 및 번호 출력
-    private void showLottos(List<Lotto> lottos) {
-        userInterface.showText(lottos.size() + "개를 구매했습니다.");
-//        for (Lotto lotto : lottos)
-//            userInterface.showText(lotto.getNumbers());
-        userInterface.newLine();
+    private void showLottos(UserLottos userLottos) {
+        userInterface.showText(userLottos.getSize() + "개를 구매했습니다.");
+        userInterface.showText(userLottos.getLottosString() + "\n");
     }
 }

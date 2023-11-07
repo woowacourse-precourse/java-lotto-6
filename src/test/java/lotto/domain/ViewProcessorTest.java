@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -70,6 +71,15 @@ class ViewProcessorTest {
         assertThatThrownBy(() -> viewProcessor.checkRangeWinning(invalidNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("당첨 번호에 중복된 수가 있으면 예외처리 한다.")
+    @Test
+    void checkExistWinning() {
+        List<Integer> ExsistList = List.of(1,2,3,4);
+        assertThatThrownBy(() -> viewProcessor.checkExistWinning(ExsistList,4))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
     }
 
     @ParameterizedTest

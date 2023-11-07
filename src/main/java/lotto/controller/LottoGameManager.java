@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.Purchase;
 import lotto.model.ProfitCalculator;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -75,5 +76,7 @@ public class LottoGameManager {
         checkResult();
         printResult();
         ProfitCalculator profitCalculator = new ProfitCalculator(Purchase.getPurchasePrice(), matchCounts);
+        BigDecimal profitRate = profitCalculator.calculateProfit();
+        System.out.printf("수익률: %.2f%%\n", profitRate.doubleValue());
     }
 }

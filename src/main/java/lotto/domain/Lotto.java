@@ -37,13 +37,9 @@ public class Lotto {
     }
 
     public int countMatchingNumbers(Lotto otherLotto) {
-        int count = 0;
-        for (Integer number : numbers) {
-            if (otherLotto.containsNumber(number)) {
-                count++;
-            }
-        }
-        return count;
+        return (int) numbers.stream()
+                .filter(otherLotto::containsNumber)
+                .count();
     }
 
     public boolean containsNumber(int number) {

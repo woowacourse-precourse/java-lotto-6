@@ -230,7 +230,24 @@ public class Application {
 	}
 	
 	private Result findResult(ArrayList<Integer> lst) {
+		int winningNumberCnt = cntWinningNumber(lst);
+		int bonusNumberCnt = cntBonusNumber(lst);
+		
+		if (winningNumberCnt == 6) return Result.rank1;
+		if (winningNumberCnt + bonusNumberCnt == 6)return Result.rank2;
+		if (winningNumberCnt == 5)return Result.rank3;
+		if (winningNumberCnt == 4)return Result.rank4;
+		if (winningNumberCnt == 3)return Result.rank5;
+	
 		return Result.nothing;
+	}
+	
+	private int cntWinningNumber(ArrayList<Integer> lst) {
+		return 0;
+	}
+	
+	private int cntBonusNumber(ArrayList<Integer> lst) {
+		return 0;
 	}
 	
 	private void printResult() {

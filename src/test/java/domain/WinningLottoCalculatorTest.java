@@ -69,7 +69,7 @@ class WinningLottoCalculatorTest {
 
 	@DisplayName("1등~5등 중 당첨 개수 카운트 - 1등부터 5등까지 1번씩 당첨된 경우")
 	@Test
-	public void test() {
+	public void createForEachLottoPrizes() {
 		//given
 		PurchaseLotto purchaseLotto = getPurchaseLotto();
 		WinningLotto winningLotto = getWinningLotto();

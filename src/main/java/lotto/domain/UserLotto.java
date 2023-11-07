@@ -3,6 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class UserLotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;
@@ -18,9 +20,9 @@ public class UserLotto {
     }
 
     private void setUserLottoNumbers(int numberOfTickets) {
-        for (int i = 0; i < numberOfTickets; i++) {
-            userLottoNumbers.add(new Lotto(generatedNumbers()));
-        }
+        userLottoNumbers.addAll(IntStream.range(0, numberOfTickets)
+                .mapToObj(i -> new Lotto(generatedNumbers()))
+                .collect(Collectors.toList()));
     }
 
     private List<Integer> generatedNumbers() {

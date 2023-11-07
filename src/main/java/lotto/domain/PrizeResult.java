@@ -7,12 +7,15 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class PrizeResult {
+    private static final int ZER0 = 0;
+    private static final int ONE = 1;
+
     private final Map<Prize, Integer> prizeResult;
 
     public PrizeResult() {
         prizeResult = new EnumMap<>(Prize.class);
         Arrays.stream(Prize.values())
-                .forEach(prize -> prizeResult.put(prize, 0));
+                .forEach(prize -> prizeResult.put(prize, ZER0));
     }
 
     public void calculatePrizeResult(WinningLotto winningLotto, UserLotto userLotto) {
@@ -24,15 +27,13 @@ public class PrizeResult {
     }
 
     private void updateRankCount(Prize prize) {
-        prizeResult.put(prize, prizeResult.get(prize) + 1);
+        prizeResult.replace(prize, prizeResult.getOrDefault(prize, ZER0) + ONE);
     }
 
     public double sumWinningPrize() {
-        double totalWinningPrize = 0.0;
-        for (Prize prize : Prize.values()) {
-            totalWinningPrize += prizeResult.get(prize) * prize.getWinningPrize();
-        }
-        return totalWinningPrize;
+        return Arrays.stream(Prize.values())
+                .mapToDouble(prize -> prizeResult.get(prize) * prize.getWinningPrize())
+                .sum();
     }
 
     @Override

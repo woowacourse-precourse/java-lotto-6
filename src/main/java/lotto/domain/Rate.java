@@ -2,6 +2,7 @@ package lotto.domain;
 
 public class Rate {
     private static final double HUNDRED = 100.0;
+
     private final double rate;
 
     public Rate(int money, PrizeResult prizeResult) {

@@ -19,17 +19,17 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getSortLottoNumber() {
+    public List<Integer> getSortedLottoNumber() {
         return numbers.stream().sorted().toList();
     }
 
-    public int getMatchCount(Lotto lotto) {
+    public int getMatchingNumberCount(Lotto lotto) {
         List<Integer> myLottoNumbers = new ArrayList<>(this.numbers);
-        myLottoNumbers.retainAll(lotto.getSortLottoNumber());
+        myLottoNumbers.retainAll(lotto.getSortedLottoNumber());
         return myLottoNumbers.size();
     }
 
-    public boolean bonusNumberContains(int bonusNumber){
+    public boolean hasBonusNumber(int bonusNumber){
         return numbers.contains(bonusNumber);
     }
 

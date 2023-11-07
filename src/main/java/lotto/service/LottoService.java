@@ -1,10 +1,12 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.Prize;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +16,7 @@ import static lotto.constants.LottoConstants.*;
 
 public class LottoService {
     private static final int SECOND_PRIZE_SAME_NUMBERS = 5;
+    private static final int MINIMUM_WINNING_SAME_NUMBERS = 3;
 
     public Lottos createUserLottos(int amount) {
         Lottos lottos = new Lottos();
@@ -42,6 +45,14 @@ public class LottoService {
         }
         return Arrays.stream(winningResult)
                 .boxed().collect(Collectors.toList());
+    }
+
+    public List<String> calculateEachWinningTimes(List<Integer> winningResult) {
+        List<String> totalWinningTimes = new ArrayList<>();
+        for (int i = MINIMUM_WINNING_SAME_NUMBERS; i < winningResult.size(); i++) {
+            totalWinningTimes.add(String.valueOf(winningResult.get(i)));
+        }
+        return totalWinningTimes;
     }
 
     public List<Integer> sortNumbersByAsc(List<Integer> integerList) {

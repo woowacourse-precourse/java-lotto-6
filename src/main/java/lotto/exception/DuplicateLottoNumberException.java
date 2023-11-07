@@ -1,4 +1,4 @@
-package lotto.execption;
+package lotto.exception;
 
 public class DuplicateLottoNumberException extends IllegalArgumentException {
     private static final String ERROR_MESSAGE = "[ERROR] 중복된 당첨 번호를 입력하였습니다.";

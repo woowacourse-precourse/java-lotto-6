@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.execption.MoneyException;
+import lotto.exception.MoneyException;
 
 public class Money {
     private static final Integer ZERO = 0;

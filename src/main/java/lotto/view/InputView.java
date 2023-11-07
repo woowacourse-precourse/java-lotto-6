@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Money;
-import lotto.execption.DuplicateBonusNumberException;
-import lotto.execption.InputParseIntException;
-import lotto.execption.LottoNumberRangeException;
+import lotto.exception.DuplicateBonusNumberException;
+import lotto.exception.InputParseIntException;
+import lotto.exception.LottoNumberRangeException;
 
 public class InputView {
     private static final int MIN_LOTTO_NUMBER = 1;

@@ -1,5 +1,7 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
@@ -47,5 +49,18 @@ public class WinningNumberTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(input))
                 .withMessageContaining("로또 번호의 숫자 범위는");
+    }
+
+    @DisplayName("당첨 번호 생성 성공")
+    @Test
+    void createWinningNumber() {
+        Application application = new Application();
+        String input = "1,2,3,4,5,6";
+
+        Lotto winningNumber = application.createWinningNumber(input);
+
+        assertThat(winningNumber)
+                .usingRecursiveComparison()
+                .isEqualTo(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
 }

@@ -20,7 +20,7 @@ public class Application {
         printLottos(lottos);
 
         System.out.println(InputMessage.WINNING_NUMBER);
-        String input = inputWinningNumber();
+        Lotto winningNumber = createWinningNumber(inputWinningNumber());
     }
 
     private static String inputWinningNumber() {
@@ -131,5 +131,23 @@ public class Application {
         if (matcher.find()) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT);
         }
+    }
+
+    public static Lotto createWinningNumber(String input) {
+        List<Integer> winningNum = splitAndtoList(input);
+
+        try {
+            return new Lotto(winningNum);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningNumber(inputWinningNumber());
+        }
+    }
+
+    private static List<Integer> splitAndtoList(String input) {
+        List<Integer> winningNum = Arrays.stream(input.split(","))
+                .map((str) -> Integer.parseInt(str))
+                .toList();
+        return winningNum;
     }
 }

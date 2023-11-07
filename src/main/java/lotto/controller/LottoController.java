@@ -3,7 +3,6 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Money;

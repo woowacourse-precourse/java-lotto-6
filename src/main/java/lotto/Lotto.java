@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -33,5 +35,9 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1부터 45까지 입니다.");
             }
         }
+    }
+
+    private void sort(){
+        Collections.sort(numbers);
     }
 }

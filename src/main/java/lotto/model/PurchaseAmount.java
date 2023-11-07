@@ -32,7 +32,7 @@ public class PurchaseAmount {
     }
 
     private boolean isDigit(String amount) {
-        return amount.chars().allMatch(Character::isDigit);
+        return amount.matches("-?\\d+");
     }
 
     private boolean isZeroOrMinus(String amount) {

@@ -67,7 +67,7 @@ public class WinningNumber {
     }
 
     private boolean isDigit(String str) {
-        return str.chars().allMatch(Character::isDigit);
+        return str.matches("-?\\d+");
     }
 
     private boolean areEmptyOrBlank(List<String> numbers) {

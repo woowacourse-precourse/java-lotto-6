@@ -1,14 +1,14 @@
 package lotto.domain;
 
+import static lotto.domain.exception.DomainExceptionCode.MONEY_GRATER_THAN_ZERO;
+
 public record Money(long value) {
 
     public Money {
-        if (value < 0) {
-            throw new IllegalArgumentException("돈은 0보다 작을 수 없습니다.");
-        }
+        MONEY_GRATER_THAN_ZERO.dynamicInvokeBy(() -> value < 0);
     }
 
-    public double calculateProfit(Money profit) {
+    public double calculateProfitMargin(Money profit) {
         var temp = profit.value * 1.0 / value * 100;
         return (double) Math.round(temp * 100) / 100;
     }

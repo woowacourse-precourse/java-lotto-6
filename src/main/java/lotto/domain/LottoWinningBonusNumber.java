@@ -9,12 +9,12 @@ import java.util.List;
 public class LottoWinningBonusNumber {
     private final int winningBonusNumber;
 
-    public LottoWinningBonusNumber(String winningBonusNumberString, List<Integer> winningNumbers) {
-        validateOnlyPositiveNumberBonus(winningBonusNumberString);
-        int winningBonusNumber = convertToInteger(winningBonusNumberString);
-        validateBonusNumberRange(winningBonusNumber);
-        validateWinningBonusNumberAlreadyExists(winningBonusNumber, winningNumbers);
-        this.winningBonusNumber = winningBonusNumber;
+    public LottoWinningBonusNumber(String winningBonusNumber, List<Integer> winningNumbers) {
+        validateOnlyPositiveNumberBonus(winningBonusNumber);
+        int bonusNumber = convertToInteger(winningBonusNumber);
+        validateBonusNumberRange(bonusNumber);
+        validateWinningBonusNumberAlreadyExists(bonusNumber, winningNumbers);
+        this.winningBonusNumber = bonusNumber;
     }
 
     private int convertToInteger(String winningBonusNumberString) {

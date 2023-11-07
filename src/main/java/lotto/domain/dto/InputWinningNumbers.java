@@ -21,8 +21,8 @@ public class InputWinningNumbers {
         return inputWinningNumbers;
     }
 
-    private List<Integer> convertToList(String numbersString) {
-        return Arrays.stream(numbersString.split(","))
+    private List<Integer> convertToList(String inputWinningNumbers) {
+        return Arrays.stream(inputWinningNumbers.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

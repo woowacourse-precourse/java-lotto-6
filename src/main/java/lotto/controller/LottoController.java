@@ -33,7 +33,9 @@ public class LottoController {
 
     private LuckyNumbers createLuckyNumber(){
         Lotto winningNumber = readWinningNumbers();
-        return readBonusNumber(winningNumber);
+        LottoNumber bonusNumber = readBonusNumber();
+
+        return getLuckyNumbers(winningNumber, bonusNumber);
     }
 
     private Lotto readWinningNumbers() {
@@ -45,14 +47,23 @@ public class LottoController {
         }
     }
 
-    private LuckyNumbers readBonusNumber(Lotto winningNumber) {
+    private LottoNumber  readBonusNumber() {
         try {
-            LottoNumber bonusNumber = new LottoNumber(InputView.readBonusNumber());
-            return new LuckyNumbers(winningNumber, bonusNumber);
+            return new LottoNumber(InputView.readBonusNumber());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return readBonusNumber(winningNumber);
+            return readBonusNumber();
         }
+    }
+
+    private LuckyNumbers getLuckyNumbers(Lotto winningNumbers, LottoNumber bonusNumber){
+        try {
+            return new LuckyNumbers(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return getLuckyNumbers(winningNumbers, readBonusNumber());
+        }
+
     }
 
 }

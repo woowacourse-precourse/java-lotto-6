@@ -10,16 +10,16 @@ import lotto.core.LotteryPortfolio;
 import lotto.core.LotteryTicket;
 import lotto.core.PortfolioReport;
 
-public class PortfolioConsoleView {
+public class ConsoleView {
 
     private StringBuilder sb;
 
-    public static PortfolioConsoleView reportView(PortfolioReport report) {
-        return new PortfolioConsoleView(report);
+    public static ConsoleView reportView(PortfolioReport report) {
+        return new ConsoleView(report);
     }
 
-    public static PortfolioConsoleView holdingsView(LotteryPortfolio portfolio) {
-        return new PortfolioConsoleView(portfolio);
+    public static ConsoleView holdingsView(LotteryPortfolio portfolio) {
+        return new ConsoleView(portfolio);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class PortfolioConsoleView {
         return sb.toString();
     }
 
-    private PortfolioConsoleView(PortfolioReport report) {
+    private ConsoleView(PortfolioReport report) {
         sb = new StringBuilder();
         sb.append(String.format("%d개 일치 (%,d원) - %d개\n",
                 FIFTH_PRIZE.getHitCount(), FIFTH_PRIZE.getWinnings(), report.getFifthPlaceCount()));
@@ -42,8 +42,9 @@ public class PortfolioConsoleView {
         sb.append(String.format("총 수익률은 %.1f%%입니다.", report.getProfitRate()));
     }
 
-    private PortfolioConsoleView(LotteryPortfolio portfolio) {
+    private ConsoleView(LotteryPortfolio portfolio) {
         sb = new StringBuilder();
+        sb.append(String.format("%d개를 구매했습니다.", portfolio.holdingsAmount()));
         for (LotteryTicket lotteryTicket : portfolio.getHoldings()) {
             sb.append(lotteryTicket + "\n");
         }

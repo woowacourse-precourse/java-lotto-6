@@ -1,5 +1,6 @@
 package lotto.core;
 
+import lotto.common.MultiplePureNumbers;
 import lotto.common.PureNumber;
 
 public class BonusNumber {

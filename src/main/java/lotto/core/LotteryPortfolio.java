@@ -61,6 +61,10 @@ public class LotteryPortfolio {
         return holdings;
     }
 
+    public int holdingsAmount() {
+        return holdings.size();
+    }
+
     private long calculateWinnings(LotteryTicket ticket, LotteryTicket winningLotteryTicket, BonusNumber bonusNumber) {
         return DrawResult.resultOf(ticket.countHitNumbers(winningLotteryTicket),
                 ticket.containsBonusNumber(bonusNumber)).getWinnings();

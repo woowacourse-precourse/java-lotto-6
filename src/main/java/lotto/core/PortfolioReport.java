@@ -2,6 +2,7 @@ package lotto.core;
 
 public class PortfolioReport {
 
+    private int totalCount;
     private int firstPlaceCount;
     private int secondPlaceCount;
     private int thirdPlaceCount;
@@ -10,6 +11,7 @@ public class PortfolioReport {
     private double profitRate;
 
     public PortfolioReport() {
+        this.totalCount = 0;
         this.firstPlaceCount = 0;
         this.secondPlaceCount = 0;
         this.thirdPlaceCount = 0;

@@ -53,8 +53,8 @@ public class Game {
         int result=0;
         for (int inputNumber : inputNumbers) if(numbers.contains(inputNumber)) cnt++;
         if(cnt==6) result=1;
-        if (cnt==5&&numbers.contains(bonusNumber)) result=2;
         if(cnt==5)result=3;
+        if (cnt==5&&numbers.contains(bonusNumber)) result=2;
         if(cnt==4)result=4;
         if(cnt==3)result=5;
         return result;

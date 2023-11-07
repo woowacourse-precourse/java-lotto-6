@@ -3,18 +3,22 @@ package lotto;
 import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
 import lotto.domain.Procedure;
+import lotto.service.LottoService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
     Procedure procedure;
+    private final LottoService lottoService = new LottoService();
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -100,7 +104,7 @@ class LottoTest {
     }
 
     @Test
-    void 정상적인_당첨_번호입니다(){
+    void 정상적인_당첨_번호입니다() {
         procedure = Procedure.DRAW_WINNING_NUMBERS;
         assertAll(
                 () -> procedure.checkPossibleError("1, 2, 3, 4, 5, 6"),
@@ -150,7 +154,7 @@ class LottoTest {
     }
 
     @Test
-    void 당첨번호는_중복될_수_없습니다(){
+    void 당첨번호는_중복될_수_없습니다() {
         procedure = Procedure.DRAW_WINNING_NUMBERS;
         assertAll(
                 () -> assertThatThrownBy(() -> procedure.checkPossibleError("1,2, 3, 4, 5, 5"))
@@ -163,7 +167,7 @@ class LottoTest {
     }
 
     @Test
-    void 정상_보너스_번호입니다(){
+    void 정상_보너스_번호입니다() {
         procedure = Procedure.DRAW_BONUS_NUMBER;
         assertAll(
                 () -> procedure.checkPossibleError("1"),
@@ -173,7 +177,7 @@ class LottoTest {
     }
 
     @Test
-    void 보너스_번호도_숫자여야_합니다(){
+    void 보너스_번호도_숫자여야_합니다() {
         procedure = Procedure.DRAW_BONUS_NUMBER;
         assertAll(
                 () -> assertThatThrownBy(() -> procedure.checkPossibleError("수"))
@@ -186,7 +190,7 @@ class LottoTest {
     }
 
     @Test
-    void 보너스_번호도_1에서_45사이의_수입니다(){
+    void 보너스_번호도_1에서_45사이의_수입니다() {
         procedure = Procedure.DRAW_BONUS_NUMBER;
         assertAll(
                 () -> assertThatThrownBy(() -> procedure.checkPossibleError("0"))
@@ -196,5 +200,36 @@ class LottoTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(Message.ERROR_NUMBER_OUT_OF_RANGE)
         );
+    }
+
+    @Test
+    void 정상_입력일_경우_리스트를_반환합니다(){
+        String input = "1, 2, 3, 4, 5"; // given
+
+        List<Integer> output = lottoService.parseInputToNumberCandidates(input); // when
+
+        assertEquals(output, List.of(1, 2, 3, 4, 5)); // then
+
+        input = "0, 1, 400, 2147483647";
+
+        output = lottoService.parseInputToNumberCandidates(input);
+
+        assertEquals(output, List.of(0, 1, 400, 2_147_483_647));
+
+
+    }
+
+    @Test
+    void 부호없는_정수로_바꿀_수_없어요() {
+        assertAll(
+                () -> assertThatThrownBy(() -> lottoService.parseInputToNumberCandidates("-1"))
+                        .isInstanceOf(NumberFormatException.class),
+                () -> assertThatThrownBy(() -> lottoService.parseInputToNumberCandidates("숫자가 아니네요"))
+                        .isInstanceOf(NumberFormatException.class),
+                () -> assertThatThrownBy(() -> lottoService.parseInputToNumberCandidates("1, , 2"))
+                        .isInstanceOf(NumberFormatException.class),
+                () -> assertThatThrownBy(() -> lottoService.parseInputToNumberCandidates("1!,"))
+                        .isInstanceOf(NumberFormatException.class)
+                );
     }
 }

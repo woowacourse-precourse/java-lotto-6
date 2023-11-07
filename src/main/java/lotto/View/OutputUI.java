@@ -1,6 +1,7 @@
 package lotto.View;
 
 import lotto.Model.Domain.Lotto;
+
 import java.util.List;
 
 public class OutputUI {
@@ -11,9 +12,14 @@ public class OutputUI {
     public static void printSuccessfullyPurchased(int price) {
         System.out.printf("\n%d개를 구매했습니다.%n", price);
     }
-    public static void printLottos(List<Lotto> lottos){
-        for (Lotto lotto : lottos){
+
+    public static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.toString());
         }
+    }
+
+    public static void printRequestWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }

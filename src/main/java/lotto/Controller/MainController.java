@@ -9,10 +9,12 @@ import java.util.List;
 public class MainController extends Controller {
     PurchaseController purchaseController;
     DrawTicketController drawTicketController;
+    WinningNumberController winningNumberController;
     Customer client;
 
     public MainController() {
         purchaseController = new PurchaseController();
+        winningNumberController = new WinningNumberController();
         client = new Customer();
     }
 
@@ -24,6 +26,7 @@ public class MainController extends Controller {
         drawTicketController.run();
         updateClient(drawTicketController.lotteryTickets);
         lottosOfClient(client);
+        winningNumberController.run();
     }
 
     private void updateClient(int price, int quantity) {

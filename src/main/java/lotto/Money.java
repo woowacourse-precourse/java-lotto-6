@@ -44,7 +44,7 @@ public class Money {
         return money / UNIT_OF_MONEY;
     }
 
-    public float calculateProfitRate(Long reward) {
+    public double calculateProfitRate(Long reward) {
         return (reward / (float) money) * 100;
     }
 }

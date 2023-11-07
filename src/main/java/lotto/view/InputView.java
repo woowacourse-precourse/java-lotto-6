@@ -15,6 +15,7 @@ public class InputView {
         System.out.println(REQUEST_INPUT_MONEY);
         String input = Console.readLine();
         System.out.println();
+        validateNumeric(input);
         return Integer.parseInt(input);
     }
 
@@ -24,6 +25,7 @@ public class InputView {
         System.out.println();
         return Stream.of(input.split(","))
                 .map(Integer::parseInt)
+                .peek(num -> validateNumeric(num.toString()))
                 .collect(Collectors.toList());
     }
 
@@ -31,6 +33,15 @@ public class InputView {
         System.out.println(REQUEST_BONUS_NUMBER);
         String input = Console.readLine();
         System.out.println();
+        validateNumeric(input);
         return Integer.parseInt(input);
+    }
+
+    private static void validateNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 }

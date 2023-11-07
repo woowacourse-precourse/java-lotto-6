@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,13 +35,9 @@ public class InputValidator {
     }
 
     public static void validateDuplicateNumber(String input) {
-        String[] parts = input.split(COMMA_SEPARATOR);
-        String result = String.join("", parts);
-        Set<Character> inputNumber = new HashSet<>();
-        for (int i=0;i<result.length();i++) {
-            char character = input.charAt(i);
-            inputNumber.add(character);
-        }
+        String[] winningNumbers = input.split(COMMA_SEPARATOR);
+        Set<String> inputNumber = new HashSet<>();
+        Collections.addAll(inputNumber, winningNumbers);
         if (inputNumber.size()!=WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(getDuplicateNumberMessage());
         }

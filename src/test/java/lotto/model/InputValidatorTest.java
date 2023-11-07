@@ -36,7 +36,7 @@ public class InputValidatorTest {
     @Test
     void 당첨번호에_중복이_있는_경우_테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.validateDuplicateNumber("1,1,2,3,4,5");
+            InputValidator.validateDuplicateNumber("1,11,12,33,11,15");
         });
     }
 }

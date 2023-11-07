@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import lotto.domain.Wallet;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ public class WalletTest {
 
     @Test
     @DisplayName("addBalance 값 검증 테스트")
-    void validate_addBalance() {
+    void validateAddBalance() {
 
         Wallet wallet = new Wallet();
 
@@ -48,7 +49,7 @@ public class WalletTest {
 
     @Test
     @DisplayName("buyAllLotto 값 검증 테스트")
-    void validate_buyAllLotto() {
+    void validateBuyAllLotto() {
 
         Wallet wallet = new Wallet();
 

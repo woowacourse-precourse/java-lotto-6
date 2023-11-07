@@ -1,28 +1,36 @@
 package lotto;
 
+import static lotto.constant.GuideMessage.*;
+
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Wallet;
+import lotto.domain.WinnerNumbers;
 
 public class LottoController {
 
-    private static final String INPUT_BUY_AMOUNT = Message.INPUT_BUY_AMOUNT.getValue();
-    private static final String LOTTO_BUY_COUNT = Message.LOTTO_BUY_COUNT.getValue();
-    private static final String CRLF = Message.CRLF.getValue();
+    private static final String CRLF = "";
 
     private static final Wallet wallet = new Wallet();
     private static final LottoView view = new LottoView();
+    private static WinnerNumbers winnerNumbers;
 
 
     void inputAmountOfLotto() {
 
-        try {
-            int amount = view.inputNumber(INPUT_BUY_AMOUNT);
-            wallet.addBalance(amount);
+        boolean exceptionOccurrenceStatus = true;
 
-        } catch (Exception e) {
-            view.printMessage(e.getMessage());
-            inputAmountOfLotto();
+        while (exceptionOccurrenceStatus) {
+            try {
+                int amount = view.inputNumber(INPUT_BUY_AMOUNT);
+                wallet.addBalance(amount);
 
-            return;
+                exceptionOccurrenceStatus = false;
+
+            } catch (Exception e) {
+                view.printMessage(e.getMessage());
+                exceptionOccurrenceStatus = true;
+            }
         }
 
         view.printMessage(CRLF);
@@ -41,5 +49,49 @@ public class LottoController {
         }
 
         view.printMessage(CRLF);
+    }
+
+    void inputWinnerNumber() {
+
+        boolean exceptionOccurrenceStatus = true;
+
+        while (exceptionOccurrenceStatus) {
+            try {
+                List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
+                view.printMessage(CRLF);
+                WinnerNumbers.validateNumbers(numbers);
+
+                inputBonusNumber(numbers);
+
+                exceptionOccurrenceStatus = false;
+
+            } catch (Exception e) {
+                view.printMessage(e.getMessage());
+                exceptionOccurrenceStatus = true;
+            }
+        }
+
+        view.printMessage(CRLF);
+    }
+
+    private int inputBonusNumber(List<Integer> numbers) {
+
+        int bonusNumber = 0;
+
+        boolean exceptionOccurrenceStatus = true;
+
+        while (exceptionOccurrenceStatus) {
+            try {
+                bonusNumber = view.inputNumber(INPUT_BONUS_NUMBER);
+                winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
+                exceptionOccurrenceStatus = false;
+
+            } catch (Exception e) {
+                view.printMessage(e.getMessage());
+                exceptionOccurrenceStatus = true;
+            }
+        }
+
+        return bonusNumber;
     }
 }

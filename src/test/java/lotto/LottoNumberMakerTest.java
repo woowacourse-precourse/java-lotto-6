@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.LottoNumbersMaker.getLottoNumbers;
+import static lotto.domain.LottoNumbersMaker.getLottoNumbers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class LottoNumberMakerTest {
 
     @Test
     @DisplayName("getLottoNumbers 값 중복 검증 테스트")
-    void validate_getLottoNumbers_by_not_duplicate() {
+    void validateGetLottoNumbersByNotDuplicated() {
 
         List<Integer> numbers = getLottoNumbers();
 
@@ -26,7 +26,7 @@ public class LottoNumberMakerTest {
 
     @Test
     @DisplayName("getLottoNumbers 값 정렬 검증 테스트")
-    void validate_getLottoNumbers_by_sorted() {
+    void validateGetLottoNumbersBySorted() {
 
         List<Integer> numbers = getLottoNumbers();
         List<Integer> sortedNumber = new ArrayList<>();

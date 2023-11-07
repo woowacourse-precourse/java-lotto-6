@@ -75,4 +75,8 @@ public class OutputView {
                 .append("---------")
                 .append(LINE_SEPARATOR);
     }
+    public static void printProfit(double profit) {
+        String sentence = String.format("총 수익률은 %.2f입니다.", profit);
+        System.out.println(sentence);
+    }
 }

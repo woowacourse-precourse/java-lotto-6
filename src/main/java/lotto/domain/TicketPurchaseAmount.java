@@ -8,6 +8,7 @@ public class TicketPurchaseAmount {
     private static final String NOT_NUMBER_ERROR = "금액은 숫자만 등록 가능합니다.";
     private static final String NOT_NATURAL_NUMBER_ERROR = "금액은 0 이상이어야 합니다.";
     private static final String NOT_DIVISIBLE_NUMBER_ERROR = "금액은 " + DIVISOR + "단위여야 합니다.";
+    private static final double DECIMAL = 1.0;
 
     private int amount;
 
@@ -43,5 +44,7 @@ public class TicketPurchaseAmount {
     public int calculateLottoCount() {
         return amount / DIVISOR;
     }
-
+    public double calculateProfit(long prizeSum) {
+        return DECIMAL * prizeSum / amount;
+    }
 }

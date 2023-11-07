@@ -6,15 +6,15 @@ import java.util.List;
 
 public class LottoGameInput {
     public int getLottoAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
         String inputStr = Console.readLine();
 
         int inputNumber = validateAndParseInput(inputStr);
 
-        if (inputNumber % 1000 == 0) {
-            return inputNumber / 1000;
-        } else {
+        if (inputNumber % 1000 != 0) {
             throw new IllegalArgumentException("입력된 값은 1000으로 나누어 떨어지지 않습니다.");
         }
+        return inputNumber / 1000;
     }
 
     public int validateAndParseInput(String inputStr) {
@@ -26,6 +26,7 @@ public class LottoGameInput {
     }
 
     public List<Integer> getWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         String inputStr = Console.readLine();
         return validateDuplicateAndConvertToList(inputStr);
     }
@@ -40,9 +41,8 @@ public class LottoGameInput {
 
             if (winningNumbers.contains(inputNumber)) {
                 throw new IllegalArgumentException("로또 당첨 번호에 중복된 번호가 있습니다. 다른 번호를 입력하세요.");
-            } else {
-                winningNumbers.add(inputNumber);
             }
+            winningNumbers.add(inputNumber);
         }
         validateLottoCount(winningNumbers);
         return winningNumbers;
@@ -61,6 +61,7 @@ public class LottoGameInput {
     }
 
     public int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String inputStr = Console.readLine();
         int inputNumber = validateAndParseInput(inputStr);
         valitedateLottoScope(inputNumber);

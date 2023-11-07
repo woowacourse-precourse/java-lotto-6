@@ -23,7 +23,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
     @DisplayName("보너스번호가 로또 번호의 숫자와 중복되는 경우 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedBonus() {

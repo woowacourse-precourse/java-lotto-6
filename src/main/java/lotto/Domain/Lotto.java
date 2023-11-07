@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -27,14 +27,14 @@ public class Lotto {
         }
 
         if (duplicateCheck.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
 
     public static void validateRange(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
 
         }
@@ -43,7 +43,7 @@ public class Lotto {
 
     public static void validateBonus(List<Integer> numbers, int bonus) {
         if (numbers.contains(bonus)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 중복되었습니다.");
         }
     }
 

@@ -1,9 +1,11 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,7 +27,7 @@ public class LottoGame {
         outputView.printLottoTicket(purchaseLotto);
         initLuckyNumber();
         initBonusNumber();
-
+        printResult();
     }
 
     private void initLuckyNumber() {
@@ -64,4 +66,12 @@ public class LottoGame {
     private boolean isAvailBonusNumbers(Integer bonusNumber) {
         return bonusNumber!=null;
     }
+
+    private void printResult() {
+        Map<Rank, Integer> finalResult = lottoController.provideResult();
+        outputView.printResult(finalResult);
+        double revenue = lottoController.provideRevenue();
+        outputView.printRevenue(revenue);
+    }
+
 }

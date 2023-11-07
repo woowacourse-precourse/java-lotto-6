@@ -1,20 +1,20 @@
 package lotto.domain;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LottoResult {
-    private final Map<LottoRank, Integer> result;
+    private final Map<LottoEnum.LottoRank, Integer> result;
 
     public LottoResult() {
         this.result = new HashMap<>();
     }
 
-    public void add(LottoRank rank) {
+    public void add(LottoEnum.LottoRank rank) {
+        result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
-
-    // 수익률 계산 로직 작성 필요
+    public int getCount(LottoEnum.LottoRank rank) {ㄷ
+    }
     public double calculateEarningsRate(int purchaseAmount) {
-
     }
 }
-

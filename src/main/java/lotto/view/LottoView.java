@@ -11,6 +11,9 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static lotto.view.LottoFormatter.getStatisticsFormat;
+import static lotto.view.LottoFormatter.getStatisticsRateFormat;
+
 public class LottoView {
 
     public void printInputPurchaseAmount() {
@@ -42,19 +45,11 @@ public class LottoView {
 
         Map<Matching, Integer> map = result.getResult();
 
-        Arrays.stream(Matching.values()).sorted(Comparator.comparingInt(Matching::getMoney))
+        Arrays.stream(Matching.values())
+                .sorted(Comparator.comparingInt(Matching::getPrizeMoney))
                 .forEach(matching -> System.out.println(getStatisticsFormat(matching, map.get(matching))));
 
-        System.out.println("총 수익률은 " + result.getRate(purchaseAmount) + "%입니다.");
-    }
-
-    private String getStatisticsFormat(Matching matching, int count) {
-        return String.format(
-                "%s (%s) - %d개",
-                matching.getMatchingNumber(),
-                matching.getPrizeMoney(),
-                count
-        );
+        System.out.println(getStatisticsRateFormat(result, purchaseAmount));
     }
 
 }

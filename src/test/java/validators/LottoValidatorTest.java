@@ -1,7 +1,5 @@
 package validators;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 import constants.ErrorCodeConstant;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -20,7 +18,7 @@ public class LottoValidatorTest {
 
         //when
         Throwable thrown = Assertions.catchThrowable(() -> {
-            LottoValidator.isVerifyInputLotto(inputLotto);
+            LottoValidator.verifyInputLotto(inputLotto);
         });
 
         // then
@@ -37,7 +35,7 @@ public class LottoValidatorTest {
 
         //when
         Throwable thrown = Assertions.catchThrowable(() -> {
-            LottoValidator.isVerifyInputLotto(inputLotto);
+            LottoValidator.verifyInputLotto(inputLotto);
         });
 
         // then
@@ -46,21 +44,39 @@ public class LottoValidatorTest {
                 .hasMessage(ErrorCodeConstant.NUMBER_AND_COMMA_VALIDATION_ERROR);
     }
 
+    @DisplayName("로또 당첨 번호가 6개 이상일 경우 예외 발생")
+    @Test
+    void isLottoNumberLengthTest() {
+        // given
+        List<Integer> numbers = List.of(1,2,3,4,5,6,7);
 
-    @DisplayName("로또 당첨 번호가 1 ~ 45 사이일 경우 true, 아니면 false")
+        //when
+        Throwable thrown = Assertions.catchThrowable(() -> {
+            LottoValidator.verifyLotto(numbers);
+        });
+
+        // then
+        Assertions.assertThat(thrown)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorCodeConstant.DEFAULT_LOTTO_NUMBER_LENGTH_ERROR);
+    }
+
+
+    @DisplayName("로또 당첨 번호가 하나라도 1 ~ 45 사이가 아닐 경우 예외 발생")
     @Test
     void isBetweenLottoNumberTest() {
         // given
-        List<Integer> numbers1 = List.of(1,12,22,33,44,45);
-        List<Integer> numbers2 = List.of(0,46,50);
+        List<Integer> numbers = List.of(0,46,50,100,33,44);
 
         //when
-        boolean trueResult = LottoValidator.isVerifyLotto(numbers1);
-        boolean falseResult = LottoValidator.isVerifyLotto(numbers2);
+        Throwable thrown = Assertions.catchThrowable(() -> {
+            LottoValidator.verifyLotto(numbers);
+        });
 
-        //then
-        assertThat(trueResult).isTrue();
-        assertThat(falseResult).isFalse();
+        // then
+        Assertions.assertThat(thrown)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorCodeConstant.BETWEEN_LOTTO_NUMBER_ERROR);
     }
 
 }

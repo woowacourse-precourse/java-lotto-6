@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.view.LottoErrorMessage.INVALID_NEGATIVE_PAYMENT;
+
 public class Payment {
 
     private final int payment;
@@ -11,7 +13,7 @@ public class Payment {
 
     private void validate(int money) {
         if (money < 0) {
-            throw new IllegalArgumentException("[ERROR] 돈은 음수가 될 수 없습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_NEGATIVE_PAYMENT.getMessage());
         }
     }
 

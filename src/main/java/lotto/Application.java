@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 enum Error{
@@ -197,6 +198,59 @@ class bonus_number{
     }
 }
 
+class lotto_result{
+    private static final int SECOND_PRIZE = 7;
+
+    public static void totalLottoCheck(List<List<Integer>> total, List<Integer> numbers, int bonus){
+        for(List<Integer> lotto : total){
+            int correction = eachLottoCheck(lotto, numbers, bonus);
+            result(correction);
+        }
+    }
+
+    public static int eachLottoCheck(List<Integer> lotto, List<Integer> numbers, int bonus){
+        int totalCorrectionEach = 0;
+        for(int number : numbers){
+            totalCorrectionEach += checkCorrection(number, lotto);
+        }
+        if(totalCorrectionEach == 5){
+            totalCorrectionEach = checkBonus(lotto, bonus);
+        }
+        return totalCorrectionEach;
+    }
+
+    public static int checkCorrection(int number, List<Integer> lotto){
+        int correct = 0;
+        for(int lottoNumber : lotto){
+            if(lottoNumber == number){
+                correct++;
+            }
+        }
+        return correct;
+    }
+
+    public static int checkBonus(List<Integer> lotto, int bonus){
+        int totalCorrectionEach = 5;
+        for(int eachNumber : lotto){
+            if (bonus == eachNumber) {
+                totalCorrectionEach = SECOND_PRIZE;
+                break;
+            }
+        }
+        return totalCorrectionEach;
+    }
+
+    public static void result(int correction){
+        List<Integer> result = new ArrayList<>();
+        result.add(correction);
+        System.out.println("3개 일치 (5,000원) - " + Collections.frequency(result, 3) + "개");
+        System.out.println("4개 일치 (50,000원) - " + Collections.frequency(result, 4) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + Collections.frequency(result, 5) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Collections.frequency(result, 7) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + Collections.frequency(result, 6) + "개");
+    }
+}
+
 public class Application {
     public static void main(String[] args) {
         int realMoney = money_for_lotto.exceptionRepeatMoney();
@@ -207,6 +261,7 @@ public class Application {
         List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
         List<Integer> winPlusBonus = bonus_number.exceptionRepeatBonus(winningNumber);
 
+        System.out.println("\n당첨 통계\n---");
 
     }
 }

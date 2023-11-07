@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultCalculator {
+    public static final String RESULT_MESSAGE_FORMAT = "%s - %d개";
+    public static final int MATCH_COUNT_FIVE = 5;
     private final Map<Rank, Integer> result;
     private double profitRate;
 
@@ -31,7 +33,7 @@ public class ResultCalculator {
     }
 
     private boolean isBonusNumberMatch(int matchCount, int bonusNumber, Lotto lotto) {
-        return matchCount == 5 && lotto.getNumbers().contains(bonusNumber);
+        return matchCount == MATCH_COUNT_FIVE && lotto.getNumbers().contains(bonusNumber);
     }
 
     private Rank findRank(int matchCount, boolean matchBonus) {
@@ -45,15 +47,15 @@ public class ResultCalculator {
         result.put(rank, result.get(rank) + 1);
     }
 
-    public Map<Rank, Integer> getResult() {
-        return result;
-    }
-
     public void calculateProfitRate(int amount) {
         int totalProfit = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
         profitRate = (double) totalProfit / amount * 100;
+    }
+
+    public Map<Rank, Integer> getResult() {
+        return result;
     }
 
     public double getProfitRate() { return profitRate; }
@@ -62,7 +64,7 @@ public class ResultCalculator {
     public String toString() {
         return result.entrySet().stream()
                 .filter(entry -> entry.getKey() != Rank.OUT_OF_RANKS)
-                .map(entry -> entry.getKey() + " - " + entry.getValue() + "개")
+                .map(entry -> String.format(RESULT_MESSAGE_FORMAT, entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining("\n"));
     }
 }

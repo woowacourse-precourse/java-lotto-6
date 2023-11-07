@@ -1,6 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.Lottos;
+import lotto.domain.PrizeCondition;
+import lotto.domain.WinningLotto;
 import lotto.service.GameManager;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,6 +13,8 @@ import java.util.Map;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
+    private PurchaseAmountInputHandler purchaseAmountInputHandler;
+    private WinningLottoInputHandler winningLottoInputHandler;
     private GameManager gameManager;
 
     public GameController(InputView inputView, OutputView outputView) {
@@ -18,10 +23,16 @@ public class GameController {
     }
 
     public void run() {
+        initializeInputHandlers();
         initializeGameManager();
         printPurchasedLottos();
         processResult();
         printResult();
+    }
+
+    private void initializeInputHandlers() {
+        purchaseAmountInputHandler = PurchaseAmountInputHandler.create(inputView, outputView);
+        winningLottoInputHandler = WinningLottoInputHandler.create(inputView, outputView);
     }
 
     private void initializeGameManager() {
@@ -30,15 +41,7 @@ public class GameController {
     }
 
     private LottoPurchaseAmount readPurchaseAmountFromUser() {
-        inputView.printAskPurchaseAmount();
-        while (true) {
-            try {
-                String purchaseAmountInput = inputView.readInputFromUser();
-                return LottoPurchaseAmount.create(purchaseAmountInput);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return purchaseAmountInputHandler.createPurchaseAmount();
     }
 
     private void printPurchasedLottos() {
@@ -47,33 +50,8 @@ public class GameController {
     }
 
     private void processResult() {
-        WinningLotto winningLotto = createWinningLotto();
+        WinningLotto winningLotto = winningLottoInputHandler.createWinningLotto();
         gameManager.processResult(winningLotto);
-    }
-
-    private WinningLotto createWinningLotto() {
-        WinningNumbers winningNumbers = readWinningNumbersFromUser();
-        inputView.printAskBonusNumber();
-        while (true) {
-            try {
-                String bonusNumberInput = inputView.readInputFromUser();
-                return WinningLotto.create(winningNumbers, bonusNumberInput);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private WinningNumbers readWinningNumbersFromUser() {
-        inputView.printAskWinningNumbers();
-        while (true) {
-            try {
-                String winningNumbersInput = inputView.readInputFromUser();
-                return WinningNumbers.create(winningNumbersInput);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
     }
 
     private void printResult() {

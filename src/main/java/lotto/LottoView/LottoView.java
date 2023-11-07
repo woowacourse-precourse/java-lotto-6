@@ -51,5 +51,4 @@ public class LottoView {
     public void errorMeg(String meg) {
         System.out.println("[ERROR] " + meg);
     }
-
 }

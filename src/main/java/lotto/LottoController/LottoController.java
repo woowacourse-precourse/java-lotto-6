@@ -49,5 +49,4 @@ public class LottoController {
 
         view.showRate(profitRate);
     }
-
 }

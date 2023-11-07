@@ -72,5 +72,4 @@ public class Lotto {
 
         return LottoRank.rankCheck(matchCount, matchbonus);
     }
-
 }

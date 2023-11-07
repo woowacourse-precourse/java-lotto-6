@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
-
 public class NumberFormatter {
 
     public Map<String, Integer> formatResult(Map<LottoRank, Integer> result) {

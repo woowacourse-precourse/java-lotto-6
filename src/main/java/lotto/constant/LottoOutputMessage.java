@@ -8,7 +8,8 @@ public enum LottoOutputMessage {
     WINNING_RESULT("당첨 통계\n" + "---"),
     RANK_RESULT("%d개 일치"),
     BONUS_RESULT(", 보너스 볼 일치"),
-    COUNT_RESULT(" (%s원) - %d개");
+    COUNT_RESULT(" (%s원) - %d개"),
+    RATE_RESULT("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

@@ -33,7 +33,15 @@ public class LottoGameController {
     public void run() {
         LottoGame lottoGame = initLottoGame();
         LottoResult lottoResult = lottoGameService.play(lottoGame);
+        double rate = lottoGameService.calculateRate(lottoGame, lottoResult);
         printLottoResult(lottoResult);
+        printLottoRate(rate);
+    }
+
+    private void printLottoRate(double rate) {
+        outputView.output(
+                format(RATE_RESULT.getMessage(), rate)
+        );
     }
 
     private void printLottoResult(LottoResult lottoResult) {

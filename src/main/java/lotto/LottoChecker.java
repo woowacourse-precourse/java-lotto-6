@@ -19,6 +19,30 @@ public class LottoChecker {
         }
     }
 
+    public List<LottoPrize> check(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(this::getPrize)
+                .toList();
+    }
+
+    private LottoPrize getPrize(Lotto lotto) {
+        int hit = 0;
+        for (int number : lotto.getNumbers()) {
+            if (answerNumberSet.contains(number)) {
+                hit++;
+            }
+        }
+        if (hit == LottoConfig.LOTTO_SIZE) {
+            return LottoPrize.FIRST;
+        } else if (hit == LottoConfig.LOTTO_SIZE - 1 && answerNumberSet.contains(bonusNumber)) {
+            return LottoPrize.SECOND;
+        } else if (hit == LottoConfig.LOTTO_SIZE - 1) {
+            return LottoPrize.THIRD;
+        } else {
+            return LottoPrize.NONE;
+        }
+    }
+
     private HashSet<Integer> parseLottoNumberSet(String lottoNumberInput) {
         try {
             List<Integer> lottoNumberList = Stream.of(lottoNumberInput.split(",")).map(this::parseLottoNumber).toList();

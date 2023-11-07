@@ -56,4 +56,29 @@ public class IntegerValidatorTest {
 
     }
 
+    @Test
+    public void 정수가_특정수의_범위내에_없으면_예외발생() {
+        // Given
+        int outOfRangeNumber = 101;
+
+        // When && Then
+        assertThatThrownBy(() -> IntegerValidator.validateInRange(
+                outOfRangeNumber, minRange, maxRange))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+    }
+
+    @Test
+    public void 정수가_특정수의_범위내에_있으면_정상통과() {
+        // Given
+        int inRangeNumber = 100;
+
+
+        // When
+        IntegerValidator.validateInRange(inRangeNumber, minRange, maxRange);
+
+        // Then
+
+    }
+
 }

@@ -19,9 +19,28 @@ public class LottoManager {
     }
 
     public void run() {
-        purchaseTickets(InputView.purchaseAmount());
-        winningTicket(InputView.winningNumbers());
-        bonusNumber(InputView.bonusNumber());
+
+        try {
+            purchaseTickets(InputView.purchaseAmount());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            purchaseTickets(InputView.purchaseAmount());
+        }
+
+        try {
+            winningTicket(InputView.winningNumbers());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            winningTicket(InputView.winningNumbers());
+        }
+
+        try {
+            bonusNumber(InputView.bonusNumber());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            bonusNumber(InputView.bonusNumber());
+        }
+
     }
 
     private void bonusNumber(String bonusNumber) {

@@ -39,5 +39,4 @@ class RankTest {
         assertThat(THIED_result).isEqualTo(THIED_expect);
     }
 
-
 }

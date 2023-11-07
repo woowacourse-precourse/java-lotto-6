@@ -12,4 +12,5 @@ public class RandomLotto {
     public List<Lotto> getRandomLottoNumbers() {
         return RandomLottoNumbers;
     }
+
 }

@@ -10,7 +10,6 @@ public class Lotto {
     private static final String ERROR_NUMBER_RANGE = String.format("%d부터 %d까지의 숫자만 입력해 주세요.", MIN, MAX);
     private final List<Integer> numbers;
 
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

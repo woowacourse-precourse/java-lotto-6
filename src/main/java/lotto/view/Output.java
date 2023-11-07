@@ -16,7 +16,6 @@ public class Output {
     private static final String MESSAGE_PRIZE = " (%s원) ";
     private static final String MESSAGE_MATCH_RESULT = "- %d개";
 
-
     public static void printErrorMessage(String error) {
         System.out.println("[ERROR] " + error);
     }
@@ -61,6 +60,5 @@ public class Output {
     public static void printSpace(){
         System.out.println(SPACE);
     }
-
 
 }

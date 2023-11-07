@@ -13,16 +13,16 @@ class UserLottoTest {
     BonusLotto bonusLotto;
 
     @BeforeEach
-    void setUp(){
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+    void setUp() {
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         mainLotto = new Lotto(lottoNumbers);
 
         bonusLotto = new BonusLotto(1);
     }
 
     @Test
-    void 중복된_번호를_입력_받았을_떄_예외_처리(){
-        assertThatThrownBy(() -> new UserLotto(mainLotto,bonusLotto))
+    void 중복된_번호를_입력_받았을_떄_예외_처리() {
+        assertThatThrownBy(() -> new UserLotto(mainLotto, bonusLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

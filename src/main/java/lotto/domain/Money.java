@@ -6,6 +6,7 @@ public class Money {
     private static final int MIN_AMOUNT = 1000;
     private static final String ERROR_AMOUNT_TOO_LOW = String.format("%d보다 큰 값을 입력해 주세요.", MIN_AMOUNT);
     private static final String ERROR_MULTIPLE_OF_THOUSAND = String.format("%d의 배수값만 입력해 주세요.",MIN_AMOUNT);
+
     public Money(int purchaseAmount) {
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;

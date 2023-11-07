@@ -15,6 +15,4 @@ public final class Utils {
         unSortedNumbers.sort(Integer::compareTo);
         return unSortedNumbers;
     }
-
-
 }

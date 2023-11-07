@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.view.InputView;
 
@@ -17,6 +17,7 @@ public class InputProcessor {
         Validation.validateStringToInteger(input);
         return Utils.stringToInteger(input);
     }
+
     public int getUserInputBonusNumber() {
         String input = inputView.inputBonusNumber();
         Validation.validateStringToInteger(input);
@@ -26,15 +27,15 @@ public class InputProcessor {
     public List<Integer> getUserInputWinningNumbers() {
         return getUserInputWinningNumbers(inputView.inputWinningNumbers());
     }
+
     public List<Integer> getUserInputWinningNumbers(String userInput) {
-        List<Integer> winningNumbers = new ArrayList<>();
+        String[] numberStrings = userInput.split(DELIMITER, -1);
 
-        String[] numberStrings = userInput.split(DELIMITER);
         for (String numberString : numberStrings) {
-            int number = Integer.parseInt(numberString.trim());
-            winningNumbers.add(number);
+            Validation.validateStringToInteger(numberString);
         }
-
-        return winningNumbers;
+        return Arrays.stream(numberStrings)
+                .map(Integer::parseInt)
+                .toList();
     }
 }

@@ -23,7 +23,13 @@ public class Validation {
         validateBonusNumberNotInWinningNumber(bonusNumber.bonusNumber(), lotto.getNumbers());
     }
     public static void validateStringToInteger(String string) {
-        if (string.trim().isEmpty() || !string.chars().allMatch(Character::isDigit)) {
+        if (string.isEmpty()) {
+            ExceptionMessages.STRING_TO_INTEGER.throwException();
+        }
+        if (string.isBlank()) {
+            ExceptionMessages.STRING_TO_INTEGER.throwException();
+        }
+        if (!string.chars().allMatch(Character::isDigit)) {
             ExceptionMessages.STRING_TO_INTEGER.throwException();
         }
     }

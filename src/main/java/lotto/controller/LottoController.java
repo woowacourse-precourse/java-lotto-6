@@ -144,4 +144,4 @@ public class LottoController {
 
         return LOOSE;
     }
-}함
+}

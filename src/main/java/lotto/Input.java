@@ -5,11 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 
-    public int ticket() {
-        return priceInput()/1000;
-    }
-
-    private int priceInput() {
+    public int inputPrice() {
         int price = 0;
         boolean validPrice = false;
 
@@ -37,5 +33,4 @@ public class Input {
             throw new IllegalArgumentException("1000원 단위의 정수로 입력해주세요");
         }
     }
-
 }

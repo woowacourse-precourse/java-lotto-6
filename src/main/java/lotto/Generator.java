@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -11,22 +12,19 @@ public class Generator {
     static final int bonusNumbersCount = 1;
 
     public List<Integer> numbersGenerator() {
-        List <Integer> numbers = Randoms.pickUniqueNumbersInRange(start,end,lottoNumbersCount);
+        List <Integer> immutableNumbers = Randoms.pickUniqueNumbersInRange(start,end,lottoNumbersCount);
+        List<Integer> numbers = new ArrayList<>(immutableNumbers);
         Collections.sort(numbers);
         return numbers;
     }
-
-    public List<Integer> winNumbersGenerator() {
-        return Randoms.pickUniqueNumbersInRange(start,end,lottoNumbersCount);
-    }
-
     public int bonusNumberGenerator(List<Integer> winNumbers) {
         List<Integer> bonusNumber;
+        int bonusNumberForReturn;
         do {
             bonusNumber = Randoms.pickUniqueNumbersInRange(start,end,bonusNumbersCount);
         } while (winNumbers.contains(bonusNumber));
-        return bonusNumber.get(0);
+        bonusNumberForReturn = bonusNumber.get(0);
+        return bonusNumberForReturn;
     }
-
 
 }

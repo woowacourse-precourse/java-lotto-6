@@ -10,6 +10,10 @@ import lotto.domain.Lotto;
 
 public class LottoTicketFactory {
 
+    private static int MIN_LOTTO_NUMBER_RANGE = 1;
+    private static int MAX_LOTTO_NUMBER_RANGE = 45;
+    private static int LOTTO_NUMBER_SIZE = 6;
+
     public static List<Lotto> lottoTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         while (tickets.size() < ticketCount) {
@@ -19,7 +23,7 @@ public class LottoTicketFactory {
     }
 
     private static Lotto lottoTicket() {
-        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE, LOTTO_NUMBER_SIZE));
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }

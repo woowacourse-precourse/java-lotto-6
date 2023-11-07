@@ -5,13 +5,15 @@ import lotto.domain.Deposit;
 
 public class DepositInput {
 
+    private static final String ERROR_ALARM = "[ERROR] ";
+
     public static Deposit deposit() {
         try {
-            final int amount = Integer.parseInt(Console.readLine());;
+            String deposit = Console.readLine();
+            int amount = WinningNumbersInput.getNumber(deposit);
             return new Deposit(amount);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
-            System.out.println("다시 입력해주세요.");
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_ALARM + e.getMessage());
             return deposit();
         }
     }

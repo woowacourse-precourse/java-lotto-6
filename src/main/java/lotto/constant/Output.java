@@ -1,5 +1,5 @@
 package lotto.constant;
 
-public class Message {
+public class Output {
 
 }

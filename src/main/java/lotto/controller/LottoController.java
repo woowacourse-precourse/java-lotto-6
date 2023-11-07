@@ -19,7 +19,7 @@ public class LottoController {
 
     public static final int TICKET_PRICE = 1000;
 
-    public void run() {
+    public void start() {
         LottoOutput.deposit();
 
         Deposit deposit = DepositInput.deposit();
@@ -37,7 +37,6 @@ public class LottoController {
 
         ProfitRate profitRate = new ProfitRate(totalWinnings, deposit.getDeposit());
         ProfitRateOutput.profitRate(profitRate.getProfitRate());
-        System.out.printf("로또 1등의 수익률: %.1f%%\n", profitRate.getProfitRate());
     }
 }
 

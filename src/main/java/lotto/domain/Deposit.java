@@ -3,10 +3,11 @@ package lotto.domain;
 public class Deposit {
 
     private final int deposit;
+    public static String DEPOSIT_UNIT_EXCEPTION = "금액은 1000원 단위로 입력해주세요.";
 
     public Deposit(int deposit) {
         if (deposit % 1000 != 0) {
-            throw new IllegalArgumentException("금액은 1000 원 단위이어야 합니다.");
+            throw new IllegalArgumentException(DEPOSIT_UNIT_EXCEPTION);
         }
         this.deposit = deposit;
     }

@@ -20,7 +20,7 @@ public class WinningNumbersTest {
 
         assertAll(
                 () -> assertThat(winningNumbers.getWinningNumbers()).isEqualTo(winning),
-                () -> assertThat(winningNumbers.getBonusNumber()).isEqualTo(bonusNumber)
+                () -> assertThat(winningNumbers.getBonusNumber()).isEqualTo(bonusNumber.getBonusNumber())
         );
     }
 
@@ -46,9 +46,8 @@ public class WinningNumbersTest {
     @Test
     public void invalidBonusNumberRange() {
         List<Integer> winning = List.of(1, 2, 3, 4, 5, 45);
-        BonusNumber bonusNumber = new BonusNumber(46);
 
-        assertThatThrownBy(() -> new WinningNumbers(winning, bonusNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new WinningNumbers(winning, new BonusNumber(46))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 로또 숫자 중복")

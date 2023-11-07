@@ -15,4 +15,10 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 6개가 아닙니다");
         }
     }
+
+    public List<Integer> getSortedNumbers() {
+        List<Integer> sortedNumbers = this.numbers;
+        sortedNumbers.sort(null);
+        return sortedNumbers;
+    }
 }

@@ -5,11 +5,17 @@ import lotto.model.Lottos;
 import lotto.model.PurchasePrice;
 import lotto.model.UniqueRandomNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private static final int ONE_LOTTO_PRICE = 1000;
     private PurchasePrice purchasePrice;
     private Lottos lottos;
+
+    public void start() {
+        setPurchasePrice();
+        makeSeveralLottos();
+    }
 
     private void setPurchasePrice() {
         purchasePrice = new PurchasePrice(InputView.inputPrice());
@@ -22,5 +28,6 @@ public class LottoController {
         for (int nums = 0; nums < purchasePrice.countPurchasedLottos(); nums++) {
             lottos.add(makeLotto());
         }
+        OutputView.printLottos(lottos);
     }
 }

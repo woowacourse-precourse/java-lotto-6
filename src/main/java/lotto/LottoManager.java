@@ -1,14 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.WinningCondition;
 import lotto.view.Input;
 import lotto.view.Output;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LottoManager {
     public static final int NUMBER_OF_LOTTO_NUMBER = 6;
+    public static final int THOUSAND = 1000;
     private final Input input = new Input();
     private final Output output = new Output();
 
@@ -46,5 +47,30 @@ public class LottoManager {
     public int getBonusNumber() {
         output.printLottoBonusNumberPrompt();
         return input.readBonusNumber();
+    }
+
+    public WinningCondition checkWinningResult(Lotto myLotto, List<Integer> winningNumbers, int bonusNumber) {
+        Set<Integer> mySet = new HashSet<>(myLotto.getNumbers());
+        Set<Integer> lottoSet = new HashSet<>(winningNumbers);
+
+        mySet.retainAll(lottoSet);
+        int matchedCount = mySet.size();
+
+        if (matchedCount == 6) {
+            return WinningCondition.SIX_MATCH;
+        }
+        if (matchedCount == 5 && myLotto.getNumbers().contains(bonusNumber)) {
+            return WinningCondition.FIVE_MATCH_WITH_BONUS;
+        }
+        if (matchedCount == 5) {
+            return WinningCondition.FIVE_MATCH;
+        }
+        if (matchedCount == 3) {
+            return WinningCondition.THREE_MATCH;
+        }
+        if (matchedCount == 4) {
+            return WinningCondition.FOUR_MATCH;
+        }
+        return WinningCondition.NOTHING;
     }
 }

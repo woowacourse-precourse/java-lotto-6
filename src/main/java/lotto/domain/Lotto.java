@@ -18,13 +18,13 @@ public class Lotto implements Comparable<Lotto> {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NumberConstant.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != NumberConstant.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_DUPliCATE.getMessage());
         }
     }

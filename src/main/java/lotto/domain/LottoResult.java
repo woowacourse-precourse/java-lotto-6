@@ -21,11 +21,11 @@ public class LottoResult {
 
     private Map<String, Integer> generateResultMap() {
         resultMap = new LinkedHashMap<>();
-        resultMap.put(PriceConstant.FIFTH_PLACE.getLabel(), 0); //3
-        resultMap.put(PriceConstant.FOURTH_PLACE.getLabel(), 0); //4
-        resultMap.put(PriceConstant.THIRD_PLACE.getLabel(), 0); //5
-        resultMap.put(PriceConstant.SECOND_PLACE.getLabel(), 0); //5
-        resultMap.put(PriceConstant.FIRST_PLACE.getLabel(), 0); //6
+        resultMap.put(PriceConstant.FIFTH_PLACE.getLabel(), 0);
+        resultMap.put(PriceConstant.FOURTH_PLACE.getLabel(), 0);
+        resultMap.put(PriceConstant.THIRD_PLACE.getLabel(), 0);
+        resultMap.put(PriceConstant.SECOND_PLACE.getLabel(), 0);
+        resultMap.put(PriceConstant.FIRST_PLACE.getLabel(), 0);
 
         return resultMap;
     }

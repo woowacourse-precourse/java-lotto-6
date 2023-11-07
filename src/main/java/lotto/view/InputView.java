@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.InputConstant;
+import lotto.constant.StringConstant;
 import lotto.validation.InputValidator;
 
 public class InputView {
@@ -21,9 +22,10 @@ public class InputView {
 
     public String inputWinningNumber() {
         System.out.println(InputConstant.WINNING_NUMBER.getMessage());
-        String winningNumber = getUserInput();
-        inputValidator.validateUserInput(winningNumber.replaceAll(",", ""));
-        return winningNumber;
+        String userInput = getUserInput();
+        String winningNumber = userInput.replaceAll(StringConstant.DIVISION_STANDARD.getMessage(), "");
+        inputValidator.validateUserInput(winningNumber);
+        return userInput;
     }
 
     public String inputBonusNumber() {

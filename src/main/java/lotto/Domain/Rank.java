@@ -1,52 +1,39 @@
 package lotto.Domain;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.stream.Collectors;
-
 public enum Rank {
-    NONE(0, 0,
-            (matchCount, isBonus) -> matchCount < 3),
-    FIFTH(5000, 3,
-            (matchCount, isBonus) -> matchCount == 3),
-    FOURTH(50000, 4,
-            (matchCount, isBonus) -> matchCount == 4),
-    THIRD(1500000, 5,
-            (matchCount, isBonus) -> matchCount == 5 && !isBonus),
-    SECOND(30000000, 5,
-            (matchCount, isBonus) -> matchCount == 5 && isBonus),
-    FIRST(2000000000, 6,
-            (matchCount, isBonus) -> matchCount == 6);
+    THREE_MATCH("3개 일치 (5,000원)"),
+    FOUR_MATCH("4개 일치 (50,000원)"),
+    FIVE_MATCH("5개 일치 (1,500,000원)"),
+    FIVE_MATCH_WITH_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    SIX_MATCH("6개 일치 (2,000,000,000원)"),
+    NO_MATCH("꽝");
 
-    private final int prize;
-    private final int matchCount;
-    private final BiPredicate<Integer, Boolean> condition;
+    private final String description;
 
-    Rank(final int prize, final int matchCount, BiPredicate<Integer, Boolean> condition) {
-        this.prize = prize;
-        this.matchCount = matchCount;
-        this.condition = condition;
+    Rank(String description) {
+        this.description = description;
     }
 
-    public static Rank of(final int matchCount, final boolean isBonus) {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank.condition.test(matchCount, isBonus))
-                .findAny()
-                .orElse(NONE);
+    public String getDescription() {
+        return description;
     }
 
-    public static List<Rank> getWithoutDefault() {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> !rank.equals(NONE))
-                .collect(Collectors.toList());
+    public static String getResultDescription(int matchingNumbers, boolean bonusNumberMatch) {
+        for (Rank rank : Rank.values()) {
+            if (matchingNumbers == rank.getMatchingNumbers() && bonusNumberMatch == rank.isBonusNumberMatch()) {
+                return rank.getDescription();
+            }
+        }
+        return "꽝";
     }
 
-    public int getPrize() {
-        return prize;
+
+    public int getMatchingNumbers() {
+        int length = description.indexOf("개");
+        return Integer.parseInt(description.substring(0, length));
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public boolean isBonusNumberMatch() {
+        return description.contains("보너스 볼");
     }
 }

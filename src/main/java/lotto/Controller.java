@@ -10,9 +10,14 @@ public class Controller {
 
     public void run() throws IllegalArgumentException {
         setGame();
+        resultGame();
     }
 
     private void setGame() {
         gameService.setGame();;
+    }
+
+    private void resultGame() {
+        gameService.resultGame();
     }
 }

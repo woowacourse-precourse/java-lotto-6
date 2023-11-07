@@ -24,22 +24,22 @@ public class LottoController {
     }
 
     public void run() {
-        int numberOfLottos = findValidNumberOfLottos();
+        int numberOfLottos = askValidNumberOfLottos();
         List<Lotto> purchasedLottos = generateLottos(numberOfLottos);
         resultView.displayPurchasedLottos(purchasedLottos);
 
         Lotto winningLotto = askValidWinningLotto();
     }
 
-    private int findValidNumberOfLottos() {
+    private int askValidNumberOfLottos() {
         int numberOfLottos;
         do {
-            numberOfLottos = findNumberOfLottos();
+            numberOfLottos = askNumberOfLottos();
         } while (numberOfLottos == -1);
         return numberOfLottos;
     }
 
-    private int findNumberOfLottos() {
+    private int askNumberOfLottos() {
         try {
             final int inputMoney = inputView.getInputMoney();
             return lottoPaymentService.calculateNumberOfLottos(inputMoney);

@@ -50,4 +50,13 @@ class LottoInputTest {
                 .hasMessageContaining(IoException.ERROR.getMessage());
     }
 
+    @Test
+    void 당첨번호를_입력하고_쉼표를_맨뒤에_붙인_경우_예외를_반환한다() {
+        LottoInput lottoInput = new LottoInput(() -> "1,2,3,4,5,6,");
+
+        assertThatThrownBy(lottoInput::receiveMoney)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(IoException.ERROR.getMessage());
+    }
+
 }

@@ -78,6 +78,10 @@ public class AnnotationConfigApplicationContainer implements ApplicationContaine
     }
 
     private void registerBeanByAnnotation(String beanName) {
+        if (factory.contains(beanName)) {
+            return;
+        }
+
         Method method = findBeanCreationMethod(beanName);
 
         Object[] args = Arrays.stream(method.getParameters())

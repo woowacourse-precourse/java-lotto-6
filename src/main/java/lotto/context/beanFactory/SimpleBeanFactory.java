@@ -1,5 +1,6 @@
 package lotto.context.beanFactory;
 
+import lotto.context.exception.AlreadyExistBeanException;
 import lotto.context.exception.NoSuchBeanException;
 
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class SimpleBeanFactory implements BeanFactory {
     @Override
     @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName) {
-        if (!contains(beanName)) {
+        if (!storage.containsKey(beanName)) {
             throw new NoSuchBeanException(beanName);
         }
         return (T) storage.get(beanName);
@@ -30,13 +31,16 @@ public class SimpleBeanFactory implements BeanFactory {
 
     @Override
     public <T> void registerBean(String beanName, Supplier<T> beanSupplier) {
+        if (storage.containsKey(beanName)) {
+            throw new AlreadyExistBeanException(beanName);
+        }
         T bean = beanSupplier.get();
         storage.put(beanName, bean);
     }
 
     @Override
     public void remove(String beanName) {
-        if (!contains(beanName)) {
+        if (!storage.containsKey(beanName)) {
             throw new NoSuchBeanException(beanName);
         }
         storage.remove(beanName);

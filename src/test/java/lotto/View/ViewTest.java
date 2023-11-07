@@ -1,4 +1,5 @@
-import static org.junit.jupiter.api.Assertions.*;
+package lotto.View;
+
 class ViewTest {
-  
+
 }

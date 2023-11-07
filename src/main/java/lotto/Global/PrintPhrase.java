@@ -12,7 +12,7 @@ public enum PrintPhrase {
         this.phrase = phrase;
     }
 
-    public String getStatement() {
+    public String getPhrase() {
         return phrase;
     }
 

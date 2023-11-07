@@ -21,6 +21,13 @@ public class Validation {
         }
     }
 
+    public static void verifyStringToInteger(String string) {
+        if (!string.chars().allMatch(Character::isDigit)) {
+            VerificationView.verificationViewStringToInteger();
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void verifyRangeWinningLottoNumber(String string) {
         String[] lottoNumbers = string.split(COMMAS);
 

@@ -12,6 +12,7 @@ public class LottoService {
     private static final String FIRST_ERROR_MESSAGE = "[ERROR] ";
     private static final String PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE = "로또 구입 금액은 1,000원으로 나누어 떨어져야합니다.";
     private static final String PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE = "로또 구입 금액은 숫자여야합니다.";
+    private static final String WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE = "당첨 번호는 숫자여야합니다.";
 
     private final LottoNumbersProvider lottoNumbersProvider;
 
@@ -75,7 +76,11 @@ public class LottoService {
         String[] splitNumbers = lottoNumbersString.split(",");
         List<Integer> lottoNumbers = new ArrayList<>();
         for (String number : splitNumbers) {
-            lottoNumbers.add(Integer.parseInt(number.trim()));
+            try {
+                lottoNumbers.add(Integer.parseInt(number.trim()));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE);
+            }
         }
         return lottoNumbers;
     }

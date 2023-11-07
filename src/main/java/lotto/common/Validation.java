@@ -1,15 +1,21 @@
 package lotto.common;
 
+import static lotto.common.util.LottoUtil.DUPLICATE;
+import static lotto.common.util.LottoUtil.MAX;
+import static lotto.common.util.LottoUtil.MIN;
+import static lotto.common.util.LottoUtil.SIZE;
+import static lotto.common.util.LottoUtil.THOUSAND;
+import static lotto.common.util.LottoUtil.ZERO;
+
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lotto.common.util.LottoUtil;
 
 public final class Validation {
 
     public static void lottoSize(List<Integer> numbers) {
-        if (numbers.size() != LottoUtil.SIZE.getNumber()) {
+        if (numbers.size() != SIZE.getNumber()) {
             throw new IllegalArgumentException();
         }
     }
@@ -19,7 +25,7 @@ public final class Validation {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
-                .filter(entry -> entry.getValue() > LottoUtil.DUPLICATE.getNumber())
+                .filter(entry -> entry.getValue() > DUPLICATE.getNumber())
                 .map(Map.Entry::getKey)
                 .toList();
 
@@ -30,7 +36,7 @@ public final class Validation {
 
     public static void lottoLimit(List<Integer> numbers) {
         List<Integer> outOfRangeNumbers = numbers.stream()
-                .filter(number -> number < LottoUtil.MIN.getNumber() || number > LottoUtil.MAX.getNumber())
+                .filter(number -> number < MIN.getNumber() || number > MAX.getNumber())
                 .toList();
 
         if (!outOfRangeNumbers.isEmpty()) {
@@ -53,7 +59,7 @@ public final class Validation {
     }
 
     public static void lottoPriceCheck(Integer buyPrice) {
-        if (buyPrice % LottoUtil.THOUSAND.getNumber() != LottoUtil.ZERO.getNumber()) {
+        if (buyPrice % THOUSAND.getNumber() != ZERO.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

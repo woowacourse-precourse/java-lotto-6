@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.stream.Collectors;
 import lotto.domain.Buyer;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -28,6 +29,7 @@ public class LottoController {
         buy();
         randomLotto();
         winningLotto();
+        lottoResult();
     }
 
     private void start() {
@@ -70,4 +72,14 @@ public class LottoController {
         return inputView.inputBonus();
     }
 
+    private void lottoResult() {
+        outputView.outputLottoResult();
+        Rank rank = lottoService.setLottoResult(buyer, winningLotto);
+        
+        outputView.outputRankFiveResult(rank.getFive());
+        outputView.outputRankFourResult(rank.getFour());
+        outputView.outputRankThreeResult(rank.getThree());
+        outputView.outputRankTwoResult(rank.getTwo());
+        outputView.outputRankOneResult(rank.getOne());
+    }
 }

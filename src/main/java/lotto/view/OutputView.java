@@ -31,8 +31,33 @@ public class OutputView {
                 .getMessage());
     }
 
+    public void outputLottoResult() {
+        printlnOut("");
+        printlnOut(OutputMessage.LOTTO_RESULT
+                .getMessage());
+    }
+
+    public void outputRankFiveResult(int result) {
+        printlnOut(OutputMessage.RANK_FIVE_RESULT.getMessage(result));
+    }
+
+    public void outputRankFourResult(int result) {
+        printlnOut(OutputMessage.RANK_FOUR_RESULT.getMessage(result));
+    }
+
+    public void outputRankThreeResult(int result) {
+        printlnOut(OutputMessage.RANK_THREE_RESULT.getMessage(result));
+    }
+
+    public void outputRankTwoResult(int result) {
+        printlnOut(OutputMessage.RANK_TWO_RESULT.getMessage(result));
+    }
+
+    public void outputRankOneResult(int result) {
+        printlnOut(OutputMessage.RANK_ONE_RESULT.getMessage(result));
+    }
+
     private void printlnOut(String message) {
         System.out.println(message);
     }
-
 }

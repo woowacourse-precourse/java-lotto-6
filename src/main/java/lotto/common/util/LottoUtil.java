@@ -6,7 +6,12 @@ public enum LottoUtil {
     MIN(1),
     MAX(45),
     THOUSAND(1000),
-    ZERO(0);
+    ZERO(0),
+    RANK_ONE(6),
+    RANK_TWO(5),
+    RANK_THREE(5),
+    RANK_FOUR(4),
+    RANK_FIVE(3);
 
 
     private final Integer number;

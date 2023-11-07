@@ -28,11 +28,16 @@ class WinningCombinationBuilderTest {
     @Test
     void should_Throw_Exception_when_Not_All_Fields_Set() {
         // given
-        WinningCombinationBuilder builder = WinningCombinationBuilder.builder().withWinningNumbers("1,2,3,4,5,6");
+        WinningCombinationBuilder builder1 = WinningCombinationBuilder.builder().withWinningNumbers("1,2,3,4,5,6");
+        WinningCombinationBuilder builder2 = WinningCombinationBuilder.builder().withBonusNumber("7");
 
         // when
         // then
-        assertThatThrownBy(builder::build)
+        assertThatThrownBy(builder1::build)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
+
+        assertThatThrownBy(builder2::build)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
     }

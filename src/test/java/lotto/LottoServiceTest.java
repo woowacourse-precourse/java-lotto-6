@@ -11,7 +11,7 @@ import java.io.PrintStream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class LottoTicketCounterTest extends NsTest {
+public class LottoServiceTest extends NsTest {
     @DisplayName("로또가 정상적으로 발행될 경우")
     @Test
     void issueLottoTicket_test() {
@@ -21,7 +21,7 @@ public class LottoTicketCounterTest extends NsTest {
 
         // when/then
         assertDoesNotThrow(() -> {
-            LottoTicketCounter lottoTicketCounter = new LottoTicketCounter();
+            LottoService lottoTicketCounter = new LottoService();
             lottoTicketCounter.issueLottoTicket();
         });
     }
@@ -36,7 +36,7 @@ public class LottoTicketCounterTest extends NsTest {
         System.setOut(new PrintStream(outContent));
 
         // when
-        LottoTicketCounter lottoTicketCounter = new LottoTicketCounter();
+        LottoService lottoTicketCounter = new LottoService();
         lottoTicketCounter.issueLottoTicket();
         lottoTicketCounter.printLottos();
 

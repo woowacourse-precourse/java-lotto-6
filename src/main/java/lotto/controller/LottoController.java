@@ -79,6 +79,9 @@ public class LottoController {
         lottoNumbers = pickUniqueNumbersInRange(1,45,6);
         return lottoNumbers;
     }
+    public void saveLottoNumbers(List<Integer> lottoNumbers) {
+        lottos.add(new Lotto(lottoNumbers));
+    }
 
 
     // 순서 - 상수, 클래스 변수

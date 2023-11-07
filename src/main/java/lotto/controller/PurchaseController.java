@@ -8,7 +8,7 @@ public class PurchaseController {
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
 
-    private Integer getPurchaseNumber() {
+    public Integer getPurchaseNumber() {
         outputView.printInputPurchaseMoneySentence();
         Integer money = inputView.inputNumber();
         Purchase purchase = new Purchase(money);

@@ -2,19 +2,19 @@ package model;
 
 public enum LottoRank {
 
-    FIFTH(3, false, 5000),
-    FORTH(4, false, 50000),
-    THIRD(5, false, 1500000),
-    SECOND(5, true, 30000000),
-    FIRST(6, false, 2000000000);
+    FIFTH(3, BonusBallCondition.NON_REGARD, 5000),
+    FORTH(4, BonusBallCondition.NON_REGARD, 50000),
+    THIRD(5, BonusBallCondition.MISMATCH, 1500000),
+    SECOND(5, BonusBallCondition.MATCH, 30000000),
+    FIRST(6, BonusBallCondition.NON_REGARD, 2000000000);
 
     private final int equalCount;
-    private final boolean bonusBallCondition;
+    private final BonusBallCondition condition;
     private final long reward;
 
-    LottoRank(final int equalCount, final boolean bonusBallCondition, final long reward) {
+    LottoRank(final int equalCount, final BonusBallCondition condition, final long reward) {
         this.equalCount = equalCount;
-        this.bonusBallCondition = bonusBallCondition;
+        this.condition = condition;
         this.reward = reward;
     }
 
@@ -22,8 +22,11 @@ public enum LottoRank {
         return count == equalCount;
     }
 
-    public boolean hasSameBonusBallCondition(final boolean bonusBallCondition) {
-        return bonusBallCondition == this.bonusBallCondition;
+    public boolean hasSameBonusBallCondition(final boolean hasSameBonusBall) {
+        if (hasSameBonusBall) {
+            return condition.equals(BonusBallCondition.MATCH);
+        }
+        return condition.equals(BonusBallCondition.MISMATCH);
     }
 
     public long getReward() {
@@ -34,7 +37,7 @@ public enum LottoRank {
         return equalCount;
     }
 
-    public boolean getBonusBallCondition() {
-        return bonusBallCondition;
+    public boolean mustSameBonusBall() {
+        return condition.equals(BonusBallCondition.MATCH);
     }
 }

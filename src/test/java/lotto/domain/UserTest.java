@@ -93,5 +93,23 @@ class UserTest {
 
     }
 
+    @Test
+    @DisplayName("수익률 반환 - 성공")
+    public void get_revenue_success() {
+        //given
+        User user = new User();
+        String input = "8000";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        user.inputMoney();
+
+        //when
+        double userRevenue = user.getRevenue(5000);
+        double expectRevenue = (double) 5000 / 8000 * 100;
+
+        //then
+        assertThat(userRevenue).isEqualTo(expectRevenue);
+
+    }
+
 
 }

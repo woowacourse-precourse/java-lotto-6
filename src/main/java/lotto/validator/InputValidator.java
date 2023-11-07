@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.exception.NonDigitInputException;
+import lotto.exception.NonSplitCommaException;
 import lotto.message.ExceptionMessage;
 
 import java.util.regex.Pattern;
@@ -10,13 +12,15 @@ public class InputValidator {
 
     public void validateIsDigit(String number) {
         if (!Pattern.matches(DIGIT_REGEX, number)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT.toString());
+            String message = ExceptionMessage.IS_NOT_DIGIT.toString();
+            throw new NonDigitInputException(message);
         }
     }
 
     public void validateIsSplitByComma(String number) {
         if (!Pattern.matches(SPLIT_REGEX, number)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_SEPARATED_BY_COMMA.toString());
+            String message = ExceptionMessage.IS_NOT_SEPARATED_BY_COMMA.toString();
+            throw new NonSplitCommaException(message);
         }
     }
 }

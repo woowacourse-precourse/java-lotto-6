@@ -1,8 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.OverRangeBonusNumberException;
 import lotto.message.ExceptionMessage;
-
-import java.util.List;
 
 public class BonusNumber {
     private final int number;
@@ -14,7 +13,8 @@ public class BonusNumber {
 
     private void validateRange(int number) {
         if (number > 45 || number < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_OVER_RANGE_BONUS.toString());
+            String exceptionMessage = ExceptionMessage.IS_OVER_RANGE_BONUS.toString();
+            throw new OverRangeBonusNumberException(exceptionMessage);
         }
     }
 

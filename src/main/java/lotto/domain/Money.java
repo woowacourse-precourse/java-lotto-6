@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.exception.Non1000WonUnitException;
 import lotto.message.ExceptionMessage;
 
 public class Money {
@@ -13,7 +14,8 @@ public class Money {
 
     private void validateIsDivisibleBy1000(int value) {
         if (value % 1000 != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIVISIBLE_BY_1000.toString());
+            String message = ExceptionMessage.IS_NOT_DIVISIBLE_BY_1000.toString();
+            throw new Non1000WonUnitException(message);
         }
     }
 

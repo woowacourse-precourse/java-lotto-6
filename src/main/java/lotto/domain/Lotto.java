@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.DuplicatedNumberException;
+import lotto.exception.InvalidNumbersLengthException;
 import lotto.message.ExceptionMessage;
 
 import java.util.ArrayList;
@@ -21,13 +23,15 @@ public class Lotto {
 
     private void validateNumbersDuplicated(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED.toString());
+            String message = ExceptionMessage.IS_DUPLICATED.toString();
+            throw new DuplicatedNumberException(message);
         }
     }
 
     private static void validateNumbersLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_6_LENGTH_OF_LOTTO.toString());
+            String message = ExceptionMessage.IS_NOT_6_LENGTH_OF_LOTTO.toString();
+            throw new InvalidNumbersLengthException(message);
         }
     }
 

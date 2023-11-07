@@ -8,11 +8,11 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int lotto_num = input();
+        int lotto_num = integ_input_money();
         Lotto_Wallet Wallet = new Lotto_Wallet(); // 로또 지갑 객체 생성
         makeManyLottos(Wallet, lotto_num);
     }
-    private static int input(){                // input 통합 부분, 재귀함수 처리
+    private static int integ_input_money(){                // input 통합 부분, 재귀함수 처리
         String input = input_money();
         try {
             int money = String_to_Int(input);
@@ -20,7 +20,7 @@ public class Application {
             return lotto_num;
         }
         catch (IllegalArgumentException e){
-            return input();
+            return integ_input_money();
         }
     }
     private static String input_money(){               // input을 String으로 받아 반환
@@ -32,7 +32,7 @@ public class Application {
         try{
             return Integer.parseInt(str);
         }catch (NumberFormatException e){
-            System.out.print("[ERROR] 로또 구입 금액은 정수여야 합니다.\n\n");
+            System.out.print("[ERROR] 입력 값은 정수여야 합니다.\n\n");
             throw new IllegalArgumentException();
         }
     }
@@ -57,6 +57,6 @@ public class Application {
         return new Lotto(numbers);
     }
 
-
+//    private static input
 
 }

@@ -3,13 +3,11 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constant.Number;
-import view.Input;
+import view.InputView;
 
 import static lotto.constant.Number.*;
 
 public class Purchase {
-    private final Input inputUtil = new Input();
 
     private final int purchaseAmount;
     private final List<Lotto> myLotto;

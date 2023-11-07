@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumTest {
+
     private final BonusNum sample = new BonusNum();
     private final WinningNumbers numberSample = new WinningNumbers();
 

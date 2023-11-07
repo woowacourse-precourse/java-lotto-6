@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest {
+
     private final InputView sample = new InputView();
 
     @ParameterizedTest

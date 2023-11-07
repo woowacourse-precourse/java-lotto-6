@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -28,7 +29,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
     @DisplayName("로또 1장을 발행했을 시 6개의 로또 번호는 오름차순 정렬된다.")
     @ParameterizedTest
     @MethodSource("samplePurchasedLottoNumber")

@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BuyingCostTest {
+
     private final BuyingCost sample = new BuyingCost();
 
     @ParameterizedTest

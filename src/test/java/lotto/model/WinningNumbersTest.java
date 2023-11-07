@@ -23,6 +23,7 @@ class WinningNumbersTest {
         Lotto result = sample.getLotto(input);
         assertThat(result.getWinningNumbers()).isEqualTo(expected);
     }
+
     @ParameterizedTest
     @DisplayName("입력된 당첨번호 6개 중 1개라도 유효한 숫자가 아니면 IllegalArgumentException 예외 발생")
     @ValueSource(strings = {

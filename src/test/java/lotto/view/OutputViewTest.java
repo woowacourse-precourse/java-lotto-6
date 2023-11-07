@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class OutputViewTest {
+
     private final OutputView sample = new OutputView();
 
     @ParameterizedTest
@@ -59,6 +60,7 @@ class OutputViewTest {
                 Arguments.of(List.of(7, 11, 16, 35, 36, 44), "[7, 11, 16, 35, 36, 44]")
         );
     }
+
     private static Stream<Arguments> sampleLottoRanksAndCountString() {
         return Stream.of(
                 Arguments.of(LottoRanks.FIFTH, 1000, "3개 일치 (5,000원) - 1,000개\n"),
@@ -68,12 +70,14 @@ class OutputViewTest {
                 Arguments.of(LottoRanks.FIRST, 1000, "6개 일치 (2,000,000,000원) - 1,000개\n")
         );
     }
+
     private static Stream<Arguments> sampleLottoRanksAndFormat() {
         return Stream.of(
                 Arguments.of(LottoRanks.THIRD, "%d개 일치 (%,d원) - %,d개\n"),
                 Arguments.of(LottoRanks.SECOND, "%d개 일치, 보너스 볼 일치 (%,d원) - %,d개\n")
         );
     }
+
     private static Stream<Arguments> sampleReturnRateAndExpected() {
         return Stream.of(
                 Arguments.of(31.25, "총 수익률은 31.3%입니다.\n"),

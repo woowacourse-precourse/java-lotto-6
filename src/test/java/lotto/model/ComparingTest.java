@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class ComparingTest {
+
     // Comparing 생성자의 첫번째, 두번째 인자는 각각 당첨번호와 보너스번호
     private final Comparing sample = new Comparing(new Lotto(List.of(8, 21, 23, 41, 42, 43)), 30);
 
@@ -46,6 +47,7 @@ class ComparingTest {
                 Arguments.of(List.of(8, 21, 23, 41, 42, 43), 6)
         );
     }
+
     private static Stream<Arguments> sampleEachLottoAndBoolean() { // 발행받은 로또 개수 & 2등당첨 여부
         return Stream.of(
                 Arguments.of(List.of(3, 18, 20, 30, 39, 40), false),
@@ -56,6 +58,7 @@ class ComparingTest {
                 Arguments.of(List.of(8, 21, 23, 41, 42, 43), false)
         );
     }
+
     private static Stream<Arguments> sampleAllLottoAndResult() {
         List<List<Integer>> sampleAllLotto = List.of(List.of(7, 21, 23, 41, 42, 43), List.of(8, 21, 23, 30, 41, 42));
         Map<LottoRanks, Integer> expected = Map.of(

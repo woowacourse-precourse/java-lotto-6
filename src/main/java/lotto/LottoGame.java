@@ -1,12 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGame {
     public void start() {
@@ -123,18 +124,6 @@ public class LottoGame {
         if (numbers.contains(num)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 서로 중복된 숫자가 없어야 합니다.");
         }
-    }
-}
-
-class OutputView {
-    public static void print(String message) {
-        System.out.print(message);
-    }
-}
-
-class InputView {
-    public static String read() {
-        return Console.readLine();
     }
 }
 

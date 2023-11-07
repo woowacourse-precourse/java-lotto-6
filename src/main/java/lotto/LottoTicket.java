@@ -48,13 +48,5 @@ public class LottoTicket {
             System.out.println(ticket);
         }
     }
-
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        int lottoQuantity = scanner.nextInt();
-//
-//        LottoTicket lotto = new LottoTicket(lottoQuantity);
-//        lotto.displayTickets();
-//    }
 }
 

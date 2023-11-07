@@ -19,7 +19,7 @@ public class LottoResult {
     }
 
     private int calculateMatchCount(WinningLotto winningLotto) {
-        Set<Integer> winningNumbers = new HashSet<>(winningLotto.getLotto().getNumbers());
+        Set<Integer> winningNumbers = new HashSet<>(winningLotto.lotto().getNumbers());
         return (int) lottoNumbers.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
@@ -27,7 +27,7 @@ public class LottoResult {
 
     private boolean isBonusMatch(int matchCount, WinningLotto winningLotto) {
         return matchCount == WinningType.SECOND.getMatchCount()
-                && lottoNumbers.getNumbers().contains(winningLotto.getBonusNumber());
+                && lottoNumbers.getNumbers().contains(winningLotto.bonusNumber());
     }
 
     public WinningType getWinningType() {

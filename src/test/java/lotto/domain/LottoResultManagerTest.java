@@ -19,7 +19,7 @@ public class LottoResultManagerTest {
 
         lottoResultManager.calculateResult(winningLotto);
 
-        Map<WinningType, Integer> statistics = lottoResultManager.getStatistics().getStatistics();
+        Map<WinningType, Integer> statistics = lottoResultManager.getStatistics().statistics();
         Assertions.assertThat(statistics.get(WinningType.FIRST)).isEqualTo(1);
         Assertions.assertThat(statistics.get(WinningType.SECOND)).isEqualTo(1);
         Assertions.assertThat(statistics.get(WinningType.THIRD)).isEqualTo(1);

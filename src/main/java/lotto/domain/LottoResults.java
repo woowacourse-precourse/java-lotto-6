@@ -2,15 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 
-public class LottoResults {
+public record LottoResults(List<LottoResult> lottoResults) {
 
-    private final List<LottoResult> lottoResults;
-
-    public LottoResults(List<LottoResult> lottoResults) {
-        this.lottoResults = lottoResults;
-    }
-
-    public List<LottoResult> getLottoResults() {
-        return lottoResults;
-    }
 }

@@ -16,16 +16,16 @@ public class LottoResultManager {
     }
 
     public void calculateResult(WinningLotto winningLotto) {
-        for (LottoResult lottoResult : lottoResults.getLottoResults()) {
+        for (LottoResult lottoResult : lottoResults.lottoResults()) {
             lottoResult.calculateResult(winningLotto);
             WinningType winningType = lottoResult.getWinningType();
-            lottoStatistics.getStatistics()
-                    .put(winningType, lottoStatistics.getStatistics().getOrDefault(winningType, 0) + COUNT);
+            lottoStatistics.statistics()
+                    .put(winningType, lottoStatistics.statistics().getOrDefault(winningType, 0) + COUNT);
         }
     }
 
     public List<LottoResult> getLottoResults() {
-        return lottoResults.getLottoResults();
+        return lottoResults.lottoResults();
     }
 
     public LottoStatistics getStatistics() {

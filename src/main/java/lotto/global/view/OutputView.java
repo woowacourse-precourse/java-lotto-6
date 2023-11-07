@@ -22,7 +22,7 @@ public class OutputView {
 
     public static void outputStatistics(double rateOfReturn, LottoResultManager lottoResultManager) {
         System.out.println(ConsoleType.OUTPUT_STATISTICS.getComment());
-        Map<WinningType, Integer> statistics = lottoResultManager.getStatistics().getStatistics();
+        Map<WinningType, Integer> statistics = lottoResultManager.getStatistics().statistics();
         System.out.println(ConsoleType.THREE_MATCH.getComment(statistics.get(WinningType.FIFTH)));
         System.out.println(ConsoleType.FOUR_MATCH.getComment(statistics.get(WinningType.FOURTH)));
         System.out.println(ConsoleType.FIVE_MATCH.getComment(statistics.get(WinningType.THIRD)));

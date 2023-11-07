@@ -5,8 +5,7 @@ import lotto.model.LottoGenerator;
 
 import java.util.ArrayList;
 
-import static lotto.model.InputValidator.validateDivisibleByThousand;
-import static lotto.model.InputValidator.validateNonInteger;
+import static lotto.model.InputValidator.*;
 import static lotto.model.Utilities.divide;
 import static lotto.model.Utilities.inputIntegerParsing;
 import static lotto.views.MessageManager.*;
@@ -36,8 +35,7 @@ public class LottoStoreManager {
 
         while (attempts < maxAttempts) {
             try {
-                validateNonInteger(inputAmount);
-                validateDivisibleByThousand(inputIntegerParsing(inputAmount));
+                validatePurchaseAmount(inputAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());

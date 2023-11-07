@@ -7,6 +7,8 @@ import static lotto.views.MessageManager.getBonusNumberPromptMessage;
 import static lotto.views.MessageManager.getProgramClosePromoptMessage;
 
 public class DongHangLottery {
+    private String inputWinningNumber;
+    private String inputBonusNumber;
 
     public DongHangLottery() {
         winningNumberValidate();
@@ -15,23 +17,43 @@ public class DongHangLottery {
         bonusNumberValidate();
     }
     public void winningNumberValidate() {
-        String inputLottoNumber = readLine();
-        try {
-            validateContainsCommaSeparator(inputLottoNumber);
-            validateDuplicateNumber(inputLottoNumber);
-            validateWinningNumberInOneToFortyFive(inputLottoNumber);
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        int maxAttempts = 3;
+        int attempts = 0;
+        inputWinningNumber = InputProcessor.readLine();
+
+        while (attempts < maxAttempts) {
+            try {
+                validateWinningNumber(inputWinningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+                inputWinningNumber = InputProcessor.readLine();
+                attempts++;
+            }
         }
+        if (attempts == maxAttempts) {
+            getProgramClosePromoptMessage();
+        }
+        System.out.println(inputWinningNumber);
     }
 
     public void bonusNumberValidate() {
-        String inputWinningNumber = readLine();
-
-        try {
-            validateBonusNumberInOneToFortyFive(inputWinningNumber);
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        int maxAttempts = 3;
+        int attempts = 0;
+        inputBonusNumber = readLine();
+        while (attempts < maxAttempts) {
+            try {
+                validateBonusNumberInOneToFortyFive(inputBonusNumber);
+                validateDuplicateBonusNumberAndWinningNumber(inputWinningNumber, inputBonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+                inputBonusNumber = readLine();
+                attempts++;
+            }
+        }
+        if (attempts == maxAttempts) {
+            getProgramClosePromoptMessage();
         }
     }
 }

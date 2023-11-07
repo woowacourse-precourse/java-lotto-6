@@ -16,14 +16,14 @@ public class OutputView {
         System.out.printf(ViewConstant.TICKET_MESSAGE.toString(), ticket);
     }
 
-    public static void printStatistics(StatisticsResult response){
+    public static void printStatistics(StatisticsResult response) {
         System.out.println(ViewConstant.STATISTICS_MESSAGE);
         System.out.println(ViewConstant.SEPARATOR_LINE_MESSAGE);
         printCountingResponse(response.prizeCount());
         printRevenue(response.prizeMoney(), response.payment());
     }
 
-    private static void printCountingResponse(Map<String, Integer> counter){
+    private static void printCountingResponse(Map<String, Integer> counter) {
         System.out.printf(ViewConstant.FIFTH_PRIZE_MESSAGE.toString(), counter.get("FIFTH"));
         System.out.printf(ViewConstant.FOURTH_PRIZE_MESSAGE.toString(), counter.get("FOURTH"));
         System.out.printf(ViewConstant.THIRD_PRIZE_MESSAGE.toString(), counter.get("THIRD"));
@@ -31,8 +31,8 @@ public class OutputView {
         System.out.printf(ViewConstant.FIRST_PRIZE_MESSAGE.toString(), counter.get("FIRST"));
     }
 
-    private static void printRevenue(int prizeMoney, int payment){
-        System.out.printf(ViewConstant.REVENUE_MESSAGE.toString(), ((double)prizeMoney/payment));
+    private static void printRevenue(int prizeMoney, int payment) {
+        System.out.printf(ViewConstant.REVENUE_MESSAGE.toString(), ((double) prizeMoney / payment) * 100);
     }
 
 }

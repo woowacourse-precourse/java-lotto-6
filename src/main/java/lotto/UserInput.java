@@ -1,5 +1,13 @@
 package lotto;
-
+/*
+    유저 입력 관리 클래스
+    Money: 돈 입력 매소드
+    WinLotto: 당첨 번호 입력 매소드
+    Bonus: 보너스 번호 입력 매소드
+    myParseInt: 문자열 정수화 매소드
+    vaildMoney: 돈입력 입력형식 판별 매소드
+    strToIntegerList: 특정 형식의 문자열을 정수List로 변환하는 매소드
+*/
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +29,7 @@ public class UserInput {
         }
     }
 
+    //Money: 돈 입력 매소드 - 돈(정수)반환
     public int Money() {
         int res = -1;
         while (res == -1) {
@@ -35,6 +44,7 @@ public class UserInput {
         return res;
     }
 
+    //WinLotto: 당첨 번호 입력 매소드 - 당첨번호(Lotto객체) 반환
     public Lotto WinLotto() {
         List<Integer> numbox = new ArrayList<Integer>();
         while (numbox.isEmpty()) {
@@ -47,6 +57,7 @@ public class UserInput {
         return new Lotto(numbox);
     }
 
+    //Bonus: 보너스 번호 입력 매소드 - 보너스 번호(정수)반환
     public int Bonus(Lotto winLotto) {
         int res = -1;
         while (res == -1) {
@@ -59,6 +70,7 @@ public class UserInput {
         return res;
     }
 
+    //문자열 정수화 매소드 - 정수가 아닐시 에러상태(-1)반환
     public int myParseInt(String s) {
         int res;
 

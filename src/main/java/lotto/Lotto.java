@@ -1,5 +1,11 @@
 package lotto;
-
+/*
+    로또 객체 관리 클래스
+    validate: 리스트 형식 판별 매소드
+    lottoContains: 해당 번호가 로또번호 내에 존재하는지 판별하는 매소드.
+    getNumbers: 로또번호 반환 매소드
+    countMatch: 맞은 번호 카운팅 매소드
+*/
 import java.util.List;
 
 public class Lotto {
@@ -27,6 +33,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    //lottoContains: 해당 번호가 로또번호 내에 존재하는지 판별하는 매소드 - 맞는지 아닌지(boolean) 반환
     public boolean lottoContains(int a) {
         for (Integer integer : numbers) {
             if (a == integer)
@@ -36,10 +44,12 @@ public class Lotto {
         return false;
     }
 
+    //getNumbers: 로또번호 반환 매소드
     public List<Integer> getNumbers() {
         return numbers;
     }
 
+    //countMatch: 맞은 번호 카운팅 매소드 - 맞춘 번호 개수 반환
     public int countMatch(Lotto user) {
         int count = 0;
         int[] tmp = new int[46];

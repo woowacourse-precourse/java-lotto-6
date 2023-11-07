@@ -1,5 +1,11 @@
 package lotto;
-
+/*
+    로또 추첨결과 관련 클래스
+    setResultList: 결과리스트 생성 매소드
+    judge: 등수 판별 매소드
+    calRerutnRate: 수익률 계산 매소드
+    showResult: 결과 출력 매소드
+*/
 import java.text.DecimalFormat;
 
 public class Lottery {
@@ -9,11 +15,11 @@ public class Lottery {
     private final float returnRate;
 
     public Lottery(UserLotto user, int money, Lotto winLotto, int bonus) {
-        this.Lottery_result = lottery(winLotto, bonus, user);
+        this.Lottery_result = setResultList(winLotto, bonus, user);
         this.returnRate = calRerutnRate(money);
     }
 
-    private int[] lottery(Lotto winLotto, int bonus, UserLotto user) {
+    private int[] setResultList(Lotto winLotto, int bonus, UserLotto user) {
         int[] res = { 0, 0, 0, 0, 0 };
         for (Lotto L : user.getLotto()) {
             int grade = judge(winLotto, L, bonus);

@@ -31,4 +31,8 @@ public class LottoAnswer extends Lotto {
     public BonusNumber getBonusNumber() {
         return bonusNumber;
     }
+
+    public boolean hasBonusNumber() {
+        return bonusNumber != null;
+    }
 }

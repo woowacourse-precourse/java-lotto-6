@@ -1,9 +1,8 @@
 package lotto.Controller;
 
 import lotto.Model.Bonus;
-import lotto.Model.Lottos;
+import lotto.Model.RandomLottos;
 import lotto.Model.Price;
-import lotto.Model.RandomLotto;
 import lotto.Model.Rate;
 import lotto.Model.Result;
 import lotto.Model.WinningLotto;
@@ -17,11 +16,9 @@ public class LottoGame {
         Price price = createPrice();
 
         // randomLotto는 발행된 랜덤 로또 개수
-        RandomLotto randomLotto = new RandomLotto(price);
-        Lottos lottos = new Lottos(randomLotto.getCount());
+        RandomLottos randomLottos = new RandomLottos(price);
 
-        OutputView.printLottoPurChaseMessage(randomLotto);
-        OutputView.printRandomLottoNumbers(lottos);
+        OutputView.printRandomLottosNumberAndCounting(randomLottos);
 
         // ------로또 구입 금액 받아서 랜덤로또번호 출력까지
 
@@ -29,12 +26,10 @@ public class LottoGame {
         Bonus bonus = createBonusNumber(winningLotto);
 
         Result result = new Result();
-        result.compare(lottos, winningLotto, bonus);
+        result.compare(randomLottos, winningLotto, bonus);
 
         // Rate는 총 Rank의 합
         Rate rate = new Rate(result);
-
-        //System.out.println(result.getRankAndCounting());
 
         // 당첨 결과 출력
         OutputView.printWinningResult(result);
@@ -46,10 +41,10 @@ public class LottoGame {
 
     private Price createPrice() {
         try {
-            return new Price(InputView.inputPriceForLotto());
+            return new Price(InputView.inputPriceForPurchasingLotto());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.println();
+            OutputView.printErrorMessage(e.getMessage());
+            OutputView.newLine();
             return createPrice();
         }
     }
@@ -58,7 +53,7 @@ public class LottoGame {
         try {
             return new WinningLotto(InputView.inputWinningLotto());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return createWinningLotto();
         }
     }
@@ -69,7 +64,7 @@ public class LottoGame {
             winningLotto.contain(bonus);
             return bonus;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return createBonusNumber(winningLotto);
         }
     }

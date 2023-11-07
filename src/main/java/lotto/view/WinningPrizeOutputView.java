@@ -10,7 +10,7 @@ public class WinningPrizeOutputView {
                                        int purchaseAmount) {
         long totalPrize = LottoWinningChecker.calculateTotalPrize(lottos, winningNumberWithBonusNumber);
         double totalPrizeRate = (double) totalPrize / purchaseAmount;
-        double roundedTotalPrizeRate = Math.round(totalPrizeRate * 10.0) / 10.0;
+        double roundedTotalPrizeRate = Math.round(totalPrizeRate * 10.0) / 10.0 * 100;
         System.out.println("총 수익률은 " + roundedTotalPrizeRate + "%입니다.");
     }
 }

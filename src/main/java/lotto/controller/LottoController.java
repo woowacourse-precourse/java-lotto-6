@@ -46,6 +46,7 @@ public class LottoController {
                 bonusNumber);
 
         LottoPrize lottoPrize = lottoPrizeService.createLottoPrize(lottos, lottoWinningNumbers);
+        printLottoPrize(lottoPrize);
     }
 
     public String getPurchaseAmount() {
@@ -65,5 +66,9 @@ public class LottoController {
 
     public void printLottoNumbers(Lottos lottos) {
         outputView.printLottoNumbers(lottos);
+    }
+
+    public void printLottoPrize(LottoPrize lottoPrize) {
+        outputView.printLottoPrize(lottoPrize);
     }
 }

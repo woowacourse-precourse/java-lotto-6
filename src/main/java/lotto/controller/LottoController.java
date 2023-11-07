@@ -18,7 +18,7 @@ public class LottoController {
 
     private final static int LOTTO_PRICE = 1000;
 
-    public void run(){
+    public void run() {
         outputView.printTotalPriceAsk();
         int totalPrice = inputView.receiveTotalPrice();
         int lottoCount = calculateLottoCount(totalPrice);
@@ -38,52 +38,51 @@ public class LottoController {
         outputView.printResult(result);
     }
 
-    public int calculateLottoCount(int totalPrice){
-        final int lottoPrice = 1000;
-        return totalPrice / lottoPrice;
+    public int calculateLottoCount(int totalPrice) {
+        return totalPrice / LOTTO_PRICE;
     }
 
-    public List<Lotto> createLottoList(int lottoCount){
+    public List<Lotto> createLottoList(int lottoCount) {
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
-        for(int i=0; i< lottoCount; i++){
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = getLottoNumbers();
             lottoList.add(new Lotto(lottoNumbers));
         }
         return lottoList;
     }
 
-    private static List<Integer> getLottoNumbers(){
-        ArrayList<Integer> numbers = new ArrayList<>();
-        while(numbers.size() < 6){
-            int random = Randoms.pickNumberInRange(1, 45);
-            if(!numbers.contains(random)){
-                numbers.add(random);
-            }
-        }
-        numbers.sort(Integer::compare);
-        return numbers;
+    public List<Integer> getLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers.stream().sorted().toList();
     }
 
-    private static ResultDto calculateTotalResult(Lotto winning, int bonusNumber, int totalPrice,List<Lotto> lottoList){
+    public ResultDto calculateTotalResult(Lotto winning, int bonusNumber, int totalPrice, List<Lotto> lottoList) {
         Map<LottoResult, Integer> lottoResultMap = new HashMap<>();
         int totalPrize = 0;
 
-        for(Lotto lotto : lottoList){
+        for (Lotto lotto : lottoList) {
             Optional<LottoResult> lottoResultOptional = calculateLottoResult(winning, bonusNumber, lotto);
 
-            if(lottoResultOptional.isPresent()){
+            if (lottoResultOptional.isPresent()) {
                 lottoResultMap.merge(lottoResultOptional.get(), 1, Integer::sum);
                 totalPrize += lottoResultOptional.get().getPrize();
             }
         }
-        double yield = ((double) (totalPrize - totalPrice) / totalPrice * 100);
-        double roundedYield = Math.round(yield * 10.0) / 10.0;
+        double roundedYield = getRoundedYield(totalPrice, totalPrize);
+        System.out.println("totalPrize = " + totalPrize);
+        System.out.println("totalPrice = " + totalPrice);
+        System.out.println("roundedYield = " + roundedYield);
 
         return new ResultDto(lottoResultMap, roundedYield);
     }
 
-    private static Optional<LottoResult> calculateLottoResult(Lotto winning, int bonusNumber, Lotto lotto) {
+    public double getRoundedYield(int totalPrice, long totalPrize) {
+        double yield = ((double) totalPrize / (double) totalPrice * 100);
+        return Math.round(yield * 10.0) / 10.0;
+    }
+
+    public Optional<LottoResult> calculateLottoResult(Lotto winning, int bonusNumber, Lotto lotto) {
         List<Integer> myLottoNums = lotto.getNumbers();
         List<Integer> winningNums = winning.getNumbers();
         long matchCount = myLottoNums.stream()

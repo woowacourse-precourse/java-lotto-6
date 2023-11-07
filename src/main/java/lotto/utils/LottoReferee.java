@@ -17,7 +17,7 @@ public class LottoReferee {
         return LottoRankAndPrize.determineRankByLottoMatched(matchedNumbersCount, bonusMatch);
     }
 
-    private boolean isBonusMatch(List<Integer> number, int bonusNumber){
+    public boolean isBonusMatch(List<Integer> number, int bonusNumber){
         return number.contains(bonusNumber);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import lotto.view.ValidationView;
 import org.junit.jupiter.api.Test;
 
-public class InputValidationTest {
+class InputValidationTest {
     @Test
     void 구매_금액_입력_테스트(){
         assertThrows(IllegalArgumentException.class, () -> {

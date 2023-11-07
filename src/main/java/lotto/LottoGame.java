@@ -17,7 +17,6 @@ public class LottoGame {
     }
 
 
-
     public int getRank(WinningConditionPrize winningConditionPrize) {
 
         return rank[winningConditionPrize.ordinal()];

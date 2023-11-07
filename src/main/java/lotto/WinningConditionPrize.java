@@ -9,6 +9,7 @@ public enum WinningConditionPrize {
     FIFTH(5000);
 
     private final int prize;
+
     WinningConditionPrize(int prize) {
         this.prize = prize;
     }

@@ -9,7 +9,7 @@ public class User {
     public User(int purchaseAmount) {
         validateMoneyInput(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
-        this.amountLotto = this.purchaseAmount/1000;
+        this.amountLotto = this.purchaseAmount / 1000;
     }
 
     public int getAmountLotto() {
@@ -32,11 +32,11 @@ public class User {
 
         String moneyInputErrorWarning = "[ERROR]로또 구입 금액으로 1000원 단위 이하는 입력 불가.";
 
-        if(inputMoney%1000!=0) {
+        if (inputMoney % 1000 != 0) {
             throw new IllegalArgumentException(moneyInputErrorWarning);
         }
 
-        if(inputMoney<0){
+        if (inputMoney < 0) {
             throw new IllegalArgumentException();
         }
 

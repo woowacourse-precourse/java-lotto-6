@@ -24,20 +24,20 @@ public class Lotto {
     static void checkDuplicateRange(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>();
 
-        for(int number: numbers){
-            if(number<0){
+        for (int number : numbers) {
+            if (number < 0) {
                 throw new IllegalArgumentException();
             }
-            if(number>45){
+            if (number > 45) {
                 throw new IllegalArgumentException();
             }
 
-            if(set.isEmpty()){
+            if (set.isEmpty()) {
                 set.add(number);
                 continue;
             }
 
-            if (set.contains(number)){
+            if (set.contains(number)) {
 
                 throw new IllegalArgumentException();
 
@@ -53,7 +53,7 @@ public class Lotto {
 
         ArrayList<Integer> sortedNumbers = new ArrayList<>();
 
-        for(int number: numbers){
+        for (int number : numbers) {
 
             sortedNumbers.add(number);
         }

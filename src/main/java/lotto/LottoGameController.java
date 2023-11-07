@@ -14,7 +14,7 @@ public class LottoGameController {
     LottoGame lottoGame;
     Scanner sc = new Scanner(System.in);
 
-    public void start(){
+    public void start() {
 
         setUser();
         setLotto();
@@ -22,16 +22,16 @@ public class LottoGameController {
 
         checkWinner();
 
-        view.printWinStat(lottoGame,user);
+        view.printWinStat(lottoGame, user);
 
     }
 
     private void checkWinner() {
 
-        for(Lotto lotto: lottos){
+        for (Lotto lotto : lottos) {
 
-            int winNumber=0;
-            int winBonus=0;
+            int winNumber = 0;
+            int winBonus = 0;
             List<Integer> numbers = lotto.getNumbers();
             List<Integer> winningNumbers = lottoGame.getWinningNumbers();
             int bonus = lottoGame.getBonusNumber();
@@ -45,7 +45,7 @@ public class LottoGameController {
 
     private void setRank(int winNumber, int bonus) {
 
-        if(winNumber == 6){
+        if (winNumber == 6) {
 
             lottoGame.addRank(WinningConditionPrize.FIRST);
             user.addWinningAmount(WinningConditionPrize.FIRST.getPrize());
@@ -53,25 +53,23 @@ public class LottoGameController {
             return;
         }
 
-        if(winNumber == 5&& bonus == 1){
+        if (winNumber == 5 && bonus == 1) {
 
             lottoGame.addRank(WinningConditionPrize.SECOND);
             user.addWinningAmount(WinningConditionPrize.SECOND.getPrize());
 
-
             return;
         }
 
-        if(winNumber == 5){
+        if (winNumber == 5) {
 
             lottoGame.addRank(WinningConditionPrize.THIRD);
             user.addWinningAmount(WinningConditionPrize.THIRD.getPrize());
 
-
             return;
         }
 
-        if(winNumber == 4){
+        if (winNumber == 4) {
 
             lottoGame.addRank(WinningConditionPrize.FOURTH);
             user.addWinningAmount(WinningConditionPrize.FOURTH.getPrize());
@@ -79,7 +77,7 @@ public class LottoGameController {
             return;
         }
 
-        if(winNumber == 3){
+        if (winNumber == 3) {
 
             lottoGame.addRank(WinningConditionPrize.FIFTH);
             user.addWinningAmount(WinningConditionPrize.FIFTH.getPrize());
@@ -89,13 +87,13 @@ public class LottoGameController {
 
     private int getWinNumber(int winNumber, int winBonus, List<Integer> numbers, List<Integer> winningNumbers,
                              int bonus) {
-        for (int number: winningNumbers){
+        for (int number : winningNumbers) {
 
-            if(numbers.contains(number)){
+            if (numbers.contains(number)) {
 
                 winNumber++;
             }
-            if (numbers.contains(bonus)){
+            if (numbers.contains(bonus)) {
 
                 winBonus++;
             }
@@ -118,7 +116,7 @@ public class LottoGameController {
 
         try {
             validateNumber(bonus);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
 
             view.printRangeError();
         }
@@ -128,7 +126,7 @@ public class LottoGameController {
 
     private void validateNumber(int bonus) {
 
-        if(bonus<0||bonus>45){
+        if (bonus < 0 || bonus > 45) {
             throw new IllegalArgumentException();
         }
     }
@@ -141,14 +139,14 @@ public class LottoGameController {
         String[] numbersString = inputString.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
-        for (String numberString: numbersString){
+        for (String numberString : numbersString) {
             winningNumbers.add(Integer.valueOf(numberString));
         }
-        try{
+        try {
 
             validateWinningNumbers(winningNumbers);
 
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
 
             view.printWinningNumberError();
         }
@@ -159,6 +157,7 @@ public class LottoGameController {
     private void validateWinningNumbers(List<Integer> winningNumbers) {
 
         if (winningNumbers.size() != 6) {
+
             throw new IllegalArgumentException();
         }
 
@@ -171,7 +170,8 @@ public class LottoGameController {
         int lottoAmount = user.getAmountLotto();
         view.printPurchasedLottoAmount(lottoAmount);
 
-        for (int i = 0; i<lottoAmount;i++){
+        for (int i = 0; i < lottoAmount; i++) {
+
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
 
@@ -184,11 +184,14 @@ public class LottoGameController {
     private void setUser() {
 
         view.printAskMoneyInput();
-        int inputMoney=0;
+        int inputMoney = 0;
+
         try {
+
             StringTokenizer tk = new StringTokenizer(sc.next());
             inputMoney = Integer.parseInt(tk.nextToken());
-        }catch (NumberFormatException e){
+
+        } catch (NumberFormatException e) {
 
             view.printNumberFormatError();
             setUser();

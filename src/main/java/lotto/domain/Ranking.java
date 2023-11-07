@@ -1,11 +1,8 @@
 package lotto.domain;
 
-import static java.util.Arrays.stream;
-import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
 import static lotto.message.ErrorMessage.FOUNT_MATCH_RANKING;
 
 import java.util.Arrays;
-import java.util.Stack;
 
 public enum Ranking {
     THREE_MATCHES(3, "3개 일치 (5,000원) - ", 5_000),

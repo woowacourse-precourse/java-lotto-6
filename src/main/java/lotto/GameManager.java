@@ -1,7 +1,5 @@
 package lotto;
 
-import static lotto.message.ErrorMessage.*;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +24,23 @@ public class GameManager {
         return totalLotto;
     }
 
-    public void compareTotalLotto(List<Lotto> totalLotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
+    public void compareTotalLotto(
+            List<Lotto> totalLotto,
+            List<Integer> winningNumbers,
+            int bonusNumber,
+            WinningStatistics winningStatistics
+    ) {
         for (Lotto lotto : totalLotto) {
             compareLottoWithWinningNumbers(lotto, winningNumbers, bonusNumber, winningStatistics);
         }
     }
 
-    private WinningStatistics compareLottoWithWinningNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
+    private WinningStatistics compareLottoWithWinningNumbers(
+            Lotto lotto,
+            List<Integer> winningNumbers,
+            int bonusNumber,
+            WinningStatistics winningStatistics
+    ) {
         int matchCount = lotto.getNumbers().stream().filter(winningNumbers::contains).toList().size();
 
         updateWinningStatistics(lotto, matchCount, bonusNumber, winningStatistics);
@@ -40,7 +48,12 @@ public class GameManager {
         return winningStatistics;
     }
 
-    private void updateWinningStatistics(Lotto lotto, int matchCount, int bonusNumber, WinningStatistics winningStatistics) {
+    private void updateWinningStatistics(
+            Lotto lotto,
+            int matchCount,
+            int bonusNumber,
+            WinningStatistics winningStatistics
+    ) {
         if (matchCount == 5) {
             winningStatistics.incrementWinningStatus(compareLottoWithBonusNumber(lotto, bonusNumber));
             return;
@@ -76,5 +89,4 @@ public class GameManager {
 
         return totalWinningAmount;
     }
-
 }

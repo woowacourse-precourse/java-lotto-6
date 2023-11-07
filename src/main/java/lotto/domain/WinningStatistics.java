@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.domain.Ranking.*;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

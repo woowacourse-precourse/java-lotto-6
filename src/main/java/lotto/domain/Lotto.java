@@ -33,8 +33,8 @@ public class Lotto {
                 });
     }
 
-    private void validationDuplication(List<Integer> numbers){
-        if(numbers.size() != numbers.stream().distinct().count()){
+    private void validationDuplication(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalStateException(LOTTO_DUPLICATE.errorMessage());
         }
     }

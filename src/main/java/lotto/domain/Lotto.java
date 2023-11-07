@@ -27,7 +27,7 @@ public class Lotto {
         HashSet<Integer> uniqueNumbers = new HashSet<>();
         uniqueNumbers.addAll(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("중복된 숫자가 있으면 안됩니다.");
         }
     }
 
@@ -36,7 +36,7 @@ public class Lotto {
                 .filter(number -> number > MAX_NUMBER_RANGE || number < MIN_NUMBER_RANGE)
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] ");
+                    throw new IllegalArgumentException("각 숫자는 1과 45사이여야 합니다.");
                 });
     }
 

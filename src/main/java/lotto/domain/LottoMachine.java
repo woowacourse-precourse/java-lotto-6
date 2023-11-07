@@ -22,6 +22,5 @@ public class LottoMachine implements NumberGenerator {
 
     private void ascendingSortLottoNumbers(List<Integer> lottoNumbers) {
         Collections.sort(lottoNumbers);
-
     }
 }

@@ -8,7 +8,6 @@ public enum LottoRank {
     FOURTH(4, 50000L, "50,000"),
     FIFTH(3, 5000L, "5,000");
 
-
     final private int matchCount;
     final private long prize;
     final private String outputPrize;

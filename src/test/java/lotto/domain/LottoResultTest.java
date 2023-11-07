@@ -24,7 +24,6 @@ public class LottoResultTest {
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 11);
 
         lottoResult = new LottoResult(lottos, winningLotto);
-
     }
 
 
@@ -42,7 +41,6 @@ public class LottoResultTest {
         lottoResult.judgeResult();
 
         assertThat(lottoResult.getLottoResult()).isEqualTo(expectLottoResult);
-
     }
 
     @DisplayName("로또 당첨 수익률을 계산하는 테스트")
@@ -54,6 +52,5 @@ public class LottoResultTest {
         Double totalReturn = lottoResult.getTotalReturn(purchaseAmount);
 
         assertThat(totalReturn).isEqualTo(62.5);
-
     }
 }

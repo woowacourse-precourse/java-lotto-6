@@ -1,9 +1,11 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoResult;
+import lotto.domain.WinningLotto;
 import lotto.util.ConverterUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,7 +20,6 @@ public class LottoGameController {
         generateLottoStep(lottoBuyer);
         WinningLotto winningLotto = generateWinningLottoStep();
         winningResultStep(lottoBuyer, winningLotto, purchaseAmount);
-
     }
 
     private LottoBuyer generateLottoBuyer(int purchaseAmount) {
@@ -34,7 +35,6 @@ public class LottoGameController {
             lottoBuyer.purchaseLotto(lotto);
         }
         outputView.purchaseHistoryOutput(lottoBuyer.getPurchaseLottos());
-
     }
 
     private WinningLotto generateWinningLottoStep() {
@@ -55,11 +55,9 @@ public class LottoGameController {
         outputView.winningStatisticOutput(lottoResult.getLottoResult());
         double totalReturn = lottoResult.getTotalReturn(purchaseAmount);
         outputView.totalReturnOutput(totalReturn);
-
     }
 
     private int purchaseCount(LottoBuyer lottoBuyer) {
         return lottoBuyer.purchaseCount();
-
     }
 }

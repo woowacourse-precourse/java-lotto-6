@@ -38,8 +38,6 @@ public class LottoResult {
         return Arrays.stream(LottoRank.values()).filter(lottoRank -> lottoRank.getMatchCount() == matchCount)
                 .findFirst()
                 .orElse(LottoRank.NO_RNAK);
-
-
     }
 
     public void judgeResult() {

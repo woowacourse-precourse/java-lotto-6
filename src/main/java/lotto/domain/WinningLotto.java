@@ -9,7 +9,6 @@ public class WinningLotto {
 
     public WinningLotto(List<Integer> winningLottoNumbers, int bonusNumber) {
         winningLottoValidate(winningLottoNumbers,bonusNumber);
-
         this.winningLottoNumbers = winningLottoNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -22,7 +21,6 @@ public class WinningLotto {
     }
     private boolean isOverlapBonusNumber(List<Integer> winningLottoNumbers, int bonusNumber){
         return winningLottoNumbers.contains(bonusNumber);
-
     }
     public List<Integer> getWinningLottoNumbers() {
         return winningLottoNumbers;

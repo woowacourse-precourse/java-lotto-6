@@ -32,7 +32,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @DisplayName("로또에서 당첨번호가 포함되어 있는지 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
@@ -41,7 +40,6 @@ class LottoTest {
         Lotto lotto = new Lotto(lottoNumbers);
 
         assertThat(lotto.containLottoNumber(winningNumber)).isTrue();
-
     }
 
     @DisplayName("로또에서 당첨갯수가 몇개인지 테스트")
@@ -50,7 +48,7 @@ class LottoTest {
         List<Integer> lottoNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(lottoNumbers);
 
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6),10);
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         assertThat(lotto.matchCount(winningLotto)).isEqualTo(6);
     }

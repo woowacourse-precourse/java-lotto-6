@@ -22,7 +22,7 @@ public class OutputAdaptor {
 
     public static void displayLottoNumbers(List<Lotto> lottos) {
         Printer.print(LINE_BRAKING + lottos.size() + NOTIFICATION_FORMAT_OF_NUM_OF_LOTTO + LINE_BRAKING);
-        lottos.forEach((lotto -> Printer.print(lottos.toString() + LINE_BRAKING)));
+        lottos.forEach((lotto -> Printer.print(lotto.toString() + LINE_BRAKING)));
     }
 
     public static void displayMessageToPromptToInputWinningNumbers() {
@@ -39,19 +39,29 @@ public class OutputAdaptor {
         for (Integer match : matches) {
             Integer rank = DomainConfiguration.RANK_PER_NUM_OF_MATCHES.get(match);
             if (rank.equals(DomainConfiguration.RANK_FOR_CHECK_BONUS_NUMBER)) {
-                int rewardWithoutBonusMatch = DomainConfiguration.REWARD_PER_RANK.get(rank + 1);
-                int rewardWithBonusMatch = DomainConfiguration.REWARD_PER_RANK.get(rank);
-                Printer.print(
-                        match + NUM_OF_MATCHES + " (" + formatReward(rewardWithoutBonusMatch)
-                        + WON + ") - " + result.getCount(rank + 1) + COUNT
-                );
-                Printer.print(
-                        match + NUM_OF_MATCHES + ", " + MATCH_BONUS_NUMBER
-                        + " (" + formatReward(rewardWithBonusMatch)
-                        + WON + ") - " + result.getCount(rank) + COUNT
-                );
+                withBonusNumber(result, match, rank);
+                continue;
             }
+            int reward = DomainConfiguration.REWARD_PER_RANK.get(rank);
+            Printer.print(
+                    match + NUM_OF_MATCHES + " (" + formatReward(reward)
+                    + WON + ") - " + result.getCount(rank) + COUNT + LINE_BRAKING
+            );
         }
+    }
+
+    private static void withBonusNumber(Result result, Integer match, Integer rank) {
+        int rewardWithoutBonusMatch = DomainConfiguration.REWARD_PER_RANK.get(rank + 1);
+        int rewardWithBonusMatch = DomainConfiguration.REWARD_PER_RANK.get(rank);
+        Printer.print(
+                match + NUM_OF_MATCHES + " (" + formatReward(rewardWithoutBonusMatch)
+                + WON + ") - " + result.getCount(rank + 1) + COUNT + LINE_BRAKING
+        );
+        Printer.print(
+                match + NUM_OF_MATCHES + ", " + MATCH_BONUS_NUMBER
+                + " (" + formatReward(rewardWithBonusMatch)
+                + WON + ") - " + result.getCount(rank) + COUNT + LINE_BRAKING
+        );
     }
 
     private static String formatReward(int reward) {
@@ -67,6 +77,6 @@ public class OutputAdaptor {
     }
 
     public static void displayRateOfProfit(double rateOfProfit) {
-        Printer.print(RATE_OF_RETURN_PREFIX + Utils.round(rateOfProfit) + RATE_OF_RETURN_PREFIX + LINE_BRAKING);
+        Printer.print(RATE_OF_RETURN_PREFIX + Utils.round(rateOfProfit) + RATE_OF_RETURN_SUFFIX + LINE_BRAKING);
     }
 }

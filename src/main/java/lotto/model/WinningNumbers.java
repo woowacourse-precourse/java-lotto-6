@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.message.ErrorMessages.WINNING_NUMBERS_DUPLICATION_EXCEPTION;
 import static lotto.util.message.ErrorMessages.WINNING_NUMBERS_RANGE_EXCEPTION;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class WinningNumbers {
     private void validate(List<Integer> numbers, Integer bonusNumber) {
         validateNumbersRange(numbers);
         validateNumberRange(bonusNumber);
+
+        validateDuplication(numbers);
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
@@ -34,5 +37,19 @@ public class WinningNumbers {
 
     private boolean isValidRange(Integer number) {
         return LOTTO_MIN_NUMBER <= number && number <= LOTTO_MAX_NUMBER;
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        if (isDuplicated(numbers)) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_DUPLICATION_EXCEPTION);
+        }
+    }
+
+    private boolean isDuplicated(List<Integer> numbers) {
+        return numbers.size() != findDistinctCount(numbers);
+    }
+
+    private long findDistinctCount(List<Integer> numbers) {
+        return numbers.stream().distinct().count();
     }
 }

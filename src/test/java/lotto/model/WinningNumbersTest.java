@@ -31,4 +31,13 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+
+    @Test
+    void 당첨_번호_중_중복된_숫자가_존재할_경우_예외를_발생시킨다() {
+        List<Integer> numbers = List.of(1, 1, 3, 4, 5, 6);
+        Integer bonusNumber = 7;
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호 중 중복된 숫자가 존재합니다.");
+    }
 }

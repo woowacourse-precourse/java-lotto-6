@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.lotto.Lottos;
 import org.junit.jupiter.api.BeforeEach;

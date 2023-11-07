@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.prize.Prize;
 import lotto.domain.prize.WinningDetails;
@@ -15,6 +16,7 @@ public class OutputView {
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void showIssuedLottoResult(List<String> issuedLottos) {
+        Collections.sort(issuedLottos);
         showLottoAmount(issuedLottos.size());
         showLottoNumbers(issuedLottos);
     }

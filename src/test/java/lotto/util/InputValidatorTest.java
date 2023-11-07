@@ -2,9 +2,7 @@ package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,7 +38,7 @@ class InputValidatorTest {
 
     @DisplayName("입력값이 비어있을때 예외처리 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {""," "})
+    @ValueSource(strings = {"", " "})
     void validateEmptyInputThrowExceptionTest(String input) {
         assertThatThrownBy(() -> InputValidator.validateEmptyInput(input))
                 .isInstanceOf(IllegalArgumentException.class);

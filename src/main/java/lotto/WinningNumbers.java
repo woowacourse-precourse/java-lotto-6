@@ -63,8 +63,23 @@ public class WinningNumbers {
 
     private int inputToNumber(String inputBonus) {
         int number = Integer.parseInt(inputBonus);
-        validateRange(number);
+        validateRange(number, MIN_NUMBER, MAX_NUMBER);
         validateDuplicates(number);
         return number;
+    }
+
+    private void validateRange(int number, int minNumber, int maxNumber) {
+        if (number < minNumber) {
+            throw new IllegalArgumentException();
+        }
+        if (number > maxNumber) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicates(int number) {
+        if (winningLotto.getNumbers().contains(number)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

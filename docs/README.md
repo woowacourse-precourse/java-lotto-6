@@ -22,6 +22,7 @@
 ## 메인 동작 구현
 ### void run()
 - createLotto()를 호출한다.
+- makeWinningNumber()를 호출한다.
 
 ## 로또 생성 및 출력
 ### void createLotto()
@@ -49,3 +50,44 @@
 - 만들어진 문자열을 반환한다.
 
 ## 당첨 번호 및 보너스 번호 입력
+### void makeWinningNumber()
+- 유효한 입력일 때까지 winningNumber()를 호출한다.
+- 유효한 입력일 때까지 bonusNumber()를 호출한다.
+
+### void winningNumber()
+- 사용자로부터 당첨 번호를 입력받는다.
+- lenCheck()를 호출하여 길이를 검사한다.
+- valueCheck()를 호출하여 유효한 값인지 검사한다.
+- isDuplicated를 호출하여 중복되는 값이 있는지 검사한다.
+- 위의 세 가지 메서드를 호출한 뒤 예외가 발생하지 않았다면 winninng을 true로 변경한다.
+- 위의 세 가지 메서드 실행 과정에서 예외가 발생하였다면 예외 문구를 출력한다.
+
+### void bonusNumber()
+- 사용자로부터 보너스 번호를 입력받는다.
+- lenCheck()를 호출하여 길이를 검사한다.
+- valueCheck()를 호출하여 유효한 값인지 검사한다.
+- isDuplicated를 호출하여 중복되는 값이 있는지 검사한다.
+- 위의 세 가지 메서드를 호출한 뒤 예외가 발생하지 않았다면 bonus을 true로 변경한다.
+- 위의 세 가지 메서드 실행 과정에서 예외가 발생하였다면 예외 문구를 출력한다.
+
+### void  lenCheck(String[], int)
+- 배열의 길이가 인수로 들어온 정수와 다를 경우 예외를 던진다.
+
+### void valueCheck(String[])
+- 배열의 길이만큼 반복문을 돌면서 makeInteger(String), isRange(int)를 호출한다.
+- num, isError의 값에 따라 예외를 던진다.
+
+### int makeInteger(String)
+- String을 정수값으로 바꿀 수 있다면, 바꾼 정수값을 반환한다.
+- NumberFormatException가 발생한다면 -1을 반환한다.
+
+### boolean isRange(int)
+- 인수로 들어온 정수가 1~45 사이의 수인지를 반환한다.
+
+### void isDuplicated(String[])
+- 배열의 길이만큼 반복하며 arrayList(int)를 호출한다.
+- arrayList(int) 메서드에서 반환되는 값을 이용하여 중복된 값이 있을 경우 예외를 던진다.
+
+### boolenan arrayListAdd()
+- 중복된 값이 있을 경우 true를 반환한다.
+- 중복된 값이 없을 경우 해당 값을 당첨번호와 보너스번호를저장하는 arrayList에 저장하고 false를 반환한다.

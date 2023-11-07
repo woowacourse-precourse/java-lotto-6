@@ -17,18 +17,18 @@ public enum Rank {
     this.winningNumberCount = winningNumberCount;
   }
 
+  public static Rank valueOfLabel(String winningNumberCount) {
+    return Arrays.stream(values())
+        .filter(value -> value.winningNumberCount.equals(winningNumberCount))
+        .findAny()
+        .orElse(null);
+  }
+
   public int getPrice() {
     return this.price;
   }
 
   public String getWinningNumbers() {
     return this.winningNumberCount;
-  }
-
-  public static Rank valueOfLabel(String winningNumberCount) {
-    return Arrays.stream(values())
-        .filter(value -> value.winningNumberCount.equals(winningNumberCount))
-        .findAny()
-        .orElse(null);
   }
 }

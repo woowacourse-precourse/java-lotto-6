@@ -74,7 +74,7 @@ class LottoTest {
     @DisplayName("Int List를 String으로 바꾸어 준다.")
     @Test
     void createStringByIntList() {
-        assertThat(Convert.intListToString(List.of(1,2,3,4,5,6), ",")).isEqualTo("[1,2,3,4,5,6]");
+        assertThat(Convert.intListToString(List.of(1,2,3,4,5,6), ",")).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }
 

@@ -22,9 +22,10 @@ public class Convert {
     StringBuilder sb = new StringBuilder();
     sb.append("[");
     for (int i : list) {
-      sb.append(i + regex);
+      sb.append(i + regex + " ");
     }
     sb.deleteCharAt(sb.lastIndexOf(regex));
+    sb.deleteCharAt(sb.lastIndexOf(" "));
     sb.append("]");
 
     return sb.toString();

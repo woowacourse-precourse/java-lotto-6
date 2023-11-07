@@ -11,7 +11,7 @@ public class ListValidator {
     if (list.size() != list.stream()
         .distinct()
         .count()) {
-      throw new IllegalArgumentException("[ERROR] : 중복된 값이 포함되어 있습니다.");
+      throw new IllegalArgumentException("[ERROR] 중복된 값이 포함되어 있습니다.");
     }
   }
 }

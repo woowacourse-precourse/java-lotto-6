@@ -24,7 +24,7 @@ public class Lotto {
 
   private void validate(List<Integer> numbers) {
     if (numbers.size() != Const.LOTTO_NUMBERS) {
-      throw new IllegalArgumentException("[ERROR] : 입력 숫자는 " + Const.LOTTO_NUMBERS + "개여야 합니다.");
+      throw new IllegalArgumentException("[ERROR] 입력 숫자는 " + Const.LOTTO_NUMBERS + "개여야 합니다.");
     }
 
     for (int number : numbers) {

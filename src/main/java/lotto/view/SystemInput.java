@@ -1,12 +1,20 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.Validator;
 
 public class SystemInput {
     public static int readMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
-        validateMoney(purchaseAmount);
+        try {
+            validateMoney(purchaseAmount);
+        }
+        catch (IllegalArgumentException e) {
+            Validator.printErrorMessage(e.getMessage());
+            readMoney();
+        }
+
         return Integer.parseInt(purchaseAmount);
     }
 
@@ -31,14 +39,20 @@ public class SystemInput {
     public static String readPickLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String pickLotto = Console.readLine();
-        validatePickLotto(pickLotto);
+        try {
+        validatePickLotto(pickLotto);}
+        catch (IllegalArgumentException e) {
+            Validator.printErrorMessage(e.getMessage());
+            readPickLotto();
+        }
         return pickLotto;
     }
 
     public static void validatePickLotto(String pickLotto) {
+        validateNone(pickLotto);
         validateCorrectInput(pickLotto);
         validateString(pickLotto);
-        validateNone(pickLotto);
+
 
     }
 
@@ -66,13 +80,19 @@ public class SystemInput {
     public static int readBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String pickBonus = Console.readLine();
-        validateBonus(pickBonus);
+        try {
+            validateBonus(pickBonus);
+        } catch (IllegalArgumentException e) {
+            Validator.printErrorMessage(e.getMessage());
+            readBonusNumber();
+        }
         return Integer.parseInt(pickBonus);
     }
 
     public static void validateBonus(String pickBonus) {
-        validateBonusNum(pickBonus);
         validateNone(pickBonus);
+        validateBonusNum(pickBonus);
+
 
     }
 

@@ -29,4 +29,15 @@ public class LottoNumber {
             throw new IllegalArgumentException(ERROR_INPUT_DIGIT);
         }
     }
+
+    private void validateRange(String input) {
+        try {
+            int num = Integer.parseInt(input);
+            if (num > MAX_LOTTO_NUMBER || num < MIN_LOTTO_NUMBER) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_BETWEEN_MIN_AND_MAX);
+        }
+    }
 }

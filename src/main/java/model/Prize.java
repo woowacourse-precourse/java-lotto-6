@@ -31,4 +31,11 @@ public enum Prize {
         return price;
     }
 
+    public int getWinNumberCount(){
+        return winNumberCount;
+    }
+    public boolean getBonus(){
+        return bonus;
+    }
+
 }

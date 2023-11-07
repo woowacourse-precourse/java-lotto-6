@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.*;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;

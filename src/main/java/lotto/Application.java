@@ -106,14 +106,6 @@ public class Application {
         return myLottos;
     }
 
-    private static List<Integer> copyLottoNumbers(List<Integer> myLottoNumber) {
-        List<Integer> copyMyLottoNumbers = new ArrayList<>();
-        for (int i = 0; i < myLottoNumber.size(); i++) {
-            copyMyLottoNumbers.set(i, myLottoNumber.get(i));
-        }
-        return copyMyLottoNumbers;
-    }
-
     private static void printMyLottos(List<Lotto> myLottos, int purchaseNumber) {
         for (int i = 0; i < purchaseNumber; i++) {
             Lotto copyLotto = myLottos.get(i);

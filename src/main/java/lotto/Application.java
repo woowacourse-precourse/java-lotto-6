@@ -9,11 +9,11 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
-        int num = 0;
+        int paid = 0;
 
         try {
-            num = Integer.parseInt(Console.readLine());
-            if(num % 1000 != 0) {
+            paid = Integer.parseInt(Console.readLine());
+            if(paid % 1000 != 0) {
                 throw new IllegalArgumentException();
             }
         }
@@ -23,7 +23,7 @@ public class Application {
 
         System.out.println();
 
-        int bought = num / 1000;
+        int bought = paid / 1000;
         System.out.println(bought + "개를 구매했습니다.");
 
         Lotto[] lottoNum = new Lotto[bought];
@@ -93,6 +93,7 @@ public class Application {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        long earned = 0;
         int[] lottoWinsCount = new int[RANKING];
         for(Lotto l : lottoNum) {
             int winsCount = 0;
@@ -108,26 +109,31 @@ public class Application {
 
             if(winsCount == Rank.FIRST.getWins()) {
                 lottoWinsCount[Rank.FIRST.ordinal()]++;
+                earned += Rank.FIRST.getPrize();
                 continue;
             }
 
             if(winsCount == Rank.SECOND.getWins() && bonusCount) {
                 lottoWinsCount[Rank.SECOND.ordinal()]++;
+                earned += Rank.SECOND.getPrize();
                 continue;
             }
 
             if(winsCount == Rank.THIRD.getWins()) {
                 lottoWinsCount[Rank.THIRD.ordinal()]++;
+                earned += Rank.THIRD.getPrize();
                 continue;
             }
 
             if(winsCount == Rank.FOURTH.getWins()) {
                 lottoWinsCount[Rank.FOURTH.ordinal()]++;
+                earned += Rank.FOURTH.getPrize();
                 continue;
             }
 
             if(winsCount == Rank.FIFTH.getWins()) {
                 lottoWinsCount[Rank.FIFTH.ordinal()]++;
+                earned += Rank.FIFTH.getPrize();
             }
         }
 

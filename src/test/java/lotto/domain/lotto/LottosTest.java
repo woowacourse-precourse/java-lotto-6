@@ -24,7 +24,7 @@ public class LottosTest {
         Bonus bonus = new Bonus(7);
 
         //when
-        HashMap<Integer, Integer> winnings = lottos.determineWinnings(winningLotto, bonus);
+        HashMap<Integer, Integer> winnings = lottos.determineWinningsCount(winningLotto, bonus);
 
         //then
         assertThat(winnings).hasSize(5);

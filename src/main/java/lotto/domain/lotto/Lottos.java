@@ -2,7 +2,6 @@ package lotto.domain.lotto;
 
 import java.util.HashMap;
 import java.util.List;
-import lotto.domain.WinningResult;
 
 public class Lottos {
 
@@ -23,7 +22,7 @@ public class Lottos {
         return lottos.size();
     }
 
-    public HashMap<Integer,Integer> determineWinnings(Lotto winningLotto, Bonus bonus) {
+    public HashMap<Integer,Integer> determineWinningsCount(Lotto winningLotto, Bonus bonus) {
         List<Integer> winningNumbers = winningLotto.getNumbers();
         int bonusNumber = bonus.getBonusNumber();
         HashMap<Integer,Integer>winnings = new HashMap<>();

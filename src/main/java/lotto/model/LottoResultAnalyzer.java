@@ -16,4 +16,9 @@ public class LottoResultAnalyzer {
             int calculatedMatchCount = calculateMatchCount(lottoPaper, winningNumbers);
             lottoPaper.setMatchingCount(calculatedMatchCount);
     }
+
+    public void writeResultToLottoPapers(List<LottoPaper> lottoPapers, List<Integer> winningNumbers) {
+        lottoPapers.stream()
+                .forEach(paper -> writeResultToLottoPaper(paper, winningNumbers));
+    }
 }

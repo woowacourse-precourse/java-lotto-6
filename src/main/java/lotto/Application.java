@@ -5,6 +5,7 @@ package lotto;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 import static lotto.calculator.ProfitCalculator.*;
+import static lotto.calculator.BuyTicketsCalculator.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,11 +14,9 @@ public class Application {
 
         System.out.println();
 
-        System.out.println(printLottoCount());
+        int lottoCount = getLottoListSize(buyMoney);
+        printLottoCount(lottoCount);
 
-
-        printGetWinNumberMessage();
-        Lotto winNumber = getWinNumber();
 
     }
 }

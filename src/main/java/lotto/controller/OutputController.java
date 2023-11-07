@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoPrize;
 import lotto.model.Lotto;
+import lotto.model.LottoPrize;
 import lotto.view.OutputView;
 
 public class OutputController {

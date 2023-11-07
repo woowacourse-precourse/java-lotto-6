@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constant.LottoPrize;
 
 public class WinningStatistics {
     private final WinningLotto winningLotto;

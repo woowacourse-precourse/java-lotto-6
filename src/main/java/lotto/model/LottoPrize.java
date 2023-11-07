@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.model;
 
 public enum LottoPrize {
     FIFTH(3, 5_000L, "3개 일치 (5,000원) - %d개"),

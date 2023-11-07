@@ -24,8 +24,8 @@ public class LottoGameService {
     }
 
     public void run() {
-        player.setBudget(inputController.askBudget());
-
+        int budget = inputController.askBudget();
+        player.setBudget(budget);
         player.buyLottoTickets(lottoShop);
         outputController.printLottoTicketsCount(player.getLottoTickets().size());
         outputController.printLottoTickets(player.getLottoTickets());

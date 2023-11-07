@@ -30,7 +30,7 @@ public class UI {
     }
 
     public static String InputWinningNumbers() {
-        displayMessage(Instructions.MESSAGE_OF_ENTERING_LOTTO_AMOUNT);
+        displayMessage(Instructions.MESSAGE_OF_ENTERING_WINNING_NUMBERS);
         String WinningNumbers = Console.readLine();
         return WinningNumbers;
     }

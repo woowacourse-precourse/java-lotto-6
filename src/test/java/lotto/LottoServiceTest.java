@@ -44,5 +44,21 @@ public class LottoServiceTest {
         assertEquals(14, count);
     }
 
+    @DisplayName("당첨번호가 정상적으로 생성되는가?")
+    @Test
+    void testInitWinningNumbers() {
+        List<Integer> winningNumbers = lottoService.initWinningNumbers("1,2,3,4,5,6");
+
+        assertNotNull(winningNumbers);
+        assertEquals(6, winningNumbers.size());
+        assertEquals(1, winningNumbers.get(0));
+        assertEquals(2, winningNumbers.get(1));
+        assertEquals(3, winningNumbers.get(2));
+        assertEquals(4, winningNumbers.get(3));
+        assertEquals(5, winningNumbers.get(4));
+        assertEquals(6, winningNumbers.get(5));
+
+    }
+
 
 }

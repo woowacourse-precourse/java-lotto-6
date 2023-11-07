@@ -33,7 +33,21 @@ public class WinningResult {
     public static WinningResult create() {
         return new WinningResult(0, 0, 0, 0, 0);
     }
-
+    public static WinningResult of(
+            int firstPlaceCount,
+            int secondPlaceCount,
+            int thirdPlaceCount,
+            int fourthPlaceCount,
+            int fifthPlaceCount
+    ) {
+        return new WinningResult(
+                firstPlaceCount,
+                secondPlaceCount,
+                thirdPlaceCount,
+                fourthPlaceCount,
+                fifthPlaceCount
+        );
+    }
     public WinningResult withIncreasedFirstPlaceCount() {
         return new WinningResult(
                 this.firstPlaceCount + 1,

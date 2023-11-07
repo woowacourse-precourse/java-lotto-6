@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.util.LottoValues;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,7 +40,7 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoValues.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
     }

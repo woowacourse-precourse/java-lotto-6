@@ -1,40 +1,35 @@
 package lotto.config;
 
 import lotto.controller.GameController;
-import lotto.controller.InputController;
+import lotto.controller.OutputController;
 import lotto.domain.Player;
-import lotto.domain.WinningNumbers;
 import lotto.service.LottoGenerator;
 import lotto.service.PlayerService;
+import lotto.service.TotalStatCalculator;
 import lotto.service.WinningLottoCalculator;
 import lotto.service.WinningNumberGenerator;
 
 public class GameConfig {
 
-    private static final int LOTTO_PRICE = 1000;
-
     public static GameController getGameController() {
-        PlayerService playerService = getPlayerService();
+        Player player = new Player();
+        PlayerService playerService = getPlayerService(player);
+        OutputController outputController = getOutputController(player);
         WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
-        int lottoCount = getLottoCount();
 
-        return new GameController(playerService, winningNumberGenerator, lottoCount);
+        return new GameController(player,playerService, winningNumberGenerator, outputController);
     }
 
-    private static PlayerService getPlayerService() {
-        Player player = new Player();
+    private static PlayerService getPlayerService(Player player) {
         LottoGenerator lottoGenerator = new LottoGenerator();
-        WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
-        WinningNumbers winningNumbers = winningNumberGenerator.generate();
         WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
-
 
         return new PlayerService(player, lottoGenerator, winningLottoCalculator);
     }
 
-    private static int getLottoCount() {
-        int customerPrice = InputController.inputPrice();
+    private static OutputController getOutputController(Player player) {
+        TotalStatCalculator totalStatCalculator = new TotalStatCalculator(player);
 
-        return customerPrice/LOTTO_PRICE;
+        return new OutputController(totalStatCalculator);
     }
 }

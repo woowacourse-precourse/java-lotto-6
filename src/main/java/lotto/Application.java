@@ -273,9 +273,16 @@ public class Application {
 		System.out.println("6개 일치 (2,000,000,000) - " + rankCnt.get(0) + "개");
 	}
 	
-	private void printProfitPercent(){
-		
+	private void printProfitPercent() {
+		double profit = calUserProfit();
+		double result = profit / purchase * 100;
+		System.out.println("총 수익률은 " + String.format("%.1f", result) + "%입니다.");
 	}
+	
+	private double calUserProfit() {
+		return 0.0;
+	}
+	
 	
     public static void main(String[] args) {
     	Application game = new Application();

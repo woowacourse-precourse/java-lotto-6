@@ -9,19 +9,19 @@ public class BonusNumberValidator {
     private BonusNumberValidator() {
     }
 
-    public static void validateBonusNumber(final Lotto lotto, final int bonusNumber) {
-        validateRange(bonusNumber);
-        validateDuplicates(lotto, bonusNumber);
+    public static void validateBonusNumber(final Lotto lotto, final int number) {
+        validateRange(number);
+        validateDuplicates(lotto, number);
     }
 
-    private static void validateRange(final int bonusNumber) {
-        if (LottoCondition.isNotInRange(bonusNumber)) {
+    private static void validateRange(final int number) {
+        if (LottoCondition.isNotInRange(number)) {
             throw DomainExceptionMessage.OUT_OF_RANGE_NUMBER.create();
         }
     }
 
-    private static void validateDuplicates(final Lotto lotto, final int bonusNumber) {
-        if (lotto.contains(bonusNumber)) {
+    private static void validateDuplicates(final Lotto lotto, final int number) {
+        if (lotto.contains(number)) {
             throw DomainExceptionMessage.DUPLICATES_BONUS_NUMBER.create();
         }
     }

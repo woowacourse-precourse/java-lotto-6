@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -62,6 +63,29 @@ class LottoResultAnalyzerTest {
                 .allMatch(paper -> paper.getMatchingCount() == expectedMatchCount);
     }
 
+    @DisplayName("당첨 번호 일치 개수에 따라 등수 확인")
+    @ParameterizedTest(name = "보너스 번호: {1}")
+    @MethodSource("matchCase2")
+    public void 등수_판별(List<List<Integer>> lottoNumberArgument, int bonusNumber, PrizeCategory prizeCategory) {
+        // given
+        List<Integer> winningNumbers = lottoNumberArgument.get(0);
+        List<Integer> purchasedNumbers = lottoNumberArgument.get(1);
+
+        LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+        LottoPaper lottoPaper = new LottoPaper(purchasedNumbers);
+
+        // when
+        lottoResultAnalyzer.writeResultToLottoPaper(lottoPaper, winningNumbers);
+
+        lottoResultAnalyzer.matchByLottoPaper(lottoPaper, bonusNumber);
+
+        EnumMap<PrizeCategory, Integer> matchResults = lottoResultAnalyzer.getMatchResults();
+
+        // then
+        assertThat(matchResults.keySet())
+                .containsExactly(prizeCategory);
+    }
+
     static Stream<Arguments> matchCase() {
         return Stream.of(
                 Arguments.of(
@@ -73,6 +97,25 @@ class LottoResultAnalyzerTest {
                         List.of(1, 2, 3, 4, 5, 6),
                         List.of(10, 11, 12, 13, 14, 15),
                         0
+                )
+        );
+    }
+
+    static Stream<Arguments> matchCase2() {
+        List<List<Integer>> lottoNumberArgumentFirst = new ArrayList<>();
+        lottoNumberArgumentFirst.add(List.of(1, 2, 3, 4, 5, 6));
+        lottoNumberArgumentFirst.add(List.of(1, 2, 3, 4, 5, 7));
+
+        return Stream.of(
+                Arguments.of(
+                        lottoNumberArgumentFirst,
+                        7,
+                        PrizeCategory.FIVE_MATCH_WITH_BONUS
+                ),
+                Arguments.of(
+                        lottoNumberArgumentFirst,
+                        10,
+                        PrizeCategory.FIVE_MATCH_NO_BONUS
                 )
         );
     }

@@ -6,7 +6,6 @@ public class WinningLotto {
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "로또의 수는 1에서 45사이의 숫자 입니다.";
     private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "로또에 중복된 수가 있습니다.";
 
-
     private final Lotto lotto;
     private final int bonusNumber;
 

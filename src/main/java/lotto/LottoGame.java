@@ -8,7 +8,7 @@ public class LottoGame {
     public void gameStart() {
         int purchaseAmount = Input.getPurchaseAmount();
         List<Lotto> lottoTickets = LottoGenerator.generateLottoNumbers(purchaseAmount);
-        Output.getLottoNumbers(lottoTickets);
+        Output.printLottoNumbers(lottoTickets);
         List<Integer> winningNumber = Input.getWinningNumber();
         int bonusNumber = Input.getBonusNumber(winningNumber);
         Referee.calculateLottoResultAndProfit(lottoTickets, winningNumber, bonusNumber, purchaseAmount);

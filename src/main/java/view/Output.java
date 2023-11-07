@@ -20,7 +20,7 @@ public class Output {
     public static final String SECOND_PRIZE_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
 
-    public static void getLottoNumbers(List<Lotto> lottoTickets) {
+    public static void printLottoNumbers(List<Lotto> lottoTickets) {
         System.out.printf(LINE_BREAK + PURCHASE_AMOUNT_MESSAGE + LINE_BREAK, lottoTickets.size());
         lottoTickets.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();

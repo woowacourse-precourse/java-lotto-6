@@ -25,6 +25,10 @@ public class LottoTicket {
         return lottoTicket.size();
     }
 
+    public Lotto getLotto(int index) {
+        return lottoTicket.get(index);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

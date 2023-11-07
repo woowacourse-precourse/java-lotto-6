@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.domain.LottoRank;
 import lotto.domain.LottoTicket;
 import lotto.service.LottoMachine;
+import lotto.service.LottoResultAnalyze;
 import lotto.ui.ErrorMessage;
 import lotto.ui.InputView;
 import lotto.ui.OutputMessage;
@@ -10,6 +12,7 @@ import lotto.ui.OutputView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class GameController {
@@ -36,6 +39,9 @@ public class GameController {
         outputView.displayLottoTicket(OutputMessage.DISPLAY_TICKET_COUNT, ticketCount, lottoTicket);
         setWinningNumbers();
         setBonusNumber();
+        LottoResultAnalyze lottoResultAnalyze = new LottoResultAnalyze();
+        Map<String, Integer> lottoResult = lottoResultAnalyze.calculateResult(lottoTicket, winningNumbers, bonusNumber);
+        double profit = calculateProfit(amount, lottoResult);
     }
 
     private int setAmount() {
@@ -92,5 +98,17 @@ public class GameController {
 
     private String createErrorMessage(ErrorMessage errorMessage) {
         return errorMessage.getMessage() + " " + commonErrorMessage;
+    }
+
+    private double calculateProfit(int amount, Map<String, Integer> lottoResult) {
+        long totalPrize = 0;
+        for (Map.Entry<String, Integer> entry : lottoResult.entrySet()) {
+            String rankName = entry.getKey();
+            int count = entry.getValue();
+            long prize = LottoRank.getPrizeByRank(rankName);
+            totalPrize += count * prize;
+        }
+        double profit = ((double) totalPrize / amount) * 100;
+        return profit;
     }
 }

@@ -4,6 +4,7 @@ import static lotto.util.ErrorMessage.ERROR_LOTTO_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

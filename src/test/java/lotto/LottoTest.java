@@ -3,7 +3,7 @@ package lotto;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.service.LottoService;
+import lotto.manager.LottoManager;
 import lotto.utils.ParseUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +33,9 @@ class LottoTest {
     @DisplayName("로또 번호가 1~45 사이가 아닌 경우 예외가 발생한다.")
     @Test
     void createLottoByRange() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 89)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,20 +66,21 @@ class LottoTest {
     @DisplayName("입력된 투입 금액이 1000원 단위가 아닌 경우 예외가 발생한다.")
     @Test
     void createPayMoneyByUnit() {
-        LottoService lottoService = new LottoService();
-        assertThatThrownBy(() -> lottoService.setBuyLotto(2590))
+        int payMoney = 1200;
+        LottoManager lottoManager = new LottoManager();
+        assertThatThrownBy(() -> lottoManager.setBuyLottos(payMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("투입한 금액에 맞게 로또가 구매되는지 확인")
     @Test
     void buyLotto() {
-        LottoService lottoService = new LottoService();
+        LottoManager lottoManager = new LottoManager();
 
         int payMoney = 10000;
-        lottoService.setBuyLotto(payMoney);
+        lottoManager.setBuyLottos(payMoney);
 
-        Assertions.assertEquals(payMoney/ Value.LOTTO_TICKET_PRICE, lottoService.getBuyLottos().size());
+        Assertions.assertEquals(payMoney/ Value.LOTTO_TICKET_PRICE, lottoManager.getBuyLottos().size());
     }
 
 }

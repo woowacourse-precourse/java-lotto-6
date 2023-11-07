@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class LottoChecker {
 
+    private static final String WINNING_RESULT_NULL_EXCEPTION = "당첨 결과가 존재하지 않습니다.";
+
     private final Lotto winningLotto;
     private final Bonus bonus;
 
@@ -38,6 +40,9 @@ public class LottoChecker {
     }
 
     private double calculateTotalReward() {
+        if (winningResult == null) {
+            throw new IllegalStateException(WINNING_RESULT_NULL_EXCEPTION);
+        }
         return winningResult.entrySet()
                 .stream()
                 .mapToInt(entry -> entry.getKey().calculateReward(entry.getValue()))

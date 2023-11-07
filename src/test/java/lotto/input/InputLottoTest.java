@@ -1,6 +1,5 @@
-package lotto;
+package lotto.input;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.input.InputLotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static lotto.input.InputLottoValidator.getInstance;
+import static lotto.input.validator.InputLottoValidator.getInstance;
 
 public class InputLottoTest {
 

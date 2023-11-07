@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.input.validator;
 
 public class InputLottoValidator {
     private static final String ACCEPT_CHARACTERS = "[0-9,]+";
@@ -7,8 +7,9 @@ public class InputLottoValidator {
 
     private InputLottoValidator() {}
 
+
     public static InputLottoValidator getInstance() {
-        return InputLottoValidator.inputLottoValidator;
+        return inputLottoValidator;
     }
 
     public void validate(String input) {

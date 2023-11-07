@@ -14,7 +14,13 @@ public class ValidateCheck {
 
     public static void numberDupulicationValidate(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()){
-            throw new IllegalArgumentException(Messages.Number_DUPULICATE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(Messages.NUMBER_DUPULICATE_MESSAGE.getMessage());
+        }
+    }
+
+    public static void isNumberExist(int targetNumber,List<Integer> numbers){
+        if(numbers.contains(targetNumber)){
+            throw new IllegalArgumentException(Messages.NUMBER_DUPULICATE_MESSAGE.getMessage());
         }
     }
 

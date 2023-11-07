@@ -31,7 +31,7 @@ public class LottoController {
         OutputView.printAskWinNumbers();
         winNumbers=InputView.inputWinNumbers(Console.readLine());
         OutputView.printAstBonusNumbers();
-        bonusNumber=InputView.inputBonusNumber(Console.readLine());
+        bonusNumber=InputView.inputBonusNumber(Console.readLine(), winNumbers);
         checkLottos();
         OutputView.printStatistics(winLottoRanks);
     }

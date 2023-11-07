@@ -13,7 +13,7 @@ public enum Messages {
     WIN_FIFTH_MESSAGE("3개 일치 (5,000원) - "),
     NUMBER_RANGE_ERROR_MESSAGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     NUMBER_COUNT_ERROR_MESSAGE("[ERROR] 로또 번호는 6개여야 합니다."),
-    Number_DUPULICATE_MESSAGE("[ERROR] 로또 번호는 중복되지 않아야 합니다."),
+    NUMBER_DUPULICATE_MESSAGE("[ERROR] 로또 번호는 중복되지 않아야 합니다."),
     PRICE_DEVIDE_ERROR_MESSAGE("[ERROR] 1000원 단위로 입력해야 합니다."),
     PURE_INTEGER_ERROR_MESSAGE("[ERROR] 정수 입력이여야 합니다."),
     ;

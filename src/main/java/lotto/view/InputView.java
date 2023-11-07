@@ -28,10 +28,11 @@ public class InputView {
         return winNumbers;
     }
 
-    public static int inputBonusNumber(String input){
+    public static int inputBonusNumber(String input, List<Integer> winNumbers){
         ValidateCheck.pureIntegerCheck(input);
         int bonusNumber = Integer.parseInt(input);
         ValidateCheck.numberRangeValidate(bonusNumber);
+        ValidateCheck.isNumberExist(bonusNumber, winNumbers);
         return bonusNumber;
     }
 }

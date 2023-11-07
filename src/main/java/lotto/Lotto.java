@@ -21,7 +21,7 @@ public class Lotto {
         money = purchaseResult(purchaseNumber, money, allNumbers);
         winnersNumber();
         bonusNumber();
-
+        compare(bonusInput, allNumbers);
     }
 
     // 구입 금액 입력 받고 예외 처리한 뒤 리턴
@@ -135,5 +135,26 @@ public class Lotto {
             System.out.println("[ERROR]");
             bonusNumber();
         }
+    }
+
+    private void compare(int bonusInput, List<List<Integer>> allNumbers) {
+        List<Integer> reduplicationNumber = new ArrayList<>();
+        int bonus = 0;
+        //로또 번호 리스트 가져 와서 당첨 번호와 비교 후 중복 되는 갯수 reduplicationNumber 리스트에 저장
+        for (List<Integer> sub : allNumbers) {
+            sub.retainAll(numbers);
+            reduplicationNumber.add(sub.size());
+            // 5개 + 보너스 볼 일 때
+            if (sub.size() == 5 && sub.contains(bonusInput)) {
+                bonus += 1;
+            }
+        }
+        int threeFrequency = Collections.frequency(reduplicationNumber, 3);
+        int fourFrequency = Collections.frequency(reduplicationNumber, 4);
+        int fiveFrequency = Collections.frequency(reduplicationNumber, 5);
+        int sixFrequency = Collections.frequency(reduplicationNumber, 6);
+
+        System.out.println();
+        message.statisticsMessage();
     }
 }

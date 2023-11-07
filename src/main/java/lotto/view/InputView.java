@@ -11,6 +11,7 @@ import static lotto.constants.Notice.ASK_WINNING_NUMBERS;
 
 public class InputView {
     private static final int THOUSAND_UNIT = 1000;
+    private static final int CHANGE = 0;
     private static final int PURCHASE_MIN_LIMIT = 1000;
     private static final int PURCHASE_MAX_LIMIT = 100000;
 
@@ -48,7 +49,7 @@ public class InputView {
     }
 
     private static void validateThousandUnit(int won) {
-        if (won % THOUSAND_UNIT != 0) {
+        if (won % THOUSAND_UNIT != CHANGE) {
             throw new IllegalArgumentException(IS_NOT_THOUSAND_UNIT.getMessage());
         }
     }

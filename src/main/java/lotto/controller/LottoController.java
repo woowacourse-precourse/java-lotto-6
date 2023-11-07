@@ -1,7 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -15,5 +19,16 @@ public class LottoController {
             return payMoney();
         }
 
+    }
+
+    public WinningLotto selectWinningLottoNumbers() {
+        try {
+            List<Integer> winningSixNumbers = InputView.inputWinnerNumbers();
+            int winningBonusNumbers = InputView.inputBonusNumbers();
+            return new WinningLotto(new Lotto(winningSixNumbers), winningBonusNumbers);
+        } catch(IllegalArgumentException e) {
+            System.out.println("");
+            return selectWinningLottoNumbers();
+        }
     }
 }

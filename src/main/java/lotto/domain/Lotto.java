@@ -1,8 +1,9 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
-public class Lotto extends LottoRule{
+public class Lotto extends LottoRule {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,13 +13,13 @@ public class Lotto extends LottoRule{
 
     private void validate(List<Integer> numbers) {
         if (isInvalidLength(numbers)) {
-            throw new IllegalArgumentException();
+            ExceptionMessage.LOTTO_INVALID_LENGTH.throwException();
         }
-        if (isDuplicate(numbers)){
-            throw new IllegalArgumentException();
+        if (isDuplicate(numbers)) {
+            ExceptionMessage.LOTTO_DUPLICATE.throwException();
         }
-        if (isOutOfRange(numbers)){
-            throw new IllegalArgumentException();
+        if (isOutOfRange(numbers)) {
+            ExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
         }
     }
 

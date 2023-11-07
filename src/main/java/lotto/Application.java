@@ -24,9 +24,4 @@ public class Application {
         Lotto.compareTo(lottos, inputNumbers, bonusNumber);
         Ranks.printResult(price);
     }
-
-
-
-
-
 }

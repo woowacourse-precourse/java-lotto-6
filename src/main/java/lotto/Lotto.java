@@ -13,20 +13,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        Set<Integer> distinct = new HashSet<>(numbers);
+        if (numbers.size() != 6 || Collections.max(numbers) > 45 || Collections.min(numbers) < 1 || distinct.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }
 
     // TODO: 추가 기능 구현
-    public static void sortLottos(List<Integer> lottoNumbers) {
-        Collections.sort(lottoNumbers);
-    }
-
     public static void printLottos(Lotto[] lottos) {
         for (Lotto lotto : lottos) {
-            sortLottos(lotto.numbers);
-            System.out.println(lotto.numbers);
+            System.out.println(lotto.numbers );
         }
     }
 
@@ -77,8 +73,7 @@ public class Lotto {
                     return;
                 }
                 Ranks.THIRD.amount++;
-            }
-            else if (count == 4) Ranks.FOURTH.amount++;
+            } else if (count == 4) Ranks.FOURTH.amount++;
             else if (count == 3) Ranks.FIFTH.amount++;
         }
     }
@@ -98,8 +93,6 @@ public class Lotto {
     public static boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.numbers.contains(bonusNumber);
     }
-
-
 
 
 }

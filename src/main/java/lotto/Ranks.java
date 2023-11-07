@@ -10,7 +10,7 @@ public enum Ranks {
     final int awards;
     int amount;
 
-    Ranks(int awards, int amount){
+    Ranks(int awards, int amount) {
         this.awards = awards;
     }
 

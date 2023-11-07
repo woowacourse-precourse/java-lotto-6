@@ -5,7 +5,7 @@ import java.util.Map;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
 
-public class LottoResultPrinter {
+public class OutputView {
     public static void printLottos(int count, List<Lotto> lottos) {
         System.out.println("\n" + count + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {

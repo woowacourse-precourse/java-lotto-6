@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.controller.LottoInputController;
 import lotto.domain.LottoService;
 import lotto.domain.LottoStatistics;
-import lotto.view.LottoResultPrinter;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,12 +13,12 @@ public class Application {
 
         final int amount = inputController.getUserInputForAmount();
         final List<Lotto> lottos = lottoService.purchaseLottos(amount);
-        LottoResultPrinter.printLottos(lottos.size(), lottos);
+        OutputView.printLottos(lottos.size(), lottos);
 
         final List<Integer> winningNumbers = inputController.getUserInputForWinningNumbers();
         final int bonusNumber = inputController.getUserInputForBonusNumber(winningNumbers);
 
         LottoStatistics statistics = new LottoStatistics(lottos, winningNumbers, bonusNumber);
-        LottoResultPrinter.presentResults(statistics.getWinsPerCategory(), statistics.getTotalRate());
+        OutputView.presentResults(statistics.getWinsPerCategory(), statistics.getTotalRate());
     }
 }

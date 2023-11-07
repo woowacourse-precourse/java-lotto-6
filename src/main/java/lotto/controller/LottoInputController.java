@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.view.InputView;
 
 public class LottoInputController {
     private static final LottoInputController inputController = new LottoInputController();
@@ -16,7 +17,7 @@ public class LottoInputController {
     public int getUserInputForAmount() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                InputView.printPurchaseMoneyMessage();
                 String input = Console.readLine();
                 return InputValidator.validatePurchaseAmount(input);
             } catch (IllegalArgumentException e) {
@@ -28,7 +29,7 @@ public class LottoInputController {
     public List<Integer> getUserInputForWinningNumbers() {
         while (true) {
             try {
-                System.out.println("\n당첨 번호를 입력해 주세요.");
+                InputView.printWinningNumbersMessage();
                 final String input = Console.readLine();
                 return InputValidator.validateWinningNumbers(input);
             } catch (IllegalArgumentException e) {
@@ -40,7 +41,7 @@ public class LottoInputController {
     public int getUserInputForBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                System.out.println("\n보너스 번호를 입력해 주세요.");
+                InputView.printWinningBonusNumberMessage();
                 final String input = Console.readLine();
                 Console.close();
                 return InputValidator.validateBonusNumber(input, winningNumbers);

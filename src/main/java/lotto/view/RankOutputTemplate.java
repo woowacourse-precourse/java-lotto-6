@@ -13,7 +13,6 @@ public enum RankOutputTemplate {
     FOUR("%d개 일치 (%,d원) - %d개", Rank.FOUR),
     THREE("%d개 일치 (%,d원) - %d개", Rank.THREE);
 
-
     private final String template;
     private final Rank rank;
 
@@ -22,15 +21,16 @@ public enum RankOutputTemplate {
         this.rank = rank;
     }
 
+    public String format(Integer count) {
+        return String.format(template, rank.getCount(), rank.toPriceInt(), count);
+    }
+
     public static Optional<RankOutputTemplate> find(Rank rank) {
         return Arrays.stream(values()).filter(rankOutputTemplate -> rankOutputTemplate.rank.equals(rank)).findFirst();
     }
 
-    public static List<RankOutputTemplate> getList() {
+    public static List<RankOutputTemplate> toList() {
         return Arrays.stream(values()).sorted(Comparator.reverseOrder()).toList();
     }
 
-    public String format(Integer count){
-        return String.format(template,rank.getCount(),rank.getMoney().getMoney(),count);
-    }
 }

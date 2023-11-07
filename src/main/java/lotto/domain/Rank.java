@@ -6,11 +6,11 @@ import java.util.function.BiPredicate;
 import lotto.domain.money.Money;
 
 public enum Rank {
-    SIX(6, Money.of(2000000000)),
-    FIVE_BONUS(5, Money.of(30000000)),
-    FIVE(5, Money.of(1500000)),
-    FOUR(4, Money.of(50000)),
-    THREE(3, Money.of(5000));
+    SIX(6, Money.from(2000000000)),
+    FIVE_BONUS(5, Money.from(30000000)),
+    FIVE(5, Money.from(1500000)),
+    FOUR(4, Money.from(50000)),
+    THREE(3, Money.from(5000));
 
     private final int count;
 
@@ -27,6 +27,10 @@ public enum Rank {
 
     public Money getMoney(){
         return money;
+    }
+
+    public Integer toPriceInt(){
+        return money.getMoney();
     }
 
     public static Optional<Rank> findRank(Integer similarity, Boolean hasBonus) {

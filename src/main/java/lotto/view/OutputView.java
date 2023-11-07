@@ -21,7 +21,7 @@ public class OutputView {
     public static void renderingResult(ResultDto resultDto) {
         print("당첨 통계");
         print("---");
-        List<RankOutputTemplate> rankOutputTemplates = RankOutputTemplate.getList();
+        List<RankOutputTemplate> rankOutputTemplates = RankOutputTemplate.toList();
         for (RankOutputTemplate template : rankOutputTemplates) {
             print(template.format(resultDto.findCount(template)));
         }

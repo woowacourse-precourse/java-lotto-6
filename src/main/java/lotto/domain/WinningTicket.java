@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.common.exception.ExceptionMessages.DUPLICATE_WINNING_NUMBER;
 
+import lotto.dto.MatchResult;
+
 public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
 
     public WinningTicket {

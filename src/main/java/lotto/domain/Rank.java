@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import lotto.dto.MatchResult;
 
 public enum Rank {
     NONE(0, false, 0L),

@@ -2,6 +2,7 @@ package lotto.system.validator;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Validator {
     private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
@@ -9,6 +10,7 @@ public class Validator {
     private static final int ZERO = 0;
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int WINNING_NUMBER_SIZE = 6;
 
     private enum ExceptionMessage {
         EMPTY_VALUE_NOT_ALLOWED("[ERROR] 빈 값을 입력할 수 없습니다."),
@@ -16,7 +18,8 @@ public class Validator {
         NOT_DIVISIBLE_BY_1000("[ERROR] 1,000원 단위로만 입력할 수 있습니다."),
         NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
         EXIST_DUPLICATED_NUMBER_IN_WINNING_NUMBER("[ERROR] 당첨 번호는 서로 다른 숫자만 입력할 수 있습니다."),
-        DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다.");
+        DUPLICATED_BONUS_NUMBER("[ERROR] 당첨 번호와 중복되는 숫자는 입력할 수 없습니다."),
+        EXACTLY_SIX_NUMBERS("[ERROR] 6개의 숫자를 입력해야 합니다.");
         private final String message;
 
         ExceptionMessage(String message) {
@@ -66,6 +69,12 @@ public class Validator {
         }
     }
 
+    public void validateWinningNumberSize(List<String> inputNumbers) {
+        if (inputNumbers.size() != WINNING_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ExceptionMessage.EXACTLY_SIX_NUMBERS.message);
+        }
+    }
+
     public void validateNotEmptyAndArabicNumber(String input) {
         validateNotEmpty(input);
         validateArabicNumber(input);
@@ -77,6 +86,7 @@ public class Validator {
     }
 
     public void validateWinningNumbers(List<String> userInputNumbers) {
+        validateWinningNumberSize(userInputNumbers);
         userInputNumbers.forEach(
                 number -> {
                     validateNotEmptyAndArabicNumber(number);

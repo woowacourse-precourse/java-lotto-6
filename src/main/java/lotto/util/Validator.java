@@ -70,14 +70,14 @@ public class Validator {
     }
 
     /**
-     * 당첨 번호가 총 6개인지 검증한다.
-     * winningNumbers의 사이즈가 정확히 6이 아닐 경우 예외가 발생한다.
+     * 당첨 번호의 개수가 DomainConfiguration에 정의된 LENGTH_OF_LOTTO와 일치하는지 검증한다.
+     * winningNumbers의 사이즈가 정확히 LENGTH_OF_LOTTO가 아닐 경우 예외가 발생한다.
      * @param winningNumbers 당첨 번호가 담긴 리스트.
-     * @throws IllegalArgumentException winningNumbers.size() != 6일 경우 발생한다.
+     * @throws IllegalArgumentException winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO일 경우 발생한다.
      */
     public static void validateNumOfWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_ARE_NOT_SIX.get());
+        if (winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO) {
+            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_ARE_NOT_PROPER.get());
         }
     }
 

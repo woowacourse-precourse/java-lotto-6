@@ -176,7 +176,7 @@ class ValidatorTest {
         testCases.forEach((l) -> {
             assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> Validator.validateNumOfWinningNumbers(l))
-                    .withMessageContaining(ErrorMessages.WINNING_NUMBERS_ARE_NOT_SIX.get());
+                    .withMessageContaining(ErrorMessages.WINNING_NUMBERS_ARE_NOT_PROPER.get());
         });
     }
 

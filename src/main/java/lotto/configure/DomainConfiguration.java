@@ -7,5 +7,6 @@ public class DomainConfiguration {
 
     public static final int LOTTO_NUMBER_MIN = 1;
     public static final int LOTTO_NUMBER_MAX = 45;
+    public static final int LENGTH_OF_LOTTO = 6;
     public static final int PRICE_OF_LOTTO = 1000;
 }

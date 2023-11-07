@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
-import lotto.LottoExceptionMessage;
+import lotto.utils.LottoExceptionMessage;
 
 public class LottoNumber {
     private static final int MINIMUM = 1;
@@ -39,5 +39,14 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 }

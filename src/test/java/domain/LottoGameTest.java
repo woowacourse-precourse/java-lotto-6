@@ -31,5 +31,34 @@ public class LottoGameTest {
         System.out.println(lottoNumbers);
     }
 
+    @DisplayName("구매한 로또 당첨 번호 리스트는 null 이 아니다.")
+    @Test
+    void notNullLottoListTest() {
+        // given
+        int lottoCount = 15000;
+
+        // when
+        List<Lotto> lottoList = getLottoList(lottoCount);
+
+        //then
+        assertThat(lottoList).isNotNull();
+    }
+
+    @DisplayName("10개의 로또 구매를 구매할 경우 size 는 10이다.")
+    @Test
+    void purchasedLottoCountTest() {
+        // given
+        int lottoCount = 10;
+
+        // when
+        List<Lotto> lottoList = getLottoList(lottoCount);
+
+        //then
+        assertThat(lottoList.size()).isEqualTo(10);
+    }
+
+    private List<Lotto> getLottoList(int lottoCount){
+        return lottoGame.getLottoList(lottoCount);
+    }
 
 }

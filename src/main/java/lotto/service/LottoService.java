@@ -9,6 +9,7 @@ import lotto.dto.LottoNumbers;
 import lotto.dto.LottoWinningResult;
 import lotto.repository.LottoRepository;
 import lotto.util.RandomNumberUtil;
+import lotto.util.ReturnRateCountUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +65,9 @@ public class LottoService {
                 winningNumber,
                 bonusNumber
         );
+        double totalReturnRate = countTotalReturnRate(lottoWinningRanks);
 
-        return null;
+        return new LottoWinningResult(lottoWinningRanks, totalReturnRate);
     }
 
     private List<LottoWinningRank> checkLottoWinningRank(
@@ -83,5 +85,18 @@ public class LottoService {
         return lottos.stream()
                 .map(checkLottoWinningRankProcess)
                 .toList();
+    }
+
+    private double countTotalReturnRate(List<LottoWinningRank> lottoWinningRanks) {
+        int totalWinningAmount = countTotalWinningAmount(lottoWinningRanks);
+        int lottoBuyPrice = LottoBuyPrice.countTotalLottoPrice(lottoWinningRanks.size());
+
+        return Math.round(ReturnRateCountUtil.countReturnRate(totalWinningAmount, lottoBuyPrice));
+    }
+
+    private int countTotalWinningAmount(List<LottoWinningRank> lottoWinningRanks) {
+        return lottoWinningRanks.stream()
+                .mapToInt(LottoWinningRank::getWinningAmount)
+                .sum();
     }
 }

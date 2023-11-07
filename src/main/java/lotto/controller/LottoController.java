@@ -4,6 +4,7 @@ import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoBuyPrice;
 import lotto.domain.LottoWinningNumber;
 import lotto.dto.LottoNumbers;
+import lotto.dto.LottoWinningResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,6 +29,7 @@ public class LottoController {
 
         LottoWinningNumber lottoWinningNumber = inputLottoWinningNumber();
         LottoBonusNumber lottoBonusNumber = inputLottoBonusNumber(lottoWinningNumber.getNumbers());
+        LottoWinningResult lottoWinningResult = lottoService.checkLottoWinningResult(lottoWinningNumber, lottoBonusNumber);
     }
 
     private LottoBuyPrice inputLottoBuyPrice() {

@@ -56,4 +56,17 @@ class LottoBuyPriceTest {
         // Then
         assertThat(availableLottoBuyCount).isEqualTo(5);
     }
+    
+    @DisplayName("구입할 로또의 개수를 입력하면 총 로또 구입 금액을 반환한다.")
+    @Test        
+    void countTotalLottoBuyPrice() throws Exception {
+        // Given
+        int lottoBuyCount = 5;
+                
+        // When
+        int totalLottoBuyPrice = LottoBuyPrice.countTotalLottoPrice(lottoBuyCount);
+
+        // Then
+        assertThat(totalLottoBuyPrice).isEqualTo(5000);
+    }
 }

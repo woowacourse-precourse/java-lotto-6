@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class LottoBuyPrice {
 
-    private static final int ALLOWED_AMOUNT_UNIT = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     private final int price;
 
@@ -22,10 +22,14 @@ public class LottoBuyPrice {
     }
 
     private boolean isAllowedAmountUnit(int price) {
-        return price % ALLOWED_AMOUNT_UNIT == 0;
+        return price % LOTTO_PRICE == 0;
+    }
+
+    public static int countTotalLottoPrice(int lottoCount) {
+        return LOTTO_PRICE * lottoCount;
     }
 
     public int getAvailableLottoBuyCount() {
-        return price / ALLOWED_AMOUNT_UNIT;
+        return price / LOTTO_PRICE;
     }
 }

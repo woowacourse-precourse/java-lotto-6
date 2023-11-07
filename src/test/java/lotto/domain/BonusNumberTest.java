@@ -21,8 +21,8 @@ class BonusNumberTest {
         assertAll(() -> {
             assertThatNoException()
                     .isThrownBy(() -> new BonusNumber(input));
-            assertThat(new BonusNumber(input))
-                    .isEqualTo(bonusNumber);
+            assertThat(bonusNumber.isEqual(input))
+                    .isTrue();
         });
     }
 

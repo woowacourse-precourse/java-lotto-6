@@ -12,6 +12,19 @@ import lotto.view.OutputView;
 
 public class LottoGameController {
 
+    public void run() {
+        Money lottoPurchaseMoney = inputLottoPurchaseMoney();
+        Lottos issuedLottos = issueLottos(lottoPurchaseMoney);
+        printIssuedLottos(issuedLottos);
+
+        WinningLotto winningLotto = issueWinningLotto();
+        WinningStatistics winningStatistics = produceStatistics(winningLotto, issuedLottos);
+        printWinningStatistics(winningStatistics);
+
+        Money totalWinningPrize = calculateTotalWinningPrize(winningStatistics);
+        printRateOfReturn(lottoPurchaseMoney, totalWinningPrize);
+    }
+
     private Money inputLottoPurchaseMoney() {
         try {
             return new Money(InputView.inputLottoPurchaseMoney());

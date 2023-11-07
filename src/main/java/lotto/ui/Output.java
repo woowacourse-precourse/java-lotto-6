@@ -15,7 +15,6 @@ public class Output {
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
     private static final String COMMA_DELIMITER = ", ";
-    private static final String NEXT_LINE = "\n";
     private static final String LOTTO_RESULT_STATUS = "당첨 통계";
     private static final String LOTTO_RESULT_LINE = "---";
     private static final String LOTTO_RESULT_FIFTH_PRIZE = "3개 일치 (5,000원) - %d개";
@@ -32,7 +31,8 @@ public class Output {
     }
 
     public static void printPurchaseCount(int count) {
-        System.out.println(NEXT_LINE + count + PURCHASE_COUNT_COMMAND);
+        printNewLine();
+        System.out.println(count + PURCHASE_COUNT_COMMAND);
     }
 
     public static void printUserNumberInput() {
@@ -43,7 +43,7 @@ public class Output {
         for (Lotto lotto : lottoBundle.getLottoBundle()) {
             printSingleLotto(lotto);
         }
-        System.out.println();
+        printNewLine();
     }
 
     private static void printSingleLotto(Lotto lotto) {
@@ -61,7 +61,7 @@ public class Output {
     }
 
     private static void printLottoScore(Score score) {
-        System.out.println();
+        printNewLine();
         System.out.println(LOTTO_RESULT_STATUS);
         System.out.println(LOTTO_RESULT_LINE);
         printLottoRankResult(score.getLottoResult());
@@ -81,7 +81,7 @@ public class Output {
     }
 
     public static void printBonusNumberInput() {
-        System.out.println();
+        printNewLine();
         System.out.println(BONUS_NUMBER_INPUT);
     }
 
@@ -91,5 +91,9 @@ public class Output {
 
     private static void printProfitRate(double profitRate) {
         System.out.println(String.format(PROFIT_RATE_FORMAT, profitRate));
+    }
+
+    private static void printNewLine() {
+        System.out.println();
     }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,9 +20,17 @@ public class LottoController {
     }
 
     public void start(){
-        calculateLottoCount(inputView.readBuyAmount());
-        Lottos lottos = new Lottos();
+        int buyCount = calculateLottoCount(inputView.readBuyAmount());
+        outputView.displayPurchaseCount(buyCount);
+        Lottos lottos = new Lottos(buyCount);
+        printInfo(lottos.getLottos());
         lottos.checkWinningNumbers(parseNumbers(inputView.readWinningNumbers()), inputView.readBonusNumber());
+    }
+
+    private void printInfo(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            outputView.printInfo(lotto.getNumbers());
+        }
     }
 
 

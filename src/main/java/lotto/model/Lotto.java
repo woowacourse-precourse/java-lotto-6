@@ -51,7 +51,7 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    public int compare(Lotto winningLotto) {
+    public int matchNumbers(Lotto winningLotto) {
         int count = 0;
         for (Integer number : numbers) {
             if (winningLotto.contains(number)) {

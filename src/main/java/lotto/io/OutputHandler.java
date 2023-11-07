@@ -1,11 +1,12 @@
 package lotto.io;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputHandler {
     public static void printErrorMessage(String message) {
-        System.out.println("[Error] " + message);
+        System.out.println("[ERROR] " + message);
     }
 
     public static void printLottoAmount(int amount) {
@@ -14,7 +15,9 @@ public class OutputHandler {
 
     public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.convertNumbersToString());
+            List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
+            System.out.println(numbers);
         }
         System.out.println("");
     }

@@ -49,6 +49,10 @@ public class LottoController {
     private void setPlayerVariableValue(String input) {
         Player player = new Player(input, lottoShop);
         LottiesInfoDto lottiesInfoDto = player.buyLotties();
+        printLottiesNumberAndTicket(lottiesInfoDto);
+    }
+
+    private void printLottiesNumberAndTicket(LottiesInfoDto lottiesInfoDto) {
         ConsoleOutput.printNewLine();
         outputView.displayticket(lottiesInfoDto.ticket());
         outputView.displayLottiesNumber(lottiesInfoDto.lottiesNumber());

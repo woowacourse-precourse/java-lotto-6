@@ -86,15 +86,40 @@ class WinningTest {
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
     }
 
+
     @DisplayName("로또 번호가 당첨 번호와 일치하는 개수를 반환한다.")
     @Test
     void getMatchNumberCount() {
         //Given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         //When
-        int matchCount = winning.calcMatchNumberCount(lotto);
+        int matchCount = winning.getMatchNumberCount(lotto);
         //Then
         assertThat(matchCount).isEqualTo(6);
     }
-    
+
+    @DisplayName("로또 번호 중 보너스 번호와 일치하는 숫자가 있다면 true를 반환한다.")
+    @Test
+    void bonusCheckByContain() {
+        //Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        winning.setBonusNumber(7);
+        //When
+        boolean isMatched = winning.isContainBonusNumber(lotto);
+        //Then
+        assertThat(isMatched).isTrue();
+    }
+
+    @DisplayName("로또 번호 중 보너스 번호와 일치하는 숫자가 없다면 false를 반환한다.")
+    @Test
+    void bonusCheckByNotContain() {
+        //Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        winning.setBonusNumber(7);
+        //When
+        boolean isMatched = winning.isContainBonusNumber(lotto);
+        //Then
+        assertThat(isMatched).isFalse();
+    }
+
 }

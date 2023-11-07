@@ -18,13 +18,17 @@ public class Winning extends LottoRule {
         this.numbers = numbers;
     }
 
-    public int calcMatchNumberCount(Lotto lotto) {
+    public int getMatchNumberCount(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
 
         return numbers.stream()
                 .filter(this.numbers::contains)
                 .collect(Collectors.toList())
                 .size();
+    }
+
+    public boolean isContainBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     public void validateBonus(int bonusNumber) {

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.Lotto;
 import lotto.model.Customer;
 import lotto.view.constant.ConstantMessage;
+import lotto.view.constant.ErrorMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +34,6 @@ public class OutputView {
     }
 
     public static void printWinningStatics(List<Integer> _winning) {
-        printNewLine();
         println(String.format(String.valueOf(THREE_MATCH), _winning.get(0)));
         println(String.format(String.valueOf(FOUR_MATCH), _winning.get(1)));
         println(String.format(String.valueOf(FIVE_MATCH), _winning.get(2)));
@@ -45,15 +45,15 @@ public class OutputView {
         println(String.format(String.valueOf(TOTAL_RATE_OF_RETURN), _rateOfReturn+"%"));
     }
 
-    public static void printNewLine() {
-        System.out.println("");
-    }
-
     public static void print(String message) {
         System.out.print(message);
     }
 
     public static void println(String message) {
         System.out.println(message);
+    }
+
+    public static void printError(String message) {
+        println(ErrorMessage.ERROR.getMessage() + message);
     }
 }

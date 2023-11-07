@@ -1,12 +1,17 @@
 package lotto.domain;
 
 import lotto.constant.LottoRank;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,92 +64,31 @@ class LottoTest {
     @Nested
     class calculate {
 
-        @DisplayName("3개 미만 당첨 검사")
-        @Test
-        void shouldReturnNOTHING() {
-
-            Lotto lotto = new Lotto(List.of(40, 41, 42, 43, 44, 45));
-            Result result = new OneToSevenResult();
-
-            LottoRank lottoRank = lotto.calculate(result);
-
-            assertEquals(lottoRank, LottoRank.NOTHING);
-
+        @DisplayName("등수를 잘 검사하는지 확인")
+        @ParameterizedTest
+        @MethodSource("provideLottoAndResult")
+        void checkTHREE(Result result, Lotto lotto, LottoRank lottoRank) {
+            Assertions.assertEquals(lotto.calculate(result), lottoRank);
         }
 
-        @DisplayName("3개 당첨 검사")
-        @Test
-        void shouldReturnTHREE() {
-
-            Lotto lotto = new Lotto(List.of(1, 2, 3, 43, 44, 45));
-            Result result = new OneToSevenResult();
-
-            LottoRank lottoRank = lotto.calculate(result);
-
-            assertEquals(lottoRank, LottoRank.THREE);
-
+        private static Stream<Arguments> provideLottoAndResult() {
+            Result result = getResult();
+            return Stream.of(
+                    Arguments.of(result, new Lotto(List.of(40, 41, 42, 43, 44, 45)), LottoRank.NOTHING),
+                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 43, 44, 45)), LottoRank.THREE),
+                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 44, 45)), LottoRank.FOUR),
+                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 5, 45)), LottoRank.FIVE),
+                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 5, 7)), LottoRank.FIVE_BONUS),
+                    Arguments.of(result, new Lotto(List.of(1, 2, 3, 4, 5, 6)), LottoRank.SIX)
+            );
         }
 
-        @DisplayName("4개 당첨 검사")
-        @Test
-        void shouldReturnFOUR() {
-
-            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 44, 45));
-            Result result = new OneToSevenResult();
-
-            LottoRank lottoRank = lotto.calculate(result);
-
-            assertEquals(lottoRank, LottoRank.FOUR);
-
+        private static Result getResult() {
+            WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+            BonusNumber bonusNumber = new BonusNumber(7);
+            return new Result(winningNumbers, bonusNumber);
         }
 
-        @DisplayName("5개 당첨 검사")
-        @Test
-        void shouldReturnFIVE() {
-
-            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
-            Result result = new OneToSevenResult();
-
-            LottoRank lottoRank = lotto.calculate(result);
-
-            assertEquals(lottoRank, LottoRank.FIVE);
-
-        }
-
-        @DisplayName("5개, 보너스 당첨 검사")
-        @Test
-        void shouldReturnFIVE_BONUS() {
-
-            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-            Result result = new OneToSevenResult();
-
-            LottoRank lottoRank = lotto.calculate(result);
-
-            assertEquals(lottoRank, LottoRank.FIVE_BONUS);
-
-        }
-
-        @DisplayName("6개 당첨 검사")
-        @Test
-        void shouldReturnSIX() {
-
-            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            Result result = new OneToSevenResult();
-
-            LottoRank lottoRank = lotto.calculate(result);
-
-            assertEquals(lottoRank, LottoRank.SIX);
-
-        }
-
-    }
-
-}
-
-class OneToSevenResult extends Result {
-
-    public OneToSevenResult() {
-        super(WinningNumbers.createWinningNumbers(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
     }
 
 }

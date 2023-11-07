@@ -37,8 +37,8 @@ public class Client {
 
     private long calculateWinningPrize(LottosResult lottosResult) {
         long winningPrize = 0;
-        for (Entry<WinningRank, Integer> entry: lottosResult.entrySet()) {
-            winningPrize += entry.getKey().getPrize() * entry.getValue();
+        for (WinningRank winningRank : lottosResult) {
+            winningPrize += winningRank.getPrize() * lottosResult.get(winningRank);
         }
         return winningPrize;
     }

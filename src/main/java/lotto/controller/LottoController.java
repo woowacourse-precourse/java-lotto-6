@@ -82,11 +82,11 @@ public class LottoController {
     }
 
     private void printLottoResult(LottosResult lottosResult) {
-        for(Entry<WinningRank, Integer> entry: lottosResult.entrySet()) {
-            if (entry.getKey().equals(WinningRank.NO_PRIZE)) {
+        for (WinningRank winningRank : lottosResult) {
+            if (winningRank.equals(WinningRank.NO_PRIZE)) {
                 continue;
             }
-            view.printLottoResult(entry.getKey().toString(), entry.getValue());
+            view.printLottoResult(winningRank.toString(), lottosResult.get(winningRank));
         }
     }
 }

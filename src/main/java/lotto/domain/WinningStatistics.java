@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.constants.Values;
 import lotto.constants.WinningCriteria;
 
 public class WinningStatistics {
@@ -16,11 +17,11 @@ public class WinningStatistics {
 
     private void initializeWinningInfo() {
         Arrays.stream(WinningCriteria.values())
-                .forEach(criteria -> winningInfo.put(criteria, 0));
+                .forEach(criteria -> winningInfo.put(criteria, Values.INITIAL_WINNING_COUNT));
     }
 
     public void addResult(WinningCriteria winningCriteria) {
-        winningInfo.put(winningCriteria, winningInfo.get(winningCriteria) + 1);
+        winningInfo.put(winningCriteria, winningInfo.get(winningCriteria) + Values.WINNING_INCREMENT);
     }
 
     public int calculateTotalPrizeAmount() {

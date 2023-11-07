@@ -58,4 +58,76 @@ class ApplicationTest extends NsTest {
     public void runMain() {
         Application.main(new String[]{});
     }
+
+    @Test
+    void 보너스번호_공백입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1, 2, 3, 4, 5, 6", "");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_띄어쓰기입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1, 2, 3, 4, 5, 6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또번호_공백입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1, 2, , 4, 5, 6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액_공백입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("", "1, 2, 3, 4, 5, 6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액_띄어쓰기입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException(" ", "1, 2, 3, 4, 5, 6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액_1000단위_아닐때_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1234", "1, 2, 3, 4, 5, 6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액_0원_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("0", "1, 2, 3, 4, 5, 6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_여러개_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1, 2, 3, 4, 5, 6", "1, 2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_1부터45아닌경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1, 2, 3, 4, 5, 6", "47");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 }

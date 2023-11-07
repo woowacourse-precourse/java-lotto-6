@@ -2,6 +2,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +12,10 @@ public class Application {
         int lotto_num = integ_input_money();
         Lotto_Wallet Wallet = new Lotto_Wallet(); // 로또 지갑 객체 생성
         makeManyLottos(Wallet, lotto_num);
+
+        Lotto winning_lotto = integ_input_winning();
+
+
     }
     private static int integ_input_money(){                // input 통합 부분, 재귀함수 처리
         String input = input_money();
@@ -32,7 +37,7 @@ public class Application {
         try{
             return Integer.parseInt(str);
         }catch (NumberFormatException e){
-            System.out.print("[ERROR] 입력 값은 정수여야 합니다.\n\n");
+            System.out.print("[ERROR] 로또 구입 금액은 정수여야 합니다.\n\n");
             throw new IllegalArgumentException();
         }
     }
@@ -57,6 +62,32 @@ public class Application {
         return new Lotto(numbers);
     }
 
-//    private static input
-
+    private static Lotto integ_input_winning(){       // 당첨 복권 입력
+        String input = input_winning();
+        try {
+            List<Integer> winning_nums = Split_to_Int(input);
+            Lotto winning_lotto = new Lotto(winning_nums);
+            return winning_lotto;
+        }catch(IllegalArgumentException e){
+            return integ_input_winning();
+        }
+    }
+    private static String input_winning(){       // 당첨 복권 입력
+        System.out.print("\n당첨 번호를 입력해 주세요.\n");
+        String input = Console.readLine();
+        return input;
+    }
+    private static List<Integer> Split_to_Int(String input){       // 당첨 복권 입력
+        String[] inputs = input.split(",");
+        try {                                           // 일단 숫자가 아닌 경우만 예외처리
+            List<Integer> winning_nums = new ArrayList<>();
+            for (String numStr : inputs) {
+                winning_nums.add(Integer.parseInt(numStr));
+            }
+            return winning_nums;
+        }catch(NumberFormatException e){
+            System.out.print("[ERROR] 로또 번호는 정수여야 합니다.\n");
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.RevenueDto;
+import lotto.dto.RevenueDto;
 import lotto.domain.WinningTier;
 import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;

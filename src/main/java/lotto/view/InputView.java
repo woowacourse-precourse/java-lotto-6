@@ -33,7 +33,7 @@ public class InputView {
         try {
             List<WinningNumber> winningNumbers = splitInput.stream().map(s -> WinningNumber.from(s)).toList();
             return WinningBundle.from(winningNumbers);
-        } catch (RuntimeException ex) {
+        } catch (IllegalArgumentException ex) {
             OutputView.printError(ex.getMessage());
             return getWinningBundle();
         }
@@ -44,7 +44,7 @@ public class InputView {
         String input = input(INPUT_BONUS_BUNDLE_MESSAGE);
         try {
             return BonusNumber.from(input);
-        } catch (RuntimeException ex) {
+        } catch (IllegalArgumentException ex) {
             OutputView.printError(ex.getMessage());
             return getBonusNumber();
         }

@@ -37,4 +37,8 @@ public class WinningNumber {
     public int toInt() {
         return this.winningNumber;
     }
+
+    public boolean isEqualsBonusNumber(int bonusNumber) {
+        return this.winningNumber == bonusNumber;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
-import lotto.domain.RevenueDto;
+import lotto.dto.RevenueDto;
+import lotto.dto.LottoPurchaseResultDto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +13,8 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public static void printLottosByAmount(List<List<Integer>> lottos) {
-        for(List<Integer> lotto: lottos) {
+    public static void printLottosByAmount(LottoPurchaseResultDto lottos) {
+        for(List<Integer> lotto: lottos.getLottos()) {
             System.out.println(lotto);
         }
         printEnter();

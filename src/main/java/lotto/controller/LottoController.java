@@ -2,42 +2,57 @@ package lotto.controller;
 
 
 import lotto.domain.*;
+import lotto.dto.LottoPurchaseResultDto;
+import lotto.dto.LottoResultDto;
+import lotto.dto.RevenueDto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class LottoController {
+
+    private static int issueAbleCount;
+    private static WinningBundle winningBundle;
+    private static BonusNumber bonusNumber;
+    private static LottoResultDto lottoResultDto;
+
+    private final LottoService lottoService = new LottoService();
 
     public void run() {
         UserAmount userAmount = InputView.getUserAmount();
-        int issueAbleCount = userAmount.calculateIssueAbleCount();
-        OutputView.printIssueAbleCount(issueAbleCount);
-
-        LottoPublisher lottoPublisher = new LottoPublisher(issueAbleCount);
-        List<List<Integer>> lottos = lottoPublisher.getLottos();
-        OutputView.printLottosByAmount(lottos);
-
-        WinningBundle winningBundle = InputView.getWinningBundle();
-        BonusNumber bonusNumber = InputView.getBonusNumber();
-
-        LottoResult lottoResult = new LottoResult(lottos, winningBundle.getWinningBundle(), bonusNumber.toInt());
-        List<Long> correctWinningsCount = lottoResult.getCorrectWinningsCount();
-        List<Boolean> correctBonuses = lottoResult.getCorrectBonuses();
-
-        WinningTier winningTier = new WinningTier();
-        winningTier.estimate(correctWinningsCount, correctBonuses);
-        OutputView.printWinningStaticsInput();
-        OutputView.printWinningStatics(winningTier.getWinningTier());
-
-        WinnerRevenue winnerRevenue = new WinnerRevenue(correctWinningsCount, correctBonuses);
-        RevenueDto revenueDto = winnerRevenue.generateRevenueDto(userAmount.getUserAmount());
-        OutputView.printWinningRevenue(revenueDto);
-
+        calculateIssueAbleCount(userAmount);
+        LottoPurchaseResultDto lottoPurchaseResultDto = purchaseLottosByAmount(userAmount);
+        decideWinningBundleAndBonusNumber();
+        evaluateWinnings(lottoPurchaseResultDto);
+        calculateRevenue(userAmount);
     }
 
-    public void publishLottos() {
+    private static void calculateIssueAbleCount(UserAmount userAmount) {
+        issueAbleCount = userAmount.calculateIssueAbleCount();
+        OutputView.printIssueAbleCount(issueAbleCount);
+    }
 
+    private static void decideWinningBundleAndBonusNumber() {
+        winningBundle = InputView.getWinningBundle();
+        bonusNumber = InputView.getBonusNumber();
+        winningBundle.validateContainsBonusNumber(bonusNumber.toInt());
+    }
+
+    private void evaluateWinnings(LottoPurchaseResultDto lottoPurchaseResult) {
+        lottoResultDto = lottoService.evaluateWinnings(lottoPurchaseResult, winningBundle, bonusNumber);
+        OutputView.printWinningStaticsInput();
+        OutputView.printWinningStatics(lottoResultDto.getWinningStatistics());
+    }
+
+    private LottoPurchaseResultDto purchaseLottosByAmount(UserAmount userAmount) {
+        LottoPurchaseResultDto lottoPurchaseResult = lottoService.purchaseLottos(userAmount);
+        OutputView.printLottosByAmount(lottoPurchaseResult);
+        return lottoPurchaseResult;
+    }
+
+    private void calculateRevenue(UserAmount userAmount) {
+        RevenueDto revenueDto = lottoService.calculateRevenue(userAmount, lottoResultDto);
+        OutputView.printWinningRevenue(revenueDto);
     }
 
 }

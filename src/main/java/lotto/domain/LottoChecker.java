@@ -103,7 +103,7 @@ public class LottoChecker {
 
         double usedMoney = (long) lottos.size() * 1000;
         double profit = (this.totalPrize / usedMoney) * 100;
-        this.profitRate = decimalFormat.format(profit);구
+        this.profitRate = decimalFormat.format(profit);
     }
 
     public long getTotalPrize() {

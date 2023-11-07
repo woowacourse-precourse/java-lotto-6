@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.Rank;
 
 public class OutputView {
     public static void requestMoney(){
@@ -26,4 +28,18 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public static void printWinningResult(LottoResult lottoResult){
+        System.out.println("당청통계");
+        System.out.print("---");
+//        TODO.당첨 결과 출력
+        Rank[] ranks = Rank.values();
+        for (int i = ranks.length - 1; i >= 0; i--) {
+            Rank rank = ranks[i];
+            int count = lottoResult.getResult().get(rank);
+            int winningMoney = rank.getWinningMoney();
+            String messageFormat = rank.getMessageFormat();
+            System.out.printf(messageFormat, rank.getCountOfMatch(), winningMoney, count);
+            System.out.println();
+        }
+    }
 }

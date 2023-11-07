@@ -35,7 +35,7 @@ public class OutputView {
 
     public void printStatistics(Map<Winning, Integer> winningCounts, double totalPrize, double totalCost) {
         for (Winning result : Winning.values()) {
-            if (result == Winning.DEFAULT) {
+            if (result == Winning.NOT_WINNING) {
                 continue;
             }
             String resultName = result.getMatchCount() + "개 일치";

@@ -22,50 +22,36 @@ public class LottoService {
         this.numberGenerator = numberGenerator;
     }
 
-    public LottoData setWinningNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
+    public LottoData generateWinningNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
         return new LottoData(winningNumbers, bonusNumber);
     }
 
-    public void buyLottoAll(User user) {
+    public void buyLottoTickets(User user) {
         int purchaseAmount = user.getPurchaseAmount().amount();
         int lottoCount = purchaseAmount / LottoRules.LOTTO_PRICE.getValue();
 
         IntStream.range(0, lottoCount)
-                .forEach(i -> buyLottoOne(user));
+                .forEach(i -> buySingleLottoTicket(user));
     }
 
-    private void buyLottoOne(User user) {
-        Lotto lotto = generateLottoNumber();
+    private void buySingleLottoTicket(User user) {
+        Lotto lotto = generateRandomLotto();
         user.addLotto(lotto);
     }
 
-    private Lotto generateLottoNumber() {
+    private Lotto generateRandomLotto() {
         List<Integer> lottoNumbers = new ArrayList<>(
                 numberGenerator.generateNumbers(LottoRules.MIN_LOTTO_NUMBER.getValue(),
                         LottoRules.MAX_LOTTO_NUMBER.getValue(), LottoRules.LOTTO_NUMBER_COUNT.getValue()));
         return new Lotto(lottoNumbers);
     }
 
-    public Winning checkWinning(LottoData lottoData, Lotto userLotto) {
-        int matchCount = calculateMatchCount(lottoData.winningNumbers(), userLotto);
-        boolean bonusMatch = calculateBonusMatch(lottoData.bonusNumber(), userLotto);
+    private int countMatchingNumbers(LottoData lottoData, Lotto userLotto) {
+        return calculateMatchCount(lottoData.winningNumbers(), userLotto);
+    }
 
-        if (matchCount == 6) {
-            return Winning.SIXTH;
-        }
-        if (matchCount == 5 && bonusMatch) {
-            return Winning.FIFTH_BONUS;
-        }
-        if (matchCount == 5) {
-            return Winning.FIFTH;
-        }
-        if (matchCount == 4) {
-            return Winning.FOURTH;
-        }
-        if (matchCount == 3) {
-            return Winning.THIRD;
-        }
-        return Winning.DEFAULT;
+    private boolean hasBonusMatch(LottoData lottoData, Lotto userLotto) {
+        return calculateBonusMatch(lottoData.bonusNumber(), userLotto);
     }
 
     private int calculateMatchCount(Lotto winningNumbers, Lotto userLotto) {
@@ -92,7 +78,8 @@ public class LottoService {
 
     public void checkWinningsForUserLottos(User user, LottoData lottoData) {
         for (Lotto userLotto : user.getLottos()) {
-            Winning result = checkWinning(lottoData, userLotto);
+            Winning result = Winning.checkWinning(countMatchingNumbers(lottoData, userLotto),
+                    hasBonusMatch(lottoData, userLotto));
             updateWinningCounts(result);
         }
     }

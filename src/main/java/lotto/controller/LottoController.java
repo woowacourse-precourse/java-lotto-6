@@ -36,7 +36,7 @@ public class LottoController {
             outputView.getInputAmount();
             int purchaseAmount = inputProcessor.getUserInputPurchaseAmount();
             user = new User(new Amount(purchaseAmount));
-            lottoService.buyLottoAll(user);
+            lottoService.buyLottoTickets(user);
             printBuyLotto();
         } catch (IllegalArgumentException e) {
             beforeStart();
@@ -51,7 +51,7 @@ public class LottoController {
     }
 
     private void setLottoData() {
-        lottoData = lottoService.setWinningNumbers(setWinningNumbers(), setBonusNumber());
+        lottoData = lottoService.generateWinningNumbers(setWinningNumbers(), setBonusNumber());
     }
 
     private Lotto setWinningNumbers() {

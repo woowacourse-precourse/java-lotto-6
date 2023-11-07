@@ -19,8 +19,8 @@ public class LottoServiceTest {
         final User case1 = new User(new Amount(10000)); // 10개 구매
         final User case2 = new User(new Amount(20000)); // 20개 구매
 
-        lottoService.buyLottoAll(case1);
-        lottoService.buyLottoAll(case2);
+        lottoService.buyLottoTickets(case1);
+        lottoService.buyLottoTickets(case2);
 
         assertThat(case1.getLottos().size()).isEqualTo(10);
         assertThat(case2.getLottos().size()).isEqualTo(20);
@@ -31,7 +31,7 @@ public class LottoServiceTest {
     void testGenerateLottoNumbers() {
         User user = new User(new Amount(10000)); // 10개 구매
 
-        lottoService.buyLottoAll(user);
+        lottoService.buyLottoTickets(user);
 
         for (Lotto lotto : user.getLottos()) {
             System.out.println(lotto.getNumbers());

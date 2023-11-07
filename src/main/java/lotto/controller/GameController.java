@@ -19,6 +19,7 @@ public class GameController {
     public void startGame() {
         purchaseLottos();
         List<Integer> winningNumbers = inputView.readWinningNumbers();
+        int bonusNumber = inputView.readBonusNumber();
     }
 
     public void purchaseLottos() {

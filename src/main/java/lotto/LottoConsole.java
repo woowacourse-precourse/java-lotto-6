@@ -106,4 +106,12 @@ public class LottoConsole {
         scores.set(5, scores.get(5) + 1);
     }
   }
+
+  private void getEarnedMoney() {
+    earnedMoney += FIRST_PRIZE.getPrizePrice() * scores.get(0);
+    earnedMoney += SECOND_PRIZE.getPrizePrice() * scores.get(1);
+    earnedMoney += THIRD_PRIZE.getPrizePrice() * scores.get(2);
+    earnedMoney += FOURTH_PRIZE.getPrizePrice() * scores.get(3);
+    earnedMoney += FIFTH_PRIZE.getPrizePrice() * scores.get(4);
+  }
 }

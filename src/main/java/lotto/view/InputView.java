@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import java.util.stream.Stream;
 import lotto.validator.NumericValidator;
 
 public class InputView {
@@ -25,6 +27,32 @@ public class InputView {
         final String strNumber = readLine();
         validateNumeric(strNumber);
         return Long.parseLong(strNumber);
+    }
+
+    public static List<Integer> readWinningNumbers() {
+        System.out.println(System.lineSeparator() + INPUT_WINNING_NUMBER);
+        return readNumbers();
+    }
+
+    private static List<Integer> readNumbers() {
+        final String[] splitNumbers = readLine().split(NUMBER_SPLIT_DELIMITER);
+
+        validateNumeric(splitNumbers);
+
+        return Stream.of(splitNumbers)
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    public static int readBonusNumber() {
+        System.out.println(System.lineSeparator() + INPUT_BONUS_NUMBER);
+        return readNumber();
+    }
+
+    private static int readNumber() {
+        final String strNumber = readLine();
+        validateNumeric(strNumber);
+        return Integer.parseInt(strNumber);
     }
 
     private static String readLine() {

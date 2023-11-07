@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -24,4 +25,29 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("toString 오버라이딩 확인")
+    @Test
+    void checkLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @DisplayName("보너스 번호 제외 당첨 번호와 몇개 일치하는 지 확인")
+    @Test
+    void findCorrectLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> selectedNumbers = List.of(45, 4, 6, 43, 5, 44);
+
+        assertThat(lotto.compareWithSelected(selectedNumbers)).isEqualTo(3);
+    }
+
+    @DisplayName("로또에 보너스 번호가 있는지 확인")
+    @Test
+    void findBonusLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 6;
+
+        assertThat(lotto.findBonus(bonus)).isTrue();
+    }
 }

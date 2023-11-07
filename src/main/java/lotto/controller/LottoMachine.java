@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.controller.machine.NumberGenerator;
+import lotto.controller.user.LottoDraw;
+import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;

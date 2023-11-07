@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.user;
 
 import lotto.exception.AmountException;
 import lotto.view.InputView;

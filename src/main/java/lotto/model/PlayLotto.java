@@ -43,13 +43,13 @@ public class PlayLotto {
         return results;
     }
 
-    private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    public static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    private static LottoResult determineLottoResult(int matchCount, boolean bonusMatch) {
+    public static LottoResult determineLottoResult(int matchCount, boolean bonusMatch) {
         for (LottoResult result : LottoResult.values()) {
             if (result.getMatchCount() == matchCount && (bonusMatch == result.isBonusMatch())) {
                 return result;

@@ -12,11 +12,11 @@ public class InputView {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int MIN_PURCHASE_AMOUNT = 1000;
-    private static final int MAX_PURCHASE_AMOUNT = 1000000;
-    private static final int MIN_INPUT_ANSWER_LENGTH = 11;
-    private static final int MAX_INPUT_ANSWER_LENGTH = 17;
-    private static final String VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE = "[ERROR] 공백이 없는 값이어야 합니다.";
-    private static final String VALIDATE_STRING_TO_INT_MESSAGE = "[ERROR] 입력 값은 유효한 범위의 숫자여야 합니다.";
+    public static final int MAX_PURCHASE_AMOUNT = 1000000;
+    public static final int MIN_INPUT_ANSWER_LENGTH = 11;
+    public static final int MAX_INPUT_ANSWER_LENGTH = 17;
+    public static final String VALIDATE_CONTAIN_WHITE_SPACE_MESSAGE = "[ERROR] 공백이 없는 값이어야 합니다.";
+    public static final String VALIDATE_STRING_TO_INT_MESSAGE = "[ERROR] 입력 값은 유효한 범위의 숫자여야 합니다.";
 
     public int inputPurchaseAmount() {
         String purchaseAmount = Console.readLine();

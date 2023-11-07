@@ -37,8 +37,8 @@ public class OutputView {
     public static void printResults(Map<LottoResult, Integer> results) {
         for (LottoResult result : LottoResult.values()) {
             if (result != LottoResult.NON_WINNING) {
-                int count = results.getOrDefault(result, 0);
-                System.out.println(result.getResultDescription() + " - " + count + "개");
+                int winCount = results.getOrDefault(result, 0);
+                System.out.println(result.getResultDescription() + " - " + winCount + "개");
             }
         }
     }

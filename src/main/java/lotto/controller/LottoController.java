@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    private Map<LottoResult, Integer> matchCounts = new EnumMap<>(LottoResult.class);
+    public Map<LottoResult, Integer> matchCounts = new EnumMap<>(LottoResult.class);
     InputView inputView = new InputView();
     public int purchaseAmount;
     public int lottoCount;

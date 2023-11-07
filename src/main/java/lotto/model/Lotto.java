@@ -33,7 +33,7 @@ public class Lotto {
         }
     }
 
-    private List<Integer> sortLotto(List<Integer> numbers) {
+    public List<Integer> sortLotto(List<Integer> numbers) {
         List<Integer> mutableNumbers = new ArrayList<>(numbers);
         Collections.sort(mutableNumbers);
         return mutableNumbers;

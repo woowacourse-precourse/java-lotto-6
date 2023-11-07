@@ -9,9 +9,15 @@ import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import lotto.exception.LottoApplicationException;
 import lotto.validator.InputValidator;
@@ -56,7 +62,6 @@ public class InputTest {
                 .hasMessageContaining(DIFFERENT_FORMAT_EXCEPTION_MESSAGE.getMessage());
     }
 
-
     @ParameterizedTest
     @ValueSource(strings = {"10000000000000000000","2100000001"})
     @DisplayName("설정한 최대 금액보다 초과할 경우 예외 테스트")
@@ -64,6 +69,20 @@ public class InputTest {
         assertThatThrownBy(() -> inputValidator.validateMaxPrice(input))
                 .isInstanceOf(LottoApplicationException.class)
                 .hasMessageContaining(MAX_PRICE_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @MethodSource("separateData")
+    @DisplayName("구분자 분할 테스트")
+    public void 구분자_분할_테스트(String input, List<String> expected) {
+        assertThat(inputValidator.separateInput(input)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> separateData(){
+        return Stream.of(
+                Arguments.of("1,2,3,4,5,6", Arrays.asList("1","2","3","4","5","6")),
+                Arguments.of("1,10,5,2,7,6", Arrays.asList("1","10","5","2","7","6"))
+        );
     }
 
 

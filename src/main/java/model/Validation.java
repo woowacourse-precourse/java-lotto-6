@@ -22,7 +22,7 @@ public class Validation {
         List<Integer> winningStaticsResult = new ArrayList<>(Collections.nCopies(WINNING_LIST_SIZE, INDEX_RESET));
 
         for (List<Integer> lottoList : fullLottoValue) {
-            int matchNumberSaver = 0;
+            int matchNumberSaver = VARIABLE_RESET;
             boolean bonusNumberValidator = comparisonBonusNumber(lottoList);
 
             for (int number : lottoList) {
@@ -31,7 +31,7 @@ public class Validation {
 
             int checkLottoRank = checkLottoRank(matchNumberSaver, bonusNumberValidator);
 
-            if (checkLottoRank != -1) {
+            if (checkLottoRank != NOT_RANKED) {
                 int indexValue = winningStaticsResult.get(checkLottoRank);
                 winningStaticsResult.set(checkLottoRank, ++indexValue);
             }
@@ -51,19 +51,19 @@ public class Validation {
     }
 
     private int checkLottoRank(int matchNumber, boolean bonusNumberValidator) {
-        if (matchNumber == 3) {
+        if (matchNumber == COINCIDE_THREE) {
             return 0;
         }
-        if (matchNumber == 4) {
+        if (matchNumber == COINCIDE_FOUR) {
             return 1;
         }
-        if (matchNumber == 5 && !bonusNumberValidator) {
+        if (matchNumber == COINCIDE_FIVE && !bonusNumberValidator) {
             return 2;
         }
-        if (matchNumber == 5) {
+        if (matchNumber == COINCIDE_FIVE_BONUS) {
             return 3;
         }
-        if (matchNumber == 6) {
+        if (matchNumber == COINCIDE_SIX) {
             return 4;
         }
         return -1;
@@ -81,19 +81,19 @@ public class Validation {
     }
 
     private int totalIncomeCalculate(int staticIndexValue, int index) {
-        if (index == 0 && staticIndexValue != 0) {
+        if (index == FIFTH_RANK && staticIndexValue != NOTHING) {
             return FIFTH_REWARD * staticIndexValue;
         }
-        if (index == 1 && staticIndexValue != 0) {
+        if (index == FOURTH_RANK && staticIndexValue != NOTHING) {
             return FORTH_REWARD * staticIndexValue;
         }
-        if (index == 2 && staticIndexValue != 0) {
+        if (index == THIRD_RANK && staticIndexValue != NOTHING) {
             return THIRD_REWARD * staticIndexValue;
         }
-        if (index == 3 && staticIndexValue != 0) {
+        if (index == SECOND_RANK && staticIndexValue != NOTHING) {
             return SECOND_REWARD * staticIndexValue;
         }
-        if (index == 4 && staticIndexValue != 0) {
+        if (index == FIRST_RANK && staticIndexValue != NOTHING) {
             return FIRST_REWARD * staticIndexValue;
         }
         return 0;

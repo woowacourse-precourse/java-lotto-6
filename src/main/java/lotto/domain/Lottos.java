@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessages.LOTTO_MINIMUM_COUNT;
 import static lotto.domain.Lotto.generateLottoNumbers;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,9 @@ public class Lottos {
     }
 
     public static Lottos generateLottos(long lottoCount) {
+
+        if (lottoCount <= 0) { throw new IllegalArgumentException(LOTTO_MINIMUM_COUNT.getErrorMessage()); };
+
         List<Lotto> generatedLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {

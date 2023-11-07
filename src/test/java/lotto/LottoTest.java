@@ -32,12 +32,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또의 값 중 하나라도 범위가 벗어나면 예외가 발생한다.")
+    @Test
+    void createLottoByOverStandard() {
+        assertThatThrownBy(() -> new Lotto(List.of(46, 5, 4, 3, 2, 1)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("동일한 로또라면 결과는 6이다")
     @Test
     void countMatchingNumberAllSame() {
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
         Lotto lotto2 = new Lotto(List.of(1,2,3,4,5,6));
-        assertEquals(6,lotto1.countMatchingNumber(lotto2));
+        assertEquals(6,lotto1.countMatchingNumbers(lotto2));
     }
 
     @DisplayName("한 자리도 겹치지 않으면 0이다")
@@ -45,6 +52,6 @@ class LottoTest {
     void countMatchingNumberAllDifferent() {
         Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
         Lotto lotto2 = new Lotto(List.of(7,8,9,10,11,12));
-        assertEquals(0,lotto1.countMatchingNumber(lotto2));
+        assertEquals(0,lotto1.countMatchingNumbers(lotto2));
     }
 }

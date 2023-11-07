@@ -18,6 +18,7 @@ public class Input {
     }
 
     public String getInputForWinningNumber(){
+        Output.print();
         Output.printWinningNumberRequestMessage();
         return reanLineValidateNull();
     }

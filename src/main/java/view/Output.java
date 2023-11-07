@@ -40,4 +40,8 @@ public class Output {
     public static void errorMessage(Exception error) {
         System.out.println(error.getMessage());
     }
+
+    public static void print(){
+        System.out.println();
+    }
 }

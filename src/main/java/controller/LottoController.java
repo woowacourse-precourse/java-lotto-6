@@ -1,22 +1,17 @@
 package controller;
 
-import constant.ConfigMessage;
 import domain.LottoMoney;
 import domain.Lottos;
-import domain.WinningNumber;
 import domain.Lotto;
-import util.Parser;
 import validator.LottoValidator;
 import view.Input;
 import view.Output;
 
-import java.util.Arrays;
-import java.util.List;
 public class LottoController {
     private LottoMoney lottoMoney;
     private Input input;
     private Lottos lottos;
-    private WinningNumber winningNumber;
+    private Lotto winningNumber;
 
     public LottoController(){
         input = new Input();
@@ -30,7 +25,8 @@ public class LottoController {
         lottos = issueLottos(lottoMoney.getAvaliablePurcahaseCount());
         printPublishedLottos();
 
-        getWinningNumber();
+        // 당첨 번호 입력
+        winningNumber = getWinningNumber();
     }
 
     private LottoMoney getLottoMeney(){
@@ -52,20 +48,19 @@ public class LottoController {
     }
 
     private void printPublishedLottos(){
-        System.out.println();
+        Output.print();
         Output.printLottoPurchaseMessage(lottos.getLottos().size());
         for(Lotto lotto : lottos.getLottos()){
             Output.printLotto(lotto);
         }
     }
 
-    private WinningNumber getWinningNumber(){
-        List<Integer> winningNums;
-        WinningNumber tempWinningNumber;
+    private Lotto getWinningNumber(){
+        Lotto tempWinningNumber;
         while(true){
             try {
                 String userInputData = input.getInputForWinningNumber();
-                tempWinningNumber = new WinningNumber(LottoValidator.validNumberic(userInputData));
+                tempWinningNumber = new Lotto(LottoValidator.validNumberic(userInputData));
                 return tempWinningNumber;
 
             }catch (NumberFormatException error){

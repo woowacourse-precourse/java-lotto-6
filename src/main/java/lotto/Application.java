@@ -17,6 +17,6 @@ public class Application {
 	
 	// main 메소드
     public static void main(String[] args) {
-    	LottoStart.startGame();    	
+    	LottoStart.startGame();   	
     }    	
 }

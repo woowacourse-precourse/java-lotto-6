@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.domain.Lotto.randomLottery;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -45,6 +46,15 @@ class LottoTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Lotto.validate(nums))
                 .withMessageMatching("숫자는 6개보다 작거나 초과할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("randomLottery 메서드 테스트 - 리스트의 숫자가 1과 45사이의 범위에 있는지")
+    public void checkRandomLotteryInRange(){
+        List<Integer> randomLottery = randomLottery();
+        for (int number : randomLottery) {
+            assertThat(number).isBetween(1, 45);
+        }
     }
 
     @Test

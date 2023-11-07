@@ -2,15 +2,16 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
+import static lotto.domain.GenerateRandomNum.pickNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -20,18 +21,22 @@ public class Lotto {
         }
     }
 
-    public List<Integer> randomLottery() {
+    public static List<Integer> randomLottery() {
         List<Integer> lotto = new ArrayList<>();
         while (lotto.size() <= 6) {
-            int num = Randoms.pickNumberInRange(1, 45);
+            int num = pickNumber();
             if (!isDuplicatedNum(lotto, num)) lotto.add(num);
         }
         Collections.sort(lotto);
         return lotto;
     }
 
-    public boolean isDuplicatedNum(List<Integer> lotto, int num) {
-        if (lotto.contains(num)) return true;
-        return false;
+    public static boolean isDuplicatedNum(List<Integer> lotto, int num) {
+        return lotto.contains(num);
+    }
+
+    public void checkDuplicate(List<Integer> lotto) {
+        Set<Integer> validLotto = new HashSet<>(lotto);
+        if (validLotto.size() != lotto.size()) throw new IllegalArgumentException();
     }
 }

@@ -15,8 +15,7 @@ public class LottoGame {
 
         Output.printLottoGameResult();
         Map<Rank, Long> winningCounts = Referee.countLottoRank(lottoTickets, winningNumber, bonusNumber);
-        List<Map<Rank, Long>> lottoResults = Referee.getLottoResult(winningCounts);
-        lottoResults.forEach(result -> result.forEach(Output::handlePrizeDescription));
+        Output.printLottoResult(winningCounts);
 
         double profitRate = Referee.getLottoProfit(winningCounts, purchaseAmount);
         Output.printLottoProfit(profitRate);

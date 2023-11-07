@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.Rank;
@@ -19,6 +20,7 @@ public class Output {
     private static final String PRIZE_DESCRIPTION = "%d개 일치 (%s원) - %d개";
     public static final String SECOND_PRIZE_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
+    private static final long DEFAULT_VALUE = 0L;
     private static final String PROFIT_FORMAT = "%.1f";
 
     public static void printLottoNumbers(List<Lotto> lottoTickets) {
@@ -41,6 +43,13 @@ public class Output {
     public static void printLottoGameResult() {
         System.out.println(LINE_BREAK + WINNING_STATISTICS_MESSAGE);
         System.out.println(WINNING_STATISTICS_SEPARATOR);
+    }
+
+    public static void printLottoResult(Map<Rank, Long> winningCounts) {
+        for (Rank rank : Rank.values()) {
+            long rankCount = winningCounts.getOrDefault(rank, DEFAULT_VALUE);
+            handlePrizeDescription(rank, rankCount);
+        }
     }
 
     public static void handlePrizeDescription(Rank rank, long rankCount) {

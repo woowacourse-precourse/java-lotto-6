@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.Money;
@@ -25,7 +26,7 @@ public class Controller {
     }
 
     public void execute() {
-        int input = readInputMoney();
+        int input = readAmount();
         List<Lotto> lottos = generateLotto(input);
 
         Lotto winningLotto = readWinningLotto();
@@ -39,9 +40,22 @@ public class Controller {
         printRateOfReturn(input, result);
     }
 
-    private int readInputMoney() {
+    private int readAmount() {
         outputView.printEnterAmountMessage();
-        return inputView.readAmount();
+        int amount = 0;
+        while (amount == 0) {
+            amount = readAmountInput();
+        }
+        return amount;
+    }
+
+    private int readAmountInput() {
+        try {
+            return inputView.readAmount();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage("구입 금액을 1000원 단위의 숫자여야 합니다.");
+        }
+        return 0;
     }
 
     private List<Lotto> generateLotto(int amount) {
@@ -53,13 +67,38 @@ public class Controller {
 
     private Lotto readWinningLotto() {
         outputView.printEnterWinningNumbersMessage();
-        List<Integer> winningLottoNumbers = inputView.readWinningLottoNumbers();
+        List<Integer> winningLottoNumbers = Collections.emptyList();
+        while (winningLottoNumbers.isEmpty()) {
+            winningLottoNumbers = readWinningLottoInput();
+        }
         return new Lotto(winningLottoNumbers);
+    }
+
+    private List<Integer> readWinningLottoInput() {
+        try {
+            return inputView.readWinningLottoNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return Collections.emptyList();
     }
 
     private int readBonus() {
         outputView.printEnterBonusMessage();
-        return inputView.readBonus();
+        int bonus = 0;
+        while (bonus == 0) {
+            bonus = readBonusInput();
+        }
+        return bonus;
+    }
+
+    private int readBonusInput() {
+        try {
+            return inputView.readBonus();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return 0;
     }
 
     private void printStats(EnumMap<Rank, Integer> result) {

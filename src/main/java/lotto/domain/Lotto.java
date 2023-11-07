@@ -33,6 +33,10 @@ public class Lotto {
         return (int) matchedNumbersCount;
     }
 
+    public boolean contains(final int number) {
+        return numbers.contains(number);
+    }
+
     private void sortNumbers(final List<Integer> numbers) {
         Collections.sort(numbers);
     }

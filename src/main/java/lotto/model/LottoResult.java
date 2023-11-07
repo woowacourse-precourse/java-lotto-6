@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.LottoRanking.SECOND;
+
 import java.util.List;
 
 public class LottoResult {
@@ -10,6 +12,13 @@ public class LottoResult {
             if (winningNumbers.contains(lottoNumber)) {
                 match++;
             }
+        }
+        return match;
+    }
+
+    private int checkBonusNumber(List<Integer> lottoNumbers, int match, int bonusNumber) {
+        if (match == SECOND.getMatchCount() && lottoNumbers.contains(bonusNumber)) {
+            return match * 7;
         }
         return match;
     }

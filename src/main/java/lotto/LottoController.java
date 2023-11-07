@@ -3,6 +3,7 @@ package lotto;
 import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.INPUT_MONEY;
 import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
+import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
 import lotto.domain.Customer;
 import lotto.domain.Lotto;
@@ -66,7 +67,7 @@ public class LottoController {
     }
 
     private void printPrizeResult(LottoCalculator calculator) {
-        outputView.printResultMessage();
+        outputView.printOutputMessage(RESULT_MESSAGE);
         outputView.printPrizeResult(calculator.getResult());
         outputView.printProfitRate(calculator.calculateProfitRate());
     }

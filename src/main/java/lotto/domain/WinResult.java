@@ -10,8 +10,8 @@ import static lotto.util.LottoNumber.LOTTO_SAME_NUMBER_TWO;
 import static lotto.util.WinnerRank.*;
 
 public class WinResult {
-    private final int winResultInit = 0;
-    private final int incrementWinResult = 1;
+    private static final int winResultInit = 0;
+    private static final int incrementWinResult = 1;
 
     private Map<Integer, Integer> winResult;
 

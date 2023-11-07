@@ -12,13 +12,6 @@ public class UserLotto {
             List<Integer> lottoNumbers = lottoGenerator.generate();
             userLotto.add(new Lotto(lottoNumbers));
         }
-        sortEachLotto();
-    }
-
-    private void sortEachLotto() {
-        for (Lotto lotto : userLotto) {
-            lotto.sort();
-        }
     }
 
     @Override

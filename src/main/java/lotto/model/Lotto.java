@@ -28,10 +28,6 @@ public class Lotto {
         }
     }
 
-    public void sort() {
-        Collections.sort(numbers);
-    }
-
     public int calculateMatchLottoCount(Lotto lotto) {
         return lotto.numbers.stream()
                 .filter(this.numbers::contains)

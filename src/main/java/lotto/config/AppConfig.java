@@ -9,6 +9,8 @@ import lotto.OutputView;
 import lotto.OutputWriter;
 import lotto.Parser;
 import lotto.utils.NumberGenerator;
+import lotto.utils.ProfitRateCalculator;
+import lotto.utils.ProfitRateTwoDecimalRoundCalculator;
 import lotto.utils.RandomNumberGenerator;
 
 public class AppConfig {
@@ -25,6 +27,10 @@ public class AppConfig {
         return new RandomNumberGenerator(
                 LottoGameRule.LOTTO_MIN_VALUE.value(),
                 LottoGameRule.LOTTO_MAX_VALUE.value());
+    }
+
+    public ProfitRateCalculator profitRateCalculator() {
+        return new ProfitRateTwoDecimalRoundCalculator();
     }
 
     public InputReceiver inputReceiver() {

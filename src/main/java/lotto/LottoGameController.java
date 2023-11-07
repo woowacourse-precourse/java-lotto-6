@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.config.AppConfig;
 import lotto.utils.NumberGenerator;
+import lotto.utils.ProfitRateCalculator;
 
 public class LottoGameController {
 
@@ -39,6 +40,12 @@ public class LottoGameController {
         LottoResult lottoResult = new LottoResult();
         lottoResult.result(lottos, winningLotto);
         outputView.printWinningResults(LottoResultDto.from(lottoResult));
+
+        ProfitRateCalculator profitRateCalculator = appConfig.profitRateCalculator();
+        double profitRate = profitRateCalculator.calculateProfitRate(
+                lottoResult.getTotalProfit(),
+                lottoPurchaser.purchaseMoney());
+        outputView.printProfitRate(profitRate);
     }
 
     public Money getMoney() {

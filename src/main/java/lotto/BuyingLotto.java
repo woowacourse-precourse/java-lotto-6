@@ -1,8 +1,16 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class BuyingLotto {
 
-    static private int money;
+    static private int money; // 구입금액
+    static private int lottoNumber; // 로또 몇 장인지
+
+    static private List<Lotto> totalLotto = new ArrayList<Lotto>(); // 구입한 모든 로또
     static private String input;
     static void gettingInput() {
         System.out.println("구입 금액을 입력해 주세요.");
@@ -22,6 +30,22 @@ public class BuyingLotto {
             System.out.println(e.getMessage());
             gettingInput();
         }
+    }
+
+    static void givingLotto() {
+        lottoNumber = money / 1000;
+        for (int i = 0; i < lottoNumber; i++) {
+            List<Integer> numbers = randomLottoNumbers();
+            System.out.println(numbers);
+            Lotto lotto = new Lotto(numbers);
+            totalLotto.add(lotto);
+        }
+    }
+
+    static List<Integer> randomLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 
 

@@ -5,7 +5,11 @@ import lotto.exception.LottoException;
 import lotto.vo.LottoWinningBonusNumber;
 import lotto.vo.LottoNumber;
 
-import java.util.*;
+import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Lotto {

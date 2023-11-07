@@ -7,6 +7,7 @@ import lotto.vo.LottoWinningNumbers;
 import lotto.vo.LottoNumber;
 
 import java.util.EnumMap;
+
 public class LottoWinningRankingService {
     private static final LottoWinningRankingService instance = new LottoWinningRankingService();
 

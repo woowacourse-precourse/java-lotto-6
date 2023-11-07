@@ -1,6 +1,5 @@
 package lotto.vo;
 
-
 import lotto.constant.LottoConstants;
 import lotto.exception.LottoException;
 

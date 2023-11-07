@@ -21,7 +21,6 @@ public class OutputView {
         display(OutputMessage.REQUEST_BONUS_NUMBER);
     }
 
-
     public void responsePurchaseCount(final int count) {
         display(OutputMessage.RESPONSE_PURCHASE_COUNT, count);
     }
@@ -38,7 +37,6 @@ public class OutputView {
 
     public void responseWinningStatisticsBody(final LottoWinningRakingCountMapDto rankingCountMapDto) {
         List<Integer> rankingCountList = new ArrayList<>();
-
         for (LottoWinningRanking ranking : rankingCountMapDto.getWinningRankingCountMap().keySet()) {
             Integer count = rankingCountMapDto.getWinningRankingCountMap().getOrDefault(ranking, 0);
             rankingCountList.add(count);
@@ -51,11 +49,9 @@ public class OutputView {
         display(OutputMessage.RESPONSE_TOTAL_RETURN, profit);
     }
 
-
     public void displayErrorMessage(final String message) {
         System.out.println(message);
     }
-
 
     private void display(final OutputMessage message, Object... args) {
         System.out.printf(message.getMessage(), args);

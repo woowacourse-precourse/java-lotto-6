@@ -10,7 +10,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constant.LottoConstants.*;
+import static lotto.constant.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_SIZE;
 
 public class LottoAutoGenerateService {
     private static final LottoAutoGenerateService instance = new LottoAutoGenerateService();

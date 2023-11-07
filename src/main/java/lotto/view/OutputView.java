@@ -29,4 +29,9 @@ public class OutputView {
         System.out.println();
         System.out.println(Messages.ASK_WINNING_NUMBERS_MESSAGE.getMessage());
     }
+
+    public void askBonusNumber() {
+        System.out.println();
+        System.out.println(Messages.ASK_BONUS_NUMBER_MESSAGE.getMessage());
+    }
 }

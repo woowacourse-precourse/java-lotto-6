@@ -32,6 +32,11 @@ public class LottoController {
         int purchaseAmount = getPurchaseAmount();
         showLottoTicketNumbers(purchaseAmount);
         List<Integer> winningNumbers = getWinningNumbersFromUser();
+        getBonusNumberFromUser();
+    }
+
+    private void getBonusNumberFromUser() {
+        outputView.askBonusNumber();
     }
 
     private List<Integer> getWinningNumbersFromUser() {

@@ -14,13 +14,19 @@ class ExceptionTest {
     }
 
     @Test
-    void 숫자입력() {
+    void 인트변환_양수입력() {
         int result = exception.checkInt("1000");
         assertThat(result).isEqualTo(1000);
     }
 
     @Test
-    void 문자입력() {
+    void 인트변환_음수입력() {
+        int result = exception.checkInt("-1000");
+        assertThat(result).isEqualTo(-1000);
+    }
+
+    @Test
+    void 인트변환_문자입력() {
         int result = exception.checkInt("test");
         assertThat(result).isEqualTo(0);
     }

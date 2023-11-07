@@ -41,8 +41,8 @@
 - [ ] 예외 처리
   - [x] String to int 변환 체크 - Exception#checkInt
     - [x] 에러 메시지 출력
-  - [ ] 1000 단위 체크 - Exception#checkAmount
-    - [ ] 에러 메시지 출력
+  - [x] 1000 단위 체크 - Exception#checkAmount
+    - [x] 에러 메시지 출력
   - [ ] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
     - [ ] 에러 메시지 출력
 

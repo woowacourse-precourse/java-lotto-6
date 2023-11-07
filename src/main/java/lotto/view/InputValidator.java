@@ -2,6 +2,8 @@ package lotto.view;
 
 import static lotto.enums.ErrorMessage.*;
 
+import java.util.List;
+
 public class InputValidator {
 
     public void validateEmptyValue(String value) throws IllegalArgumentException{

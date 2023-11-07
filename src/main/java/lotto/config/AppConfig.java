@@ -1,6 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
+import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.utils.Reader;
 import lotto.utils.Printer;
@@ -15,7 +16,7 @@ public class AppConfig {
     }
 
     private LottoService lottoService(){
-        return new LottoService();
+        return new LottoService(winningLotto());
     }
 
     private Printer printer(){
@@ -25,6 +26,7 @@ public class AppConfig {
     private Reader reader(){
         return new ReaderConsole();
     }
+
     private InputView inputView(){
         return new InputView(printer(), reader());
     }
@@ -33,5 +35,7 @@ public class AppConfig {
         return new OutputView(printer());
     }
 
-
+    private WinningLotto winningLotto(){
+        return WinningLotto.getInstance();
+    }
 }

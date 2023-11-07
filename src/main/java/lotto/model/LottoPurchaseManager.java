@@ -7,15 +7,15 @@ import lotto.utils.ErrorMessages;
 
 
 public class LottoPurchaseManager {
-    private int trial;
-    private int money;
-    private LottoPurchaseManager(String money){
-        this.money = Integer.parseInt(money);
-        this.trial = this.money / BASE_LOTTO_PRICE;
+    private final int trial;
+
+    private LottoPurchaseManager(String moneyAfterValidated){
+        int money = Integer.parseInt(moneyAfterValidated);
+        this.trial = money / BASE_LOTTO_PRICE;
     }
-    public static LottoPurchaseManager createLottoPurchaseManager(String money){
-        validateMoney(money);
-        return new LottoPurchaseManager(money);
+    public static LottoPurchaseManager createLottoPurchaseManager(String moneyBeforeValidated){
+        validateMoney(moneyBeforeValidated);
+        return new LottoPurchaseManager(moneyBeforeValidated);
     }
     public int getTrial(){
         return this.trial;
@@ -28,14 +28,24 @@ public class LottoPurchaseManager {
         }catch (NumberFormatException e){
             throw new IllegalStateException(ErrorMessages.NOT_INTEGER.toString());
         }
-        if(parsedMoney <= 0){
+        if(isShortOfMoney(parsedMoney)){
             throw new IllegalStateException(ErrorMessages.NO_MONEY.toString());
         }
-        if(parsedMoney > MAX_LOTTO_COUNT * BASE_LOTTO_PRICE){
+        if(exceedsMaxTrial(parsedMoney)){
             throw new IllegalArgumentException(ErrorMessages.TOO_MANY_LOTTOS.toString());
         }
-        if(parsedMoney % BASE_LOTTO_PRICE > 0){
+        if(isNotInBaseUnit(parsedMoney)){
             throw new IllegalArgumentException(ErrorMessages.UNIT_BASE_PRICE.toString());
         }
+    }
+
+    private static boolean isShortOfMoney(int parsedMoney){
+        return parsedMoney <= 0;
+    }
+    private static boolean exceedsMaxTrial(int parsedMoney){
+        return parsedMoney > MAX_LOTTO_COUNT * BASE_LOTTO_PRICE;
+    }
+    private static boolean isNotInBaseUnit(int parsedMoney){
+        return parsedMoney % BASE_LOTTO_PRICE > 0;
     }
 }

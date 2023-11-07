@@ -9,4 +9,5 @@ public class RuleConfig {
 
     public static final int NUMBERS_PER_LOTTO = 6;
     public static final String DELIMETER = ",";
+    public static final int DIGIT = 1;
 }

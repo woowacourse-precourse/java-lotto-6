@@ -45,7 +45,7 @@ public class LottoController {
     private List<Lotto> buyLottos(final int trial){
         outputView.printWithArguments(Messages.ALARM_TRIAL.toString(), trial);
         List<Lotto> myLotto =  lottoService.generateLottos(trial);
-        outputView.printLottos(lottoService.getLottos());
+        outputView.printLottos(myLotto);
         return myLotto;
     }
 
@@ -65,7 +65,6 @@ public class LottoController {
             try{
                 String bonusNumberBeforeValidated = inputView.readBonusNumber();
                 return lottoService.pickBonusNumber(bonusNumberBeforeValidated);
-
             }catch (IllegalStateException | IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

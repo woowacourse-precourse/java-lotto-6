@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.utils.LottoConstants.*;
+import static lotto.model.Lotto.LOTTO_NUMBERS_SIZE;
+import static lotto.model.LottoNumber.MAX_LOTTO_NUMBER_RANGE;
+import static lotto.model.LottoNumber.MIN_LOTTO_NUMBER_RANGE;
 
 public class LottoStore {
+    public static final Integer LOTTO_PRICE = 1000;
 
     public List<Lotto> sellLottos(int money) {
         int lottoCount = calculateLottoCount(money);
@@ -22,7 +25,7 @@ public class LottoStore {
     }
 
     private Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_RANGE, MAX_LOTTO_RANGE, LOTTO_NUMBERS_SIZE);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE, LOTTO_NUMBERS_SIZE);
         return new Lotto(randomNumbers);
     }
 }

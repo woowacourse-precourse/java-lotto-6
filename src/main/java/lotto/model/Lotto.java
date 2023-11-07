@@ -6,9 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.utils.LottoConstants.LOTTO_NUMBERS_SIZE;
 
 public class Lotto {
+    public static final Integer LOTTO_NUMBERS_SIZE = 6;
     private static final String LOTTO_SIZE_ERROR = "로또 번호 갯수는 6개여야 합니다.";
     private static final String LOTTO_DUPLICATE_ERROR = "중복되는 숫자는 허용하지 않습니다.";
 

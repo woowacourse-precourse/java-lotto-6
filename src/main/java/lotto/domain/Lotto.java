@@ -47,14 +47,14 @@ public class Lotto {
             arr[minIndex] = temp;
         }
         List<Integer> orderNumbers = new ArrayList<>();
-        for(int tmp : arr) {
+        for (int tmp : arr) {
             orderNumbers.add(tmp);
         }
         return orderNumbers;
     }
 
     private int setMinIndex(int number1, int number2, int minIndex, int j) {
-        if(number1<number2) {
+        if (number1 < number2) {
             minIndex = j;
         }
         return minIndex;

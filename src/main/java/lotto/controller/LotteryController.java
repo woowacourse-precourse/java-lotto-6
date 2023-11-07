@@ -31,11 +31,6 @@ public class LotteryController {
     private List<Integer> winningTicketNumbers;
     private Revenue revenue;
 
-    private String winningTicketNumbersInput;
-    private List<Integer> numbersForValidation;
-    private List<String> tmp;
-    private int numberForValidation;
-
 
     public LotteryController() {
         inputView = new InputView();
@@ -59,7 +54,6 @@ public class LotteryController {
     }
 
 
-
     private void setPayment() {
         String input = inputView.askPayment();
         payment = Integer.parseInt(input);
@@ -74,36 +68,9 @@ public class LotteryController {
         System.out.println();
     }
 
-
-    private List<Integer> setValidWinningTicket() {
-        numbersForValidation = new ArrayList<Integer>();
-        winningTicketNumbersInput = Console.readLine().replaceAll("\\p{Z}", "");
-        tmp = Arrays.asList(winningTicketNumbersInput.split(","));
-        // lotto 클래스는 List<Integer> 타입을 인자값으로 갖기 때문에 리스트의 요소들이 모두 숫자인지를 검사한다.
-        for (String x : tmp) {
-            try {
-                validInput.validNumber(x);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                setValidWinningTicket();
-                break;
-            }
-            numberForValidation = Integer.parseInt(x);
-            numbersForValidation.add(numberForValidation);
-        }
-        // lotto 클래스를 생성하여 유효한 로또 번호인지를 검사한다.
-        try {
-            lotto = new Lotto(numbersForValidation);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setValidWinningTicket();
-        }
-        return numbersForValidation;
-    }
-
     private void setWinningTicket() {
         winningTicketNumbers = new ArrayList<Integer>();
-        winningTicketNumbers = setValidWinningTicket();
+        winningTicketNumbers = inputView.askWinningTicket();
         lotto = new Lotto(winningTicketNumbers);
         winningTicketNumbers = lotto.getNumbers();
         System.out.println();

@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,12 +22,12 @@ class LottoServiceTest {
     @DisplayName("발행 수량 구하기")
     void getLotteryTicketCount() {
         // given
-        System.setIn(new ByteArrayInputStream("14000".getBytes()));
+        int purchasePrice = 14000;
         int correctCount = 14;
-        int wrongCount = 10;
+        int wrongCount = 13;
 
         // when
-        int lotteryTicketCount = lottoService.getLotteryTicketCount();
+        int lotteryTicketCount = lottoService.getLotteryTicketCount(purchasePrice);
 
         // then
         assertThat(lotteryTicketCount).isEqualTo(correctCount);
@@ -45,15 +46,15 @@ class LottoServiceTest {
     @DisplayName("구입 금액만큼 발행하기")
     void issueLotteryTicketAll() {
         // given
-        System.setIn(new ByteArrayInputStream("5000".getBytes()));
+        int purchasePrice = 5000;
 
         // when
-        lottoService.issueLotteryTicketAll();
+        lottoService.issueLotteryTicketAll(purchasePrice);
 
         // then
-        List<Lotto> lottos = lottoService.buyer.getLottos();
+        List<Lotto> lottos = lottoService.getBuyer().getLottos();
         for (Lotto lotto : lottos) {
-            System.out.println("lotto = " + lotto);
+            System.out.println(lotto);
         }
         assertThat(lottos.size()).isEqualTo(5);
     }
@@ -164,11 +165,10 @@ class LottoServiceTest {
     @DisplayName("총 수익률 구하기")
     void getRateOfReturn() {
         // given
-        System.setIn(new ByteArrayInputStream("8000".getBytes()));
         List<Prize> prizes = List.of(Prize.FIFTH_PLACE);
 
         // when
-        double rateOfReturn = lottoService.getRateOfReturn(prizes);
+        double rateOfReturn = lottoService.getRateOfReturn(prizes, 8000);
 
         // then
         assertThat(rateOfReturn).isEqualTo(62.5);

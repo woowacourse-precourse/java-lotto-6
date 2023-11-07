@@ -18,34 +18,33 @@
   - [x] 테스트: 1,000원으로 나눈 수량 확인
 - [x] 발행하기 - `issueLotteryTicket()`
   - [x] 테스트: 발행 후 나온 6자리 숫자가 오름차순인지 확인
+- [x] 모든 수량을 발행하기 - `issueLotteryTicketAll()`
+  - [x] 테스트: 구입한 만큼 발행되었는지 확인
 
 ### 2-3. 당첨 번호와 비교하기 - `service\LottoService`
 - [x] 일치한 개수 구하기 - `getMatchingNumbers()`
   - [x] 테스트: 일치한 개수 확인
-- [x] 보너스 숫자 일치 여부 구하기
+- [x] 보너스 숫자 일치 여부 구하기 - `isMatchingBonusNumber()`
   - [x] 테스트: 보너스 숫자 일치 여부 확인
-- [x] 당첨 등수와 당첨금 구하기
+- [x] 당첨 등수와 당첨금 구하기 - `getPrize()`
   - [x] 테스트: 번호와 보너스 번호 일치에 따른 당첨 등수와 당청금 확인
 - [x] 총 수익률 구하기 - `getRateOfReturn()`
   - [x] 테스트: 구입 금액 대비 당첨 금액 확인
 
 ### 3. 출력하기 - `view\OutputView`
-1. 구입 금액 - `outputPurchaseAmount()`
-   - [ ] 구입금액 입력 안내 문구 출력하기
-   - [ ] 구입 금액 출력하기
-2. 로또 발행 - `outputIssuingLotteryTicket()`
-   - [ ] 수량 출력하기
-   - [ ] 번호 출력하기
-4. 당첨 번호 - `outputWinningNumbers()`
-   - [ ] 당첨 번호 입력 안내 문구 출력하기
-   - [ ] 당첨 번호 출력하기
+1. 구입 금액 - `printInputPurchasePriceSentence()`
+   - [x] 구입금액 입력 안내 문구 출력하기
+2. 로또 발행 - `printIssuingLotteryTicket()`
+   - [x] 수량 출력하기
+   - [x] 번호 출력하기
+4. 당첨 번호
+   - [x] 당첨 번호 입력 안내 문구 출력하기 - `printInputWinningNumbersSentence()`
 5. 보너스 번호 - `outputBonusNumber()`
-   - [ ] 보너스 번호 입력 안내 문구 출력하기
-   - [ ] 보너스 번호 출력하기
+   - [x] 보너스 번호 입력 안내 문구 출력하기
 6. 당첨 통계 - `outputResult()`
-   - [ ] 당첨 통계 안내 문구 출력하기
-   - [ ] 당첨 내역 출력하기
-   - [ ] 수익률 출력하기
+   - [x] 당첨 통계 안내 문구 출력하기
+   - [x] 당첨 내역 출력하기
+   - [x] 수익률 출력하기
 
 ### 4. 예외 처리
 1. 로또 금액

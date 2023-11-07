@@ -3,6 +3,10 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameTest {
@@ -41,5 +45,34 @@ public class GameTest {
         int[] result6 = {0, 0};
         int rank6 = game.ranking(result6);
         assertEquals(6, rank6);
+    }
+
+    @DisplayName("로또 확인 결과가 일치하는지 테스트")
+    @Test
+    public void testCheckOneLotto() {
+        Game game = new Game();
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        // 테스트 케이스 1: 모든 번호가 일치
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int[] result1 = game.checkOneLotto(lotto1, winningNumbers, bonusNumber);
+        assertArrayEquals(new int[]{6, 0}, result1);
+
+        // 테스트 케이스 2: 5개 일치 + 보너스 볼 일치
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 보너스 볼 일치
+        int[] result2 = game.checkOneLotto(lotto2, winningNumbers, bonusNumber);
+        assertArrayEquals(new int[]{5, 1}, result2);
+
+        // 테스트 케이스 3: 3개 일치
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+        int[] result3 = game.checkOneLotto(lotto3, winningNumbers, bonusNumber);
+        assertArrayEquals(new int[]{3, 0}, result3);
+
+        // 테스트 케이스 4: 모든 번호 불일치
+        Lotto lotto4 = new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15));
+        int[] result4 = game.checkOneLotto(lotto4, winningNumbers, bonusNumber);
+        assertArrayEquals(new int[]{0, 0}, result4);
     }
 }

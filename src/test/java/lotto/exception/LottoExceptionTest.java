@@ -20,4 +20,10 @@ class LottoExceptionTest {
     void purchaseAmountCheckMainFalseTest() {
         Assertions.assertThat(lottoException.purchaseAmountCheckMain("100")).isFalse();
     }
+
+    @Test
+    @DisplayName("로또번호나 보너스 번호에 숫자가 아닌 문자가 있을경우 테스트")
+    void checkNumberFalseTest() {
+        Assertions.assertThat(lottoException.checkNumber("q")).isFalse();
+    }
 }

@@ -1,21 +1,19 @@
-package lotto.view;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputView {
+public class InputHandler {
     public static int readInputNumber() {
         String amount = Console.readLine();
-        System.out.println(amount);
         return convertNumber(amount);
     }
 
     public static List<Integer> readInputTargetNumbers() {
         String[] targetStrings = Console.readLine().split(",");
         List<Integer> targetNumbers = new ArrayList<>();
-        System.out.println(targetNumbers);
         for (String string : targetStrings) {
             targetNumbers.add(convertNumber(string));
         }

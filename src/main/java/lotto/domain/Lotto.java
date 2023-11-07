@@ -59,6 +59,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::containNumber)
+                .count();
+    }
+
     public static void throwDuplicateException() {
         throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR_MESSAGE.getMessage());
     }

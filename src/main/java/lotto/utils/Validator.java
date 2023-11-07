@@ -14,7 +14,7 @@ public class Validator {
     }
 
     public static void validateNumbersLength(List<Integer> inputs) {
-        if (inputs.size() != 6) {
+        if (inputs.size() != LOTTO_NUMBER_LENGTH) {
             System.out.println(LENGTH_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
@@ -50,7 +50,7 @@ public class Validator {
     }
 
     public static void validateIsNumberInRange(int winningNumber){
-        if ( !(winningNumber >= 1 && winningNumber <= 45) ){
+        if ( !(winningNumber >= MIX_LOTTO_NUMBER && winningNumber <= MAX_LOTTO_NUMBER) ){
             System.out.println(INPUT_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }

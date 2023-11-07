@@ -1,7 +1,5 @@
 package lotto.model;
 
-import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT;
-
 import java.util.stream.IntStream;
 
 public class LottoMachine {
@@ -18,15 +16,8 @@ public class LottoMachine {
     }
 
     public void purchaseLottoTickets(int purchaseAmount) {
-        validatePurchaseAmount(purchaseAmount);
         int lottoCount = calculateLottoCount(purchaseAmount);
         createAndAddLotto(lottoCount);
-    }
-
-    private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount <= 0 || purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException (INVALID_PURCHASE_AMOUNT.getErrorMessage());
-        }
     }
 
     private int calculateLottoCount(int purchaseAmount) {

@@ -1,12 +1,12 @@
 package lotto.constant;
 
 public enum LottoRank {
-    RANK_ONE(6, 0, 2000000000),
-    RANK_TWO(5, 1, 30000000),
-    RANK_THREE(5, 0, 1500000),
-    RANK_FOUR(4, 0, 50000),
-    RANK_FIVE(3, 0, 5000),
-    RANK_OUTSIDE(0, 0, 0);
+    RANK_ONE(6, 0, 2_000_000_000),
+    RANK_TWO(5, 1, 30_000_000),
+    RANK_THREE(5, 0, 1_500_000),
+    RANK_FOUR(4, 0, 50_000),
+    RANK_FIVE(3, 0, 5_000),
+    RANK_OUTSIDE(-1, -1, 0);
 
     private final int matchedNormalNum;
     private final int matchedBonusNum;

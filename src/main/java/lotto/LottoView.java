@@ -3,6 +3,7 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.constant.ExceptionMessage.ERROR_NOT_IN_SPLIT_WORD;
 import static lotto.constant.ExceptionMessage.ERROR_NOT_NUMBER;
+import static lotto.constant.GuideMessage.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,11 @@ public class LottoView {
 
         printMessage("당첨 통계");
         printMessage("---");
-        printMessage("3개 일치 (5,000원) - " + convertLottoCountToString(results.get(LottoResult.FIFTH_PLACE)));
-        printMessage("4개 일치 (50,000원) - " + convertLottoCountToString(results.get(LottoResult.FOURTH_PLACE)));
-        printMessage("5개 일치 (1,500,000원) - " + convertLottoCountToString(results.get(LottoResult.THIRD_PLACE)));
-        printMessage("5개 일치, 보너스 볼 일치 (30,000,000원) - " + convertLottoCountToString(results.get(LottoResult.SECOND_PLACE)));
-        printMessage("6개 일치 (2,000,000,000원) - " + convertLottoCountToString(results.get(LottoResult.FIRST_PLACE)));
+        printMessage(LOTTO_NUMBER_THREE_NUMBER_MATCH + convertLottoCountToString(results.get(LottoResult.FIFTH_PLACE)));
+        printMessage(LOTTO_NUMBER_FOUR_NUMBER_MATCH + convertLottoCountToString(results.get(LottoResult.FOURTH_PLACE)));
+        printMessage(LOTTO_NUMBER_FIVE_NUMBER_MATCH + convertLottoCountToString(results.get(LottoResult.THIRD_PLACE)));
+        printMessage(LOTTO_NUMBER_FIVE_NUMBER_MATCH_AND_BONUS + convertLottoCountToString(results.get(LottoResult.SECOND_PLACE)));
+        printMessage(LOTTO_NUMBER_ALL_NUMBER_MATCH + convertLottoCountToString(results.get(LottoResult.FIRST_PLACE)));
         printRateOfReturn(rateOfReturn);
     }
 

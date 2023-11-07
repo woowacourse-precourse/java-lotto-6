@@ -1,10 +1,14 @@
 package lotto;
 
+import java.util.ArrayList;
+
 public class lottoProgram {
     int price;
     int lottoCount;
     Lottos lottos;
+    ArrayList<Lotto> lottoNumber;
     WinningLotto winningLotto;
+    ArrayList<Integer> matchingStatus;
 
     public lottoProgram(){
         start();
@@ -13,6 +17,7 @@ public class lottoProgram {
         setPriceAndLottoCount();
         makeAndPrintLottos();
         inputWinningLotto();
+        checkMatching();
     }
 
     void setPriceAndLottoCount(){
@@ -24,10 +29,18 @@ public class lottoProgram {
     void makeAndPrintLottos(){
         lottos = new Lottos(lottoCount);
         lottos.showLottoNumber();
+        lottoNumber = lottos.getLottos();
     }
 
     void inputWinningLotto(){
         InputWinningLotto inputWinningLotto = new InputWinningLotto();
         winningLotto = inputWinningLotto.inputLotto();
     }
+
+    void checkMatching(){
+        MatchingLotto matchingLotto = new MatchingLotto(lottoNumber, winningLotto);
+        matchingStatus = matchingLotto.getMatchingStatus();
+        System.out.println(matchingStatus);
+    }
+
 }

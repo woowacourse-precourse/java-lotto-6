@@ -34,12 +34,27 @@ public class InputWinningLotto {
         }
     }
 
-    void checkInputLotto(List<Integer> numbers) {
+    public void checkInputLotto(List<Integer> numbers) {
+        try {
+            legalRange(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            return;
+        }
+
         try {
             winningLotto = new WinningLotto(numbers);
             input = 1;
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println("[Error] 잘못된 입력입니다.");
+        }
+    }
+
+    public void legalRange(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++){
+            if (numbers.get(i) > 45 || numbers.get(i) < 1){
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

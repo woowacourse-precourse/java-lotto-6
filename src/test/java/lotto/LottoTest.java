@@ -58,4 +58,32 @@ class LottoTest {
 
         assertThat(result).isEqualTo(answer);
     }
+
+    @DisplayName("당첨여부 판단")
+    @Test
+    void compareLotto() {
+        List<Integer> possesion = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winning = List.of(4, 5, 6, 7, 8, 9);
+
+        int result = 0;
+
+        for (int i = 0; i < possesion.size(); i++){
+            for(int j = 0; j < winning.size(); j++){
+                if (i != j){
+                    if (possesion.get(i) == winning.get(j))
+                        result += 1;
+                }
+            }
+        }
+
+        assertThat(result).isEqualTo(3);
+    }
+
+    @DisplayName("범위를 벗어나는 숫자가 있으면 예외처리")
+    @Test
+    void checkIllegalRange(){
+        InputWinningLotto inputWinningLotto = new InputWinningLotto();
+        assertThatThrownBy(()->inputWinningLotto.legalRange(List.of(1,2,3,4,5,46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

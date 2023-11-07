@@ -36,4 +36,8 @@ public class Lottos {
             System.out.println(lottos.get(i).getNumbers());
         }
     }
+
+    ArrayList<Lotto> getLottos(){
+        return lottos;
+    }
 }

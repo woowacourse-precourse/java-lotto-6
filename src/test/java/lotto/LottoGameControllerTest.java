@@ -27,6 +27,13 @@ class LottoGameControllerTest {
         assertThat(purchasePreprocessor.isInvalid("1000")).isFalse();
     }
 
+    @DisplayName("로또 당첨 번호가 숫자가 아니면 true를 반환한다.")
+    @Test
+    void allWinningNumsAreNumberTest() {
+        assertThat(winningNumsPreprocessor.isInvalid("a")).isTrue();
+        assertThat(winningNumsPreprocessor.isInvalid("a, b, c")).isTrue();
+    }
+
     @DisplayName("로또 당첨 번호가 6개의 숫자가 아니면 true를 반환한다.")
     @Test
     void isInvalidWinningNumsSizeTest() {

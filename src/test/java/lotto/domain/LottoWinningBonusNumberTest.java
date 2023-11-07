@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
@@ -7,6 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoWinningBonusNumberTest {
+    @Test
+    @DisplayName("입력받은 보너스 번호가 정수가 아닌 경우 예외가 발생한다.")
+    public void 보너스_번호_정수_아님() throws Exception {
+        assertThatThrownBy(() -> new LottoWinningBonusNumber("a", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     @DisplayName("입력받은 보너스 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다.")
     public void 보너스_번호_범위() throws Exception {
@@ -38,5 +46,4 @@ public class LottoWinningBonusNumberTest {
             new LottoWinningBonusNumber(winningBonusNumberDuplicateString, winningNumbers);
         });
     }
-
 }

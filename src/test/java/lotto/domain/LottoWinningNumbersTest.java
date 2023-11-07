@@ -1,11 +1,22 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
+import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoWinningNumbersTest {
+
+    @Test
+    @DisplayName("입력받은 당첨 번호에 정수가 아닌 입력이 있을 경우 예외가 발생한다.")
+    public void 당첨_번호_정수_아닌_경우() throws Exception {
+        assertThatThrownBy(() -> new LottoWinningNumbers("a, b, 1, 2, 3, 4"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @Test
     @DisplayName("입력받은 당첨 번호가 6개보다 많으면 예외가 발생한다.")

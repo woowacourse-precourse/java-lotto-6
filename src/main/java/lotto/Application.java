@@ -32,7 +32,48 @@ public class Application {
 
     }
     //당첨 번호 입력 받기
-//    private static List<Integer> getWinningNumbers()
+    private static List<Integer> getWinningNumbers() {
+        while(true){
+            System.out.println("당첨 번호를 입력해 주세요.");
+            try{
+                String input=Console.readLine();
+                List<Integer> numbers=parseCommaSeperatedNumbers(input);
+                if (numbers.size() !=6){
+                    throw new IllegalArgumentException("[ERROR] 6개의 당첨 번호를 입력해주세요.");
+                }
+                return numbers;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private  static int getBonusNumber() {
+        while(true){
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try {
+                int bonusNumber=Integer.parseInt(Console.readLine());
+                if (bonusNumber<1 || bonusNumber>45){
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                return bonusNumber;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    //parse input
+    private static List<Integer> parseCommaSeperatedNumbers(String input){
+        String[] tokens=input.split(",");
+        //일단 테스트 해보고 수정
+        try{
+            return Arrays.stream(tokens)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 잘못된 번호 형식입니다.");
+        }
+    }
 
     //보너스 입력 받기
 

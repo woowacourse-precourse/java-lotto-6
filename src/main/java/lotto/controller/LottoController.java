@@ -8,10 +8,18 @@ public class LottoController {
     LottoPrint lottoPrint = new LottoPrint();
     public void run(){
         purchaseLotto();
+        inputPrizeNumber();
     }
 
     public void purchaseLotto(){
         lottoPrint.inputAmountPrint();
         lottoService.purchaseLotto();
+    }
+
+    public void inputPrizeNumber(){
+        lottoPrint.inputPrizeNumberPrint();
+        lottoService.inputPrimaryNumber();
+        lottoPrint.inputBonusNumberPrint();
+        lottoService.inputBonusNumber();
     }
 }

@@ -72,11 +72,11 @@ public class Lotto {
         return numberOfMatching;
     }
 
-    public boolean containsBonusNumber(final BonusNumber number) {
-        return numbers.contains(number.getNumber());
+    public boolean contains(final LottoBonus lottoBonus) {
+        return numbers.contains(lottoBonus.getNumber());
     }
 
-    private boolean contains(final int number) {
+    public boolean contains(final int number) {
         return numbers.contains(number);
     }
 }

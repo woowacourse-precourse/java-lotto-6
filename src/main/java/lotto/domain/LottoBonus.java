@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import java.util.List;
-
-public class BonusNumber {
+public class LottoBonus {
     private final int number;
 
-    public BonusNumber(Lotto winningLotto, String number) {
+    public LottoBonus(Lotto winningLotto, String number) {
         this.number = convertToInteger(number.strip());
-        validate(winningLotto.getNumbers(), this.number);
+        validate(winningLotto, this.number);
     }
 
     public int getNumber() {
@@ -22,19 +20,15 @@ public class BonusNumber {
         }
     }
 
-    private void validate(final List<Integer> numbers, final int number) {
+    private void validate(final Lotto winningLotto, final int number) {
         if (!isInRange(number)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_OUT_OF_RANGE.getMessage());
-        } else if (isContainedInNumbers(numbers, number)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATE_NUMBERS.getMessage());
+        } else if (winningLotto.contains(number)) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_LOTTO_CONTAINS_BONUS.getMessage());
         }
     }
 
     private boolean isInRange(final int number) {
         return (number >= LottoInfo.RANGE_BEGIN.getNumber()) && (number <= LottoInfo.RANGE_END.getNumber());
-    }
-
-    private boolean isContainedInNumbers(final List<Integer> numbers, final int number) {
-        return numbers.contains(number);
     }
 }

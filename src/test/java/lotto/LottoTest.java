@@ -3,6 +3,7 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -46,6 +47,15 @@ class LottoTest {
         List<Integer> list = Application.stringToIntArray("1,2,5");
         assertThat(list).containsExactly(1,2,5);
         assertThatThrownBy(() -> Application.stringToIntArray("1,2,a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("bonusNumberCheck 테스트.")
+    @Test
+    void bonusNumberCheck_TEST() {
+        List<Integer> list = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(list);
+        assertThatThrownBy(() -> Application.bonusNumberCheck(lotto, 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

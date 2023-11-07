@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum ResultForm {
+public enum Result {
     ANNOUNCE_INIT("당첨 통계\n---\n"),
     FIFTH_PLACE("3개 일치 (5,000원) - %d개\n"),
     FOURTH_PLACE("4개 일치 (50,000원) - %d개\n"),
@@ -9,14 +9,13 @@ public enum ResultForm {
     FIRST_PLACE("6개 일치 (2,000,000,000원) - %d개\n"),
     TOTAL_PROFIT_RATE("총 수익률은 %.1f%%입니다.\n");
 
-    private final String resultFormat;
+    private final String message;
 
-
-    ResultForm(String messageFormat) {
-        this.resultFormat = messageFormat;
+    Result(String message) {
+        this.message = message;
     }
 
-    public String getResultFormat() {
-        return resultFormat;
+    public String getMessage() {
+        return message;
     }
 }

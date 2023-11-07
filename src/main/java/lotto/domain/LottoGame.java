@@ -61,6 +61,16 @@ public class LottoGame {
     }
 
     private BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
-        return inputView.inputBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = null;
+        while (!isValidBonusNumber(bonusNumber)) {
+            int inputBonusNumber = inputView.inputBonusNumber();
+            bonusNumber = BonusNumber.of(inputBonusNumber, winningNumbers);
+        }
+
+        return bonusNumber;
+    }
+
+    private boolean isValidBonusNumber(BonusNumber bonusNumber) {
+        return Objects.nonNull(bonusNumber);
     }
 }

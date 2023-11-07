@@ -5,15 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.Message;
-import lotto.domain.BonusNumber;
-import lotto.domain.WinningNumbers;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
     public int inputPrice() {
         Integer validPrice = null;
 
-        while (!isValidPrice(validPrice)) {
+        while (!isValidInteger(validPrice)) {
             printNewLine();
             System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
@@ -35,23 +33,22 @@ public class InputView {
         return validWinningNumbers;
     }
 
-    public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
-        BonusNumber bonusNumber = null;
+    public int inputBonusNumber() {
+        Integer validBonusNumber = null;
 
-        while (!isValidBonusNumber(bonusNumber)) {
+        while (!isValidInteger(validBonusNumber)) {
             printNewLine();
             System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
             String inputBonusNumber = Console.readLine().trim();
 
-            Integer validBonusNumber = parseValidBonusNumber(inputBonusNumber);
+            validBonusNumber = parseValidBonusNumber(inputBonusNumber);
 
-            bonusNumber = createBonusNumber(validBonusNumber, winningNumbers);
         }
-        return bonusNumber;
+        return validBonusNumber;
     }
 
-    private boolean isValidPrice(Integer validPrice) {
-        return !Objects.isNull(validPrice);
+    private boolean isValidInteger(Integer validInteger) {
+        return Objects.nonNull(validInteger);
     }
 
     private Integer parseValidPrice(String inputPrice) {
@@ -98,21 +95,6 @@ public class InputView {
             throw new IllegalArgumentException(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
         }
 
-    }
-
-    private BonusNumber createBonusNumber(Integer validBonus, WinningNumbers winningNumbers) {
-        if (isValidBonus(validBonus)) {
-            return BonusNumber.of(validBonus, winningNumbers);
-        }
-        return null;
-    }
-
-    private boolean isValidBonusNumber(BonusNumber validBonusNumber) {
-        return !Objects.isNull(validBonusNumber);
-    }
-
-    private boolean isValidBonus(Integer validBonus) {
-        return !Objects.isNull(validBonus);
     }
 
     private Integer parseValidBonusNumber(String inputBonusNumber) {

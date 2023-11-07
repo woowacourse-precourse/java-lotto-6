@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.List;
 import java.util.regex.Pattern;
 import lotto.exception.SingleNumberFormatException;
 
@@ -17,6 +18,12 @@ public class InputBonusNumberView extends InputView {
 
     private void validateFormat(String inputValue) {
         if (!PATTERN.matcher(inputValue).matches()) {
+            throw new SingleNumberFormatException();
+        }
+    }
+
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             throw new SingleNumberFormatException();
         }
     }

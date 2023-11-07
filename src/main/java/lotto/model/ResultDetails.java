@@ -25,7 +25,7 @@ public class ResultDetails {
     }
 
     public double calculateProfitRate(final Money purchaseAmount) {
-        return (double) Rank.calculateTotalReward(resultDetails) / purchaseAmount.getMoney() * PERCENTAGE_FACTOR;
+        return (double) calculateTotalPrize() / purchaseAmount.getMoney() * PERCENTAGE_FACTOR;
     }
 
     public int getWinnerCountByRank(final Rank rank) {
@@ -35,5 +35,11 @@ public class ResultDetails {
     private void initializeWinningCountsForRanks() {
         Arrays.stream(Rank.values())
                 .forEach(rank -> resultDetails.put(rank, 0));
+    }
+
+    private int calculateTotalPrize() {
+        return Arrays.stream(Rank.values())
+                .mapToInt(rank -> rank.getPrize() * getWinnerCountByRank(rank))
+                .sum();
     }
 }

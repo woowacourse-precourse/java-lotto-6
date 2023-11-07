@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public enum Rank {
 
@@ -44,16 +43,14 @@ public enum Rank {
                 .orElse(NONE);
     }
 
-    public static int calculateTotalReward(final Map<Rank, Integer> resultDetails) {
-        return Arrays.stream(Rank.values())
-                .mapToInt(rank -> rank.prize * resultDetails.get(rank))
-                .sum();
-    }
-
     public static List<Rank> getRanks() {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank != NONE)
                 .toList();
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     public String getMessage() {

@@ -18,14 +18,16 @@ public class LottoService {
     private int lottoPaper;
 
     public void buyLotto(){
+        outputView.printRequirelottoCost();
         getLottoCost();
         getLottoPaper();
+        outputView.printNewLine();
+        outputView.printPublishedLotto(lottoPaper);
         createLottoNumber();
         showMyLottoNumber();
     }
 
     public void getLottoCost(){
-        outputView.printRequirelottoCost();
         lottoCost = inputView.getLottoCostData();
     }
 
@@ -34,15 +36,9 @@ public class LottoService {
     }
 
     public void createLottoNumber(){
-        outputView.printNewLine();
-        outputView.printPublishedLotto(lottoPaper);
-        createMyLottoNumber();
-    }
-
-    public void createMyLottoNumber(){
         myLotto = new Lotto[lottoPaper];
         for(int i = 0; i<myLotto.length; i++){
-            myLotto[i] = new Lotto(numberGenerator.generate());
+            myLotto[i] = new Lotto(numberGenerator.generateLottoNumber());
         }
     }
 

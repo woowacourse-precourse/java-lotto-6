@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.util.RandomLottoNumberGenerator.LOTTO_LOWER_BOUND;
 import static lotto.util.RandomLottoNumberGenerator.LOTTO_UPPER_BOUND;
 
+import java.util.HashSet;
 import java.util.List;
 import lotto.util.RandomLottoNumberGenerator;
 
@@ -52,7 +53,7 @@ public class Lotto {
 
     private void validateNoDuplicated(List<Integer> numbers) {
         int originSize = numbers.size();
-        int distinctSize = numbers.stream().distinct().toList().size();
+        int distinctSize = new HashSet<>(numbers).size();
 
         if (originSize != distinctSize) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION_ERROR);

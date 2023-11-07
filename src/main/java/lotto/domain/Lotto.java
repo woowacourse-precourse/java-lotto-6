@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.utils.NumberGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -8,6 +9,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto createLotto(NumberGenerator generator) {
+        return new Lotto(generator.generate(6));
     }
 
     private void validate(List<Integer> numbers) {

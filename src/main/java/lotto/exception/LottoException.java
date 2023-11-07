@@ -10,7 +10,7 @@ public class LottoException {
     private static final String TICKET_ERROR_MESSAGE = "구입 금액이 잘못 되었습니다. 티켓 한장의 가격은 1000원입니다.";
     private static final String DIGIT_ERROR_MESSAGE = "는 숫자가 아닙니다. 숫자를 입력해 주세요.";
 
-    private boolean purchaseAmountCheckSub(String purchaseAmount) {
+    public boolean purchaseAmountCheckSub(String purchaseAmount) {
         int amount = Integer.parseInt(purchaseAmount);
         if ((amount < lottoConfig.TICKET_PRICE) || ((amount % lottoConfig.TICKET_PRICE) != ZERO_PRICE)) {
             throw new IllegalArgumentException(ERROR_PREFIX + TICKET_ERROR_MESSAGE);

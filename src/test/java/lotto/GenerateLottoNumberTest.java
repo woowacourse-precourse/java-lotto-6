@@ -16,7 +16,7 @@ public class GenerateLottoNumberTest extends NsTest {
 
         }
     @Test
-    void 정적인_로또_번호() {
+    void 다른_로또_번호() {
             assertThat(GenerateLottoNumber.generate()).isEqualTo(GenerateLottoNumber.generate());
         }
 

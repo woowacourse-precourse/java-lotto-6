@@ -1,8 +1,7 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.lottoenum.LottoRanking;
-import lotto.repository.Repository;
 
 import java.util.List;
 

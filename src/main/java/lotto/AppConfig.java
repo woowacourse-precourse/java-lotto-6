@@ -1,22 +1,19 @@
 package lotto;
 
 import lotto.controller.calculation.Calculation;
+import lotto.controller.lottomainservice.LottoService;
 import lotto.controller.lottomaker.LottoMaker;
 import lotto.controller.lottomaker.lottoMakerByRandom;
 import lotto.controller.calculation.profitMarginCalculation;
 import lotto.repository.LottoRepository;
 import lotto.repository.Repository;
 import lotto.view.Input;
-import lotto.view.InputValidate;
 import lotto.view.Output;
 
 public class AppConfig {
     private final Repository repository = new LottoRepository();
-    public InputValidate getInputValidate(){
-        return new InputValidate(repository);
-    }
     public Input getInput(){
-        return new Input(getInputValidate());
+        return new Input(repository);
     }
     public Output getOutput(){
         return new Output();

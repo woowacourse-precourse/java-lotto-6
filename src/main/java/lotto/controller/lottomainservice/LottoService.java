@@ -1,7 +1,8 @@
-package lotto;
+package lotto.controller.lottomainservice;
 
 import lotto.controller.calculation.Calculation;
 import lotto.controller.lottomaker.LottoMaker;
+import lotto.domain.Lotto;
 import lotto.lottoenum.LottoRanking;
 import lotto.repository.Repository;
 import lotto.view.Input;
@@ -48,7 +49,7 @@ public class LottoService {
     private void makeBonusNumber() {
         output.printGetBonusNum();
         do{
-            repository.saveBonusNumber(input.getBonusNum());
+            repository.setBonusNumber(input.getBonusNum());
             if(repository.getBonusNumber() != 0){
                 isUseFulBonusNumber = false;
             }
@@ -89,7 +90,7 @@ public class LottoService {
 
     private void makeRandomLotto(){
         for(int i = 0; i<repository.getCountLotto(); i++){
-            repository.saveLottoNumbers(new Lotto(lottoMaker.makeLotto()));
+            repository.setLottoNumbers(new Lotto(lottoMaker.makeLotto()));
         }
         output.printRandomLottoNum(repository.getLottoNumbers());
         System.out.println();

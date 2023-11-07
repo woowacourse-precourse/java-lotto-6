@@ -1,6 +1,6 @@
 package lotto.repository;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class LottoRepository implements Repository{
     @Override
     public void setCountLotto(int countLotto){this.countLotto = countLotto;}
     @Override
-    public void saveBonusNumber(int bonusNumber) {
+    public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
     @Override
@@ -34,7 +34,7 @@ public class LottoRepository implements Repository{
         return lottoNumbers;
     }
     @Override
-    public void saveLottoNumbers(Lotto lotto) {
+    public void setLottoNumbers(Lotto lotto) {
         lottoNumbers.add(lotto);
     }
 }

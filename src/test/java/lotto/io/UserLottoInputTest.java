@@ -30,7 +30,7 @@ class UserLottoInputTest {
         setupInputStream(in);
         UserLottoInput input = new UserLottoInput();
 
-        assertThatThrownBy(() -> input.getMoneyAmount())
+        assertThatThrownBy(input::getMoneyAmount)
                 .isInstanceOf(InvalidMoneyInput.class);
     }
 

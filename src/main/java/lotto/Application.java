@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.domain.Buy;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Buy buy = new Buy();
+        // 로또 구매 및 발행
+        buy.createGames();
     }
 }

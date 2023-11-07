@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OutputMessage {
+    private static final int ZERO =0;
     public static void purchaseComplete(int count) {
         System.out.printf("\n%d개를 구매했습니다.\n", count);
     }
@@ -26,16 +27,16 @@ public class OutputMessage {
     }
 
     private static void printSingleResult(HashMap<Prize, Integer> map, Prize prize) {
-        if(prize.getCount()==0){
+        if(prize.getCount()==ZERO){
             return;
         }
         if(prize.equals(Prize.SECOND)){
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                    prize.getCount(),prize.getNumericCharacters(), map.get(prize));
+                    prize.getCount(),prize.getNumericCharacters(), map.getOrDefault(prize,ZERO));
             return;
         }
         System.out.printf("%d개 일치 (%s원) - %d개\n",
-                prize.getCount(), prize.getNumericCharacters(), map.get(prize));
+                prize.getCount(), prize.getNumericCharacters(), map.getOrDefault(prize,ZERO));
     }
 
     public static void printEarningRate(double earningRate) {

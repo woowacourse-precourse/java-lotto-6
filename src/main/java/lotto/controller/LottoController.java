@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Coin;
 import lotto.model.LottoPaper;
+import lotto.model.PlayerNumber;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,8 +23,7 @@ public class LottoController {
 
     public void run() {
         buyLotto();
-        drawWinningNumber();
-        drawBonusNumber();
+        pickPlayerNumber();
         resultLotto();
     }
 
@@ -44,12 +44,34 @@ public class LottoController {
         }
     }
 
-    private void drawWinningNumber() {
+    private void pickPlayerNumber() {
+        try {
+            outputView.printPickWinningNumber();
 
+            List<Integer> winningNumber = inputView.readIntegerList();
+            outputView.printNewLine();
+
+            int bonusNumber = pickBonusNumber();
+            outputView.printNewLine();
+
+            PlayerNumber player = new PlayerNumber(winningNumber, bonusNumber);
+
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            pickPlayerNumber();
+        }
     }
 
-    private void drawBonusNumber() {
+    private int pickBonusNumber() {
+        try {
+            outputView.printPickBonusNumber();
+            return inputView.readInteger();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            pickBonusNumber();
+        }
 
+        return 0;
     }
 
     private void resultLotto() {

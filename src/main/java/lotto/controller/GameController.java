@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
-import lotto.domain.LotteryOffice;
-import lotto.domain.LottoStore;
-import lotto.domain.MarginCalculator;
+import lotto.domain.Rankings;
 import lotto.domain.lotto.Lotto;
+import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,6 +13,7 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private GameService gameService;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -20,24 +21,29 @@ public class GameController {
     }
 
     public void proceedGame() {
+        setUp();
+        receiveUserNumbers();
+        decideOutcome();
+    }
+
+    private void setUp() {
         int userPurchaseAmount = inputView.readPurchaseAmount();
-        LottoStore lottoStore = new LottoStore(userPurchaseAmount);
-
-        while (lottoStore.isOpen()) {
-            lottoStore.issueLotto();
-        }
-
+        this.gameService = GameService.startGame(userPurchaseAmount);
         outputView.printPurchaseResultMessage(userPurchaseAmount);
-        lottoStore.getIssuedLotto().forEach(this::printPurchaseResult);
+        outputView.printIssuedLotto(gameService.getIssuedLotto());
+    }
 
+    private void receiveUserNumbers() {
         Lotto winningTicket= getWinningTicket();
-        printPurchaseResult(winningTicket);
         BonusNumber bonusNumber = askBonusNumber(winningTicket);
-        System.out.println(bonusNumber);
-        LotteryOffice lotteryOffice = new LotteryOffice(lottoStore.getIssuedLotto(), winningTicket, bonusNumber);
-        outputView.printWinningResult(lotteryOffice.getWinningsAndCounts());
-        MarginCalculator marginCalculator = new MarginCalculator(lotteryOffice.getWinningsAndCounts(), userPurchaseAmount);
-        outputView.printMargin(marginCalculator.getMargin());;
+        gameService.storeUserInput(winningTicket, bonusNumber);
+    }
+
+    private void decideOutcome() {
+        Map<Rankings, Integer> statistics = gameService.getStatistics();
+        outputView.printWinningResult(statistics);
+        String margin= gameService.getCalculatedMargin();
+        outputView.printMargin(margin);
     }
 
     private Lotto getWinningTicket() {
@@ -58,9 +64,5 @@ public class GameController {
             System.out.println(e.getMessage());
             return askBonusNumber(winningTicket);
         }
-    }
-
-    private void printPurchaseResult(Lotto lotto) {
-        outputView.printLottoNumbers(lotto.getNumbers());
     }
 }

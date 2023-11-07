@@ -5,14 +5,17 @@ import static lotto.domain.lotto.LottoConstants.LOTTO_PRICE;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Rankings;
+import lotto.domain.lotto.Lotto;
 
 public class OutputView {
 
     private static final String PURCHASE_RESULT = "%d개를 구매했습니다.";
     private static final String MARGIN_RESULT = "총 수익률은 %s입니다.";
 
-    public void printLottoNumbers(List<Integer> lottoNumbers) {
-        System.out.print(lottoNumbers);
+    public void printIssuedLotto(List<Lotto> issuedLotto) {
+        for (Lotto lotto : issuedLotto) {
+            System.out.println(lotto.getNumbers());
+        }
         printNewLine();
     }
 

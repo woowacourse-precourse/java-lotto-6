@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,9 @@ class LottoTest {
     @MethodSource("provideLottoAndResult")
     void calculateLottoPlace(List<Integer> numbers, String expected) {
         Lotto lotto = new Lotto(numbers);
-        WinnigLotto winnigLotto = new WinnigLotto(Set.of(1, 3, 7, 8, 9, 11), 18);
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(List.of(1, 3, 7, 8, 9, 11));
+        Integer bonusNumber = 18;
+        WinnigLotto winnigLotto = new WinnigLotto(winningNumbers, bonusNumber);
 
         Optional<LottoPlace> lottoPlace = lotto.calculateLottoPlace(winnigLotto);
 

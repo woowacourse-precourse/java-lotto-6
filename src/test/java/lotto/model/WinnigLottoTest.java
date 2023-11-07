@@ -3,6 +3,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,9 +15,9 @@ class WinnigLottoTest {
     @CsvSource(value = {"1,CORRECT", "19,BONUS", "23,NOTHING"})
     void judgeNumber(int testNumber, String expected) {
         //given
-        Set<Integer> pickedNumbers = Set.of(1, 5, 7, 9, 11, 15);
+        WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(List.of(1, 5, 7, 9, 11, 15));
         Integer bounusNumber = 19;
-        WinnigLotto winnigLotto = new WinnigLotto(pickedNumbers, bounusNumber);
+        WinnigLotto winnigLotto = new WinnigLotto(winningNumbers, bounusNumber);
 
         //when
         NumberStatus result = winnigLotto.judgeNumber(testNumber);

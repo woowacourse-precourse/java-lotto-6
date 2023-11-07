@@ -37,7 +37,7 @@ public class Application {
     }
 
     public static List<Integer> convertNum(String numbers) {
-        String[] wordNum = numbers.split(",");
+        List<String> wordNum = Arrays.asList(numbers.split(","));
         List<Integer> convertedNum = new ArrayList<>();
         try {
             for (String beforeNum : wordNum) {

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
+    private static final int PERCENTAG_EMULTIPLIER =100;
+    private static final double ROUNDING_FACTOR =100.0;
+    private static final double DECIMAL_PRECISION =100.0;
     private HashMap<Prize,Integer> result;
     private int purchaseAmount;
 
@@ -50,8 +53,8 @@ public class Result {
 
             totalAmount += prizeAmount * numberOfWinners;
         }
-        double profitRate = (double) totalAmount / purchaseAmount;
-        double roundedProfitRate = Math.round(profitRate * 10000.0) / 100.0;
+        double profitRate = ((double) totalAmount / purchaseAmount) * PERCENTAG_EMULTIPLIER;
+        double roundedProfitRate = Math.round(profitRate * ROUNDING_FACTOR) / DECIMAL_PRECISION;
 
         return roundedProfitRate;
     }

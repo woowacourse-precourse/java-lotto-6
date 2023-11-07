@@ -13,6 +13,6 @@ public class WinningLottoNumbersTest {
     void createRightMoney(){
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(winningNumbers);
-        Assertions.assertEquals(winningLottoNumbers.value(),"5000");
+        Assertions.assertEquals(winningLottoNumbers.value(),winningNumbers);
     }
 }

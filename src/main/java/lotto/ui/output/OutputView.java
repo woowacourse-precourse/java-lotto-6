@@ -1,5 +1,6 @@
 package lotto.ui.output;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,7 +32,8 @@ public class OutputView {
 
     //TODO 상수화?
     public static void printRateOfReturn(double rateOfReturn) {
-        String format = String.format("%.1f", rateOfReturn);
+        DecimalFormat formatter = new DecimalFormat("###,###.#");
+        String format = formatter.format(rateOfReturn);
         System.out.println("총 수익률은 " + format + "%입니다.");
     }
 }

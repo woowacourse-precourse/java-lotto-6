@@ -52,4 +52,15 @@ public class UserAmountTest {
         //then
         Assertions.assertThat(issueAbleCount).isEqualTo(testUserAmount);
     }
+
+    @Test
+    void 로또_구입_금액이_0원_이라면_IllegalArgumentException_예외처리() {
+        //given
+        String userAmountInput = "0";
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> UserAmount.from(userAmountInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액이 0원이 아닌 값을 입력해야 합니다.");
+    }
 }

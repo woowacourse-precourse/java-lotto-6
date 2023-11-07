@@ -21,7 +21,7 @@ public class WinningLottoWithBonusValidate {
     }
 
     private static void checkDuplicate(Lotto lotto, int number) {
-        if (lotto.getNumbers().contains(number)) {
+        if (lotto.isContain(number)) {
             throw ExceptionManager.ERROR_MSG_PREFIX.createIllegalArgumentException(
                     "로또의 숫자는 중복될 수 없습니다.");
         }

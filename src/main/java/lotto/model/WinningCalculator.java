@@ -65,11 +65,11 @@ public class WinningCalculator {
 
     private int getRankNum(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
-                .filter(winningLottoWithBonus.getLotto().getNumbers()::contains).count();
+                .filter(number -> winningLottoWithBonus.getLotto().isContain(number)).count();
     }
 
     private PrizeRank isBonus(Lotto lotto, WinningLottoWithBonus winningLottoWithBonus) {
-        if (lotto.getNumbers().contains(winningLottoWithBonus.getBonus())) {
+        if (lotto.isContain(winningLottoWithBonus.getBonus())) {
             return PrizeRank.BONUS;
         }
         return PrizeRank.FIVE;

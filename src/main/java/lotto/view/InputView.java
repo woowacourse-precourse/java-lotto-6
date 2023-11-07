@@ -20,7 +20,7 @@ public class InputView {
 
                 return input;
             } catch (IllegalArgumentException e) {
-                System.out.println(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING);
+                System.out.println(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING.getText());
             }
         }
     }

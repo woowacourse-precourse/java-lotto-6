@@ -25,8 +25,9 @@ public class Application {
                 end = false;
             }catch (IllegalArgumentException e){
                 System.out.println(e);
-            }
-            
+            }   
         }
+
+        System.out.println(lotto.getLotto());
     }
 }

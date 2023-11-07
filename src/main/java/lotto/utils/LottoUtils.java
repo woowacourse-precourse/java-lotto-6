@@ -28,8 +28,13 @@ public class LottoUtils {
     }
 
     public static void rateFormat(double rateNumber) {
-        double decimalPoint = rateNumber;
         DecimalFormat decimalFormat = new DecimalFormat(PATTERN);
-        System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), decimalFormat.format(decimalPoint)));
+        System.out.println(
+                String.format(LottoMsg.LOTTO_LATE.getMsg(), decimalFormat.format(rateNumber)));
+    }
+
+    public static int getPriceForIntegerParser(String price) {
+        String priceParser = price.replaceAll("[^0-9]", "");
+        return Integer.parseInt(priceParser);
     }
 }

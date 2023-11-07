@@ -12,8 +12,8 @@ public class MoneyInputValidator implements BasicValidator<String> {
     public void validate(String input) {
         validateNumberIfNumeric(input);
         validateNumberIfPositive(input);
-        validateNumberIfMultipleOfThousand(input);
         validateNumberIfMoreThanOneThousand(input);
+        validateNumberIfMultipleOfThousand(input);
     }
 
     private void validateNumberIfNumeric(String input) {

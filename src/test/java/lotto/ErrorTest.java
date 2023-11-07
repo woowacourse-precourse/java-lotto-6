@@ -13,19 +13,23 @@ class ErrorTest {
         assertThatThrownBy(() -> Error.errorMessage(ErrorType.INVALID_AMOUNT))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void invalidInputTypeErrorTest(){
         assertThatThrownBy(() -> Error.errorMessage(ErrorType.INVALID_INPUT_TYPE))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void invalidLottoInputErrorTest(){
         assertThatThrownBy(() -> Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void duplicationErrorTest(){
         assertThatThrownBy(() -> Error.errorMessage(ErrorType.DUPLICATION))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
 }

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.winningnumber;
 
 public class WinningNumbersFactory {
 

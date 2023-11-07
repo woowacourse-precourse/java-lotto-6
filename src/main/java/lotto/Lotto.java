@@ -30,7 +30,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public List<Integer> showBallNumber() {
-        return numbers;
+    public void showBallNumber() {
+        System.out.println(numbers.toString());
     }
+
+    public boolean hasCorrectNum(int number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
 }

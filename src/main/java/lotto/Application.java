@@ -6,15 +6,13 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         BuyLotto buyLotto = new BuyLotto();
-        int lottoCount = buyLotto.buy();
+        LottoMachine lottoMachine = new LottoMachine();
 
-        for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = buyLotto.generateLotto();
-            List<Integer> balls = lotto.showBallNumber();
-            System.out.println(balls.toString());
-        }
+        List<Lotto> lottos = buyLotto.buy();
+        List<Integer> correctNumbers = buyLotto.getCorrectNumbers();
+        int bonus = buyLotto.getBonus();
 
-        buyLotto.inputNumbers();
-        buyLotto.inputBonus();
+        lottoMachine.judge(lottos, correctNumbers, bonus);
+
     }
 }

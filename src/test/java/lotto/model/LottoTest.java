@@ -1,9 +1,10 @@
-package lotto;
+package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -23,5 +24,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void testSortLotto() {
+        List<Integer> lotto = List.of(13, 11, 5, 4, 6, 8);
+
+        Assertions.assertThat(Lotto.sortLotto(lotto).toString()).isEqualTo("[4, 5, 6, 8, 11, 13]");
+    }
 }

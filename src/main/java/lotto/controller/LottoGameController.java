@@ -13,7 +13,7 @@ public class LottoGameController {
 
     public static void startLottoGame() {
         String purchaseAmount = InputHandler.getPurchaseInputMessage();
-        final LottoCount lottoCount = lottoGameService.computeLottoCount(purchaseAmount);
+        LottoCount lottoCount = lottoGameService.computeLottoCount(purchaseAmount);
 
         Printer.printLineBreak();
 

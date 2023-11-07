@@ -8,7 +8,7 @@ public abstract class InputView {
 
     protected abstract void println(final String text);
 
-    public int getInputMoney() {
+    public int inputMoney() {
         println("구입금액을 입력해 주세요.");
         final String input = read();
         return convertStringToInt(input);
@@ -22,7 +22,7 @@ public abstract class InputView {
         }
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> inputWinningNumbers() {
         println("당첨 번호를 입력해 주세요.");
         final String input = read();
         return convertStringToIntegers(input);

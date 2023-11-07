@@ -41,7 +41,7 @@ public class LottoController {
 
     private int askNumberOfLottos() {
         try {
-            final int inputMoney = inputView.getInputMoney();
+            final int inputMoney = inputView.inputMoney();
             return lottoPaymentService.calculateNumberOfLottos(inputMoney);
         } catch (IllegalArgumentException e) {
             resultView.printException(e);
@@ -65,7 +65,7 @@ public class LottoController {
 
     private Lotto askWinningLotto() {
         try {
-            final List<Integer> winningNumbers = inputView.getWinningNumbers();
+            final List<Integer> winningNumbers = inputView.inputWinningNumbers();
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             resultView.printException(e);

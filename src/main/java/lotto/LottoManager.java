@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,7 +11,6 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractMasterDetailListProcessor;
 
 public class LottoManager {
     private int bonusNumber;
@@ -28,6 +28,7 @@ public class LottoManager {
         totalRateOfRevenue = 0;
         totalRevenue = 0;
         lottoBuyer = buyer;
+        winningNumbers = new ArrayList<Integer>();
         winningCountHash = new Hashtable<Integer, Integer>();
 
         for (int i = 3; i <= 7; i++) {
@@ -99,7 +100,8 @@ public class LottoManager {
     }
 
     public List<Integer> createLottoNumber() {
-        List<Integer> sortedLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> sortedLottoNumber = new ArrayList<Integer>();
+        sortedLottoNumber.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(sortedLottoNumber);
 
         return sortedLottoNumber;
@@ -125,7 +127,6 @@ public class LottoManager {
             System.out.print(e.getMessage());
             inputWinningNumbers();
         }
-
     }
 
     public void setWinningNumbers(List<String> numbers) {

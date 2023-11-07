@@ -132,6 +132,7 @@
 
 * 책임:
     * 로또 객체와 보너스 볼 번호를 검증 후 저장한다.
+        * 보너스 검증 로직: 범위 내, 당첨 번호와 중복 불가
     * 티켓들의 당첨 통계를 계산한다.
 * 필드:
     * 로또 객체
@@ -145,6 +146,23 @@
     * 티켓 객체를 지정한 규칙에 맞게 생성한다.
 * 메소드:
     * createTicket
+
+#### LottoGenerator (interface)
+
+* 책임:
+    * 로또 번호를 생성하는 규칙을 정의한다.
+* 메소드:
+    * generate
+* 구현체:
+    * RandomLottoGenerator
+    * ManualLottoGenerator
+
+##### RandomLottoGenerator
+
+* 책임:
+    * 랜덤한 로또 번호를 생성한다.
+* 메소드:
+    * generate
 
 ### 📁 Repository Layer
 

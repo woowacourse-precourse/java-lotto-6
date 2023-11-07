@@ -21,17 +21,14 @@ public class Validation {
         }
     }
 
-    public static void verifyRangeInputBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            ErrorMessage.verificationViewRangeInputBonusNumber();
-            throw new IllegalArgumentException();
-        }
-    }
+    public static void verifyIntegerWinningLottoNumber(String string) {
+        String[] lottoNumbers = string.split(COMMAS);
 
-    public static void verifyStringToInteger(String string) {
-        if (!string.chars().allMatch(Character::isDigit)) {
-            ErrorMessage.verificationViewStringToInteger();
-            throw new IllegalArgumentException();
+        for (String lottoNumber : lottoNumbers) {
+            if (!Utils.isNumeric(lottoNumber)) {
+                ErrorMessage.verificationViewIntegerLottoNumberList();
+                throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -47,15 +44,17 @@ public class Validation {
         }
     }
 
-    public static void verifyIntegerWinningLottoNumber(String string) {
-        String[] lottoNumbers = string.split(COMMAS);
-
-        for (String lottoNumber : lottoNumbers) {
-            if (!Utils.isNumeric(lottoNumber)) {
-                ErrorMessage.verificationViewIntegerLottoNumberList();
-                throw new IllegalArgumentException();
-            }
+    public static void verifyRangeInputBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            ErrorMessage.verificationViewRangeInputBonusNumber();
+            throw new IllegalArgumentException();
         }
     }
 
+    public static void verifyStringToInteger(String string) {
+        if (!string.chars().allMatch(Character::isDigit)) {
+            ErrorMessage.verificationViewStringToInteger();
+            throw new IllegalArgumentException();
+        }
+    }
 }

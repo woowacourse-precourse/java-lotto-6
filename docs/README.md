@@ -46,7 +46,7 @@
 1. InputView
 
 - enterLottoMoney()
-  - [ ] 로또 구매 금액 입력
+  - [x] 로또 구매 금액 입력
 - enterLottoNumber()
   - [ ] 로또 당첨 번호 입력 받는다.
 - enterBonusLottoNumber()
@@ -74,7 +74,7 @@
    - 로또 게임 시작
    - startGame()
      - saveLottoMoney()
-       - [ ] 로또 구매 금액 입력 받는 함수 호출
+       - [x] 로또 구매 금액 입력 받는 함수 호출
        - [ ] 로또 구매 금액 객체 선언 및 데이터 유효성 검사
      - [ ] 로또 티켓 개수 안내 메시지 출력
      - saveRandomLottoNumbers()

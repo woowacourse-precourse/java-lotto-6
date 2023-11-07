@@ -5,14 +5,12 @@ import java.util.EnumMap;
 import java.util.List;
 import model.Rank;
 
-public class Mainview implements LotoInputRequester, LottoResultPrinter {
+public class MainView implements LotoInputRequester, LottoResultPrinter {
 
-    private final static String[] MONEY_OF_WINNING = {"5,000원", "50,000원", "1,500,000원",
-            "30,000,000원", "2,000,000,000원"};
     private static final String ASK_FOR_HOW_MANY = "구입금액을 입력해 주세요.";
     private static final String REQUEST_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String PRINT_RESULT = "당첨통계\n---";
+    private static final String PRINT_RESULT = "당첨 통계\n---";
     private static final String PRINT_RATE_OF_PROFIT_PREFIX = "총 수익률은 ";
     private static final String PRINT_RATE_OF_PROFIT_SUFFIX = "%입니다.";
     private static final String PRINT_HOW_MANY_AND_LOTTOS_PREFIX = "개를 구매했습니다.";

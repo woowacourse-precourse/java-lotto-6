@@ -1,10 +1,6 @@
 package lotto;
 
-import controller.InputMan;
 import controller.MainController;
-import model.ProfitCalculator;
-import validation.ValidationMan;
-import view.Mainview;
 
 public class Application {
     public static void main(String[] args) {

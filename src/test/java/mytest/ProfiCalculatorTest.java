@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import model.ProfitCalculator;
 import model.Rank;
 import org.junit.jupiter.api.Test;
-import view.Mainview;
+import view.MainView;
 
 import static org.assertj.core.api.Assertions. *;
 
@@ -19,7 +19,7 @@ public class ProfiCalculatorTest {
     @Test
     void calculateProfit()
     {
-        Mainview view = new Mainview();
+        MainView view = new MainView();
         EnumMap<Rank, Integer> testMap = TestEnumMap.generateEnumMap();
         view.printresult(testMap);
         assertThat(new ProfitCalculator().calculateProfit(testMap)).isEqualTo(30050000);

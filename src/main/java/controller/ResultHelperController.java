@@ -6,7 +6,6 @@ import model.ProfitCalculable;
 import model.LottoJudge;
 import model.Rank;
 import view.LottoResultPrinter;
-import view.Mainview;
 
 class ResultHelperController {
     private LottoResultPrinter resultPrinter;

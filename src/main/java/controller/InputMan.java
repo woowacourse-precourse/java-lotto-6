@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import validation.ValidationMan;
 
-public class InputMan {
+class InputMan {
     private ValidationMan validationMan;
 
     public InputMan(ValidationMan validationMan) {
@@ -24,7 +24,12 @@ public class InputMan {
         if (!validationMan.validateNumbers(cutNumbers)) {
             throw new IllegalArgumentException("[ERROR] 제대로 된 값을 입력하세요.");
         }
-        return arrayParseInt(cutNumbers);
+        Integer[] cutNumberstoInteger = arrayParseInt(cutNumbers);
+        if(!validationMan.validateNumbers(cutNumberstoInteger))
+        {
+            throw new IllegalArgumentException("[ERROR] 제대로 된 값을 입력하세요.");
+        }
+        return cutNumberstoInteger;
     }
 
     private String[] cutNumbers(String userNumbers) {

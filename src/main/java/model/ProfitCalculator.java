@@ -10,7 +10,7 @@ public class ProfitCalculator implements ProfitCalculable {
     public String calculateRateOfProfit(String money, int profit) {
         double profitRate = ((double) profit / Integer.parseInt(money)) * 100;
 
-        DecimalFormat df = new DecimalFormat("#.0");
+        DecimalFormat df = new DecimalFormat("0.0");
         String formatted = df.format(profitRate);
 
         return formatted;

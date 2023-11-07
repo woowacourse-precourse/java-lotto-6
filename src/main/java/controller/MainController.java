@@ -6,18 +6,17 @@ import model.MainModel;
 import model.NumberGenerator;
 import model.ProfitCalculator;
 import validation.ValidationMan;
-import view.Mainview;
+import view.MainView;
 
 public class MainController {
     private final static int STANDARD_MONEY = 1000;
-    private Mainview mainview;
     private InputMan inputMan;
     private InputHelperController inputHelperController;
     private ResultHelperController resultHelperController;
 
 
     public MainController() {
-        this.mainview = new Mainview();
+        MainView mainview = new MainView();
         this.inputMan = new InputMan(new ValidationMan());
         this.inputHelperController = new InputHelperController(inputMan, mainview);
         this.resultHelperController = new ResultHelperController(mainview);

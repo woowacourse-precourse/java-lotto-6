@@ -10,7 +10,7 @@ import lotto.Lotto;
 
 public class MainModel implements LottoJudge {
     private List<Lotto> computerLottos;
-    private final static int RANK_INDEX = 5;
+
 
     public MainModel(List<Lotto> computerLottos) {
         this.computerLottos = computerLottos;

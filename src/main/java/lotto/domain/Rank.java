@@ -37,4 +37,11 @@ public enum Rank {
                 .orElse(LOSE);
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

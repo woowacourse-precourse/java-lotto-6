@@ -31,4 +31,14 @@ public class Statistics {
         }
         return initialResults;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        results.forEach((rank, count) -> {
+            String message = String.format(rank.getMessage(), rank.getPrize(), count);
+            stringBuilder.append(message).append("\n");
+        });
+        return stringBuilder.toString();
+    }
 }

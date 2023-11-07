@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.constant.LottoNumberConstant.LOTTO_PRICE;
+import static lotto.domain.exception.DomainExceptionCode.LOTTO_PAYMENT_PRICE_REQUIRED;
+
+import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.strategy.LottoPublisher;
 
@@ -15,17 +19,21 @@ public class LottoStore {
     public PurchasedLottoBundle purchaseLotto(Money money) {
         validate(money);
 
-        final var count = money.value() / 1000;
+        final var quantity = LOTTO_PRICE.divide(money.value());
 
-        return new PurchasedLottoBundle(Stream.generate(lottoPublisher::publish)
-                .limit(count)
-                .toList());
-
+        return new PurchasedLottoBundle(publishLottoBy(quantity));
     }
 
-    private void validate(Money money) {
-        if (money.value() == 0 || money.value() % 1000 != 0) {
-            throw new IllegalArgumentException("로또의 구매 단위는 1000원 입니다.");
-        }
+    private List<Lotto> publishLottoBy(long quantity) {
+        return Stream.generate(lottoPublisher::publish)
+                .limit(quantity)
+                .toList();
+    }
+
+    private void validate(Money payment) {
+        final var paymentValue = payment.value();
+
+        LOTTO_PAYMENT_PRICE_REQUIRED.dynamicInvokeBy(() -> LOTTO_PRICE.isGreaterThan(paymentValue));
+        LOTTO_PAYMENT_PRICE_REQUIRED.dynamicInvokeBy(() -> paymentValue % LOTTO_PRICE.getNumber() != 0);
     }
 }

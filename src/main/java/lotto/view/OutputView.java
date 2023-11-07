@@ -43,7 +43,7 @@ public class OutputView {
                 resultName = OutputMessages.FIFTH_BONUS_RESULT.getMessage();
             }
             int count = winningCounts.getOrDefault(result, 0);
-            int prize = result.getWinningAmount();
+            int prize = result.getWinningAmount().amount();
             String message = String.format(OutputMessages.MATCH_RESULT.getMessage(), resultName, prize, count);
             System.out.println(message);
         }

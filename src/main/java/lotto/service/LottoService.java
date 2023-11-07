@@ -69,7 +69,7 @@ public class LottoService {
 
         for (Winning result : Winning.values()) {
             int count = winningCounts.getOrDefault(result, 0);
-            int prize = result.getWinningAmount();
+            int prize = result.getWinningAmount().amount();
             totalPrize += count * prize;
         }
 

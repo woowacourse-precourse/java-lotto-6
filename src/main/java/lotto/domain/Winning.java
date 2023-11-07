@@ -1,17 +1,17 @@
 package lotto.domain;
 
 public enum Winning {
-    NOT_WINNING(0, 0),
-    THIRD(3, 5_000),
-    FOURTH(4, 50_000),
-    FIFTH(5, 1_500_000),
-    FIFTH_BONUS(7, 30_000_000),
-    SIXTH(6, 2_000_000_000);
+    NOT_WINNING(0, new Amount(0)),
+    THIRD(3, new Amount(5_000)),
+    FOURTH(4, new Amount(50_000)),
+    FIFTH(5, new Amount(1_500_000)),
+    FIFTH_BONUS(7, new Amount(30_000_000)),
+    SIXTH(6, new Amount(2_000_000_000));
 
     private final int matchCount;
-    private final int winningAmount;
+    private final Amount winningAmount;
 
-    Winning(int matchCount, int winningAmount) {
+    Winning(int matchCount, Amount winningAmount) {
         this.matchCount = matchCount;
         this.winningAmount = winningAmount;
     }
@@ -20,7 +20,7 @@ public enum Winning {
         return matchCount;
     }
 
-    public int getWinningAmount() {
+    public Amount getWinningAmount() {
         return winningAmount;
     }
 

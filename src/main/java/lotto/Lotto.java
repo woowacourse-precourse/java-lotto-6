@@ -1,8 +1,7 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,13 +18,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private Boolean duplicate(List<Integer> numbers){
-      for ( Integer number : numbers ) {
-        if(numbers.contains(number)){
-          return Boolean.FALSE;
-        }
-      }
-      return Boolean.TRUE;
-    }
 
+
+  public void printLotto(){
+    System.out.println(this.numbers.stream().sorted().collect(Collectors.toList()));
+  }
 }

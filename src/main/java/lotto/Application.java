@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
+
 import lotto.game.LottoGame;
 import lotto.game.io.views.LottoGameView;
 import lotto.io.ConsoleInput;
@@ -13,7 +15,7 @@ public class Application {
             LottoGame lottoGame = getLottoGame();
             lottoGame.run();
         } catch (Exception e) {
-            System.out.println("예기치 않은 오류로 인해 어플리케이션을 종료합니다.");
+            System.out.println(EXCEPTION_APPLICATION.get());
             throw e;
         }
     }

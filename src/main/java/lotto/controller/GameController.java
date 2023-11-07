@@ -54,6 +54,7 @@ public class GameController {
                                requestCash.spendAmount());
         }
         catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
             return depositCash();
         }
         catch (IllegalStateException e) {
@@ -87,6 +88,7 @@ public class GameController {
             List<Integer> winnerNumbers = inputView.requestWinnerNumbers();
             return winnerNumbers;
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
             return getWinnerNumbers();
         }
         catch (IllegalStateException e) {
@@ -99,6 +101,7 @@ public class GameController {
             Integer bonusNumber = inputView.requestBonusNumber();
             return bonusNumber;
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
             return getBonusNumber();
         }
         catch (IllegalStateException e) {

@@ -4,7 +4,7 @@ import lotto.domain.*;
 import lotto.dto.RequestCash;
 import lotto.dto.RequestLottos;
 import lotto.dto.RequestWinnerLotto;
-import lotto.dto.LottoResult;
+import lotto.dto.RequestLottoResult;
 import lotto.util.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -69,7 +69,7 @@ public class GameController {
     }
 
     private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {
-        LottoResult lottoResult = lottos.compareWithWinnerLotto(winnerLotto);
+        RequestLottoResult requestLottoResult = lottos.compareWithWinnerLotto(winnerLotto);
         Prizes prizes = new Prizes(prizeDummy);
         prizes.getRoundedTotalBenefit(cash.getDepositAmount());
         outputView.printStaticResult(prizes, cash);

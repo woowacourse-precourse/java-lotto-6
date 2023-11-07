@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.dto.LottoResult;
+import lotto.dto.RequestLottoResult;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,11 +21,11 @@ public class Lottos {
         return new Lottos(lottoDummy);
     }
 
-    public LottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
+    public RequestLottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
         List<Prize> results = lottos.stream()
                 .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(), winnerLotto.getBonusNumber()))
                 .collect(Collectors.toList());
-        return LottoResult.of(results);
+        return RequestLottoResult.of(results);
     }
 
 

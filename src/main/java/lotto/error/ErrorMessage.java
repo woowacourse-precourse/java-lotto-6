@@ -13,4 +13,7 @@ public final class ErrorMessage {
     public static final String NOT_DIVIDED_PURCHASE_AMOUNT = "구입 금액이 1000으로 나누어 떨어지지 않습니다";
     public static final String INVALID_LOTTO_NUMBER_LENGTH = "로또 번호 길이가 유효하지 않습니다";
     public static final String DUPLICATED_LOTTO_NUMBER = "로또 번호가 중복됩니다";
+    public static final String WINNING_NUMBER_OUT_OF_RANGE = "당첨 번호가 범위를 벗어났습니다";
+    public static final String INVALID_WINNING_NUMBER_LENGTH = "당첨 번호가 길이가 유효하지 않습니다";
+    public static final String DUPLICATE_WINNING_NUMBER = "당첨 번호가 중복됩니다";
 }

@@ -32,6 +32,7 @@ public class Application {
     public static void main(String[] args) {
         purchaseAmount = getPurchaseAmountWithInput();
         lottos = purchaseLottos(purchaseAmount);
+        printPurchasedLottos();
         winningNumbers = getWinningNumbersWithInput();
         bonusNumber = getBonusNumberWithInput();
     }
@@ -75,6 +76,14 @@ public class Application {
             purchaseAmount -= LOTTO_PRICE;
         }
         return purchasedLottos;
+    }
+
+    private static void printPurchasedLottos() {
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            lotto.printLottoNumbers();
+        }
+        System.out.println();
     }
 
     private static List<Integer> getWinningNumbersWithInput() {

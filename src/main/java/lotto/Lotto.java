@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +17,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void printLottoNumbers() {
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        Collections.sort(numbers);
+        for (int i = 0; i < numbers.size()-1; i++) {
+            result.append(numbers.get(i));
+            result.append(", ");
+        }
+        result.append(numbers.get(numbers.size()-1));
+        result.append("]");
+        System.out.println(result);
+    }
 }

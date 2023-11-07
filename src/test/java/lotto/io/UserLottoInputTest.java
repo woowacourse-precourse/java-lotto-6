@@ -34,6 +34,17 @@ class UserLottoInputTest {
                 .isInstanceOf(InvalidMoneyInput.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"100", "1000", "12345"})
+    @DisplayName("올바르게 입력된 돈이 정확하게 반환된다.")
+    public void validMoneyInput(String in){
+        setupInputStream(in);
+        UserLottoInput input = new UserLottoInput();
+
+        long moneyAmount = input.getMoneyAmount();
+        assertThat(moneyAmount).isEqualTo(Long.parseLong(in));
+    }
+
     @Test
     @DisplayName("입력을 통해 올바르게 당첨 로또를 받아낸다.")
     public void getWinningNumbers() {

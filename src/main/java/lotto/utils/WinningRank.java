@@ -3,7 +3,7 @@ package lotto.utils;
 import java.text.DecimalFormat;
 
 public enum WinningRank {
-    OUT_OF_RANK(0, 0),
+    OUT_OF_RANK(Match.OUT_OF_MATCH.getValue(), GameConstants.NO_PRIZE_AMOUNT),
     FIFTH(Match.THREE.getValue(), GameConstants.FIFTH_PRIZE_AMOUNT),
     FOURTH(Match.FOUR.getValue(), GameConstants.FOURTH_PRIZE_AMOUNT),
     THIRD(Match.FIVE.getValue(), GameConstants.THIRD_PRIZE_AMOUNT),

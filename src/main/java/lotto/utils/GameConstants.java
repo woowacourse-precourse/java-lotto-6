@@ -13,6 +13,7 @@ public class GameConstants {
     public static final int THIRD_PRIZE_AMOUNT = 1500000;
     public static final int FOURTH_PRIZE_AMOUNT = 50000;
     public static final int FIFTH_PRIZE_AMOUNT = 5000;
+    public static final int NO_PRIZE_AMOUNT = 0;
 
 
 }

@@ -6,11 +6,13 @@ import lotto.utils.WinningRank;
 
 public class WinningStatistics {
     private Map<WinningRank, Integer> winningRecords;
-    private int totalWinningAmount = 0;
+    private int totalWinningAmount;
     private double profitRate;
     private int purchaseAmount;
 
     public WinningStatistics(int purchaseAmount) {
+        totalWinningAmount = 0;
+
         winningRecords = new HashMap<>();
         for (WinningRank rank : WinningRank.values()) {
             winningRecords.put(rank, 0);

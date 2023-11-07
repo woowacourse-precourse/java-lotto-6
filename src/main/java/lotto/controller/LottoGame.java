@@ -28,6 +28,7 @@ public class LottoGame {
         purchase();
         makeLottos();
         getWinningNumbers();
+        getBonusNumber();
     }
     private void purchase(){
         boolean validateInput=false;
@@ -67,6 +68,21 @@ public class LottoGame {
     private boolean validateWinningNumber(String input){
         try {
             winningNumbers = new WinningNumbers(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    private void getBonusNumber(){
+        boolean validateInput=false;
+        while(!validateInput){
+            validateInput = validateBonusNumber(inputView.inputBonusNumber());
+        }
+    }
+    private boolean validateBonusNumber(String input){
+        try {
+            winningNumbers.setBonusNumber(input);
             return true;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();

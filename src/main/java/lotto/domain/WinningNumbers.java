@@ -65,5 +65,18 @@ public class WinningNumbers {
             throw new IllegalArgumentException(ErrorConstant.LOTTO_NUMBER_RANGE);
         }
     }
-    
+
+    public void setBonusNumber(String bonusNumberTxt) {
+        isNumber(bonusNumberTxt);
+        int tmp = Integer.parseInt(bonusNumberTxt);
+        hasValidRange(tmp);
+        isDuplicatedWithWinningNumber(tmp);
+        this.bonusNumber = tmp;
+    }
+
+    public void isDuplicatedWithWinningNumber(Integer tmp){
+        if(winningNumbers.contains(tmp)){
+            throw new IllegalArgumentException(ErrorConstant.DUPLICATE_NUMBER);
+        }
+    }
 }

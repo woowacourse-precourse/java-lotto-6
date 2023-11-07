@@ -6,17 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    static final int MONEY_UNIT = 1000;
     static final int LOTTERY_COST = 1000;
     static final int MIN_LOTTERY_NUM = 1;
     static final int MAX_LOTTERY_NUM = 45;
-
 
     LotteryService lotteryService = new LotteryService();
     LottoPrinter lottoPrinter = new LottoPrinter();
 
     public void run(){
-        try{
             int userMoney = getMoney();
             int lotteryCount = userMoney / LOTTERY_COST;
             List<Lotto> totalLottery = lotteryService.getTotalLottery(lotteryCount);
@@ -25,19 +22,29 @@ public class LottoController {
             int bonusNumber = getBonusNumber(winningNumber);
             List<Ranking> winningInformation = lotteryService.compareLotteryWithWinningNumber(totalLottery, winningNumber, bonusNumber);
             lottoPrinter.printWinningInformation(winningInformation, userMoney);
-        } catch(IllegalArgumentException e){
-            throw new IllegalArgumentException(e);
-        }
     }
 
-    private int getMoney() throws IllegalArgumentException{
+    private int getMoney() {
         System.out.println("구입금액을 입력해주세요.");
+        int money;
 
+        while(true){
+            try{
+                money = inputMoney();
+                break;
+            } catch(NumberFormatException e){
+                System.out.println("[ERROR] 숫자만 입력해야 합니다.");
+            } catch(IllegalArgumentException e){
+                System.out.println("[ERROR] 돈은 1000단위로 입력해야 합니다.");
+            }
+        }
+        return money;
+    }
+
+    private int inputMoney() throws IllegalArgumentException{
         int money = Integer.parseInt(Console.readLine());
 
-        if(money % MONEY_UNIT != 0){
-            System.out.println("[ERROR] 돈은 1000단위로 입력해야 합니다.");
-
+        if(money % LOTTERY_COST != 0){
             throw new IllegalArgumentException();
         }
 
@@ -45,21 +52,21 @@ public class LottoController {
     }
 
 
-    private Lotto getWinningNumber() throws IllegalArgumentException{
+    private Lotto getWinningNumber(){
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
 
         List<Integer> number = new ArrayList<>();
-        String[] inputWinningNumber = Console.readLine().split(",");
-        for (String eachNumber : inputWinningNumber) {
-            number.add(Integer.parseInt(eachNumber));
-        }
-
         try{
+            String[] inputWinningNumber = Console.readLine().split(",");
+            for (String eachNumber : inputWinningNumber) {
+                number.add(Integer.parseInt(eachNumber));
+            }
             return new Lotto(number);
         } catch(IllegalArgumentException e){
-            throw new IllegalArgumentException(e);
+            getWinningNumber();
         }
+        return new Lotto(number);
     }
 
     private int getBonusNumber(Lotto winningNumber) throws IllegalArgumentException{

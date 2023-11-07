@@ -6,15 +6,15 @@ import java.util.List;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(){
+    public Lottos() {
         this.lottos = new ArrayList<>();
     }
 
-    public void addLotto(Lotto lotto){
+    public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
 }

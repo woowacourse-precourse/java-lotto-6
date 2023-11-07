@@ -20,11 +20,11 @@ public class WinningNumber {
                     .stream(userInput.split(DELIMITER))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
+            validInRangeNumber();
         }
         catch (Exception e){
-            throw new IllegalArgumentException(NOT_INTEGER_ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
-        validInRangeNumber();
     }
 
     public static WinningNumber create(String userInput){

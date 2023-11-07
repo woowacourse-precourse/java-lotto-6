@@ -5,10 +5,15 @@ import lotto.utils.Parser;
 public class Payment {
     private int payment;
 
-    private Payment(String inputValue){
-        validateNullValue(inputValue);
-        validateNoRemainderValue(this.payment);
-        this.payment = Parser.parseStringToInt(inputValue);
+    private Payment(String inputValue) {
+        try {
+            validateNullValue(inputValue);
+            validateNoRemainderValue(this.payment);
+            this.payment = Parser.parseStringToInt(inputValue);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     void validateNullValue(String value) {
@@ -23,7 +28,7 @@ public class Payment {
         return new Payment(inputValue);
     }
 
-    public int getPayment(){
+    public int getPayment() {
         return this.payment;
     }
 }

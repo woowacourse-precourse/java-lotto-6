@@ -8,7 +8,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        try {
+            validate(numbers);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         this.numbers = numbers;
     }
 
@@ -25,7 +29,7 @@ public class Lotto {
         return numbers.toString();
     }
 
-    public List<Integer> getLottoNumbers(){
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 }

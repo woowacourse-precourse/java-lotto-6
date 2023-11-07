@@ -11,17 +11,21 @@ public class BonusNumber {
     private int bonusNumber;
 
     private BonusNumber(String userInput) {
-        validateNullValue(userInput);
-        this.bonusNumber = Parser.parseStringToInt(userInput);
-        validInRangeNumber();
+        try {
+            validateNullValue(userInput);
+            this.bonusNumber = Parser.parseStringToInt(userInput);
+            validInRangeNumber();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static BonusNumber create(String userInput){
+    public static BonusNumber create(String userInput) {
         return new BonusNumber(userInput);
     }
 
     private void validInRangeNumber() {
-        if (bonusNumber< MIN_RANGE || bonusNumber > MAX_RANGE) {
+        if (bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE) {
             throw new IllegalArgumentException(OUT_RANGE_ERROR_MESSAGE);
         }
     }

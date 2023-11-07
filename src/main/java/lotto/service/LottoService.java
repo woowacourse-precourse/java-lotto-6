@@ -25,13 +25,13 @@ public class LottoService {
         return Validator.isDivide(money);
     }
 
-    public List<Integer> sorting(List<Integer> randomUniqueNumbers) {
+    private List<Integer> sorting(List<Integer> randomUniqueNumbers) {
         List<Integer> sortedNumbers = new ArrayList<>(randomUniqueNumbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;
     }
 
-    public void makeRandomLotto(List<Lotto> lottoNumbers, int count) {
+    private void makeRandomLotto(List<Lotto> lottoNumbers, int count) {
         for (int i = 0; i < count; i++) {
             List<Integer> randomNumbers = sorting(RandomUtil.getRandomUniqueNumbers());
             lottoNumbers.add(new Lotto(randomNumbers));

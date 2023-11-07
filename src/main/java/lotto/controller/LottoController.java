@@ -1,18 +1,21 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.User;
-import lotto.utils.InputValidator;
-import lotto.utils.LottoGenerator;
-import lotto.utils.StringConvertor;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_LOTTO_NUM = 1;
+    private static final int MAX_LOTTO_NUM = 45;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -61,7 +64,17 @@ public class LottoController {
     }
 
     private Lottos makeLotto(Money money) {
-        return new Lottos(LottoGenerator.generateLottos(money.calNumberOfLotto()));
+        return new Lottos(generateLottos(money.calNumberOfLotto()));
+    }
+
+    private List<Lotto> generateLottos(int number) {
+        List<Lotto> lottos = new ArrayList<>();
+        IntStream.range(0, number).forEach(count -> lottos.add(new Lotto(generateLotto())));
+        return lottos;
+    }
+
+    private List<Integer> generateLotto() {
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_SIZE);
     }
 
 }

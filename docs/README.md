@@ -20,11 +20,11 @@ lottos(model) 생성
 ## 3. **정답 로또 생성하기**
 lotto(model) 생성
    
-- [ ] inputView 로 string 입력받기
-- [ ] '숫자 생성기' 로 숫자 리스트 하나 만들기
-- [ ] 검증 : **'숫자 생성기'는 숫자에 관련한 검증만 수행**
-  - [ ] stringToInt
-  - [ ] parsing
+- [X] inputView 로 string 입력받기
+- [X] '숫자 생성기' 로 숫자 리스트 하나 만들기
+- [X] 검증 : **'숫자 생성기'는 숫자에 관련한 검증만 수행**
+  - [X] stringToInt
+  - [X] parsing
 - [ ] controller 에게 숫자 리스트 넘겨서 lotto model 하나 생성 및 반환
 - [ ] 생성할 때 정렬 수행
 - [ ] 검증 : lotto 모델은 비즈니스 로직만 검증 수행

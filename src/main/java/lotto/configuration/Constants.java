@@ -11,6 +11,7 @@ public class Constants {
 
     public static final class Rule {
         public static final int PRICE = 1000;
+        public static final String DELIM = ",";
     }
 
 

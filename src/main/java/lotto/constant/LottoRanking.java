@@ -20,18 +20,18 @@ public enum LottoRanking {
     }
 
     public static LottoRanking convertLottoIntoLottoRanking(int count, boolean isBonusNumberCorrect) {
-        if (count == FIRST.getSameCount()) {
-            return FIRST;
-        } else if (count == SECOND.getSameCount() && isBonusNumberCorrect) {
-            return SECOND;
-        } else if (count == THIRD.getSameCount()) {
-            return THIRD;
-        } else if (count == FOURTH.getSameCount()) {
-            return FOURTH;
-        } else if (count == FIFTH.getSameCount()) {
-            return FIFTH;
-        }
-        return null;
+        return Arrays.stream(LottoRanking.values())
+                .filter(lottoRanking -> {
+                            if (count == 5 && isBonusNumberCorrect) {
+                                return lottoRanking.equals(SECOND);
+                            } else if (count == 5) {
+                                return lottoRanking.equals(THIRD);
+                            }
+                            return lottoRanking.getSameCount() == count;
+                        }
+                )
+                .findFirst()
+                .orElse(null);
     }
 
     public static Map<LottoRanking, Integer> convertValuesIntoCounters() {

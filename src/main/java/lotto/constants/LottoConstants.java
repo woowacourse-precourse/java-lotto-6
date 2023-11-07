@@ -6,7 +6,7 @@ public enum LottoConstants {
 
     private int constants;
 
-    private LottoConstants(int number) {
+    private LottoConstants(final int number) {
         this.constants = number;
     }
 

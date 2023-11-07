@@ -5,11 +5,12 @@ public enum OutputConstants {
     LOTTO_PRINT_PREFIX("["),
     LOTTO_PRINT_SUFFIX("]"),
     SPACE(" "),
-    DASH(" - ");
+    DASH(" - "),
+    JOIN_FORMAT(", ");
 
     private String constants;
 
-    OutputConstants(String constants) {
+    OutputConstants(final String constants) {
         this.constants = constants;
     }
 

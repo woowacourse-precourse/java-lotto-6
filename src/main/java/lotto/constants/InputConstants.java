@@ -6,7 +6,7 @@ public enum InputConstants {
 
     private String constants;
 
-    private InputConstants(String constants) {
+    private InputConstants(final String constants) {
         this.constants = constants;
     }
 

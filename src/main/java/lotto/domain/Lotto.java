@@ -19,14 +19,12 @@ import static lotto.util.CharacterUnits.SPACE;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private StringBuilder lottoBuilder;
 
     public Lotto(final List<Integer> numbers) {
         validateLength(numbers);
         validateEachNumberRange(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
-        this.lottoBuilder = new StringBuilder();
     }
 
     private void validateLength(final List<Integer> numbers) {
@@ -91,23 +89,11 @@ public class Lotto {
 
     @Override
     public String toString() {
-        initLottoBuilder();
-        lottoBuilder.append(LEFT_BRACKET.getUnit());
-        for (Integer number : numbers) {
-            lottoBuilder.append(number);
-            lottoBuilder.append(COMMA.getUnit());
-            lottoBuilder.append(SPACE.getUnit());
-        }
+        String joinedNumbers =  numbers.stream()
+                .map(number -> Integer.toString(number))
+                .collect(Collectors.joining(COMMA.getUnit() + SPACE.getUnit()));
+        return LEFT_BRACKET.getUnit() + joinedNumbers + RIGHT_BRACKET.getUnit();
 
-        lottoBuilder.replace(lottoBuilder.length()-REPLACE_SIZE.getSetting(),
-                                   lottoBuilder.length(),
-                                   RIGHT_BRACKET.getUnit()
-        );
-
-        return lottoBuilder.toString();
     }
 
-    private void initLottoBuilder() {
-        lottoBuilder.setLength(INIT_BUILDER_SIZE.getSetting());
-    }
 }

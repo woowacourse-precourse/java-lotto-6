@@ -16,6 +16,7 @@ import static lotto.view.InputViewMessage.*;
 
 public class InputView {
 
+    // requestCash
     public Cash inputCash() {
         System.out.println(INPUT_CASH_MESSAGE.getMessage());
         final String input = getInput();
@@ -24,6 +25,7 @@ public class InputView {
     }
 
 
+    // 밑에 두 메서드 하나로 묶어서 requestWinnerLotto
     public List<Integer> inputWinnerNumbers() {
         System.out.println();
         System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());

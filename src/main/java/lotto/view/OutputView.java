@@ -6,8 +6,7 @@ import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.util.CharacterUnits.ENTER;
-import static lotto.util.CharacterUnits.LINE;
+import static lotto.util.CharacterUnits.*;
 import static lotto.util.PatternUnits.PATTERN_FOR_DECIMAL_FORMAT;
 import static lotto.view.OutputViewMessage.*;
 
@@ -35,6 +34,7 @@ public class OutputView {
                     .append(ENTER.getUnit());
         }
     }
+
 
     public static void printStaticResult(final Prizes prizes, final Cash cash) {
         initOutputBuilder();

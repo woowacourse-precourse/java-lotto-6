@@ -1,4 +1,5 @@
 package lotto.domain;
+
 import static lotto.constant.CashConstant.INIT_SPEND_AMOUNT;
 import static lotto.constant.CashConstant.UNIT;
 import static lotto.exception.CashExceptionMessage.NOT_MORE_THAN_UNIT;

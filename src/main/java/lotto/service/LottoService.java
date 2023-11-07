@@ -1,14 +1,17 @@
 package lotto.service;
 
 import static lotto.model.Lotto.LOTTO_PRICE;
+import static lotto.model.Lotto.NUMBER_OUT_OF_RANGE;
 import static lotto.model.LottoPrize.PRIZE_2;
 import static lotto.model.LottoStatistic.RATE;
+import static lotto.model.PurchaseAmount.INVALID_PURCHASE_AMOUNT;
+import static lotto.model.WinningNumbers.INVALID_BONUS_NUMBER;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import lotto.exception.InputCallback;
 import lotto.exception.InputExceptionTemplate;
+import lotto.exception.InputVoidCallback;
 import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 import lotto.model.LottoPrizeCount;
@@ -27,7 +30,13 @@ public class LottoService {
     }
 
     public PurchaseAmount askPurchaseAmount(InputCallback<Integer> callback) {
-        return inputByExceptionTemplate(() -> PurchaseAmount.from(inputByExceptionTemplate(callback)));
+        return inputByExceptionTemplate(
+                () -> {
+                    int amount = inputByExceptionTemplate(callback, INVALID_PURCHASE_AMOUNT);
+                    return PurchaseAmount.from(amount);
+                },
+                INVALID_PURCHASE_AMOUNT
+        );
     }
 
     public Lottos buyLottos(PurchaseAmount amount) {
@@ -37,16 +46,18 @@ public class LottoService {
                 .toList());
     }
 
-    public List<Integer> askWinningNumbers(InputCallback<List<Integer>> callback) {
-        return inputByExceptionTemplate(callback);
+    public Lotto askWinningNumbers(InputCallback<Lotto> callback) {
+        return inputByExceptionTemplate(callback, NUMBER_OUT_OF_RANGE);
     }
 
-    public int askBonusNumber(InputCallback<Integer> callback) {
-        return inputByExceptionTemplate(callback);
-    }
-
-    public WinningNumbers createWinningNumbers(List<Integer> numbers, int bonusNumber) {
-        return inputByExceptionTemplate(() -> WinningNumbers.of(numbers, bonusNumber));
+    public WinningNumbers createWinningNumbers(Lotto lotto, InputCallback<Integer> callback) {
+        return inputByExceptionTemplate(
+                () -> {
+                    int bonusNumber = inputByExceptionTemplate(callback);
+                    return WinningNumbers.of(lotto, bonusNumber);
+                },
+                INVALID_BONUS_NUMBER
+        );
     }
 
     public LottoStatistic createStatisticOf(
@@ -74,7 +85,8 @@ public class LottoService {
     private LottoPrize match(Lotto lotto, WinningNumbers winningNumbers) {
         int matchCount = (int) lotto.stream().filter(winningNumbers::contains).count();
         boolean hasBonus = isSameMatchCountOfPrize2(matchCount)
-                && lotto.stream().anyMatch(number -> number == winningNumbers.getBonusNumber());
+                && lotto.stream()
+                        .anyMatch(number -> number == winningNumbers.getBonusNumber());
         return LottoPrize.from(new LottoMatchResult(matchCount, hasBonus));
     }
 
@@ -90,5 +102,17 @@ public class LottoService {
 
     private <T> T inputByExceptionTemplate(InputCallback<T> callback) {
         return inputExceptionTemplate.run(callback);
+    }
+
+    private <T> T inputByExceptionTemplate(InputCallback<T> callback, String message) {
+        return inputExceptionTemplate.run(callback, message);
+    }
+
+    private void inputByExceptionTemplate(InputVoidCallback callback) {
+        inputExceptionTemplate.run(callback);
+    }
+
+    private void inputByExceptionTemplate(InputVoidCallback callback, String message) {
+        inputExceptionTemplate.run(callback, message);
     }
 }

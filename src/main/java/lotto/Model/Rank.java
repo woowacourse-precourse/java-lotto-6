@@ -33,7 +33,7 @@ public enum Rank {
         return rank.message;
     }
 
-    public static Rank calculateWinningRank(RandomLotto randomLotto, WinningLotto winningLotto, Bonus bonus) {
+    public static Rank calculateWinningRank(Lotto randomLotto, WinningLotto winningLotto, Bonus bonus) {
         List<Integer> randomLottoNumbers = randomLotto.getNumbers();
         List<Integer> winningLottoNumbers = winningLotto.getWinningLotto().getNumbers();
         int matchingCounts = 0;

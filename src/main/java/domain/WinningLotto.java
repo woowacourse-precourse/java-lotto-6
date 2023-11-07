@@ -18,7 +18,7 @@ public class WinningLotto {
         this.bonusNumber = number;
     }
 
-    public boolean isEqualToWnningNumber(int number) {
+    public boolean isEqualToWinningNumber(int number) {
         return winningNumber.isContainNumber(number);
     }
 

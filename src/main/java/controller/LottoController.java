@@ -88,7 +88,7 @@ public class LottoController {
     private int countOfMatchedNumber(Lotto lotto, WinningLotto winLotto) {
         int count = 0;
         for(int number : lotto.getNumbers()) {
-            if(winLotto.isEqualToWnningNumber(number)) {
+            if(winLotto.isEqualToWinningNumber(number)) {
                 count++;
             }
         }

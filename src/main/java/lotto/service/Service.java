@@ -45,34 +45,31 @@ public class Service {
 
     public HashMap<PrizeTable, Integer> determineRank(int countSameNumber, boolean hasBonusNumber, HashMap<PrizeTable, Integer> result) {
         if (countSameNumber == 6) {
-            result.put(PrizeTable.FIRST_PRIZE, result.get(PrizeTable.FIRST_PRIZE)+1);
+            result.put(PrizeTable.FIRST_PRIZE, result.get(PrizeTable.FIRST_PRIZE) + 1);
         } else if (countSameNumber == 5 && hasBonusNumber) {
-            result.put(PrizeTable.SECOND_PRIZE, result.get(PrizeTable.SECOND_PRIZE)+1);
+            result.put(PrizeTable.SECOND_PRIZE, result.get(PrizeTable.SECOND_PRIZE) + 1);
         } else if (countSameNumber == 5) {
-            result.put(PrizeTable.THIRD_PRIZE,result.get(PrizeTable.THIRD_PRIZE)+1);
+            result.put(PrizeTable.THIRD_PRIZE, result.get(PrizeTable.THIRD_PRIZE) + 1);
         } else if (countSameNumber == 4) {
-            result.put(PrizeTable.FOURTH_PRIZE,result.get(PrizeTable.FOURTH_PRIZE)+1);
+            result.put(PrizeTable.FOURTH_PRIZE, result.get(PrizeTable.FOURTH_PRIZE) + 1);
         } else if (countSameNumber == 3) {
-            result.put(PrizeTable.FIFTH_PRIZE,result.get(PrizeTable.FIFTH_PRIZE)+1);
+            result.put(PrizeTable.FIFTH_PRIZE, result.get(PrizeTable.FIFTH_PRIZE) + 1);
         }
         return result;
     }
 
-
     public HashMap<PrizeTable, Integer> PrizeSetting() {
         HashMap<PrizeTable, Integer> result = new HashMap<>();
-        result.put(PrizeTable.FIRST_PRIZE, 0);
-        result.put(PrizeTable.SECOND_PRIZE, 0);
-        result.put(PrizeTable.THIRD_PRIZE, 0);
-        result.put(PrizeTable.FOURTH_PRIZE, 0);
-        result.put(PrizeTable.FIFTH_PRIZE, 0);
-        result.put(PrizeTable.NO_RANK_TWO, 0);
-        result.put(PrizeTable.NO_RANK_ONE, 0);
         result.put(PrizeTable.NO_RANK_ZERO, 0);
+        result.put(PrizeTable.NO_RANK_ONE, 0);
+        result.put(PrizeTable.NO_RANK_TWO, 0);
+        result.put(PrizeTable.FIFTH_PRIZE, 0);
+        result.put(PrizeTable.FOURTH_PRIZE, 0);
+        result.put(PrizeTable.THIRD_PRIZE, 0);
+        result.put(PrizeTable.SECOND_PRIZE, 0);
+        result.put(PrizeTable.FIRST_PRIZE, 0);
         return result;
     }
-
-
 
 
 }

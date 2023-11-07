@@ -50,4 +50,5 @@ public class CustomizedException {
             throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "1부터45까지의 수만 입력 가능합니다.");
         }
     }
+
 }

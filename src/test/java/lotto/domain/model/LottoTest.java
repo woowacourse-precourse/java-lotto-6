@@ -1,7 +1,9 @@
 package lotto.domain.model;
 
 import lotto.domain.model.Lotto;
+import lotto.exception.lottoamountexception.AmountErrorMessage;
 import lotto.exception.lottonumbersexception.LottoNumbersInputException;
+import lotto.exception.lottonumbersexception.NumbersErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,13 +32,15 @@ class LottoTest {
     @Test
     void createLottoByOutOfNumberRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(LottoNumbersInputException.class);
+                .isInstanceOf(LottoNumbersInputException.class)
+                .hasMessage(NumbersErrorMessage.OUT_OF_NUMBERS_RANGE.getMessage());
     }
 
     @DisplayName("로또 번호의 개수가 6개 미만이라면 예외가 발생한다.")
     @Test
     void createLottoByUnderSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
-                .isInstanceOf(LottoNumbersInputException.class);
+                .isInstanceOf(LottoNumbersInputException.class)
+                .hasMessage(NumbersErrorMessage.INSUFFICIENT_NUMBERS_COUNT.getMessage());
     }
 }

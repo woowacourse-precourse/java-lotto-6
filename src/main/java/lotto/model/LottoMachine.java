@@ -36,9 +36,14 @@ public class LottoMachine {
     }
 
     private List<Integer> generateLottoNumbers() {
-        return numberGenerator.generate(LottoConfig.START_OF_LOTTO_NUMBER.getValue()
-                , LottoConfig.END_OF_LOTTO_NUMBER.getValue()
-                , LottoConfig.LOTTO_NUMBER_COUNT.getValue());
+        List<Integer> numbers = numberGenerator.generate(
+                LottoConfig.START_OF_LOTTO_NUMBER.getValue(),
+                LottoConfig.END_OF_LOTTO_NUMBER.getValue(),
+                LottoConfig.LOTTO_NUMBER_COUNT.getValue()
+        );
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private static int getTicketCount(Money money) {

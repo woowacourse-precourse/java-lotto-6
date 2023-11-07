@@ -30,6 +30,21 @@ public class WinningStatus {
     }
 
     public double getSum(PrizeType prizeType) {
-        return (double)prizeTypeWithCount.get(prizeType) * prizeType.getPrize();
+        return (double) prizeTypeWithCount.get(prizeType) * prizeType.getPrize();
+    }
+
+    public int getCount(PrizeType prizeType) {
+        return prizeTypeWithCount.get(prizeType);
+    }
+
+    public String getMessages() {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(PrizeType.getMessage(PrizeType.MATCH3, getCount(PrizeType.MATCH3)));
+        buffer.append(PrizeType.getMessage(PrizeType.MATCH4, getCount(PrizeType.MATCH4)));
+        buffer.append(PrizeType.getMessage(PrizeType.MATCH5, getCount(PrizeType.MATCH5)));
+        buffer.append(PrizeType.getMessage(PrizeType.MATCH5_WITH_BONUS, getCount(PrizeType.MATCH5_WITH_BONUS)));
+        buffer.append(PrizeType.getMessage(PrizeType.MATCH6, getCount(PrizeType.MATCH6)));
+
+        return buffer.toString();
     }
 }

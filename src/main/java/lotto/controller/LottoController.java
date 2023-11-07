@@ -55,8 +55,17 @@ public class LottoController {
     }
 
     private Lotto setLotto() {
-        return new Lotto(input.winLottoNumbers());
-
+        boolean isContinue = true;
+        while (isContinue) {
+            try {
+                Lotto lotto = new Lotto(input.winLottoNumbers());
+                isContinue = false;
+                return lotto;
+            } catch (IllegalArgumentException e) {
+                output.message(e.getMessage());
+            }
+        }
+        return null;
     }
 
     private Bonus setBonus() {
@@ -65,9 +74,9 @@ public class LottoController {
 
     private WinLotto setWinLotto() {
         boolean isContinue = true;
+        Lotto lotto = setLotto();
         while (isContinue) {
             try {
-                Lotto lotto = setLotto();
                 Bonus bonus = setBonus();
                 WinLotto winLotto = new WinLotto(lotto, bonus);
                 isContinue = false;

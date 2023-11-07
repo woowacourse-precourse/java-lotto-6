@@ -5,7 +5,7 @@ import lotto.domain.Money;
 import static lotto.constant.message.OutputMessage.*;
 
 public class OutputLottoCountView {
-    public void OutputLottoCount(Money money) {
-        System.out.printf("\n" + COUNT_LOTTO + "\n", money.getLottoCount());
+    public void outputLottoCount(Money money) {
+        System.out.printf(NEWLINE + COUNT_LOTTO + NEWLINE, money.getLottoCount());
     }
 }

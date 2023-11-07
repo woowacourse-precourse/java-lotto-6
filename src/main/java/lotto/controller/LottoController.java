@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
+import lotto.domain.*;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.*;
 
@@ -14,11 +11,17 @@ public class LottoController {
     public void start() {
         Money money = getMoney();
         printLottoCount(money);
+
         Lottos lottos = createLottos(money);
         printLottos(lottos);
+
         Lotto winningNumber = getNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
+        RewardResult rewardResult = new RewardResult();
+        calculateReward(rewardResult, winningNumber, bonusNumber, lottos);
 
+        Rate rate = calculateRate(money, rewardResult);
+        OutputRewardResultView.outputRewardResult(rewardResult, rate);
     }
 
     private Money getMoney() {
@@ -29,7 +32,7 @@ public class LottoController {
 
     private void printLottoCount(Money money) {
         OutputLottoCountView outputLottoCountView = new OutputLottoCountView();
-        outputLottoCountView.OutputLottoCount(money);
+        outputLottoCountView.outputLottoCount(money);
     }
 
     private Lottos createLottos(Money money) {
@@ -40,7 +43,7 @@ public class LottoController {
 
     private void printLottos(Lottos lottos) {
         OutputLottosView outputLottosView = new OutputLottosView();
-        outputLottosView.OutputLottos(lottos);
+        outputLottosView.outputLottos(lottos);
     }
 
     private Lotto getNumber() {
@@ -55,11 +58,11 @@ public class LottoController {
         return new BonusNumber(bonusNumber, winningNumber);
     }
 
-    private void calculateReward() {
-
+    private void calculateReward(RewardResult rewardResult, Lotto winningNumber, BonusNumber bonusNumber, Lottos lottos) {
+        rewardResult.calcRewardResult(winningNumber, bonusNumber, lottos);
     }
 
-    private void calculateRate() {
-
+    private Rate calculateRate(Money money, RewardResult rewardResult) {
+        return new Rate(money, rewardResult);
     }
 }

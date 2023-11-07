@@ -16,6 +16,7 @@ public class LottoGame {
         Integer bonusNumber = InputView.inputBonusNumber();
 
         checkLottoWinningRank(winningNumbers, bonusNumber);
+        printRank();
     }
 
     private void checkLottoWinningRank(List<Integer> winningNumbers, Integer bonusNumber) {
@@ -46,6 +47,15 @@ public class LottoGame {
     private void printLottoNumbers() {
         lottos.stream()
                 .forEach(lotto -> lotto.printNumbers());
+    }
+
+    private void printRank() {
+        System.out.println(MessageConstants.WINNING_GUIDE);
+        System.out.println(MessageConstants.THREE_MATCH + fifthPlaceCount + "개");
+        System.out.println(MessageConstants.FOUR_MATCH + fourthPlaceCount + "개");
+        System.out.println(MessageConstants.FIVE_MATCH + thirdPlaceCount + "개");
+        System.out.println(MessageConstants.FIVE_BONUS_MATCH + secondPlaceCount + "개");
+        System.out.println(MessageConstants.SIX_MATCH + firstPlaceCount + "개");
     }
 
 }

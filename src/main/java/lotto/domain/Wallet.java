@@ -29,11 +29,16 @@ public class Wallet {
 
         while (this.balance > 0) {
             List<Integer> numbers = getLottoNumbers();
-            Lotto lotto = new Lotto(numbers);
 
-            this.lottos.add(lotto);
+            buyLotto(numbers);
+
             this.balance -= MIN_AMOUNT_OF_LOTTO;
         }
+    }
+
+    public void buyLotto(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        this.lottos.add(lotto);
     }
 
 

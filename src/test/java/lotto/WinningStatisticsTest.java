@@ -20,8 +20,8 @@ class WinningStatisticsTest {
 
     @Test
     void 수익률이_소수점_2자리에서_반올림되어_반환되는가() {
-        WinningStatistics winningStatistics = new WinningStatistics(new LottoAmount(8_000), Map.of(FIFTH, 1, NONE, 7));
-        double returnRate = 62.5;
+        WinningStatistics winningStatistics = new WinningStatistics(new LottoAmount(16_000), Map.of(FIFTH, 1, NONE, 15));
+        double returnRate = 31.3; // 실제 값은 31.25
 
         assertThat(winningStatistics.getReturnRate()).isEqualTo(returnRate);
     }

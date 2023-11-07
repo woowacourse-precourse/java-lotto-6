@@ -4,7 +4,7 @@ import java.util.Map;
 
 public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> rankingNumber) {
     public double getReturnRate() {
-        return Math.round(calculateReturnRate() * 100.0) / 100.0;
+        return Math.round(calculateReturnRate() * 10.0) / 10.0;
     }
 
     private double calculateReturnRate() {

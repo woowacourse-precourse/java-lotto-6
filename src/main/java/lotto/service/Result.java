@@ -12,11 +12,11 @@ public class Result {
     private static final int FIVE_HIT_PLUS_BONUS_HIT_PRICE = 30000000;
     private static final int SIX_HIT_PRICE = 2000000000;
 
-    private int threeHit;
-    private int fourHit;
-    private int fiveHit;
-    private int fiveHitPlusBonusHit;
-    private int sixHit;
+    private static int threeHit = 0;
+    private static int fourHit = 0;
+    private static int fiveHit = 0;
+    private static int fiveHitPlusBonusHit = 0;
+    private static int sixHit = 0;
     private Payment payment;
     private List<Lotto> lottos;
 
@@ -30,7 +30,6 @@ public class Result {
                 .toList();
         List<Boolean> bonusResults = lottos.stream().map(lotto -> lotto.containsNumber(bonusNumber.getNumber()))
                 .toList();
-        System.out.println(bonusResults);
         countResult(winningResults, bonusResults);
     }
 
@@ -57,8 +56,8 @@ public class Result {
 
     public double calculateWinningRate() {
         int price = calculatePrice();
-        double winningRate = (double) price / payment.getPayment();
-        return Math.round(winningRate * 100.0) / 100.0;
+        double winningRate = (double) price / payment.getPayment() * 100;
+        return Math.round(winningRate * 10.0) / 10.0;
     }
 
     private int calculatePrice() {
@@ -72,7 +71,7 @@ public class Result {
                 + "4개 일치 (50,000원) - " + fourHit + "개\n"
                 + "5개 일치 (1,500,000원) - " + fiveHit + "개\n"
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveHitPlusBonusHit + "개\n"
-                + "6개 일치 (2,000,000,000원) - " + sixHit + "개\n";
+                + "6개 일치 (2,000,000,000원) - " + sixHit + "개";
     }
 
 }

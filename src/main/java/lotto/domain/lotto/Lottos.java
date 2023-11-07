@@ -7,6 +7,7 @@ import lotto.domain.WinningResult;
 public class Lottos {
 
     private static final int BONUS = 7;
+    private static final int MINIMUM = 3;
 
     List<Lotto> lottos;
 
@@ -22,26 +23,34 @@ public class Lottos {
         return lottos.size();
     }
 
-    public WinningResult determineWinnings(Lotto winningLotto, Bonus bonus) {
+    public HashMap<Integer,Integer> determineWinnings(Lotto winningLotto, Bonus bonus) {
         List<Integer> winningNumbers = winningLotto.getNumbers();
-        HashMap<Integer,Integer>winningResult = new HashMap<>();
+        int bonusNumber = bonus.getBonusNumber();
+        HashMap<Integer,Integer>winnings = new HashMap<>();
         for (Lotto lotto : lottos) {
-            int winningNumbersCount = lotto.countWinningNumbers(winningNumbers);
-            if(isWinningNumberCountFive(winningNumbersCount) && hasBonusNumber(lotto,bonus)){
-                winningNumbersCount = BONUS;
+            int winningNumbersCount = getWinningNumbersCount(lotto,winningNumbers,bonusNumber);
+            if(winningNumbersCount>=MINIMUM) {
+                int lottoCount = winnings.getOrDefault(winningNumbersCount, 0);
+                winnings.put(winningNumbersCount, lottoCount + 1);
             }
-            int lottoCount = winningResult.getOrDefault(winningNumbersCount,0);
-            winningResult.put(winningNumbersCount,lottoCount+1);
         }
-        return new WinningResult(winningResult);
+        return winnings;
+    }
+
+    private int getWinningNumbersCount(Lotto lotto, List<Integer> winningNumbers, int bonusNumber){
+        int winningNumbersCount = lotto.countWinningNumbers(winningNumbers);
+        if(isWinningNumberCountFive(winningNumbersCount) && hasBonusNumber(lotto,bonusNumber)){
+            winningNumbersCount = BONUS;
+        }
+        return winningNumbersCount;
     }
 
     private boolean isWinningNumberCountFive(int winningNumberCount){
         return winningNumberCount == 5;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, Bonus bonus){
-        return lotto.hasSameNumber(bonus.getBonusNumber());
+    private boolean hasBonusNumber(Lotto lotto, int bonusNumber){
+        return lotto.hasSameNumber(bonusNumber);
     }
 
 }

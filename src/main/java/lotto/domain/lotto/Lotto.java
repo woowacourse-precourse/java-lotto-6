@@ -10,6 +10,10 @@ import java.util.Set;
 
 public class Lotto {
 
+    private static final int STARTINCLUSIVE = 1;
+    private static final int ENDINCLUSIVE = 45;
+    private static final int COUNT = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,7 +28,7 @@ public class Lotto {
     }
 
     private void throwIfInvalidNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.message());
         }
     }
@@ -51,7 +55,7 @@ public class Lotto {
     }
 
     private boolean isInRange(int number) {
-        return number >= 1 && number <= 45;
+        return number >= STARTINCLUSIVE && number <= ENDINCLUSIVE;
     }
 
     public boolean hasSameNumber(int number) {

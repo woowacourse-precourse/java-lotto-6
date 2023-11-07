@@ -6,6 +6,7 @@ import lotto.utils.InputValidator;
 
 import java.util.List;
 
+import static lotto.constant.Global.DELIMITER;
 import static lotto.constant.InputMessage.INPUT_BONUS_NUMBER_MESSAGE;
 import static lotto.constant.InputMessage.INPUT_MONEY_MESSAGE;
 import static lotto.constant.InputMessage.INPUT_WINNING_NUMBER_MESSAGE;
@@ -22,7 +23,7 @@ public class InputView {
     public static List<Integer> inputWinningNumber() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE.getMessage());
         String winningNumber = Console.readLine();
-        String[] numbers = winningNumber.split(",");
+        String[] numbers = winningNumber.split(DELIMITER.getValue());
         InputValidator.validateInputWinningNumber(numbers);
 
         return Converter.convertWinningNumber(numbers);

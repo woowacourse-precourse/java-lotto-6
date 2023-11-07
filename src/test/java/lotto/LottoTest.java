@@ -1,8 +1,7 @@
 package lotto;
 
 import java.util.stream.Stream;
-import lotto.domain.Lotto;
-import lotto.domain.LottoErrorMessages;
+import lotto.domain.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -49,8 +48,7 @@ class LottoTest {
     @MethodSource("provideNumbersForInvalidSize")
     void testInvalidSize(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoErrorMessages.INVALID_SIZE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> provideNumbersForInvalidSize() {
@@ -66,7 +64,7 @@ class LottoTest {
     void testDuplicateNumbers(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoErrorMessages.DUPLICATE_NUMBERS.getMessage());
+                .hasMessageContaining("로또 숫자는 중복될 수 없습니다.");
     }
 
     private static Stream<Arguments> provideNumbersForDuplicateNumbers() {

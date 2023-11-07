@@ -2,7 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.domain.LottoNumber;
+import lotto.domain.model.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;

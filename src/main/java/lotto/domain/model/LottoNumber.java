@@ -1,8 +1,9 @@
-package lotto.domain;
+package lotto.domain.model;
 
-import static lotto.domain.LottoErrorMessages.*;
+import static lotto.domain.model.LottoErrorMessages.*;
 
 import java.util.Objects;
+import lotto.domain.LottoConfig;
 
 
 public class LottoNumber {

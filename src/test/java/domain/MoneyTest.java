@@ -1,10 +1,8 @@
 package domain;
 
-import lotto.domain.LottoErrorMessages;
-import lotto.domain.Money;
+import lotto.domain.model.Money;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -33,7 +31,7 @@ public class MoneyTest {
         void createWithInvalidAmount(int invalidAmount) {
             assertThatThrownBy(() -> new Money(invalidAmount))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(LottoErrorMessages.NEGATIVE_AMOUNT.getMessage());
+                    .hasMessageContaining("금액은 양수여야 합니다.");
         }
     }
 }

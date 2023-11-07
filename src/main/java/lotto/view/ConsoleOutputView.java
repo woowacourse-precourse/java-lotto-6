@@ -3,16 +3,15 @@ package lotto.view;
 import static lotto.domain.PrintMessages.*;
 import static lotto.util.Constants.*;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoNumber;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoResults;
-import lotto.domain.Lottos;
+import lotto.domain.dto.LottoResults;
+import lotto.domain.model.Lottos;
 
 public class ConsoleOutputView implements Output {
 

@@ -1,9 +1,9 @@
 package domain;
 
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.MatchCalculator;
-import lotto.domain.WinningNumbers;
+import lotto.domain.model.Lotto;
+import lotto.domain.caclulator.MatchCalculator;
+import lotto.domain.model.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

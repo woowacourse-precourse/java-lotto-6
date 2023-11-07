@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.domain.LottoResults;
-import lotto.domain.Lottos;
+import lotto.domain.dto.LottoResults;
+import lotto.domain.model.Lottos;
 
 public interface Output {
 

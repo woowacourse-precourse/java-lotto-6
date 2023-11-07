@@ -1,7 +1,7 @@
 package domain;
 
-import lotto.domain.Money;
-import lotto.domain.RevenueCalculator;
+import lotto.domain.model.Money;
+import lotto.domain.caclulator.RevenueCalculator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

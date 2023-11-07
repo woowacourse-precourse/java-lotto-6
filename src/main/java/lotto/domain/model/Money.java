@@ -1,7 +1,9 @@
-package lotto.domain;
+package lotto.domain.model;
 
 
-import static lotto.domain.LottoErrorMessages.*;
+import static lotto.domain.model.LottoErrorMessages.*;
+
+import lotto.domain.LottoConfig;
 
 public class Money {
 
@@ -17,7 +19,6 @@ public class Money {
             throw new IllegalArgumentException(NEGATIVE_AMOUNT.getMessage());
         }
     }
-
     public int getAmount() {
         return amount;
     }

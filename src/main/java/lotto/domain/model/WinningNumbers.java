@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.domain.model;
 
 import static lotto.util.Constants.*;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.model.LottoErrorMessages;
 import lotto.util.StringToNumberConvertor;
 
 public class WinningNumbers {

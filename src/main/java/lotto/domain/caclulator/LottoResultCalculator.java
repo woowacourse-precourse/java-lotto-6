@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.caclulator;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -6,6 +6,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lotto.domain.LottoRank;
+import lotto.domain.dto.LottoResults;
+import lotto.domain.dto.MatchResult;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.Lottos;
+import lotto.domain.model.WinningNumbers;
 
 public class LottoResultCalculator {
 

@@ -1,11 +1,9 @@
 package domain;
 
-import lotto.domain.WinningNumbers;
-import lotto.domain.LottoErrorMessages;
+import lotto.domain.model.WinningNumbers;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static lotto.domain.LottoErrorMessages.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -32,6 +30,6 @@ public class WinningNumberTest {
     void DuplicateBonusNumberTest(String winningNumbers, int bonusNumber) {
         assertThatThrownBy(() -> WinningNumbers.of(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NUMBER_DUPLICATED.getMessage());
+                .hasMessageContaining("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 }

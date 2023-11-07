@@ -2,12 +2,12 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.domain.Lotto;
+import lotto.domain.model.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoResultCalculator;
-import lotto.domain.LottoResults;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.caclulator.LottoResultCalculator;
+import lotto.domain.dto.LottoResults;
+import lotto.domain.model.Lottos;
+import lotto.domain.model.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

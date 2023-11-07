@@ -1,12 +1,12 @@
-package lotto.domain;
+package lotto.domain.model;
 
-import static lotto.domain.LottoErrorMessages.*;
-import static lotto.domain.LottoConfig.*;
+import static lotto.domain.model.LottoErrorMessages.*;
 
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import lotto.domain.LottoConfig;
 
 
 public class Lotto {

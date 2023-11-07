@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.domain.dto;
 
 import java.util.Optional;
+import lotto.domain.LottoRank;
 
 public record MatchResult(int matchCount, boolean matchBonus) {
 

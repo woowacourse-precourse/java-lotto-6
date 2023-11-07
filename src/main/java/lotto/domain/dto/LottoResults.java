@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.domain.dto;
 
 import java.util.Map;
 import java.util.EnumMap;
+import lotto.domain.LottoRank;
 
 public record LottoResults(Map<LottoRank, Integer> rankCounts) {
 

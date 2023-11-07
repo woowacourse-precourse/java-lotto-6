@@ -1,22 +1,20 @@
 package lotto.controller;
 
 
-import static lotto.domain.LottoConfig.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.InputHandler;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoPurchaseCalculator;
-import lotto.domain.LottoResultCalculator;
-import lotto.domain.LottoResults;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
+import lotto.domain.model.Lotto;
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.caclulator.LottoPurchaseCalculator;
+import lotto.domain.caclulator.LottoResultCalculator;
+import lotto.domain.dto.LottoResults;
+import lotto.domain.model.Lottos;
+import lotto.domain.model.Money;
 import lotto.domain.PrintMessages;
-import lotto.domain.RevenueCalculator;
-import lotto.domain.WinningNumbers;
+import lotto.domain.caclulator.RevenueCalculator;
+import lotto.domain.model.WinningNumbers;
 import lotto.strategy.NumberGenerationStrategy;
 import lotto.view.Input;
 import lotto.view.Output;

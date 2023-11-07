@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.domain.model;
 
-public enum LottoErrorMessages {
+import lotto.domain.LottoConfig;
+
+enum LottoErrorMessages {
     INVALID_NUMBER_RANGE(
             String.format("Lotto 숫자는 %d부터 %d까지 입니다.",
                     LottoConfig.MIN_NUMBER.getValue(),

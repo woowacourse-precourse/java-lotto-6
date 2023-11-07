@@ -33,6 +33,7 @@ public class Validator {
 
     public static void checkPublishLottoNumber(List<Integer> lottoNumbers) throws IllegalArgumentException{
         checkLottoNumberSize(lottoNumbers);
+        checkLottoNumberDuplicate(lottoNumbers);
     }
 
     public static void checkBonusNumber(List<Integer> winningNumber, Integer bonusNumber) throws IllegalArgumentException{

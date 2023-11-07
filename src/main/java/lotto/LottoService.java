@@ -53,7 +53,7 @@ public class LottoService {
 		for (int i = 0; i < numbers.length; i++) {
 			String check = numbers[i].strip();
 			validator.checkComposedOfNumbers(check);
-			validator.checkInRange(check);
+			validator.checkInRange(Integer.parseInt(check));
 			userNumbers.add(Integer.parseInt(check));
 		}
 		Lotto user = new Lotto(userNumbers);
@@ -64,7 +64,7 @@ public class LottoService {
 			throws IllegalArgumentException {
 		List<Integer> userNumbers = user.getNumbers();
 		validator.checkComposedOfNumbers(inputBonusNumber);
-		validator.checkInRange(inputBonusNumber);
+		validator.checkInRange(Integer.parseInt(inputBonusNumber));
 		validator.checkContainNumber(userNumbers, inputBonusNumber);
 		return Integer.parseInt(inputBonusNumber);
 	}

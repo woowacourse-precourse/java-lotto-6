@@ -16,9 +16,8 @@ public class Validator {
 		}
 	}
 
-	public void checkInRange(String number) throws IllegalArgumentException {
-		int checkNumber = Integer.parseInt(number);
-		if (!(1 <= checkNumber && checkNumber <= 45)) {
+	public void checkInRange(int number) throws IllegalArgumentException {
+		if (!(1 <= number && number <= 45)) {
 			throw new IllegalArgumentException(ErrorCode.NOT_IN_RANGE.getErrorMessage());
 		}
 	}

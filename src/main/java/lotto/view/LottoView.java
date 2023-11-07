@@ -2,8 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
+import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.util.InputDataException;
 
 public class LottoView {

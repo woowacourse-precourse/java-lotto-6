@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.WinningLotto;
+import lotto.model.Lotto;
+import lotto.model.LottoResult;
+import lotto.model.WinningLotto;
 import lotto.util.LottoConstant;
 
 public class LottoResultController {

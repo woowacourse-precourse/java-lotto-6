@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.view.LottoView;
 
 public class WinningLottoController {

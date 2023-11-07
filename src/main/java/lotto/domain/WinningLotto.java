@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.Prize;
+
 public class WinningLotto {
     private final Lotto lotto;
     private final BonusNumber bonusNumber;

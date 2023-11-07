@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.config.LottoConfig;
+import lotto.constants.Prize;
 
 public class LottoResult {
     private final Map<Prize, Long> result;

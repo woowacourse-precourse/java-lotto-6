@@ -1,9 +1,9 @@
 package lotto.view;
 
 import java.util.stream.Collectors;
+import lotto.constants.Prize;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
-import lotto.domain.Prize;
 import lotto.domain.Quantity;
 
 public class OutputView {

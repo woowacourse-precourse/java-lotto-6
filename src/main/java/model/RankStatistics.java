@@ -4,7 +4,7 @@ import java.util.EnumMap;
 
 public class RankStatistics {
 
-    private EnumMap<LottoRank, Integer> rankStatistics;
+    private EnumMap<LottoRank, Integer> rankStatistics = new EnumMap<>(LottoRank.class);
 
     public EnumMap<LottoRank, Integer> getRankStatistics() {
         return this.rankStatistics;

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -47,6 +48,13 @@ class LottoTest {
     @Test
     void createLottoByUnderMinNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 null이 포함되면 예외가 발생한다.")
+    @Test
+    void createLottoByIncludeNull() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(null, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

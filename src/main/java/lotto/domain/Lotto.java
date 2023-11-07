@@ -40,8 +40,8 @@ public class Lotto {
         }
     }
 
-    private boolean isNumberOutOfRange(int number) {
-        return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
+    private boolean isNumberOutOfRange(Integer number) {
+        return number == null || number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
     }
 
     public String formatNumbers() {

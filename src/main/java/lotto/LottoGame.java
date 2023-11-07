@@ -8,8 +8,8 @@ public class LottoGame {
     public void startProcess() {
 
         // money input
-        Integer money = -1;
-        while (money < 0) {
+        Integer money = null;
+        while (money == null) {
             GuideMessage.ofInputMoney();
             money = GameInput.insertMoney();
         }

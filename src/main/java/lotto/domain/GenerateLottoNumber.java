@@ -12,7 +12,7 @@ public class GenerateLottoNumber {
 
     public List<Integer> selectNumber(){
         numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        List<Integer> numberSorted =new ArrayList<>(numbers);
+        List<Integer> numberSorted = new ArrayList<>(numbers);
         Collections.sort(numberSorted);
         return numbers;
     }

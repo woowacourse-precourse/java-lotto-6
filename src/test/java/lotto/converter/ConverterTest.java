@@ -16,9 +16,9 @@ class ConverterTest {
     void givenUnsortedNumbers_whenConvert_thenReturnSortedNumbers() {
         // given
         List<Integer> unsortedNumbers = List.of(6, 5, 4, 3, 2, 1);
+        SortNumbersConverter sortNumbersConverter = new SortNumbersConverter();
 
         // when & then
-        SortNumbersConverter sortNumbersConverter = new SortNumbersConverter();
         assertThat(sortNumbersConverter.convert(unsortedNumbers)).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
@@ -29,24 +29,22 @@ class ConverterTest {
     }, delimiter = ':')
     @DisplayName("당첨 금액 컨버터: 당첨 금액을 출력 형식에 맞게 변환")
     void givenReward_whenConvert_thenReturnFormattedReward(int reward, String expected) {
-        // when
+        // given
         RewardFormatConverter rewardFormatConverter = new RewardFormatConverter();
-        String result = rewardFormatConverter.convert(reward);
 
-        // then
-        assertThat(result).isEqualTo(expected);
+        // when & then
+        assertThat(rewardFormatConverter.convert(reward)).isEqualTo(expected);
     }
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
     @CsvSource(value = {"0:0.0", "51.5:51.5", "1000:1,000.0", "1000000.0:1,000,000.0"}, delimiter = ':')
     @DisplayName("수익률 컨버터: 총 수익률을 출력 형식에 맞게 변환")
     void givenYield_whenConvert_thenReturnFormattedYield(double yield, String expected) {
-        // when
+        // given
         YieldFormatConverter yieldFormatConverter = new YieldFormatConverter();
-        String result = yieldFormatConverter.convert(yield);
 
-        // then
-        assertThat(result).isEqualTo(expected);
+        // when & then
+        assertThat(yieldFormatConverter.convert(yield)).isEqualTo(expected);
     }
 
 }

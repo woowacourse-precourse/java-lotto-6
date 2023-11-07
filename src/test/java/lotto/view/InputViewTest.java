@@ -1,9 +1,9 @@
 package lotto.view;
 
-=import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.Console;
-=import java.io.ByteArrayInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;

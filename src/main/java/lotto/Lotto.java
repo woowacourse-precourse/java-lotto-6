@@ -1,18 +1,11 @@
 package lotto;
 
 import java.util.List;
-import lotto.config.LottoGameRule;
-import lotto.exception.DuplicateNumberException;
-import lotto.exception.InvalidSizeException;
-import lotto.exception.LottoNumberOutOfRangeException;
 import lotto.utils.Validator;
 
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
+    public Lotto {
         validate(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(final List<Integer> numbers) {
@@ -37,7 +30,7 @@ public class Lotto {
         return 0;
     }
 
-    private boolean contain(int number) {
+    private boolean contain(final int number) {
         return numbers.contains(number);
     }
 
@@ -50,7 +43,8 @@ public class Lotto {
         return numbers.size();
     }
 
-    public List<Integer> getNumbers() {
+    @Override
+    public List<Integer> numbers() {
         return numbers.stream()
                 .toList();
     }

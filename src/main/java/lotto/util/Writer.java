@@ -6,6 +6,7 @@ public class Writer {
 
     private static final String PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBERS = "보너스 번호를 입력해 주세요.";
 
     public static void purchaseAmount(){
         System.out.println(PURCHASE_AMOUNT);
@@ -17,5 +18,9 @@ public class Writer {
 
     public static void winningNumbers() {
         System.out.println(WINNING_NUMBERS);
+    }
+
+    public static void bonusNumbers() {
+        System.out.println(BONUS_NUMBERS);
     }
 }

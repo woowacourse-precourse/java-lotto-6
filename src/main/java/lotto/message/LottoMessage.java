@@ -3,6 +3,7 @@ package lotto.message;
 public enum LottoMessage implements Message {
 
     LOTTO_COUNT("%d개를 구매했습니다.\n"),
+    DISPLAY_LOTTO_NUMBER_FORMAT("[%s]"),
     THREE_MATCH("3개 일치 (5,000원) - %d개"),
     FOUR_MATCH("4개 일치 (50,000원) - %d개"),
     FIVE_MATCH("5개 일치 (1,500,000원) - %d개"),

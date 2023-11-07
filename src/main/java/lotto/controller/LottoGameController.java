@@ -7,6 +7,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import static lotto.message.GameMessage.ASK_FOR_PURCHASE_COST;
+import static lotto.message.LottoMessage.LOTTO_COUNT;
 
 public class LottoGameController {
 
@@ -25,9 +26,12 @@ public class LottoGameController {
         PurchaseCost purchaseCost = inputLottoPurchaseCost();
         int lottoCount = purchaseCost.calculateLottoCount();
         Lottos puchaseLottos = lottoGenerator.generatePurchaseLottos(lottoCount);
+
+        printPurchaseLottos(lottoCount, puchaseLottos);
+
 //        inputWinningNumbers();
 //        inputBonusNumbers();
-//        printWinningStatistics();
+//        printWinniㅍㅇㄴngStatistics();
     }
 
     private PurchaseCost inputLottoPurchaseCost() {
@@ -45,6 +49,19 @@ public class LottoGameController {
     private String inputPurchaseCost() {
         output.printMessage(ASK_FOR_PURCHASE_COST);
         return input.purchaseCost();
+    }
+
+    private void printPurchaseLottos(int lottoCount, Lottos lottos) {
+        printPurchaseLottoCount(lottoCount);
+        printSortedPurchaseLottos(lottos);
+    }
+
+    private void printSortedPurchaseLottos(Lottos lottos) {
+        output.printPurchaseLottos(lottos);
+    }
+
+    private void printPurchaseLottoCount(int lottoCount) {
+        output.printLottoCount(LOTTO_COUNT, lottoCount);
     }
 //
 //

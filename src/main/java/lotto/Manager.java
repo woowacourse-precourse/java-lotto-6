@@ -32,4 +32,9 @@ public class Manager {
     public void printLottoTickets(List<Lotto> tickets) {
         output.printPurchasedLottoTickets(tickets);
     }
+
+    public void getWinningNumbers() {
+        output.printLottoWinningNumbersPrompt();
+        input.readWinningNumbers();
+    }
 }

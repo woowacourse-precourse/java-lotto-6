@@ -17,4 +17,8 @@ public class Output {
             System.out.println(ticket.toString());
         }
     }
+
+    public void printLottoWinningNumbersPrompt() {
+        System.out.println(Message.PROMPT_ENTERING_WINNING_NUMBERS);
+    }
 }

@@ -58,6 +58,7 @@ ________
 - `LottoService` 클래스
     - [x] `createwinningNumbers` 중복 제거 및 당첨 번호 입력 기능
     - [x] `createBonusNumber` 보너스 번호 입력 기능
+    - [x] `findWinners` 몇개 일치하는지 확인하는 기능
 - `InpputView` 클래스 -<b> 입력</b>
     - [x] 로또를 구매하기 위한 사용자 입력 기능
 

@@ -3,6 +3,7 @@ package game;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import lotto.WinningNumber;
@@ -47,6 +48,7 @@ public class GameService {
 
         for (int i = 0; i < createLottoNumber; i++) {
             List<Integer> newLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(newLotto);
             lottos.add(new Lotto(newLotto));
         }
 

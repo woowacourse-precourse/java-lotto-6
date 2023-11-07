@@ -23,5 +23,15 @@ public class LottoResult {
         return new LottoResult(result);
     }
 
+    public void addLottoRankCount(List<LottoRank> lottoRanks) {
+        for (LottoRank lottoRank : lottoRanks) {
+            addCount(lottoRank);
+        }
+    }
+
+    public void addCount(LottoRank lottoRank) {
+        result.computeIfPresent(lottoRank, (LottoRank key, Integer value) -> ++value);
+    }
+
 
 }

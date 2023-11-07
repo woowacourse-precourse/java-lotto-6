@@ -12,7 +12,7 @@ public class OutputMessage {
     }
 
     public static void purchaseMessage(int output){
-        System.out.printf("\n%d개를 구입했습니다.\n",output);
+        System.out.printf("\n%d개를 구매했습니다.\n",output);
     }
 
     public static void winningMessage() {
@@ -35,6 +35,10 @@ public class OutputMessage {
         for(Ranking ranking : Ranking.values()){
             showResult(map,ranking);
         }
+    }
+
+    public static void showYieldResult(double yield){
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
     }
 
 }

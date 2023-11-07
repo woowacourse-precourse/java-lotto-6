@@ -14,8 +14,8 @@ import static lotto.view.OutputView.PrintLottoNumbers;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        PlayerLottoAmount playerLottoAmount = null;
-        playerLottoAmount = getPlayerLottoAmount(playerLottoAmount);
+        String amount = InputView.inputPlayPay();
+        PlayerLottoAmount playerLottoAmount = getPlayerLottoAmount(amount);
         int count = playerLottoAmount.calculateLottoCount();
         OutputView.printTicketCount(count);
 
@@ -32,10 +32,10 @@ public class Application {
 
     }
 
-    private static PlayerLottoAmount getPlayerLottoAmount(PlayerLottoAmount playerLottoAmount) {
+    private static PlayerLottoAmount getPlayerLottoAmount(String amount) {
         while (true) {
             try {
-                return playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayPay());
+                return new PlayerLottoAmount(amount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

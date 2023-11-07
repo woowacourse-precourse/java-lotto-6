@@ -11,7 +11,7 @@ public class Message {
     public static final String WINNING_STATICS_MESSAGE="당첨 통계";
 
     public static final String RANGE_ERROR="[ERROR] 옳지 않은 범위의 숫자를 입력하셨습니다.";
-    public static final String TYPE_ERROR ="[ERROR] 숫자가 아닌 값을 입력하셨습니다.";
+
     public static final String NUMBER_OF_INPUT_CNT_ERROR ="[ERROR] 로또 숫자만큼 다시 입력해주세요!";
 
     public static final String NUMBER_SIZE_ERROR = "[ERROR] 당첨 번호는 "+NUM_OF_LOTTO+"개 입력 가능합니다.";

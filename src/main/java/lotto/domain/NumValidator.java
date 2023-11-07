@@ -12,7 +12,7 @@ public class NumValidator {
             return Integer.parseInt(num);
         }
         catch(NumberFormatException e){
-            throw new IllegalArgumentException(TYPE_ERROR);
+            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
         }
     }
 

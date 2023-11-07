@@ -3,10 +3,13 @@ package lotto.Controller;
 import java.util.List;
 import lotto.Domain.Human;
 import lotto.Domain.Lotto;
+import lotto.Domain.WinningLotto;
 import lotto.RandomGenerator.LottoGenerator;
 
 public class LottoController {
     private Human human;
+
+    private WinningLotto winningLotto;
 
     public void gameStart(String budgets) {
         // Exception Checking will be here
@@ -32,5 +35,10 @@ public class LottoController {
 
     public List<Lotto> getPurchasedLottos() {
         return human.getLottos();
+    }
+
+    public void raffleLotto(String normalNumbers, String bonusNumbers) {
+        System.out.println(normalNumbers + bonusNumbers);
+
     }
 }

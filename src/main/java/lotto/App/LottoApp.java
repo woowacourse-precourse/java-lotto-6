@@ -19,10 +19,21 @@ public class LottoApp {
         lottoView.inputBudgets();
         lottoController.gameStart(lottoConsole.inputBudgets());
 
+        //Buy
         lottoController.buyLottos();
 
+        // Print Purchased History
         lottoView.printPurchasedCnt(String.valueOf(lottoController.getPurchasedLottoCnt()));
         lottoView.printLottos(lottoController.getPurchasedLottos());
+
+        //Get Winning Numbers
+        String normalNumbers;
+        String bonusNumber;
+        lottoView.inputWinningLottoNormalNumber();
+        normalNumbers = lottoConsole.inputWinningNormalNumbers();
+        lottoView.inputWinningLottoBonusNumber();
+        bonusNumber = lottoConsole.inputWinningBonusNumber();
+        lottoController.raffleLotto(normalNumbers, bonusNumber);
 
     }
 }

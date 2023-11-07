@@ -1,11 +1,15 @@
 package lotto.view;
 
-import static lotto.constant.Constant.PURCHASE_COUNT_MESSAGE;
+import static lotto.constant.ConstantString.DELIMITER;
+import static lotto.constant.ConstantString.PURCHASE_COUNT_MESSAGE;
+import static lotto.constant.ConstantString.RESULT_MESSAGE;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 public class OutputView {
 
@@ -27,12 +31,28 @@ public class OutputView {
         purchaseLotto.forEach(lotto -> lotto.getNumbers().sort(Comparator.naturalOrder()));
     }
 
-    private void printLottoTicketNumbers(){
+    private void printLottoTicketNumbers() {
         purchaseLotto.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    private void printWhiteSpace(){
+    private void printWhiteSpace() {
         System.out.println();
     }
+
+    public void printResult(Map<Rank, Integer> result){
+        printResultMessage();
+        result.forEach((rank,count) ->{
+            String message = rank.getMessage();
+            if(!message.equals("")) System.out.println(String.format("%s%d개",message,count));
+        });
+    }
+
+    private void printResultMessage(){
+        printWhiteSpace();
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(DELIMITER);
+    }
+
+
 
 }

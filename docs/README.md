@@ -24,7 +24,7 @@
   - 각 경우에 따라 데이터 유효성 검사 수행 및 예외처리
   - "[ERROR]"로 시작하는 예외 문구 출력
   - isSameLength()
-    - [ ] 로또 번호가 6개인지 확인
+    - [x] 로또 번호가 6개인지 확인
   - isWithinValidRange()
     - isCheckRange()
       - [ ] 로또 번호가 1부터 45까지 숫자인지 확인
@@ -89,7 +89,7 @@
          - [x] 입력한 로또 당첨 번호 공백 제거 후 저장
        - convertStringToStringList()
          - [x] 쉼표(,)를 기준으로 분리하여 List형으로 반환
-       - [ ] 로또 객체(lotto) 선언 및 데이터 유효성 검사
+       - [x] 로또 객체(lotto) 선언 및 데이터 유효성 검사
      - saveBonusLottoNumber()
        - [ ] 보너스 로또 당첨 번호 입력받는 함수 호출
        - [ ] 보너스 로또 객체(LuckeyLotto)선언 및 데이터 유효성 검사

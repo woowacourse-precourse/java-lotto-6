@@ -10,6 +10,7 @@ import view.OutputView;
 
 public class GameController {
     LottoMoney lottoMoney;
+    Lotto lotto;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -54,6 +55,7 @@ public class GameController {
                 luckeyNumber = deleteWhiteSpace(luckeyNumber);
                 List<Integer> luckeyNumbers = convertStringToStringList(luckeyNumber);
                 System.out.println(luckeyNumbers);
+                lotto = new Lotto(luckeyNumbers);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

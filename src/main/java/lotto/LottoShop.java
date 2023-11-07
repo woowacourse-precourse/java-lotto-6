@@ -42,7 +42,12 @@ public class LottoShop {
 
     public LottoAmount purchaseAmount() {
         println(INPUT_PURCHASE_AMOUNT_COMMENT);
-        return new LottoAmount(inputMoney());
+        try {
+            return new LottoAmount(inputMoney());
+        } catch (IllegalArgumentException e) {
+            println(e.getMessage());
+            return purchaseAmount();
+        }
     }
 
     public List<Lotto> buyLotto(LottoAmount lottoAmount) {
@@ -56,12 +61,22 @@ public class LottoShop {
 
     private List<Integer> drawWinningNumbers() {
         println(INPUT_WINNING_NUMBERS_COMMENT);
-        return inputWinningNumbers();
+        try {
+            return inputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            println(e.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
     private int drawBonusNumber() {
         println(INPUT_BONUS_NUMBER_COMMENT);
-        return inputBonusNumber();
+        try {
+            return inputBonusNumber();
+        } catch (IllegalArgumentException e) {
+            println(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 
     private WinningStatistics makeWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottoList, WinningLotto winningLotto) {

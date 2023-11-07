@@ -40,5 +40,13 @@ class ValidationTest {
                 .hasMessageContaining("[ERROR] 구매금액은 1,000원 단위로 입력해 주세요.");
     }
 
+    @DisplayName("구매금액이 100,000원을 초과하면 예외가 발생한다.")
+    @Test
+    void buyOver100000() {
+        assertThatThrownBy(() -> validation.hundredThousandOrUnder(110000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 10만원 이하로 구입할 수 있습니다.");
+    }
+
 
 }

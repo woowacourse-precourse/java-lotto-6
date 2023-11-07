@@ -15,4 +15,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.MULTIPLE_OF_1000.getMessage());
         }
     }
+
+    public void hundredThousandOrUnder(int price) {
+        if (price > 100000) {
+            throw new IllegalArgumentException(ErrorMessage.HUNDRED_THOUSAND_OR_UNDER.getMessage());
+        }
+    }
 }

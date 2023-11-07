@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.common.ErrorCode;
+import lotto.common.ErrorMessage;
 
 public class LottoManager {
 
@@ -32,7 +32,7 @@ public class LottoManager {
         try {
             Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorCode.INPUT_AMOUNT_INVALID_MEASURE.getValue());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_INVALID_MEASURE.getMessage());
         }
     }
 }

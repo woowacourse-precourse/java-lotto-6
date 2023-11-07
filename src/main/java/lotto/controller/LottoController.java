@@ -23,6 +23,7 @@ public class LottoController {
     private List<Lotto> lottos  = new ArrayList<>();
     private int[] winResult;
     private LottoService lottoService = new LottoService();
+
     public void startLotto(){
         purchaseLotto();
         Lotto winningNumber = inputWinningNumber();
@@ -46,6 +47,7 @@ public class LottoController {
     public Bonus inputBounusNumber(Lotto winningNumber){
         return bounusNumberController.runBonusNumber(winningNumber);
     }
+
     public void processWinningResult(Lotto winningNumber,List<Lotto> lottos, Bonus bonus){
         List<Integer> countWinningNum;
         String winRate;

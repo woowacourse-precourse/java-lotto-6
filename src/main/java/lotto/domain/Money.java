@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.LACK_MONEY_EXCEPTION;
+import static lotto.constant.ExceptionMessage.WRONG_INPUT_MONEY_EXCEPTION;
+
 public class Money {
     private final long money;
 
@@ -10,11 +13,11 @@ public class Money {
 
     private void validateMoney(long money) {
         if (isLackMoney(money)) {
-            throw new IllegalArgumentException("금액은 1,000원 이상 투입 되어야 합니다.");
+            throw new IllegalArgumentException(LACK_MONEY_EXCEPTION.getMessage());
         }
 
         if (isWrongMoney(money)) {
-            throw new IllegalArgumentException("금액은 1,000원 단위로 투입 되어야 합니다.");
+            throw new IllegalArgumentException(WRONG_INPUT_MONEY_EXCEPTION.getMessage());
         }
     }
 

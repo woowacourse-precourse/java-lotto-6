@@ -1,11 +1,9 @@
 package service;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static service.CompareLottoServcie.calculateRank;
 
-import View.OutputView;
 import domain.Amount;
 import domain.BonusNumber;
 import domain.Lotto;

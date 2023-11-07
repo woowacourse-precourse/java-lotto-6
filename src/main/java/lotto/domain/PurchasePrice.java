@@ -18,11 +18,18 @@ public class PurchasePrice {
 
     private void validate(int price) {
         checkDivideByPriceUnit(price);
+        checkIsZeroOrMinus(price);
     }
 
     private void checkDivideByPriceUnit(int price) {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 구입 금액을 입력해 주세요.");
+        }
+    }
+
+    private void checkIsZeroOrMinus(int price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("[ERROR] 1000 이상의 금액을 입력해 주세요.");
         }
     }
 }

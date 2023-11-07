@@ -39,9 +39,9 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             System.out.println("숫자가 아닙니다.");
         }
-        // 0보다 큰지 검증
-        if(lottoMoney <= 0) {
-            System.out.println("0보다 큰 숫자를 입력해주세요.");
+        // 1000보다 작은지 검증
+        if(lottoMoney < 1000) {
+            System.out.println("1000이상 숫자를 입력해주세요.");
         }
         // 1000원 단위인지 검증
         if(lottoMoney % 1000 != 0) {
@@ -49,11 +49,11 @@ public class GameController {
         }
     }
 
-    private void playGame() {
+    public void playGame() {
 
     }
 
-    private void endGame() {
+    public void endGame() {
 
     }
 }

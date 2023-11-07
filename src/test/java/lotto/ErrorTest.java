@@ -3,9 +3,11 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.Error.ErrorType;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ErrorTest {
+    @DisplayName("enum에 맞게 에러가 나오는지 테스트")
     @Test
     void invalidAmountErrorTest(){
         assertThatThrownBy(() -> Error.errorMessage(ErrorType.INVALID_AMOUNT))

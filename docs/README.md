@@ -39,14 +39,14 @@
 <br>
 
 ### 2️⃣ Functional
-- [ ] [LottoDraw] 사용자에게 로또 구입 금액을 입력받는다. (Pay)
-- [ ] [LottoDraw] pay / 1000 만큼 로또 발행
-- [ ] [LottoDraw] 당첨 번호 입력 받는다.
-- [ ] [LottoDraw] 보너스 번호 입력 받는다.
-- [ ] [LottoDraw] 발행한 로또 중 당첨된 로또 확인
-- [ ] [LottoDraw] 당첨 통계 출력
-- [ ] [LottoDraw] 수익률 계산
-- [ ] [LottoDraw] 수익률 출력
+- [x] [LottoDraw] 사용자에게 로또 구입 금액을 입력받는다. (Pay)
+- [x] [LottoDraw] pay / 1000 만큼 로또 발행
+- [x] [LottoDraw] 당첨 번호 입력 받는다.
+- [x] [LottoDraw] 보너스 번호 입력 받는다.
+- [x] [LottoDraw] 발행한 로또 중 당첨된 로또 확인
+- [x] [LottoDraw] 당첨 통계 출력
+- [x] [LottoDraw] 수익률 계산
+- [x] [LottoDraw] 수익률 출력
 
 ### 3️⃣ Exceptional case
 - [ ] 로또 구입 금액이 1000으로 나누어 떨어지지 않는 경우

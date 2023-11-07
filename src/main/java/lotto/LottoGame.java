@@ -74,7 +74,12 @@ public class LottoGame {
                 throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
             }
         }
+    }
 
+    public void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자 6개를 입력하지 않았습나다.");
+        }
     }
 }
 

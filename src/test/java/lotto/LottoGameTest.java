@@ -39,4 +39,12 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 1과 45 사이의 수를 입력하세요");
     }
+
+    @DisplayName("입력 값이 6개의 숫자가 아닐때 예외가 발생한다.")
+    @Test
+    void createNumberByOverSize() {
+        assertThatThrownBy(() -> new LottoGame().validateSize(new ArrayList<>(List.of(1, 2, 55))))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 숫자 6개를 입력하지 않았습나다.");
+    }
 }

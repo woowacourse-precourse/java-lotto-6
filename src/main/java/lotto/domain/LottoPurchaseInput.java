@@ -10,19 +10,19 @@ import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
 public class LottoPurchaseInput {
-    public static BigDecimal inputPurchaseAmount() {
+    public static BigDecimal inputPurchaseAmount(BigDecimal lottoPrice) {
         try {
             OutputMessage.ASK_PURCHASE_AMOUNT.printMessage();
             String input = Console.readLine().trim();
 
             validate(input);
             Util.validateNumber(input);
-            LottoUtil.validatePurchaseAmount(new BigDecimal(input), Lotto.PRICE);
+            LottoUtil.validatePurchaseAmount(new BigDecimal(input), lottoPrice);
 
             return new BigDecimal(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputPurchaseAmount();
+            return inputPurchaseAmount(lottoPrice);
         }
     }
 

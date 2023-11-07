@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.Lotto;
 import lotto.dto.LottoNumbersInfo;
-import lotto.dto.LottoPurchaseInfo;
 import lotto.message.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,15 +25,15 @@ public class LottoPurchaseTest {
     private static Stream<Arguments> provideLottoPurchase() {
         return Stream.of(
                 Arguments.of(new LottoPurchase(
-                        new LottoPurchaseInfo(BigDecimal.valueOf(1000), Lotto.PRICE),
+                        BigDecimal.valueOf(1000),
                         new LottoNumbersInfo(List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6))),
                                 List.of(1, 2, 3, 4, 5, 6),
                                 7
-                        )), LottoResult.FIRST.getPrize() / Lotto.PRICE.floatValue() * 100
+                        )), LottoResult.FIRST.getPrize() / BigDecimal.valueOf(1000).floatValue() * 100
                 ),
                 Arguments.of(new LottoPurchase(
-                                new LottoPurchaseInfo(BigDecimal.valueOf(1000), Lotto.PRICE),
+                                BigDecimal.valueOf(1000),
                                 new LottoNumbersInfo(List.of(
                                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                         new Lotto(List.of(1, 2, 3, 4, 5, 7)),
@@ -43,7 +42,8 @@ public class LottoPurchaseTest {
                                         List.of(1, 2, 3, 4, 5, 6),
                                         7
                                 )),
-                        (LottoResult.FIRST.getPrize() + LottoResult.SECOND.getPrize()) / Lotto.PRICE.floatValue() * 100
+                        (LottoResult.FIRST.getPrize() + LottoResult.SECOND.getPrize()) / BigDecimal.valueOf(1000)
+                                .floatValue() * 100
                 )
         );
     }

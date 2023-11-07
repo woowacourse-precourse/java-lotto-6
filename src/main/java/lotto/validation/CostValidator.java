@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import static lotto.constants.constants.LOTTO_COST;
+
 import lotto.exception.CostUnitDivideException;
 import lotto.exception.CostZeroException;
 import lotto.exception.IncludeCharException;
@@ -31,7 +33,7 @@ public class CostValidator {
     }
 
     private static void checkDivideUnit(int cost) {
-        if (cost % 1000 != 0) {
+        if (cost % LOTTO_COST != 0) {
             throw CostUnitDivideException.costUnitDivideException;
         }
     }

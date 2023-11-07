@@ -31,10 +31,15 @@ public class WinningLotto {
         return new Lotto(numbers);
     }
 
-    public static int createBonusNumber(String bonusNumber) {
+    public static int createBonusNumber(Lotto winningNumbers, String bonusNumber) {
         InputValidator.validateEmpty(bonusNumber);
         InputValidator.validateNull(bonusNumber);
-        return parseNumber(bonusNumber);
+        int parsedNumber = parseNumber(bonusNumber);
+        validateSingleRange(parsedNumber);
+        if (winningNumbers.isExist(parsedNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 고유해야함");
+        }
+        return parsedNumber;
     }
 
     public Lotto getWinningNumbers() {
@@ -90,7 +95,7 @@ public class WinningLotto {
     private static void validateSingleRange(int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
             throw new IllegalArgumentException(
-                    "로또번호는" + MIN_VALUE + "과" + MAX_VALUE + "사이만 가능");
+                    "로또번호는 " + MIN_VALUE + " 과 " + MAX_VALUE + " 사이만 가능");
         }
     }
 

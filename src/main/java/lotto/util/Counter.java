@@ -5,12 +5,17 @@ import lotto.domain.Rank;
 import lotto.domain.Result;
 
 public class Counter {
+    private static final int FIFTH_PRIZE_CONDITION = 3;
+    private static final int FOURTH_PRIZE_CONDITION = 4;
+    private static final int THIRD_PRIZE_CONDITION = 5;
+    private static final int FIRST_PRIZE_CONDITION = 6;
+
     public static Rank countRank(List<Result> results) {
-        int fifth = count(results, 3);
-        int fourth = count(results, 4);
-        int third = count(results, 5);
+        int fifth = count(results, FIFTH_PRIZE_CONDITION);
+        int fourth = count(results, FOURTH_PRIZE_CONDITION);
+        int third = count(results, THIRD_PRIZE_CONDITION);
         int second = countWithBonus(results);
-        int first = count(results, 6);
+        int first = count(results, FIRST_PRIZE_CONDITION);
         return new Rank(fifth, fourth, third, second, first);
     }
 
@@ -22,7 +27,7 @@ public class Counter {
 
     private static int countWithBonus(List<Result> results) {
         return (int) results.stream()
-                .filter(result -> result.matchWinningNumbers() == 5 && result.matchBonusNumber())
+                .filter(result -> result.matchWinningNumbers() == THIRD_PRIZE_CONDITION && result.matchBonusNumber())
                 .count();
     }
 }

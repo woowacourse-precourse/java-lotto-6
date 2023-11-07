@@ -15,6 +15,10 @@ public enum Prize {
         this.prize = prize;
     }
 
+    public static BigDecimal getPrize(Prize prize) {
+        return prize.getPrize();
+    }
+
     public BigDecimal getPrize() {
         return prize;
     }

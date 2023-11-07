@@ -2,6 +2,8 @@ package lotto.parser;
 
 import static lotto.exception.ErrorMessage.NOT_INTEGER;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
@@ -30,6 +32,10 @@ public class Parser {
         int bonusNumber = parse(input);
         Validator.validateUnique(bonusNumber, winningLotto);
         return bonusNumber;
+    }
+
+    public static String parsePrize(BigDecimal prize) {
+        return new DecimalFormat("###,###").format(prize);
     }
 
     private static int parse(String input) {

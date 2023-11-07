@@ -53,6 +53,10 @@ public class OutputView {
         long earnings = winningResult.getTotalPrize();
         long paid = (long) winningResult.getLottoCount()
                 * LottoSetting.PRICE.getValue();
+        if (paid == 0L) {
+            System.out.println(String.format("총 수익률은 %.1f%%입니다.", 0.0));
+            return;
+        }
         double earningRate = (double) earnings / paid * 100;
         System.out.println(String.format("총 수익률은 %.1f%%입니다.", earningRate));
     }

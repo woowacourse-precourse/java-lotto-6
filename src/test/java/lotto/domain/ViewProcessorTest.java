@@ -63,6 +63,15 @@ class ViewProcessorTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
     }
 
+    @DisplayName("당첨 번호의 범위가 1~45 사이가 아닐경우 에러 처리한다.")
+    @ParameterizedTest
+    @CsvSource({"-10","51"})
+    void checkRangeWinning(int invalidNum) {
+        assertThatThrownBy(() -> viewProcessor.checkRangeWinning(invalidNum))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
     @ParameterizedTest
     @CsvSource({
             "100,[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",

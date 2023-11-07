@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.model.LottoModel;
 import lotto.model.LottoPrize;
+import lotto.view.LottoBonusInputView;
 import lotto.view.LottoBuyView;
 import lotto.view.LottoInputView;
 import lotto.view.LottoWinInputView;
@@ -16,10 +17,11 @@ import java.util.List;
 import static lotto.model.LottoPrize.getPrizeRankByMatch;
 
 public class LottoController {
-    static LottoInputView lottoInputView = new LottoInputView();
     LottoModel lottoModel = new LottoModel();
+    LottoInputView lottoInputView = new LottoInputView();
     LottoWinInputView lottoWinInputView = new LottoWinInputView();
     LottoBuyView lottoBuyView = new LottoBuyView();
+    LottoBonusInputView lottoBonusInputView = new LottoBonusInputView();
 
     public void runLotto() {
         // 1. 구입 금액 입력
@@ -36,20 +38,7 @@ public class LottoController {
         List<Integer> winNumbers = lottoWinInputView.winNumberInput();
 
         // 4. 보너스 번호 입력
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String bonusInput = Console.readLine();
-        int bonus;
-        try {
-            bonus = Integer.parseInt(bonusInput);
-            if (bonus <= 0 || bonus > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            if (winNumbers.contains(bonus)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 로또 번호 형식입니다.");
-        }
+        int bonus = lottoBonusInputView.getBonusInput(winNumbers);
 
         // 5. 당첨 통계
         List<LottoPrize> lottoPrizes = new ArrayList<>();
@@ -62,7 +51,7 @@ public class LottoController {
                 if (winNumbers.contains(lottoNum)) {
                     matchCount += 1;
                 }
-                if (winNumbers.contains(bonus)) {
+                if (lottoNum == bonus) {
                     bonusMatch = true;
                 }
             }

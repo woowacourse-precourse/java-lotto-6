@@ -7,15 +7,15 @@ import lotto.validator.LottoNumberValidator;
 import lotto.validator.NumberValidator;
 
 public class WinningLotto {
-    private final List<Integer> lottoNumbers;
+    private final List<Integer> numbers;
 
-    public WinningLotto(List<Integer> lottoNumbers){
-        validate_MIN_SIZE(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+    public WinningLotto(List<Integer> numbers){
+        validate(numbers);
+        this.numbers = numbers;
     }
-
+    private void validate(List<Integer> numbers){validate_MIN_SIZE(numbers);}
     public List<Integer> getWinning_number(){
-        return this.lottoNumbers;
+        return this.numbers;
     }
 
     public void addBonusNumber(String bonus_number){

@@ -9,7 +9,6 @@ import lotto.domain.wrapper.PurchaseAmount;
 import lotto.utils.LottoConstantValue;
 
 public class VendingMachine {
-    private static final int START_COUNT = 0;
     private final PurchaseAmount purchaseAmount;
 
     public VendingMachine(PurchaseAmount purchaseAmount) {
@@ -19,7 +18,7 @@ public class VendingMachine {
     public Lottos getLottos() {
         int lottoCount = purchaseAmount.getAvailableLottoCount();
         List<Lotto> lottos = new ArrayList<>();
-        for (int count = START_COUNT; count < lottoCount; count++) {
+        for (int count = LottoConstantValue.DEFAULT_COUNT.get(); count < lottoCount; count++) {
             Lotto lotto = createLotto();
             lottos.add(lotto);
         }

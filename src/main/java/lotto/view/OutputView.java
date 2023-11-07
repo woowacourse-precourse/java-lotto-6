@@ -7,7 +7,9 @@ import java.util.Map;
 import lotto.domain.Rankings;
 
 public class OutputView {
+
     private static final String PURCHASE_RESULT = "%d개를 구매했습니다.";
+    private static final String MARGIN_RESULT = "총 수익률은 %s입니다.";
 
     public void printLottoNumbers(List<Integer> lottoNumbers) {
         System.out.print(lottoNumbers);
@@ -24,6 +26,10 @@ public class OutputView {
         finalResult.forEach((key, value) -> {
             System.out.println(key.getMessage(value));
         });
+    }
+
+    public void printMargin(String margin) {
+        System.out.printf(MARGIN_RESULT, margin);
     }
 
     public void printNewLine() {

@@ -37,7 +37,7 @@ public class GameController {
         LotteryOffice lotteryOffice = new LotteryOffice(lottoStore.getIssuedLotto(), winningTicket, bonusNumber);
         outputView.printWinningResult(lotteryOffice.getWinningsAndCounts());
         MarginCalculator marginCalculator = new MarginCalculator(lotteryOffice.getWinningsAndCounts(), userPurchaseAmount);
-        System.out.println(marginCalculator.getMargin());
+        outputView.printMargin(marginCalculator.getMargin());;
     }
 
     private Lotto getWinningTicket() {

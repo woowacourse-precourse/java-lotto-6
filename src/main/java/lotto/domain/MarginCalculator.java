@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class MarginCalculator {
 
+    private static final String MARGIN_FORMAT = "#,###.#%";
     private final double margin;
 
     public MarginCalculator(Map<Rankings,Integer> result, int purchaseAmount) {
@@ -11,7 +13,7 @@ public class MarginCalculator {
     }
 
     public double calculateMargin(Map<Rankings,Integer> result, int purchaseAmount) {
-        return getTotalPrizeMoney(result) / purchaseAmount * 100;
+        return getTotalPrizeMoney(result) / purchaseAmount;
     }
 
     public double getTotalPrizeMoney(Map<Rankings,Integer> result) {
@@ -23,6 +25,7 @@ public class MarginCalculator {
     }
 
     public String getMargin() {
-        return String.format("%.1f", margin);
+        DecimalFormat df = new DecimalFormat(MARGIN_FORMAT);
+        return df.format(margin);
     }
 }

@@ -31,6 +31,6 @@ public class Application {
         }
 
         System.out.println(lotto.getLotto());
-        numbergenerator.InputBonusNumber();
+        numbergenerator.InputBonusNumber(lotto.getLotto());
     }
 }

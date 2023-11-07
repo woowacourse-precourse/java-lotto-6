@@ -71,10 +71,12 @@ public class NumberGenerator {
         return sortLottoNumbers;
     }
 
-    public int InputBonusNumber(){
+    public int InputBonusNumber(List<Integer> correctNumber){
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNum = Console.readLine();
-
+        while(numbergeneratorvaildation.bonueNumberIntegerVaildation(bonusNum)){
+            bonusNum = Console.readLine();
+        }
         return Integer.parseInt(bonusNum);
     }
 }

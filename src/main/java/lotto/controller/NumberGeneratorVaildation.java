@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+
 public class NumberGeneratorVaildation {
 
     final static int LOTTOCOSTUNIT = 1000;
@@ -41,6 +43,19 @@ public class NumberGeneratorVaildation {
             System.out.println(e + "\n[ERROR]당첨 번호는 숫자를 입력해야 합니다.");
             System.out.println("\n당첨 번호를 입력해 주세요.");
         }
+        return end;
+    }
+
+    public boolean bonueNumberIntegerVaildation(String bonusNum){
+        boolean end = false;
+        try{
+            int bonusNumber = Integer.parseInt(bonusNum);
+        }catch(IllegalArgumentException e){
+            end = true;
+            System.out.println("\n[ERROR]보너스 번호는 숫자를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+        }
+
         return end;
     }
 }

@@ -1,6 +1,8 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
+import lotto.controller.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -49,5 +51,6 @@ public class LottoServiceTest extends NsTest {
     }
 
     @Override
-    protected void runMain() {Application.main(new String[]{});}
+    protected void runMain() {
+        Application.main(new String[]{});}
 }

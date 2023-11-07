@@ -1,8 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validators.InputValidator;
+import lotto.validators.BonusNumberValidator;
 import lotto.constants.MessageConstants;
+import lotto.validators.PurchaseAmountValidator;
+import lotto.validators.WinningNumbersValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +19,8 @@ public class InputView {
             System.out.println(MessageConstants.PURCHASE_AMOUNT_GUIDE);
             inputValue = Console.readLine();
             try {
-                InputValidator.validateType(inputValue);
-                InputValidator.validateUnit(inputValue);
+                PurchaseAmountValidator.validateType(inputValue);
+                PurchaseAmountValidator.validateUnit(inputValue);
                 flag = true;
             } catch (Exception e) {}
         }
@@ -32,10 +34,10 @@ public class InputView {
             System.out.println(MessageConstants.WINNING_NUMBERS_GUIDE);
             inputValues = Console.readLine().split(",");
             try {
-                InputValidator.validateLength(inputValues); // 개수
-                InputValidator.validateType(inputValues); // 숫자
-                InputValidator.validateRange(inputValues); // 범위
-                InputValidator.validateDuplicate(inputValues); // 중복
+                WinningNumbersValidator.validateLength(inputValues); // 개수
+                WinningNumbersValidator.validateType(inputValues); // 숫자
+                WinningNumbersValidator.validateRange(inputValues); // 범위
+                WinningNumbersValidator.validateDuplicate(inputValues); // 중복
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }
@@ -57,8 +59,8 @@ public class InputView {
             inputValue = Console.readLine();
 
             try {
-                InputValidator.validateBonusNumType(inputValue);
-                InputValidator.validateBonusNumRange(inputValue);
+                BonusNumberValidator.validateType(inputValue);
+                BonusNumberValidator.validateRange(inputValue);
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Domain.GenerateRandomNumber.generateLottos;
 import static lotto.View.InputView.*;
 import static lotto.View.OutputView.printLottos;
 import static lotto.View.OutputView.printWinningStatistics;
@@ -25,16 +26,6 @@ public class LottoController {
 
         printLottos(lottos);
         printWinningStatistics(lottos, winningNumbers, bonusNumber);
-    }
-
-    private static List<Lotto> generateLottos(int count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            lottos.add(new Lotto(numbers));
-        }
-        return lottos;
     }
 
 }

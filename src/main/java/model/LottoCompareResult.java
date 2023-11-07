@@ -6,6 +6,9 @@ import java.util.Optional;
 
 public class LottoCompareResult {
 
+    private static final int UNIQUE_RANK_INDEX = 0;
+    private static final int JUST_ONE_CONDITION = 1;
+
     private final long equalCount;
     private final boolean isBonusNumberSame;
 
@@ -20,7 +23,7 @@ public class LottoCompareResult {
             .toList();
 
         if (hasNotBonusBallCondition(sameCountRank)) {
-            return Optional.of(sameCountRank.get(0));
+            return Optional.of(sameCountRank.get(UNIQUE_RANK_INDEX));
         }
 
         return sameCountRank.stream()
@@ -29,6 +32,6 @@ public class LottoCompareResult {
     }
 
     private boolean hasNotBonusBallCondition(final List<LottoRank> sameCountRank) {
-        return sameCountRank.size() == 1;
+        return sameCountRank.size() == JUST_ONE_CONDITION;
     }
 }

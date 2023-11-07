@@ -33,6 +33,10 @@ public class WinningNumberService {
         lottoWinningNumber.setBonusNumber(this.bonusNumber);
     }
 
+    public LottoWinningNumber getLottoWinningNumber() {
+        return lottoWinningNumber;
+    }
+
     private void validateWinningNumbers(String winningNumbers) {
         if (winningNumbers == null || winningNumbers.trim().isEmpty()) {
             throw new IllegalArgumentException();

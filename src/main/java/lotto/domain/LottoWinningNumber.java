@@ -23,8 +23,14 @@ public class LottoWinningNumber {
     public void setBonusNumber(int bonusNumber) {
         validateBonusNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
-        System.out.println(this.winningNumbers);
-        System.out.println(bonusNumber);
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {

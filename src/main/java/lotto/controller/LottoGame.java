@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.enums.ErrorMessages;
+import lotto.enums.SystemErrorMessages;
 import lotto.utils.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,60 +18,93 @@ public class LottoGame implements Game {
     public void run() {
         collectPurchaseAmount();
         generateLottoTickets();
-        printLottoTickets();
+        announcePurchaseResults();
 
         collectWinningNumbers();
-        calculateWinningResult();
-        calculateTotalReturn();
-
-        printWinningResult();
-        printTotalReturn();
+        calculateWinningResults();
+        announceWinningResults();
     }
 
     private void collectPurchaseAmount() {
-        RetryUtil.retry(() -> lottoPurchase = new LottoPurchase(InputView.lottoPurchaseAmountInput()));
+        RetryUtil.retry(() -> lottoPurchase = LottoPurchase.valueOf(InputView.lottoPurchaseAmountInput()));
     }
 
     private void generateLottoTickets() {
         lottoTickets = lottoPurchase.generateLottoTickets();
     }
 
-    private void printLottoTickets() {
-        if(lottoTickets == null) {
-            throw new IllegalStateException(ErrorMessages.TICKETS_WAS_NOT_CREATED.getMessage());
+    private void announcePurchaseResults() {
+        announceNumberOfTickets();
+        announceUserLottoTickets();
+    }
+
+    private void announceNumberOfTickets() {
+        if (lottoPurchase == null) {
+            throw new IllegalStateException(SystemErrorMessages.LOTTO_PURCHASE_WAS_NOT_CREATED.getMessage());
         }
-        OutputView.printPurchasedLottoNumbers(lottoTickets.getLottoTickets());
+        OutputView.printNumberOfPurchasedLottoTickets(lottoPurchase);
+    }
+
+    private void announceUserLottoTickets() {
+        if (lottoTickets == null) {
+            throw new IllegalStateException(SystemErrorMessages.LOTTO_TICKETS_WAS_NOT_CREATED.getMessage());
+        }
+        OutputView.printPurchasedLottoNumbers(lottoTickets);
     }
 
     private void collectWinningNumbers() {
-        RetryUtil.retry(() -> winningLotto = new WinningLotto(getWinningNumbers(), getBonusWinningNumber()));
+        RetryUtil.retry(() -> winningLotto = WinningLotto.of(getWinningNumbers(), getBonusWinningNumber()));
     }
 
     private Lotto getWinningNumbers() {
-        return new Lotto(InputView.winningLottoNumbersInput());
+        return Lotto.valueOf(InputView.winningLottoNumbersInput());
     }
 
     private LottoNumber getBonusWinningNumber() {
-        return new LottoNumber(InputView.winningLottoBonusNumberInput());
+        return LottoNumber.valueOf(InputView.winningLottoBonusNumberInput());
+    }
+
+    private void calculateWinningResults() {
+        calculateWinningResult();
+        calculateTotalReturn();
     }
 
     private void calculateWinningResult() {
-        winningResult = new WinningResult(lottoTickets, winningLotto);
+        if (lottoTickets == null) {
+            throw new IllegalStateException(SystemErrorMessages.LOTTO_TICKETS_WAS_NOT_CREATED.getMessage());
+        }
+        if (winningLotto == null) {
+            throw new IllegalStateException(SystemErrorMessages.WINNING_LOTTO_WAS_NOT_CREATED.getMessage());
+        }
+        winningResult = WinningResult.compare(lottoTickets, winningLotto);
     }
-    private void calculateTotalReturn() { totalWinning = new TotalWinning(lottoPurchase, winningResult);}
 
-    private void printWinningResult() {
-        if(winningResult == null) {
-            throw new IllegalStateException(ErrorMessages.RESULT_WAS_NOT_CREATED.getMessage());
+    private void calculateTotalReturn() {
+        if (lottoPurchase == null) {
+            throw new IllegalStateException(SystemErrorMessages.LOTTO_PURCHASE_WAS_NOT_CREATED.getMessage());
+        }
+        if (winningResult == null) {
+            throw new IllegalStateException(SystemErrorMessages.WINNING_RESULT_WAS_NOT_CREATED.getMessage());
+        }
+        totalWinning = TotalWinning.compare(lottoPurchase, winningResult);
+    }
+
+    private void announceWinningResults() {
+        announceWinningResult();
+        announceTotalReturn();
+    }
+
+    private void announceWinningResult() {
+        if (winningResult == null) {
+            throw new IllegalStateException(SystemErrorMessages.WINNING_RESULT_WAS_NOT_CREATED.getMessage());
         }
         OutputView.printWinningResults(winningResult);
     }
 
-    private void printTotalReturn() {
-        if(totalWinning == null) {
-            throw new IllegalStateException();
+    private void announceTotalReturn() {
+        if (totalWinning == null) {
+            throw new IllegalStateException(SystemErrorMessages.TOTAL_WINNING_WAS_NOT_CREATED.getMessage());
         }
         OutputView.printTotalReturn(totalWinning);
     }
 }
-

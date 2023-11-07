@@ -14,7 +14,7 @@ public class BonusNumber {
     }
 
     private void validate(Integer number) {
-        if (!isCorrectNumberRange(number)) {
+        if (isCorrectNumberRange(number)) {
             throw new InvalidInputException(INVALID_BONUS_NUMBER_RANGE_MESSAGE);
         }
     }

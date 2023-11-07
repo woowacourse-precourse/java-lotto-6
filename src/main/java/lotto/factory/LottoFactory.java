@@ -4,10 +4,7 @@ import lotto.controller.LottoController;
 import lotto.domain.LottoStatistics;
 import lotto.domain.PlayerLottoNumbers;
 import lotto.domain.TotalRate;
-import lotto.io.InputMapper;
-import lotto.io.InputView;
-import lotto.io.IoManager;
-import lotto.io.OutputView;
+import lotto.io.*;
 import lotto.service.LottoService;
 import lotto.validator.InputValidator;
 
@@ -29,7 +26,7 @@ public class LottoFactory {
     }
 
     private IoManager ioManager() {
-        return new IoManager(inputView(), inputMapper(), outputView());
+        return new LottoIoManager(inputView(), inputMapper(), outputView());
     }
 
     private InputView inputView() {

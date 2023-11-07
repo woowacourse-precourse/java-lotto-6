@@ -12,6 +12,7 @@ public class WinLotto {
     public void createLotto() {
         lotto = new Lotto(inputWinNumber());
         lotto.lottoByDuplicateNumber();
+        lotto.lottoByRange();
     }
 
     public void createBonusNumber() {

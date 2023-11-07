@@ -22,6 +22,14 @@ public class Lotto {
         }
     }
 
+    public void lottoByRange() {
+        numbers.forEach(e -> {
+            if (e > 45 || e < 1) {
+                throw new IllegalArgumentException("1 ~ 45 사이의 로또 번호를 입력해주세요.");
+            }
+        });
+    }
+
     public boolean contains(BounsNumber bounsNumber) {
         return numbers.contains(bounsNumber.getBounsNumber());
     }

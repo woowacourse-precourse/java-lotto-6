@@ -270,7 +270,7 @@ public class Lotto {
 ### domain 
 - [ ] Lotto
 - [ ] LottoTickets
-- [ ] WinningResult
+- [ ] WinningLotto
 - [ ] WinningNumber
 
       
@@ -278,6 +278,7 @@ public class Lotto {
 - [ ] UserInputView
 - [ ] UserOutputView
 - [ ] ExceptionMessage(enum)
+- [ ] RunLotto
 
 ### controller
 - [ ] LottoController

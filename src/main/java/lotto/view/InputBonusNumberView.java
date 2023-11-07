@@ -10,6 +10,7 @@ public class InputBonusNumberView extends InputView {
     public Integer getValue() {
         System.out.println(INPUT_MESSAGE);
         String result = inputValue();
+        System.out.println();
         validate(result);
         return Integer.parseInt(result);
     }

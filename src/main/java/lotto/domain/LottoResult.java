@@ -12,14 +12,17 @@ public class LottoResult {
     }
 
     public double calculateProfit(int purchasedAmount) {
-        long totalPrize = lottoRankingResult.keySet().stream()
+        long totalPrize = calculateTotalPrize();
+        return Math.round(((double) totalPrize / purchasedAmount) * 100 * 100) / 100.0;
+    }
+
+    private long calculateTotalPrize() {
+        return lottoRankingResult.keySet().stream()
                 .mapToLong(ranking -> {
                     Integer count = lottoRankingResult.getOrDefault(ranking, 0);
                     return ranking.getTotalPrize(count);
                 })
                 .sum();
-
-        return Math.round(((double) totalPrize / purchasedAmount) * 100 * 100) / 100.0;
     }
 
     public Map<LottoRanking, Integer> getResult() {

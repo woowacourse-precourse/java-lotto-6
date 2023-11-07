@@ -8,8 +8,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("당첨_로또_테스트")
-class WinningLottoTest {
+@DisplayName("입력_모델_변환_테스트")
+class InputTest {
 
     @Test
     @DisplayName("올바른_생성_테스트")

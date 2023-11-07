@@ -6,7 +6,7 @@ import static lotto.constant.ErrorMessageConstants.LINE;
 import static lotto.constant.LottoConstants.LOTTO_PRICE;
 import static lotto.constant.LottoConstants.MAX_LOTTO_PRICE_PER_USER;
 
-public class LottoStoreException extends RuntimeException {
+public class LottoStoreException extends IllegalArgumentException {
     public enum ErrorMessage {
         MIN_LOTTO_AMOUNT("로또 한 장 금액은 " + LOTTO_PRICE.getValue() + "원 입니다."),
         NON_DIVISIBLE_AMOUNT("거스름돈이 존재하지 않습니다. 로또 한 장 금액은 " + LOTTO_PRICE.getValue() + "원 입니다."),

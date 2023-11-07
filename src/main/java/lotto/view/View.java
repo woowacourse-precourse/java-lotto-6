@@ -50,13 +50,17 @@ public class View {
             System.out.println(String.format(ViewMessage.RESPONSE_WINNING_STATISTICS_DETAIL.getMessage(),
                     dto.winningPolicy().getMatchCount(),
                     bonusMatch,
-                    dto.winningPolicy().getAmount(),
+                    String.format("%,d", dto.winningPolicy().getAmount()),
                     dto.matchCount()));
         }
     }
 
     public static void responseEarningRate(double earningRate) {
         System.out.println(String.format(ViewMessage.RESPONSE_TOTAL_EARNINGS.getMessage(), earningRate));
+    }
+
+    public static void responseErrorMessage(String message) {
+        System.out.println(message);
     }
 
     private static void printNewLine() {

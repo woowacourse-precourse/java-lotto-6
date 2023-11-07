@@ -9,7 +9,10 @@ public class ProfitRate {
     }
 
     private double profitRate(long totalWinning, int deposit) {
-        return ((double) totalWinning / deposit) * 100;
+        if (totalWinning < deposit) {
+            return ((double) totalWinning / deposit) * 100;
+        }
+        return ((double) totalWinning / deposit);
     }
 
     public double getProfitRate() {

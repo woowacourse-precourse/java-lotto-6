@@ -1,10 +1,13 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoNumber;
+import lotto.Util.LottoComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +40,24 @@ class LottoTest {
     void createLottoByOutOfRangeNumber() {
         assertThatThrownBy(() -> new LottoNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 비교 테스트")
+    @Test
+    void compareLottoTest() {
+        Lotto winLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+        LottoComparator lottoComparator = new LottoComparator(winLotto);
+        assertThat(lottoComparator.compareLotto(userLotto)).isEqualTo(3);
+    }
+
+    @DisplayName("보너스 번호 비교 테스트")
+    @Test
+    void compareBonusNumberTest() {
+        Lotto winLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber("7");
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+        LottoComparator lottoComparator = new LottoComparator(winLotto);
+        assertThat(lottoComparator.compareBonusNumber(userLotto, bonusNumber)).isEqualTo(true);
     }
 }

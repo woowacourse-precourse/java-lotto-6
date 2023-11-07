@@ -8,7 +8,6 @@ public class LottoController {
 
     private final int LOTTO_PRICE = 1000;
     private final LottoView lottoView;
-    private List<Lotto> purchasedLottos;
 
     public LottoController(LottoView lottoView) {
         this.lottoView = lottoView;

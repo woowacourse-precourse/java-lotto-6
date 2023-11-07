@@ -2,7 +2,6 @@ package lotto.vo;
 
 import java.util.List;
 import lotto.validator.LottoNumberValidator;
-import lotto.validator.NumberValidator;
 
 public record WinningLottoNumbers(List<Integer> value) {
     public WinningLottoNumbers {

@@ -1,16 +1,18 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.constants.ExceptionMessage.EXCEED_LIMIT;
 import static lotto.constants.ExceptionMessage.HAS_LETTER;
+import static lotto.constants.ExceptionMessage.IS_EXCESS_MAX_LIMIT;
 import static lotto.constants.ExceptionMessage.IS_NOT_THOUSAND_UNIT;
+import static lotto.constants.ExceptionMessage.IS_UNDER_MIN_LIMIT;
 import static lotto.constants.Notice.ASK_BONUS_NUMBER;
 import static lotto.constants.Notice.ASK_PURCHASE_PRICE;
 import static lotto.constants.Notice.ASK_WINNING_NUMBERS;
 
 public class InputView {
     private static final int THOUSAND_UNIT = 1000;
-    private static final int PURCHASE_LIMIT = 100000;
+    private static final int PURCHASE_MIN_LIMIT = 1000;
+    private static final int PURCHASE_MAX_LIMIT = 100000;
 
     public static int askPurchaseAmount() throws IllegalArgumentException {
         System.out.println(ASK_PURCHASE_PRICE.getMessage());
@@ -52,8 +54,11 @@ public class InputView {
     }
 
     private static void validatePurchaseLimit(int won) {
-        if (won > PURCHASE_LIMIT) {
-            throw new IllegalArgumentException(EXCEED_LIMIT.getMessage());
+        if (won > PURCHASE_MAX_LIMIT) {
+            throw new IllegalArgumentException(IS_EXCESS_MAX_LIMIT.getMessage());
+        }
+        if (won < PURCHASE_MIN_LIMIT) {
+            throw new IllegalArgumentException(IS_UNDER_MIN_LIMIT.getMessage());
         }
     }
 }

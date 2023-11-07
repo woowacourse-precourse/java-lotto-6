@@ -6,25 +6,25 @@ import java.util.Optional;
 import lotto.model.Lotto;
 import lotto.model.WiningStatistics;
 import lotto.model.WiningType;
+import lotto.model.WiningTypeCount;
 
 public class StatisticsService {
 
     public WiningStatistics calculateWiningStatistics(List<Integer> winingNumber, int bonus, List<Lotto> lottos) {
-        Map<WiningType, Integer> winingCountMap = calculateCountByWiningType(winingNumber, bonus, lottos);
-        long amount = WiningType.sumAmount(winingCountMap);
-        double rateOfReturn = Math.round((amount / (lottos.size() * 1000.0)) * 1000.0) / 1000.0 * 100.0;
-        return new WiningStatistics(rateOfReturn, winingCountMap);
+        WiningTypeCount winingTypeCount = calculateCountByWiningType(winingNumber, bonus, lottos);
+        double rateOfReturn = winingTypeCount.calculateRateOfReturn(lottos);
+        return new WiningStatistics(winingTypeCount, rateOfReturn);
     }
 
-    private Map<WiningType, Integer> calculateCountByWiningType(List<Integer> winingNumber, int bonus,
-                                                                List<Lotto> lottos) {
+    private WiningTypeCount calculateCountByWiningType(List<Integer> winingNumber, int bonus,
+                                                       List<Lotto> lottos) {
         Map<WiningType, Integer> winingCountMap = WiningType.winingCountToMap();
         lottos.forEach(lotto -> {
             int correctCount = lotto.compare(winingNumber);
             boolean hasBonus = lotto.containBonus(bonus);
             collectCountByWiningType(correctCount, hasBonus, winingCountMap);
         });
-        return winingCountMap;
+        return new WiningTypeCount(winingCountMap);
     }
 
     private void collectCountByWiningType(int correctCount, boolean hasBonus, Map<WiningType, Integer> winingCountMap) {

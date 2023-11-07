@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Calculator {
-    static public Grade checkWinning(Lotto lotto, LottoDrawResult lottoDrawResult) {
+    public static Grade checkWinning(Lotto lotto, LottoDrawResult lottoDrawResult) {
         Lotto resultLottoNumbers = lottoDrawResult.getLotto();
         Integer resultBonus = lottoDrawResult.getBonus();
 
@@ -22,7 +22,7 @@ public class Calculator {
         return obtainGrade(sameNumbersNumber, isBonusInLotto);
     }
 
-    static private Integer obtainEqualNumbersNumber(Lotto lotto1, Lotto lotto2) {
+    private static Integer obtainEqualNumbersNumber(Lotto lotto1, Lotto lotto2) {
         List<Integer> numbers1 = lotto1.getNumbers();
         List<Integer> numbers2 = lotto2.getNumbers();
 
@@ -34,12 +34,12 @@ public class Calculator {
         return IntersectionNumbers.size();
     }
 
-    static private boolean isBonusInLotto(Lotto lotto, Integer bonus) {
+    private static boolean isBonusInLotto(Lotto lotto, Integer bonus) {
         List<Integer> numbers = lotto.getNumbers();
         return numbers.contains(bonus);
     }
 
-    static private Grade obtainGrade(Integer sameNumbersNumber, Boolean isBonusInLotto) {
+    private static Grade obtainGrade(Integer sameNumbersNumber, Boolean isBonusInLotto) {
         if (sameNumbersNumber == Lotto.SIZE) {
             return FIRST;
         }
@@ -64,7 +64,7 @@ public class Calculator {
         return NONE;
     }
 
-    static public Double returnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+    public static Double returnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
         Integer purchaseCnt = lottos.size();
         Integer purchaseMoney = purchaseCnt * Lotto.PRICE;
         Integer winningMoney = 0;
@@ -77,7 +77,7 @@ public class Calculator {
         return Double.valueOf(winningMoney) * 100 / purchaseMoney;
     }
 
-    static private Integer obtainMoneyByGrade(Grade grade) {
+    private static Integer obtainMoneyByGrade(Grade grade) {
         if (grade == FIRST) {
             return 2_000_000_000;
         }

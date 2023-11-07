@@ -1,6 +1,7 @@
 package lotto.domain.prize;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public enum LottoPrizeType {
@@ -11,6 +12,8 @@ public enum LottoPrizeType {
     FOURTH(new LottoPrizeCriteria(4, false), BigDecimal.valueOf(50000L)),
     FIFTH(new LottoPrizeCriteria(3, false), BigDecimal.valueOf(5000L));
 
+    private static final int SECOND_OR_THIRD_PRIZE_WINNING_NUMBER_COUNT = 5;
+
     private final LottoPrizeCriteria criteria;
     private final BigDecimal amount;
 
@@ -19,17 +22,15 @@ public enum LottoPrizeType {
         this.amount = amount;
     }
 
-    public static LottoPrizeType toPrizeType(int winningNumberCount, boolean matchesBonusNumber) {
-        if (winningNumberCount == 5) {
+    public static Optional<LottoPrizeType> toPrizeType(int winningNumberCount, boolean matchesBonusNumber) {
+        if (winningNumberCount == SECOND_OR_THIRD_PRIZE_WINNING_NUMBER_COUNT) {
             return Stream.of(SECOND, THIRD)
                     .filter(type -> type.needToMatchBonusNumber(matchesBonusNumber))
-                    .findFirst()
-                    .orElseThrow();
+                    .findFirst();
         }
         return Stream.of(FIRST, FOURTH, FIFTH)
                 .filter(type -> type.meetsWinningNumberCountCriteria(winningNumberCount))
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
     }
 
     private boolean needToMatchBonusNumber(boolean matchesBonusNumber) {
@@ -42,6 +43,18 @@ public enum LottoPrizeType {
 
     public BigDecimal calculateAmount(Integer winningCount) {
         return this.amount.multiply(new BigDecimal(winningCount));
+    }
+
+    public int getWinningNumberCountCriterion() {
+        return this.criteria.getWinningNumberCount();
+    }
+
+    public boolean needToMatchBonusNumber() {
+        return this.criteria.needToMatchBonusNumber();
+    }
+
+    public BigDecimal getAmount() {
+        return this.amount;
     }
 
 }

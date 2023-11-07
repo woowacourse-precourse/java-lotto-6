@@ -7,7 +7,7 @@ import view.OutputView;
 public class LottoSeller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LottoMachine lottoMachine = new LottoMachine();
+    public static final LottoMachine lottoMachine = new LottoMachine();
     private Money money;
     private List<Lotto> createdLotto;
 

@@ -1,15 +1,17 @@
 package lotto;
 
-import java.util.List;
 import view.InputView;
-import view.OutputView;
 
 public class WinningNumberManager {
     private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
     private final WinningNumber winningNumber = new WinningNumber();
-    private List<Integer> numbers;
-    private int bonusNumber;
+    private final LottoMachine LottoMachineFromSeller = LottoSeller.lottoMachine;
+
+    public void setWinningNumberToLottoMachine() {
+        inputWinningNumber();
+        inputBonusNumber();
+        LottoMachineFromSeller.setWinningNumberToCalculator(winningNumber);
+    }
 
     public void inputWinningNumber() {
         while (true) {

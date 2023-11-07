@@ -22,22 +22,22 @@ public class LottoManager {
 
         try {
             purchaseTickets(InputView.purchaseAmount());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            OutputView.displayErrorMessage(e);
             purchaseTickets(InputView.purchaseAmount());
         }
 
         try {
             winningTicket(InputView.winningNumbers());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            OutputView.displayErrorMessage(e);
             winningTicket(InputView.winningNumbers());
         }
 
         try {
             bonusNumber(InputView.bonusNumber());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            OutputView.displayErrorMessage(e);
             bonusNumber(InputView.bonusNumber());
         }
 

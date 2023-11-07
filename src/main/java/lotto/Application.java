@@ -13,11 +13,12 @@ public class Application {
         for(List<Integer> numbers : LottoNumbers){
             System.out.println(numbers);
         }
-
+        
         Lotto winningNumber = setWinningLotto();
         int bonusNumber = getBonusNumber(winningNumber);
-        System.out.println("bonusNumber " + bonusNumber);
-        System.out.println("winningNumber " + winningNumber.toString());
+        
+        compareLottoNumbers(LottoNumbers, winningNumber, bonusNumber);
+        MatchResult.printMatchResult(amountOfLotto);
     }
     //금액 입력받기
     public static int setAmountOfLotto(int amountOfLotto){
@@ -116,7 +117,101 @@ public class Application {
         }
 }
 
+    public enum MatchResult {
+        ZERO(0, "0", 0),
+        TWO(2, "0", 0),
+        ONE(1, "0", 0),
+        THREE(3, "5,000원", 5000),
+        FOUR(4, "50,000원", 50000),
+        FIVE(5, "1,500,000원", 1500000),
+        SIX(6, "2,000,000,000원", 2000000000),
+        FIVEandBONUS(7, "30,000,000원", 30000000);
+
+        private final int matchedNumbers;
+        private final int money;
+        private final String price;
+
+        private static final Map<MatchResult, Integer> matchCountMap = new EnumMap<>(MatchResult.class);
+
+        static{
+            for(MatchResult result : MatchResult.values()){
+                matchCountMap.put(result, 0);
+            }
+        }
+        public static void incrementMatchCount(MatchResult result){
+            matchCountMap.put(result, matchCountMap.get(result) + 1);
+        }
+        
+        public static void printMatchResult(int amountOfLotto){
+            double sum = 0;
+            for (MatchResult result : MatchResult.values()) {
+                if (result.getMatchedNumbers() >= 3) {
+                    System.out.println(result.getMatchedNumbers() + "개 일치 (" + result.price + ") - " + matchCountMap.get(result) + "개");
+                    sum = isWinningAndPlusMoney(sum, result);
+                }
+            }
+            Rounds(sum, amountOfLotto);
+        }
+        public static double isWinningAndPlusMoney(double sum, MatchResult matchResult){
+            if(matchResult.matchedNumbers >= 1){
+                return sum + matchResult.money*matchResult.matchedNumbers;
+            }
+            return sum;
+        }
+
+        MatchResult(int matchedNumbers, String price, int money) {
+            this.matchedNumbers = matchedNumbers;
+            this.price = price;
+            this.money = money;
+        }
+
+        public int getMatchedNumbers() {
+            return matchedNumbers;
+        }
+        public String getMatchedPrice() {
+            return price;
+        }
+
+        public static MatchResult valueOfMatchedNumbers(int matchedNumbers) {
+            for (MatchResult result : MatchResult.values()) {
+                if (result.getMatchedNumbers() == matchedNumbers) {
+                    return result;
+                }
+            }
+            return ZERO; // 기본값
+        }
+    }
+    public static void compareLottoNumbers(List<List<Integer>> lottoNumbers, Lotto winningNumbers, int bonusNumber) {
+        for (List<Integer> oneLotto : lottoNumbers) {
+            int matchCount = compareLottoNumbersList(oneLotto, winningNumbers, bonusNumber);
+            MatchResult.incrementMatchCount(MatchResult.valueOfMatchedNumbers(matchCount));
+        }
+    }
     
-
-
+    public static int compareLottoNumbersList(List<Integer> oneLotto, Lotto winningNumbers, int bonusNumber) {
+        int matchCount = 0;
+        boolean isBonus = false;
+        for (int number : oneLotto) {
+            if (winningNumbers.contain(number)) {
+                matchCount++;
+            }
+            if(bonusNumber == number){
+                isBonus = true;
+            }
+        }
+        if(matchCount == 5 && isBonus){
+            return 7;
+        }
+        return matchCount;
+    }
+    public static void Rounds(double sum, int amountOfLotto){
+        if(sum == 0){
+            System.out.println("총 수익률은 " + sum + "%입니다.");            
+            return;
+        }
+        sum = sum / ((double) amountOfLotto * 1000);
+        
+        sum = Math.round(sum * 10) / 10.0;
+        System.out.println("총 수익률은 " + sum + "%입니다.");
+    }
 }

@@ -35,6 +35,15 @@ public class Lotto {
             }
         }
     }
+    public boolean contain(int number){
+        List<Integer> list = getNumbers();
+        for(int listNum : list){
+            if(listNum == number){
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return numbers.toString();

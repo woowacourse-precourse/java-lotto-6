@@ -25,7 +25,6 @@ public enum Rank {
     }
 
     public static Rank matchRank(Lotto lotto, WinningLotto winningLotto) {
-
         int count = (int) IntStream.range(0, lotto.size())
                 .filter(index -> winningLotto.getLotto().contain(lotto.get(index)))
                 .count();
@@ -37,7 +36,6 @@ public enum Rank {
     }
 
     private static Rank matchRank(int matchCount, boolean isBonus) {
-
         for (Rank rank : values()) {
             if (rank.count == matchCount && rank.isBonus == isBonus) {
                 return rank;

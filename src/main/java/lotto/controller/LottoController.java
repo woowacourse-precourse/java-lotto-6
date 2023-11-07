@@ -52,6 +52,7 @@ public class LottoController {
         printLottoPrize(lottoPrize);
 
         LottoProfit lottoProfit = lottoProfitService.createLottoProfit(lottoPrize, lottoPurchase);
+        printLottoProfit(lottoProfit);
     }
 
     public String getPurchaseAmount() {
@@ -75,5 +76,9 @@ public class LottoController {
 
     public void printLottoPrize(LottoPrize lottoPrize) {
         outputView.printLottoPrize(lottoPrize);
+    }
+
+    public void printLottoProfit(LottoProfit lottoProfit) {
+        outputView.printLottoProfit(lottoProfit);
     }
 }

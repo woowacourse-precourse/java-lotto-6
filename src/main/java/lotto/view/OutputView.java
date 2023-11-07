@@ -6,11 +6,13 @@ import static lotto.view.constant.OutputMessage.STATS_MESSAGE;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_FIRST_RANK;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_FIVE_RANK;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_FOUR_RANK;
+import static lotto.view.constant.OutputMessage.WINNING_STATS_PROFIT_RATE;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_SECOND_RANK;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_THIRD_RANK;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrize;
+import lotto.domain.LottoProfit;
 import lotto.domain.Lottos;
 
 public class OutputView {
@@ -48,5 +50,15 @@ public class OutputView {
         lottoPrizeResult.append(String.format(WINNING_STATS_THIRD_RANK.getMessage(), lottoPrize.getThirdRankCount()));
         lottoPrizeResult.append(String.format(WINNING_STATS_SECOND_RANK.getMessage(), lottoPrize.getSecondRankCount()));
         lottoPrizeResult.append(String.format(WINNING_STATS_FIRST_RANK.getMessage(), lottoPrize.getFirstRankCount()));
+    }
+
+    public void printLottoProfit(LottoProfit lottoProfit) {
+        StringBuilder lottoProfitResult = new StringBuilder();
+        createLottoProfitStats(lottoProfit, lottoProfitResult);
+        System.out.println(lottoProfitResult);
+    }
+
+    public void createLottoProfitStats(LottoProfit lottoProfit, StringBuilder lottoProfitResult) {
+        lottoProfitResult.append(String.format(WINNING_STATS_PROFIT_RATE.getMessage(), lottoProfit.getTotalProfitRate().getProfitRate()));
     }
 }

@@ -18,4 +18,6 @@ public class LottoNumbers {
         return lottoTicketNumbers;
     }
 
+
+
 }

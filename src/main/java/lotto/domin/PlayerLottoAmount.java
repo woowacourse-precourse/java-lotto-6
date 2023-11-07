@@ -10,7 +10,6 @@ public class PlayerLottoAmount {
     }
 
     public PlayerLottoAmount(String amount) {
-
         int amountNm = 0;
         amountNm = validateNumber(amount);
         validateAmount(amountNm);
@@ -43,7 +42,6 @@ public class PlayerLottoAmount {
     }
 
     public int validateNumber(String amount) {
-
         boolean isDigit = amount.chars().allMatch(Character::isDigit);
         if (!isDigit) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_ERROR.getExceptionValue());

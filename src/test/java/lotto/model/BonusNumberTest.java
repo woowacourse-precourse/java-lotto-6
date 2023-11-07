@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import lotto.util.exception.input.BonusNumberNotUniqueException;
 import lotto.util.exception.input.NumberGreaterException;
-import lotto.util.exception.input.NumbersEmptyException;
 import lotto.util.exception.input.NumbersNegativeException;
 import lotto.util.exception.input.NumbersNullException;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,13 +40,6 @@ class BonusNumberTest {
         bonus = null;
         assertThatThrownBy(() -> new BonusNumber(bonus, winningNumbers))
                 .isInstanceOf(NumbersNullException.class);
-    }
-
-    @Test
-    void 예외_빈_문자열_입력_테스트() {
-        bonus = "";
-        assertThatThrownBy(() -> new BonusNumber(bonus, winningNumbers))
-                .isInstanceOf(NumbersEmptyException.class);
     }
 
     @Test

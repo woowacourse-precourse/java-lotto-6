@@ -3,14 +3,13 @@ package lotto.util.validators;
 import static lotto.util.Constants.THOUSAND;
 import static lotto.util.Constants.ZERO;
 
-import lotto.util.exception.input.NumbersEmptyException;
+import lotto.util.exception.input.NumbersNullException;
 import lotto.util.exception.operation.AmountDivisionException;
 import lotto.util.exception.operation.AmountLessThanZeroException;
 import lotto.util.exception.operation.AmountParseException;
 
 
 public class PurchaseValidator {
-
     public static void validatePurchase(String amount) {
         validateEmpty(amount);
         Integer validatedAmount = validateInteger(amount);
@@ -20,7 +19,7 @@ public class PurchaseValidator {
 
     private static void validateEmpty(String amount) {
         if (amount.isEmpty()) {
-            throw new NumbersEmptyException();
+            throw new NumbersNullException();
         }
     }
 

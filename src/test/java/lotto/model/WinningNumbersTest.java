@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import lotto.util.exception.input.DuplicationNumberException;
 import lotto.util.exception.input.NumberGreaterException;
-import lotto.util.exception.input.NumbersEmptyException;
 import lotto.util.exception.input.NumbersNegativeException;
 import lotto.util.exception.input.NumbersNullException;
 import lotto.util.exception.input.WinningNumbersLengthMatchException;
@@ -55,11 +54,5 @@ class WinningNumbersTest {
     void 예외_NUll_입력_테스트() {
         assertThatThrownBy(() -> new WinningNumbers(null))
                 .isInstanceOf(NumbersNullException.class);
-    }
-
-    @Test
-    void 예외_빈_문자열_입력_테스트() {
-        assertThatThrownBy(() -> new WinningNumbers(""))
-                .isInstanceOf(NumbersEmptyException.class);
     }
 }

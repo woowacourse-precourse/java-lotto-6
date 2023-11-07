@@ -1,7 +1,9 @@
 package lotto.util.validators;
 
+import static lotto.util.Constants.ERROR;
 import static lotto.util.Constants.LOTTO_LENGTH;
 import static lotto.util.Constants.ZERO;
+import static lotto.util.enums.ErrorMessage.NUMBER_CANNOT_PARSE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,8 +11,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.util.Parser;
 import lotto.util.exception.input.DuplicationNumberException;
+import lotto.util.exception.input.NumberFormatCustomException;
 import lotto.util.exception.input.NumberGreaterException;
-import lotto.util.exception.input.NumbersEmptyException;
 import lotto.util.exception.input.NumbersNegativeException;
 import lotto.util.exception.input.NumbersNullException;
 import lotto.util.exception.input.WinningNumbersLengthMatchException;
@@ -20,19 +22,41 @@ public class WinningNumbersValidator {
     private static final int MAX_NUMBER = 45;
 
     public static void validateWinningNumbers(String winningNumbers) {
-        validateNull(winningNumbers);
-        validateEmpty(winningNumbers);
+        validateNotNullAndNotEmpty(winningNumbers);
+
         List<String> parseWinningNumbers = Parser.parseString(winningNumbers);
-        validateMaxNumber(parseIntWinningNumbers(parseWinningNumbers)); // 먼저 최대 숫자를 검증
+        List<Integer> parseIntWinningNumbers = parseIntWinningNumbers(parseWinningNumbers);
+        
+        validateMaxNumber(parseIntWinningNumbers);
         numberDuplicates(parseWinningNumbers);
         lengthCheck(parseWinningNumbers);
         validateNonPositiveWinningNumber(parseWinningNumbers);
     }
 
+//    private static List<Integer> parseIntWinningNumbers(List<String> numbers) {
+//        return numbers.stream()
+//                .map(str -> {
+//                    try {
+//                        return Integer.valueOf(str);
+//                    } catch (NumberFormatException e) {
+//                        throw new NumberFormatException(ERROR + NUMBER_CANNOT_PARSE.getMessage());
+//                    }
+//                })
+//                .collect(Collectors.toList());
+//    }
+
     private static List<Integer> parseIntWinningNumbers(List<String> numbers) {
         return numbers.stream()
-                .map(Integer::valueOf)
+                .map(WinningNumbersValidator::parseIntWithCustomException)
                 .collect(Collectors.toList());
+    }
+
+    private static Integer parseIntWithCustomException(String str) {
+        try {
+            return Integer.valueOf(str);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatCustomException();
+        }
     }
 
     private static void validateMaxNumber(final List<Integer> parsedWinningNumbers) {
@@ -58,8 +82,8 @@ public class WinningNumbersValidator {
         }
     }
 
-    private static void validateNull(String winningNumbers) {
-        if (winningNumbers == null) {
+    private static void validateNotNullAndNotEmpty(String winningNumbers) {
+        if (winningNumbers == null || winningNumbers.isEmpty()) {
             throw new NumbersNullException();
         }
     }
@@ -67,12 +91,6 @@ public class WinningNumbersValidator {
     private static void validateNonPositiveBonusNumber(String numbers) {
         if (Integer.parseInt(numbers) <= ZERO) {
             throw new NumbersNegativeException();
-        }
-    }
-
-    private static void validateEmpty(String winningNumbers) {
-        if (winningNumbers.isEmpty()) {
-            throw new NumbersEmptyException();
         }
     }
 }

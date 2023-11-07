@@ -2,7 +2,7 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.util.exception.input.NumbersEmptyException;
+import lotto.util.exception.input.NumbersNullException;
 import lotto.util.exception.operation.AmountDivisionException;
 import lotto.util.exception.operation.AmountLessThanZeroException;
 import lotto.util.exception.operation.AmountParseException;
@@ -23,12 +23,12 @@ class PurchaseAmountTest {
     @Test
     void 예외_빈_값_테스트() {
         Assertions.assertThatThrownBy(() -> new PurchaseAmount(""))
-                .isInstanceOf(NumbersEmptyException.class);
+                .isInstanceOf(NumbersNullException.class);
     }
 
     @Test
     void 예외_입력값_정수_변환_테스트() {
-        Assertions.assertThatThrownBy(() -> new PurchaseAmount("abc"))
+        Assertions.assertThatThrownBy(() -> new PurchaseAmount("1000j"))
                .isInstanceOf(AmountParseException.class);
     }
 

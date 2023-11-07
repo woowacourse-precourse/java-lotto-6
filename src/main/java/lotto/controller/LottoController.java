@@ -53,7 +53,7 @@ public class LottoController {
                 bundleGenerator = new BundleGenerator(amount);
                 OutputView.getPurchase(amount);
                 validInput = TRUE;
-            } catch (MathOperationException e) {
+            } catch (MathOperationException | NumberFormatException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -74,7 +74,7 @@ public class LottoController {
                 InputView.getWinningNumbers();
                 winningNumbers = new WinningNumbers(Console.readLine());
                 validInput = TRUE;
-            } catch (InputValidationException e) {
+            } catch (InputValidationException | NumberFormatException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -87,7 +87,7 @@ public class LottoController {
                 InputView.getBonusNumber();
                 bonusNumber = new BonusNumber(Console.readLine(), winningNumbers);
                 validInput = TRUE;
-            } catch (InputValidationException e) {
+            } catch (InputValidationException | NumberFormatException e) {
                 System.out.println(e.getMessage());
             }
         }

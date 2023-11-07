@@ -13,11 +13,10 @@ import java.util.Stack;
 public class PurchaseService {
     List<List<Integer>> lottos = new ArrayList<>();
     private final static int CURRENCY_AMOUNT_UNIT = 1000;
-    Buyer buyer = new Buyer();
+
     RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-    public void purchaseLotto(String money) {
-        buyer.setPurchaseAmount(Integer.parseInt(money));
+    public void purchaseLotto(Buyer buyer) {
         buyer.setTicketQuantity(buyer.getPurchaseAmount() / CURRENCY_AMOUNT_UNIT);
         generateLotto(buyer.getTicketQuantity());
         buyer.setLottos(lottos);

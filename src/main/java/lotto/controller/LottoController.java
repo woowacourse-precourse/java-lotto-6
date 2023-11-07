@@ -16,11 +16,7 @@ import java.util.List;
 public class LottoController {
     UIVaildator uiVaildator = new UIVaildator();
     PurchaseService purchaseService = new PurchaseService();
-    Buyer buyer = new Buyer();
-//    private List<Integer> numbers;
-//    Lotto lotto = new Lotto(numbers);
-//    WinningLotto winningLotto = new WinningLotto(numbers);
-    List<int[]> tickets = new ArrayList<>();
+    Buyer buyer;
     public void run() {
         //로또 구매
         buyLotto();
@@ -36,16 +32,17 @@ public class LottoController {
     }
     public void buyLotto() {
         while (true) {
-            String inputMoney = inputView.getRequestMoney();
             try {
+                String inputMoney = inputView.getRequestMoney();
                 uiVaildator.vaildateInput(inputMoney);
-                purchaseService.purchaseLotto(inputMoney);
+                buyer = new Buyer(inputMoney);
+                purchaseService.purchaseLotto(buyer);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
+        OutputView.displayPurchaseHistory(buyer.getTicketQuantity(), buyer.getLottos());
     }
 //        //구매 금액 입력
 //        buyer.setPurchaseAmount(Integer.parseInt(money));

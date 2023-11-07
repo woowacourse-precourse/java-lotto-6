@@ -10,13 +10,14 @@ public class Buyer {
     private List<List<Integer>> lottos;
     private int winningAmount;
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
-
-    public void setPurchaseAmount(int purchaseAmount) {
+    public Buyer(String inputMoney) {
+        int purchaseAmount = Integer.parseInt(inputMoney);
         BusinessVaildator.vaildateCurrencyAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public int getTicketQuantity() {

@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.domain.Player;
-
 public enum OutputMessage {
     ENTER_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     ENTER_LOTTO_NUMBERS("당첨 번호를 입력해 주세요."),

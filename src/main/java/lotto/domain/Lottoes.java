@@ -10,6 +10,7 @@ import java.util.*;
 
 public class Lottoes {
 
+    private static final int PERCENTAGE = 100;
     private final List<Lotto> elements = new ArrayList<>();
     private final LottoResult result = new LottoResult();
 
@@ -34,6 +35,12 @@ public class Lottoes {
         });
     }
 
+    public double getTotalProfit() {
+        double totalPrize = result.getTotalPrize();
+        int ticketCount = elements.size();
+        return (totalPrize / (LottoConstant.LOTTO_PRICE_UNIT.getValue() * ticketCount)) * PERCENTAGE;
+    }
+
     public String getLottoesNumber() {
         StringBuilder stringBuilder = new StringBuilder();
         elements.forEach(element -> stringBuilder.append(element.getNumbers())
@@ -43,9 +50,5 @@ public class Lottoes {
 
     public LottoResult getResult() {
         return result;
-    }
-
-    public double getProfit(int ticketCount) {
-        return result.getProfit(ticketCount);
     }
 }

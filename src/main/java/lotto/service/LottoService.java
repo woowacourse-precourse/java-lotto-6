@@ -7,11 +7,9 @@ import lotto.domain.WinningLotto;
 
 public class LottoService {
 
-    private final LottoCounter lottoCounter;
     private final Lottoes lottoes;
 
     public LottoService(LottoCounter lottoCounter) {
-        this.lottoCounter = lottoCounter;
         this.lottoes = new Lottoes(lottoCounter.getTicketCount());
     }
 
@@ -19,11 +17,10 @@ public class LottoService {
         lottoes.calculateRanking(winningLotto);
     }
 
-
     public double getProfit() {
-        return lottoes.getProfit(lottoCounter.getTicketCount());
+        return lottoes.getTotalProfit();
     }
-    
+
     public Lottoes getLottoes() {
         return lottoes;
     }

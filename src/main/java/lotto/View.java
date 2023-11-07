@@ -34,6 +34,13 @@ public class View {
         System.out.println(asKBonusNumber);
     }
 
+    void printNumberFormatError(){
+
+        String ErrorMessage = "[ERROR]숫자 형식을 입력해주세요.";
+
+        System.out.println(ErrorMessage);
+    }
+
     void printWinStat(LottoGame lottoGame, User user){
 
         System.out.println("당첨 통계");

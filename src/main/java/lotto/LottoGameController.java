@@ -155,7 +155,8 @@ public class LottoGameController {
             StringTokenizer tk = new StringTokenizer(sc.next());
             inputMoney = Integer.parseInt(tk.nextToken());
         }catch (NumberFormatException e){
-            System.out.println("[ERROR]");
+
+            view.printNumberFormatError();
             setUser();
         }
 

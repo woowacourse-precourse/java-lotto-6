@@ -1,7 +1,8 @@
 package lotto.util;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class ValidatorTest {
     @Test
     @DisplayName("음의 정수인 경우")
     void validatePositiveInteger_음의_정수() {
-        Assertions.assertThrows(IllegalStateException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             Validator.validatePositiveInteger(-4);
         });
     }
@@ -24,7 +25,7 @@ class ValidatorTest {
     @Test
     @DisplayName("0인 경우")
     void validatePositiveInteger_0() {
-        Assertions.assertThrows(IllegalStateException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             Validator.validatePositiveInteger(0);
         });
     }
@@ -38,7 +39,7 @@ class ValidatorTest {
     @Test
     @DisplayName("양의 정수 리스트가 아닌 경우")
     void validatePositiveIntegerList_양의_정수_리스트_아님() {
-        Assertions.assertThrows(IllegalStateException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             Validator.validatePositiveIntegerList(List.of(1, 2, -3, 4, 5));
         });
     }

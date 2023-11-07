@@ -1,7 +1,6 @@
 package lotto.controller.dto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.lotto.Lotto;
 
 public record PurchaseResultDto(

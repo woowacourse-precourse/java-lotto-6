@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.constants.AppConstants;
+import lotto.constants.ErrorConstants;
 import lotto.domain.LottoTicket;
 import lotto.utils.StringUtil;
 
@@ -16,8 +17,9 @@ public class LottoPurchaseService {
     private void validatePurchaseAmount(String purchaseAmount) {
         // 구매 금액 검증
         StringUtil.checkNotNull(purchaseAmount);
-    }
+        StringUtil.checkNumeric(purchaseAmount);
 
+    }
 
 
 

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.validation.DomainValidate;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -7,14 +10,17 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    private void validate(List<Integer> numbers) {
+        DomainValidate.validateNumberInRange(numbers.size());
+        DomainValidate.validateNumberOfLottoNumbers(numbers);
+        DomainValidate.validateDuplicated(numbers);
+    }
 }

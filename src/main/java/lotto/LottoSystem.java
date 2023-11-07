@@ -14,6 +14,7 @@ public class LottoSystem {
         System.out.println("구입금액을 입력해 주세요.");
         int lottoTicket = buyLottoTicket(Console.readLine());
         ArrayList<Lotto> buyLottoNumbers = buyLotto(lottoTicket);
+        buyLottoNumbersPrint(buyLottoNumbers);
     }
 
     public int buyLottoTicket(String money) throws IllegalArgumentException {
@@ -41,5 +42,11 @@ public class LottoSystem {
             buyLottoNumbers.add((new Lotto(numbers)));
         }
         return buyLottoNumbers;
+    }
+
+    public void buyLottoNumbersPrint(ArrayList<Lotto> buyLottoNumbers){
+        for (Lotto number : buyLottoNumbers){
+            System.out.println(number.getLottoNumbers());
+        }
     }
 }

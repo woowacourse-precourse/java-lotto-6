@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lotto {
+    public final static int PRICE = 1000;
+    public final static int MIN_NUMBER = 1;
+    public final static int MAX_NUMBER = 45;
+    public final static int SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

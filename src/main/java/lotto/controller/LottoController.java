@@ -42,9 +42,9 @@ public class LottoController {
         Lotto winningLotto = repeatMakeWinningLotto();
 
         output.showBonusNumberInputMessage();
-        int bonusNumber = repeatReadBonusNumber();
+        Bonus bonus = repeatMakeBonus();
 
-        return new WinningCondition(winningLotto, bonusNumber);
+        return new WinningCondition(winningLotto, bonus);
     }
 
     private Lotto repeatMakeWinningLotto() {
@@ -56,12 +56,12 @@ public class LottoController {
         }
     }
 
-    private int repeatReadBonusNumber() {
+    private Bonus repeatMakeBonus() {
         try {
-            return toInt(input.readBonusNumber());
+            return new Bonus(toInt(input.readBonusNumber()));
         } catch (IllegalArgumentException e) {
             output.showError(e.getMessage());
-            return repeatReadBonusNumber();
+            return repeatMakeBonus();
         }
     }
 

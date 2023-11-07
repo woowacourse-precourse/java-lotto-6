@@ -54,8 +54,8 @@ public class Lotto {
                 .toList();
     }
 
-    public Rank findRank(Lotto winningLotto, int bonusNumber) {
-        return Rank.find(countWinningNumber(winningLotto), hasBonusNumber(bonusNumber));
+    public Rank findRank(Lotto winningLotto, Bonus bonus) {
+        return Rank.find(countWinningNumber(winningLotto), hasBonusNumber(bonus));
     }
 
     private int countWinningNumber(Lotto winningLotto) {
@@ -64,8 +64,8 @@ public class Lotto {
                 .count();
     }
 
-    private boolean hasBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    private boolean hasBonusNumber(Bonus bonus) {
+        return numbers.contains(bonus.getNumber());
     }
 
     @Override

@@ -5,15 +5,15 @@ import java.util.Map;
 public class WinningCondition {
 
     private final Lotto winningLotto;
-    private final int bonusNumber;
+    private final Bonus bonus;
 
-    public WinningCondition(Lotto winningLotto, int bonusNumber) {
+    public WinningCondition(Lotto winningLotto, Bonus bonus) {
         this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
+        this.bonus = bonus;
     }
 
     public Map<Lotto, Rank> findRankByLotto(LottoTickets lottoTickets) {
-        return lottoTickets.findRankByLotto(winningLotto, bonusNumber);
+        return lottoTickets.findRankByLotto(winningLotto, bonus);
     }
 
     public double calculateTotalReturn(int money, Map<Rank, Integer> winningResult) {

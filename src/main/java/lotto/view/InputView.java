@@ -5,17 +5,16 @@ import lotto.validator.UserInputValidator;
 
 public class InputView {
 
-    private static String getUserInput(){
+    private static String getUserInput() {
         return Console.readLine();
     }
 
-    public static int getPerchaseAmount() throws IllegalArgumentException{
-        try{
+    public static int getPurchaseAmount() throws IllegalArgumentException {
+        try {
             String userInput = getUserInput();
             int amount = UserInputValidator.validatePurchaseAmount(userInput);
             return amount;
-        }
-        catch(IllegalArgumentException ex){
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException(ex.getMessage());
         }
     }

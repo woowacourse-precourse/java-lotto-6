@@ -8,4 +8,8 @@ public class OutputView {
         OutputMessages message = OutputMessages.ASK_PURCHASE_AMOUNT_MESSAGE;
         System.out.println(message.getMessage());
     }
+
+    public static void printLottoList() {
+        
+    }
 }

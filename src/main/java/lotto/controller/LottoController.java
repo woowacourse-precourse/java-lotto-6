@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.utils.CalculationUtils.isDivisible;
 import static lotto.utils.StringUtils.parseInt;
 import static lotto.view.ErrorMessage.*;
+import static lotto.view.InputMessage.ENTER_BONUS_NUMBER;
 import static lotto.view.InputMessage.HOW_MUCH_MONEY_FOR_LOTTO_PURCHASE;
 import static lotto.view.InputView.readInput;
 import static lotto.view.OutputView.*;
@@ -26,6 +27,15 @@ public class LottoController {
         return parseInt(userInput);
     }
 
+
+    public int registerBonusNumber() {
+        String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
+        return parseInt(userInput);
+    }
+
+
+
+
     public List<Lotto> generateLottoList(int count) {
         List<Lotto> result = new ArrayList<>();
 
@@ -48,6 +58,8 @@ public class LottoController {
     }
 
 
+
+
     private void validateReceivedMoney(String userInput) {
         // 숫자 인지 검증
         int number = parseInt(userInput);
@@ -56,6 +68,7 @@ public class LottoController {
             throw new IllegalArgumentException(RECEIVED_MONEY_NOT_MULTIPLE_OF_1000.getErrorMessage());
         }
     }
+
 
 
 

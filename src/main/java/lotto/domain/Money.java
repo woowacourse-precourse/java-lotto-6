@@ -18,13 +18,13 @@ public class Money {
 
     private void isOverThousand(int money) throws IllegalArgumentException {
         if (money < THOUSAND) {
-            throw new IllegalArgumentException(UNDER_THOUSAND);
+            throw new IllegalArgumentException(IS_UNDER_THOUSAND);
         }
     }
 
     private void canDivideByThousand(int money) throws IllegalArgumentException {
         if (money % THOUSAND != ZERO) {
-            throw new IllegalArgumentException(CANNOT_DIVIDE_BY_THOUSAND);
+            throw new IllegalArgumentException(CAN_NOT_DIVIDE_BY_THOUSAND);
         }
     }
 

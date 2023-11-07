@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
     private static final String LOTTO_PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
@@ -20,5 +22,9 @@ public class OutputView {
 
     public void printBonusNumberInputMessage() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void printLottoPurchasedNumber(List<Integer> numbers) {
+        System.out.println(numbers);
     }
 }

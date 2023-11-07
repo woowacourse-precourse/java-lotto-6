@@ -55,7 +55,7 @@ public class LottoWinningNumbersTest {
     @Test
     @DisplayName("당첨번호에 보너스번호와 중복된 번호가있으면 재입력을 한다.")
     void createBonusNumberDuplicateWithWinningNumbers() {
-        consoleInput("1,2,3,4,5,6", "5" , "7");
+        consoleInput("1,2,3,4,5,6", "5", "7");
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
 
@@ -63,10 +63,11 @@ public class LottoWinningNumbersTest {
 
         assertThat(bonusNumber.getNumber()).isEqualTo(number);
     }
+
     @Test
     @DisplayName("잘못된 값을 입력시 재 입력한다.")
     void createBonusNumberIncorrectValue() {
-        consoleInput("1,2,3,4,5,6", "tt" , "7");
+        consoleInput("1,2,3,4,5,6", "tt", "7");
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
 
@@ -74,10 +75,11 @@ public class LottoWinningNumbersTest {
 
         assertThat(bonusNumber.getNumber()).isEqualTo(number);
     }
+
     @Test
     @DisplayName("1~45의 값이 아니면 재입력받는다.")
     void createBonusNumberRangeOver() {
-        consoleInput("1,2,3,4,5,6", "47" , "7");
+        consoleInput("1,2,3,4,5,6", "47", "7");
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
 

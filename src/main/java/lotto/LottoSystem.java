@@ -28,6 +28,7 @@ public class LottoSystem {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber(Console.readLine());
         int[] winLotto = lottoWinCheck(buyLottoNumbers, winningNumber, bonusNumber);
+        winnerLottoNumbersPrint(lottoTicket, winLotto);
     }
 
     public int buyLottoTicket(String money) throws IllegalArgumentException {

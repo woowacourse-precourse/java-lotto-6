@@ -11,13 +11,13 @@ import lotto.game.views.LottoGameView;
 public class LottoGame implements InteractionRepeatable {
 
     private final LottoGameView lottoGameView;
-    private final Randoms randoms;
     private final LottoStore lottoStore;
+    private final Randoms randoms;
 
-    public LottoGame(final LottoGameView lottoGameView, final Randoms randoms, final LottoStore lottoStore) {
+    public LottoGame(final LottoGameView lottoGameView, final LottoStore lottoStore, final Randoms randoms) {
         this.lottoGameView = lottoGameView;
-        this.randoms = randoms;
         this.lottoStore = lottoStore;
+        this.randoms = randoms;
     }
 
     public void run() {

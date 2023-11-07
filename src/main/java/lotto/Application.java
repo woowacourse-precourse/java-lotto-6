@@ -37,8 +37,8 @@ public class Application {
                         new LottoStoreView(input, output),
                         new WinningLottoView(input, output)
                 ),
-                new LottosRandoms(),
-                new LottoStore()
+                new LottoStore(),
+                new LottosRandoms()
         );
     }
 

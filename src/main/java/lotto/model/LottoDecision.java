@@ -4,17 +4,23 @@ import java.util.ArrayList;
 
 public class LottoDecision {
     private final int[] winningNumber;
-    private ArrayList<Integer> winningStatistic;
+    private int[] winningGrade;
+    private float rateOfReturn;
 
     public LottoDecision(int[] winningNumber) {
         this.winningNumber = winningNumber;
     }
 
-    public ArrayList<Integer> setWinningStatistic() {
-        return winningStatistic;
+    public int[] getWinningNumber() {
+        return winningNumber;
     }
 
-    public ArrayList<Integer> getWinningStatistic() {
-        return winningStatistic;
+
+    public void setWinningGrade(int[] winningGrade) {
+        this.winningGrade = winningGrade;
+    }
+
+    public int[] getWinningGrade() {
+        return this.winningGrade;
     }
 }

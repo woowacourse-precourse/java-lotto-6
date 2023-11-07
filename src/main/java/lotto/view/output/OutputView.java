@@ -15,6 +15,15 @@ public class OutputView {
         generateBlank();
     }
 
+    public void WinningGradeVisualization(int[] winningGrade, double profitRate) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        String winningGradeVisualization = outputMaker.visualizeWinningGrade(winningGrade);
+        System.out.println(winningGradeVisualization);
+        String profitMessage = outputMaker.makeProfitMessage(profitRate);
+        System.out.println(profitMessage);
+    }
+
     public void generateBlank() {
         System.out.println();
     }

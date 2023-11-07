@@ -3,18 +3,22 @@ package lotto.model;
 import java.util.ArrayList;
 
 public class Buyer {
-    private final Integer purchasedLottoCount;
-    private ArrayList<Lotto> purchasedLottoList = new ArrayList<>();
+    private final int purchasedLottoCount;
+    private ArrayList<Lotto> purchasedLotto = new ArrayList<>();
 
     public Buyer(Integer purchasedLottoCount) {
         this.purchasedLottoCount = purchasedLottoCount;
     }
 
-    public void addPurchasedLottoList(Lotto lotto) {
-        purchasedLottoList.add(lotto);
+    public int getPurchasedLottoCount() {
+        return this.purchasedLottoCount;
     }
 
-    public ArrayList<Lotto> getPurchasedLottoList() {
-        return this.purchasedLottoList;
+    public void addPurchasedLottoList(Lotto lotto) {
+        purchasedLotto.add(lotto);
+    }
+
+    public ArrayList<Lotto> getPurchasedLotto() {
+        return this.purchasedLotto;
     }
 }

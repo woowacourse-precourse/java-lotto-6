@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Bonus;
 import lotto.model.Lotto;
+import lotto.model.UserLotto;
 import lotto.model.UserMoney;
 
 public class UserIoManager {
@@ -49,5 +50,9 @@ public class UserIoManager {
 
     public void printLottoAmount(UserMoney userMoney) {
         outputView.printLottoAmount(userMoney);
+    }
+
+    public void printUserLotto(UserLotto userLotto) {
+        outputView.printUserLotto(userLotto);
     }
 }

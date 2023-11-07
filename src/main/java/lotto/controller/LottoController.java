@@ -21,6 +21,7 @@ public class LottoController {
         UserMoney userMoney = userIoManager.readUserMoney();
         userIoManager.printLottoAmount(userMoney);
         UserLotto userLotto = new UserLotto(userMoney.getLottoAmount(), numberGenerator);
+        userIoManager.printUserLotto(userLotto);
         Lotto lotto = userIoManager.readWinningNumbers();
         Bonus bonus = userIoManager.readBonusNumber();
         WinningNumbers winningNumbers = new WinningNumbers(lotto, bonus);

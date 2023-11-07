@@ -6,7 +6,7 @@ import lotto.collaboration.lottos.WinningLotto;
 import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Randoms;
-import lotto.game.io.views.LottoGameView;
+import lotto.game.views.LottoGameView;
 
 public class LottoGame implements InteractionRepeatable {
 
@@ -14,7 +14,7 @@ public class LottoGame implements InteractionRepeatable {
     private final Randoms randoms;
     private final Lottos lottos;
 
-    public LottoGame(LottoGameView lottoGameView, Randoms randoms, Lottos lottos) {
+    public LottoGame(final LottoGameView lottoGameView, final Randoms randoms, final Lottos lottos) {
         this.lottoGameView = lottoGameView;
         this.randoms = randoms;
         this.lottos = lottos;

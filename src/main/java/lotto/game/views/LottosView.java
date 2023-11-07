@@ -1,4 +1,4 @@
-package lotto.game.io.views;
+package lotto.game.views;
 
 import java.util.List;
 import lotto.collaboration.lottos.dto.PlayerLotto;
@@ -11,7 +11,7 @@ public class LottosView implements InteractionRepeatable {
     public final Input input;
     public final Output output;
 
-    public LottosView(Input input, Output output) {
+    public LottosView(final Input input, final Output output) {
         this.input = input;
         this.output = output;
     }
@@ -23,7 +23,7 @@ public class LottosView implements InteractionRepeatable {
         });
     }
 
-    public void announcePurchaseLottos(List<PlayerLotto> purchaseLottos) {
+    public void announcePurchaseLottos(final List<PlayerLotto> purchaseLottos) {
         output.println();
         output.println(purchaseLottos.size() + "개를 구매했습니다.");
         for (PlayerLotto purchaseLotto : purchaseLottos) {

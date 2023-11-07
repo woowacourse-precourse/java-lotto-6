@@ -1,4 +1,4 @@
-package lotto.game.io.views;
+package lotto.game.views;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -14,7 +14,7 @@ public class WinningLottoView implements InteractionRepeatable {
     public final Input input;
     public final Output output;
 
-    public WinningLottoView(Input input, Output output) {
+    public WinningLottoView(final Input input, final Output output) {
         this.input = input;
         this.output = output;
     }
@@ -63,7 +63,7 @@ public class WinningLottoView implements InteractionRepeatable {
         });
     }
 
-    public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<PlayerLotto>> prizeListMap) {
+    public void announceWinningStatistics(final int purchaseAmount, final Map<Prize, List<PlayerLotto>> prizeListMap) {
         output.println();
         output.println("당첨 통계");
         output.println("---");
@@ -77,6 +77,7 @@ public class WinningLottoView implements InteractionRepeatable {
             totalPrizeMoney += prize.money() * prizeLottos.size();
         }
 
+        // TODO : 변환 및 포맷팅 리팩토링 필요
         double result = (double) Math.round(((double) totalPrizeMoney / purchaseAmount) * 1_000) / 10;
         output.println("총 수익률은 " + new DecimalFormat("#,###.0").format(result) + "%입니다.");
     }

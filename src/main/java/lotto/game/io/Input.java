@@ -8,12 +8,12 @@ public interface Input {
 
     List<String> strings();
 
-    List<String> strings(String regex);
+    List<String> strings(final String regex);
 
     int number();
 
     List<Integer> numbers();
 
-    List<Integer> numbers(String regex);
+    List<Integer> numbers(final String regex);
 
 }

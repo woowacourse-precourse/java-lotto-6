@@ -4,7 +4,7 @@ import lotto.game.io.Output;
 
 public class ConsoleOutput implements Output {
 
-    public void print(Object message) {
+    public void print(final Object message) {
         System.out.print(message.toString());
     }
 
@@ -12,7 +12,7 @@ public class ConsoleOutput implements Output {
         System.out.println();
     }
 
-    public void println(Object message) {
+    public void println(final Object message) {
         System.out.println(message.toString());
     }
 

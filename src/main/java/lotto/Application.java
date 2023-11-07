@@ -4,9 +4,9 @@ import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
 
 import lotto.collaboration.lottos.Lottos;
 import lotto.game.LottoGame;
-import lotto.game.io.views.LottoGameView;
-import lotto.game.io.views.LottosView;
-import lotto.game.io.views.WinningLottoView;
+import lotto.game.views.LottoGameView;
+import lotto.game.views.LottosView;
+import lotto.game.views.WinningLottoView;
 import lotto.io.ConsoleInput;
 import lotto.io.ConsoleOutput;
 import lotto.io.lottos.LottosRandoms;

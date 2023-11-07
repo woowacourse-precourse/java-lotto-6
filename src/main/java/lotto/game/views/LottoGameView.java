@@ -1,4 +1,4 @@
-package lotto.game.io.views;
+package lotto.game.views;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ public class LottoGameView {
     public final LottosView lottosView;
     public final WinningLottoView winningLottoView;
 
-    public LottoGameView(LottosView lottosView, WinningLottoView winningLottoView) {
+    public LottoGameView(final LottosView lottosView, final WinningLottoView winningLottoView) {
         this.lottosView = lottosView;
         this.winningLottoView = winningLottoView;
     }
@@ -19,7 +19,7 @@ public class LottoGameView {
         return lottosView.askPurchaseAmount();
     }
 
-    public void announcePurchaseLottos(List<PlayerLotto> purchaseLottos) {
+    public void announcePurchaseLottos(final List<PlayerLotto> purchaseLottos) {
         lottosView.announcePurchaseLottos(purchaseLottos);
     }
 
@@ -31,7 +31,7 @@ public class LottoGameView {
         return winningLottoView.askBonusNumber();
     }
 
-    public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<PlayerLotto>> prizeListMap) {
+    public void announceWinningStatistics(final int purchaseAmount, final Map<Prize, List<PlayerLotto>> prizeListMap) {
         winningLottoView.announceWinningStatistics(purchaseAmount, prizeListMap);
     }
 

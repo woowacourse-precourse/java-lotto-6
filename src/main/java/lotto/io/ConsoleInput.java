@@ -19,7 +19,7 @@ public class ConsoleInput implements Input {
         return strings(DEFAULT_SPLIT_REGEX);
     }
 
-    public List<String> strings(String regex) {
+    public List<String> strings(final String regex) {
         return Arrays.stream(Console.readLine().split(regex))
                 .toList();
     }
@@ -36,7 +36,7 @@ public class ConsoleInput implements Input {
         return numbers(DEFAULT_SPLIT_REGEX);
     }
 
-    public List<Integer> numbers(String regex) {
+    public List<Integer> numbers(final String regex) {
         try {
             return Arrays.stream(Console.readLine().split(regex))
                     .map(Integer::valueOf)

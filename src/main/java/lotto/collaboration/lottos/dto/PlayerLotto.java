@@ -9,7 +9,7 @@ public class PlayerLotto {
 
     private final List<Integer> numbers;
 
-    public PlayerLotto(Lotto lotto) {
+    public PlayerLotto(final Lotto lotto) {
         this.numbers = lotto.stream().sorted().toList();
     }
 

@@ -12,7 +12,7 @@ public class WinningLotto {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningLotto(final List<Integer> winningNumbers, final int bonusNumber) {
         validate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -28,7 +28,7 @@ public class WinningLotto {
         }
     }
 
-    public Map<Prize, List<PlayerLotto>> matchNumbers(List<PlayerLotto> buyLottos) {
+    public Map<Prize, List<PlayerLotto>> matchNumbers(final List<PlayerLotto> buyLottos) {
         Map<Prize, List<PlayerLotto>> result = buyLottos.stream()
                 .collect(groupingBy(lotto ->
                         Prize.matchPrize(this.matchNumbers(lotto), matchBonusNumber(lotto))));

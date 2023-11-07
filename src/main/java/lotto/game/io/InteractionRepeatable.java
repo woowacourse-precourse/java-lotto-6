@@ -8,7 +8,7 @@ public interface InteractionRepeatable {
 
     Output output = new ConsoleOutput(); // 아..... 얘때문에 다시 의존성 잡히네
 
-    default void runInteraction(Runnable runnable) {
+    default void runInteraction(final Runnable runnable) {
         while (true) {
             try {
                 runnable.run();
@@ -19,7 +19,7 @@ public interface InteractionRepeatable {
         }
     }
 
-    default <T> T supplyInteraction(Supplier<T> supplier) {
+    default <T> T supplyInteraction(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

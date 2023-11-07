@@ -10,9 +10,8 @@ public class Lottos {
     public static final int MIN_PURCHASE_AMOUNT = 1_000;
     public static final int MAX_PURCHASE_AMOUNT = 100_000;
     private int purchaseAmount;
-//    private List<Lotto> purchaseLottos;
 
-    public void purchase(int purchaseAmount) {
+    public void purchase(final int purchaseAmount) {
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
@@ -40,7 +39,7 @@ public class Lottos {
         return purchaseAmount;
     }
 
-    public List<PlayerLotto> make(Randoms lottosRandoms) {
+    public List<PlayerLotto> make(final Randoms lottosRandoms) {
         int ticketAmount = getTicketAmount();
 
         while (true) {

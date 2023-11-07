@@ -1,4 +1,4 @@
-package lotto.model.validator;
+package lotto.validator;
 
 import java.util.regex.Pattern;
 import lotto.common.exception.ErrorMessage;

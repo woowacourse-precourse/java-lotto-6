@@ -1,9 +1,9 @@
-package lotto.model.validator;
+package lotto.validator;
 
 import lotto.common.config.LottoGameRule;
 import lotto.common.exception.ErrorMessage;
 
-public class LottoCostValidator extends InputValidator {
+public class LottoCostValidator {
     public static void validateLottoCostUnit(int lottoCost) {
         if (!(overMinLottoCost(lottoCost) && isZeroRemainder(lottoCost))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COST_UNIT.message());

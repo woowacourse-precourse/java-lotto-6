@@ -1,4 +1,4 @@
-package lotto.model.validator;
+package lotto.validator;
 
 import java.util.List;
 import java.util.Set;
@@ -6,7 +6,7 @@ import lotto.common.config.LottoGameRule;
 import lotto.common.exception.ErrorMessage;
 import lotto.model.Lotto;
 
-public class LottoNumbersValidator extends InputValidator {
+public class LottoNumbersValidator {
 
     public static void validateLottoNumberRange(int lottoNumber) {
         if (!isLottoNumberRange(lottoNumber)) {

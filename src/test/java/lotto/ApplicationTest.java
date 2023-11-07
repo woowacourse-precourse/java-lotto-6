@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import constValue.ConstMessage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 
 import java.util.List;
 
@@ -51,6 +53,30 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ConstMessage.NUMBER_INPUT_RANGE_ERROR_MESSAGE.getMessage());
+        });
+    }
+
+    @Test
+    void 당첨번호_갯수_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");
+            assertThat(output()).contains(ConstMessage.CORRECT_NUMBER_INPUT_COUNT_ERROR_MESSAGE.getMessage());
+        });
+    }
+
+    @Test
+    void 보너스번호_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ConstMessage.BONUS_NUMBER_INPUT_ERROR_MESSAGE.getMessage());
         });
     }
 

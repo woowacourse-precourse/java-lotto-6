@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -8,11 +10,12 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     static final String INPUT_CASH_MESSAGE = "구입금액을 입력해 주세요.";
-    static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     int getInput() {
         int parsedInput;
+
         System.out.println(INPUT_CASH_MESSAGE);
         String input = Console.readLine();
 
@@ -23,6 +26,21 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 숫자를 입력해주세요.");
             }
+        }
+
+        return parsedInput;
+    }
+
+    List<Integer> getInputOfWinningNumber() {
+
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        String input = Console.readLine();
+
+        List<String> seperatedInput = Arrays.asList(input.split(","));
+        List<Integer> parsedInput = new ArrayList<>();
+
+        for (int i = 0; i < seperatedInput.size(); i++) {
+            parsedInput.add(Integer.parseInt(seperatedInput.get(i)));
         }
 
         return parsedInput;
@@ -62,6 +80,5 @@ public class LottoController {
             System.out.println(lotto.toString());
         }
     }
-
 
 }

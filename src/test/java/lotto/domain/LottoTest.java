@@ -4,8 +4,11 @@ import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,5 +27,28 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("로또 번호 당첨 내역 유효성 검사")
+    @Test
+    void evaluateWinning_ShouldIdentifyCorrectWinnings() {
+
+        List<Winning> winnings = new ArrayList<>();
+        winnings.add(new Winning(3, false, 5000));
+        winnings.add(new Winning(4, false, 50000));
+        winnings.add(new Winning(5, false, 1500000));
+        winnings.add(new Winning(5, true, 30000000));
+        winnings.add(new Winning(6, false, 2000000000));
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 7, 8, 9);
+        int winningBonus = 10;
+
+        Lotto ticket = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        ticket.evaluateWinning(winningNumbers, winningBonus, winnings);
+
+        assertThat(winnings).anySatisfy(winning -> {
+            assertThat(winning.getMatch()).isEqualTo(3);
+            assertThat(winning.getBonus()).isFalse();
+            assertThat(winning.getTicketCount()).isGreaterThan(0);
+        });
+    }
 }

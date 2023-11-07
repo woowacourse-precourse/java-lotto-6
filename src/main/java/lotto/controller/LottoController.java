@@ -16,7 +16,10 @@ public class LottoController {
     
     public void start() {
         LottoPurchase lottoPurchase = inputAmount();
+        outputView.printNewLine();
+        
         int ticketCount = lottoPurchase.calculateTicketCount();
+        outputView.printTicketCount(ticketCount);
     }
     
     private LottoPurchase inputAmount() {

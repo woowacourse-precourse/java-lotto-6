@@ -34,7 +34,7 @@ public class User {
     private int inputMoneyValidation(String inputMoney) {
         int money = parseToNumber(inputMoney);
         if (money % 1000 != 0 || money == 0)
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 다시 입력하여 주세요 입력 값 = " + money);
+            throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_THOUSAND.getMessage() + money);
 
         return money;
     }
@@ -43,7 +43,7 @@ public class User {
         try {
             return Integer.parseInt(inputMoney);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다. 다시 입력하여 주세요");
+            throw new IllegalArgumentException(ErrorMessage.NO_PARSE_TO_NUMBER.getMessage());
         }
     }
 

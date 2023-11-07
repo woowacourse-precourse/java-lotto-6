@@ -64,25 +64,25 @@ public class WinningNumber {
 
     private void checkSizeValidate(List<Integer> numbers) {
         if (numbers.size() != 6)
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다. 다시 입력하여 주세요");
+            throw new IllegalArgumentException(ErrorMessage.NO_COUNT_LOTTO_NUMBERS.getMessage());
     }
 
     private int parseToNumber(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다. 다시 입력하여 주세요");
+            throw new IllegalArgumentException(ErrorMessage.NO_PARSE_TO_NUMBER.getMessage());
         }
     }
 
     private void checkNumberDuplicate(int number, List<Integer> winnerNumbers) {
         if (winnerNumbers.contains(number))
-            throw new IllegalArgumentException("[ERROR] 이미 로또 번호에 있는 번호 입니다. 다시 입력하여 주세요");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 
     private void checkNumberInRange(int number) {
         if (number < 1 || number > 45)
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다. 다시 입력하여 주세요");
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
     }
 
 }

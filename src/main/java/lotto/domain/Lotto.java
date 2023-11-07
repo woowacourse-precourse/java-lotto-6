@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NO_COUNT_LOTTO_NUMBERS.getMessage());
         }
     }
 
@@ -27,7 +27,7 @@ public class Lotto {
 
     public void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 
 

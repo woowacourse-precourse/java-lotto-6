@@ -209,4 +209,20 @@ class LottoGameServiceTest {
         assertThat(lottoGameService.determineWinningRank(purchaseLotto, winningLotto, bonusNumber))
                 .isEqualTo(LottoRank.SECOND_PLACE);
     }
+
+    @DisplayName("구입 금액이 8,000원, 5등 당첨일 경우 수익률은 62.5%")
+    @Test
+    void createFifthPlaceAndCalculateProfitRate() {
+        String purchaseAmount = "8000";
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(1, 2, 3, 10, 11, 12);
+        int bonusNumber = 13;
+
+        LottoRank rank = lottoGameService.determineWinningRank(purchaseLotto, winningLotto, bonusNumber);
+        lottoGameService.updateWinningCount(rank);
+        EnumMap<LottoRank, Integer> lottoRanking = lottoGameService.getLottoRakingMap();
+        double profitRate = lottoGameService.calculateProfitRate(purchaseAmount, lottoRanking);
+
+        assertThat(profitRate).isEqualTo(62.5);
+    }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.common.IllegalArgumentExceptionHandler;
 import lotto.controller.LottoController;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -16,7 +17,7 @@ public class ApplicationConfig {
     }
 
     public InputView inputView(){
-        return new InputView(inputViewValidator());
+        return new InputView(inputViewValidator(),illegalArgumentExceptionHandler());
     }
 
     public OutputView outputView(){
@@ -25,5 +26,9 @@ public class ApplicationConfig {
 
     public InputViewValidator inputViewValidator(){
         return new InputViewValidator();
+    }
+
+    public IllegalArgumentExceptionHandler illegalArgumentExceptionHandler(){
+        return new IllegalArgumentExceptionHandler();
     }
 }

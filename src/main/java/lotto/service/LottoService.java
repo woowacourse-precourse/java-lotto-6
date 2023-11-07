@@ -37,7 +37,7 @@ public class LottoService {
         outputView.printInputWinnerNumbersGuideMessage();
         List<Integer> numbers = inputView.inputWinnerNumbers();
         outputView.printInputBonusNumberGuideMessage();
-        Integer bonusNumber = inputView.inputBonusNumber();
+        Integer bonusNumber = inputView.inputBonusNumber(numbers);
 
         winner = new Winner(numbers,bonusNumber);
     }

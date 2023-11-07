@@ -20,6 +20,14 @@ public  class Exception {
         }
     }
 
+    public static void duplicationCheckBonus(int getInputBonus, List<Integer> selectLottoNumber)  throws IllegalArgumentException{
+        if (selectLottoNumber.contains(getInputBonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_OVERLAP.getExceptionValue());
+        }
+
+    }
+
+
 
 
 }

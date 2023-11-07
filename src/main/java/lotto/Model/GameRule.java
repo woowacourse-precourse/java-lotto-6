@@ -1,7 +1,7 @@
 package lotto.Model;
 
-import static lotto.Controller.LottoCounter.countElement;
-import static lotto.Controller.LottoCounter.getResultList;
+import static lotto.Model.LottoCounter.countElement;
+import static lotto.Model.LottoCounter.getResultList;
 import static lotto.Utils.Utils.calculatePercentage;
 
 import java.util.ArrayList;

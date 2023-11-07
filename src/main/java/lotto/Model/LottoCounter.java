@@ -1,9 +1,7 @@
-package lotto.Controller;
+package lotto.Model;
 
 import java.util.List;
 import lotto.Constants.IntConstants;
-import lotto.Model.Lotto;
-import lotto.Model.Player;
 
 public class LottoCounter {
     private LottoCounter() {
@@ -46,9 +44,9 @@ public class LottoCounter {
 
     private static void hitFive(List<Integer> resultList, int result, List<Integer> cpuSixNumbers, int playerBonus) {
         if (result == IntConstants.FIVE_HIT.getValue() && !cpuSixNumbers.contains(playerBonus)) {
-            int count = resultList.get(IntConstants.THREE_HIT.getValue());
+            int count = resultList.get(IntConstants.THIRD_INDEX.getValue());
             ++count;
-            resultList.set(IntConstants.THREE_HIT.getValue(), count);
+            resultList.set(IntConstants.THIRD_INDEX.getValue(), count);
         }
     }
 

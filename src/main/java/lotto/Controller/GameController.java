@@ -14,9 +14,7 @@ import lotto.View.InputView;
 import lotto.View.OutputView;
 
 public class GameController {
-
     GameRule gameRule = new GameRule();
-
 
     public void runGame() {
         Cpu cpu = getUserValidMoney();
@@ -40,8 +38,7 @@ public class GameController {
             try {
                 printInsertMoney();
                 int money = InputView.insertMoney();
-                Cpu cpu = new Cpu(money);
-                return cpu;
+                return new Cpu(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -53,8 +50,7 @@ public class GameController {
             try {
                 printInsertLottoNumbers();
                 List<Integer> playerLottoNumbers = InputView.insertLottoNumbers();
-                Lotto playerLotto = new Lotto(playerLottoNumbers);
-                return playerLotto;
+                return new Lotto(playerLottoNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

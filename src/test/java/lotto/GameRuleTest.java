@@ -4,8 +4,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Controller.LottoCounter;
 import lotto.Model.GameRule;
+import lotto.Model.LottoCounter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

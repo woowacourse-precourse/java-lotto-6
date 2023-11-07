@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Constants.ErrorMessage;
 import lotto.Constants.IntConstants;
-import lotto.Controller.LottoGenerator;
 
 public class Cpu {
     private final List<Lotto> sixLottoNumbers;

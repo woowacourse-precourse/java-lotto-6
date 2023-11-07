@@ -53,7 +53,6 @@ class ApplicationTest extends NsTest {
     }
 
 
-    // test when user entered the wrong cash
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -93,7 +92,6 @@ class ApplicationTest extends NsTest {
     }
 
 
-    // test when user entered the wrong numbers of winning lotto
     @DisplayName("입력한 당첨 로또 번호에 숫자 이외의 값을 입력한 경우 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,ㄹ,5", "1,2,3,4, ,5", "1,2,3,4,a,5", "1,2,3,4,%,5"})

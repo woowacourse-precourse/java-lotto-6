@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RegexLearningTest {
-    private static Pattern answerPattern = Pattern.compile(
+    private static final Pattern answerPattern = Pattern.compile(
             String.format("^([\\d]+%s){5}+[\\d]$", GameConst.DELIMITER));
 
     @ParameterizedTest

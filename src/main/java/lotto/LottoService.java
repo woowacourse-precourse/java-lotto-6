@@ -10,6 +10,26 @@ public class LottoService {
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
     static final int COUNT_NUMBER = 6;
+    enum WINNING {
+        THREE(0),
+        FOUR(0),
+        FIVE(0),
+        FIVE_BONUS(0),
+        SIX(0);
+
+        private int value;
+
+        WINNING(int value) {
+            this.value = value;
+        }
+
+        void addValue() {
+
+        }
+        int getValue() {
+            return value;
+        }
+    }
 
     int getInput() {
         int parsedInput;
@@ -88,5 +108,35 @@ public class LottoService {
         return lottoBundle;
     }
 
+    List<Integer> getWinningStatistics(List<Integer> winningNumbers, List<Lotto> lottoBundle) {
+        List<Integer> winningStatistics = new ArrayList<>();
+
+        for (int i = 0; i < lottoBundle.size(); i++) {
+            Lotto lotto = lottoBundle.get(i);
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            winningStatistics.add(compareWinningAndLotto(winningNumbers, lottoNumbers));
+        }
+
+        return winningStatistics;
+    }
+
+    int compareWinningAndLotto(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+        int containsCount = 0;
+        int bonusNumberIndex = winningNumbers.size() - 1;
+
+        // 마지막 번호인 보너스 번호를 제외하고 비교
+        for (int i = 0; i < bonusNumberIndex; i++) {
+            if (lottoNumbers.contains(winningNumbers.get(i))) {
+                containsCount++;
+            }
+        }
+
+        // 보너스 번호가 포함되어 있는지 확인
+        if (lottoNumbers.contains(winningNumbers.get(bonusNumberIndex))) {
+            containsCount++;
+        }
+
+        return containsCount;
+    }
 
 }

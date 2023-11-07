@@ -14,9 +14,13 @@ public class Application {
         List<Lotto> lottoBundle = lottoService.getLottoBundle(ticket);
         lottoController.showLottoBundle(ticket, lottoBundle);
 
-
-
         List<Integer> winningNumbers = lottoController.inputWinningNumbers();
+        int bonusNumber = lottoController.inputBonusNumber();
+        winningNumbers.add(bonusNumber);
+
+        List<Integer> result = lottoService.getWinningStatistics(winningNumbers, lottoBundle);
+        System.out.println(result.toString());
+
 
     }
 }

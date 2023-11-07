@@ -30,7 +30,7 @@ public class WiningLottoNumbersTest {
         Lotto lotto = new Lotto(List.of(5, 25, 11, 22, 33, 44));
 
         int result = winingLottoNumbers.countWining(lotto);
-        int expected = 3;
+        int expected = 2;
 
         assertThat(result).isEqualTo(expected);
     }

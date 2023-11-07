@@ -13,12 +13,7 @@ public class WiningLottoNumbers {
     }
 
     public int countWining(Lotto lotto) {
-        int result = 0;
-        if (isWiningBonus(lotto)) {
-            result += 1;
-        }
-        result += winingLotto.countMatching(lotto);
-        return result;
+        return winingLotto.countMatching(lotto);
     }
 
     public boolean isWiningBonus(Lotto lotto) {

@@ -21,7 +21,7 @@ public class LottoService {
 
     public LottoService() {
         outputView = new OutputView();
-        rg = new RandomGenerator();
+        rl = new RandomLotto();
     }
 
     public void purchase() {
@@ -37,6 +37,7 @@ public class LottoService {
     }
 
     private void generateLotto() {
+        rg = new RandomGenerator();
         for (int i = 0; i < number; i++) {
             List<Integer> generatedList = rg.getNumList();
             rl.addLottoLists(generatedList);
@@ -46,6 +47,7 @@ public class LottoService {
     public void userNumber(){
         outputView.userNumberComment();
         List<Integer> userLottoList = Parsing.makeList(InputView.inputLine());
+        outputView.bonusNumberComment();
         int bonusNumber = Parsing.stringToInt(InputView.inputLine());
         userLotto = new UserLotto(new Lotto(userLottoList), new BonusLotto(bonusNumber));
     }

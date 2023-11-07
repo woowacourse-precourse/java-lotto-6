@@ -10,7 +10,7 @@ public class Parsing {
         if(inputValue%1000 != 0){
             throw new IllegalArgumentException();
         }
-        return inputValue%1000;
+        return inputValue/1000;
     }
 
     public static List<Integer> makeList(String inputValue){

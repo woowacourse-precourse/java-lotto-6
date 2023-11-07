@@ -48,11 +48,11 @@ public class OutputView {
     public void winnerGraphComment(List<Integer> correctList, Long rateOfReturn){
         System.out.println(WIN_NUMBER_GRAPH);
         System.out.println(HYPHEN);
-        System.out.print(THREE_CORRECT+correctList.get(0)+COUNT);
-        System.out.print(FOUR_CORRECT+correctList.get(1)+COUNT);
-        System.out.print(FIVE_CORRECT+correctList.get(2)+COUNT);
-        System.out.print(FIVE_DOUBLE_CORRECT+correctList.get(3)+COUNT);
-        System.out.print(SIX_CORRECT+correctList.get(4)+COUNT);
+        System.out.println(THREE_CORRECT+correctList.get(0)+COUNT);
+        System.out.println(FOUR_CORRECT+correctList.get(1)+COUNT);
+        System.out.println(FIVE_CORRECT+correctList.get(2)+COUNT);
+        System.out.println(FIVE_DOUBLE_CORRECT+correctList.get(3)+COUNT);
+        System.out.println(SIX_CORRECT+correctList.get(4)+COUNT);
         System.out.println(TOTAL_RATE_OF_RETURN+rateOfReturn+PERCENT);
         System.out.println();
     }

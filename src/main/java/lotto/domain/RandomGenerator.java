@@ -5,7 +5,7 @@ import java.util.*;
 public class RandomGenerator {
     private static List<Integer> numList;
     public RandomGenerator(){
-        generate();
+
     }
 
     private void generate(){
@@ -17,6 +17,7 @@ public class RandomGenerator {
     }
 
     public List<Integer> getNumList(){
+        generate();
         return numList;
     }
 }

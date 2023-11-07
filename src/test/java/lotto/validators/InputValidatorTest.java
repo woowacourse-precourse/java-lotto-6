@@ -1,12 +1,23 @@
 package lotto.validators;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
+
+    @DisplayName("올바른 로또 구입 금액은 예외가 발생하지 않는다.")
+    @Test
+    void validatePriceInput() {
+        String purchasePrice = "8000";
+
+        assertDoesNotThrow(() -> {
+            InputValidator.validatePriceInput(purchasePrice);
+        });
+    }
 
     @DisplayName("입력한 로또 구입 금액에 숫자 이외의 문자가 있으면 예외가 발생한다.")
     @Test
@@ -24,6 +35,16 @@ class InputValidatorTest {
 
         assertThatThrownBy(() -> InputValidator.validatePriceInput(purchasePrice))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("올바른 당첨 번호는 예외가 발생하지 않는다.")
+    @Test
+    void validateWinningNumberInput() {
+        String winningNumber = "1,2,3,4,5,6";
+
+        assertDoesNotThrow(() -> {
+            InputValidator.validateWinnigNumberInput(winningNumber);
+        });
     }
 
     @DisplayName("입력한 당첨 번호의 길이가 기준보다 길면 예외가 발생한다.")
@@ -51,6 +72,17 @@ class InputValidatorTest {
 
         assertThatThrownBy(() -> InputValidator.validateWinnigNumberInput(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("올바른 보너스 번호는 예외가 발생하지 않는다.")
+    @Test
+    void validateBonusNumberInput() {
+        String bonusNumberInput = "45";
+        List<String> winningNumbers = List.of("1", "2", "3", "4", "5", "6");
+
+        assertDoesNotThrow(() -> {
+            InputValidator.validateBonusNumberInput(bonusNumberInput, winningNumbers);
+        });
     }
 
     @DisplayName("입력한 보너스 번호의 범위가 기준에 벗어나면 예외가 발생한다.")

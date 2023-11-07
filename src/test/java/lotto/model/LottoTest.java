@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -32,6 +33,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 0, 5, 4)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("올바른 로또 번호는 예외가 발생하지 않는다.")
+    @Test
+    void createLotto() {
+        assertDoesNotThrow(() -> {
+            new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        });
     }
 
     @DisplayName("내 로또 번호와 당첨 번호를 비교해서 LottoRank를 반환한다.")

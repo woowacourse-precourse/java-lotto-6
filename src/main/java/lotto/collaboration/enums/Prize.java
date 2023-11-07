@@ -30,7 +30,7 @@ public enum Prize {
     }
 
     public static Prize matchPrize(int resultOfMatchNumbers, boolean resultOfMatchBonusNumber) {
-        if (resultOfMatchBonusNumber && resultOfMatchNumbers == 5) {
+        if (resultOfMatchBonusNumber && resultOfMatchNumbers == SECOND.countOfGuess) {
             return SECOND;
         }
 

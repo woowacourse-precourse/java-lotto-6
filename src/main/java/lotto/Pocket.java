@@ -3,13 +3,13 @@ package lotto;
 import java.util.List;
 
 public class Pocket {
-    private final List<List<Integer>> lottos;
+    private final List<Lotto> lottos;
 
-    public Pocket(List<List<Integer>> lottos) {
+    public Pocket(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public List<List<Integer>> getLottos() {
+    public List<Lotto> getLottos() {
         return this.lottos;
     }
 }

@@ -29,6 +29,7 @@ public class Controller {
         view.output(INPUT_BONUS);
         int bonus = getBonus(winningLotto);
 
+        view.output(WINNING_STATISTICS);
         Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus);
         view.output(statistics.toString());
 

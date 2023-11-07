@@ -5,6 +5,7 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,6 +37,26 @@ class WinningLottoTest extends NsTest {
         assertThatThrownBy(() -> winningLotto.setBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThat(output()).isEqualTo(ErrorMessage.WINNING_NUMBER_AND_BONUS_NUMBER_ARE_SAME.getErrorMessage());
+    }
+
+    @DisplayName("주어진 로또 번호가 당첨 번호에 있는지 알려준다.")
+    @Test
+    void checkNumberIsInWinningNumber() {
+        winningLotto.setWinningNumber(List.of(1,2,3,4,5,6));
+
+        Assertions.assertEquals(true, winningLotto.isEqualToWinningNumber(1));
+        Assertions.assertEquals(false, winningLotto.isEqualToWinningNumber(10));
+
+    }
+
+    @DisplayName("주어진 로또가 보너스 번호와 일치하는지 알려준다.")
+    @Test
+    void checkNumberIsEqualToBonusNumber() {
+        winningLotto.setWinningNumber(List.of(1,2,3,4,5,6));
+        winningLotto.setBonusNumber(7);
+
+        Assertions.assertEquals(true, winningLotto.isEqualToBonusNumber(7));
+        Assertions.assertEquals(false, winningLotto.isEqualToBonusNumber(44));
     }
 
     @Override

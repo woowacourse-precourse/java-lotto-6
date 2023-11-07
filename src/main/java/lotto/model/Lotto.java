@@ -24,6 +24,10 @@ public class Lotto {
         }
     }
 
+    public boolean hasBonus(int bonus) {
+        return numbers.contains(bonus);
+    }
+
     private boolean isUniqueNumbers(List<Integer> numbers) {
         long uniqueNumbersCount = numbers.stream()
                 .distinct()

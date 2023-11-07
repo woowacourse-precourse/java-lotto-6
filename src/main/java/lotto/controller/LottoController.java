@@ -35,7 +35,7 @@ public class LottoController {
 
     private void createBonus() {
         try {
-            bonus = new Bonus(inputView.inputBonusNumber());
+            bonus = new Bonus(inputView.inputBonusNumber(), lotto);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
             createBonus();

@@ -4,7 +4,7 @@ import lotto.constant.Ranking;
 import lotto.constant.Views;
 import lotto.domain.Lotto;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class LottoView {
@@ -19,7 +19,6 @@ public class LottoView {
     }
 
     public void printPurchaseLotto(List<Lotto> lotts){
-        List<Integer> sortLottoNumber = new ArrayList<>();
         for(Lotto lotto : lotts){
             System.out.println(lotto.getNumbers());
         }

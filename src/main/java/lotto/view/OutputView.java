@@ -49,7 +49,7 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public void printLottoStatics(HashMap<WinningCriteria, Integer> winningRecords) {
+    public void printLottoStatics(HashMap<WinningCriteria, Integer> winningRecords, double rateOfReturn) {
         System.out.println(LOTTO_STATISTICS);
         for (WinningCriteria currentRank : orderPrintRank) {
             printRankStatics(
@@ -57,7 +57,7 @@ public class OutputView {
                     winningRecords.getOrDefault(currentRank, 0)
             );
         }
-        printRateOfReturn();
+        printRateOfReturn(rateOfReturn);
     }
 
     private void printRankStatics(String rankMessage, int winningRecords) {
@@ -68,6 +68,7 @@ public class OutputView {
         System.out.println(printMessage);
     }
 
-    private void printRateOfReturn() {
+    private void printRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
     }
 }

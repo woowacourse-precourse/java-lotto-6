@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Buyer;
+import lotto.domain.WinningLotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,33 +16,35 @@ public class View {
         System.out.println(message);
     }
 
-    public int inputCost() {
+    public Buyer inputAndValidateCost() {
         try {
-            return Integer.parseInt(Console.readLine());
+            int cost = formatCost(Console.readLine());
+            return new Buyer(cost);
+        } catch (IllegalArgumentException e) {
+            output(e.getMessage());
+            return inputAndValidateCost();
+        }
+    }
+
+    private int formatCost(String cost) {
+        try {
+            return Integer.parseInt(cost);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(COST_FORMAT);
         }
     }
 
-    public List<Integer> inputMatch() {
+    public WinningLotto inputAndValidateWinningLotto() {
         try {
-            String match = Console.readLine();
-            return formatInput(match);
+            List<Integer> input = formatWinningLotto(Console.readLine());
+            return new WinningLotto(input);
         } catch (IllegalArgumentException e) {
             output(e.getMessage());
-            return inputMatch();
+            return inputAndValidateWinningLotto();
         }
     }
 
-    public int inputBonus() {
-        try {
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BONUS_FORMAT);
-        }
-    }
-
-    private List<Integer> formatInput(String match) {
+    private List<Integer> formatWinningLotto(String match) {
         String inputWithoutSpace = match.replaceAll("\\s+", "");
         String[] matches = inputWithoutSpace.split(SPLIT_SYMBOL);
         try {
@@ -49,6 +53,24 @@ public class View {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LOTTO_FORMAT);
+        }
+    }
+
+    public int inputAndValidateBonus(WinningLotto winningLotto) {
+        try {
+            int bonus = formatBonus(Console.readLine());
+            winningLotto.validateBonus(bonus);
+            return bonus;
+        } catch (IllegalArgumentException e) {
+            return inputAndValidateBonus(winningLotto);
+        }
+    }
+
+    private int formatBonus(String bonus) {
+        try {
+            return Integer.parseInt(bonus);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BONUS_FORMAT);
         }
     }
 }

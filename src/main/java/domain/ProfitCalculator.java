@@ -48,7 +48,13 @@ public class ProfitCalculator {
 
     public String calculateRateOfReturn(int amount) {
         double rateOfReturn = (totalPrizeMoney / (double) amount) * 100;
-        return String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);
+        String formattedRateOfReturn = formatRateOfReturn(rateOfReturn);
+        return String.format("총 수익률은 %s%%입니다.", formattedRateOfReturn);
+    }
+
+    private String formatRateOfReturn(double rate) {
+        double value = Math.round(rate * 10.0) / 10.0;
+        return String.format("%.1f", value);
     }
 
     public HashMap<WinningHistory, Integer> getWinningHistory(){

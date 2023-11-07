@@ -3,6 +3,7 @@ package lotto.controller.machine;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NumberGenerator {
@@ -31,5 +32,17 @@ public class NumberGenerator {
         }
 
         return lotto;
+    }
+
+    public List<Lotto> createLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        Lotto lotto;
+
+        for (int i = 0; i < count; i++) {
+            lotto = createLotto();
+            lottos.add(lotto);
+        }
+
+        return lottos;
     }
 }

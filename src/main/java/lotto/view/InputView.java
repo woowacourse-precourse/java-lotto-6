@@ -19,7 +19,7 @@ public class InputView {
 
     public WinningNumbers inputWinningNumbers() {
         String input = Console.readLine();
-        validator.validateIsSplitByComma(input);
+        validator.validateIsSplitByCommaAndDigit(input);
         return new WinningNumbers(
                 Arrays.stream(input.split(","))
                         .map(Integer::parseInt).toList()

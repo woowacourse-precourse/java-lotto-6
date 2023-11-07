@@ -17,9 +17,9 @@ public class InputValidator {
         }
     }
 
-    public void validateIsSplitByComma(String number) {
+    public void validateIsSplitByCommaAndDigit(String number) {
         if (!Pattern.matches(SPLIT_REGEX, number)) {
-            String message = ExceptionMessage.IS_NOT_SEPARATED_BY_COMMA.toString();
+            String message = ExceptionMessage.IS_NOT_SEPARATED_BY_COMMA_AND_DIGIT.toString();
             throw new NonSplitCommaException(message);
         }
     }

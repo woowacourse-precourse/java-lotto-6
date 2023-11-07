@@ -19,14 +19,14 @@ public class LottoController {
     public LottoController() {
         lottoInit();
         lottoProcess();
-        lottoEnd();
+//        lottoEnd();
     }
 
     private void lottoInit() {
 
         purchasePriceInputLogic();
 
-        lottoService.repeatPurchase(lottoCount);
+        //lottoService.repeatPurchase(lottoCount);
 
         purchaseLottoNumberOutputLogic();
 
@@ -50,9 +50,10 @@ public class LottoController {
     private void purchaseLottoNumberOutputLogic() {
 
         int lottoPurchaseQuantity = priceService.getLottoPurchaseQuantity();
-        OutputValue.lottoCountMessage(lottoPurchaseQuantity);
+        lottoService.repeatPurchase(lottoPurchaseQuantity);
 
-        for (Lotto lotto : lottoService.getPurchaseLotto()) {
+        OutputValue.lottoCountMessage(lottoPurchaseQuantity);
+        for (Lotto lotto : lottoService.getPurchaseLottos()) {
             OutputValue.purchaseLottoMessage(lotto.getLotto());
         }
 
@@ -73,19 +74,19 @@ public class LottoController {
         OutputValue.changeLine();
     }
 
-    private void lottoEnd() {
-
-        OutputValue.winStatisticsMessage();
-
-        lottoService.winStatistics();
-        List<Integer> placeCounts = lottoService.getWinStatistics();
-
-        OutputValue.fifthPlaceMessage(placeCounts.get(4));
-        OutputValue.fourthPlaceMessage(placeCounts.get(3));
-        OutputValue.thirdPlaceMessage(placeCounts.get(2));
-        OutputValue.secondPlaceMessage(placeCounts.get(1));
-        OutputValue.firstPlaceMessage(placeCounts.get(0));
-
-        OutputValue.revenueMessage(lottoService.getRevenue(lottoCount * 1000));
-    }
+//    private void lottoEnd() {
+//
+//        OutputValue.winStatisticsMessage();
+//
+//        lottoService.winStatistics();
+//        List<Integer> placeCounts = lottoService.getWinStatistics();
+//
+//        OutputValue.fifthPlaceMessage(placeCounts.get(4));
+//        OutputValue.fourthPlaceMessage(placeCounts.get(3));
+//        OutputValue.thirdPlaceMessage(placeCounts.get(2));
+//        OutputValue.secondPlaceMessage(placeCounts.get(1));
+//        OutputValue.firstPlaceMessage(placeCounts.get(0));
+//
+//        OutputValue.revenueMessage(lottoService.getRevenue(lottoCount * 1000));
+//    }
 }

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.LottoConstant;
+import lotto.constant.NumberRange;
 
 public class WinningNumbers {
     private List<Integer> numbers;
@@ -38,7 +39,7 @@ public class WinningNumbers {
 
     private void rangeValidate(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < LottoConstant.LOTTO_MIN_NUMBER || number > LottoConstant.LOTTO_MAX_NUMBER) {
+            if (number < NumberRange.MIN.getNumber() || number > NumberRange.MAX.getNumber()) {
                 throw new IllegalArgumentException();
             }
         }

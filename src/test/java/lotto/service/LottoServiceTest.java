@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.LottoConstant;
+import lotto.constant.Prize;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -41,7 +41,7 @@ class LottoServiceTest {
     void 로또_결과로부터_수익금_계산하는_로직_테스트() {
         LottoResult lottoResult = new LottoResult();
         lottoResult.add(3);
-        float winningMoney = LottoConstant.THIRD_PRIZE;
+        float winningMoney = Prize.THIRD.getPrize();
         float revenue = lottoService.getRevenue(lottoResult);
         System.out.println(winningMoney);
         System.out.println(revenue);

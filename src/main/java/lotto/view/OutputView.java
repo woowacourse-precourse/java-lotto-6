@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.constant.LottoConstant;
+import lotto.constant.Rank;
 import lotto.error.ErrorMessage;
 
 public class OutputView {
@@ -51,19 +51,19 @@ public class OutputView {
     }
 
     public void printLottoResult(int rankCount, int rank) {
-        if (rank == LottoConstant.FIFTH_RANK) {
+        if (rank == Rank.FIFTH.getRank()) {
             System.out.println(String.format(FIFTH_RANK_MESSAGE, rankCount));
         }
-        if (rank == LottoConstant.FOURTH_RANK) {
+        if (rank == Rank.FOURTH.getRank()) {
             System.out.println(String.format(FOURTH_RANK_MESSAGE, rankCount));
         }
-        if (rank == LottoConstant.THIRD_RANK) {
+        if (rank == Rank.THIRD.getRank()) {
             System.out.println(String.format(THIRD_RANK_MESSAGE, rankCount));
         }
-        if (rank == LottoConstant.SECOND_RANK) {
+        if (rank == Rank.SECOND.getRank()) {
             System.out.println(String.format(SECOND_RANK_MESSAGE, rankCount));
         }
-        if (rank == LottoConstant.FIRST_RANK) {
+        if (rank == Rank.FIRST.getRank()) {
             System.out.println(String.format(FIRST_RANK_MESSAGE, rankCount));
         }
     }

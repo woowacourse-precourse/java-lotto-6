@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.constant.LottoConstant;
+import lotto.constant.Rank;
 
 public class LottoResult {
     private Map<Integer, Integer> ranks;
@@ -27,7 +27,7 @@ public class LottoResult {
     }
 
     private void init() {
-        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.FIFTH_RANK; rank++) {
+        for (int rank = Rank.FIRST.getRank(); rank <= Rank.FIFTH.getRank(); rank++) {
             ranks.put(rank, 0);
         }
     }

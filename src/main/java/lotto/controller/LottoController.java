@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.constant.LottoConstant;
+import lotto.constant.Rank;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -111,7 +111,7 @@ public class LottoController {
 
     private void announceLottoResult(final LottoResult lottoResult) {
         outputView.printResultStringMessage();
-        for (int rank = LottoConstant.FIFTH_RANK; rank >= LottoConstant.FIRST_RANK; rank--) {
+        for (int rank = Rank.FIRST.getRank(); rank <= Rank.FIFTH.getRank(); rank++) {
             int rankCount = 0;
             if (lottoResult.contains(rank)) {
                 rankCount = lottoResult.get(rank);

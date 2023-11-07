@@ -2,6 +2,8 @@ package lotto.service;
 
 import java.util.List;
 import lotto.constant.LottoConstant;
+import lotto.constant.Prize;
+import lotto.constant.Rank;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -24,7 +26,7 @@ public class LottoService {
 
     public float getRevenue(final LottoResult lottoResult) {
         float revenue = 0;
-        for (int rank = LottoConstant.FIRST_RANK; rank <= LottoConstant.FIFTH_RANK; rank++) {
+        for (int rank = Rank.FIRST.getRank(); rank <= Rank.FIFTH.getRank(); rank++) {
             if (lottoResult.contains(rank)) {
                 int rankCount = lottoResult.get(rank);
                 revenue += calculateRevenue(rank) * rankCount;
@@ -67,31 +69,31 @@ public class LottoService {
 
     private int getRank(int matchCount, boolean isBonus) {
         if (matchCount == 6) {
-            return LottoConstant.FIRST_RANK;
+            return Rank.FIRST.getRank();
         } else if (matchCount == 5 && isBonus) {
-            return LottoConstant.SECOND_RANK;
+            return Rank.SECOND.getRank();
         } else if (matchCount == 5) {
-            return LottoConstant.THIRD_RANK;
+            return Rank.THIRD.getRank();
         } else if (matchCount == 4) {
-            return LottoConstant.FOURTH_RANK;
+            return Rank.FOURTH.getRank();
         } else if (matchCount == 3) {
-            return LottoConstant.FIFTH_RANK;
+            return Rank.FIFTH.getRank();
         }
-        return LottoConstant.NO_RANK;
+        return Rank.NO.getRank();
     }
 
     private int calculateRevenue(int rank) {
         int revenue = 0;
-        if (rank == LottoConstant.FIRST_RANK) {
-            revenue += LottoConstant.FIRST_PRIZE;
-        } else if (rank == LottoConstant.SECOND_RANK) {
-            revenue += LottoConstant.SECOND_PRIZE;
-        } else if (rank == LottoConstant.THIRD_RANK) {
-            revenue += LottoConstant.THIRD_PRIZE;
-        } else if (rank == LottoConstant.FOURTH_RANK) {
-            revenue += LottoConstant.FOURTH_PRIZE;
-        } else if (rank == LottoConstant.FIFTH_RANK) {
-            revenue += LottoConstant.FIFTH_PRIZE;
+        if (rank == Rank.FIRST.getRank()) {
+            revenue += Prize.FIRST.getPrize();
+        } else if (rank == Rank.SECOND.getRank()) {
+            revenue += Prize.SECOND.getPrize();
+        } else if (rank == Rank.THIRD.getRank()) {
+            revenue += Prize.THIRD.getPrize();
+        } else if (rank == Rank.FOURTH.getRank()) {
+            revenue += Prize.FOURTH.getPrize();
+        } else if (rank == Rank.FIFTH.getRank()) {
+            revenue += Prize.FIFTH.getPrize();
         }
         return revenue;
     }

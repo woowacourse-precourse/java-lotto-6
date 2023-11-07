@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constant.LottoConstant;
+import lotto.constant.NumberRange;
 
 public class BonusNumber {
     private int number;
@@ -17,7 +18,7 @@ public class BonusNumber {
     }
 
     private void rangeValidate(int number) {
-        if (number < LottoConstant.LOTTO_MIN_NUMBER || number > LottoConstant.LOTTO_MAX_NUMBER) {
+        if (number < NumberRange.MIN.getNumber() || number > NumberRange.MAX.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

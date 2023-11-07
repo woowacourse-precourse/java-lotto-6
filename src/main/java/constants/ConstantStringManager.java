@@ -13,7 +13,8 @@ public enum ConstantStringManager {
     TOTAL_RETURN("총 수익률은 %.1f%%입니다.\n"),
     LIST_START_MARK("["),
     LIST_END_MARK("]\n"),
-    LIST_SPLIT_MARK(", ");
+    LIST_SPLIT_MARK(", "),
+    SPLIT_TARGET(",");
 
     private final String message;
 

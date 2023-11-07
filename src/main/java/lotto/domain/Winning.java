@@ -7,6 +7,13 @@ public class Winning extends LottoRule {
     private List<Integer> numbers;
     private int bonusNumber;
 
+    public Winning() {
+    }
+
+    public Winning(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
+
     public void validateBonus(int bonusNumber) {
         if (isDuplicateBonusNumber(bonusNumber)) {
             ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();

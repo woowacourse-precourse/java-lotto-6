@@ -7,15 +7,16 @@ import lotto.view.Output;
 
 import java.util.*;
 
+import static lotto.util.Repeater.untilNotException;
+
 public class LottoManager {
     public static final int NUMBER_OF_LOTTO_NUMBER = 6;
     public static final int THOUSAND = 1000;
-    private final Input input = new Input();
     private final Output output = new Output();
 
     public List<Lotto> purchaseLottoTickets() {
         output.printEnteringAmountPrompt();
-        int purchasedAmount = input.readTotalPurchasedAmount();
+        int purchasedAmount = untilNotException(Input::readTotalPurchasedAmount);
         int purchasedQuantity = purchasedAmount / THOUSAND;
 
         List<Lotto> lottoTickets = new ArrayList<>();
@@ -49,12 +50,12 @@ public class LottoManager {
 
     private List<Integer> getWinningNumbers() {
         output.printLottoWinningNumbersPrompt();
-        return input.readWinningNumbers();
+        return untilNotException(Input::readWinningNumbers);
     }
 
     public int getBonusNumber() {
         output.printLottoBonusNumberPrompt();
-        return input.readBonusNumber();
+        return untilNotException(Input::readBonusNumber);
     }
 
     public WinningCondition checkWinningResult(Lotto myLotto, List<Integer> winningNumbers, int bonusNumber) {

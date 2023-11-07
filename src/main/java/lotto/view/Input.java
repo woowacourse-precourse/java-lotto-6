@@ -8,7 +8,7 @@ import java.util.List;
 import static lotto.util.Validator.*;
 
 public class Input {
-    public int readTotalPurchasedAmount() {
+    public static int readTotalPurchasedAmount() {
         String amountStr = Console.readLine();
         validateDigit(amountStr);
         int amount = Integer.parseInt(amountStr);
@@ -16,14 +16,14 @@ public class Input {
         return amount;
     }
 
-    public List<Integer> readWinningNumbers() {
+    public static List<Integer> readWinningNumbers() {
         String numberStr = Console.readLine();
         List<Integer> winningNumbers = Converter.stringToIntegerList(numberStr, ",");
         validateNumberOfLottoNumbers(winningNumbers);
         return winningNumbers;
     }
 
-    public int readBonusNumber() {
+    public static int readBonusNumber() {
         String numberStr = Console.readLine();
         validateDigit(numberStr.trim());
         return Integer.parseInt(numberStr.trim());

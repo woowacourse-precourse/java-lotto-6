@@ -16,6 +16,7 @@ public class LottoGame {
         System.out.println();
         List<Integer> winningNumbers = getValidWinningNumbers();
         System.out.println();
+        int bonusNumber = getValidBonusNumber(winningNumbers);
     }
 
     private static int getValidPurchaseAmount() {
@@ -100,6 +101,25 @@ public class LottoGame {
     private static int getBonusNumberFromUser() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
+    }
+    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");
+        }
+    }
+    private static int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            int bonusNumber = getBonusNumberFromUser();
+            try {
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }

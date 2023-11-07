@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.service.LottoGameService;
+import lotto.validation.Validator;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -12,7 +13,10 @@ public class LottoGameController {
     private final OutputView outputView;
     private final LottoGameService lottoGameService;
 
-    public LottoGameController(InputView inputView, OutputView outputView, LottoGameService lottoGameService) {
+    private final Validator validator;
+
+    public LottoGameController(Validator validator, InputView inputView, OutputView outputView, LottoGameService lottoGameService) {
+        this.validator = validator;
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoGameService = lottoGameService;
@@ -25,11 +29,20 @@ public class LottoGameController {
     }
 
     private void purchaseLotto() {
-        int paymentAmount = Integer.parseInt(inputView.enterPaymentAmount());
-        outputView.generateBlank();
-        int purchasedLottoCount = lottoGameService.setUpPurchasedLotto(paymentAmount);
-        ArrayList<Lotto> purchasedAllLotto = lottoGameService.checkPurchasedLotto();
-        outputView.printPurchasedLotto(purchasedLottoCount, purchasedAllLotto);
+        while (true) {
+            try {
+                String enteredPaymentAmount = inputView.enterPaymentAmount();
+                validator.validateNumeric(enteredPaymentAmount);
+                int paymentAmount = Integer.parseInt(enteredPaymentAmount);
+                outputView.generateBlank();
+                int purchasedLottoCount = lottoGameService.setUpPurchasedLotto(paymentAmount);
+                ArrayList<Lotto> purchasedAllLotto = lottoGameService.checkPurchasedLotto();
+                outputView.printPurchasedLotto(purchasedLottoCount, purchasedAllLotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void generateWinningNumber() {

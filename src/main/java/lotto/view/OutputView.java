@@ -52,7 +52,7 @@ public class OutputView {
     public void printLottoStatics(HashMap<WinningCriteria, Integer> winningRecords) {
         System.out.println(LOTTO_STATISTICS);
         for (WinningCriteria currentRank : orderPrintRank) {
-            printLottoStatics(
+            printRankStatics(
                     rankMessages.get(currentRank),
                     winningRecords.getOrDefault(currentRank, 0)
             );
@@ -60,7 +60,7 @@ public class OutputView {
         printRateOfReturn();
     }
 
-    private void printLottoStatics(String rankMessage, int winningRecords) {
+    private void printRankStatics(String rankMessage, int winningRecords) {
         String printMessage = rankMessage
                 + WINNING_INFO_SEPARATOR
                 + winningRecords

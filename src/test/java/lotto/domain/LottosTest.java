@@ -1,25 +1,45 @@
 package lotto.domain;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest {
-    @DisplayName("1에서 45사이의 숫자가 나오지 않으면 예외 발생")
+
+    private final Lottos lottos = new Lottos();
+    @DisplayName("createLottos 테스트")
     @Test
-    void outBoundRangeLottoNumber(){
-        List<Integer> numbers = List.of(1,5,45,6,50,20);
+    void createLottosTest(){
+        List<Integer> expectedNumbers1 = List.of(8, 21, 23, 41, 42, 43);
+        List<Integer> expectedNumbers2 = List.of(3, 5, 11, 16, 32, 38);
         assertRandomUniqueNumbersInRangeTest(
                 ()->{
-                    assertThatThrownBy(()->new Lottos(1))
-                            .isInstanceOf(IllegalArgumentException.class)
-                            .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    lottos.createLottos(2);
+                    Lotto lotto1 = lottos.getLottos().get(0);
+                    Lotto lotto2 = lottos.getLottos().get(1);
+                    assertThat(lotto1.getNumbers()).isEqualTo(expectedNumbers1);
+                    assertThat(lotto2.getNumbers()).isEqualTo(expectedNumbers2);
                 },
-                numbers
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
         );
     }
+
+    @DisplayName("createLotto 테스트")
+    @Test
+    public void createLottoTest(){
+        List<Integer> expectedNumbers = List.of(8, 21, 23, 41, 42, 43);
+        assertRandomUniqueNumbersInRangeTest(
+                ()->{
+                    List<Integer> lotto = lottos.createLotto();
+                    assertThat(lotto).isEqualTo(expectedNumbers);
+                },
+                List.of(8, 21, 23, 41, 42, 43)
+        );
+    }
+
+
 }

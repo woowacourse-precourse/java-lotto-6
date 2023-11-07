@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MatchNumber {
@@ -14,7 +15,11 @@ public class MatchNumber {
         this.matchNumbers = validate(userInput);
     }
 
-    private List<Integer> validate(String userInput) {
+    public List<Integer> getMatchNumbers() {
+        return matchNumbers;
+    }
+
+    public List<Integer> validate(String userInput) {
         List<String> inputNumbers = Arrays.asList(userInput.split(COMMA_DELIMITER));
         inputSizeCheck(inputNumbers);
 
@@ -23,7 +28,7 @@ public class MatchNumber {
 
     private void inputSizeCheck(List<String> inputNumbers){
         if(inputNumbers.size()!=6){
-            throw new IllegalArgumentException("[ERROR] ','를 구분자로 6개의 숫자를 공백 없이 입력해 주세요");
+            throw new IllegalArgumentException("[ERROR] ','를 구분자로 6개의 숫자를 입력해 주세요");
         }
     }
 
@@ -33,6 +38,7 @@ public class MatchNumber {
             for(String inputNumber : inputNumbers){
                 matchNumbers.add(Integer.parseInt(inputNumber.trim()));
             }
+            Collections.sort(matchNumbers);
             return matchNumbers;
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");

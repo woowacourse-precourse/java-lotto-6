@@ -25,7 +25,7 @@ public class ValidateSystem {
 
     }
 
-    public void validateWinningNumbers(List<Integer> winningNumbers){
+    public void validateLottoNumbers(List<Integer> winningNumbers){
 
         if(winningNumbers.size()!=6){
             throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + ERROR_MESSAGE_NUMBERS_SIZE);

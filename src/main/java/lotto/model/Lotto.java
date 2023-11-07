@@ -1,12 +1,16 @@
 package lotto.model;
 
+import lotto.service.ValidateSystem;
+
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private ValidateSystem validateSystem = new ValidateSystem();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateSystem.validateWinningNumbers(numbers);
         this.numbers = numbers;
     }
 

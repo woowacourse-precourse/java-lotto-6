@@ -90,7 +90,7 @@ public class LottoGame {
         try{
             printSystem.printAskWinningNumbersMessage();
             List<Integer> winningNumbers = inputSystem.inputWinningNumbers();
-            validateSystem.validateWinningNumbers(winningNumbers);
+            validateSystem.validateLottoNumbers(winningNumbers);
 
             return winningNumbers;
 

@@ -8,8 +8,12 @@ import java.util.List;
 
 public class LottoMaker {
 
+    // HashSet의 요소들을 정렬하여 Lotto로 만들어 반환
     public static Lotto makeLotto() {
-        return new Lotto(List.copyOf(makeLottoSet()));
+        HashSet<Integer> lottoNumbers = makeLottoSet();
+        List<Integer> LottoNumbers = List.copyOf(lottoNumbers);
+        List<Integer> sortedLottoNumbers = LottoNumbers.stream().sorted().toList();
+        return new Lotto(sortedLottoNumbers);
     }
 
     public static HashSet<Integer> makeLottoSet() {

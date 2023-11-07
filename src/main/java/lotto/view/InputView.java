@@ -8,8 +8,8 @@ import lotto.util.StringUtils;
 public class InputView {
     private enum ConsoleMessage {
         INPUT_BUDGET("구입금액을 입력해 주세요."),
-        INPUT_BONUS_NUMBER("보너스 번호를 입력해주세요."),
-        INPUT_WINNER_NUMBER("당첨 번호를 입력해 주세요.");
+        INPUT_BONUS_NUMBER("\n보너스 번호를 입력해주세요."),
+        INPUT_WINNER_NUMBER("\n당첨 번호를 입력해 주세요.");
 
         private final String message;
 

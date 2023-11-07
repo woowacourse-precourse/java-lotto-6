@@ -1,26 +1,39 @@
 package lotto.model;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+
+import static lotto.model.LottoResultFormat.ERROR;
+import static lotto.model.LottoResultFormat.FIVE_BONUS;
 
 public class LottoResult {
-    private static final List<String> MATCH_THREE = Arrays.asList("3", "5,000");
-    private static final List<String> MATCH_FOUR = Arrays.asList("4", "50,000");
-    private static final List<String> MATCH_FIVE = Arrays.asList("5", "1,500,000");
-    private static final List<String> MATCH_FIVE_BONUS = Arrays.asList("5", "30,000,000");
-    private static final List<String> MATCH_SIX = Arrays.asList("6", "2,000,000,000");
-    private final HashMap<List<String>, Integer> results;
+    private final HashMap<LottoResultFormat, Integer> lottoResultHashMap;
 
-    public LottoResult(HashMap<List<String>, Integer> results) {
-        this.results = results;
+//    public LottoResult(HashMap<LottoResultFormat, Integer> lottoResultHashMap) {
+//        this.lottoResultHashMap = lottoResultHashMap;
+//    }
+
+    public LottoResult(){
+        this.lottoResultHashMap = null;
     }
 
-    public LottoResult(int match){
-
+    public void addHashMap(int numberOfMatchLotto, boolean isBonusMatch) {
+        lottoResultHashMap.put(formatting(numberOfMatchLotto, isBonusMatch), lottoResultHashMap.getOrDefault(formatting(numberOfMatchLotto, isBonusMatch), 0) + 1);
     }
 
-    public HashMap<List<String>, Integer> getResults() {
-        return results;
+    private static LottoResultFormat formatting(int numberOfMatchLotto, boolean isBonusMatch) {
+        for (LottoResultFormat lottoResultFormat : LottoResultFormat.values()) {
+            if (numberOfMatchLotto == 5 && isBonusMatch == true) {
+                return FIVE_BONUS;
+            }
+            if (lottoResultFormat.getLottoOfMatching() == numberOfMatchLotto) {
+                return lottoResultFormat;
+            }
+        }
+        return ERROR;
     }
+
+    public HashMap<LottoResultFormat, Integer> getLottoResultHashMap() {
+        return lottoResultHashMap;
+    }
+
 }

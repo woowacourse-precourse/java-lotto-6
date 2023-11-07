@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 
 import java.util.List;
 
@@ -14,10 +15,13 @@ public class OutputView {
     }
 
     //당첨 내역 출력
-    public static void LottoResults() {
+    public static void LottoResults(List<LottoResult> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        for(LottoResult lottoResult : lottoResults){
+            
+        }
     }
 
     //총 수익률 출력

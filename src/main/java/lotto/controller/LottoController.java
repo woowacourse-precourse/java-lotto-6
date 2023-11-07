@@ -5,7 +5,10 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class LottoController {
     private static int amount;
@@ -13,6 +16,7 @@ public class LottoController {
     private static int bonusNumber;
 
     List<Lotto> lottos = new ArrayList<>();
+    List<LottoResult> lottoResults = new ArrayList<>();
 
     public void start() {
         getLottoAmount();
@@ -58,18 +62,32 @@ public class LottoController {
         return bonusNumber;
     }
 
-    //각 로또가 몇개 맞았는지 확인, lottos, amount, winningNumbers, bonusNumber 등등 활용,
-    //모델 생성(로또 결과 모델)해서 각 로또가 몇개 맞혔는지 보너스는 맞혔는지 확인하고 map에 넣기
+    //각 로또가 몇개 맞았는지 확인, lottos, winningNumbers, bonusNumber 등등 활용
+    //lottos의 lotto 하나가 winningNumber와 중복되는 숫자 개수 찾고
+    //만약 중복되는 숫자 개수가 5개라면, 보너스 숫자 맞혔는지 확인
+    //알맞은 enum 선택하고 LottoResult의 해쉬 맵에 넣기 -> 출력
     //수익률 출력 -> 당첨금/로또 구입금
-    private void getLottoResults(){
-//        HashMap<List<String>, Integer> hashMap = new HashMap<>();
-//        hashMap.put();
+    //해쉬 맵 format의 lottoOfMatching * integer 해서 수익금 구하기
+    private HashMap<LottoResultFormat, Integer> getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
 
-        LottoResult lottoResults = new LottoResult();
+        for (Lotto lotto : lottos) {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(o -> winningNumbers.stream().anyMatch(Predicate.isEqual(o)))
+                    .count();
+
+            lottoResult.addHashMap(matchCount, isMatchBonus(lotto, bonusNumber));
+
+        }
+        return lottoResult.getLottoResultHashMap();
     }
-    //String인 result 객체를 여러 개 모아서 List<Result>로 할까?
-    //각 Result.get당첨금액을 다 더해서 /amount
 
+    private boolean isMatchBonus(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 
+//    private int calculateReturnOnLotto(){
+//
+//    }
 
 }

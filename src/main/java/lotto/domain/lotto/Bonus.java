@@ -31,8 +31,4 @@ public class Bonus{
         return bonusNumber;
     }
 
-    public boolean hasDuplicatedNumberWithWinningNumbers(List<Integer> winningNumbers){
-        return winningNumbers.contains(bonusNumber);
-    }
-
 }

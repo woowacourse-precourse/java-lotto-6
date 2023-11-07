@@ -58,4 +58,8 @@ public class Lotto{
         return numbers;
     }
 
+    public boolean hasSameNumber(int number){
+        return numbers.contains(number);
+    }
+
 }

@@ -29,4 +29,13 @@ public class LottoGame {
 
         return new LottoGame(lottos, winningNumber, lottoNumberGenerator);
     }
+
+    public Prizes calculatePrizes() {
+        return new Prizes(lottos.calculatePrizes(winningNumber));
+    }
+
+    public long calculateProfit(final Prizes prizes) {
+        return prizes.getSumOfMoney() / lottos.getPurchasingCost();
+    }
+
 }

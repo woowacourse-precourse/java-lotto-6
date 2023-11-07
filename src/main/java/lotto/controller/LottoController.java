@@ -9,7 +9,12 @@ public class LottoController {
     }
 
     public void InputPurchaseAmount() {
-        OutputView.askPurchaseAmount();
-        int perchaseAmount = InputView.getPerchaseAmount();
+        try{
+            OutputView.askPurchaseAmount();
+            int perchaseAmount = InputView.getPerchaseAmount();
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

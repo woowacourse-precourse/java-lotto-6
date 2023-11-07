@@ -9,9 +9,14 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static int getPerchaseAmount(){
-        String userInput = getUserInput();
-        int amount = UserInputValidator.validatePurchaseAmount(userInput);
-        return amount;
+    public static int getPerchaseAmount() throws IllegalArgumentException{
+        try{
+            String userInput = getUserInput();
+            int amount = UserInputValidator.validatePurchaseAmount(userInput);
+            return amount;
+        }
+        catch(IllegalArgumentException ex){
+            throw new IllegalArgumentException(ex.getMessage());
+        }
     }
 }

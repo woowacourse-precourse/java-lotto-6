@@ -1,9 +1,12 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class GameView {
+    private DecimalFormat lottoReturnsFormat = new DecimalFormat("###,###,###.0");
+
     public void inputLottoPurchaseAmount(Player player) {
         while (true) {
             System.out.println("구매금액을 입력해 주세요.");
@@ -64,6 +67,6 @@ public class GameView {
             System.out.println(lottoRanking.getResult());
         }
 
-        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturns) + "%입니다.");
+        System.out.println("총 수익률은 " + lottoReturnsFormat.format(lottoReturns) + "%입니다.");
     }
 }

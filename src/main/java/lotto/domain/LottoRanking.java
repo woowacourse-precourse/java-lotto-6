@@ -1,17 +1,19 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public enum LottoRanking {
-    FIFTH(3.0, 5000, "3개 일치 (5,000원)"),
-    FOURTH(4.0, 50000, "4개 일치 (50,000원)"),
-    THIRD(5.0, 1500000, "5개 일치 (1,500,000원)"),
-    SECOND(5.5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    FIRST(6.0, 2000000000, "6개 일치 (2,000,000,000원)");
+    FIFTH(3.0, 5000, "3개 일치"),
+    FOURTH(4.0, 50000, "4개 일치"),
+    THIRD(5.0, 1500000, "5개 일치"),
+    SECOND(5.5, 30000000, "5개 일치, 보너스 볼 일치"),
+    FIRST(6.0, 2000000000, "6개 일치");
 
     private final Double score;
     private final long prizeMoney;
     private final String condition;
+    private final DecimalFormat prizeMoneyFormat = new DecimalFormat("#,###,###,###원");
     private int count = 0;
 
     LottoRanking(Double score, long prizeMoney, String condition) {
@@ -24,16 +26,12 @@ public enum LottoRanking {
         return prizeMoney;
     }
 
-    public String getCondition() {
-        return condition;
-    }
-
     public int getCount() {
         return count;
     }
 
     public String getResult() {
-        return condition + " - " + count + "개";
+        return condition + " (" + prizeMoneyFormat.format(prizeMoney) + ") - " + count + "개";
     }
 
     public static LottoRanking valueOfScore(Double score) {

@@ -1,15 +1,17 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Lotto {
-//    private final List<Integer> numbers; // 여기에 로또 번호 6개 넣어주기
-//    private final int bonusNumber;
-    private static int price = 0;
 
-
+    //    private final List<Integer> numbers; // 여기에 로또 번호 6개 넣어주기
+    //    private final int bonusNumber;
     private static final String getPriceMsg = "구입금액을 입력해 주세요.";
     private static final String getWinningNumbersMsg = "당첨 번호를 입력해 주세요.";
     private static final String getBonusNumberMsg = "구입금액을 입력해 주세요.";
@@ -36,13 +38,13 @@ public class Lotto {
 //    }
 
 
-
-    public static int getPrice() {
+    private int getPrice() {
+        int price;
         while (true) {
             System.out.println(getPriceMsg);
             String input = readLine();
             try {
-                price = Lotto.checkPrice(input);
+                price = checkPrice(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] " + e.getMessage());
@@ -51,10 +53,9 @@ public class Lotto {
         return price;
     }
 
-    private static int checkPrice(String input) {
+    private int checkPrice(String input) {
         try {
             int price = Integer.parseInt(input);
-
             if (price < 1000 || price % 1000 != 0) {
                 throw new IllegalArgumentException("구입 금액이 유효하지 않습니다.");
             }
@@ -63,6 +64,23 @@ public class Lotto {
             throw new IllegalArgumentException("입력이 숫자가 아닙니다.");
         }
     }
+
+    private List<List<Integer>> generateLottoNumbers() {
+        int count = getPrice()/1000;
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+
+        System.out.println();
+        System.out.println(count + "개를 구매했습니다.");
+
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            lottoNumbers.add(numbers);
+            System.out.println(numbers);
+        }
+        return lottoNumbers;
+    }
+
 
 //
 //    private void getWinningNumbers() {

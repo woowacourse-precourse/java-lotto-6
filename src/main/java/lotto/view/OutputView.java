@@ -25,12 +25,15 @@ public class OutputView {
 
     public static void displayAllLottos(LottosDTO lottosDTO) {
         List<List<Integer>> lottos = lottosDTO.lottos();
-        System.out.printf(CURRENT_BOUGHT_LOTTO_MESSAGE, lottos.size());
+        StringBuilder formattedLottoOutput = new StringBuilder();
+
+        formattedLottoOutput.append(String.format(CURRENT_BOUGHT_LOTTO_MESSAGE, lottos.size()));
         for (List<Integer> lotto : lottos) {
             ArrayList<Integer> copyLotto = new ArrayList<>(lotto);
             copyLotto.sort(Comparator.naturalOrder());
-            System.out.println(copyLotto);
+            formattedLottoOutput.append(copyLotto).append("\n");
         }
+        System.out.println(formattedLottoOutput);
     }
 
     public static void displayAllLottosStatistics(LottoResultsDTO lottoResultsDTO) {

@@ -4,7 +4,7 @@ import lotto.GroupedLottoMatchResult;
 import lotto.constants.IntegerConstants;
 import lotto.constants.StringConstants;
 
-public class WinningResultView implements View {
+public class WinningResultView implements View<Void> {
     private final GroupedLottoMatchResult mr;
 
     public WinningResultView(GroupedLottoMatchResult mr) {
@@ -12,7 +12,7 @@ public class WinningResultView implements View {
     }
 
     @Override
-    public void render() {
+    public Void render() {
         System.out.println(StringConstants.WINNING_RESULT_MESSAGE);
         System.out.println(StringConstants.WINNING_RESULT_SEPARATOR);
         System.out.printf(StringConstants.MATCH_RESULT_MESSAGE + "\n", IntegerConstants.MATCH_THREE,
@@ -26,5 +26,6 @@ public class WinningResultView implements View {
         System.out.printf(StringConstants.MATCH_RESULT_MESSAGE + "\n", IntegerConstants.MATCH_SIX,
                 IntegerConstants.MATCH_SIX_REWARD);
         System.out.printf(StringConstants.MATCH_RESULT_PROFIT_RATE + "\n", mr.getProfitRate());
+        return null;
     }
 }

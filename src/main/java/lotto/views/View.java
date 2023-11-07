@@ -1,5 +1,5 @@
 package lotto.views;
 
-public interface View {
-    void render();
+public interface View<T> {
+    T render();
 }

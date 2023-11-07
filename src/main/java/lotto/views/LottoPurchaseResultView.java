@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.constants.StringConstants;
 
-public class LottoPurchaseResultView implements View {
+public class LottoPurchaseResultView implements View<Void> {
     private final List<Lotto> lottos;
 
     public LottoPurchaseResultView(List<Lotto> lottos) {
@@ -12,10 +12,11 @@ public class LottoPurchaseResultView implements View {
     }
 
     @Override
-    public void render() {
+    public Void render() {
         System.out.printf(StringConstants.BUY_FORMAT_MESSAGE + "\n", lottos.size());
         for (var lotto : lottos) {
             System.out.println(lotto);
         }
+        return null;
     }
 }

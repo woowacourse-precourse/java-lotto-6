@@ -11,7 +11,14 @@ public class LottoController {
     }
 
     private String getPurchaseAmount() {
-        OutputView.printEnterPurchaseAmount();
-        return InputView.getInputPurchaseAmount();
+        try{
+            OutputView.printEnterPurchaseAmount();
+            return InputView.getInputPurchaseAmount();
+        }
+        catch (Exception ex) {
+            OutputView.printErrorMessage(ex.getMessage());
+            return getPurchaseAmount();
+        }
+
     }
 }

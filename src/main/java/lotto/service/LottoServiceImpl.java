@@ -97,7 +97,9 @@ public class LottoServiceImpl implements LottoService {
         return matchResult;
     }
 
-    private void updateMatchResult(List<Integer> matchResult, List<Integer> purchasedLottery, int matchCount, int bonusNumber) {
+    private void updateMatchResult(
+            List<Integer> matchResult, List<Integer> purchasedLottery, int matchCount, int bonusNumber
+    ) {
         if (matchCount == 6) {
             matchResult.set(0, matchResult.get(0) + 1);
             return;

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import lotto.LottoMoney;
 import view.InputView;
 import view.OutputView;
@@ -16,6 +18,7 @@ public class GameController {
         saveLottoMoney();
         outputView.printLottoTicketMessage(lottoMoney);
         randomUtility.generateRandomLottoNumbers();
+        saveRandomLottoNumbers(lottoMoney);
     }
 
     private void saveLottoMoney() {
@@ -27,6 +30,12 @@ public class GameController {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void saveRandomLottoNumbers(LottoMoney lottoMoney) {
+        for (int i = 0; i < lottoMoney.getLottoTicket(); i++) {
+            List<Integer> numbers = randomUtility.generateRandomLottoNumbers();
         }
     }
 

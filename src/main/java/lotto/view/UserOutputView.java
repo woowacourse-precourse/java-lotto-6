@@ -19,7 +19,7 @@ public class UserOutputView {
 
     public static void getBuyLottoTicketsNum(){
         System.out.println();
-        System.out.println(LottoController.getBuyLottoTicketsNum() + "개를 구입했습니다.");
+        System.out.println(LottoController.getBuyLottoTicketsNum() + "개를 구매했습니다.");
     }
 
     public static void getBuyLottoTickets(){
@@ -63,6 +63,7 @@ public class UserOutputView {
         for(Integer lottoNum : lotto.getNumbers()){
             lottoNums.add(lottoNum);
         }
+        Collections.sort(lottoNums);
         return lottoNums;
     }
 

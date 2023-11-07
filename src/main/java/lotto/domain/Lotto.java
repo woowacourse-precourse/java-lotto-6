@@ -28,7 +28,6 @@ public class Lotto {
 
     public static Lotto getRandomNumLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
         Lotto randomNumLotto = new Lotto(numbers);
         return  randomNumLotto;
     }

@@ -30,6 +30,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호를 올바르게 반환하는지 테스트")
+    @Test
+    void testLottoNumber() {
+        List<Integer> list = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(list);
+        assertThat(lotto.getNumbers())
+                .isEqualTo(list);
+    }
+
     @DisplayName("로또 순위 테스트 - 올바른 순위를 반환하는지 테스트")
     @ParameterizedTest(name = "번호: {0}, 결과: {1}")
     @MethodSource("provideLottoNumber")

@@ -41,7 +41,7 @@ public class LottoOrder {
     }
 
     public List<List<Integer>> getLottoNumbers() {
-        return this.purchaseLotto.getAllLottoNumber();
+        return this.purchaseLotto.getLottoNumbers();
     }
 
     public int getOrderCount() {

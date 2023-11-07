@@ -34,7 +34,7 @@ public class PurchaseLotto {
                 .collect(Collectors.groupingBy(r -> r, Collectors.counting()));
     }
 
-    public List<List<Integer>> getAllLottoNumber() {
+    public List<List<Integer>> getLottoNumbers() {
         return this.lottos.stream()
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());

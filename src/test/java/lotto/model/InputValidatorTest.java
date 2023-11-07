@@ -23,4 +23,13 @@ public class InputValidatorTest {
             validateDivisibleByThousand(Integer.parseInt(input));
         });
     }
+
+    @Test
+    public void testInputWithoutComma() {
+        String input = "1 15 16 18 25 45";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.validateContainsCommaSeparator(input);
+        });
+    }
 }

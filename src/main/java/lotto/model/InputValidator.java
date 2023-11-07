@@ -16,4 +16,14 @@ public class InputValidator {
             throw new IllegalArgumentException(getValidateDivisibleByThousandMessage());
         }
     }
+
+    public static void validateContainsCommaSeparator(String input) {
+        if (!containsCommaSeparator(input)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean containsCommaSeparator(String input) {
+        return input.contains(",");
+    }
 }

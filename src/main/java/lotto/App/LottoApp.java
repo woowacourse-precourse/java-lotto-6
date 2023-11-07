@@ -17,9 +17,11 @@ public class LottoApp {
 
         //First Step Get Budgets
         lottoView.inputBudgets();
-        lottoController.gameStart(
-                lottoConsole.inputBudgets()
-        );
+        lottoController.gameStart(lottoConsole.inputBudgets());
+
+        lottoController.buyLottos();
+
+        lottoView.printPurchaseHistory(lottoController.printPurchaseHistory());
 
     }
 }

@@ -2,6 +2,7 @@ package lotto.models;
 
 import static lotto.utils.getCountOfMatch;
 
+import java.util.Collections;
 import lotto.configs.ComparisonScore;
 import lotto.utils;
 import java.util.List;
@@ -13,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {

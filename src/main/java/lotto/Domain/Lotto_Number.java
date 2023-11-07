@@ -9,9 +9,6 @@ public class Lotto_Number{
 	
 	private List<Integer> lotto_Number = new ArrayList<Integer>(); 
 	private Integer Bonus_Number;
-	private static final int Len_Number = 6;
-	private static final int Min_Number = 1;
-	private static final int Max_Number = 45;	
 	
 	public Lotto_Number() {
 		this.lotto_Number = InputView.Lotto_Number();

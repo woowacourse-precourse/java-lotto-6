@@ -12,7 +12,7 @@ public class OutputView{
 		RankFour_Message("4개 일치 (50,000원) - %d개\n"),
 		RankThree_Message("5개 일치 (1,500,000원) - %d개\n"),
 		RankTwo_Message("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
-		RankOne_Message("6개 일치 (2,000,000,000원) - %d\n개"),
+		RankOne_Message("6개 일치 (2,000,000,000원) - %d개\n"),
 		Roe_Result_Message("총 수익률은 %s%%입니다.\n"),;
 
 		private final String label;

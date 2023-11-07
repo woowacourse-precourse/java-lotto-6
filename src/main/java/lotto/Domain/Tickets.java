@@ -10,10 +10,7 @@ public class Tickets{
 	
 	private List<Ticket> tickets = new ArrayList<>();
 	private List<Integer> Win_count = new ArrayList<>();
-	
-	private static final int Len_Number = 6;
-	private static final int Min_Number = 1;
-	private static final int Max_Number = 45;
+
 	
 	
 	public Integer Purchase_Number;

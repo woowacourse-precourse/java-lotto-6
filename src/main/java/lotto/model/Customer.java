@@ -32,6 +32,9 @@ public class Customer {
     public void buyLotto() {
         lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
     }
+    public Lotto getLastLotto() {
+        return lottos.get(lottos.size()-1);
+    }
 
     public List<Lotto> getLottos() {
         return lottos;

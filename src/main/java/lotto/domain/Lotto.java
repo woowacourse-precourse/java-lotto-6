@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.message.Error;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,19 +16,23 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개를 초과하는 숫자를 입력할 수 없습니다.");
+            throw new IllegalArgumentException(Error.LOTTO_MORE_THAN_SIX_NUMBER.getMessage());
         }
 
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_DUPLICATE.getMessage());
         }
 
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            if (isNotValidRange(number)) {
+                throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
+    }
+
+    private static boolean isNotValidRange(int number) {
+        return number < 1 || number > 45;
     }
 
     @Override

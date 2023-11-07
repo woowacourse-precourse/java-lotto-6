@@ -3,6 +3,7 @@ package lotto.game.io.views;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Input;
@@ -20,10 +21,16 @@ public class LottoGameView {
     }
 
     public int askPurchaseAmount() {
-        while (true) {
+        return supplyAnswer(() -> {
             output.println("구입금액을 입력해 주세요.");
+            return input.number();
+        });
+    }
+
+    private <T> T supplyAnswer(Supplier<T> supplier) {
+        while (true) {
             try {
-                return input.number();
+                return supplier.get();
             } catch (IllegalArgumentException e) {
                 output.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
@@ -39,17 +46,13 @@ public class LottoGameView {
     }
 
     public List<Integer> askWinningNumbers() {
-        output.println();
-        while (true) {
+        return supplyAnswer(() -> {
+            output.println();
             output.println("당첨 번호를 입력해 주세요");
-            try {
-                List<Integer> winningNumbers = input.numbers(",");
-                validate(winningNumbers);
-                return winningNumbers;
-            } catch (IllegalArgumentException e) {
-                output.println(ERROR_HEADER_MESSAGE + e.getMessage());
-            }
-        }
+            List<Integer> winningNumbers = input.numbers(",");
+            validate(winningNumbers);
+            return winningNumbers;
+        });
     }
 
     private void validate(List<Integer> winningNumbers) {
@@ -77,17 +80,13 @@ public class LottoGameView {
     }
 
     public int askBonusNumber() {
-        output.println();
-        while (true) {
+        return supplyAnswer(() -> {
+            output.println();
             output.println("보너스 번호를 입력해 주세요.");
-            try {
-                int bonusNumber = input.number();
-                occurExceptionIfOutOfRange(bonusNumber);
-                return bonusNumber;
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_HEADER_MESSAGE + e.getMessage());
-            }
-        }
+            int bonusNumber = input.number();
+            occurExceptionIfOutOfRange(bonusNumber);
+            return bonusNumber;
+        });
     }
 
     public void announceWinningStatistics(int purchaseAmount, Map<Prize, List<PlayerLotto>> prizeListMap) {

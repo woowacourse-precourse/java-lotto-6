@@ -7,6 +7,8 @@ import java.util.List;
 
 public class InputView {
     private final static int LOTTO_UNIT_PRICE = 1000;
+    private final static int LOTTO_MINIMUM_NUMBER = 1;
+    private final static int LOTTO_MAXIMUM_NUMBER = 45;
 
     int inputLottoPrice(){
         int price = 0;
@@ -90,6 +92,14 @@ public class InputView {
     void validDelimeter(String input){
         if(!(input.contains(","))){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,) 구분자를 사용하여 입력해야 합니다.");
+        }
+    }
+
+    void validRange(List<Integer> lottoNumbers){
+        for(int lottoNumber: lottoNumbers){
+            if(lottoNumber < LOTTO_MINIMUM_NUMBER || lottoNumber > LOTTO_MAXIMUM_NUMBER){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 

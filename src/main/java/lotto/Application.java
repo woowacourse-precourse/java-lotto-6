@@ -43,4 +43,13 @@ public class Application {
         return allOfLottoPapers;
     }
 
+    private static void validateInputDataType(String winningLotteryNumber) {
+        if (!(winningLotteryNumber.matches("^[0-9, ]+$"))) {
+            throw new IllegalArgumentException("[Error] 숫자와 콤마(,) 이외의 값을 입력하셨습니다.");
+    }
+
+
+
+
+
 }

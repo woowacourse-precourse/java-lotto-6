@@ -12,8 +12,6 @@ public record Lottos(List<Lotto> lottos) {
         return lottos.stream()
                 .map(winningLotto::calculateRanking)
                 .toList();
-
-//        return new LottoRankings(rankings);
     }
 
     @Override

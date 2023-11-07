@@ -12,8 +12,7 @@ public class WinningNumbers {
 	private List<Integer> winningNumbers;
 
 	public WinningNumbers(String input) {
-		List<Integer> numbers = convertAndvalidateLottos(input);
-		this.winningNumbers = numbers;
+		this.winningNumbers = validateAndGetWinningNumbers(input);
 	}
 
 	public List<Integer> getWinningNumbers() {
@@ -32,7 +31,7 @@ public class WinningNumbers {
 			.collect(Collectors.toList());
 	}
 
-	private List<Integer> convertAndvalidateLottos(String input) {
+	private List<Integer> validateAndGetWinningNumbers(String input) {
 		List<Integer> numbers = convertToList(input);
 		LottoValidator.canBeLotto(numbers);
 		return numbers;

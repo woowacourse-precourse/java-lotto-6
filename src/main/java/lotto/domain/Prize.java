@@ -7,20 +7,20 @@ public enum Prize {
 	FIVEANDBONUS(5, 30_000_000),
 	SIX(6, 2_000_000_000);
 
-	private final int matchNumber;
+	private final int matchAmount;
 	private final int prize;
 
-	Prize(int matchNumber, int prize) {
-		this.matchNumber = matchNumber;
+	Prize(int matchAmount, int prize) {
+		this.matchAmount = matchAmount;
 		this.prize = prize;
 	}
 
-	public static Prize createResult(int matchNumber, boolean bonus) {
-		if (matchNumber == FIVEANDBONUS.matchNumber && bonus) {
+	public static Prize createResult(int matchAmount, boolean bonus) {
+		if (matchAmount == FIVEANDBONUS.matchAmount && bonus) {
 			return FIVEANDBONUS;
 		}
 		for (Prize result : values()) {
-			if (result.matchNumber == matchNumber) {
+			if (result.matchAmount == matchAmount) {
 				return result;
 			}
 		}

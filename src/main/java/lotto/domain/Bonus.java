@@ -1,24 +1,24 @@
 package lotto.domain;
 
+import java.util.List;
+
 import lotto.validation.LottoValidator;
 import lotto.validation.NumberValidator;
 
 public class Bonus {
-	private int bonus;
+	private final int bonus;
 
 	public Bonus(String input) {
-		this.bonus = validateBonus(input);
+		this.bonus = validateAndConvertToInt(input);
 	}
 
-	private int validateBonus(String input) {
+	private int validateAndConvertToInt(String input) {
 		NumberValidator.validateIntType(input);
-		int inputBonus = Integer.parseInt(input);
-
-		LottoValidator.validateRange(inputBonus);
-		return inputBonus;
+		LottoValidator.validateRange(Integer.parseInt(input));
+		return Integer.parseInt(input);
 	}
 
-	public boolean compareWith(Lotto lotto) {
-		return lotto.getLotto().contains(bonus);
+	public boolean compareWith(List<Integer> lotto) {
+		return lotto.contains(bonus);
 	}
 }

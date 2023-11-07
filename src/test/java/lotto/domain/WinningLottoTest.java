@@ -16,7 +16,7 @@ public class WinningLottoTest {
 		Bonus bonus = new Bonus("7");
 		WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
 
-		Map map = winningLotto.calculateWinningLotto(List.of(lotto));
+		Map map = winningLotto.calculateResult(List.of(lotto));
 
 		assertThat(map.containsKey(Prize.SIX)).isEqualTo(true);
 	}
@@ -28,7 +28,7 @@ public class WinningLottoTest {
 		Bonus bonus = new Bonus("7");
 		WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
 
-		Map map = winningLotto.calculateWinningLotto(List.of(lotto));
+		Map map = winningLotto.calculateResult(List.of(lotto));
 
 		assertThat(map.containsKey(Prize.FIVEANDBONUS)).isEqualTo(true);
 	}

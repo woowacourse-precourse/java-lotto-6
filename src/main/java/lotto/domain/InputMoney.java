@@ -9,20 +9,18 @@ public class InputMoney {
 	private final int inputMoney;
 
 	public InputMoney(String input) {
-		this.inputMoney = validateMoney(input);
+		this.inputMoney = validateAndConvertToInt(input);
 	}
 
 	public int getInputMoney() {
 		return this.inputMoney;
 	}
 
-	private int validateMoney(String input) {
+	private int validateAndConvertToInt(String input) {
 		NumberValidator.validateIntType(input);
-		int inputMoney = Integer.parseInt(input);
-
-		NumberValidator.validatePositive(inputMoney);
-		validateUnit(inputMoney);
-		return inputMoney;
+		NumberValidator.validatePositive(Integer.parseInt(input));
+		validateUnit(Integer.parseInt(input));
+		return Integer.parseInt(input);
 	}
 
 	public void validateUnit(int input) {

@@ -34,8 +34,8 @@ public class LottoService {
 		winningLotto = new WinningLotto(winningNumbers, bonus);
 	}
 
-	public void calculateWinningLotto() {
-		winningLotto.calculateWinningLotto(lottos.getLotts());
+	public void calculateResult() {
+		winningLotto.calculateResult(lottos.getLotts());
 	}
 
 	private List<Lotto> createLottos(int amount) {

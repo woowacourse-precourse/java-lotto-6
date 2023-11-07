@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class InputView {
@@ -65,6 +67,16 @@ public class InputView {
             }
         }
         return lottoNumbers;
+    }
+
+    List<Integer> splitNumbers(String input){
+        String[] numberStrings = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String numberString : numberStrings) {
+            numbers.add(Integer.parseInt(numberString.trim()));
+        }
+        return numbers;
     }
 
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.domain.MatchingCase.INIT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -10,6 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class ProfitTest {
     @Test
     void check_5000() {
+        INIT.initMathcingCase();
         LottoResult lottoResult = LottoResult.of(3, false);
         lottoResult.setResult();
         Profit profit = Profit.from(8000);
@@ -18,6 +20,7 @@ public class ProfitTest {
 
     @Test
     void check_31500000() {
+        INIT.initMathcingCase();
         LottoResult lottoResult_1500000 = LottoResult.of(5, false);
         lottoResult_1500000.setResult();
         LottoResult lottoResult_30000000 = LottoResult.of(5, true);

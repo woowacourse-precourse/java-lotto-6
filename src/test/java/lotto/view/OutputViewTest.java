@@ -5,6 +5,7 @@ import static lotto.constant.testConstant.LOTTO_1_TO_5_WITH_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_6;
 import static lotto.constant.testConstant.LOTTO_3_TO_8;
 import static lotto.constant.testConstant.LOTTO_7_TO_12;
+import static lotto.domain.MatchingCase.INIT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
@@ -22,7 +23,6 @@ import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
     private ByteArrayOutputStream outputStream;
-    private List<MatchingCase> matchingResult = Arrays.asList(MatchingCase.values());
 
 
     @BeforeEach
@@ -49,11 +49,12 @@ public class OutputViewTest {
 
     @Test
     void check_result() {
+        INIT.initMathcingCase();
         LottoCollection lottoCollection = LottoCollection.from(
                 List.of(LOTTO_1_TO_5_WITH_45, LOTTO_1_TO_6, LOTTO_3_TO_8));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoCollection.setResultGroup(winningLotto, BONUS_NUMBER_45);
-        OutputView.printResult(matchingResult);
+        OutputView.printResult(INIT.getValues());
         assertThat(outputStream.toString())
                 .hasToString("당첨 통계\n"
                         + "---\n"
@@ -66,6 +67,7 @@ public class OutputViewTest {
 
     @Test
     void check_profit() {
+        INIT.initMathcingCase();
         LottoResult lottoResult_1500000 = LottoResult.of(5, false);
         lottoResult_1500000.setResult();
         LottoResult lottoResult_30000000 = LottoResult.of(5, true);

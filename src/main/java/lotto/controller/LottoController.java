@@ -56,8 +56,10 @@ public class LottoController {
         WinningNumbersDto winningNumbersDto = read(InputView::inputWinningNumbers);
         Lotto winningLotto = new Lotto(winningNumbersDto.getWinningNumbers());
         int bonusNumber = read(InputView::inputBonusNumber);
+        MatchingCase.INIT.initMathcingCase();
         lottoCollection.setResultGroup(winningLotto, bonusNumber);
-        return Arrays.asList(MatchingCase.values());
+        return MatchingCase.INIT.getValues();
+        // 네이밍 , 호출 상수 개선 필요
     }
 
     private Profit getProfit(Purchase purchase) {

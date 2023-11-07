@@ -29,5 +29,7 @@ public class Output {
         System.out.println(ErrorMessage.FIT_LOTTO_COST);
     }
 
-
+    public static void errorMessage(Exception error) {
+        System.out.println(error.getMessage());
+    }
 }

@@ -1,7 +1,7 @@
 package controller;
 
 import constant.LottoConfig;
-import lotto.Lotto;
+import domain.Lotto;
 import org.junit.jupiter.api.Test;
 import util.RandomNumberGenerator;
 
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoControllerTest {
 

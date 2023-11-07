@@ -1,8 +1,9 @@
 package controller;
 
 import constant.LottoConfig;
+import domain.LottoMoney;
 import dto.LottoCostRequst;
-import lotto.Lotto;
+import domain.Lotto;
 import util.RandomNumberGenerator;
 import view.Input;
 import view.Output;
@@ -10,16 +11,34 @@ import view.Output;
 import java.util.ArrayList;
 import java.util.List;
 public class LottoController {
-    LottoCostRequst lottoCostRequst;
+    private LottoMoney lottoMoney;
+    private Input input;
     List<Lotto> lottos;
-    public void start(){
-        lottoCostRequst = new LottoCostRequst(Input.getInputForLottoCost());
 
-        lottos = issueLottos(getLottoCountFromCost(lottoCostRequst));
-        printPublishedLottos();
+    public LottoController(){
+        input = new Input();
+
     }
-    private int getLottoCountFromCost(LottoCostRequst lottoCostRequst){
-        return lottoCostRequst.getCost() / LottoCostRequst.LOTTOT_COST;
+    public void start(){
+        //lottoCostRequst = new LottoCostRequst(Input.getInputForLottoMoney());
+        // 로또 살 금액 입력
+        getLottoMeney();
+
+       // this.lottos = issueLottos(getLottoCountFromCost(lottoCostRequst));
+       // printPublishedLottos();
+    }
+
+    private void getLottoMeney(){
+        while(true){
+            try{
+                lottoMoney = new LottoMoney(input.getInputForLottoMoney());
+                return;
+            } catch (NumberFormatException error){
+                Output.errorMessage(error);
+            }catch (IllegalArgumentException error){
+                Output.errorMessage(error);
+            }
+        }
     }
 
     private List<Lotto> issueLottos(int issueCount){
@@ -42,5 +61,9 @@ public class LottoController {
         for(Lotto lotto : lottos){
             System.out.println(lotto);
         }
+    }
+
+    private int getLottoCountFromCost(LottoCostRequst lottoCostRequst){
+        return lottoCostRequst.getCost() / LottoConfig.COST.getValue();
     }
 }

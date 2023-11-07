@@ -8,30 +8,38 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        //로또 구입 금액 입력받기
         int purchaseAmount=getPurchaseAmount();
+        List<Lotto> lottos=generateLotto(purchaseAmount);
+
+        List<Integer> winningNumbers=getWinningNumbers();
+        int bonusNumber=getBonusNumber();
+
+        printLottoNumbers(lottos);
+        printWinningStatistics(lottos,winningNumbers,bonusNumber);
 
 
     }
-    //로또 구입 금액 입력받기, 1000원 단위로 입력받음, 1000원으로 나누어 떨어지지 않으면 예외
-    private static int getPurchaseAmount() {
+
+    public static int getPurchaseAmount() {
         int purchaseAmount;
-        while(true){
+        while (true) {
             System.out.println("구입금액을 입력해 주세요.");
-            try{
-                purchaseAmount = Integer.parseInt(Console.readLine());
-                if(purchaseAmount%1000!=0) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            try {
+                String input = Console.readLine();
+                purchaseAmount = Integer.parseInt(input);
+                if (purchaseAmount % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수여야 합니다.");
                 }
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 올바른 숫자 형식이 아닙니다.");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return purchaseAmount;
-
     }
-    //당첨 번호 입력 받기
+
     private static List<Integer> getWinningNumbers() {
         while(true){
             System.out.println("당첨 번호를 입력해 주세요.");
@@ -40,6 +48,12 @@ public class Application {
                 List<Integer> numbers=parseCommaSeperatedNumbers(input);
                 if (numbers.size() !=6){
                     throw new IllegalArgumentException("[ERROR] 6개의 당첨 번호를 입력해주세요.");
+                }
+
+                Set<Integer> numberSet=new HashSet<>(numbers);
+
+                if (numberSet.size() !=6){
+                    throw new IllegalArgumentException("[ERROR] 중복된 당첨 번호가 입력되었습니다.");
                 }
                 return numbers;
             } catch (IllegalArgumentException e){
@@ -70,21 +84,13 @@ public class Application {
             lottos.add(new Lotto(numbers));
         }
 
-        System.out.println(numberOfLottos+"개 를 구매했습니다.");
+        System.out.println(numberOfLottos+"개를 구매했습니다.");
         return lottos;
     }
     private  static  List<Integer> generateLottoNumbers(){
-        List<Integer> numbers=new ArrayList<>();
-        while (numbers.size()<6) {
-            int randomNumber=Randoms.pickNumberInRange(1,45);
-            //중복된 숫자가 담기지 않도록
-            if (!numbers.contains(randomNumber)){
-                numbers.add(randomNumber);
-            }
-        }
-        // 오름 차순
-        numbers.sort(Integer::compareTo);
+        List<Integer> numbers=Randoms.pickUniqueNumbersInRange(1,45,6);
         return numbers;
+//
     }
 
     private static void printLottoNumbers(List<Lotto> lottos){
@@ -98,8 +104,10 @@ public class Application {
         return (int) numbers.stream().filter(winningNumbers::contains).count();
     }
     private static void printWinningStatistics(List<Lotto> lottos,List<Integer> winningNumbers,int bonusNumber) {
-        int[] matchingCounts=new int[7];
-        int[] prizes=new int[] {0,0,0,5000,50000,1500000, 30000000,2000000000};
+        int[] matchingCounts=new int[8];
+        int[] prizes=new int[] {0,0,0,5000,50000,1500000,30000000,2000000000};
+        //String[] prizesToPrint=new String[] {"0","0","0","5,000","50,000","1,500,000","30,000,000","2,000,000,000"};
+
 
         for (Lotto lotto:lottos) {
             List<Integer> numbers=lotto.getNumbers();
@@ -107,29 +115,47 @@ public class Application {
             boolean hasBonusNumber=numbers.contains(bonusNumber);
 
             matchingCounts[matchingCount]++;
-            if (matchingCount==5 && hasBonusNumber){
+
+            if (matchingCount==5 && hasBonusNumber) {
                 matchingCounts[6]++;
             }
-            System.out.println("당첨 통계");
-            System.out.println("---");
-            for (int i=3; i<=6; i++){
-                String message=i+"개 일치";
-                if (i==5){
-                    message+=",보너스 볼 일치";
-                }
-                message+="("+calculatePrize(i,prizes)+"원) - "+matchingCounts[i]+"개";
-                System.out.println(message);
-            }
         }
+
+        //당첨 통계 한 번만 출력
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i=3; i<=7; i++){
+            String message = "";
+            if (i == 6) {
+                message = "5개 일치, 보너스 볼 일치";
+            }
+            if (i == 7) {
+                message = "6개 일치";
+            }
+            if (i != 6 && i != 7) {
+                message = i + "개 일치";
+            }
+            message += " (" + String.format("%,d", calculatePrize(i, prizes)) + "원) - " + matchingCounts[i] + "개";
+            System.out.println(message);
+
+        }
+
         //수익률 출력
         double totalPrize=calculateTotalPrize(matchingCounts,prizes);
         double totalPurchaseAmount=lottos.size()*1000.0;
         double profitRate=(totalPrize/totalPurchaseAmount)*100;
-        System.out.printf("총 수익률을 %.1f%%입니다.\n",profitRate);
-
-
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",profitRate);
     }
-
+    private static int calculatePrize(int matchingCount,int[] prizes){
+        return prizes[matchingCount];
+    }
+    private static double calculateTotalPrize(int[] matchingCounts,int[] prizes){
+        double totalPrize=0.0;
+        for (int i=3;i<=7;i++){
+            totalPrize+=matchingCounts[i]*prizes[i];
+        }
+        return totalPrize;
+    }
 
     private static List<Integer> parseCommaSeperatedNumbers(String input){
         String[] tokens=input.split(",");
@@ -143,6 +169,6 @@ public class Application {
         }
     }
 
-    //보너스 입력 받기
+
 
 }

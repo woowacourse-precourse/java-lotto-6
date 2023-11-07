@@ -9,9 +9,9 @@ import lotto.model.domain.lotto.lottogenerator.LottoGenerator;
 
 public class LottoStore {
 
-    private final LottoGenerator lottoGenerator;
+    private final LottoGenerator<Lotto> lottoGenerator;
 
-    public LottoStore(LottoGenerator lottoGenerator) {
+    public LottoStore(LottoGenerator<Lotto> lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 

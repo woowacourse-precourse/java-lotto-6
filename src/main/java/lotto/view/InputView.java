@@ -29,7 +29,9 @@ public class InputView {
         String input = Console.readLine();
         System.out.println();
         List<String> inputValue = parseWinningNumber(input);
-        return convertWinningNumber(inputValue);
+        List<Integer> winningNumber = convertWinningNumber(inputValue);
+        validateWinningNumber(winningNumber);
+        return winningNumber;
 
         // refactor 통해 삭제 예정
 //        return Stream.of(input.split(","))
@@ -57,6 +59,12 @@ public class InputView {
             numbers.add(number);
         }
         return numbers;
+    }
+
+    private static void validateWinningNumber(List<Integer> numbers) {
+        for (int number : numbers) {
+            validateRangeNumber(number);
+        }
     }
 
     private static void validateNumeric(String input) {

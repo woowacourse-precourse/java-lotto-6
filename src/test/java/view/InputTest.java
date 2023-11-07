@@ -28,5 +28,13 @@ public class InputTest {
                 .isInstanceOf(NotIntegerException.class);
     }
 
+    @DisplayName("입력에 공백이 포함될 시 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1, 2,3","1 0,11", "1 0, 11","1 1"})
+    void inputHasSpace(String input){
+        assertThatThrownBy(() -> InputValidator.validateInput(input))
+                .isInstanceOf(HasSpaceException.class);
+    }
+
 
 }

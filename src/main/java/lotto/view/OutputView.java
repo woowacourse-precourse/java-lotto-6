@@ -93,7 +93,7 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (" + prizeForPrint + "원) - " + eachRankCount + "개");
     }
 
-    public void printProfitRate(User user, float profitRate) {
+    public void printProfitRate(double profitRate) {
         System.out.println("총 수익률은 " + Math.round(profitRate * 10) / 10.0 + "%입니다.");
     }
 }

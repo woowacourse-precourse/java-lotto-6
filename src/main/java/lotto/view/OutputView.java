@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     private void printNumberOfLotto(int numberOfLotto) {
-        System.out.println(numberOfLotto + "개를 구매했습니다.");
+        System.out.println(numberOfLotto + SystemMessage.PRINT_NUMBER_OF_PURCHASED_LOTTO.getMessage());
     }
 
     private void printLottoNumber(List<Lotto> lottos) {

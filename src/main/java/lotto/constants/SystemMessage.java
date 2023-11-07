@@ -1,7 +1,8 @@
 package lotto.constants;
 
 public enum SystemMessage {
-    INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요.");
+    INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
+    PRINT_NUMBER_OF_PURCHASED_LOTTO("개를 구매했습니다.");
     private String message;
 
     SystemMessage(String message) {

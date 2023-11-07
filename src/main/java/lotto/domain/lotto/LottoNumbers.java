@@ -3,7 +3,6 @@ package lotto.domain.lotto;
 import lotto.constants.LottoConsts;
 import lotto.exception.constants.ErrorConsts;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +34,6 @@ public record LottoNumbers(
     }
 
     private List<LottoNumber> makeUnmodifiable(final List<LottoNumber> numbers) {
-        return Collections.unmodifiableList(numbers);
+        return List.copyOf(numbers);
     }
 }

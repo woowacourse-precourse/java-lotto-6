@@ -28,10 +28,10 @@ public class LottoController {
     }
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장
-    private List<Lotto> getLottos(){
+    private List<Lotto> getLottos() {
         RandomNumbers randomNumbers = new RandomNumbers();
 //        Lotto lotto = new Lotto();
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < amount / 1000; i++) {
             Lotto lotto = new Lotto(randomNumbers.getRandomNumbers());
             lottos.add(lotto);
         }
@@ -66,7 +66,7 @@ public class LottoController {
 //        BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
 //        bonusNumber = bonus.getBonusNumber();
 //    }
-    private int getBonusNumber(){
+    private int getBonusNumber() {
         BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
         bonusNumber = bonus.getBonusNumber();
         return bonusNumber;

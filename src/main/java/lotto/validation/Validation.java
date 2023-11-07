@@ -47,4 +47,17 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateCertainNumberDuplicateInList(List<Integer> list,int number){
+        if(list.contains(number)){
+            ErrorMessage.validateCertainNumberDuplicateInList();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateListStringToInteger(List<String> list) {
+        for(String string: list){
+            validateStringIsInteger(string);
+        }
+    }
 }

@@ -19,4 +19,7 @@ public final class ErrorMessage {
     public static void multipleNumberError(int divisor) {
         System.out.printf("[ERROR] 입력 값은 %d원 단위여만 합니다.\n", divisor);
     }
+    public static void validateCertainNumberDuplicateInList(){
+        System.out.printf("[ERROR] 입력 값이 리스트안의 값고 중복되면 않됩니다.\n");
+    }
 }

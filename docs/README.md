@@ -48,6 +48,6 @@
     - 수소점 둘째 자리에서 반올림
 
 
-- [ ] <<6.당첨 통계 출력>>
-  - [ ] 당첨 내역 출력 OutputView
-  - [ ] 총 수익률 출력 OutputView
+- [x] <<6.당첨 통계 출력>>
+  - [x] 당첨 내역 출력 OutputView
+  - [x] 총 수익률 출력 OutputView

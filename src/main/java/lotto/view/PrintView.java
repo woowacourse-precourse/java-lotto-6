@@ -26,21 +26,25 @@ public class PrintView {
         sb.append(user.getCount()).append("개를 구매했습니다.\n");
 
         for (Lotto lotto : user.getLottos()) {
-            List<Integer> numbers = lotto.getNumbers();
-            sb.append("[");
-
-            for (int i = 0; i < numbers.size(); i++) {
-                sb.append(numbers.get(i));
-
-                if (i < numbers.size() - 1) {
-                    sb.append(", ");
-                }
-            }
-
-            sb.append("]\n");
+            printLottoNumbers(sb,lotto);
         }
 
         System.out.println(sb.toString());
+    }
+
+    private static void printLottoNumbers(StringBuilder sb, Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        sb.append("[");
+
+        for(int i=0;i<numbers.size(); i++) {
+            sb.append(numbers.get(i));
+
+            if(i < numbers.size() - 1) {
+                sb.append(", ");
+            }
+        }
+
+        sb.append("]\n");
     }
 
     public static void printWinningResult(int[] winningCount, BigDecimal result) {
@@ -48,8 +52,7 @@ public class PrintView {
         sb.append("\n당첨 통계");
         sb.append("\n---");
 
-        for (int i = 0; i < LottoRank.values().length; i++) {
-            LottoRank rank = LottoRank.values()[i];
+        for (LottoRank rank: LottoRank.values()) {
             int count = winningCount[rank.getRank()];
 
             sb.append("\n").append(rank.getDescription());

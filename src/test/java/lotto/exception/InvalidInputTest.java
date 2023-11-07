@@ -18,6 +18,21 @@ class InvalidInputTest {
         System.setOut(new PrintStream(output));
     }
 
+    @DisplayName("로또 번호가 (,)를 기준으로 구분되지 않으면 예외가 발생한다.")
+    @Test
+    void commaSeparatedFormatException(){
+        //given
+        InvalidInput invalidInput = new InvalidInput();
+        String numbers = "1 2 3 4 5 6";
+
+        //when
+        boolean isNotCommaSeparated = invalidInput.commaSeparatedFormatException(numbers);
+
+        //then
+        assertThat(isNotCommaSeparated).isEqualTo(true);
+        assertThat(output.toString()).contains("[ERROR] 로또 번호는 (,)를 기준으로 구분되어야 한다.");
+    }
+
     @DisplayName("로또 넘버가 중복된 숫자면 예외가 발생한다.")
     @Test
     void duplicateNumberException(){

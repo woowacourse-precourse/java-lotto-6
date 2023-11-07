@@ -3,7 +3,6 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +14,7 @@ class StringConverterTest {
     void convertToIntegerList() {
         //given
         StringConverter stringConverter = new StringConverter();
-        List<String> numbers = new ArrayList<>();
-        numbers.addAll(List.of("1", "2", "3", "4", "5", "6"));
+        String numbers = "2,3,4,5,6,1";
 
         //when
         List<Integer> convertedNumbers = stringConverter.convertToIntegerList(numbers);
@@ -46,8 +44,7 @@ class StringConverterTest {
     void convertToIntegerListWithNoDigit() {
         //given
         StringConverter stringConverter = new StringConverter();
-        List<String> numbers = new ArrayList<>();
-        numbers.addAll(List.of("1", "2", "3", "4", "5", "a"));
+        String numbers = "1,2,3,4,5,a";
 
         //when //then
         assertThatThrownBy(() -> stringConverter.convertToIntegerList(numbers))

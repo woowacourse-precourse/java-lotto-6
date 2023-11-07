@@ -11,7 +11,19 @@ import java.util.List;
 
 public class InvalidInput {
     private static final int ZERO = 0;
+    private static final char COMMA = ',';
+    private static final int REQUIRED_COMMA_NUM = 5;
     private static String message;
+
+    public boolean commaSeparatedFormatException(String numbers) {
+        message = ExceptionMessage.NO_COMMA.getMessage();
+        if (countCommas(numbers) != REQUIRED_COMMA_NUM) {
+            System.out.println(message);
+            return true;
+        }
+        return false;
+    }
+
 
     public boolean duplicateNumberException(List<Integer> numbers) {
         message = ExceptionMessage.DUPLICATE_NUMBER.getMessage();
@@ -69,6 +81,9 @@ public class InvalidInput {
         return false;
     }
 
+    private int countCommas(String numbers) {
+        return (int) numbers.chars().filter(ch -> ch == COMMA).count();
+    }
     private boolean isDuplicate(List<Integer> numbers, int number) {
         if (Collections.frequency(numbers, number) > ALLOW_DUPLICATE_NUMBER_COUNT.getValue()) {
             return true;
@@ -82,4 +97,5 @@ public class InvalidInput {
         }
         return false;
     }
+
 }

@@ -11,8 +11,8 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
-    public List<Integer> getNumbers() {
+    public List<Integer> getSortedNumbers(){
+        Collections.sort(numbers);
         return numbers;
     }
     public int getSameNumberCount(Lotto myLottoNumbers) {
@@ -30,9 +30,6 @@ public class Lotto {
         return false;
     }
 
-    public void sortedLotto(){
-        Collections.sort(numbers);
-    }
 
     private void validate(List<Integer> numbers) {
         InvalidInput invalidInput = new InvalidInput();

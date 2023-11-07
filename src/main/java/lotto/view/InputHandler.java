@@ -1,9 +1,20 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.ExceptionHandler;
+import lotto.exception.ExceptionStatus;
 
 public class InputHandler {
-    public static String getInputMessage() {
-        return Console.readLine();
+    private static String purchaseAmount;
+    private static ExceptionStatus exceptionStatus;
+
+    public static String getPurchaseInputMessage() {
+        do {
+            Printer.printPurchaseAmountChoiceMessage();
+            purchaseAmount = Console.readLine();
+            exceptionStatus = ExceptionHandler.handleMoneyFormatException(purchaseAmount);
+        } while (exceptionStatus.isOccurred());
+
+        return purchaseAmount;
     }
 }

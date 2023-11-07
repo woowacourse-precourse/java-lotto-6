@@ -1,38 +1,14 @@
-package lotto.Domain;
+package lotto;
 
 import java.util.List;
 
-public class Matching {
-    public enum Mactching {
-        ALL(6, 2000000000),
-        FIVE_BONUS(5, 30000000),
-        FIVE(5, 1500000),
-        FOUR(4, 50000),
-        THREE(3, 5000),
-        NONE(0, 0);
-
-        private final int matchingCount;
-        private final int prize;
-
-        Mactching(int matchingCount, int prize) {
-            this.matchingCount = matchingCount;
-            this.prize = prize;
-        }
-
-        public int getMatchingCount() {
-            return matchingCount;
-        }
-
-        public int getPrize() {
-            return prize;
-        }
-    }
+public class WinningStatistics {
 
     private final List<Lotto> lottos;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public Matching(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public WinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -97,6 +73,4 @@ public class Matching {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + countMatchingAndBonus() + "개\n" +
                 "6개 일치 (2,000,000,000원) - 0개";
     }
-
-
 }

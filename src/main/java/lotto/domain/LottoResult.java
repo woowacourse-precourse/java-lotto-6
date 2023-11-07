@@ -3,6 +3,7 @@ package lotto.domain;
 public class LottoResult {
     private boolean isWinner;
     private int matchingCount;
+    private WinningResult winningResult;
 
     public LottoResult(boolean isWinner, int matchingCount) {
         this.isWinner = isWinner;
@@ -15,5 +16,9 @@ public class LottoResult {
 
     public int getMatchingCount() {
         return matchingCount;
+    }
+
+    public WinningResult getWinningResult() {
+        return winningResult;
     }
 }

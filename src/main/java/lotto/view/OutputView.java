@@ -24,10 +24,14 @@ public class OutputView {
 
         for (LottoResultFormat key : lottoResults.keySet()) {
             if (key == LottoResultFormat.FIVE_BONUS && key != LottoResultFormat.FAIL) {
-                System.out.println(key.getLottoOfMatching() + "개 일치, 보너스 볼 일치 (" + key.getWinningAmount() + "원) - " + lottoResults.getOrDefault(key, 0) + "개");
+                System.out.print(key.getLottoOfMatching()+"개 일치, ");
+                System.out.print(String.format("보너스 볼 일치 (%,d원) - ", key.getWinningAmount()));
+                System.out.println(lottoResults.getOrDefault(key, 0) + "개");
             }
             if (key != LottoResultFormat.FIVE_BONUS && key != LottoResultFormat.FAIL) {
-                System.out.println(key.getLottoOfMatching() + "개 일치 (" + key.getWinningAmount() + "원) - " + lottoResults.getOrDefault(key, 0) + "개");
+                System.out.print(key.getLottoOfMatching()+"개 일치 ");
+                System.out.print(String.format("(%,d원) - ", key.getWinningAmount()));
+                System.out.println(lottoResults.getOrDefault(key, 0) + "개");
             }
         }
 
@@ -35,7 +39,6 @@ public class OutputView {
 
     //총 수익률 출력
     public static void totalReturnOnLotto(double returnOnLotto) {
-//        System.out.println("총 수익률은 " + returnOnLotto + "%입니다.");
         System.out.println(String.format("총 수익률은 %,.2f%%입니다.", returnOnLotto));
     }
 }

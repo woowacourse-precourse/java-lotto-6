@@ -94,14 +94,14 @@ public class LottoController {
     private void calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults, int amount) {
         double returnOfLotto = 0;
         for (LottoResultFormat key : lottoResults.keySet()) {
-            returnOfLotto += lottoResults.getOrDefault(key, 0) * removeCommas(key.getWinningAmount());
+            returnOfLotto += lottoResults.getOrDefault(key, 0) * /*removeCommas(key.getWinningAmount()*/key.getWinningAmount();
         }
         OutputView.totalReturnOnLotto(returnOfLotto / amount * 100);
     }
 
-    private int removeCommas(String winningAmount) {
-        String remove = winningAmount.replaceAll(",", "");
-        return Integer.parseInt(remove);
-    }
+//    private int removeCommas(String winningAmount) {
+//        String remove = winningAmount.replaceAll(",", "");
+//        return Integer.parseInt(remove);
+//    }
 
 }

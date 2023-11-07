@@ -20,6 +20,9 @@ public class Validator {
     }
 
     public void validateAmountInThousands(int lottoPurchaseCost) {
+        if(lottoPurchaseCost%1000!=0){
+            throw new IllegalArgumentException("1000의 배수인 정수를 입력해야 합니다.");
+        }
     }
 
 

@@ -6,18 +6,26 @@ import static lotto.message.InputMessage.*;
 
 public class InputView {
 
+    private final InputValidator validator = new InputValidator();
+
     public String inputLottoAmount() {
         System.out.println(LOTTO_AMOUNT.getMessage());
-        return Console.readLine();
+        String lottoAmount = Console.readLine();
+        validator.validateWholeNumber(lottoAmount);
+        return lottoAmount;
     }
 
     public String inputWinningNumber() {
         System.out.println(WINNING_NUMBER.getMessage());
-        return Console.readLine();
+        String winningNumber = Console.readLine();
+        validator.validateWholeNumber(winningNumber);
+        return winningNumber;
     }
 
     public String inputBonusNumber() {
         System.out.println(BONUS_NUMBER.getMessage());
-        return Console.readLine();
+        String bonusNumber = Console.readLine();
+        validator.validateWholeNumber(bonusNumber);
+        return bonusNumber;
     }
 }

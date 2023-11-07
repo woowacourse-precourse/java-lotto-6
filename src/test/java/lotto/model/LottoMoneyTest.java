@@ -3,23 +3,28 @@ package lotto.model;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoMoneyTest {
 
-    @Test
-    @DisplayName("돈을 천원미만 투입하면 에러를 발생시켜야한다")
-    void inputMinimumMoneyTest() {
-        // when && then
-        Assertions.assertThatThrownBy(() -> new LottoMoney(500)).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> new LottoMoney(444)).isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest
+    @CsvSource(value = {
+            "500:java.lang.IllegalArgumentException",
+            "444:java.lang.IllegalArgumentException",
+            "900:java.lang.IllegalArgumentException",
+            "999:java.lang.IllegalArgumentException"} , delimiter = ':')
+    void inputMinimumMoneyTest(int input, Class<Exception> expected) {
+        Assertions.assertThatThrownBy( () -> new LottoMoney(input)).isInstanceOf(expected);
     }
 
-    @Test
-    @DisplayName("돈을 천원 단위로 투입안하면 에러를 발생시켜야한다")
-    void inputUnitMoneyTest() {
-        // when && then
-        Assertions.assertThatThrownBy(() -> new LottoMoney(1500)).isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertThatThrownBy(() -> new LottoMoney(4444)).isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1500:java.lang.IllegalArgumentException",
+            "4444:java.lang.IllegalArgumentException",
+            "1001:java.lang.IllegalArgumentException",
+            "100001:java.lang.IllegalArgumentException"} , delimiter = ':')
+    void inputUnitMoneyTest(int input, Class<Exception> expected) {
+        Assertions.assertThatThrownBy( () -> new LottoMoney(input)).isInstanceOf(expected);
     }
-
 }

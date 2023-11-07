@@ -1,7 +1,9 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.dto.LottoTicket;
+import lotto.dto.StatisticsResult;
 
 public class OutputView {
 
@@ -12,6 +14,20 @@ public class OutputView {
 
     private static void printTicket(LottoTicket ticket) {
         System.out.printf(ViewConstant.TICKET_MESSAGE.toString(), ticket);
+    }
+
+    public static void printStatisticsLine(StatisticsResult response){
+        System.out.println(ViewConstant.STATISTICS_MESSAGE);
+        System.out.println(ViewConstant.SEPARATOR_LINE_MESSAGE);
+        printCountingResponse(response.prizeCount());
+    }
+
+    private static void printCountingResponse(Map<String, Integer> counter){
+        System.out.printf(ViewConstant.FIFTH_PRIZE_MESSAGE.toString(), counter.get("FIFTH"));
+        System.out.printf(ViewConstant.FOURTH_PRIZE_MESSAGE.toString(), counter.get("FOURTH"));
+        System.out.printf(ViewConstant.THIRD_PRIZE_MESSAGE.toString(), counter.get("THIRD"));
+        System.out.printf(ViewConstant.SECOND_PRIZE_MESSAGE.toString(), counter.get("SECOND"));
+        System.out.printf(ViewConstant.FIRST_PRIZE_MESSAGE.toString(), counter.get("FIRST"));
     }
 
 }

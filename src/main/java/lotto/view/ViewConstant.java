@@ -10,7 +10,15 @@ public enum ViewConstant {
     TICKET_NUMBER_DELIMITER(", "),
     MAIN_NUMBER_DELIMITER(","),
     NUMBER_PATTERN("\\d+"),
-    MAIN_NUMBER_PATTERN("([\\d]+[,])*[\\d]+");
+    MAIN_NUMBER_PATTERN("([\\d]+[,])*[\\d]+"),
+    STATISTICS_MESSAGE("\n당첨 통계"),
+    SEPARATOR_LINE_MESSAGE("---"),
+    FIFTH_PRIZE_MESSAGE("3개 일치 (5,000원) - %d개\n"),
+    FOURTH_PRIZE_MESSAGE("4개 일치 (50,000원) - %d개\n"),
+    THIRD_PRIZE_MESSAGE("5개 일치 (1,500,000원) - %d개\n"),
+    SECOND_PRIZE_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000) - %d개\n"),
+    FIRST_PRIZE_MESSAGE("6개 일치 (2,000,000,000원) - %d개\n"),
+    REVENUE_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String value;
 

@@ -11,8 +11,6 @@ public class LottoResult {
     private double totalPrizeMoney;
     private double yieldRate;
     final Map<LottoPrize, Integer> prizeResult;
-    private static final int ROUNDING_FACTOR = 1000;
-    private static final double DECIMAL_ADJUSTMENT = 10.0;
 
     public LottoResult(int payment, WinningLotto winningLotto, List<Lotto> lottos) {
         this.payment = payment;
@@ -47,7 +45,9 @@ public class LottoResult {
     }
 
     private void calculateYieldRate() {
-        this.yieldRate = Math.round(totalPrizeMoney / payment * ROUNDING_FACTOR) / DECIMAL_ADJUSTMENT;
+        final int roundingFactor = 1000;
+        final double decimalAdjustment = 10.0;
+        this.yieldRate = Math.round(totalPrizeMoney / payment * roundingFactor) / decimalAdjustment;
     }
 
     private String getYieldRate() {

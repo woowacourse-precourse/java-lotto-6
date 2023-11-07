@@ -12,16 +12,6 @@ import static lotto.domain.LottoConstant.*;
 
 public class LottoService {
 
-    private static final String LOTTO_NUMBER_SEPARATOR = ",";
-
-    public int calculateLottoSheet(int price) {
-        if (price % PRICE_PER_LOTTO != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매해야 합니다. 다시 입력해주세요.");
-        }
-
-        return price / PRICE_PER_LOTTO;
-    }
-
     public List<Lotto> generateLotto(int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
 
@@ -78,16 +68,6 @@ public class LottoService {
         }
 
         return null;
-    }
-
-    public UserLotto purchaseLotto(String inputLottoNumbers, String inputBonusNumber) {
-        List<Integer> lottoNumbers = Arrays.stream(inputLottoNumbers.split(LOTTO_NUMBER_SEPARATOR))
-                .map(Integer::parseInt)
-                .toList();
-
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-
-        return new UserLotto(lottoNumbers, bonusNumber);
     }
 
     public double calculatePrizeRatio(EnumMap<LottoRank, Integer> lottoResult, int userPurchasePrice) {

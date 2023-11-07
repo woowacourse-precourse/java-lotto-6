@@ -17,4 +17,10 @@ public class InputView {
         OutputView.printAskBonusNumberMessage();
         return Console.readLine();
     }
+
+    private void validateMoney(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 금액입니다.");
+        }
+    }
 }

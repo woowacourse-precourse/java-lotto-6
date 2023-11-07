@@ -9,8 +9,7 @@ public class LottoController {
     }
 
     public void start() {
-        int inputMoney = InputView.inputMoney();
-        Money money = new Money(inputMoney);
+        Money money = new Money();
         int trial = money.trial();
     }
 }

@@ -1,13 +1,16 @@
 package lotto.domain;
 
-public class Money {
-    private static int amount;
+import lotto.view.InputView;
 
-    public Money(int amount) {
-        this.amount = amount;
+public class Money {
+    private final int amount;
+    private static final int moneyCondition = 1000;
+
+    public Money() {
+        this.amount = InputView.inputMoney();
     }
 
-    public static int trial() {
-        return amount / 1000;
+    public int trial() {
+        return amount / moneyCondition;
     }
 }

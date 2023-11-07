@@ -11,7 +11,7 @@ public enum Error {
     ONLY_VALUE_THOUSAND("1,000원 단위로만 입력 가늘합니다."),
     INVALID_NUMBER_COUNT("6개의 숫자를 입력해야 합니다.");
 
-    private static final String ERROR_ANNOUNCER = "[ERROR]";
+    private static final String ERROR_ANNOUNCER = "[ERROR] ";
     private final String message;
 
     Error(String message) {

@@ -20,7 +20,7 @@ public class Setting {
 
         manageException(payment);
 
-        return Integer.parseInt(payment);
+        return Integer.parseInt(payment) / 1000;
     }
 
     private void manageException(String payment) {
@@ -29,7 +29,7 @@ public class Setting {
     }
 
     private void isMinimumPayment(String payment) {
-        if(Integer.parseInt(payment) < 1000) {
+        if (Integer.parseInt(payment) < 1000) {
             purchaseException.minimumPay();
         }
     }
@@ -37,7 +37,7 @@ public class Setting {
     private void isUnitOfThousane(String payment) {
         int value = Integer.parseInt(payment) % 1000;
 
-        if(value != 0){
+        if (value != 0) {
             purchaseException.payThousand();
         }
     }

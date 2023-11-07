@@ -18,29 +18,31 @@ public class Input {
     }
 
     public String inputFromUser() {
-        String input = checkBlank();
-        validNumber(input);
+        String input = readLine();
+        manageException(input);
 
         return input;
     }
 
-    private String checkBlank() {
-        String value = readLine();
-
-        if (value == null) {
-            inputException.isBlank();
-        }
-
-        return value;
+    private void manageException(String input) {
+        checkBlank(input);
+        validateNumber(input);
     }
 
-    private void validNumber(String input) {
-        boolean isNatural = input.chars()
-                .allMatch(Character::isDigit);
+    private void checkBlank(String input) {
+        if (input.equals("") || input.equals(" ")) {
+            inputException.isBlank();
+        }
+    }
 
-        if (!isNatural) {
+    private void validateNumber(String input) {
+        if (!isNatural(input)) {
             inputException.isNotNaturalNumber();
         }
     }
 
+    private boolean isNatural(String input) {
+        return input.chars()
+                .allMatch(Character::isDigit);
+    }
 }

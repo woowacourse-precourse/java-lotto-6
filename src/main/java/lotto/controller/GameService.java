@@ -9,6 +9,6 @@ public class GameService {
     }
 
     public void play() {
-
+        int repetitions = setting.purchaseLotto();
     }
 }

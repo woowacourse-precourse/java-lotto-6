@@ -38,4 +38,24 @@ public class Lotto {
         return true;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Lotto other = (Lotto) obj;
+        return numbers.equals(other.numbers);
+    }
+
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    //발행된 로또 번호 출력
     public static void IssuedLottoNumbers(int amount, List<Lotto> lottos) {
         System.out.println("\n" + amount / 1000 + "개를 구입했습니다.");
         for (Lotto lotto : lottos) {
@@ -17,7 +16,6 @@ public class OutputView {
         }
     }
 
-    //당첨 내역 출력
     public static void LottoResults(Map<LottoResultFormat, Integer> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -37,7 +35,6 @@ public class OutputView {
 
     }
 
-    //총 수익률 출력
     public static void totalReturnOnLotto(double returnOnLotto) {
         System.out.println(String.format("총 수익률은 %,.2f%%입니다.", returnOnLotto));
     }

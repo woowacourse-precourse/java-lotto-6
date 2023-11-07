@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.Ticket;
+import lotto.domain.WinningTicket;
 import lotto.repository.MemoryTicketRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,6 +50,30 @@ class TicketSeviceTest {
         Ticket ticket = ticketService.automaticPurchase();
         List<Ticket> storedTickets = memoryTicketRepository.findAll();
         assertTrue(storedTickets.contains(ticket));
+    }
+
+    @DisplayName("당첨 번호 입력이 유효하면 WinningTicket 객체를 생성한다.")
+    @Test
+    void announcementNumberInputTest() {
+        String validInput = "1,2,3,4,5,6";
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        WinningTicket winningTicket = ticketService.announcementNumber(validInput);
+        assertEquals(validNumbers.toString(), winningTicket.getNumbers().toString());
+    }
+
+    @DisplayName("당첨 번호 입력이 유효하지 않으면 예외가 발생한다.")
+    @Test
+    void announcementNumberValidInputTest() {
+        String invalidRange = "1,2,3,4,5,46"; // 범위 초과
+        String invalidSize = "1,2,3,4,5"; // 개수 부족
+        String invalidUnique = "1,2,3,4,5,5"; // 중복
+
+        assertThrows(IllegalArgumentException.class,
+                () -> ticketService.announcementNumber(invalidRange));
+        assertThrows(IllegalArgumentException.class,
+                () -> ticketService.announcementNumber(invalidSize));
+        assertThrows(IllegalArgumentException.class,
+                () -> ticketService.announcementNumber(invalidUnique));
     }
 
 }

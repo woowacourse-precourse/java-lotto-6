@@ -6,7 +6,7 @@ import static lotto.utils.LottoSystemUtils.moneyUnit;
 public class InputValidatorController {
 
     public static void inputMoneyValidate(String money) {
-        isDigit(money);
+        isMoneyDigit(money);
         isRightMoneyUnit(Integer.parseInt(money));
     }
 
@@ -32,7 +32,7 @@ public class InputValidatorController {
         }
     }
 
-    private static void isDigit(String num) {
+    private static void isMoneyDigit(String num) {
         try {
             Integer.parseInt(num);
         } catch (Exception e) {

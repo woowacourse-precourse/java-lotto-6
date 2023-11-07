@@ -14,9 +14,9 @@ import static lotto.view.OutputView.*;
 public class LottoSystemController {
 
     public static void startLottoSystem() {
-        LottoSystem lottoSystem = new LottoSystem(buyLotto());
-
+        LottoSystem lottoSystem = buyLotto();
         printBuyLotto(lottoSystem);
+
         enterLotto();
     }
 
@@ -52,11 +52,11 @@ public class LottoSystemController {
         return lottos;
     }
 
-    private static int buyLotto() {
+    private static LottoSystem buyLotto() {
         String money = inputMoney();
         inputMoneyValidate(money);
 
-        return Integer.parseInt(money);
+        return new LottoSystem(Integer.parseInt(money));
     }
 
     private static void printBuyLotto(LottoSystem lottoSystem) {
@@ -66,5 +66,4 @@ public class LottoSystemController {
             printLottoNumbers(lotto);
         }
     }
-
 }

@@ -1,8 +1,8 @@
 package lotto.validator;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.dto.BonusNumberDto;
-import lotto.domain.dto.WinningLottoDto;
+import lotto.domain.WinningLotto;
 
 public class BonusNumberValidator {
     public static final String INVALID_LOTTO_NUMBER_RANGE_MESSAGE =
@@ -31,9 +31,9 @@ public class BonusNumberValidator {
         }
     }
 
-    public static void validateBonusNumberDuplicate(final WinningLottoDto winningLottoDto,
-                                                    final BonusNumberDto bonusNumberDto) {
-        boolean isDuplicate = winningLottoDto.numbers().contains(bonusNumberDto.number());
+    public static void validateBonusNumberDuplicate(final WinningLotto winningLotto,
+                                                    final BonusNumber bonusNumber) {
+        boolean isDuplicate = winningLotto.getNumbers().contains(bonusNumber.getNumber());
 
         if (isDuplicate) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_MESSAGE);

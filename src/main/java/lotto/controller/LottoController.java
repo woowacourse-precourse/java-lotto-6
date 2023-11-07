@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
@@ -63,8 +65,12 @@ public class LottoController {
 
     private DrawingResultDto drawLotto(final Lottos lottos) {
         WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
+        WinningLotto winningLotto = mapToWinningLotto(winningLottoDto);
+
         BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
-        BonusNumberValidator.validateBonusNumberDuplicate(winningLottoDto, bonusNumberDto);
+        BonusNumber bonusNumber = mapToBonusNumber(bonusNumberDto);
+
+        BonusNumberValidator.validateBonusNumberDuplicate(winningLotto, bonusNumber);
 
         DrawingResultDto drawingResultDto = lottoMachine.draw(lottos, winningLottoDto, bonusNumberDto);
         outputView.printDrawingResult(drawingResultDto);

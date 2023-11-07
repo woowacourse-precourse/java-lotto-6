@@ -18,13 +18,11 @@ public enum Ranking {
         this.message = message;
     }
 
-    public int getRank(){
+    public int getRank() {
         return this.rank;
     }
-    public String getMessage(){
-        return this.message;
-    }
-    public static String getMatchRankMessage(int rank){
+
+    public static String getMatchRankMessage(int rank) {
         return Arrays.stream(Ranking.values())
                 .filter(r -> r.getRank() == rank)
                 .findFirst()

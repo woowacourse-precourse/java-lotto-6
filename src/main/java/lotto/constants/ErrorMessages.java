@@ -13,13 +13,25 @@ public enum ErrorMessages {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();
         }
     },
-    IS_NUMBER_DUPLICATE(" 번호가 중복되었습니다.") {
+    ARE_WINNING_NUMBERS_DUPLICATE(" 당첨 번호가 중복되었습니다.") {
+        @Override
+        public String writeErrorMessageByCase() {
+            return DEFAULT_ERROR_MESSAGE + getErrorMessage();
+        }
+    },
+    IS_BONUS_NUMBER_DUPLICATE(" 보너스 번호가 중복되었습니다.") {
         @Override
         public String writeErrorMessageByCase() {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();
         }
     },
     IS_NUMBER_OUT_OF_RANGE(" 번호는 1부터 45 사이의 숫자여야 합니다.") {
+        @Override
+        public String writeErrorMessageByCase() {
+            return DEFAULT_ERROR_MESSAGE + getErrorMessage();
+        }
+    },
+    IS_NUMBER_COUNT_OUT_OF_RANGE(" 당첨 번호는 6개의 숫자여야 합니다.") {
         @Override
         public String writeErrorMessageByCase() {
             return DEFAULT_ERROR_MESSAGE + getErrorMessage();

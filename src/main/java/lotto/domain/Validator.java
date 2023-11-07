@@ -100,7 +100,7 @@ public class Validator {
         try {
             int duplicateNumberFrequency = Collections.frequency(referenceNumbers, checkingNumber);
             if (duplicateNumberFrequency >= NUMBERS_MIN_DUPLICATE_COUNT) {
-                throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_DUPLICATE.writeErrorMessageByCase());
+                throw new IllegalArgumentException(ErrorMessages.ARE_WINNING_NUMBERS_DUPLICATE.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -113,7 +113,7 @@ public class Validator {
         try {
             int duplicateNumberFrequency = Collections.frequency(referenceNumbers, checkingNumber);
             if (duplicateNumberFrequency >= BONUS_NUMBER_MIN_DUPLICATE_COUNT) {
-                throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_DUPLICATE.writeErrorMessageByCase());
+                throw new IllegalArgumentException(ErrorMessages.IS_BONUS_NUMBER_DUPLICATE.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -124,8 +124,8 @@ public class Validator {
 
     public static boolean isNumberCountOutOfRange(List<Integer> winningNumbers) {
         try {
-            if (winningNumbers.size() > MAX_LOTTERY_COUNT) {
-                throw new IllegalArgumentException(ErrorMessages.IS_UNDER_1000.writeErrorMessageByCase());
+            if (winningNumbers.size() != MAX_LOTTERY_COUNT) {
+                throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_COUNT_OUT_OF_RANGE.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

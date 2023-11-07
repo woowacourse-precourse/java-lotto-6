@@ -19,4 +19,8 @@ public class WinLotto {
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
 }

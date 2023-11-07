@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static lotto.Validator.*;
 
@@ -14,7 +15,8 @@ public class LottoGame {
         int amount = getLottoAmount();
         UserLottos userLottos = new UserLottos(amount);
         showLottos(userLottos);
-        winLotto = getWinLotto();
+        winLotto = new WinLotto(getWinNumbers());
+        winLotto.setBonusNumber(getBonusNumber());
     }
 
     // 구입금액 입력
@@ -41,19 +43,36 @@ public class LottoGame {
     }
 
     // 당첨 번호 입력
-    private WinLotto getWinLotto() {
-        String input = "";
+    private List<String> getWinNumbers() {
+        String numbers = "";
         while (true) {
             try {
                 userInterface.showText("당첨 번호를 입력해 주세요.");
-                input = userInterface.getUserInput();
-                validateWinNumbers(input);
+                numbers = userInterface.getUserInput();
+                validateWinNumbers(numbers);
             } catch (IllegalArgumentException e) {
                 userInterface.showText(e.getMessage());
                 continue;
             }
             userInterface.newLine();
-            return new WinLotto(Arrays.asList(input.split(".")));
+            return Arrays.asList(numbers.split(","));
+        }
+    }
+
+    // 보너스 번호 입력
+    private int getBonusNumber() {
+        String number = "";
+        while (true) {
+            try {
+                userInterface.showText("보너스 번호를 입력해 주세요.");
+                number = userInterface.getUserInput();
+                validateBonusNumber(number, winLotto.getLotto().getNumbers());
+            } catch (IllegalArgumentException e) {
+                userInterface.showText(e.getMessage());
+                continue;
+            }
+            userInterface.newLine();
+            return Integer.parseInt(number);
         }
     }
 }

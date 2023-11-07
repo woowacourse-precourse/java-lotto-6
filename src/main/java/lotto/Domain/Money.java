@@ -4,7 +4,7 @@ import lotto.Constant.Constant;
 
 public class Money {
 
-    private final int value;
+    private final Integer value;
 
     public Money(String value) {
         validate(value);
@@ -17,10 +17,9 @@ public class Money {
 
     //숫자값인지 확인
     private void isNumber(String value) {
-        if(!value.matches(Constant.NUMBER_PATTERN)) {
+        if (!value.matches(Constant.NUMBER_PATTERN)) {
             throw new IllegalArgumentException(Constant.ERROR_PREFIX + Constant.ERROR_NOT_NUMBER_MESSAGE);
         }
     }
-
 
 }

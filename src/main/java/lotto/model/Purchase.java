@@ -5,6 +5,8 @@ import static lotto.util.message.Error.MUST_MONEY_UNIT;
 
 public class Purchase {
 
+    private final static int MONEY_CONDITION = 0;
+
     private final int money;
     private final int count;
 
@@ -23,7 +25,7 @@ public class Purchase {
     }
 
     private void validate(int money) {
-        if (money % MONEY_UNIT.getNumber() != 0 || money <= 0) {
+        if (money % MONEY_UNIT.getNumber() != MONEY_CONDITION || money <= MONEY_CONDITION) {
             throw new IllegalArgumentException(MUST_MONEY_UNIT.getError(MONEY_UNIT.getNumber()));
         }
     }

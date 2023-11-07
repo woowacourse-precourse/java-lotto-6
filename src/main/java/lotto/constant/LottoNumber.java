@@ -1,17 +1,39 @@
 package lotto.constant;
 
 public enum LottoNumber {
-    RANGE_START_NUMBER(1),
-    RANGE_END_NUMBER(45),
-    LOTTO_NUMBER_COUNT(6);
+    RANGE(1, 45, 6);
 
-    private final int number;
+    private final int startNumber;
+    private final int endNumber;
+    private final int count;
 
-    LottoNumber(int number) {
-        this.number = number;
+    LottoNumber(int startNumber, int endNumber, int count) {
+        this.startNumber = startNumber;
+        this.endNumber = endNumber;
+        this.count = count;
     }
 
-    public int getNumber() {
-        return number;
+    public boolean notInclude(int number) {
+        return this.isOver(number) || this.isUnder(number);
+    }
+
+    private boolean isOver(int number) {
+        return number < RANGE.startNumber;
+    }
+
+    private boolean isUnder(int number) {
+        return number > RANGE.endNumber;
+    }
+
+    public int getStartNumber() {
+        return startNumber;
+    }
+
+    public int getEndNumber() {
+        return endNumber;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

@@ -59,4 +59,28 @@ class PrizeTest {
 
         assertEquals(Prize.NONE, Prize.findPrize(result));
     }
+
+    @Test
+    @DisplayName("Prize의 상금을 출력해줄 수 있어야 한다. 1등")
+    void 상금_출력_1등() {
+        assertEquals(2000000000, Prize.FIRST.getProfit());
+    }
+
+    @Test
+    @DisplayName("Prize의 상금을 출력해줄 수 있어야 한다. 5등")
+    void 상금_출력_5등() {
+        assertEquals(5000, Prize.FIFTH.getProfit());
+    }
+
+    @Test
+    @DisplayName("Prize는 당첨 메세지를 출력해줄 수 있어야 한다. 1등")
+    void 당첨_메세지_출력_1등() {
+        assertEquals("6개 일치 (2,000,000,000원) - ", Prize.FIRST.getMsg());
+    }
+
+    @Test
+    @DisplayName("Prize는 당첨 메세지를 출력해줄 수 있어야 한다. 5등")
+    void 당첨_메세지_출력_5등() {
+        assertEquals("3개 일치 (5,000원) - ", Prize.FIFTH.getMsg());
+    }
 }

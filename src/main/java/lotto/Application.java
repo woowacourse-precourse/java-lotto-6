@@ -12,7 +12,8 @@ class IllegalArgumentException extends Exception{
 
 public class Application {
 	private int lottoCnt, purchase;
-	private boolean vaildMoney;
+	private boolean vaildMoney = false, validWinningNum = false, validBonusNum = false;
+	private ArrayList<Integer> winningNumbers, rankCnt;
 	private ArrayList<ArrayList<Integer>> lotto;
 	public void start() {
 		System.out.println("구입금액을 입력해 주세요.");	
@@ -90,6 +91,23 @@ public class Application {
 	}
 	
 	private void makeWinningNumber() {
+		winningNumbers = new ArrayList<>(7);
+		while (!validWinningNum) {
+			System.out.println("\n당첨 번호를 입력해 주세요.");
+			winningNumber();
+		}
+			
+		while (!validBonusNum) {
+			System.out.println("\n보너스 번호를 입력해 주세요.");
+			bonusNumber();
+		}
+	}
+	
+	private void winningNumber() {
+		
+	}
+	
+	private void bonusNumber() {
 		
 	}
 	

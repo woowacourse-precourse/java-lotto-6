@@ -45,7 +45,7 @@ public class InputView {
 
     public BonusNumber getBonusNumber() {
         try {
-            System.out.println(Message.PICK_TICKET_NUMBER.message);
+            System.out.println(Message.PICK_TICKET_BONUS_NUMBER.message);
             String input = Console.readLine();
             Integer convertInput = TypeConvertor.stringToInt(input);
             return BonusNumber.of(convertInput);

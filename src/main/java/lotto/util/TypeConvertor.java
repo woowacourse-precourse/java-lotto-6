@@ -29,7 +29,10 @@ public class TypeConvertor {
     public static List<Integer> stringToStringList(final String input) {
         try {
             return Arrays.stream(input.split(REGEX))
-                    .map(Integer::parseInt)
+                    .map(s -> {
+                        String trim = s.trim();
+                        return Integer.parseInt(trim);
+                    })
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMERIC.getMessage());

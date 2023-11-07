@@ -30,16 +30,16 @@ public class LottoValidator extends Validator {
     private static List<Integer> parseWinNumbers(String winNumbers) {
         String[] numberStrings = winNumbers.split(",");
         List<Integer> parsedNumbers = new ArrayList<>();
-        for (String numberStr : numberStrings) {
-            int number = parseNumber(numberStr);
+        for (String numberWin : numberStrings) {
+            int number = parseNumber(numberWin);
             parsedNumbers.add(number);
         }
         return parsedNumbers;
     }
 
-    private static int parseNumber(String numberStr) {
+    private static int parseNumber(String numberWin) {
         try {
-            return Integer.parseInt(numberStr.trim());
+            return Integer.parseInt(numberWin.trim());
         } catch (NumberFormatException e) {
             throwException("당첨번호는 숫자로만 입력해야 합니다.", e);
             return -1;

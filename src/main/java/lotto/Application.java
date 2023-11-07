@@ -36,7 +36,7 @@ public class Application {
                     result.get(prizeType);
         }
 
-        return earn / inputMoney;
+        return earn / inputMoney * 100.0;
     }
 
     public static Map<PRIZE_TYPE, Integer> calculateLottoPrize(Lotto prizeNumbers, int bonusNumber,

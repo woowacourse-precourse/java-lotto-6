@@ -9,10 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 
 public class OutputView {
-    //todo
-    /**
-     * 메세지 상수로 관리
-     */
+
     private static final String REQUEST_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_LOTTO_QUANTITY_MESSAGE = "개를 구매했습니다.";
     private static final String REQUEST_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -56,7 +53,10 @@ public class OutputView {
         System.out.println(DELIMITER);
 
         for (Map.Entry<LottoRank, Integer> rank : lottoResult.entrySet()) {
-            System.out.println(rank.getKey().getMessage() + rank.getValue());
+            LottoRank lottoRank = rank.getKey();
+            String message = String.format(lottoRank.getMessage(), lottoRank.getMatchCount(), lottoRank.getWinningAmount(), rank.getValue());
+
+            System.out.println(message);
         }
     }
 

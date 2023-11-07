@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.enums.LottoValue;
 
 public class LottoTicket {
     private final List<Lotto> tickets;
@@ -14,12 +13,8 @@ public class LottoTicket {
     }
 
     public static LottoTicket of(PurchasePrice purchasePrice, NumberGenerator lottoNumberGenerator) {
-        int purchaseCount = calculateTicketCount(purchasePrice);
+        int purchaseCount = purchasePrice.calculatePurchaseCount();
         return new LottoTicket(pickAutoLottoEqualTo(purchaseCount, lottoNumberGenerator));
-    }
-
-    private static int calculateTicketCount(PurchasePrice purchasePrice) {
-        return (int) (purchasePrice.getPrice() / LottoValue.PRICE_PER_LOTTO.getValue());
     }
 
     private static List<Lotto> pickAutoLottoEqualTo(int purchaseCount, NumberGenerator lottoNumberGenerator) {

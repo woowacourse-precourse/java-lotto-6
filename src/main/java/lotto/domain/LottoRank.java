@@ -27,7 +27,6 @@ public enum LottoRank {
 
 	public static LottoRank getMatchedLottoRank(AnswerLotto answerLotto, Lotto lotto) {
 		int matchedNumberCount = countMatchedNumber(answerLotto, lotto);
-
 		boolean isBonusNumber = isNumberSameAsBonusNumber(answerLotto, lotto);
 
 		return LottoRank.getMatchedLottoRank(matchedNumberCount, isBonusNumber);

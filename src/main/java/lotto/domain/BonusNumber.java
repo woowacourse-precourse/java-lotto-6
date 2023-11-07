@@ -24,8 +24,8 @@ public class BonusNumber {
 
 	private void validateBonusNumberOutOfRange(int bonusNumber) {
 		if (isNumberOutOfRange(bonusNumber)) {
-			throw new IllegalArgumentException(
-					ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getFormattedMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
+			throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR
+					.getFormattedMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
 		}
 	}
 

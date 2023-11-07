@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.service;
 
 public enum LottoError {
     LOTTO_INPUT_FAILED_PRICE("[ERROR] 로또 구입 금액은 숫자여야 합니다."),

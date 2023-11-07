@@ -30,5 +30,13 @@ public class Lotto {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_DUPLICATED_ERROR);
         }
     }
-    
+
+    private void validateRange(List<Integer> numbers) {
+        for(Integer number : numbers) {
+            if(number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_RANGE_ERROR);
+            }
+        }
+    }
+
 }

@@ -28,45 +28,23 @@ public class LottoController {
     }
 
     public void startLottoGame() {
+        buyLotto();
+        setLottoNumbers();
+    }
+
+    private void buyLotto() {
         int purchaseAmount = getPurchaseAmount();
         showLottoTicketNumbers(purchaseAmount);
-        LottoManager winningNumbers = getWinningNumbersFromUser();
-        getBonusNumber(winningNumbers);
+    }
 
+    private void setLottoNumbers() {
+        LottoManager winningNumbers = getWinningNumbersFromUser();
+        addBonusNumberToWinningNumbers(winningNumbers);
     }
 
     private int getPurchaseAmount() {
         outputView.askPurchaseAmount();
-        int purchaseAmount = inputValidator.getPurchaseAmount(inputView);
-        return purchaseAmount;
-    }
-
-    private void addBonusNumberToWinningNumbers(LottoManager winningNumbers, int bonusNumber) {
-        winningNumbers.addBonusNumber(bonusNumber);
-    }
-
-    private int getBonusNumberFromUser() {
-        outputView.askBonusNumber();
-        return inputView.getBonusNumberFromUser();
-    }
-
-    private void getBonusNumber(LottoManager winningNumbers) {
-        while (true) {
-            try {
-                int bonusNumber = getBonusNumberFromUser();
-                addBonusNumberToWinningNumbers(winningNumbers, bonusNumber);
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[Error] " + e.getMessage() + " 다시 입력해주세요.");
-            }
-        }
-    }
-
-    private LottoManager getWinningNumbersFromUser() {
-        outputView.askWinningNumbers();
-        return inputValidator.validateWinningNumbers(inputView);
+        return inputValidator.validatePurchaseAmount(inputView);
     }
 
     private void showLottoTicketNumbers(int purchaseAmount) {
@@ -80,5 +58,13 @@ public class LottoController {
         outputView.showPurchasedLottoTickets(lottoList);
     }
 
+    private LottoManager getWinningNumbersFromUser() {
+        outputView.askWinningNumbers();
+        return inputValidator.validateWinningNumbers(inputView);
+    }
 
+    private void addBonusNumberToWinningNumbers(LottoManager winningNumbers) {
+        outputView.askBonusNumber();
+        inputValidator.validateBonusNumber(winningNumbers, inputView);
+    }
 }

@@ -19,19 +19,19 @@ public class InputValidator {
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException | IllegalArgumentException e) {
                 System.out.println("[Error] " + e.getMessage() + " 다시 입력해주세요.");
             }
         }
         return result;
     }
 
-    public int getPurchaseAmount(InputView inputView) {
+    public int validatePurchaseAmount(InputView inputView) {
         int purchaseAmount;
         while (true) {
             try {
                 purchaseAmount = inputView.getPurchaseAmountFromUser();
-                validatePurchaseAmount(purchaseAmount);
+                validateLottoPurchaseAmount(purchaseAmount);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
@@ -42,9 +42,31 @@ public class InputValidator {
         return purchaseAmount;
     }
 
-    public void validatePurchaseAmount(int purchaseAmount) {
+    public void validateLottoPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 1000원 단위로 입력 받아야합니다.");
         }
+    }
+
+    public void validateBonusNumber(LottoManager winningNumbers, InputView inputView) {
+        while (true) {
+            try {
+                int bonusNumber = getBonusNumberFromUser(inputView);
+                addBonusNumberToWinningNumbers(winningNumbers, bonusNumber);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+            } catch (IllegalStateException | IllegalArgumentException e) {
+                System.out.println("[Error] " + e.getMessage() + " 다시 입력해주세요.");
+            }
+        }
+    }
+
+    private void addBonusNumberToWinningNumbers(LottoManager winningNumbers, int bonusNumber) {
+        winningNumbers.addBonusNumber(bonusNumber);
+    }
+
+    private int getBonusNumberFromUser(InputView inputView) {
+        return inputView.getBonusNumberFromUser();
     }
 }

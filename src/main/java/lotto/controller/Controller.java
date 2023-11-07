@@ -19,5 +19,6 @@ public class Controller {
 		lottoService.printLottos(lottoAmountService.getLottoAmount());
 		lottoService.setUpWinningLotto();
 		OutputView.printResult(lottoService.calculateAndGetResult());
+		OutputView.printRateOfResult(lottoService.getRateOfReturn(lottoAmountService.getInputMoney()));
 	}
 }

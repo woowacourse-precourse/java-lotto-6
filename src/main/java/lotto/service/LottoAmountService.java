@@ -18,6 +18,10 @@ public class LottoAmountService {
 		return inputAmount.getInputAmount();
 	}
 
+	public int getInputMoney() {
+		return inputMoney.getInputMoney();
+	}
+
 	private String getUserInputAmount() {
 		InputView.askInputAmount();
 		return Console.readLine();

@@ -31,4 +31,9 @@ public class OutputView {
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		return formatter.format(number);
 	}
+
+	public static void printRateOfResult(double rateOfReturn) {
+		double value = Math.round(rateOfReturn * 100.0) / 100.0;
+		System.out.println(String.format(PRINT_RATE_OF_RETURN, value));
+	}
 }

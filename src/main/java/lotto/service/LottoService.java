@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.constant.GameMessage.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,6 +11,7 @@ import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningNumbers;
 import lotto.exception.LottoException;
@@ -43,6 +47,10 @@ public class LottoService {
 
 	public Map calculateAndGetResult() {
 		return winningLotto.calculateResult(lottos);
+	}
+
+	public double getRateOfReturn(int inputMoney) {
+		return winningLotto.getRateOfReturn(inputMoney);
 	}
 
 	private WinningNumbers setUpWinningNumbers() {

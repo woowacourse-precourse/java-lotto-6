@@ -32,4 +32,16 @@ public class WinningLottoTest {
 
 		assertThat(map.containsKey(Prize.FIVEANDBONUS)).isEqualTo(true);
 	}
+
+	@Test
+	void 수익률을_계산한다() {
+		Lotto lotto = new Lotto(new ArrayList<>(List.of(1,2,3,4,5,6)));
+		WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+		Bonus bonus = new Bonus("7");
+		WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
+		winningLotto.calculateResult(List.of(lotto));
+
+		double rate = winningLotto.getRateOfReturn(1000);
+		assertThat(rate).isEqualTo((2_000_000_000 / 1000) * 100);
+	}
 }

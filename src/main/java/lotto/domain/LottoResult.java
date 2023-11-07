@@ -37,6 +37,7 @@ public class LottoResult {
 			return WinningRank.SECOND;
 		if (matchCount == 6)
 			return WinningRank.FIRST;
-		return FAIL;
+
+		return WinningRank.FAIL;
 	}
 }

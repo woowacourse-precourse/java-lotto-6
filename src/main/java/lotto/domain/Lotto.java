@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import lotto.common.ErrorType;
 
@@ -12,27 +13,26 @@ public class Lotto {
 	public static final int MAX_LOTTO_NUMBER = 45;
 	public static final int MAX_LOTTO_SIZE = 6;
 
+	private final List<Integer> numbers;
 
-    private final List<Integer> numbers;
+	public Lotto(List<Integer> numbers) {
+		validate(numbers);
+		this.numbers = numbers.stream()
+			.sorted().collect(Collectors.toList());
+	}
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-		Collections.sort(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != MAX_LOTTO_SIZE
+	private void validate(List<Integer> numbers) {
+		if (numbers.size() != MAX_LOTTO_SIZE
 			|| !areUnique(numbers) || !areInRange(numbers)) {
-            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER.getErrorMessage());
-        }
-    }
+			throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER.getErrorMessage());
+		}
+	}
 
-    // TODO: 추가 기능 구현
-    private boolean areUnique(List<Integer> numbers) {
-        return numbers.stream()
+	// TODO: 추가 기능 구현
+	private boolean areUnique(List<Integer> numbers) {
+		return numbers.stream()
 			.distinct().count() == numbers.size();
-    }
+	}
 
 	private boolean areInRange(List<Integer> numbers) {
 		return numbers.stream()

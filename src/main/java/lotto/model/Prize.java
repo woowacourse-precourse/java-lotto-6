@@ -20,23 +20,15 @@ public enum Prize {
         this.winningMoney = winningMoney;
     }
 
-    public int getCountOfMatchedNumbers() {
-        return matchedNumber;
-    }
-
-    public boolean isMatchedBonus() {
-        return matchedBonus;
+    public static Prize getRank(int number, boolean bonusNumber) {
+        return Arrays.stream(values())
+                .filter(o -> o.matchedNumber == number
+                        && o.matchedBonus == bonusNumber)
+                .findAny()
+                .orElse(MISS);
     }
 
     public int getWinningMoney() {
         return winningMoney;
-    }
-
-    public static Prize getRank(int matchedNumber, boolean matchedBonus) {
-        return Arrays.stream(values())
-                .filter(o -> o.matchedNumber == matchedNumber
-                        && o.matchedBonus == matchedBonus)
-                .findAny()
-                .orElse(MISS);
     }
 }

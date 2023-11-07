@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import lotto.Service.Service;
 import lotto.View.View;
 import lotto.constant.JudgeBonus;
 import lotto.constant.LottoRanking;
@@ -9,14 +10,15 @@ import lotto.utils.RandomLottoGenerator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Controller {
 
+    private final Service service;
     private final View view;
     private final Mapper mapper;
 
     public Controller() {
+        this.service = new Service();
         this.view = new View();
         this.mapper = new Mapper();
     }
@@ -33,23 +35,19 @@ public class Controller {
     }
 
     private PurchaseMoney insertMoney() {
-        return new PurchaseMoney(view.getPurchasePrice());
+        return service.getPurchaseMoney();
     }
 
     private List<Lotto> purchaseLotto(PurchaseMoney purchaseMoney) {
-        RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
-        List<Lotto> userLottos = randomLottoGenerator.generateMultipleLotto(purchaseMoney.getCount());
-        view.printIssuanceLotto(userLottos);
-        return userLottos;
+        return service.getPurchaseLottos(purchaseMoney.getCount());
     }
 
     private WinnerNumbers generateWinnerNumbers() {
-        List<Integer> lottoNumbers = mapper.stringToIntegerList(view.getWinnerNumbers());
-        return  new WinnerNumbers(lottoNumbers);
+        return service.getWinnerNumbers();
     }
 
     private BonusNumber generateBonusNumber(WinnerNumbers winnerNumbers) {
-        return new BonusNumber(view.getBonusNumber(), winnerNumbers);
+        return service.getBonusNumber(winnerNumbers);
     }
 
     private void analysisLottos(List<Lotto> userLottos, PrizeTotalNUmber prizeTotalNUmber) {

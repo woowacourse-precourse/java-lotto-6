@@ -6,6 +6,8 @@ import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.enumeration.WinningType;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,16 +46,16 @@ public class TicketsService {
 
     public Result compare(List<Lotto> tickets, WinningLotto winningLotto) {
         Result result = new Result();
-        for(Lotto ticket: tickets) {
+        for (Lotto ticket : tickets) {
             WinningType winningType = WinningType.compare(countDuplicateNum(ticket, winningLotto)
-                    ,hasBonusNum(ticket, winningLotto.getBonusNum()));
+                    , hasBonusNum(ticket, winningLotto.getBonusNum()));
             result.update(winningType);
         }
         return result;
     }
 
     private boolean hasBonusNum(Lotto lotto, int bonusNum) {
-        if(lotto.getNumbers().contains(bonusNum)) {
+        if (lotto.getNumbers().contains(bonusNum)) {
             return true;
         }
         return false;
@@ -61,11 +63,31 @@ public class TicketsService {
 
     public int countDuplicateNum(Lotto ticket, WinningLotto winningLotto) {
         int count = 0;
-        for(int num : ticket.getNumbers()) {
-            if(winningLotto.getNumbers().getNumbers().contains(num)) {
+        for (int num : ticket.getNumbers()) {
+            if (winningLotto.getNumbers().getNumbers().contains(num)) {
                 count++;
             }
         }
         return count;
+    }
+
+    public BigDecimal calcProfitRate(int amount, Result result) {
+        int totalPrize = getTotalPrize(result);
+        double profit = (totalPrize / amount) * 100;
+
+        return roundDouble(profit);
+    }
+
+    public int getTotalPrize(Result result) {
+        int totalPrize = 0;
+        for (WinningType winningType : WinningType.values()) {
+            totalPrize += result.getResult().get(winningType) * winningType.getPrize();
+        }
+        System.out.println("totalPrize: " + totalPrize);
+        return totalPrize;
+    }
+
+    private BigDecimal roundDouble(double value) {
+        return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP);
     }
 }

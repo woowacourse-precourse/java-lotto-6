@@ -13,6 +13,7 @@ public class WinningLottoController {
     WinningLotto winningLotto;
     List<Lotto> tickets;
     int amount;
+    Result result;
     private final TicketsService ticketsService = new TicketsService();
     public Lotto getLottoInput() {
         String lottoInput = Console.readLine();
@@ -38,12 +39,23 @@ public class WinningLottoController {
         tickets = ticketsService.issue(amount);
     }
 
-    public Result getResult() {
-        Result result = ticketsService.compare(tickets, winningLotto);
-//        for(WinningType winningType : WinningType.values()) {
-//            System.out.println(winningType.getMatchedCount() + " " +
-//                    result.getResult().get(winningType));
-//        }
-        return result;
+    public void getResult() {
+        result = ticketsService.compare(tickets, winningLotto);
+        for(WinningType winningType : WinningType.values()) {
+            System.out.println(winningType.getMatchedCount() + " " +
+                    result.getResult().get(winningType));
+        }
     }
+
+    public void run() {
+        init();
+        getResult();
+        getProfitRate();
+    }
+
+    public void getProfitRate() {
+        System.out.println("ProfitRate: " + ticketsService.calcProfitRate(amount, result));
+    }
+
+
 }

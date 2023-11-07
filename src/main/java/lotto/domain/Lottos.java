@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
@@ -11,20 +12,31 @@ public class Lottos {
     private static int LOTTO_SIZE = 6;
 
     public Lottos(int numberOfLotto){
+        lottos = new ArrayList<>();
+        createLottos(numberOfLotto);
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
+
+    private void createLottos(Integer numberOfLotto){
         for(int i=0;i<numberOfLotto;i++){
             List<Integer> oneLotto = createLotto();
+            checkLottoNumberInBound(oneLotto);
             lottos.add(new Lotto(oneLotto));
         }
-        differentCountValidate(numberOfLotto);
     }
 
     private List<Integer> createLotto(){
         return Randoms.pickUniqueNumbersInRange(START_NUMBER, LAST_NUMBER, LOTTO_SIZE);
     }
 
-    private void differentCountValidate(Integer numberOfLotto){
-        if(lottos.size()!=numberOfLotto){
-            throw new IllegalArgumentException("[ERROR] 구입한 로또의 갯수와 생성된 로또의 갯수가 다릅니다.");
+    private void checkLottoNumberInBound(List<Integer> oneLotto){
+        for (int oneLottoNumber : oneLotto) {
+            if (oneLottoNumber < START_NUMBER || oneLottoNumber > LAST_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.WinningNumber;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -22,6 +21,7 @@ public class InputBonusNumberView {
         try {
             validateNumeric(input);
             int bonus = Integer.parseInt(input);
+            validateRangeNumber(bonus);
             validateDuplicate(winningNumbers, bonus);
             return bonus;
         } catch (IllegalArgumentException e) {
@@ -32,6 +32,12 @@ public class InputBonusNumberView {
 
     private void validateNumeric(String input) {
         if (!PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRangeNumber(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

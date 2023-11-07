@@ -3,6 +3,9 @@ package lotto;
 public class RunLottoGame {
     public void start() {
         InputManager inputManager = new InputManager();
-        inputManager.inputMoney();
+        int moneyInput = inputManager.inputMoney();
+
+        LottoQuantityManager lottoquantitymanager = new LottoQuantityManager();
+        lottoquantitymanager.calculateLottoQuantity(moneyInput);
     }
 }

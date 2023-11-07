@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.enums.LottoSpec;
+
 public class PurchaseAmount {
     private int purchaseMoney;
 
@@ -9,7 +11,7 @@ public class PurchaseAmount {
     }
 
     private void validatePurchaseMoney(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LottoSpec.PRICE.getValue() != 0) {
             throw new IllegalArgumentException();
         }
     }
@@ -19,4 +21,7 @@ public class PurchaseAmount {
     }
 
 
+    public int getTicketNumber() {
+        return purchaseMoney / LottoSpec.PRICE.getValue();
+    }
 }

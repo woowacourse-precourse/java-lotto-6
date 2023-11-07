@@ -18,7 +18,7 @@ class BonusNumberTest {
     @Nested
     class CheckSecondWinning {
 
-        @DisplayName("보너스 번호를 가진 경우 SECOND_GRADE를 반환한다")
+        @DisplayName("보너스 번호를 가진 경우 SECOND_GRADE를 반환한다.")
         @Test
         void secondWinning() {
             // given
@@ -32,7 +32,7 @@ class BonusNumberTest {
             assertThat(result).isEqualTo(WinningGrade.SECOND_GRADE);
         }
 
-        @DisplayName("보너스 번호를 갖지 않은 경우 THIRD_GRADE를 반환한다")
+        @DisplayName("보너스 번호를 갖지 않은 경우 THIRD_GRADE를 반환한다.")
         @Test
         void notSecondWinning() {
             // given
@@ -47,7 +47,7 @@ class BonusNumberTest {
         }
     }
 
-    @DisplayName("번호 값 확인 요청시")
+    @DisplayName("번호 값 확인 요청시 저장된 값을 반환한다.")
     @Test
     void toValue() {
         // given
@@ -66,7 +66,7 @@ class BonusNumberTest {
     class CreateValidation {
 
         @Test
-        @DisplayName("1보다 작은 값인 경우")
+        @DisplayName("1보다 작은 값인 경우 예외를 던진다.")
         void lessThan1() {
             // given
             // when
@@ -76,7 +76,7 @@ class BonusNumberTest {
         }
 
         @Test
-        @DisplayName("45보다 큰 값인 경우")
+        @DisplayName("45보다 큰 값인 경우 예외를 던진다.")
         void greaterThan45() {
             // given
             // when

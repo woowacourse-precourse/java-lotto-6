@@ -15,7 +15,7 @@ class WinningGradeTest {
     @Nested
     class ValueOfMatchNum {
 
-        @DisplayName("적합한 개수의 경우 값을 반환하는가")
+        @DisplayName("적합한 개수의 경우 값을 반환한다.")
         @Test
         void existMatchNum() {
             // given
@@ -26,7 +26,7 @@ class WinningGradeTest {
             assertThat(result).isPresent();
         }
 
-        @DisplayName("적합하지 않은 개수인 경우 empty를 반환하는가")
+        @DisplayName("적합하지 않은 개수인 경우 empty를 반환한다.")
         @Test
         void invalidMatchNum() {
             // given

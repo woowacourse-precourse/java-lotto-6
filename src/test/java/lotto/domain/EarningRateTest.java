@@ -14,7 +14,7 @@ class EarningRateTest {
     @Nested
     class ToValue {
 
-        @DisplayName("수익이 있는 경우 정상 값이 확인되는가")
+        @DisplayName("수익이 있는 경우 정상 값이 확인된다.")
         @Test
         void hasProfit() {
             // given
@@ -30,7 +30,7 @@ class EarningRateTest {
             assertThat(result).isEqualTo(profit / useMoney * 100);
         }
 
-        @DisplayName("수익이 없는 경우 0이 확인되는가")
+        @DisplayName("수익이 없는 경우 0이 확인된다.")
         @Test
         void zeroProfit() {
             // given
@@ -47,7 +47,7 @@ class EarningRateTest {
         }
     }
 
-    @DisplayName("생성시")
+    @DisplayName("생성시 음수의 이윤의 경우 예외를 던진다.")
     @Test
     void createValidation() {
         // given

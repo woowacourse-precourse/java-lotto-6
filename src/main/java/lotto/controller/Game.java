@@ -54,8 +54,8 @@ public class Game {
         return new WinningNumbers(getWinningNumber(), getBonusNumber());
     }
 
-    private WinningNumber getWinningNumber() {
-        return new WinningNumber(getNumbers());
+    private Lotto getWinningNumber() {
+        return new Lotto(getNumbers());
     }
 
     private List<Integer> getNumbers() {

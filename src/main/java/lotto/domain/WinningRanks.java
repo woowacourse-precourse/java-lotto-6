@@ -22,7 +22,7 @@ public class WinningRanks {
     }
 
     private Rank generateRank(Lotto lotto) {
-        Integer matchingNumbers = lotto.getMatchingNumbers(winningNumbers.getWinningNumber().getNumbers(), winningNumbers.getBonusNumber().getNumber());
+        Integer matchingNumbers = lotto.getMatchingNumbers(winningNumbers.getWinningLotto().getNumbers(), winningNumbers.getBonusNumber().getNumber());
         boolean isBonusNumberMatch = lotto.isMatchingWithBonusNumber(winningNumbers.getBonusNumber().getNumber());
         return Rank.getRankByMatchingNumbersAndBonus(matchingNumbers, isBonusNumberMatch);
     }

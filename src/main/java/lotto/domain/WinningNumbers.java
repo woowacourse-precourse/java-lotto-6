@@ -4,27 +4,27 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.LottoGameException;
 
 public class WinningNumbers {
-    private final WinningNumber winningNumber;
+    private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    public WinningNumbers(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        validate(winningNumber, bonusNumber);
-        this.winningNumber = winningNumber;
+    public WinningNumbers(Lotto winningLotto, BonusNumber bonusNumber) {
+        validate(winningLotto, bonusNumber);
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        if (hasDuplicateNumber(winningNumber, bonusNumber)) {
+    private void validate(Lotto winningLotto, BonusNumber bonusNumber) {
+        if (hasDuplicateNumber(winningLotto, bonusNumber)) {
             throw new LottoGameException(ErrorMessage.DUPLICATE_INPUT);
         }
     }
 
-    private boolean hasDuplicateNumber(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        return winningNumber.getNumbers().contains(bonusNumber.getNumber());
+    private boolean hasDuplicateNumber(Lotto winningLotto, BonusNumber bonusNumber) {
+        return winningLotto.getNumbers().contains(bonusNumber.getNumber());
     }
 
-    public WinningNumber getWinningNumber() {
-        return winningNumber;
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     public BonusNumber getBonusNumber() {

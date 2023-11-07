@@ -47,14 +47,21 @@ public class Lotto {
         if (hasDuplicates(numbers)) {
             throw new LottoGameException(ErrorMessage.DUPLICATE_INPUT);
         }
+        if (hasOutOfRangeNumbers(numbers)) {
+            throw new LottoGameException(ErrorMessage.OUT_OF_RANGE);
+        }
     }
-
+    
     private boolean checkNumbersCount(List<Integer> numbers) {
         return numbers.size() != LottoConstants.NUMBER_OF_LOTTO_NUMBERS.getValue();
     }
 
     private boolean hasDuplicates(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
+    }
+
+    private boolean hasOutOfRangeNumbers(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue());
     }
 
     private List<Integer> sortLottoNumbers(List<Integer> numbers) {

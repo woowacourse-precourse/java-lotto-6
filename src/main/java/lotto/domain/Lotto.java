@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.utils.validator.Validator.validBlank;
-import static lotto.utils.validator.Validator.validLength;
-import static lotto.utils.validator.Validator.validRange;
-import static lotto.utils.validator.Validator.validUniqueValue;
+import static lotto.utils.validator.Validator.validateEmpty;
+import static lotto.utils.validator.Validator.validateLength;
+import static lotto.utils.validator.Validator.validateNumberRange;
+import static lotto.utils.validator.Validator.validateUniqueValue;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validBlank(numbers);
-        validLength(numbers);
-        validRange(numbers);
-        validUniqueValue(numbers);
+        validateEmpty(numbers);
+        validateLength(numbers);
+        validateNumberRange(numbers);
+        validateUniqueValue(numbers);
         this.numbers = numbers;
     }
 

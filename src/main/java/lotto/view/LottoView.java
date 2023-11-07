@@ -17,11 +17,12 @@ import static lotto.view.message.OutputMessage.WinningStatisticsDetails.THREE_MA
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.result.LottoCalculateResult;
-import lotto.domain.result.LottoMatchResult;
-import lotto.domain.result.LottoPurchaseResult;
+import lotto.domain.result.CalculateResult;
+import lotto.domain.result.MatchResult;
+import lotto.domain.result.PurchaseResult;
 import lotto.domain.Purchase;
-import lotto.dto.LottoResultDto;
+import lotto.dto.ResultDto;
+import lotto.exception.LottoException;
 import lotto.view.message.OutputMessage;
 import lotto.view.message.OutputMessage.WinningStatisticsDetails;
 
@@ -50,9 +51,9 @@ public class LottoView {
         displayFormattedMessage(message, ticket);
     }
 
-    public void displayPurchaseResult(LottoPurchaseResult lottoPurchaseResult) {
-        Purchase purchase = lottoPurchaseResult.getPurchase();
-        List<Lotto> lottos = lottoPurchaseResult.getLottos();
+    public void displayPurchaseResult(PurchaseResult purchaseResult) {
+        Purchase purchase = purchaseResult.getPurchase();
+        List<Lotto> lottos = purchaseResult.getLottos();
 
         displayPurchasePrice(ANNOUNCE_FOR_PURCHASE_COUNT, purchase.getFinalRound());
         displayLottoNumber(lottos);
@@ -64,29 +65,29 @@ public class LottoView {
                 .forEach(System.out::println);
     }
 
-    public void displayResult(LottoResultDto lottoResultDto) {
-        LottoMatchResult matchResult = lottoResultDto.getLottoMatchResult();
-        LottoCalculateResult calculateResult = lottoResultDto.getLottoCalculateResult();
+    public void displayResult(ResultDto resultDto) {
+        MatchResult matchResult = resultDto.getLottoMatchResult();
+        CalculateResult calculateResult = resultDto.getLottoCalculateResult();
 
         displayStatistics(matchResult);
         displayProfitPercentage(calculateResult);
     }
 
-    public void displayStatistics(LottoMatchResult lottoMatchResult) {
+    public void displayStatistics(MatchResult matchResult) {
         displayMessage(WINNING_STATISTICS);
-        displayFormattedMessage(THREE_MATCH, lottoMatchResult.getMatchCounts(MATCH_THREE_COUNT));
-        displayFormattedMessage(FOUR_MATCH, lottoMatchResult.getMatchCounts(MATCH_FOUR_COUNT));
-        displayFormattedMessage(FIVE_MATCH, lottoMatchResult.getMatchCounts(MATCH_FIVE_COUNT));
-        displayFormattedMessage(FIVE_AND_BONUS_MATCH, lottoMatchResult.getBonusMatchCount());
-        displayFormattedMessage(SIX_MATCH, lottoMatchResult.getMatchCounts(MATCH_SIX_COUNT));
+        displayFormattedMessage(THREE_MATCH, matchResult.getMatchCounts(MATCH_THREE_COUNT));
+        displayFormattedMessage(FOUR_MATCH, matchResult.getMatchCounts(MATCH_FOUR_COUNT));
+        displayFormattedMessage(FIVE_MATCH, matchResult.getMatchCounts(MATCH_FIVE_COUNT));
+        displayFormattedMessage(FIVE_AND_BONUS_MATCH, matchResult.getBonusMatchCount());
+        displayFormattedMessage(SIX_MATCH, matchResult.getMatchCounts(MATCH_SIX_COUNT));
     }
 
-    public void displayProfitPercentage(LottoCalculateResult calculateResult) {
-        float profitPercentage = calculateResult.getProfitPercent();
+    public void displayProfitPercentage(CalculateResult calculateResult) {
+        float profitPercentage = calculateResult.getProfitMargin();
         displayFormattedMessage(ANNOUNCE_FOR_TOTAL_PROFIT_PERCENTAGE_FORMAT, profitPercentage);
     }
 
-    public void displayErrorMessage(IllegalArgumentException e) {
+    public void displayErrorMessage(LottoException e) {
         System.out.println(formatError(e.getMessage()));
     }
 

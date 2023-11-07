@@ -9,8 +9,6 @@ public class Constant {
     public static final int FORTH = 4;
     public static final int FIFTH = 5;
     public static final int ALL_CORRECT = 6;
-    public static final int EARNING_START = 3;
-    public static final int EARNING_END = 7;
     public static final int PERCENTAGE = 100;
     public static final int THOUSAND = 1000;
 }

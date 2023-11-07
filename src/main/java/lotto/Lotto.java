@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -34,8 +32,10 @@ public class Lotto {
         return matchNumbers.size();
     }
 
-    public Set<Integer> getNumbers() {
-        return Collections.unmodifiableSet(new HashSet<>(numbers));
+    public List<Integer> getNumbers() {
+        List<Integer> numbersCopy = new ArrayList<>(numbers);
+        Collections.sort(numbersCopy);
+        return numbersCopy;
     }
 
 }

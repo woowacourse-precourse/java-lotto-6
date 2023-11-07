@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -28,20 +29,21 @@ public class ResultView {
         for (LottoRank rank : LottoRank.values()) {
             if (rank == LottoRank.MISS) continue;
 
-            String matchMessage = rank.getMatchCount() + "개 일치 ";
+            String matchMessage = rank.getMatchCount() + "개 일치";
 
             if (rank == LottoRank.SECOND) {
-                matchMessage += ", 보너스 볼 일치 ";
+                matchMessage += ", 보너스 볼 일치";
             }
 
             String winningsFormatted = numberFormat.format(rank.getWinnings()) + "원";
-            matchMessage += "(" + winningsFormatted + ") - " + result.getCount(rank) + "개";
+            matchMessage += " (" + winningsFormatted + ") - " + result.getCount(rank) + "개";
 
             System.out.println(matchMessage);
         }
 
         double earningsRate = result.calculateEarningsRate(purchaseAmount) * 100;
-        System.out.printf("총 수익률은 %.2f%%입니다.", earningsRate);
+        DecimalFormat df = new DecimalFormat("0.##");
+        System.out.println("총 수익률은 " + df.format(earningsRate) + "%입니다.");
     }
 
 }

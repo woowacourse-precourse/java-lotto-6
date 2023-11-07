@@ -27,6 +27,12 @@ class LottoTest {
     }
 
     @Test
+    void createLottoByOutOfRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 5, 6, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void testCompare() {
         Lotto[] testCases = {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),

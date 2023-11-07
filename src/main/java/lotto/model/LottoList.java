@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoList {
-    public List<Lotto> lottoList;
+    public List<Lotto> lottoList = new ArrayList<>();
 
     public LottoList(int i) {
-        LottoListAdd(i);
+        int num = i/1000;
+        LottoListAdd(num);
     }
-    private void LottoListAdd(int n){
-        for(int i = 0 ;i < n; i++){
+    private void LottoListAdd(int num){
+        for(int i = 0 ;i < num; i++){
             lottoList.add(new Lotto(LottoGenerate()));
         }
     }

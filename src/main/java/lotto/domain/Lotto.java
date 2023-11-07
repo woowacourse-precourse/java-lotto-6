@@ -13,11 +13,13 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    public int compareNumbers(List<Integer> winningLottoNumbers) {
+        int cnt = 0;
+        for (Integer winningLottoNumber : winningLottoNumbers) {
+            if (numbers.stream().anyMatch(number -> number.equals(winningLottoNumber))) {
+                cnt++;
+            }
         }
+        return cnt;
     }
-
-    // TODO: 추가 기능 구현
 }
